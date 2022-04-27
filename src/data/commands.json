@@ -1,0 +1,38 @@
+{
+  "cmdlets": [
+    {
+      "cmdlet": {
+        "oldCmdlet": "Get-AzureADUser",
+        "newCmdlet": "Get-MgUser",
+        "cmdletName" : "Get-CompatADUser",
+        "parameters": [
+          "@{ObjectId=UserId}"
+        ],
+        "outputs": [
+          "@{Id=ObjectId}"
+        ]
+      }
+    },
+    {
+      "cmdlet": {
+        "oldCmdlet": "Get-AzureADGroup",
+        "newCommand": "Get-MgGroup",
+        "cmdletName" : "Get-CompatADGroup",
+        "parameters": [
+          "@{ObjectId=GroupId}"
+        ],
+        "outputs": [
+          "@{Id=ObjectId}"
+        ]
+      }
+    },
+    {
+      "cmdlet": {
+        "oldCmdlet": null,
+        "newCommand": null,
+        "parameters": [],
+        "outputs": []
+      }
+    }
+  ]
+}

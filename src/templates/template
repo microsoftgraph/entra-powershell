@@ -1,0 +1,18 @@
+function {CmdletName} {
+    [CmdletBinding()]
+    param(
+        {Inputs}
+    )
+
+	begin {
+		{SectionParametersProcessing}
+	}
+	
+    process { 		
+        {SectionCmdletCall}		
+    }
+	
+	end {
+		{SectionOutputProcessing}
+	}
+}
