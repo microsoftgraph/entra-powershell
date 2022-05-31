@@ -85,14 +85,36 @@ function Write-CompatModule{
     foreach ($cmdlet in $newCmdletData) {       
         New-FunctionCode -Cmdlet $cmdlet -FileName $moduleFileName
     }
+
+    $aliasFunction = Get-AlisesFunction -Functions $newCmdletData
+    Write-File -FileName $moduleFileName -Text $aliasFunction
+    $cmdletsToExport += "Set-CompatADAliases"
     $functionsToExport = @"
-    Export-ModuleMember -Function @(
+Export-ModuleMember -Function @(
     '$($cmdletsToExport -Join "','")'
-    )
+)
 "@
-    Write-File -FileName $moduleFileName -Text $functionsToExport
-    
+
+    Write-File -FileName $moduleFileName -Text $functionsToExport    
     New-CompatModuleManifest -ModuleName $ModuleName -Functions $cmdletsToExport -DefaultPrefix $NewPrefix
+}
+
+function Get-AlisesFunction {
+    param (
+        $Functions
+    )
+
+    $aliases = ''
+    foreach ($func in $Functions) {       
+        $aliases += "   Set-Alias -Name $($func.Old) -Value $($func.Generate) -Scope Global -Force`n"
+    }
+    $aliasFunction = @"
+function Set-CompatADAlias {
+$($aliases)}
+
+"@
+
+    $aliasFunction
 }
 
 function New-CompatModuleManifest {
@@ -122,7 +144,6 @@ function New-CompatModuleManifest {
         FileList = $files
         RootModule = "$ModuleName.psm1" 
         Description = 'Microsoft Graph PowerShell AzureAD Compatibility Module.'    
-        DefaultCommandPrefix = $DefaultPrefix 
         DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2')) 
         PowerShellVersion = $([System.Version]::Parse('5.1'))
         CompatiblePSEditions = @('Desktop','Core')

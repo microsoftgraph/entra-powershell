@@ -18,3 +18,6 @@ Import-Module Microsoft.Graph.Compatibility.AzureAD -Force
 Connect-Graph
 Get-CompatADUser
 ```
+
+## Aliases
+You can use the command `Set-CompatADAlias` to enable alias to emulate AzureAD cmdlets.
