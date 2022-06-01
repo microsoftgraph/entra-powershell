@@ -88,7 +88,7 @@ function Write-CompatModule{
 
     $aliasFunction = Get-AlisesFunction -Functions $newCmdletData
     Write-File -FileName $moduleFileName -Text $aliasFunction
-    $cmdletsToExport += "Set-CompatADAliases"
+    $cmdletsToExport += "Set-CompatADAlias"
     $functionsToExport = @"
 Export-ModuleMember -Function @(
     '$($cmdletsToExport -Join "','")'
