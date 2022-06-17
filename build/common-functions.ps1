@@ -65,12 +65,13 @@ function Register-LocalGallery {
         New-Item -Path $repoPath -ItemType Directory  | out-null
     }
 
-    Register-PSRepository -Name (Get-LocalPSRepoName) -SourceLocation (Get-DevRepoDirectory) -ScriptSourceLocation (Get-DevRepoDirectory) -InstallationPolicy Trusted | out-null    
+    Register-PSRepository -Name (Get-LocalPSRepoName) -SourceLocation (Get-DevRepoDirectory) -ScriptSourceLocation (Get-DevRepoDirectory) -InstallationPolicy Trusted | out-null
 }
 
 function Unregister-LocalGallery {    
-    Unregister-PSRepository (Get-LocalPSRepoName)
+    Unregister-PSRepository (Get-LocalPSRepoName) | out-null
 }
+
 function Update-ModuleVersion {
     [cmdletbinding()]
     param(

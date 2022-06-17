@@ -22,7 +22,7 @@ Generated module will be in the output folder `./bin/modules`
 If you want to test the generated version you can use this command
 
 ```powershell
-.\build\Publish-LocalCompatModule.ps1 -Clean -Install`
+.\build\Publish-LocalCompatModule.ps1 -Clean -Install
 ```
 
 This will publish the module to a local repository and install the module.

@@ -6,8 +6,7 @@
 # ------------------------------------------------------------------------------
 
 Set-StrictMode -Version 5.0
-
-$_logFileName = Join-Path $PSScriptRoot '../bin/BuildLog.txt' 
+ 
 $_cmdletDataFileName = Join-Path $PSScriptRoot '../bin/CmdletData.json' 
 $_headerCode = @"
 # ------------------------------------------------------------------------------
@@ -159,23 +158,68 @@ function New-FunctionCode {
         $FileName      
     )
 
-    $params = ''
-    $ParamterTransformations = ''
+    $parameterDefinitions = Get-ParametersDefinitions -Cmdlet $Cmdlet
+    $ParamterTransformations = Get-ParametersTransformations -Cmdlet $Cmdlet
     $OutputTransformations = ''
     $function = @"
 function $($Cmdlet.Generate) {
     [CmdletBinding()]
     param (
-        $Params
+$parameterDefinitions
     )
-    $ParamterTransformations
-    $($Cmdlet.New) @PSBoundParameters
-    $OutputTransformations
+
+    `$params = @{}   
+$ParamterTransformations
+    $($Cmdlet.New) @params
+$OutputTransformations
 }
 
 "@
 
     Write-File -FileName $Filename -Text $function    
+}
+
+
+function Get-ParametersDefinitions {
+    param (
+        $Cmdlet
+    )    
+    $params = $(Get-Command -Name $Cmdlet.Old).Parameters
+
+    $paramsList = @()
+    foreach ($paramKey in $Cmdlet.Parameters) {
+        $param = $params[$paramKey.Old]
+        $paramBlock = @"
+        [$($param.ParameterType.ToString())] `$$($param.Name)
+"@
+        $paramsList += $paramBlock
+    }
+
+    $paramsToRetuns = $paramsList -Join ",`n"
+    $paramsToRetuns
+}
+
+function Get-ParametersTransformations {
+    param (
+        $Cmdlet
+    )
+
+    $paramsList = @"
+
+"@
+    foreach ($paramKey in $Cmdlet.Parameters) {        
+        if(($null -ne $paramKey.New) -and ($false -eq $paramKey.Exception)){
+        $paramBlock = @"
+    if(`$PSBoundParameters["$($paramKey.Old)"] -ne `$null)
+	{
+		`$params["$($paramKey.New)"] = `$PSBoundParameters["$($paramKey.Old)"]
+	}
+
+"@                
+        $paramsList += $paramBlock
+        }
+    }
+    $paramsList
 }
 
 function Get-CmdNameTranslation {
@@ -204,11 +248,16 @@ function Get-CmdNameTranslation {
             } else {
                 $prefix = $NewPrefix
             }
-            [PSCustomObject]@{
+            $cmds = [PSCustomObject]@{
                 Old = '{0}-{1}{2}' -f $OldCmdlet.Verb, $OldCmdlet.Prefix, $OldCmdlet.Noun
                 New = '{0}-{1}{2}' -f $item.Verb, $item.Prefix, $item.Noun
                 Generate = '{0}-{1}{2}' -f $OldCmdlet.Verb, $Prefix, $OldCmdlet.Noun
+                Noun = $OldCmdlet.Noun
+                Verb = $OldCmdlet.Verb
+                Parameters = $null
             }
+            $cmds.Parameters = Get-CmdletParameters -Cmdlet $cmds
+            $cmds
             return
         }        
     }
@@ -220,15 +269,71 @@ function Get-CmdNameTranslation {
             } else {
                 $prefix = $NewPrefix
             }
-            [PSCustomObject]@{
+            $cmds = [PSCustomObject]@{
                 Old = '{0}-{1}{2}' -f $OldCmdlet.Verb, $OldCmdlet.Prefix, $OldCmdlet.Noun
                 New = '{0}-{1}{2}' -f $item.Verb, $item.Prefix, $item.Noun
                 Generate = '{0}-{1}{2}' -f $OldCmdlet.Verb, $Prefix, $OldCmdlet.Noun
+                Noun = $OldCmdlet.Noun
+                Verb = $OldCmdlet.Verb
+                Parameters = $null
             }
+            $cmds.Parameters = Get-CmdletParameters -Cmdlet $cmds
+            $cmds
             return
         }        
     }
     Write-LogFile "Error for Noun:'$($OldCmdlet.Noun)' and '$($OldCmdlet.Verb)' and '$($OldCmdlet.Prefix)'" -ForegroundColor RED
+}
+
+function Get-CmdletParameters {
+    param (
+        $Cmdlet
+    )
+    $exceptionParameterNames = @("ObjectId","All","SearchString","Filter")
+    $commonParameterNames = @("Verbose", "Debug", "ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable")  
+    $params = $(Get-Command -Name $Cmdlet.Old).Parameters
+    $newParams = $(Get-Command -Name $Cmdlet.New).Parameters
+
+    $paramsList = @()
+    foreach ($paramKey in $params.Keys) {
+        $param = $params[$paramKey]
+        if($commonParameterNames.Contains($param.Name)) {
+            continue
+        }
+
+        $paramObj = [PSCustomObject]@{
+            Old = $param.Name
+            New = $null
+            Exception = $false
+        }
+        if('ObjectId' -eq $param.Name){
+            $tempName = "$($Cmdlet.Noun)Id"
+            if($newParams.Keys.Contains($tempName)){
+                $paramObj.New = $tempName
+            }
+            else
+            {
+                foreach ($key in $newParams.Keys) {
+                    if($key.EndsWith("Id")){
+                        $paramObj.New = $key
+                    }
+                }
+            }
+        }
+        else
+        {
+            if($newParams.Keys.Contains($param.Name)){
+                $paramObj.New = $param.Name
+                if($exceptionParameterNames.Contains($param.Name)){
+                    $paramObj.Exception = $true
+                }
+            }
+        }
+        
+        $paramsList += $paramObj
+    }
+    
+    $paramsList
 }
 
 function Get-CmdletNoun {
@@ -283,7 +388,7 @@ function Get-ModuleCmdletCount {
     $count
 }
 
-function Get-ModuleCommands {
+function  Get-ModuleCommands {
     [cmdletbinding(positionalbinding=$false)]
     param (
         [string[]] $ModuleNames = $null,
@@ -292,9 +397,9 @@ function Get-ModuleCommands {
     )
     
     $names = @()
-    foreach ($modeleName in $ModuleNames) {
-        Write-Verbose "Getting cmdlets and functions for '$modeleName'"
-        $module = Get-Module -Name $modeleName
+    foreach ($moduleName in $ModuleNames) {
+        Write-Verbose "Getting cmdlets and functions for '$moduleName'"
+        $module = Get-Module -Name $moduleName
         $names += $module.ExportedCmdlets.Keys
         $names += $module.ExportedFunctions.Keys
     }
@@ -384,7 +489,8 @@ function Write-LogFile {
         $InputMessage
     )
     Write-Verbose $InputMessage
-    $InputMessage | Out-File -FilePath $global:_logFileName -Append    
+    $file = Join-Path $PSScriptRoot '../bin/BuildLog.txt'
+    $InputMessage | Out-File -FilePath $file -Append    
 }
 
 function Write-File{
