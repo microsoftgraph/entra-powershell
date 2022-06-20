@@ -160,7 +160,7 @@ function New-FunctionCode {
 
     $parameterDefinitions = Get-ParametersDefinitions -Cmdlet $Cmdlet
     $ParamterTransformations = Get-ParametersTransformations -Cmdlet $Cmdlet
-    $OutputTransformations = ''
+    $OutputTransformations = Get-OutputTransformations -Cmdlet $Cmdlet
     $function = @"
 function $($Cmdlet.Generate) {
     [CmdletBinding()]
@@ -170,8 +170,9 @@ $parameterDefinitions
 
     `$params = @{}   
 $ParamterTransformations
-    $($Cmdlet.New) @params
+    `$response = $($Cmdlet.New) @params
 $OutputTransformations
+    `$response
 }
 
 "@
@@ -179,6 +180,24 @@ $OutputTransformations
     Write-File -FileName $Filename -Text $function    
 }
 
+function Get-OutputTransformations {
+    param (
+        $Cmdlet
+    )  
+    $responseVerbs = @("Get","Add","New")
+    $output = ""
+
+    if($responseVerbs.Contains($Cmdlet.Verb)) {
+    $output += @"
+    if(`$response -ne `$null){
+        if((`$response[0].Id -ne `$null) -or (`$response.Id -ne `$null)){            
+            `$response | Add-Member -MemberType AliasProperty -Name ObjectId -Value Id
+        }
+    }
+"@
+    }
+    $output
+}
 
 function Get-ParametersDefinitions {
     param (
