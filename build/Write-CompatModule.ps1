@@ -87,6 +87,8 @@ function Write-CompatModule{
 
     $aliasFunction = Get-AlisesFunction -Functions $newCmdletData
     Write-File -FileName $moduleFileName -Text $aliasFunction
+    $transformFunction = Get-TransformFunction
+    Write-File -FileName $moduleFileName -Text $transformFunction    
     $cmdletsToExport += "Set-CompatADAlias"
     $functionsToExport = @"
 Export-ModuleMember -Function @(
@@ -189,10 +191,8 @@ function Get-OutputTransformations {
 
     if($responseVerbs.Contains($Cmdlet.Verb)) {
     $output += @"
-    if(`$response -ne `$null){
-        if((`$response[0].Id -ne `$null) -or (`$response.Id -ne `$null)){            
-            `$response | Add-Member -MemberType AliasProperty -Name ObjectId -Value Id
-        }
+    if((`$response -ne `$null) -and ((`$response.Id -ne `$null) -or (`$response[0].Id -ne `$null))){            
+        `$response | Add-Member -MemberType AliasProperty -Name ObjectId -Value Id    
     }
 "@
     }
@@ -231,7 +231,7 @@ function Get-ParametersTransformations {
         $paramBlock = @"
     if(`$PSBoundParameters["$($paramKey.Old)"] -ne `$null)
 	{
-		`$params["$($paramKey.New)"] = `$PSBoundParameters["$($paramKey.Old)"]
+		`$params["$($paramKey.New)"] = Get-ParameterConvertedValue -Name $($paramKey.Old) -Value `$PSBoundParameters["$($paramKey.Old)"]
 	}
 
 "@                
@@ -239,6 +239,33 @@ function Get-ParametersTransformations {
         }
     }
     $paramsList
+}
+
+function Get-TransformFunction {
+    param (
+    )
+
+    $transform = @"
+function Get-ParameterConvertedValue {
+    param (
+        `$Name,
+        `$Value
+    )
+
+    `$returnValue = `$Value
+    if("PasswordProfile" -eq `$Name){
+        `$returnValue = @{
+            forceChangePasswordNextSignIn = `$Value.ForceChangePasswordNextLogin
+            password = `$Value.Password 
+        }
+    }
+
+    `$returnValue
+}
+
+"@
+
+    $transform
 }
 
 function Get-CmdNameTranslation {
@@ -335,9 +362,13 @@ function Get-CmdletParameters {
                 foreach ($key in $newParams.Keys) {
                     if($key.EndsWith("Id")){
                         $paramObj.New = $key
+                        break
                     }
                 }
             }
+        }
+        elseif('RefObjectId' -eq $param.Name) {
+            $paramObj.New = 'DirectoryObjectId'
         }
         else
         {
