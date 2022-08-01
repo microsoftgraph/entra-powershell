@@ -4,7 +4,6 @@
 #  Licensed under the MIT License.
 #  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-
 Set-StrictMode -Version 5.0
  
 $_cmdletDataFileName = Join-Path $PSScriptRoot '../bin/CmdletData.json' 
@@ -319,7 +318,7 @@ function Get-CmdNameTranslation {
                 Old = '{0}-{1}{2}' -f $OldCmdlet.Verb, $OldCmdlet.Prefix, $OldCmdlet.Noun
                 New = '{0}-{1}{2}' -f $item.Verb, $item.Prefix, $item.Noun
                 Generate = '{0}-{1}{2}' -f $OldCmdlet.Verb, $Prefix, $OldCmdlet.Noun
-                Noun = $OldCmdlet.Noun
+                Noun = $OldCmdlet.Noun+'ByRef'
                 Verb = $OldCmdlet.Verb
                 Parameters = $null
             }

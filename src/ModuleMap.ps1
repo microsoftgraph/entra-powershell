@@ -1,12 +1,14 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-[cmdletbinding()]
-param($targetDirectory = $null, [switch] $noclean)
+Set-StrictMode -Version 5
 
-. "$psscriptroot/common-functions.ps1"
-. "$psscriptroot/../src/dependecies.ps1"
+class ModuleMap {
+    [string] $Name = $null
+    [string[]] $CmdletsList = $null
+    [CmdletTranslation[]] $Cmdlets  = $null
 
-$nocleanArgument = @{noclean=$noclean}
-Move-ModuleFiles -OutputDirector $targetDirectory @nocleanArgument
-
+    ModuleMap([string] $Name){
+        $this.Name = $Name
+    }
+}
