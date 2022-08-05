@@ -5,8 +5,30 @@ Set-StrictMode -Version 5
 
 class CmdletMap {
     [string] $Name = $null
-    [string] $SourceName = $null   
+    [string] $TargetName = $null   
     [DataMap[]] $Parameters = $null
     [DataMap[]] $Outputs = $null
+
+    CmdletMap($Name){
+        $this.Name = $Name
+    }
+
+    CmdletMap($Name, $TargetName){
+        $this.Name = $Name
+        $this.TargetName = $TargetName           
+    }
+
+    CmdletMap($Name, $TargetName, $Parameters){
+        $this.Name = $Name
+        $this.TargetName = $TargetName
+        $this.Parameters = $Parameters
+    }
+
+    CmdletMap($Name, $TargetName, $Parameters, $Outputs){
+        $this.Name = $Name
+        $this.TargetName = $TargetName
+        $this.Parameters = $Parameters
+        $this.Outputs = $Outputs
+    }
 }
 

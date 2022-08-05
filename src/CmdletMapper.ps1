@@ -11,7 +11,8 @@ class CmdletMapper {
     [string[]] $DestinationPrefixs = @('Mg') 
     [string] $ModuleName = 'Microsoft.Graph.Compatibility.AzureAD'
     [CmdletMap[]] $CommandsToMap = $null
-    [CmdletMap[]] $MissingCommandsToMap = $null
+    [CmdletMap[]] $MissingCommandsToMap = @()
+    [CmdletMap[]] $CmdletCustomizations = @()
     [string] $OutputFolder = './bin'
     [bool] $LogInfomation
     hidden [ModuleMap] $ModuleMap = $null
@@ -33,22 +34,25 @@ class CmdletMapper {
     [ModuleMap] Map(){
         $this.ModuleMap = [ModuleMap]::new($this.ModuleName)
         $originalCmdlets = $this.GetModuleCommands($this.SourceModuleName, $this.SourceModulePrefixs, $true)
-        $targetCmdlets = $this.GetModuleCommands($this.DestinationModuleName, $this.DestinationPrefixs, $true)
+        $targetCmdlets = $this.GetTargetModuleCommands($this.DestinationModuleName, $this.DestinationPrefixs, $true)
         $newCmdletData = @()
         $cmdletsToExport = @()
         foreach ($cmdlet in $originalCmdlets.Keys){
-            $newCmdlet = $this.GetCmdletNoun($cmdlet, $targetCmdlets)
+            $originalCmdlet = $originalCmdlets[$cmdlet]
+            $newCmdlet = $this.GetCmdletNoun($originalCmdlet.Noun, $targetCmdlets)
             if($newCmdlet.Exact){
-                foreach ($item in $originalCmdlets[$cmdlet]) {
-                    $newFunction = $this.GetCmdNameTranslation($item, $targetCmdlets, $this.NewPrefix)
-                    if($newFunction){
-                        $newCmdletData += $newFunction
-                        $cmdletsToExport += $newFunction.Generate                   
-                    }                   
+                $newFunction = $this.GetCmdNameTranslation($originalCmdlet, $targetCmdlets, $this.NewPrefix)
+                if($newFunction){
+                    $newCmdletData += $newFunction
+                    $cmdletsToExport += $newFunction.Generate
+                    $this.CommandsToMap += [CmdletMap]::New($newFunction.Old, $newFunction.New, $newFunction.Parameters)
                 }
+                else {
+                    $this.MissingCommandsToMap += [CmdletMap]::New($cmdlet, $newCmdlet)
+                }                 
             }
-            else{            
-                Write-LogFile "----- Noun: '$cmdlet'  Similar nouns found:'$($newCmdlet.SimilarNames.Count)' Nouns: '$($newCmdlet.SimilarNames)'"   
+            else{                            
+                $this.MissingCommandsToMap += [CmdletMap]::New($cmdlet,$newCmdlet.SimilarNames -Join ",")
             } 
         }
       
@@ -57,8 +61,30 @@ class CmdletMapper {
 
         return $this.ModuleMap
     }
+    
+    GenerateModuleFiles() {
+        $this.WriteModuleFile()
+        $this.WriteModuleManifest()
+    }
 
-    [scriptblock] GetAlisesFunction() {
+    GenerateInputDataFile() {
+        $this.Map()
+        $this.CommandsToMap | ConvertTo-Json -Depth 5 | Out-File -FilePath $(Join-Path $this.OutputFolder "foundCommands.json")
+        $this.MissingCommandsToMap | ConvertTo-Json  -Depth 5 | Out-File -FilePath $(Join-Path $this.OutputFolder "missingCommands.json")
+    }
+
+    AddCustomizationsFile([string] $FileName){
+        $inputFile = Get-Content $FileName | ConvertFrom-Json
+        foreach($item in $inputFile){
+            $this.CmdletCustomizations += [CmdletMap]::New($item.Name,$item.TargetName,$item.Parameters,$item.Outputs)
+        }
+    }
+
+    AddCustomization([string] $Name, [string] $TargetName, [DataMap[]] $Parameters, [DataMap[]] $Outputs){
+        $this.CmdletCustomizations += [CmdletMap]::New($Name,$TargetName,$Parameters,$Outputs)
+    }
+
+    hidden [scriptblock] GetAlisesFunction() {
         if($this.ModuleMap){
             $aliases = ''
             foreach ($func in $this.ModuleMap.Cmdlets) {       
@@ -75,7 +101,7 @@ $($aliases)}
         return $null
     }
 
-    [scriptblock] GetExportMemeber() {
+    hidden [scriptblock] GetExportMemeber() {
         $cmdletsToExport = $this.ModuleMap.CmdletsList
         $cmdletsToExport += "Set-CompatADAlias"
         $functionsToExport = @"
@@ -92,11 +118,6 @@ Export-ModuleMember -Function @(
             $translations += $this.NewFunctionMap($Cmdlet)
         }
         return $translations
-    }
-
-    GenerateModuleFiles() {
-        $this.WriteModuleFile()
-        $this.WriteModuleManifest()
     }
 
     hidden WriteModuleFile() {
@@ -178,7 +199,7 @@ $OutputTransformations
         $params = $(Get-Command -Name $Cmdlet.Old).Parameters
         $paramsList = @()
         foreach ($paramKey in $Cmdlet.Parameters) {
-            $param = $params[$paramKey.Old]
+            $param = $params[$paramKey.Name]
             $paramBlock = @"
     [$($param.ParameterType.ToString())] `$$($param.Name)
 "@
@@ -192,22 +213,48 @@ $OutputTransformations
     hidden [string] GetParametersTransformations([PSCustomObject] $Cmdlet) {
         $paramsList = ""
 
-        foreach ($paramKey in $Cmdlet.Parameters) {        
-            if(($null -ne $paramKey.New) -and ($false -eq $paramKey.Exception)){
-            $paramBlock = @"
-    if(`$PSBoundParameters["$($paramKey.Old)"] -ne `$null)
-    {
-        `$params["$($paramKey.New)"] =  `$PSBoundParameters["$($paramKey.Old)"]
-    }
-        
-"@                
-            $paramsList += $paramBlock
+        foreach ($param in $Cmdlet.Parameters) {        
+            $paramBlock = ""
+            
+            if(1 -eq $param.ConversionType){
+                $paramBlock = $this.GetParameterTransformationName($param.Name, $param.Name)
             }
+            elseif(2 -eq $param.ConversionType){
+                $paramBlock = $this.GetParameterTransformationName($param.Name, $param.TargetName)
+            }
+            elseif(98 -eq $param.ConversionType){
+                $paramBlock = $this.GetParameterException($param)
+            }
+            elseif(99 -eq $param.ConversionType){
+                $paramBlock = $this.GetParameterTransformationName($param)
+            }
+            
+            $paramsList += $paramBlock            
         }
             
         return $paramsList
     }
 
+    hidden [string] GetParameterTransformationName([string] $OldName, [string] $NewName){
+        $paramBlock = @"
+    if(`$PSBoundParameters["$($OldName)"] -ne `$null)
+    {
+        `$params["$($NewName)"] =  `$PSBoundParameters["$($OldName)"]
+    }
+
+"@
+        return $paramBlock
+    }
+
+    hidden [string] GetParameterException([DataMap] $Param){
+        $paramBlock = ""
+        return $paramBlock
+    }
+
+    hidden [string] GetParameterCustom([DataMap] $Param){
+        $paramBlock = ""
+        return $paramBlock
+    }
     
     hidden [string] GetOutputTransformations([PSCustomObject] $Cmdlet) {
         $responseVerbs = @("Get","Add","New")
@@ -224,6 +271,32 @@ $OutputTransformations
     }
 
     hidden [hashtable] GetModuleCommands([string[]] $ModuleNames, [string[]] $Prefix, [bool] $IgnoreEmptyNoun = $false){
+        
+        $names = @()
+        foreach ($moduleName in $ModuleNames) {
+            $module = Get-Module -Name $moduleName
+            $names += $module.ExportedCmdlets.Keys
+            $names += $module.ExportedFunctions.Keys
+        }
+    
+        $namesDic = @{}
+        foreach ($name in $names) {
+            $cmdComponents = $this.GetParsedCmdlet($name, $Prefix)
+            if(!$cmdComponents){
+                Write-LogFile "Error Parsing '$name'"
+                continue
+            }
+            if($IgnoreEmptyNoun -and !$cmdComponents.Noun) {
+                continue
+            }
+
+            $namesDic.Add($name, $cmdComponents)
+        }
+    
+        return $namesDic
+    }
+    
+    hidden [hashtable] GetTargetModuleCommands([string[]] $ModuleNames, [string[]] $Prefix, [bool] $IgnoreEmptyNoun = $false){
         
         $names = @()
         foreach ($moduleName in $ModuleNames) {
@@ -362,8 +435,8 @@ $OutputTransformations
         return $null
     }    
 
-    hidden [PSCustomObject[]] GetCmdletParameters($Cmdlet){
-        $exceptionParameterNames = @("ObjectId","All","SearchString","Filter")
+    hidden [DataMap[]] GetCmdletParameters($Cmdlet){
+        $exceptionParameterNames = @("All","SearchString","Filter")
         $commonParameterNames = @("Verbose", "Debug", "ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable")  
         $params = $(Get-Command -Name $Cmdlet.Old).Parameters
         $newParams = $(Get-Command -Name $Cmdlet.New).Parameters
@@ -375,36 +448,32 @@ $OutputTransformations
                 continue
             }
 
-            $paramObj = [PSCustomObject]@{
-                Old = $param.Name
-                New = $null
-                Exception = $false
+            $paramObj = [DataMap]::New($param.Name)
+            if($exceptionParameterNames.Contains($param.Name)){
+                $paramObj.SetException()
             }
-            if('ObjectId' -eq $param.Name){
+            elseif(('ObjectId' -eq $param.Name) -or ('Id' -eq $param.Name)){
                 $tempName = "$($Cmdlet.Noun)Id"
                 if($newParams.Keys.Contains($tempName)){
-                    $paramObj.New = $tempName
+                    $paramObj.SetTargetName($tempName)
                 }
                 else
                 {
                     foreach ($key in $newParams.Keys) {
                         if($key.EndsWith("Id")){
-                            $paramObj.New = $key
+                            $paramObj.SetTargetName($key)
                             break
                         }
                     }
                 }
             }
             elseif('RefObjectId' -eq $param.Name) {
-                $paramObj.New = 'DirectoryObjectId'
+                $paramObj.SetTargetName('DirectoryObjectId')
             }
             else
             {
                 if($newParams.Keys.Contains($param.Name)){
-                    $paramObj.New = $param.Name
-                    if($exceptionParameterNames.Contains($param.Name)){
-                        $paramObj.Exception = $true
-                    }
+                    $paramObj.SetNone()                       
                 }
             }
         

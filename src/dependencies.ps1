@@ -10,5 +10,5 @@ Set-StrictMode -Version 5
 . (join-path $psscriptroot cmdletMapper.ps1)
 
 $map = [CmdletMapper]::new()
-$map.GenerateModuleFiles()
+$map.AddCustomizationsFile("C:\Src\Microsoft.Graph.Compatibility.AzureAD\TestInput.json")
 Write-Host "Done!"
