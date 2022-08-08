@@ -80,7 +80,7 @@ class CmdletMapper {
         }
     }
 
-    AddCustomization([string] $Name, [string] $TargetName, [DataMap[]] $Parameters, [DataMap[]] $Outputs){        
+    AddCustomization([string] $Name, [string] $TargetName, [hashtable] $Parameters, [hashtable] $Outputs){        
         $this.CmdletCustomizations.Add($Name, [CmdletMap]::New($Name,$TargetName,$Parameters,$Outputs))
     }
 
@@ -198,8 +198,8 @@ $OutputTransformations
     hidden [string] GetParametersDefinitions([PSCustomObject] $Cmdlet) {
         $params = $(Get-Command -Name $Cmdlet.Old).Parameters
         $paramsList = @()
-        foreach ($paramKey in $Cmdlet.Parameters) {
-            $param = $params[$paramKey.Name]
+        foreach ($paramKey in $Cmdlet.Parameters.Keys) {
+            $param = $params[$paramKey]
             $paramBlock = @"
     [$($param.ParameterType.ToString())] `$$($param.Name)
 "@
@@ -213,7 +213,8 @@ $OutputTransformations
     hidden [string] GetParametersTransformations([PSCustomObject] $Cmdlet) {
         $paramsList = ""
 
-        foreach ($param in $Cmdlet.Parameters) {        
+        foreach ($paramKey in $Cmdlet.Parameters.Keys) {        
+            $param = $Cmdlet.Parameters[$paramKey]
             $paramBlock = ""
             
             if(1 -eq $param.ConversionType){
@@ -226,7 +227,7 @@ $OutputTransformations
                 $paramBlock = $this.GetParameterException($param)
             }
             elseif(99 -eq $param.ConversionType){
-                $paramBlock = $this.GetParameterTransformationName($param)
+                $paramBlock = $this.GetParameterCustom($param)
             }
             
             $paramsList += $paramBlock            
@@ -252,7 +253,15 @@ $OutputTransformations
     }
 
     hidden [string] GetParameterCustom([DataMap] $Param){
-        $paramBlock = ""
+        $paramBlock = @"
+    if(`$PSBoundParameters["$($Param.Name)"] -ne `$null)
+    {
+        `$TmpValue =  `$PSBoundParameters["$($Param.Name)"]
+        $($Param.SpecialMapping)
+        `$params["$($Param.TargetName)"] = `$Value
+    }
+
+"@
         return $paramBlock
     }
     
@@ -440,17 +449,26 @@ $OutputTransformations
         return $null
     }    
 
-    hidden [DataMap[]] GetCmdletParameters($Cmdlet){
+    hidden [hashtable] GetCmdletParameters($Cmdlet){
         $exceptionParameterNames = @("All","SearchString","Filter")
         $commonParameterNames = @("Verbose", "Debug", "ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable")  
         $params = $(Get-Command -Name $Cmdlet.Old).Parameters
         $newParams = $(Get-Command -Name $Cmdlet.New).Parameters
 
-        $paramsList = @()
+        $paramsList = @{}
         foreach ($paramKey in $params.Keys) {
             $param = $params[$paramKey]
+
             if($commonParameterNames.Contains($param.Name)) {
                 continue
+            }
+
+            if($this.CmdletCustomizations.Contains($Cmdlet.Old)) {
+                $custom = $this.CmdletCustomizations[$Cmdlet.Old]
+                if(($null -ne $custom.Parameters) -and ($custom.Parameters.contains($param.Name))){
+                    $paramsList.Add($param.Name, $custom.Parameters[$param.Name])
+                    continue
+                }
             }
 
             $paramObj = [DataMap]::New($param.Name)
@@ -482,7 +500,7 @@ $OutputTransformations
                 }
             }
         
-            $paramsList += $paramObj
+            $paramsList.Add($paramObj.Name,$paramObj)
         }
     
         return $paramsList        

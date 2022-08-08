@@ -6,8 +6,8 @@ Set-StrictMode -Version 5
 class CmdletMap {
     [string] $Name = $null
     [string] $TargetName = $null   
-    [DataMap[]] $Parameters = $null
-    [DataMap[]] $Outputs = $null
+    [hashtable] $Parameters = $null
+    [hashtable] $Outputs = $null
 
     CmdletMap($Name){
         $this.Name = $Name
