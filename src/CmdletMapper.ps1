@@ -12,7 +12,7 @@ class CmdletMapper {
     [string] $ModuleName = 'Microsoft.Graph.Compatibility.AzureAD'
     [CmdletMap[]] $CommandsToMap = $null
     [CmdletMap[]] $MissingCommandsToMap = @()
-    [CmdletMap[]] $CmdletCustomizations = @()
+    [hashtable] $CmdletCustomizations = @{}
     [string] $OutputFolder = './bin'
     [bool] $LogInfomation
     hidden [ModuleMap] $ModuleMap = $null
@@ -39,9 +39,9 @@ class CmdletMapper {
         $cmdletsToExport = @()
         foreach ($cmdlet in $originalCmdlets.Keys){
             $originalCmdlet = $originalCmdlets[$cmdlet]
-            $newCmdlet = $this.GetCmdletNoun($originalCmdlet.Noun, $targetCmdlets)
+            $newCmdlet = $this.FindCmdletNoun($cmdlet,$originalCmdlet.Noun, $targetCmdlets)
             if($newCmdlet.Exact){
-                $newFunction = $this.GetCmdNameTranslation($originalCmdlet, $targetCmdlets, $this.NewPrefix)
+                $newFunction = $this.GetCmdNameTranslation($originalCmdlet, $targetCmdlets, $this.NewPrefix, $newCmdlet)
                 if($newFunction){
                     $newCmdletData += $newFunction
                     $cmdletsToExport += $newFunction.Generate
@@ -75,13 +75,13 @@ class CmdletMapper {
 
     AddCustomizationsFile([string] $FileName){
         $inputFile = Get-Content $FileName | ConvertFrom-Json
-        foreach($item in $inputFile){
-            $this.CmdletCustomizations += [CmdletMap]::New($item.Name,$item.TargetName,$item.Parameters,$item.Outputs)
+        foreach($item in $inputFile){            
+            $this.CmdletCustomizations.add($item.Name, [CmdletMap]::New($item.Name,$item.TargetName,$item.Parameters,$item.Outputs))
         }
     }
 
-    AddCustomization([string] $Name, [string] $TargetName, [DataMap[]] $Parameters, [DataMap[]] $Outputs){
-        $this.CmdletCustomizations += [CmdletMap]::New($Name,$TargetName,$Parameters,$Outputs)
+    AddCustomization([string] $Name, [string] $TargetName, [DataMap[]] $Parameters, [DataMap[]] $Outputs){        
+        $this.CmdletCustomizations.Add($Name, [CmdletMap]::New($Name,$TargetName,$Parameters,$Outputs))
     }
 
     hidden [scriptblock] GetAlisesFunction() {
@@ -347,13 +347,18 @@ $OutputTransformations
         return $null
     }
 
-    hidden [PSCustomObject] GetCmdletNoun([PSCustomObject] $Cmdlet, [hashtable]$CmdletList ) {
+    hidden [PSCustomObject] FindCmdletNoun([string] $CmdletName, [string] $Cmdlet, [hashtable]$CmdletList ) {
         $response = [PSCustomObject]@{
             Exact = $false
             Name = ''
             SimilarNames = @()
+        }        
+        if($this.CmdletCustomizations.Contains($CmdletName)){
+            $response.Exact = $true
+            $tmpName = $this.GetParsedCmdlet($this.CmdletCustomizations[$CmdletName].TargetName, $this.DestinationPrefixs)
+            $response.Name = $tmpName.Noun
         }
-        if($CmdletList.Contains($Cmdlet)) {
+        elseif($CmdletList.Contains($Cmdlet)) {
             $response.Exact = $true
             $response.Name = $Cmdlet
         }
@@ -378,7 +383,7 @@ $OutputTransformations
         return $response
     }
 
-    hidden [PSCustomObject] GetCmdNameTranslation($OldCmdlet, $NewCmdlets, $NewPrefix){
+    hidden [PSCustomObject] GetCmdNameTranslation($OldCmdlet, $NewCmdlets, $NewPrefix, $foundCmdlet){
         $verbsEquivalence = @{
             'Get' = @('Get')
             'New' = @('New','Add')
@@ -391,7 +396,7 @@ $OutputTransformations
             'Enable' = @('New')
         }
     
-        foreach ($item in $NewCmdlets[$OldCmdlet.Noun]) {
+        foreach ($item in $NewCmdlets[$foundCmdlet.Name]) {
             if($verbsEquivalence[$OldCmdlet.Verb].Contains($item.Verb)){
                 if($OldCmdlet.Prefix.contains('MS')){
                     $Prefix = $NewPrefix  + 'MS'
@@ -411,7 +416,7 @@ $OutputTransformations
             }            
         }
 
-        foreach ($item in $NewCmdlets[$OldCmdlet.Noun+'ByRef']) {
+        foreach ($item in $NewCmdlets[$foundCmdlet.Name + 'ByRef']) {
             if($verbsEquivalence[$OldCmdlet.Verb].Contains($item.Verb)){
                 if($OldCmdlet.Prefix.contains('MS')){
                     $Prefix = $NewPrefix  + 'MS'

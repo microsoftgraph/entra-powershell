@@ -11,4 +11,5 @@ Set-StrictMode -Version 5
 
 $map = [CmdletMapper]::new()
 $map.AddCustomizationsFile("C:\Src\Microsoft.Graph.Compatibility.AzureAD\TestInput.json")
+$map.GenerateInputDataFile()
 Write-Host "Done!"
