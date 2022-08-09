@@ -13,7 +13,7 @@ class CmdletMapper {
     [CmdletMap[]] $CommandsToMap = $null
     [CmdletMap[]] $MissingCommandsToMap = @()
     [hashtable] $CmdletCustomizations = @{}
-    [string] $OutputFolder = './bin'
+    [string] $OutputFolder = (join-path $PSScriptRoot '../bin')
     [bool] $LogInfomation
     hidden [ModuleMap] $ModuleMap = $null
     hidden [bool] $GenerateCommandsToMapData
@@ -28,6 +28,28 @@ class CmdletMapper {
             if(!$modules.Name.Contains($moduleName)){
                 Import-Module $moduleName | Out-Null
             }
+        }
+
+        if(!(Test-Path $this.OutputFolder)){
+            New-Item -ItemType Directory -Path $this.OutputFolder | Out-Null
+        }
+    }
+
+    CmdletMapper([string] $OutputFolder){
+        $this.OutputFolder = $OutputFolder
+        $modules = Get-Module
+        if(!$modules.Name.Contains($this.SourceModuleName)){
+            Import-Module $this.SourceModuleName | Out-Null
+        }
+
+        foreach ($moduleName in $this.DestinationModuleName){
+            if(!$modules.Name.Contains($moduleName)){
+                Import-Module $moduleName | Out-Null
+            }
+        }
+
+        if(!(Test-Path $this.OutputFolder)){
+            New-Item -ItemType Directory -Path $this.OutputFolder | Out-Null
         }
     }
 

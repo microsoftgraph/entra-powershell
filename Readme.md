@@ -8,10 +8,6 @@ Clone module and follow the instructions
 
 ```powershell
 cd ./Microsoft.Graph.Compatibility.AzureAD
-. ".\build\common-functions.ps1"
-Remove-BuildDirectories
-. ".\build\Write-CompatModule.ps1"
-Write-CompatModule -ImportModules
 .\build\Create-CompatModule.ps1
 ```
 
