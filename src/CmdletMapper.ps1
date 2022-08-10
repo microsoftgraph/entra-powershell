@@ -291,14 +291,53 @@ $OutputTransformations
         $responseVerbs = @("Get","Add","New")
         $output = ""
     
+        if($this.CmdletCustomizations.Contains($Cmdlet.Old)) { 
+            $cmd = $this.CmdletCustomizations[$Cmdlet.Old] 
+            if($null -ne $cmd.Outputs){                   
+                foreach($key in $cmd.Outputs.GetEnumerator()) {
+                    $customOutput =  $cmd.Outputs[$key.Name]
+                    if(2 -eq $customOutput.ConversionType){
+                        $output += $this.GetOutputTransformationName($customOutput.Name, $customOutput.TargetName)
+                    }
+                    elseif(99 -eq $customOutput.ConversionType){
+                        $output += $this.GetOutputTransformationCustom($customOutput)
+                    }
+                }
+            }
+        }
+        
         if($responseVerbs.Contains($Cmdlet.Verb)) {
         $output += @"
-    if((`$response -ne `$null) -and ((`$response.Id -ne `$null) -or (`$response[0].Id -ne `$null))){            
-        `$response | Add-Member -MemberType AliasProperty -Name ObjectId -Value Id    
-    }
+        `$response | Add-Member -MemberType AliasProperty -Name ObjectId -Value Id
 "@
         }
-        return $output
+
+        if("" -ne $output){
+            $transform = @"
+    if(`$response -ne `$null){
+$($output)
+    }
+"@
+            return $transform
+        }
+        return ""
+    }
+
+    hidden [string] GetOutputTransformationName([string] $OldName, [string] $NewName){
+        $outputBlock =@"
+        `$response | Add-Member -MemberType AliasProperty -Name $($NewName) -Value $($OldName)
+
+"@
+        return $outputBlock
+    }
+
+    hidden [string] GetOutputTransformationCustom([DataMap] $Param){
+        $outputBlock =@"
+        $($Param.SpecialMapping)
+        `$response | Add-Member -MemberType ScriptProperty -Name $($Param.TargetName) -Value `$Value
+
+"@
+        return $outputBlock
     }
 
     hidden [hashtable] GetModuleCommands([string[]] $ModuleNames, [string[]] $Prefix, [bool] $IgnoreEmptyNoun = $false){
