@@ -29,9 +29,9 @@ If you are upgrading from our preview modules, run `Install-Module` with AllowCl
 Install-Module Microsoft.Graph.Compatibility.AzureAD -AllowClobber -Force
 ```
 
-### Local buiding
+### Local Bbuilding
 
-Please refer to [local building and installing guide](src/readme.md).
+Please refer to [local building and installing guide](/src/readme.md).
 
 ## Usage
 
