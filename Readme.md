@@ -15,6 +15,10 @@ Microsoft Graph Compatibility Adapter   | `Microsoft.Graph.Compatibility.AzureAD
 
 ## Installation
 
+### Local Building
+
+Please refer to [local building and installing guide](/src/readme.md).
+
 ### PowerShell Gallery
 
 All the modules are published on [PowerShell Gallery](https://www.powershellgallery.com/packages/Microsoft.Graph.Compatibility.AzureAD). Installing is as simple as:
@@ -28,10 +32,6 @@ If you are upgrading from our preview modules, run `Install-Module` with AllowCl
 ``` powershell
 Install-Module Microsoft.Graph.Compatibility.AzureAD -AllowClobber -Force
 ```
-
-### Local Bbuilding
-
-Please refer to [local building and installing guide](/src/readme.md).
 
 ## Usage
 
