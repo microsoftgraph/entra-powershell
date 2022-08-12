@@ -11,7 +11,7 @@ The intent of this module is provide AzureAD PowerShell Users a path to start th
 The table below contains our Microsoft Graph Compatibility Adapter rollup module. 
 Description                             | Module Name                             | PowerShell Gallery Link
 --------------------------------------- | --------------------------------------- | ------------------------
-Microsoft Graph Compatibility Adapter   | `Microsoft.Graph.Compatibility.AzureAD` | [![Mg]][MgGallery]
+Microsoft Graph Compatibility Adapter   | `Microsoft.Graph.Compatibility.AzureAD` | **Comming soon**
 
 ## Installation
 
@@ -45,7 +45,7 @@ Import-Module Microsoft.Graph.Compatibility.AzureAD -Force
  Connect-MgGraph -Scopes "User.Read.All", "Group.ReadWrite.All"
 ```
 
-3. Using adapted commands
+3. Using commands
 
 ```powershell
 Get-CompatADUser
@@ -55,7 +55,6 @@ Get-CompatADUser
 
 ```powershell
 Set-CompatADAlias
-Get-AzureADUser
 ```
 
 ## Known Issues
