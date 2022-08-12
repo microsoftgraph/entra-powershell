@@ -11,7 +11,7 @@ The intent of this module is provide AzureAD PowerShell Users a path to start th
 The table below contains our Microsoft Graph Compatibility Adapter rollup module. 
 Description                             | Module Name                             | PowerShell Gallery Link
 --------------------------------------- | --------------------------------------- | ------------------------
-Microsoft Graph Compatibility Adapter   | `Microsoft.Graph.Compatibility.AzureAD` | **Comming soon**
+Microsoft Graph Compatibility Adapter   | `Microsoft.Graph.Compatibility.AzureAD` | **Coming soon**
 
 ## Installation
 
