@@ -10,11 +10,10 @@ class CmdletMapper {
     [string[]] $DestinationModuleName = @('Microsoft.Graph.Users','Microsoft.Graph.Users.Actions', 'Microsoft.Graph.Users.Functions', 'Microsoft.Graph.Groups', 'Microsoft.Graph.Identity.DirectoryManagement', 'Microsoft.Graph.Identity.Governance', 'Microsoft.Graph.Identity.SignIns','Microsoft.Graph.Applications')
     [string[]] $DestinationPrefixs = @('Mg') 
     [string] $ModuleName = 'Microsoft.Graph.Compatibility.AzureAD'
-    [CmdletMap[]] $CommandsToMap = $null
-    [CmdletMap[]] $MissingCommandsToMap = @()
-    [hashtable] $CmdletCustomizations = @{}
-    [string] $OutputFolder = (join-path $PSScriptRoot '../bin')
-    [bool] $LogInfomation
+    hidden [CmdletMap[]] $CommandsToMap = $null
+    hidden [CmdletMap[]] $MissingCommandsToMap = @()
+    hidden [hashtable] $CmdletCustomizations = @{}
+    hidden [string] $OutputFolder = (join-path $PSScriptRoot '../bin')
     hidden [ModuleMap] $ModuleMap = $null
     hidden [bool] $GenerateCommandsToMapData
 
