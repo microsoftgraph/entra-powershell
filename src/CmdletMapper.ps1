@@ -88,7 +88,7 @@ class CmdletMapper {
         $this.WriteModuleManifest()
     }
 
-    GenerateInputDataFile() {
+    GenerateDataFile() {
         $this.Map()
         $this.CommandsToMap | ConvertTo-Json -Depth 5 | Out-File -FilePath $(Join-Path $this.OutputFolder "foundCommands.json")
         $this.MissingCommandsToMap | ConvertTo-Json  -Depth 5 | Out-File -FilePath $(Join-Path $this.OutputFolder "missingCommands.json")
@@ -352,7 +352,7 @@ $($output)
         foreach ($name in $names) {
             $cmdComponents = $this.GetParsedCmdlet($name, $Prefix)
             if(!$cmdComponents){
-                Write-LogFile "Error Parsing '$name'"
+                $this.MissingCommandsToMap += [CmdletMap]::New($name, $name)
                 continue
             }
             if($IgnoreEmptyNoun -and !$cmdComponents.Noun) {
@@ -378,7 +378,6 @@ $($output)
         foreach ($name in $names) {
             $cmdComponents = $this.GetParsedCmdlet($name, $Prefix)
             if(!$cmdComponents){
-                Write-LogFile "Error Parsing '$name'"
                 continue
             }
             if($IgnoreEmptyNoun -and !$cmdComponents.Noun) {
@@ -502,12 +501,10 @@ $($output)
                 }
                 $cmds.Parameters = $this.GetCmdletParameters($cmds)
                 return $cmds
-            }            
+            }
         }
-
-        Write-LogFile "Non found for Noun:'$($OldCmdlet.Noun)', verb: '$($OldCmdlet.Verb)' and module '$($OldCmdlet.Prefix)'"
         return $null
-    }    
+    }
 
     hidden [hashtable] GetCmdletParameters($Cmdlet){
         $exceptionParameterNames = @("All","SearchString","Filter")
@@ -565,15 +562,6 @@ $($output)
     
         return $paramsList        
     }
-}
-
-function Write-LogFile {
-    param (
-        $InputMessage
-    )
-    Write-Verbose $InputMessage
-    $file = Join-Path $PSScriptRoot '../bin/BuildLog.txt'
-    $InputMessage | Out-File -FilePath $file -Append    
 }
 
 function Write-File{
