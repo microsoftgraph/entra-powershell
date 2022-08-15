@@ -17,7 +17,7 @@ Microsoft Graph Compatibility AzureAD   | `Microsoft.Graph.Compatibility.AzureAD
 
 ### Local Building
 
-Please refer to [local building and installing guide](/src/readme.md).
+Please refer to [local building and installing guide](/build/readme.md).
 
 ### PowerShell Gallery
 
