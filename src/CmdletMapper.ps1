@@ -105,6 +105,12 @@ class CmdletMapper {
         $this.CmdletCustomizations.Add($Name, [CmdletMap]::New($Name,$TargetName,$Parameters,$Outputs))
     }
 
+    AddCustomization([CmdletMap[]] $Cmdlets) {
+        foreach($cmd in $Cmdlets) {
+            $this.CmdletCustomizations.Add($cmd.Name, $cmd)
+        }
+    }
+
     hidden [scriptblock] GetAlisesFunction() {
         if($this.ModuleMap){
             $aliases = ''
