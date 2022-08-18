@@ -6,24 +6,15 @@ The automatic generation process can't get all the proper transformations due to
 - Parameters
 - Outputs
 
-The class `CmdletMapper` has the method for this:
-
-```Powershell
-AddCustomization([string] $Name, [string] $TargetName, [hashtable] $Parameters, [hashtable] $Outputs)
-```
-
-Lets see some examples, asumming we have a general mapper object:
-
-```Powershell
-$mapper = [CmdletMapper]::new()
-```
+For each cmdlet you want to customize is recommended to add a new file with the command name in the `customizations` folder, the file must but a `ps1` file that returns an array of `CmdletMap` objects please check the file in the folder for more examples.
 
 ## Customize Cmdlet Name
 
-Lets use `Remove-AzureADMSPermissionGrantPolicy` as we can see the *noun* here is `PermissionGrantPolicy` there is no such *noun* in Microsoft Graph PowerShell SDK, but we know there is an equivalent cmdlet this is `Remove-MgPolicyPermissionGrantPolicy`, for this one we are only adding the referent to the name, this means puting the actual AzureAD cmdlet as `Name` and the Microsoft Graph cmdlet as `TargetName`, the code is the following:
+Lets use `Remove-AzureADMSPermissionGrantPolicy` as we can see the *noun* here is `PermissionGrantPolicy` there is no such *noun* in Microsoft Graph PowerShell SDK, but we know there is an equivalent cmdlet this is `Remove-MgPolicyPermissionGrantPolicy`, for this one we are only adding the referent to the name, this means puting the actual AzureAD cmdlet as `Name` and the Microsoft Graph cmdlet as `TargetName`, the code inside `Remove-AzureADMSPermissionGrantPolicy,ps1` is the following:
 
 ```Powershell
-$mapper.AddCustomization("Remove-AzureADMSPermissionGrantPolicy","Remove-MgPolicyPermissionGrantPolicy", $null, $null)
+$cmdlet = [CmdletMap]::New("Remove-AzureADMSPermissionGrantPolicy","Remove-MgPolicyPermissionGrantPolicy", $null, $null)
+$cmdlet
 ```
 
 ## Customize Cmdlet Paramaters and Outputs
@@ -53,7 +44,7 @@ $script = @"
 "@
 ```
 
-If we take both exaples we can see that the final code for customizing `New-AzureADUser` is:
+If we take both exaples we can see that the final code for customizing the command in the file `New-AzureADUser.ps1` is:
 
 ```Powershell
 $mapper = [CmdletMapper]::new()
@@ -67,6 +58,7 @@ $script = @"
 "@
 $param.Add("PasswordProfile", [DataMap]::New("PasswordProfile", "PasswordProfile", 99, [Scriptblock]::Create($script)))
 $outputs.Add("Id",[DataMap]::New("Id","ObjectId", 2, $null))
-$mapper.AddCustomization("New-AzureADUser","New-MgUser", $param, $outputs)
+$cmdlet = [CmdletMap]::New("New-AzureADUser","New-MgUser", $param, $outputs)
+$cmdlet
 ```
 
