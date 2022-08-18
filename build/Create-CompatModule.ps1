@@ -10,22 +10,15 @@ param($targetDirectory = $null, [switch] $noclean)
 Remove-BuildDirectories
 $outputFolder = join-path $psscriptroot "../bin"
 $nocleanArgument = @{noclean=$noclean}
-$map = [CmdletMapper]::new($outputFolder)
-$map.AddCustomization("Set-AzureADMSPermissionGrantPolicy","Update-MgPolicyPermissionGrantPolicy", $null, $null)
-$map.AddCustomization("Remove-AzureADMSPermissionGrantPolicy","Remove-MgPolicyPermissionGrantPolicy", $null, $null)
-$param = @{}
-$outputs = @{}
-$script = @"
-`$Value = @{
-    forceChangePasswordNextSignIn = `$TmpValue.ForceChangePasswordNextLogin
-    password = `$TmpValue.Password 
+$mapper = [CmdletMapper]::new($outputFolder)
+
+$customizationFiles = Get-CustomizationFiles
+
+foreach($file in $customizationFiles){
+    $cmds = & $file
+    $mapper.AddCustomization($cmds)
 }
-"@
-$scriptOutput = "`$Value = {`$this.ToUpper()}"
-$param.Add("PasswordProfile", [DataMap]::New("PasswordProfile", "PasswordProfile", 99, [Scriptblock]::Create($script)))
-$outputs.Add("DisplayName",[DataMap]::New("DisplayName","ObjectIdTest", 2, $null))
-$outputs.Add("Id",[DataMap]::New("Id","TestScript", 99, [Scriptblock]::Create($scriptOutput)))
-$map.AddCustomization("New-AzureADUser","New-MgUser", $param, $outputs)
-$map.GenerateModuleFiles()
+
+$mapper.GenerateModuleFiles()
 Move-ModuleFiles -OutputDirector $targetDirectory @nocleanArgument
 

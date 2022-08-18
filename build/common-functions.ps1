@@ -5,6 +5,7 @@ Set-StrictMode -Version 5
 
 $moduleOutputSubdirectory = 'modules'
 $outputPath = 'bin'
+$customizationPath = 'customizations'
 
 function Get-ModuleManifestFile {
     Get-Childitem (Get-ModuleBasePath) -filter '*.psd1'
@@ -162,4 +163,22 @@ function Move-ModuleFiles {
 
          copy-item $sourceFileList[ $_ ] $destinationFileList[ $_ ]
      }
+}
+
+function Get-CustomizationFiles {
+    [cmdletbinding()]
+    param(
+        [string]$Directory = $null
+    )
+
+    if( !$Directory ) {
+        $Directory = Join-Path $(Split-Path -parent $psscriptroot) $customizationPath        
+    }
+    $customizationFileList = @()
+    $files = Get-ChildItem -Path $Directory -Filter '*.ps1'
+    foreach($file in $files){
+        $customizationFileList += $file.FullName        
+    }
+    
+    $customizationFileList
 }
