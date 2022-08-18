@@ -101,10 +101,6 @@ class CmdletMapper {
         }
     }
 
-    AddCustomization([string] $Name, [string] $TargetName, [hashtable] $Parameters, [hashtable] $Outputs){        
-        $this.CmdletCustomizations.Add($Name, [CmdletMap]::New($Name,$TargetName,$Parameters,$Outputs))
-    }
-
     AddCustomization([CmdletMap[]] $Cmdlets) {
         foreach($cmd in $Cmdlets) {
             $this.CmdletCustomizations.Add($cmd.Name, $cmd)
