@@ -17,6 +17,7 @@ class CmdletMapper {
     hidden [ModuleMap] $ModuleMap = $null
     hidden [bool] $GenerateCommandsToMapData
 
+    # Base constructor assummes all the properties values are not modified, load all the Required Modules and creates the output folder.
     CmdletMapper(){
         $modules = Get-Module
         if(!$modules.Name.Contains($this.SourceModuleName)){
@@ -34,6 +35,7 @@ class CmdletMapper {
         }
     }
 
+    # Constructor that changes the output folder, load all the Required Modules and creates the output folder.
     CmdletMapper([string] $OutputFolder){
         $this.OutputFolder = $OutputFolder
         $modules = Get-Module
@@ -52,12 +54,14 @@ class CmdletMapper {
         }
     }
 
+    # Creates the ModuleMap object, this is mainly used by other methods but can be called when debugging or finding missing cmdlets
     [ModuleMap] Map(){
         $this.ModuleMap = [ModuleMap]::new($this.ModuleName)
         $originalCmdlets = $this.GetModuleCommands($this.SourceModuleName, $this.SourceModulePrefixs, $true)
         $targetCmdlets = $this.GetTargetModuleCommands($this.DestinationModuleName, $this.DestinationPrefixs, $true)
         $newCmdletData = @()
         $cmdletsToExport = @()
+        $missingCmdletsToExport = @()
         foreach ($cmdlet in $originalCmdlets.Keys){
             $originalCmdlet = $originalCmdlets[$cmdlet]
             $newCmdlet = $this.FindCmdletNoun($cmdlet,$originalCmdlet.Noun, $targetCmdlets)
@@ -69,31 +73,37 @@ class CmdletMapper {
                     $this.CommandsToMap += [CmdletMap]::New($newFunction.Old, $newFunction.New, $newFunction.Parameters)
                 }
                 else {
+                    $missingCmdletsToExport += $cmdlet
                     $this.MissingCommandsToMap += [CmdletMap]::New($cmdlet, $newCmdlet)
                 }                 
             }
-            else{                            
+            else{  
+                $missingCmdletsToExport += $cmdlet                          
                 $this.MissingCommandsToMap += [CmdletMap]::New($cmdlet,$newCmdlet.SimilarNames -Join ",")
             } 
         }
       
         $this.ModuleMap.CmdletsList = $cmdletsToExport
+        $this.ModuleMap.MissingCmdletsList = $missingCmdletsToExport
         $this.ModuleMap.Cmdlets = $this.NewModuleMap($newCmdletData)
 
         return $this.ModuleMap
     }
     
+    # Generates the module then generates all the files required to create the module.
     GenerateModuleFiles() {
         $this.WriteModuleFile()
         $this.WriteModuleManifest()
     }
 
+    # Generates json files based on the current generated module usefull to find missing command and add customizations
     GenerateDataFile() {
         $this.Map()
         $this.CommandsToMap | ConvertTo-Json -Depth 5 | Out-File -FilePath $(Join-Path $this.OutputFolder "foundCommands.json")
         $this.MissingCommandsToMap | ConvertTo-Json  -Depth 5 | Out-File -FilePath $(Join-Path $this.OutputFolder "missingCommands.json")
     }
 
+    # Add customizations based on a json files NEEDS to be tested.
     AddCustomizationsFile([string] $FileName){
         $inputFile = Get-Content $FileName | ConvertFrom-Json
         foreach($item in $inputFile){            
@@ -101,6 +111,7 @@ class CmdletMapper {
         }
     }
 
+    # Add customization based on the the CmdletMap object.
     AddCustomization([CmdletMap[]] $Cmdlets) {
         foreach($cmd in $Cmdlets) {
             $this.CmdletCustomizations.Add($cmd.Name, $cmd)
@@ -131,8 +142,17 @@ $($aliases)}
 Export-ModuleMember -Function @(
     '$($cmdletsToExport -Join "','")'
 )
+
 "@
         return [Scriptblock]::Create($functionsToExport)
+    }
+
+    hidden [scriptblock] SetMissingCmdlets() {
+        $missingCmdlets = @"        
+Set-Variable -name MISSING_CMDLETS -value @('$($this.ModuleMap.MissingCmdletsList -Join "','")') -Scope Global -Option ReadOnly -Force
+
+"@
+        return [Scriptblock]::Create($missingCmdlets)
     }
 
     hidden [CmdletTranslation[]] NewModuleMap([PSCustomObject[]] $Cmdlets) {
@@ -160,6 +180,7 @@ Set-StrictMode -Version 5
 
         Write-File -FileName $filePath -Text $this.GetAlisesFunction()
         Write-File -FileName $filePath -Text $this.GetExportMemeber()
+        Write-File -FileName $filePath -Text $this.SetMissingCmdlets()
     }
 
     hidden WriteModuleManifest() {
@@ -509,7 +530,7 @@ $($output)
     }
 
     hidden [hashtable] GetCmdletParameters($Cmdlet){
-        $exceptionParameterNames = @("All","SearchString","Filter")
+        $exceptionParameterNames = @("All","SearchString")
         $commonParameterNames = @("Verbose", "Debug", "ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable")  
         $params = $(Get-Command -Name $Cmdlet.Old).Parameters
         $newParams = $(Get-Command -Name $Cmdlet.New).Parameters

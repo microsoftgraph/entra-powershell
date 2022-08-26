@@ -6,13 +6,6 @@ The intent of this module is provide AzureAD PowerShell Users a path to start th
 
 **This module is under development NOT READY for Production dependency.**
 
-## Modules
-
-The table below contains our Microsoft Graph Compatibility AzureAD module. 
-Description                             | Module Name                             | PowerShell Gallery Link
---------------------------------------- | --------------------------------------- | ------------------------
-Microsoft Graph Compatibility AzureAD   | `Microsoft.Graph.Compatibility.AzureAD` | **Coming soon**
-
 ## Installation
 
 ### Local Building

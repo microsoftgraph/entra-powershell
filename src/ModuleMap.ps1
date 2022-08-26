@@ -6,6 +6,7 @@ Set-StrictMode -Version 5
 class ModuleMap {
     [string] $Name = $null
     [string[]] $CmdletsList = $null
+    [string[]] $MissingCmdletsList = $null
     [CmdletTranslation[]] $Cmdlets  = $null
 
     ModuleMap([string] $Name){
