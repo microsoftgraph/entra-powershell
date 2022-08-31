@@ -2,10 +2,6 @@
 
 name: $(SourceBranchName)-PR-$(Date:yyyy-MM-dd)$(Rev:.r)
 
-parameters:
-  - name: Branch
-    type: string
-
 trigger: none
 
 pool:
@@ -54,3 +50,31 @@ jobs:
     inputs:
      ArtifactName: 'Module Files'
      PathtoPublish: 'bin'
+  - task: powershell@2
+    displayName: 'Publish to Local Gallery'
+    inputs:
+      targetType: inline
+      script: ./build/Publish-LocalCompatModule.ps1
+      pwsh: false
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Module Nuget File'
+    inputs:
+     ArtifactName: 'Module Nuget'
+     PathtoPublish: '.psrepo'
+  - task: powershell@2
+    displayName: 'Remove Local Gallery'
+    inputs:
+      targetType: inline
+      script: |
+        . ./build/common-functions.ps1
+        Unregister-LocalGallery
+      pwsh: false
+  - task: powershell@2
+    displayName: 'Remove Build Folders'
+    inputs:
+      targetType: inline
+      script: |
+        . ./build/common-functions.ps1
+        Remove-BuildDirectories
+      pwsh: false
+

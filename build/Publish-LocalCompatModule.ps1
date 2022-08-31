@@ -10,9 +10,6 @@ param(
 
 . "$psscriptroot/common-functions.ps1"
 
-if($Clean.IsPresent){
-    Unregister-LocalGallery
-}
 Register-LocalGallery
 
 $modulePath = Join-Path (Get-ModuleBasePath) $moduleOutputSubdirectory
