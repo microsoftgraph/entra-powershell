@@ -10,8 +10,6 @@ pool:
 jobs:
 - job: Build
   displayName: 'Build PowerShell module'
-  variables:
-    Branch: ${{ parameters.Branch }}
   steps:
   - task: powershell@2
     displayName: 'Show current PowerShell version information'
