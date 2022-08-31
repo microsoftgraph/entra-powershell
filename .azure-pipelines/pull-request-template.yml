@@ -1,0 +1,28 @@
+# https://aka.ms/yaml
+
+name: $(SourceBranchName)-PR-$(Date:yyyy-MM-dd)$(Rev:.r)
+
+parameters:
+  - name: Branch
+    type: string
+
+trigger: none
+
+pool:
+  type: windows
+
+jobs:
+- job: Build
+  displayName: 'Build PowerShell module'
+  variables:
+    Branch: ${{ parameters.Branch }}
+  steps:
+  - template: ../common-templates/checkout.yml
+        parameters:
+          TargetBranch: $(Branch)
+  - task: powershell@2
+    displayName: 'Show current PowerShell version information'
+    inputs:
+      targetType: inline
+      script: 'echo $PSVersionTable'
+      pwsh: false
