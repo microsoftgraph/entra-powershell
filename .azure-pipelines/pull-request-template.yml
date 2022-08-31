@@ -49,3 +49,8 @@ jobs:
       targetType: inline
       script: ./build/Create-CompatModule.ps1
       pwsh: false
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Module Files'
+    inputs:
+     ArtifactName: 'Module Files'
+     PathtoPublish: 'bin'
