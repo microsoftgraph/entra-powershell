@@ -17,9 +17,6 @@ jobs:
   variables:
     Branch: ${{ parameters.Branch }}
   steps:
-  - template: ../common-templates/checkout.yml
-        parameters:
-          TargetBranch: $(Branch)
   - task: powershell@2
     displayName: 'Show current PowerShell version information'
     inputs:
