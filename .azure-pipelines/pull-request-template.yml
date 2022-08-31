@@ -27,22 +27,22 @@ jobs:
     displayName: 'Install AzureAD'
     inputs:
       targetType: inline
-      script: Install-Module AzureAD
+      script: Install-Module AzureAD -scope currentuser -force
       pwsh: false
   - task: powershell@2
-    displayName: 'Install Microsoft Graph SDK'
+    displayName: 'Install Microsoft Graph SDK Modules'
     inputs:
       targetType: inline
       pwsh: false
       script: |
-        Install-Module Microsoft.Graph.Users
-        Install-Module Microsoft.Graph.Users.Actions
-        Install-Module Microsoft.Graph.Users.Functions
-        Install-Module Microsoft.Graph.Groups
-        Install-Module Microsoft.Graph.Identity.DirectoryManagement
-        Install-Module Microsoft.Graph.Identity.Governance
-        Install-Module Microsoft.Graph.Identity.SignIns
-        Install-Module Microsoft.Graph.Applications
+        Install-Module Microsoft.Graph.Users -scope currentuser -force
+        Install-Module Microsoft.Graph.Users.Actions -scope currentuser -force
+        Install-Module Microsoft.Graph.Users.Functions -scope currentuser -force
+        Install-Module Microsoft.Graph.Groups -scope currentuser -force
+        Install-Module Microsoft.Graph.Identity.DirectoryManagement -scope currentuser -force
+        Install-Module Microsoft.Graph.Identity.Governance -scope currentuser -force
+        Install-Module Microsoft.Graph.Identity.SignIns -scope currentuser -force
+        Install-Module Microsoft.Graph.Applications -scope currentuser -force
   - task: powershell@2
     displayName: 'Build'
     inputs:
