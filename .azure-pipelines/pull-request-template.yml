@@ -9,7 +9,7 @@ parameters:
 trigger: none
 
 pool:
-  type: windows
+  vmImage: windows-latest
 
 jobs:
 - job: Build
