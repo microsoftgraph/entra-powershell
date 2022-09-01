@@ -8,16 +8,7 @@ trigger: none
 
 pool:
   vmImage: windows-latest
-
 stages:
-- stage: CompatibilityAD.SecurityPreChecks
-  displayName: 'Security Pre Checks'
-  jobs:
-  - job: MsGraphPSSDKSecurityPreChecks
-    displayName: Microsoft Graph PowerShell SDK Security Pre Checks
-    steps:
-      - template: ./common-templates/security-prechecks-template.yml
-
 - stage: Build
   displayName: 'Build Compatibility Adapter'
   jobs:
@@ -25,11 +16,3 @@ stages:
     displayName: Microsoft Graph PowerShell SDK Security Post Checks
     steps:
       - template: ./build.yml
-
-- stage: CompatibilityAD.SecurityPostChecks
-  displayName: 'Security Post Checks'
-  jobs:
-  - job: SecurityPostChecks
-    displayName: Microsoft Graph PowerShell SDK Security Post Checks
-    steps:
-      - template: ./common-templates/security-postchecks-template.yml
