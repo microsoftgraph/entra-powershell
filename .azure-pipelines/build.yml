@@ -1,0 +1,70 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+# https://aka.ms/yaml
+
+steps:
+- task: powershell@2
+  displayName: 'Show current PowerShell version information'
+  inputs:
+    targetType: inline
+    script: 'echo $PSVersionTable'
+    pwsh: false
+- task: powershell@2
+  displayName: 'Install AzureAD'
+  inputs:
+    targetType: inline
+    script: Install-Module AzureAD -scope currentuser -Force
+    pwsh: false
+- task: powershell@2
+  displayName: 'Install Microsoft Graph SDK Modules'
+  inputs:
+    targetType: inline
+    pwsh: false
+    script: |
+      Install-Module Microsoft.Graph.Users -scope currentuser -Force
+      Install-Module Microsoft.Graph.Users.Actions -scope currentuser -Force
+      Install-Module Microsoft.Graph.Users.Functions -scope currentuser -Force
+      Install-Module Microsoft.Graph.Groups -scope currentuser -Force
+      Install-Module Microsoft.Graph.Identity.DirectoryManagement -scope currentuser -Force
+      Install-Module Microsoft.Graph.Identity.Governance -scope currentuser -Force
+      Install-Module Microsoft.Graph.Identity.SignIns -scope currentuser -Force
+      Install-Module Microsoft.Graph.Applications -scope currentuser -Force
+- task: powershell@2
+  displayName: 'Build'
+  inputs:
+    targetType: inline
+    script: ./build/Create-CompatModule.ps1
+    pwsh: false
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Module Files'
+  inputs:
+    ArtifactName: 'Module Files'
+    PathtoPublish: 'bin'
+- task: powershell@2
+  displayName: 'Publish to Local Gallery'
+  inputs:
+    targetType: inline
+    script: ./build/Publish-LocalCompatModule.ps1
+    pwsh: false
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Module Nuget File'
+  inputs:
+    ArtifactName: 'Module Nuget'
+    PathtoPublish: '.psrepo'
+- task: powershell@2
+  displayName: 'Remove Local Gallery'
+  inputs:
+    targetType: inline
+    script: |
+      . ./build/common-functions.ps1
+      Unregister-LocalGallery
+    pwsh: false
+- task: powershell@2
+  displayName: 'Remove Build Folders'
+  inputs:
+    targetType: inline
+    script: |
+      . ./build/common-functions.ps1
+      Remove-BuildDirectories
+    pwsh: false
+

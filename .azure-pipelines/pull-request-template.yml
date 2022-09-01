@@ -1,3 +1,5 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
 # https://aka.ms/yaml
 
 name: $(SourceBranchName)-PR-$(Date:yyyy-MM-dd)$(Rev:.r)
@@ -7,72 +9,27 @@ trigger: none
 pool:
   vmImage: windows-latest
 
-jobs:
-- job: Build
-  displayName: 'Build PowerShell module'
-  steps:
-  - task: powershell@2
-    displayName: 'Show current PowerShell version information'
-    inputs:
-      targetType: inline
-      script: 'echo $PSVersionTable'
-      pwsh: false
-  - task: powershell@2
-    displayName: 'Install AzureAD'
-    inputs:
-      targetType: inline
-      script: Install-Module AzureAD -scope currentuser -force
-      pwsh: false
-  - task: powershell@2
-    displayName: 'Install Microsoft Graph SDK Modules'
-    inputs:
-      targetType: inline
-      pwsh: false
-      script: |
-        Install-Module Microsoft.Graph.Users -scope currentuser -force
-        Install-Module Microsoft.Graph.Users.Actions -scope currentuser -force
-        Install-Module Microsoft.Graph.Users.Functions -scope currentuser -force
-        Install-Module Microsoft.Graph.Groups -scope currentuser -force
-        Install-Module Microsoft.Graph.Identity.DirectoryManagement -scope currentuser -force
-        Install-Module Microsoft.Graph.Identity.Governance -scope currentuser -force
-        Install-Module Microsoft.Graph.Identity.SignIns -scope currentuser -force
-        Install-Module Microsoft.Graph.Applications -scope currentuser -force
-  - task: powershell@2
-    displayName: 'Build'
-    inputs:
-      targetType: inline
-      script: ./build/Create-CompatModule.ps1
-      pwsh: false
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Module Files'
-    inputs:
-     ArtifactName: 'Module Files'
-     PathtoPublish: 'bin'
-  - task: powershell@2
-    displayName: 'Publish to Local Gallery'
-    inputs:
-      targetType: inline
-      script: ./build/Publish-LocalCompatModule.ps1
-      pwsh: false
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Module Nuget File'
-    inputs:
-     ArtifactName: 'Module Nuget'
-     PathtoPublish: '.psrepo'
-  - task: powershell@2
-    displayName: 'Remove Local Gallery'
-    inputs:
-      targetType: inline
-      script: |
-        . ./build/common-functions.ps1
-        Unregister-LocalGallery
-      pwsh: false
-  - task: powershell@2
-    displayName: 'Remove Build Folders'
-    inputs:
-      targetType: inline
-      script: |
-        . ./build/common-functions.ps1
-        Remove-BuildDirectories
-      pwsh: false
+stages:
+- stage: SecurityPreChecks
+  displayName: 'Security Pre Checks'
+  jobs:
+  - job: MsGraphPSSDKSecurityPreChecks
+    displayName: Microsoft Graph PowerShell SDK Security Pre Checks
+    steps:
+      - template: ./common-templates/security-prechecks-template.yml
 
+- stage: Build
+  displayName: 'Build Compatibility Adapter'
+  jobs:
+  - job: Build
+    displayName: Microsoft Graph PowerShell SDK Security Post Checks
+    steps:
+      - template: ./build.yml
+
+- stage: SecurityPostChecks
+  displayName: 'Security Post Checks'
+  jobs:
+  - job: SecurityPostChecks
+    displayName: Microsoft Graph PowerShell SDK Security Post Checks
+    steps:
+      - template: ./common-templates/security-postchecks-template.yml
