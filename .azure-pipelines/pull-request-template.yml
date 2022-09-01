@@ -13,6 +13,6 @@ stages:
   displayName: 'Build Compatibility Adapter'
   jobs:
   - job: Build
-    displayName: Microsoft Graph PowerShell SDK Security Post Checks
+    displayName: Microsoft Graph Compatibility Adapter Build and Artifact Generations
     steps:
       - template: ./build.yml
