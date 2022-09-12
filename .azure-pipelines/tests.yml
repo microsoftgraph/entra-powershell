@@ -1,0 +1,23 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+# https://aka.ms/yaml
+
+steps:
+- task: powershell@2
+  displayName: 'Show current PowerShell version information'
+  inputs:
+    targetType: inline
+    script: 'echo $PSVersionTable'
+    pwsh: false
+- task: powershell@2
+  displayName: 'Install Pester'
+  inputs:
+    targetType: inline
+    script: Install-Module Pester -scope currentuser -Force
+    pwsh: false
+- task: powershell@2
+  displayName: 'Run Pester'
+  inputs:
+    targetType: inline
+    script: Invoke-Pester -Output Detailed
+    pwsh: false
