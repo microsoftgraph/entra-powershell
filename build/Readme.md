@@ -1,6 +1,6 @@
 ## Building module
 
-Clone module and follow the instructions
+Clone module and follow the instructions. You need **Microsoft.Graph PowerShell module installed** in order to build the module.
 
 ```powershell
 git clone https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread.git
