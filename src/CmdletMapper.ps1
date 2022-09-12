@@ -55,7 +55,7 @@ class CmdletMapper {
     }
 
     # Creates the ModuleMap object, this is mainly used by other methods but can be called when debugging or finding missing cmdlets
-    [ModuleMap] Map(){
+    hidden [ModuleMap] Map(){
         $this.ModuleMap = [ModuleMap]::new($this.ModuleName)
         $originalCmdlets = $this.GetModuleCommands($this.SourceModuleName, $this.SourceModulePrefixs, $true)
         $targetCmdlets = $this.GetTargetModuleCommands($this.DestinationModuleName, $this.DestinationPrefixs, $true)
