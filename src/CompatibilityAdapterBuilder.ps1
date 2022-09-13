@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 Set-StrictMode -Version 5
 
-class CmdletMapper {
+class CompatibilityAdapterBuilder {
     [string] $SourceModuleName = 'AzureAD'
     [string[]] $SourceModulePrefixs = @('AzureADMS','AzureAD')
     [string] $NewPrefix = 'CompatAD'
@@ -14,29 +14,11 @@ class CmdletMapper {
     hidden [CmdletMap[]] $MissingCommandsToMap = @()
     hidden [hashtable] $CmdletCustomizations = @{}
     hidden [string] $OutputFolder = (join-path $PSScriptRoot '../bin')
-    hidden [ModuleMap] $ModuleMap = $null
+    hidden [MappedCmdCollection] $ModuleMap = $null
     hidden [bool] $GenerateCommandsToMapData
 
-    # Base constructor assummes all the properties values are not modified, load all the Required Modules and creates the output folder.
-    CmdletMapper(){
-        $modules = Get-Module
-        if(!$modules.Name.Contains($this.SourceModuleName)){
-            Import-Module $this.SourceModuleName | Out-Null
-        }
-
-        foreach ($moduleName in $this.DestinationModuleName){
-            if(!$modules.Name.Contains($moduleName)){
-                Import-Module $moduleName | Out-Null
-            }
-        }
-
-        if(!(Test-Path $this.OutputFolder)){
-            New-Item -ItemType Directory -Path $this.OutputFolder | Out-Null
-        }
-    }
-
     # Constructor that changes the output folder, load all the Required Modules and creates the output folder.
-    CmdletMapper([string] $OutputFolder){
+    CompatibilityAdapterBuilder([string] $OutputFolder = $null){
         $this.OutputFolder = $OutputFolder
         $modules = Get-Module
         if(!$modules.Name.Contains($this.SourceModuleName)){
@@ -54,9 +36,22 @@ class CmdletMapper {
         }
     }
 
+        # Generates the module then generates all the files required to create the module.
+    BuildModule() {
+        $this.WriteModuleFile()
+        $this.WriteModuleManifest()
+    }
+    
+        # Add customization based on the the CmdletMap object.
+    AddCustomization([CmdletMap[]] $Cmdlets) {
+        foreach($cmd in $Cmdlets) {
+            $this.CmdletCustomizations.Add($cmd.Name, $cmd)
+        }
+    }
+
     # Creates the ModuleMap object, this is mainly used by other methods but can be called when debugging or finding missing cmdlets
-    hidden [ModuleMap] Map(){
-        $this.ModuleMap = [ModuleMap]::new($this.ModuleName)
+    hidden [MappedCmdCollection] Map(){
+        $this.ModuleMap = [MappedCmdCollection]::new($this.ModuleName)
         $originalCmdlets = $this.GetModuleCommands($this.SourceModuleName, $this.SourceModulePrefixs, $true)
         $targetCmdlets = $this.GetTargetModuleCommands($this.DestinationModuleName, $this.DestinationPrefixs, $true)
         $newCmdletData = @()
@@ -88,35 +83,7 @@ class CmdletMapper {
         $this.ModuleMap.Cmdlets = $this.NewModuleMap($newCmdletData)
 
         return $this.ModuleMap
-    }
-    
-    # Generates the module then generates all the files required to create the module.
-    GenerateModuleFiles() {
-        $this.WriteModuleFile()
-        $this.WriteModuleManifest()
-    }
-
-    # Generates json files based on the current generated module usefull to find missing command and add customizations
-    GenerateDataFile() {
-        $this.Map()
-        $this.CommandsToMap | ConvertTo-Json -Depth 5 | Out-File -FilePath $(Join-Path $this.OutputFolder "foundCommands.json")
-        $this.MissingCommandsToMap | ConvertTo-Json  -Depth 5 | Out-File -FilePath $(Join-Path $this.OutputFolder "missingCommands.json")
-    }
-
-    # Add customizations based on a json files NEEDS to be tested.
-    AddCustomizationsFile([string] $FileName){
-        $inputFile = Get-Content $FileName | ConvertFrom-Json
-        foreach($item in $inputFile){            
-            $this.CmdletCustomizations.add($item.Name, [CmdletMap]::New($item.Name,$item.TargetName,$item.Parameters,$item.Outputs))
-        }
-    }
-
-    # Add customization based on the the CmdletMap object.
-    AddCustomization([CmdletMap[]] $Cmdlets) {
-        foreach($cmd in $Cmdlets) {
-            $this.CmdletCustomizations.Add($cmd.Name, $cmd)
-        }
-    }
+    }    
 
     hidden [scriptblock] GetAlisesFunction() {
         if($this.ModuleMap){
@@ -148,7 +115,7 @@ Export-ModuleMember -Function @(
     }
 
     hidden [scriptblock] SetMissingCmdlets() {
-        $missingCmdlets = @"        
+        $missingCmdlets = @"
 Set-Variable -name MISSING_CMDLETS -value @('$($this.ModuleMap.MissingCmdletsList -Join "','")') -Scope Global -Option ReadOnly -Force
 
 "@

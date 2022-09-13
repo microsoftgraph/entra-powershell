@@ -5,12 +5,12 @@
 param($targetDirectory = $null, [switch] $noclean)
 
 . (join-path $psscriptroot "/common-functions.ps1")
-. (join-path $psscriptroot "../src/dependencies.ps1")
+. (join-path $psscriptroot "../src/CompatibilityAdapter.ps1")
 
 Remove-BuildDirectories
 $outputFolder = join-path $psscriptroot "../bin"
 $nocleanArgument = @{noclean=$noclean}
-$mapper = [CmdletMapper]::new($outputFolder)
+$mapper = [CompatibilityAdapterBuilder]::new($outputFolder)
 
 $customizationFiles = Get-CustomizationFiles
 
@@ -19,6 +19,6 @@ foreach($file in $customizationFiles){
     $mapper.AddCustomization($cmds)
 }
 
-$mapper.GenerateModuleFiles()
+$mapper.BuildModule()
 Move-ModuleFiles -OutputDirector $targetDirectory @nocleanArgument
 

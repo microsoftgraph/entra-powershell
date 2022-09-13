@@ -47,7 +47,7 @@ $script = @"
 If we take both exaples we can see that the final code for customizing the command in the file `New-AzureADUser.ps1` is:
 
 ```Powershell
-$mapper = [CmdletMapper]::new()
+$mapper = [CompatibilityAdapterBuilder]::new()
 $param = @{}
 $outputs = @{}
 $script = @"

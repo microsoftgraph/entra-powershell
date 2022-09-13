@@ -6,5 +6,5 @@ Set-StrictMode -Version 5
 . (join-path $psscriptroot DataMap.ps1)
 . (join-path $psscriptroot CmdletMap.ps1)
 . (join-path $psscriptroot CmdletTranslation.ps1)
-. (join-path $psscriptroot ModuleMap.ps1)
-. (join-path $psscriptroot cmdletMapper.ps1)
+. (join-path $psscriptroot MappedCmdCollection.ps1)
+. (join-path $psscriptroot CompatibilityAdapterBuilder.ps1)

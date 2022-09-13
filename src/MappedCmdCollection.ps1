@@ -3,13 +3,13 @@
 # ------------------------------------------------------------------------------
 Set-StrictMode -Version 5
 
-class ModuleMap {
+class MappedCmdCollection {
     [string] $Name = $null
     [string[]] $CmdletsList = $null
     [string[]] $MissingCmdletsList = $null
     [CmdletTranslation[]] $Cmdlets  = $null
 
-    ModuleMap([string] $Name){
+    MappedCmdCollection([string] $Name){
         $this.Name = $Name
     }
 }
