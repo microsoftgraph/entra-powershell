@@ -12,7 +12,7 @@ class CompatibilityAdapterBuilder {
     [string] $ModuleName = 'Microsoft.Graph.Compatibility.AzureAD'
     hidden [CommandMap[]] $CommandsToMap = $null
     hidden [CommandMap[]] $MissingCommandsToMap = @()
-    hidden [hashtable] $CmdletCustomizations = @{}
+    hidden [hashtable] $CmdCustomizations = @{}
     hidden [string] $OutputFolder = (join-path $PSScriptRoot '../bin')
     hidden [MappedCmdCollection] $ModuleMap = $null
     hidden [bool] $GenerateCommandsToMapData
@@ -59,7 +59,7 @@ class CompatibilityAdapterBuilder {
             }
 
             $customCommand = [CommandMap]::New("New-AzureADUser","New-MgUser", $parameters, $outputs)
-            $this.CmdletCustomizations.Add($cmd.SourceName, $customCommand)
+            $this.CmdCustomizations.Add($cmd.SourceName, $customCommand)
         }
     }
 
@@ -294,8 +294,8 @@ $OutputTransformations
         $responseVerbs = @("Get","Add","New")
         $output = ""
     
-        if($this.CmdletCustomizations.Contains($Cmdlet.Old)) { 
-            $cmd = $this.CmdletCustomizations[$Cmdlet.Old] 
+        if($this.CmdCustomizations.ContainsKey($Cmdlet.Old)) { 
+            $cmd = $this.CmdCustomizations[$Cmdlet.Old] 
             if($null -ne $cmd.Outputs){                   
                 foreach($key in $cmd.Outputs.GetEnumerator()) {
                     $customOutput =  $cmd.Outputs[$key.Name]
@@ -425,9 +425,9 @@ $($output)
             Name = ''
             SimilarNames = @()
         }        
-        if($this.CmdletCustomizations.Contains($CmdletName)){
+        if($this.CmdCustomizations.ContainsKey($CmdletName)){
             $response.Exact = $true
-            $tmpName = $this.GetParsedCmdlet($this.CmdletCustomizations[$CmdletName].TargetName, $this.DestinationPrefixs)
+            $tmpName = $this.GetParsedCmdlet($this.CmdCustomizations[$CmdletName].TargetName, $this.DestinationPrefixs)
             $response.Name = $tmpName.Noun
         }
         elseif($CmdletList.Contains($Cmdlet)) {
@@ -524,8 +524,8 @@ $($output)
                 continue
             }
 
-            if($this.CmdletCustomizations.Contains($Cmdlet.Old)) {
-                $custom = $this.CmdletCustomizations[$Cmdlet.Old]
+            if($this.CmdCustomizations.ContainsKey($Cmdlet.Old)) {
+                $custom = $this.CmdCustomizations[$Cmdlet.Old]
                 if(($null -ne $custom.Parameters) -and ($custom.Parameters.contains($param.Name))){
                     $paramsList.Add($param.Name, $custom.Parameters[$param.Name])
                     continue
