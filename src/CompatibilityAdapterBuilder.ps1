@@ -19,16 +19,13 @@ class CompatibilityAdapterBuilder {
 
     # Constructor that changes the output folder, load all the Required Modules and creates the output folder.
     CompatibilityAdapterBuilder([string] $OutputFolder = $null){
-        $this.OutputFolder = $OutputFolder
-        $modules = Get-Module
-        if(!$modules.Name.Contains($this.SourceModuleName)){
-            Import-Module $this.SourceModuleName | Out-Null
+        if($OutputFolder) {
+            $this.OutputFolder = $OutputFolder
         }
 
+        Import-Module $this.SourceModuleName | Out-Null
         foreach ($moduleName in $this.DestinationModuleName){
-            if(!$modules.Name.Contains($moduleName)){
-                Import-Module $moduleName | Out-Null
-            }
+            Import-Module $moduleName | Out-Null
         }
 
         if(!(Test-Path $this.OutputFolder)){
@@ -43,9 +40,26 @@ class CompatibilityAdapterBuilder {
     }
     
         # Add customization based on the the CommandMap object.
-    AddCustomization([CommandMap[]] $Cmdlets) {
+    AddCustomization([hashtable[]] $Cmdlets) {
         foreach($cmd in $Cmdlets) {
-            $this.CmdletCustomizations.Add($cmd.Name, $cmd)
+            $parameters = $null
+            $outputs = $null
+            if($cmd.Parameters){
+                $parameters = @{}
+                foreach($param in $cmd.Parameters){
+                    $parameters.Add($param.SourceName, [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping)))
+                }
+            }
+            
+            if($cmd.Outputs){
+                $outputs = @{}
+                foreach($param in $cmd.Parameters){
+                    $outputs.Add($param.SourceName, [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping)))
+                }
+            }
+
+            $customCommand = [CommandMap]::New("New-AzureADUser","New-MgUser", $parameters, $outputs)
+            $this.CmdletCustomizations.Add($cmd.SourceName, $customCommand)
         }
     }
 
@@ -561,12 +575,4 @@ function Write-File{
     )
 
     $Text | Out-File -FilePath $FileName -Append    
-}
-
-function Write-CmdletsData {
-    param (
-        $Data,
-        $Filename
-    )
-    $Data | ConvertTo-Json | Out-File -FilePath $Filename
 }
