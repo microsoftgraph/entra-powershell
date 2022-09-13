@@ -31,7 +31,7 @@ class DataMap {
         $this.ConversionType = 1    
     }
 
-    DataMap($Name, $TargetName, $ConversionType, $SpecialMapping){
+    DataMap($Name, $TargetName = $null, $ConversionType = 1, $SpecialMapping = $null){
         $this.Name = $Name
         $this.TargetName = $TargetName
         $this.ConversionType = $ConversionType    

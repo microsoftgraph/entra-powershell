@@ -11,7 +11,7 @@ class CompatibilityAdapterBuilder {
     [string[]] $DestinationPrefixs = @('Mg') 
     [string] $ModuleName = 'Microsoft.Graph.Compatibility.AzureAD'
     hidden [CommandMap[]] $CommandsToMap = $null
-    hidden [CommandMap[]] $MissingCommandsToMap = @()
+    hidden [string[]] $MissingCommandsToMap = @()
     hidden [hashtable] $CmdCustomizations = @{}
     hidden [string] $OutputFolder = (join-path $PSScriptRoot '../bin')
     hidden [MappedCmdCollection] $ModuleMap = $null
@@ -40,8 +40,8 @@ class CompatibilityAdapterBuilder {
     }
     
         # Add customization based on the the CommandMap object.
-    AddCustomization([hashtable[]] $Cmdlets) {
-        foreach($cmd in $Cmdlets) {
+    AddCustomization([hashtable[]] $Commands) {
+        foreach($cmd in $Commands) {
             $parameters = $null
             $outputs = $null
             if($cmd.Parameters){
@@ -79,16 +79,16 @@ class CompatibilityAdapterBuilder {
                 if($newFunction){
                     $newCmdletData += $newFunction
                     $cmdletsToExport += $newFunction.Generate
-                    $this.CommandsToMap += [CommandMap]::New($newFunction.Old, $newFunction.New, $newFunction.Parameters)
+                    $this.CommandsToMap += [CommandMap]::New($newFunction.Old, $newFunction.New, $newFunction.Parameters, $null)
                 }
                 else {
                     $missingCmdletsToExport += $cmdlet
-                    $this.MissingCommandsToMap += [CommandMap]::New($cmdlet, $newCmdlet)
+                    $this.MissingCommandsToMap += $cmdlet
                 }                 
             }
             else{  
                 $missingCmdletsToExport += $cmdlet                          
-                $this.MissingCommandsToMap += [CommandMap]::New($cmdlet,$newCmdlet.SimilarNames -Join ",")
+                $this.MissingCommandsToMap += $cmdlet
             } 
         }
       
@@ -356,7 +356,7 @@ $($output)
         foreach ($name in $names) {
             $cmdComponents = $this.GetParsedCmdlet($name, $Prefix)
             if(!$cmdComponents){
-                $this.MissingCommandsToMap += [CommandMap]::New($name, $name)
+                $this.MissingCommandsToMap += $name
                 continue
             }
             if($IgnoreEmptyNoun -and !$cmdComponents.Noun) {

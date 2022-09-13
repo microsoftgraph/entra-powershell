@@ -9,22 +9,7 @@ class CommandMap {
     [hashtable] $Parameters = $null
     [hashtable] $Outputs = $null
 
-    CommandMap($Name){
-        $this.Name = $Name
-    }
-
-    CommandMap($Name, $TargetName){
-        $this.Name = $Name
-        $this.TargetName = $TargetName           
-    }
-
-    CommandMap($Name, $TargetName, $Parameters){
-        $this.Name = $Name
-        $this.TargetName = $TargetName
-        $this.Parameters = $Parameters
-    }
-
-    CommandMap($Name, $TargetName, $Parameters, $Outputs){
+    CommandMap($Name, $TargetName = $null, $Parameters = $null, $Outputs = $null){
         $this.Name = $Name
         $this.TargetName = $TargetName
         $this.Parameters = $Parameters
