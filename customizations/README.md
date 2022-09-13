@@ -6,14 +6,14 @@ The automatic generation process can't get all the proper transformations due to
 - Parameters
 - Outputs
 
-For each cmdlet you want to customize is recommended to add a new file with the command name in the `customizations` folder, the file must but a `ps1` file that returns an array of `CmdletMap` objects please check the file in the folder for more examples.
+For each cmdlet you want to customize is recommended to add a new file with the command name in the `customizations` folder, the file must but a `ps1` file that returns an array of `CommandMap` objects please check the file in the folder for more examples.
 
 ## Customize Cmdlet Name
 
 Lets use `Remove-AzureADMSPermissionGrantPolicy` as we can see the *noun* here is `PermissionGrantPolicy` there is no such *noun* in Microsoft Graph PowerShell SDK, but we know there is an equivalent cmdlet this is `Remove-MgPolicyPermissionGrantPolicy`, for this one we are only adding the referent to the name, this means puting the actual AzureAD cmdlet as `Name` and the Microsoft Graph cmdlet as `TargetName`, the code inside `Remove-AzureADMSPermissionGrantPolicy,ps1` is the following:
 
 ```Powershell
-$cmdlet = [CmdletMap]::New("Remove-AzureADMSPermissionGrantPolicy","Remove-MgPolicyPermissionGrantPolicy", $null, $null)
+$cmdlet = [CommandMap]::New("Remove-AzureADMSPermissionGrantPolicy","Remove-MgPolicyPermissionGrantPolicy", $null, $null)
 $cmdlet
 ```
 
@@ -58,7 +58,7 @@ $script = @"
 "@
 $param.Add("PasswordProfile", [DataMap]::New("PasswordProfile", "PasswordProfile", 99, [Scriptblock]::Create($script)))
 $outputs.Add("Id",[DataMap]::New("Id","ObjectId", 2, $null))
-$cmdlet = [CmdletMap]::New("New-AzureADUser","New-MgUser", $param, $outputs)
+$cmdlet = [CommandMap]::New("New-AzureADUser","New-MgUser", $param, $outputs)
 $cmdlet
 ```
 

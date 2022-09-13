@@ -10,4 +10,4 @@ $script = @"
         }
 "@
 $param.Add("PasswordProfile", [DataMap]::New("PasswordProfile", "PasswordProfile", 99, [Scriptblock]::Create($script)))
-[CmdletMap]::New("New-AzureADUser","New-MgUser", $param, $null)
+[CommandMap]::New("New-AzureADUser","New-MgUser", $param, $null)

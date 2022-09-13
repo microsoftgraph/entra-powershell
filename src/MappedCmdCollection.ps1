@@ -7,7 +7,7 @@ class MappedCmdCollection {
     [string] $Name = $null
     [string[]] $CmdletsList = $null
     [string[]] $MissingCmdletsList = $null
-    [CmdletTranslation[]] $Cmdlets  = $null
+    [CommandTranslation[]] $Cmdlets  = $null
 
     MappedCmdCollection([string] $Name){
         $this.Name = $Name

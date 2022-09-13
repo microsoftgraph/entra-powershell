@@ -3,28 +3,28 @@
 # ------------------------------------------------------------------------------
 Set-StrictMode -Version 5
 
-class CmdletMap {
+class CommandMap {
     [string] $Name = $null
     [string] $TargetName = $null   
     [hashtable] $Parameters = $null
     [hashtable] $Outputs = $null
 
-    CmdletMap($Name){
+    CommandMap($Name){
         $this.Name = $Name
     }
 
-    CmdletMap($Name, $TargetName){
+    CommandMap($Name, $TargetName){
         $this.Name = $Name
         $this.TargetName = $TargetName           
     }
 
-    CmdletMap($Name, $TargetName, $Parameters){
+    CommandMap($Name, $TargetName, $Parameters){
         $this.Name = $Name
         $this.TargetName = $TargetName
         $this.Parameters = $Parameters
     }
 
-    CmdletMap($Name, $TargetName, $Parameters, $Outputs){
+    CommandMap($Name, $TargetName, $Parameters, $Outputs){
         $this.Name = $Name
         $this.TargetName = $TargetName
         $this.Parameters = $Parameters

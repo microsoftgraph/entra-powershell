@@ -10,8 +10,8 @@ class CompatibilityAdapterBuilder {
     [string[]] $DestinationModuleName = @('Microsoft.Graph.Users','Microsoft.Graph.Users.Actions', 'Microsoft.Graph.Users.Functions', 'Microsoft.Graph.Groups', 'Microsoft.Graph.Identity.DirectoryManagement', 'Microsoft.Graph.Identity.Governance', 'Microsoft.Graph.Identity.SignIns','Microsoft.Graph.Applications')
     [string[]] $DestinationPrefixs = @('Mg') 
     [string] $ModuleName = 'Microsoft.Graph.Compatibility.AzureAD'
-    hidden [CmdletMap[]] $CommandsToMap = $null
-    hidden [CmdletMap[]] $MissingCommandsToMap = @()
+    hidden [CommandMap[]] $CommandsToMap = $null
+    hidden [CommandMap[]] $MissingCommandsToMap = @()
     hidden [hashtable] $CmdletCustomizations = @{}
     hidden [string] $OutputFolder = (join-path $PSScriptRoot '../bin')
     hidden [MappedCmdCollection] $ModuleMap = $null
@@ -42,8 +42,8 @@ class CompatibilityAdapterBuilder {
         $this.WriteModuleManifest()
     }
     
-        # Add customization based on the the CmdletMap object.
-    AddCustomization([CmdletMap[]] $Cmdlets) {
+        # Add customization based on the the CommandMap object.
+    AddCustomization([CommandMap[]] $Cmdlets) {
         foreach($cmd in $Cmdlets) {
             $this.CmdletCustomizations.Add($cmd.Name, $cmd)
         }
@@ -65,16 +65,16 @@ class CompatibilityAdapterBuilder {
                 if($newFunction){
                     $newCmdletData += $newFunction
                     $cmdletsToExport += $newFunction.Generate
-                    $this.CommandsToMap += [CmdletMap]::New($newFunction.Old, $newFunction.New, $newFunction.Parameters)
+                    $this.CommandsToMap += [CommandMap]::New($newFunction.Old, $newFunction.New, $newFunction.Parameters)
                 }
                 else {
                     $missingCmdletsToExport += $cmdlet
-                    $this.MissingCommandsToMap += [CmdletMap]::New($cmdlet, $newCmdlet)
+                    $this.MissingCommandsToMap += [CommandMap]::New($cmdlet, $newCmdlet)
                 }                 
             }
             else{  
                 $missingCmdletsToExport += $cmdlet                          
-                $this.MissingCommandsToMap += [CmdletMap]::New($cmdlet,$newCmdlet.SimilarNames -Join ",")
+                $this.MissingCommandsToMap += [CommandMap]::New($cmdlet,$newCmdlet.SimilarNames -Join ",")
             } 
         }
       
@@ -122,8 +122,8 @@ Set-Variable -name MISSING_CMDLETS -value @('$($this.ModuleMap.MissingCmdletsLis
         return [Scriptblock]::Create($missingCmdlets)
     }
 
-    hidden [CmdletTranslation[]] NewModuleMap([PSCustomObject[]] $Cmdlets) {
-        [CmdletTranslation[]] $translations = @()
+    hidden [CommandTranslation[]] NewModuleMap([PSCustomObject[]] $Cmdlets) {
+        [CommandTranslation[]] $translations = @()
         foreach($Cmdlet in $Cmdlets){
             $translations += $this.NewFunctionMap($Cmdlet)
         }
@@ -182,7 +182,7 @@ Set-StrictMode -Version 5
         Update-ModuleManifest -Path $manisfestPath -PrivateData $PSData
     }
 
-    hidden [CmdletTranslation] NewFunctionMap([PSCustomObject] $Cmdlet){
+    hidden [CommandTranslation] NewFunctionMap([PSCustomObject] $Cmdlet){
 
         $parameterDefinitions = $this.GetParametersDefinitions($Cmdlet)
         $ParamterTransformations = $this.GetParametersTransformations($Cmdlet)
@@ -203,7 +203,7 @@ $OutputTransformations
         
 "@
         $codeBlock = [Scriptblock]::Create($function)
-        return [CmdletTranslation]::New($Cmdlet.Generate,$Cmdlet.Old,$codeBlock)
+        return [CommandTranslation]::New($Cmdlet.Generate,$Cmdlet.Old,$codeBlock)
     }
 
     hidden [string] GetParametersDefinitions([PSCustomObject] $Cmdlet) {
@@ -342,7 +342,7 @@ $($output)
         foreach ($name in $names) {
             $cmdComponents = $this.GetParsedCmdlet($name, $Prefix)
             if(!$cmdComponents){
-                $this.MissingCommandsToMap += [CmdletMap]::New($name, $name)
+                $this.MissingCommandsToMap += [CommandMap]::New($name, $name)
                 continue
             }
             if($IgnoreEmptyNoun -and !$cmdComponents.Noun) {

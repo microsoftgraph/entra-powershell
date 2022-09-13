@@ -3,12 +3,12 @@
 # ------------------------------------------------------------------------------
 Set-StrictMode -Version 5
 
-class CmdletTranslation {
+class CommandTranslation {
     [string] $Name = $null
     [string] $SourceName = $null   
     [scriptblock] $CommandBlock = $null
 
-    CmdletTranslation([string] $Name, [string] $SourceName, [scriptblock] $CommandBlock){
+    CommandTranslation([string] $Name, [string] $SourceName, [scriptblock] $CommandBlock){
         $this.Name = $Name
         $this.SourceName = $SourceName
         $this.CommandBlock = $CommandBlock
