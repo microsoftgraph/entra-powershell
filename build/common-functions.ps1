@@ -107,7 +107,7 @@ function Update-ModuleVersion {
     Update-ModuleManifest -Path $(Get-ModuleManifestFile).FullName -ModuleVersion $ver
 }
 
-function Move-ModuleFiles {
+function Create-ModuleFolder {
     [cmdletbinding()]
     param(
         [string]$OutputDirectory = $null,

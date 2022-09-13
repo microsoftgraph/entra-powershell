@@ -20,5 +20,5 @@ foreach($file in $customizationFiles){
 }
 
 $mapper.BuildModule()
-Move-ModuleFiles -OutputDirector $targetDirectory @nocleanArgument
+Create-ModuleFolder -OutputDirector $targetDirectory @nocleanArgument
 

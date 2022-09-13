@@ -153,7 +153,10 @@ Set-StrictMode -Version 5
 
 "@
         $filePath = Join-Path $this.OutputFolder "$($this.ModuleName).psm1"
+        
+        #This call create the mapping used to create the final module.
         $data = $this.Map()
+
         Write-File -FileName $filePath -Text $headerCode
         foreach($cmd in $data.Cmdlets) {
             Write-File -FileName $filePath -Text $cmd.CommandBlock
