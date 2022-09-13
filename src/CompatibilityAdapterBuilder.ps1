@@ -153,7 +153,7 @@ Set-StrictMode -Version 5
 
 "@
         $filePath = Join-Path $this.OutputFolder "$($this.ModuleName).psm1"
-        
+
         #This call create the mapping used to create the final module.
         $data = $this.Map()
 
@@ -357,7 +357,7 @@ $($output)
     
         $namesDic = @{}
         foreach ($name in $names) {
-            $cmdComponents = $this.GetParsedCmdlet($name, $Prefix)
+            $cmdComponents = $this.GetParsedCmd($name, $Prefix)
             if(!$cmdComponents){
                 $this.MissingCommandsToMap += $name
                 continue
@@ -383,7 +383,7 @@ $($output)
     
         $namesDic = @{}
         foreach ($name in $names) {
-            $cmdComponents = $this.GetParsedCmdlet($name, $Prefix)
+            $cmdComponents = $this.GetParsedCmd($name, $Prefix)
             if(!$cmdComponents){
                 continue
             }
@@ -401,7 +401,7 @@ $($output)
         return $namesDic
     }
 
-    hidden [PSCustomObject] GetParsedCmdlet([string]$Name, [string[]]$Prefixs){
+    hidden [PSCustomObject] GetParsedCmd([string]$Name, [string[]]$Prefixs){
         foreach ($prefix in $Prefixs) {
             $components = $name -split '-'      
             $verb = $components[0]
@@ -422,37 +422,23 @@ $($output)
         return $null
     }
 
-    hidden [PSCustomObject] FindCmdletNoun([string] $CmdletName, [string] $Cmdlet, [hashtable]$CmdletList ) {
+    hidden [PSCustomObject] FindCmdletNoun([string] $SourceName, [string] $Noun, [hashtable]$CmdletList ) {
         $response = [PSCustomObject]@{
             Exact = $false
             Name = ''
-            SimilarNames = @()
         }        
-        if($this.CmdCustomizations.ContainsKey($CmdletName)){
+        if($this.CmdCustomizations.ContainsKey($SourceName)){
             $response.Exact = $true
-            $tmpName = $this.GetParsedCmdlet($this.CmdCustomizations[$CmdletName].TargetName, $this.DestinationPrefixs)
+            $tmpName = $this.GetParsedCmd($this.CmdCustomizations[$SourceName].TargetName, $this.DestinationPrefixs)
             $response.Name = $tmpName.Noun
         }
-        elseif($CmdletList.Contains($Cmdlet)) {
+        elseif($CmdletList.Contains($Noun)) {
             $response.Exact = $true
-            $response.Name = $Cmdlet
+            $response.Name = $Noun
         }
-        elseif($CmdletList.Contains($Cmdlet+'ByRef')) {
+        elseif($CmdletList.Contains($Noun+'ByRef')) {
             $response.Exact = $true
-            $response.Name = $Cmdlet+'ByRef'
-        }
-        else {
-            $wild1 = "*$Cmdlet*"    
-            foreach ($name in $CmdletList.Keys) {
-                $wild2 = "*$name*"
-                if($name -like $wild1){
-                    $response.SimilarNames += $name             
-                }
-                if($Cmdlet -like $wild2){
-                    $response.SimilarNames += $name             
-                }
-            }
-            $response.Name = $response.SimilarNames -join ","
+            $response.Name = $Noun+'ByRef'
         }
     
         return $response
