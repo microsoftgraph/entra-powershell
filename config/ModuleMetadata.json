@@ -1,8 +1,8 @@
 {
-    "guid": "fceec1eb-c2e8-4b2b-a120-0fab3f0d7b47",
+    "guid": "742dccd1-bf4b-46a0-a3f2-14e0bb508233",
     "authors": "Microsoft",
     "owners": "Microsoft",
-    "description": "Microsoft Graph PowerShell module",
+    "description": "Microsoft Graph PowerShell Compatibility Adapter Module",
     "requireLicenseAcceptance": "true",
     "requiredModules" : [
       "Microsoft.Graph.Users",
