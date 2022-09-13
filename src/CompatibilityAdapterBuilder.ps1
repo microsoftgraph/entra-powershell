@@ -62,6 +62,54 @@ class CompatibilityAdapterBuilder {
             $this.CmdCustomizations.Add($cmd.SourceName, $customCommand)
         }
     }
+    
+    hidden WriteModuleFile() {       
+        $filePath = Join-Path $this.OutputFolder "$($this.ModuleName).psm1"
+        #This call create the mapping used to create the final module.
+        $data = $this.Map()
+
+        $psm1FileContent = $this.GetFileHeader()
+        foreach($cmd in $data.Cmdlets) {
+            $psm1FileContent += $cmd.CommandBlock
+        }
+
+        $psm1FileContent += $this.GetAlisesFunction()
+        $psm1FileContent += $this.GetExportMemeber()        
+        $psm1FileContent += $this.SetMissingCmdlets()
+        $psm1FileContent | Out-File -FilePath $filePath
+    }
+
+    hidden WriteModuleManifest() {
+        $settingPath = "../config/ModuleMetadata.json"
+        $settingPath = Join-Path $PSScriptRoot $settingPath
+        $files = @("$($this.ModuleName).psd1", "$($this.ModuleName).psm1")
+        $content = Get-Content -Path $settingPath | ConvertFrom-Json
+        $PSData = @{
+            Tags = $($content.tags)
+            LicenseUri = $($content.licenseUri)
+            ProjectUri = $($content.projectUri)
+            IconUri = $($content.iconUri)
+            ReleaseNotes = $($content.releaseNotes)
+        }
+        $manisfestPath = Join-Path $this.OutputFolder "$($this.ModuleName).psd1"
+        $functions = $this.ModuleMap.CmdletsList + "Set-CompatADAlias"
+        $moduleSettings = @{
+            Path = $manisfestPath
+            ModuleVersion = "$($content.version)"
+            FunctionsToExport = $functions
+            Author =  $($content.authors)
+            CompanyName = $($content.owners)
+            FileList = $files
+            RootModule = "$($this.ModuleName).psm1" 
+            Description = 'Microsoft Graph PowerShell AzureAD Compatibility Module.'    
+            DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2')) 
+            PowerShellVersion = $([System.Version]::Parse('5.1'))
+            CompatiblePSEditions = @('Desktop','Core')
+        }
+        
+        New-ModuleManifest @moduleSettings
+        Update-ModuleManifest -Path $manisfestPath -PrivateData $PSData
+    }
 
     # Creates the ModuleMap object, this is mainly used by other methods but can be called when debugging or finding missing cmdlets
     hidden [MappedCmdCollection] Map(){
@@ -144,61 +192,6 @@ Set-Variable -name MISSING_CMDLETS -value @('$($this.ModuleMap.MissingCmdletsLis
         return $translations
     }
 
-    hidden WriteModuleFile() {
-        $headerCode = @"
-# ------------------------------------------------------------------------------
-#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
-# ------------------------------------------------------------------------------
-Set-StrictMode -Version 5
-
-"@
-        $filePath = Join-Path $this.OutputFolder "$($this.ModuleName).psm1"
-
-        #This call create the mapping used to create the final module.
-        $data = $this.Map()
-
-        Write-File -FileName $filePath -Text $headerCode
-        foreach($cmd in $data.Cmdlets) {
-            Write-File -FileName $filePath -Text $cmd.CommandBlock
-        }
-
-        Write-File -FileName $filePath -Text $this.GetAlisesFunction()
-        Write-File -FileName $filePath -Text $this.GetExportMemeber()
-        Write-File -FileName $filePath -Text $this.SetMissingCmdlets()
-    }
-
-    hidden WriteModuleManifest() {
-        $settingPath = "../config/ModuleMetadata.json"
-        $settingPath = Join-Path $PSScriptRoot $settingPath
-        $files = @("$($this.ModuleName).psd1", "$($this.ModuleName).psm1")
-        $content = Get-Content -Path $settingPath | ConvertFrom-Json
-        $PSData = @{
-            Tags = $($content.tags)
-            LicenseUri = $($content.licenseUri)
-            ProjectUri = $($content.projectUri)
-            IconUri = $($content.iconUri)
-            ReleaseNotes = $($content.releaseNotes)
-        }
-        $manisfestPath = Join-Path $this.OutputFolder "$($this.ModuleName).psd1"
-        $functions = $this.ModuleMap.CmdletsList + "Set-CompatADAlias"
-        $moduleSettings = @{
-            Path = $manisfestPath
-            ModuleVersion = "$($content.version)"
-            FunctionsToExport = $functions
-            Author =  $($content.authors)
-            CompanyName = $($content.owners)
-            FileList = $files
-            RootModule = "$($this.ModuleName).psm1" 
-            Description = 'Microsoft Graph PowerShell AzureAD Compatibility Module.'    
-            DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2')) 
-            PowerShellVersion = $([System.Version]::Parse('5.1'))
-            CompatiblePSEditions = @('Desktop','Core')
-        }
-        
-        New-ModuleManifest @moduleSettings
-        Update-ModuleManifest -Path $manisfestPath -PrivateData $PSData
-    }
-
     hidden [CommandTranslation] NewFunctionMap([PSCustomObject] $Cmdlet){
 
         $parameterDefinitions = $this.GetParametersDefinitions($Cmdlet)
@@ -217,7 +210,7 @@ $ParamterTransformations
 $OutputTransformations
     `$response
 }
-        
+
 "@
         $codeBlock = [Scriptblock]::Create($function)
         return [CommandTranslation]::New($Cmdlet.Generate,$Cmdlet.Old,$codeBlock)
@@ -555,13 +548,14 @@ $($output)
     
         return $paramsList        
     }
-}
 
-function Write-File{
-    param (
-        $FileName,
-        [string]$Text
-    )
+    hidden [string] GetFileHeader(){
+        return @"
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+Set-StrictMode -Version 5
 
-    $Text | Out-File -FilePath $FileName -Append    
+"@
+    }
 }
