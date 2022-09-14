@@ -44,7 +44,7 @@ steps:
   displayName: 'Publish to Local Gallery'
   inputs:
     targetType: inline
-    script: ./build/Publish-LocalCompatModule.ps1
+    script: ./build/Publish-LocalCompatModule.ps1 -Install
     pwsh: false
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Module Nuget File'
