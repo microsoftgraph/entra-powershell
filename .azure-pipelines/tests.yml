@@ -2,6 +2,10 @@
 # Licensed under the MIT License.
 # https://aka.ms/yaml
 
+variables:
+  TEST_OUTPUT_DIRECTORY: './test/results'
+  TEST_OUTPUT_FILE: pester-testresults.xml
+
 steps:
 - task: powershell@2
   displayName: 'Show current PowerShell version information'
@@ -9,15 +13,25 @@ steps:
     targetType: inline
     script: 'echo $PSVersionTable'
     pwsh: false
+
 - task: powershell@2
   displayName: 'Install Pester'
   inputs:
     targetType: inline
     script: Install-Module Pester -scope currentuser -Force
     pwsh: false
+
 - task: powershell@2
-  displayName: 'Run Pester'
+  displayName: 'Run tests'  
   inputs:
     targetType: inline
-    script: Invoke-Pester -Output Detailed
     pwsh: false
+    script: |
+      si env:TEST_OUTPUT_PATH "$($env:TEST_OUTPUT_DIRECTORY)/$($env:TEST_OUTPUT_FILE)"      
+      Invoke-Pester -OutputFile $env:TEST_OUTPUT_PATH -OutputFormat NUnitXml
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: NUnit
+    testResultsFiles: $(TEST_OUTPUT_DIRECTORY)/$(TEST_OUTPUT_FILE)
+    failTaskOnFailedTests: true
