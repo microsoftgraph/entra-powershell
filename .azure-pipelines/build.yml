@@ -52,14 +52,6 @@ steps:
     ArtifactName: 'Module Nuget'
     PathtoPublish: '.psrepo'
 - task: powershell@2
-  displayName: 'Remove Local Gallery'
-  inputs:
-    targetType: inline
-    script: |
-      . ./build/common-functions.ps1
-      Unregister-LocalGallery
-    pwsh: false
-- task: powershell@2
   displayName: 'Remove Build Folders'
   inputs:
     targetType: inline
