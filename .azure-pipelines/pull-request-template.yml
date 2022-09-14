@@ -16,3 +16,10 @@ stages:
     displayName: Microsoft Graph Compatibility Adapter Build and Artifact Generations
     steps:
       - template: ./build.yml
+- stage: Test
+  displayName: 'Unit Tests'
+  jobs:
+  - job: Build
+    displayName: Pester Init Tests
+    steps:
+      - template: ./tests.yml
