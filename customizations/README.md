@@ -1,64 +1,83 @@
 # Customizing Cmdlets
 
-The automatic generation process can't get all the proper transformations due to the nature of the different modules, to solve this wee add a nechanisim to add customization to the cmdlets, there is three posible customizations:
+The automatic generation process can't get all the proper transformations due to the nature of the different modules, to solve this there is a mechanisim to add customization to the commands.
 
 - Name
 - Parameters
 - Outputs
 
-For each cmdlet you want to customize is recommended to add a new file with the command name in the `customizations` folder, the file must but a `ps1` file that returns an array of `CommandMap` objects please check the file in the folder for more examples.
+For each cmdlet you want to customize you need to add a new file with the command name in the `customizations` folder, the file must be a `.ps1` file that returns an hashtable with the following structure:
 
-## Customize Cmdlet Name
-
-Lets use `Remove-AzureADMSPermissionGrantPolicy` as we can see the *noun* here is `PermissionGrantPolicy` there is no such *noun* in Microsoft Graph PowerShell SDK, but we know there is an equivalent cmdlet this is `Remove-MgPolicyPermissionGrantPolicy`, for this one we are only adding the referent to the name, this means puting the actual AzureAD cmdlet as `Name` and the Microsoft Graph cmdlet as `TargetName`, the code inside `Remove-AzureADMSPermissionGrantPolicy,ps1` is the following:
-
-```Powershell
-$cmdlet = [CommandMap]::New("Remove-AzureADMSPermissionGrantPolicy","Remove-MgPolicyPermissionGrantPolicy", $null, $null)
-$cmdlet
-```
-
-## Customize Cmdlet Paramaters and Outputs
-
-To Add Parameters or Outputs we need to create a `DataMap` for each one of them and add those to the respective hashtable. For this type of customizations there is two options:
-
-- Name customization using `[DataMap]::New("OriginalName","NewName", 2, $null)`
-- Complex customization using `[DataMap]::New("OriginalName","NewName", 99, $transformationScript)`
-
-For this ones lets use `New-AzureADUser` cmdlet as example, as this has a complex parameter transformation and a simple output name change.
-
-For name changes if we want ot change `Id` for `ObjectId` then use the following:
-
-`[DataMap]::New("Id","ObjectId", 2, $null)`
-
-Complex change we need a scriptBlock that with two restrictions it will assume that the input value comes in the variable ``$TmpValue` and has to return the tranformed value in a different variable called `$Value`. 
-
-For example `New-AzureADUser` has a parameter `PasswordProfile` with type `Microsoft.Open.AzureAD.Model.PasswordProfile` and `New-MgUser` has the same parameter but with type `IMicrosoftGraphPasswordProfile` the scriptblock that transform one to the other is the following:
-
-
-```Powershell
-$script = @"
-`$Value = @{
-    forceChangePasswordNextSignIn = `$TmpValue.ForceChangePasswordNextLogin
-    password = `$TmpValue.Password 
+```PowerShell
+@{
+    SourceName = "SourceCommandName" 
+    TargetName = "TargetCommandNAme"
+    Parameters = $null 
+    Outputs = $null
 }
-"@
 ```
 
-If we take both exaples we can see that the final code for customizing the command in the file `New-AzureADUser.ps1` is:
+Where:
 
-```Powershell
-$mapper = [CompatibilityAdapterBuilder]::new()
-$param = @{}
-$outputs = @{}
-$script = @"
-`$Value = @{
-    forceChangePasswordNextSignIn = `$TmpValue.ForceChangePasswordNextLogin
-    password = `$TmpValue.Password 
+- SourceName is a string with the name of the AzureAD Command to map. 
+- TargetName is a string with the name of the Microsoft Graph SDK command that replaces it.
+- Parameters and Outputs contains and array of hashtables, this represent the transformations required for paramters and outputs. The hashtable format is the following:
+
+```PowerShell
+@{
+    SourceName = "SomeValue1"
+    TargetName = "SomeValue2"
+    ConversionType = SomeValue3
+    SpecialMapping = SomeValue4
 }
-"@
-$param.Add("PasswordProfile", [DataMap]::New("PasswordProfile", "PasswordProfile", 99, [Scriptblock]::Create($script)))
-$outputs.Add("Id",[DataMap]::New("Id","ObjectId", 2, $null))
-$cmdlet = [CommandMap]::New("New-AzureADUser","New-MgUser", $param, $outputs)
-$cmdlet
+```
+Where:
+
+- SourceName is a string with the name of the command parameter in AzureAD.
+- TargetName is a string with the name of the command parameter in Microsoft Graph SDK command that replaces it.
+- ConversionType is a integer with the following:
+  - 2 is used for name change for example from ObjectId to UserId
+  - 99 is used for custom is this case it changes the name and applies a script block to the input value to transformate it.
+
+Example 1: You know that the command Get-AzureADMSPermissionGrantPolicy in AzureAD has the equivalent Get-MgPolicyPermissionGrantPolicy in Microsoft Graph PowerShell. Assuming that you only need to make a name change the result is the following:
+
+```PowerShell
+@{
+    SourceName = "Get-AzureADMSPermissionGrantPolicy"
+    TargetName = "Get-MgPolicyPermissionGrantPolicy"
+    Parameters = $null
+    Outputs = $null
+}
 ```
 
+Example 2: You want to customize the command New-AzureADUser, you know that the target command in Microsoft Graph PowerShell is New-MgUser. Also you know that the parameters and outputs changes:
+- For parameters the parameter PasswordProfile transform the object Microsoft.Open.AzureAD.Model.PasswordProfile to a hashtable.
+- For the outputs the New-AzureADUser returns ObjectId but New-MgUser Id with the same value so we require to change the name.
+
+```PowerShell
+@{
+    SourceName = "New-AzureADUser"
+    TargetName = "New-MgUser"
+    Parameters = @(
+        @{
+            SourceName = "PasswordProfile"
+            TargetName = "PasswordProfile"
+            ConversionType = 99
+            SpecialMapping = @"
+`$Value = @{
+            forceChangePasswordNextSignIn = `$TmpValue.ForceChangePasswordNextLogin
+            password = `$TmpValue.Password 
+        }
+"@
+        }
+    )
+    Outputs =  @(
+        @{
+            SourceName = "Id"
+            TargetName = "ObjectId"
+            ConversionType = 2
+            SpecialMapping = $null
+        }
+    )
+}
+```
