@@ -59,4 +59,34 @@ steps:
       . ./build/common-functions.ps1
       Remove-BuildDirectories
     pwsh: false
-
+- task: powershell@2
+  displayName: 'Show current PowerShell version information'
+  inputs:
+    targetType: inline
+    script: 'echo $PSVersionTable'
+    pwsh: false
+- task: powershell@2
+  displayName: 'Install Pester'
+  inputs:
+    targetType: inline
+    script: Install-Module Pester -scope currentuser -Force
+    pwsh: false
+- task: powershell@2
+  displayName: 'Run tests'  
+  inputs:
+    targetType: inline
+    pwsh: false
+    script: Invoke-Pester -OutputFile "./test/results/pester-test-results.xml" -OutputFormat NUnitXml
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: NUnit
+    testResultsFiles: "./test/results/pester-test-results.xml"
+    failTaskOnFailedTests: true
+- task: powershell@2
+  displayName: 'Remove Local Gallery'
+  inputs:
+    targetType: inline
+    script: |
+      . ./build/common-functions.ps1
+      Unregister-LocalGallery
+    pwsh: false
