@@ -60,12 +60,6 @@ steps:
       Remove-BuildDirectories
     pwsh: false
 - task: powershell@2
-  displayName: 'Show current PowerShell version information'
-  inputs:
-    targetType: inline
-    script: 'echo $PSVersionTable'
-    pwsh: false
-- task: powershell@2
   displayName: 'Install Pester'
   inputs:
     targetType: inline

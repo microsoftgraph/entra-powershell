@@ -1,5 +1,6 @@
 BeforeAll {
     Import-Module Microsoft.Graph.Compatibility.AzureAD
+    Get-Module -Name Microsoft.Graph.Compatibility.AzureAD
 }
 
 Describe 'PowerShell Version Check' {
@@ -11,12 +12,19 @@ Describe 'PowerShell Version Check' {
 }
 
 Describe 'Module checks' {
-    It 'Import Module' {                
+    It 'Module imported' {                
         $module = Get-Module -Name Microsoft.Graph.Compatibility.AzureAD
         $module | Should -Not -Be $null
     }
 
     It 'Have more that zero exported functions' {
-        $module.ExportedFunctions.Count | Should -BeGreaterThan 0
+        $module = Get-Module -Name Microsoft.Graph.Compatibility.AzureAD
+        $module.ExportedCommands.Count | Should -BeGreaterThan 0
+    }
+
+    It 'Running a simple command Set-CompatADAlias'{
+        Set-CompatADAlias
+        $Alias = Get-Alias -Name Get-AzureADUser
+        $Alias | Should -Not -Be $null
     }
 }
