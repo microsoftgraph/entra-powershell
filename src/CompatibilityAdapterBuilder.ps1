@@ -4,12 +4,12 @@
 Set-StrictMode -Version 5
 
 class CompatibilityAdapterBuilder {
-    [string] $SourceModuleName = 'AzureAD'
-    [string[]] $SourceModulePrefixs = @('AzureADMS','AzureAD')
-    [string] $NewPrefix = 'CompatAD'
-    [string[]] $DestinationModuleName = @('Microsoft.Graph.Users','Microsoft.Graph.Users.Actions', 'Microsoft.Graph.Users.Functions', 'Microsoft.Graph.Groups', 'Microsoft.Graph.Identity.DirectoryManagement', 'Microsoft.Graph.Identity.Governance', 'Microsoft.Graph.Identity.SignIns','Microsoft.Graph.Applications')
-    [string[]] $DestinationPrefixs = @('Mg') 
-    [string] $ModuleName = 'Microsoft.Graph.Compatibility.AzureAD'
+    [string] $SourceModuleName
+    [string[]] $SourceModulePrefixs
+    [string] $NewPrefix
+    [string[]] $DestinationModuleName
+    [string[]] $DestinationPrefixs
+    [string] $ModuleName
     hidden [CommandMap[]] $CommandsToMap = $null
     hidden [string[]] $MissingCommandsToMap = @()
     hidden [hashtable] $CmdCustomizations = @{}
@@ -18,11 +18,23 @@ class CompatibilityAdapterBuilder {
     hidden [bool] $GenerateCommandsToMapData
 
     # Constructor that changes the output folder, load all the Required Modules and creates the output folder.
-    CompatibilityAdapterBuilder([string] $OutputFolder = $null){
-        if($OutputFolder) {
-            $this.OutputFolder = $OutputFolder
-        }
+    CompatibilityAdapterBuilder() {        
+        $this.Configure("../config/ModuleSettings.json")
+    }
 
+    CompatibilityAdapterBuilder([string] $ModuleSettingsPath){        
+        $this.Configure($ModuleSettingsPath)
+    }
+
+    hidden Configure([string] $ModuleSettingsPath){
+        $settingPath = Join-Path $PSScriptRoot $ModuleSettingsPath
+        $content = Get-Content -Path $settingPath | ConvertFrom-Json
+        $this.SourceModuleName = $content.sourceModule
+        $this.SourceModulePrefixs = $content.sourceModulePrefix
+        $this.NewPrefix = $content.newPrefix
+        $this.DestinationModuleName = $content.destinationModuleName
+        $this.DestinationPrefixs = $content.destinationPrefix
+        $this.ModuleName = $content.moduleName
         Import-Module $this.SourceModuleName | Out-Null
         foreach ($moduleName in $this.DestinationModuleName){
             Import-Module $moduleName | Out-Null
@@ -33,7 +45,7 @@ class CompatibilityAdapterBuilder {
         }
     }
 
-        # Generates the module then generates all the files required to create the module.
+    # Generates the module then generates all the files required to create the module.
     BuildModule() {
         $this.WriteModuleFile()
         $this.WriteModuleManifest()

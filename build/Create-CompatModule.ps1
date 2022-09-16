@@ -8,9 +8,8 @@ param($targetDirectory = $null, [switch] $noclean)
 . (join-path $psscriptroot "../src/CompatibilityAdapter.ps1")
 
 Remove-BuildDirectories
-$outputFolder = join-path $psscriptroot "../bin"
 $nocleanArgument = @{noclean=$noclean}
-$mapper = [CompatibilityAdapterBuilder]::new($outputFolder)
+$mapper = [CompatibilityAdapterBuilder]::new()
 
 $customizationFiles = Get-CustomizationFiles
 

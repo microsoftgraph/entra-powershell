@@ -1,0 +1,17 @@
+{
+    "sourceModule" : "AzureAD",
+    "moduleName" : "Microsoft.Graph.Compatibility.AzureAD",
+    "newPrefix" : "CompatAD",
+    "destinationModuleName" : [
+      "Microsoft.Graph.Users",
+      "Microsoft.Graph.Users.Actions", 
+      "Microsoft.Graph.Users.Functions", 
+      "Microsoft.Graph.Groups", 
+      "Microsoft.Graph.Identity.DirectoryManagement", 
+      "Microsoft.Graph.Identity.Governance", 
+      "Microsoft.Graph.Identity.SignIns",
+      "Microsoft.Graph.Applications"
+    ],
+    "sourceModulePrefix" : ["AzureADMS","AzureAD"],
+    "destinationPrefix" : ["Mg"]
+  }
