@@ -102,6 +102,7 @@ class CompatibilityAdapterBuilder {
             ProjectUri = $($content.projectUri)
             IconUri = $($content.iconUri)
             ReleaseNotes = $($content.releaseNotes)
+            ExternalModuleDependencies = $($content.requiredModules)
         }
         $manisfestPath = Join-Path $this.OutputFolder "$($this.ModuleName).psd1"
         $functions = $this.ModuleMap.CommandsList + "Set-CompatADAlias"
