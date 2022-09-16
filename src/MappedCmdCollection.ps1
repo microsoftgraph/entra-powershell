@@ -5,9 +5,9 @@ Set-StrictMode -Version 5
 
 class MappedCmdCollection {
     [string] $Name = $null
-    [string[]] $CmdletsList = $null
-    [string[]] $MissingCmdletsList = $null
-    [CommandTranslation[]] $Cmdlets  = $null
+    [string[]] $CommandsList = $null
+    [string[]] $MissingCommandsList = $null
+    [CommandTranslation[]] $Commands  = $null
 
     MappedCmdCollection([string] $Name){
         $this.Name = $Name

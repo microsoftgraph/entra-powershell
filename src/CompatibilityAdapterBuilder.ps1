@@ -69,13 +69,13 @@ class CompatibilityAdapterBuilder {
         $data = $this.Map()
 
         $psm1FileContent = $this.GetFileHeader()
-        foreach($cmd in $data.Cmdlets) {
+        foreach($cmd in $data.Commands) {
             $psm1FileContent += $cmd.CommandBlock
         }
 
         $psm1FileContent += $this.GetAlisesFunction()
         $psm1FileContent += $this.GetExportMemeber()        
-        $psm1FileContent += $this.SetMissingCmdlets()
+        $psm1FileContent += $this.SetMissingCommands()
         $psm1FileContent | Out-File -FilePath $filePath
     }
 
@@ -92,7 +92,7 @@ class CompatibilityAdapterBuilder {
             ReleaseNotes = $($content.releaseNotes)
         }
         $manisfestPath = Join-Path $this.OutputFolder "$($this.ModuleName).psd1"
-        $functions = $this.ModuleMap.CmdletsList + "Set-CompatADAlias"
+        $functions = $this.ModuleMap.CommandsList + "Set-CompatADAlias"
         $moduleSettings = @{
             Path = $manisfestPath
             ModuleVersion = "$($content.version)"
@@ -119,9 +119,9 @@ class CompatibilityAdapterBuilder {
         $newCmdletData = @()
         $cmdletsToExport = @()
         $missingCmdletsToExport = @()
-        foreach ($cmdlet in $originalCmdlets.Keys){
-            $originalCmdlet = $originalCmdlets[$cmdlet]
-            $newCmdlet = $this.FindCmdletNoun($cmdlet,$originalCmdlet.Noun, $targetCmdlets)
+        foreach ($cmd in $originalCmdlets.Keys){
+            $originalCmdlet = $originalCmdlets[$cmd]
+            $newCmdlet = $this.FindCmdNoun($cmd,$originalCmdlet.Noun, $targetCmdlets)
             if($newCmdlet.Exact){
                 $newFunction = $this.GetCmdNameTranslation($originalCmdlet, $targetCmdlets, $this.NewPrefix, $newCmdlet)
                 if($newFunction){
@@ -130,19 +130,19 @@ class CompatibilityAdapterBuilder {
                     $this.CommandsToMap += [CommandMap]::New($newFunction.Old, $newFunction.New, $newFunction.Parameters, $null)
                 }
                 else {
-                    $missingCmdletsToExport += $cmdlet
-                    $this.MissingCommandsToMap += $cmdlet
+                    $missingCmdletsToExport += $cmd
+                    $this.MissingCommandsToMap += $cmd
                 }                 
             }
             else{  
-                $missingCmdletsToExport += $cmdlet                          
-                $this.MissingCommandsToMap += $cmdlet
+                $missingCmdletsToExport += $cmd                          
+                $this.MissingCommandsToMap += $cmd
             } 
         }
       
-        $this.ModuleMap.CmdletsList = $cmdletsToExport
-        $this.ModuleMap.MissingCmdletsList = $missingCmdletsToExport
-        $this.ModuleMap.Cmdlets = $this.NewModuleMap($newCmdletData)
+        $this.ModuleMap.CommandsList = $cmdletsToExport
+        $this.ModuleMap.MissingCommandsList = $missingCmdletsToExport
+        $this.ModuleMap.Commands = $this.NewModuleMap($newCmdletData)
 
         return $this.ModuleMap
     }    
@@ -150,7 +150,7 @@ class CompatibilityAdapterBuilder {
     hidden [scriptblock] GetAlisesFunction() {
         if($this.ModuleMap){
             $aliases = ''
-            foreach ($func in $this.ModuleMap.Cmdlets) {       
+            foreach ($func in $this.ModuleMap.Commands) {       
                 $aliases += "   Set-Alias -Name $($func.SourceName) -Value $($func.Name) -Scope Global -Force`n"
             }
     $aliasFunction = @"
@@ -165,40 +165,40 @@ $($aliases)}
     }
 
     hidden [scriptblock] GetExportMemeber() {
-        $cmdletsToExport = $this.ModuleMap.CmdletsList
-        $cmdletsToExport += "Set-CompatADAlias"
+        $CommandsToExport = $this.ModuleMap.CommandsList
+        $CommandsToExport += "Set-CompatADAlias"
         $functionsToExport = @"
 Export-ModuleMember -Function @(
-    '$($cmdletsToExport -Join "','")'
+    '$($CommandsToExport -Join "','")'
 )
 
 "@
         return [Scriptblock]::Create($functionsToExport)
     }
 
-    hidden [scriptblock] SetMissingCmdlets() {
-        $missingCmdlets = @"
-Set-Variable -name MISSING_CMDLETS -value @('$($this.ModuleMap.MissingCmdletsList -Join "','")') -Scope Global -Option ReadOnly -Force
+    hidden [scriptblock] SetMissingCommands() {
+        $missingCommands = @"
+Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList -Join "','")') -Scope Global -Option ReadOnly -Force
 
 "@
-        return [Scriptblock]::Create($missingCmdlets)
+        return [Scriptblock]::Create($missingCommands)
     }
 
-    hidden [CommandTranslation[]] NewModuleMap([PSCustomObject[]] $Cmdlets) {
+    hidden [CommandTranslation[]] NewModuleMap([PSCustomObject[]] $Commands) {
         [CommandTranslation[]] $translations = @()
-        foreach($Cmdlet in $Cmdlets){
-            $translations += $this.NewFunctionMap($Cmdlet)
+        foreach($Command in $Commands){
+            $translations += $this.NewFunctionMap($Command)
         }
         return $translations
     }
 
-    hidden [CommandTranslation] NewFunctionMap([PSCustomObject] $Cmdlet){
+    hidden [CommandTranslation] NewFunctionMap([PSCustomObject] $Command){
 
-        $parameterDefinitions = $this.GetParametersDefinitions($Cmdlet)
-        $ParamterTransformations = $this.GetParametersTransformations($Cmdlet)
-        $OutputTransformations = $this.GetOutputTransformations($Cmdlet)
+        $parameterDefinitions = $this.GetParametersDefinitions($Command)
+        $ParamterTransformations = $this.GetParametersTransformations($Command)
+        $OutputTransformations = $this.GetOutputTransformations($Command)
         $function = @"
-function $($Cmdlet.Generate) {
+function $($Command.Generate) {
     [CmdletBinding()]
     param (
 $parameterDefinitions
@@ -206,20 +206,20 @@ $parameterDefinitions
         
     `$params = @{}   
 $ParamterTransformations
-    `$response = $($Cmdlet.New) @params
+    `$response = $($Command.New) @params
 $OutputTransformations
     `$response
 }
 
 "@
         $codeBlock = [Scriptblock]::Create($function)
-        return [CommandTranslation]::New($Cmdlet.Generate,$Cmdlet.Old,$codeBlock)
+        return [CommandTranslation]::New($Command.Generate,$Command.Old,$codeBlock)
     }
 
-    hidden [string] GetParametersDefinitions([PSCustomObject] $Cmdlet) {
-        $params = $(Get-Command -Name $Cmdlet.Old).Parameters
+    hidden [string] GetParametersDefinitions([PSCustomObject] $Command) {
+        $params = $(Get-Command -Name $Command.Old).Parameters
         $paramsList = @()
-        foreach ($paramKey in $Cmdlet.Parameters.Keys) {
+        foreach ($paramKey in $Command.Parameters.Keys) {
             $param = $params[$paramKey]
             $paramBlock = @"
     [$($param.ParameterType.ToString())] `$$($param.Name)
@@ -231,11 +231,11 @@ $OutputTransformations
     }
 
 
-    hidden [string] GetParametersTransformations([PSCustomObject] $Cmdlet) {
+    hidden [string] GetParametersTransformations([PSCustomObject] $Command) {
         $paramsList = ""
 
-        foreach ($paramKey in $Cmdlet.Parameters.Keys) {        
-            $param = $Cmdlet.Parameters[$paramKey]
+        foreach ($paramKey in $Command.Parameters.Keys) {        
+            $param = $Command.Parameters[$paramKey]
             $paramBlock = ""
             
             if(1 -eq $param.ConversionType){
@@ -286,12 +286,12 @@ $OutputTransformations
         return $paramBlock
     }
     
-    hidden [string] GetOutputTransformations([PSCustomObject] $Cmdlet) {
+    hidden [string] GetOutputTransformations([PSCustomObject] $Command) {
         $responseVerbs = @("Get","Add","New")
         $output = ""
     
-        if($this.CmdCustomizations.ContainsKey($Cmdlet.Old)) { 
-            $cmd = $this.CmdCustomizations[$Cmdlet.Old] 
+        if($this.CmdCustomizations.ContainsKey($Command.Old)) { 
+            $cmd = $this.CmdCustomizations[$Command.Old] 
             if($null -ne $cmd.Outputs){                   
                 foreach($key in $cmd.Outputs.GetEnumerator()) {
                     $customOutput =  $cmd.Outputs[$key.Name]
@@ -305,7 +305,7 @@ $OutputTransformations
             }
         }
         
-        if($responseVerbs.Contains($Cmdlet.Verb)) {
+        if($responseVerbs.Contains($Command.Verb)) {
         $output += @"
         `$response | Add-Member -MemberType AliasProperty -Name ObjectId -Value Id
 "@
@@ -415,7 +415,7 @@ $($output)
         return $null
     }
 
-    hidden [PSCustomObject] FindCmdletNoun([string] $SourceName, [string] $Noun, [hashtable]$CmdletList ) {
+    hidden [PSCustomObject] FindCmdNoun([string] $SourceName, [string] $Noun, [hashtable]$CommandList ) {
         $response = [PSCustomObject]@{
             Exact = $false
             Name = ''
@@ -425,11 +425,11 @@ $($output)
             $tmpName = $this.GetParsedCmd($this.CmdCustomizations[$SourceName].TargetName, $this.DestinationPrefixs)
             $response.Name = $tmpName.Noun
         }
-        elseif($CmdletList.Contains($Noun)) {
+        elseif($CommandList.Contains($Noun)) {
             $response.Exact = $true
             $response.Name = $Noun
         }
-        elseif($CmdletList.Contains($Noun+'ByRef')) {
+        elseif($CommandList.Contains($Noun+'ByRef')) {
             $response.Exact = $true
             $response.Name = $Noun+'ByRef'
         }
