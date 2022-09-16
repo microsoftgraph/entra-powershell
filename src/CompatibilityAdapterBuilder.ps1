@@ -105,6 +105,7 @@ class CompatibilityAdapterBuilder {
             DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2')) 
             PowerShellVersion = $([System.Version]::Parse('5.1'))
             CompatiblePSEditions = @('Desktop','Core')
+            RequiredModules = $content.requiredModules
         }
         
         New-ModuleManifest @moduleSettings
