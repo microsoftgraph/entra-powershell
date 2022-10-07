@@ -258,6 +258,12 @@ $OutputTransformations
             elseif(2 -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterTransformationName($param.Name, $param.TargetName)
             }
+            elseif(3 -eq $param.ConversionType){
+                $paramBlock = $this.GetParameterTransformationBoolean2Switch($param.Name, $param.TargetName)
+            }
+            elseif(4 -eq $param.ConversionType){
+                $paramBlock = $this.GetParameterTransformationSystemSwitch($param.Name)
+            }
             elseif(98 -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterException($param)
             }
@@ -275,12 +281,38 @@ $OutputTransformations
         $paramBlock = @"
     if(`$PSBoundParameters["$($OldName)"] -ne `$null)
     {
-        `$params["$($NewName)"] =  `$PSBoundParameters["$($OldName)"]
+        `$params["$($NewName)"] = `$PSBoundParameters["$($OldName)"]
     }
 
 "@
         return $paramBlock
     }
+
+    hidden [string] GetParameterTransformationBoolean2Switch([string] $OldName, [string] $NewName){
+        $paramBlock = @"
+    if(`$PSBoundParameters["$($OldName)"] -ne `$null)
+    {
+        if(`$PSBoundParameters["$($OldName)"])
+        {
+            `$params["$($NewName)"] = `$Null
+        }
+    }
+
+"@
+        return $paramBlock
+    }
+
+    hidden [string] GetParameterTransformationSystemSwitch([string] $Name){
+        $paramBlock = @"
+    if(`$PSBoundParameters.Keys.Contains("$($Name)"))
+    {
+        `$params["$($Name)"] = `$Null
+    }
+
+"@
+        return $paramBlock
+    }
+
 
     hidden [string] GetParameterException([DataMap] $Param){
         $paramBlock = ""
@@ -291,7 +323,7 @@ $OutputTransformations
         $paramBlock = @"
     if(`$PSBoundParameters["$($Param.Name)"] -ne `$null)
     {
-        `$TmpValue =  `$PSBoundParameters["$($Param.Name)"]
+        `$TmpValue = `$PSBoundParameters["$($Param.Name)"]
         $($Param.SpecialMapping)
         `$params["$($Param.TargetName)"] = `$Value
     }
@@ -507,8 +539,10 @@ $($output)
     }
 
     hidden [hashtable] GetCmdletParameters($Cmdlet){
-        $exceptionParameterNames = @("All","SearchString")
-        $commonParameterNames = @("Verbose", "Debug", "ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable")  
+        $exceptionParameterNames = @("SearchString")
+        $Bool2Switch = @("All")
+        $SystemDebug = @("Verbose", "Debug")
+        $commonParameterNames = @("ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable")  
         $params = $(Get-Command -Name $Cmdlet.Old).Parameters
         $newParams = $(Get-Command -Name $Cmdlet.New).Parameters
 
@@ -531,6 +565,12 @@ $($output)
             $paramObj = [DataMap]::New($param.Name)
             if($exceptionParameterNames.Contains($param.Name)){
                 $paramObj.SetException()
+            }
+            elseif($Bool2Switch.Contains($param.Name)) {
+                $paramObj.SetBool2Switch($param.Name)
+            }
+            elseif($SystemDebug.Contains($param.Name)) {
+                $paramObj.SetSystemSwitch($param.Name)
             }
             elseif(('ObjectId' -eq $param.Name) -or ('Id' -eq $param.Name)){
                 $tempName = "$($Cmdlet.Noun)Id"
