@@ -18,7 +18,7 @@ $GenericPassword.ForceChangePasswordNextLogin = $true
 $usersArray = @()
 for ($i = 0; $i -lt $NumberOfUsers; $i++) {
     $name = "$($UserPrefix)$($i)"
-    $newUser = New-AzureADUser -DisplayName $Name -PasswordProfile $GenericPassword -UserPrincipalName "$name@thejmmmcorp.onmicrosoft.com" -AccountEnabled $true -MailNickName $name
+    $newUser = New-AzureADUser -DisplayName $Name -PasswordProfile $GenericPassword -UserPrincipalName "$name@yourdomine" -AccountEnabled $true -MailNickName $name
     $usersArray += $newUser.ObjectId
     Get-AzureADUser -ObjectId $newUser.ObjectId
 }
