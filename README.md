@@ -55,8 +55,10 @@ In order to conribute please check [contribution guide](https://github.com/micro
 
 ## Known Issues
 
-- Not all the command parameters are avialable between AzureAD and Microsoft Graph PowerShell SDK.
-- Not all the commands returns the same objects.
+- Some properties names changed between AzureAD and MSGraph endpoints:
+  - Parameter -Filter may not work correctly
+  - Parameter -SearchString does not currently works.
+  - Output objects may be different
 
 ## Issues
 
