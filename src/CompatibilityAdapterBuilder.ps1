@@ -231,9 +231,13 @@ $OutputTransformations
     }
 
     hidden [string] GetParametersDefinitions([PSCustomObject] $Command) {
+        $commonParameterNames = @("Verbose", "Debug","ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable")  
         $params = $(Get-Command -Name $Command.Old).Parameters
         $paramsList = @()
         foreach ($paramKey in $Command.Parameters.Keys) {
+            if($commonParameterNames.Contains($paramKey)) {
+                continue
+            }
             $param = $params[$paramKey]
             $paramBlock = @"
     [$($param.ParameterType.ToString())] `$$($param.Name)
@@ -279,7 +283,7 @@ $OutputTransformations
 
     hidden [string] GetParameterTransformationName([string] $OldName, [string] $NewName){
         $paramBlock = @"
-    if(`$PSBoundParameters["$($OldName)"] -ne `$null)
+    if(`$null -ne `$PSBoundParameters["$($OldName)"])
     {
         `$params["$($NewName)"] = `$PSBoundParameters["$($OldName)"]
     }
@@ -290,7 +294,7 @@ $OutputTransformations
 
     hidden [string] GetParameterTransformationBoolean2Switch([string] $OldName, [string] $NewName){
         $paramBlock = @"
-    if(`$PSBoundParameters["$($OldName)"] -ne `$null)
+    if(`$null -ne `$PSBoundParameters["$($OldName)"])
     {
         if(`$PSBoundParameters["$($OldName)"])
         {
@@ -321,7 +325,7 @@ $OutputTransformations
 
     hidden [string] GetParameterCustom([DataMap] $Param){
         $paramBlock = @"
-    if(`$PSBoundParameters["$($Param.Name)"] -ne `$null)
+    if(`$null -ne `$PSBoundParameters["$($Param.Name)"])
     {
         `$TmpValue = `$PSBoundParameters["$($Param.Name)"]
         $($Param.SpecialMapping)
@@ -359,7 +363,7 @@ $OutputTransformations
 
         if("" -ne $output){
             $transform = @"
-    if(`$response -ne `$null){
+    if(`$null -ne `$response){
 $($output)
     }
 "@
