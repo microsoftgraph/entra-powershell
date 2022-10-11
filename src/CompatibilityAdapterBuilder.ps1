@@ -10,7 +10,6 @@ class CompatibilityAdapterBuilder {
     [string[]] $DestinationModuleName
     [string[]] $DestinationPrefixs
     [string] $ModuleName
-    hidden [CommandMap[]] $CommandsToMap = $null
     hidden [string[]] $MissingCommandsToMap = @()
     hidden [hashtable] $CmdCustomizations = @{}
     hidden [string] $OutputFolder = (join-path $PSScriptRoot '../bin')
@@ -129,24 +128,16 @@ class CompatibilityAdapterBuilder {
     hidden [MappedCmdCollection] Map(){
         $this.ModuleMap = [MappedCmdCollection]::new($this.ModuleName)
         $originalCmdlets = $this.GetModuleCommands($this.SourceModuleName, $this.SourceModulePrefixs, $true)
-        $targetCmdlets = $this.GetTargetModuleCommands($this.DestinationModuleName, $this.DestinationPrefixs, $true)
+        $targetCmdlets = $this.GetModuleCommands($this.DestinationModuleName, $this.DestinationPrefixs, $true)
         $newCmdletData = @()
         $cmdletsToExport = @()
         $missingCmdletsToExport = @()
         foreach ($cmd in $originalCmdlets.Keys){
             $originalCmdlet = $originalCmdlets[$cmd]
-            $newCmdlet = $this.FindCmdNoun($cmd,$originalCmdlet.Noun, $targetCmdlets)
-            if($newCmdlet.Exact){
-                $newFunction = $this.GetCmdNameTranslation($originalCmdlet, $targetCmdlets, $this.NewPrefix, $newCmdlet)
-                if($newFunction){
-                    $newCmdletData += $newFunction
-                    $cmdletsToExport += $newFunction.Generate
-                    $this.CommandsToMap += [CommandMap]::New($newFunction.Old, $newFunction.New, $newFunction.Parameters, $null)
-                }
-                else {
-                    $missingCmdletsToExport += $cmd
-                    $this.MissingCommandsToMap += $cmd
-                }                 
+            $newFunction = $this.GetNewCmdTranslation($cmd, $originalCmdlet, $targetCmdlets, $this.NewPrefix)
+            if($newFunction){
+                $newCmdletData += $newFunction
+                $cmdletsToExport += $newFunction.Generate                
             }
             else{  
                 $missingCmdletsToExport += $cmd                          
@@ -418,35 +409,6 @@ $($output)
     
         return $namesDic
     }
-    
-    hidden [hashtable] GetTargetModuleCommands([string[]] $ModuleNames, [string[]] $Prefix, [bool] $IgnoreEmptyNoun = $false){
-        
-        $names = @()
-        foreach ($moduleName in $ModuleNames) {
-            $module = Get-Module -Name $moduleName
-            $names += $module.ExportedCmdlets.Keys
-            $names += $module.ExportedFunctions.Keys
-        }
-    
-        $namesDic = @{}
-        foreach ($name in $names) {
-            $cmdComponents = $this.GetParsedCmd($name, $Prefix)
-            if(!$cmdComponents){
-                continue
-            }
-            if($IgnoreEmptyNoun -and !$cmdComponents.Noun) {
-                continue
-            }
-            if($namesDic.ContainsKey($cmdComponents.Noun)) {
-                $namesDic[$cmdComponents.Noun] += $cmdComponents
-            } 
-            else {
-                $namesDic.Add($cmdComponents.Noun, @($cmdComponents))
-            }
-        }
-    
-        return $namesDic
-    }
 
     hidden [PSCustomObject] GetParsedCmd([string]$Name, [string[]]$Prefixs){
         foreach ($prefix in $Prefixs) {
@@ -491,7 +453,7 @@ $($output)
         return $response
     }
 
-    hidden [PSCustomObject] GetCmdNameTranslation($OldCmdlet, $NewCmdlets, $NewPrefix, $foundCmdlet){
+    hidden [PSCustomObject] GetNewCmdTranslation($SourceCmdName, $SourceCmdlet, $TargetCmdlets, $NewPrefix){
         $verbsEquivalence = @{
             'Get' = @('Get')
             'New' = @('New','Add')
@@ -504,45 +466,41 @@ $($output)
             'Enable' = @('New')
         }
     
-        foreach ($item in $NewCmdlets[$foundCmdlet.Name]) {
-            if($verbsEquivalence[$OldCmdlet.Verb].Contains($item.Verb)){
-                if($OldCmdlet.Prefix.contains('MS')){
-                    $Prefix = $NewPrefix  + 'MS'
-                } else {
-                    $prefix = $NewPrefix
-                }
-                $cmds = [PSCustomObject]@{
-                    Old = '{0}-{1}{2}' -f $OldCmdlet.Verb, $OldCmdlet.Prefix, $OldCmdlet.Noun
-                    New = '{0}-{1}{2}' -f $item.Verb, $item.Prefix, $item.Noun
-                    Generate = '{0}-{1}{2}' -f $OldCmdlet.Verb, $Prefix, $OldCmdlet.Noun
-                    Noun = $OldCmdlet.Noun
-                    Verb = $OldCmdlet.Verb
-                    Parameters = $null
-                }
-                $cmds.Parameters = $this.GetCmdletParameters($cmds)
-                return $cmds
-            }            
+        $targetCmd = $null
+        if($this.CmdCustomizations.ContainsKey($SourceCmdName)){
+            $targetCmd = $this.CmdCustomizations[$SourceCmdName].TargetName
         }
-
-        foreach ($item in $NewCmdlets[$foundCmdlet.Name + 'ByRef']) {
-            if($verbsEquivalence[$OldCmdlet.Verb].Contains($item.Verb)){
-                if($OldCmdlet.Prefix.contains('MS')){
-                    $Prefix = $NewPrefix  + 'MS'
-                } else {
-                    $prefix = $NewPrefix
+        else {
+            # Check if we can form the new command using verb, Prefix and Noun
+            foreach ($prefix in $this.DestinationPrefixs){
+                foreach ($verb in $verbsEquivalence[$SourceCmdlet.Verb]){
+                    $tmpCmd = "$($verb)-$($prefix)$($SourceCmdlet.Noun)"
+                    if($TargetCmdlets.ContainsKey($tmpCmd)){
+                        $targetCmd = $tmpCmd;
+                        break;
+                    }
                 }
-                $cmds = [PSCustomObject]@{
-                    Old = '{0}-{1}{2}' -f $OldCmdlet.Verb, $OldCmdlet.Prefix, $OldCmdlet.Noun
-                    New = '{0}-{1}{2}' -f $item.Verb, $item.Prefix, $item.Noun
-                    Generate = '{0}-{1}{2}' -f $OldCmdlet.Verb, $Prefix, $OldCmdlet.Noun
-                    Noun = $OldCmdlet.Noun
-                    Verb = $OldCmdlet.Verb
-                    Parameters = $null
-                }
-                $cmds.Parameters = $this.GetCmdletParameters($cmds)
-                return $cmds
             }
         }
+
+        if($null -ne $targetCmd){
+            if($SourceCmdlet.Prefix.contains('MS')){
+                $Prefix = $NewPrefix  + 'MS'
+            } else {
+                $prefix = $NewPrefix
+            }
+            $cmd = [PSCustomObject]@{
+                Old = '{0}-{1}{2}' -f $SourceCmdlet.Verb, $SourceCmdlet.Prefix, $SourceCmdlet.Noun
+                New = $targetCmd
+                Generate = '{0}-{1}{2}' -f $SourceCmdlet.Verb, $Prefix, $SourceCmdlet.Noun
+                Noun = $SourceCmdlet.Noun
+                Verb = $SourceCmdlet.Verb
+                Parameters = $null
+            }
+            $cmd.Parameters = $this.GetCmdletParameters($cmd)
+            return $cmd
+        }
+
         return $null
     }
 
@@ -551,12 +509,14 @@ $($output)
         $Bool2Switch = @("All")
         $SystemDebug = @("Verbose", "Debug")
         $commonParameterNames = @("ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable")  
-        $params = $(Get-Command -Name $Cmdlet.Old).Parameters
-        $newParams = $(Get-Command -Name $Cmdlet.New).Parameters
+        Write-Host($Cmdlet.Old)
+        Write-Host($Cmdlet.New)
+        $sourceCmd = Get-Command -Name $Cmdlet.Old
+        $targetCmd = Get-Command -Name $Cmdlet.New
 
         $paramsList = @{}
-        foreach ($paramKey in $params.Keys) {
-            $param = $params[$paramKey]
+        foreach ($paramKey in $sourceCmd.Parameters.Keys) {
+            $param = $sourceCmd.Parameters[$paramKey]
 
             if($commonParameterNames.Contains($param.Name)) {
                 continue
@@ -582,12 +542,12 @@ $($output)
             }
             elseif(('ObjectId' -eq $param.Name) -or ('Id' -eq $param.Name)){
                 $tempName = "$($Cmdlet.Noun)Id"
-                if($newParams.Keys.Contains($tempName)){
+                if($targetCmd.Parameters.Keys.Contains($tempName)){
                     $paramObj.SetTargetName($tempName)
                 }
                 else
                 {
-                    foreach ($key in $newParams.Keys) {
+                    foreach ($key in $targetCmd.Parameters.Keys) {
                         if($key.EndsWith("Id")){
                             $paramObj.SetTargetName($key)
                             break
@@ -600,7 +560,7 @@ $($output)
             }
             else
             {
-                if($newParams.Keys.Contains($param.Name)){
+                if($targetCmd.Parameters.Keys.Contains($param.Name)){
                     $paramObj.SetNone()                       
                 }
             }
