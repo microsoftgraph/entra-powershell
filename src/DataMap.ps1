@@ -9,6 +9,7 @@ enum TransformationTypes {
     Name = 2
     Bool2Switch = 3
     SystemSwitch = 4
+    NounOrLastWith = 5
     Exception = 98
     Custom = 99
 }

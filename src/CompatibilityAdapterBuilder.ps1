@@ -12,6 +12,8 @@ class CompatibilityAdapterBuilder {
     [string] $ModuleName
     hidden [string[]] $MissingCommandsToMap = @()
     hidden [hashtable] $CmdCustomizations = @{}
+    hidden [hashtable] $GenericParametersTransformations = @{}
+    hidden [hashtable] $GenericOutputTransformations = @{}
     hidden [string] $OutputFolder = (join-path $PSScriptRoot '../bin')
     hidden [MappedCmdCollection] $ModuleMap = $null
     hidden [bool] $GenerateCommandsToMapData
@@ -58,19 +60,31 @@ class CompatibilityAdapterBuilder {
             if($cmd.Parameters){
                 $parameters = @{}
                 foreach($param in $cmd.Parameters){
-                    $parameters.Add($param.SourceName, [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping)))
+                    if($null -eq $cmd.SourceName) {
+                        $this.GenericParametersTransformations.Add($param.SourceName, [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping)))
+                    }
+                    else{
+                        $parameters.Add($param.SourceName, [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping)))
+                    }
                 }
             }
             
             if($cmd.Outputs){
                 $outputs = @{}
-                foreach($param in $cmd.Parameters){
-                    $outputs.Add($param.SourceName, [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping)))
+                foreach($param in $cmd.Outputs){
+                    if($null -eq $cmd.SourceName) {
+                        $this.GenericOutputTransformations.Add($param.SourceName, [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping)))
+                    }
+                    else{
+                        $outputs.Add($param.SourceName, [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping)))
+                    }
                 }
             }
 
-            $customCommand = [CommandMap]::New($cmd.SourceName,$cmd.TargetName, $parameters, $outputs)
-            $this.CmdCustomizations.Add($cmd.SourceName, $customCommand)
+            if($null -ne $cmd.SourceName) {
+                $customCommand = [CommandMap]::New($cmd.SourceName,$cmd.TargetName, $parameters, $outputs)
+                $this.CmdCustomizations.Add($cmd.SourceName, $customCommand)
+            }
         }
     }
     
@@ -349,12 +363,18 @@ $OutputTransformations
                 }
             }
         }
-        
-        if($responseVerbs.Contains($Command.Verb)) {
-        $output += @"
-        `$response | Add-Member -MemberType AliasProperty -Name ObjectId -Value Id
-"@
+        else {
+            foreach($key in $this.GenericOutputTransformations.GetEnumerator()) {
+                $customOutput =  $this.GenericOutputTransformations[$key.Name]
+                if(2 -eq $customOutput.ConversionType){
+                    $output += $this.GetOutputTransformationName($customOutput.Name, $customOutput.TargetName)
+                }
+                elseif(99 -eq $customOutput.ConversionType){
+                    $output += $this.GetOutputTransformationCustom($customOutput)
+                }
+            }             
         }
+               
 
         if("" -ne $output){
             $transform = @"
@@ -492,11 +512,8 @@ $($output)
         $paramsList = @{}
         foreach ($paramKey in $sourceCmd.Parameters.Keys) {
             $param = $sourceCmd.Parameters[$paramKey]
-
-            if($commonParameterNames.Contains($param.Name)) {
-                continue
-            }
-
+            $paramObj = [DataMap]::New($param.Name)
+            
             if($this.CmdCustomizations.ContainsKey($Cmdlet.Old)) {
                 $custom = $this.CmdCustomizations[$Cmdlet.Old]
                 if(($null -ne $custom.Parameters) -and ($custom.Parameters.contains($param.Name))){
@@ -504,8 +521,31 @@ $($output)
                     continue
                 }
             }
-
-            $paramObj = [DataMap]::New($param.Name)
+            elseif($this.GenericParametersTransformations.ContainsKey($param.Name)) {
+                $genericParam = $this.GenericParametersTransformations[$param.Name]
+                if(5 -eq $genericParam.ConversionType){
+                    $tempName = "$($Cmdlet.Noun)$($genericParam.TargetName)"
+                    if($targetCmd.Parameters.ContainsKey($tempName)){
+                        $paramObj.SetTargetName($tempName)
+                    }
+                    else
+                    {
+                        foreach ($key in $targetCmd.Parameters.Keys) {
+                            if($key.EndsWith($genericParam.TargetName)){
+                                $paramObj.SetTargetName($key)
+                                break
+                            }
+                        }
+                    }
+                    $paramsList.Add($paramObj.Name,$paramObj)
+                    continue;                    
+                }    
+            }
+            
+            if($commonParameterNames.Contains($param.Name)) {
+                continue
+            }
+           
             if($exceptionParameterNames.Contains($param.Name)){
                 $paramObj.SetException()
             }
@@ -514,21 +554,6 @@ $($output)
             }
             elseif($SystemDebug.Contains($param.Name)) {
                 $paramObj.SetSystemSwitch($param.Name)
-            }
-            elseif(('ObjectId' -eq $param.Name) -or ('Id' -eq $param.Name)){
-                $tempName = "$($Cmdlet.Noun)Id"
-                if($targetCmd.Parameters.Keys.Contains($tempName)){
-                    $paramObj.SetTargetName($tempName)
-                }
-                else
-                {
-                    foreach ($key in $targetCmd.Parameters.Keys) {
-                        if($key.EndsWith("Id")){
-                            $paramObj.SetTargetName($key)
-                            break
-                        }
-                    }
-                }
             }
             else
             {
