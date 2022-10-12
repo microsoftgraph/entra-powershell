@@ -69,7 +69,7 @@ class CompatibilityAdapterBuilder {
                 }
             }
 
-            $customCommand = [CommandMap]::New("New-AzureADUser","New-MgUser", $parameters, $outputs)
+            $customCommand = [CommandMap]::New($cmd.SourceName,$cmd.TargetName, $parameters, $outputs)
             $this.CmdCustomizations.Add($cmd.SourceName, $customCommand)
         }
     }
@@ -431,28 +431,6 @@ $($output)
         return $null
     }
 
-    hidden [PSCustomObject] FindCmdNoun([string] $SourceName, [string] $Noun, [hashtable]$CommandList ) {
-        $response = [PSCustomObject]@{
-            Exact = $false
-            Name = ''
-        }        
-        if($this.CmdCustomizations.ContainsKey($SourceName)){
-            $response.Exact = $true
-            $tmpName = $this.GetParsedCmd($this.CmdCustomizations[$SourceName].TargetName, $this.DestinationPrefixs)
-            $response.Name = $tmpName.Noun
-        }
-        elseif($CommandList.Contains($Noun)) {
-            $response.Exact = $true
-            $response.Name = $Noun
-        }
-        elseif($CommandList.Contains($Noun+'ByRef')) {
-            $response.Exact = $true
-            $response.Name = $Noun+'ByRef'
-        }
-    
-        return $response
-    }
-
     hidden [PSCustomObject] GetNewCmdTranslation($SourceCmdName, $SourceCmdlet, $TargetCmdlets, $NewPrefix){
         $verbsEquivalence = @{
             'Get' = @('Get')
@@ -471,7 +449,6 @@ $($output)
             $targetCmd = $this.CmdCustomizations[$SourceCmdName].TargetName
         }
         else {
-            # Check if we can form the new command using verb, Prefix and Noun
             foreach ($prefix in $this.DestinationPrefixs){
                 foreach ($verb in $verbsEquivalence[$SourceCmdlet.Verb]){
                     $tmpCmd = "$($verb)-$($prefix)$($SourceCmdlet.Noun)"
@@ -508,9 +485,7 @@ $($output)
         $exceptionParameterNames = @("SearchString")
         $Bool2Switch = @("All")
         $SystemDebug = @("Verbose", "Debug")
-        $commonParameterNames = @("ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable")  
-        Write-Host($Cmdlet.Old)
-        Write-Host($Cmdlet.New)
+        $commonParameterNames = @("ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable")
         $sourceCmd = Get-Command -Name $Cmdlet.Old
         $targetCmd = Get-Command -Name $Cmdlet.New
 
@@ -554,9 +529,6 @@ $($output)
                         }
                     }
                 }
-            }
-            elseif('RefObjectId' -eq $param.Name) {
-                $paramObj.SetTargetName('DirectoryObjectId')
             }
             else
             {
