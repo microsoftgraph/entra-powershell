@@ -303,7 +303,7 @@ $OutputTransformations
 
     hidden [string] GetParameterTransformationSystemSwitch([string] $Name){
         $paramBlock = @"
-    if(`$PSBoundParameters.Keys.Contains("$($Name)"))
+    if(`$PSBoundParameters.ContainsKey("$($Name)"))
     {
         `$params["$($Name)"] = `$Null
     }
@@ -532,7 +532,7 @@ $($output)
             }
             else
             {
-                if($targetCmd.Parameters.Keys.Contains($param.Name)){
+                if($targetCmd.Parameters.ContainsKey($param.Name)){
                     $paramObj.SetNone()                       
                 }
             }
