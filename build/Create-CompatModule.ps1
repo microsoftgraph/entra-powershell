@@ -12,11 +12,16 @@ $nocleanArgument = @{noclean=$noclean}
 $mapper = [CompatibilityAdapterBuilder]::new()
 
 $customizationFiles = Get-CustomizationFiles
-
 foreach($file in $customizationFiles){
     $cmds = & $file
     $mapper.AddCustomization($cmds)
 }
+
+$AdditionalFunctions = Get-CustomizationFiles -Directory 'AdditionalFunctions'
+foreach($file in $AdditionalFunctions){
+    $mapper.AddHelperCommand($file)
+}
+
 
 $mapper.BuildModule()
 Create-ModuleFolder -OutputDirector $targetDirectory @nocleanArgument

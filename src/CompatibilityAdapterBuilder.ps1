@@ -17,6 +17,7 @@ class CompatibilityAdapterBuilder {
     hidden [string] $OutputFolder = (join-path $PSScriptRoot '../bin')
     hidden [MappedCmdCollection] $ModuleMap = $null
     hidden [bool] $GenerateCommandsToMapData
+    hidden [hashtable] $HelperCmdletsToExport = @{}
 
     # Constructor that changes the output folder, load all the Required Modules and creates the output folder.
     CompatibilityAdapterBuilder() {        
@@ -87,6 +88,14 @@ class CompatibilityAdapterBuilder {
             }
         }
     }
+
+    AddHelperCommand([string] $FileName){
+        $properties = Get-ItemProperty -Path $FileName
+        if($null -ne $properties){
+            $name = $properties.PSChildName.Replace(".ps1","")
+            $this.HelperCmdletsToExport.Add($name, $(Get-Content -Path $FileName) -join "`n")
+        }
+    }
     
     hidden WriteModuleFile() {       
         $filePath = Join-Path $this.OutputFolder "$($this.ModuleName).psm1"
@@ -98,7 +107,10 @@ class CompatibilityAdapterBuilder {
             $psm1FileContent += $cmd.CommandBlock
         }
 
-        $psm1FileContent += $this.GetAlisesFunction()
+        $psm1FileContent += $this.GetAlisesFunction()        
+        foreach($function in $this.HelperCmdletsToExport.GetEnumerator()){
+            $psm1FileContent += $function.Value
+        }
         $psm1FileContent += $this.GetExportMemeber()        
         $psm1FileContent += $this.SetMissingCommands()
         $psm1FileContent | Out-File -FilePath $filePath
@@ -157,6 +169,10 @@ class CompatibilityAdapterBuilder {
                 $missingCmdletsToExport += $cmd                          
                 $this.MissingCommandsToMap += $cmd
             } 
+        }
+
+        foreach($function in $this.HelperCmdletsToExport.GetEnumerator()){
+            $cmdletsToExport += $function.Key
         }
       
         $this.ModuleMap.CommandsList = $cmdletsToExport
