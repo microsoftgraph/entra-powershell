@@ -238,7 +238,8 @@ function $($Command.Generate) {
     param (
 $parameterDefinitions
     )
-        
+
+    PROCESS {    
     `$params = @{}   
 $ParamterTransformations
     Write-Debug("============================ TRANSFORMATIONS ============================")
@@ -248,6 +249,7 @@ $ParamterTransformations
     `$response = $($Command.New) @params
 $OutputTransformations
     `$response
+    }
 }
 
 "@
@@ -265,7 +267,7 @@ $OutputTransformations
             }
             $param = $params[$paramKey]
             $paramBlock = @"
-    [$($param.ParameterType.ToString())] `$$($param.Name)
+    $($this.GetParameterAttributes($Param))[$($param.ParameterType.ToString())] `$$($param.Name)
 "@
             $paramsList += $paramBlock
         }
@@ -273,6 +275,32 @@ $OutputTransformations
         return $paramsList -Join ",`n"
     }
 
+    hidden [string] GetParameterAttributes($param){
+        $attributesString = ""
+
+        foreach($attrib in $param.Attributes){
+            $arrayAttrib = @()
+            if($attrib.ParameterSetName -ne "__AllParameterSets"){
+                $arrayAttrib += "ParameterSetName = `"$($attrib.ParameterSetName)`""
+            }
+            if($attrib.Mandatory){
+                $arrayAttrib += "Mandatory = `$true"
+            }
+            if($attrib.ValueFromPipeline){
+                $arrayAttrib += "ValueFromPipeline = `$true"
+            }
+            if($attrib.ValueFromPipelineByPropertyName){
+                $arrayAttrib += "ValueFromPipelineByPropertyName = `$true"
+            }
+            $strAttrib = $arrayAttrib -Join ', '
+
+            if($strAttrib.Length -gt 0){
+                $attributesString = "[Parameter($strAttrib)]"
+            }
+        }
+
+        return $attributesString
+    }
 
     hidden [string] GetParametersTransformations([PSCustomObject] $Command) {
         $paramsList = ""
