@@ -228,19 +228,20 @@ Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList 
     }
 
     hidden [CommandTranslation] NewFunctionMap([PSCustomObject] $Command){
-
         $parameterDefinitions = $this.GetParametersDefinitions($Command)
         $ParamterTransformations = $this.GetParametersTransformations($Command)
         $OutputTransformations = $this.GetOutputTransformations($Command)
+        $keyId = $this.GetKeyIdPair($Command)
         $function = @"
 function $($Command.Generate) {
-    [CmdletBinding()]
+    [CmdletBinding($($Command.DefaultParameterSet))]
     param (
 $parameterDefinitions
     )
 
     PROCESS {    
-    `$params = @{}   
+    `$params = @{}
+    $($keyId)
 $ParamterTransformations
     Write-Debug("============================ TRANSFORMATIONS ============================")
     `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
@@ -332,6 +333,25 @@ $OutputTransformations
         }
             
         return $paramsList
+    }
+
+    hidden [string] GetKeyIdPair($Command){        
+        $keys = @()
+        foreach ($paramKey in $Command.Parameters.Keys) {        
+            $param = $Command.Parameters[$paramKey]
+            if($param.NameChanged){
+                if($param.Name -eq "ObjectId"){
+                    $keys += "$($param.Name) = `"Id`""
+                }
+                elseif($param.Name -eq "Id"){
+                }
+                else{
+                    $keys += "$($param.Name) = `"$($param.TargetName)`""
+                }
+            }            
+        }
+            
+        return "`$keysChanged = @{$($keys -Join "; ")}"
     }
 
     hidden [string] GetParameterTransformationName([string] $OldName, [string] $NewName){
@@ -537,12 +557,21 @@ $($output)
                 Noun = $SourceCmdlet.Noun
                 Verb = $SourceCmdlet.Verb
                 Parameters = $null
+                DefaultParameterSet = ""
             }
             $cmd.Parameters = $this.GetCmdletParameters($cmd)
+            $defaulParam = $this.GetDefaultParameterSet($SourceCmdName)
+            $cmd.DefaultParameterSet = "DefaultParameterSetName = '$defaulParam'"
             return $cmd
         }
 
         return $null
+    }
+
+    hidden [string] GetDefaultParameterSet($Cmdlet){
+        $sourceCmd = Get-Command -Name $Cmdlet
+
+        return $sourceCmd.DefaultParameterSet
     }
 
     hidden [hashtable] GetCmdletParameters($Cmdlet){
@@ -581,9 +610,11 @@ $($output)
                             }
                         }
                     }
-                    $paramsList.Add($paramObj.Name,$paramObj)
-                    continue;                    
-                }    
+                    $paramsList.Add($paramObj.Name,$paramObj)                    
+                }else{
+                    $paramsList.Add($genericParam.Name, $genericParam)
+                }   
+                continue
             }
             
             if($commonParameterNames.Contains($param.Name)) {

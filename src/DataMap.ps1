@@ -9,7 +9,7 @@ enum TransformationTypes {
     Name = 2
     Bool2Switch = 3
     SystemSwitch = 4
-    NounOrLastWith = 5
+    NounOrLastWithKeyId = 5
     Exception = 98
     Custom = 99
 }
@@ -19,6 +19,7 @@ class DataMap {
     [string] $TargetName = $null   
     [TransformationTypes] $ConversionType = 0
     [scriptblock] $SpecialMapping = $null
+    [bool] $NameChanged = $false
 
     DataMap(){        
     }
@@ -32,6 +33,7 @@ class DataMap {
         $this.Name = $Name
         $this.TargetName = $TargetName
         $this.ConversionType = 1    
+        $this.NameChanged = $true
     }
 
     DataMap($Name, $TargetName = $null, $ConversionType = 1, $SpecialMapping = $null){
@@ -39,6 +41,9 @@ class DataMap {
         $this.TargetName = $TargetName
         $this.ConversionType = $ConversionType    
         $this.SpecialMapping = $SpecialMapping
+        if($Name -ne $TargetName){
+            $this.NameChanged = $true
+        }
     }
 
     SetNone(){
@@ -51,11 +56,17 @@ class DataMap {
 
     SetCustom(){
         $this.ConversionType = 99
+        if($this.Name -ne $this.TargetName){
+            $this.NameChanged = $true
+        }
     }
 
     SetTargetName($TargetName){
         $this.TargetName = $TargetName
         $this.ConversionType = 2
+        if($this.Name -ne $this.TargetName){
+            $this.NameChanged = $true
+        }
     }
 
     SetBool2Switch($Name){

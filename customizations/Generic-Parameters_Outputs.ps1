@@ -16,6 +16,17 @@
             TargetName = "Id"
             ConversionType = 5
             SpecialMapping = $null
+        },
+        @{
+            SourceName = "Filter"
+            TargetName = "Filter"
+            ConversionType = 99
+            SpecialMapping = @"
+foreach(`$i in `$keysChanged.GetEnumerator()){
+            `$TmpValue = `$TmpValue.Replace(`$i.Key, `$i.Value)
+        }
+        `$Value = `$TmpValue
+"@
         }
     )
     Outputs = @(
