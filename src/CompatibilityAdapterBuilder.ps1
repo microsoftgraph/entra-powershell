@@ -18,6 +18,7 @@ class CompatibilityAdapterBuilder {
     hidden [MappedCmdCollection] $ModuleMap = $null
     hidden [bool] $GenerateCommandsToMapData
     hidden [hashtable] $HelperCmdletsToExport = @{}
+    hidden [string] $LoadMessage
 
     # Constructor that changes the output folder, load all the Required Modules and creates the output folder.
     CompatibilityAdapterBuilder() {        
@@ -45,12 +46,14 @@ class CompatibilityAdapterBuilder {
         if(!(Test-Path $this.OutputFolder)){
             New-Item -ItemType Directory -Path $this.OutputFolder | Out-Null
         }
+
+        $this.LoadMessage = $content.loadMessage
     }
 
     # Generates the module then generates all the files required to create the module.
     BuildModule() {
-        $this.WriteModuleFile()
-        $this.WriteModuleManifest()
+        $this.WriteModuleFile()   
+        $this.WriteModuleManifest()     
     }
     
         # Add customization based on the the CommandMap object.
@@ -113,6 +116,7 @@ class CompatibilityAdapterBuilder {
         }
         $psm1FileContent += $this.GetExportMemeber()        
         $psm1FileContent += $this.SetMissingCommands()
+        $psm1FileContent += $this.LoadMessage
         $psm1FileContent | Out-File -FilePath $filePath
     }
 
@@ -139,13 +143,14 @@ class CompatibilityAdapterBuilder {
             CompanyName = $($content.owners)
             FileList = $files
             RootModule = "$($this.ModuleName).psm1" 
-            Description = 'Microsoft Graph PowerShell AzureAD Compatibility Module.'    
+            Description = 'Microsoft Graph PowerShell Compatibility for AzureAD.'    
             DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2')) 
             PowerShellVersion = $([System.Version]::Parse('5.1'))
             CompatiblePSEditions = @('Desktop','Core')
             RequiredModules = $content.requiredModules
         }
         
+        $this.LoadMessage = $this.LoadMessage.Replace("{VERSION}", $content.version)
         New-ModuleManifest @moduleSettings
         Update-ModuleManifest -Path $manisfestPath -PrivateData $PSData
     }

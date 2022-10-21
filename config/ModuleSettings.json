@@ -13,5 +13,6 @@
       "Microsoft.Graph.Applications"
     ],
     "sourceModulePrefix" : ["AzureADMS","AzureAD"],
-    "destinationPrefix" : ["Mg"]
+    "destinationPrefix" : ["Mg"],
+    "loadMessage": "'\nMicrosoft Graph Compatibility for AzureAD. \nCopyright (c) Microsoft Corporation. \n\n\n' | Out-Host"
   }
