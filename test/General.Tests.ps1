@@ -19,7 +19,16 @@ Describe 'Module checks' {
 
     It 'Have more that zero exported functions' {
         $module = Get-Module -Name Microsoft.Graph.Compatibility.AzureAD
-        $module.ExportedCommands.Count | Should -BeGreaterThan 0
+        $module.ExportedCommands.Keys.Count | Should -BeGreaterThan 0
+    }
+
+    It 'Known number translated commands' {
+        $module = Get-Module -Name Microsoft.Graph.Compatibility.AzureAD
+        $module.ExportedCommands.Keys.Count | Should -Be 229
+    }
+
+    It 'Known number of missing commands' {        
+        $MISSING_CMDS.Count | Should -Be 118
     }
 
     It 'Running a simple command Set-CompatADAlias'{

@@ -14,5 +14,5 @@
     ],
     "sourceModulePrefix" : ["AzureADMS","AzureAD"],
     "destinationPrefix" : ["Mg"],
-    "loadMessage": "'\nMicrosoft Graph Compatibility for AzureAD. \nCopyright (c) Microsoft Corporation. \n\n\n' | Out-Host"
+    "loadMessage": "'\nMicrosoft Graph Compatibility Adapter for AzureAD. \nCopyright (c) Microsoft Corporation. \n' | Out-Host"
   }
