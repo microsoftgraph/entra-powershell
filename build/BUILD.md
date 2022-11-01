@@ -5,8 +5,23 @@ Clone module and follow the instructions. You need **Microsoft.Graph PowerShell 
 ```powershell
 git clone https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread.git
 cd ./Microsoft.Graph.Compatibility.AzureAD
+```
+
+### Install dependecies
+
+This module depends on AzureAD PowerShell and Microsoft.Graph the following command install the required dependencies.
+
+```powershell
+.\build\Install-Dependencies.ps1
+```
+
+
+### Build
+
+```powershell
 .\build\Create-CompatModule.ps1
 ```
+
 
 Generated module will be in the output folder `./bin/modules`
 
