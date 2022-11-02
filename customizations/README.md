@@ -6,7 +6,7 @@ The automatic generation process can't get all the proper transformations due to
 - Parameters
 - Outputs
 
-For each command you want to customize you need to add a new file with the command name in the `customizations` folder, the file must be a `.ps1` file that returns an hashtable with the following structure:
+For each command you want to customize you need to add a new file with the command name in the `customizations` folder, the file must be a `.ps1` file with the name of the command being customized that returns an hashtable with the following structure:
 
 ```PowerShell
 @{
