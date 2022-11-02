@@ -24,11 +24,11 @@ Describe 'Module checks' {
 
     It 'Known number translated commands' {
         $module = Get-Module -Name Microsoft.Graph.Compatibility.AzureAD
-        $module.ExportedCommands.Keys.Count | Should -Be 229
+        $module.ExportedCommands.Keys.Count | Should -Be 112
     }
 
     It 'Known number of missing commands' {        
-        $MISSING_CMDS.Count | Should -Be 118
+        $MISSING_CMDS.Count | Should -Be 117
     }
 
     It 'Running a simple command Set-CompatADAlias'{
