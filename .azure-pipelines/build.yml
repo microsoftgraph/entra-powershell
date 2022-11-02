@@ -1,0 +1,72 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+# https://aka.ms/yaml
+
+steps:
+- task: powershell@2
+  displayName: 'Show current PowerShell version information'
+  inputs:
+    targetType: inline
+    script: 'echo $PSVersionTable'
+    pwsh: false
+- task: powershell@2
+  displayName: 'Install Dependencies'
+  inputs:
+    targetType: inline
+    script: ./build/Install-Dependencies.ps1 -Verbose
+    pwsh: false
+- task: powershell@2
+  displayName: 'Build'
+  inputs:
+    targetType: inline
+    script: ./build/Create-CompatModule.ps1 -Verbose
+    pwsh: false
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Module Files'
+  inputs:
+    ArtifactName: 'Module Files'
+    PathtoPublish: 'bin'
+- task: powershell@2
+  displayName: 'Publish to Local Gallery'
+  inputs:
+    targetType: inline
+    script: ./build/Publish-LocalCompatModule.ps1 -Install
+    pwsh: false
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Module Nuget File'
+  inputs:
+    ArtifactName: 'Module Nuget'
+    PathtoPublish: '.psrepo'
+- task: powershell@2
+  displayName: 'Remove Build Folders'
+  inputs:
+    targetType: inline
+    script: |
+      . ./build/common-functions.ps1
+      Remove-BuildDirectories
+    pwsh: false
+- task: powershell@2
+  displayName: 'Install Pester'
+  inputs:
+    targetType: inline
+    script: Install-Module Pester -scope currentuser -Force
+    pwsh: false
+- task: powershell@2
+  displayName: 'Run tests'  
+  inputs:
+    targetType: inline
+    pwsh: false
+    script: Invoke-Pester -OutputFile "./test/results/pester-test-results.xml" -OutputFormat NUnitXml
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: NUnit
+    testResultsFiles: "./test/results/pester-test-results.xml"
+    failTaskOnFailedTests: true
+- task: powershell@2
+  displayName: 'Remove Local Gallery'
+  inputs:
+    targetType: inline
+    script: |
+      . ./build/common-functions.ps1
+      Unregister-LocalGallery
+    pwsh: false
