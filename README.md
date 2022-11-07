@@ -10,7 +10,7 @@ The intent of this module is provide AzureAD PowerShell Users a path to start th
 
 ### Local Building
 
-Please refer to [local building and installing guide](https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread/blob/main/build/readme.md).
+Please refer to [local building and installing guide](https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread/blob/main/build/BUILD.md).
 
 ### PowerShell Gallery
 
