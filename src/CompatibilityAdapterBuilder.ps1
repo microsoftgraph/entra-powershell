@@ -599,7 +599,8 @@ $($output)
                     continue
                 }
             }
-            elseif($this.GenericParametersTransformations.ContainsKey($param.Name)) {
+            
+            if($this.GenericParametersTransformations.ContainsKey($param.Name)) {
                 $genericParam = $this.GenericParametersTransformations[$param.Name]
                 if(5 -eq $genericParam.ConversionType){
                     $tempName = "$($Cmdlet.Noun)$($genericParam.TargetName)"

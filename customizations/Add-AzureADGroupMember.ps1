@@ -6,12 +6,6 @@
     TargetName = "New-MgGroupMember"
     Parameters = @(
         @{
-            SourceName = "ObjectId"
-            TargetName = "GroupId"
-            ConversionType = 2
-            SpecialMapping = $null
-        },
-        @{
             SourceName = "RefObjectId"
             TargetName = "DirectoryObjectId"
             ConversionType = 2
