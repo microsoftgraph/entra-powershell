@@ -24,7 +24,7 @@ Describe 'Module checks' {
 
     It 'Known number translated commands' {
         $module = Get-Module -Name Microsoft.Graph.Compatibility.AzureAD
-        $module.ExportedCommands.Keys.Count | Should -Be 118
+        $module.ExportedCommands.Keys.Count | Should -Be 113
     }
 
     It 'Known number of missing commands' {        
