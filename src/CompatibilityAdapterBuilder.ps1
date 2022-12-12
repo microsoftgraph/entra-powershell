@@ -432,19 +432,17 @@ $OutputTransformations
                 }
             }
         }
-        else {
-            foreach($key in $this.GenericOutputTransformations.GetEnumerator()) {
-                $customOutput =  $this.GenericOutputTransformations[$key.Name]
-                if(2 -eq $customOutput.ConversionType){
-                    $output += $this.GetOutputTransformationName($customOutput.Name, $customOutput.TargetName)
-                }
-                elseif(99 -eq $customOutput.ConversionType){
-                    $output += $this.GetOutputTransformationCustom($customOutput)
-                }
-            }             
-        }
-               
-
+        
+        foreach($key in $this.GenericOutputTransformations.GetEnumerator()) {
+            $customOutput =  $this.GenericOutputTransformations[$key.Name]
+            if(2 -eq $customOutput.ConversionType){
+                $output += $this.GetOutputTransformationName($customOutput.Name, $customOutput.TargetName)
+            }
+            elseif(99 -eq $customOutput.ConversionType){
+                $output += $this.GetOutputTransformationCustom($customOutput)
+            }
+        }             
+                    
         if("" -ne $output){
             $transform = @"
     if(`$null -ne `$response){
@@ -599,7 +597,8 @@ $($output)
                     continue
                 }
             }
-            elseif($this.GenericParametersTransformations.ContainsKey($param.Name)) {
+            
+            if($this.GenericParametersTransformations.ContainsKey($param.Name)) {
                 $genericParam = $this.GenericParametersTransformations[$param.Name]
                 if(5 -eq $genericParam.ConversionType){
                     $tempName = "$($Cmdlet.Noun)$($genericParam.TargetName)"
