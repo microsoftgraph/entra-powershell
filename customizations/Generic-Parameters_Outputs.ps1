@@ -20,7 +20,7 @@
         @{
             SourceName = "Filter"
             TargetName = "Filter"
-            ConversionType = "SCRIPTBLOCK"
+            ConversionType = "ScriptBlock"
             SpecialMapping = @"
 foreach(`$i in `$keysChanged.GetEnumerator()){
             `$TmpValue = `$TmpValue.Replace(`$i.Key, `$i.Value)
@@ -33,7 +33,7 @@ foreach(`$i in `$keysChanged.GetEnumerator()){
         @{
             SourceName = "Id"
             TargetName = "ObjectId"
-            ConversionType = "NAME"
+            ConversionType = "Name"
             SpecialMapping = $null
         }
     )

@@ -8,7 +8,7 @@
         @{
             SourceName = "PasswordProfile"
             TargetName = "PasswordProfile"
-            ConversionType = "SCRIPTBLOCK"
+            ConversionType = "ScriptBlock"
             SpecialMapping = @"
 `$Value = @{
             forceChangePasswordNextSignIn = `$TmpValue.ForceChangePasswordNextLogin

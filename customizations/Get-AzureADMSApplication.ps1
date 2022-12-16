@@ -8,7 +8,7 @@
         @{
             SourceName = "SearchString"
             TargetName = "Filter"
-            ConversionType = "SCRIPTBLOCK"
+            ConversionType = "ScriptBlock"
             SpecialMapping = @"
 `$Value = "displayName eq '`$TmpValue' or startswith(displayName,'`$TmpValue')"
 "@

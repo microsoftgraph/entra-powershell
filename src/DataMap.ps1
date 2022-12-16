@@ -4,12 +4,12 @@
 Set-StrictMode -Version 5
 
 enum TransformationTypes {
-    NONE = 1
-    NAME = 2
-    BOOL2SWITCH = 3
-    SYSTEMSWITCH = 4
-    KEYID = 5
-    SCRIPTBLOCK = 99
+    None = 1
+    Name = 2
+    Bool2Switch = 3
+    SystemSwitch = 4
+    KeyId = 5
+    ScriptBlock = 99
 }
 
 class DataMap {

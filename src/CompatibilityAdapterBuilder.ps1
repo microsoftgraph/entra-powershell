@@ -318,7 +318,7 @@ $OutputTransformations
             if([TransformationTypes]::NONE -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterTransformationName($param.Name, $param.Name)
             }
-            elseif([TransformationTypes]::NAME -eq $param.ConversionType){
+            elseif([TransformationTypes]::Name -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterTransformationName($param.Name, $param.TargetName)
             }
             elseif([TransformationTypes]::BOOL2SWITCH -eq $param.ConversionType){
@@ -327,7 +327,7 @@ $OutputTransformations
             elseif([TransformationTypes]::SYSTEMSWITCH -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterTransformationSystemSwitch($param.Name)
             }
-            elseif([TransformationTypes]::SCRIPTBLOCK -eq $param.ConversionType){
+            elseif([TransformationTypes]::ScriptBlock -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterCustom($param)
             }
             
@@ -420,10 +420,10 @@ $OutputTransformations
             if($null -ne $cmd.Outputs){                   
                 foreach($key in $cmd.Outputs.GetEnumerator()) {
                     $customOutput =  $cmd.Outputs[$key.Name]
-                    if([TransformationTypes]::NAME -eq $customOutput.ConversionType){
+                    if([TransformationTypes]::Name -eq $customOutput.ConversionType){
                         $output += $this.GetOutputTransformationName($customOutput.Name, $customOutput.TargetName)
                     }
-                    elseif([TransformationTypes]::SCRIPTBLOCK -eq $customOutput.ConversionType){
+                    elseif([TransformationTypes]::ScriptBlock -eq $customOutput.ConversionType){
                         $output += $this.GetOutputTransformationCustom($customOutput)
                     }
                 }
@@ -435,7 +435,7 @@ $OutputTransformations
             if(2 -eq $customOutput.ConversionType){
                 $output += $this.GetOutputTransformationName($customOutput.Name, $customOutput.TargetName)
             }
-            elseif([TransformationTypes]::SCRIPTBLOCK -eq $customOutput.ConversionType){
+            elseif([TransformationTypes]::ScriptBlock -eq $customOutput.ConversionType){
                 $output += $this.GetOutputTransformationCustom($customOutput)
             }
         }             
