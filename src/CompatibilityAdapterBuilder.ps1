@@ -315,22 +315,19 @@ $OutputTransformations
             $param = $Command.Parameters[$paramKey]
             $paramBlock = ""
             
-            if(1 -eq $param.ConversionType){
+            if([TransformationTypes]::None -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterTransformationName($param.Name, $param.Name)
             }
-            elseif(2 -eq $param.ConversionType){
+            elseif([TransformationTypes]::Name -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterTransformationName($param.Name, $param.TargetName)
             }
-            elseif(3 -eq $param.ConversionType){
+            elseif([TransformationTypes]::Bool2Switch -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterTransformationBoolean2Switch($param.Name, $param.TargetName)
             }
-            elseif(4 -eq $param.ConversionType){
+            elseif([TransformationTypes]::SystemSwitch -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterTransformationSystemSwitch($param.Name)
             }
-            elseif(98 -eq $param.ConversionType){
-                $paramBlock = $this.GetParameterException($param)
-            }
-            elseif(99 -eq $param.ConversionType){
+            elseif([TransformationTypes]::ScriptBlock -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterCustom($param)
             }
             
@@ -423,10 +420,10 @@ $OutputTransformations
             if($null -ne $cmd.Outputs){                   
                 foreach($key in $cmd.Outputs.GetEnumerator()) {
                     $customOutput =  $cmd.Outputs[$key.Name]
-                    if(2 -eq $customOutput.ConversionType){
+                    if([TransformationTypes]::Name -eq $customOutput.ConversionType){
                         $output += $this.GetOutputTransformationName($customOutput.Name, $customOutput.TargetName)
                     }
-                    elseif(99 -eq $customOutput.ConversionType){
+                    elseif([TransformationTypes]::ScriptBlock -eq $customOutput.ConversionType){
                         $output += $this.GetOutputTransformationCustom($customOutput)
                     }
                 }
@@ -438,7 +435,7 @@ $OutputTransformations
             if(2 -eq $customOutput.ConversionType){
                 $output += $this.GetOutputTransformationName($customOutput.Name, $customOutput.TargetName)
             }
-            elseif(99 -eq $customOutput.ConversionType){
+            elseif([TransformationTypes]::ScriptBlock -eq $customOutput.ConversionType){
                 $output += $this.GetOutputTransformationCustom($customOutput)
             }
         }             
@@ -578,7 +575,6 @@ $($output)
     }
 
     hidden [hashtable] GetCmdletParameters($Cmdlet){
-        $exceptionParameterNames = @("SearchString")
         $Bool2Switch = @("All")
         $SystemDebug = @("Verbose", "Debug")
         $commonParameterNames = @("ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable")
@@ -623,10 +619,6 @@ $($output)
             
             if($commonParameterNames.Contains($param.Name)) {
                 continue
-            }
-           
-            if($exceptionParameterNames.Contains($param.Name)){
-                $paramObj.SetException()
             }
             elseif($Bool2Switch.Contains($param.Name)) {
                 $paramObj.SetBool2Switch($param.Name)

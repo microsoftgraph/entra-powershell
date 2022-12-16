@@ -8,7 +8,7 @@
         @{
             SourceName = "RefObjectId"
             TargetName = "DirectoryObjectId"
-            ConversionType = 2
+            ConversionType = "Name"
             SpecialMapping = $null
         }
     )

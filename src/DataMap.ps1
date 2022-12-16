@@ -4,20 +4,18 @@
 Set-StrictMode -Version 5
 
 enum TransformationTypes {
-    Unknown = 0
     None = 1
     Name = 2
     Bool2Switch = 3
     SystemSwitch = 4
-    NounOrLastWithKeyId = 5
-    Exception = 98
-    Custom = 99
+    KeyId = 5
+    ScriptBlock = 99
 }
 
 class DataMap {
     [string] $Name = $null
     [string] $TargetName = $null   
-    [TransformationTypes] $ConversionType = 0
+    [TransformationTypes] $ConversionType = 1
     [scriptblock] $SpecialMapping = $null
     [bool] $NameChanged = $false
 
@@ -26,13 +24,13 @@ class DataMap {
 
     DataMap($Name){
         $this.Name = $Name
-        $this.ConversionType = 0    
+        $this.ConversionType = 1    
     }
 
     DataMap($Name, $TargetName){
         $this.Name = $Name
         $this.TargetName = $TargetName
-        $this.ConversionType = 1    
+        $this.ConversionType = 2    
         $this.NameChanged = $true
     }
 
@@ -48,10 +46,6 @@ class DataMap {
 
     SetNone(){
         $this.ConversionType = 1
-    }
-
-    SetException(){
-        $this.ConversionType = 98
     }
 
     SetCustom(){

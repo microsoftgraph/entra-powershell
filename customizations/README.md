@@ -36,8 +36,8 @@ Where:
 - SourceName is a string with the name of the command parameter in AzureAD.
 - TargetName is a string with the name of the command parameter in Microsoft Graph SDK command that replaces it.
 - ConversionType is a integer with the following:
-  - 2 is used for name change for example from ObjectId to UserId
-  - 99 is used for custom is this case it changes the name and applies a script block to the input value to transformate it.
+  - "Name" is used for name change for example from ObjectId to UserId
+  - "ScriptBlock" is used for custom is this case it changes the name and applies a script block to the input value to transformate it.
 
 Example 1: You know that the command Get-AzureADMSPermissionGrantPolicy in AzureAD has the equivalent Get-MgPolicyPermissionGrantPolicy in Microsoft Graph PowerShell. Assuming that you only need to make a name change the result is the following:
 
@@ -62,7 +62,7 @@ Example 2: You want to customize the command New-AzureADUser, you know that the 
         @{
             SourceName = "PasswordProfile"
             TargetName = "PasswordProfile"
-            ConversionType = 99
+            ConversionType = "ScriptBlock"
             SpecialMapping = @"
 `$Value = @{
             forceChangePasswordNextSignIn = `$TmpValue.ForceChangePasswordNextLogin
@@ -75,7 +75,7 @@ Example 2: You want to customize the command New-AzureADUser, you know that the 
         @{
             SourceName = "Id"
             TargetName = "ObjectId"
-            ConversionType = 2
+            ConversionType = "Name"
             SpecialMapping = $null
         }
     )
