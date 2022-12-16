@@ -315,16 +315,16 @@ $OutputTransformations
             $param = $Command.Parameters[$paramKey]
             $paramBlock = ""
             
-            if([TransformationTypes]::NONE -eq $param.ConversionType){
+            if([TransformationTypes]::None -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterTransformationName($param.Name, $param.Name)
             }
             elseif([TransformationTypes]::Name -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterTransformationName($param.Name, $param.TargetName)
             }
-            elseif([TransformationTypes]::BOOL2SWITCH -eq $param.ConversionType){
+            elseif([TransformationTypes]::Bool2Switch -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterTransformationBoolean2Switch($param.Name, $param.TargetName)
             }
-            elseif([TransformationTypes]::SYSTEMSWITCH -eq $param.ConversionType){
+            elseif([TransformationTypes]::SystemSwitch -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterTransformationSystemSwitch($param.Name)
             }
             elseif([TransformationTypes]::ScriptBlock -eq $param.ConversionType){
