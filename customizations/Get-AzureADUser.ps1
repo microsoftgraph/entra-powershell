@@ -8,7 +8,7 @@
         @{
             SourceName = "SearchString"
             TargetName = "Filter"
-            ConversionType = 99
+            ConversionType = "SCRIPTBLOCK"
             SpecialMapping = @"
 `$Value = "userPrincipalName eq '`$TmpValue' or (state eq '`$TmpValue' or (mailNickName eq '`$TmpValue' or (mail eq '`$TmpValue' or (jobTitle eq '`$TmpValue' or (displayName eq '`$TmpValue' or (startswith(displayName,'`$TmpValue') or (department eq '`$TmpValue' or (country eq '`$TmpValue' or city eq '`$TmpValue'))))))))"
 "@
