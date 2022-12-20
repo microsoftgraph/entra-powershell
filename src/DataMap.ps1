@@ -9,6 +9,7 @@ enum TransformationTypes {
     Bool2Switch = 3
     SystemSwitch = 4
     KeyId = 5
+    FlatObject = 6
     ScriptBlock = 99
 }
 
@@ -73,6 +74,11 @@ class DataMap {
         $this.Name = $Name
         $this.TargetName = $Name
         $this.ConversionType = 4
+    }
+
+    SetFlatObject($Name){
+        $this.Name = $Name
+        $this.ConversionType = 6
     }
 
     [DataMap] GetIdMapping(){

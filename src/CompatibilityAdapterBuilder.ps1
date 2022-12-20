@@ -426,6 +426,9 @@ $OutputTransformations
                     elseif([TransformationTypes]::ScriptBlock -eq $customOutput.ConversionType){
                         $output += $this.GetOutputTransformationCustom($customOutput)
                     }
+                    elseif([TransformationTypes]::FlatObject -eq $customOutput.ConversionType){
+                        $output += $this.GetOutputTransformationFlatObject($customOutput)
+                    }
                 }
             }
         }
@@ -438,11 +441,14 @@ $OutputTransformations
             elseif([TransformationTypes]::ScriptBlock -eq $customOutput.ConversionType){
                 $output += $this.GetOutputTransformationCustom($customOutput)
             }
+            elseif([TransformationTypes]::FlatObject -eq $customOutput.ConversionType){
+                $output += $this.GetOutputTransformationFlatObject($customOutput)
+            }
         }             
                     
         if("" -ne $output){
             $transform = @"
-    if(`$null -ne `$response){
+    `$response | ForEach-Object {
 $($output)
     }
 "@
@@ -453,7 +459,7 @@ $($output)
 
     hidden [string] GetOutputTransformationName([string] $OldName, [string] $NewName){
         $outputBlock =@"
-        `$response | Add-Member -MemberType AliasProperty -Name $($NewName) -Value $($OldName)
+        Add-Member -InputObject `$_ -MemberType AliasProperty -Name $($NewName) -Value $($OldName)
 
 "@
         return $outputBlock
@@ -462,7 +468,15 @@ $($output)
     hidden [string] GetOutputTransformationCustom([DataMap] $Param){
         $outputBlock =@"
         $($Param.SpecialMapping)
-        `$response | Add-Member -MemberType ScriptProperty -Name $($Param.TargetName) -Value `$Value
+        Add-Member -InputObject `$_ -MemberType ScriptProperty -Name $($Param.TargetName) -Value `$Value
+
+"@
+        return $outputBlock
+    }
+
+    hidden [string] GetOutputTransformationFlatObject([DataMap] $Param){
+        $outputBlock =@"
+        Add-Member -InputObject `$_ -NotePropertyMembers `$_.$($Param.Name)
 
 "@
         return $outputBlock
