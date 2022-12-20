@@ -1,6 +1,7 @@
 BeforeAll {
-    Import-Module Microsoft.Graph.Compatibility.AzureAD
-    Get-Module -Name Microsoft.Graph.Compatibility.AzureAD
+    if((Get-Module -Name Microsoft.Graph.Compatibility.AzureAD) -eq $null){
+        Import-Module Microsoft.Graph.Compatibility.AzureAD
+    }
 }
 
 Describe 'PowerShell Version Check' {
@@ -24,11 +25,11 @@ Describe 'Module checks' {
 
     It 'Known number translated commands' {
         $module = Get-Module -Name Microsoft.Graph.Compatibility.AzureAD
-        $module.ExportedCommands.Keys.Count | Should -Be 140
+        $module.ExportedCommands.Keys.Count | Should -Be 160
     }
 
     It 'Known number of missing commands' {        
-        $MISSING_CMDS.Count | Should -Be 89
+        $MISSING_CMDS.Count | Should -Be 69
     }
 
     It 'Running a simple command Set-CompatADAlias'{
