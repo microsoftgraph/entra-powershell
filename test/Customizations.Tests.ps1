@@ -2,7 +2,7 @@ BeforeAll {
     . (join-path $psscriptroot "../src/CompatibilityAdapter.ps1")
 }
 
-Describe 'Customizations' {
+Describe 'Adding Customizations' {
     It 'Adding a valid customizations' {
         $mapper = [CompatibilityAdapterBuilder]::new()
         $custom = @{
@@ -44,5 +44,22 @@ Describe 'Customizations' {
             Outputs = $null
         }
         { $mapper.AddCustomization($custom) } | Should -Throw "*ConversionType*"
+    }
+}
+
+Describe 'Checking Files'{
+    BeforeAll {
+        $files = Get-ChildItem -Path ..\customizations\ -Filter '*.ps1'
+    }
+
+    It 'Checking naming conventios' {
+        $files | ForEach-Object {
+            $name = $_.Name.Replace(".ps1","")
+            if("Generic" -eq $name){
+                continue
+            }
+            $value = . $_.FullName
+            $name | Should -Be $value.SourceName 
+        }
     }
 }
