@@ -1,6 +1,7 @@
 BeforeAll {
-    Import-Module Microsoft.Graph.Compatibility.AzureAD
-    Get-Module -Name Microsoft.Graph.Compatibility.AzureAD
+    if((Get-Module -Name Microsoft.Graph.Compatibility.AzureAD) -eq $null){
+        Import-Module Microsoft.Graph.Compatibility.AzureAD
+    }
 }
 
 Describe 'PowerShell Version Check' {
