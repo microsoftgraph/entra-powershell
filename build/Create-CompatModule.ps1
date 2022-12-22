@@ -25,4 +25,3 @@ foreach($file in $AdditionalFunctions){
 
 $mapper.BuildModule()
 Create-ModuleFolder -OutputDirector $targetDirectory @nocleanArgument
-

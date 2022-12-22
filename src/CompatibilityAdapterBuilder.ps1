@@ -264,7 +264,7 @@ $OutputTransformations
     }
 
     hidden [string] GetParametersDefinitions([PSCustomObject] $Command) {
-        $commonParameterNames = @("Verbose", "Debug","ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable")  
+        $commonParameterNames = @("Verbose", "Debug","ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable","WhatIf","Confirm")  
         $params = $(Get-Command -Name $Command.Old).Parameters
         $paramsList = @()
         foreach ($paramKey in $Command.Parameters.Keys) {
@@ -594,7 +594,6 @@ $($output)
         $commonParameterNames = @("ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable")
         $sourceCmd = Get-Command -Name $Cmdlet.Old
         $targetCmd = Get-Command -Name $Cmdlet.New
-
         $paramsList = @{}
         foreach ($paramKey in $sourceCmd.Parameters.Keys) {
             $param = $sourceCmd.Parameters[$paramKey]
