@@ -2,6 +2,11 @@
 # Licensed under the MIT License.
 # https://aka.ms/yaml
 
+parameters:
+  - name: Sign
+    type: boolean
+    default: false
+
 steps:
 - task: powershell@2
   displayName: 'Show current PowerShell version information'
@@ -21,22 +26,45 @@ steps:
     targetType: inline
     script: ./build/Create-CompatModule.ps1 -Verbose
     pwsh: false
+- ${{ if eq(parameters.Sign, true) }}:
+  - template: ../common-templates/esrp/codesign.yml
+    parameters:
+      FolderPath: "bin"
+      Pattern: "*.psm1, *.psd1, *.format.ps1xml, *.ps1"
+  - task: PowerShell@2
+    displayName: "Validate Authenticode Signature"
+    inputs:
+      targetType: "inline"
+      pwsh: true
+      script: |
+        $ModulePsd1 = "bin/Microsoft.Graph.Compatibility.AzureAD.psd1"
+        $ModulePsm1 = "bin/Microsoft.Graph.Compatibility.AzureAD.psm1"
+        ($ModulePsd1 | Get-AuthenticodeSignature).Status | Should -Be "Valid"
+        ($ModulePsm1 | Get-AuthenticodeSignature).Status | Should -Be "Valid"
+- task: powershell@2
+  displayName: 'Create Module Files'
+  inputs:
+    targetType: inline
+    script: |
+      . ./build/common-functions.ps1
+      Create-ModuleFolder
+    pwsh: false
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Module Files'
   inputs:
     ArtifactName: 'Module Files'
-    PathtoPublish: 'bin'
+    PathtoPublish: 'bin'    
 - task: powershell@2
   displayName: 'Publish to Local Gallery'
   inputs:
     targetType: inline
-    script: ./build/Publish-LocalCompatModule.ps1 -Install
+    script: ./build/Publish-LocalCompatModule.ps1 -TargetDirectory $(Build.ArtifactStagingDirectory) -Install
     pwsh: false
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Module Nuget File'
   inputs:
     ArtifactName: 'Module Nuget'
-    PathtoPublish: '.psrepo'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
 - task: powershell@2
   displayName: 'Remove Build Folders'
   inputs:

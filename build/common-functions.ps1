@@ -60,13 +60,16 @@ function Remove-BuildDirectories {
     }
 }
 
-function Register-LocalGallery {
+function Register-LocalGallery($Path) {
     $repoPath = Get-DevRepoDirectory
+    if($Path){
+        $repoPath = $Path
+    }    
     if(!(Test-Path $repoPath)) {
         New-Item -Path $repoPath -ItemType Directory  | out-null
     }
 
-    Register-PSRepository -Name (Get-LocalPSRepoName) -SourceLocation (Get-DevRepoDirectory) -ScriptSourceLocation (Get-DevRepoDirectory) -InstallationPolicy Trusted | out-null
+    Register-PSRepository -Name (Get-LocalPSRepoName) -SourceLocation ($repoPath) -ScriptSourceLocation ($repoPath) -InstallationPolicy Trusted | out-null
 }
 
 function Unregister-LocalGallery {    

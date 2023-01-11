@@ -3,3 +3,4 @@
 /nuget
 /bin
 /.vscode
+/samples/test.ps1

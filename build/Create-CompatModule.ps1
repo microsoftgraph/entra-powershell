@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 [cmdletbinding()]
-param($targetDirectory = $null, [switch] $noclean)
+param($TargetDirectory = $null, [switch] $noclean)
 
 . (join-path $psscriptroot "/common-functions.ps1")
 . (join-path $psscriptroot "../src/CompatibilityAdapter.ps1")
@@ -24,4 +24,3 @@ foreach($file in $AdditionalFunctions){
 
 
 $mapper.BuildModule()
-Create-ModuleFolder -OutputDirector $targetDirectory @nocleanArgument
