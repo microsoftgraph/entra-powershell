@@ -15,4 +15,6 @@ stages:
   - job: Build
     displayName: Microsoft Graph Compatibility Adapter Build and Artifact Generations
     steps:
-      - template: ./build.yml
+      - template: ./generation-templates/generate_adapter.yml
+        parameters:
+          Sign: false

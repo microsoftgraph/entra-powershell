@@ -132,6 +132,7 @@ class CompatibilityAdapterBuilder {
             IconUri = $($content.iconUri)
             ReleaseNotes = $($content.releaseNotes)
             ExternalModuleDependencies = $($content.requiredModules)
+            Prerelease = $null
         }
         $manisfestPath = Join-Path $this.OutputFolder "$($this.ModuleName).psd1"
         $functions = $this.ModuleMap.CommandsList + "Set-CompatADAlias"
@@ -150,6 +151,10 @@ class CompatibilityAdapterBuilder {
             RequiredModules = $content.requiredModules
         }
         
+        if($null -ne $content.Prerelease){
+            $PSData.Prerelease = $content.Prerelease
+        }
+
         $this.LoadMessage = $this.LoadMessage.Replace("{VERSION}", $content.version)
         New-ModuleManifest @moduleSettings
         Update-ModuleManifest -Path $manisfestPath -PrivateData $PSData
