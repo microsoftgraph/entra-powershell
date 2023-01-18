@@ -16,7 +16,7 @@
     ],
     "copyright": "© Microsoft Corporation. All rights reserved.",
     "licenseUri": "https://aka.ms/devservicesagreement",
-    "projectUri": "https://github.com/microsoftgraph/msgraph-sdk-powershell",
+    "projectUri": " https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread",
     "iconUri": "https://raw.githubusercontent.com/microsoftgraph/msgraph-sdk-powershell/master/documentation/images/graph_color256.png",
     "tags": [
       "MicrosoftGraph",
@@ -27,6 +27,6 @@
       "AzureAutomationNotSupported",
       "PSModule"
     ],
-    "releaseNotes": "See https://aka.ms/GraphPowerShell-Release.",
+    "releaseNotes": "See  https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread.",
     "version": "0.0.1"
   }
