@@ -1,8 +1,8 @@
 # Microsoft Graph Compatibility Adapter for AzureAD PowerShell
 
-Microsoft Graph Compatibility AzureAD is a collection of commands that emulates the legacy AzureAD PowerShell Commands. Using the new [Microsoft Graph PowerShell SDK](https://github.com/microsoftgraph/msgraph-sdk-powershell) to make the calls to [Microsoft Graph](http://microsoft.graph.com).
+Microsoft Graph Compatibility AzureAD is a collection of cmdlets that emulate the legacy AzureAD PowerShell cmdlets. It uses the [Microsoft Graph PowerShell SDK](https://github.com/microsoftgraph/msgraph-sdk-powershell) to make the calls to [Microsoft Graph](http://microsoft.graph.com).
 
-The intent of this module is provide AzureAD PowerShell Users a path to start their migration to new Microsoft Graph PowerShell SDK. Comands are create with different names that AzureAD ones to avoid name collisions.
+The purpose of this module is to provide AzureAD PowerShell users with a tool to support their migration to the Microsoft Graph PowerShell SDK. The adpater cmdlets have different names to those of the Azure AD PowerShell ones to avoid name collisions.
 
 **This module is under development NOT READY for Production dependency.**
 
