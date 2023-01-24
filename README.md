@@ -13,8 +13,8 @@ This module provides Azure AD PowerShell users with a tool to support their migr
 Please refer to [local building and installing guide](https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread/blob/main/build/BUILD.md).
 
 ### PowerShell Gallery
-[![PSGallery Version](https://img.shields.io/powershellgallery/v/Microsoft.Graph.Compatibility.AzureAD)](https://www.powershellgallery.com/packages/Microsoft.Graph.Compatibility.AzureAD) 
-[![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/Microsoft.Graph.Compatibility.AzureAD)](https://www.powershellgallery.com/packages/Microsoft.Graph.Compatibility.AzureAD)
+[![PSGallery Version](https://img.shields.io/powershellgallery/v/Microsoft.Graph.Compatibility.AzureAD.svg?style=flat&logo=powershell&label=PSGallery%20Version))](https://www.powershellgallery.com/packages/Microsoft.Graph.Compatibility.AzureAD) 
+[![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/Microsoft.Graph.Compatibility.AzureAD.svg?style=flat&logo=powershell&label=PSGallery%20Downloads)](https://www.powershellgallery.com/packages/Microsoft.Graph.Compatibility.AzureAD)
 
 All the modules are published on [PowerShell Gallery](https://www.powershellgallery.com/packages/Microsoft.Graph.Compatibility.AzureAD). Installing is as simple as:
 
@@ -96,10 +96,11 @@ You can use the compatibility adapter to test an AzureAD PowerShell module based
 Test-CompatADScript -Script .\Export_secrets_and_certificates_for_app_registrations.ps1
 ```
 
-If the script is compatible you won't see any output, although you can use ```$?``` to display that true was returned. If the script isn't compatible then you will see a warning with details of the problem cmdlet(s). Example:
+If the script is compatible you won't see any output, although you can use ```$?``` to display that True was returned. If the script isn't compatible then you will see a warning with details of the problem cmdlet(s). Example:
 
 ```powershell
 Test-CompatADScript -Script .\Export_secrets_and_certificates_for_app_registrations.ps1
+
 WARNING: Command Get-AzureADApplicationKeyCredential is not supported
 WARNING: Script contains commands that are not supported by the compatibility adapter.
 ```
