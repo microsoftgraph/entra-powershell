@@ -96,7 +96,7 @@ You can use the compatibility adapter to test an AzureAD PowerShell module based
 Test-CompatADScript -Script .\Export_secrets_and_certificates_for_app_registrations.ps1
 ```
 
-If the script is compatible you won't see any output, although you can use $? to display that true was returned. If the script isn't compatible then you will see a warning with details of the problem cmdlet(s). Example:
+If the script is compatible you won't see any output, although you can use ```powershell$?``` to display that true was returned. If the script isn't compatible then you will see a warning with details of the problem cmdlet(s). Example:
 
 ```powershell
 Test-CompatADScript -Script .\Export_secrets_and_certificates_for_app_registrations.ps1
