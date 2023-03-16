@@ -61,33 +61,44 @@ class CompatibilityAdapterBuilder {
         foreach($cmd in $Commands) {
             $parameters = $null
             $outputs = $null
-            if($cmd.Parameters){
-                $parameters = @{}
-                foreach($param in $cmd.Parameters){
-                    if($null -eq $cmd.SourceName) {
-                        $this.GenericParametersTransformations.Add($param.SourceName, [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping)))
-                    }
-                    else{
+            if($null -ne $cmd.TargetName){
+                if($cmd.Parameters){
+                    $parameters = @{}
+                    foreach($param in $cmd.Parameters){
                         $parameters.Add($param.SourceName, [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping)))
                     }
                 }
-            }
-            
-            if($cmd.Outputs){
-                $outputs = @{}
-                foreach($param in $cmd.Outputs){
-                    if($null -eq $cmd.SourceName) {
-                        $this.GenericOutputTransformations.Add($param.SourceName, [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping)))
-                    }
-                    else{
+                
+                if($cmd.Outputs){
+                    $outputs = @{}
+                    foreach($param in $cmd.Outputs){
                         $outputs.Add($param.SourceName, [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping)))
                     }
                 }
-            }
 
-            if($null -ne $cmd.SourceName) {
                 $customCommand = [CommandMap]::New($cmd.SourceName,$cmd.TargetName, $parameters, $outputs)
                 $this.CmdCustomizations.Add($cmd.SourceName, $customCommand)
+            }
+            else {
+                if($cmd.Parameters){
+                    $parameters = @{}
+                    foreach($param in $cmd.Parameters){
+                        $this.GenericParametersTransformations.Add($param.SourceName, [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping)))
+                    }
+                }
+                
+                if($cmd.Outputs){
+                    $outputs = @{}
+                    foreach($param in $cmd.Outputs){
+                        $this.GenericOutputTransformations.Add($param.SourceName, [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping)))
+                    }
+                }
+
+                if($null -ne $cmd.SourceName) {
+                    $scriptBlock = [Scriptblock]::Create($cmd.CustomScript)
+                    $customCommand = [CommandMap]::New($cmd.SourceName, $scriptBlock)
+                    $this.CmdCustomizations.Add($cmd.SourceName, $customCommand)
+                }
             }
         }
     }
@@ -232,9 +243,33 @@ Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList 
     hidden [CommandTranslation[]] NewModuleMap([PSCustomObject[]] $Commands) {
         [CommandTranslation[]] $translations = @()
         foreach($Command in $Commands){
-            $translations += $this.NewFunctionMap($Command)
+            if('' -eq $command.New){
+                $translations += $this.NewCustomFunctionMap($Command)
+            }
+            else {
+                $translations += $this.NewFunctionMap($Command)
+            }            
         }
         return $translations
+    }
+
+    hidden [CommandTranslation] NewCustomFunctionMap([PSCustomObject] $Command){
+        $parameterDefinitions = $this.GetParametersDefinitions($Command)
+        $ParamterTransformations = $this.GetParametersTransformations($Command)
+        $OutputTransformations = $this.GetOutputTransformations($Command)
+        $function = @"
+function $($Command.Generate) {
+    [CmdletBinding($($Command.DefaultParameterSet))]
+    param (
+$parameterDefinitions
+    )
+
+$($Command.CustomScript)    
+}
+
+"@
+        $codeBlock = [Scriptblock]::Create($function)
+        return [CommandTranslation]::New($Command.Generate,$Command.Old,$codeBlock)
     }
 
     hidden [CommandTranslation] NewFunctionMap([PSCustomObject] $Command){
@@ -562,7 +597,7 @@ $($output)
                 }
             }
         }
-
+      
         if($null -ne $targetCmd){
             if($SourceCmdlet.Prefix.contains('MS')){
                 $Prefix = $NewPrefix  + 'MS'
@@ -577,6 +612,10 @@ $($output)
                 Verb = $SourceCmdlet.Verb
                 Parameters = $null
                 DefaultParameterSet = ""
+                CustomScript = $null
+            }
+            if('' -eq $targetCmd){
+                $cmd.CustomScript = $this.CmdCustomizations[$SourceCmdName].CustomScript
             }
             $cmd.Parameters = $this.GetCmdletParameters($cmd)
             $defaulParam = $this.GetDefaultParameterSet($SourceCmdName)
@@ -598,7 +637,11 @@ $($output)
         $SystemDebug = @("Verbose", "Debug")
         $commonParameterNames = @("ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable")
         $sourceCmd = Get-Command -Name $Cmdlet.Old
-        $targetCmd = Get-Command -Name $Cmdlet.New
+        $targetCmd = $null
+        if('' -ne $Cmdlet.New){
+            $targetCmd = Get-Command -Name $Cmdlet.New                
+        } 
+
         $paramsList = @{}
         foreach ($paramKey in $sourceCmd.Parameters.Keys) {
             $param = $sourceCmd.Parameters[$paramKey]
@@ -608,6 +651,11 @@ $($output)
                 $custom = $this.CmdCustomizations[$Cmdlet.Old]
                 if(($null -ne $custom.Parameters) -and ($custom.Parameters.contains($param.Name))){
                     $paramsList.Add($param.Name, $custom.Parameters[$param.Name])
+                    continue
+                }
+                if($custom.SpecialMapping) {
+                    $paramObj.SetNone() 
+                    $paramsList.Add($param.Name, $paramObj)
                     continue
                 }
             }
