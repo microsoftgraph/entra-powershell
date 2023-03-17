@@ -29,5 +29,5 @@
     ],
     "releaseNotes": "See  https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread.",
     "version": "0.1.0",
-    "Prerelease": "preview"
+    "Prerelease": "preview2"
   }
