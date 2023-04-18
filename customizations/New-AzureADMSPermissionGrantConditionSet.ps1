@@ -40,7 +40,7 @@
         }
         if(`$null -ne `$PSBoundParameters["PolicyId"])
         {
-            `$params["Id"] = `$PSBoundParameters["PolicyId"]
+            `$params["PermissionGrantPolicyId"] = `$PSBoundParameters["PolicyId"]
         }
         if(`$null -ne `$PSBoundParameters["ConditionSetType"])
         {
@@ -61,7 +61,7 @@
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        Write-Debug("=========================================================================``n")
         
 
         if("`$conditionalSet" -eq "includes"){

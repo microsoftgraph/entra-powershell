@@ -31,7 +31,7 @@
 
     Write-Debug("============================ TRANSFORMATIONS ============================")
     $`params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-    Write-Debug("=========================================================================`n")
+    Write-Debug("=========================================================================``n")
     
     if("`$conditionalSet" -eq "includes"){
         `$response = Get-MgPolicyPermissionGrantPolicyInclude @params
