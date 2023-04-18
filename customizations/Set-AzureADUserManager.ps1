@@ -4,6 +4,15 @@
 @{
     SourceName = "Set-AzureADUserManager"
     TargetName = "Set-MgUserManagerByRef"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "RefObjectId"
+            TargetName = "BodyParameter"
+            ConversionType = "ScriptBlock"
+            SpecialMapping = @"
+`$Value = @{ "@odata.id" = "https://graph.microsoft.com/v1.0/users/`$TmpValue"}
+"@
+        }
+    )
     Outputs = $null
 }
