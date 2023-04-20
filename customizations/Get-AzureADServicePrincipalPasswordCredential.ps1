@@ -7,6 +7,6 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @"
-    (MgServicePrincipal ServicePrincipalId `$PSBoundParameters["ObjectId"]).PasswordCredentials
+    (Get-MgServicePrincipal ServicePrincipalId `$PSBoundParameters["ObjectId"]).PasswordCredentials
 "@
 }
