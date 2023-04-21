@@ -4,6 +4,15 @@
 @{
     SourceName = "Add-AzureADDeviceRegisteredOwner"
     TargetName = "New-MgDeviceRegisteredOwnerByRef"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "RefObjectId"
+            TargetName = "BodyParameter"
+            ConversionType = "ScriptBlock"
+            SpecialMapping = @"
+`$Value = @{ "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/`$TmpValue"}
+"@
+        }
+    )
     Outputs = $null
 }
