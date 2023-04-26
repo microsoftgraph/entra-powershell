@@ -23,11 +23,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================``n")
                 
-        `$response = Revoke-MgUserSignInSession @params
-        `$response | ForEach-Object {
-            Add-Member -InputObject `$_ -MemberType AliasProperty -Name ObjectId -Value Id
-    
-        }
+        `$response = Revoke-MgUserSignInSession @params        
         `$response
         }
 "@
