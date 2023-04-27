@@ -8,7 +8,6 @@ param($TargetDirectory = $null, [switch] $noclean)
 . (join-path $psscriptroot "../src/CompatibilityAdapter.ps1")
 
 Remove-BuildDirectories
-$nocleanArgument = @{noclean=$noclean}
 $mapper = [CompatibilityAdapterBuilder]::new()
 
 $customizationFiles = Get-CustomizationFiles
@@ -21,6 +20,5 @@ $AdditionalFunctions = Get-CustomizationFiles -Directory 'AdditionalFunctions'
 foreach($file in $AdditionalFunctions){
     $mapper.AddHelperCommand($file)
 }
-
 
 $mapper.BuildModule()

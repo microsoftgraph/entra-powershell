@@ -53,7 +53,8 @@ class CompatibilityAdapterBuilder {
     # Generates the module then generates all the files required to create the module.
     BuildModule() {
         $this.WriteModuleFile()   
-        $this.WriteModuleManifest()     
+        $this.CopyLecacyFiles()
+        $this.WriteModuleManifest()             
     }
     
         # Add customization based on the the CommandMap object.
@@ -134,7 +135,7 @@ class CompatibilityAdapterBuilder {
     hidden WriteModuleManifest() {
         $settingPath = "../config/ModuleMetadata.json"
         $settingPath = Join-Path $PSScriptRoot $settingPath
-        $files = @("$($this.ModuleName).psd1", "$($this.ModuleName).psm1")
+        $files = @("$($this.ModuleName).psd1", "$($this.ModuleName).psm1","Microsoft.Open.AzureAD16.Graph.Client.dll","Microsoft.Open.MS.GraphV10.Client.dll","Rhino.Mocks.dll")
         $content = Get-Content -Path $settingPath | ConvertFrom-Json
         $PSData = @{
             Tags = $($content.tags)
@@ -160,6 +161,7 @@ class CompatibilityAdapterBuilder {
             PowerShellVersion = $([System.Version]::Parse('5.1'))
             CompatiblePSEditions = @('Desktop','Core')
             RequiredModules = $content.requiredModules
+            NestedModules = @("Microsoft.Open.AzureAD16.Graph.Client.dll","Microsoft.Open.MS.GraphV10.Client.dll")
         }
         
         if($null -ne $content.Prerelease){
@@ -169,6 +171,14 @@ class CompatibilityAdapterBuilder {
         $this.LoadMessage = $this.LoadMessage.Replace("{VERSION}", $content.version)
         New-ModuleManifest @moduleSettings
         Update-ModuleManifest -Path $manisfestPath -PrivateData $PSData
+    }
+
+    hidden CopyLecacyFiles(){
+        $legacyPath = "../legacy/*.*"
+        $path = Join-Path $PSScriptRoot $legacyPath
+        Write-Host $path
+        Write-Host $this.OutputFolder
+        Copy-Item -Path $path -Destination $this.OutputFolder
     }
 
     # Creates the ModuleMap object, this is mainly used by other methods but can be called when debugging or finding missing cmdlets
