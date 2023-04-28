@@ -29,6 +29,13 @@ class CompatibilityAdapterBuilder {
         $this.Configure($ModuleSettingsPath)
     }
 
+    CompatibilityAdapterBuilder([bool] $notRunningUT = $false){
+        if($notRunningUT)
+        {
+            $this.Configure("../config/ModuleSettings.json")
+        }                
+    }
+
     hidden Configure([string] $ModuleSettingsPath){
         $settingPath = Join-Path $PSScriptRoot $ModuleSettingsPath
         $content = Get-Content -Path $settingPath | ConvertFrom-Json
