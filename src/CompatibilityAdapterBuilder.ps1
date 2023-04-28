@@ -176,8 +176,6 @@ class CompatibilityAdapterBuilder {
     hidden CopyLecacyFiles(){
         $legacyPath = "../legacy/*.*"
         $path = Join-Path $PSScriptRoot $legacyPath
-        Write-Host $path
-        Write-Host $this.OutputFolder
         Copy-Item -Path $path -Destination $this.OutputFolder
     }
 

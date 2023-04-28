@@ -33,23 +33,22 @@
         Write-Debug("=========================================================================``n")
         
         `$responseData = Get-MgOrganizationCertificateBasedAuthConfiguration @params
-        `$response = `$responseData.CertificateAuthorities
-        `$getType = {            
-            if(`$this.IsRootAuthority){
-                "RootAuthority"
+        `$response= @()
+        `$responseData.CertificateAuthorities | ForEach-Object {
+            `$data = @{
+                AuthorityType = "IntermediateAuthority"
+                TrustedCertificate = `$_.Certificate
+                CrlDistributionPoint = `$_.CertificateRevocationListUrl
+                DeltaCrlDistributionPoint = `$_.DeltaCertificateRevocationListUrl
+                TrustedIssuer = `$_.Issuer
+                TrustedIssuerSki = `$_.IssuerSki   
             }
-            else
-            {
-                "IntermediateAuthority"
-            }            
-        }
-        `$response | ForEach-Object {
-            Add-Member -InputObject `$_ -MemberType ScriptProperty -Name AuthorityType -Value `$getType
-            Add-Member -InputObject `$_ -MemberType AliasProperty -Name TrustedCertificate -Value Certificate
-            Add-Member -InputObject `$_ -MemberType AliasProperty -Name CrlDistributionPoint -Value CertificateRevocationListUrl
-            Add-Member -InputObject `$_ -MemberType AliasProperty -Name DeltaCrlDistributionPoint -Value DeltaCertificateRevocationListUrl
-            Add-Member -InputObject `$_ -MemberType AliasProperty -Name TrustedIssuer -Value Issuer
-            Add-Member -InputObject `$_ -MemberType AliasProperty -Name TrustedIssuerSki -Value IssuerSki
+            
+            if(`$_.IsRootAuthority){
+                `$data.AuthorityType = "RootAuthority"
+            }
+            `$dataJson = ConvertTo-Json `$data
+            `$response += [Newtonsoft.Json.JsonConvert]::DeserializeObject(`$dataJson, [Microsoft.Open.AzureAD.Model.CertificateAuthorityInformation])
         }
         `$response
         }
