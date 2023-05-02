@@ -7,7 +7,7 @@ BeforeAll {
 
 Describe 'Adding Customizations' {
     It 'Adding a valid customizations' {
-        $mapper = [CompatibilityAdapterBuilder]::new()
+        $mapper = [CompatibilityAdapterBuilder]::new($false)
         $custom = @{
             SourceName = "ADTest"
             TargetName = "MgTest"
@@ -32,7 +32,7 @@ Describe 'Adding Customizations' {
     }
 
     It 'Adding a invalid customizations' {
-        $mapper = [CompatibilityAdapterBuilder]::new()
+        $mapper = [CompatibilityAdapterBuilder]::new($false)
         $custom = @{
             SourceName = "ADTest"
             TargetName = "MgTest"
