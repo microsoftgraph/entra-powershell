@@ -129,6 +129,8 @@ class CompatibilityAdapterBuilder {
             $psm1FileContent += $cmd.CommandBlock
         }
 
+        $psm1FileContent += $this.GetUnsupportedCommand()
+
         $psm1FileContent += $this.GetAlisesFunction()        
         foreach($function in $this.HelperCmdletsToExport.GetEnumerator()){
             $psm1FileContent += $function.Value
@@ -154,7 +156,7 @@ class CompatibilityAdapterBuilder {
             Prerelease = $null
         }
         $manisfestPath = Join-Path $this.OutputFolder "$($this.ModuleName).psd1"
-        $functions = $this.ModuleMap.CommandsList + "Set-CompatADAlias"
+        $functions = $this.ModuleMap.CommandsList + "Set-CompatADAlias" + "Get-CompatADUnsupportedCommand"
         $moduleSettings = @{
             Path = $manisfestPath
             ModuleVersion = "$($content.version)"
@@ -218,11 +220,25 @@ class CompatibilityAdapterBuilder {
         return $this.ModuleMap
     }    
 
+    hidden [scriptblock] GetUnsupportedCommand(){
+        $unsupported = @"
+function Get-CompatADUnsupportedCommand {
+    Throw [System.NotSupportedException] "This commands is currently not supported by the Microsoft Graph Compatibility Adapter."
+}
+
+"@
+
+        return [scriptblock]::Create($unsupported)
+    }
+
     hidden [scriptblock] GetAlisesFunction() {
         if($this.ModuleMap){
             $aliases = ''
             foreach ($func in $this.ModuleMap.Commands) {       
                 $aliases += "   Set-Alias -Name $($func.SourceName) -Value $($func.Name) -Scope Global -Force`n"
+            }
+            foreach ($func in $this.MissingCommandsToMap) {
+                $aliases += "   Set-Alias -Name $($func) -Value Get-CompatADUnsupportedCommand -Scope Global -Force`n"
             }
     $aliasFunction = @"
 function Set-CompatADAlias {
@@ -237,8 +253,10 @@ $($aliases)}
 
     hidden [scriptblock] GetExportMemeber() {
         $CommandsToExport = $this.ModuleMap.CommandsList
+        $CommandsToExport += "Get-CompatADUnsupportedCommand"
         $CommandsToExport += "Set-CompatADAlias"
         $functionsToExport = @"
+
 Export-ModuleMember -Function @(
     '$($CommandsToExport -Join "','")'
 )
