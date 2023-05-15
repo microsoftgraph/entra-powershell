@@ -1,7 +1,7 @@
 {
     "sourceModule" : "AzureAD",
     "moduleName" : "Microsoft.Graph.Compatibility.AzureAD",
-    "newPrefix" : "CompatAD",
+    "newPrefix" : "Entra",
     "destinationModuleName" : [
       "Microsoft.Graph.Users",
       "Microsoft.Graph.Users.Actions", 

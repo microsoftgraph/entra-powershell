@@ -32,8 +32,8 @@ Describe 'Module checks' {
         $MISSING_CMDS.Count | Should -Be 20
     }
 
-    It 'Running a simple command Set-CompatADAlias'{
-        Set-CompatADAlias
+    It 'Running a simple command Set-EntraAlias'{
+        Set-EntraAlias
         $Alias = Get-Alias -Name Get-AzureADUser
         $Alias | Should -Not -Be $null
     }

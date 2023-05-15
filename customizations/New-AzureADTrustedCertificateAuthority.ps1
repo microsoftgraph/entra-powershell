@@ -23,7 +23,7 @@
         
         `$newCert = `$PSBoundParameters["CertificateAuthorityInformation"]
         `$previusCerts = @()        
-        Get-CompatADTrustedCertificateAuthority | ForEach-Object {
+        Get-EntraTrustedCertificateAuthority | ForEach-Object {
             `$previusCerts += `$_
             if((`$_.TrustedIssuer -eq `$newCert.TrustedIssuer) -and (`$_.TrustedIssuerSki -eq `$newCert.TrustedIssuerSki)){
                 Throw [System.Management.Automation.PSArgumentException] "A certificate already exists on the server with associated trustedIssuer and trustedIssuerSki fields."

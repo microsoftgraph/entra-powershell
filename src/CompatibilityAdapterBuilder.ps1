@@ -156,7 +156,7 @@ class CompatibilityAdapterBuilder {
             Prerelease = $null
         }
         $manisfestPath = Join-Path $this.OutputFolder "$($this.ModuleName).psd1"
-        $functions = $this.ModuleMap.CommandsList + "Set-CompatADAlias" + "Get-CompatADUnsupportedCommand"
+        $functions = $this.ModuleMap.CommandsList + "Set-EntraAlias" + "Get-EntraUnsupportedCommand"
         $moduleSettings = @{
             Path = $manisfestPath
             ModuleVersion = "$($content.version)"
@@ -222,7 +222,7 @@ class CompatibilityAdapterBuilder {
 
     hidden [scriptblock] GetUnsupportedCommand(){
         $unsupported = @"
-function Get-CompatADUnsupportedCommand {
+function Get-EntraUnsupportedCommand {
     Throw [System.NotSupportedException] "This commands is currently not supported by the Microsoft Graph Compatibility Adapter."
 }
 
@@ -238,10 +238,10 @@ function Get-CompatADUnsupportedCommand {
                 $aliases += "   Set-Alias -Name $($func.SourceName) -Value $($func.Name) -Scope Global -Force`n"
             }
             foreach ($func in $this.MissingCommandsToMap) {
-                $aliases += "   Set-Alias -Name $($func) -Value Get-CompatADUnsupportedCommand -Scope Global -Force`n"
+                $aliases += "   Set-Alias -Name $($func) -Value Get-EntraUnsupportedCommand -Scope Global -Force`n"
             }
     $aliasFunction = @"
-function Set-CompatADAlias {
+function Set-EntraAlias {
 $($aliases)}
 
 "@
@@ -253,8 +253,8 @@ $($aliases)}
 
     hidden [scriptblock] GetExportMemeber() {
         $CommandsToExport = $this.ModuleMap.CommandsList
-        $CommandsToExport += "Get-CompatADUnsupportedCommand"
-        $CommandsToExport += "Set-CompatADAlias"
+        $CommandsToExport += "Get-EntraUnsupportedCommand"
+        $CommandsToExport += "Set-EntraAlias"
         $functionsToExport = @"
 
 Export-ModuleMember -Function @(

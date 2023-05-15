@@ -6,9 +6,9 @@ In order to add a functions just add the ps1 file into the folder for the functi
 
 Unit test will validate that the file name and the generated function are the same.
 
-Example. You can check `Test-CompatADScript` as a reference of a working function
+Example. You can check `Test-EntraScript` as a reference of a working function
 
 ```PowerShell
 Import-Module Microsoft.Graph.Compatibility.AzureAD
-Test-CompatADScript ".\MyScript"
+Test-EntraScript ".\MyScript"
 ```

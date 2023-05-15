@@ -68,7 +68,7 @@ Describe 'Checking Files'{
     It 'Checking that customizations produce commands' {
         $files | ForEach-Object {
             $name = $_.Name.Replace(".ps1","")
-            $name = $name.Replace("AzureAD","CompatAD")
+            $name = $name.Replace("AzureAD","Entra")
             if("Generic" -ne $name){
                 $module = Get-Module Microsoft.Graph.Compatibility.AzureAD
                 $module.ExportedCommands.ContainsKey($name) | Should -BeTrue
