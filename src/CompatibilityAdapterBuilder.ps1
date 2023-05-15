@@ -47,7 +47,7 @@ class CompatibilityAdapterBuilder {
         $this.ModuleName = $content.moduleName
         Import-Module $this.SourceModuleName | Out-Null
         foreach ($moduleName in $this.DestinationModuleName){
-            Import-Module $moduleName | Out-Null
+            Import-Module $moduleName -RequiredVersion $content.destinationModuleVersion | Out-Null
         }
 
         if(!(Test-Path $this.OutputFolder)){
@@ -157,6 +157,10 @@ class CompatibilityAdapterBuilder {
         }
         $manisfestPath = Join-Path $this.OutputFolder "$($this.ModuleName).psd1"
         $functions = $this.ModuleMap.CommandsList + "Set-EntraAlias" + "Get-EntraUnsupportedCommand"
+        $requiredModules = @()
+        foreach($module in $content.requiredModules){
+            $requiredModules += @{ModuleName = $module; ModuleVersion = $content.requiredModulesVersion}
+        }
         $moduleSettings = @{
             Path = $manisfestPath
             ModuleVersion = "$($content.version)"
@@ -169,7 +173,7 @@ class CompatibilityAdapterBuilder {
             DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2')) 
             PowerShellVersion = $([System.Version]::Parse('5.1'))
             CompatiblePSEditions = @('Desktop','Core')
-            RequiredModules = $content.requiredModules
+            RequiredModules =  $requiredModules
             NestedModules = @("Microsoft.Open.AzureAD16.Graph.Client.dll","Microsoft.Open.MS.GraphV10.Client.dll")
         }
         
