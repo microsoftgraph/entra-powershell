@@ -30,6 +30,7 @@ Generated module will be in the output folder `./bin/modules`
 If you want to test the generated version you can use this command
 
 ```powershell
+Create-ModuleFolder
 .\build\Publish-LocalCompatModule.ps1 -Clean -Install
 ```
 
