@@ -4,6 +4,13 @@
 @{
     SourceName = "Get-AzureADMSNamedLocationPolicy"
     TargetName = "Get-MgIdentityConditionalAccessNamedLocation"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "PolicyId"
+            TargetName = "NamedLocationId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
     Outputs = $null
 }
