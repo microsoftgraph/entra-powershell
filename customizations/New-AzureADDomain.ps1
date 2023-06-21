@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "Get-AzureADMSNamedLocationPolicy"
-    TargetName = "Get-MgIdentityConditionalAccessNamedLocation"
+    SourceName = "New-AzureADDomain"
+    TargetName = "New-MgDomain"
     Parameters = @(
         @{
-            SourceName = "PolicyId"
-            TargetName = "NamedLocationId"
+            SourceName = "Name"
+            TargetName = "DomainId"
             ConversionType = "Name"
             SpecialMapping = $null
         }

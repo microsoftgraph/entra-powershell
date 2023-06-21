@@ -2,15 +2,15 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "Get-AzureADMSNamedLocationPolicy"
-    TargetName = "Get-MgIdentityConditionalAccessNamedLocation"
-    Parameters = @(
+    SourceName = "Get-AzureADDirectoryRoleMember"
+    TargetName = "Get-MgDirectoryRoleMember"
+    Parameters = $null
+    Outputs = @(
         @{
-            SourceName = "PolicyId"
-            TargetName = "NamedLocationId"
-            ConversionType = "Name"
+            SourceName = "AdditionalProperties"
+            TargetName = "AdditionalProperties"
+            ConversionType = "FlatObject"
             SpecialMapping = $null
         }
     )
-    Outputs = $null
 }
