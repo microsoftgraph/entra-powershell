@@ -7,7 +7,7 @@
     Parameters = @(
         @{
             SourceName = "Name"
-            TargetName = "DomainId"
+            TargetName = "Id"
             ConversionType = "Name"
             SpecialMapping = $null
         }
