@@ -526,7 +526,9 @@ $OutputTransformations
         if("" -ne $output){
             $transform = @"
     `$response | ForEach-Object {
+        if(`$null -ne `$_) {
 $($output)
+        }
     }
 "@
             return $transform
