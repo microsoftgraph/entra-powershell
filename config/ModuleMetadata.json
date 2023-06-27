@@ -28,6 +28,6 @@
       "PSModule"
     ],
     "releaseNotes": "See https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread.",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "Prerelease": "preview"
   }
