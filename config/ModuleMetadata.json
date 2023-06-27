@@ -25,7 +25,6 @@
       "Graph",
       "PowerShell",
       "AzureAD",
-      "AzureAutomationNotSupported",
       "PSModule"
     ],
     "releaseNotes": "See https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread.",
