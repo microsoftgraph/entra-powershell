@@ -15,6 +15,7 @@ class CompatibilityAdapterBuilder {
     hidden [hashtable] $GenericParametersTransformations = @{}
     hidden [hashtable] $GenericOutputTransformations = @{}
     hidden [string] $OutputFolder = (join-path $PSScriptRoot '../bin')
+    hidden [string] $HelpFolder = (join-path $PSScriptRoot '../help')
     hidden [MappedCmdCollection] $ModuleMap = $null
     hidden [bool] $GenerateCommandsToMapData
     hidden [hashtable] $HelperCmdletsToExport = @{}
@@ -61,6 +62,7 @@ class CompatibilityAdapterBuilder {
     BuildModule() {
         $this.WriteModuleFile()   
         $this.CopyLecacyFiles()
+        $this.GenerateHelpFiles()
         $this.WriteModuleManifest()             
     }
     
@@ -118,6 +120,38 @@ class CompatibilityAdapterBuilder {
             $this.HelperCmdletsToExport.Add($name, $(Get-Content -Path $FileName) -join "`n")
         }
     }
+
+    hidden GenerateHelpFiles() {
+        $helpPath = Join-Path $this.OutputFolder "$($this.ModuleName)-Help.xml"
+        $this.GetHelpHeader() | Set-Content -Path $helpPath
+        $this.GetHelpCommandsFromFiles($helpPath)
+        $this.GetHelpFooter() | Add-Content -Path $helpPath
+    }
+
+    hidden [string] GetHelpHeader() {
+        $helpHeader = @"
+<?xml version="1.0" encoding="utf-8"?>
+<helpItems schema="maml" xmlns="http://msh">
+"@
+        return $helpHeader
+    }
+
+    hidden [string] GetHelpCommandsFromFiles($filePath) {
+        $helpCommands = ""  
+        $replacePrefix = "-" + $this.NewPrefix
+        $oldPrefix = "-AzureAD"
+        foreach($file in Get-ChildItem -Path $this.HelpFolder -Filter "*.xml") {
+            (Get-Content $file.FullName | Select-Object -Skip 2 | Select-Object -SkipLast 1).Replace($oldPrefix,$replacePrefix) | Add-Content -Path $filePath
+        }
+        return $helpCommands
+    }
+
+    hidden [string] GetHelpFooter() {
+        $helpHeader = @"
+</helpItems>
+"@
+        return $helpHeader
+    }
     
     hidden WriteModuleFile() {       
         $filePath = Join-Path $this.OutputFolder "$($this.ModuleName).psm1"
@@ -144,7 +178,7 @@ class CompatibilityAdapterBuilder {
     hidden WriteModuleManifest() {
         $settingPath = "../config/ModuleMetadata.json"
         $settingPath = Join-Path $PSScriptRoot $settingPath
-        $files = @("$($this.ModuleName).psd1", "$($this.ModuleName).psm1","Microsoft.Open.AzureAD16.Graph.Client.dll","Microsoft.Open.MS.GraphV10.Client.dll","Rhino.Mocks.dll")
+        $files = @("$($this.ModuleName).psd1", "$($this.ModuleName).psm1", "$($this.ModuleName)-Help.xml","Microsoft.Open.AzureAD16.Graph.Client.dll","Microsoft.Open.MS.GraphV10.Client.dll","Rhino.Mocks.dll")
         $content = Get-Content -Path $settingPath | ConvertFrom-Json
         $PSData = @{
             Tags = $($content.tags)
