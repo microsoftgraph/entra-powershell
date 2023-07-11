@@ -3,6 +3,7 @@
     "moduleName" : "Microsoft.Graph.Compatibility.AzureAD",
     "newPrefix" : "CompatAD",
     "destinationModuleName" : [
+      "Microsoft.Graph.DirectoryObjects",
       "Microsoft.Graph.Users",
       "Microsoft.Graph.Users.Actions", 
       "Microsoft.Graph.Users.Functions", 
@@ -12,7 +13,7 @@
       "Microsoft.Graph.Identity.SignIns",
       "Microsoft.Graph.Applications"
     ],
-    "destinationModuleVersion": "1.27.0",
+    "destinationModuleVersion": "2.0.0",
     "sourceModulePrefix" : ["AzureADMS","AzureAD"],
     "destinationPrefix" : ["Mg"],
     "loadMessage": ""
