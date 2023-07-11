@@ -16,5 +16,5 @@ Install-Module $content.sourceModule -scope currentuser -Force
 
 foreach ($moduleName in $content.destinationModuleName){
     Write-Verbose("Installing Module $($moduleName)")
-    Install-Module $moduleName -scope currentuser -RequiredVersion $content.destinationModuleVersion -Force
+    Install-Module $moduleName -scope currentuser -RequiredVersion $content.destinationModuleVersion -Force -AllowClobber
 }

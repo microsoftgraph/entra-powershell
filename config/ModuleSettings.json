@@ -3,6 +3,7 @@
     "moduleName" : "Microsoft.Graph.Compatibility.AzureAD",
     "newPrefix" : "CompatAD",
     "destinationModuleName" : [
+      "Microsoft.Graph.DirectoryObjects",
       "Microsoft.Graph.Users",
       "Microsoft.Graph.Users.Actions", 
       "Microsoft.Graph.Users.Functions", 
