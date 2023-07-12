@@ -8,6 +8,10 @@ This module provides Azure AD PowerShell users with a tool to support their migr
 
 ## Installation
 
+### Prerequisites
+
+This module depends on the [Microsoft Graph PowerShell SDK](https://github.com/microsoftgraph/msgraph-sdk-powershell#readme) some of the modules will need to be installed in order for this module to work. Please check the prerequisites [here](https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread/blob/main/PREREQUISITE.md).
+
 ### Local Build
 
 Please refer to [local building and installing guide](https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread/blob/main/build/BUILD.md).
