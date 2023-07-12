@@ -14,7 +14,7 @@
       "Microsoft.Graph.Identity.SignIns",
       "Microsoft.Graph.Applications"
     ],
-    "requiredModulesVersion": "1.27.0",
+    "requiredModulesVersion": "2.0.0",
     "copyright": "© Microsoft Corporation. All rights reserved.",
     "licenseUri": "https://aka.ms/devservicesagreement",
     "projectUri": " https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread",
@@ -28,6 +28,6 @@
       "PSModule"
     ],
     "releaseNotes": "See https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread.",
-    "version": "0.4.1",
+    "version": "0.5.0",
     "Prerelease": "preview"
   }
