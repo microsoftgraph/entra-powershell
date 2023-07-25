@@ -11,6 +11,8 @@ class CompatibilityAdapterBuilder {
     [string[]] $DestinationPrefixs
     [string] $ModuleName
     hidden [string[]] $MissingCommandsToMap = @()
+    hidden [string[]] $TypesToCreate = @()
+    hidden [string] $TypePrefix = ""
     hidden [hashtable] $CmdCustomizations = @{}
     hidden [hashtable] $GenericParametersTransformations = @{}
     hidden [hashtable] $GenericOutputTransformations = @{}
@@ -46,6 +48,7 @@ class CompatibilityAdapterBuilder {
         $this.DestinationModuleName = $content.destinationModuleName
         $this.DestinationPrefixs = $content.destinationPrefix
         $this.ModuleName = $content.moduleName
+        $this.TypePrefix = $content.typePrefix
         Import-Module $this.SourceModuleName | Out-Null
         foreach ($moduleName in $this.DestinationModuleName){
             Import-Module $moduleName -RequiredVersion $content.destinationModuleVersion | Out-Null
@@ -171,7 +174,175 @@ class CompatibilityAdapterBuilder {
         $psm1FileContent += $this.GetExportMemeber()        
         $psm1FileContent += $this.SetMissingCommands()
         $psm1FileContent += $this.LoadMessage
+        $psm1FileContent += $this.GetTypesDefinitions()
         $psm1FileContent | Out-File -FilePath $filePath
+    }
+
+    hidden GetInnerTypes([string] $type){
+        $object = New-Object -TypeName $type
+        $object.GetType().GetProperties() | ForEach-Object {
+            if($_.PropertyType.Name -eq 'Nullable`1') {
+                $name = $_.PropertyType.GenericTypeArguments.FullName
+                if(!$_.PropertyType.GenericTypeArguments.IsEnum){
+                    if($name -like "$($this.TypePrefix)*") {    
+                        if(!$this.TypesToCreate.Contains($name)){
+                            $this.TypesToCreate += $name
+                            $this.GetInnerTypes($name)
+                        }           
+                    }
+                }
+            }
+            elseif($_.PropertyType.Name -eq 'List`1') {
+                $name = $_.PropertyType.GenericTypeArguments.FullName
+                if(!$_.PropertyType.GenericTypeArguments.IsEnum){                
+                    if($name -like "$($this.TypePrefix)*") {    
+                        if(!$this.TypesToCreate.Contains($name)){
+                            $this.TypesToCreate += $name
+                            $this.GetInnerTypes($name)
+                        }           
+                    }
+                }
+            }
+            else {
+                if(!$_.PropertyType.IsEnum){                    
+                    $name = $_.PropertyType.FullName
+                    if($name -like "$($this.TypePrefix)*") {                        
+                        if(!$this.TypesToCreate.Contains($name)){
+                            $this.TypesToCreate += $name
+                            $this.GetInnerTypes($name)
+                        }
+                    }
+                }
+            }  
+        }
+    }
+
+    hidden [string] GetTypesDefinitions() {
+        $types = $this.TypesToCreate | Sort-Object -Unique
+        
+        foreach($type in $types) {
+            $this.GetInnerTypes($type)
+        }
+
+        $types = $this.TypesToCreate | Sort-Object -Unique
+        $types | Out-Host
+        $namespace = $null
+        $def = @"
+# ------------------------------------------------------------------------------
+# Type definitios required for commands inputs
+# ------------------------------------------------------------------------------
+
+`$def = @"
+
+"@
+
+        foreach($type in $types) {
+        $object = New-Object -TypeName $type
+        $namespaceNew = $object.GetType().Namespace
+        $enumsDefined = @()
+
+        if($namespace -ne $namespaceNew){
+            if($null -ne $namespace){
+                $def += @"
+}
+
+namespace  $namespaceNew
+{
+
+"@
+            }
+            else {
+                $def += @"
+
+namespace  $namespaceNew
+{
+
+"@        
+            }
+            $namespace = $object.GetType().Namespace
+        }
+
+        $name = $object.GetType().Name
+        $def += @"
+    public class $name
+    {
+
+"@
+
+        $object.GetType().GetProperties() | ForEach-Object {   
+            if($_.PropertyType.Name -eq 'Nullable`1') {
+                $name = $_.PropertyType.GenericTypeArguments.FullName
+                if($_.PropertyType.GenericTypeArguments.IsEnum){                    
+                    $name = $_.PropertyType.GenericTypeArguments.Name
+                    if(!$enumsDefined.Contains($name)){
+                        $def += $this.GetEnumString($name, $_.PropertyType.GenericTypeArguments.FullName)
+                        $enumsDefined += $name
+                    }                    
+                }
+                $def += "        public System.Nullable<$($name)> $($_.Name);`n"
+            }
+            elseif ($_.PropertyType.Name -eq 'List`1') {
+                $name = $_.PropertyType.GenericTypeArguments.FullName
+                if($_.PropertyType.GenericTypeArguments.IsEnum){
+                    $name = $_.PropertyType.GenericTypeArguments.Name
+                    if(!$enumsDefined.Contains($name)){
+                        $def += $this.GetEnumString($name, $_.PropertyType.GenericTypeArguments.FullName)
+                        $enumsDefined += $name
+                    }
+                }
+                $def += "        public System.Collections.Generic.List<$($name)> $($_.Name);`n"
+            }
+            else {
+                $name = $_.PropertyType.FullName
+                if($_.PropertyType.IsEnum){
+                    $name = $_.PropertyType.Name
+                    if(!$enumsDefined.Contains($name)){
+                        $def += $this.GetEnumString($name, $_.PropertyType.FullName)
+                        $enumsDefined += $name
+                    }
+                }
+                $def += "        public $($name) $($_.Name);`n"
+            }    
+        }
+
+        $def += @"
+
+    }
+
+"@
+
+    }
+
+    $def += @"    
+}
+"@
+
+        $def += @"
+
+`"@
+    Add-Type -TypeDefinition `$def
+
+# ------------------------------------------------------------------------------
+# End of Type definitios required for commands inputs
+# ------------------------------------------------------------------------------
+"@
+
+        return $def
+    }
+
+    hidden [string] GetEnumString([string] $enumName, [string] $enumType) {
+        $def += @"
+        public enum $($enumName){
+
+"@
+            [enum]::getvalues([type]$enumType) | ForEach-Object { 
+                $def += "            $_ = $($_.value__),`n"
+            }
+            $def += @"           
+        }
+
+"@        
+        return $def
     }
 
     hidden WriteModuleManifest() {
@@ -376,8 +547,14 @@ $OutputTransformations
                 continue
             }
             $param = $params[$paramKey]
+            $paramType = $param.ParameterType.ToString()
+            if(($null -ne $this.TypePrefix) -and ($paramType -like "$($this.TypePrefix)*")){
+                if(!$this.TypesToCreate.Contains($paramType)) {
+                    $this.TypesToCreate += $paramType
+                }                
+            }           
             $paramBlock = @"
-    $($this.GetParameterAttributes($Param))[$($param.ParameterType.ToString())] `$$($param.Name)
+    $($this.GetParameterAttributes($Param))[$($paramType)] `$$($param.Name)
 "@
             $paramsList += $paramBlock
         }

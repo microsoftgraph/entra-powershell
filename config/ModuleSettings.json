@@ -2,6 +2,7 @@
     "sourceModule" : "AzureAD",
     "moduleName" : "Microsoft.Graph.Compatibility.AzureAD",
     "newPrefix" : "CompatAD",
+    "typePrefix" : "Microsoft.Open.",
     "destinationModuleName" : [
       "Microsoft.Graph.DirectoryObjects",
       "Microsoft.Graph.Users",
