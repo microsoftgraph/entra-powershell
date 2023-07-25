@@ -7,6 +7,7 @@ param(
     $NumberOfUsers = 10,
     $UserPrefix = 'Test123_',
     $GroupName = 'TestGroup123',
+    $Domain = 'yourdomine',
     [switch] $Clean
     )
 
@@ -18,7 +19,7 @@ $GenericPassword.ForceChangePasswordNextLogin = $true
 $usersArray = @()
 for ($i = 0; $i -lt $NumberOfUsers; $i++) {
     $name = "$($UserPrefix)$($i)"
-    $newUser = New-AzureADUser -DisplayName $Name -PasswordProfile $GenericPassword -UserPrincipalName "$name@yourdomine" -AccountEnabled $true -MailNickName $name
+    $newUser = New-AzureADUser -DisplayName $Name -PasswordProfile $GenericPassword -UserPrincipalName "$name@$Domain" -AccountEnabled $true -MailNickName $name
     $usersArray += $newUser.ObjectId
     Get-AzureADUser -ObjectId $newUser.ObjectId
 }

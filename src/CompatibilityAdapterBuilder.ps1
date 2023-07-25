@@ -180,6 +180,7 @@ class CompatibilityAdapterBuilder {
 
     hidden GetInnerTypes([string] $type){
         $object = New-Object -TypeName $type
+        $type | Out-Host
         $object.GetType().GetProperties() | ForEach-Object {
             if($_.PropertyType.Name -eq 'Nullable`1') {
                 $name = $_.PropertyType.GenericTypeArguments.FullName
@@ -548,7 +549,10 @@ $OutputTransformations
             }
             $param = $params[$paramKey]
             $paramType = $param.ParameterType.ToString()
-            if(($null -ne $this.TypePrefix) -and ($paramType -like "$($this.TypePrefix)*")){
+            if(($null -ne $this.TypePrefix) -and ($paramType -like "*$($this.TypePrefix)*")){
+                if(($paramType -like "*List*") -or ($paramType -like "*Nullable*")){
+                    $paramType = $param.ParameterType.GenericTypeArguments.FullName
+                }
                 if(!$this.TypesToCreate.Contains($paramType)) {
                     $this.TypesToCreate += $paramType
                 }                
