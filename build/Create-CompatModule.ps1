@@ -8,15 +8,15 @@ param($TargetDirectory = $null, $Module = "AzureAD", [switch] $noclean)
 . (join-path $psscriptroot "../src/CompatibilityAdapter.ps1")
 
 Remove-BuildDirectories
-$mapper = [CompatibilityAdapterBuilder]::new()
+$mapper = [CompatibilityAdapterBuilder]::new($Module)
 
-$customizationFiles = Get-CustomizationFiles
+$customizationFiles = Get-CustomizationFiles -Module $Module
 foreach($file in $customizationFiles){
     $cmds = & $file
     $mapper.AddCustomization($cmds)
 }
 
-$AdditionalFunctions = Get-CustomizationFiles -Directory 'AdditionalFunctions'
+$AdditionalFunctions = Get-CustomizationFiles -Directory 'AdditionalFunctions'  -Module $Module
 foreach($file in $AdditionalFunctions){
     $mapper.AddHelperCommand($file)
 }

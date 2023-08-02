@@ -31,8 +31,11 @@ class CompatibilityAdapterBuilder {
         $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
     }
 
-    CompatibilityAdapterBuilder([string] $ModuleSettingsPath){        
-        $this.Configure($ModuleSettingsPath)
+    CompatibilityAdapterBuilder([string] $Module){        
+        $this.BasePath = (join-path $PSScriptRoot '../module/')    
+        $this.BasePath = (join-path $this.BasePath $Module)
+        $this.HelpFolder = (join-path $this.BasePath './help')
+        $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
     }
 
     CompatibilityAdapterBuilder([bool] $notRunningUT = $false){
@@ -229,8 +232,7 @@ class CompatibilityAdapterBuilder {
             $this.GetInnerTypes($type)
         }
 
-        $types = $this.TypesToCreate | Sort-Object -Unique
-        $types | Out-Host
+        $types = $this.TypesToCreate | Sort-Object -Unique        
         $namespace = $null
         $def = @"
 # ------------------------------------------------------------------------------
