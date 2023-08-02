@@ -171,14 +171,24 @@ function Create-ModuleFolder {
 function Get-CustomizationFiles {
     [cmdletbinding()]
     param(
+        $Module = "AzureAD",
         [string]$Directory = $null
     )
 
+    $Path = $(Split-Path -parent $psscriptroot)
+
     if( !$Directory ) {
-        $Directory = Join-Path $(Split-Path -parent $psscriptroot) $customizationPath        
+        $Path = Join-Path $Path 'module'
+        $Path = Join-Path $Path $Module
+        $Path = Join-Path $Path $customizationPath
+    }
+    else {
+        $Path = Join-Path $Path 'module'      
+        $Path = Join-Path $Path $Module
+        $Path = Join-Path $Path $Directory
     }
     $customizationFileList = @()
-    $files = Get-ChildItem -Path $Directory -Filter '*.ps1'
+    $files = Get-ChildItem -Path $Path -Filter '*.ps1'
     foreach($file in $files){
         $customizationFileList += $file.FullName        
     }
