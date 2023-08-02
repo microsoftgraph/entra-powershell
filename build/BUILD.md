@@ -41,7 +41,10 @@ This will publish the module to a local repository and install the module.
 Import the module and test the generated commands
 
 ```powershell
+#If you installed the test build locally just do:
 Import-Module Microsoft.Graph.Compatibility.AzureAD -Force
+#If not you need to import it from the bin folder:
+Import-Module .\bin\Microsoft.Graph.Compatibility.AzureAD.psd1 -Force
 Connect-Graph
 Get-CompatADUser
 ```
