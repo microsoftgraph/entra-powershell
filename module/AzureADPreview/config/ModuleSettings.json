@@ -14,7 +14,7 @@
       "Microsoft.Graph.Beta.Identity.SignIns",
       "Microsoft.Graph.Beta.Applications"
     ],
-    "destinationModuleVersion": "2.2.0",
+    "destinationModuleVersion": "2.0.0",
     "sourceModulePrefix" : ["AzureADMS","AzureAD"],
     "destinationPrefix" : ["MgBeta"],
     "loadMessage": ""
