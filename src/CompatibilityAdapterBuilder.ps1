@@ -57,9 +57,9 @@ class CompatibilityAdapterBuilder {
         $this.DestinationPrefixs = $content.destinationPrefix
         $this.ModuleName = $content.moduleName
         $this.TypePrefix = $content.typePrefix
-        Import-Module $this.SourceModuleName | Out-Null
+        Import-Module $this.SourceModuleName -Force | Out-Null
         foreach ($moduleName in $this.DestinationModuleName){
-            Import-Module $moduleName -RequiredVersion $content.destinationModuleVersion | Out-Null
+            Import-Module $moduleName -RequiredVersion $content.destinationModuleVersion -Force | Out-Null
         }
 
         if(!(Test-Path $this.OutputFolder)){
