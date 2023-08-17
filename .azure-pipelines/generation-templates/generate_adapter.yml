@@ -127,7 +127,7 @@ steps:
   displayName: 'Publish to Local Gallery AzureADPreview'
   inputs:
     targetType: inline
-    script: ./build/Publish-LocalCompatModule.ps1 -TargetDirectory $(Build.ArtifactStagingDirectory) -Install
+    script: ./build/Publish-LocalCompatModule.ps1 -Install
     pwsh: false
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Module Nuget File AzureAD'
