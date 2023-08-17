@@ -54,7 +54,15 @@ steps:
   displayName: 'Publish Module Files AzureAD'
   inputs:
     ArtifactName: 'Module Files'
-    PathtoPublish: 'bin'    
+    PathtoPublish: 'bin'
+- task: powershell@2
+  displayName: 'Register Local Gallery'
+  inputs:
+    targetType: inline
+    script: |
+      . ./build/common-functions.ps1
+      Register-LocalGallery -Path $(Build.ArtifactStagingDirectory)
+    pwsh: false    
 - task: powershell@2
   displayName: 'Publish to Local Gallery AzureAD'
   inputs:

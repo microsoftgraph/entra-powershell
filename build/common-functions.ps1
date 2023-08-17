@@ -69,10 +69,7 @@ function Register-LocalGallery($Path) {
         New-Item -Path $repoPath -ItemType Directory  | out-null
     }
 
-    $repo = Get-PSRepository -Name (Get-LocalPSRepoName)
-    if($null -eq $repo) {
-        Register-PSRepository -Name (Get-LocalPSRepoName) -SourceLocation ($repoPath) -ScriptSourceLocation ($repoPath) -InstallationPolicy Trusted | out-null
-    }    
+    Register-PSRepository -Name (Get-LocalPSRepoName) -SourceLocation ($repoPath) -ScriptSourceLocation ($repoPath) -InstallationPolicy Trusted | out-null    
 }
 
 function Unregister-LocalGallery {    
