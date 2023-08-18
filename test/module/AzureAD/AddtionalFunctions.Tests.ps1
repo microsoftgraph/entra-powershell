@@ -17,3 +17,7 @@ Describe 'Checking Files'{
         }
     }
 }
+
+AfterAll {
+    Remove-Module -Name Microsoft.Graph.Compatibility.AzureAD -Force
+}
