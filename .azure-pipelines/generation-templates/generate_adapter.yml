@@ -149,16 +149,31 @@ steps:
     script: Install-Module Pester -scope currentuser -Force
     pwsh: false
 - task: powershell@2
-  displayName: 'Run tests'  
+  displayName: 'Run tests AzureAD'  
   inputs:
     targetType: inline
     pwsh: true
-    script: Invoke-Pester -OutputFile "./test/results/pester-test-results.xml" -OutputFormat NUnitXml
+    script: |
+      cd test/module/azuread
+      Invoke-Pester -OutputFile "./test/results/pester-test-results-ad.xml" -OutputFormat NUnitXml
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: NUnit
-    testResultsFiles: "./test/results/pester-test-results.xml"
+    testResultsFiles: "./test/results/pester-test-results-ad.xml"
     failTaskOnFailedTests: true
+- task: powershell@2
+  displayName: 'Run tests AzureADPreview'  
+  inputs:
+    targetType: inline
+    pwsh: true
+    script: |
+      cd test/module/azureadpreview
+      Invoke-Pester -OutputFile "./test/results/pester-test-results-preview.xml" -OutputFormat NUnitXml
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: NUnit
+    testResultsFiles: "./test/results/pester-test-results-preview.xml"
+    failTaskOnFailedTests: true    
 - task: powershell@2
   displayName: 'Remove Local Gallery'
   inputs:

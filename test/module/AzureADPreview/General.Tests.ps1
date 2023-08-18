@@ -34,7 +34,3 @@ Describe 'Module checks' {
         $Alias | Should -Not -Be $null
     }
 }
-
-AfterAll {
-    Remove-Module -Name Microsoft.Graph.Compatibility.AzureAD.Preview -Force
-}
