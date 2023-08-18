@@ -147,12 +147,12 @@ steps:
   inputs:
     targetType: inline
     script: Install-Module Pester -scope currentuser -Force
-    pwsh: true
+    pwsh: false
 - task: powershell@2
   displayName: 'Run tests'  
   inputs:
     targetType: inline
-    pwsh: false
+    pwsh: true
     script: Invoke-Pester -OutputFile "./test/results/pester-test-results.xml" -OutputFormat NUnitXml
 - task: PublishTestResults@2
   inputs:
