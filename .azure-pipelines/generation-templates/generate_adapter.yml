@@ -147,7 +147,7 @@ steps:
   inputs:
     targetType: inline
     script: Install-Module Pester -scope currentuser -Force
-    pwsh: false
+    pwsh: true
 - task: powershell@2
   displayName: 'Run tests'  
   inputs:
