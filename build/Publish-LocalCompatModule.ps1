@@ -4,13 +4,10 @@
 
 [cmdletbinding()]
 param(
-    [string] $TargetDirectory = $null,
     [switch] $Install
     )
 
 . "$psscriptroot/common-functions.ps1"
-
-Register-LocalGallery -Path $TargetDirectory
 
 $modulePath = Join-Path (Get-ModuleBasePath) $moduleOutputSubdirectory
 $modulePath = Join-Path $modulePath (Get-ModuleName)

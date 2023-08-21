@@ -17,30 +17,38 @@ class CompatibilityAdapterBuilder {
     hidden [hashtable] $GenericParametersTransformations = @{}
     hidden [hashtable] $GenericOutputTransformations = @{}
     hidden [string] $OutputFolder = (join-path $PSScriptRoot '../bin')
-    hidden [string] $HelpFolder = (join-path $PSScriptRoot '../help')
+    hidden [string] $HelpFolder = $null
     hidden [MappedCmdCollection] $ModuleMap = $null
     hidden [bool] $GenerateCommandsToMapData
     hidden [hashtable] $HelperCmdletsToExport = @{}
+    hidden [string] $BasePath = $null
     hidden [string] $LoadMessage
 
     # Constructor that changes the output folder, load all the Required Modules and creates the output folder.
-    CompatibilityAdapterBuilder() {        
-        $this.Configure("../config/ModuleSettings.json")
+    CompatibilityAdapterBuilder() {  
+        $this.BasePath = (join-path $PSScriptRoot '../module/AzureAD/')    
+        $this.HelpFolder = (join-path $this.BasePath './help')
+        $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
     }
 
-    CompatibilityAdapterBuilder([string] $ModuleSettingsPath){        
-        $this.Configure($ModuleSettingsPath)
+    CompatibilityAdapterBuilder([string] $Module){        
+        $this.BasePath = (join-path $PSScriptRoot '../module/')    
+        $this.BasePath = (join-path $this.BasePath $Module)
+        $this.HelpFolder = (join-path $this.BasePath './help')
+        $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
     }
 
     CompatibilityAdapterBuilder([bool] $notRunningUT = $false){
         if($notRunningUT)
         {
-            $this.Configure("../config/ModuleSettings.json")
+            $this.BasePath = (join-path $PSScriptRoot '../module/AzureAD/')    
+            $this.HelpFolder = (join-path $this.BasePath './help')
+            $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
         }                
     }
 
     hidden Configure([string] $ModuleSettingsPath){
-        $settingPath = Join-Path $PSScriptRoot $ModuleSettingsPath
+        $settingPath = $ModuleSettingsPath
         $content = Get-Content -Path $settingPath | ConvertFrom-Json
         $this.SourceModuleName = $content.sourceModule
         $this.SourceModulePrefixs = $content.sourceModulePrefix
@@ -49,9 +57,9 @@ class CompatibilityAdapterBuilder {
         $this.DestinationPrefixs = $content.destinationPrefix
         $this.ModuleName = $content.moduleName
         $this.TypePrefix = $content.typePrefix
-        Import-Module $this.SourceModuleName | Out-Null
+        Import-Module $this.SourceModuleName -Force | Out-Null
         foreach ($moduleName in $this.DestinationModuleName){
-            Import-Module $moduleName -RequiredVersion $content.destinationModuleVersion | Out-Null
+            Import-Module $moduleName -RequiredVersion $content.destinationModuleVersion -Force | Out-Null
         }
 
         if(!(Test-Path $this.OutputFolder)){
@@ -179,8 +187,7 @@ class CompatibilityAdapterBuilder {
     }
 
     hidden GetInnerTypes([string] $type){
-        $object = New-Object -TypeName $type
-        $type | Out-Host
+        $object = New-Object -TypeName $type        
         $object.GetType().GetProperties() | ForEach-Object {
             if($_.PropertyType.Name -eq 'Nullable`1') {
                 $name = $_.PropertyType.GenericTypeArguments.FullName
@@ -225,8 +232,7 @@ class CompatibilityAdapterBuilder {
             $this.GetInnerTypes($type)
         }
 
-        $types = $this.TypesToCreate | Sort-Object -Unique
-        $types | Out-Host
+        $types = $this.TypesToCreate | Sort-Object -Unique        
         $namespace = $null
         $def = @"
 # ------------------------------------------------------------------------------
@@ -347,8 +353,7 @@ namespace  $namespaceNew
     }
 
     hidden WriteModuleManifest() {
-        $settingPath = "../config/ModuleMetadata.json"
-        $settingPath = Join-Path $PSScriptRoot $settingPath
+        $settingPath = join-path $this.BasePath "./config/ModuleMetadata.json"        
         $files = @("$($this.ModuleName).psd1", "$($this.ModuleName).psm1", "$($this.ModuleName)-Help.xml")
         $content = Get-Content -Path $settingPath | ConvertFrom-Json
         $PSData = @{

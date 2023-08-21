@@ -12,7 +12,7 @@ param(
 $settingPath = Join-Path $PSScriptRoot $ModuleSettingsPath
 $content = Get-Content -Path $settingPath | ConvertFrom-Json
 Write-Verbose("Installing Module $($content.sourceModule)")
-Install-Module $content.sourceModule -scope currentuser -Force
+Install-Module $content.sourceModule -scope currentuser -Force -AllowClobber
 
 foreach ($moduleName in $content.destinationModuleName){
     Write-Verbose("Installing Module $($moduleName)")

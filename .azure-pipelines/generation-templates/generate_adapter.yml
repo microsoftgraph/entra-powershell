@@ -15,13 +15,14 @@ steps:
     script: 'echo $PSVersionTable'
     pwsh: false
 - task: powershell@2
-  displayName: 'Install Dependencies'
+  displayName: 'Install Dependencies AzureAD'
   inputs:
     targetType: inline
-    script: ./build/Install-Dependencies.ps1 -Verbose
+    script: |
+      ./build/Install-Dependencies.ps1 -ModuleSettingsPath "../module/AzureAD/config/ModuleSettings.json" -Verbose      
     pwsh: false
 - task: powershell@2
-  displayName: 'Build'
+  displayName: 'Build AzureAD'
   inputs:
     targetType: inline
     script: ./build/Create-CompatModule.ps1 -Verbose
@@ -42,7 +43,7 @@ steps:
         ($ModulePsd1 | Get-AuthenticodeSignature).Status | Should -Be "Valid"
         ($ModulePsm1 | Get-AuthenticodeSignature).Status | Should -Be "Valid"
 - task: powershell@2
-  displayName: 'Create Module Files'
+  displayName: 'Create Module Files AzureAD'
   inputs:
     targetType: inline
     script: |
@@ -50,18 +51,86 @@ steps:
       Create-ModuleFolder
     pwsh: false
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Module Files'
+  displayName: 'Publish Module Files AzureAD'
+  inputs:
+    ArtifactName: 'Module Files'
+    PathtoPublish: 'bin'
+- task: powershell@2
+  displayName: 'Register Local Gallery'
+  inputs:
+    targetType: inline
+    script: |
+      . ./build/common-functions.ps1
+      Register-LocalGallery -Path $(Build.ArtifactStagingDirectory)
+    pwsh: false    
+- task: powershell@2
+  displayName: 'Publish to Local Gallery AzureAD'
+  inputs:
+    targetType: inline
+    script: ./build/Publish-LocalCompatModule.ps1 -Install
+    pwsh: false
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Module Nuget File AzureAD'
+  inputs:
+    ArtifactName: 'Module Nuget'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+- task: powershell@2
+  displayName: 'Remove Build Folders'
+  inputs:
+    targetType: inline
+    script: |
+      . ./build/common-functions.ps1
+      Remove-BuildDirectories
+    pwsh: false
+- task: powershell@2
+  displayName: 'Install Dependencies AzureAD'
+  inputs:
+    targetType: inline
+    script: |      
+      ./build/Install-Dependencies.ps1 -ModuleSettingsPath "../module/AzureADPreview/config/ModuleSettings.json" -Verbose
+    pwsh: false
+- task: powershell@2
+  displayName: 'Build AzureADPreview'
+  inputs:
+    targetType: inline
+    script: ./build/Create-CompatModule.ps1 -Module AzureADPreview -Verbose
+    pwsh: false
+- ${{ if eq(parameters.Sign, true) }}:
+  - template: ../common-templates/esrp/codesign.yml
+    parameters:
+      FolderPath: "bin"
+      Pattern: "*.psm1, *.psd1, *.format.ps1xml, *.ps1"
+  - task: PowerShell@2
+    displayName: "Validate Authenticode Signature"
+    inputs:
+      targetType: "inline"
+      pwsh: true
+      script: |
+        $ModulePsd1 = "bin/Microsoft.Graph.Compatibility.AzureAD.Preview.psd1"
+        $ModulePsm1 = "bin/Microsoft.Graph.Compatibility.AzureAD.Preview.psm1"
+        ($ModulePsd1 | Get-AuthenticodeSignature).Status | Should -Be "Valid"
+        ($ModulePsm1 | Get-AuthenticodeSignature).Status | Should -Be "Valid"
+- task: powershell@2
+  displayName: 'Create Module Files AzureADPreview'
+  inputs:
+    targetType: inline
+    script: |
+      . ./build/common-functions.ps1
+      Create-ModuleFolder
+    pwsh: false
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Module Files AzureADPreview'
   inputs:
     ArtifactName: 'Module Files'
     PathtoPublish: 'bin'    
 - task: powershell@2
-  displayName: 'Publish to Local Gallery'
+  displayName: 'Publish to Local Gallery AzureADPreview'
   inputs:
     targetType: inline
-    script: ./build/Publish-LocalCompatModule.ps1 -TargetDirectory $(Build.ArtifactStagingDirectory) -Install
+    script: ./build/Publish-LocalCompatModule.ps1 -Install
     pwsh: false
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Module Nuget File'
+  displayName: 'Publish Module Nuget File AzureAD'
   inputs:
     ArtifactName: 'Module Nuget'
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
@@ -80,16 +149,31 @@ steps:
     script: Install-Module Pester -scope currentuser -Force
     pwsh: false
 - task: powershell@2
-  displayName: 'Run tests'  
+  displayName: 'Run tests AzureAD'  
   inputs:
     targetType: inline
-    pwsh: false
-    script: Invoke-Pester -OutputFile "./test/results/pester-test-results.xml" -OutputFormat NUnitXml
+    pwsh: true
+    script: |
+      cd test/module/azuread
+      Invoke-Pester -OutputFile "./test/results/pester-test-results-ad.xml" -OutputFormat NUnitXml
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: NUnit
-    testResultsFiles: "./test/results/pester-test-results.xml"
+    testResultsFiles: "./test/results/pester-test-results-ad.xml"
     failTaskOnFailedTests: true
+- task: powershell@2
+  displayName: 'Run tests AzureADPreview'  
+  inputs:
+    targetType: inline
+    pwsh: true
+    script: |
+      cd test/module/azureadpreview
+      Invoke-Pester -OutputFile "./test/results/pester-test-results-preview.xml" -OutputFormat NUnitXml
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: NUnit
+    testResultsFiles: "./test/results/pester-test-results-preview.xml"
+    failTaskOnFailedTests: true    
 - task: powershell@2
   displayName: 'Remove Local Gallery'
   inputs:
