@@ -4,6 +4,13 @@
 @{
     SourceName = "Add-AzureADServicePrincipalOwner"
     TargetName = "New-MgBetaServicePrincipalOwnerByRef"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "RefObjectId"
+            TargetName = "OdataId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
     Outputs = $null
 }

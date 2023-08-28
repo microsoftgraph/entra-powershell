@@ -4,6 +4,13 @@
 @{
     SourceName = "Add-AzureADDirectoryRoleMember"
     TargetName = "New-MgDirectoryRoleMemberByRef"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "RefObjectId"
+            TargetName = "OdataId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
     Outputs = $null
 }
