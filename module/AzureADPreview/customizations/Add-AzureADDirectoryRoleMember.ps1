@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Add-AzureADDirectoryRoleMember"
-    TargetName = "New-MgDirectoryRoleMemberByRef"
+    TargetName = "New-MgBetaDirectoryRoleMemberByRef"
     Parameters = @(
         @{
             SourceName = "RefObjectId"
