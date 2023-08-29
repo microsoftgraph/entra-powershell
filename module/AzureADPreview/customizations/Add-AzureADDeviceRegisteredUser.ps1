@@ -2,14 +2,16 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "Add-AzureADDirectoryRoleMember"
-    TargetName = "New-MgDirectoryRoleMemberByRef"
+    SourceName = "Add-AzureADDeviceRegisteredUser"
+    TargetName = "New-MgBetaDeviceRegisteredUserByRef"
     Parameters = @(
         @{
             SourceName = "RefObjectId"
-            TargetName = "OdataId"
-            ConversionType = "Name"
-            SpecialMapping = $null
+            TargetName = "BodyParameter"
+            ConversionType = "ScriptBlock"
+            SpecialMapping = @"
+`$Value = @{ "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/`$TmpValue"}
+"@
         }
     )
     Outputs = $null
