@@ -13,8 +13,9 @@ Describe 'Checking Files'{
 
     It 'Checking naming conventios' {
         $files | ForEach-Object {
-            $name = $_.Name.Replace(".ps1","")
+            $name = $_.Name -ireplace ".ps1",""
             if("Generic" -ne $name){
+                Write-Host "Checking $name"
                 $value = . $_.FullName
                 $name | Should -Be $value.SourceName 
             }            
@@ -23,9 +24,10 @@ Describe 'Checking Files'{
 
     It 'Checking that customizations produce commands' {
         $files | ForEach-Object {
-            $name = $_.Name.Replace(".ps1","")
-            $name = $name.Replace("AzureAD","CompatAD")
+            $name = $_.Name -ireplace ".ps1",""
+            $name = $name -ireplace "AzureAD","CompatAD"
             if("Generic" -ne $name){
+                Write-Host "Checking $name"
                 $module = Get-Module Microsoft.Graph.Compatibility.AzureAD.Preview
                 $module.ExportedCommands.ContainsKey($name) | Should -BeTrue
             }
