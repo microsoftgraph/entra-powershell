@@ -4,6 +4,13 @@
 @{
     SourceName = "Add-AzureADMSAdministrativeUnitMember"
     TargetName = "New-MgDirectoryAdministrativeUnitMemberByRef"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "RefObjectId"
+            TargetName = "OdataId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
     Outputs = $null
 }

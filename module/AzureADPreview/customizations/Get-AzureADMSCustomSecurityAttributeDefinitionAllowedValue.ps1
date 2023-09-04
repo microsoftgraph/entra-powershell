@@ -2,15 +2,16 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "Add-AzureADDirectoryRoleMember"
-    TargetName = "New-MgDirectoryRoleMemberByRef"
+    SourceName = "Get-AzureADMSCustomSecurityAttributeDefinitionAllowedValue"
+    TargetName = "Get-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue"
     Parameters = @(
         @{
-            SourceName = "RefObjectId"
-            TargetName = "OdataId"
+            SourceName = "Id"
+            TargetName = "AllowedValueId"
             ConversionType = "Name"
             SpecialMapping = $null
         }
     )
     Outputs = $null
+    
 }
