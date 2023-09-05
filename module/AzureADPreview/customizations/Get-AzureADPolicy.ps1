@@ -13,7 +13,6 @@
         `$endpoints = @("homeRealmDiscoveryPolicies", "claimsMappingPolicies", "tokenIssuancePolicies", "tokenLifetimePolicies", "activityBasedTimeoutPolicies", "featureRolloutPolicies", 	"defaultAppManagementPolicy", "appManagementPolicies", "authenticationFlowsPolicy",	"authenticationMethodsPolicy", "permissionGrantPolicies")
         
         `$response = @()
-        `$counter = 0
         foreach (`$endpoint in `$endpoints) {
             `$url = "`${baseUrl}`${endpoint}"
             try {
@@ -25,10 +24,9 @@
             `$policies | ForEach-Object {
                 `$_.Type = (`$endpoint.Substring(0, 1).ToUpper() + `$endpoint.Substring(1) -replace "ies", "y")
                 `$response += `$_
-            }
-            `$counter++
-            if (`$counter -eq `$Top) {
-                break 
+                if (`$Top -and (`$response.Count -ge `$Top)) {
+                    break 
+                }
             }
         }
 
@@ -45,6 +43,7 @@
         `$response | ForEach-Object {
             if (`$null -ne `$_) {
                 foreach (`$Keys in `$_.Keys) { 
+                    `$Keys=`$Keys.SubString(0, 1).ToUpper() + `$Keys.Substring(1)
                     `$_ | Add-Member -MemberType NoteProperty -Name `$Keys -Value (`$_.`$Keys) -Force
                 }
             }
