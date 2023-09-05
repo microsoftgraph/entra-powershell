@@ -31,6 +31,7 @@
             `$response | ForEach-Object {
                 if (`$null -ne `$_) {
                     foreach (`$Keys in `$_.Keys) { 
+                        `$Keys=`$Keys.SubString(0, 1).ToUpper() + `$Keys.Substring(1)
                         `$_ | Add-Member -MemberType NoteProperty -Name `$Keys -Value (`$_.`$Keys) -Force
                     }
                 }
