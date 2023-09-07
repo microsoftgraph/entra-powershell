@@ -27,26 +27,9 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================``n")
                 
-        `$response = (Invoke-GraphRequest -Method `$params.method -Uri `$params.uri).value   
-            `$response | ForEach-Object {
-                if (`$null -ne `$_) {
-                    foreach (`$Keys in `$_.Keys) { 
-                        `$Keys=`$Keys.SubString(0, 1).ToUpper() + `$Keys.Substring(1)
-                        if(`$Keys -eq '@odata.type'){
-                            `$_ | Add-Member -MemberType NoteProperty -Name OdataType -Value (`$_.`$Keys) -Force
-                        }
-                        else {
-                            `$_ | Add-Member -MemberType NoteProperty -Name `$Keys -Value (`$_.`$Keys) -Force
-                        }
-                    }
-                }
-            }
-            if (`$MyInvocation.PipelineLength -gt 1) {
-                `$response  
-            }
-            else {
-                `$response | Select-Object Id, OdataType
-            }  
+        `$response = (Invoke-GraphRequest -Method `$params.method -Uri `$params.uri | ConvertTo-Json | ConvertFrom-Json).value   
+        `$response | Add-Member -MemberType AliasProperty -Value '@odata.type' -Name 'odata.type'
+        `$response  
     }
 "@
 }
