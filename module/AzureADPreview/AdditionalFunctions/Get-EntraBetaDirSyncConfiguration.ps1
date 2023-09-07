@@ -4,6 +4,7 @@ function Get-EntraBetaDirSyncConfiguration {
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][System.String] $TenantId
     )
 
+    
     PROCESS {    
         $params = @{}
         $keysChanged = @{$TenantId = "OnPremisesDirectorySynchronizationId" }
