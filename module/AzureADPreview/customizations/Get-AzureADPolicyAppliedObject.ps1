@@ -45,7 +45,8 @@
                 `$response  
             }
             else {
-                `$response | Select-Object Id, OdataType
+                `$result = `$response 
+                `$result | Select-Object * | Format-Table -AutoSize
             }  
     }
 "@
