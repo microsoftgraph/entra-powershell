@@ -64,7 +64,8 @@
             `$response  
         }
         else {
-            `$response | Select-Object Id, DisplayName, Type, IsOrganizationDefault
+            `$result = `$response 
+            `$result | Select-Object * | Format-Table -AutoSize
         }    
         } 
 "@
