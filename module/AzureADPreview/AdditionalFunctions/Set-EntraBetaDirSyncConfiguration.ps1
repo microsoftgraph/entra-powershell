@@ -2,10 +2,12 @@ function Set-EntraBetaDirSyncConfiguration {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Parameter(ParameterSetName = "GetQuery", Mandatory = $true)][System.String] $AccidentalDeletionThreshold,
-        [Parameter(ParameterSetName = "GetQuery")][System.String] $TenantId
+        [Parameter(ParameterSetName = "GetQuery")][System.String] $TenantId,
+        [switch] $Force
     )
 
-    PROCESS {    
+    PROCESS {
+        $params = @{}
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $Null
         }
@@ -17,28 +19,44 @@ function Set-EntraBetaDirSyncConfiguration {
         }
         if ($PSBoundParameters.ContainsKey("Debug")) {
             $params["Debug"] = $Null
-            Write-Debug("============================ TRANSFORMATIONS ============================")
-            $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
-            Write-Debug("=========================================================================`n")
         }
+        Write-Debug("============================ TRANSFORMATIONS ============================")
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================`n")
 
-        
-        if ([string]::IsNullOrWhiteSpace($TenantId)) {
-            $OnPremisesDirectorySynchronizationId = (get-MgBetaDirectoryOnPremiseSynchronization).Id
+        if ($Force) {
+            $decision = 0
         }
         else {
-            $OnPremisesDirectorySynchronizationId = $TenantId
+            $title = 'Confirm'
+            $question = 'Do you want to continue?'
+            $Suspend = New-Object System.Management.Automation.Host.ChoiceDescription "&Suspend", "S"
+            $Yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Y"
+            $No = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "S"
+            $choices = [System.Management.Automation.Host.ChoiceDescription[]]($Yes, $No, $Suspend)
+            $decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
         }
-        $params = @{ 
-            configuration = @{  
-                accidentalDeletionPrevention = @{ 
-                    synchronizationPreventionType = "enabledForCount" 
-                    alertThreshold                = $AccidentalDeletionThreshold
-                } 
-            } 
-        } 
-        $response = Update-MgBetaDirectoryOnPremiseSynchronization -OnPremisesDirectorySynchronizationId $OnPremisesDirectorySynchronizationId -BodyParameter $params
-        $response 
 
+        if ($decision -eq 0) {
+            if ([string]::IsNullOrWhiteSpace($TenantId)) {
+                $OnPremisesDirectorySynchronizationId = (Get-MgBetaDirectoryOnPremiseSynchronization).Id
+            }
+            else {
+                $OnPremisesDirectorySynchronizationId = $TenantId
+            }
+            $params = @{
+                configuration = @{
+                    accidentalDeletionPrevention = @{
+                        synchronizationPreventionType = "enabledForCount"
+                        alertThreshold                = $AccidentalDeletionThreshold
+                    }
+                }
+            }
+            $response = Update-MgBetaDirectoryOnPremiseSynchronization -OnPremisesDirectorySynchronizationId $OnPremisesDirectorySynchronizationId -BodyParameter $params
+            $response
+        }
+        else {
+            return
+        }
     }
 }
