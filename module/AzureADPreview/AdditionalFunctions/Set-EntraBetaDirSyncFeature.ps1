@@ -1,12 +1,14 @@
 function Set-EntraBetaDirSyncFeature {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Parameter(ParameterSetName = "GetById", Mandatory = $true)][System.String] $Feature,
-        [Parameter(ParameterSetName = "GetById", Mandatory = $true)][System.Boolean] $Enabled,
-        [Parameter(ParameterSetName = "GetById")][System.String] $TenantId
+        [Parameter(ParameterSetName = "GetQuery", Mandatory = $true)][System.String] $Feature,
+        [Parameter(ParameterSetName = "GetQuery", Mandatory = $true)][System.Boolean] $Enabled,
+        [Parameter(ParameterSetName = "GetById")][System.String] $TenantId,
+        [switch] $Force
     )
+    PROCESS {
 
-    PROCESS {    
+        $params = @{}
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $Verbose = $Null
         }
@@ -23,18 +25,39 @@ function Set-EntraBetaDirSyncFeature {
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
+
         if ([string]::IsNullOrWhiteSpace($TenantId)) {
-            $OnPremisesDirectorySynchronizationId = (get-MgBetaDirectoryOnPremiseSynchronization).Id
+            $OnPremisesDirectorySynchronizationId = (Get-MgBetaDirectoryOnPremiseSynchronization).Id
         }
         else {
             $OnPremisesDirectorySynchronizationId = $TenantId
         }
-        $body = @{ 
-            features = @{ $Feature = $Enabled } 
-        } 
-        $body = $body | ConvertTo-Json 
-        $response = Update-MgBetaDirectoryOnPremiseSynchronization -OnPremisesDirectorySynchronizationId $OnPremisesDirectorySynchronizationId -BodyParameter $body
-        $response 
 
+        $body = @{
+            features = @{ $Feature = $Enabled }
+        }
+        $body = $body | ConvertTo-Json
+        if ($Force) {
+            # If -Force is used, skip confirmation and proceed with the action.
+            $decision = 0
+        }
+        else {
+            $title = 'Confirm'
+            $question = 'Do you want to continue?'
+            $Suspend = new-Object System.Management.Automation.Host.ChoiceDescription "&Suspend", "S"
+            $Yes = new-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Y"
+            $No = new-Object System.Management.Automation.Host.ChoiceDescription "&No", "N"
+            $choices = [System.Management.Automation.Host.ChoiceDescription[]]( $Yes, $No, $Suspend)
+            $decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
+        }
+        if ($decision -eq 0) {
+            $response = Update-MgBetaDirectoryOnPremiseSynchronization -OnPremisesDirectorySynchronizationId $OnPremisesDirectorySynchronizationId -BodyParameter $body
+            $response
+        }
+        else {
+            return
+        }
+
+    
     }
 }
