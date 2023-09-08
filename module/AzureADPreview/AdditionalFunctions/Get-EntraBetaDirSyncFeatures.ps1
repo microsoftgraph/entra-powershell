@@ -35,7 +35,13 @@ function Get-EntraBetaDirSyncfeatures {
             $table | Format-Table -AutoSize
         }
         else {
-            $table | Where-Object {$_.dirsyncFeature -eq $Feature}
+           $output =  $table | Where-Object {$_.dirsyncFeature -eq $Feature}
+           if($null -eq $output) {
+            Write-Error "Get-EntraBetaDirSyncfeatures : Invalid value for parameter.  Parameter Name: Feature."
+           }
+           else {
+            $output
+           }
         }
     }
 }
