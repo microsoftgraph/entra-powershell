@@ -34,7 +34,6 @@
                     Write-Debug("=========================================================================``n")
                     `$URI = "https://graph.microsoft.com/beta/reports/getAzureADApplicationSignInSummary(period='D{0}'){1}{2}" -f `$Days, `$filterApplied, `$topCount
                     `$response = (Invoke-GraphRequest -Uri `$uri -Method `$Method | ConvertTo-Json | ConvertFrom-Json).value
-                    `$response | Add-Member -MemberType AliasProperty -Value '@odata.type' -Name 'odata.type'
                     `$response
             }
 "@
