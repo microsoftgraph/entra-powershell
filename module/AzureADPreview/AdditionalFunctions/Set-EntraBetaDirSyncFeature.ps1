@@ -3,9 +3,10 @@ function Set-EntraBetaDirSyncFeature {
     param (
         [Parameter(ParameterSetName = "GetQuery", Mandatory = $true)][System.String] $Feature,
         [Parameter(ParameterSetName = "GetQuery", Mandatory = $true)][System.Boolean] $Enabled,
-        [Parameter(ParameterSetName = "GetById")][System.String] $TenantId,
+        [Parameter(ParameterSetName = "GetQuery")][System.String] $TenantId,
         [switch] $Force
-    )
+        
+        )
     PROCESS {
 
         $params = @{}
@@ -25,7 +26,7 @@ function Set-EntraBetaDirSyncFeature {
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-
+        break
         if ([string]::IsNullOrWhiteSpace($TenantId)) {
             $OnPremisesDirectorySynchronizationId = (Get-MgBetaDirectoryOnPremiseSynchronization).Id
         }
