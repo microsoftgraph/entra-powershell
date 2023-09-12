@@ -5,10 +5,8 @@ function Set-EntraBetaDirSyncFeature {
         [Parameter(ParameterSetName = "GetQuery", Mandatory = $true)][System.Boolean] $Enabled,
         [Parameter(ParameterSetName = "GetQuery")][System.String] $TenantId,
         [switch] $Force
-        
-        )
+    )
     PROCESS {
-
         $params = @{}
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $Verbose = $Null
@@ -22,18 +20,23 @@ function Set-EntraBetaDirSyncFeature {
         if ($PSBoundParameters.ContainsKey("Debug")) {
             $params["Debug"] = $Null
         }
-
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        break
         if ([string]::IsNullOrWhiteSpace($TenantId)) {
             $OnPremisesDirectorySynchronizationId = (Get-MgBetaDirectoryOnPremiseSynchronization).Id
         }
         else {
-            $OnPremisesDirectorySynchronizationId = $TenantId
+            $OnPremisesDirectorySynchronizationId = Get-MgBetaDirectoryOnPremiseSynchronization -OnPremisesDirectorySynchronizationId $TenantId -ErrorAction SilentlyContinue -ErrorVariable er
+            if([string]::IsNullOrWhiteSpace($er)) {
+                $OnPremisesDirectorySynchronizationId = $OnPremisesDirectorySynchronizationId.Id
+            }
+            else {
+                Write-Error "Cannot bind parameter 'TenantId'. Cannot convert value `"$TenantId`" to type 
+                `"System.Guid`". Error: `"Guid should contain 32 digits with 4 dashes (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx).`" "
+                break
+            }
         }
-
         $body = @{
             features = @{ $Feature = $Enabled }
         }
@@ -52,13 +55,17 @@ function Set-EntraBetaDirSyncFeature {
             $decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
         }
         if ($decision -eq 0) {
-            $response = Update-MgBetaDirectoryOnPremiseSynchronization -OnPremisesDirectorySynchronizationId $OnPremisesDirectorySynchronizationId -BodyParameter $body
-            $response
+            $response = Update-MgBetaDirectoryOnPremiseSynchronization -OnPremisesDirectorySynchronizationId $OnPremisesDirectorySynchronizationId -BodyParameter $body -ErrorAction SilentlyContinue -ErrorVariable "er"
+            if([string]::IsNullOrWhiteSpace($er)) {
+                $response
+            }
+            else {
+                Write-Error "Cannot bind parameter 'TenantId'. Cannot convert value `"$TenantId`" to type 
+                `"System.Guid`". Error: `"Guid should contain 32 digits with 4 dashes (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx).`" "
+            }
         }
         else {
             return
         }
-
-    
     }
 }
