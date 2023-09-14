@@ -15,9 +15,16 @@
                 if (`$null -ne `$PSBoundParameters["TargetObjectId"]) {
                     `$params["TargetObjectId"] = `$PSBoundParameters["TargetObjectId"]
                 }
+                if (`$null -ne `$PSBoundParameters["ID"]) {
+                    `$params["ID"] = `$PSBoundParameters["ID"]
+                }
                 if (`$null -ne `$PSBoundParameters["Top"]) {
                     `$params["Top"] ='?`$top=' +`$PSBoundParameters["Top"]
                 }
+                if (`$PSBoundParameters["All"]) {
+                    `$params["Top"] ='?`$top=999'
+                }
+                
                 if (`$PSBoundParameters.ContainsKey("Debug")) {
                     `$params["Debug"] = `$Null
                 }
@@ -28,9 +35,17 @@
                     `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
                     Write-Debug("=========================================================================``n")
                     `$Method = "GET"
-                    `$URI = 'https://graph.microsoft.com/beta/{0}/{1}/settings' -f `$TargetType,`$TargetObjectId
-                    `$response = Invoke-GraphRequest -Uri `$uri -Method `$Method
-                    `$response
+                    `$URI = 'https://graph.microsoft.com/beta/{0}/{1}/settings/' -f `$TargetType,`$TargetObjectId
+                    if(`$null -ne `$PSBoundParameters["ID"]){
+                        `$URI = 'https://graph.microsoft.com/beta/{0}/{1}/settings/{2}' -f `$TargetType,`$TargetObjectId,`$ID
+                        `$response = (Invoke-GraphRequest -Uri `$uri -Method `$Method) | ConvertTo-Json | ConvertFrom-Json
+                         return `$response
+                    }
+                    elseif(`$null -ne `$params["Top"]){
+                        `$URI = 'https://graph.microsoft.com/beta/{0}/{1}/settings/{2}' -f `$TargetType,`$TargetObjectId,`$params["Top"]
+                    }
+                    `$response = (Invoke-GraphRequest -Uri `$uri -Method `$Method).Value
+                    `$response | ConvertTo-Json | ConvertFrom-Json
     }
 "@
 }
