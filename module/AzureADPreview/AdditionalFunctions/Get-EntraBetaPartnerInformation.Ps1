@@ -29,7 +29,6 @@ function Get-EntraBetaPartnerInformation {
             "companyType"              = $response.companyType
             "PartnerSupportTelephones" = $response.supportTelephones
             "PartnerSupportEmails"     = $response.supportEmails
-            "PartnerSupportUrl"        = $response.supportEmails
             "PartnerHelpUrl"           = $response.helpUrl
             "PartnerCommerceUrl"       = $response.commerceUrl
             "ObjectID"                 = $response.partnerTenantId
