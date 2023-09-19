@@ -37,6 +37,8 @@
     Write-Debug("=========================================================================`n")
     
     `$response = Invoke-GraphRequest -Uri `$params.uri -Method `$params.method -Headers `$headers -Body `$body | ConvertTo-Json
-    `$response | ConvertFrom-Json  
+    `$result = `$response | ConvertFrom-Json      
+    `$result | Add-Member -MemberType AliasProperty -Value '@odata.context' -Name 'odata.context' -Force
+    `$result
 "@
 }
