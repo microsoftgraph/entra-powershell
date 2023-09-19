@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 function Get-EntraHasObjectsWithDirSyncProvisioningErrors {
-<#
+    <#
 .PARAMETER TenantId
 
 .PARAMETER <commonParameters>
@@ -16,7 +16,7 @@ System.Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, Publ
 #>
     [CmdletBinding(DefaultParameterSetName = 'GetById')]
     param (
-        [Parameter(ParameterSetName = "GetById")][System.String] $TenantId
+        [Parameter(ParameterSetName = "GetById")][ValidateNotNullOrEmpty()][ValidateScript({if ($_ -is [System.Guid]) { $true } else {throw "TenantId must be of type [System.Guid]."}})][System.Guid] $TenantId
     )
     PROCESS {    
         $params = @{}
@@ -32,15 +32,15 @@ System.Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, Publ
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $Object=@("users","groups","contacts")
-        $response=@()
+        $Object = @("users", "groups", "contacts")
+        $response = @()
         
-        foreach($obj in $object) {
+        foreach ($obj in $object) {
             $obj = ($obj | Out-String).trimend()
             $uri = 'https://graph.microsoft.com/beta/' + $obj + '?$select=onPremisesProvisioningErrors'
-            $response+= ((Invoke-GraphRequest -Uri $uri -Method GET).value).onPremisesProvisioningErrors
+            $response += ((Invoke-GraphRequest -Uri $uri -Method GET).value).onPremisesProvisioningErrors
         }
-        if([string]::IsNullOrWhiteSpace($response)) {
+        if ([string]::IsNullOrWhiteSpace($response)) {
             write-host "False"
         }
         else {
