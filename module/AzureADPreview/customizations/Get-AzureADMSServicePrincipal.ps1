@@ -6,6 +6,12 @@
     TargetName = "Get-MgBetaServicePrincipal"
     Parameters = @(
         @{
+            SourceName = "Id"
+            TargetName = "ServicePrincipalId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+        @{
             SourceName = "SearchString"
             TargetName = "Filter"
             ConversionType = "ScriptBlock"
