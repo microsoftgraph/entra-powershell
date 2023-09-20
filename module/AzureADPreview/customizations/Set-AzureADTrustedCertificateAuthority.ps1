@@ -10,7 +10,8 @@
     PROCESS {    
         `$params = @{}
         
-        `$params["Uri"] = "/beta/organization/6bb43237-958e-4721-8eaf-8515a3739156/certificateBasedAuthConfiguration"
+        `$tenantId = (Get-MgContext).TenantId
+        `$params["Uri"] = "/beta/organization/`$tenantId/certificateBasedAuthConfiguration"
         `$params["Method"] = "POST"
         if(`$PSBoundParameters.ContainsKey("Debug"))
         {

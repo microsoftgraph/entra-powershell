@@ -10,7 +10,7 @@
     PROCESS {    
         `$params = @{}
         
-        `$params["OrganizationId"] = (Get-MgBetaContext).TenantId
+        `$params["OrganizationId"] = (Get-MgContext).TenantId
         if(`$PSBoundParameters.ContainsKey("Debug"))
         {
             `$params["Debug"] = `$Null
