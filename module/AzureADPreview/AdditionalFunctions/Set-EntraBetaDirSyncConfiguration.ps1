@@ -1,8 +1,11 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 function Set-EntraBetaDirSyncConfiguration {
-    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+    [CmdletBinding(DefaultParameterSetName = 'SetAccidentalDeletionThreshold')]
     param (
-        [Parameter(ParameterSetName = "GetQuery", Mandatory = $true)][System.String] $AccidentalDeletionThreshold,
-        [Parameter(ParameterSetName = "GetQuery")][System.String] $TenantId,
+        [Parameter(ParameterSetName = "SetAccidentalDeletionThreshold", ValueFromPipelineByPropertyName = $true, Mandatory = $true)][System.UInt32] $AccidentalDeletionThreshold,
+        [Parameter(ParameterSetName = "All", ValueFromPipelineByPropertyName = $true)][System.Guid] $TenantId,
         [switch] $Force
     )
 
