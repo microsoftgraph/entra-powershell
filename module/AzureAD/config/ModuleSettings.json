@@ -14,7 +14,7 @@
       "Microsoft.Graph.Identity.SignIns",
       "Microsoft.Graph.Applications"
     ],
-    "destinationModuleVersion": "2.0.0",
+    "destinationModuleVersion": "2.4.0",
     "sourceModulePrefix" : ["AzureADMS","AzureAD"],
     "destinationPrefix" : ["Mg"],
     "loadMessage": ""
