@@ -11,7 +11,7 @@
         `$params = @{}
         
         `$tenantId = (Get-MgContext).TenantId
-        `$params["Uri"] = "/v1.0/organization/`$tenantId/certificateBasedAuthConfiguration"
+        `$params["Uri"] = "/beta/organization/`$tenantId/certificateBasedAuthConfiguration"
         `$params["Method"] = "POST"
         if(`$PSBoundParameters.ContainsKey("Debug"))
         {

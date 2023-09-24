@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "Remove-AzureADTrustedCertificateAuthority"
+    SourceName = "New-AzureADTrustedCertificateAuthority"
     TargetName = $null
     Parameters = $null
     Outputs = $null
@@ -11,7 +11,7 @@
         `$params = @{}
         
         `$tenantId = (Get-MgContext).TenantId
-        `$params["Uri"] = "/v1.0/organization/`$tenantId/certificateBasedAuthConfiguration"
+        `$params["Uri"] = "/beta/organization/`$tenantId/certificateBasedAuthConfiguration"
         `$params["Method"] = "POST"
         if(`$PSBoundParameters.ContainsKey("Debug"))
         {
@@ -22,21 +22,15 @@
             `$params["Verbose"] = `$Null
         }
         
-        `$certNotFound = `$true
-        `$modifiedCert = `$PSBoundParameters["CertificateAuthorityInformation"]
+        `$newCert = `$PSBoundParameters["CertificateAuthorityInformation"]
         `$previusCerts = @()        
         Get-CompatADTrustedCertificateAuthority | ForEach-Object {
-            
-            if((`$_.TrustedIssuer -eq `$modifiedCert.TrustedIssuer) -and (`$_.TrustedIssuerSki -eq `$modifiedCert.TrustedIssuerSki)){
-                `$certNotFound = `$false
+            `$previusCerts += `$_
+            if((`$_.TrustedIssuer -eq `$newCert.TrustedIssuer) -and (`$_.TrustedIssuerSki -eq `$newCert.TrustedIssuerSki)){
+                Throw [System.Management.Automation.PSArgumentException] "A certificate already exists on the server with associated trustedIssuer and trustedIssuerSki fields."
             }
-            else{
-                `$previusCerts += `$_
-            }            
         }
-        if(`$certNotFound){
-            Throw [System.Management.Automation.PSArgumentException] "Provided certificate authority not found on the server. Please make sure you have provided the correct information in trustedIssuer and trustedIssuerSki fields."
-        }
+        `$previusCerts += `$newCert
 
         `$body = @{
             certificateAuthorities = @()
