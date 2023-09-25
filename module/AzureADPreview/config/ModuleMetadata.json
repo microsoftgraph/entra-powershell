@@ -12,8 +12,7 @@
       "Microsoft.Graph.Beta.Identity.DirectoryManagement", 
       "Microsoft.Graph.Beta.Identity.Governance", 
       "Microsoft.Graph.Beta.Identity.SignIns",
-      "Microsoft.Graph.Beta.Applications",
-      "Microsoft.Graph.Beta.Reports"
+      "Microsoft.Graph.Beta.Applications"
     ],
     "requiredModulesVersion": "2.4.0",
     "copyright": "© Microsoft Corporation. All rights reserved.",
