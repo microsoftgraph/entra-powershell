@@ -26,8 +26,7 @@ function Get-EntraBetaPartnerInformation {
     - PartnerCommerceUrl: URL for the partner's commerce web site.
     - PartnerSupportUrl: URL for the Partner's support website.
     - PartnerHelpUrl: URL for the partner's help web site.
-    
-    
+        
     #>
         [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
         param (
