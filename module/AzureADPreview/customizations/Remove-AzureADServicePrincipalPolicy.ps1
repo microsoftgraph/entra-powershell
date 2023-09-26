@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "Get-AzureADServicePrincipalPolicy"
+    SourceName = "Remove-AzureADServicePrincipalPolicy"
     TargetName = $null
     Parameters = $null
     Outputs = $null
@@ -12,7 +12,11 @@
                 if (`$null -ne `$PSBoundParameters["Id"]) {
                     `$params["Id"] = `$PSBoundParameters["Id"]
                 }
-                `$Method = "GET"
+                if (`$null -ne `$PSBoundParameters["PolicyId"]) {
+                    `$params["PolicyId"] = `$PSBoundParameters["PolicyId"]
+                }
+                `$Method = "DELETE"
+            
                 if (`$PSBoundParameters.ContainsKey("Debug")) {
                     `$params["Debug"] = `$Null
                 }
@@ -22,10 +26,9 @@
                     Write-Debug("============================ TRANSFORMATIONS ============================")
                     `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
                     Write-Debug("=========================================================================``n")
-                    `$URI = "https://graph.microsoft.com/beta/serviceprincipals/`$Id/policies"
-                    `$response = (Invoke-GraphRequest -Uri `$uri -Method `$Method | ConvertTo-Json | ConvertFrom-Json).value
-                    `$response | Add-Member -MemberType AliasProperty -Value '@odata.type' -Name 'odata.type'
+                    `$URI = 'https://graph.microsoft.com/beta/serviceprincipals/{0}/policies/{1}/`$ref' -f `$Id,`$PolicyId
+                    `$response = Invoke-GraphRequest -Uri `$uri -Method `$Method
                     `$response
-            }
+    }
 "@
 }
