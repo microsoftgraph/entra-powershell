@@ -286,7 +286,7 @@ namespace  $namespaceNew
                         $enumsDefined += $name
                     }                    
                 }
-                $def += "        public System.Nullable<$($name)> $($_.Name);`n"
+                $name = "System.Nullable<$($name)>"
             }
             elseif ($_.PropertyType.Name -eq 'List`1') {
                 $name = $_.PropertyType.GenericTypeArguments.FullName
@@ -297,7 +297,7 @@ namespace  $namespaceNew
                         $enumsDefined += $name
                     }
                 }
-                $def += "        public System.Collections.Generic.List<$($name)> $($_.Name);`n"
+                $name = "System.Collections.Generic.List<$($name)>"
             }
             else {
                 $name = $_.PropertyType.FullName
@@ -307,13 +307,25 @@ namespace  $namespaceNew
                         $def += $this.GetEnumString($name, $_.PropertyType.FullName)
                         $enumsDefined += $name
                     }
-                }
-                $def += "        public $($name) $($_.Name);`n"
-            }    
+                }                
+            }  
+            $def += "        public $($name) $($_.Name);`n"  
+        }
+
+        $constructor = ""
+
+        if(1 -eq $object.GetType().GetProperties().Count){
+
+            $constructor = @"
+public $($object.GetType().Name)($name value)
+        {
+            $($object.GetType().GetProperties()[0].Name) = value;
+        }
+"@
         }
 
         $def += @"
-
+        $constructor
     }
 
 "@
