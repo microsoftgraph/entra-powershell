@@ -71,6 +71,9 @@ function Set-EntraDirSyncFeature {
             if ([string]::IsNullOrWhiteSpace($TenantId)) {
                 $OnPremisesDirectorySynchronizationId = (Get-MgDirectoryOnPremiseSynchronization).Id
             }
+            else {
+                $OnPremisesDirectorySynchronizationId = $TenantId
+            }
             $body = @{
                 features = @{ $Feature = $Enabled }
             }
@@ -99,4 +102,3 @@ function Set-EntraDirSyncFeature {
         
         }
     }
-    
