@@ -16,6 +16,7 @@ class CompatibilityAdapterBuilder {
     hidden [hashtable] $CmdCustomizations = @{}
     hidden [hashtable] $GenericParametersTransformations = @{}
     hidden [hashtable] $GenericOutputTransformations = @{}
+    hidden [hashtable] $TypeCustomizations = @{}
     hidden [string] $OutputFolder = (join-path $PSScriptRoot '../bin')
     hidden [string] $HelpFolder = $null
     hidden [MappedCmdCollection] $ModuleMap = $null
@@ -76,7 +77,14 @@ class CompatibilityAdapterBuilder {
         $this.WriteModuleManifest()             
     }
     
-        # Add customization based on the the CommandMap object.
+    AddTypes($types) {
+        $this.TypeCustomizations = $types
+        foreach($type in $types.Keys){
+            $this.TypesToCreate += $type
+        }
+    }
+
+    # Add customization based on the the CommandMap object.
     AddCustomization([hashtable[]] $Commands) {
         foreach($cmd in $Commands) {
             $parameters = $null
@@ -324,8 +332,14 @@ public $($object.GetType().Name)($name value)
 "@
         }
 
+        $extraFunctions = ""
+        if($this.TypeCustomizations.ContainsKey($object.GetType().FullName)){
+            $extraFunctions = $this.TypeCustomizations[$object.GetType().FullName]
+        }
+
         $def += @"
         $constructor
+        $extraFunctions
     }
 
 "@
