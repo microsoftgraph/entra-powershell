@@ -284,6 +284,17 @@ namespace  $namespaceNew
 
 "@
 
+        if($this.TypeCustomizations.ContainsKey($object.GetType().FullName)){
+            $extraFunctions = $this.TypeCustomizations[$object.GetType().FullName]
+            $def += @"
+$extraFunctions
+    }
+
+"@
+        }
+        else {
+            
+        
         $object.GetType().GetProperties() | ForEach-Object {   
             if($_.PropertyType.Name -eq 'Nullable`1') {
                 $name = $_.PropertyType.GenericTypeArguments.FullName
@@ -332,18 +343,12 @@ public $($object.GetType().Name)($name value)
 "@
         }
 
-        $extraFunctions = ""
-        if($this.TypeCustomizations.ContainsKey($object.GetType().FullName)){
-            $extraFunctions = $this.TypeCustomizations[$object.GetType().FullName]
-        }
-
         $def += @"
         $constructor
-        $extraFunctions
     }
 
 "@
-
+        }
     }
 
     $def += @"    
