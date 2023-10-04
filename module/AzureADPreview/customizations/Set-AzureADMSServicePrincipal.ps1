@@ -9,16 +9,15 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
+        `$body = @{}
         `$keysChanged = @{ObjectId = "Id"}
         if(`$null -ne `$PSBoundParameters["AccountEnabled"])
         {
-            `$TmpValue = `$PSBoundParameters["AccountEnabled"]
-            `$Value = @{"accountEnabled" = `$TmpValue}
-            `$params["BodyParameter"] = `$Value
+            `$body["AccountEnabled"] = `$PSBoundParameters["AccountEnabled"]
         }
         if(`$null -ne `$PSBoundParameters["Tags"])
         {
-            `$params["Tags"] = `$PSBoundParameters["Tags"]
+            `$body["Tags"] = `$PSBoundParameters["Tags"]
         }
         if(`$PSBoundParameters.ContainsKey("Verbose"))
         {
@@ -26,11 +25,11 @@
         }
         if(`$null -ne `$PSBoundParameters["DisplayName"])
         {
-            `$params["DisplayName"] = `$PSBoundParameters["DisplayName"]
+            `$body["DisplayName"] = `$PSBoundParameters["DisplayName"]
         }
         if(`$null -ne `$PSBoundParameters["AppId"])
         {
-            `$params["AppId"] = `$PSBoundParameters["AppId"]
+            `$body["AppId"] = `$PSBoundParameters["AppId"]
         }
         if(`$PSBoundParameters.ContainsKey("Debug"))
         {
@@ -66,9 +65,7 @@
         }
         if(`$null -ne `$PSBoundParameters["AppRoleAssignmentRequired"])
         {
-            `$TmpValue = `$PSBoundParameters["AppRoleAssignmentRequired"]
-            `$Value = @{"AppRoleAssignmentRequired" = `$TmpValue}
-            `$params["BodyParameter"] = `$Value
+            `$body["AppRoleAssignmentRequired"] = `$PSBoundParameters["AppRoleAssignmentRequired"]
         }
         if(`$null -ne `$PSBoundParameters["PasswordCredentials"])
         {
@@ -80,20 +77,22 @@
         }
         if(`$null -ne `$PSBoundParameters["ServicePrincipalNames"])
         {
-            `$params["ServicePrincipalNames"] = `$PSBoundParameters["ServicePrincipalNames"]
+            `$body["ServicePrincipalNames"] = `$PSBoundParameters["ServicePrincipalNames"]
         }
         if(`$null -ne `$PSBoundParameters["PreferredTokenSigningKeyThumbprint"])
         {
-            `$TmpValue = `$PSBoundParameters["PreferredTokenSigningKeyThumbprint"]
-            `$Value = @{"PreferredTokenSigningKeyThumbprint" = `$TmpValue}
-            `$params["BodyParameter"] = `$Value
+            `$body["PreferredTokenSigningKeyThumbprint"] = `$PSBoundParameters["PreferredTokenSigningKeyThumbprint"]
+        }
+        if(`$body.Count -gt 0)
+        {
+            `$params["BodyParameter"] = `$body
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        `$response = Update-MgServicePrincipal @params
+        `$response = Update-MgBetaServicePrincipal @params
         `$response | ForEach-Object {
             if(`$null -ne `$_) {
             Add-Member -InputObject `$_ -MemberType AliasProperty -Name ObjectId -Value Id
