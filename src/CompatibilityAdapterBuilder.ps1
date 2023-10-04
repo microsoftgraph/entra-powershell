@@ -264,6 +264,8 @@ class CompatibilityAdapterBuilder {
 namespace  $namespaceNew
 {
 
+    using System.Linq;
+
 "@
             }
             else {
@@ -272,6 +274,8 @@ namespace  $namespaceNew
 namespace  $namespaceNew
 {
 
+    using System.Linq;
+    
 "@        
             }
             $namespace = $object.GetType().Namespace
