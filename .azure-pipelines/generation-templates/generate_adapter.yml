@@ -25,7 +25,7 @@ steps:
   displayName: 'Build AzureAD'
   inputs:
     targetType: inline
-    script: ./build/Create-CompatModule.ps1 -Verbose
+    script: ./build/Create-CompatModule.ps1 -Module AzureAD -Verbose
     pwsh: false
 - ${{ if eq(parameters.Sign, true) }}:
   - template: ../common-templates/esrp/codesign.yml

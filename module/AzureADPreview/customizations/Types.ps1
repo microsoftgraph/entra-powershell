@@ -4,7 +4,12 @@
 
 @{
         "Microsoft.Open.MSGraph.Model.DirectorySettingTemplate" = @"
-public DirectorySetting CreateDirectorySetting()
+        public System.String Id;
+        public System.String DisplayName;
+        public System.String Description;
+        public System.Collections.Generic.List<Microsoft.Open.MSGraph.Model.SettingTemplateValue> Values;
+
+        public DirectorySetting CreateDirectorySetting()
         {
             DirectorySetting directorySetting = new DirectorySetting();
 
@@ -36,4 +41,40 @@ public DirectorySetting CreateDirectorySetting()
             return directorySetting;
         }
 "@
+        "Microsoft.Open.MSGraph.Model.DirectorySetting" = @"
+        public System.String Id;
+        public System.String DisplayName;
+        public System.String TemplateId;
+        public System.Collections.Generic.List<Microsoft.Open.MSGraph.Model.SettingValue> Values;
+        
+        public string this[string name]
+        {
+            get
+            {
+                SettingValue setting = this.Values.FirstOrDefault(namevaluepair => namevaluepair.Name.Equals(name));
+                return (setting != null) ? setting.Value : string.Empty;
+            }
+            set
+            {
+                SettingValue setting = this.Values.FirstOrDefault(namevaluepair => namevaluepair.Name.Equals(name));
+                if (setting != null)
+                {
+                    // Capitalize the forst character of the value.
+                    if (string.IsNullOrEmpty(value))
+                    {
+                        setting.Value = value;
+                    }
+                    else if (value.Length == 1)
+                    {
+                        setting.Value = value.ToUpper();
+                    }
+                    else
+                    {
+                        setting.Value = char.ToUpper(value[0]) + value.Substring(1);
+                    }
+                }
+            }
+        }
+"@
 }
+
