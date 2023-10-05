@@ -32,26 +32,49 @@
         @{
             SourceName = "AdminEligibleSettings"
             TargetName = "AdminEligibleSettings"
-            ConversionType = "Name"
-            SpecialMapping = $null
+            ConversionType = "ScriptBlock"
+            SpecialMapping = @"
+            `$a = @()
+           `$Temp = `$TmpValue | ConvertTo-Json
+             `$a += `$Temp
+            `$Value = `$a 
+"@
         },
         @{
             SourceName = "AdminMemberSettings"
             TargetName = "AdminMemberSettings"
-            ConversionType = "Name"
-            SpecialMapping = $null
+            ConversionType = "ScriptBlock"
+            SpecialMapping = @"
+            `$a = @()
+            `$Temp = `$TmpValue | ConvertTo-Json
+            `$a += `$Temp
+            `$Value = `$a 
+"@
         },
         @{
             SourceName = "UserEligibleSettings"
             TargetName = "UserEligibleSettings"
-            ConversionType = "Name"
-            SpecialMapping = $null
+            ConversionType = "ScriptBlock"
+            SpecialMapping = @"
+            `$a = @()
+           `$Temp = `$TmpValue | ConvertTo-Json
+             `$a += `$Temp
+            `$Value = `$a 
+"@
         },
         @{
             SourceName = "UserMemberSettings"
             TargetName = "UserMemberSettings"
-            ConversionType = "Name"
-            SpecialMapping = $null
+            ConversionType = "ScriptBlock"
+            SpecialMapping = @"
+            `$a = @()
+            foreach(`$setting in `$TmpValue) {
+              `$Temp = `$setting | ConvertTo-Json
+              `$a += `$Temp
+            }
+
+            `$Value = `$a 
+"@
         }
     )
     Outputs = $null
