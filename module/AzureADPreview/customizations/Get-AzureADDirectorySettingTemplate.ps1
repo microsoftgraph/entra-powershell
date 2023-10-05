@@ -40,7 +40,7 @@
                     `$value = New-Object -TypeName Microsoft.Open.MSGraph.Model.SettingTemplateValue
                     `$value.Name = `$_.Name
                     `$value.DefaultValue = `$_.DefaultValue
-                    `$item.Values += `$value
+                    `$item.Values.Add(`$value)
                 }
                 `$response += `$item
             }
