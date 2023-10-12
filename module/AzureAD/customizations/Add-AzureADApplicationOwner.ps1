@@ -4,13 +4,6 @@
 @{
     SourceName = "Add-AzureADApplicationOwner"
     TargetName = "New-MgApplicationOwnerByRef"
-    Parameters = @(
-        @{
-            SourceName = "RefObjectId"
-            TargetName = "OdataId"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        }
-    )
+    Parameters = $null
     Outputs = $null
 }
