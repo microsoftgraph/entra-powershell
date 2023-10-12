@@ -4,26 +4,6 @@
 @{
     SourceName = "Add-AzureADMScustomSecurityAttributeDefinitionAllowedValues"
     TargetName = "New-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue"
-    Parameters =
-    @(
-        @{
-            SourceName = "CustomSecurityAttributeDefinitionId"
-            TargetName = "CustomSecurityAttributeDefinitionId"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        },
-        @{
-            SourceName = "ID"
-            TargetName = "ID"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        },
-        @{
-            SourceName = "IsActive"
-            TargetName = "IsActive"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        }
-    ) 
+    Parameters = $null
     Outputs = $null
 }
