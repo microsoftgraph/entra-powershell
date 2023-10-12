@@ -44,7 +44,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        `$response = New-MgBetaGroupAppRoleAssignment @params
+        `$response = New-MgBetaGroupAppRoleAssignment @params 
         `$response
         }
 "@
