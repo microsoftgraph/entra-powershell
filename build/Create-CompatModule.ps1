@@ -16,7 +16,12 @@ $mapper = [CompatibilityAdapterBuilder]::new($Module)
 $customizationFiles = Get-CustomizationFiles -Module $Module
 foreach($file in $customizationFiles){
     $cmds = & $file
-    $mapper.AddCustomization($cmds)
+    if($file -like "*Types.ps1"){
+        $mapper.AddTypes($cmds)
+    }
+    else{
+        $mapper.AddCustomization($cmds)
+    }
 }
 $AdditionalFunctions = Get-CustomizationFiles -Directory 'AdditionalFunctions'  -Module $Module
 foreach($file in $AdditionalFunctions){
