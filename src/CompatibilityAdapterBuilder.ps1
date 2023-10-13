@@ -16,6 +16,7 @@ class CompatibilityAdapterBuilder {
     hidden [hashtable] $CmdCustomizations = @{}
     hidden [hashtable] $GenericParametersTransformations = @{}
     hidden [hashtable] $GenericOutputTransformations = @{}
+    hidden [hashtable] $TypeCustomizations = @{}
     hidden [string] $OutputFolder = (join-path $PSScriptRoot '../bin')
     hidden [string] $HelpFolder = $null
     hidden [MappedCmdCollection] $ModuleMap = $null
@@ -76,7 +77,14 @@ class CompatibilityAdapterBuilder {
         $this.WriteModuleManifest()             
     }
     
-        # Add customization based on the the CommandMap object.
+    AddTypes($types) {
+        $this.TypeCustomizations = $types
+        foreach($type in $types.Keys){
+            $this.TypesToCreate += $type
+        }
+    }
+
+    # Add customization based on the the CommandMap object.
     AddCustomization([hashtable[]] $Commands) {
         foreach($cmd in $Commands) {
             $parameters = $null
@@ -256,6 +264,8 @@ class CompatibilityAdapterBuilder {
 namespace  $namespaceNew
 {
 
+    using System.Linq;
+
 "@
             }
             else {
@@ -264,6 +274,8 @@ namespace  $namespaceNew
 namespace  $namespaceNew
 {
 
+    using System.Linq;
+    
 "@        
             }
             $namespace = $object.GetType().Namespace
@@ -276,6 +288,17 @@ namespace  $namespaceNew
 
 "@
 
+        if($this.TypeCustomizations.ContainsKey($object.GetType().FullName)){
+            $extraFunctions = $this.TypeCustomizations[$object.GetType().FullName]
+            $def += @"
+$extraFunctions
+    }
+
+"@
+        }
+        else {
+            
+        
         $object.GetType().GetProperties() | ForEach-Object {   
             if($_.PropertyType.Name -eq 'Nullable`1') {
                 $name = $_.PropertyType.GenericTypeArguments.FullName
@@ -286,7 +309,7 @@ namespace  $namespaceNew
                         $enumsDefined += $name
                     }                    
                 }
-                $def += "        public System.Nullable<$($name)> $($_.Name);`n"
+                $name = "System.Nullable<$($name)>"
             }
             elseif ($_.PropertyType.Name -eq 'List`1') {
                 $name = $_.PropertyType.GenericTypeArguments.FullName
@@ -297,7 +320,7 @@ namespace  $namespaceNew
                         $enumsDefined += $name
                     }
                 }
-                $def += "        public System.Collections.Generic.List<$($name)> $($_.Name);`n"
+                $name = "System.Collections.Generic.List<$($name)>"
             }
             else {
                 $name = $_.PropertyType.FullName
@@ -307,17 +330,29 @@ namespace  $namespaceNew
                         $def += $this.GetEnumString($name, $_.PropertyType.FullName)
                         $enumsDefined += $name
                     }
-                }
-                $def += "        public $($name) $($_.Name);`n"
-            }    
+                }                
+            }  
+            $def += "        public $($name) $($_.Name);`n"  
+        }
+
+        $constructor = ""
+
+        if(1 -eq $object.GetType().GetProperties().Count){
+
+            $constructor = @"
+public $($object.GetType().Name)($name value)
+        {
+            $($object.GetType().GetProperties()[0].Name) = value;
+        }
+"@
         }
 
         $def += @"
-
+        $constructor
     }
 
 "@
-
+        }
     }
 
     $def += @"    
@@ -916,7 +951,10 @@ $($output)
                 $genericParam = $this.GenericParametersTransformations[$param.Name]
                 if(5 -eq $genericParam.ConversionType){
                     $tempName = "$($Cmdlet.Noun)$($genericParam.TargetName)"
-                    if($targetCmd.Parameters.ContainsKey($tempName)){
+                    if($targetCmd.Parameters.ContainsKey($genericParam.TargetName)){
+                        $paramObj.SetTargetName($genericParam.TargetName)
+                    }
+                    elseif($targetCmd.Parameters.ContainsKey($tempName)){
                         $paramObj.SetTargetName($tempName)
                     }
                     else
