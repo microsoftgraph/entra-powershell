@@ -27,6 +27,7 @@ function Get-EntraAccountSku {
             Add-Member -InputObject $_ -MemberType NoteProperty -Name SuspendedUnits -Value $_.PrepaidUnits.Suspended
             Add-Member -InputObject $_ -MemberType NoteProperty -Name WarningUnits -Value $_.PrepaidUnits.Warning
             Add-Member -InputObject $_ -MemberType NoteProperty -Name AccountObjectId -Value $_.AccountId
+            Add-Member -InputObject $_ -MemberType NoteProperty -Name TargetClass -Value $_.AppliesTo
             }
         }
         $response
