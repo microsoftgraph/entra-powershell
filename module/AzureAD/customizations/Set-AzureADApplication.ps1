@@ -210,9 +210,6 @@
     $`params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
     Write-Debug("=========================================================================``n")
 
-    `$response = Update-MgApplication @params
-
-    
-    `$response
+    Update-MgApplication @params
 "@
 }
