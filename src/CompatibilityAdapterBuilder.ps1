@@ -589,12 +589,18 @@ $OutputTransformations
             }
             $param = $params[$paramKey]
             $paramType = $param.ParameterType.ToString()
+            $paramtypeToCreate = $param.ParameterType.ToString()
             if(($null -ne $this.TypePrefix) -and ($paramType -like "*$($this.TypePrefix)*")){
-                if(($paramType -like "*List*") -or ($paramType -like "*Nullable*")){
-                    $paramType = $param.ParameterType.GenericTypeArguments.FullName
+                if($paramType -like "*List*"){
+                    $paramType = "System.Collections.Generic.List``1[$($param.ParameterType.GenericTypeArguments.FullName)]"
+                    $paramtypeToCreate = $param.ParameterType.GenericTypeArguments.FullName
                 }
-                if(!$this.TypesToCreate.Contains($paramType)) {
-                    $this.TypesToCreate += $paramType
+                elseif($paramType -like "*Nullable*"){
+                    $paramType = "System.Nullable``1[$($param.ParameterType.GenericTypeArguments.FullName)]"
+                    $paramtypeToCreate = $param.ParameterType.GenericTypeArguments.FullName
+                }
+                if(!$this.TypesToCreate.Contains($paramtypeToCreate)) {
+                    $this.TypesToCreate += $paramtypeToCreate
                 }                
             }           
             $paramBlock = @"
