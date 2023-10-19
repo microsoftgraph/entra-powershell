@@ -44,18 +44,17 @@
             `$params["Search"] = "DisplayName:"+`$PSBoundParameters["SearchString"]
             `$params["ConsistencyLevel"] = "eventual"
         }
-
-        if(`$null -ne `$PSBoundParameters["Select"])
-        {
-            `$params["Property"] = `$PSBoundParameters["Select"].Split(' ')
-        }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        `$response = Get-MgUser @params
-    
+        `$response = Get-MgUser @params | ConvertTo-Json | ConvertFrom-Json
+        if(`$null -ne `$PSBoundParameters["Select"])
+        {
+            `$response = `$response | Select `$PSBoundParameters["Select"]
+        }
+
         `$response
         }
 "@
