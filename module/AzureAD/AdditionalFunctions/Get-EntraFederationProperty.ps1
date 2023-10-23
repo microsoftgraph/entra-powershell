@@ -47,6 +47,17 @@ function Get-EntraFederationProperty {
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         $response = Get-MgDomainFederationConfiguration @params
+        $response | ForEach-Object {
+            if($null -ne $_) {
+            Add-Member -InputObject $_ -MemberType AliasProperty -Name ActiveClientSignInUrl -Value ActiveSignInUri
+            Add-Member -InputObject $_ -MemberType AliasProperty -Name FederationServiceDisplayName -Value DisplayName
+            Add-Member -InputObject $_ -MemberType AliasProperty -Name FederationServiceIdentifier -Value IssuerUri
+            Add-Member -InputObject $_ -MemberType AliasProperty -Name FederationMetadataUrl -Value MetadataExchangeUri
+            Add-Member -InputObject $_ -MemberType AliasProperty -Name PassiveClientSignInUrl -Value PassiveSignInUri
+            Add-Member -InputObject $_ -MemberType AliasProperty -Name PassiveClientSignOutUrl -Value SignOutUri
+            }
+        }
         $response
+
     }
 }
