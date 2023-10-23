@@ -35,9 +35,12 @@
             ConversionType = "ScriptBlock"
             SpecialMapping = @"
             `$a = @()
-           `$Temp = `$TmpValue | ConvertTo-Json
-             `$a += `$Temp
-            `$Value = `$a 
+            foreach(`$setting in `$TmpValue) {
+              `$Temp = `$setting | ConvertTo-Json
+              `$a += `$Temp
+            }
+
+            `$Value = `$a  
 "@
         },
         @{
@@ -46,9 +49,12 @@
             ConversionType = "ScriptBlock"
             SpecialMapping = @"
             `$a = @()
-            `$Temp = `$TmpValue | ConvertTo-Json
-            `$a += `$Temp
-            `$Value = `$a 
+            foreach(`$setting in `$TmpValue) {
+              `$Temp = `$setting | ConvertTo-Json
+              `$a += `$Temp
+            }
+
+            `$Value = `$a  
 "@
         },
         @{
@@ -57,9 +63,12 @@
             ConversionType = "ScriptBlock"
             SpecialMapping = @"
             `$a = @()
-           `$Temp = `$TmpValue | ConvertTo-Json
-             `$a += `$Temp
-            `$Value = `$a 
+            foreach(`$setting in `$TmpValue) {
+              `$Temp = `$setting | ConvertTo-Json
+              `$a += `$Temp
+            }
+
+            `$Value = `$a  
 "@
         },
         @{
