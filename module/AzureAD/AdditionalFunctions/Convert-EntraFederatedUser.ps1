@@ -25,6 +25,9 @@ function Convert-EntraFederatedUser {
     ErrorAction, ErrorVariable, WarningAction, WarningVariable,
     OutBuffer, PipelineVariable, and OutVariable. For more information, see 
     about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216). 
+
+.EXAMPLE
+    Convert-EntraFederatedUser -UserPrincipalName "pattifuller@contoso.com"
 #>
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
