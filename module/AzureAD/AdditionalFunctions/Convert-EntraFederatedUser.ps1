@@ -40,9 +40,12 @@ function Convert-EntraFederatedUser {
         if ($null -ne $PSBoundParameters["UserPrincipalName"]) {
             $UserPrincipalName = $PSBoundParameters.UserPrincipalName
             $UserId = Get-MgUser -Search "UserPrincipalName:$UserPrincipalName" -ConsistencyLevel eventual
-            $AuthenticationMethodId = Get-MgUserAuthenticationMethod -UserId $UserId.Id
-            $params["AuthenticationMethodId"] = $AuthenticationMethodId.Id
-            $params["UserId"] = $UserId.Id
+            if ($null -ne $UserId)
+            {
+                $AuthenticationMethodId = Get-MgUserAuthenticationMethod -UserId $UserId.Id
+                $params["AuthenticationMethodId"] = $AuthenticationMethodId.Id
+                $params["UserId"] = $UserId.Id
+            }
         }
         if ($PSBoundParameters.ContainsKey("NewPassword")) {
             $params["NewPassword"] = $PSBoundParameters["NewPassword"]
@@ -56,7 +59,7 @@ function Convert-EntraFederatedUser {
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        if($null -ne $PSBoundParameters["UserPrincipalName"])
+        if($null -ne $AuthenticationMethodId)
         {
             $response = Reset-MgUserAuthenticationMethodPassword @params
         }
