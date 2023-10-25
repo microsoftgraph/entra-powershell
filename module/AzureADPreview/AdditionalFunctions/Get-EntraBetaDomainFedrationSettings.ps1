@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 
-function Get-EntraDomainFedrationSettings {
+function Get-EntraBetaDomainFedrationSettings {
     <#
     .SYNOPSIS
         Retrieves settings for a federated domain.
     .DESCRIPTION
-        The Get-EntraDomainFederationSettings cmdlet gets key settings from Microsoft Azure Active Directory. Use the Get-EntraFederationProperty cmdlet to get settings for both Microsoft Azure Active Directory and the Active Directory Federation Services server.
+        The Get-EntraBetaDomainFedrationSettings cmdlet gets key settings from Microsoft Azure Active Directory. Use the Get-EntraFederationProperty cmdlet to get settings for both Microsoft Azure Active Directory and the Active Directory Federation Services server.
     .PARAMETER DomainName
         The fully qualified domain name to retrieve.
         
@@ -30,7 +30,7 @@ function Get-EntraDomainFedrationSettings {
                 SigningCertificate
     .EXAMPLE
         
-    C:\PS>Get-EntraDomainFederationSettings -DomainName contoso.com
+    C:\PS>Get-EntraBetaDomainFedrationSettings -DomainName contoso.com
         
         Returns the federation settings for contoso.com.
         Description
@@ -62,7 +62,7 @@ function Get-EntraDomainFedrationSettings {
             Write-Debug("============================ TRANSFORMATIONS ============================")
             $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
             Write-Debug("=========================================================================`n")
-            $response =  Get-MgDomainFederationConfiguration -DomainId $params["DomainId"] | ConvertTo-Json -Depth 10 | ConvertFrom-Json 
+            $response =  Get-MgBetaDomainFederationConfiguration -DomainId $params["DomainId"] | ConvertTo-Json -Depth 10 | ConvertFrom-Json 
             $customTable = [PSCustomObject]@{
                 "ActiveLogOnUri"      = $response.ActiveSignInUri
                 #"DefaultInteractiveAuthenticationMethod" = $response.
