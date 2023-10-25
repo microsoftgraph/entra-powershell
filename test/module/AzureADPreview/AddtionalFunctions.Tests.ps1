@@ -1,6 +1,6 @@
 BeforeAll {    
-    if((Get-Module -Name Microsoft.Graph.Compatibility.AzureAD.Preview) -eq $null){
-        Import-Module Microsoft.Graph.Compatibility.AzureAD.Preview
+    if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Beta
     }
 }
 
@@ -12,7 +12,7 @@ Describe 'Checking Files'{
     It 'Checking that AdditionalFunctions produce commands' {
         $files | ForEach-Object {
             $name = $_.Name.Replace(".ps1","")
-            $module = Get-Module Microsoft.Graph.Compatibility.AzureAD.Preview
+            $module = Get-Module Microsoft.Graph.Entra.Beta
             $module.ExportedCommands.ContainsKey($name) | Should -BeTrue
         }
     }

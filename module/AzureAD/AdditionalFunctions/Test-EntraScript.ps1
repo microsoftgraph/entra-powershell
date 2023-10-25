@@ -4,9 +4,9 @@
 
 <#
 .Description
-Test-CompatADScript looks for unsupported commands in a script.
+Test-EntraScript looks for unsupported AzureAD commands in a script.
 #>
-function Test-CompatADScript {
+function Test-EntraScript {
     param (
         $Script
     )
