@@ -97,10 +97,15 @@
         `$input = `$PSBoundParameters["KeyCredentials"]
         foreach(`$value in `$input)
         {
-           `$Temp = `$value | ConvertTo-Json
-            `$hash = @{}
+            `$hash = @{
+                CustomKeyIdentifier= `$value.CustomKeyIdentifier
+                EndDateTime =  `$value.EndDate
+                Key= `$value.Value
+                StartDateTime= `$value.StartDate
+                Type= `$value.Type
+                Usage= `$value.Usage
+            }
 
-            (ConvertFrom-Json `$Temp).psobject.properties | Foreach { `$hash[`$_.Name] = `$_.Value }
             `$a += `$hash
         }
         
@@ -138,10 +143,13 @@
         `$input = `$PSBoundParameters["PasswordCredentials"]
         foreach(`$value in `$input)
         {
-           `$Temp = `$value | ConvertTo-Json
-            `$hash = @{}
+            `$hash = @{
+                CustomKeyIdentifier= `$value.CustomKeyIdentifier
+                EndDateTime =  `$value.EndDate
+                SecretText= `$value.Value
+                StartDateTime= `$value.StartDate
+                }
 
-            (ConvertFrom-Json `$Temp).psobject.properties | Foreach { `$hash[`$_.Name] = `$_.Value }
             `$a += `$hash
         }
         
