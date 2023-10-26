@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "New-AzureADGroupAppRoleAssignment "
+    SourceName = "New-AzureADGroupAppRoleAssignment"
     TargetName = $null
     Parameters = $null
     Outputs = $null
@@ -10,13 +10,14 @@
     PROCESS {    
         `$params = @{}
         `$keysChanged = @{ObjectId = "Id"}
+        `$body=@{}
         if(`$null -ne `$PSBoundParameters["ResourceId"])
         {
-            `$params["ResourceId"] = `$PSBoundParameters["ResourceId"]
+            `$body["ResourceId"] = `$PSBoundParameters["ResourceId"]
         }
         if(`$null -ne `$PSBoundParameters["Id"])
         {
-            `$params["Id"] = `$PSBoundParameters["Id"]
+            `$body["AppRoleId"] = `$PSBoundParameters["Id"]
         }
         if(`$null -ne `$PSBoundParameters["ObjectId"])
         {
@@ -32,20 +33,33 @@
         }
         if(`$null -ne `$PSBoundParameters["PrincipalId"])
         {
-            `$params["PrincipalId"] = `$PSBoundParameters["PrincipalId"]
+            `$body["PrincipalId"] = `$PSBoundParameters["PrincipalId"]
         }
         `$params["BodyParameter"] = @{
-           "principalId" = `$params.PrincipalId
-           "resourceId" = `$params.ResourceId
-           "appRoleId" = `$params.Id
+           "principalId" = `$body.PrincipalId
+           "resourceId" = `$body.ResourceId
+           "appRoleId" = `$body.AppRoleId
         }
-    
+
         Write-Debug("============================ TRANSFORMATIONS ============================")
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        Write-Debug("=========================================================================
+")
         
         `$response = New-MgBetaGroupAppRoleAssignment @params 
-        `$response
+        `$customTable = [PSCustomObject]@{
+            "ObjectId" = `$response.Id
+            "ObjectType"      = "AppRoleAssignment"
+            "CreationTimestamp" = `$response.AppRoleAssignment
+            "Id" = `$response.AppRoleId
+            "PrincipalDisplayName" = `$response.PrincipalDisplayName
+            "PrincipalId" = `$response.PrincipalDisplayName
+            "PrincipalType" = `$response.PrincipalType
+            "ResourceDisplayName" = `$response.ResourceDisplayName
+            "ResourceId" = `$response.ResourceId
+            "AdditionalProperties" = `$response.AdditionalProperties
         }
+        `$customTable 
+        }  
 "@
 }
