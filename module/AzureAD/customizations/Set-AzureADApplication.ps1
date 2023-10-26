@@ -175,18 +175,9 @@
 
     if(`$null -ne `$PSBoundParameters["RequiredResourceAccess"])
     {
-        `$a = @()
         `$input = `$PSBoundParameters["RequiredResourceAccess"]
-        foreach(`$value in `$input)
-        {
-           `$Temp = `$value | ConvertTo-Json
-            `$hash = @{}
-
-            (ConvertFrom-Json `$Temp).psobject.properties | Foreach { `$hash[`$_.Name] = `$_.Value }
-            `$a += `$hash
-        }
         
-        `$params["RequiredResourceAccess"] = `$a
+        `$params["RequiredResourceAccess"] =  `$input | ConvertTo-Json 
     }
 
     if(`$null -ne `$PSBoundParameters["SamlMetadataUrl"])
