@@ -170,7 +170,6 @@
 
     if(`$null -ne `$PSBoundParameters["RequiredResourceAccess"])
     {
-        `$a = @()
         `$input = `$PSBoundParameters["RequiredResourceAccess"]
         
         `$params["RequiredResourceAccess"] =  `$input | ConvertTo-Json 
