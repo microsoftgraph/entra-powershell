@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 
-function Get-EntraBetaDomainFedrationSettings {
+function Get-EntraBetaDomainFederationSettings {
     <#
     .SYNOPSIS
         Retrieves settings for a federated domain.
     .DESCRIPTION
-        The Get-EntraBetaDomainFedrationSettings cmdlet gets key settings from Microsoft Azure Active Directory. Use the Get-EntraFederationProperty cmdlet to get settings for both Microsoft Azure Active Directory and the Active Directory Federation Services server.
+        The Get-EntraBetaDomainFederationSettings cmdlet gets key settings from Microsoft Azure Active Directory. Use the Get-EntraFederationProperty cmdlet to get settings for both Microsoft Azure Active Directory and the Active Directory Federation Services server.
     .PARAMETER DomainName
         The fully qualified domain name to retrieve.
         
@@ -30,7 +30,7 @@ function Get-EntraBetaDomainFedrationSettings {
                 SigningCertificate
     .EXAMPLE
         
-    C:\PS>Get-EntraBetaDomainFedrationSettings -DomainName contoso.com
+    C:\PS>Get-EntraBetaDomainFederationSettings -DomainName contoso.com
         
         Returns the federation settings for contoso.com.
         Description
