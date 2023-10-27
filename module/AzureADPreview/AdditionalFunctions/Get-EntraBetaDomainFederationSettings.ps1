@@ -81,8 +81,10 @@ function Get-EntraBetaDomainFederationSettings {
                 "SigningCertificateUpdateStatus" = $response.SigningCertificateUpdateStatus
                 #"SupportsMfa" = $response.
             }
-            $customTable 
-    
+            if($null -ne $response)
+            {
+                $customTable   
+            }
         }
     }
     
