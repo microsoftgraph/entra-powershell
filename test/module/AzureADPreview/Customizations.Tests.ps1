@@ -1,6 +1,6 @@
 BeforeAll {    
-    if((Get-Module -Name Microsoft.Graph.Compatibility.AzureAD.Preview) -eq $null){
-        Import-Module Microsoft.Graph.Compatibility.AzureAD.Preview
+    if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Beta
     }
 }
 
@@ -25,10 +25,10 @@ Describe 'Checking Files'{
     It 'Checking that customizations produce commands' {
         $files | ForEach-Object {
             $name = $_.Name -ireplace ".ps1",""
-            $name = $name -ireplace "AzureAD","CompatAD"
+            $name = $name -ireplace "AzureAD","Entra"
             if(("Generic" -ne $name) -and ("Types" -ne $name)){
                 Write-Host "Checking $name"
-                $module = Get-Module Microsoft.Graph.Compatibility.AzureAD.Preview
+                $module = Get-Module Microsoft.Graph.Entra.Beta
                 $module.ExportedCommands.ContainsKey($name) | Should -BeTrue
             }
         }

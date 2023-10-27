@@ -57,13 +57,13 @@ To see all the possible options please refer to [MS Graph SDK authentication](ht
 Here's an example that will emulate the Azure AD module's Get-AzureADUser with a Microsoft Graph call:
 
 ```powershell
-Get-CompatADUser -SearchString "ian" 
+Get-EntraUser -SearchString "ian" 
 ```
 
 This example gives you more insight into the calls being made:
 
 ```powershell
-Get-CompatADUser -SearchString "ian" -Debug
+Get-EntraUser -SearchString "ian" -Debug
 ```
 
 4. Aliasing Azure AD Commands
@@ -71,7 +71,7 @@ Get-CompatADUser -SearchString "ian" -Debug
 Running this cmdlet creates aliases for all of the supported Azure AD cmdlets to those in the compatability module:
 
 ```powershell
-Set-CompatADAlias
+Set-EntraAlias
 ```
 
 This will show you all of the newly created aliases:
@@ -103,13 +103,13 @@ Remove-Module AzureAD
 You can use the compatibility adapter to test an AzureAD PowerShell module based script. This will help determine if a script can be migrated to the MS Graph PowerShell SDK. 
 
 ```powershell
-Test-CompatADScript -Script .\Export_secrets_and_certificates_for_app_registrations.ps1
+Test-EntraScript -Script .\Export_secrets_and_certificates_for_app_registrations.ps1
 ```
 
 If the script is compatible you won't see any output, although you can use `$?` to display that True was returned. If the script isn't compatible then you will see a warning with details of the problem cmdlet(s). Example:
 
 ```powershell
-Test-CompatADScript -Script .\Export_secrets_and_certificates_for_app_registrations.ps1
+Test-EntraScript -Script .\Export_secrets_and_certificates_for_app_registrations.ps1
 
 WARNING: Command Get-AzureADApplicationKeyCredential is not supported
 WARNING: Script contains commands that are not supported by the compatibility adapter.

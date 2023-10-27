@@ -1,6 +1,6 @@
 BeforeAll {
-    if((Get-Module -Name Microsoft.Graph.Compatibility.AzureAD) -eq $null){
-        Import-Module Microsoft.Graph.Compatibility.AzureAD
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        Import-Module Microsoft.Graph.Entra
     }
 }
 
@@ -14,22 +14,22 @@ Describe 'PowerShell Version Check' {
 
 Describe 'Module checks' {
     It 'Module imported' {                
-        $module = Get-Module -Name Microsoft.Graph.Compatibility.AzureAD
+        $module = Get-Module -Name Microsoft.Graph.Entra
         $module | Should -Not -Be $null
     }
 
     It 'Have more that zero exported functions' {
-        $module = Get-Module -Name Microsoft.Graph.Compatibility.AzureAD
+        $module = Get-Module -Name Microsoft.Graph.Entra
         $module.ExportedCommands.Keys.Count | Should -BeGreaterThan 0
     }
 
     It 'Known number translated commands' {
-        $module = Get-Module -Name Microsoft.Graph.Compatibility.AzureAD
+        $module = Get-Module -Name Microsoft.Graph.Entra
         $module.ExportedCommands.Keys.Count | Should -Be 218
     }
 
-    It 'Running a simple command Set-CompatADAlias'{
-        Set-CompatADAlias
+    It 'Running a simple command Set-EntraAlias'{
+        Set-EntraAlias
         $Alias = Get-Alias -Name Get-AzureADUser
         $Alias | Should -Not -Be $null
     }
