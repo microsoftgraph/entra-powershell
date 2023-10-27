@@ -88,8 +88,10 @@ C:\PS>Get-EntraDomainFederationSettings -DomainName contoso.com
             "SigningCertificateUpdateStatus" = $response.SigningCertificateUpdateStatus
             #"SupportsMfa" = $response.
         }
-        $customTable 
-
+        if($null -ne $response)
+        {
+            $customTable   
+        }
     }
 }
 
