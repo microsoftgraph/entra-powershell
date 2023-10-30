@@ -46,16 +46,16 @@ Import-Module Microsoft.Graph.Compatibility.AzureAD -Force
 #If not you need to import it from the bin folder:
 Import-Module .\bin\Microsoft.Graph.Compatibility.AzureAD.psd1 -Force
 Connect-Graph
-Get-CompatADUser
+Get-EntraUser
 ```
 
 ## Testing as AzureAD
 
-You can use the command `Set-CompatADAlias` to enable alias to emulate AzureAD commands. You need to remove AzureAD to avoid collisions `Remove-Module AzureAD`
+You can use the command `Set-EntraAlias` to enable alias to emulate AzureAD commands. You need to remove AzureAD to avoid collisions `Remove-Module AzureAD`
 
 ```powershell
 Import-Module Microsoft.Graph.Compatibility.AzureAD -Force
-Set-CompatADAlias
+Set-EntraAlias
 Connect-Graph
 Get-AzureADUser
 ```
