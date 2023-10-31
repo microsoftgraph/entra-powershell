@@ -957,11 +957,11 @@ $($output)
                 $genericParam = $this.GenericParametersTransformations[$param.Name]
                 if(5 -eq $genericParam.ConversionType){
                     $tempName = "$($Cmdlet.Noun)$($genericParam.TargetName)"
-                    if($targetCmd.Parameters.ContainsKey($genericParam.TargetName)){
-                        $paramObj.SetTargetName($genericParam.TargetName)
-                    }
-                    elseif($targetCmd.Parameters.ContainsKey($tempName)){
+                    if($targetCmd.Parameters.ContainsKey($tempName)){
                         $paramObj.SetTargetName($tempName)
+                    }
+                    elseif($targetCmd.Parameters.ContainsKey($genericParam.TargetName)){                       
+                        $paramObj.SetTargetName($genericParam.TargetName)
                     }
                     else
                     {
