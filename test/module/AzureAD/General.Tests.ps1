@@ -25,7 +25,7 @@ Describe 'Module checks' {
 
     It 'Known number translated commands' {
         $module = Get-Module -Name Microsoft.Graph.Entra
-        $module.ExportedCommands.Keys.Count | Should -Be 218
+        $module.ExportedCommands.Keys.Count | Should -Be 220
     }
 
     It 'Running a simple command Set-EntraAlias'{
