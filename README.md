@@ -71,7 +71,7 @@ Get-EntraUser -SearchString "ian" -Debug
 Running this cmdlet creates aliases for all of the supported Azure AD cmdlets to those in the compatability module:
 
 ```powershell
-Set-EntraCompatibilityAliases
+Set-EntraAzureADAliases
 ```
 
 This will show you all of the newly created aliases:

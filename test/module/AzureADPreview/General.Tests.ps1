@@ -28,8 +28,8 @@ Describe 'Module checks' {
         $module.ExportedCommands.Keys.Count | Should -Be 288
     }
 
-    It 'Running a simple command Set-EntraCompatibilityAliases'{
-        Set-EntraCompatibilityAliases
+    It 'Running a simple command Set-EntraAzureADAliases'{
+        Set-EntraAzureADAliases
         $Alias = Get-Alias -Name Get-AzureADUser
         $Alias | Should -Not -Be $null
     }

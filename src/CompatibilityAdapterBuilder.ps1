@@ -401,7 +401,7 @@ public $($object.GetType().Name)($name value)
             Prerelease = $null
         }
         $manisfestPath = Join-Path $this.OutputFolder "$($this.ModuleName).psd1"
-        $functions = $this.ModuleMap.CommandsList + "Set-EntraCompatibilityAliases" + "Get-EntraUnsupportedCommand"
+        $functions = $this.ModuleMap.CommandsList + "Set-EntraAzureADAliases" + "Get-EntraUnsupportedCommand"
         $requiredModules = @()
         foreach($module in $content.requiredModules){
             $requiredModules += @{ModuleName = $module; ModuleVersion = $content.requiredModulesVersion}
@@ -484,7 +484,7 @@ function Get-EntraUnsupportedCommand {
                 $aliases += "   Set-Alias -Name $($func) -Value Get-EntraUnsupportedCommand -Scope Global -Force`n"
             }
     $aliasFunction = @"
-function Set-EntraCompatibilityAliases {
+function Set-EntraAzureADAliases {
 $($aliases)}
 
 "@
@@ -497,7 +497,7 @@ $($aliases)}
     hidden [scriptblock] GetExportMemeber() {
         $CommandsToExport = $this.ModuleMap.CommandsList
         $CommandsToExport += "Get-EntraUnsupportedCommand"
-        $CommandsToExport += "Set-EntraCompatibilityAliases"
+        $CommandsToExport += "Set-EntraAzureADAliases"
         $functionsToExport = @"
 
 Export-ModuleMember -Function @(
