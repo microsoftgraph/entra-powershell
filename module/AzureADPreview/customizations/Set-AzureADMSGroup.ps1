@@ -3,62 +3,77 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Set-AzureADMSGroup"
-    TargetName = "Update-MgBetaGroup"
-    Parameters = @(
-        @{
-            SourceName = "Id"
-            TargetName = "GroupId"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        },
-        @{
-            SourceName = "Description"
-            TargetName = "Description"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        },
-        @{
-            SourceName = "DisplayName"
-            TargetName = "DisplayName"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        },
-        @{
-            SourceName = "MailEnabled"
-            TargetName = "MailEnabled"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        },
-        @{
-            SourceName = "MailNickName"
-            TargetName = "MailNickName"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        },
-        @{
-            SourceName = "SecurityEnabled"
-            TargetName = "SecurityEnabled"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        },
-        @{
-            SourceName = "IsAssignableToRole"
-            TargetName = "IsAssignableToRole"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        },
-        @{
-            SourceName = "GroupTypes"
-            TargetName = "GroupTypes"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        },
-        @{
-            SourceName = "Visibility"
-            TargetName = "Visibility"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        }
-    )
+    TargetName = $null
+    Parameters = $null
     Outputs = $null
+    CustomScript = @"
+    PROCESS {    
+        `$params = @{}
+        `$keysChanged = @{}
+        if(`$null -ne `$PSBoundParameters["Description"])
+        {
+            `$params["Description"] = `$PSBoundParameters["Description"]
+        }
+        if(`$PSBoundParameters.ContainsKey("Verbose"))
+        {
+            `$params["Verbose"] = `$Null
+        }
+        if(`$null -ne `$PSBoundParameters["DisplayName"])
+        {
+            `$params["DisplayName"] = `$PSBoundParameters["DisplayName"]
+        }
+        if(`$PSBoundParameters.ContainsKey("Debug"))
+        {
+            `$params["Debug"] = `$Null
+        }
+        if(`$null -ne `$PSBoundParameters["MembershipRuleProcessingState"])
+        {
+            `$params["MembershipRuleProcessingState"] = `$PSBoundParameters["MembershipRuleProcessingState"]
+        }
+        if(`$null -ne `$PSBoundParameters["Id"])
+        {
+            `$params["GroupId"] = `$PSBoundParameters["Id"]
+        }
+        if(`$null -ne `$PSBoundParameters["GroupTypes"])
+        {
+            `$params["GroupTypes"] = `$PSBoundParameters["GroupTypes"]
+        }
+        if(`$null -ne `$PSBoundParameters["SecurityEnabled"])
+        {
+            `$params["SecurityEnabled"] = `$PSBoundParameters["SecurityEnabled"]
+        }
+        if(`$null -ne `$PSBoundParameters["Visibility"])
+        {
+            `$params["Visibility"] = `$PSBoundParameters["Visibility"]
+        }
+        if(`$null -ne `$PSBoundParameters["MailEnabled"])
+        {
+            `$params["MailEnabled"] = `$PSBoundParameters["MailEnabled"]
+        }
+        if(`$null -ne `$PSBoundParameters["MailNickName"])
+        {
+            `$params["MailNickName"] = `$PSBoundParameters["MailNickName"]
+        }
+        if(`$null -ne `$PSBoundParameters["MembershipRule"])
+        {
+            `$params["MembershipRule"] = `$PSBoundParameters["MembershipRule"]
+        }
+        if(`$null -ne `$PSBoundParameters["IsAssignableToRole"])
+        {
+            `$params["IsAssignableToRole"] = `$PSBoundParameters["IsAssignableToRole"]
+        }
+        Write-Debug("============================ TRANSFORMATIONS ============================")
+        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
+        Write-Debug("=========================================================================`n")
+        `$response = Update-MgBetaGroup @params
+        `$response | ForEach-Object {
+            if(`$null -ne `$_) {
+            Add-Member -InputObject `$_ -MemberType AliasProperty -Name ObjectId -Value Id
+            }
+        }
+        `$response
+        }
+"@
 }
+
+
