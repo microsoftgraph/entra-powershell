@@ -51,11 +51,11 @@ Get-EntraUser
 
 ## Testing as AzureAD
 
-You can use the command `Set-EntraAlias` to enable alias to emulate AzureAD commands. You need to remove AzureAD to avoid collisions `Remove-Module AzureAD`
+You can use the command `Set-EntraCompatibilityAliases` to enable alias to emulate AzureAD commands. You need to remove AzureAD to avoid collisions `Remove-Module AzureAD`
 
 ```powershell
 Import-Module Microsoft.Graph.Compatibility.AzureAD -Force
-Set-EntraAlias
+Set-EntraCompatibilityAliases
 Connect-Graph
 Get-AzureADUser
 ```

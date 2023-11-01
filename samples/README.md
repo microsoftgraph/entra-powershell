@@ -5,6 +5,6 @@ This sample script is written using only AzureAD, it creates some users, one gro
 ```PowerShell
 Connect-Graph
 Import-Module Microsoft.Graph.Compatibility.AzureAD
-Set-EntraAlias
+Set-EntraCompatibilityAliases
 .\sampleGroups.ps1 -NumberOfUsers 2 -UserPrefix 'Test456_' -GroupName 'TestGroup456'
 ```
