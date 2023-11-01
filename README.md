@@ -17,32 +17,32 @@ This module depends on the [Microsoft Graph PowerShell SDK](https://github.com/m
 Please refer to [local building and installing guide](https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread/blob/main/build/BUILD.md).
 
 ### PowerShell Gallery
-[![PSGallery Version](https://img.shields.io/powershellgallery/v/Microsoft.Graph.Compatibility.AzureAD.svg?style=flat&logo=powershell&label=PSGallery%20Version)](https://www.powershellgallery.com/packages/Microsoft.Graph.Compatibility.AzureAD) 
-[![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/Microsoft.Graph.Compatibility.AzureAD.svg?style=flat&logo=powershell&label=PSGallery%20Downloads)](https://www.powershellgallery.com/packages/Microsoft.Graph.Compatibility.AzureAD)
+[![PSGallery Version](https://img.shields.io/powershellgallery/v/Microsoft.Graph.Entra.svg?style=flat&logo=powershell&label=PSGallery%20Version)](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra) 
+[![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/Microsoft.Graph.Entra.svg?style=flat&logo=powershell&label=PSGallery%20Downloads)](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra)
 
-All the modules are published on [PowerShell Gallery](https://www.powershellgallery.com/packages/Microsoft.Graph.Compatibility.AzureAD). Installing is as simple as running:
+All the modules are published on [PowerShell Gallery](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra). Installing is as simple as running:
 
 ``` powershell
-Install-Module Microsoft.Graph.Compatibility.AzureAD
+Install-Module Microsoft.Graph.Entra
 ```
 
 If you are upgrading from a preview module, run `Install-Module` with `-AllowClobber` and `-Force` parameters to avoid command name conflicts:
 
 ``` powershell
-Install-Module Microsoft.Graph.Compatibility.AzureAD -AllowClobber -Force
+Install-Module Microsoft.Graph.Entra -AllowClobber -Force
 ```
 
 If you want to install a preview version of the module then you will need to use this:
 
 ``` powershell
-Install-Module Microsoft.Graph.Compatibility.AzureAD -AllowPrerelease
+Install-Module Microsoft.Graph.Entra -AllowPrerelease
 ```
 
 ## Usage
 
 1. Importing the module
 ```powershell
-Import-Module Microsoft.Graph.Compatibility.AzureAD -Force
+Import-Module Microsoft.Graph.Entra -Force
 ```
 
 2. Authentication

@@ -4,7 +4,7 @@ Clone module and follow the instructions. You need **Microsoft.Graph PowerShell 
 
 ```powershell
 git clone https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread.git
-cd ./Microsoft.Graph.Compatibility.AzureAD
+cd ./Microsoft.Graph.Entra
 ```
 
 ### Install dependecies
@@ -42,9 +42,9 @@ Import the module and test the generated commands
 
 ```powershell
 #If you installed the test build locally just do:
-Import-Module Microsoft.Graph.Compatibility.AzureAD -Force
+Import-Module Microsoft.Graph.Entra -Force
 #If not you need to import it from the bin folder:
-Import-Module .\bin\Microsoft.Graph.Compatibility.AzureAD.psd1 -Force
+Import-Module .\bin\Microsoft.Graph.Entra.psd1 -Force
 Connect-Graph
 Get-EntraUser
 ```
@@ -54,7 +54,7 @@ Get-EntraUser
 You can use the command `Set-EntraAzureADAliases` to enable alias to emulate AzureAD commands. You need to remove AzureAD to avoid collisions `Remove-Module AzureAD`
 
 ```powershell
-Import-Module Microsoft.Graph.Compatibility.AzureAD -Force
+Import-Module Microsoft.Graph.Entra -Force
 Set-EntraAzureADAliases
 Connect-Graph
 Get-AzureADUser
