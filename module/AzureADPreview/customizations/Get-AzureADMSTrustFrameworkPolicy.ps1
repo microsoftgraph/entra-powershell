@@ -10,18 +10,37 @@
     PROCESS {    
         `$params = @{}  
          
-        if(`$null -ne `$PSBoundParameters["Id"])
+        if(`$null -eq `$PSBoundParameters["Id"] -and `$null -eq `$PSBoundParameters["OutputFilePath"])
         {
-            `$params["TrustFrameworkPolicyId"] = `$PSBoundParameters["Id"]  
+            `$response = Get-MgBetaTrustFrameworkPolicy @params
+            `$response
         }
+        elseif(`$null -ne `$PSBoundParameters["Id"]) {
+            # Define a temporary file path
+            `$Id = `$PSBoundParameters["Id"]
+           `$tempFilePath = [System.IO.Path]::GetTempFileName()
+           
+           `$outFile =  `$tempFilePath
+           
+            if(`$null -ne `$PSBoundParameters["OutputFilePath"]){
+                `$outFile = `$PSBoundParameters["OutputFilePath"]
+            }
 
-        if(`$null -ne `$PSBoundParameters["OutputFilePath"])
-        {
-        `$response = Get-MgBetaTrustFrameworkPolicy @params | Out-File `$PSBoundParameters["OutputFilePath"]
-        `$response
-        }else{
-        `$response = Get-MgBetaTrustFrameworkPolicy @params
-        `$response
+           `$V = '`$value'
+           `$uri = '/beta/trustframework/policies/'+`$Id+'/'+`$V
+           
+            `$response = Invoke-GraphRequest -Method 'GET' -Uri `$uri -OutputFilePath `$outFile
+
+            # Read the content from the temporary file
+            `$xmlContent = Get-Content -Path `$tempFilePath
+
+            # Display the content if output file path not specified
+            if(`$null -eq `$PSBoundParameters["OutputFilePath"]){
+               Write-Host `$xmlContent
+            }
+
+            # Clean up the temporary file
+            Remove-Item -Path `$tempFilePath -Force
         }
     
     }
