@@ -12,14 +12,14 @@ cd ./Microsoft.Graph.Entra
 This module depends on AzureAD PowerShell and Microsoft.Graph the following command install the required dependencies.
 
 ```powershell
-.\build\Install-Dependencies.ps1
+.\build\Install-Dependencies.ps1 -ModuleSettingsPath "..\module\{AzureAD|AzureADPreview}\config\ModuleSettings.json"
 ```
 
 
 ### Build
 
 ```powershell
-.\build\Create-CompatModule.ps1
+.\build\Create-CompatModule.ps1 -Module AzureAD // or AzureADPreview
 ```
 
 
