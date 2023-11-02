@@ -6,10 +6,10 @@ In order to add a functions just add the ps1 file into this folder (AdditionalFu
 
 Unit test is present to validate that the file name and the generated function are the same, will fail if the naming in different. Additionaly new function must add pester unit testing for any command that is added.
 
-For example `Test-CompatADScript.ps1` command as a reference of a working function
+For example `Test-EntraScript.ps1` command as a reference of a working function
 
 ```PowerShell
-function Test-CompatADScript {
+function Test-EntraScript {
     param (
         $Script
     )
@@ -39,7 +39,7 @@ Usage
 
 ```PowerShell
 Import-Module Microsoft.Graph.Compatibility.AzureAD
-Test-CompatADScript ".\MyScript"
+Test-EntraScript ".\MyScript"
 ```
 
 

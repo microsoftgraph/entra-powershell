@@ -401,7 +401,7 @@ public $($object.GetType().Name)($name value)
             Prerelease = $null
         }
         $manisfestPath = Join-Path $this.OutputFolder "$($this.ModuleName).psd1"
-        $functions = $this.ModuleMap.CommandsList + "Set-CompatADAlias" + "Get-CompatADUnsupportedCommand"
+        $functions = $this.ModuleMap.CommandsList + "Set-EntraAlias" + "Get-EntraUnsupportedCommand"
         $requiredModules = @()
         foreach($module in $content.requiredModules){
             $requiredModules += @{ModuleName = $module; ModuleVersion = $content.requiredModulesVersion}
@@ -465,7 +465,7 @@ public $($object.GetType().Name)($name value)
 
     hidden [scriptblock] GetUnsupportedCommand(){
         $unsupported = @"
-function Get-CompatADUnsupportedCommand {
+function Get-EntraUnsupportedCommand {
     Throw [System.NotSupportedException] "This commands is currently not supported by the Microsoft Graph Compatibility Adapter."
 }
 
@@ -481,10 +481,10 @@ function Get-CompatADUnsupportedCommand {
                 $aliases += "   Set-Alias -Name $($func.SourceName) -Value $($func.Name) -Scope Global -Force`n"
             }
             foreach ($func in $this.MissingCommandsToMap) {
-                $aliases += "   Set-Alias -Name $($func) -Value Get-CompatADUnsupportedCommand -Scope Global -Force`n"
+                $aliases += "   Set-Alias -Name $($func) -Value Get-EntraUnsupportedCommand -Scope Global -Force`n"
             }
     $aliasFunction = @"
-function Set-CompatADAlias {
+function Set-EntraAlias {
 $($aliases)}
 
 "@
@@ -496,8 +496,8 @@ $($aliases)}
 
     hidden [scriptblock] GetExportMemeber() {
         $CommandsToExport = $this.ModuleMap.CommandsList
-        $CommandsToExport += "Get-CompatADUnsupportedCommand"
-        $CommandsToExport += "Set-CompatADAlias"
+        $CommandsToExport += "Get-EntraUnsupportedCommand"
+        $CommandsToExport += "Set-EntraAlias"
         $functionsToExport = @"
 
 Export-ModuleMember -Function @(
@@ -589,12 +589,18 @@ $OutputTransformations
             }
             $param = $params[$paramKey]
             $paramType = $param.ParameterType.ToString()
+            $paramtypeToCreate = $param.ParameterType.ToString()
             if(($null -ne $this.TypePrefix) -and ($paramType -like "*$($this.TypePrefix)*")){
-                if(($paramType -like "*List*") -or ($paramType -like "*Nullable*")){
-                    $paramType = $param.ParameterType.GenericTypeArguments.FullName
+                if($paramType -like "*List*"){
+                    $paramType = "System.Collections.Generic.List``1[$($param.ParameterType.GenericTypeArguments.FullName)]"
+                    $paramtypeToCreate = $param.ParameterType.GenericTypeArguments.FullName
                 }
-                if(!$this.TypesToCreate.Contains($paramType)) {
-                    $this.TypesToCreate += $paramType
+                elseif($paramType -like "*Nullable*"){
+                    $paramType = "System.Nullable``1[$($param.ParameterType.GenericTypeArguments.FullName)]"
+                    $paramtypeToCreate = $param.ParameterType.GenericTypeArguments.FullName
+                }
+                if(!$this.TypesToCreate.Contains($paramtypeToCreate)) {
+                    $this.TypesToCreate += $paramtypeToCreate
                 }                
             }           
             $paramBlock = @"
@@ -951,11 +957,11 @@ $($output)
                 $genericParam = $this.GenericParametersTransformations[$param.Name]
                 if(5 -eq $genericParam.ConversionType){
                     $tempName = "$($Cmdlet.Noun)$($genericParam.TargetName)"
-                    if($targetCmd.Parameters.ContainsKey($genericParam.TargetName)){
-                        $paramObj.SetTargetName($genericParam.TargetName)
-                    }
-                    elseif($targetCmd.Parameters.ContainsKey($tempName)){
+                    if($targetCmd.Parameters.ContainsKey($tempName)){
                         $paramObj.SetTargetName($tempName)
+                    }
+                    elseif($targetCmd.Parameters.ContainsKey($genericParam.TargetName)){                       
+                        $paramObj.SetTargetName($genericParam.TargetName)
                     }
                     else
                     {
