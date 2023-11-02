@@ -38,7 +38,7 @@ function Test-EntraScript {
 Usage
 
 ```PowerShell
-Import-Module Microsoft.Graph.Compatibility.AzureAD
+Import-Module Microsoft.Graph.Entra
 Test-EntraScript ".\MyScript"
 ```
 
