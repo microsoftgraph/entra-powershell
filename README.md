@@ -1,8 +1,10 @@
-# Microsoft Graph Compatibility Adapter for AzureAD PowerShell
+<h1 align="center">
+<br>Entra PowerShell<br>
+</h1>
 
-The Microsoft Graph Compatibility Adapter for Azure AD PowerShell is a collection of cmdlets that emulate the legacy Azure AD PowerShell cmdlets. The adapter uses the [Microsoft Graph PowerShell SDK](https://github.com/microsoftgraph/msgraph-sdk-powershell) to make calls to [Microsoft Graph](http://microsoft.graph.com).
+The Entra PowerShell is a collection of cmdlets that helps accesing Entra resources using Microsoft Graph, also helps emulate the legacy Azure AD PowerShell cmdlets. The this module uses [Microsoft Graph PowerShell SDK](https://github.com/microsoftgraph/msgraph-sdk-powershell) to make calls to [Microsoft Graph](http://microsoft.graph.com) providing an aditional level usability.
 
-This module provides Azure AD PowerShell users with a tool to support their migration to the Microsoft Graph PowerShell SDK. The adapter cmdlets have different names to those of the Azure AD PowerShell to avoid name collisions.
+This module provides AzureAD PowerShell users with a tool to support their migration to the Microsoft Graph PowerShell SDK. The adapter cmdlets have different names to those of the Azure AD PowerShell to avoid name collisions.
 
 **This module is under development. It is NOT READY for Production environments.**
 
