@@ -1,8 +1,10 @@
-# Microsoft Graph Compatibility Adapter for AzureAD PowerShell
+<h1 align="center">
+<br>Entra PowerShell<br>
+</h1>
 
-The Microsoft Graph Compatibility Adapter for Azure AD PowerShell is a collection of cmdlets that emulate the legacy Azure AD PowerShell cmdlets. The adapter uses the [Microsoft Graph PowerShell SDK](https://github.com/microsoftgraph/msgraph-sdk-powershell) to make calls to [Microsoft Graph](http://microsoft.graph.com).
+The Entra PowerShell is a collection of cmdlets that helps accesing Entra resources using Microsoft Graph, also helps emulate the legacy Azure AD PowerShell cmdlets. The this module uses [Microsoft Graph PowerShell SDK](https://github.com/microsoftgraph/msgraph-sdk-powershell) to make calls to [Microsoft Graph](http://microsoft.graph.com) providing an aditional level usability.
 
-This module provides Azure AD PowerShell users with a tool to support their migration to the Microsoft Graph PowerShell SDK. The adapter cmdlets have different names to those of the Azure AD PowerShell to avoid name collisions.
+This module provides AzureAD PowerShell users with a tool to support their migration to the Microsoft Graph PowerShell SDK. The adapter cmdlets have different names to those of the Azure AD PowerShell to avoid name collisions.
 
 **This module is under development. It is NOT READY for Production environments.**
 
@@ -17,32 +19,32 @@ This module depends on the [Microsoft Graph PowerShell SDK](https://github.com/m
 Please refer to [local building and installing guide](https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread/blob/main/build/BUILD.md).
 
 ### PowerShell Gallery
-[![PSGallery Version](https://img.shields.io/powershellgallery/v/Microsoft.Graph.Compatibility.AzureAD.svg?style=flat&logo=powershell&label=PSGallery%20Version)](https://www.powershellgallery.com/packages/Microsoft.Graph.Compatibility.AzureAD) 
-[![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/Microsoft.Graph.Compatibility.AzureAD.svg?style=flat&logo=powershell&label=PSGallery%20Downloads)](https://www.powershellgallery.com/packages/Microsoft.Graph.Compatibility.AzureAD)
+[![PSGallery Version](https://img.shields.io/powershellgallery/v/Microsoft.Graph.Entra.svg?style=flat&logo=powershell&label=PSGallery%20Version)](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra) 
+[![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/Microsoft.Graph.Entra.svg?style=flat&logo=powershell&label=PSGallery%20Downloads)](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra)
 
-All the modules are published on [PowerShell Gallery](https://www.powershellgallery.com/packages/Microsoft.Graph.Compatibility.AzureAD). Installing is as simple as running:
+All the modules are published on [PowerShell Gallery](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra). Installing is as simple as running:
 
 ``` powershell
-Install-Module Microsoft.Graph.Compatibility.AzureAD
+Install-Module Microsoft.Graph.Entra
 ```
 
 If you are upgrading from a preview module, run `Install-Module` with `-AllowClobber` and `-Force` parameters to avoid command name conflicts:
 
 ``` powershell
-Install-Module Microsoft.Graph.Compatibility.AzureAD -AllowClobber -Force
+Install-Module Microsoft.Graph.Entra -AllowClobber -Force
 ```
 
 If you want to install a preview version of the module then you will need to use this:
 
 ``` powershell
-Install-Module Microsoft.Graph.Compatibility.AzureAD -AllowPrerelease
+Install-Module Microsoft.Graph.Entra -AllowPrerelease
 ```
 
 ## Usage
 
 1. Importing the module
 ```powershell
-Import-Module Microsoft.Graph.Compatibility.AzureAD -Force
+Import-Module Microsoft.Graph.Entra -Force
 ```
 
 2. Authentication
@@ -71,7 +73,7 @@ Get-EntraUser -SearchString "ian" -Debug
 Running this cmdlet creates aliases for all of the supported Azure AD cmdlets to those in the compatability module:
 
 ```powershell
-Set-EntraAlias
+Set-EntraAzureADAliases
 ```
 
 This will show you all of the newly created aliases:
