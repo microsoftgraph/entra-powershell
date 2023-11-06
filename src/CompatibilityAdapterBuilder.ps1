@@ -632,7 +632,7 @@ $OutputTransformations
             $strAttrib = $arrayAttrib -Join ', '
 
             if($strAttrib.Length -gt 0){
-                $attributesString = "[Parameter($strAttrib)]"
+                $attributesString += "[Parameter($strAttrib)]`n    "
             }
         }
 
