@@ -95,10 +95,12 @@
             `$hash = @{
                 CustomKeyIdentifier= `$value.CustomKeyIdentifier
                 EndDateTime =  `$value.EndDate
-                SecretText= `$value.Value
+                Key= `$value.Value
                 StartDateTime= `$value.StartDate
-                }
-
+                Type= `$value.Type
+                Usage= `$value.Usage
+            }
+                        
             `$a += `$hash
         }
         
