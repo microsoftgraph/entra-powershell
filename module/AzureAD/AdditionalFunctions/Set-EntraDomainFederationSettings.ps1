@@ -83,7 +83,8 @@ function Set-EntraDomainFederationSettings {
             if($null -ne $PSBoundParameters["DomainName"])
             {
                 $params["DomainId"] = $PSBoundParameters["DomainName"]
-                $params["InternalDomainFederationId"] = (Get-MgDomainFederationConfiguration -DomainId $DomainId).Id
+                $Id = $PSBoundParameters["DomainName"]
+                $params["InternalDomainFederationId"] = (Get-MgDomainFederationConfiguration -DomainId $Id).Id
             }
             if($null -ne $PSBoundParameters["SigningCertificate"])
             {
