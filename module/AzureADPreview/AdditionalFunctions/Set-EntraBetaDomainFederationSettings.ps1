@@ -52,6 +52,15 @@ function Set-EntraBetaDomainFederationSettings {
     .PARAMETER OpenIdConnectDiscoveryEndpoint
         The OpenID Connect Discovery Endpoint of the federated IDP STS.
 
+    .PARAMETER PromptLoginBehavior
+        Specifies the prompt login behavior.
+
+    .PARAMETER PreferredAuthenticationProtocol
+        Specifies the preferred authentication protocol.
+
+    .PARAMETER SigningCertificateUpdateStatus
+        Specifies the update status of the signing certificate.
+
     .PARAMETER <CommonParameters>
             This cmdlet supports the common parameters: Verbose, Debug,
         ErrorAction, ErrorVariable, WarningAction, WarningVariable,
