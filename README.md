@@ -102,10 +102,10 @@ WARNING: Command Get-AzureADApplicationKeyCredential is not supported
 WARNING: Script contains commands that are not supported by the compatibility adapter.
 ```
 ## Repository Visibility Notice
+> [!IMPORTANT]  
+> Important: This repository is currently private and its contents are not visible to the public. Please be aware that we plan to convert this repository to public status in the near future (from GA milestone).
 
-Important: This repository is currently private and its contents are not visible to the public. Please be aware that we plan to convert this repository to public status in the near future (from GA milestone).
-
-** What does this mean? **
+**What does this mean?**
 Once the repository becomes public:
 
 All code, issues, and discussions will be visible to everyone.
