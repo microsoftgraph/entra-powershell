@@ -23,7 +23,7 @@ Please refer to [local building and installing guide](https://github.com/microso
 [![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/Microsoft.Graph.Entra.svg?style=flat&logo=powershell&label=PSGallery%20Downloads)](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra)
 
 > [!NOTE]
-> The Microsoft Entra PowerShell module will be published on the [PowerShell Gallery](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra) post-private preview stage.
+> The Microsoft Entra PowerShell module will be published on the [PowerShell Gallery](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra) post-private preview stage. Kindly use the "Local Build" option in the interim.
 
 ## Microsoft Entra PowerShell Usage
 
@@ -44,18 +44,18 @@ To see all the possible options please refer to [MS Graph SDK authentication](ht
 Here's an example that will emulate the Azure AD module's Get-AzureADUser with a Microsoft Graph call:
 
 ```powershell
-Get-EntraUser -SearchString "ian" 
+Get-EntraUser -SearchString "Joe" 
 ```
 
 This example gives you more insight into the calls being made:
 
 ```powershell
-Get-EntraUser -SearchString "ian" -Debug
+Get-EntraUser -SearchString "Joe" -Debug
 ```
 
 4. Aliasing Azure AD Commands
 
-Running this cmdlet creates aliases for all of the supported Azure AD cmdlets to those in the compatability module:
+Running this cmdlet creates aliases for all of the supported Azure AD cmdlets to those in the Microsoft Entra PowerShell module:
 
 ```powershell
 Set-EntraAzureADAliases
@@ -67,19 +67,19 @@ This will show you all of the newly created aliases:
 Get-Alias -Name *AzureAd*
 ```
 
-You can now run the Azure AD cmdlet, using an alias, and it will call MS Graph.
+You can now run the Azure AD cmdlet using an alias, which calls the Microsoft Graph PowerShell under the hood.
 
 ```powershell
-Get-AzureADUser -SearchString "ian" 
+Get-AzureADUser -SearchString "Jane" 
 ```
 
 This example gives you more insight into the calls being made:
 
 ```powershell
-Get-AzureADUser -SearchString "ian" -Debug
+Get-AzureADUser -SearchString "Jane" -Debug
 ```
 
-**NB - it is recommended that you remove the AzureAD module, if installed, to avoid collisions.**
+**NB - removing the AzureAD module, if installed, is recommended to avoid collisions.**
 
 ```powershell
 Remove-Module AzureAD
@@ -87,7 +87,7 @@ Remove-Module AzureAD
 
 5. Running a script with the adapter
 
-You can use the compatibility adapter to test an AzureAD PowerShell module based script. This will help determine if a script can be migrated to the MS Graph PowerShell SDK. 
+You can use the Microsoft Entra PowerShell to test an AzureAD PowerShell module-based script. This will help determine if a script can be migrated to the MS Graph PowerShell SDK. 
 
 ```powershell
 Test-EntraScript -Script .\Export_secrets_and_certificates_for_app_registrations.ps1
