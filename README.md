@@ -104,7 +104,7 @@ WARNING: Script contains commands that are not supported by the compatibility ad
 
 ## Contributing
 
-In order to contribute please check [contribution guide](https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread/blob/main/CONTRIBUTING.md).
+In order to contribute please check [contribution guide](https://github.com/microsoftgraph/entra-powershell/blob/main/CONTRIBUTING.md).
 
 ## Known Issues
 
@@ -115,7 +115,7 @@ In order to contribute please check [contribution guide](https://github.com/micr
 
 ## Issues
 
-If you find any bugs when using the Microsoft Graph PowerShell modules, please file an issue on our GitHub issues page.
+If you find any bugs when using the Microsoft Entra PowerShell module, please file an issue on our [GitHub issues](https://github.com/microsoftgraph/entra-powershell/issues) page.
 
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information, see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
