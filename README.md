@@ -93,7 +93,7 @@ You can use the Microsoft Entra PowerShell to test an AzureAD PowerShell module-
 Test-EntraScript -Script .\Export_secrets_and_certificates_for_app_registrations.ps1
 ```
 
-If the script is compatible you won't see any output, although you can use `$?` to display that True was returned. If the script isn't compatible then you will see a warning with details of the problem cmdlet(s). Example:
+If the script is compatible, you won't see any output, although you can use `$?` to display that True was returned. If the script isn't compatible, you will see a warning with details of the problem cmdlet(s). Example:
 
 ```powershell
 Test-EntraScript -Script .\Export_secrets_and_certificates_for_app_registrations.ps1
@@ -103,7 +103,7 @@ WARNING: Script contains commands that are not supported by the compatibility ad
 ```
 ## Repository Visibility Notice
 > [!IMPORTANT]  
-> Important: This repository is currently private and its contents are not visible to the public. Please be aware that we plan to convert this repository to public status in the near future (from GA milestone).
+> Important: This repository is private, and its contents are not visible to the public. Please be aware that we plan to convert this repository to public status in the near future (from the Public Preview stage).
 
 **What does this mean?**
 
@@ -118,11 +118,11 @@ We believe in transparency and collaboration. By making this repository public, 
 
 **How can I provide feedback or raise concerns?**
 
-Feel free to use the GitHub issue tracker to report any concerns, ask questions, or provide feedback. We value your input and will address any issues as promptly as possible.
+Feel free to use the GitHub issue tracker to report any concerns, ask questions, or provide feedback. We value your input and will address any issues as soon as possible.
 
 ## Contributing
 
-In order to contribute please check [contribution guide](https://github.com/microsoftgraph/entra-powershell/blob/main/CONTRIBUTING.md).
+To contribute, please check [contribution guide](https://github.com/microsoftgraph/entra-powershell/blob/main/CONTRIBUTING.md).
 
 ## Known Issues
 
