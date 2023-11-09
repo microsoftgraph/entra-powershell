@@ -36,7 +36,7 @@
 
             # Display the content if output file path not specified
             if(`$null -eq `$PSBoundParameters["OutputFilePath"]){
-               Write-Host `$xmlContent
+               `$xmlContent
             }
 
             # Clean up the temporary file
