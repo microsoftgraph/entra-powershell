@@ -71,17 +71,17 @@ function Set-EntraBetaDomainFederationSettings {
         [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
         param(
             [Parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true)][string]$DomainName,
-            [Parameter(Mandatory = $false)][string]$SigningCertificate,
-            [Parameter(Mandatory = $false)][string]$NextSigningCertificate,
-            [Parameter(Mandatory = $false)][string]$LogOffUri,
-            [Parameter(Mandatory = $false)][string]$PassiveLogOnUri,
-            [Parameter(Mandatory = $false)][string]$ActiveLogOnUri,
-            [Parameter(Mandatory = $false)][string]$IssuerUri,
-            [Parameter(Mandatory = $false)][string]$FederationBrandName,
-            [Parameter(Mandatory = $false)][string]$MetadataExchangeUri,
-            [Parameter(Mandatory = $false)][string]$PreferredAuthenticationProtocol,
-            [Parameter(Mandatory = $false)]$SigningCertificateUpdateStatus,
-            [Parameter(Mandatory = $false)][string]$PromptLoginBehavior
+            [Parameter(Mandatory = $false,ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][string]$SigningCertificate,
+            [Parameter(Mandatory = $false,ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][string]$NextSigningCertificate,
+            [Parameter(Mandatory = $false,ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][string]$LogOffUri,
+            [Parameter(Mandatory = $false,ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][string]$PassiveLogOnUri,
+            [Parameter(Mandatory = $false,ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][string]$ActiveLogOnUri,
+            [Parameter(Mandatory = $false,ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][string]$IssuerUri,
+            [Parameter(Mandatory = $false,ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][string]$FederationBrandName,
+            [Parameter(Mandatory = $false,ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][string]$MetadataExchangeUri,
+            [Parameter(Mandatory = $false,ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][string]$PreferredAuthenticationProtocol,
+            [Parameter(Mandatory = $false,ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]$SigningCertificateUpdateStatus,
+            [Parameter(Mandatory = $false,ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][string]$PromptLoginBehavior
             ) 
         process { 
             $params = @{}
