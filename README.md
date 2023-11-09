@@ -22,25 +22,10 @@ Please refer to [local building and installing guide](https://github.com/microso
 [![PSGallery Version](https://img.shields.io/powershellgallery/v/Microsoft.Graph.Entra.svg?style=flat&logo=powershell&label=PSGallery%20Version)](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra) 
 [![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/Microsoft.Graph.Entra.svg?style=flat&logo=powershell&label=PSGallery%20Downloads)](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra)
 
-All the modules are published on [PowerShell Gallery](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra). Installing is as simple as running:
+> [!NOTE]
+> The Microsoft Entra PowerShell module will be published on the [PowerShell Gallery](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra) post-private preview stage.
 
-``` powershell
-Install-Module Microsoft.Graph.Entra
-```
-
-If you are upgrading from a preview module, run `Install-Module` with `-AllowClobber` and `-Force` parameters to avoid command name conflicts:
-
-``` powershell
-Install-Module Microsoft.Graph.Entra -AllowClobber -Force
-```
-
-If you want to install a preview version of the module then you will need to use this:
-
-``` powershell
-Install-Module Microsoft.Graph.Entra -AllowPrerelease
-```
-
-## Usage
+## Microsoft Entra PowerShell Usage
 
 1. Importing the module
 ```powershell
