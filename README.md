@@ -12,11 +12,11 @@ This module provides AzureAD PowerShell users a tool to support their migration 
 
 ### Prerequisites
 
-This module depends on the [Microsoft Graph PowerShell SDK](https://github.com/microsoftgraph/msgraph-sdk-powershell#readme) some of the modules will need to be installed in order for this module to work. Please check the prerequisites [here](https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread/blob/main/PREREQUISITE.md).
+This module depends on the [Microsoft Graph PowerShell SDK](https://github.com/microsoftgraph/msgraph-sdk-powershell#readme). Some modules will need to be installed for this module to work. Please check the prerequisites [here](https://github.com/microsoftgraph/entra-powershell/blob/main/PREREQUISITE.md).
 
 ### Local Build
 
-Please refer to [local building and installing guide](https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread/blob/main/build/BUILD.md).
+Please refer to [local building and installing guide](https://github.com/microsoftgraph/entra-powershell/blob/main/build/BUILD.md).
 
 ### PowerShell Gallery
 [![PSGallery Version](https://img.shields.io/powershellgallery/v/Microsoft.Graph.Entra.svg?style=flat&logo=powershell&label=PSGallery%20Version)](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra) 
