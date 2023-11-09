@@ -93,7 +93,10 @@ function Set-EntraDomainFederationSettings {
             {
                 $params["DomainId"] = $PSBoundParameters["DomainName"]
                 $Id = $PSBoundParameters["DomainName"]
-                $params["InternalDomainFederationId"] = (Get-MgDomainFederationConfiguration -DomainId $Id).Id
+                if($null -ne $Id)
+                {
+                    $params["InternalDomainFederationId"] = (Get-MgDomainFederationConfiguration -DomainId $Id).Id
+                }
             }
             if($null -ne $PSBoundParameters["SigningCertificate"])
             {
@@ -145,8 +148,11 @@ function Set-EntraDomainFederationSettings {
             Write-Debug("============================ TRANSFORMATIONS ============================")
             $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
             Write-Debug("=========================================================================`n")
-            $response =  Update-MgDomainFederationConfiguration @params
-            $response
+            if($null -ne $params.InternalDomainFederationId)
+            {
+                $response =  Update-MgDomainFederationConfiguration @params
+                $response
+            }
         }
     }
     
