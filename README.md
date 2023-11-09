@@ -106,16 +106,18 @@ WARNING: Script contains commands that are not supported by the compatibility ad
 > Important: This repository is currently private and its contents are not visible to the public. Please be aware that we plan to convert this repository to public status in the near future (from GA milestone).
 
 **What does this mean?**
-Once the repository becomes public:
 
-All code, issues, and discussions will be visible to everyone.
-Any messages or comments you make on issues, pull requests, or other discussions will be publicly accessible.
-If you have submitted any issues privately, they will become visible to the public.
+Once the repository becomes public:
+- All code, issues, and discussions will be visible to everyone.
+- Any messages or comments you make on issues, pull requests, or other discussions will be publicly accessible.
+- If you have submitted any issues privately, they will become visible to the public.
 
 **Why are we making it public?**
+
 We believe in transparency and collaboration. By making this repository public, we aim to foster an open environment where developers and users can learn from each other.
 
 **How can I provide feedback or raise concerns?**
+
 Feel free to use the GitHub issue tracker to report any concerns, ask questions, or provide feedback. We value your input and will address any issues as promptly as possible.
 
 ## Contributing
