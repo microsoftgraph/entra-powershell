@@ -661,6 +661,9 @@ $OutputTransformations
             elseif([TransformationTypes]::ScriptBlock -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterCustom($param)
             }
+            elseif([TransformationTypes]::Remove -eq $param.ConversionType){
+                $paramBlock = $this.GetParameterException($param)
+            }
             
             $paramsList += $paramBlock            
         }

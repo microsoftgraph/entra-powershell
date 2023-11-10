@@ -2,7 +2,7 @@
     "guid": "742dccd1-bf4b-46a0-a3f2-14e0bb508233",
     "authors": "Microsoft",
     "owners": "Microsoft",
-    "description": "Microsoft Entra PowerShell Module",
+    "description": "Microsoft Entra PowerShell",
     "requireLicenseAcceptance": "true",
     "requiredModules" : [
       "Microsoft.Graph.Users",
@@ -25,7 +25,8 @@
       "Graph",
       "PowerShell",
       "AzureAD",
-      "PSModule"
+      "PSModule",
+      "Entra"
     ],
     "releaseNotes": "See https://github.com/microsoftgraph/entra-powershell.",
     "version": "0.1.0",
