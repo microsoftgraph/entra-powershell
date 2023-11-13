@@ -7,21 +7,23 @@ git clone https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread.git
 cd ./Microsoft.Graph.Entra
 ```
 
-### Install dependecies
+### Install dependencies
 
 This module depends on AzureAD PowerShell and Microsoft.Graph the following command install the required dependencies.
 
 ```powershell
-.\build\Install-Dependencies.ps1 -ModuleSettingsPath "..\module\{AzureAD|AzureADPreview}\config\ModuleSettings.json"
-```
+# For the default install
+.\build\Install-Dependencies.ps1 -ModuleName AZureAD
 
+# Preview
+.\build\Install-Dependencies.ps1 -ModuleName AZureADPreview
+```
 
 ### Build
 
 ```powershell
 .\build\Create-CompatModule.ps1 -Module AzureAD // or AzureADPreview
 ```
-
 
 Generated module will be in the output folder `./bin/modules`
 
@@ -31,7 +33,7 @@ If you want to test the generated version you can use this command
 
 ```powershell
 Create-ModuleFolder
-.\build\Publish-LocalCompatModule.ps1 -Clean -Install
+.\build\Publish-LocalCompatModule.ps1 -Install
 ```
 
 This will publish the module to a local repository and install the module.
