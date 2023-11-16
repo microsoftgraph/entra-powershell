@@ -3,7 +3,29 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Remove-AzureADMSDeletedDirectoryObject"
-    TargetName = "Remove-MgBetaDirectoryObject"
+    TargetName = $null
     Parameters = $null
     Outputs = $null
+    CustomScript = @"
+    PROCESS {  
+        `$params = @{}  
+                if (`$null -ne `$PSBoundParameters["Id"]) {
+                    `$params["Id"] = `$PSBoundParameters["Id"]
+                }
+                `$Method = "DELETE"
+            
+                if (`$PSBoundParameters.ContainsKey("Debug")) {
+                    `$params["Debug"] = `$Null
+                }
+                if (`$PSBoundParameters.ContainsKey("Verbose")) {
+                    `$params["Verbose"] = `$Null
+                }
+                    Write-Debug("============================ TRANSFORMATIONS ============================")
+                    `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
+                    Write-Debug("=========================================================================``n")
+                    `$URI = "https://graph.microsoft.com/v1.0/directory/deletedItems/`$Id"
+                    `$response = Invoke-GraphRequest -Uri `$uri -Method `$Method
+                    `$response
+    }
+"@
 }
