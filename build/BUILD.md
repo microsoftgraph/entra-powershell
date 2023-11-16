@@ -4,7 +4,7 @@ Clone the module and follow the instructions below. You need **Microsoft.Graph P
 
 ```powershell
 git clone https://github.com/microsoftgraph/entra-powershell.git
-cd ./Microsoft.Graph.Entra
+cd entra-powershell
 ```
 
 ### Install dependencies
