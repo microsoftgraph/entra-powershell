@@ -3,7 +3,14 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADUserMembership"
-    TargetName = "Get-MgUserMemberOf"
-    Parameters = $null
+    TargetName = "Get-MgBetaUserMemberOf"
+    Parameters = @(
+        @{
+            SourceName = "ObjectId"
+            TargetName = "UserId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
     Outputs = $null
 }
