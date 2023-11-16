@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Remove-AzureADMSAdministrativeUnitMember"
-    TargetName = "Remove-MgBetaDirectoryAdministrativeUnitMemberByRef"
+    TargetName = "Remove-MgDirectoryAdministrativeUnitMemberByRef"
     Parameters = @(
         @{
             SourceName = "Id"
