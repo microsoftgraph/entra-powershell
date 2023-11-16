@@ -4,12 +4,19 @@
 
 [cmdletbinding()]
 param(
-    $ModuleSettingsPath = "../config/ModuleSettings.json"
+	[ArgumentCompleter({ (Get-ChildItem -Path "$PSScriptRoot\..\module").Name })]
+	[string]
+	$ModuleName = 'AzureAD',
+
+	[ValidateScript({ Test-Path $_ })]
+	[string]
+    $ModuleSettingsPath
 )
 
 . "$psscriptroot/common-functions.ps1"
 
-$settingPath = Join-Path $PSScriptRoot $ModuleSettingsPath
+$settingPath = "$PSScriptRoot/../module/$ModuleName/config/ModuleSettings.json"
+if ($ModuleSettingsPath) { $settingPath = $ModuleSettingsPath }
 $content = Get-Content -Path $settingPath | ConvertFrom-Json
 Write-Verbose("Installing Module $($content.sourceModule)")
 Install-Module $content.sourceModule -scope currentuser -Force -AllowClobber
