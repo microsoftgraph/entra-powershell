@@ -29,28 +29,11 @@ Use a clean PowerShell session when you are building the module. The buikding pr
 Generated module will be in the output folder `./bin`
 In order to import it you just need to run `Import-Module .\bin\Microsoft.Graph.Entra.psd1 -Force`
 
-## Installing
-
-Installing is an optional task that is only recommended if you are testing with automation that will try to load the module form the default powershell modules folder, otherwise for local build test is recommend to load directly from the `bin` folder.
-
-```powershell
-. .\build\Common-functions.ps1
-Create-ModuleFolder
-Register-LocalGallery
-.\build\Publish-LocalCompatModule.ps1 -Install
-Unregister-LocalGallery
-```
-
-This will publish the module to a local repository and install the module.
-
 ## Usage
 
 Import the module and test the generated commands
 
 ```powershell
-#If you installed the test build locally just do:
-Import-Module Microsoft.Graph.Entra -Force
-#If not, you need to import it from the bin folder:
 Import-Module .\bin\Microsoft.Graph.Entra.psd1 -Force
 Connect-Graph
 Get-EntraUser
@@ -65,3 +48,20 @@ Set-EntraAzureADAliases
 Connect-Graph
 Get-AzureADUser
 ```
+
+## Installing
+
+Installing is an optional task that is only recommended if you are testing with automation that will try to load the module form the default powershell modules folder, otherwise for local build test is recommend to load directly from the `bin` folder.
+
+```powershell
+. .\build\Common-functions.ps1
+Create-ModuleFolder
+Register-LocalGallery
+.\build\Publish-LocalCompatModule.ps1 -Install
+Unregister-LocalGallery
+#When you install you can now just load the module without the Path to the files.
+Import-Module Microsoft.Graph.Entra.psd1 -Force
+```
+
+This will publish the module to a local repository and install the module.
+
