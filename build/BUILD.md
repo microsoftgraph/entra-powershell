@@ -49,9 +49,9 @@ Connect-Graph
 Get-AzureADUser
 ```
 
-## Installing
+## Installing a test version
 
-Installing is an optional task that is only recommended if you are testing with automation that will try to load the module form the default powershell modules folder, otherwise for local build test is recommend to load directly from the `bin` folder.
+Installing a test version is an optional task and not recommended unless trying to test with automation that will try to load the module form the default powershell modules folder.
 
 ```powershell
 . .\build\Common-functions.ps1
