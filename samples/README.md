@@ -1,6 +1,6 @@
 # Sample
 
-This sample script is written using only AzureAD, it creates some users, one group and add the users as members of that group. You can run the sample as follows: 
+This sample script is written using only AzureAD. It creates some users, a group and adds the users as members. You can run the sample as follows: 
 
 ```PowerShell
 Connect-Graph

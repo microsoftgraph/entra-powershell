@@ -19,7 +19,7 @@ steps:
   inputs:
     targetType: inline
     script: |
-      ./build/Install-Dependencies.ps1 -ModuleSettingsPath "../module/AzureAD/config/ModuleSettings.json" -Verbose      
+      ./build/Install-Dependencies.ps1 -ModuleName AzureAD -Verbose      
     pwsh: false
 - task: powershell@2
   displayName: 'Build AzureAD'
@@ -87,7 +87,7 @@ steps:
   inputs:
     targetType: inline
     script: |      
-      ./build/Install-Dependencies.ps1 -ModuleSettingsPath "../module/AzureADPreview/config/ModuleSettings.json" -Verbose
+      ./build/Install-Dependencies.ps1 -ModuleName AzureADPreview -Verbose
     pwsh: false
 - task: powershell@2
   displayName: 'Build AzureADPreview'
