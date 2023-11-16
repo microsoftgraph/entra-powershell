@@ -3,13 +3,21 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Add-AzureADGroupOwner"
-    TargetName = "New-MgGroupOwner"
+    TargetName = "New-MgBetaGroupOwnerByRef"
     Parameters = @(
         @{
-            SourceName = "RefObjectId"
-            TargetName = "DirectoryObjectId"
+            SourceName = "ObjectId"
+            TargetName = "GroupId"
             ConversionType = "Name"
             SpecialMapping = $null
+        },
+        @{
+            SourceName = "RefObjectId"
+            TargetName = "BodyParameter"
+            ConversionType = "ScriptBlock"
+            SpecialMapping = @"
+`$Value = @{ "@odata.id" = "https://graph.microsoft.com/beta/users/`$TmpValue"}
+"@
         }
     )
     Outputs = $null
