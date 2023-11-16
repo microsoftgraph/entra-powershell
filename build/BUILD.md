@@ -27,10 +27,11 @@ Use a clean PowerShell session when you are building the module. The buikding pr
 ```
 
 Generated module will be in the output folder `./bin`
+In order to import it you just need to run `Import-Module .\bin\Microsoft.Graph.Entra.psd1 -Force`
 
 ## Installing
 
-If you want to test the generated version you can use this command
+Installing is an optional task that is only recommended if you are testing with automation that will try to load the module form the default powershell modules folder, otherwise for local build test is recommend to load directly from the `bin` folder.
 
 ```powershell
 . .\build\Common-functions.ps1
@@ -60,7 +61,6 @@ Get-EntraUser
 You can use the command `Set-EntraAzureADAliases` to enable aliases to emulate AzureAD commands. You need to remove AzureAD to avoid collisions via the command `Remove-Module AzureAD`
 
 ```powershell
-Import-Module Microsoft.Graph.Entra -Force
 Set-EntraAzureADAliases
 Connect-Graph
 Get-AzureADUser
