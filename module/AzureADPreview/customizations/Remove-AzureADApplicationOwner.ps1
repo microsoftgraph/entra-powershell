@@ -3,8 +3,14 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Remove-AzureADApplicationOwner"
-    TargetName = "Remove-MgBetaApplicationOwnerByRef"
+    TargetName = "Remove-MgApplicationOwnerByRef"
     Parameters = @(
+         @{
+            SourceName = "ObjectID"
+            TargetName = "ApplicationId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        },
         @{
             SourceName = "OwnerId"
             TargetName = "DirectoryObjectId"
