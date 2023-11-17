@@ -2,7 +2,7 @@
     "guid": "742dccd1-bf4b-46a0-a3f2-14e0bb508233",
     "authors": "Microsoft",
     "owners": "Microsoft",
-    "description": "Microsoft Entra PowerShell Module",
+    "description": "Microsoft Entra PowerShell",
     "requireLicenseAcceptance": "true",
     "requiredModules" : [
       "Microsoft.Graph.Users",
@@ -17,7 +17,7 @@
     "requiredModulesVersion": "2.4.0",
     "copyright": "© Microsoft Corporation. All rights reserved.",
     "licenseUri": "https://aka.ms/devservicesagreement",
-    "projectUri": " https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread",
+    "projectUri": "https://github.com/microsoftgraph/entra-powershell",
     "iconUri": "https://raw.githubusercontent.com/microsoftgraph/msgraph-sdk-powershell/master/documentation/images/graph_color256.png",
     "tags": [
       "MicrosoftGraph",
@@ -25,9 +25,10 @@
       "Graph",
       "PowerShell",
       "AzureAD",
-      "PSModule"
+      "PSModule",
+      "Entra"
     ],
     "releaseNotes": "See https://github.com/microsoftgraph/entra-powershell.",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "Prerelease": "preview"
   }

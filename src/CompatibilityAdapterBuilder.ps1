@@ -401,7 +401,7 @@ public $($object.GetType().Name)($name value)
             Prerelease = $null
         }
         $manisfestPath = Join-Path $this.OutputFolder "$($this.ModuleName).psd1"
-        $functions = $this.ModuleMap.CommandsList + "Set-EntraAlias" + "Get-EntraUnsupportedCommand"
+        $functions = $this.ModuleMap.CommandsList + "Set-EntraAzureADAliases" + "Get-EntraUnsupportedCommand"
         $requiredModules = @()
         foreach($module in $content.requiredModules){
             $requiredModules += @{ModuleName = $module; ModuleVersion = $content.requiredModulesVersion}
@@ -484,7 +484,7 @@ function Get-EntraUnsupportedCommand {
                 $aliases += "   Set-Alias -Name $($func) -Value Get-EntraUnsupportedCommand -Scope Global -Force`n"
             }
     $aliasFunction = @"
-function Set-EntraAlias {
+function Set-EntraAzureADAliases {
 $($aliases)}
 
 "@
@@ -497,7 +497,7 @@ $($aliases)}
     hidden [scriptblock] GetExportMemeber() {
         $CommandsToExport = $this.ModuleMap.CommandsList
         $CommandsToExport += "Get-EntraUnsupportedCommand"
-        $CommandsToExport += "Set-EntraAlias"
+        $CommandsToExport += "Set-EntraAzureADAliases"
         $functionsToExport = @"
 
 Export-ModuleMember -Function @(
@@ -510,7 +510,7 @@ Export-ModuleMember -Function @(
 
     hidden [scriptblock] SetMissingCommands() {
         $missingCommands = @"
-Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList -Join "','")') -Scope Global -Option ReadOnly -Force
+Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList -Join "','")') -Scope Script -Option ReadOnly -Force
 
 "@
         return [Scriptblock]::Create($missingCommands)
@@ -632,7 +632,7 @@ $OutputTransformations
             $strAttrib = $arrayAttrib -Join ', '
 
             if($strAttrib.Length -gt 0){
-                $attributesString = "[Parameter($strAttrib)]"
+                $attributesString += "[Parameter($strAttrib)]`n    "
             }
         }
 
@@ -660,6 +660,9 @@ $OutputTransformations
             }
             elseif([TransformationTypes]::ScriptBlock -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterCustom($param)
+            }
+            elseif([TransformationTypes]::Remove -eq $param.ConversionType){
+                $paramBlock = $this.GetParameterException($param)
             }
             
             $paramsList += $paramBlock            
@@ -957,11 +960,11 @@ $($output)
                 $genericParam = $this.GenericParametersTransformations[$param.Name]
                 if(5 -eq $genericParam.ConversionType){
                     $tempName = "$($Cmdlet.Noun)$($genericParam.TargetName)"
-                    if($targetCmd.Parameters.ContainsKey($genericParam.TargetName)){
-                        $paramObj.SetTargetName($genericParam.TargetName)
-                    }
-                    elseif($targetCmd.Parameters.ContainsKey($tempName)){
+                    if($targetCmd.Parameters.ContainsKey($tempName)){
                         $paramObj.SetTargetName($tempName)
+                    }
+                    elseif($targetCmd.Parameters.ContainsKey($genericParam.TargetName)){                       
+                        $paramObj.SetTargetName($genericParam.TargetName)
                     }
                     else
                     {

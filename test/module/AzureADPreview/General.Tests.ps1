@@ -25,11 +25,11 @@ Describe 'Module checks' {
 
     It 'Known number translated commands' {
         $module = Get-Module -Name Microsoft.Graph.Entra.Beta
-        $module.ExportedCommands.Keys.Count | Should -Be 286
+        $module.ExportedCommands.Keys.Count | Should -Be 288
     }
 
-    It 'Running a simple command Set-EntraAlias'{
-        Set-EntraAlias
+    It 'Running a simple command Set-EntraAzureADAliases'{
+        Set-EntraAzureADAliases
         $Alias = Get-Alias -Name Get-AzureADUser
         $Alias | Should -Not -Be $null
     }
