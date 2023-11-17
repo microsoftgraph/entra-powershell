@@ -44,8 +44,10 @@
                     elseif(`$null -ne `$params["Top"]){
                         `$URI = 'https://graph.microsoft.com/beta/{0}/{1}/settings/{2}' -f `$TargetType,`$TargetObjectId,`$params["Top"]
                     }
-                    `$response = (Invoke-GraphRequest -Uri `$uri -Method `$Method).Value
-                    `$response | ConvertTo-Json | ConvertFrom-Json
+                    `$rawresponse = (Invoke-GraphRequest -Uri `$uri -Method `$Method).Value
+                    `$response = `$rawresponse | ConvertTo-Json -Depth 3 | ConvertFrom-Json
+                    `$response | ForEach-Object {Add-Member -InputObject `$_ -NotePropertyName "TargetType" -NotePropertyValue `$TargetType; Add-Member -InputObject `$_ -NotePropertyName "TargetObjectID" -NotePropertyValue `$TargetObjectId}
+                    `$response
     }
 "@
 }

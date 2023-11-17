@@ -1,7 +1,7 @@
 {
     "sourceModule" : "AzureAD",
-    "moduleName" : "Microsoft.Graph.Compatibility.AzureAD",
-    "newPrefix" : "CompatAD",
+    "moduleName" : "Microsoft.Graph.Entra",
+    "newPrefix" : "Entra",
     "typePrefix" : "Microsoft.Open.",
     "destinationModuleName" : [
       "Microsoft.Graph.DirectoryObjects",
