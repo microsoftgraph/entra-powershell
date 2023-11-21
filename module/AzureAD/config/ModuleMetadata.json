@@ -6,6 +6,7 @@
     "requireLicenseAcceptance": "true",
     "requiredModules" : [
       "Microsoft.Graph.Users",
+      "Microsoft.Graph.Beta.Users",
       "Microsoft.Graph.Users.Actions", 
       "Microsoft.Graph.Users.Functions", 
       "Microsoft.Graph.Groups", 
