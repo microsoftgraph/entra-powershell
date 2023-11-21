@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "New-AzureADUser"
-    TargetName = "New-MgUser"
+    TargetName = "New-MgBetaUser"
     Parameters = @(
         @{
             SourceName = "PasswordProfile"
@@ -15,7 +15,44 @@
             password = `$TmpValue.Password 
         }
 "@
+        },
+        @{
+            SourceName = "ImmutableId"
+            TargetName = "OnPremisesImmutableId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        },
+        @{
+            SourceName = "Mobile"
+            TargetName = "MobilePhone"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        },
+        @{
+            SourceName = "SignInNames"
+            TargetName = "Identities"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        },
+        @{
+            SourceName = "TelephoneNumber"
+            TargetName = "BusinessPhones"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        },
+        @{
+            SourceName = "UserState"
+            TargetName = "ExternalUserState"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        },
+        @{
+            SourceName = "UserStateChangedOn"
+            TargetName = "ExternalUserStateChangeDateTime"
+            ConversionType = "Name"
+            SpecialMapping = $null
         }
+
     )
     Outputs = $null
 }
