@@ -19,7 +19,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>AadAccessToken</maml:name>
           <maml:Description>
-            <maml:para>Specifies a Azure Active Directory Graph access token.</maml:para>
+            <maml:para>Specifies a Microsoft Entra ID Graph access token.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -455,7 +455,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>AadAccessToken</maml:name>
         <maml:Description>
-          <maml:para>Specifies a Azure Active Directory Graph access token.</maml:para>
+          <maml:para>Specifies a Microsoft Entra ID Graph access token.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -654,7 +654,7 @@
         <maml:title>Example 1: Connect a PowerShell session to a tenant</maml:title>
         <dev:code>PS C:\&gt; Connect-AzureAD -Confirm</dev:code>
         <dev:remarks>
-          <maml:para>This command connects the current PowerShell session to an Azure Active Directory tenant. The command prompts you for a username and password for the tenant you want to connect to. The Confirm parameter prompts you for confirmation. </maml:para>
+          <maml:para>This command connects the current PowerShell session to a Microsoft Entra ID tenant. The command prompts you for a username and password for the tenant you want to connect to. The Confirm parameter prompts you for confirmation. </maml:para>
           <maml:para>If multi-factor authentication is enabled for your credentials, you must log in using the interactive option or use service principal authentication.</maml:para>
         </dev:remarks>
       </command:example>
@@ -665,7 +665,7 @@ PS C:\&gt; Connect-AzureAD -Credential $Credential</dev:code>
         <dev:remarks>
           <maml:para>The first command gets the user credentials, and then stores them in the $Credential variable.</maml:para>
           <maml:para>The second command connects the current PowerShell session using the credentials in $Credential.</maml:para>
-          <maml:para>This account authenticates with Azure Active Directory using organizational ID credentials. You cannot use multi-factor authentication or Microsoft account credentials to run Azure Active Directory cmdlets with this account.</maml:para>
+          <maml:para>This account authenticates with Microsoft Entra ID using organizational ID credentials. You cannot use multi-factor authentication or Microsoft account credentials to run Azure Active Directory cmdlets with this account.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
@@ -687,7 +687,7 @@ $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate
 $keyValue = [System.Convert]::ToBase64String($cert.GetRawCertData())
 
 
-# Create the Azure Active Directory Application
+# Create the Microsoft Entra ID Application
 $application = New-AzureADApplication -DisplayName "test123" -IdentifierUris "https://test123"
 New-AzureADApplicationKeyCredential -ObjectId $application.ObjectId -CustomKeyIdentifier "Test123" -StartDate $currentDate -EndDate $endDate -Type AsymmetricX509Cert -Usage Verify -Value $keyValue
 
@@ -702,7 +702,7 @@ $tenant=Get-AzureADTenantDetail
 # Now you can login to Azure PowerShell with your Service Principal and Certificate
 Connect-AzureAD -TenantId $tenant.ObjectId -ApplicationId  $sp.AppId -CertificateThumbprint $thumb</dev:code>
         <dev:remarks>
-          <maml:para>This command authenticates the user to Azure Active Directory as a service principal.</maml:para>
+          <maml:para>This command authenticates the user to Microsoft Entra ID as a service principal.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -719,11 +719,11 @@ Connect-AzureAD -TenantId $tenant.ObjectId -ApplicationId  $sp.AppId -Certificat
       <command:verb>Disconnect</command:verb>
       <command:noun>AzureAD</command:noun>
       <maml:description>
-        <maml:para>Disconnects the current session from an Azure Active Directory tenant.</maml:para>
+        <maml:para>Disconnects the current session from a Microsoft Entra ID tenant.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Disconnect-AzureAD cmdlet disconnects the current session from an Azure Active Directory tenant.</maml:para>
+      <maml:para>The Disconnect-AzureAD cmdlet disconnects the current session from a Microsoft Entra ID tenant.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>

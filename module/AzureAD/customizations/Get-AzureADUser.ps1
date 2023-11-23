@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADUser"
-    TargetName = "Get-MgUser"
+    TargetName = "Get-MgBetaUser"
     Parameters = @(
         @{
             SourceName = "SearchString"
