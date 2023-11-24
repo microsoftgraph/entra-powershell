@@ -46,11 +46,11 @@
         Write-Debug("=========================================================================
 ")
         
-        `$response = New-MgGroupAppRoleAssignment @params 
+        `$response = New-MgBetaGroupAppRoleAssignment @params 
         `$customTable = [PSCustomObject]@{
             "ObjectId" = `$response.Id
             "ObjectType"      = "AppRoleAssignment"
-            "CreationTimestamp" = `$response.CreatedDateTime
+            "CreationTimestamp" = `$response.CreationTimestamp
             "Id" = `$response.AppRoleId
             "PrincipalDisplayName" = `$response.PrincipalDisplayName
             "PrincipalId" = `$response.PrincipalId
