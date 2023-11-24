@@ -1,6 +1,6 @@
 @{
     SourceName = "Remove-AzureADGroupAppRoleAssignment"
-    TargetName = "Remove-MgGroupAppRoleAssignment"
+    TargetName = "Remove-MgBetaGroupAppRoleAssignment"
     Parameters = @(
         @{
             SourceName = "ObjectId"
