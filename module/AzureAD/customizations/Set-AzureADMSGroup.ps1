@@ -65,7 +65,7 @@
         Write-Debug("============================ TRANSFORMATIONS ============================")
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        `$response = Update-MgGroup @params
+        `$response = Update-MgBetaGroup @params
         `$response | ForEach-Object {
             if(`$null -ne `$_) {
             Add-Member -InputObject `$_ -MemberType AliasProperty -Name ObjectId -Value Id
