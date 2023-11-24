@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADUserAppRoleAssignment"
-    TargetName = "Get-MgUserAppRoleAssignment"
+    TargetName = "Get-MgBetaUserAppRoleAssignment"
     Parameters = @(
         @{
             SourceName = "ObjectId"

@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADServicePrincipalOAuth2PermissionGrant"
-    TargetName = "Get-MgServicePrincipalOauth2PermissionGrant"
+    TargetName = "Get-MgBetaServicePrincipalOauth2PermissionGrant"
     Parameters = @(
         @{
             SourceName = "ObjectId"

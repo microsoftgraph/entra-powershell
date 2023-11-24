@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADServiceAppRoleAssignedTo"
-    TargetName = "Get-MgServicePrincipalAppRoleAssignment"
+    TargetName = "Get-MgBetaServicePrincipalAppRoleAssignment"
     Parameters =  @(
         @{
             SourceName = "ObjectId"
