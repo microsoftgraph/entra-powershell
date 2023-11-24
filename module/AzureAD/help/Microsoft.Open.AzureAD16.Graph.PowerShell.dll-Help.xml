@@ -10,7 +10,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Add-AzureADApplicationOwner cmdlet adds an owner to an Azure Active Directory application.</maml:para>
+      <maml:para>The Add-AzureADApplicationOwner cmdlet adds an owner to a Microsoft Entra ID application.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -47,7 +47,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of an application in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of an application in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -103,7 +103,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of an application in Azure Active Directory.</maml:para>
+          <maml:para>Specifies the ID of an application in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -162,7 +162,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Add-AzureADDeviceRegisteredOwner cmdlet adds a registerd owner for an Azure Active Directory device.</maml:para>
+      <maml:para>The Add-AzureADDeviceRegisteredOwner cmdlet adds a registerd owner for a Microsoft Entra ID device.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -248,7 +248,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Add-AzureADDeviceRegisteredUser cmdlet adds a registered user for an Azure Active Directory device.</maml:para>
+      <maml:para>The Add-AzureADDeviceRegisteredUser cmdlet adds a registered user for a Microsoft Entra ID device.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -354,7 +354,7 @@ PS C:\&gt; Add-AzureADDeviceRegisteredUser -ObjectId $Device.ObjectId -RefObject
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Add-AzureADDirectoryRoleMember cmdlet adds a member to an Azure Active Directory role.</maml:para>
+      <maml:para>The Add-AzureADDirectoryRoleMember cmdlet adds a member to a Microsoft Entra ID role.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -392,7 +392,7 @@ PS C:\&gt; Add-AzureADDeviceRegisteredUser -ObjectId $Device.ObjectId -RefObject
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a directory role in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of a directory role in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -404,7 +404,7 @@ PS C:\&gt; Add-AzureADDeviceRegisteredUser -ObjectId $Device.ObjectId -RefObject
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>RefObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of the Azure Active Directory object to assign as owner/manager/member.</maml:para>
+            <maml:para>Specifies the ID of the Microsoft Entra ID object to assign as owner/manager/member.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -449,7 +449,7 @@ PS C:\&gt; Add-AzureADDeviceRegisteredUser -ObjectId $Device.ObjectId -RefObject
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of a directory role in Azure Active Directory.</maml:para>
+          <maml:para>Specifies the ID of a directory role in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -461,7 +461,7 @@ PS C:\&gt; Add-AzureADDeviceRegisteredUser -ObjectId $Device.ObjectId -RefObject
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>RefObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of the Azure Active Directory object to assign as owner/manager/member.</maml:para>
+          <maml:para>Specifies the ID of the Microsoft Entra ID object to assign as owner/manager/member.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -546,7 +546,7 @@ PS C:\&gt; Add-AzureADDeviceRegisteredUser -ObjectId $Device.ObjectId -RefObject
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a group in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of a group in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -603,7 +603,7 @@ PS C:\&gt; Add-AzureADDeviceRegisteredUser -ObjectId $Device.ObjectId -RefObject
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of a group in Azure Active Directory.</maml:para>
+          <maml:para>Specifies the ID of a group in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -662,7 +662,7 @@ PS C:\&gt; Add-AzureADDeviceRegisteredUser -ObjectId $Device.ObjectId -RefObject
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Add-AzureADGroupOwner cmdlet adds an owner to an Azure Active Directory group.</maml:para>
+      <maml:para>The Add-AzureADGroupOwner cmdlet adds an owner to a Microsoft Entra ID group.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -700,7 +700,7 @@ PS C:\&gt; Add-AzureADDeviceRegisteredUser -ObjectId $Device.ObjectId -RefObject
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a group in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of a group in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -712,7 +712,7 @@ PS C:\&gt; Add-AzureADDeviceRegisteredUser -ObjectId $Device.ObjectId -RefObject
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>RefObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of the Azure Active Directory object that will be assigned as owner/manager/member.</maml:para>
+            <maml:para>Specifies the ID of the Microsoft Entra ID object that will be assigned as owner/manager/member.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -757,7 +757,7 @@ PS C:\&gt; Add-AzureADDeviceRegisteredUser -ObjectId $Device.ObjectId -RefObject
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of a group in Azure Active Directory.</maml:para>
+          <maml:para>Specifies the ID of a group in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -769,7 +769,7 @@ PS C:\&gt; Add-AzureADDeviceRegisteredUser -ObjectId $Device.ObjectId -RefObject
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>RefObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of the Azure Active Directory object that will be assigned as owner/manager/member.</maml:para>
+          <maml:para>Specifies the ID of the Microsoft Entra ID object that will be assigned as owner/manager/member.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -816,7 +816,7 @@ PS C:\&gt; Add-AzureADDeviceRegisteredUser -ObjectId $Device.ObjectId -RefObject
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Add-AzureADServicePrincipalOwner cmdlet adds an owner to a service principal in Azure Active Directory.</maml:para>
+      <maml:para>The Add-AzureADServicePrincipalOwner cmdlet adds an owner to a service principal in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -982,7 +982,7 @@ PS C:\&gt; Add-AzureADServicePrincipalOwner -ObjectId $ServicePrincipalId -RefOb
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Confirm-AzureADDomain cmdlet validates the ownership of an Azure Active Directory domain.</maml:para>
+      <maml:para>The Confirm-AzureADDomain cmdlet validates the ownership of a Microsoft Entra ID domain.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1117,11 +1117,11 @@ PS C:\&gt; Add-AzureADServicePrincipalOwner -ObjectId $ServicePrincipalId -RefOb
       <command:verb>Enable</command:verb>
       <command:noun>AzureADDirectoryRole</command:noun>
       <maml:description>
-        <maml:para>Activates an existing directory role in Azure Active Directory.</maml:para>
+        <maml:para>Activates an existing directory role in Microsoft Entra ID.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Enable-AzureADDirectoryRole cmdlet activates an existing directory role in Azure Active Directory.</maml:para>
+      <maml:para>The Enable-AzureADDirectoryRole cmdlet activates an existing directory role in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1268,7 +1268,7 @@ ObjectId                             DisplayName   Description
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADApplication cmdlet gets an Azure Active Directory application.</maml:para>
+      <maml:para>The Get-AzureADApplication cmdlet gets a Microsoft Entra ID application.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1327,7 +1327,7 @@ ObjectId                             DisplayName   Description
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of an application in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of an application in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1393,7 +1393,7 @@ ObjectId                             DisplayName   Description
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of an application in Azure Active Directory.</maml:para>
+          <maml:para>Specifies the ID of an application in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1489,7 +1489,7 @@ ed192e92-84d4-4baf-997d-1e190a81f28e 36ee4c6c-0812-40a2-b820-b22ebd02bce3 MyNewA
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADApplicationExtensionProperty cmdlet gets application extension properties in Azure Active Directory.</maml:para>
+      <maml:para>The Get-AzureADApplicationExtensionProperty cmdlet gets application extension properties in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1528,7 +1528,7 @@ ed192e92-84d4-4baf-997d-1e190a81f28e 36ee4c6c-0812-40a2-b820-b22ebd02bce3 MyNewA
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the unique ID of an application in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the unique ID of an application in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1574,7 +1574,7 @@ ed192e92-84d4-4baf-997d-1e190a81f28e 36ee4c6c-0812-40a2-b820-b22ebd02bce3 MyNewA
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies the unique ID of an application in Azure Active Directory.</maml:para>
+          <maml:para>Specifies the unique ID of an application in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1600,7 +1600,7 @@ ObjectId                             Name                                       
 --------                             ----                                                    -------------
 344ed560-f8e7-410e-ab9f-c795a7df5c36 extension_36ee4c6c081240a2b820b22ebd02bce3_NewAttribute {}</dev:code>
         <dev:remarks>
-          <maml:para>This command gets the extension properties for the specified application in Azure Active Directory.</maml:para>
+          <maml:para>This command gets the extension properties for the specified application in Microsoft Entra ID.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -1625,7 +1625,7 @@ ObjectId                             Name                                       
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADApplicationOwner cmdlet get an owner of an Azure Active Directory application.</maml:para>
+      <maml:para>The Get-AzureADApplicationOwner cmdlet get an owner of a Microsoft Entra ID application.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1645,7 +1645,7 @@ ObjectId                             Name                                       
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifes the ID of an application in Azure Active Directory.</maml:para>
+            <maml:para>Specifes the ID of an application in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1684,7 +1684,7 @@ ObjectId                             Name                                       
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifes the ID of an application in Azure Active Directory.</maml:para>
+          <maml:para>Specifes the ID of an application in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1870,11 +1870,11 @@ c13dd34a-492b-4561-b171-40fcce2916c5 User</dev:code>
       <command:verb>Get</command:verb>
       <command:noun>AzureADContact</command:noun>
       <maml:description>
-        <maml:para>Gets a contact from Azure Active Directory.</maml:para>
+        <maml:para>Gets a contact from Microsoft Entra ID.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADContact cmdlet gets a contact from Azure Active Directory.</maml:para>
+      <maml:para>The Get-AzureADContact cmdlet gets a contact from Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1933,7 +1933,7 @@ c13dd34a-492b-4561-b171-40fcce2916c5 User</dev:code>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a contact in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of a contact in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1972,7 +1972,7 @@ c13dd34a-492b-4561-b171-40fcce2916c5 User</dev:code>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of a contact in Azure Active Directory.</maml:para>
+          <maml:para>Specifies the ID of a contact in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -2055,7 +2055,7 @@ b052db07-e7ec-4c0e-b481-a5ba550b9ee7 contact@contoso.com Contoso Contact</dev:co
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a contact in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of a contact in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -2094,7 +2094,7 @@ b052db07-e7ec-4c0e-b481-a5ba550b9ee7 contact@contoso.com Contoso Contact</dev:co
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of a contact in Azure Active Directory.</maml:para>
+          <maml:para>Specifies the ID of a contact in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -2151,7 +2151,7 @@ PS C:\&gt; Get-AzureADContactDirectReport -ObjectId $Contact.ObjectId</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADContactManager cmdlet gets the manager of a contact in Azure Active Directory.</maml:para>
+      <maml:para>The Get-AzureADContactManager cmdlet gets the manager of a contact in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2190,7 +2190,7 @@ PS C:\&gt; Get-AzureADContactDirectReport -ObjectId $Contact.ObjectId</dev:code>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a contact in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of a contact in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -2236,7 +2236,7 @@ PS C:\&gt; Get-AzureADContactDirectReport -ObjectId $Contact.ObjectId</dev:code>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of a contact in Azure Active Directory.</maml:para>
+          <maml:para>Specifies the ID of a contact in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -2289,7 +2289,7 @@ PS C:\&gt; Get-AzureADContactManager -ObjectId $Contact.ObjectId</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADContactMembership cmdlet gets a contact membership in Azure Active Directory.</maml:para>
+      <maml:para>The Get-AzureADContactMembership cmdlet gets a contact membership in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2309,7 +2309,7 @@ PS C:\&gt; Get-AzureADContactManager -ObjectId $Contact.ObjectId</dev:code>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a contact in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of a contact in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -2348,7 +2348,7 @@ PS C:\&gt; Get-AzureADContactManager -ObjectId $Contact.ObjectId</dev:code>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of a contact in Azure Active Directory.</maml:para>
+          <maml:para>Specifies the ID of a contact in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -2409,7 +2409,7 @@ ObjectId                             ObjectType
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADContract cmdlet gets a contract from Azure Active Directory. This cmdlet returns a contract object for each contract that is selected by the request. The contract object contains the following attributes:</maml:para>
+      <maml:para>The Get-AzureADContract cmdlet gets a contract from Microsoft Entra ID. This cmdlet returns a contract object for each contract that is selected by the request. The contract object contains the following attributes:</maml:para>
       <maml:para>+contractType - Type of the contract. Possible values are:  ++ "SyndicationPartner", which indicates a partner that exclusively resells and manages O365 and Intune for this customer. They resell and support their customers. ++ "BreadthPartner", which indicates that the partner has the ability to provide administrative support for this customer. However the partner is not allowed to resell to the customer. ++ "ResellerPartner", which indicates a partner that is similar to a syndication partner, except that it doesn't have exclusive access to a tenant. In the syndication case the customer cannot buy additional direct subscriptions from Microsoft or from other partners. + customerContextId - The unique identifier for the customer tenant referenced by this partnership. Corresponds to the objectId property of the customer tenant's TenantDetail object. + defaultDomainName - A copy of the customer tenant's default domain name. The copy is made when the partnership with the customer is established. It is not automatically updated if the customer tenant's default domain name changes. + deletionTimestamp - This property is not valid for contracts and always returns null. + displayName - A copy of the customer tenant's display name. The copy is made when the partnership with the customer is established. It is not automatically updated if the customer tenant's display name changes. + objectType - A string that identifies the object type. The value is always "Contract".  + objectId - The unique identifier for the partnership.</maml:para>
     </maml:description>
     <command:syntax>
@@ -2744,7 +2744,7 @@ ObjectId                             AppId                                Displa
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADDevice cmdlet gets a device from Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADDevice cmdlet gets a device from Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3024,7 +3024,7 @@ MaximumRegistrationInactivityPeriod : 90</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADDeviceRegisteredOwner cmdlet gets the registered owner of a device in Azure Active Directory.</maml:para>
+      <maml:para>The Get-AzureADDeviceRegisteredOwner cmdlet gets the registered owner of a device in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3148,7 +3148,7 @@ The second command gets the registered owner of the device in $DevId.</maml:para
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADDeviceRegisteredUser cmdlet gets a registered user for an Azure Active Directory device.</maml:para>
+      <maml:para>The Get-AzureADDeviceRegisteredUser cmdlet gets a registered user for a Microsoft Entra ID device.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3268,7 +3268,7 @@ The second command gets the registered users of the device in $DevId.</maml:para
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADDirectoryRole cmdlet gets a directory role from Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADDirectoryRole cmdlet gets a directory role from Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3426,7 +3426,7 @@ d96eb2b3-0970-4827-8f26-6008efd86511 Security Administrator             Security
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADDirectoryRoleMember cmdlet gets the members of a directory role in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADDirectoryRoleMember cmdlet gets the members of a directory role in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3564,7 +3564,7 @@ c13dd34a-492b-4561-b171-40fcce2916c5 User
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADDirectoryRoleTemplate cmdlet gets directory role templates in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADDirectoryRoleTemplate cmdlet gets directory role templates in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3804,7 +3804,7 @@ a9ea8996-122f-4c74-9520-8edcd192826c Power BI Service Administrator          Ful
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADDomain cmdlet gets a domain in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADDomain cmdlet gets a domain in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -4126,7 +4126,7 @@ aceff52c-06a5-447f-ac5f-256ad243cc5c drumkit.onmicrosoft.com Email            36
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADExtensionProperty cmdlet gets a collection that contains the extension properties registered with Azure Active Directory (Azure AD) through Azure AD Connect.  You can get extension properties that are synced with on-premises Azure AD, those that are not synced with on-premises Azure AD, or both types.</maml:para>
+      <maml:para>The Get-AzureADExtensionProperty cmdlet gets a collection that contains the extension properties registered with Microsoft Entra ID through Azure AD Connect.  You can get extension properties that are synced with on-premises Azure AD, those that are not synced with on-premises Azure AD, or both types.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -4197,7 +4197,7 @@ b3c7b2c2-bb9a-4e30-a9fc-46adbe8c0899 extension_6e151e1a9cf44f8689a410023ac39235_
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADGroup cmdlet gets a group in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADGroup cmdlet gets a group in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -4256,7 +4256,7 @@ b3c7b2c2-bb9a-4e30-a9fc-46adbe8c0899 extension_6e151e1a9cf44f8689a410023ac39235_
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>The unique identifier of a group in Azure Active Directory (ObjectId)</maml:para>
+            <maml:para>The unique identifier of a group in Microsoft Entra ID (ObjectId)</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -4322,7 +4322,7 @@ b3c7b2c2-bb9a-4e30-a9fc-46adbe8c0899 extension_6e151e1a9cf44f8689a410023ac39235_
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>The unique identifier of a group in Azure Active Directory (ObjectId)</maml:para>
+          <maml:para>The unique identifier of a group in Microsoft Entra ID (ObjectId)</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -4430,7 +4430,7 @@ ObjectId                             DisplayName                                
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADGroupAppRoleAssignment cmdlet gets a group application role assignment in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADGroupAppRoleAssignment cmdlet gets a group application role assignment in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -4554,7 +4554,7 @@ Get-AzureADGroupAppRoleAssignment -ObjectId $GroupId</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADGroupMember cmdlet gets a member of a group in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADGroupMember cmdlet gets a member of a group in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -4676,7 +4676,7 @@ ObjectId                             ObjectType
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADGroupOwner cmdlet gets an owner of a group in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADGroupOwner cmdlet gets an owner of a group in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -4798,7 +4798,7 @@ ObjectId                             ObjectType
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADOAuth2PermissionGrant cmdlet gets OAuth2PermissionGrant entities in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADOAuth2PermissionGrant cmdlet gets OAuth2PermissionGrant entities in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -5145,7 +5145,7 @@ MaximumRegistrationInactivityPeriod : 90</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADServiceAppRoleAssignment cmdlet gets a role assignment for a service principal application in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADServiceAppRoleAssignment cmdlet gets a role assignment for a service principal application in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -5269,7 +5269,7 @@ PS C:\&gt; Get-AzureADServiceAppRoleAssignment -ObjectId $ServicePrincipalId</de
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADServicePrincipal cmdlet gets a service principal in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADServicePrincipal cmdlet gets a service principal in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -5493,7 +5493,7 @@ ObjectId                             AppId                                Displa
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADServicePrincipalCreatedObject cmdlet gets an object created by a service principal in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADServicePrincipalCreatedObject cmdlet gets an object created by a service principal in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -5609,7 +5609,7 @@ PS C:\&gt; Get-AzureADServicePrincipalCreatedObject -ObjectId $ServicePrincipalI
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADServicePrincipalMembership cmdlet gets the memberships of a service principal in Azure Active Directory (Azure AD).</maml:para>
+      <maml:para>The Get-AzureADServicePrincipalMembership cmdlet gets the memberships of a service principal in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -5725,7 +5725,7 @@ PS C:\&gt; Get-AzureADServicePrincipalMembership -ObjectId $ServicePrincipalId</
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADServicePrincipalOAuth2PermissionGrant cmdlet gets an oAuth2PermissionGrant object for a service principal in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADServicePrincipalOAuth2PermissionGrant cmdlet gets an oAuth2PermissionGrant object for a service principal in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -5841,7 +5841,7 @@ PS C:\&gt; Get-AzureADServicePrincipalOAuth2PermissionGrant -ObjectId $ServicePr
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADServicePrincipalOwnedObject cmdlet gets an object that is owned by a service principal in Azure Active Directory (Azure AD).</maml:para>
+      <maml:para>The Get-AzureADServicePrincipalOwnedObject cmdlet gets an object that is owned by a service principal in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -5957,7 +5957,7 @@ PS C:\&gt; Get-AzureADServicePrincipalOwnedObject -ObjectId $ServicePrincipalId<
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADServicePrincipalOwner cmdlet gets the owners of a service principal in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADServicePrincipalOwner cmdlet gets the owners of a service principal in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -6209,7 +6209,7 @@ ObjectId                                                                  SkuPar
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADTenantDetail cmdlet gets the details of a tenant in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADTenantDetail cmdlet gets the details of a tenant in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -6298,7 +6298,7 @@ ObjectId                             DisplayName            VerifiedDomains
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADUser cmdlet gets a user from Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADUser cmdlet gets a user from Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -6551,7 +6551,7 @@ ObjectId                             DisplayName UserPrincipalName              
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a user (as a UPN or ObjectId) in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -6590,7 +6590,7 @@ ObjectId                             DisplayName UserPrincipalName              
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of a user (as a UPN or ObjectId) in Azure Active Directory.</maml:para>
+          <maml:para>Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -6655,7 +6655,7 @@ Get-AzureADUserAppRoleAssignment -ObjectId $UserId</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADUserCreatedObject cmdlet gets objects created by a user in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADUserCreatedObject cmdlet gets objects created by a user in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -6771,7 +6771,7 @@ d0ce9d42-c943-43a1-a0b0-b1ded8d0ce3d ServicePrincipal</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADUserDirectReport cmdlet gets the direct reports for a user in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADUserDirectReport cmdlet gets the direct reports for a user in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -6791,7 +6791,7 @@ d0ce9d42-c943-43a1-a0b0-b1ded8d0ce3d ServicePrincipal</dev:code>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a user in Azure Active Directory (UPN or ObjectId)</maml:para>
+            <maml:para>Specifies the ID of a user in Microsoft Entra ID (UPN or ObjectId)</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -6830,7 +6830,7 @@ d0ce9d42-c943-43a1-a0b0-b1ded8d0ce3d ServicePrincipal</dev:code>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of a user in Azure Active Directory (UPN or ObjectId)</maml:para>
+          <maml:para>Specifies the ID of a user in Microsoft Entra ID (UPN or ObjectId)</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -6968,7 +6968,7 @@ Hv-1hQIEDECePA-ellMl0QQrjQe98RFBu9S0sbNUzvQ {class ServicePlanInfo {...</dev:cod
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADUserManager cmdlet gets the manager of a user in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADUserManager cmdlet gets the manager of a user in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7006,7 +7006,7 @@ Hv-1hQIEDECePA-ellMl0QQrjQe98RFBu9S0sbNUzvQ {class ServicePlanInfo {...</dev:cod
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>The unique identifier of a user in Azure Active Directory (UPN or ObjectId)</maml:para>
+            <maml:para>The unique identifier of a user in Microsoft Entra ID (UPN or ObjectId)</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -7051,7 +7051,7 @@ Hv-1hQIEDECePA-ellMl0QQrjQe98RFBu9S0sbNUzvQ {class ServicePlanInfo {...</dev:cod
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>The unique identifier of a user in Azure Active Directory (UPN or ObjectId)</maml:para>
+          <maml:para>The unique identifier of a user in Microsoft Entra ID (UPN or ObjectId)</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -7102,7 +7102,7 @@ ObjectId                             ObjectType
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADUserMembership cmdlet gets user memberships in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADUserMembership cmdlet gets user memberships in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7226,7 +7226,7 @@ d96eb2b3-0970-4827-8f26-6008efd86511 Role
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADUserOAuth2PermissionGrant cmdlet gets an oAuth2PermissionGrant object for the specified user in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADUserOAuth2PermissionGrant cmdlet gets an oAuth2PermissionGrant object for the specified user in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7342,7 +7342,7 @@ PS C:\&gt; Get-AzureADUserOAuth2PermissionGrant -ObjectId $UserId</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADUserOwnedDevice cmdlet gets registered devices owned by the specified user in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADUserOwnedDevice cmdlet gets registered devices owned by the specified user in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7451,7 +7451,7 @@ PS C:\&gt; Get-AzureADUserOAuth2PermissionGrant -ObjectId $UserId</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADUserOwnedObject cmdlet gets objects owned by a user in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADUserOwnedObject cmdlet gets objects owned by a user in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7571,7 +7571,7 @@ a0dada57-89ef-4db8-9e5f-46cca3bf2398 Group</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADUserRegisteredDevice cmdlet gets devices registered by a user in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADUserRegisteredDevice cmdlet gets devices registered by a user in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7680,7 +7680,7 @@ a0dada57-89ef-4db8-9e5f-46cca3bf2398 Group</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-AzureADApplication cmdlet creates an application in Azure Active Directory (AD).</maml:para>
+      <maml:para>The New-AzureADApplication cmdlet creates an application in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -8252,7 +8252,7 @@ acd10942-5747-4385-8824-4c5d5fa904f9 b5fecfab-0ea2-4fd1-8570-b2c41b3d5149 My new
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-AzureADApplicationExtensionProperty cmdlet creates an application extension property for an object in Azure Active Directory.</maml:para>
+      <maml:para>The New-AzureADApplicationExtensionProperty cmdlet creates an application extension property for an object in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -8315,7 +8315,7 @@ acd10942-5747-4385-8824-4c5d5fa904f9 b5fecfab-0ea2-4fd1-8570-b2c41b3d5149 My new
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies a unique ID of an application in Azure Active Directory.</maml:para>
+            <maml:para>Specifies a unique ID of an application in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -8397,7 +8397,7 @@ acd10942-5747-4385-8824-4c5d5fa904f9 b5fecfab-0ea2-4fd1-8570-b2c41b3d5149 My new
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies a unique ID of an application in Azure Active Directory.</maml:para>
+          <maml:para>Specifies a unique ID of an application in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -8461,7 +8461,7 @@ ObjectId                             Name                                       
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-AzureADDevice cmdlet creates a device in Azure Active Directory (AD).</maml:para>
+      <maml:para>The New-AzureADDevice cmdlet creates a device in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -8827,7 +8827,7 @@ ObjectId                             DeviceId                             Displa
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-AzureADDomain cmdlet creates a domain in Azure Active Directory (AD).</maml:para>
+      <maml:para>The New-AzureADDomain cmdlet creates a domain in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -9018,7 +9018,7 @@ Contoso.com                    Managed</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-AzureADGroup cmdlet creates a group in Azure Active Directory (AD).</maml:para>
+      <maml:para>The New-AzureADGroup cmdlet creates a group in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -9254,7 +9254,7 @@ ObjectId                             DisplayName  Description
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-AzureADGroupAppRoleAssignment cmdlet assigns a group of users to an application role in Azure Active Directory (AD).</maml:para>
+      <maml:para>The New-AzureADGroupAppRoleAssignment cmdlet assigns a group of users to an application role in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -9439,7 +9439,7 @@ ObjectId                             DisplayName  Description
         <maml:uri></maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
-        <maml:linkText>Managing applications in Azure Active Directory using PowerShell</maml:linkText>
+        <maml:linkText>Managing applications in Microsoft Entra ID using PowerShell</maml:linkText>
         <maml:uri>https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/ManageAppsAzureADPowerShell</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
@@ -9454,7 +9454,7 @@ ObjectId                             DisplayName  Description
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-AzureADServiceAppRoleAssignment cmdlet assigns a service principal to an application role in Azure Active Directory (AD).</maml:para>
+      <maml:para>The New-AzureADServiceAppRoleAssignment cmdlet assigns a service principal to an application role in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -10086,7 +10086,7 @@ ObjectId                             DisplayName  Description
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-AzureADUser cmdlet creates a user in Azure Active Directory (AD).</maml:para>
+      <maml:para>The New-AzureADUser cmdlet creates a user in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -10130,7 +10130,7 @@ ObjectId                             DisplayName  Description
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>CreationType</maml:name>
           <maml:Description>
-            <maml:para>Indicates whether the user account is a local account for an Azure Active Directory B2C tenant. Possible values are "LocalAccount" and null. When creating a local account, the property is required and you must set it to "LocalAccount". When creating a work or school account, do not specify the property or set it to null.</maml:para>
+            <maml:para>Indicates whether the user account is a local account for a Microsoft Entra ID B2C tenant. Possible values are "LocalAccount" and null. When creating a local account, the property is required and you must set it to "LocalAccount". When creating a work or school account, do not specify the property or set it to null.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -10342,7 +10342,7 @@ ObjectId                             DisplayName  Description
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>SignInNames</maml:name>
           <maml:Description>
-            <maml:para>Specifies the collection of sign-in names for a local account in an Azure Active Directory B2C tenant. Each sign-in name must be unique across the company/tenant. The property must be specified when you create a local account user; do not specify it when you create a work or school account.</maml:para>
+            <maml:para>Specifies the collection of sign-in names for a local account in a Microsoft Entra ID B2C tenant. Each sign-in name must be unique across the company/tenant. The property must be specified when you create a local account user; do not specify it when you create a work or school account.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]</command:parameterValue>
           <dev:type>
@@ -10489,7 +10489,7 @@ ObjectId                             DisplayName  Description
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>CreationType</maml:name>
         <maml:Description>
-          <maml:para>Indicates whether the user account is a local account for an Azure Active Directory B2C tenant. Possible values are "LocalAccount" and null. When creating a local account, the property is required and you must set it to "LocalAccount". When creating a work or school account, do not specify the property or set it to null.</maml:para>
+          <maml:para>Indicates whether the user account is a local account for a Microsoft Entra ID B2C tenant. Possible values are "LocalAccount" and null. When creating a local account, the property is required and you must set it to "LocalAccount". When creating a work or school account, do not specify the property or set it to null.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -10701,7 +10701,7 @@ ObjectId                             DisplayName  Description
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>SignInNames</maml:name>
         <maml:Description>
-          <maml:para>Specifies the collection of sign-in names for a local account in an Azure Active Directory B2C tenant. Each sign-in name must be unique across the company/tenant. The property must be specified when you create a local account user; do not specify it when you create a work or school account.</maml:para>
+          <maml:para>Specifies the collection of sign-in names for a local account in a Microsoft Entra ID B2C tenant. Each sign-in name must be unique across the company/tenant. The property must be specified when you create a local account user; do not specify it when you create a work or school account.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]</command:parameterValue>
         <dev:type>
@@ -10852,7 +10852,7 @@ ObjectId                             DisplayName UserPrincipalName              
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-AzureADUserAppRoleAssignment cmdlet assigns a user to an application role in Azure Active Directory (AD).</maml:para>
+      <maml:para>The New-AzureADUserAppRoleAssignment cmdlet assigns a user to an application role in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -11087,7 +11087,7 @@ New-AzureADUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.Obj
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADApplication cmdlet removes the specified application from Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADApplication cmdlet removes the specified application from Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -11225,7 +11225,7 @@ New-AzureADUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.Obj
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADApplicationExtensionProperty cmdlet removes an application extension property for an object in Azure Active Directory.</maml:para>
+      <maml:para>The Remove-AzureADApplicationExtensionProperty cmdlet removes an application extension property for an object in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -11276,7 +11276,7 @@ New-AzureADUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.Obj
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the unique ID of an application in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the unique ID of an application in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -11334,7 +11334,7 @@ New-AzureADUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.Obj
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies the unique ID of an application in Azure Active Directory.</maml:para>
+          <maml:para>Specifies the unique ID of an application in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -11356,7 +11356,7 @@ New-AzureADUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.Obj
         <maml:title>Example 1: Remove an extension property</maml:title>
         <dev:code>PS C:\&gt; Remove-AzureADApplicationExtensionProperty -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -ExtensionPropertyId "344ed560-f8e7-410e-ab9f-c79df5c36"</dev:code>
         <dev:remarks>
-          <maml:para>This command removes the extension property that has the specified ID from an application in Azure Active Directory.</maml:para>
+          <maml:para>This command removes the extension property that has the specified ID from an application in Microsoft Entra ID.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -11381,7 +11381,7 @@ New-AzureADUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.Obj
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADApplicationOwner cmdlet removes an owner from an application in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADApplicationOwner cmdlet removes an owner from an application in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -11537,7 +11537,7 @@ New-AzureADUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.Obj
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADContact removes a contact from Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADContact removes a contact from Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -11665,7 +11665,7 @@ PS C:\&gt; Remove-AzureADContact -ObjectId $Contact.ObjectId</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADContactManager cmdlet removes a contact's manager in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADContactManager cmdlet removes a contact's manager in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -11797,7 +11797,7 @@ PS C:\&gt; Remove-AzureADContactManager -ObjectId $Contact.ObjectId</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADDevice cmdlet removes a device from Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADDevice cmdlet removes a device from Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -11931,7 +11931,7 @@ PS C:\&gt; Remove-AzureADContactManager -ObjectId $Contact.ObjectId</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADDeviceRegisteredOwner cmdlet removes the registered owner of a device in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADDeviceRegisteredOwner cmdlet removes the registered owner of a device in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -12033,7 +12033,7 @@ PS C:\&gt; Remove-AzureADDeviceRegisteredOwner -ObjectId $Device.ObjectId -Owner
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADDeviceRegisteredUser cmdlet removes a registered user from an Azure Active Directory device.</maml:para>
+      <maml:para>The Remove-AzureADDeviceRegisteredUser cmdlet removes a registered user from a Microsoft Entra ID device.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -12131,7 +12131,7 @@ PS C:\&gt; Remove-AzureADDeviceRegisteredOwner -ObjectId $Device.ObjectId -Owner
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADDirectoryRoleMember cmdlet removes a member from a directory role in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADDirectoryRoleMember cmdlet removes a member from a directory role in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -12285,7 +12285,7 @@ PS C:\&gt; Remove-AzureADDeviceRegisteredOwner -ObjectId $Device.ObjectId -Owner
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADDomain cmdlet removes a domain from Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADDomain cmdlet removes a domain from Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -12363,7 +12363,7 @@ PS C:\&gt; Remove-AzureADDeviceRegisteredOwner -ObjectId $Device.ObjectId -Owner
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADGroup cmdlet removes a group from Azure Active Directory (AD). Note that a Unified Group can be restored withing 30 days after deletion using the Restore-AzureADMSDeletedDirectoryObject cmdlet. Security groups cannot be restored after deletion.</maml:para>
+      <maml:para>The Remove-AzureADGroup cmdlet removes a group from Microsoft Entra ID. Note that a Unified Group can be restored withing 30 days after deletion using the Restore-AzureADMSDeletedDirectoryObject cmdlet. Security groups cannot be restored after deletion.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -12497,7 +12497,7 @@ PS C:\&gt; Remove-AzureADDeviceRegisteredOwner -ObjectId $Device.ObjectId -Owner
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADGroupAppRoleAssignment cmdlet removes a group application role assignment from Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADGroupAppRoleAssignment cmdlet removes a group application role assignment from Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -12643,7 +12643,7 @@ PS C:\&gt; Remove-AzureADDeviceRegisteredOwner -ObjectId $Device.ObjectId -Owner
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADGroupMember cmdlet removes a member from a group in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADGroupMember cmdlet removes a member from a group in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -12797,7 +12797,7 @@ PS C:\&gt; Remove-AzureADDeviceRegisteredOwner -ObjectId $Device.ObjectId -Owner
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADGroupOwner cmdlet removes an owner from a group in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADGroupOwner cmdlet removes an owner from a group in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -12953,7 +12953,7 @@ PS C:\&gt; Remove-AzureADDeviceRegisteredOwner -ObjectId $Device.ObjectId -Owner
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADOAuth2PermissionGrant cmdlet removes an oAuth2PermissionGrant object in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADOAuth2PermissionGrant cmdlet removes an oAuth2PermissionGrant object in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -13087,7 +13087,7 @@ PS C:\&gt; Remove-AzureADOAuth2PermissionGrant -ObjectId $SharePointOA2AllSitesR
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADServiceAppRoleAssignment cmdlet removes a service principal application role assignment in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADServiceAppRoleAssignment cmdlet removes a service principal application role assignment in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -13233,7 +13233,7 @@ PS C:\&gt; Remove-AzureADOAuth2PermissionGrant -ObjectId $SharePointOA2AllSitesR
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADServicePrincipal cmdlet removes a service principal in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADServicePrincipal cmdlet removes a service principal in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -13359,7 +13359,7 @@ PS C:\&gt; Remove-AzureADOAuth2PermissionGrant -ObjectId $SharePointOA2AllSitesR
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADServicePrincipalOwner cmdlet removes an owner from a service principal in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADServicePrincipalOwner cmdlet removes an owner from a service principal in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -13505,7 +13505,7 @@ PS C:\&gt; Remove-AzureADOAuth2PermissionGrant -ObjectId $SharePointOA2AllSitesR
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADUser cmdlet removes a user in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADUser cmdlet removes a user in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -13639,7 +13639,7 @@ PS C:\&gt; Remove-AzureADOAuth2PermissionGrant -ObjectId $SharePointOA2AllSitesR
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADUserAppRoleAssignment cmdlet removes a user application role assignment in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADUserAppRoleAssignment cmdlet removes a user application role assignment in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -13785,7 +13785,7 @@ PS C:\&gt; Remove-AzureADOAuth2PermissionGrant -ObjectId $SharePointOA2AllSitesR
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADUserManager cmdlet removes a user's manager in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADUserManager cmdlet removes a user's manager in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -14161,7 +14161,7 @@ ObjectId                             AppId                                Displa
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Select-AzureADGroupIdsContactIsMemberOf cmdlet gets groups in Azure Active Directory (AD) in which a contact is a member.</maml:para>
+      <maml:para>The Select-AzureADGroupIdsContactIsMemberOf cmdlet gets groups in Microsoft Entra ID in which a contact is a member.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -14298,7 +14298,7 @@ ObjectId                             AppId                                Displa
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Select-AzureADGroupIdsGroupIsMemberOf cmdlet gets the groups that a specified group is a member of in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Select-AzureADGroupIdsGroupIsMemberOf cmdlet gets the groups that a specified group is a member of in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -14458,7 +14458,7 @@ https://graph.windows.net/85b5ff1e-0402-400c-9e3c-0f9e965325d1/$metadata#Collect
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Select-AzureADGroupIdsServicePrincipalIsMemberOf cmdlet selects the groups in which a service principal is a member in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Select-AzureADGroupIdsServicePrincipalIsMemberOf cmdlet selects the groups in which a service principal is a member in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -15346,7 +15346,7 @@ https://graph.windows.net/85b5ff1e-0402-400c-9e3c-0f9e965325d1/$metadata#Collect
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-AzureADDevice cmdlet updates a device in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Set-AzureADDevice cmdlet updates a device in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -15732,7 +15732,7 @@ https://graph.windows.net/85b5ff1e-0402-400c-9e3c-0f9e965325d1/$metadata#Collect
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-AzureADDomain cmdlet updates a domain in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Set-AzureADDomain cmdlet updates a domain in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -15892,11 +15892,11 @@ https://graph.windows.net/85b5ff1e-0402-400c-9e3c-0f9e965325d1/$metadata#Collect
       <command:verb>Set</command:verb>
       <command:noun>AzureADGroup</command:noun>
       <maml:description>
-        <maml:para>Updates a specific group in Azure Active Directory</maml:para>
+        <maml:para>Updates a specific group in Microsoft Entra ID</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-AzureADGroup cmdlet updates a group in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Set-AzureADGroup cmdlet updates a group in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -16150,7 +16150,7 @@ https://graph.windows.net/85b5ff1e-0402-400c-9e3c-0f9e965325d1/$metadata#Collect
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-AzureADServicePrincipal cmdlet updates a service principal in Azure Active Directory (Azure AD).</maml:para>
+      <maml:para>The Set-AzureADServicePrincipal cmdlet updates a service principal in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -16759,7 +16759,7 @@ https://graph.windows.net/85b5ff1e-0402-400c-9e3c-0f9e965325d1/$metadata#Collect
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-AzureADUser cmdlet updates a user in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Set-AzureADUser cmdlet updates a user in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -16803,7 +16803,7 @@ https://graph.windows.net/85b5ff1e-0402-400c-9e3c-0f9e965325d1/$metadata#Collect
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>CreationType</maml:name>
           <maml:Description>
-            <maml:para>Indicates whether the user account is a local account for an Azure Active Directory B2C tenant. Possible values are "LocalAccount" and null. When creating a local account, the property is required and you must set it to "LocalAccount". When creating a work or school account, do not specify the property or set it to null.</maml:para>
+            <maml:para>Indicates whether the user account is a local account for a Microsoft Entra ID B2C tenant. Possible values are "LocalAccount" and null. When creating a local account, the property is required and you must set it to "LocalAccount". When creating a work or school account, do not specify the property or set it to null.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -17166,7 +17166,7 @@ https://graph.windows.net/85b5ff1e-0402-400c-9e3c-0f9e965325d1/$metadata#Collect
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>CreationType</maml:name>
         <maml:Description>
-          <maml:para>Indicates whether the user account is a local account for an Azure Active Directory B2C tenant. Possible values are "LocalAccount" and null. When creating a local account, the property is required and you must set it to "LocalAccount". When creating a work or school account, do not specify the property or set it to null.</maml:para>
+          <maml:para>Indicates whether the user account is a local account for a Microsoft Entra ID B2C tenant. Possible values are "LocalAccount" and null. When creating a local account, the property is required and you must set it to "LocalAccount". When creating a work or school account, do not specify the property or set it to null.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -17693,7 +17693,7 @@ PS C:\&gt; Set-AzureADUserLicense -ObjectId $User.ObjectId -AssignedLicenses $Li
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-AzureADUserManager cmdlet update the manager for a user in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Set-AzureADUserManager cmdlet update the manager for a user in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
