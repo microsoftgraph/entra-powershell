@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Add-AzureADGroupOwner"
-    TargetName = "New-MgGroupOwnerByRef"
+    TargetName = "New-MgBetaGroupOwnerByRef"
     Parameters = @(
         @{
             SourceName = "ObjectId"
