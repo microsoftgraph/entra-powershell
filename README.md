@@ -5,7 +5,18 @@ The Microsoft Entra PowerShell is a collection of cmdlets that helps access Micr
 
 While the Microsoft Entra PowerShell module provides significant compatibility with the legacy modules (such as Azure AD PowerShell), that can accelerate migration to Microsoft Graph as a significant benefit, the Microsoft Entra module will remain as a long-term, perpetual product offering.
 
-**This module is under development. It is NOT READY for Production environments.**
+<p align="center">
+   <a href="MOTIVATION.md">Our Motivation</a> |
+  <a href="#installation">Installation</a> |
+  <a href="#usage">Usage</a> |
+  <a href="#contributing">Contributing</a> |
+  <a href="#known-issues">Known Issues</a> |
+  <a href="#license">License</a>
+</p>
+
+<p align="center">
+<strong>This module is under development. It is NOT READY for Production environments.</strong>
+</p>
 
 ## Installation
 
@@ -24,7 +35,7 @@ Please refer to [local building and installing guide](https://github.com/microso
 > [!NOTE]
 > The Microsoft Entra PowerShell module will be published on the [PowerShell Gallery](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra) post-private preview stage. Kindly use the "Local Build" option in the interim.
 
-## Microsoft Entra PowerShell Usage
+## Usage
 
 1. Importing the module
 ```powershell
