@@ -1,10 +1,9 @@
 <h1 align="center">
 <br>Microsoft Entra PowerShell<br>
 </h1>
+The Microsoft Entra PowerShell is a collection of cmdlets that helps access Microsoft Entra resources using the [Microsoft Graph SDK](https://github.com/microsoftgraph/msgraph-sdk-powershell). The module primarily functions as a usability layer with human-readable parameters, deliberate parameter set specification, inline documentation, and core PowerShell fundamentals like pipelining.
 
-The Microsoft Entra PowerShell is a collection of cmdlets that helps access Entra resources using Microsoft Graph. The Microsoft Entra module can also help emulate the legacy Azure AD, Azure AD preview, and selected MSOnline PowerShell cmdlets. This module uses [Microsoft Graph PowerShell SDK](https://github.com/microsoftgraph/msgraph-sdk-powershell) to make calls to [Microsoft Graph](http://microsoft.graph.com). The module primarily functions as a usability layer with human-readable parameters, deliberate parameter set specification, inline documentation, and core PowerShell fundamentals like pipelining.
-
-This module provides AzureAD PowerShell users a tool to support their migration to the Microsoft Graph PowerShell SDK. The Microsoft Entra "adapter" cmdlets have different names to those of the Azure AD PowerShell to avoid name collisions.
+While the Microsoft Entra PowerShell module provides significant compatibility with the legacy modules (such as Azure AD PowerShell), that can accelerate migration to Microsoft Graph as a significant benefit, the Microsoft Entra module will remain as a long-term, perpetual product offering.
 
 **This module is under development. It is NOT READY for Production environments.**
 
