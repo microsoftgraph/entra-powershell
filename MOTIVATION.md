@@ -16,12 +16,19 @@ Here is a guide outlining the two modules. They target different levels of usabi
 
 | Area  | Microsoft Graph PowerShell | Microsoft Entra PowerShell |
 | ------------- | ------------- | ------------- |
-| Use case  | low-level, flexibility  | Scenario-based |
+| Use case  | low-level, flexibility  | scenario-based |
 | Usability  | less usable  | gold-standard |
 | Freshness  | always-current  | slow-to-update |
-| Coverage  | wide, across Graph  | Microsoft Entra resources |
+| Coverage  | comprehensive, across Graph  | Microsoft Entra resources |
 | Generation  | auto-generated  | human-authored |
 
-x
-x
-x
+### Continued investments
+We are commiting to continue investing in improving the Microsoft Graph PowerShell SDK, from documentation, tooling, capabilities support, new features etc.
+
+### Putting you in the driver's seat
+You will be able crack open the Microsoft Entra PowerShell commands to see any custom logic, the underlying Microsoft Graph SDK or APIs and give you flexibility if they want further customization. We highly encourage you and the community to give us feedback on scenarios and use cases to help us improve the Microsoft Entra module e.g. implement a parameter set, a new command, enrich documentation, add new logic to help others at scale.
+
+### Accelerating migration from legacy modules
+Microsoft Entra PowerShell module provides significant compatibility with the legacy modules, which can accelerate migration for customers still using legacy modules that will due for deprecation. Whereas some of you have already migrated, there are a vast majority of customers out there who are yet to migrate. You can help us validate and test the module with your legacy scripts. Your feedback is highly appreciated.
+
+
