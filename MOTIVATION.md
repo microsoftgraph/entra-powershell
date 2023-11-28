@@ -11,4 +11,17 @@ This motivation also springs from the collaborative spirit within the PowerShell
 # Microsoft Graph PowerShell ❤️ Microsoft Entra PowerShell
 Microsoft Entra PowerShell is part of the Microsoft Graph PowerShell solution. It's not competing with what you've implemented in Microsoft Graph PowerShell - you don't have to migrate again. Both modules are designed to operate with a "Better-together" approach. Microsoft Entra PowerShell investments are aimed at improving Microsoft Graph PowerShell, with thought-out cmdlet specifications, but retaining all the benefits of Microsoft Graph PowerShell SDK in terms of authorization, connection management, error handling, (low-level) API coverage.
 
+### When to use which PowerShell module
+Here is a guide outlining the two modules. They target different levels of usability.
+
+| Area  | Microsoft Graph PowerShell | Microsoft Entra PowerShell |
+| ------------- | ------------- | ------------- |
+| Use case  | low-level, flexibility  | Scenario-based |
+| Usability  | less usable  | gold-standard |
+| Freshness  | always-current  | slow-to-update |
+| Coverage  | wide, across Graph  | Microsoft Entra resources |
+| Generation  | auto-generated  | human-authored |
+
+x
+x
 x
