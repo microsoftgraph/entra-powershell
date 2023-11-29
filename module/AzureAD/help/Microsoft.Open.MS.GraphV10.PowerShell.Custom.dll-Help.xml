@@ -6,11 +6,11 @@
       <command:verb>New</command:verb>
       <command:noun>AzureADApplicationProxyApplication</command:noun>
       <maml:description>
-        <maml:para>The New-AzureADApplicationProxyApplication cmdlet creates a new application configured for Application Proxy in Azure Active Directory.</maml:para>
+        <maml:para>The New-AzureADApplicationProxyApplication cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-AzureADApplicationProxyApplication cmdlet creates a new application configured for Application Proxy in Azure Active Directory. To ensure this application is usable, please also make sure you assign users and configure SSO if needed. Note that without specifying a ConnectorGroupId, this application by default will use the �Default� connector group in your tenant.</maml:para>
+      <maml:para>The New-AzureADApplicationProxyApplication cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID. To ensure this application is usable, please also make sure you assign users and configure SSO if needed. Note that without specifying a ConnectorGroupId, this application by default will use the �Default� connector group in your tenant.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -58,7 +58,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ExternalAuthenticationType</maml:name>
           <maml:Description>
-            <maml:para>How Application Proxy verifies users before giving them access to your application.  AadPreAuthentication: Application Proxy redirects users to sign in with Azure AD, which authenticates their permissions for the directory and application. We recommend keeping this option as the default, so that you can take advantage of Azure AD security features like conditional access and Multi-Factor Authentication. Passthru: Users don't have to authenticate against Azure Active Directory to access the application. You can still set up authentication requirements on the backend.</maml:para>
+            <maml:para>How Application Proxy verifies users before giving them access to your application.  AadPreAuthentication: Application Proxy redirects users to sign in with Azure AD, which authenticates their permissions for the directory and application. We recommend keeping this option as the default, so that you can take advantage of Azure AD security features like conditional access and Multi-Factor Authentication. Passthru: Users don't have to authenticate against Microsoft Entra ID to access the application. You can still set up authentication requirements on the backend.</maml:para>
           </maml:Description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">AadPreAuthentication</command:parameterValue>
@@ -161,7 +161,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ExternalAuthenticationType</maml:name>
         <maml:Description>
-          <maml:para>How Application Proxy verifies users before giving them access to your application.  AadPreAuthentication: Application Proxy redirects users to sign in with Azure AD, which authenticates their permissions for the directory and application. We recommend keeping this option as the default, so that you can take advantage of Azure AD security features like conditional access and Multi-Factor Authentication. Passthru: Users don't have to authenticate against Azure Active Directory to access the application. You can still set up authentication requirements on the backend.</maml:para>
+          <maml:para>How Application Proxy verifies users before giving them access to your application.  AadPreAuthentication: Application Proxy redirects users to sign in with Azure AD, which authenticates their permissions for the directory and application. We recommend keeping this option as the default, so that you can take advantage of Azure AD security features like conditional access and Multi-Factor Authentication. Passthru: Users don't have to authenticate against Microsoft Entra ID to access the application. You can still set up authentication requirements on the backend.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">ExternalAuthenticationTypeEnum</command:parameterValue>
         <dev:type>
@@ -305,7 +305,7 @@ SingleSignOnSettings                     :</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADApplicationProxyApplication cmdlet removes Application Proxy configurations from a specific application in Azure Active Directory, and can delete the application completely if specified.</maml:para>
+      <maml:para>The Remove-AzureADApplicationProxyApplication cmdlet removes Application Proxy configurations from a specific application in Microsoft Entra ID, and can delete the application completely if specified.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -393,11 +393,11 @@ SingleSignOnSettings                     :</dev:code>
       <command:verb>Set</command:verb>
       <command:noun>AzureADApplicationProxyApplication</command:noun>
       <maml:description>
-        <maml:para>The Set-AzureADApplicationProxyApplication allows you to modify and set configurations for an application in Azure Active Directory configured to use ApplicationProxy.</maml:para>
+        <maml:para>The Set-AzureADApplicationProxyApplication allows you to modify and set configurations for an application in Microsoft Entra ID configured to use ApplicationProxy.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-AzureADApplicationProxyApplication allows you to modify and set additional settings for an application in Azure Active Directory configured to use ApplicationProxy.</maml:para>
+      <maml:para>The Set-AzureADApplicationProxyApplication allows you to modify and set additional settings for an application in Microsoft Entra ID configured to use ApplicationProxy.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -405,7 +405,7 @@ SingleSignOnSettings                     :</dev:code>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies a unique application ID of an application in Azure Active Directory. This can be found using the Get-AzureADApplication command.</maml:para>
+            <maml:para>Specifies a unique application ID of an application in Microsoft Entra ID. This can be found using the Get-AzureADApplication command.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -441,7 +441,7 @@ SingleSignOnSettings                     :</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ExternalAuthenticationType</maml:name>
           <maml:Description>
-            <maml:para>How Application Proxy verifies users before giving them access to your application.  AadPreAuth: Application Proxy redirects users to sign in with Azure AD, which authenticates their permissions for the directory and application. We recommend keeping this option as the default, so that you can take advantage of Azure AD security features like conditional access and Multi-Factor Authentication. Passthru: Users don't have to authenticate against Azure Active Directory to access the application. You can still set up authentication requirements on the backend.</maml:para>
+            <maml:para>How Application Proxy verifies users before giving them access to your application.  AadPreAuth: Application Proxy redirects users to sign in with Azure AD, which authenticates their permissions for the directory and application. We recommend keeping this option as the default, so that you can take advantage of Azure AD security features like conditional access and Multi-Factor Authentication. Passthru: Users don't have to authenticate against Microsoft Entra ID to access the application. You can still set up authentication requirements on the backend.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">ExternalAuthenticationTypeEnum</command:parameterValue>
           <dev:type>
@@ -504,7 +504,7 @@ SingleSignOnSettings                     :</dev:code>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies a unique application ID of an application in Azure Active Directory. This can be found using the Get-AzureADApplication command.</maml:para>
+          <maml:para>Specifies a unique application ID of an application in Microsoft Entra ID. This can be found using the Get-AzureADApplication command.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -540,7 +540,7 @@ SingleSignOnSettings                     :</dev:code>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ExternalAuthenticationType</maml:name>
         <maml:Description>
-          <maml:para>How Application Proxy verifies users before giving them access to your application.  AadPreAuth: Application Proxy redirects users to sign in with Azure AD, which authenticates their permissions for the directory and application. We recommend keeping this option as the default, so that you can take advantage of Azure AD security features like conditional access and Multi-Factor Authentication. Passthru: Users don't have to authenticate against Azure Active Directory to access the application. You can still set up authentication requirements on the backend.</maml:para>
+          <maml:para>How Application Proxy verifies users before giving them access to your application.  AadPreAuth: Application Proxy redirects users to sign in with Azure AD, which authenticates their permissions for the directory and application. We recommend keeping this option as the default, so that you can take advantage of Azure AD security features like conditional access and Multi-Factor Authentication. Passthru: Users don't have to authenticate against Microsoft Entra ID to access the application. You can still set up authentication requirements on the backend.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">ExternalAuthenticationTypeEnum</command:parameterValue>
         <dev:type>
@@ -639,7 +639,7 @@ SingleSignOnSettings                     :</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-AzureADApplicationProxyApplicationConnectorGroup cmdlet sets the connector group assigned for the specified application. The application must be configured for Application Proxy in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Set-AzureADApplicationProxyApplicationConnectorGroup cmdlet sets the connector group assigned for the specified application. The application must be configured for Application Proxy in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -738,11 +738,11 @@ SingleSignOnSettings                     :</dev:code>
       <command:verb>Set</command:verb>
       <command:noun>AzureADApplicationProxyApplicationCustomDomainCertificate</command:noun>
       <maml:description>
-        <maml:para>The Set-AzureADApplicationProxyApplicationCustomDomainCertificate cmdlet assigns a certificate to an application configured for Application Proxy in Azure Active Directory (AD). This will upload the certificate and allow the application to use Custom Domains.</maml:para>
+        <maml:para>The Set-AzureADApplicationProxyApplicationCustomDomainCertificate cmdlet assigns a certificate to an application configured for Application Proxy in Microsoft Entra ID. This will upload the certificate and allow the application to use Custom Domains.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-AzureADApplicationProxyApplicationCustomDomainCertificate cmdlet assigns a certificate to an application configured for Application Proxy in Azure Active Directory (AD). This will upload the certificate and allow the application to use Custom Domains. If you have one certificate that includes many of your applications, you only need to upload it with one application and it will also be assigned to the other relevant applications.</maml:para>
+      <maml:para>The Set-AzureADApplicationProxyApplicationCustomDomainCertificate cmdlet assigns a certificate to an application configured for Application Proxy in Microsoft Entra ID. This will upload the certificate and allow the application to use Custom Domains. If you have one certificate that includes many of your applications, you only need to upload it with one application and it will also be assigned to the other relevant applications.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -866,11 +866,11 @@ PS C:\&gt; Set-AzureADApplicationProxyApplicationCustomDomainCertificate -Object
       <command:verb>Set</command:verb>
       <command:noun>AzureADApplicationProxyApplicationSingleSignOn</command:noun>
       <maml:description>
-        <maml:para>The Set-AzureADApplicationProxyApplicationSingleSignOn cmdlet allows you to set and modify single sign-on (SSO) settings for an application configured for Application Proxy in Azure Active Directory.</maml:para>
+        <maml:para>The Set-AzureADApplicationProxyApplicationSingleSignOn cmdlet allows you to set and modify single sign-on (SSO) settings for an application configured for Application Proxy in Microsoft Entra ID.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-AzureADApplicationProxyApplicationSingleSignOn cmdlet allows you to set and modify single sign-on (SSO) settings for an application configured for Application Proxy in Azure Active Directory. This is limited to setting No SSO, Kerberos Constrained Delegation (for applications using Integrated Windows Authentication), and Header-based SSO.</maml:para>
+      <maml:para>The Set-AzureADApplicationProxyApplicationSingleSignOn cmdlet allows you to set and modify single sign-on (SSO) settings for an application configured for Application Proxy in Microsoft Entra ID. This is limited to setting No SSO, Kerberos Constrained Delegation (for applications using Integrated Windows Authentication), and Header-based SSO.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1060,7 +1060,7 @@ PS C:\&gt; Set-AzureADApplicationProxyApplicationCustomDomainCertificate -Object
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ConnectorGroupId</maml:name>
           <maml:Description>
-            <maml:para>The unique idenfier of the target application proxy connector group in Azure Active Directory. You can find this value using the Get-AzureAdApplicationProxyConnectorGroup command.</maml:para>
+            <maml:para>The unique idenfier of the target application proxy connector group in Microsoft Entra ID. You can find this value using the Get-AzureAdApplicationProxyConnectorGroup command.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1087,7 +1087,7 @@ PS C:\&gt; Set-AzureADApplicationProxyApplicationCustomDomainCertificate -Object
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ConnectorGroupId</maml:name>
         <maml:Description>
-          <maml:para>The unique idenfier of the target application proxy connector group in Azure Active Directory. You can find this value using the Get-AzureAdApplicationProxyConnectorGroup command.</maml:para>
+          <maml:para>The unique idenfier of the target application proxy connector group in Microsoft Entra ID. You can find this value using the Get-AzureAdApplicationProxyConnectorGroup command.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
