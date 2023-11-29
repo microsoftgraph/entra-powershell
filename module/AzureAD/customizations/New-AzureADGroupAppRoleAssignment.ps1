@@ -46,7 +46,7 @@
         Write-Debug("=========================================================================
 ")
         
-        `$response = New-MgBetaGroupAppRoleAssignment @params 
+        `$response = New-MgGroupAppRoleAssignment @params 
         `$customTable = [PSCustomObject]@{
             "ObjectId" = `$response.Id
             "ObjectType"      = "AppRoleAssignment"
