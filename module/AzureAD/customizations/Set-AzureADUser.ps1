@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Set-AzureADUser"
-    TargetName = "Update-MgBetaUser"
+    TargetName = "Update-MgUser"
     Parameters = @(
         @{
             SourceName = "PasswordProfile"
