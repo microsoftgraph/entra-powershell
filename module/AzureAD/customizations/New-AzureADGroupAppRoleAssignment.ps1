@@ -50,7 +50,7 @@
         `$customTable = [PSCustomObject]@{
             "ObjectId" = `$response.Id
             "ObjectType"      = "AppRoleAssignment"
-            "CreationTimestamp" = `$response.CreationTimestamp
+            "CreationTimestamp" = `$response.CreatedDateTime
             "Id" = `$response.AppRoleId
             "PrincipalDisplayName" = `$response.PrincipalDisplayName
             "PrincipalId" = `$response.PrincipalId
