@@ -4,6 +4,20 @@
 @{
     SourceName = "Get-AzureADObjectByObjectId"
     TargetName = "Get-MgDirectoryObjectById"
-    Parameters = $null
-    Outputs = $null
+    Parameters = @(
+        @{
+            SourceName = "ObjectIds"
+            TargetName = "Ids"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
+    Outputs = @(
+        @{
+            SourceName = "AdditionalProperties"
+            TargetName = "AdditionalProperties"
+            ConversionType = "FlatObject"
+            SpecialMapping = $null
+        }
+    )
 }
