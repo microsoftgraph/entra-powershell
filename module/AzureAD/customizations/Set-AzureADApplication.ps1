@@ -67,6 +67,11 @@
     {
         `$Web["HomePageUrl"]  =  `$PSBoundParameters["Homepage"]
     }
+    
+    if(`$null -ne `$PSBoundParameters["ReplyUrls"])
+    {
+        `$Web["RedirectUris"]  =  `$PSBoundParameters["ReplyUrls"]
+    }
 
     if(`$null -ne `$PSBoundParameters["IdentifierUris"])
     {
