@@ -39,7 +39,7 @@
         Write-Debug("=========================================================================
 ")
         
-        $response = Add-MgBetaApplicationPassword @params 
+        $response = Add-MgApplicationPassword @params 
         $response
         }  
 '@
