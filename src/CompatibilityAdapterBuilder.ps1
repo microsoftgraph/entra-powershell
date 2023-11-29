@@ -16,6 +16,7 @@ class CompatibilityAdapterBuilder {
     hidden [hashtable] $CmdCustomizations = @{}
     hidden [hashtable] $GenericParametersTransformations = @{}
     hidden [hashtable] $GenericOutputTransformations = @{}
+    hidden [hashtable] $TypeCustomizations = @{}
     hidden [string] $OutputFolder = (join-path $PSScriptRoot '../bin')
     hidden [string] $HelpFolder = $null
     hidden [MappedCmdCollection] $ModuleMap = $null
@@ -76,7 +77,14 @@ class CompatibilityAdapterBuilder {
         $this.WriteModuleManifest()             
     }
     
-        # Add customization based on the the CommandMap object.
+    AddTypes($types) {
+        $this.TypeCustomizations = $types
+        foreach($type in $types.Keys){
+            $this.TypesToCreate += $type
+        }
+    }
+
+    # Add customization based on the the CommandMap object.
     AddCustomization([hashtable[]] $Commands) {
         foreach($cmd in $Commands) {
             $parameters = $null
@@ -256,6 +264,8 @@ class CompatibilityAdapterBuilder {
 namespace  $namespaceNew
 {
 
+    using System.Linq;
+
 "@
             }
             else {
@@ -264,6 +274,8 @@ namespace  $namespaceNew
 namespace  $namespaceNew
 {
 
+    using System.Linq;
+    
 "@        
             }
             $namespace = $object.GetType().Namespace
@@ -276,6 +288,17 @@ namespace  $namespaceNew
 
 "@
 
+        if($this.TypeCustomizations.ContainsKey($object.GetType().FullName)){
+            $extraFunctions = $this.TypeCustomizations[$object.GetType().FullName]
+            $def += @"
+$extraFunctions
+    }
+
+"@
+        }
+        else {
+            
+        
         $object.GetType().GetProperties() | ForEach-Object {   
             if($_.PropertyType.Name -eq 'Nullable`1') {
                 $name = $_.PropertyType.GenericTypeArguments.FullName
@@ -329,7 +352,7 @@ public $($object.GetType().Name)($name value)
     }
 
 "@
-
+        }
     }
 
     $def += @"    
@@ -378,7 +401,7 @@ public $($object.GetType().Name)($name value)
             Prerelease = $null
         }
         $manisfestPath = Join-Path $this.OutputFolder "$($this.ModuleName).psd1"
-        $functions = $this.ModuleMap.CommandsList + "Set-CompatADAlias" + "Get-CompatADUnsupportedCommand"
+        $functions = $this.ModuleMap.CommandsList + "Set-EntraAzureADAliases" + "Get-EntraUnsupportedCommand"
         $requiredModules = @()
         foreach($module in $content.requiredModules){
             $requiredModules += @{ModuleName = $module; ModuleVersion = $content.requiredModulesVersion}
@@ -442,7 +465,7 @@ public $($object.GetType().Name)($name value)
 
     hidden [scriptblock] GetUnsupportedCommand(){
         $unsupported = @"
-function Get-CompatADUnsupportedCommand {
+function Get-EntraUnsupportedCommand {
     Throw [System.NotSupportedException] "This commands is currently not supported by the Microsoft Graph Compatibility Adapter."
 }
 
@@ -458,10 +481,10 @@ function Get-CompatADUnsupportedCommand {
                 $aliases += "   Set-Alias -Name $($func.SourceName) -Value $($func.Name) -Scope Global -Force`n"
             }
             foreach ($func in $this.MissingCommandsToMap) {
-                $aliases += "   Set-Alias -Name $($func) -Value Get-CompatADUnsupportedCommand -Scope Global -Force`n"
+                $aliases += "   Set-Alias -Name $($func) -Value Get-EntraUnsupportedCommand -Scope Global -Force`n"
             }
     $aliasFunction = @"
-function Set-CompatADAlias {
+function Set-EntraAzureADAliases {
 $($aliases)}
 
 "@
@@ -473,8 +496,8 @@ $($aliases)}
 
     hidden [scriptblock] GetExportMemeber() {
         $CommandsToExport = $this.ModuleMap.CommandsList
-        $CommandsToExport += "Get-CompatADUnsupportedCommand"
-        $CommandsToExport += "Set-CompatADAlias"
+        $CommandsToExport += "Get-EntraUnsupportedCommand"
+        $CommandsToExport += "Set-EntraAzureADAliases"
         $functionsToExport = @"
 
 Export-ModuleMember -Function @(
@@ -487,7 +510,7 @@ Export-ModuleMember -Function @(
 
     hidden [scriptblock] SetMissingCommands() {
         $missingCommands = @"
-Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList -Join "','")') -Scope Global -Option ReadOnly -Force
+Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList -Join "','")') -Scope Script -Option ReadOnly -Force
 
 "@
         return [Scriptblock]::Create($missingCommands)
@@ -566,12 +589,18 @@ $OutputTransformations
             }
             $param = $params[$paramKey]
             $paramType = $param.ParameterType.ToString()
+            $paramtypeToCreate = $param.ParameterType.ToString()
             if(($null -ne $this.TypePrefix) -and ($paramType -like "*$($this.TypePrefix)*")){
-                if(($paramType -like "*List*") -or ($paramType -like "*Nullable*")){
-                    $paramType = $param.ParameterType.GenericTypeArguments.FullName
+                if($paramType -like "*List*"){
+                    $paramType = "System.Collections.Generic.List``1[$($param.ParameterType.GenericTypeArguments.FullName)]"
+                    $paramtypeToCreate = $param.ParameterType.GenericTypeArguments.FullName
                 }
-                if(!$this.TypesToCreate.Contains($paramType)) {
-                    $this.TypesToCreate += $paramType
+                elseif($paramType -like "*Nullable*"){
+                    $paramType = "System.Nullable``1[$($param.ParameterType.GenericTypeArguments.FullName)]"
+                    $paramtypeToCreate = $param.ParameterType.GenericTypeArguments.FullName
+                }
+                if(!$this.TypesToCreate.Contains($paramtypeToCreate)) {
+                    $this.TypesToCreate += $paramtypeToCreate
                 }                
             }           
             $paramBlock = @"
@@ -603,7 +632,7 @@ $OutputTransformations
             $strAttrib = $arrayAttrib -Join ', '
 
             if($strAttrib.Length -gt 0){
-                $attributesString = "[Parameter($strAttrib)]"
+                $attributesString += "[Parameter($strAttrib)]`n    "
             }
         }
 
@@ -631,6 +660,9 @@ $OutputTransformations
             }
             elseif([TransformationTypes]::ScriptBlock -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterCustom($param)
+            }
+            elseif([TransformationTypes]::Remove -eq $param.ConversionType){
+                $paramBlock = $this.GetParameterException($param)
             }
             
             $paramsList += $paramBlock            
@@ -930,6 +962,9 @@ $($output)
                     $tempName = "$($Cmdlet.Noun)$($genericParam.TargetName)"
                     if($targetCmd.Parameters.ContainsKey($tempName)){
                         $paramObj.SetTargetName($tempName)
+                    }
+                    elseif($targetCmd.Parameters.ContainsKey($genericParam.TargetName)){                       
+                        $paramObj.SetTargetName($genericParam.TargetName)
                     }
                     else
                     {
