@@ -59,7 +59,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>RefObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the unique ID of the specific Azure Active Directory object that will be assigned as owner/manager/member.</maml:para>
+            <maml:para>Specifies the unique ID of the specific Microsoft Entra ID object that will be assigned as owner/manager/member.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -115,7 +115,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>RefObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies the unique ID of the specific Azure Active Directory object that will be assigned as owner/manager/member.</maml:para>
+          <maml:para>Specifies the unique ID of the specific Microsoft Entra ID object that will be assigned as owner/manager/member.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -303,7 +303,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADMSAdministrativeUnit cmdlet gets an Azure Active Directory administrative unit.</maml:para>
+      <maml:para>The Get-AzureADMSAdministrativeUnit cmdlet gets a Microsoft Entra ID administrative unit.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -363,7 +363,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>Id</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of an administrative unit in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of an administrative unit in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -403,7 +403,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>Id</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of an administrative unit in Azure Active Directory.</maml:para>
+          <maml:para>Specifies the ID of an administrative unit in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -495,7 +495,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>Id</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of an administrative unit in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of an administrative unit in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -563,7 +563,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>Id</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of an administrative unit in Azure Active Directory.</maml:para>
+          <maml:para>Specifies the ID of an administrative unit in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -634,7 +634,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADMSScopedRoleMembership cmdlet gets a scoped role membership from an administrative unit in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADMSScopedRoleMembership cmdlet gets a scoped role membership from an administrative unit in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -735,7 +735,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-AzureADMSAdministrativeUnit cmdlet creates an administrative unit in Azure Active Directory (AD).</maml:para>
+      <maml:para>The New-AzureADMSAdministrativeUnit cmdlet creates an administrative unit in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -885,7 +885,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADMSAdministrativeUnit cmdlet removes an administrative unit from Azure Active Directory.</maml:para>
+      <maml:para>The Remove-AzureADMSAdministrativeUnit cmdlet removes an administrative unit from Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1005,7 +1005,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADMSAdministrativeUnitMember cmdlet removes an administrative unit member in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADMSAdministrativeUnitMember cmdlet removes an administrative unit member in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1153,7 +1153,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADMSScopedRoleMembership cmdlet removes a scoped role membership from Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADMSScopedRoleMembership cmdlet removes a scoped role membership from Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1247,7 +1247,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-AzureADMSAdministrativeUnit cmdlet updates an administrative unit in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Set-AzureADMSAdministrativeUnit cmdlet updates an administrative unit in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1436,14 +1436,14 @@
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>ObjectId</maml:name>
           <maml:description>
-            <maml:para>The unique identifier of the object specific Azure Active Directory object</maml:para>
+            <maml:para>The unique identifier of the object specific Microsoft Entra ID object</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>RefObjectId</maml:name>
           <maml:description>
-            <maml:para>The unique identifier of the specific Azure Active Directory object that will be assigned as owner/manager/member</maml:para>
+            <maml:para>The unique identifier of the specific Microsoft Entra ID object that will be assigned as owner/manager/member</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -1454,7 +1454,7 @@
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>ObjectId</maml:name>
         <maml:description>
-          <maml:para>The unique identifier of the object specific Azure Active Directory object</maml:para>
+          <maml:para>The unique identifier of the object specific Microsoft Entra ID object</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -1471,7 +1471,7 @@
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>RefObjectId</maml:name>
         <maml:description>
-          <maml:para>The unique identifier of the specific Azure Active Directory object that will be assigned as owner/manager/member</maml:para>
+          <maml:para>The unique identifier of the specific Microsoft Entra ID object that will be assigned as owner/manager/member</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -1546,7 +1546,7 @@
         <command:parameter required="false" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>ObjectId</maml:name>
           <maml:description>
-            <maml:para>Specifies the ID of an application in Azure Active Directory</maml:para>
+            <maml:para>Specifies the ID of an application in Microsoft Entra ID</maml:para>
           </maml:description>
           <command:parametervalue required="false" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -1590,7 +1590,7 @@
       <command:parameter required="false" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>ObjectId</maml:name>
         <maml:description>
-          <maml:para>Specifies the ID of an application in Azure Active Directory</maml:para>
+          <maml:para>Specifies the ID of an application in Microsoft Entra ID</maml:para>
         </maml:description>
         <command:parametervalue required="false" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -2139,7 +2139,7 @@
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>ObjectId</maml:name>
           <maml:description>
-            <maml:para>Specifies the unique ID of an application in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the unique ID of an application in Microsoft Entra ID.</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -2150,7 +2150,7 @@
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>ObjectId</maml:name>
         <maml:description>
-          <maml:para>The unique identifier of the object specific Azure Active Directory object</maml:para>
+          <maml:para>The unique identifier of the object specific Microsoft Entra ID object</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -2202,7 +2202,7 @@
           344ed560-f8e7-410e-ab9f-c795a7df5c36 extension_36ee4c6c081240a2b820b22ebd02bce3_NewAttribute {}
         </dev:code>
         <dev:remarks>
-          <maml:para>This command gets the extension properties for the specified application in Azure Active Directory.</maml:para>
+          <maml:para>This command gets the extension properties for the specified application in Microsoft Entra ID.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -2243,7 +2243,7 @@
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>ObjectId</maml:name>
           <maml:description>
-            <maml:para>Specifes the ID of an application in Azure Active Directory.</maml:para>
+            <maml:para>Specifes the ID of an application in Microsoft Entra ID.</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -2268,7 +2268,7 @@
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>ObjectId</maml:name>
         <maml:description>
-          <maml:para>Specifes the ID of an application in Azure Active Directory.</maml:para>
+          <maml:para>Specifes the ID of an application in Microsoft Entra ID.</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -3263,7 +3263,7 @@
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>ObjectId</maml:name>
           <maml:description>
-            <maml:para>The unique identifier of the object specific Azure Active Directory object</maml:para>
+            <maml:para>The unique identifier of the object specific Microsoft Entra ID object</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -3310,7 +3310,7 @@
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>ObjectId</maml:name>
         <maml:description>
-          <maml:para>The unique identifier of the object specific Azure Active Directory object</maml:para>
+          <maml:para>The unique identifier of the object specific Microsoft Entra ID object</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -3424,7 +3424,7 @@
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>ObjectId</maml:name>
           <maml:description>
-            <maml:para>The unique identifier of the object specific Azure Active Directory object</maml:para>
+            <maml:para>The unique identifier of the object specific Microsoft Entra ID object</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -3487,7 +3487,7 @@
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>ObjectId</maml:name>
         <maml:description>
-          <maml:para>The unique identifier of the object specific Azure Active Directory object</maml:para>
+          <maml:para>The unique identifier of the object specific Microsoft Entra ID object</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -3613,7 +3613,7 @@
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>ObjectId</maml:name>
           <maml:description>
-            <maml:para>The unique identifier of the object specific Azure Active Directory object</maml:para>
+            <maml:para>The unique identifier of the object specific Microsoft Entra ID object</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -3636,7 +3636,7 @@
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>ObjectId</maml:name>
         <maml:description>
-          <maml:para>The unique identifier of the object specific Azure Active Directory object</maml:para>
+          <maml:para>The unique identifier of the object specific Microsoft Entra ID object</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -3750,7 +3750,7 @@
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>ObjectId</maml:name>
           <maml:description>
-            <maml:para>The unique identifier of the object specific Azure Active Directory object</maml:para>
+            <maml:para>The unique identifier of the object specific Microsoft Entra ID object</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -3761,7 +3761,7 @@
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>ObjectId</maml:name>
         <maml:description>
-          <maml:para>The unique identifier of the object specific Azure Active Directory object</maml:para>
+          <maml:para>The unique identifier of the object specific Microsoft Entra ID object</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -3843,7 +3843,7 @@
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>ObjectId</maml:name>
           <maml:description>
-            <maml:para>Specifies the unique ID of an application in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the unique ID of an application in Microsoft Entra ID.</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -3861,7 +3861,7 @@
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>ObjectId</maml:name>
         <maml:description>
-          <maml:para>Specifies the unique ID of an application in Azure Active Directory.</maml:para>
+          <maml:para>Specifies the unique ID of an application in Microsoft Entra ID.</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -3910,7 +3910,7 @@
         <maml:title>Example 1: Remove an extension property</maml:title>
         <dev:code>PS C:\&gt; Remove-AzureADMSApplicationExtensionProperty -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -ExtensionPropertyId "344ed560-f8e7-410e-ab9f-c79df5c36"</dev:code>
         <dev:remarks>
-          <maml:para>This command removes the extension property that has the specified ID from an application in Azure Active Directory.</maml:para>
+          <maml:para>This command removes the extension property that has the specified ID from an application in Microsoft Entra ID.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -3951,7 +3951,7 @@
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>ObjectId</maml:name>
           <maml:description>
-            <maml:para>The unique identifier of the object specific Azure Active Directory object</maml:para>
+            <maml:para>The unique identifier of the object specific Microsoft Entra ID object</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -3986,7 +3986,7 @@
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>ObjectId</maml:name>
         <maml:description>
-          <maml:para>The unique identifier of the object specific Azure Active Directory object</maml:para>
+          <maml:para>The unique identifier of the object specific Microsoft Entra ID object</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -4193,7 +4193,7 @@
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>ObjectId</maml:name>
           <maml:description>
-            <maml:para>The unique identifier of the object specific Azure Active Directory object</maml:para>
+            <maml:para>The unique identifier of the object specific Microsoft Entra ID object</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -4216,7 +4216,7 @@
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>ObjectId</maml:name>
         <maml:description>
-          <maml:para>The unique identifier of the object specific Azure Active Directory object</maml:para>
+          <maml:para>The unique identifier of the object specific Microsoft Entra ID object</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -5002,7 +5002,7 @@
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>ObjectId</maml:name>
           <maml:description>
-            <maml:para>The unique identifier of the object specific Azure Active Directory object</maml:para>
+            <maml:para>The unique identifier of the object specific Microsoft Entra ID object</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -5020,7 +5020,7 @@
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>ObjectId</maml:name>
         <maml:description>
-          <maml:para>The unique identifier of the object specific Azure Active Directory object</maml:para>
+          <maml:para>The unique identifier of the object specific Microsoft Entra ID object</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -5098,7 +5098,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Add-AzureADApplicationPolicy cmdlet adds an Azure Active Directory application policy.</maml:para>
+      <maml:para>The Add-AzureADApplicationPolicy cmdlet adds a Microsoft Entra ID application policy.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -5250,7 +5250,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Add-AzureADMSLifecyclePolicyGroup cmdlet adds a group to a lifecycle policy in Azure Active Directory</maml:para>
+      <maml:para>The Add-AzureADMSLifecyclePolicyGroup cmdlet adds a group to a lifecycle policy in Microsoft Entra ID</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -5258,7 +5258,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>GroupId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a group in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of a group in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -5270,7 +5270,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>Id</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of the lifecycle policy object in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of the lifecycle policy object in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -5285,7 +5285,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>GroupId</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of a group in Azure Active Directory.</maml:para>
+          <maml:para>Specifies the ID of a group in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -5297,7 +5297,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>Id</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of the lifecycle policy object in Azure Active Directory.</maml:para>
+          <maml:para>Specifies the ID of the lifecycle policy object in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -5507,7 +5507,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADApplicationPolicy cmdlet gets an Azure Active Directory application policy.</maml:para>
+      <maml:para>The Get-AzureADApplicationPolicy cmdlet gets a Microsoft Entra ID application policy.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -5635,11 +5635,11 @@
       <command:verb>Get</command:verb>
       <command:noun>AzureADApplicationProxyApplication</command:noun>
       <maml:description>
-        <maml:para>The Get-AzureADApplicationProxyApplication cmdlet retrieves an application configured for Application Proxy in Azure Active Directory.</maml:para>
+        <maml:para>The Get-AzureADApplicationProxyApplication cmdlet retrieves an application configured for Application Proxy in Microsoft Entra ID.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADApplicationProxyApplication cmdlet retrieves an application configured for Application Proxy in Azure Active Directory.</maml:para>
+      <maml:para>The Get-AzureADApplicationProxyApplication cmdlet retrieves an application configured for Application Proxy in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -5738,7 +5738,7 @@ SingleSignOnSettings                     :</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADApplicationProxyApplicationConnectorGroup cmdlet retrieves the connector group assigned for the specified application. The application must be configured for Application Proxy in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADApplicationProxyApplicationConnectorGroup cmdlet retrieves the connector group assigned for the specified application. The application must be configured for Application Proxy in Microsoft Entra ID (AD).</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -6503,7 +6503,7 @@ a39b9095-8dc8-4d3a-86c3-e7b5c3f0fb84 Application Servers applicationProxy       
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADDirectorySetting cmdlet gets a directory setting from Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADDirectorySetting cmdlet gets a directory setting from Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -6640,7 +6640,7 @@ a39b9095-8dc8-4d3a-86c3-e7b5c3f0fb84 Application Servers applicationProxy       
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADDirectorySettingTemplate cmdlet gets a directory setting template from Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADDirectorySettingTemplate cmdlet gets a directory setting template from Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7045,7 +7045,7 @@ a39b9095-8dc8-4d3a-86c3-e7b5c3f0fb84 Application Servers applicationProxy       
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADMSGroup cmdlet gets information about groups in Azure Active Directory (Azure AD). To get a group, specify the Id parameter.  Specify the SearchString or Filter parameter to find particular groups.  If you specify no parameters, this cmdlet gets all groups.</maml:para>
+      <maml:para>The Get-AzureADMSGroup cmdlet gets information about groups in Microsoft Entra ID. To get a group, specify the Id parameter.  Specify the SearchString or Filter parameter to find particular groups.  If you specify no parameters, this cmdlet gets all groups.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7317,11 +7317,11 @@ MembershipRuleProcessingState : On</dev:code>
       <command:verb>Get</command:verb>
       <command:noun>AzureADMSGroupLifecyclePolicy</command:noun>
       <maml:description>
-        <maml:para>Retrieves the properties and relationships of a groupLifecyclePolicies object in Azure Active Directory. If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.</maml:para>
+        <maml:para>Retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID. If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADMSGroupLifecyclePolicy command retrieves the properties and relationships of a groupLifecyclePolicies object in Azure Active Directory. If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.</maml:para>
+      <maml:para>The Get-AzureADMSGroupLifecyclePolicy command retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID. If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7329,7 +7329,7 @@ MembershipRuleProcessingState : On</dev:code>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>Id</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a groupLifecyclePolicies object in Azure Active Directory</maml:para>
+            <maml:para>Specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -7344,7 +7344,7 @@ MembershipRuleProcessingState : On</dev:code>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>Id</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of a groupLifecyclePolicies object in Azure Active Directory</maml:para>
+          <maml:para>Specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -7496,7 +7496,7 @@ MembershipRuleProcessingState : On</dev:code>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>Id</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a group in Azure Active Directory</maml:para>
+            <maml:para>Specifies the ID of a group in Microsoft Entra ID</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -7511,7 +7511,7 @@ MembershipRuleProcessingState : On</dev:code>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>Id</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of a group in Azure Active Directory</maml:para>
+          <maml:para>Specifies the ID of a group in Microsoft Entra ID</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -7567,7 +7567,7 @@ MembershipRuleProcessingState : On</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADObjectSetting cmdlet gets an object setting from Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADObjectSetting cmdlet gets an object setting from Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7776,7 +7776,7 @@ MembershipRuleProcessingState : On</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADPolicy cmdlet gets a policy in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADPolicy cmdlet gets a policy in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7910,7 +7910,7 @@ MembershipRuleProcessingState : On</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADPolicyAppliedObject cmdlet gets a policy-applied object from Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADPolicyAppliedObject cmdlet gets a policy-applied object from Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -8031,7 +8031,7 @@ MembershipRuleProcessingState : On</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADServicePrincipalPolicy cmdlet gets the policy of a service principal in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADServicePrincipalPolicy cmdlet gets the policy of a service principal in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -8244,7 +8244,7 @@ d533d7b1-fd92-49e8-a200-3e7dcf7c2ab5 Backup Application Servers applicationProxy
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-AzureADDirectorySetting cmdlet creates a directory settings object in Azure Active Directory (AD).</maml:para>
+      <maml:para>The New-AzureADDirectorySetting cmdlet creates a directory settings object in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -8378,7 +8378,7 @@ d533d7b1-fd92-49e8-a200-3e7dcf7c2ab5 Backup Application Servers applicationProxy
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-AzureADMSGroup cmdlet creates an Azure Active Directory (Azure AD) group.</maml:para>
+      <maml:para>The New-AzureADMSGroup cmdlet creates a Microsoft Entra ID group.</maml:para>
       <maml:para>For information about creating dynamic groups, see Using attributes to create advanced rules (https://azure.microsoft.com/en-us/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/).</maml:para>
     </maml:description>
     <command:syntax>
@@ -8714,7 +8714,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Creates a new groupLifecyclePolicy in Azure Active Directory</maml:para>
+      <maml:para>Creates a new groupLifecyclePolicy in Microsoft Entra ID</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -9217,7 +9217,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-AzureADObjectSetting cmdlet creates a settings object in Azure Active Directory (AD).</maml:para>
+      <maml:para>The New-AzureADObjectSetting cmdlet creates a settings object in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -9401,7 +9401,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-AzureADPolicy cmdlet creates a policy in Azure Active Directory (AD).</maml:para>
+      <maml:para>The New-AzureADPolicy cmdlet creates a policy in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -9595,7 +9595,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADApplicationPolicy cmdlet removes an application policy from Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADApplicationPolicy cmdlet removes an application policy from Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -9749,7 +9749,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>If your application is already in the 'Default' group, you will see an error because the application cannot be removed from the 'Default' group unless it is being added to another group. The application must be configured for Application Proxy in Azure Active Directory (AD).</maml:para>
+      <maml:para>If your application is already in the 'Default' group, you will see an error because the application cannot be removed from the 'Default' group unless it is being added to another group. The application must be configured for Application Proxy in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -9903,11 +9903,11 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       <command:verb>Remove</command:verb>
       <command:noun>AzureADDirectorySetting</command:noun>
       <maml:description>
-        <maml:para>Deletes a directory setting in Azure Active Directory.</maml:para>
+        <maml:para>Deletes a directory setting in Microsoft Entra ID.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADDirectorySetting cmdlet removes a directory setting from Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADDirectorySetting cmdlet removes a directory setting from Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -10120,7 +10120,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADMSGroup cmdlet removes an Azure Active Directory (Azure AD) group.</maml:para>
+      <maml:para>The Remove-AzureADMSGroup cmdlet removes a Microsoft Entra ID group.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -10216,7 +10216,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADMSGroupLifecyclePolicy command deletes a groupLifecyclePolicies object in Azure Active Directory.</maml:para>
+      <maml:para>The Remove-AzureADMSGroupLifecyclePolicy command deletes a groupLifecyclePolicies object in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -10374,7 +10374,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADMSLifecyclePolicyGroup cmdlet removes a group from a lifecycle policy in Azure Active Directory</maml:para>
+      <maml:para>The Remove-AzureADMSLifecyclePolicyGroup cmdlet removes a group from a lifecycle policy in Microsoft Entra ID</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -10382,7 +10382,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>GroupId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a group in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of a group in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -10394,7 +10394,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>Id</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of the lifecycle policy object in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of the lifecycle policy object in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -10409,7 +10409,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>GroupId</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of a group in Azure Active Directory.</maml:para>
+          <maml:para>Specifies the ID of a group in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -10421,7 +10421,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>Id</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of the lifecycle policy object in Azure Active Directory.</maml:para>
+          <maml:para>Specifies the ID of the lifecycle policy object in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -10461,7 +10461,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Remove-AzureADMSLifecyclePolicyGroup -Id b4c908b0-3595-4add-91b4-c5400b31b57b -groupId cffd97bd-6b91-4c4e-b553-6918a320211c</dev:code>
         <dev:remarks>
-          <maml:para>This command removes a group from a lifecycle policy in Azure Active Directory</maml:para>
+          <maml:para>This command removes a group from a lifecycle policy in Microsoft Entra ID</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -10473,11 +10473,11 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       <command:verb>Remove</command:verb>
       <command:noun>AzureADObjectSetting</command:noun>
       <maml:description>
-        <maml:para>Deletes settings in Azure Active Directory.</maml:para>
+        <maml:para>Deletes settings in Microsoft Entra ID.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADObjectSetting cmdlet removes object settings in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADObjectSetting cmdlet removes object settings in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -10659,7 +10659,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADPolicy cmdlet removes a policy from Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADPolicy cmdlet removes a policy from Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -10955,7 +10955,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>GroupId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a group in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of a group in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -10970,7 +10970,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>GroupId</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of a group in Azure Active Directory.</maml:para>
+          <maml:para>Specifies the ID of a group in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -11204,11 +11204,11 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       <command:verb>Set</command:verb>
       <command:noun>AzureADDirectorySetting</command:noun>
       <maml:description>
-        <maml:para>Updates a directory setting in Azure Active Directory.</maml:para>
+        <maml:para>Updates a directory setting in Microsoft Entra ID.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-AzureADDirectorySetting cmdlet updates a directory setting in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Set-AzureADDirectorySetting cmdlet updates a directory setting in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -11657,11 +11657,11 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       <command:verb>Set</command:verb>
       <command:noun>AzureADMSGroupLifecyclePolicy</command:noun>
       <maml:description>
-        <maml:para>Updates a specific group Lifecycle Policy in Azure Active Directory</maml:para>
+        <maml:para>Updates a specific group Lifecycle Policy in Microsoft Entra ID</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-AzureADMSGroupLifecyclePolicy command updates a specific group Lifecycle Policy in Azure Active Directory</maml:para>
+      <maml:para>The Set-AzureADMSGroupLifecyclePolicy command updates a specific group Lifecycle Policy in Microsoft Entra ID</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -11693,7 +11693,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>Id</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a groupLifecyclePolicies object in Azure Active Directory</maml:para>
+            <maml:para>Specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -11744,7 +11744,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>Id</maml:name>
         <maml:Description>
-          <maml:para>Specifies the ID of a groupLifecyclePolicies object in Azure Active Directory</maml:para>
+          <maml:para>Specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -11796,7 +11796,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Set-AzureADMSGroupLifecyclePolicy -Id "b4c908b0-3595-4add-91b4-c5400b31b57b" -GroupLifetimeInDays 200 -AlternateNotificationEmails "admingroup@contoso.com"</dev:code>
         <dev:remarks>
-          <maml:para>This command updates the specified groupLifecyclePolicy in Azure Active Directory</maml:para>
+          <maml:para>This command updates the specified groupLifecyclePolicy in Microsoft Entra ID</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -11963,7 +11963,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-AzureADObjectSetting cmdlet updates the settings for an object in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Set-AzureADObjectSetting cmdlet updates the settings for an object in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -12169,7 +12169,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-AzureADPolicy cmdlet sets a policy in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Set-AzureADPolicy cmdlet sets a policy in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -12383,7 +12383,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         Get-AzureADMSConditionalAccessPolicy
       </command:name>
       <maml:description>
-        <maml:para>Gets an Azure Active Directory conditional access policy.</maml:para>
+        <maml:para>Gets a Microsoft Entra ID conditional access policy.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para></maml:para>
@@ -12393,7 +12393,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       <dev:version></dev:version>
     </command:details>
     <maml:description>
-      <maml:para>This cmdlet allows an admin to get the Azure Active Directory conditional access policy. Conditional access policies are custom rules that define an access scenario. </maml:para>
+      <maml:para>This cmdlet allows an admin to get the Microsoft Entra ID conditional access policy. Conditional access policies are custom rules that define an access scenario. </maml:para>
     </maml:description>
     <!-- Cmdlet syntax section-->
     <command:syntax>
@@ -12405,7 +12405,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>PolicyId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of a conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -12421,7 +12421,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>PolicyId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of a conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -12519,7 +12519,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         New-AzureADMSConditionalAccessPolicy
       </command:name>
       <maml:description>
-        <maml:para>Creates a new conditional access policy in Azure Active Directory.</maml:para>
+        <maml:para>Creates a new conditional access policy in Microsoft Entra ID.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para></maml:para>
@@ -12529,7 +12529,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       <dev:version></dev:version>
     </command:details>
     <maml:description>
-      <maml:para>This cmdlet allows an admin to create new conditional access policy in Azure Active Directory. Conditional access policies are custom rules that define an access scenario. </maml:para>
+      <maml:para>This cmdlet allows an admin to create new conditional access policy in Microsoft Entra ID. Conditional access policies are custom rules that define an access scenario. </maml:para>
     </maml:description>
     <!-- Cmdlet syntax section-->
     <command:syntax>
@@ -12538,7 +12538,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>DisplayName</maml:name>
           <maml:Description>
-            <maml:para>Specifies the display name of a conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the display name of a conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -12550,7 +12550,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>State</maml:name>
           <maml:Description>
-            <maml:para>Specifies the enabled or disabled state of the conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the enabled or disabled state of the conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -12562,7 +12562,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>Conditions</maml:name>
           <maml:Description>
-            <maml:para>Specifies the conditions for the conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the conditions for the conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet</command:parameterValue>
           <dev:type>
@@ -12574,7 +12574,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>GrantControls</maml:name>
           <maml:Description>
-            <maml:para>Specifies the controls for the conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the controls for the conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls</command:parameterValue>
           <dev:type>
@@ -12590,7 +12590,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>DisplayName</maml:name>
           <maml:Description>
-            <maml:para>Specifies the display name of a conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the display name of a conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -12602,7 +12602,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>State</maml:name>
           <maml:Description>
-            <maml:para>Specifies the enabled or disabled state of the conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the enabled or disabled state of the conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -12614,7 +12614,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>Conditions</maml:name>
           <maml:Description>
-            <maml:para>Specifies the conditions for the conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the conditions for the conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet</command:parameterValue>
           <dev:type>
@@ -12626,7 +12626,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>GrantControls</maml:name>
           <maml:Description>
-            <maml:para>Specifies the controls for the conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the controls for the conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls</command:parameterValue>
           <dev:type>
@@ -12727,7 +12727,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         Set-AzureADMSConditionalAccessPolicy
       </command:name>
       <maml:description>
-        <maml:para>Updates a conditional access policy in Azure Active Directory by Id.</maml:para>
+        <maml:para>Updates a conditional access policy in Microsoft Entra ID by Id.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para></maml:para>
@@ -12737,7 +12737,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       <dev:version></dev:version>
     </command:details>
     <maml:description>
-      <maml:para>This cmdlet allows an admin to update a conditional access policy in Azure Active Directory by Id. Conditional access policies are custom rules that define an access scenario. </maml:para>
+      <maml:para>This cmdlet allows an admin to update a conditional access policy in Microsoft Entra ID by Id. Conditional access policies are custom rules that define an access scenario. </maml:para>
     </maml:description>
     <!-- Cmdlet syntax section-->
     <command:syntax>
@@ -12746,7 +12746,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>PolicyId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the policy id of a conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the policy id of a conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -12758,7 +12758,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>DisplayName</maml:name>
           <maml:Description>
-            <maml:para>Specifies the display name of a conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the display name of a conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -12770,7 +12770,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>State</maml:name>
           <maml:Description>
-            <maml:para>Specifies the enabled or disabled state of the conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the enabled or disabled state of the conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -12782,7 +12782,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>Conditions</maml:name>
           <maml:Description>
-            <maml:para>Specifies the conditions for the conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the conditions for the conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="false" variableLength="false">Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet</command:parameterValue>
           <dev:type>
@@ -12794,7 +12794,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>GrantControls</maml:name>
           <maml:Description>
-            <maml:para>Specifies the controls for the conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the controls for the conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="false" variableLength="false">Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls</command:parameterValue>
           <dev:type>
@@ -12810,7 +12810,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>PolicyId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the policy id of a conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the policy id of a conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -12822,7 +12822,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>DisplayName</maml:name>
           <maml:Description>
-            <maml:para>Specifies the display name of a conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the display name of a conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -12834,7 +12834,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>State</maml:name>
           <maml:Description>
-            <maml:para>Specifies the enabled or disabled state of the conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the enabled or disabled state of the conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -12846,7 +12846,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>Conditions</maml:name>
           <maml:Description>
-            <maml:para>Specifies the conditions for the conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the conditions for the conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="false" variableLength="false">Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet</command:parameterValue>
           <dev:type>
@@ -12858,7 +12858,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>GrantControls</maml:name>
           <maml:Description>
-            <maml:para>Specifies the controls for the conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the controls for the conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="false" variableLength="false">Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls</command:parameterValue>
           <dev:type>
@@ -12926,7 +12926,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         Remove-AzureADMSConditionalAccessPolicy
       </command:name>
       <maml:description>
-        <maml:para>Deletes a conditional access policy in Azure Active Directory by Id.</maml:para>
+        <maml:para>Deletes a conditional access policy in Microsoft Entra ID by Id.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para></maml:para>
@@ -12936,7 +12936,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       <dev:version></dev:version>
     </command:details>
     <maml:description>
-      <maml:para>This cmdlet allows an admin to delete a conditional access policy in Azure Active Directory by Id. Conditional access policies are custom rules that define an access scenario. </maml:para>
+      <maml:para>This cmdlet allows an admin to delete a conditional access policy in Microsoft Entra ID by Id. Conditional access policies are custom rules that define an access scenario. </maml:para>
     </maml:description>
     <!-- Cmdlet syntax section-->
     <command:syntax>
@@ -12945,7 +12945,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>PolicyId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the policy id of a conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the policy id of a conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -12961,7 +12961,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>PolicyId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the policy id of a conditional access policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the policy id of a conditional access policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -13024,7 +13024,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         Get-AzureADMSNamedLocationPolicy
       </command:name>
       <maml:description>
-        <maml:para>Gets an Azure Active Directory named location policy.</maml:para>
+        <maml:para>Gets a Microsoft Entra ID named location policy.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para></maml:para>
@@ -13034,7 +13034,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       <dev:version></dev:version>
     </command:details>
     <maml:description>
-      <maml:para>This cmdlet allows an admin to get the Azure Active Directory named location policy. Named locations are custom rules that define network locations which can then be used in a Conditional Access policy. </maml:para>
+      <maml:para>This cmdlet allows an admin to get the Microsoft Entra ID named location policy. Named locations are custom rules that define network locations which can then be used in a Conditional Access policy. </maml:para>
     </maml:description>
     <!-- Cmdlet syntax section-->
     <command:syntax>
@@ -13046,7 +13046,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>PolicyId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of a named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -13062,7 +13062,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>PolicyId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of a named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -13173,7 +13173,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         New-AzureADMSNamedLocationPolicy
       </command:name>
       <maml:description>
-        <maml:para>Creates a new named location policy in Azure Active Directory.</maml:para>
+        <maml:para>Creates a new named location policy in Microsoft Entra ID.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para></maml:para>
@@ -13183,7 +13183,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       <dev:version></dev:version>
     </command:details>
     <maml:description>
-      <maml:para>This cmdlet allows an admin to create new named location policy in Azure Active Directory. Conditional access policies are custom rules that define an access scenario. </maml:para>
+      <maml:para>This cmdlet allows an admin to create new named location policy in Microsoft Entra ID. Conditional access policies are custom rules that define an access scenario. </maml:para>
     </maml:description>
     <!-- Cmdlet syntax section-->
     <command:syntax>
@@ -13192,7 +13192,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>OdataType</maml:name>
           <maml:Description>
-            <maml:para>Specifies the odata type of a named location policy object in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the odata type of a named location policy object in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -13204,7 +13204,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>DisplayName</maml:name>
           <maml:Description>
-            <maml:para>Specifies the display name of a named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the display name of a named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -13216,7 +13216,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>IpRanges</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ip ranges of the named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ip ranges of the named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Microsoft.Open.MSGraph.Model.IpRange</command:parameterValue>
           <dev:type>
@@ -13228,7 +13228,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>IsTrusted</maml:name>
           <maml:Description>
-            <maml:para>Specifies the isTrusted value for the named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the isTrusted value for the named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -13240,7 +13240,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>CountriesAndRegions</maml:name>
           <maml:Description>
-            <maml:para>Specifies the countries and regions for the named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the countries and regions for the named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Microsoft.Open.MSGraph.Model.CountriesAndRegions</command:parameterValue>
           <dev:type>
@@ -13252,7 +13252,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>IncludeUnknownCountriesAndRegions</maml:name>
           <maml:Description>
-            <maml:para>Specifies the includeUnknownCountriesAndRegions value for the named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the includeUnknownCountriesAndRegions value for the named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -13268,7 +13268,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>OdataType</maml:name>
           <maml:Description>
-            <maml:para>Specifies the odata type of a named location policy object in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the odata type of a named location policy object in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -13280,7 +13280,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>DisplayName</maml:name>
           <maml:Description>
-            <maml:para>Specifies the display name of a named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the display name of a named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -13292,7 +13292,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>IpRanges</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ip ranges of the named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ip ranges of the named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Microsoft.Open.MSGraph.Model.IpRange</command:parameterValue>
           <dev:type>
@@ -13304,7 +13304,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>IsTrusted</maml:name>
           <maml:Description>
-            <maml:para>Specifies the isTrusted value for the named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the isTrusted value for the named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -13316,7 +13316,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>CountriesAndRegions</maml:name>
           <maml:Description>
-            <maml:para>Specifies the countries and regions for the named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the countries and regions for the named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Microsoft.Open.MSGraph.Model.CountriesAndRegions</command:parameterValue>
           <dev:type>
@@ -13328,7 +13328,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>IncludeUnknownCountriesAndRegions</maml:name>
           <maml:Description>
-            <maml:para>Specifies the includeUnknownCountriesAndRegions value for the named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the includeUnknownCountriesAndRegions value for the named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -13423,7 +13423,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         Set-AzureADMSNamedLocationPolicy
       </command:name>
       <maml:description>
-        <maml:para>Updates a named location policy in Azure Active Directory by PolicyId.</maml:para>
+        <maml:para>Updates a named location policy in Microsoft Entra ID by PolicyId.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para></maml:para>
@@ -13433,7 +13433,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       <dev:version></dev:version>
     </command:details>
     <maml:description>
-      <maml:para>This cmdlet allows an admin to update a named location policy in Azure Active Directory by PolicyId. Conditional access policies are custom rules that define an access scenario. </maml:para>
+      <maml:para>This cmdlet allows an admin to update a named location policy in Microsoft Entra ID by PolicyId. Conditional access policies are custom rules that define an access scenario. </maml:para>
     </maml:description>
     <!-- Cmdlet syntax section-->
     <command:syntax>
@@ -13442,7 +13442,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>PolicyId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of a named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -13454,7 +13454,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>OdataType</maml:name>
           <maml:Description>
-            <maml:para>Specifies the odata type of a named location policy object in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the odata type of a named location policy object in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -13466,7 +13466,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>DisplayName</maml:name>
           <maml:Description>
-            <maml:para>Specifies the display name of a named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the display name of a named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -13478,7 +13478,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>IpRanges</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ip ranges of the named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ip ranges of the named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Microsoft.Open.MSGraph.Model.IpRange</command:parameterValue>
           <dev:type>
@@ -13490,7 +13490,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>IsTrusted</maml:name>
           <maml:Description>
-            <maml:para>Specifies the isTrusted value for the named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the isTrusted value for the named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -13502,7 +13502,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>CountriesAndRegions</maml:name>
           <maml:Description>
-            <maml:para>Specifies the countries and regions for the named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the countries and regions for the named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Microsoft.Open.MSGraph.Model.CountriesAndRegions</command:parameterValue>
           <dev:type>
@@ -13514,7 +13514,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>IncludeUnknownCountriesAndRegions</maml:name>
           <maml:Description>
-            <maml:para>Specifies the includeUnknownCountriesAndRegions value for the named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the includeUnknownCountriesAndRegions value for the named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -13530,7 +13530,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>PolicyId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of a named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -13542,7 +13542,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>OdataType</maml:name>
           <maml:Description>
-            <maml:para>Specifies the odata type of a named location policy object in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the odata type of a named location policy object in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -13554,7 +13554,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>DisplayName</maml:name>
           <maml:Description>
-            <maml:para>Specifies the display name of a named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the display name of a named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -13566,7 +13566,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>IpRanges</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ip ranges of the named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ip ranges of the named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Microsoft.Open.MSGraph.Model.IpRange</command:parameterValue>
           <dev:type>
@@ -13578,7 +13578,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>IsTrusted</maml:name>
           <maml:Description>
-            <maml:para>Specifies the isTrusted value for the named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the isTrusted value for the named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -13590,7 +13590,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>CountriesAndRegions</maml:name>
           <maml:Description>
-            <maml:para>Specifies the countries and regions for the named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the countries and regions for the named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Microsoft.Open.MSGraph.Model.CountriesAndRegions</command:parameterValue>
           <dev:type>
@@ -13602,7 +13602,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>IncludeUnknownCountriesAndRegions</maml:name>
           <maml:Description>
-            <maml:para>Specifies the includeUnknownCountriesAndRegions value for the named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the includeUnknownCountriesAndRegions value for the named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -13675,7 +13675,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         Remove-AzureADMSNamedLocationPolicy
       </command:name>
       <maml:description>
-        <maml:para>Deletes an Azure Active Directory named location policy by PolicyId.</maml:para>
+        <maml:para>Deletes a Microsoft Entra ID named location policy by PolicyId.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para></maml:para>
@@ -13685,7 +13685,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
       <dev:version></dev:version>
     </command:details>
     <maml:description>
-      <maml:para>This cmdlet allows an admin to delete the Azure Active Directory named location policy. Named locations are custom rules that define network locations which can then be used in a Conditional Access policy. </maml:para>
+      <maml:para>This cmdlet allows an admin to delete the Microsoft Entra ID named location policy. Named locations are custom rules that define network locations which can then be used in a Conditional Access policy. </maml:para>
     </maml:description>
     <!-- Cmdlet syntax section-->
     <command:syntax>
@@ -13694,7 +13694,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>PolicyId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of a named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -13710,7 +13710,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true" position="named" aliases="none">
           <maml:name>PolicyId</maml:name>
           <maml:Description>
-            <maml:para>Specifies the ID of a named location policy in Azure Active Directory.</maml:para>
+            <maml:para>Specifies the ID of a named location policy in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -13806,7 +13806,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
             <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
                 <maml:name>ServicePrincipalId</maml:name>
                 <maml:description>
-                    <maml:para>The unique identifier of a service principal object in Azure Active Directory.</maml:para>
+                    <maml:para>The unique identifier of a service principal object in Microsoft Entra ID.</maml:para>
                 </maml:description>
                 <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
             </command:parameter>
@@ -13838,7 +13838,7 @@ MembershipRule                : (user.department -eq "Marketing") MembershipRule
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
             <maml:name>ServicePrincipalId</maml:name>
             <maml:description>
-                <maml:para>The unique identifier of a service principal object in Azure Active Directory.</maml:para>
+                <maml:para>The unique identifier of a service principal object in Microsoft Entra ID.</maml:para>
             </maml:description>
             <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
             <dev:type>
@@ -13979,7 +13979,7 @@ PermissionName : Sites.Read.All
             <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
                 <maml:name>ServicePrincipalId</maml:name>
                 <maml:description>
-                    <maml:para>The unique identifier of a service principal object in Azure Active Directory.</maml:para>
+                    <maml:para>The unique identifier of a service principal object in Microsoft Entra ID.</maml:para>
                 </maml:description>
                 <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
             </command:parameter>
@@ -14004,7 +14004,7 @@ PermissionName : Sites.Read.All
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
             <maml:name>ServicePrincipalId</maml:name>
             <maml:description>
-                <maml:para>The unique identifier of a service principal object in Azure Active Directory.</maml:para>
+                <maml:para>The unique identifier of a service principal object in Microsoft Entra ID.</maml:para>
             </maml:description>
             <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
             <dev:type>
@@ -14167,7 +14167,7 @@ PermissionName : Sites.Read.All
             <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
                 <maml:name>ServicePrincipalId</maml:name>
                 <maml:description>
-                    <maml:para>The unique identifier of a service principal object in Azure Active Directory.</maml:para>
+                    <maml:para>The unique identifier of a service principal object in Microsoft Entra ID.</maml:para>
                 </maml:description>
                 <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
             </command:parameter>
@@ -14185,7 +14185,7 @@ PermissionName : Sites.Read.All
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
             <maml:name>ServicePrincipalId</maml:name>
             <maml:description>
-                <maml:para>The unique identifier of a service principal object in Azure Active Directory.</maml:para>
+                <maml:para>The unique identifier of a service principal object in Microsoft Entra ID.</maml:para>
             </maml:description>
             <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
             <dev:type>
@@ -14277,7 +14277,7 @@ PermissionName : Sites.Read.All
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADMSPermissionGrantPolicy cmdlet gets an Azure Active Directory permission grant policy.</maml:para>
+      <maml:para>The Get-AzureADMSPermissionGrantPolicy cmdlet gets a Microsoft Entra ID permission grant policy.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -14351,7 +14351,7 @@ PermissionName : Sites.Read.All
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-AzureADMSPermissionGrantPolicy cmdlet creates an Azure Active Directory permission grant policy.</maml:para>
+      <maml:para>The New-AzureADMSPermissionGrantPolicy cmdlet creates a Microsoft Entra ID permission grant policy.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -14473,7 +14473,7 @@ PermissionName : Sites.Read.All
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADMSPermissionGrantPolicy cmdlet removes an Azure Active Directory permission grant policy.</maml:para>
+      <maml:para>The Remove-AzureADMSPermissionGrantPolicy cmdlet removes a Microsoft Entra ID permission grant policy.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -14547,7 +14547,7 @@ PermissionName : Sites.Read.All
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-AzureADMSPermissionGrantPolicy command updates an Azure Active Directory permission grant policy.</maml:para>
+      <maml:para>The Set-AzureADMSPermissionGrantPolicy command updates a Microsoft Entra ID permission grant policy.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -14665,7 +14665,7 @@ PermissionName : Sites.Read.All
         Get-AzureADMSPermissionGrantConditionSet
       </command:name>
       <maml:description>
-        <maml:para>Get an Azure Active Directory permission grant condition set by id.</maml:para>
+        <maml:para>Get a Microsoft Entra ID permission grant condition set by id.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para></maml:para>
@@ -14675,7 +14675,7 @@ PermissionName : Sites.Read.All
       <dev:version></dev:version>
     </command:details>
     <maml:description>
-      <maml:para>Get an Azure Active Directory permission grant condition set object by id.</maml:para>
+      <maml:para>Get a Microsoft Entra ID permission grant condition set object by id.</maml:para>
     </maml:description>
     <!-- Cmdlet syntax section-->
     <command:syntax>
@@ -14684,7 +14684,7 @@ PermissionName : Sites.Read.All
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>PolicyId</maml:name>
           <maml:description>
-            <maml:para>The unique identifier of an Azure Active Directory permission grant policy object.</maml:para>
+            <maml:para>The unique identifier of a Microsoft Entra ID permission grant policy object.</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -14698,7 +14698,7 @@ PermissionName : Sites.Read.All
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>Id</maml:name>
           <maml:description>
-            <maml:para>The unique identifier of an Azure Active Directory permission grant condition set object.</maml:para>
+            <maml:para>The unique identifier of a Microsoft Entra ID permission grant condition set object.</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -14709,7 +14709,7 @@ PermissionName : Sites.Read.All
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>PolicyId</maml:name>
         <maml:description>
-          <maml:para>The unique identifier of an Azure Active Directory permission grant policy object.</maml:para>
+          <maml:para>The unique identifier of a Microsoft Entra ID permission grant policy object.</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -14735,7 +14735,7 @@ PermissionName : Sites.Read.All
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>Id</maml:name>
         <maml:description>
-          <maml:para>The unique identifier of an Azure Active Directory permission grant condition set object.</maml:para>
+          <maml:para>The unique identifier of a Microsoft Entra ID permission grant condition set object.</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -14833,7 +14833,7 @@ PermissionName : Sites.Read.All
         New-AzureADMSPermissionGrantConditionSet
       </command:name>
       <maml:description>
-        <maml:para>Create a new Azure Active Directory permission grant condition set in a given policy.</maml:para>
+        <maml:para>Create a new Microsoft Entra ID permission grant condition set in a given policy.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para></maml:para>
@@ -14843,7 +14843,7 @@ PermissionName : Sites.Read.All
       <dev:version></dev:version>
     </command:details>
     <maml:description>
-      <maml:para>Create a new Azure Active Directory permission grant condition set object in an existing policy.</maml:para>
+      <maml:para>Create a new Microsoft Entra ID permission grant condition set object in an existing policy.</maml:para>
     </maml:description>
     <!-- Cmdlet syntax section-->
     <command:syntax>
@@ -14852,7 +14852,7 @@ PermissionName : Sites.Read.All
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>PolicyId</maml:name>
           <maml:description>
-            <maml:para>The unique identifier of an Azure Active Directory permission grant policy object.</maml:para>
+            <maml:para>The unique identifier of a Microsoft Entra ID permission grant policy object.</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -14969,7 +14969,7 @@ PermissionName : Sites.Read.All
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>PolicyId</maml:name>
         <maml:description>
-          <maml:para>The unique identifier of an Azure Active Directory permission grant policy object.</maml:para>
+          <maml:para>The unique identifier of a Microsoft Entra ID permission grant policy object.</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -15205,7 +15205,7 @@ PermissionName : Sites.Read.All
         Remove-AzureADMSPermissionGrantConditionSet
       </command:name>
       <maml:description>
-        <maml:para>Delete an Azure Active Directory permission grant condition set by id</maml:para>
+        <maml:para>Delete a Microsoft Entra ID permission grant condition set by id</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para></maml:para>
@@ -15215,7 +15215,7 @@ PermissionName : Sites.Read.All
       <dev:version></dev:version>
     </command:details>
     <maml:description>
-      <maml:para>Delete an Azure Active Directory permission grant condition set object by id.</maml:para>
+      <maml:para>Delete a Microsoft Entra ID permission grant condition set object by id.</maml:para>
     </maml:description>
     <!-- Cmdlet syntax section-->
     <command:syntax>
@@ -15224,7 +15224,7 @@ PermissionName : Sites.Read.All
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>PolicyId</maml:name>
           <maml:description>
-            <maml:para>The unique identifier of an Azure Active Directory permission grant policy object.</maml:para>
+            <maml:para>The unique identifier of a Microsoft Entra ID permission grant policy object.</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -15238,7 +15238,7 @@ PermissionName : Sites.Read.All
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>Id</maml:name>
           <maml:description>
-            <maml:para>The unique identifier of an Azure Active Directory permission grant condition set object.</maml:para>
+            <maml:para>The unique identifier of a Microsoft Entra ID permission grant condition set object.</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -15249,7 +15249,7 @@ PermissionName : Sites.Read.All
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>PolicyId</maml:name>
         <maml:description>
-          <maml:para>The unique identifier of an Azure Active Directory permission grant policy object.</maml:para>
+          <maml:para>The unique identifier of a Microsoft Entra ID permission grant policy object.</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -15275,7 +15275,7 @@ PermissionName : Sites.Read.All
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>Id</maml:name>
         <maml:description>
-          <maml:para>The unique identifier of an Azure Active Directory permission grant condition set object.</maml:para>
+          <maml:para>The unique identifier of a Microsoft Entra ID permission grant condition set object.</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -15350,7 +15350,7 @@ PermissionName : Sites.Read.All
         Set-AzureADMSPermissionGrantConditionSet
       </command:name>
       <maml:description>
-        <maml:para>Update an existing Azure Active Directory permission grant condition set.</maml:para>
+        <maml:para>Update an existing Microsoft Entra ID permission grant condition set.</maml:para>
       </maml:description>
       <maml:copyright>
         <maml:para></maml:para>
@@ -15360,7 +15360,7 @@ PermissionName : Sites.Read.All
       <dev:version></dev:version>
     </command:details>
     <maml:description>
-      <maml:para>Updates an Azure Active Directory permission grant condition set object identified by id.</maml:para>
+      <maml:para>Updates a Microsoft Entra ID permission grant condition set object identified by id.</maml:para>
     </maml:description>
     <!-- Cmdlet syntax section-->
     <command:syntax>
@@ -15369,7 +15369,7 @@ PermissionName : Sites.Read.All
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>PolicyId</maml:name>
           <maml:description>
-            <maml:para>The unique identifier of an Azure Active Directory permission grant policy object.</maml:para>
+            <maml:para>The unique identifier of a Microsoft Entra ID permission grant policy object.</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -15383,7 +15383,7 @@ PermissionName : Sites.Read.All
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>Id</maml:name>
           <maml:description>
-            <maml:para>The unique identifier of an Azure Active Directory permission grant condition set object.</maml:para>
+            <maml:para>The unique identifier of a Microsoft Entra ID permission grant condition set object.</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -15493,7 +15493,7 @@ PermissionName : Sites.Read.All
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>PolicyId</maml:name>
         <maml:description>
-          <maml:para>The unique identifier of an Azure Active Directory permission grant policy object.</maml:para>
+          <maml:para>The unique identifier of a Microsoft Entra ID permission grant policy object.</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -15519,7 +15519,7 @@ PermissionName : Sites.Read.All
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>Id</maml:name>
         <maml:description>
-          <maml:para>The unique identifier of an Azure Active Directory permission grant condition set object.</maml:para>
+          <maml:para>The unique identifier of a Microsoft Entra ID permission grant condition set object.</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -15750,7 +15750,7 @@ PermissionName : Sites.Read.All
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>AppObjectId</maml:name>
           <maml:description>
-            <maml:para>The unique identifier of an Azure Active Directory Application object.</maml:para>
+            <maml:para>The unique identifier of a Microsoft Entra ID Application object.</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -15768,7 +15768,7 @@ PermissionName : Sites.Read.All
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>AppObjectId</maml:name>
         <maml:description>
-          <maml:para>The unique identifier of an Azure Active Directory Application object.</maml:para>
+          <maml:para>The unique identifier of a Microsoft Entra ID Application object.</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -15864,7 +15864,7 @@ PermissionName : Sites.Read.All
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
           <maml:name>AppObjectId</maml:name>
           <maml:description>
-            <maml:para>The unique identifier of an Azure Active Directory Application object.</maml:para>
+            <maml:para>The unique identifier of a Microsoft Entra ID Application object.</maml:para>
           </maml:description>
           <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         </command:parameter>
@@ -15875,7 +15875,7 @@ PermissionName : Sites.Read.All
       <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
         <maml:name>AppObjectId</maml:name>
         <maml:description>
-          <maml:para>The unique identifier of an Azure Active Directory Application object.</maml:para>
+          <maml:para>The unique identifier of a Microsoft Entra ID Application object.</maml:para>
         </maml:description>
         <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
         <dev:type>
@@ -16029,7 +16029,7 @@ PermissionName : Sites.Read.All
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADMSAuthorizationPolicy cmdlet gets an Azure Active Directory authorization policy.</maml:para>
+      <maml:para>The Get-AzureADMSAuthorizationPolicy cmdlet gets a Microsoft Entra ID authorization policy.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -16070,7 +16070,7 @@ PermissionName : Sites.Read.All
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-AzureADMSAuthorizationPolicy cmdlet updates an Azure Active Directory authorization policy.</maml:para>
+      <maml:para>The Set-AzureADMSAuthorizationPolicy cmdlet updates a Microsoft Entra ID authorization policy.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -16285,7 +16285,7 @@ PermissionName : Sites.Read.All
             Get-AzureADMSRoleDefinition
         </command:name>
         <maml:description>
-            <maml:para>Get an Azure Active Directory roleDefinition by objectId.</maml:para>
+            <maml:para>Get a Microsoft Entra ID roleDefinition by objectId.</maml:para>
         </maml:description>
         <maml:copyright>
             <maml:para></maml:para>
@@ -16295,7 +16295,7 @@ PermissionName : Sites.Read.All
         <dev:version></dev:version>
     </command:details>
     <maml:description>
-        <maml:para>Get an Azure Active Directory roleDefinition object by id. For more info see https://go.microsoft.com/fwlink/?linkid&#x3D;2097519.</maml:para>
+        <maml:para>Get a Microsoft Entra ID roleDefinition object by id. For more info see https://go.microsoft.com/fwlink/?linkid&#x3D;2097519.</maml:para>
     </maml:description>
     <!-- Cmdlet syntax section-->
     <command:syntax>
@@ -16304,7 +16304,7 @@ PermissionName : Sites.Read.All
             <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
                 <maml:name>Id</maml:name>
                 <maml:description>
-                    <maml:para>The unique identifier of an Azure Active Directory roleDefinition object.</maml:para>
+                    <maml:para>The unique identifier of a Microsoft Entra ID roleDefinition object.</maml:para>
                 </maml:description>
                 <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
             </command:parameter>
@@ -16336,7 +16336,7 @@ PermissionName : Sites.Read.All
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
             <maml:name>Id</maml:name>
             <maml:description>
-                <maml:para>The unique identifier of an Azure Active Directory roleDefinition object.</maml:para>
+                <maml:para>The unique identifier of a Microsoft Entra ID roleDefinition object.</maml:para>
             </maml:description>
             <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
             <dev:type>
@@ -16445,7 +16445,7 @@ PermissionName : Sites.Read.All
             New-AzureADMSRoleDefinition
         </command:name>
         <maml:description>
-            <maml:para>Create a new Azure Active Directory roleDefinition.</maml:para>
+            <maml:para>Create a new Microsoft Entra ID roleDefinition.</maml:para>
         </maml:description>
         <maml:copyright>
             <maml:para></maml:para>
@@ -16455,7 +16455,7 @@ PermissionName : Sites.Read.All
         <dev:version></dev:version>
     </command:details>
     <maml:description>
-        <maml:para>Create a new Azure Active Directory roleDefinition object. For more info see https://go.microsoft.com/fwlink/?linkid&#x3D;2097519.</maml:para>
+        <maml:para>Create a new Microsoft Entra ID roleDefinition object. For more info see https://go.microsoft.com/fwlink/?linkid&#x3D;2097519.</maml:para>
     </maml:description>
     <!-- Cmdlet syntax section-->
     <command:syntax>
@@ -16497,7 +16497,7 @@ PermissionName : Sites.Read.All
             Remove-AzureADMSRoleDefinition
         </command:name>
         <maml:description>
-            <maml:para>Delete an Azure Active Directory roleDefinition by objectId</maml:para>
+            <maml:para>Delete a Microsoft Entra ID roleDefinition by objectId</maml:para>
         </maml:description>
         <maml:copyright>
             <maml:para></maml:para>
@@ -16507,7 +16507,7 @@ PermissionName : Sites.Read.All
         <dev:version></dev:version>
     </command:details>
     <maml:description>
-        <maml:para>Delete an Azure Active Directory roleDefinition object by id. For more info see https://go.microsoft.com/fwlink/?linkid&#x3D;2097519.</maml:para>
+        <maml:para>Delete a Microsoft Entra ID roleDefinition object by id. For more info see https://go.microsoft.com/fwlink/?linkid&#x3D;2097519.</maml:para>
     </maml:description>
     <!-- Cmdlet syntax section-->
     <command:syntax>
@@ -16516,7 +16516,7 @@ PermissionName : Sites.Read.All
             <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
                 <maml:name>Id</maml:name>
                 <maml:description>
-                    <maml:para>The unique identifier of an object in Azure Active Directory</maml:para>
+                    <maml:para>The unique identifier of an object in Microsoft Entra ID</maml:para>
                 </maml:description>
                 <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
             </command:parameter>
@@ -16527,7 +16527,7 @@ PermissionName : Sites.Read.All
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
             <maml:name>Id</maml:name>
             <maml:description>
-                <maml:para>The unique identifier of an object in Azure Active Directory</maml:para>
+                <maml:para>The unique identifier of an object in Microsoft Entra ID</maml:para>
             </maml:description>
             <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
             <dev:type>
@@ -16567,7 +16567,7 @@ PermissionName : Sites.Read.All
             Set-AzureADMSRoleDefinition
         </command:name>
         <maml:description>
-            <maml:para>Update an existing Azure Active Directory roleDefinition.</maml:para>
+            <maml:para>Update an existing Microsoft Entra ID roleDefinition.</maml:para>
         </maml:description>
         <maml:copyright>
             <maml:para></maml:para>
@@ -16577,7 +16577,7 @@ PermissionName : Sites.Read.All
         <dev:version></dev:version>
     </command:details>
     <maml:description>
-        <maml:para>Updates an Azure Active Directory roleDefinition object identified by id. For more info see https://go.microsoft.com/fwlink/?linkid&#x3D;2097519.</maml:para>
+        <maml:para>Updates a Microsoft Entra ID roleDefinition object identified by id. For more info see https://go.microsoft.com/fwlink/?linkid&#x3D;2097519.</maml:para>
     </maml:description>
     <!-- Cmdlet syntax section-->
     <command:syntax>
@@ -16586,7 +16586,7 @@ PermissionName : Sites.Read.All
             <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
                 <maml:name>Id</maml:name>
                 <maml:description>
-                    <maml:para>The unique identifier of an object in Azure Active Directory</maml:para>
+                    <maml:para>The unique identifier of an object in Microsoft Entra ID</maml:para>
                 </maml:description>
                 <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
             </command:parameter>
@@ -16597,7 +16597,7 @@ PermissionName : Sites.Read.All
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
             <maml:name>Id</maml:name>
             <maml:description>
-                <maml:para>The unique identifier of an object in Azure Active Directory</maml:para>
+                <maml:para>The unique identifier of an object in Microsoft Entra ID</maml:para>
             </maml:description>
             <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
             <dev:type>
@@ -16637,7 +16637,7 @@ PermissionName : Sites.Read.All
             Get-AzureADMSRoleAssignment
         </command:name>
         <maml:description>
-            <maml:para>Get an Azure Active Directory roleAssignment by id</maml:para>
+            <maml:para>Get a Microsoft Entra ID roleAssignment by id</maml:para>
         </maml:description>
         <maml:copyright>
             <maml:para></maml:para>
@@ -16647,7 +16647,7 @@ PermissionName : Sites.Read.All
         <dev:version></dev:version>
     </command:details>
     <maml:description>
-        <maml:para>Get an Azure Active Directory roleAssignment object by id. For more info see https://go.microsoft.com/fwlink/?linkid&#x3D;2097519.</maml:para>
+        <maml:para>Get a Microsoft Entra ID roleAssignment object by id. For more info see https://go.microsoft.com/fwlink/?linkid&#x3D;2097519.</maml:para>
     </maml:description>
     <!-- Cmdlet syntax section-->
     <command:syntax>
@@ -16656,7 +16656,7 @@ PermissionName : Sites.Read.All
             <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
                 <maml:name>Id</maml:name>
                 <maml:description>
-                    <maml:para>The unique idenfier of an Azure Active Directory roleAssignment object.</maml:para>
+                    <maml:para>The unique idenfier of a Microsoft Entra ID roleAssignment object.</maml:para>
                 </maml:description>
                 <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
             </command:parameter>
@@ -16688,7 +16688,7 @@ PermissionName : Sites.Read.All
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
             <maml:name>Id</maml:name>
             <maml:description>
-                <maml:para>The unique idenfier of an Azure Active Directory roleAssignment object.</maml:para>
+                <maml:para>The unique idenfier of a Microsoft Entra ID roleAssignment object.</maml:para>
             </maml:description>
             <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
             <dev:type>
@@ -16797,7 +16797,7 @@ PermissionName : Sites.Read.All
             New-AzureADMSRoleAssignment
         </command:name>
         <maml:description>
-            <maml:para>Create a new Azure Active Directory roleAssignment.</maml:para>
+            <maml:para>Create a new Microsoft Entra ID roleAssignment.</maml:para>
         </maml:description>
         <maml:copyright>
             <maml:para></maml:para>
@@ -16807,7 +16807,7 @@ PermissionName : Sites.Read.All
         <dev:version></dev:version>
     </command:details>
     <maml:description>
-        <maml:para>Create a new Azure Active Directory roleAssignment object. For more info see https://go.microsoft.com/fwlink/?linkid&#x3D;2097519.</maml:para>
+        <maml:para>Create a new Microsoft Entra ID roleAssignment object. For more info see https://go.microsoft.com/fwlink/?linkid&#x3D;2097519.</maml:para>
     </maml:description>
     <!-- Cmdlet syntax section-->
     <command:syntax>
@@ -16849,7 +16849,7 @@ PermissionName : Sites.Read.All
             Remove-AzureADMSRoleAssignment
         </command:name>
         <maml:description>
-            <maml:para>Delete an Azure Active Directory roleAssignment by id.</maml:para>
+            <maml:para>Delete a Microsoft Entra ID roleAssignment by id.</maml:para>
         </maml:description>
         <maml:copyright>
             <maml:para></maml:para>
@@ -16859,7 +16859,7 @@ PermissionName : Sites.Read.All
         <dev:version></dev:version>
     </command:details>
     <maml:description>
-        <maml:para>Delete an Azure Active Directory roleAssignment object by id. For more info see https://go.microsoft.com/fwlink/?linkid&#x3D;2097519.</maml:para>
+        <maml:para>Delete a Microsoft Entra ID roleAssignment object by id. For more info see https://go.microsoft.com/fwlink/?linkid&#x3D;2097519.</maml:para>
     </maml:description>
     <!-- Cmdlet syntax section-->
     <command:syntax>
@@ -16868,7 +16868,7 @@ PermissionName : Sites.Read.All
             <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
                 <maml:name>Id</maml:name>
                 <maml:description>
-                    <maml:para>The unique identifier of an object in Azure Active Directory</maml:para>
+                    <maml:para>The unique identifier of an object in Microsoft Entra ID</maml:para>
                 </maml:description>
                 <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
             </command:parameter>
@@ -16879,7 +16879,7 @@ PermissionName : Sites.Read.All
         <command:parameter required="true" variablelength="false" globbing="false" pipelineinput="true" position="named">
             <maml:name>Id</maml:name>
             <maml:description>
-                <maml:para>The unique identifier of an object in Azure Active Directory</maml:para>
+                <maml:para>The unique identifier of an object in Microsoft Entra ID</maml:para>
             </maml:description>
             <command:parametervalue required="true" variablelength="false">string</command:parametervalue>
             <dev:type>
