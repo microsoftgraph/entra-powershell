@@ -1,7 +1,7 @@
 {
     "sourceModule" : "AzureADPreview",
     "moduleName" : "Microsoft.Graph.Entra.Beta",
-    "newPrefix" : "Entra",
+    "newPrefix" : "EntraBeta",
     "typePrefix" : "Microsoft.Open.",
     "destinationModuleName" : [
       "Microsoft.Graph.Beta.DirectoryObjects",
