@@ -10,6 +10,7 @@ enum TransformationTypes {
     SystemSwitch = 4
     KeyId = 5
     FlatObject = 6
+    Remove = 98
     ScriptBlock = 99
 }
 
@@ -54,6 +55,10 @@ class DataMap {
         if($this.Name -ne $this.TargetName){
             $this.NameChanged = $true
         }
+    }
+
+    SetRemove(){
+        $this.ConversionType = 98
     }
 
     SetTargetName($TargetName){

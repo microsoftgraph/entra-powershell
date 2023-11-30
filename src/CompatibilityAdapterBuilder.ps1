@@ -510,7 +510,7 @@ Export-ModuleMember -Function @(
 
     hidden [scriptblock] SetMissingCommands() {
         $missingCommands = @"
-Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList -Join "','")') -Scope Global -Option ReadOnly -Force
+Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList -Join "','")') -Scope Script -Option ReadOnly -Force
 
 "@
         return [Scriptblock]::Create($missingCommands)
@@ -660,6 +660,9 @@ $OutputTransformations
             }
             elseif([TransformationTypes]::ScriptBlock -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterCustom($param)
+            }
+            elseif([TransformationTypes]::Remove -eq $param.ConversionType){
+                $paramBlock = $this.GetParameterException($param)
             }
             
             $paramsList += $paramBlock            

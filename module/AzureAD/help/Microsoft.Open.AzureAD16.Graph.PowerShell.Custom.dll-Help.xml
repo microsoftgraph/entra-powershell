@@ -49,7 +49,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies a unique ID of an application in Azure Active Directory for which to get key credentials</maml:para>
+            <maml:para>Specifies a unique ID of an application in Microsoft Entra ID for which to get key credentials</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -95,7 +95,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies a unique ID of an application in Azure Active Directory for which to get key credentials</maml:para>
+          <maml:para>Specifies a unique ID of an application in Microsoft Entra ID for which to get key credentials</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -309,7 +309,7 @@ PropertyItems        : {274, 305, 306, 36867...}</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADApplicationPasswordCredential cmdlet gets the password credentials for an Azure Active Directory application.</maml:para>
+      <maml:para>The Get-AzureADApplicationPasswordCredential cmdlet gets the password credentials for a Microsoft Entra ID application.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -604,7 +604,7 @@ PropertyItems        : {274, 305, 306, 36867...}</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADServicePrincipalKeyCredential cmdlet gets the key credentials for a service principal in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADServicePrincipalKeyCredential cmdlet gets the key credentials for a service principal in Microsoft Entra ID (AD).</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -740,7 +740,7 @@ PS C:\&gt; Get-AzureADServicePrincipalKeyCredential -ObjectId $ServicePrincipalI
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADServicePrincipalPasswordCredential cmdlet gets the password credentials for a service principal in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADServicePrincipalPasswordCredential cmdlet gets the password credentials for a service principal in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -876,7 +876,7 @@ PS C:\&gt; Get-AzureADServicePrincipalPasswordCredential -ObjectId $ServicePrinc
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADTrustedCertificateAuthority cmdlet gets the trusted certificate authority in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADTrustedCertificateAuthority cmdlet gets the trusted certificate authority in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1052,7 +1052,7 @@ PS C:\&gt; Get-AzureADServicePrincipalPasswordCredential -ObjectId $ServicePrinc
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-AzureADUserExtension cmdlet gets a user extension in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Get-AzureADUserExtension cmdlet gets a user extension in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1371,7 +1371,7 @@ PropertyItems        : {11, 274, 305, 306...}</dev:code>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies a unique ID of an application in Azure Active Directory.</maml:para>
+            <maml:para>Specifies a unique ID of an application in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1489,7 +1489,7 @@ PropertyItems        : {11, 274, 305, 306...}</dev:code>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies a unique ID of an application in Azure Active Directory.</maml:para>
+          <maml:para>Specifies a unique ID of an application in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1602,7 +1602,7 @@ PS C:\&gt; New-AzureADApplicationKeyCredential -ObjectId 009d786a-3503-4217-b8ab
         <maml:uri></maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
-        <maml:linkText>This cmdlet uses the ADAL library in Azure Active Directory. To learn more about ADAL, please follow this link:</maml:linkText>
+        <maml:linkText>This cmdlet uses the ADAL library in Microsoft Entra ID. To learn more about ADAL, please follow this link:</maml:linkText>
         <maml:uri>http://www.cloudidentity.com/blog/2013/09/12/active-directory-authentication-library-adal-v1-for-net-general-availability/</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
@@ -1617,7 +1617,7 @@ PS C:\&gt; New-AzureADApplicationKeyCredential -ObjectId 009d786a-3503-4217-b8ab
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-AzureADApplicationPasswordCredential cmdlet creates a password credential for an application in Azure Active Directory (AD).</maml:para>
+      <maml:para>The New-AzureADApplicationPasswordCredential cmdlet creates a password credential for an application in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1849,7 +1849,7 @@ Value               : SAMPLE_KEY_VALUE</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-AzureADServicePrincipalKeyCredential cmdlet creates a key credential for a service principal in Azure Active Directory (AD).</maml:para>
+      <maml:para>The New-AzureADServicePrincipalKeyCredential cmdlet creates a key credential for a service principal in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2123,7 +2123,7 @@ Value               : SAMPLE_KEY_VALUE</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-AzureADServicePrincipalPasswordCredential cmdlet creates a password credential for a service principal in Azure Active Directory (AD).</maml:para>
+      <maml:para>The New-AzureADServicePrincipalPasswordCredential cmdlet creates a password credential for a service principal in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2341,7 +2341,7 @@ Value               : SAMPLE_KEY_VALUE</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-AzureADTrustedCertificateAuthority cmdlet creates a trusted certificate authority in Azure Active Directory (AD).</maml:para>
+      <maml:para>The New-AzureADTrustedCertificateAuthority cmdlet creates a trusted certificate authority in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2531,7 +2531,7 @@ Value               : SAMPLE_KEY_VALUE</dev:code>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
           <maml:name>ObjectId</maml:name>
           <maml:Description>
-            <maml:para>Specifies a unique ID of an application in Azure Active Directory.</maml:para>
+            <maml:para>Specifies a unique ID of an application in Microsoft Entra ID.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -2589,7 +2589,7 @@ Value               : SAMPLE_KEY_VALUE</dev:code>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
         <maml:name>ObjectId</maml:name>
         <maml:Description>
-          <maml:para>Specifies a unique ID of an application in Azure Active Directory.</maml:para>
+          <maml:para>Specifies a unique ID of an application in Microsoft Entra ID.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -2636,7 +2636,7 @@ Value               : SAMPLE_KEY_VALUE</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADApplicationPasswordCredential cmdlet removes a password credential from an application in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADApplicationPasswordCredential cmdlet removes a password credential from an application in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2800,7 +2800,7 @@ PS C:\&gt; Remove-AzureADApplicationPasswordCredential -ObjectId $AppId -KeyId $
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADServicePrincipalKeyCredential cmdlet removes a key credential from a service principal in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADServicePrincipalKeyCredential cmdlet removes a key credential from a service principal in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2946,7 +2946,7 @@ PS C:\&gt; Remove-AzureADApplicationPasswordCredential -ObjectId $AppId -KeyId $
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADServicePrincipalPasswordCredential cmdlet removes a password credential from a service principal in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADServicePrincipalPasswordCredential cmdlet removes a password credential from a service principal in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3092,7 +3092,7 @@ PS C:\&gt; Remove-AzureADApplicationPasswordCredential -ObjectId $AppId -KeyId $
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADTrustedCertificateAuthority cmdlet removes a trusted certificate authority from Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADTrustedCertificateAuthority cmdlet removes a trusted certificate authority from Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3227,7 +3227,7 @@ PS C:\&gt; Remove-AzureADApplicationPasswordCredential -ObjectId $AppId -KeyId $
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-AzureADUserExtension cmdlet removes a user extension from Azure Active Directory (AD).</maml:para>
+      <maml:para>The Remove-AzureADUserExtension cmdlet removes a user extension from Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3533,7 +3533,7 @@ PS C:\&gt; Remove-AzureADApplicationPasswordCredential -ObjectId $AppId -KeyId $
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-AzureADTrustedCertificateAuthority cmdlet updates a trusted certificate authority in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Set-AzureADTrustedCertificateAuthority cmdlet updates a trusted certificate authority in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3669,7 +3669,7 @@ PS C:\&gt; Remove-AzureADApplicationPasswordCredential -ObjectId $AppId -KeyId $
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-AzureADUserExtension cmdlet sets a user extension in Azure Active Directory (Azure AD).</maml:para>
+      <maml:para>The Set-AzureADUserExtension cmdlet sets a user extension in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3836,7 +3836,7 @@ PS C:\&gt; Set-AzureADUserExtension -ObjectId $User.ObjectId -ExtensionName exte
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-AzureADUserPassword cmdlet sets the password for a user in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Set-AzureADUserPassword cmdlet sets the password for a user in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -4150,7 +4150,7 @@ PS C:\&gt; Set-AzureADUserExtension -ObjectId $User.ObjectId -ExtensionName exte
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Update-AzureADSignedInUserPassword cmdlet updates the password for the signed-in user in Azure Active Directory (AD).</maml:para>
+      <maml:para>The Update-AzureADSignedInUserPassword cmdlet updates the password for the signed-in user in Microsoft Entra ID.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
