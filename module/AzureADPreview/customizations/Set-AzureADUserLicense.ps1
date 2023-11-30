@@ -36,7 +36,7 @@
             'Content-Type' = 'application/json'
         }
 
-        $graphApiEndpoint = "https://graph.microsoft.com/v1.0/users/$UserId/microsoft.graph.assignLicense"
+        $graphApiEndpoint = "https://graph.microsoft.com/beta/users/$UserId/microsoft.graph.assignLicense"
 
         if($PSBoundParameters.ContainsKey("Debug"))
         {
