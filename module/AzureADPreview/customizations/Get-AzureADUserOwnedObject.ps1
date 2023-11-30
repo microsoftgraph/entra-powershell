@@ -26,7 +26,7 @@
                 Write-Debug("=========================================================================``n")
                 
                 `$Method = "GET"
-                `$URI = '/v1.0/users/'+`$params["UserId"]+'/ownedObjects'
+                `$URI = '/beta/users/'+`$params["UserId"]+'/ownedObjects'
 
                 `$response = (Invoke-GraphRequest -Uri `$uri -Method `$Method).value;
                 
