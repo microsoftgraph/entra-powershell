@@ -57,9 +57,20 @@
     `$response | ForEach-Object {
         if(`$null -ne `$_) {
         Add-Member -InputObject `$_ -MemberType AliasProperty -Name ObjectId -Value Id
-        `$_ | ConvertTo-Json | ConvertFrom-Json
+        `$propsToConvert = @(
+             'AddIns','Logo','AppRoles','GroupMembershipClaims','IdentifierUris','Info',
+             'IsDeviceOnlyAuthSupported','KeyCredentials','Oauth2RequirePostResponse','OptionalClaims',
+             'ParentalControlSettings','PasswordCredentials','Api','PublicClient',
+             'PublisherDomain','Web','RequiredResourceAccess','SignInAudience')
+             
+                foreach (`$prop in `$propsToConvert) {
+                    `$value = `$_.`$prop | ConvertTo-Json | ConvertFrom-Json
+                    `$_ | Add-Member -MemberType NoteProperty -Name `$prop -Value (`$value) -Force
+                }
         }
     }
+
+    `$response
 }    
 "@
 
