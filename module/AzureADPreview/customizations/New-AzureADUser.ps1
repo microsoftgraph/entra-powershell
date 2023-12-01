@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "New-AzureADUser"
-    TargetName = "New-MgUser"
+    TargetName = "New-MgBetaUser"
     Parameters = @(
         @{
             SourceName = "PasswordProfile"
