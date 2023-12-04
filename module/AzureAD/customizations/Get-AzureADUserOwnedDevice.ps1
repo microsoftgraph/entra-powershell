@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "Get-AzureADUserRegisteredDevice"
+    SourceName = "Get-AzureADUserOwnedDevice"
     TargetName = $null
     Parameters = $null
     outputs = $null
@@ -38,13 +38,17 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Get-MgUserRegisteredDevice @params
+        $response = Get-MgUserOwnedDevice @params
         $response | ForEach-Object {
-            if($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+            if ($null -ne $_) {
+                $propsToConvert = @('AdditionalProperties')
+                foreach ($prop in $propsToConvert) {
+                    $value = $_.$prop | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
+                }
             }
         }
-        $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-        } 
+        $response 
+        }    
 '@
 }

@@ -6,41 +6,4 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
-    PROCESS {    
-        `$params = @{}
-        `$keysChanged = @{ObjectId = "Id"}
-        `$body=@{}
-
-        if(`$null -ne `$PSBoundParameters["StartDate"])
-        {
-            `$body["startDateTime"] = `$PSBoundParameters["StartDate"]
-        }
-        if(`$null -ne `$PSBoundParameters["EndDate"])
-        {
-            `$body["endDateTime"] = `$PSBoundParameters["EndDate"]
-        }
-        if(`$null -ne `$PSBoundParameters["ObjectId"])
-        {
-            `$params["ApplicationId"] = `$PSBoundParameters["ObjectId"]
-        }
-        if(`$PSBoundParameters.ContainsKey("Verbose"))
-        {
-            `$params["Verbose"] = `$Null
-        }
-        if(`$PSBoundParameters.ContainsKey("Debug"))
-        {
-            `$params["Debug"] = `$Null
-        }
-        `$params["PasswordCredential"] = `$body
-
-        Write-Debug("============================ TRANSFORMATIONS ============================")
-        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================
-")
-        
-        `$response = Add-MgBetaApplicationPassword @params 
-        `$response
-        }  
-"@
 }
