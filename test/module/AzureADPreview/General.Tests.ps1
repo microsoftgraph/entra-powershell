@@ -25,7 +25,7 @@ Describe 'Module checks' {
 
     It 'Known number translated commands' {
         $module = Get-Module -Name Microsoft.Graph.Entra.Beta
-        $module.ExportedCommands.Keys.Count | Should -Be 292
+        $module.ExportedCommands.Keys.Count | Should -Be 289
     }
 
     It 'Running a simple command Set-EntraAzureADAliases'{
