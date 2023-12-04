@@ -3,21 +3,52 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADObjectByObjectId"
-    TargetName = "Get-MgDirectoryObjectById"
-    Parameters = @(
-        @{
-            SourceName = "ObjectIds"
-            TargetName = "Ids"
-            ConversionType = "Name"
-            SpecialMapping = $null
+    TargetName = $null
+    Parameters = $null
+    Outputs = $null
+    CustomScript = @'
+    PROCESS {    
+    $params = @{}
+    $keysChanged = @{ObjectIds = "Ids"}
+    if($PSBoundParameters.ContainsKey("Debug"))
+    {
+        $params["Debug"] = $Null
+    }
+    if($null -ne $PSBoundParameters["Types"])
+    {
+        $params["Types"] = $PSBoundParameters["Types"]
+    }
+    if($PSBoundParameters.ContainsKey("Verbose"))
+    {
+        $params["Verbose"] = $Null
+    }
+    if($null -ne $PSBoundParameters["ObjectIds"])
+    {
+        $params["Ids"] = $PSBoundParameters["ObjectIds"]
+    }
+
+    Write-Debug("============================ TRANSFORMATIONS ============================")
+    $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+    Write-Debug("=========================================================================`n")
+    
+    $response = Get-MgDirectoryObjectById @params
+    $response | ForEach-Object {
+        if($null -ne $_) {
+            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+
+            $dictionary = $_.AdditionalProperties
+             
+            foreach ($key in $dictionary.Keys) {
+               $value = ($dictionary[$key] | Convertto-json) | ConvertFrom-Json
+               $_ | Add-Member -MemberType NoteProperty -Name $key -Value ($value) -Force
+            }
+
+             $value = ($_.AdditionalProperties | ConvertTo-Json -Depth 10) | ConvertFrom-Json
+             $_ | Add-Member -MemberType NoteProperty -Name AdditionalProperties -Value ($value) -Force
         }
-    )
-    Outputs = @(
-        @{
-            SourceName = "AdditionalProperties"
-            TargetName = "AdditionalProperties"
-            ConversionType = "FlatObject"
-            SpecialMapping = $null
-        }
-    )
+    }
+
+    $response 
+}
+'@
 }
