@@ -67,3 +67,13 @@ Import-Module Microsoft.Graph.Entra.psd1 -Force
 
 This will publish the module to a local repository and install the module.
 
+## FAQs
+
+1. Installation error: `cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.`
+
+To solve this error, run the command below.
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
