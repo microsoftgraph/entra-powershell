@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADUserMembership"
-    TargetName = "Get-MgUserMemberOf"
+    TargetName = "Get-MgBetaUserMemberOf"
     Parameters = @(
         @{
             SourceName = "ObjectId"
