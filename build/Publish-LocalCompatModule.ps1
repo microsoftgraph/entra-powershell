@@ -4,16 +4,17 @@
 
 [cmdletbinding()]
 param(
-    [switch] $Install
-    )
+	[switch]
+	$Install
+)
 
 . "$psscriptroot/common-functions.ps1"
 
-$modulePath = Join-Path (Get-ModuleBasePath) $moduleOutputSubdirectory
+$modulePath = Join-Path (Get-ModuleBasePath) (Get-ConfigValue -Name ModuleOutputSubdirectoryName)
 $modulePath = Join-Path $modulePath (Get-ModuleName)
 
 Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
 
-if($Install.IsPresent){
-    Install-Module -Name (Get-ModuleName) -Repository (Get-LocalPSRepoName) -AllowClobber
+if ($Install) {
+	Install-Module -Name (Get-ModuleName) -Repository (Get-LocalPSRepoName) -AllowClobber
 }
