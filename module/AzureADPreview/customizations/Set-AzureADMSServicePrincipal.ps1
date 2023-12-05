@@ -6,100 +6,128 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {    
-        `$params = @{}
-        `$body = @{}
-        `$keysChanged = @{ObjectId = "Id"}
-        if(`$null -ne `$PSBoundParameters["AccountEnabled"])
+        $params = @{}
+        $body = @{}
+        $Web = @{}
+        $keysChanged = @{ObjectId = "Id"}
+        if($null -ne $PSBoundParameters["AccountEnabled"])
         {
-            `$body["AccountEnabled"] = `$PSBoundParameters["AccountEnabled"]
+            $body["AccountEnabled"] = $PSBoundParameters["AccountEnabled"]
         }
-        if(`$null -ne `$PSBoundParameters["Tags"])
+        if($null -ne $PSBoundParameters["Tags"])
         {
-            `$body["Tags"] = `$PSBoundParameters["Tags"]
+            $body["Tags"] = $PSBoundParameters["Tags"]
         }
-        if(`$PSBoundParameters.ContainsKey("Verbose"))
+        if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            `$params["Verbose"] = `$Null
+            $params["Verbose"] = $Null
         }
-        if(`$null -ne `$PSBoundParameters["DisplayName"])
+        if($null -ne $PSBoundParameters["DisplayName"])
         {
-            `$body["DisplayName"] = `$PSBoundParameters["DisplayName"]
+            $body["DisplayName"] = $PSBoundParameters["DisplayName"]
         }
-        if(`$null -ne `$PSBoundParameters["AppId"])
+        if($null -ne $PSBoundParameters["AppId"])
         {
-            `$body["AppId"] = `$PSBoundParameters["AppId"]
+            $body["AppId"] = $PSBoundParameters["AppId"]
         }
-        if(`$PSBoundParameters.ContainsKey("Debug"))
+        if($PSBoundParameters.ContainsKey("Debug"))
         {
-            `$params["Debug"] = `$Null
+            $params["Debug"] = $Null
         }
-        if(`$null -ne `$PSBoundParameters["ErrorUrl"])
+        if($null -ne $PSBoundParameters["ErrorUrl"])
         {
-            `$params["ErrorUrl"] = `$PSBoundParameters["ErrorUrl"]
+            $params["ErrorUrl"] = $PSBoundParameters["ErrorUrl"]
         }
-        if(`$null -ne `$PSBoundParameters["KeyCredentials"])
+        if($null -ne $PSBoundParameters["KeyCredentials"])
         {
-            `$params["KeyCredentials"] = `$PSBoundParameters["KeyCredentials"]
+            $a = @()
+            $inpu = $PSBoundParameters["KeyCredentials"]
+            foreach($value in $inpu)
+            {
+                $hash = @{
+                    CustomKeyIdentifier= $value.CustomKeyIdentifier
+                    EndDateTime =  $value.EndDate
+                    Key= $value.Value
+                    StartDateTime= $value.StartDate
+                    Type= $value.Type
+                    Usage= $value.Usage
+                }
+                $a += $hash
+            }
+            $params["KeyCredentials"] = $a
         }
-        if(`$null -ne `$PSBoundParameters["ReplyUrls"])
+        if($null -ne $PSBoundParameters["ReplyUrls"])
         {
-            `$params["ReplyUrls"] = `$PSBoundParameters["ReplyUrls"]
+            $params["ReplyUrls"] =  $PSBoundParameters["ReplyUrls"]
         }
-        if(`$null -ne `$PSBoundParameters["Id"])
+        if($null -ne $PSBoundParameters["Id"])
         {
-            `$params["ServicePrincipalId"] = `$PSBoundParameters["Id"]
+            $params["ServicePrincipalId"] = $PSBoundParameters["Id"]
         }
-        if(`$null -ne `$PSBoundParameters["LogoutUrl"])
+        if($null -ne $PSBoundParameters["LogoutUrl"])
         {
-            `$params["LogoutUrl"] = `$PSBoundParameters["LogoutUrl"]
+            $params["LogoutUrl"] =  $PSBoundParameters["LogoutUrl"]
         }
-        if(`$null -ne `$PSBoundParameters["SamlMetadataUrl"])
+        if($null -ne $PSBoundParameters["SamlMetadataUrl"])
         {
-            `$params["SamlMetadataUrl"] = `$PSBoundParameters["SamlMetadataUrl"]
+            $params["SamlMetadataUrl"] = $PSBoundParameters["SamlMetadataUrl"]
         }
-        if(`$null -ne `$PSBoundParameters["Homepage"])
+        if($null -ne $PSBoundParameters["Homepage"])
         {
-            `$params["Homepage"] = `$PSBoundParameters["Homepage"]
+            $Web["HomePageUrl"]  =  $PSBoundParameters["Homepage"]
         }
-        if(`$null -ne `$PSBoundParameters["AppRoleAssignmentRequired"])
+        if($null -ne $PSBoundParameters["AppRoleAssignmentRequired"])
         {
-            `$body["AppRoleAssignmentRequired"] = `$PSBoundParameters["AppRoleAssignmentRequired"]
+            $body["AppRoleAssignmentRequired"] = $PSBoundParameters["AppRoleAssignmentRequired"]
         }
-        if(`$null -ne `$PSBoundParameters["PasswordCredentials"])
+        if($null -ne $PSBoundParameters["PasswordCredentials"])
         {
-            `$params["PasswordCredentials"] = `$PSBoundParameters["PasswordCredentials"]
+            $a = @()
+            $inpu = $PSBoundParameters["PasswordCredentials"]
+            foreach($value in $inpu)
+            {
+                $hash = @{
+                    CustomKeyIdentifier= $value.CustomKeyIdentifier
+                    EndDateTime =  $value.EndDate
+                    SecretText= $value.Value
+                    StartDateTime= $value.StartDate
+                    }
+                $a += $hash
+            }
+            
+            $params["PasswordCredentials"] = $a
         }
-        if(`$null -ne `$PSBoundParameters["PublisherName"])
+        if($null -ne $PSBoundParameters["PublisherName"])
         {
-            `$params["PublisherName"] = `$PSBoundParameters["PublisherName"]
+            $params["PublisherName"] = $PSBoundParameters["PublisherName"]
         }
-        if(`$null -ne `$PSBoundParameters["ServicePrincipalNames"])
+        if($null -ne $PSBoundParameters["ServicePrincipalNames"])
         {
-            `$body["ServicePrincipalNames"] = `$PSBoundParameters["ServicePrincipalNames"]
+            $body["ServicePrincipalNames"] = $PSBoundParameters["ServicePrincipalNames"]
         }
-        if(`$null -ne `$PSBoundParameters["PreferredTokenSigningKeyThumbprint"])
+        if($null -ne $PSBoundParameters["PreferredTokenSigningKeyThumbprint"])
         {
-            `$body["PreferredTokenSigningKeyThumbprint"] = `$PSBoundParameters["PreferredTokenSigningKeyThumbprint"]
+            $body["PreferredTokenSigningKeyThumbprint"] = $PSBoundParameters["PreferredTokenSigningKeyThumbprint"]
         }
-        if(`$body.Count -gt 0)
+        if($body.Count -gt 0)
         {
-            `$params["BodyParameter"] = `$body
+            $params["BodyParameter"] = $body
         }
-    
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================
+")
         
-        `$response = Update-MgBetaServicePrincipal @params
-        `$response | ForEach-Object {
-            if(`$null -ne `$_) {
-            Add-Member -InputObject `$_ -MemberType AliasProperty -Name ObjectId -Value Id
+        $response = Update-MgBetaServicePrincipal @params
+        $response | ForEach-Object {
+            if($null -ne $_) {
+            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
     
             }
         }
-        `$response
-        }
-"@
+        $response
+        } 
+'@
 }
