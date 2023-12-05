@@ -111,6 +111,10 @@
         {
             $body["PreferredTokenSigningKeyThumbprint"] = $PSBoundParameters["PreferredTokenSigningKeyThumbprint"]
         }
+        if($null -ne $PSBoundParameters["CustomSecurityAttributes"])
+        {
+            $params["CustomSecurityAttributes"] = $PSBoundParameters["CustomSecurityAttributes"]
+        }
         if($body.Count -gt 0)
         {
             $params["BodyParameter"] = $body
