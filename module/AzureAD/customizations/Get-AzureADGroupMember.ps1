@@ -9,6 +9,8 @@
     CustomScript = @'
     PROCESS {    
         $params = @{}
+        $topCount = $null
+        $Method = "GET"
         $keysChanged = @{ObjectId = "Id"}
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
@@ -32,90 +34,15 @@
         if($null -ne $PSBoundParameters["Top"])
         {
             $params["Top"] = $PSBoundParameters["Top"]
+            $topCount = '?$top=' + $params["Top"]
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Get-MgGroupMember @params | Select-Object -Property Id, DeletedDateTime,
-        @{
-            Name = 'accountEnabled'
-            Expression = {$_.AdditionalProperties.accountEnabled}
-        },
-        @{
-            Name = 'assignedLicenses'
-            Expression = {$_.AdditionalProperties.assignedLicenses}
-        },
-        @{
-            Name = 'assignedPlans'
-            Expression = {$_.AdditionalProperties.assignedPlans}
-        },
-        @{
-            Name = 'country'
-            Expression = {$_.AdditionalProperties.country}
-        },
-        @{
-            Name = 'displayName'
-            Expression = {$_.AdditionalProperties.displayName}
-        },
-        @{
-            Name = 'givenName'
-            Expression = {$_.AdditionalProperties.givenName}
-        },
-        @{
-            Name = 'mail'
-            Expression = {$_.AdditionalProperties.mail}
-        },
-        @{
-            Name = 'mailNickname'
-            Expression = {$_.AdditionalProperties.mailNickname}
-        },
-        @{
-            Name = 'mobilePhone'
-            Expression = {$_.AdditionalProperties.mobilePhone}
-        },
-        @{
-            Name = 'otherMails'
-            Expression = {$_.AdditionalProperties.otherMails}
-        },
-        @{
-            Name = 'preferredLanguage'
-            Expression = {$_.AdditionalProperties.preferredLanguage}
-        },
-        @{
-            Name = 'provisionedPlans'
-            Expression = {$_.AdditionalProperties.provisionedPlans}
-        },
-        @{
-            Name = 'onPremisesProvisioningErrors'
-            Expression = {$_.AdditionalProperties.onPremisesProvisioningErrors}
-        },
-        @{
-            Name = 'proxyAddresses'
-            Expression = {$_.AdditionalProperties.proxyAddresses}
-        },
-        @{
-            Name = 'refreshTokensValidFromDateTime'
-            Expression = {$_.AdditionalProperties.refreshTokensValidFromDateTime}
-        },
-        @{
-            Name = 'surname'
-            Expression = {$_.AdditionalProperties.surname}
-        },
-        @{
-            Name = 'businessPhones'
-            Expression = {$_.AdditionalProperties.businessPhones}
-        },
-        @{
-            Name = 'userType'
-            Expression = {$_.AdditionalProperties.userType}
-        },
-        @{
-            Name = 'userPrincipalName'
-            Expression = {$_.AdditionalProperties.userPrincipalName}
-        }
-    
+        $URI = "https://graph.microsoft.com/v1.0/groups/0a58c57b-a9ae-49a2-824f-8e9cb86d4512/members?(top={0})" -f $topCount
+        $response = (Invoke-GraphRequest -Uri $uri -Method $Method | ConvertTo-Json | ConvertFrom-Json).value
         $response | ForEach-Object {
             if($null -ne $_) {
             Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
