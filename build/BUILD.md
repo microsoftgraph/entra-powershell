@@ -67,3 +67,24 @@ Import-Module Microsoft.Graph.Entra.psd1 -Force
 
 This will publish the module to a local repository and install the module.
 
+## FAQs
+
+1. Installation error: `cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.`
+
+To solve this error, run the command below.
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+2. Installation error: `Function <cmdlet-name> cannot be created because function capacity 4096 has been exceeded for this scope.`
+
+To solve this error, run the command below.
+
+```powershell
+$MaximumFunctionCount=32768
+```
+
+or
+
+Use the latest version of PowerShell 7+ as the runtime version (highly recommended).
