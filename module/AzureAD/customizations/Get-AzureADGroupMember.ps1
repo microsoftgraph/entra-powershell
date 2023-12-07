@@ -6,10 +6,12 @@
     TargetName = $null
     Parameters = $null
     outputs = $null
-    CustomScript = @'
+    CustomScript = @'   
     PROCESS {    
         $params = @{}
         $topCount = $null
+        $baseUri = 'https://graph.microsoft.com/v1.0/groups'
+        $properties = '$select=objectId,id,accountEnabled,assignedLicenses,assignedPlans,country, displayName, givenName,mail, mailNickname, mobilePhone, otherMails,preferredLanguage,provisionedPlans,onPremisesProvisioningErrors, proxyAddresses,refreshTokensValidFromDateTime, proxyAddresses,surname,businessPhones,userType,userPrincipalName,usageLocation'
         $Method = "GET"
         $keysChanged = @{ObjectId = "Id"}
         if($PSBoundParameters.ContainsKey("Verbose"))
@@ -19,13 +21,12 @@
         if($null -ne $PSBoundParameters["ObjectId"])
         {
             $params["GroupId"] = $PSBoundParameters["ObjectId"]
+            $URI = "$baseUri/$($params.GroupId)/members?$properties"
         }
+        
         if($null -ne $PSBoundParameters["All"])
         {
-            if($PSBoundParameters["All"])
-            {
-                $params["All"] = $Null
-            }
+            $URI = "$baseUri/$($params.GroupId)/members?$properties"
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
@@ -33,22 +34,16 @@
         }
         if($null -ne $PSBoundParameters["Top"])
         {
-            $params["Top"] = $PSBoundParameters["Top"]
-            $topCount = '?$top=' + $params["Top"]
+            $topCount = $PSBoundParameters["Top"]
+            $URI = "$baseUri/$($params.GroupId)/members?`$top=$topCount&$properties"
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $URI = "https://graph.microsoft.com/v1.0/groups/0a58c57b-a9ae-49a2-824f-8e9cb86d4512/members?(top={0})" -f $topCount
-        $response = (Invoke-GraphRequest -Uri $uri -Method $Method | ConvertTo-Json | ConvertFrom-Json).value
-        $response | ForEach-Object {
-            if($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-            }
-        }
-        $response
-        }
+        $response = (Invoke-GraphRequest -Uri $URI -Method $Method | ConvertTo-Json | ConvertFrom-Json).value
+        $response 
+        } 
 '@
 }
