@@ -11,7 +11,7 @@
         $params = @{}
         $topCount = $null
         $baseUri = 'https://graph.microsoft.com/v1.0/groups'
-        $properties = '$select=objectId,id,accountEnabled,assignedLicenses,assignedPlans,country, displayName, givenName,mail, mailNickname, mobilePhone, otherMails,preferredLanguage,provisionedPlans,onPremisesProvisioningErrors, proxyAddresses,refreshTokensValidFromDateTime, proxyAddresses,surname,businessPhones,userType,userPrincipalName,usageLocation'
+        $properties = '$select=*'
         $Method = "GET"
         $keysChanged = @{ObjectId = "Id"}
         if($PSBoundParameters.ContainsKey("Verbose"))
