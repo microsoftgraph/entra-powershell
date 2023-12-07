@@ -42,8 +42,8 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = (Invoke-GraphRequest -Uri $URI -Method $Method | ConvertTo-Json | ConvertFrom-Json).value
-        $response 
-        } 
+        $response = (Invoke-GraphRequest -Uri $URI -Method $Method).value
+        $response | ConvertTo-Json | ConvertFrom-Json
+        }
 '@
 }
