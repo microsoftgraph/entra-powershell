@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADUserLicenseDetail"
-    TargetName = "Get-MgBetaUserLicenseDetail"
+    TargetName = "Get-MgUserLicenseDetail"
     Parameters = @(
         @{
             SourceName = "ObjectId"
