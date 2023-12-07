@@ -2,12 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "Get-AzureADServiceAppRoleAssignedTo"
-    TargetName = "Get-MgServicePrincipalAppRoleAssignment"
-    Parameters =  @(
+    SourceName = "Get-AzureADUserAppRoleAssignment"
+    TargetName = "Get-MgUserAppRoleAssignment"
+    Parameters = @(
         @{
             SourceName = "ObjectId"
-            TargetName = "ServicePrincipalId"
+            TargetName = "UserId"
             ConversionType = "Name"
             SpecialMapping = $null
         }

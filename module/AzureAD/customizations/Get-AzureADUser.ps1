@@ -53,15 +53,20 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Get-MgUser @params -Property AccountEnabled, AgeGroup, AssignedLicenses, AssignedPlans, City, CompanyName, ConsentProvidedForMinor, Country, CreationType, DeletionTimestamp, Department, DirSyncEnabled, DisplayName, ExtensionProperty, FacsimileTelephoneNumber, GivenName, ImmutableId, IsCompromised, JobTitle, LastDirSyncTime, LegalAgeGroupClassification, Mail, MailNickName, Mobile, ObjectId, ObjectType, OnPremisesSecurityIdentifier, OtherMails, PasswordPolicies, PasswordProfile, PhysicalDeliveryOfficeName, PostalCode, PreferredLanguage, ProvisionedPlans, ProvisioningErrors, ProxyAddresses, RefreshTokensValidFromDateTime, ShowInAddressList, SignInNames, SipProxyAddress, State, StreetAddress, Surname, BusinessPhones, UsageLocation, UserPrincipalName, UserState, UserStateChangedOn, UserType
+        $response = Get-MgUser @params -Property ObjectId,Id,AccountEnabled,AgeGroup, AssignedLicenses,AssignedPlans,City,CompanyName,ConsentProvidedForMinor,Country,CreationType,Department,DisplayName,GivenName,OnPremisesImmutableId,JobTitle,LegalAgeGroupClassification,Mail,MailNickName,MobilePhone,OnPremisesSecurityIdentifier,OtherMails,PasswordPolicies,PasswordProfile,PostalCode,PreferredLanguage,ProvisionedPlans,OnPremisesProvisioningErrors,ProxyAddresses,RefreshTokensValidFromDateTime,ShowInAddressList,State,StreetAddress,Surname,BusinessPhones,UsageLocation,UserPrincipalName,ExternalUserState,ExternalUserStateChangeDateTime,UserType
         
         $response | ForEach-Object {
-            if($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-    
+            if ($null -ne $_) {
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+                $propsToConvert = @('AssignedLicenses','AssignedPlans','PasswordProfile')
+                foreach ($prop in $propsToConvert) {
+                    $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
+                    $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
+                }
             }
         }
-        $response | ConvertTo-Json | ConvertFrom-Json
-        }
+
+        $response 
+        }    
 '@
 }
