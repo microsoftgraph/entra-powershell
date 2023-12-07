@@ -115,6 +115,7 @@
             $TmpValue = $PSBoundParameters["PasswordProfile"]
             $Value = @{
                 forceChangePasswordNextSignIn = $TmpValue.ForceChangePasswordNextLogin
+                forceChangePasswordNextSignInWithMfa = $TmpValue.EnforceChangePasswordPolicy
                 password = $TmpValue.Password 
             }
             $params["passwordProfile"] = $Value
@@ -165,14 +166,14 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         $params = $params | ConvertTo-Json
-        $response = Invoke-GraphRequest -Uri 'https://graph.microsoft.com/v1.0/users?$select=accountEnabled' -Method POST -Body $params
+        $response = Invoke-GraphRequest -Uri 'https://graph.microsoft.com/v1.0/users?$select=*' -Method POST -Body $params
     
         $response | ForEach-Object {
             if($null -ne $_) {
             Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
             }
         }
-        $response 
+        $response | ConvertTo-Json | ConvertFrom-Json
         }    
 '@
 }
