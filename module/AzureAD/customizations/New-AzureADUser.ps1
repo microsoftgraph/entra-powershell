@@ -167,13 +167,13 @@
         Write-Debug("=========================================================================`n")
         $params = $params | ConvertTo-Json
         $response = Invoke-GraphRequest -Uri 'https://graph.microsoft.com/v1.0/users?$select=*' -Method POST -Body $params
-    
+        $response = $response | ConvertTo-Json | ConvertFrom-Json
         $response | ForEach-Object {
             if($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
             }
         }
-        $response | ConvertTo-Json | ConvertFrom-Json
+        $response 
         }    
 '@
 }
