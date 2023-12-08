@@ -8,7 +8,7 @@
     Outputs = $null
     CustomScript = @'
      PROCESS {
-    (Get-MgApplication -ApplicationId $PSBoundParameters["ObjectId"]).KeyCredentials
+    (Get-MgBetaApplication -ApplicationId $PSBoundParameters["ObjectId"]).KeyCredentials
     }
 '@
 }
