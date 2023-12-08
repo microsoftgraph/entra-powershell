@@ -76,7 +76,7 @@
         }
         if($null -ne $PSBoundParameters["Homepage"])
         {
-            $Web["HomePageUrl"]  =  $PSBoundParameters["Homepage"]
+            $params["HomePage"]  =  $PSBoundParameters["Homepage"]
         }
         if($null -ne $PSBoundParameters["AppRoleAssignmentRequired"])
         {
@@ -122,16 +122,14 @@
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================
-")
-        
+")  
         $response = Update-MgBetaServicePrincipal @params
         $response | ForEach-Object {
             if($null -ne $_) {
             Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-    
             }
         }
         $response
-        } 
+    } 
 '@
 }
