@@ -4,6 +4,13 @@
 @{
     SourceName = "Get-AzureADUserMembership"
     TargetName = "Get-MgUserMemberOf"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "ObjectId"
+            TargetName = "UserId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
     Outputs = $null
 }
