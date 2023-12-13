@@ -40,11 +40,15 @@
         
         $response = Get-MgUserRegisteredDevice @params
         $response | ForEach-Object {
-            if($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+            if ($null -ne $_) {
+                $propsToConvert = @('AdditionalProperties')
+                foreach ($prop in $propsToConvert) {
+                    $value = $_.$prop | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
+                }
             }
         }
-        $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+        $response 
         } 
 '@
 }
