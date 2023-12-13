@@ -10,18 +10,9 @@
             TargetName = "AddIns"
             ConversionType = "ScriptBlock"
             SpecialMapping = @'
-            $a = @()
-            $input = $TmpValue
-            foreach($v in $input)
-            {
-                $Temp = $v | ConvertTo-Json
-                $hash = @{}
-
-                (ConvertFrom-Json $Temp).psobject.properties | Foreach { if($null -ne $_.Value){ $hash[$_.Name] = $_.Value }}
-                $a += $hash
-            }
-
-            $Value = $a
+            $Temp = $TmpValue | ConvertTo-Json 
+            
+            $Value = $Temp
 '@
         },
         @{
