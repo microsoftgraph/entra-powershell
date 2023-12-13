@@ -136,6 +136,13 @@
 '@
         }
     )
-    outputs = $null
+    outputs = @(
+        @{
+            SourceName = "AdditionalProperties"
+            TargetName = "AdditionalProperties"
+            ConversionType = "FlatObject"
+            SpecialMapping = $null
+        }
+    )
     CustomScript = $null
 }
