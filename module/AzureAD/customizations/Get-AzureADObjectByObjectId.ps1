@@ -39,12 +39,9 @@
             $dictionary = $_.AdditionalProperties
              
             foreach ($key in $dictionary.Keys) {
-               $value = ($dictionary[$key] | Convertto-json) | ConvertFrom-Json
+               $value = ($dictionary[$key] | Convertto-json -Depth 10) | ConvertFrom-Json
                $_ | Add-Member -MemberType NoteProperty -Name $key -Value ($value) -Force
             }
-
-             $value = ($_.AdditionalProperties | ConvertTo-Json -Depth 10) | ConvertFrom-Json
-             $_ | Add-Member -MemberType NoteProperty -Name AdditionalProperties -Value ($value) -Force
         }
     }
 
