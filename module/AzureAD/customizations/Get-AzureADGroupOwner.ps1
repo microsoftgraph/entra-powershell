@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "Get-AzureADApplicationOwner"
+    SourceName = "Get-AzureADGroupOwner"
     TargetName = $null
     Parameters = $null
     outputs = $null
@@ -10,7 +10,7 @@
     PROCESS {    
         $params = @{}
         $topCount = $null
-        $baseUri = 'https://graph.microsoft.com/v1.0/applications'
+        $baseUri = 'https://graph.microsoft.com/v1.0/groups'
         $properties = '$select=*'
         $Method = "GET"
         $keysChanged = @{ObjectId = "Id"}
@@ -20,13 +20,13 @@
         }
         if($null -ne $PSBoundParameters["ObjectId"])
         {
-            $params["ApplicationId"] = $PSBoundParameters["ObjectId"]
-            $URI = "$baseUri/$($params.ApplicationId)/owners?$properties"
+            $params["GroupId"] = $PSBoundParameters["ObjectId"]
+            $URI = "$baseUri/$($params.GroupId)/owners?$properties"
         }
         
         if($null -ne $PSBoundParameters["All"])
         {
-            $URI = "$baseUri/$($params.ApplicationId)/owners?$properties"
+            $URI = "$baseUri/$($params.GroupId)/owners?$properties"
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
@@ -35,7 +35,7 @@
         if($null -ne $PSBoundParameters["Top"])
         {
             $topCount = $PSBoundParameters["Top"]
-            $URI = "$baseUri/$($params.ApplicationId)/owners?`$top=$topCount&$properties"
+            $URI = "$baseUri/$($params.GroupId)/owners?`$top=$topCount&$properties"
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
