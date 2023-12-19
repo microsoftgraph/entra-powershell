@@ -12,5 +12,10 @@
             SpecialMapping = $null
         }
     )
-    Outputs = $null
+    Outputs = @{
+        SourceName = "Id"
+        TargetName = "Name"
+        ConversionType = "Name"
+        SpecialMapping = $null
+    }
 }
