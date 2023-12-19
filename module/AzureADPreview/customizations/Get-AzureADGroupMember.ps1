@@ -2,17 +2,13 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "Get-AzureADApplicationOwner"
+    SourceName = "Get-AzureADGroupMember"
     TargetName = $null
     Parameters = $null
     outputs = $null
     CustomScript = @'   
     PROCESS {    
         $params = @{}
-        $topCount = $null
-        $baseUri = 'https://graph.microsoft.com/v1.0/applications'
-        $properties = '$select=*'
-        $Method = "GET"
         $keysChanged = @{ObjectId = "Id"}
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
@@ -20,13 +16,14 @@
         }
         if($null -ne $PSBoundParameters["ObjectId"])
         {
-            $params["ApplicationId"] = $PSBoundParameters["ObjectId"]
-            $URI = "$baseUri/$($params.ApplicationId)/owners?$properties"
+            $params["GroupId"] = $PSBoundParameters["ObjectId"]
         }
-        
         if($null -ne $PSBoundParameters["All"])
         {
-            $URI = "$baseUri/$($params.ApplicationId)/owners?$properties"
+            if($PSBoundParameters["All"])
+            {
+                $params["All"] = $Null
+            }
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
@@ -34,22 +31,26 @@
         }
         if($null -ne $PSBoundParameters["Top"])
         {
-            $topCount = $PSBoundParameters["Top"]
-            $URI = "$baseUri/$($params.ApplicationId)/owners?`$top=$topCount&$properties"
+            $params["Top"] = $PSBoundParameters["Top"]
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = (Invoke-GraphRequest -Uri $URI -Method $Method).value
-        $response = $response | ConvertTo-Json | ConvertFrom-Json
+        $response = Get-MgBetaGroupMember @params
         $response | ForEach-Object {
-            if($null -ne $_) {
+            if ($null -ne $_) {
+                Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+                $propsToConvert = @('assignedLicenses','assignedPlans','provisionedPlans','identities')
+                foreach ($prop in $propsToConvert) {
+                    $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
+                    $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
+                }
             }
         }
-        $response 
+        $response
         }
 '@
 }
