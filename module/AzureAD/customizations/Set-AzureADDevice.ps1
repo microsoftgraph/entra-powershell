@@ -47,6 +47,23 @@
             ConversionType = "Name"
             SpecialMapping = $null
         }
+        @{
+            SourceName = "AlternativeSecurityIds"
+            TargetName = "BodyParameter"
+            ConversionType = "ScriptBlock"
+            SpecialMapping = @'
+            $key = [System.Text.Encoding]::UTF8.GetString($TmpValue.key)
+            $Temp = @{
+                alternativeSecurityIds = @(
+                    @{
+                        type = $TmpValue.type
+                        key = [System.Text.Encoding]::ASCII.GetBytes($key)
+                    }
+                )
+            }
+            $Value = $Temp 
+'@
+        }
     )
     Outputs = $null
 }
