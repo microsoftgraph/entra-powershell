@@ -3,63 +3,20 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "New-AzureADGroupAppRoleAssignment"
-    TargetName = $null
-    Parameters = $null
+    TargetName = "New-MgGroupAppRoleAssignment"
+    Parameters = @(
+        @{
+            SourceName = "Id"
+            TargetName = "AppRoleId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+        @{
+            SourceName = "ObjectId"
+            TargetName = "GroupId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
     Outputs = $null
-    CustomScript = @"
-    PROCESS {    
-        `$params = @{}
-        `$keysChanged = @{ObjectId = "Id"}
-        `$body=@{}
-        if(`$null -ne `$PSBoundParameters["ResourceId"])
-        {
-            `$body["ResourceId"] = `$PSBoundParameters["ResourceId"]
-        }
-        if(`$null -ne `$PSBoundParameters["Id"])
-        {
-            `$body["AppRoleId"] = `$PSBoundParameters["Id"]
-        }
-        if(`$null -ne `$PSBoundParameters["ObjectId"])
-        {
-            `$params["GroupId"] = `$PSBoundParameters["ObjectId"]
-        }
-        if(`$PSBoundParameters.ContainsKey("Verbose"))
-        {
-            `$params["Verbose"] = `$Null
-        }
-        if(`$PSBoundParameters.ContainsKey("Debug"))
-        {
-            `$params["Debug"] = `$Null
-        }
-        if(`$null -ne `$PSBoundParameters["PrincipalId"])
-        {
-            `$body["PrincipalId"] = `$PSBoundParameters["PrincipalId"]
-        }
-        `$params["BodyParameter"] = @{
-           "principalId" = `$body.PrincipalId
-           "resourceId" = `$body.ResourceId
-           "appRoleId" = `$body.AppRoleId
-        }
-
-        Write-Debug("============================ TRANSFORMATIONS ============================")
-        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================
-")
-        
-        `$response = New-MgGroupAppRoleAssignment @params 
-        `$customTable = [PSCustomObject]@{
-            "ObjectId" = `$response.Id
-            "ObjectType"      = "AppRoleAssignment"
-            "CreationTimestamp" = `$response.CreatedDateTime
-            "Id" = `$response.AppRoleId
-            "PrincipalDisplayName" = `$response.PrincipalDisplayName
-            "PrincipalId" = `$response.PrincipalId
-            "PrincipalType" = `$response.PrincipalType
-            "ResourceDisplayName" = `$response.ResourceDisplayName
-            "ResourceId" = `$response.ResourceId
-            "AdditionalProperties" = `$response.AdditionalProperties
-        }
-        `$customTable 
-        }  
-"@
 }
