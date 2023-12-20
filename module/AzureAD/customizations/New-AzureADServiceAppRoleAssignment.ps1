@@ -4,6 +4,19 @@
 @{
     SourceName = "New-AzureADServiceAppRoleAssignment"
     TargetName = "New-MgServicePrincipalAppRoleAssignment"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "Id"
+            TargetName = "AppRoleId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+        @{
+            SourceName = "ObjectId"
+            TargetName = "ServicePrincipalId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
     Outputs = $null
 }
