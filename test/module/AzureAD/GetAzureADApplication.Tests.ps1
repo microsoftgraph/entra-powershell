@@ -10,7 +10,7 @@ BeforeAll {
 Describe "Get-EntraApplication" {
   Context "Test for Get-EntraApplication" {
 
-      It "Should return all applications" {
+    It "Should return all applications" {
       # Mock the Get-MgApplication cmdlet for this specific test case
         $scriptblock = {
         
@@ -64,9 +64,11 @@ Describe "Get-EntraApplication" {
 
           $result = Get-EntraApplication -All $true
           $result | Should -Not -BeNullOrEmpty
-      }
 
-      It "Should return specific application" {
+          Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
+    }
+
+    It "Should return specific application" {
         # Mock the Get-MgApplication cmdlet for this specific test case
           $scriptblock = {
           
@@ -121,6 +123,8 @@ Describe "Get-EntraApplication" {
             $result = Get-EntraApplication -ObjectId "010cc9b5-fce9-485e-9566-c68debafac5f"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be @('010cc9b5-fce9-485e-9566-c68debafac5f')
+
+            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
     }
 
     It "Should return specific application by searchstring" {
@@ -179,6 +183,8 @@ Describe "Get-EntraApplication" {
               $result = Get-EntraApplication -SearchString 'test app'
               $result | Should -Not -BeNullOrEmpty
               $result.DisplayName | should -Be 'test app'
+
+              Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1    
     }  
         
     It "Should return specific application by filter" {
@@ -234,9 +240,12 @@ Describe "Get-EntraApplication" {
     
           Mock -CommandName Get-MgApplication -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
   
-            $result = Get-EntraApplication -Filter "DisplayName -eq 'test app'"
-            $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | should -Be 'test app'
+          $result = Get-EntraApplication -Filter "DisplayName -eq 'test app'"
+          $result | Should -Not -BeNullOrEmpty
+          $result.DisplayName | should -Be 'test app'
+          
+          Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
+
     }  
     
     It "Should return top application" {
@@ -290,12 +299,18 @@ Describe "Get-EntraApplication" {
                 )
                 }     
         
-                  Mock -CommandName Get-MgApplication -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
+                Mock -CommandName Get-MgApplication -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
           
-                  $result = Get-EntraApplication -Top 1
-                  $result | Should -Not -BeNullOrEmpty
+                $result = Get-EntraApplication -Top 1
+                $result | Should -Not -BeNullOrEmpty
+
+                Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
+
     }  
 
+    It "Should fail when ObjectId is empty" {
+      { Get-EntraApplication -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+    }
   
  }
 }
