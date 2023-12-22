@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADDevice"
-    TargetName = "Get-MgBetaDevice"
+    TargetName = "Get-MgBetevice"
     Parameters = @(
         @{
             SourceName = "SearchString"
@@ -14,5 +14,68 @@
 "@
         }
     )
-    Outputs = $null
+    Outputs =  @(
+        @{
+            SourceName = "OperatingSystem"
+            TargetName = "DeviceOSType"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+        @{
+            SourceName = "OperatingSystemVersion"
+            TargetName = "DeviceOSVersion"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+        @{
+            SourceName = "TrustType"
+            TargetName = "DeviceTrustType"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+        @{
+            SourceName = "ApproximateLastSignInDateTime"
+            TargetName = "ApproximateLastLogonTimestamp"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+        @{
+            SourceName = "ComplianceExpirationDateTime"
+            TargetName = "ComplianceExpiryTime"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+        @{
+            SourceName = "DeletedDateTime"
+            TargetName = "DeletionTimestamp"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+        @{
+            SourceName = "DeviceVersion"
+            TargetName = "DeviceObjectVersion"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+        @{
+            SourceName = "PhysicalIds"
+            TargetName = "DevicePhysicalIds"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+        @{
+            SourceName = "OnPremisesSyncEnabled"
+            TargetName = "DirSyncEnabled"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+        @{
+            SourceName = "OnPremisesLastSyncDateTime"
+            TargetName = "LastDirSyncTime"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
+
+
 }
