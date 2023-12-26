@@ -38,6 +38,9 @@
         $response | ForEach-Object {
             if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name CompanyLastDirSyncTime -Value OnPremisesLastSyncDateTime
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name DirSyncEnabled -Value OnPremisesSyncEnabled
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value BusinessPhones
                 $propsToConvert = @('AssignedPlans','ProvisionedPlans','VerifiedDomains','PrivacyProfile')
                 foreach ($prop in $propsToConvert) {
                     $value = $_.$prop | ConvertTo-Json -Depth 10 | ConvertFrom-Json
