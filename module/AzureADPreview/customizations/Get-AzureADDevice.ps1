@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADDevice"
-    TargetName = "Get-MgBetevice"
+    TargetName = "Get-MgBetaDevice"
     Parameters = @(
         @{
             SourceName = "SearchString"
