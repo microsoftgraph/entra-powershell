@@ -3,7 +3,49 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADTenantDetail"
-    TargetName = "Get-MgBetaOrganization"
+    TargetName = $null
     Parameters = $null
     Outputs = $null
+    CustomScript = @'
+    PROCESS {    
+        $params = @{}
+        $keysChanged = @{}
+        if($PSBoundParameters.ContainsKey("Verbose"))
+        {
+            $params["Verbose"] = $Null
+        }
+        if($null -ne $PSBoundParameters["Top"])
+        {
+            $params["Top"] = $PSBoundParameters["Top"]
+        }
+        if($null -ne $PSBoundParameters["All"])
+        {
+            if($PSBoundParameters["All"])
+            {
+                $params["All"] = $Null
+            }
+        }
+        if($PSBoundParameters.ContainsKey("Debug"))
+        {
+            $params["Debug"] = $Null
+        }
+    
+        Write-Debug("============================ TRANSFORMATIONS ============================")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================`n")
+        
+        $response = Get-MgBetaOrganization @params
+        $response | ForEach-Object {
+            if ($null -ne $_) {
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+                $propsToConvert = @('AssignedPlans','ProvisionedPlans','VerifiedDomains','PrivacyProfile')
+                foreach ($prop in $propsToConvert) {
+                    $value = $_.$prop | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
+                }
+            }
+        }
+        $response
+        }
+'@
 }
