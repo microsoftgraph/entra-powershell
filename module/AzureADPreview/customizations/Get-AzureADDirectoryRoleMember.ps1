@@ -33,6 +33,11 @@
                 if ($null -ne $_) {
                     Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties
                     Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+                    Add-Member -InputObject $_ -MemberType AliasProperty -Name DirSyncEnabled -Value OnPremisesSyncEnabled
+                    Add-Member -InputObject $_ -MemberType AliasProperty -Name LastDirSyncTime -Value OnPremisesLastSyncDateTime
+                    Add-Member -InputObject $_ -MemberType AliasProperty -Name Mobile -Value mobilePhone
+                    Add-Member -InputObject $_ -MemberType AliasProperty -Name ProvisioningErrors -Value ServiceProvisioningErrors 
+                    Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value businessPhones       
                     $propsToConvert = @('assignedLicenses','assignedPlans','identities','provisionedPlans')
                     foreach ($prop in $propsToConvert) {
                         $value = $_.$prop | ConvertTo-Json -Depth 10 | ConvertFrom-Json
