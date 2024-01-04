@@ -10,7 +10,12 @@
             TargetName = "AccountEnabled"
             ConversionType = "ScriptBlock"
             SpecialMapping = @'
-            $Value = [System.Convert]::ToBoolean($TmpValue)
+            $Value = $null
+            
+            if (-not [bool]::TryParse($TmpValue, [ref]$Value)) {
+                throw 'Invalid input for AccountEnabled'
+                return
+            }
 '@
         },
         @{
@@ -58,5 +63,12 @@
 '@
         }
     )
-    Outputs = $null
+    Outputs = @(
+        @{
+            SourceName = "AppOwnerOrganizationId"
+            TargetName = "AppOwnerTenantId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
 }
