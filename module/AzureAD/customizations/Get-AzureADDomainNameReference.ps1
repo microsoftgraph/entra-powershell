@@ -33,7 +33,7 @@
         Write-Debug("=========================================================================`n")
         
         $response = (Invoke-GraphRequest -Uri $URI -Method $Method).value
-        $response = $response | ConvertTo-Json | ConvertFrom-Json
+        $response = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         $response | ForEach-Object {
             if($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
