@@ -18,6 +18,11 @@
         {
             $params["Debug"] = $Null
         }
+
+        if($PSBoundParameters.ContainsKey("Id"))
+        {
+            $params["AuthorizationPolicyId"] = $PSBoundParameters["Id"]
+        }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
