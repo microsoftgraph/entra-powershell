@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "New-AzureADGroupAppRoleAssignment"
-    TargetName = "New-MgBetaGroupAppRoleAssignment"
+    TargetName = "New-MgGroupAppRoleAssignment"
     Parameters = @(
         @{
             SourceName = "Id"
