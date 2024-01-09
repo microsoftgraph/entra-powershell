@@ -2,15 +2,15 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "Get-AzureADServiceAppRoleAssignedTo"
-    TargetName = "Get-MgServicePrincipalAppRoleAssignment"
-    Parameters =  @(
+    SourceName = "Get-AzureADMSApplicationOwner"
+    TargetName = "Get-MgApplicationOwner"
+    Parameters = $null
+    Outputs = @(
         @{
-            SourceName = "ObjectId"
-            TargetName = "ServicePrincipalId"
-            ConversionType = "Name"
+            SourceName = "AdditionalProperties"
+            TargetName = "AdditionalProperties"
+            ConversionType = "FlatObject"
             SpecialMapping = $null
         }
     )
-    Outputs = $null
 }
