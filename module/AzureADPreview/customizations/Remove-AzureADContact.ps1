@@ -2,15 +2,16 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "Get-AzureADMSScopedRoleMembership"
-    TargetName = "Get-MgDirectoryAdministrativeUnitScopedRoleMember"
+    SourceName = "Remove-AzureADContact"
+    TargetName = "Remove-MgBetaContact"
     Parameters = @(
         @{
-            SourceName = "Id"
-            TargetName = "AdministrativeUnitId"
+            SourceName = "ObjectId"
+            TargetName = "OrgContactId"
             ConversionType = "Name"
             SpecialMapping = $null
         }
     )
     Outputs = $null
+    CustomScript =$null
 }
