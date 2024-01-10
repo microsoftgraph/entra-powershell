@@ -3,7 +3,32 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Add-AzureADMSScopedRoleMembership"
-    TargetName = "New-MgBetaDirectoryRoleScopedMember"
-    Parameters = $null
+    TargetName = "New-MgBetaDirectoryAdministrativeUnitScopedRoleMember"
+    Parameters = @(
+        @{
+            SourceName = "Id"
+            TargetName = "AdministrativeUnitId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+        @{
+            SourceName = "AdministrativeUnitId"
+            TargetName = "AdministrativeUnitId1"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+        @{
+            SourceName = "RoleMemberInfo"
+            TargetName = "RoleMemberInfo"
+            ConversionType = "ScriptBlock"
+            SpecialMapping = @'
+            $RoleMember= @{
+                DisplayName = $TmpValue.DisplayName
+                Id = $TmpValue.Id
+            }
+            $Value = $RoleMember
+'@
+        }
+    )
     Outputs = $null
 }
