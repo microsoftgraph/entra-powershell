@@ -2,22 +2,21 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "Get-AzureADUserMembership"
-    TargetName = "Get-MgBetaUserMemberOf"
+    SourceName = "New-AzureADGroupAppRoleAssignment"
+    TargetName = "New-MgGroupAppRoleAssignment"
     Parameters = @(
         @{
+            SourceName = "Id"
+            TargetName = "AppRoleId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+        @{
             SourceName = "ObjectId"
-            TargetName = "UserId"
+            TargetName = "GroupId"
             ConversionType = "Name"
             SpecialMapping = $null
         }
     )
-    Outputs = @(
-        @{
-            SourceName = "AdditionalProperties"
-            TargetName = "AdditionalProperties"
-            ConversionType = "FlatObject"
-            SpecialMapping = $null
-        }
-    )
+    Outputs = $null
 }

@@ -2,22 +2,21 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "Get-AzureADDomain"
+    SourceName = "Get-AzureADUserManager"
     TargetName = $null
     Parameters = $null
-    Outputs = $null
-    CustomScript = @'
-
+    outputs = $null
+    CustomScript = @'   
     PROCESS {    
         $params = @{}
-        $keysChanged = @{}
+        $keysChanged = @{ObjectId = "Id"}
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
             $params["Verbose"] = $Null
         }
-        if($null -ne $PSBoundParameters["Name"])
+        if($null -ne $PSBoundParameters["ObjectId"])
         {
-            $params["DomainId"] = $PSBoundParameters["Name"]
+            $params["UserId"] = $PSBoundParameters["ObjectId"]
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
@@ -27,22 +26,17 @@
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        
-        $response = Get-MgBetaDomain @params
-        $response | ForEach-Object {
-            if($null -ne $_) {
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name Name -Value Id            
-                $propsToConvert = @('State')
-                foreach ($prop in $propsToConvert) {
-                    $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
-                    $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
+        try {
+            $response = Get-MgBetaUserManager @params -ErrorAction Stop
+            $response | ForEach-Object {
+                if($null -ne $_) {
+                    Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties
+                    Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
                 }
             }
+            $response | ConvertTo-Json | ConvertFrom-Json
         }
-
-        $response
-    }    
-    
+        catch {}
+        }
 '@
 }
