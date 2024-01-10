@@ -2,18 +2,18 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "Remove-AzureADApplicationOwner"
-    TargetName = "Remove-MgBetaApplicationOwnerByRef"
+    SourceName = "New-AzureADUserAppRoleAssignment"
+    TargetName = "New-MgBetaUserAppRoleAssignment"
     Parameters = @(
         @{
-            SourceName = "ObjectID"
-            TargetName = "ApplicationId"
+            SourceName = "ObjectId"
+            TargetName = "UserId"
             ConversionType = "Name"
             SpecialMapping = $null
-        },
+        }
         @{
-            SourceName = "OwnerId"
-            TargetName = "DirectoryObjectId"
+            SourceName = "Id"
+            TargetName = "AppRoleId"
             ConversionType = "Name"
             SpecialMapping = $null
         }
