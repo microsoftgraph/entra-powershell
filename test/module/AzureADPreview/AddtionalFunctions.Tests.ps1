@@ -13,6 +13,7 @@ Describe 'Checking Files'{
         $files | ForEach-Object {
             $name = $_.Name.Replace(".ps1","")
             $module = Get-Module Microsoft.Graph.Entra.Beta
+            Write-Host "Checking $name"
             $module.ExportedCommands.ContainsKey($name) | Should -BeTrue
         }
     }
