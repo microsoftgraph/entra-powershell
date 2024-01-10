@@ -8,8 +8,10 @@
         @{
             SourceName = "RefObjectId"
             TargetName = "OdataId"
-            ConversionType = "Name"
-            SpecialMapping = $null
+            ConversionType = "ScriptBlock"
+            SpecialMapping = @'
+            $Value = "https://graph.microsoft.com/v1.0/directoryObjects/$TmpValue"
+'@
         }
     )
     Outputs = $null
