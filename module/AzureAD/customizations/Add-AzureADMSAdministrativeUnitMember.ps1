@@ -3,13 +3,15 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Add-AzureADMSAdministrativeUnitMember"
-    TargetName = "New-MgDirectoryAdministrativeUnitMemberByRef"
+    TargetName = "New-MgDirectoryAdministrativeUnitMemberByRef" 
     Parameters = @(
         @{
             SourceName = "RefObjectId"
-            TargetName = "OdataId"
-            ConversionType = "Name"
-            SpecialMapping = $null
+            TargetName = "BodyParameter"
+            ConversionType = "ScriptBlock"
+            SpecialMapping = @"
+`$Value = @{ "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/`$TmpValue"}
+"@
         }
     )
     Outputs = $null

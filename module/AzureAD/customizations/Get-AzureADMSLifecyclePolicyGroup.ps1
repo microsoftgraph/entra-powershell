@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADMSLifecyclePolicyGroup"
-    TargetName = "Get-MgGroupLifecyclePolicy"
+    TargetName = "Get-MgGroupLifecyclePolicyByGroup"
     Parameters = $null
     Outputs = $null
 }
