@@ -10,7 +10,7 @@
             TargetName = "OdataId"
             ConversionType = "ScriptBlock"
             SpecialMapping = @'
-            $Value = "https://graph.microsoft.com/v1.0/directoryObjects/$TmpValue"
+            $Value = "https://graph.microsoft.com/beta/directoryObjects/$TmpValue"
 '@
         }
     )
