@@ -6,6 +6,13 @@
     TargetName = "Remove-MgBetaApplicationOwnerByRef"
     Parameters = @(
         @{
+            SourceName = "ObjectID"
+            TargetName = "ApplicationId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        },
+        @{
+            
             SourceName = "OwnerId"
             TargetName = "DirectoryObjectId"
             ConversionType = "Name"
