@@ -1,47 +1,71 @@
-<h1 align="center">
-<br>Microsoft Entra PowerShell<br>
-</h1>
+---
+title: About Microsoft Entra PowerShell.
+description: About Microsoft Entra PowerShell.
 
-The Microsoft Entra PowerShell is a collection of cmdlets that helps access Entra resources using Microsoft Graph. The Microsoft Entra module can also help emulate the legacy Azure AD, Azure AD preview, and selected MSOnline PowerShell cmdlets. This module uses [Microsoft Graph PowerShell SDK](https://github.com/microsoftgraph/msgraph-sdk-powershell) to make calls to [Microsoft Graph](http://microsoft.graph.com). The Microsoft Entra is designed with usability in mind to provide you with a rich experience.
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/29/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+---
+# Microsoft Entra PowerShell
 
-This module provides AzureAD PowerShell users a tool to support their migration to the Microsoft Graph PowerShell SDK. The Microsoft Entra "adapter" cmdlets have different names to those of the Azure AD PowerShell to avoid name collisions.
+The Microsoft Entra PowerShell is a collection of cmdlets that helps access Microsoft Entra resources using the [Microsoft Graph SDK](https://github.com/microsoftgraph/msgraph-sdk-powershell). The module primarily functions as a usability layer with human-readable parameters, deliberate parameter set specification, inline documentation, and core PowerShell fundamentals like pipelining.
 
-**This module is under development. It is NOT READY for Production environments.**
+While the Microsoft Entra PowerShell module provides significant compatibility with the legacy modules (such as Azure AD PowerShell), that can accelerate migration to Microsoft Graph as a significant benefit, the Microsoft Entra module remains as a long-term, perpetual product offering.
+
+<p align="center">
+   <a href="MOTIVATION.md">Our Motivation</a> |
+  <a href="#installation">Installation</a> |
+  <a href="#usage">Usage</a> |
+  <a href="#contributing">Contributing</a> |
+  <a href="#known-issues">Known Issues</a> |
+  <a href="#license">License</a>
+</p>
+
+<p align="center">
+<strong>This module is under development. It's NOT READY for Production environments.</strong>
+</p>
 
 ## Installation
 
 ### Prerequisites
 
-This module depends on the [Microsoft Graph PowerShell SDK](https://github.com/microsoftgraph/msgraph-sdk-powershell#readme). Some modules will need to be installed for this module to work. Please check the prerequisites [here](https://github.com/microsoftgraph/entra-powershell/blob/main/PREREQUISITE.md).
+This module depends on the [Microsoft Graph PowerShell SDK](https://github.com/microsoftgraph/msgraph-sdk-powershell#readme). Some modules need to be installed for this module to work. Check the prerequisites [here](https://github.com/microsoftgraph/entra-powershell/blob/main/PREREQUISITE.md).
 
 ### Local Build
 
-Please refer to [local building and installing guide](https://github.com/microsoftgraph/entra-powershell/blob/main/build/BUILD.md).
+Refer to [local building and installing guide](https://github.com/microsoftgraph/entra-powershell/blob/main/build/BUILD.md).
 
 ### PowerShell Gallery
-[![PSGallery Version](https://img.shields.io/powershellgallery/v/Microsoft.Graph.Entra.svg?style=flat&logo=powershell&label=PSGallery%20Version)](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra) 
+
+[![PSGallery Version](https://img.shields.io/powershellgallery/v/Microsoft.Graph.Entra.svg?style=flat&logo=powershell&label=PSGallery%20Version)](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra)
 [![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/Microsoft.Graph.Entra.svg?style=flat&logo=powershell&label=PSGallery%20Downloads)](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra)
 
 > [!NOTE]
 > The Microsoft Entra PowerShell module will be published on the [PowerShell Gallery](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra) post-private preview stage. Kindly use the "Local Build" option in the interim.
 
-## Microsoft Entra PowerShell Usage
+## Usage
 
 1. Importing the module
+
 ```powershell
 Import-Module Microsoft.Graph.Entra -Force
 ```
 
-2. Authentication
+1. Authentication
 
-To see all the possible options please refer to [MS Graph SDK authentication](https://github.com/microsoftgraph/msgraph-sdk-powershell/blob/dev/README.md#usage).
+To see all the possible options, refer to [MS Graph SDK authentication](https://github.com/microsoftgraph/msgraph-sdk-powershell/blob/dev/README.md#usage).
+
 ```powershell
  Connect-MgGraph
 ```
 
-3. Using commands
+1. Using commands
 
-Here's an example that will emulate the Azure AD module's Get-AzureADUser with a Microsoft Graph call:
+Here's an example that emulates the Azure AD module's Get-AzureADUser with a Microsoft Graph call:
 
 ```powershell
 Get-EntraUser -SearchString "Joe" 
@@ -53,21 +77,21 @@ This example gives you more insight into the calls being made:
 Get-EntraUser -SearchString "Joe" -Debug
 ```
 
-4. Aliasing Azure AD Commands
+1. Aliasing Azure AD PowerShell commands
 
-Running this cmdlet creates aliases for all of the supported Azure AD cmdlets to those in the Microsoft Entra PowerShell module:
+Running the `Set-EntraAzureADAliases` cmdlet creates aliases for all of the supported Azure AD PowerShell cmdlets in the Microsoft Entra PowerShell module:
 
 ```powershell
 Set-EntraAzureADAliases
 ```
 
-This will show you all of the newly created aliases:
+This command shows you all of the newly created aliases:
 
 ```powershell
 Get-Alias -Name *AzureAd*
 ```
 
-You can now run the Azure AD cmdlet using an alias, which calls the Microsoft Graph PowerShell under the hood.
+You can now run the Azure AD PowerShell cmdlet using an alias, which calls the Microsoft Graph PowerShell under the hood.
 
 ```powershell
 Get-AzureADUser -SearchString "Jane" 
@@ -85,15 +109,15 @@ Get-AzureADUser -SearchString "Jane" -Debug
 Remove-Module AzureAD
 ```
 
-5. Running a script with the adapter
+1. Running a legacy PowerShell module script with the Microsoft Entra PowerShell module
 
-You can use the Microsoft Entra PowerShell to test an AzureAD PowerShell module-based script. This will help determine if a script can be migrated to the MS Graph PowerShell SDK. 
+You can use the Microsoft Entra PowerShell to test an AzureAD PowerShell module-based script. This helps determine if a script can be migrated to the Microsoft Graph PowerShell SDK.
 
 ```powershell
 Test-EntraScript -Script .\Export_secrets_and_certificates_for_app_registrations.ps1
 ```
 
-If the script is compatible, you won't see any output, although you can use `$?` to display that True was returned. If the script isn't compatible, you will see a warning with details of the problem cmdlet(s). Example:
+If the script is compatible, you won't see any output, although you can use `$?` to display that True was returned. If the script isn't compatible, you'll see a warning with details of the problem cmdlet(s). Example:
 
 ```powershell
 Test-EntraScript -Script .\Export_secrets_and_certificates_for_app_registrations.ps1
@@ -101,16 +125,19 @@ Test-EntraScript -Script .\Export_secrets_and_certificates_for_app_registrations
 WARNING: Command Get-AzureADApplicationKeyCredential is not supported
 WARNING: Script contains commands that are not supported by the compatibility adapter.
 ```
+
 ## Repository Visibility Notice
+>
 > [!IMPORTANT]  
 > Important: This repository is private, and its contents are not visible to the public. Please be aware that we plan to convert this repository to public status in the near future (from the Public Preview stage).
 
 **What does this mean?**
 
 Once the repository becomes public:
+
 - All code, issues, and discussions will be visible to everyone.
 - Any messages or comments you make on issues, pull requests, or other discussions will be publicly accessible.
-- If you have submitted any issues privately, they will become visible to the public.
+- Any issues submitted privately will become visible to the public.
 
 **Why are we making it public?**
 
@@ -118,24 +145,24 @@ We believe in transparency and collaboration. By making this repository public, 
 
 **How can I provide feedback or raise concerns?**
 
-Feel free to use the GitHub issue tracker to report any concerns, ask questions, or provide feedback. We value your input and will address any issues as soon as possible.
+Feel free to use the GitHub issue tracker to report any concerns, ask questions, or provide feedback. We value your input and we'll address any issues as soon as possible.
 
 ## Contributing
 
-To contribute, please check [contribution guide](https://github.com/microsoftgraph/entra-powershell/blob/main/CONTRIBUTING.md).
+To contribute, check [contribution guide](https://github.com/microsoftgraph/entra-powershell/blob/main/CONTRIBUTING.md).
 
 ## Known Issues
 
-- Some properties names change between the Azure AD and MS Graph endpoints:
-  - Parameter -Filter may not work correctly
-  - Parameter -SearchString does not currently work
-  - Output objects may be different
+- Some properties names change between the Azure AD PowerShell module and Microsoft Graph endpoints:
+  - Parameter -Filter might not work correctly
+  - Parameter -SearchString don't currently work
+  - Output objects might be different
 
 ## Issues
 
-If you find any bugs when using the Microsoft Entra PowerShell module, please file an issue on our [GitHub issues](https://github.com/microsoftgraph/entra-powershell/issues) page.
+If you find any bugs when using the Microsoft Entra PowerShell module, file an issue on our [GitHub issues](https://github.com/microsoftgraph/entra-powershell/issues) page.
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information, see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+This project adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information, see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) for questions or comments.
 
 ## License
 
