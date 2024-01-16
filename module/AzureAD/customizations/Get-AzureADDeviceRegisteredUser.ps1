@@ -3,14 +3,60 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADDeviceRegisteredUser"
-    TargetName = "Get-MgBetaDeviceRegisteredUser"
-    Parameters = @(
-        @{
-            SourceName = "ObjectId"
-            TargetName = "DeviceId"
-            ConversionType = "Name"
-            SpecialMapping = $null
+    TargetName = $null
+    Parameters = $null
+    outputs = $null
+    CustomScript = @'   
+    PROCESS {    
+        $params = @{}
+        $topCount = $null
+        $baseUri = 'https://graph.microsoft.com/v1.0/devices'
+        $properties = '$select=*'
+        $Method = "GET"
+        $keysChanged = @{ObjectId = "Id"}
+        if($PSBoundParameters.ContainsKey("Verbose"))
+        {
+            $params["Verbose"] = $Null
         }
-    )
-    Outputs = $null
+        if($null -ne $PSBoundParameters["ObjectId"])
+        {
+            $params["DeviceId"] = $PSBoundParameters["ObjectId"]
+            $URI = "$baseUri/$($params.DeviceId)/registeredUsers?$properties"
+        }
+        
+        if($null -ne $PSBoundParameters["All"])
+        {
+            $URI = "$baseUri/$($params.DeviceId)/registeredUsers?$properties"
+        }
+        if($PSBoundParameters.ContainsKey("Debug"))
+        {
+            $params["Debug"] = $Null
+        }
+        if($null -ne $PSBoundParameters["Top"])
+        {
+            $topCount = $PSBoundParameters["Top"]
+            $URI = "$baseUri/$($params.DeviceId)/registeredUsers?`$top=$topCount&$properties"
+        }
+    
+        Write-Debug("============================ TRANSFORMATIONS ============================")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================`n")
+        
+        $response = (Invoke-GraphRequest -Uri $URI -Method $Method).value
+        $response = $response | ConvertTo-Json | ConvertFrom-Json
+        $response | ForEach-Object {
+            if($null -ne $_) {
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name DeletionTimestamp -Value DeletedDateTime
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name DirSyncEnabled -Value OnPremisesSyncEnabled
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ImmutableId -Value onPremisesImmutableId
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name LastDirSyncTime -Value OnPremisesLastSyncDateTime
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name Mobile -Value mobilePhone
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ProvisioningErrors -Value onPremisesProvisioningErrors
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value BusinessPhones
+            }
+        }
+        $response 
+        }
+'@
 }
