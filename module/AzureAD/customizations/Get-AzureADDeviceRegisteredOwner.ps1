@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADDeviceRegisteredOwner"
-    TargetName = "Get-MgBetaDeviceRegisteredOwner"
+    TargetName = "Get-MgDeviceRegisteredOwner"
     Parameters = @(
         @{
             SourceName = "ObjectId"

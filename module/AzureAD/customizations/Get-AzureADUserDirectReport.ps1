@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADUserDirectReport"
-    TargetName = "Get-MgBetaUserDirectReport"
+    TargetName = "Get-MgUserDirectReport"
     Parameters = @(
         @{
             SourceName = "ObjectId"

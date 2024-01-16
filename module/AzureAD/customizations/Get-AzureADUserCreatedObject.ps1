@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADUserCreatedObject"
-    TargetName = "Get-MgBetaUserCreatedObject"
+    TargetName = "Get-MgUserCreatedObject"
     Parameters = @(
         @{
             SourceName = "ObjectId"
