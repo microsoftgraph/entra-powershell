@@ -54,6 +54,8 @@
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name Mobile -Value mobilePhone
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ProvisioningErrors -Value onPremisesProvisioningErrors
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value BusinessPhones
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name UserState -Value ExternalUserState
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name UserStateChangedOn -Value ExternalUserStateChangeDateTime
             }
         }
         $response 
