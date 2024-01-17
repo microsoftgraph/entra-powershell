@@ -2,17 +2,17 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "Get-AzureADMSRoleDefinition"
+    SourceName = "Get-AzureADContact"
     TargetName = $null
     Parameters = $null
-    Outputs = $null
-    CustomScript = @'
+    outputs = $null
+    CustomScript = @'   
     PROCESS {    
         $params = @{}
-        $keysChanged = @{SearchString = "Filter"}
-        if($null -ne $PSBoundParameters["Id"])
+        $keysChanged = @{ObjectId = "Id"}
+        if($null -ne $PSBoundParameters["ObjectId"])
         {
-            $params["UnifiedRoleDefinitionId"] = $PSBoundParameters["Id"]
+            $params["OrgContactId"] = $PSBoundParameters["ObjectId"]
         }
         if($null -ne $PSBoundParameters["Filter"])
         {
@@ -27,10 +27,6 @@
         {
             $params["Verbose"] = $Null
         }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $Null
-        }
         if($null -ne $PSBoundParameters["All"])
         {
             if($PSBoundParameters["All"])
@@ -38,11 +34,9 @@
                 $params["All"] = $Null
             }
         }
-        if($null -ne $PSBoundParameters["SearchString"])
+        if($PSBoundParameters.ContainsKey("Debug"))
         {
-            $TmpValue = $PSBoundParameters["SearchString"]
-                     $Value = "startswith(displayName,'$TmpValue')"
-            $params["Filter"] = $Value
+            $params["Debug"] = $Null
         }
         if($null -ne $PSBoundParameters["Top"])
         {
@@ -53,20 +47,24 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Get-MgRoleManagementDirectoryRoleDefinition @params
+        $response = Get-MgContact @params
         $response | ForEach-Object {
-            if($null -ne $_) {
-            $propsToConvert = @('RolePermissions')
-            foreach ($prop in $propsToConvert) {
-                $value = $_.$prop | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-                $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
-            }
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-    
+            if ($null -ne $_) {
+                Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name DirSyncEnabled -Value OnPremisesSyncEnabled
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name LastDirSyncTime -Value OnPremisesLastSyncDateTime
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name Mobile -Value Phones
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ProvisioningErrors -Value ServiceProvisioningErrors
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value Phones
+                $propsToConvert = @('Addresses','Manager','Phones')
+                foreach ($prop in $propsToConvert) {
+                    $value = $_.$prop | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
+                }
             }
         }
-        
         $response
-        }
+        }  
 '@
 }

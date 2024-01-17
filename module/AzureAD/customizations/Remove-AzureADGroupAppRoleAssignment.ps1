@@ -1,16 +1,16 @@
 @{
-    SourceName = "Remove-AzureADServicePrincipalOwner"
-    TargetName = "Remove-MgBetaServicePrincipalOwnerByRef"
+    SourceName = "Remove-AzureADGroupAppRoleAssignment"
+    TargetName = "Remove-MgGroupAppRoleAssignment"
     Parameters = @(
         @{
             SourceName = "ObjectId"
-            TargetName = "ServicePrincipalId"
+            TargetName = "GroupId"
             ConversionType = "Name"
             SpecialMapping = $null
         },
         @{
-            SourceName = "OwnerId"
-            TargetName = "DirectoryObjectId"
+            SourceName = "AppRoleAssignmentId"
+            TargetName = "AppRoleAssignmentId"
             ConversionType = "Name"
             SpecialMapping = $null
         }
