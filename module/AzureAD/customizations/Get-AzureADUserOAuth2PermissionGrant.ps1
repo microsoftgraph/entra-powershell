@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADUserOAuth2PermissionGrant"
-    TargetName = "Get-MgBetaUserOAuth2PermissionGrant"
+    TargetName = "Get-MgUserOAuth2PermissionGrant"
     Parameters = @(
         @{
             SourceName = "ObjectId"
