@@ -57,6 +57,8 @@
     $response | ForEach-Object {
         if($null -ne $_) {
         Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+        Add-Member -InputObject $_ -MemberType AliasProperty -Name DeletionTimestamp -Value DeletedDateTime
+        Add-Member -InputObject $_ -MemberType AliasProperty -Name InformationalUrls -Value Info
         $propsToConvert = @(
              'AddIns','Logo','AppRoles','GroupMembershipClaims','IdentifierUris','Info',
              'IsDeviceOnlyAuthSupported','KeyCredentials','Oauth2RequirePostResponse','OptionalClaims',
@@ -67,6 +69,21 @@
                     $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
                     $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
                 }
+        }
+        foreach ($credType in @('KeyCredentials', 'PasswordCredentials')) {
+            if ($null -ne $_.PSObject.Properties[$credType]) {
+                $_.$credType | ForEach-Object {
+                    try {
+                        if ($null -ne $_.EndDateTime -or $null -ne $_.StartDateTime) {
+                            Add-Member -InputObject $_ -MemberType NoteProperty -Name EndDate -Value $_.EndDateTime
+                            Add-Member -InputObject $_ -MemberType NoteProperty -Name StartDate -Value $_.StartDateTime
+                            $_.PSObject.Properties.Remove('EndDateTime')
+                            $_.PSObject.Properties.Remove('StartDateTime')
+                        }
+                    }
+                    catch {}
+                }
+            }
         }
     }
 
