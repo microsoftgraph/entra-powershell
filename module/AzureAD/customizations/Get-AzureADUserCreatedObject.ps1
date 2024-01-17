@@ -9,10 +9,6 @@
     CustomScript = @'   
     PROCESS {    
         $params = @{}
-        $topCount = $null
-        $baseUri = 'https://graph.microsoft.com/v1.0/users'
-        $properties = '$select=*'
-        $Method = "GET"
         $keysChanged = @{ObjectId = "Id"}
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
@@ -21,12 +17,13 @@
         if($null -ne $PSBoundParameters["ObjectId"])
         {
             $params["UserId"] = $PSBoundParameters["ObjectId"]
-            $URI = "$baseUri/$($params.UserId)/createdObjects?$properties"
         }
-        
         if($null -ne $PSBoundParameters["All"])
         {
-            $URI = "$baseUri/$($params.UserId)/createdObjects?$properties"
+            if($PSBoundParameters["All"])
+            {
+                $params["All"] = $Null
+            }
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
@@ -34,24 +31,42 @@
         }
         if($null -ne $PSBoundParameters["Top"])
         {
-            $topCount = $PSBoundParameters["Top"]
-            $URI = "$baseUri/$($params.UserId)/createdObjects?`$top=$topCount&$properties"
+            $params["Top"] = $PSBoundParameters["Top"]
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = (Invoke-GraphRequest -Uri $URI -Method $Method).value
-        $response = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+        $response = Get-MgUserCreatedObject @params
+        $properties = @{
+            ObjectId = "Id"
+            DeletionTimestamp = "deletedDateTime"
+            AppOwnerTenantId = "appOwnerOrganizationId"
+        }
         $response | ForEach-Object {
             if($null -ne $_) {
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name DeletionTimestamp -Value deletedDateTime
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name AppOwnerTenantId -Value appOwnerOrganizationId
+                Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties 
+                foreach ($prop in $properties.GetEnumerator()) {
+                    $propertyName = $prop.Name
+                    $propertyValue = $prop.Value
+                    if ($_.PSObject.Properties.Match($propertyName)) {
+                        $_ | Add-Member -MemberType AliasProperty -Name $propertyName -Value $propertyValue
+                    }
+                }
+                $propsToConvert = @('keyCredentials','passwordCredentials','requiredResourceAccess')
+                foreach ($prop in $propsToConvert) {
+                    try {
+                        if($_.PSObject.Properties.Match($prop)) {
+                            $value = $_.$prop | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                            $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force   
+                        }
+                    }
+                    catch {}    
+                }
             }
         }
-        $response 
+        $response
         }
 '@
 }
