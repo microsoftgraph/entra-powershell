@@ -64,11 +64,13 @@
              'IsDeviceOnlyAuthSupported','KeyCredentials','Oauth2RequirePostResponse','OptionalClaims',
              'ParentalControlSettings','PasswordCredentials','Api','PublicClient',
              'PublisherDomain','Web','RequiredResourceAccess','SignInAudience')
-             
+             try {
                 foreach ($prop in $propsToConvert) {
                     $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
                     $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
                 }
+             }
+             catch {}
         }
         foreach ($credType in @('KeyCredentials', 'PasswordCredentials')) {
             if ($null -ne $_.PSObject.Properties[$credType]) {
