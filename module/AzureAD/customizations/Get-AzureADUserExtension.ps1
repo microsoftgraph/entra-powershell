@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADUserExtension"
-    TargetName = "Get-MgBetaUserExtension"
+    TargetName = "Get-MgUserExtension"
     Parameters = @(
         @{
             SourceName = "ObjectId"
