@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Add-AzureADMSLifecyclePolicyGroup"
-    TargetName = "New-MgGroupLifecyclePolicy"
+    TargetName = "Add-MgGroupToLifecyclePolicy"
     Parameters = $null
     Outputs = $null
 }
