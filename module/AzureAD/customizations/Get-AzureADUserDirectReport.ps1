@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "Get-AzureADDirectoryRoleMember"
+    SourceName = "Get-AzureADUserDirectReport"
     TargetName = $null
     Parameters = $null
     outputs = $null
@@ -10,7 +10,7 @@
     PROCESS {    
         $params = @{}
         $topCount = $null
-        $baseUri = 'https://graph.microsoft.com/v1.0/directoryRoles'
+        $baseUri = 'https://graph.microsoft.com/v1.0/users'
         $properties = '$select=*'
         $Method = "GET"
         $keysChanged = @{ObjectId = "Id"}
@@ -20,12 +20,22 @@
         }
         if($null -ne $PSBoundParameters["ObjectId"])
         {
-            $params["ObjectId"] = $PSBoundParameters["ObjectId"]
-            $URI = "$baseUri/$($params.ObjectId)/members?$properties"
+            $params["UserId"] = $PSBoundParameters["ObjectId"]
+            $URI = "$baseUri/$($params.UserId)/directReports?$properties"
+        }
+        
+        if($null -ne $PSBoundParameters["All"])
+        {
+            $URI = "$baseUri/$($params.UserId)/directReports?$properties"
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
             $params["Debug"] = $Null
+        }
+        if($null -ne $PSBoundParameters["Top"])
+        {
+            $topCount = $PSBoundParameters["Top"]
+            $URI = "$baseUri/$($params.UserId)/directReports?`$top=$topCount&$properties"
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
@@ -37,11 +47,15 @@
         $response | ForEach-Object {
             if($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name DeletionTimestamp -Value DeletedDateTime
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name DirSyncEnabled -Value OnPremisesSyncEnabled
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ImmutableId -Value onPremisesImmutableId
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name LastDirSyncTime -Value OnPremisesLastSyncDateTime
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name Mobile -Value mobilePhone
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name ProvisioningErrors -Value ServiceProvisioningErrors 
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value businessPhones               
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ProvisioningErrors -Value onPremisesProvisioningErrors
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value BusinessPhones
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name UserState -Value ExternalUserState
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name UserStateChangedOn -Value ExternalUserStateChangeDateTime
             }
         }
         $response 
