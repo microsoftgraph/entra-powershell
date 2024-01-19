@@ -4,6 +4,13 @@
 @{
     SourceName = "Remove-AzureADServiceAppRoleAssignment"
     TargetName = "Remove-MgBetaServicePrincipalAppRoleAssignment"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "ObjectId"
+            TargetName = "ServicePrincipalId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
     Outputs = $null
 }
