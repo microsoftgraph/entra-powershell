@@ -3,7 +3,20 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Remove-AzureADDirectoryRoleMember"
-    TargetName = "Remove-MgBetaDirectoryRoleScopedMember"
-    Parameters = $null
+    TargetName = "Remove-MgBetaDirectoryRoleMemberByRef"
+    Parameters = @(
+        @{
+            SourceName = "MemberId"
+            TargetName = "DirectoryObjectId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+        @{
+            SourceName = "ObjectId"
+            TargetName = "DirectoryRoleId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
     Outputs = $null
 }

@@ -4,6 +4,19 @@
 @{
     SourceName = "New-AzureADMSRoleDefinition"
     TargetName = "New-MgBetaRoleManagementDirectoryRoleDefinition"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "RolePermissions"
+            TargetName = "RolePermissions"
+            ConversionType = "ScriptBlock"
+            SpecialMapping = @'
+            $Temp = @{
+                allowedResourceActions = $TmpValue.allowedResourceActions
+                condition = $TmpValue.condition
+            }
+            $Value = $Temp 
+'@
+        }
+    )
     Outputs = $null
 }
