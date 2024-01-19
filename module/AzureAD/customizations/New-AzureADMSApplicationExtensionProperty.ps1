@@ -2,18 +2,12 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "Remove-AzureADDeviceRegisteredOwner"
-    TargetName = "Remove-MgDeviceRegisteredOwnerByRef"
+    SourceName = "New-AzureADMSApplicationExtensionProperty"
+    TargetName = "New-MgApplicationExtensionProperty"
     Parameters = @(
         @{
-            SourceName = "OwnerId"
-            TargetName = "DirectoryObjectId"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        }
-        @{
             SourceName = "ObjectId"
-            TargetName = "DeviceId"
+            TargetName = "ApplicationId"
             ConversionType = "Name"
             SpecialMapping = $null
         }
