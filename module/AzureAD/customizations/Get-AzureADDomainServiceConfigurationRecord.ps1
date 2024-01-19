@@ -12,5 +12,18 @@
             SpecialMapping = $null
         }
     )
-    Outputs = $null
+    Outputs = @(
+        @{
+            SourceName = "AdditionalProperties"
+            TargetName = "AdditionalProperties"
+            ConversionType = "FlatObject"
+            SpecialMapping = $null
+        }
+        @{
+            SourceName = "Id"
+            TargetName = "DnsRecordId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
 }
