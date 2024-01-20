@@ -166,4 +166,4 @@ This project adopted the [Microsoft Open Source Code of Conduct](https://opensou
 
 ## License
 
-Copyright (c) Microsoft Corporation. All Rights Reserved. Licensed under the MIT [license](LICENSE.txt).
+Copyright (c) Microsoft Corporation. All Rights Reserved. Licensed under the MIT [license](LICENSE).
