@@ -141,7 +141,7 @@ class CompatibilityAdapterBuilder {
 
     hidden GenerateHelpFiles() {
         foreach($file in Get-ChildItem -Path $this.HelpFolder -Filter "*.xml") {
-            Copy-Item $file $this.OutputFolder -Force
+            Copy-Item $file.FullName $this.OutputFolder -Force
         }
         #$helpPath = Join-Path $this.OutputFolder "$($this.ModuleName)-Help.xml"
         #$this.GetHelpHeader() | Set-Content -Path $helpPath
