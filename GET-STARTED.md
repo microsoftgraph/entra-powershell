@@ -1,6 +1,6 @@
 ---
-title: About Microsoft Entra PowerShell.
-description: About Microsoft Entra PowerShell.
+title: Microsoft Entra PowerShell installation and usage guide.
+description: About Microsoft Entra PowerShell installation and usage guide.
 
 ms.service: active-directory
 ms.topic: reference
@@ -18,7 +18,7 @@ Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
 - [AzureAD aliasing](#aliasing-azuread-powershell-commands)
-- [Additional Entra PowerShell features](#additional-microsoft-entra-powershell-features)
+- [Other Entra PowerShell features](#other-microsoft-entra-powershell-features)
 - [Bonus: End-to-end example](#end-to-end-scenario-example)
 
 ## Installation
@@ -36,11 +36,11 @@ This module depends on the [Microsoft Graph PowerShell SDK](https://github.com/m
 | [PowerShell gallery option](#option-3---powershell-gallery-option)  | ❌ | ✅ |
 
 > [!TIP]
-> If you encounter issues during installation or while interacting with the module, kindly raise a [GitHub issue](https://github.com/microsoftgraph/entra-powershell/issues) or reach us through email - entraposh@microsoft.com 
+> If you encounter issues during installation or while interacting with the module, kindly raise a [GitHub issue](https://github.com/microsoftgraph/entra-powershell/issues) or reach us through email - <entraposh@microsoft.com>
 
 ### Option 1 - Zipped folder option
 
-Download the latest [Microsoft Entra PowerShell release](https://github.com/microsoftgraph/entra-powershell/releases/) zipped file. Follow the instructions below.
+Download the latest [Microsoft Entra PowerShell release](https://github.com/microsoftgraph/entra-powershell/releases/) zipped file. Follow the instructions as per this snippet.
 
 ```powershell
 # Let's assume the unpacked files are in c:\test\entra-powershell
@@ -75,13 +75,13 @@ Install-Module Microsoft.Graph.Entra -AllowPrerelease
 
 ### Authentication
 
-To use the Microsoft Entra PowerShell, you need to authenticate to access Entra resources. 
+To use the Microsoft Entra PowerShell, you need to authenticate to access Entra resources.
 
 ```powershell
 Connect-MgGraph -Scopes 'User.Read.All' 
 ```
 
-To see all the possible options, please refer to [MS Graph SDK authentication](https://learn.microsoft.com/en-us/powershell/microsoftgraph/authentication-commands#using-connect-mggraph).
+To see all the possible options, refer to [MS Graph SDK authentication](https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands#using-connect-mggraph).
 
 ### Warming up
 
@@ -91,31 +91,31 @@ To see all the possible options, please refer to [MS Graph SDK authentication]
 (Get-Module -Name Microsoft.Graph.Entra).ExportedCommands
 ```
 
-Replace `Microsoft.Graph.Entra` with `Microsoft.Graph.Entra.Beta` if you are using the `Beta` version of the module.
+Replace `Microsoft.Graph.Entra` with `Microsoft.Graph.Entra.Beta` if you're using the `Beta` version of the module.
 
-1. Get Entra ID users
+1. Get the Microsoft Entra ID users
 
 ```powershell
 Get-EntraUser
 ```
 
-This command returns all the users in your Entra ID tenant.
+This command returns all the users in your Microsoft Entra ID tenant.
 
 1. Getting Help
 
-To be effective with the Microsoft Entra PowerShell, you need to leverage the Help system. `Get-Help` command helps you find commands to perform specific tasks and learn how to use those commands after you’ve found them.  
+To be effective with the Microsoft Entra PowerShell, you need to use the Help system. `Get-Help` command helps you find commands to perform specific tasks and learn how to use those commands after you find them.  
 
-To learn more about the `Get-EntraUser` command above, run: 
+To learn more about the `Get-EntraUser` command, for example, run:
 
 ```powershell
 Get-Help Get-EntraUser
-``` 
+```
 
-To get examples, add the parameter `–Examples`. 
+To get examples, add the parameter `–Examples`.
 
 ```powershell
 Get-Help Get-EntraUser -Examples
-``` 
+```
 
 1. Searching for a user
 
@@ -139,7 +139,7 @@ You can use the Microsoft Entra PowerShell to test an AzureAD PowerShell module-
 Test-EntraScript -Script .\Export_secrets_and_certificates_for_app_registrations.ps1
 ```
 
-If the script is compatible, you won't see any output, although you can use `$?` to display that True was returned. If the script isn't compatible, you'll see a warning with details of the problem cmdlet(s). Example:
+If the script is compatible, you won't see any output, although you can use `$?` to display that True was returned. If the script isn't compatible, a warning with details of the problem cmdlet(s) shows. Example:
 
 ```powershell
 Test-EntraScript -Script .\Export_secrets_and_certificates_for_app_registrations.ps1
@@ -168,47 +168,49 @@ You can now run the Azure AD PowerShell cmdlet using an alias, which calls the M
 Get-AzureADUser -SearchString "Adele" 
 ```
 
-## Additional Microsoft Entra PowerShell features
+## Other Microsoft Entra PowerShell features
 
-Microsoft Entra PowerShell offers cool features such as pipelining, and migration adapter capabilities to help our customers migrate from legacy PowerShell modules such as [Azure AD](https://learn.microsoft.com/en-us/powershell/azure/active-directory/overview) and [MSOnline](https://learn.microsoft.com/en-us/powershell/module/msonline) modules. We will continue to add more out-of-the-box usability features to make you productive and with pleasant experience.
+Microsoft Entra PowerShell offers cool features such as pipelining, and migration adapter capabilities to help our customers migrate from legacy PowerShell modules such as [Azure AD](https://learn.microsoft.com/en-us/powershell/azure/active-directory/overview) and [MSOnline](https://learn.microsoft.com/en-us/powershell/module/msonline) modules. We'll continue to add more out-of-the-box usability features to make you productive and with pleasant experience.
 
-### Pipelining feature 
+### Pipelining feature
 
-With Pipelining, you can perform updates from the output of another command as inputs. For example, assuming you have a group based for all EMEA Sales team and you would like to update the Postal address for all the members after the team reporting line moves from one country to another, you would achieve this with one line of code/snippet. 
- 
+With Pipelining, you can perform updates from the output of another command as inputs. For example, updating the Postal Code address for all group members after a reporting line changes.
+
 ```powershell
 Get-EntraGroupMember -ObjectId e76bfd30-48fb-4f40-83f1-8d94ddd4f8c2 | Set-EntraUser -PostalCode 98122 
 ```
 
 This command updates the Postal Code for all the members of the group with ID `e76bfd30-48fb-4f40-83f1-8d94ddd4f8c2`.
 
-### Migration scenario 
+### Migration scenario
 
-James has a long AzureAD PowerShell module based script. Re-writing is tedious and time consuming. James would like to use the Microsoft Entra PowerShell module to help him ride on the Microsoft Graph PowerShell with the least friction. All he has to do is to replace one line of code `Connect-AzureAD` with the three lines below.
+James has a long AzureAD PowerShell module based script. Rewriting is tedious and time consuming. James would like to use the Microsoft Entra PowerShell module to help him ride on the Microsoft Graph PowerShell with the least friction. All that James has to do is to replace one line of code `Connect-AzureAD` with the three lines.
 
 ```powershell
 Import-Module Microsoft.Graph.Entra
 Connect-MgGraph #Replaces Connect-AzureAD for auth
 Set-EntraAzureADAliases #Activate aliasing 
 ```
-## End-to-end Scenario Example 
 
-Adele is an IT Admin within Contoso Group. Adele would like to test an end-to-end scenario to enable her automate Group creation whenever a new product support team is formed from ServiceNow ticketing system trigger activity. 
+## End-to-end Scenario Example
+
+Adele is an IT Admin within Contoso Group. Adele would like to test an end-to-end scenario to enable Adele to automate Group creation whenever a new product support team is formed from ServiceNow ticketing system trigger activity.
 
 **Step 1: Group Creation**
 
-To create a group, make sure you have the required permissions/scopes to create a group. 
+To create a group, make sure you have the required permissions/scopes to create a group.
 
 ```powershell
 Connect-MgGraph -Scopes "Group.ReadWrite.All" 
 ```
 
-Run the command below to create a new group. 
+To create a new group, run the command.
 
 ```powershell
 New-EntraGroup -DisplayName "My new group" -MailEnabled $false -SecurityEnabled $true -MailNickName "NotSet" 
 ```
-This command creates a new group with the name `My new group`. 
+
+This command creates a new group with the name `My new group`.
 
 **Step 2: Searching for the created group**
 
@@ -216,33 +218,33 @@ This command creates a new group with the name `My new group`.
 Get-EntraGroup -Filter "DisplayName eq 'My new group'" | fl 
 ```
 
-This command returns the details of the newly created group. 
+This command returns the details of the newly created group.
 
-_Hint_: You can use the ObjectId (GUID) to search, update or delete group 
+_Hint_: You can use the ObjectId (GUID) to search, update or delete group
 
-**Step 3: Update group properties** 
+**Step 3: Update group properties**
 
 ```powershell
 Set-EntraGroup -ObjectId "c1720fcf-0281-4c74-89c9-2fbc54f9b8f9" -Description "This is my new updated group details" 
 ```
 
-This command updates the group description. The `ObjectId` is the Group Id GUID. 
+This command updates the group description. The `ObjectId` is the Group Id GUID.
 
-_Hint_: To confirm updated changes, run the `Get-EntraGroup` again. 
+_Hint_: To confirm updated changes, run the `Get-EntraGroup` again.
 
 ```powershell
 Get-EntraGroup -Filter "DisplayName eq 'My new group'" | fl 
 ```
 
-**Step 4: Add a user to the group** 
+**Step 4: Add a user to the group**
 
 ```powershell
 Add-EntraGroupMember -ObjectId "c1720fcf-0281-4c74-89c9-2fbc54f9b8f9" -RefObjectId "3f19094c-65db-4556-ba96-2d29e41934b4" 
 ```
 
-This command adds a user (with UserId `3f19094c-65db-4556-ba96-2d29e41934b4` - with parameter RefObjectId) to the group with ObjectId `c1720fcf-0281-4c74-89c9-2fbc54f9b8f9`. 
+This command adds a user (with UserId `3f19094c-65db-4556-ba96-2d29e41934b4` - with parameter RefObjectId) to the group with ObjectId `c1720fcf-0281-4c74-89c9-2fbc54f9b8f9`.
 
-_Hint_: You can get the UserId from the [Entra portal](https://entra.microsoft.com/) or by running `Get-EntraUser` command. 
+_Hint_: You can get the UserId from the [Microsoft Entra admin center](https://entra.microsoft.com/) or by running `Get-EntraUser` command.
 
 **Step 5: Adding the group owner**
 
@@ -250,7 +252,7 @@ _Hint_: You can get the UserId from the [Entra portal](https://entra.microsoft.c
 Add-EntraGroupOwner -ObjectId "c1720fcf-0281-4c74-89c9-2fbc54f9b8f9" -RefObjectId "a8f67daa-0d66-491a-b8af-e11c06218c19"
 ```
 
-This command adds an owner with UserId `a8f67daa-0d66-491a-b8af-e11c06218c19`` to the group with Id `c1720fcf-0281-4c74-89c9-2fbc54f9b8f9`. 
+This command adds an owner with UserId `a8f67daa-0d66-491a-b8af-e11c06218c19`` to the group with Id`c1720fcf-0281-4c74-89c9-2fbc54f9b8f9`.
 
 **Step 6: Getting the group owner**
 
@@ -258,9 +260,9 @@ This command adds an owner with UserId `a8f67daa-0d66-491a-b8af-e11c06218c19`` t
 Get-EntraGroupOwner -ObjectId "c1720fcf-0281-4c74-89c9-2fbc54f9b8f9" 
 ```
 
-This command returns the UserId of the group owner(s). 
+This command returns the UserId of the group owner(s).
 
-_Hint_: You can run the command below to get the user details of the group owner based on the UserId returned. 
+_Hint_: You can run the command below to get the user details of the group owner based on the UserId returned.
 
 ```powershell
 Get-EntraUser -ObjectId "4580d0d6-a6fb-4125-b428-82d09064aa8a" 
@@ -272,7 +274,7 @@ Get-EntraUser -ObjectId "4580d0d6-a6fb-4125-b428-82d09064aa8a"
 Remove-EntraGroupMember -ObjectId "c1720fcf-0281-4c74-89c9-2fbc54f9b8f9" -MemberId "1aa46598-c6ce-4115-943e-a82c574673cc"
 ```
 
-This command removes a user/member with UserId `1aa46598-c6ce-4115-943e-a82c574673cc` from the group. 
+This command removes a user/member with UserId `1aa46598-c6ce-4115-943e-a82c574673cc` from the group.
 
 **Step 8: Cleaning up/Remove group**
 
@@ -280,4 +282,4 @@ This command removes a user/member with UserId `1aa46598-c6ce-4115-943e-a82c5746
 Remove-EntraGroup -ObjectId "c1720fcf-0281-4c74-89c9-2fbc54f9b8f9" 
 ```
 
-This command removes the Entra ID group. 
+This command removes the Microsoft Entra ID group.
