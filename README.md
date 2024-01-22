@@ -18,7 +18,7 @@ While the Microsoft Entra PowerShell module provides significant compatibility w
 
 <p align="center">
    <a href="MOTIVATION.md">Our Motivation</a> |
-  <a href="https://github.com/microsoftgraph/entra-powershell/blob/main/GE-STARTED.md">Installation & Usage</a> |
+  <a href="GET-STARTED.md">Installation & Usage</a> |
   <a href="#contributing">Contributing</a> |
   <a href="#known-issues">Known Issues</a> |
   <a href="#license">License</a>
