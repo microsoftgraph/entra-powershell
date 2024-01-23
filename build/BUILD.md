@@ -20,8 +20,14 @@ To install the preview version, run the command below.
 ```powershell
 .\build\Install-Dependencies.ps1 -ModuleName AzureADPreview
 ```
+### Build help
+The module help files are generated from markdown documentation (using platyPS module).
 
-### Build
+```powershell
+. .\build\Common-functions.ps1
+Create-ModuleHelp -Module AzureAD // or AzureADPreview
+```
+### Build module
 Use a clean PowerShell session when you are building the module. The building process attempts to load the required versions of the module, which will fail if another version of the dependencies is already loaded.
 
 ```powershell
