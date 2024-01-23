@@ -40,7 +40,7 @@ This module depends on the [Microsoft Graph PowerShell SDK](https://github.com/m
 
 ### Option 1 - Zipped folder option
 
-Download the latest [Microsoft Entra PowerShell release](https://github.com/microsoftgraph/entra-powershell/releases/) zipped file. Follow the instructions as per this snippet.
+Download the latest [Microsoft Entra PowerShell release](https://github.com/microsoftgraph/entra-powershell/releases/download/0.4.0-preview/EntraPowerShell_0.4.0-preview.zip) zipped file. Follow the instructions as per this snippet.
 
 ```powershell
 # Let's assume the unpacked files are in c:\test\entra-powershell
@@ -62,20 +62,11 @@ Import-Module Microsoft.Graph.Entra.Beta -Force
 
 Refer to [local building and installing guide](https://github.com/microsoftgraph/entra-powershell/blob/main/build/BUILD.md).
 
-### Option 3 - PowerShell Gallery option
-
-```powershell
-Install-Module Microsoft.Graph.Entra -AllowPrerelease 
-```
-
-> [!NOTE]
-> The installation method will be available after private preview phase.
-
 ## Usage
 
 ### Authentication
 
-To use the Microsoft Entra PowerShell, you need to authenticate to access Entra resources.
+To use the Microsoft Entra PowerShell, you need to authenticate to access Entra resources. Sign in with an admin account of their tenant, if prompted.
 
 ```powershell
 Connect-MgGraph -Scopes 'User.Read.All' 
@@ -177,7 +168,7 @@ Microsoft Entra PowerShell offers cool features such as pipelining, and migratio
 With Pipelining, you can perform updates from the output of another command as inputs. For example, updating the Postal Code address for all group members after a reporting line changes.
 
 ```powershell
-Get-EntraGroupMember -ObjectId e76bfd30-48fb-4f40-83f1-8d94ddd4f8c2 | Set-EntraUser -PostalCode 98122 
+Get-EntraGroup -Filter "DisplayName eq 'Contoso Team'" | Get-EntraGroupMember | Set-EntraUser -PostalCode 90134 
 ```
 
 This command updates the Postal Code for all the members of the group with ID `e76bfd30-48fb-4f40-83f1-8d94ddd4f8c2`.
