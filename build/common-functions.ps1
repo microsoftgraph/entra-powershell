@@ -211,13 +211,11 @@ function Create-ModuleHelp {
 	)
 
 	$binPath = Join-Path (Split-Path -Parent $psscriptroot) (Get-ConfigValue -Name OutputPath)
-	Write-Host $binPath
 	if(!(Test-Path $binPath)){
 		New-Item -ItemType Directory -Path $binPath | Out-Null
 	}
 	$moduleDocsPath = Join-Path (Split-Path -Parent $psscriptroot) (Get-ConfigValue -Name ModuleSubdirectoryName)
 	$moduleDocsPath = Join-Path ($moduleDocsPath) ($Module)
 	$moduleDocsPath = Join-Path ($moduleDocsPath) (Get-ConfigValue -Name docsPath)
-	Write-Host $moduleDocsPath
 	New-ExternalHelp -Path $moduleDocsPath -OutputPath $binPath -Force
 }
