@@ -178,13 +178,16 @@ This command updates the Postal Code for all the members of the group with ID `e
 
 ### Migration scenario
 
-James has a long AzureAD PowerShell module based script. Rewriting is tedious and time consuming. James would like to use the Microsoft Entra PowerShell module to help him ride on the Microsoft Graph PowerShell with the least friction. All that James has to do is to replace one line of code `Connect-AzureAD` with the three lines.
+James has a long AzureAD PowerShell module based [script to export apps with expiring secrets](./samples/export-apps-with-expiring-secrets.ps1). Rewriting is tedious and time consuming. James would like to use the Microsoft Entra PowerShell module to help him ride on the Microsoft Graph PowerShell with the least friction. All that James has to do is to replace one line of code `Connect-AzureAD` with the three lines.
 
 ```powershell
 Import-Module Microsoft.Graph.Entra
 Connect-MgGraph #Replaces Connect-AzureAD for auth
 Set-EntraAzureADAliases #Activate aliasing 
 ```
+
+> [!TIP]
+> You can access the [modified script](./samples/export-apps-with-expiring-secrets-modified.ps1) from our samples page.
 
 ## End-to-end Scenario Example
 
