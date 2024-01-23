@@ -204,7 +204,7 @@ function Get-CustomizationFiles {
 	$customizationFileList
 }
 
-function GenerateModuleHelp {
+function Create-ModuleHelp {
 	param (
 		[string]
 		$Module = "AzureAD"

@@ -34,7 +34,7 @@ steps:
     script: |
       Import-Module PlatyPS
       . ./build/common-functions.ps1
-      Create-HelpFiles -ModuleName AzureAD
+      Create-ModuleHelp -ModuleName AzureAD
     pwsh: false
 - task: powershell@2
   displayName: 'Build AzureAD'
@@ -111,7 +111,7 @@ steps:
     script: |
       Import-Module PlatyPS
       . ./build/common-functions.ps1
-      Create-HelpFiles -ModuleName AzureADPreview
+      Create-ModuleHelp -ModuleName AzureADPreview
     pwsh: false
 - task: powershell@2
   displayName: 'Build AzureADPreview'
