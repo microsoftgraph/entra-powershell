@@ -73,7 +73,6 @@ class CompatibilityAdapterBuilder {
     # Generates the module then generates all the files required to create the module.
     BuildModule() {
         $this.WriteModuleFile()           
-        $this.GenerateHelpFiles()
         $this.WriteModuleManifest()             
     }
     
