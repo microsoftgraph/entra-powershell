@@ -60,7 +60,7 @@ Import-Module Microsoft.Graph.Entra.Beta -Force
 
 ### Option 2 - Build the module locally
 
-Refer to [local building and installing guide](https://github.com/microsoftgraph/entra-powershell/blob/main/build/BUILD.md).
+Refer to [local building and installing guide](./build/BUILD.md).
 
 ## Usage
 
@@ -127,17 +127,20 @@ Get-EntraUser -SearchString "Adele" -Debug
 You can use the Microsoft Entra PowerShell to test an AzureAD PowerShell module-based script. This helps determine if a script can be migrated to the Microsoft Graph PowerShell SDK.
 
 ```powershell
-Test-EntraScript -Script .\Export_secrets_and_certificates_for_app_registrations.ps1
+Test-EntraScript -Script .\export-apps-with-expiring-secrets.ps1
 ```
 
 If the script is compatible, you won't see any output, although you can use `$?` to display that True was returned. If the script isn't compatible, a warning with details of the problem cmdlet(s) shows. Example:
 
 ```powershell
-Test-EntraScript -Script .\Export_secrets_and_certificates_for_app_registrations.ps1
+Test-EntraScript -Script .\export-apps-with-expiring-secrets.ps1
 
 WARNING: Command Get-AzureADApplicationKeyCredential is not supported
 WARNING: Script contains commands that are not supported by the compatibility adapter.
 ```
+
+> [!TIP]
+> You can access the `export-apps-with-expiring-secrets.ps1` from our [samples page](./samples/export-apps-with-expiring-secrets.ps1).
 
 ## Aliasing AzureAD PowerShell commands
 

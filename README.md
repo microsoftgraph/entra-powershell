@@ -51,7 +51,7 @@ Feel free to use the GitHub issue tracker to report any concerns, ask questions,
 
 ## Contributing
 
-To contribute, check [contribution guide](https://github.com/microsoftgraph/entra-powershell/blob/main/CONTRIBUTING.md).
+To contribute, check [contribution guide](CONTRIBUTING.md).
 
 ## Known Issues
 
