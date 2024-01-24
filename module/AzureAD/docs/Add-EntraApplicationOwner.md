@@ -23,7 +23,8 @@ The Add-EntraApplicationOwner cmdlet adds an owner to a Microsoft Entra ID appli
 ## EXAMPLES
 
 ### Example 1: Add an owner to an application
-```
+
+```powershell
 PS C:\>Add-EntraApplicationOwner -ObjectId 3ddd22e7-a150-4bb3-b100-e410dea1cb84 -RefObjectId c13dd34a-492b-4561-b171-40fcce2916c5
 ```
 
