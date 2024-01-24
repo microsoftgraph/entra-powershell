@@ -342,7 +342,11 @@ $extraFunctions
         if(1 -eq $object.GetType().GetProperties().Count){
 
             $constructor = @"
-public $($object.GetType().Name)($name value)
+public $($object.GetType().Name)()
+        {        
+        }
+        
+        public $($object.GetType().Name)($name value)
         {
             $($object.GetType().GetProperties()[0].Name) = value;
         }
