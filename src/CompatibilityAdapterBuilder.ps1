@@ -73,7 +73,6 @@ class CompatibilityAdapterBuilder {
     # Generates the module then generates all the files required to create the module.
     BuildModule() {
         $this.WriteModuleFile()           
-        $this.GenerateHelpFiles()
         $this.WriteModuleManifest()             
     }
     
@@ -140,10 +139,13 @@ class CompatibilityAdapterBuilder {
     }
 
     hidden GenerateHelpFiles() {
-        $helpPath = Join-Path $this.OutputFolder "$($this.ModuleName)-Help.xml"
-        $this.GetHelpHeader() | Set-Content -Path $helpPath
-        $this.GetHelpCommandsFromFiles($helpPath)
-        $this.GetHelpFooter() | Add-Content -Path $helpPath
+        foreach($file in Get-ChildItem -Path $this.HelpFolder -Filter "*.xml") {
+            Copy-Item $file.FullName $this.OutputFolder -Force
+        }
+        #$helpPath = Join-Path $this.OutputFolder "$($this.ModuleName)-Help.xml"
+        #$this.GetHelpHeader() | Set-Content -Path $helpPath
+        #$this.GetHelpCommandsFromFiles($helpPath)
+        #$this.GetHelpFooter() | Add-Content -Path $helpPath
     }
 
     hidden [string] GetHelpHeader() {
