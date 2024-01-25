@@ -1,4 +1,16 @@
 ---
+title: Get-EntraBetaAuditSignInLogs.
+description: This article provides details on the Get-EntraBetaAuditSignInLogs command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+---
+---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,16 +20,28 @@ schema: 2.0.0
 # Get-EntraBetaAuditSignInLogs
 
 ## SYNOPSIS
-Get audit logs of signins
+Get audit logs of sign-ins.
 
 ## SYNTAX
 
 ```
-Get-EntraBetaAuditSignInLogs [-Top <Int32>] [-All <Boolean>] [-Filter <String>] [<CommonParameters>]
+Get-EntraBetaAuditSignInLogs 
+ [-All <Boolean>]
+ [-Top <Int32>] 
+ [-Filter <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaAuditSignInLogs cmdlet gets an Azure Active Directory sign in log.
+The Get-EntraBetaAuditSignInLogs cmdlet gets the Microsoft Entra ID sign-in log.
+
+## PERMISSIONS
+
+|Permission type      | Permissions (from least to most privileged)              |
+|:--------------------|:---------------------------------------------------------|
+|Delegated (work or school account) | AuditLog.Read.All and Directory.Read.All   |
+|Delegated (personal Microsoft account) | Not supported   |
+|Application | AuditLog.Read.All and Directory.Read.All |
 
 ## EXAMPLES
 
