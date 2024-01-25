@@ -21,7 +21,7 @@ To install the preview version, run the command below.
 .\build\Install-Dependencies.ps1 -ModuleName AzureADPreview
 ```
 ### Build help
-The module help files are generated from markdown documentation (using platyPS module).
+The module help files are generated from markdown documentation (using platyPS module). To install PlatyPS module, run the command `Install-Module -Name PlatyPS`.
 
 ```powershell
 . .\build\Common-functions.ps1
