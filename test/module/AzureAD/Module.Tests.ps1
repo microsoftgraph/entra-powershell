@@ -3,10 +3,13 @@
 # ------------------------------------------------------------------------------
 Describe "Microsoft.Graph.Entra Module" {
     Context "On module import" {
-        BeforeAll {
-            $ModuleName = "Microsoft.Graph.Entra"
-            $ModulePath = Join-Path $PSScriptRoot "..\..\bin\Microsoft.Graph.Entra.psd1"
-            $PSModuleInfo = Get-Module $ModuleName
+        BeforeAll {    
+            if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+                Import-Module .\bin\Microsoft.Graph.Entra.psd1 -force
+                $ModuleName = "Microsoft.Graph.Entra"
+                $PSModuleInfo = Get-Module $ModuleName
+                $ModulePath = ".\bin\Microsoft.Graph.Entra.psd1"
+            }
         }
 
         It "Should have exported commands" {

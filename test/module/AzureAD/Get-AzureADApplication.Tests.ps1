@@ -2,18 +2,21 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 Describe "Get-AzureADApplication" {
-    BeforeAll {
-        $GetAzureADApplication = Get-Command Get-AzureADApplication
+    BeforeAll {    
+        if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+            Import-Module .\bin\Microsoft.Graph.Entra.psm1 -force
+            $GetAzureADApplication = Get-Command Get-EntraApplication
+        }
     }
 
     It "Should support minimum set of parameter sets" {
         $GetAzureADApplication.ParameterSets.Name | Should -BeIn @("GetQuery", "GetVague", "GetById")
         $GetAzureADApplication.Visibility | Should -Be "Public"
-        $GetAzureADApplication.CommandType | Should -Be "Cmdlet"
+        $GetAzureADApplication.CommandType | Should -Be "Function"
     }
 
     It "Should return a list of applications by default" {
-        $GetAzureADApplication.ImplementingType | Should -Be "Microsoft.Open.AzureAD16.PowerShell.GetApplication"
+        $GetAzureADApplication.ModuleName | Should -Be "Microsoft.Graph.Entra"
         $GetAzureADApplication.DefaultParameterSet | Should -Be "GetQuery"
     }
 
