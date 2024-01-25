@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-function Get-EntraHasObjectsWithDirSyncProvisioningErrors {
+function Get-EntraBetaHasObjectsWithDirSyncProvisioningError {
     <#
 .PARAMETER TenantId
 
@@ -37,8 +37,8 @@ System.Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, Publ
         
         foreach ($obj in $object) {
             $obj = ($obj | Out-String).trimend()
-            $uri = 'https://graph.microsoft.com/v1.0/' + $obj + '?$select=onPremisesProvisioningErrors'
-            $response += ((Invoke-GraphRequest -Uri $uri -Method GET).value).onPremisesProvisioningErrors   
+            $uri = 'https://graph.microsoft.com/beta/' + $obj + '?$select=onPremisesProvisioningErrors'
+            $response += ((Invoke-GraphRequest -Uri $uri -Method GET).value).onPremisesProvisioningErrors
         }
         if ([string]::IsNullOrWhiteSpace($response)) {
             write-host "False"

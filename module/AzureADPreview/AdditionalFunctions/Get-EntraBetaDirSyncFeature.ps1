@@ -1,14 +1,14 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-function Get-EntraBetaDirSyncfeatures {
+function Get-EntraBetaDirSyncfeature {
     <#
     .SYNOPSIS
         Used to check the status of identity synchronization features for a tenant.
     
     
     .DESCRIPTION
-        The Get-EntraBetaDirSyncfeatures cmdlet is used to check the status of identity synchronization features for a tenant. Features that can be used with this cmdlet include:
+        The Get-EntraBetaDirSyncfeature cmdlet is used to check the status of identity synchronization features for a tenant. Features that can be used with this cmdlet include:
     
             DeviceWriteback
             DirectoryExtensions
@@ -37,7 +37,7 @@ function Get-EntraBetaDirSyncfeatures {
         about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
     
     .EXAMPLE
-        Get-EntraBetaDirSyncfeatures
+        Get-EntraBetaDirSyncfeature
     
         Description
     
@@ -47,7 +47,7 @@ function Get-EntraBetaDirSyncfeatures {
     
     
     .EXAMPLE
-        Get-EntraBetaDirSyncfeatures -Feature PasswordSync
+        Get-EntraBetaDirSyncfeature -Feature PasswordSync
     s
         Description
         
@@ -94,7 +94,7 @@ function Get-EntraBetaDirSyncfeatures {
             else {
                $output =  $table | Where-Object {$_.dirsyncFeature -eq $Feature}
                if($null -eq $output) {
-                Write-Error "Get-EntraBetaDirSyncfeatures : Invalid value for parameter.  Parameter Name: Feature."
+                Write-Error "Get-EntraBetaDirSyncfeature : Invalid value for parameter.  Parameter Name: Feature."
                }
                else {
                 $output
