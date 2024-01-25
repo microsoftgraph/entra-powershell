@@ -5,10 +5,11 @@ Describe "Microsoft.Graph.Entra Module" {
     Context "On module import" {
         BeforeAll {    
             if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-                Import-Module .\bin\Microsoft.Graph.Entra.psd1 -force
+                $ModulePath = ".\bin\Microsoft.Graph.Entra.psd1"
+                Import-Module $ModulePath -force
                 $ModuleName = "Microsoft.Graph.Entra"
                 $PSModuleInfo = Get-Module $ModuleName
-                $ModulePath = ".\bin\Microsoft.Graph.Entra.psd1"
+                
             }
         }
 
