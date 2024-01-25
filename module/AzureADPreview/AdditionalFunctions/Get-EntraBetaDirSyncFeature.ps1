@@ -2,60 +2,6 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 function Get-EntraBetaDirSyncfeature {
-    <#
-    .SYNOPSIS
-        Used to check the status of identity synchronization features for a tenant.
-    
-    
-    .DESCRIPTION
-        The Get-EntraBetaDirSyncfeature cmdlet is used to check the status of identity synchronization features for a tenant. Features that can be used with this cmdlet include:
-    
-            DeviceWriteback
-            DirectoryExtensions
-            DuplicateProxyAddressResiliency
-            DuplicateUPNResiliency
-            EnableSoftMatchOnUpn
-            PasswordSync
-            SynchronizeUpnForManagedUsers
-            UnifiedGroupWriteback
-            UserWriteback
-    
-            The cmdlet can also be run without any feature being specified, in which case it will return a list of all features and whether they are enabled or disabled.
-    
-    .PARAMETER Feature
-        The DirSync feature to get the status of.
-    
-        
-    .PARAMETER TenantId
-        The unique ID of the tenant to perform the operation on. If this is not provided then the value will default to the tenant of the current user. This parameter is only applicable to partner users.
-    
-    
-    .PARAMETER <CommonParameters>
-        This cmdlet supports the common parameters: Verbose, Debug,
-        ErrorAction, ErrorVariable, WarningAction, WarningVariable,
-        OutBuffer, PipelineVariable, and OutVariable. For more information, see 
-        about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
-    
-    .EXAMPLE
-        Get-EntraBetaDirSyncfeature
-    
-        Description
-    
-        -----------
-    
-        Returns a list of all possible DirSync features and whether they are enabled (True) or disabled (False).
-    
-    
-    .EXAMPLE
-        Get-EntraBetaDirSyncfeature -Feature PasswordSync
-    s
-        Description
-        
-        -----------
-        
-        Returns whether PasswordSync is enabled for the tenant (True) or disabled (False).
-    
-    #>
         [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
         param (
             [Parameter(ParameterSetName = "GetQuery",  ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][System.Guid] $TenantId,
