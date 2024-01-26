@@ -4,7 +4,7 @@
     Parameters = @(
         @{
             SourceName = "ObjectId"
-            TargetName = "ServicePrincipalId "
+            TargetName = "ServicePrincipalId"
             ConversionType = "Name"
             SpecialMapping = $null
         },
