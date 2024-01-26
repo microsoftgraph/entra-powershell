@@ -144,10 +144,10 @@ WARNING: Script contains commands that are not supported by the compatibility ad
 
 ## Aliasing AzureAD PowerShell commands
 
-Since Microsoft Entra PowerShell offers significant compatibility with the legacy AzureAD PowerShell module, running the `Set-EntraAzureADAliases` cmdlet creates aliases for all of the supported Azure AD PowerShell cmdlets in the Microsoft Entra PowerShell module.
+Since Microsoft Entra PowerShell offers significant compatibility with the legacy AzureAD PowerShell module, running the `Enable-EntraAzureADAlias` cmdlet creates aliases for all of the supported Azure AD PowerShell cmdlets in the Microsoft Entra PowerShell module.
 
 ```powershell
-Set-EntraAzureADAliases
+Enable-EntraAzureADAlias
 ```
 
 This command shows you all of the newly created aliases:
@@ -183,7 +183,7 @@ James has a long AzureAD PowerShell module based [script to export apps with exp
 ```powershell
 Import-Module Microsoft.Graph.Entra
 Connect-MgGraph #Replaces Connect-AzureAD for auth
-Set-EntraAzureADAliases #Activate aliasing 
+Enable-EntraAzureADAlias #Activate aliasing 
 ```
 
 > [!TIP]
