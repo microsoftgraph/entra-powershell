@@ -14,7 +14,7 @@
         }
         if (`$null -ne `$PSBoundParameters["ObjectId"]) {
             `$params["ApplicationId"] = `$PSBoundParameters["ObjectId"]
-            `$params["Select"] = "onPremisesPublishing"
+            `$params["Select"] = "id,displayName,appId,onPremisesPublishing"
         }
         if (`$PSBoundParameters.ContainsKey("Verbose")) {
             `$params["Verbose"] = `$Null
@@ -25,12 +25,8 @@
         Write-Debug("=========================================================================``n")
         
         `$app = Get-MgBetaApplication @params
-        `$response = `$app.OnPremisesPublishing
-        `$response | ForEach-Object {
-            if (`$null -ne `$_) {
-                Add-Member -InputObject `$_ -MemberType AliasProperty -Name ObjectId -Value Id
-            }
-        }
+        `$response = `$app | Select-Object -Property id, displayName, appId, onPremisesPublishing
+        `$response | Format-Table -AutoSize
         `$response
     }
 "@
