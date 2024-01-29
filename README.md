@@ -4,7 +4,7 @@ description: About Microsoft Entra PowerShell.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 11/29/2023
+ms.date: 01/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -27,6 +27,9 @@ While the Microsoft Entra PowerShell module provides significant compatibility w
 <p align="center">
 <strong>This module is under development. It's NOT READY for Production environments.</strong>
 </p>
+
+> [!NOTE]  
+> We are continually improving Microsoft Entra PowerShell throughout the private preview phase and beyond. Keep your module current by applying updates as soon as we notify you of a new version. Module updates will be done on regular cadence.
 
 ## Repository Visibility Notice
 >
