@@ -79,12 +79,11 @@ To see all the possible options, refer to [MS Graph SDK authentication](https:
 1. Get all available commands in Microsoft Entra PowerShell module
 
 ```powershell
-(Get-Module -Name Microsoft.Graph.Entra).ExportedCommands
+Get-Command -Module Microsoft.Graph.Entra
 ```
-
 Replace `Microsoft.Graph.Entra` with `Microsoft.Graph.Entra.Beta` if you're using the `Beta` version of the module.
 
-1. Get the Microsoft Entra ID users
+2. Get the Microsoft Entra ID users
 
 ```powershell
 Get-EntraUser
@@ -92,7 +91,7 @@ Get-EntraUser
 
 This command returns all the users in your Microsoft Entra ID tenant.
 
-1. Getting Help
+3. Getting Help
 
 To be effective with the Microsoft Entra PowerShell, you need to use the Help system. `Get-Help` command helps you find commands to perform specific tasks and learn how to use those commands after you find them.  
 
@@ -108,7 +107,7 @@ To get examples, add the parameter `–Examples`.
 Get-Help Get-EntraUser -Examples
 ```
 
-1. Searching for a user
+4. Searching for a user
 
 ```powershell
 Get-EntraUser -SearchString "Adele" 
