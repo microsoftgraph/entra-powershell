@@ -62,6 +62,7 @@ To contribute, check [contribution guide](CONTRIBUTING.md).
   - Parameter -Filter might not work correctly
   - Parameter -SearchString don't currently work
   - Output objects might be different
+- "Assembly with same name is already loaded" - when there are multiple versions of `Microsoft.Graph.Authentication` modules installed.
 
 ## Issues
 
