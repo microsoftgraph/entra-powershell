@@ -10,11 +10,11 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 ---
-# Microsoft Entra PowerShell
+# Microsoft Entra PowerShell (preview)
 
-The Microsoft Entra PowerShell is a collection of cmdlets that helps access Microsoft Entra resources using the [Microsoft Graph SDK](https://github.com/microsoftgraph/msgraph-sdk-powershell). The module primarily functions as a usability layer with human-readable parameters, deliberate parameter set specification, inline documentation, and core PowerShell fundamentals like pipelining.
+Microsoft Entra PowerShell (preview), a PowerShell module for Microsoft Entra, based on usability feedback from customers. Microsoft Entra PowerShell is meticulously designed to deliver a delightful, usable, and high-quality collection of PowerShell cmdlets for Entra administrators. The module offers human-readable parameters, deliberate parameter set specification, inline documentation, and core PowerShell fundamentals like pipelining.
 
-While the Microsoft Entra PowerShell module provides significant compatibility with the legacy modules (such as Azure AD PowerShell), that can accelerate migration to Microsoft Graph as a significant benefit, the Microsoft Entra module remains as a long-term, perpetual product offering.
+Microsoft Entra PowerShell module also provides significant compatibility with the legacy modules (such as Azure AD PowerShell), that can facilitate migration to Microsoft Graph as a benefit.  We intend to expand Microsoft Entra resource and scenario support in Microsoft Entra PowerShell over time.
 
 <p align="center">
    <a href="MOTIVATION.md">Our Motivation</a> |
@@ -62,6 +62,7 @@ To contribute, check [contribution guide](CONTRIBUTING.md).
   - Parameter -Filter might not work correctly
   - Parameter -SearchString don't currently work
   - Output objects might be different
+- "Assembly with same name is already loaded" - when there are multiple versions of `Microsoft.Graph.Authentication` modules installed.
 
 ## Issues
 

@@ -4,7 +4,7 @@ description: About Microsoft Entra PowerShell installation and usage guide.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 01/23/2024
+ms.date: 01/30/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -40,7 +40,7 @@ This module depends on the [Microsoft Graph PowerShell SDK](https://github.com/m
 
 ### Option 1 - Zipped folder option
 
-Download the latest [Microsoft Entra PowerShell release](https://github.com/microsoftgraph/entra-powershell/releases/download/0.4.0-preview/EntraPowerShell_0.4.0-preview.zip) zipped file. Follow the instructions as per this snippet.
+Download the latest [Microsoft Entra PowerShell release](https://github.com/microsoftgraph/entra-powershell/releases/download/0.5.0-preview/EntraPowerShell_0.5.0-preview.zip) zipped file. Follow the instructions as per this snippet.
 
 ```powershell
 # Let's assume the unpacked files are in c:\test\entra-powershell
