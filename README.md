@@ -12,7 +12,7 @@ author: msewaweru
 ---
 # Microsoft Entra PowerShell (preview)
 
-Microsoft Entra PowerShell (preview), a PowerShell module for Entra, based on usability feedback from customers. Microsoft Entra PowerShell is meticulously designed to deliver a delightful, usable, and high-quality collection of PowerShell cmdlets for Entra administrators. The module offers human-readable parameters, deliberate parameter set specification, inline documentation, and core PowerShell fundamentals like pipelining.
+Microsoft Entra PowerShell (preview), a PowerShell module for Microsoft Entra, based on usability feedback from customers. Microsoft Entra PowerShell is meticulously designed to deliver a delightful, usable, and high-quality collection of PowerShell cmdlets for Entra administrators. The module offers human-readable parameters, deliberate parameter set specification, inline documentation, and core PowerShell fundamentals like pipelining.
 
 Microsoft Entra PowerShell module also provides significant compatibility with the legacy modules (such as Azure AD PowerShell), that can facilitate migration to Microsoft Graph as a benefit.  We intend to expand Microsoft Entra resource and scenario support in Microsoft Entra PowerShell over time.
 
