@@ -9,8 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
----
----
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -43,14 +42,6 @@ Get-EntraBetaMSPrivilegedResource
 
 ## DESCRIPTION
 Get Microsoft Entra ID privileged resource.
-
-## PERMISSIONS
-
-|Permission type      | Permissions (from least to most privileged)              |
-|:--------------------|:---------------------------------------------------------|
-|Delegated (work or school account) | PrivilegedAccess.Read.AzureResources, PrivilegedAccess.ReadWrite.AzureResources    |
-|Delegated (personal Microsoft account) |     |
-|Application | PrivilegedAccess.Read.AzureResources, PrivilegedAccess.ReadWrite.AzureResources |
 
 ## EXAMPLES
 
