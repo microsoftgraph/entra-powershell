@@ -1,4 +1,15 @@
 ---
+title: Get-EntraBetaAuditSignInLogs.
+description: This article provides details on the Get-EntraBetaAuditSignInLogs command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,54 +19,74 @@ schema: 2.0.0
 # Get-EntraBetaAuditSignInLogs
 
 ## SYNOPSIS
-Get audit logs of signins
+Get audit logs of sign-ins.
 
 ## SYNTAX
 
 ```
-Get-EntraBetaAuditSignInLogs [-Top <Int32>] [-All <Boolean>] [-Filter <String>] [<CommonParameters>]
+Get-EntraBetaAuditSignInLogs 
+ [-All <Boolean>]
+ [-Top <Int32>] 
+ [-Filter <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaAuditSignInLogs cmdlet gets an Azure Active Directory sign in log.
+The Get-EntraBetaAuditSignInLogs cmdlet gets the Microsoft Entra ID sign-in log.
 
 ## EXAMPLES
 
-### Example 1: Get sign in logs after a certain date
-```
-PS C:\>Get-EntraBetaAuditSignInLogs -Filter "createdDateTime gt 2019-03-20"
+### Example 1: Get all logs
+
+This command gets all sign-in logs.
+
+```powershell
+ Get-EntraBetaAuditSignInLogs -All $true 
 ```
 
-This command gets all sign in logs on or after 3/20/2019
-
-### Example 2: Get sign in logs for a user or application
-```
-PS C:\>Get-EntraBetaAuditSignInLogs -Filter "userPrincipalName eq 'bgates@microsoft.com'"
-PS C:\>Get-EntraBetaAuditSignInLogs -Filter "userDisplayName eq 'Paul Allen'"
-PS C:\>Get-EntraBetaAuditSignInLogs -Filter "appId eq 'de8bc8b5-d9f9-48b1-a8ad-b748da725064'"
-PS C:\>Get-EntraBetaAuditSignInLogs -Filter "appDisplayName eq 'Microsoft'"
-```
-
-These commands are different ways to get all sign in logs for a certain user or application
-
-### Example 3: Get sign in logs from a certain location
-```
-PS C:\>Get-EntraBetaAuditSignInLogs -Filter "location/city eq 'Redmond' and location/state eq 'Washington' and location/countryOrRegion eq 'US'"
+```Output
+Id                                   AppDisplayName                     AppId                                AppTokenProtectionStatus AuthenticationMethodsUsed AuthenticationProtocol Authe
+                                                                                                                                                                                       ntica
+                                                                                                                                                                                       tionR
+                                                                                                                                                                                       equir
+                                                                                                                                                                                       ement
+--                                   --------------                     -----                                ------------------------ ------------------------- ---------------------- -----
+1e332421-99c9-4ba7-bf52-bda3c9a3b400 Azure Active Directory PowerShell  1b730954-1685-4b74-9bfd-dac224a7b894                          {}                        ropc                   si...
+9d78ea64-fa2e-48ca-a19d-d049693c5b00 Azure Portal                       c44b4083-3bb0-49c1-b47d-974e53cbdf3c                          {}                        none                   si...
+b88f8107-f8b8-494a-bd7e-3ceddc3b8400 Azure Active Directory PowerShell  1b730954-1685-4b74-9bfd-dac224a7b894                          {}                        ropc                   si...
+e05ec15b-8698-4633-81ff-983f233b8500 Azure Active Directory PowerShell  1b730954-1685-4b74-9bfd-dac224a7b894                          {}                        none
 ```
 
-This command shows how to get audit logs by location
+### Example 2: Get the first n logs
 
-### Example 4: Get all sign in logs with a given status
-```
-PS C:\>Get-EntraBetaAuditSignInLogs -Filter "status/errorCode eq 0 -All $true"
-PS C:\>Get-EntraBetaAuditSignInLogs -Filter "status/errorCode ne 0"
+This example returns the first n logs.
+
+```powershell
+ Get-EntraBetaAuditSignInLogs -Top 1
 ```
 
-These commands show how to get sign in logs for successes (eq 0) and failures (ne 0)
+### Example 3: Get audit logs containing a given ActivityDisplayName
+
+These commands show how to get sign-in logs by ActivityDisplayName.
+
+```powershell
+ Get-EntraBetaAuditSignInLogs -Filter "ActivityDisplayName eq 'Add owner to application'"
+ Get-EntraBetaAuditSignInLogs -Filter "ActivityDisplayName eq 'Add owner to application'" -Top 1
+```
+
+### Example 4: Get all sign-in logs with a given result
+
+These commands show how to get sign-in logs by the result.
+
+```powershell
+ Get-EntraBetaAuditSignInLogs -Filter "result eq 'success'"
+ Get-EntraBetaAuditSignInLogs -Filter "result eq 'failure'" -Top 1cls
+```
 
 ## PARAMETERS
 
 ### -All
+
 Boolean to express that return all results from the server for the specific query
 
 ```yaml
@@ -71,6 +102,7 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 The maximum number of records to return.
 
 ```yaml
@@ -86,7 +118,8 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-The oData v3.0 filter statement. 
+
+The oData v3.0 filter statement.
 Controls which objects are returned.
 
 ```yaml
@@ -102,12 +135,11 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ## OUTPUTS
-
-## NOTES
 
 ## RELATED LINKS
