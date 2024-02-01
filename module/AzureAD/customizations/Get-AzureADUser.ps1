@@ -22,6 +22,9 @@
         }
         if($null -ne $PSBoundParameters["Filter"])
         {
+            $keysChanged = @{
+                "UserState" = "ExternalUserState"
+            }
             $TmpValue = $PSBoundParameters["Filter"]
             foreach($i in $keysChanged.GetEnumerator()){
                 $TmpValue = $TmpValue.Replace($i.Key, $i.Value)
@@ -58,6 +61,10 @@
         $response | ForEach-Object {
             if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name UserState -Value ExternalUserState
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name UserStateChangedOn -Value ExternalUserStateChangeDateTime
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name Mobile -Value mobilePhone
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name DeletionTimestamp -Value DeletedDateTime
                 $propsToConvert = @('AssignedLicenses','AssignedPlans','PasswordProfile')
                 foreach ($prop in $propsToConvert) {
                     $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
