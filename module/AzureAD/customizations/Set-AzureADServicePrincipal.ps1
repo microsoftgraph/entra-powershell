@@ -16,7 +16,7 @@
         {
             $body["AccountEnabled"] = $PSBoundParameters["AccountEnabled"]
             if ($body.AccountEnabled -ne $true -and $body.AccountEnabled -ne $false) {
-                Write-Error "Set-EntraServicePrincipal : Error occurred while executing SetPolicy 
+                Write-Error "Set-EntraServicePrincipal : Error occurred while executing SetServicePrincipal
 Code: Request_BadRequest
 Message: Cannot convert a primitive value to the expected type 'Edm.Boolean'. See the inner exception for more details."
             } 
