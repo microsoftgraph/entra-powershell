@@ -15,6 +15,11 @@
         if($null -ne $PSBoundParameters["AccountEnabled"])
         {
             $body["AccountEnabled"] = $PSBoundParameters["AccountEnabled"]
+            if ($body.AccountEnabled -ne $true -and $body.AccountEnabled -ne $false) {
+                Write-Error "Set-EntraBetaServicePrincipal : Error occurred while executing SetPolicy 
+Code: Request_BadRequest
+Message: Cannot convert a primitive value to the expected type 'Edm.Boolean'. See the inner exception for more details."
+            } 
         }
         if($null -ne $PSBoundParameters["AlternativeNames"])
         {
@@ -102,6 +107,10 @@
             }
             
             $params["PasswordCredentials"] = $a
+        }
+        if($null -ne $PSBoundParameters["ServicePrincipalType"])
+        {
+            $params["ServicePrincipalType"] = $PSBoundParameters["ServicePrincipalType"]
         }
         if($null -ne $PSBoundParameters["PublisherName"])
         {
