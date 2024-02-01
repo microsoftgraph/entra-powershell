@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Set-EntraAzureADAliases
+# Enable-EntraAzureADAlias
 
 ## SYNOPSIS
 {{ Fill in the Synopsis }}
@@ -13,7 +13,7 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-Set-EntraAzureADAliases
+Enable-EntraAzureADAlias
 ```
 
 ## DESCRIPTION
