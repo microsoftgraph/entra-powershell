@@ -29,6 +29,6 @@
       "Entra"
     ],
     "releaseNotes": "See https://github.com/microsoftgraph/entra-powershell.",
-    "version": "0.3.0",
+    "version": "0.5.0",
     "Prerelease": "preview"
   }
