@@ -5,6 +5,6 @@ This sample script is written using only AzureAD. It creates some users, a group
 ```PowerShell
 Connect-Graph
 Import-Module Microsoft.Graph.Entra
-Set-EntraAzureADAliases
+Enable-EntraAzureADAlias
 .\sampleGroups.ps1 -NumberOfUsers 2 -UserPrefix 'Test456_' -GroupName 'TestGroup456'
 ```

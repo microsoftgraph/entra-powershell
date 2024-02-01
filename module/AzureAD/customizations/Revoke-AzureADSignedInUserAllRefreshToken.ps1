@@ -6,25 +6,25 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {    
-        `$params = @{}        
-        `$params["UserId"] = (Get-MgContext).Account
-        if(`$PSBoundParameters.ContainsKey("Verbose"))
+        $params = @{}        
+
+        if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            `$params["Verbose"] = `$Null
+            $params["Verbose"] = $Null
         }                            
-        if(`$PSBoundParameters.ContainsKey("Debug"))
+        if($PSBoundParameters.ContainsKey("Debug"))
         {
-            `$params["Debug"] = `$Null
+            $params["Debug"] = $Null
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================``n")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================`n")
                 
-        `$response = Revoke-MgUserSignInSession @params        
-        `$response
-        }
-"@
+        $response = (Invoke-GraphRequest -Uri 'https://graph.microsoft.com/v1.0/me/revokeSignInSessions' -Method POST).value      
+        $response
+    }  
+'@
 }
