@@ -11,7 +11,7 @@
 #################################################################################
 Import-Module Microsoft.Graph.Entra
 Connect-MgGraph #Replaces Connect-AzureAD for auth
-Set-EntraAzureADAliases #Activate aliasing
+Enable-EntraAzureADAlias #Activate aliasing
 
 $Applications = Get-AzureADApplication -all $true
 $Logs = @()

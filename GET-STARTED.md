@@ -4,7 +4,7 @@ description: About Microsoft Entra PowerShell installation and usage guide.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 01/23/2024
+ms.date: 01/30/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -40,7 +40,7 @@ This module depends on the [Microsoft Graph PowerShell SDK](https://github.com/m
 
 ### Option 1 - Zipped folder option
 
-Download the latest [Microsoft Entra PowerShell release](https://github.com/microsoftgraph/entra-powershell/releases/download/0.4.0-preview/EntraPowerShell_0.4.0-preview.zip) zipped file. Follow the instructions as per this snippet.
+Download the latest [Microsoft Entra PowerShell release](https://github.com/microsoftgraph/entra-powershell/releases/download/0.5.0-preview/EntraPowerShell_0.5.0-preview.zip) zipped file. Follow the instructions as per this snippet.
 
 ```powershell
 # Let's assume the unpacked files are in c:\test\entra-powershell
@@ -79,12 +79,11 @@ To see all the possible options, refer to [MS Graph SDK authentication](https:
 1. Get all available commands in Microsoft Entra PowerShell module
 
 ```powershell
-(Get-Module -Name Microsoft.Graph.Entra).ExportedCommands
+Get-Command -Module Microsoft.Graph.Entra
 ```
-
 Replace `Microsoft.Graph.Entra` with `Microsoft.Graph.Entra.Beta` if you're using the `Beta` version of the module.
 
-1. Get the Microsoft Entra ID users
+2. Get the Microsoft Entra ID users
 
 ```powershell
 Get-EntraUser
@@ -92,7 +91,7 @@ Get-EntraUser
 
 This command returns all the users in your Microsoft Entra ID tenant.
 
-1. Getting Help
+3. Getting Help
 
 To be effective with the Microsoft Entra PowerShell, you need to use the Help system. `Get-Help` command helps you find commands to perform specific tasks and learn how to use those commands after you find them.  
 
@@ -108,7 +107,7 @@ To get examples, add the parameter `–Examples`.
 Get-Help Get-EntraUser -Examples
 ```
 
-1. Searching for a user
+4. Searching for a user
 
 ```powershell
 Get-EntraUser -SearchString "Adele" 
@@ -144,10 +143,10 @@ WARNING: Script contains commands that are not supported by the compatibility ad
 
 ## Aliasing AzureAD PowerShell commands
 
-Since Microsoft Entra PowerShell offers significant compatibility with the legacy AzureAD PowerShell module, running the `Set-EntraAzureADAliases` cmdlet creates aliases for all of the supported Azure AD PowerShell cmdlets in the Microsoft Entra PowerShell module.
+Since Microsoft Entra PowerShell offers significant compatibility with the legacy AzureAD PowerShell module, running the `Enable-EntraAzureADAlias` cmdlet creates aliases for all of the supported Azure AD PowerShell cmdlets in the Microsoft Entra PowerShell module.
 
 ```powershell
-Set-EntraAzureADAliases
+Enable-EntraAzureADAlias
 ```
 
 This command shows you all of the newly created aliases:
@@ -183,7 +182,7 @@ James has a long AzureAD PowerShell module based [script to export apps with exp
 ```powershell
 Import-Module Microsoft.Graph.Entra
 Connect-MgGraph #Replaces Connect-AzureAD for auth
-Set-EntraAzureADAliases #Activate aliasing 
+Enable-EntraAzureADAlias #Activate aliasing 
 ```
 
 > [!TIP]
