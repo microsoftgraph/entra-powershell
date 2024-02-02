@@ -414,6 +414,7 @@ public $($object.GetType().Name)()
         }
         $moduleSettings = @{
             Path = $manisfestPath
+            GUID = $($content.guid)
             ModuleVersion = "$($content.version)"
             FunctionsToExport = $functions
             Author =  $($content.authors)

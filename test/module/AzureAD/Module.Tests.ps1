@@ -28,7 +28,7 @@ Describe "Microsoft.Graph.Entra Module" {
 
         It 'Should lock GUID' {
             $PSModuleInfo = Get-Module Microsoft.Graph.Entra
-            $PSModuleInfo.Guid | Should -Be "50fbdc2c-9bbc-419c-9e6f-a9ee31582ffe"
+            $PSModuleInfo.Guid | Should -Be "742dccd1-bf4b-46a0-a3f2-14e0bb508233"
         }
 
         It "Module import should not write to error and information streams" {
