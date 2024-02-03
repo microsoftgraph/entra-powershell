@@ -1,7 +1,7 @@
 {
     "sourceModule" : "AzureADPreview",
-    "moduleName" : "Microsoft.Graph.Compatibility.AzureAD.Preview",
-    "newPrefix" : "CompatAD",
+    "moduleName" : "Microsoft.Graph.Entra.Beta",
+    "newPrefix" : "EntraBeta",
     "typePrefix" : "Microsoft.Open.",
     "destinationModuleName" : [
       "Microsoft.Graph.Beta.DirectoryObjects",

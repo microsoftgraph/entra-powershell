@@ -2,7 +2,7 @@
     "guid": "3a8a0270-121c-4455-845d-497458213f96",
     "authors": "Microsoft",
     "owners": "Microsoft",
-    "description": "Microsoft Graph PowerShell Compatibility Adapter Module For AzureAD Preview",
+    "description": "Microsoft Entra PowerShell Beta",
     "requireLicenseAcceptance": "true",
     "requiredModules" : [
       "Microsoft.Graph.Beta.Users",
@@ -18,7 +18,7 @@
     "requiredModulesVersion": "2.4.0",
     "copyright": "© Microsoft Corporation. All rights reserved.",
     "licenseUri": "https://aka.ms/devservicesagreement",
-    "projectUri": " https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread",
+    "projectUri": " https://github.com/microsoftgraph/entra-powershell",
     "iconUri": "https://raw.githubusercontent.com/microsoftgraph/msgraph-sdk-powershell/master/documentation/images/graph_color256.png",
     "tags": [
       "MicrosoftGraph",
@@ -27,9 +27,10 @@
       "PowerShell",
       "AzureAD",
       "AzureADPreview",
-      "PSModule"
+      "PSModule",
+      "Entra"
     ],
-    "releaseNotes": "See https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread.",
-    "version": "0.1.0",
+    "releaseNotes": "See https://github.com/microsoftgraph/entra-powershell.",
+    "version": "0.5.0",
     "Prerelease": "preview"
   }

@@ -6,7 +6,9 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
-    (Get-MgApplication -ApplicationId `$PSBoundParameters["ObjectId"]).KeyCredentials
-"@
+    CustomScript = @'
+     PROCESS {
+    (Get-MgApplication -ApplicationId $PSBoundParameters["ObjectId"]).KeyCredentials
+    }
+'@
 }
