@@ -73,7 +73,6 @@ class CompatibilityAdapterBuilder {
     # Generates the module then generates all the files required to create the module.
     BuildModule() {
         $this.WriteModuleFile()           
-        $this.GenerateHelpFiles()
         $this.WriteModuleManifest()             
     }
     
@@ -140,10 +139,13 @@ class CompatibilityAdapterBuilder {
     }
 
     hidden GenerateHelpFiles() {
-        $helpPath = Join-Path $this.OutputFolder "$($this.ModuleName)-Help.xml"
-        $this.GetHelpHeader() | Set-Content -Path $helpPath
-        $this.GetHelpCommandsFromFiles($helpPath)
-        $this.GetHelpFooter() | Add-Content -Path $helpPath
+        foreach($file in Get-ChildItem -Path $this.HelpFolder -Filter "*.xml") {
+            Copy-Item $file.FullName $this.OutputFolder -Force
+        }
+        #$helpPath = Join-Path $this.OutputFolder "$($this.ModuleName)-Help.xml"
+        #$this.GetHelpHeader() | Set-Content -Path $helpPath
+        #$this.GetHelpCommandsFromFiles($helpPath)
+        #$this.GetHelpFooter() | Add-Content -Path $helpPath
     }
 
     hidden [string] GetHelpHeader() {
@@ -340,7 +342,11 @@ $extraFunctions
         if(1 -eq $object.GetType().GetProperties().Count){
 
             $constructor = @"
-public $($object.GetType().Name)($name value)
+public $($object.GetType().Name)()
+        {        
+        }
+        
+        public $($object.GetType().Name)($name value)
         {
             $($object.GetType().GetProperties()[0].Name) = value;
         }
@@ -401,13 +407,14 @@ public $($object.GetType().Name)($name value)
             Prerelease = $null
         }
         $manisfestPath = Join-Path $this.OutputFolder "$($this.ModuleName).psd1"
-        $functions = $this.ModuleMap.CommandsList + "Set-CompatADAlias" + "Get-CompatADUnsupportedCommand"
+        $functions = $this.ModuleMap.CommandsList + "Enable-EntraAzureADAlias" + "Get-EntraUnsupportedCommand"
         $requiredModules = @()
         foreach($module in $content.requiredModules){
             $requiredModules += @{ModuleName = $module; ModuleVersion = $content.requiredModulesVersion}
         }
         $moduleSettings = @{
             Path = $manisfestPath
+            GUID = $($content.guid)
             ModuleVersion = "$($content.version)"
             FunctionsToExport = $functions
             Author =  $($content.authors)
@@ -465,7 +472,7 @@ public $($object.GetType().Name)($name value)
 
     hidden [scriptblock] GetUnsupportedCommand(){
         $unsupported = @"
-function Get-CompatADUnsupportedCommand {
+function Get-EntraUnsupportedCommand {
     Throw [System.NotSupportedException] "This commands is currently not supported by the Microsoft Graph Compatibility Adapter."
 }
 
@@ -481,10 +488,10 @@ function Get-CompatADUnsupportedCommand {
                 $aliases += "   Set-Alias -Name $($func.SourceName) -Value $($func.Name) -Scope Global -Force`n"
             }
             foreach ($func in $this.MissingCommandsToMap) {
-                $aliases += "   Set-Alias -Name $($func) -Value Get-CompatADUnsupportedCommand -Scope Global -Force`n"
+                $aliases += "   Set-Alias -Name $($func) -Value Get-EntraUnsupportedCommand -Scope Global -Force`n"
             }
     $aliasFunction = @"
-function Set-CompatADAlias {
+function Enable-EntraAzureADAlias {
 $($aliases)}
 
 "@
@@ -496,8 +503,8 @@ $($aliases)}
 
     hidden [scriptblock] GetExportMemeber() {
         $CommandsToExport = $this.ModuleMap.CommandsList
-        $CommandsToExport += "Get-CompatADUnsupportedCommand"
-        $CommandsToExport += "Set-CompatADAlias"
+        $CommandsToExport += "Get-EntraUnsupportedCommand"
+        $CommandsToExport += "Enable-EntraAzureADAlias"
         $functionsToExport = @"
 
 Export-ModuleMember -Function @(
@@ -510,7 +517,7 @@ Export-ModuleMember -Function @(
 
     hidden [scriptblock] SetMissingCommands() {
         $missingCommands = @"
-Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList -Join "','")') -Scope Global -Option ReadOnly -Force
+Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList -Join "','")') -Scope Script -Option ReadOnly -Force
 
 "@
         return [Scriptblock]::Create($missingCommands)
@@ -589,12 +596,18 @@ $OutputTransformations
             }
             $param = $params[$paramKey]
             $paramType = $param.ParameterType.ToString()
+            $paramtypeToCreate = $param.ParameterType.ToString()
             if(($null -ne $this.TypePrefix) -and ($paramType -like "*$($this.TypePrefix)*")){
-                if(($paramType -like "*List*") -or ($paramType -like "*Nullable*")){
-                    $paramType = $param.ParameterType.GenericTypeArguments.FullName
+                if($paramType -like "*List*"){
+                    $paramType = "System.Collections.Generic.List``1[$($param.ParameterType.GenericTypeArguments.FullName)]"
+                    $paramtypeToCreate = $param.ParameterType.GenericTypeArguments.FullName
                 }
-                if(!$this.TypesToCreate.Contains($paramType)) {
-                    $this.TypesToCreate += $paramType
+                elseif($paramType -like "*Nullable*"){
+                    $paramType = "System.Nullable``1[$($param.ParameterType.GenericTypeArguments.FullName)]"
+                    $paramtypeToCreate = $param.ParameterType.GenericTypeArguments.FullName
+                }
+                if(!$this.TypesToCreate.Contains($paramtypeToCreate)) {
+                    $this.TypesToCreate += $paramtypeToCreate
                 }                
             }           
             $paramBlock = @"
@@ -626,7 +639,7 @@ $OutputTransformations
             $strAttrib = $arrayAttrib -Join ', '
 
             if($strAttrib.Length -gt 0){
-                $attributesString = "[Parameter($strAttrib)]"
+                $attributesString += "[Parameter($strAttrib)]`n    "
             }
         }
 
@@ -654,6 +667,9 @@ $OutputTransformations
             }
             elseif([TransformationTypes]::ScriptBlock -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterCustom($param)
+            }
+            elseif([TransformationTypes]::Remove -eq $param.ConversionType){
+                $paramBlock = $this.GetParameterException($param)
             }
             
             $paramsList += $paramBlock            
@@ -951,11 +967,11 @@ $($output)
                 $genericParam = $this.GenericParametersTransformations[$param.Name]
                 if(5 -eq $genericParam.ConversionType){
                     $tempName = "$($Cmdlet.Noun)$($genericParam.TargetName)"
-                    if($targetCmd.Parameters.ContainsKey($genericParam.TargetName)){
-                        $paramObj.SetTargetName($genericParam.TargetName)
-                    }
-                    elseif($targetCmd.Parameters.ContainsKey($tempName)){
+                    if($targetCmd.Parameters.ContainsKey($tempName)){
                         $paramObj.SetTargetName($tempName)
+                    }
+                    elseif($targetCmd.Parameters.ContainsKey($genericParam.TargetName)){                       
+                        $paramObj.SetTargetName($genericParam.TargetName)
                     }
                     else
                     {

@@ -4,6 +4,19 @@
 @{
     SourceName = "Set-AzureADUserThumbnailPhoto"
     TargetName = "Set-MgUserPhotoContent"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "ObjectId"
+            TargetName = "UserId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        },
+        @{
+            SourceName = "FilePath"
+            TargetName = "InFile"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
     Outputs = $null
 }

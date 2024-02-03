@@ -6,51 +6,86 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {    
-        `$params = @{}  
-        `$filter = ""
-        if(`$null -ne `$PSBoundParameters["Filter"])
+        $params = @{}
+
+        $keysChanged = @{SearchString = "Filter"; ObjectId = "Id"}
+
+        if($null -ne $PSBoundParameters["SearchString"])
         {
-            `$filter += `$PSBoundParameters["Filter"]            
+            $TmpValue = $PSBoundParameters["SearchString"]
+            $Value = "displayName eq '$TmpValue' or startswith(displayName,'$TmpValue')"
+            $params["Filter"] = $Value
         }
-        if(`$null -ne `$PSBoundParameters["SearchString"])
+        
+        if($null -ne $PSBoundParameters["Filter"])
         {
-            `$filterValue += `$PSBoundParameters["SearchString"]
-            `$filter += "```$filter=startswith(displayName,'`$filterValue')"
+            $TmpValue = $PSBoundParameters["Filter"]
+            foreach($i in $keysChanged.GetEnumerator()){
+                $TmpValue = $TmpValue.Replace($i.Key, $i.Value)
+            }
+            $Value = $TmpValue
+            $params["Filter"] = $Value
         }
-        if(`$null -ne `$PSBoundParameters["Top"])
+        
+        if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            `$topValue = `$PSBoundParameters["Top"]
-            `$filter += "```$top=```$topValue"
+            $params["Verbose"] = $Null
         }
-        if(`$PSBoundParameters.ContainsKey("Debug"))
+        
+        if($null -ne $PSBoundParameters["All"])
         {
-            `$params["Debug"] = `$Null
-        }
-        if(`$null -ne `$PSBoundParameters["All"])
-        {
-            if(`$PSBoundParameters["All"])
+            if($PSBoundParameters["All"])
             {
-                `$filter += "```$top=999"
-            }            
+                $params["All"] = $Null
+            }
         }
-        if(`$PSBoundParameters.ContainsKey("Verbose"))
+        
+        if($PSBoundParameters.ContainsKey("Debug"))
         {
-            `$params["Verbose"] = `$Null
+            $params["Debug"] = $Null
+        }
+        
+        if($null -ne $PSBoundParameters["Top"])
+        {
+            $params["Top"] = $PSBoundParameters["Top"]
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================``n")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================`n")
         
-        `$apiResponse =  Invoke-GraphRequest -Uri "/v1.0/directory/deleteditems/microsoft.graph.application?`$filter"
-        `$response = `$apiResponse.Value | Select-Object -Property id, appId, displayName
-        `$response | ForEach-Object {
-            Add-Member -InputObject `$_ -MemberType AliasProperty -Name ObjectId -Value Id    
+        $response = Get-MgDirectoryDeletedItemAsApplication @params
+        
+        $response | ForEach-Object {
+            if($null -ne $_) {
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+                
+                $propsToConvert = @(
+                     'AddIns','AppRoles','GroupMembershipClaims','IdentifierUris','Info',
+                     'IsDeviceOnlyAuthSupported','KeyCredentials','OptionalClaims',
+                     'ParentalControlSettings','PasswordCredentials','Api','PublicClient',
+                     'PublisherDomain','Web','RequiredResourceAccess')
+                     
+                foreach ($prop in $propsToConvert) {
+                    $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
+                    $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
+                }
+               
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name AppLogoUrl -Value Logo
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name InformationalUrls -Value Info
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name HomePage -Value Web.HomePageUrl
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name LogoutUrl -Value Web.LogoutUrl
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ReplyUrls -Value Web.RedirectUris
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name KnownClientApplications -Value Api.KnownClientApplications
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name PreAuthorizedApplications -Value	Api.PreAuthorizedApplications
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name Oauth2AllowImplicitFlow -Value Web.Oauth2AllowImplicitFlow
+            }
+                
         }
-
-        `$response
-    }
-"@
+        
+        $response
+        }
+'@
 }

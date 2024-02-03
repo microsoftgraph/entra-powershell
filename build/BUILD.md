@@ -1,61 +1,104 @@
 ## Building module
 
-Clone module and follow the instructions. You need **Microsoft.Graph PowerShell module installed** in order to build the module.
+Clone the module and follow the instructions described. You need **Microsoft.Graph PowerShell version 2.4** in order to build the module. We support building based on AzureAD or AzureADPreview PowerShell modules.
 
 ```powershell
-git clone https://github.com/microsoftgraph/msgraph-ps-compatibility-azuread.git
-cd ./Microsoft.Graph.Compatibility.AzureAD
+git clone https://github.com/microsoftgraph/entra-powershell.git
+cd entra-powershell
 ```
 
-### Install dependecies
+### Install dependencies
 
-This module depends on AzureAD PowerShell and Microsoft.Graph the following command install the required dependencies.
+This module depends on AzureAD PowerShell and Microsoft.Graph. The following command installs the required dependencies.
 
 ```powershell
-.\build\Install-Dependencies.ps1
+# For the default install
+.\build\Install-Dependencies.ps1 -ModuleName AzureAD
 ```
-
-
-### Build
+To install the preview version, run the command:
 
 ```powershell
-.\build\Create-CompatModule.ps1
+.\build\Install-Dependencies.ps1 -ModuleName AzureADPreview
 ```
-
-
-Generated module will be in the output folder `./bin/modules`
-
-## Installing
-
-If you want to test the generated version you can use this command
+### Build help
+The module help files are generated from markdown documentation (using platyPS module). To install PlatyPS module, run the command `Install-Module -Name PlatyPS`.
 
 ```powershell
-Create-ModuleFolder
-.\build\Publish-LocalCompatModule.ps1 -Clean -Install
+. .\build\Common-functions.ps1
+Create-ModuleHelp -Module AzureAD // or AzureADPreview
+```
+### Build module
+Use a clean PowerShell session when you're building the module. The building process attempts to load the required versions of the module, which fails if another version of the dependencies is already loaded.
+
+```powershell
+.\build\Create-CompatModule.ps1 -Module AzureAD // or AzureADPreview
 ```
 
-This will publish the module to a local repository and install the module.
+Generated module is in the output folder `./bin`
+In order to import it, you need to run `Import-Module .\bin\Microsoft.Graph.Entra.psd1 -Force`
 
 ## Usage
 
-Import the module and test the generated commands
+Import the module and test the generated commands.
 
 ```powershell
-#If you installed the test build locally just do:
-Import-Module Microsoft.Graph.Compatibility.AzureAD -Force
-#If not you need to import it from the bin folder:
-Import-Module .\bin\Microsoft.Graph.Compatibility.AzureAD.psd1 -Force
+Import-Module .\bin\Microsoft.Graph.Entra.psd1 -Force
 Connect-Graph
-Get-CompatADUser
+Get-EntraUser
 ```
 
-## Testing as AzureAD
+## Testing as AzureAD PowerShell module
 
-You can use the command `Set-CompatADAlias` to enable alias to emulate AzureAD commands. You need to remove AzureAD to avoid collisions `Remove-Module AzureAD`
+You can use the command `Enable-EntraAzureADAlias` to enable aliases to emulate AzureAD PowerShell module commands. You need to remove AzureAD to avoid collisions via the command `Remove-Module AzureAD`
 
 ```powershell
-Import-Module Microsoft.Graph.Compatibility.AzureAD -Force
-Set-CompatADAlias
+Enable-EntraAzureADAlias
 Connect-Graph
 Get-AzureADUser
+```
+
+## Installing a test version (Optional)
+
+Install a test version (optional), which is recommended if you're trying to test with automation, which tries to load the module from the default PowerShell modules folder.
+
+```powershell
+. .\build\Common-functions.ps1
+Create-ModuleFolder
+Register-LocalGallery
+.\build\Publish-LocalCompatModule.ps1 -Install
+Unregister-LocalGallery
+#When you install, you can load the module without the Path to the files.
+Import-Module Microsoft.Graph.Entra.psd1 -Force
+```
+
+The snippet in the optional testing section publishes the module to a local repository and installs the module.
+
+## FAQs
+
+1. Installation error: `cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.`
+
+To solve this error, run the command:
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+2. Installation error: `Function <cmdlet-name> cannot be created because function capacity 4096 has been exceeded for this scope.`
+
+To solve this error, run the command:
+
+```powershell
+$MaximumFunctionCount=32768
+```
+
+or
+
+Use the latest version of PowerShell 7+ as the runtime version (highly recommended).
+
+3. Build Help error: `New-ExternalHelp : The term 'New-ExternalHelp' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again. `.
+
+To solve this error, install PlatyPS module by running the command below:
+
+```powershell
+Install-Module -Name PlatyPS
 ```
