@@ -4,21 +4,21 @@ description: About Microsoft Entra PowerShell.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 11/29/2023
+ms.date: 01/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 ---
-# Microsoft Entra PowerShell
+# Microsoft Entra PowerShell (preview)
 
-The Microsoft Entra PowerShell is a collection of cmdlets that helps access Microsoft Entra resources using the [Microsoft Graph SDK](https://github.com/microsoftgraph/msgraph-sdk-powershell). The module primarily functions as a usability layer with human-readable parameters, deliberate parameter set specification, inline documentation, and core PowerShell fundamentals like pipelining.
+Microsoft Entra PowerShell (preview), a PowerShell module for Microsoft Entra, based on usability feedback from customers. Microsoft Entra PowerShell is meticulously designed to deliver a delightful, usable, and high-quality collection of PowerShell cmdlets for Entra administrators. The module offers human-readable parameters, deliberate parameter set specification, inline documentation, and core PowerShell fundamentals like pipelining.
 
-While the Microsoft Entra PowerShell module provides significant compatibility with the legacy modules (such as Azure AD PowerShell), that can accelerate migration to Microsoft Graph as a significant benefit, the Microsoft Entra module remains as a long-term, perpetual product offering.
+Microsoft Entra PowerShell module also provides significant compatibility with the legacy modules (such as Azure AD PowerShell), that can facilitate migration to Microsoft Graph as a benefit.  We intend to expand Microsoft Entra resource and scenario support in Microsoft Entra PowerShell over time.
 
 <p align="center">
    <a href="MOTIVATION.md">Our Motivation</a> |
-  <a href="GET-STARTED.md">Installation & Usage</a> |
+  <a href="GET-STARTED.md">Get-Started: Installation & Usage</a> |
   <a href="#contributing">Contributing</a> |
   <a href="#known-issues">Known Issues</a> |
   <a href="#license">License</a>
@@ -27,6 +27,9 @@ While the Microsoft Entra PowerShell module provides significant compatibility w
 <p align="center">
 <strong>This module is under development. It's NOT READY for Production environments.</strong>
 </p>
+
+> [!NOTE]  
+> We are continually improving Microsoft Entra PowerShell throughout the private preview phase and beyond. Keep your module current by applying updates as soon as we notify you of a new version. Module updates will be done on regular cadence.
 
 ## Repository Visibility Notice
 >
@@ -59,6 +62,7 @@ To contribute, check [contribution guide](CONTRIBUTING.md).
   - Parameter -Filter might not work correctly
   - Parameter -SearchString don't currently work
   - Output objects might be different
+- "Assembly with same name is already loaded" - when there are multiple versions of `Microsoft.Graph.Authentication` modules installed.
 
 ## Issues
 

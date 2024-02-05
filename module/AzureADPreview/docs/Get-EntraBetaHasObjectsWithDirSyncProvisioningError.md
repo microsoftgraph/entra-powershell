@@ -1,18 +1,18 @@
 ---
-external help file: Microsoft.Graph.Entra-help.xml
-Module Name: Microsoft.Graph.Entra
+external help file: Microsoft.Graph.Entra.Beta-help.xml
+Module Name: Microsoft.Graph.Entra.Beta
 online version:
 schema: 2.0.0
 ---
 
-# Get-EntraHasObjectsWithDirSyncProvisioningErrors
+# Get-EntraBetaHasObjectsWithDirSyncProvisioningError
 
 ## SYNOPSIS
 
 ## SYNTAX
 
 ```
-Get-EntraHasObjectsWithDirSyncProvisioningErrors [-TenantId <Guid>] [<CommonParameters>]
+Get-EntraBetaHasObjectsWithDirSyncProvisioningError [-TenantId <Guid>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
