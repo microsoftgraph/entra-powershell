@@ -6,7 +6,7 @@ BeforeAll {
 
 Describe 'Checking Files'{
     BeforeAll {
-        $files = Get-ChildItem -Path (join-path $psscriptroot "..\..\..\module\AzureADPreview\AdditionalFunctions") -Filter '*.ps1'        
+        $files = Get-ChildItem -Path (join-path $psscriptroot "..\..\..\module\EntraBeta\AdditionalFunctions") -Filter '*.ps1'        
     }
 
     It 'Checking that AdditionalFunctions produce commands' {
