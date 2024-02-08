@@ -13,6 +13,7 @@ Describe 'Checking Files'{
     It 'Checking naming conventios' {
         $files | ForEach-Object {
             $name = $_.Name -ireplace ".ps1",""
+            $name = $name -ireplace "Entra","AzureAD"
             if(("Generic" -ne $name) -and ("Types" -ne $name)){
                 Write-Host "Checking $name"
                 $value = . $_.FullName
