@@ -3,7 +3,10 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Remove-AzureADServicePrincipalPasswordCredential"
-    TargetName = "Remove-MgServicePrincipalPassword"
+    TargetName = $null
     Parameters = $null
     Outputs = $null
+    CustomScript = @'
+    Remove-MgServicePrincipalPassword -ServicePrincipalId $PSBoundParameters["ObjectId"] -KeyId $PSBoundParameters["KeyId"]
+'@
 }
