@@ -4,7 +4,7 @@ description: About Microsoft Entra PowerShell installation and usage guide.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 01/30/2024
+ms.date: 02/07/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -57,6 +57,8 @@ Import-Module Microsoft.Graph.Entra -Force
 # or for beta
 Import-Module Microsoft.Graph.Entra.Beta -Force
 ```
+> [!TIP]
+> If you are using PowerShell 5.1, you may experience the error `Function <cmdlet-name> cannot be created because function capacity 4096 has been exceeded for this scope`. To fix this error, run the command: `$MaximumFunctionCount=32768`.
 
 ### Option 2 - Build the module locally
 
