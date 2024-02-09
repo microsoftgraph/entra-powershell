@@ -43,9 +43,12 @@ Import the module and test the generated commands.
 
 ```powershell
 Import-Module .\bin\Microsoft.Graph.Entra.psd1 -Force
-Connect-Graph
-Get-EntraUser
+Connect-MgGraph -Scopes "User.Read.All"
+Get-EntraUser -Top 10
 ```
+
+> [!TIP]
+> If you are using PowerShell 5.1, you may experience the error `Function <cmdlet-name> cannot be created because function capacity 4096 has been exceeded for this scope`. To fix this error, run the command: `$MaximumFunctionCount=32768`. 
 
 ## Testing as AzureAD PowerShell module
 
