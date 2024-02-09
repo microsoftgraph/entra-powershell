@@ -1,6 +1,6 @@
 ## Building module
 
-Clone the module and follow the instructions described. You need **Microsoft.Graph PowerShell version 2.4** in order to build the module. We support building based on AzureAD or AzureADPreview PowerShell modules.
+Clone the module and follow the instructions described. You need **Microsoft.Graph PowerShell version 2.4** in order to build the module. We support building based on Entra or EntraBeta PowerShell modules.
 
 ```powershell
 git clone https://github.com/microsoftgraph/entra-powershell.git
@@ -9,16 +9,16 @@ cd entra-powershell
 
 ### Install dependencies
 
-This module depends on AzureAD PowerShell and Microsoft.Graph. The following command installs the required dependencies.
+This module depends on Entra PowerShell and Microsoft.Graph. The following command installs the required dependencies.
 
 ```powershell
 # For the default install
-.\build\Install-Dependencies.ps1 -ModuleName AzureAD
+.\build\Install-Dependencies.ps1 -ModuleName Entra
 ```
 To install the preview version, run the command:
 
 ```powershell
-.\build\Install-Dependencies.ps1 -ModuleName AzureADPreview
+.\build\Install-Dependencies.ps1 -ModuleName EntraBeta
 ```
 ### Build help
 The module help files are generated from markdown documentation (using platyPS module). To install PlatyPS module, run the command `Install-Module -Name PlatyPS`.
