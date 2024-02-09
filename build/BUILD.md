@@ -25,13 +25,13 @@ The module help files are generated from markdown documentation (using platyPS m
 
 ```powershell
 . .\build\Common-functions.ps1
-Create-ModuleHelp -Module AzureAD // or AzureADPreview
+Create-ModuleHelp -Module Entra // or EntraBeta
 ```
 ### Build module
 Use a clean PowerShell session when you're building the module. The building process attempts to load the required versions of the module, which fails if another version of the dependencies is already loaded.
 
 ```powershell
-.\build\Create-CompatModule.ps1 -Module AzureAD // or AzureADPreview
+.\build\Create-CompatModule.ps1 -Module Entra // or EntraBeta
 ```
 
 Generated module is in the output folder `./bin`
@@ -43,13 +43,16 @@ Import the module and test the generated commands.
 
 ```powershell
 Import-Module .\bin\Microsoft.Graph.Entra.psd1 -Force
-Connect-Graph
-Get-EntraUser
+Connect-MgGraph -Scopes "User.Read.All"
+Get-EntraUser -Top 10
 ```
+
+> [!TIP]
+> If you are using PowerShell 5.1, you may experience the error `Function <cmdlet-name> cannot be created because function capacity 4096 has been exceeded for this scope`. To fix this error, run the command: `$MaximumFunctionCount=32768`. 
 
 ## Testing as AzureAD PowerShell module
 
-You can use the command `Enable-EntraAzureADAlias` to enable aliases to emulate AzureAD PowerShell module commands. You need to remove AzureAD to avoid collisions via the command `Remove-Module AzureAD`
+You can use the command `Enable-EntraAzureADAlias` to enable aliases to emulate AzureAD PowerShell module commands. You need to remove Entra to avoid collisions via the command `Remove-Module Entra`
 
 ```powershell
 Enable-EntraAzureADAlias
