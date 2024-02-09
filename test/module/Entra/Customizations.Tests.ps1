@@ -7,12 +7,13 @@ BeforeAll {
 
 Describe 'Checking Files'{
     BeforeAll {
-        $files = Get-ChildItem -Path (join-path $psscriptroot "..\..\..\module\AzureAD\customizations") -Filter '*.ps1'        
+        $files = Get-ChildItem -Path (join-path $psscriptroot "..\..\..\module\Entra\customizations") -Filter '*.ps1'        
     }
 
     It 'Checking naming conventios' {
         $files | ForEach-Object {
             $name = $_.Name -ireplace ".ps1",""
+            $name = $name -ireplace "Entra","AzureAD"
             if(("Generic" -ne $name) -and ("Types" -ne $name)){
                 Write-Host "Checking $name"
                 $value = . $_.FullName
