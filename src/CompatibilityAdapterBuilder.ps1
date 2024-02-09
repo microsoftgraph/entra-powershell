@@ -27,7 +27,7 @@ class CompatibilityAdapterBuilder {
 
     # Constructor that changes the output folder, load all the Required Modules and creates the output folder.
     CompatibilityAdapterBuilder() {  
-        $this.BasePath = (join-path $PSScriptRoot '../module/AzureAD/')    
+        $this.BasePath = (join-path $PSScriptRoot '../module/Entra/')    
         $this.HelpFolder = (join-path $this.BasePath './help')
         $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
     }
@@ -42,7 +42,7 @@ class CompatibilityAdapterBuilder {
     CompatibilityAdapterBuilder([bool] $notRunningUT = $false){
         if($notRunningUT)
         {
-            $this.BasePath = (join-path $PSScriptRoot '../module/AzureAD/')    
+            $this.BasePath = (join-path $PSScriptRoot '../module/Entra/')    
             $this.HelpFolder = (join-path $this.BasePath './help')
             $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
         }                
@@ -421,7 +421,7 @@ public $($object.GetType().Name)()
             CompanyName = $($content.owners)
             FileList = $files
             RootModule = "$($this.ModuleName).psm1" 
-            Description = 'Microsoft Graph PowerShell Compatibility for AzureAD.'    
+            Description = 'Microsoft Graph Entra PowerShell.'    
             DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2')) 
             PowerShellVersion = $([System.Version]::Parse('5.1'))
             CompatiblePSEditions = @('Desktop','Core')
@@ -473,7 +473,7 @@ public $($object.GetType().Name)()
     hidden [scriptblock] GetUnsupportedCommand(){
         $unsupported = @"
 function Get-EntraUnsupportedCommand {
-    Throw [System.NotSupportedException] "This commands is currently not supported by the Microsoft Graph Compatibility Adapter."
+    Throw [System.NotSupportedException] "This commands is currently not supported by the Microsoft Graph Entra PowerShell."
 }
 
 "@
