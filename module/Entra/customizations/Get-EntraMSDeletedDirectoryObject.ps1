@@ -5,5 +5,12 @@
     SourceName = "Get-AzureADMSDeletedDirectoryObject"
     TargetName = "Get-MgDirectoryDeletedItem"
     Parameters = $null
-    Outputs = $null
+    Outputs = @(
+        @{
+            SourceName = "AdditionalProperties"
+            TargetName = "AdditionalProperties"
+            ConversionType = "FlatObject"
+            SpecialMapping = $null
+        }
+    )
 }
