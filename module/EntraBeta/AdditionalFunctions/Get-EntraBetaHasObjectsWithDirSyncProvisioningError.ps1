@@ -23,11 +23,15 @@ function Get-EntraBetaHasObjectsWithDirSyncProvisioningError {
         $Object = @("users", "groups", "contacts")
         $response = @()
         
-        foreach ($obj in $object) {
-            $obj = ($obj | Out-String).trimend()
-            $uri = 'https://graph.microsoft.com/beta/' + $obj + '?$select=onPremisesProvisioningErrors'
-            $response += ((Invoke-GraphRequest -Uri $uri -Method GET).value).onPremisesProvisioningErrors
+        try {
+            foreach ($obj in $object) {
+                $obj = ($obj | Out-String).trimend()
+                $uri = 'https://graph.microsoft.com/beta/' + $obj + '?$select=onPremisesProvisioningErrors'
+                $response += ((Invoke-GraphRequest -Uri $uri -Method GET).value).onPremisesProvisioningErrors
+            } 
         }
+        catch {}
+        
         if ([string]::IsNullOrWhiteSpace($response)) {
             write-host "False"
         }
