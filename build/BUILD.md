@@ -1,6 +1,6 @@
 ## Building module
 
-Clone the module and follow the instructions described. You need **Microsoft.Graph PowerShell version 2.4** in order to build the module. We support building based on Entra or EntraBeta PowerShell modules.
+Clone the module and follow the instructions described. You need **Microsoft.Graph PowerShell version 2.4** in order to build the module.
 
 ```powershell
 git clone https://github.com/microsoftgraph/entra-powershell.git
@@ -9,23 +9,31 @@ cd entra-powershell
 
 ### Install dependencies
 
-This module depends on Entra PowerShell and Microsoft.Graph. The following command installs the required dependencies.
+This module depends on some Microsoft Graph PowerShell modules. The following command installs the required dependencies.
 
 ```powershell
-# For the default install
+# Install dependencies required to build the Microsoft Entra PowerShell General Availability (GA)
 .\build\Install-Dependencies.ps1 -ModuleName Entra
 ```
-To install the preview version, run the command:
+
+or
 
 ```powershell
+# Install the dependencies for the Microsoft Entra PowerShell preview
 .\build\Install-Dependencies.ps1 -ModuleName EntraBeta
 ```
 ### Build help
 The module help files are generated from markdown documentation (using platyPS module). To install PlatyPS module, run the command `Install-Module -Name PlatyPS`.
 
 ```powershell
+# Install PlatyPS module
+Install-Module -Name PlatyPS
+```
+
+```powershell
+# Build help module for the Microsoft Entra Module
 . .\build\Common-functions.ps1
-Create-ModuleHelp -Module Entra // or EntraBeta
+Create-ModuleHelp -Module Entra // or EntraBeta for the preview version
 ```
 ### Build module
 Use a clean PowerShell session when you're building the module. The building process attempts to load the required versions of the module, which fails if another version of the dependencies is already loaded.
@@ -34,7 +42,7 @@ Use a clean PowerShell session when you're building the module. The building pro
 .\build\Create-CompatModule.ps1 -Module Entra // or EntraBeta
 ```
 
-Generated module is in the output folder `./bin`
+The generated module is in the output folder `./bin`
 In order to import it, you need to run `Import-Module .\bin\Microsoft.Graph.Entra.psd1 -Force`
 
 ## Usage
@@ -48,11 +56,15 @@ Get-EntraUser -Top 10
 ```
 
 > [!TIP]
-> If you are using PowerShell 5.1, you may experience the error `Function <cmdlet-name> cannot be created because function capacity 4096 has been exceeded for this scope`. To fix this error, run the command: `$MaximumFunctionCount=32768`. 
+> If you are using PowerShell 5.1, you may experience the error `Function <cmdlet-name> cannot be created because function capacity 4096 has been exceeded for this scope`. To fix this error, run the command: `$MaximumFunctionCount=32768`, then retry importing the module again.
+
+```powershell
+$MaximumFunctionCount=32768
+```
 
 ## Testing as AzureAD PowerShell module
 
-You can use the command `Enable-EntraAzureADAlias` to enable aliases to emulate AzureAD PowerShell module commands. You need to remove Entra to avoid collisions via the command `Remove-Module Entra`
+For migration scenarios (if you have a script with AzureAD commands), you can use the command `Enable-EntraAzureADAlias` to enable aliases to emulate AzureAD PowerShell module commands. You need to remove AzureAD and AzureAD Preview modules to avoid collisions via the command `Remove-Module AzureAD` or `Remove-Module AzureADPreview`
 
 ```powershell
 Enable-EntraAzureADAlias
