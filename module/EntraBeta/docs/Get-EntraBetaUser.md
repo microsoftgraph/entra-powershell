@@ -48,7 +48,7 @@ Get-EntraBetaUser
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaUser cmdlet gets a user from Azure Active Directory (AD).
+The Get-EntraBetaUser cmdlet gets a user from a Microsoft Entra ID.
 
 ## EXAMPLES
 
