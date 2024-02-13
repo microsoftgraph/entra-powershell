@@ -1,4 +1,14 @@
 ---
+title: Get-EntraUser
+description: This article provides details on the Get-EntraUser command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -14,17 +24,27 @@ Gets a user.
 
 ### GetQuery (Default)
 ```
-Get-EntraUser [-Filter <String>] [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraUser 
+[-Filter <String>] 
+[-All <Boolean>] 
+[-Top <Int32>] 
+[<CommonParameters>]
 ```
 
 ### GetVague
 ```
-Get-EntraUser [-SearchString <String>] [-All <Boolean>] [<CommonParameters>]
+Get-EntraUser 
+[-SearchString <String>] 
+[-All <Boolean>] 
+[<CommonParameters>]
 ```
 
 ### GetById
 ```
-Get-EntraUser -ObjectId <String> [-All <Boolean>] [<CommonParameters>]
+Get-EntraUser 
+-ObjectId <String> 
+[-All <Boolean>] 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
