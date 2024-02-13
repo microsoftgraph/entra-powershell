@@ -16,6 +16,12 @@ This module does not require the full SDK, only these modules:
 - Microsoft.Graph.Identity.SignIns
 - Microsoft.Graph.Applications
 
+- Microsoft.Graph.Beta.Users
+- Microsoft.Graph.Beta.Users.Actions
+- Microsoft.Graph.Beta.Users.Functions
+- Microsoft.Graph.Beta.Groups
+- Microsoft.Graph.Beta.Applications
+
 ## Installing a preview version on PS 5.1
 
 For Windows PowerShell users, you must update your tools to allow the prerelease version.

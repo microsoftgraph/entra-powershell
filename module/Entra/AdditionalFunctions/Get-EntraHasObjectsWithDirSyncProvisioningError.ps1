@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-function Get-EntraBetaHasObjectsWithDirSyncProvisioningError {
+function Get-EntraHasObjectsWithDirSyncProvisioningError {
     [CmdletBinding(DefaultParameterSetName = 'GetById')]
     param (
         [Parameter(ParameterSetName = "GetById")][ValidateNotNullOrEmpty()][ValidateScript({if ($_ -is [System.Guid]) { $true } else {throw "TenantId must be of type [System.Guid]."}})][System.Guid] $TenantId
@@ -23,11 +23,14 @@ function Get-EntraBetaHasObjectsWithDirSyncProvisioningError {
         $Object = @("users", "groups", "contacts")
         $response = @()
         
-        foreach ($obj in $object) {
-            $obj = ($obj | Out-String).trimend()
-            $uri = 'https://graph.microsoft.com/beta/' + $obj + '?$select=onPremisesProvisioningErrors'
-            $response += ((Invoke-GraphRequest -Uri $uri -Method GET).value).onPremisesProvisioningErrors
+        try {
+            foreach ($obj in $object) {
+                $obj = ($obj | Out-String).trimend()
+                $uri = 'https://graph.microsoft.com/v1.0/' + $obj + '?$select=onPremisesProvisioningErrors'
+                $response += ((Invoke-GraphRequest -Uri $uri -Method GET).value).onPremisesProvisioningErrors   
+            }
         }
+        catch {}
         if ([string]::IsNullOrWhiteSpace($response)) {
             write-host "False"
         }

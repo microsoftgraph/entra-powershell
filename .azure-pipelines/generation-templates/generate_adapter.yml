@@ -15,11 +15,11 @@ steps:
     script: 'echo $PSVersionTable'
     pwsh: false
 - task: powershell@2
-  displayName: 'Install Dependencies AzureAD'
+  displayName: 'Install Dependencies Entra'
   inputs:
     targetType: inline
     script: |
-      ./build/Install-Dependencies.ps1 -ModuleName AzureAD -Verbose      
+      ./build/Install-Dependencies.ps1 -ModuleName Entra -Verbose      
     pwsh: false
 - task: powershell@2
   displayName: 'Install PlatyPS'
@@ -28,19 +28,19 @@ steps:
     script: Install-Module PlatyPS -scope currentuser -Force
     pwsh: false
 - task: powershell@2
-  displayName: 'Create Module Help Files AzureAD'
+  displayName: 'Create Module Help Files Entra'
   inputs:
     targetType: inline
     script: |
       Import-Module PlatyPS
       . ./build/common-functions.ps1
-      Create-ModuleHelp -Module AzureAD
+      Create-ModuleHelp -Module Entra
     pwsh: false
 - task: powershell@2
-  displayName: 'Build AzureAD'
+  displayName: 'Build Entra'
   inputs:
     targetType: inline
-    script: ./build/Create-CompatModule.ps1 -Module AzureAD -Verbose
+    script: ./build/Create-CompatModule.ps1 -Module Entra -Verbose
     pwsh: false
 - ${{ if eq(parameters.Sign, true) }}:
   - template: ../common-templates/esrp/codesign.yml
@@ -58,7 +58,7 @@ steps:
         ($ModulePsd1 | Get-AuthenticodeSignature).Status | Should -Be "Valid"
         ($ModulePsm1 | Get-AuthenticodeSignature).Status | Should -Be "Valid"
 - task: powershell@2
-  displayName: 'Create Module Files AzureAD'
+  displayName: 'Create Module Files Entra'
   inputs:
     targetType: inline
     script: |
@@ -66,7 +66,7 @@ steps:
       Create-ModuleFolder
     pwsh: false
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Module Files AzureAD'
+  displayName: 'Publish Module Files Entra'
   inputs:
     ArtifactName: 'Module Files'
     PathtoPublish: 'bin'
@@ -79,13 +79,13 @@ steps:
       Register-LocalGallery -Path $(Build.ArtifactStagingDirectory)
     pwsh: false    
 - task: powershell@2
-  displayName: 'Publish to Local Gallery AzureAD'
+  displayName: 'Publish to Local Gallery Entra'
   inputs:
     targetType: inline
     script: ./build/Publish-LocalCompatModule.ps1 -Install
     pwsh: false
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Module Nuget File AzureAD'
+  displayName: 'Publish Module Nuget File Entra'
   inputs:
     ArtifactName: 'Module Nuget'
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
@@ -98,26 +98,26 @@ steps:
       Remove-BuildDirectories
     pwsh: false
 - task: powershell@2
-  displayName: 'Install Dependencies AzureAD'
+  displayName: 'Install Dependencies EntraBeta'
   inputs:
     targetType: inline
     script: |      
-      ./build/Install-Dependencies.ps1 -ModuleName AzureADPreview -Verbose
+      ./build/Install-Dependencies.ps1 -ModuleName EntraBeta -Verbose
     pwsh: false
 - task: powershell@2
-  displayName: 'Create Module Help Files Beta'
+  displayName: 'Create Module Help Files EntraBeta'
   inputs:
     targetType: inline
     script: |
       Import-Module PlatyPS
       . ./build/common-functions.ps1
-      Create-ModuleHelp -Module AzureADPreview
+      Create-ModuleHelp -Module EntraBeta
     pwsh: false
 - task: powershell@2
-  displayName: 'Build AzureADPreview'
+  displayName: 'Build EntraBeta'
   inputs:
     targetType: inline
-    script: ./build/Create-CompatModule.ps1 -Module AzureADPreview -Verbose
+    script: ./build/Create-CompatModule.ps1 -Module EntraBeta -Verbose
     pwsh: false
 - ${{ if eq(parameters.Sign, true) }}:
   - template: ../common-templates/esrp/codesign.yml
@@ -135,7 +135,7 @@ steps:
         ($ModulePsd1 | Get-AuthenticodeSignature).Status | Should -Be "Valid"
         ($ModulePsm1 | Get-AuthenticodeSignature).Status | Should -Be "Valid"
 - task: powershell@2
-  displayName: 'Create Module Files AzureADPreview'
+  displayName: 'Create Module Files EntraBeta'
   inputs:
     targetType: inline
     script: |
@@ -143,18 +143,18 @@ steps:
       Create-ModuleFolder
     pwsh: false
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Module Files AzureADPreview'
+  displayName: 'Publish Module Files EntraBeta'
   inputs:
     ArtifactName: 'Module Files'
     PathtoPublish: 'bin'    
 - task: powershell@2
-  displayName: 'Publish to Local Gallery AzureADPreview'
+  displayName: 'Publish to Local Gallery EntraBeta'
   inputs:
     targetType: inline
     script: ./build/Publish-LocalCompatModule.ps1 -Install
     pwsh: false
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Module Nuget File AzureAD'
+  displayName: 'Publish Module Nuget File EntraBeta'
   inputs:
     ArtifactName: 'Module Nuget'
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
@@ -173,12 +173,12 @@ steps:
     script: Install-Module Pester -scope currentuser -Force
     pwsh: false
 - task: powershell@2
-  displayName: 'Run tests AzureAD'  
+  displayName: 'Run tests EntraBeta'  
   inputs:
     targetType: inline
     pwsh: true
     script: |
-      cd test/module/azuread
+      cd test/module/entra
       Invoke-Pester -OutputFile "./test/results/pester-test-results-ad.xml" -OutputFormat NUnitXml
 - task: PublishTestResults@2
   inputs:
@@ -186,12 +186,12 @@ steps:
     testResultsFiles: "./test/results/pester-test-results-ad.xml"
     failTaskOnFailedTests: true
 - task: powershell@2
-  displayName: 'Run tests AzureADPreview'  
+  displayName: 'Run tests EntraBeta'  
   inputs:
     targetType: inline
     pwsh: true
     script: |
-      cd test/module/azureadpreview
+      cd test/module/entrabeta
       Invoke-Pester -OutputFile "./test/results/pester-test-results-preview.xml" -OutputFormat NUnitXml
 - task: PublishTestResults@2
   inputs:

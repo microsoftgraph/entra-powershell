@@ -3,7 +3,14 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADMSDeletedDirectoryObject"
-    TargetName = "Get-MgDirectoryDeletedItem"
+    TargetName = "Get-MgBetaDirectoryDeletedItem"
     Parameters = $null
-    Outputs = $null
+    Outputs = @(
+        @{
+            SourceName = "AdditionalProperties"
+            TargetName = "AdditionalProperties"
+            ConversionType = "FlatObject"
+            SpecialMapping = $null
+        }
+    )
 }
