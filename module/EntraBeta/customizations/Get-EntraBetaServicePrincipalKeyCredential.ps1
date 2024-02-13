@@ -6,7 +6,14 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
-    (Get-MgBetaServicePrincipal ServicePrincipalId `$PSBoundParameters["ObjectId"]).KeyCredentials
-"@
+    CustomScript = @'
+    $response = (Get-MgBetaServicePrincipal -ServicePrincipalId $PSBoundParameters["ObjectId"]).KeyCredentials
+    $response | ForEach-Object {
+        if($null -ne $_) {
+        Add-Member -InputObject $_ -MemberType AliasProperty -Name StartDate -Value StartDateTime
+        Add-Member -InputObject $_ -MemberType AliasProperty -Name EndDate -Value EndDateTime
+        }
+    }
+    $response
+'@
 }
