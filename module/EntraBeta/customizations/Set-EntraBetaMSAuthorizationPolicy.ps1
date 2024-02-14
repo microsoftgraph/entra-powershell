@@ -4,6 +4,20 @@
 @{
     SourceName = "Set-AzureADMSAuthorizationPolicy"
     TargetName = "Update-MgBetaPolicyAuthorizationPolicy"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "DefaultUserRolePermissions"
+            TargetName = "DefaultUserRolePermissions"
+            ConversionType = "ScriptBlock"
+            SpecialMapping = @'
+            $hash = @{}
+            $hash["AllowedToCreateApps"] = $TmpValue.AllowedToCreateApps 
+            $hash["AllowedToCreateSecurityGroups"] = $TmpValue.AllowedToCreateSecurityGroups 
+            $hash["AllowedToReadOtherUsers"] = $TmpValue.AllowedToReadOtherUsers 
+            
+            $Value = $hash
+'@
+        }
+    )
     Outputs = $null
 }
