@@ -23,12 +23,12 @@
             ConversionType = "ScriptBlock"
             SpecialMapping = @'
             $hash = @{}
-            if($TmpValue.Applications) { $hash["Applications"] = $TmpValue.Applications }
-            if($TmpValue.ClientAppTypes) { $hash["ClientAppTypes"] = $TmpValue.ClientAppTypes }
-            if($TmpValue.Locations) { $hash["Locations"] = $TmpValue.Locations }
-            if($TmpValue.Platforms) { $hash["Platforms"] = $TmpValue.Platforms }
-            if($TmpValue.SignInRiskLevels) { $hash["SignInRiskLevels"] = $TmpValue.SignInRiskLevels }
-            if($TmpValue.Users) { $hash["Users"] = $TmpValue.Users }
+            $hash["Applications"] = $TmpValue.Applications 
+            $hash["ClientAppTypes"] = $TmpValue.ClientAppTypes 
+            $hash["Locations"] = $TmpValue.Locations 
+            $hash["Platforms"] = $TmpValue.Platforms 
+            $hash["SignInRiskLevels"] = $TmpValue.SignInRiskLevels 
+            $hash["Users"] = $TmpValue.Users 
 
             $Value = $hash
 '@
@@ -39,10 +39,10 @@
             ConversionType = "ScriptBlock"
             SpecialMapping = @'
             $hash = @{}
-            if($TmpValue._Operator) { $hash["_Operator"] = $TmpValue._Operator }
-            if($TmpValue.BuiltInControls) { $hash["BuiltInControls"] = $TmpValue.BuiltInControls }
-            if($TmpValue.CustomAuthenticationFactors) { $hash["CustomAuthenticationFactors"] = $TmpValue.CustomAuthenticationFactors }
-            if($TmpValue.TermsOfUse) { $hash["TermsOfUse"] = $TmpValue.TermsOfUse }
+            $hash["Operator"] = $TmpValue._Operator 
+            $hash["BuiltInControls"] = $TmpValue.BuiltInControls 
+            $hash["CustomAuthenticationFactors"] = $TmpValue.CustomAuthenticationFactors 
+            $hash["TermsOfUse"] = $TmpValue.TermsOfUse 
 
             $Value = $hash
 '@
@@ -53,10 +53,10 @@
             ConversionType = "ScriptBlock"
             SpecialMapping = @'
             $hash = @{}
-            if($TmpValue.ApplicationEnforcedRestrictions) { $hash["ApplicationEnforcedRestrictions"] = $TmpValue.ApplicationEnforcedRestrictions }
-            if($TmpValue.CloudAppSecurity) { $hash["CloudAppSecurity"] = $TmpValue.CloudAppSecurity }
-            if($TmpValue.SignInFrequency) { $hash["SignInFrequency"] = $TmpValue.SignInFrequency }
-            if($TmpValue.PersistentBrowser) { $hash["PersistentBrowser"] = $TmpValue.PersistentBrowser }
+            $hash["ApplicationEnforcedRestrictions"] = $TmpValue.ApplicationEnforcedRestrictions 
+            $hash["CloudAppSecurity"] = $TmpValue.CloudAppSecurity 
+            $hash["SignInFrequency"] = $TmpValue.SignInFrequency 
+            $hash["PersistentBrowser"] = $TmpValue.PersistentBrowser 
 
             $Value = $hash
 '@
