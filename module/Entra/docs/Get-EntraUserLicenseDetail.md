@@ -1,4 +1,14 @@
 ---
+title: Get-EntraUserLicenseDetail.
+description: This article provides details on the Get-EntraUserLicenseDetail command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -8,20 +18,22 @@ schema: 2.0.0
 # Get-EntraUserLicenseDetail
 
 ## SYNOPSIS
-Retrieves license details for a user
+Retrieves license details for a user.
 
 ## SYNTAX
 
 ```
-Get-EntraUserLicenseDetail -ObjectId <String> [<CommonParameters>]
+Get-EntraUserLicenseDetail 
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-THis cmdlet retrieves license details for a user
+This cmdlet retrieves license details for a user.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Get license details of specific user by ObjectId 
 ```
 PS C:\WINDOWS\system32> Get-EntraUserLicenseDetail -ObjectId df19e8e6-2ad7-453e-87f5-037f6529ae16
 
@@ -31,7 +43,7 @@ Hv-1hQIEDECePA-ellMl0cjsRfKvdY5Pth8n2BFN5fM {class ServicePlanInfo {...
 Hv-1hQIEDECePA-ellMl0QQrjQe98RFBu9S0sbNUzvQ {class ServicePlanInfo {...
 ```
 
-This example retrieves the license details of the user specified through the ObjectId parameter
+This example retrieves the license details of the user specified through the ObjectId parameter.
 
 ## PARAMETERS
 
