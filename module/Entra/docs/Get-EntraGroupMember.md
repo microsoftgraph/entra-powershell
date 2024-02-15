@@ -1,4 +1,14 @@
 ---
+title: Get-EntraGroupMember.
+description: This article provides details on the Get-EntraGroupMember command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,7 +23,11 @@ Gets a member of a group.
 ## SYNTAX
 
 ```
-Get-EntraGroupMember -ObjectId <String> [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraGroupMember 
+ -ObjectId <String> 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,12 +37,40 @@ The Get-EntraGroupMember cmdlet gets a member of a group in Microsoft Entra ID.
 
 ### Example 1: Get a group member by ID
 ```
-PS C:\>Get-EntraGroupMember -ObjectId "62438306-7c37-4638-a72d-0ee8d9217680"
+PS C:\>Get-EntraGroupMember -ObjectId 05b0552e-39cd-4df4-a8f5-00ade912e83d 
 
-ObjectId                             ObjectType
---------                             ----------
-0a1068c0-dbb6-4537-9db3-b48f3e31dd76 User
+ageGroup onPremisesLastSyncDateTime creationType imAddresses                            preferredLanguage mail                                 securityIdentifier                                  identities
+-------- -------------------------- ------------ -----------                            ----------------- ----                                 ------------------                                  ----------
+                                                 {meganb@m365x99297270.onmicrosoft.com}                   MeganB@M365x99297270.OnMicrosoft.com S-1-12-1-719509883-1118456798-2440872119-1998244260 {@{signInTyp...
 ```
+This command gets a member of a specified Group.
+
+### Example 2: Get two group member
+```
+PS C:\>Get-EntraGroupMember -ObjectId 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 -Top 2 
+
+ageGroup onPremisesLastSyncDateTime creationType imAddresses                              preferredLanguage mail                                   securityIdentifier                                  identities
+-------- -------------------------- ------------ -----------                              ----------------- ----                                   ------------------                                  ----------
+                                                 {admin@m365x99297270.onmicrosoft.com}    en                admin@M365x99297270.onmicrosoft.com    S-1-12-1-2574072234-1301806508-533216682-2892133300 {System....
+                                                 {pradeepg@m365x99297270.onmicrosoft.com}                   PradeepG@M365x99297270.OnMicrosoft.com S-1-12-1-357891266-1147903342-476387998-329568156   {System....
+```
+This command gets the top two Group members.
+
+### Example 3: Get all members within a group by group ID
+```
+PS C:\>Get-EntraGroupMember -ObjectId 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 -All $true 
+
+ageGroup onPremisesLastSyncDateTime creationType imAddresses                               preferredLanguage mail                                    securityIdentifier                                   identiti
+                                                                                                                                                                                                          es
+-------- -------------------------- ------------ -----------                               ----------------- ----                                    ------------------                                   --------
+                                                 {admin@m365x99297270.onmicrosoft.com}     en                admin@M365x99297270.onmicrosoft.com     S-1-12-1-2574072234-1301806508-533216682-2892133300  {Syst...
+                                                 {pradeepg@m365x99297270.onmicrosoft.com}                    PradeepG@M365x99297270.OnMicrosoft.com  S-1-12-1-357891266-1147903342-476387998-329568156    {Syst...
+                                                 {jonis@m365x99297270.onmicrosoft.com}                       JoniS@M365x99297270.OnMicrosoft.com     S-1-12-1-3785119861-1177853799-1418655642-1701291850 {Syst...
+                                                 {christiec@m365x99297270.onmicrosoft.com}                   ChristieC@M365x99297270.OnMicrosoft.com S-1-12-1-338427849-1319166220-3770554284-4251481260  {Syst...
+                                                 {meganb@m365x99297270.onmicrosoft.com}                      MeganB@M365x99297270.OnMicrosoft.com    S-1-12-1-719509883-1118456798-2440872119-1998244260  {Syst...
+                                                 {gradya@m365x99297270.onmicrosoft.com}                      GradyA@M365x99297270.OnMicrosoft.com    S-1-12-1-1243136890-1218291773-2919062691-886537280  {Syst...
+```
+This command gets all members within a Group.
 
 ## PARAMETERS
 
@@ -49,7 +91,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a group in Azure AD.
+Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: String
