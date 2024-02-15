@@ -30,6 +30,9 @@ Get-EntraApplication -ObjectId <String> [-All <Boolean>] [<CommonParameters>]
 ## DESCRIPTION
 The Get-EntraApplication cmdlet gets a Microsoft Entra ID application.
 
+**Permissions**
+[!INCLUDE [permissions-table](~/../graphref/api-reference/v1.0/includes/permissions/application-post-applications-permissions.md)]
+
 ## EXAMPLES
 
 ### Example 1: Get an application by display name
