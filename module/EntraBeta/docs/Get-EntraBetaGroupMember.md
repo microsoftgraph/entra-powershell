@@ -37,7 +37,7 @@ The Get-EntraBetaGroupMember cmdlet gets a member of a group in Microsoft Entra 
 
 ### Example 1: Get a group member by ID
 ```
-PS C:\>EntraBetaGroupMember -ObjectId 05b0552e-39cd-4df4-a8f5-00ade912e83d
+PS C:\>EntraBetaGroupMember -ObjectId "05b0552e-39cd-4df4-a8f5-00ade912e83d"
 
 Id                                   DeletedDateTime
 --                                   ---------------
@@ -47,7 +47,7 @@ This command gets a member of a specified group.
 
 ### Example 2: Get two group member
 ```
-PS C:\>EntraBetaGroupMember -ObjectId 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 -Top 2
+PS C:\>EntraBetaGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -Top 2
 
 Id                                   DeletedDateTime
 --                                   ---------------
@@ -58,7 +58,7 @@ This command gets the top two group members.
 
 ### Example 3: Get all members within a group by group ID
 ```
-PS C:\>EntraBetaGroupMember -ObjectId 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 -All $true
+PS C:\>EntraBetaGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -All $true
 
 Id                                   DeletedDateTime
 --                                   ---------------
