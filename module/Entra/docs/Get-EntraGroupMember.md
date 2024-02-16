@@ -37,7 +37,7 @@ The Get-EntraGroupMember cmdlet gets a member of a group in Microsoft Entra ID.
 
 ### Example 1: Get a group member by ID
 ```
-PS C:\>Get-EntraGroupMember -ObjectId 05b0552e-39cd-4df4-a8f5-00ade912e83d 
+PS C:\>Get-EntraGroupMember -ObjectId "05b0552e-39cd-4df4-a8f5-00ade912e83d" 
 
 ageGroup onPremisesLastSyncDateTime creationType imAddresses                            preferredLanguage mail                                 securityIdentifier                                  identities
 -------- -------------------------- ------------ -----------                            ----------------- ----                                 ------------------                                  ----------
@@ -47,7 +47,7 @@ This command gets a member of a specified Group.
 
 ### Example 2: Get two group member
 ```
-PS C:\>Get-EntraGroupMember -ObjectId 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 -Top 2 
+PS C:\>Get-EntraGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -Top 2 
 
 ageGroup onPremisesLastSyncDateTime creationType imAddresses                              preferredLanguage mail                                   securityIdentifier                                  identities
 -------- -------------------------- ------------ -----------                              ----------------- ----                                   ------------------                                  ----------
@@ -58,7 +58,7 @@ This command gets the top two Group members.
 
 ### Example 3: Get all members within a group by group ID
 ```
-PS C:\>Get-EntraGroupMember -ObjectId 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 -All $true 
+PS C:\>Get-EntraGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -All $true 
 
 ageGroup onPremisesLastSyncDateTime creationType imAddresses                               preferredLanguage mail                                    securityIdentifier                                   identiti
                                                                                                                                                                                                           es
