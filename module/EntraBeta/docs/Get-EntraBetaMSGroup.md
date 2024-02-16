@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaMSGroup.
+description: This article provides details on the Get-EntraBetaMSGroup command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,27 +18,39 @@ schema: 2.0.0
 # Get-EntraBetaMSGroup
 
 ## SYNOPSIS
-Gets information about groups in Azure AD.
+Gets information about groups in Microsoft Entra ID.
 
 ## SYNTAX
 
 ### GetQuery (Default)
 ```
-Get-EntraBetaMSGroup [-Select <String>] [-Filter <String>] [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraBetaMSGroup 
+ [-Select <String>] 
+ [-Filter <String>] 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```
-Get-EntraBetaMSGroup [-Select <String>] -Id <String> [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaMSGroup 
+ -Id <String> 
+ [-Select <String>] 
+ [-All <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ### GetVague
 ```
-Get-EntraBetaMSGroup [-All <Boolean>] [-SearchString <String>] [<CommonParameters>]
+Get-EntraBetaMSGroup 
+ [-All <Boolean>] 
+ [-SearchString <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaMSGroup cmdlet gets information about groups in Azure Active Directory (Azure AD).
+The Get-EntraBetaMSGroup cmdlet gets information about groups in Microsoft Entra ID.
 To get a group, specify the Id parameter. 
 Specify the SearchString or Filter parameter to find particular groups. 
 If you specify no parameters, this cmdlet gets all groups.
@@ -39,87 +61,79 @@ If you specify no parameters, this cmdlet gets all groups.
 ```
 PS C:\> Get-EntraBetaMSGroup
 
-Id                            : d539a25e-2db2-482a-9dcb-2a0b27fe4f27
-Description                   :
-OnPremisesSyncEnabled         :
-DisplayName                   :
-ADSyncOperators
-OnPremisesLastSyncDateTime    :
-Mail                          :
-MailEnabled                   : False
-MailNickname                  : ADSyncOperators
-OnPremisesSecurityIdentifier  : S-1-5-21-2695029449-1154706203-1063139792-1243
-ProxyAddresses                : {}
-SecurityEnabled               : True
-GroupTypes                    : {}
-MembershipRule                :
-MembershipRuleProcessingState :
-
-
-Id                            : d98ddc78-6e8d-4f0d-8a3f-b923c6ebc14b
-Description                   :
-OnPremisesSyncEnabled         :
-DisplayName                   : Project Icarus
-OnPremisesLastSyncDateTime    :
-Mail                          :
-MailEnabled                   : False
-MailNickname                  : 60f3d02c-0c6e-41da-bb64-128c73b4d9e6
-OnPremisesSecurityIdentifier  :
-ProxyAddresses                : {}
-SecurityEnabled               : True
-GroupTypes                    : {DynamicMembership}
-MembershipRule                : (user.jobtitle -eq "Sales manager") -or ((user.department -eq "Marketing") -and (user.country -eq "Greece"))
-MembershipRuleProcessingState : On
 ```
 
-This command gets all groups in Azure AD.
+This command gets all groups in Microsoft Entra ID.
 
 ### Example 2: Get a specific group by using an ID
 ```
-PS C:\> Get-EntraBetaMSGroup -Id "d98ddc78-6e8d-4f0d-8a3f-b923c6ebc14b"
+PS C:\> Get-EntraBetaMSGroup -Id "0877c6c6-fc99-4d51-9871-8335be7cfc9d"
 
-Id                            : d98ddc78-6e8d-4f0d-8a3f-b923c6ebc14b
-Description                   :
-OnPremisesSyncEnabled         :
-DisplayName                   : Project Icarus
-OnPremisesLastSyncDateTime    :
-Mail                          :
-MailEnabled                   : False
-MailNickname                  : 60f3d02c-0c6e-41da-bb64-128c73b4d9e6
-OnPremisesSecurityIdentifier  :
-ProxyAddresses                : {}
-SecurityEnabled               : True
-GroupTypes                    : {DynamicMembership}
-MembershipRule                : (user.jobtitle -eq "Sales manager") -or ((user.department -eq "Marketing") -and (user.country -eq "Greece"))
-MembershipRuleProcessingState : On
+DisplayName  Id                                   MailNickname Description                                GroupTypes
+-----------  --                                   ------------ -----------                                ----------
+Contoso Team 0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam  A collaboration area for the Contoso Team. {Unified}
 ```
 
 This command gets information for the group that has the specified ID.
 
-### Example 3: Get AssignedLabels and DisplayName property values for all groups
+### Example 3: Get top five groups
+```
+PS C:\> Get-EntraBetaMSGroup -Top 5
+
+DisplayName             Id                                   MailNickname          Description                                GroupTypes
+-----------             --                                   ------------          -----------                                ----------
+Ask HR                  056b2531-005e-4f3e-be78-01a71ea30a04 askhr                                                            {Unified}
+Parents of Contoso      05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso      Parents of Contoso                         {Unified}
+Contoso Team            0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam           A collaboration area for the Contoso Team. {Unified}
+HelpDesk admin group    0883fd77-0ee8-45de-a21e-f32af1623acc helpDeskAdminGroup    Group assignable to role                   {}
+New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding New Employee Onboarding                    {Unified}
+```
+
+This command gets the top five groups in Microsoft Entra ID.
+
+### Example 4: Get a group by DisplayName
+```
+PS C:\> Get-EntraBetaMSGroup -Filter "DisplayName eq 'Parents of Contoso'"
+
+DisplayName        Id                                   MailNickname     Description        GroupTypes
+-----------        --                                   ------------     -----------        ----------
+Parents of Contoso 05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso Parents of Contoso {Unified}
+```
+
+This command gets the specified group.
+
+### Example 5: Search among retrieved groups
+```
+PS C:\> Get-EntraBetaMSGroup -SearchString "New"
+
+DisplayName             Id                                   MailNickname          Description             GroupTypes
+-----------             --                                   ------------          -----------             ----------
+New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding New Employee Onboarding {Unified}
+new1                    27d134ad-466b-43dd-8856-ba9f0bc17d24 new1                  new1                    {DynamicMembership, Unified}
+```
+
+This cmdlet gets all groups that match the value of SearchString against the first characters in DisplayName or Description attributes.
+
+### Example 6: Get AssignedLabels and DisplayName property values for all groups
 ```
 PS C:\> Get-EntraBetaMSGroup -Select "AssignedLabels,DisplayName"
 
-AssignedLabels                : [{LabelId: "00000000-0000-0000-0000-000000000000", DisplayName: "Confidential"}]
-DisplayName                   : Project Icarus 1
-
-AssignedLabels                : [{LabelId: "00000000-0000-0000-0000-000000000000", DisplayName: "Confidential"}]
-DisplayName                   : Project Icarus 2
 ```
 
 This command gets AssignedLabels and DisplayName property values for all groups.
 
 AssignedLabels group property could be retrieved only by Select parameter.
 
-### Example 4: Get AssignedLabels and DisplayName property values for a group
+### Example 7: Get DisplayName, Id and Description property values for a group
 ```
-PS C:\> Get-EntraBetaMSGroup -Id "11111111-1111-1111-1111-111111111111" -Select "AssignedLabels,DisplayName"
+PS C:\> Get-EntraBetaMSGroup -Id "0877c6c6-fc99-4d51-9871-8335be7cfc9d" -Select "DisplayName,Id,Description"
 
-AssignedLabels                : [{LabelId: "00000000-0000-0000-0000-000000000000", DisplayName: "Confidential"}]
-DisplayName                   : Project Icarus 1
+DisplayName  Id                                   MailNickname Description                                GroupTypes
+-----------  --                                   ------------ -----------                                ----------
+Contoso Team 0877c6c6-fc99-4d51-9871-8335be7cfc9d              A collaboration area for the Contoso Team.
 ```
 
-This command gets AssignedLabels and DisplayName property values for a specific group.
+This command gets DisplayName, Id and Discription property values for a specific group.
 
 AssignedLabels group property could be retrieved only by Select parameter.
 
@@ -242,5 +256,5 @@ We recommend that you do not use this cmdlet in a production environment.
 
 [Set-EntraBetaMSGroup]()
 
-[#AzureAD: Certificate based authentication for iOS and Android now in preview!](https://blogs.technet.microsoft.com/enterprisemobility/2016/07/18/azuread-certificate-based-authentication-for-ios-and-android-now-in-preview/)
+[#Microsoft Entra ID: Certificate based authentication for iOS and Android now in preview!](https://blogs.technet.microsoft.com/enterprisemobility/2016/07/18/azuread-certificate-based-authentication-for-ios-and-android-now-in-preview/)
 
