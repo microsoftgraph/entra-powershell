@@ -64,7 +64,7 @@ This command gets all directory setting templates.
 
 ### Example 2: Get template by Id
 ```
-PS C:\> Get-EntraBetaDirectorySettingTemplate -Id 4bc7f740-180e-4586-adb6-38b2e9024e6b
+PS C:\> Get-EntraBetaDirectorySettingTemplate -Id "4bc7f740-180e-4586-adb6-38b2e9024e6b"
 
 Id                                   DisplayName Description
 --                                   ----------- -----------
