@@ -56,17 +56,29 @@ The Get-EntraBetaMSUser cmdlet gets a user from Microsoft Entra ID.
 
 ### Example 1: Get a user by ID
 ```powershell
-PS C:\> Get-EntraBetaMSUser -Id "d67d8b7b-57e1-486e-9361-26a1e2f0e8fe"
+PS C:\> Get-EntraBetaMSUser -Id d67d8b7b-57e1-486e-9361-26a1e2f0e8fe
+
+DisplayName Id                                   Mail UserPrincipalName
+----------- --                                   ---- -----------------
+test1       d67d8b7b-57e1-486e-9361-26a1e2f0e8fe      test1@M365x99297270.OnMicrosoft.com
 ```
 
 This command gets the specified user.
 
-### Example 2: Get ten users
+### Example 2: Get five users
 ```
-PS C:\>Get-EntraBetaUser -Top 10
+PS C:\>Get-EntraBetaMSUser -Top 5
+
+DisplayName       Id                                   Mail                                 UserPrincipalName
+-----------       --                                   ----                                 -----------------
+Conf Room Adams   fd560167-ff1f-471a-8d74-3b0070abcea1 Adams@M365x99297270.OnMicrosoft.com  Adams@M365x99297270.OnMicrosoft.com
+Adele Vance       412be9d1-1460-4061-8eed-cca203fcb215 AdeleV@M365x99297270.OnMicrosoft.com AdeleV@M365x99297270.OnMicrosoft.com
+MOD Administrator 996d39aa-fdac-4d97-aa3d-c81fb47362ac admin@M365x99297270.onmicrosoft.com  admin@M365x99297270.onmicrosoft.com
+Alex Wilber       a23541ee-4fe9-4cf2-b628-102ebaef8f7e AlexW@M365x99297270.OnMicrosoft.com  AlexW@M365x99297270.OnMicrosoft.com
+Allan Deyoung     91d71f29-1c12-40db-8a5e-70dafbb0df6f AllanD@M365x99297270.OnMicrosoft.com AllanD@M365x99297270.OnMicrosoft.com
 ```
 
-This command gets ten users.
+This command gets five users.
 
 ### Example 3: Get all users
 ```
@@ -77,21 +89,33 @@ This command gets all users in Microsoft Entra ID.
 
 ### Example 4: Get a user by DisplayName
 ```
-PS C:\>Get-EntraBetaUser -Filter "DisplayName eq 'Alex Wilber'"
+PS C:\>Get-Get-EntraBetaMSUser -Filter "DisplayName eq 'Alex Wilber'"
+
+DisplayName Id                                   Mail                                UserPrincipalName
+----------- --                                   ----                                -----------------
+Alex Wilber a23541ee-4fe9-4cf2-b628-102ebaef8f7e AlexW@M365x99297270.OnMicrosoft.com AlexW@M365x99297270.OnMicrosoft.com
 ```
 
 This command gets This command gets the specified user.
 
 ### Example 5: Search among retrieved users
 ```
-PS C:\>Get-EntraBetaUser -SearchString "New"
+PS C:\>Get-EntraBetaMSUser -SearchString "test@"
+
+DisplayName  Id                                   Mail             UserPrincipalName
+-----------  --                                   ----             -----------------
+Test Contoso 00cf5246-4c5c-4cee-b6cd-d37e62db6f27 Test@contoso.com Test_contoso.com#EXT#@M365x99297270.onmicrosoft.com
 ```
 
 This cmdlet gets all users that match the value of SearchString against the first characters in DisplayName or UserPrincipalName .
 
 ### Example 6: Get CustomSecurityAttributes property values for a user
 ```
-PS C:\>Get-Get-EntraBetaMSUser -Id dbb22700-a7de-4372-ae78-0098ee60e55e -Select CustomSecurityAttributes
+PS C:\>Get-EntraBetaMSUser -Id a23541ee-4fe9-4cf2-b628-102ebaef8f7e -Select CustomSecurityAttributes
+
+CustomSecurityAttributes
+------------------------
+Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphCustomSecurityAttributeValue
 ```
 
 This command gets CustomSecurityAttributes property values for a specific user.
