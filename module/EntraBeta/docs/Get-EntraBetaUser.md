@@ -130,7 +130,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID (as a UPN or ObjectId) of a user in Azure AD.
+Specifies the ID (as a UPN or ObjectId) of a user in Microsoft Entra ID.
 
 ```yaml
 Type: String
