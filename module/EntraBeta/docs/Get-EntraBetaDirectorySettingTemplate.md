@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaDirectorySettingTemplate.
+description: This article provides details on the Get-EntraBetaDirectorySettingTemplate command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 10/25/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -14,27 +24,54 @@ Gets a directory setting template.
 
 ### GetQuery (Default)
 ```
-Get-EntraBetaDirectorySettingTemplate [-InformationAction <ActionPreference>] [-InformationVariable <String>]
+Get-EntraBetaDirectorySettingTemplate 
+ [-InformationAction <ActionPreference>] 
+ [-InformationVariable <String>]
  [<CommonParameters>]
 ```
 
 ### GetById
 ```
-Get-EntraBetaDirectorySettingTemplate -Id <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Get-EntraBetaDirectorySettingTemplate 
+ -Id <String> 
+ [-InformationAction <ActionPreference>]
+ [-InformationVariable <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaDirectorySettingTemplate cmdlet gets a directory setting template from Azure Active Directory (AD).
+The Get-EntraBetaDirectorySettingTemplate cmdlet gets a directory setting template from Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Get all templates
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-EntraBetaDirectorySettingTemplate
+
+Id                                   DisplayName                          Description
+--                                   -----------                          -----------
+08d542b9-071f-4e16-94b0-74abb372e3d9 Group.Unified.Guest                  Settings for a specific Unified Group
+4bc7f740-180e-4586-adb6-38b2e9024e6b Application                          ...
+5cf42378-d67d-4f36-ba46-e8b86229381d Password Rule Settings               ...
+62375ab9-6b52-47ed-826b-58e47e0e304b Group.Unified                        ...
+80661d51-be2f-4d46-9713-98a2fcaec5bc Prohibited Names Settings            ...
+898f1161-d651-43d1-805c-3b0b388a9fc2 Custom Policy Settings               ...
+aad3907d-1d1a-448b-b3ef-7bf7f63db63b Prohibited Names Restricted Settings ...
+dffd5d46-495d-40a9-8e21-954ff55e198a Consent Policy Settings              ...
 ```
 
-{{ Add example description here }}
+This command gets all directory setting templates.
+
+### Example 2: Get template by Id
+```
+PS C:\> Get-EntraBetaDirectorySettingTemplate -Id 4bc7f740-180e-4586-adb6-38b2e9024e6b
+
+Id                                   DisplayName Description
+--                                   ----------- -----------
+4bc7f740-180e-4586-adb6-38b2e9024e6b Application ...
+```
+
+This command gets the specific directory setting template.
 
 ## PARAMETERS
 
