@@ -41,7 +41,9 @@
 
         if($null -ne $PSBoundParameters["SearchString"])
         {
-            $params["Search"] = "DisplayName:"+$PSBoundParameters["SearchString"]
+            $TmpValue = $PSBoundParameters["SearchString"]
+            $Value = "`"userprincipalname:$TmpValue`" OR `"state:$TmpValue`" OR `"mailNickName:$TmpValue`" OR `"mail:$TmpValue`" OR `"jobTitle:$TmpValue`" OR `"displayName:$TmpValue`" OR `"department:$TmpValue`" OR `"country:$TmpValue`" OR `"city:$TmpValue`""
+            $params["Search"] = $Value
             $params["ConsistencyLevel"] = "eventual"
         }
     
