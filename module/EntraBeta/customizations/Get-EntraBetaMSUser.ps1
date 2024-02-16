@@ -6,56 +6,75 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {    
-        `$params = @{}
-        `$keysChanged = @{}
-        if(`$null -ne `$PSBoundParameters["Filter"])
+        $params = @{}
+        $keysChanged = @{}
+        if($null -ne $PSBoundParameters["Filter"])
         {
-            `$TmpValue = `$PSBoundParameters["Filter"]
-            foreach(`$i in `$keysChanged.GetEnumerator()){
-                `$TmpValue = `$TmpValue.Replace(`$i.Key, `$i.Value)
+            $TmpValue = $PSBoundParameters["Filter"]
+            foreach($i in $keysChanged.GetEnumerator()){
+                $TmpValue = $TmpValue.Replace($i.Key, $i.Value)
             }
-            `$Value = `$TmpValue
-            `$params["Filter"] = `$Value
+            $Value = $TmpValue
+            $params["Filter"] = $Value
         }
-        if(`$null -ne `$PSBoundParameters["Top"])
+        if($null -ne $PSBoundParameters["Top"])
         {
-            `$params["Top"] = `$PSBoundParameters["Top"]
+            $params["Top"] = $PSBoundParameters["Top"]
         }
-        if(`$null -ne `$PSBoundParameters["Id"])
+        if($null -ne $PSBoundParameters["Id"])
         {
-            `$params["UserId"] = `$PSBoundParameters["Id"]
+            $params["UserId"] = $PSBoundParameters["Id"]
         }
-        if(`$null -ne `$PSBoundParameters["All"])
+        if($null -ne $PSBoundParameters["All"])
         {
-            if(`$PSBoundParameters["All"])
+            if($PSBoundParameters["All"])
             {
-                `$params["All"] = `$Null
+                $params["All"] = $Null
             }
         }
-        if(`$PSBoundParameters.ContainsKey("Debug"))
+        if($PSBoundParameters.ContainsKey("Debug"))
         {
-            `$params["Debug"] = `$Null
+            $params["Debug"] = $Null
         }
 
-        if(`$null -ne `$PSBoundParameters["SearchString"])
+        if($null -ne $PSBoundParameters["SearchString"])
         {
-            `$params["Search"] = "DisplayName:"+`$PSBoundParameters["SearchString"]
-            `$params["ConsistencyLevel"] = "eventual"
+            $params["Search"] = "DisplayName:"+$PSBoundParameters["SearchString"]
+            $params["ConsistencyLevel"] = "eventual"
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================
+")
         
-        `$response = Get-MgUser @params | ConvertTo-Json | ConvertFrom-Json
-        if(`$null -ne `$PSBoundParameters["Select"])
+        $response = Get-MgBetaUser @params 
+        $response | ForEach-Object {
+            if ($null -ne $_) {
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name UserState -Value ExternalUserState
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name UserStateChangedOn -Value ExternalUserStateChangeDateTime
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name Mobile -Value mobilePhone
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value businessPhones
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ImmutableId -Value onPremisesImmutableId
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ProvisioningErrors -Value onPremisesProvisioningErrors
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name DeletionTimestamp -Value DeletedDateTime
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name DirSyncEnabled -Value onPremisesSyncEnabled
+                $propsToConvert = @('AssignedLicenses','AssignedPlans','PasswordProfile')
+                foreach ($prop in $propsToConvert) {
+                    $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
+                    $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
+                }
+            }
+        }
+        if($null -ne $PSBoundParameters["Select"])
         {
-            `$response = `$response | Select `$PSBoundParameters["Select"]
+            $response = $response | Select $PSBoundParameters["Select"]
         }
 
-        `$response
-        }
-"@
+        $response
+    }   
+'@
 }
