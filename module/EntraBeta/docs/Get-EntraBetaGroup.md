@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaGroup.
+description: This article provides details on the Get-EntraBetaGroup command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -14,21 +24,31 @@ Gets a group.
 
 ### GetQuery (Default)
 ```
-Get-EntraBetaGroup [-Filter <String>] [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraBetaGroup 
+ [-Filter <String>] 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ### GetVague
 ```
-Get-EntraBetaGroup [-SearchString <String>] [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaGroup 
+ [-SearchString <String>] 
+ [-All <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```
-Get-EntraBetaGroup -ObjectId <String> [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaGroup 
+ -ObjectId <String> 
+ [-All <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaGroup cmdlet gets a group in Azure Active Directory (AD).
+The Get-EntraBetaGroup cmdlet gets a group in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -59,16 +79,56 @@ Its members ...
 This group should not be deleted.
 ```
 
-### Example 2: Get groups that contain a search string
-```
-PS C:\>Get-EntraBetaGroup -SearchString "All"
+This command gets all groups in Microsoft Entra ID.
 
-ObjectId                             DisplayName                                 Description
---------                             -----------                                 -----------
-093fc0e2-1d6e-4a1b-9bf8-effa0196f1f7 All Users
+### Example 2: Get a specific group by using an ObjectId
+```
+PS C:\>Get-EntraBetaGroup -ObjectId "fc446647-e8ff-47f1-a489-cf31694c0d35"
+
+DisplayName Id                                   MailNickname Description GroupTypes
+----------- --                                   ------------ ----------- ----------
+UPDISPLAY   fc446647-e8ff-47f1-a489-cf31694c0d35 Remoteliving Upd1        {Unified}
 ```
 
-This command gets the groups that include the text All in their display names.
+This command gets information for the group that has the specified ID.
+
+### Example 3: Get five groups 
+```
+PS C:\>Get-EntraBetaGroup -Top 5
+
+DisplayName             Id                                   MailNickname          Description
+-----------             --                                   ------------          -----------
+Ask HR                  056b2531-005e-4f3e-be78-01a71ea30a04 askhr
+Parents of Contoso      05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso      Parents of Contoso
+Contoso Team            0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam           A collaboration area for the Cont...
+HelpDesk admin group    0883fd77-0ee8-45de-a21e-f32af1623acc helpDeskAdminGroup    Group assignable to role
+New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding New Employee Onboarding
+```
+
+This command gets the top five groups in Microsoft Entra ID.
+
+### Example 4: Get a group by DisplayName
+```
+PS C:\>Get-EntraBetaGroup -Filter "DisplayName eq 'Parents of Contoso'"
+
+DisplayName        Id                                   MailNickname     Description        GroupTypes
+-----------        --                                   ------------     -----------        ----------
+Parents of Contoso 05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso Parents of Contoso {Unified}
+```
+
+This command gets the specified group.
+
+### Example 5: Get groups that contain a search string
+```
+PS C:\>Get-EntraBetaGroup -SearchString "New"
+
+DisplayName             Id                                   MailNickname          Description             GroupTypes
+-----------             --                                   ------------          -----------             ----------
+New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding New Employee Onboarding {Unified}
+new1                    27d134ad-466b-43dd-8856-ba9f0bc17d24 new1                  new1                    {DynamicM...
+```
+
+This command gets the groups that include the text new in their display names.
 
 ## PARAMETERS
 
