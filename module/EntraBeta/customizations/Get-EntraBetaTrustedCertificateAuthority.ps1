@@ -6,51 +6,53 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {    
-        `$params = @{}
+        $params = @{}
         
-        `$params["OrganizationId"] = (Get-MgContext).TenantId
-        if(`$PSBoundParameters.ContainsKey("Debug"))
+        $params["OrganizationId"] = (Get-MgContext).TenantId
+        if($PSBoundParameters.ContainsKey("Debug"))
         {
-            `$params["Debug"] = `$Null
+            $params["Debug"] = $Null
         }
-        if(`$PSBoundParameters.ContainsKey("Verbose"))
+        if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            `$params["Verbose"] = `$Null
+            $params["Verbose"] = $Null
         }
-        if(`$null -ne `$PSBoundParameters["TrustedIssuerSki"])
+        if($null -ne $PSBoundParameters["TrustedIssuerSki"])
         {
-            `$trustedIssuerSki = `$PSBoundParameters["TrustedIssuerSki"]
+            $trustedIssuerSki = $PSBoundParameters["TrustedIssuerSki"]
         }
-        if(`$null -ne `$PSBoundParameters["TrustedIssuer"])
+        if($null -ne $PSBoundParameters["TrustedIssuer"])
         {
-            `$trustedIssuer = `$PSBoundParameters["TrustedIssuer"]
+            $trustedIssuer = $PSBoundParameters["TrustedIssuer"]
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================``n")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================`n")
         
-        `$responseData = Get-MgBetaOrganizationCertificateBasedAuthConfiguration @params
-        `$response= @()
-        `$responseData.CertificateAuthorities | ForEach-Object {
-            `$data = @{
-                AuthorityType = "IntermediateAuthority"
-                TrustedCertificate = `$_.Certificate
-                CrlDistributionPoint = `$_.CertificateRevocationListUrl
-                DeltaCrlDistributionPoint = `$_.DeltaCertificateRevocationListUrl
-                TrustedIssuer = `$_.Issuer
-                TrustedIssuerSki = `$_.IssuerSki   
+        $responseData = Get-MgBetaOrganizationCertificateBasedAuthConfiguration @params
+        $response= @()
+        $responseData.CertificateAuthorities | ForEach-Object {
+            if (([string]::IsNullOrEmpty($TrustedIssuer) -and [string]::IsNullOrEmpty($TrustedIssuerSki)) -or ($_.Issuer -eq $TrustedIssuer -or $_.IssuerSki -eq $TrustedIssuerSki)) {
+                $data = @{
+                    AuthorityType = "IntermediateAuthority"
+                    TrustedCertificate = $_.Certificate
+                    CrlDistributionPoint = $_.CertificateRevocationListUrl
+                    DeltaCrlDistributionPoint = $_.DeltaCertificateRevocationListUrl
+                    TrustedIssuer = $_.Issuer
+                    TrustedIssuerSki = $_.IssuerSki   
+                }
+                
+                if($_.IsRootAuthority){
+                    $data.AuthorityType = "RootAuthority"
+                }
+                $dataJson = ConvertTo-Json $data
+                $response += [Newtonsoft.Json.JsonConvert]::DeserializeObject($dataJson, [Microsoft.Open.AzureAD.Model.CertificateAuthorityInformation])
             }
-            
-            if(`$_.IsRootAuthority){
-                `$data.AuthorityType = "RootAuthority"
-            }
-            `$dataJson = ConvertTo-Json `$data
-            `$response += [Newtonsoft.Json.JsonConvert]::DeserializeObject(`$dataJson, [Microsoft.Open.AzureAD.Model.CertificateAuthorityInformation])
         }
-        `$response
-        }
-"@
+        $response
+    }  
+'@
 }
