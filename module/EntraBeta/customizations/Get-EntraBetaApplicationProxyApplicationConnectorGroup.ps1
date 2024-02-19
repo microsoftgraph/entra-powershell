@@ -14,7 +14,6 @@
         }
         if (`$null -ne `$PSBoundParameters["ObjectId"]) {
             `$params["ApplicationId"] = `$PSBoundParameters["ObjectId"]
-            `$params["Select"] = "onPremisesPublishing"
         }
         if (`$PSBoundParameters.ContainsKey("Verbose")) {
             `$params["Verbose"] = `$Null
@@ -24,13 +23,8 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================``n")
         
-        `$app = Get-MgBetaApplicationConnectorGroup @params
-        `$response = `$app.OnPremisesPublishing
-        `$response | ForEach-Object {
-            if (`$null -ne `$_) {
-                Add-Member -InputObject `$_ -MemberType AliasProperty -Name ObjectId -Value Id
-            }
-        }
+        `$response = Get-MgBetaApplicationConnectorGroup @params
+        `$response = `$response | Select-Object Id, Name, ConnectorGroupType, IsDefault | format-table
         `$response
     }
 "@
