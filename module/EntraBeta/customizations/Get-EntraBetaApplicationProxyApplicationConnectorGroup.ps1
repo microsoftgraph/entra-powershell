@@ -24,7 +24,7 @@
         Write-Debug("=========================================================================``n")
         
         `$response = Get-MgBetaApplicationConnectorGroup @params
-        `$response = `$response | Select-Object Id, Name, ConnectorGroupType, IsDefault | format-table
+        `$response = `$response | Select-Object Id, Name, ConnectorGroupType, IsDefault
         `$response
     }
 "@
