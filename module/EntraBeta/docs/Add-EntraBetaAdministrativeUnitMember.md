@@ -1,4 +1,14 @@
 ---
+title: Add-EntraBetaAdministrativeUnitMember.
+description: This article provides details on the Add-EntraBetaAdministrativeUnitMember command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -13,8 +23,12 @@ Adds an administrative unit member.
 ## SYNTAX
 
 ```
-Add-EntraBetaAdministrativeUnitMember -RefObjectId <String> -ObjectId <String>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+Add-EntraBetaAdministrativeUnitMember 
+ -RefObjectId <String> 
+ -ObjectId <String>
+ [-InformationAction <ActionPreference>] 
+ [-InformationVariable <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,12 +36,12 @@ The Add-EntraBetaAdministrativeUnitMember cmdlet adds an Active Directory admini
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Add an member to AdministrativeUnit
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-EntraBetaAdministrativeUnitMember -ObjectId 0e3840ee-40b6-4b72-827b-c06e1f59d2be -RefObjectId 412be9d1-1460-4061-8eed-cca203fcb215
 ```
 
-{{ Add example description here }}
+This command adds an existing user to Administrative Unit.
 
 ## PARAMETERS
 
@@ -84,7 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
-Specifies the unique ID of the specific Azure Active Directory object that will be assigned as owner/manager/member.
+Specifies the unique ID of the specific Microsoft Entra ID object that will be assigned as owner/manager/member.
 
 ```yaml
 Type: String
