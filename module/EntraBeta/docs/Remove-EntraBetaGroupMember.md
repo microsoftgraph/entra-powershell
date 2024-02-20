@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraBetaGroupMember.
+description: This article provides details on the Remove-EntraBetaGroupMember command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -13,12 +23,16 @@ Removes a member from a group.
 ## SYNTAX
 
 ```
-Remove-EntraBetaGroupMember -ObjectId <String> -MemberId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Remove-EntraBetaGroupMember 
+ -ObjectId <String> 
+ -MemberId <String> 
+ [-InformationAction <ActionPreference>]
+ [-InformationVariable <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Remove-EntraBetaGroupMember cmdlet removes a member from a group in Azure Active Directory (AD).
+The Remove-EntraBetaGroupMember cmdlet removes a member from a group in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -28,6 +42,13 @@ PS C:\>Remove-EntraBetaGroupMember -ObjectId "62438306-7c37-4638-a72d-0ee8d92176
 ```
 
 This command removes the specified member from the specified group.
+
+### Example 2: Remove a member
+```
+PS C:\>Remove-EntraBetaGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -MemberId "2ae2d97b-4bde-42aa-b7c0-7c91a4c91a77" -InformationAction Continue -InformationVariable "Test"
+```
+
+This command removes the specified member with the specified information action and information variable from the specified group.
 
 ## PARAMETERS
 
@@ -85,7 +106,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the object ID of a group in Azure AD.
+Specifies the object ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: String
