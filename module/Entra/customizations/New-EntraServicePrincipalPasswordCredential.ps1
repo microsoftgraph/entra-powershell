@@ -3,7 +3,17 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "New-AzureADServicePrincipalPasswordCredential"
-    TargetName = "Add-MgServicePrincipalPassword"
+    TargetName = $null
     Parameters = $null
     Outputs = $null
+    CustomScript = @'
+    $response = Add-MgServicePrincipalPassword -ServicePrincipalId $PSBoundParameters["ObjectId"]
+    $response | ForEach-Object {
+        if($null -ne $_) {
+        Add-Member -InputObject $_ -MemberType AliasProperty -Name StartDate -Value StartDateTime
+        Add-Member -InputObject $_ -MemberType AliasProperty -Name EndDate -Value EndDateTime
+        }
+    }
+    $response
+'@
 }
