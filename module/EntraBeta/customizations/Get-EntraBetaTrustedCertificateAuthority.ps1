@@ -35,22 +35,27 @@
         $responseData = Get-MgBetaOrganizationCertificateBasedAuthConfiguration @params
         $response= @()
         $responseData.CertificateAuthorities | ForEach-Object {
-            if (([string]::IsNullOrEmpty($TrustedIssuer) -and [string]::IsNullOrEmpty($TrustedIssuerSki)) -or ($_.Issuer -eq $TrustedIssuer -or $_.IssuerSki -eq $TrustedIssuerSki)) {
-                $data = @{
-                    AuthorityType = "IntermediateAuthority"
-                    TrustedCertificate = $_.Certificate
-                    CrlDistributionPoint = $_.CertificateRevocationListUrl
-                    DeltaCrlDistributionPoint = $_.DeltaCertificateRevocationListUrl
-                    TrustedIssuer = $_.Issuer
-                    TrustedIssuerSki = $_.IssuerSki   
+            if (
+                ([string]::IsNullOrEmpty($TrustedIssuer) -and [string]::IsNullOrEmpty($TrustedIssuerSki)) -or
+                (![string]::IsNullOrEmpty($TrustedIssuer) -and ![string]::IsNullOrEmpty($TrustedIssuerSki) -and $_.Issuer -eq $TrustedIssuer -and $_.IssuerSki -eq $TrustedIssuerSki) -or
+                (![string]::IsNullOrEmpty($TrustedIssuer) -and [string]::IsNullOrEmpty($TrustedIssuerSki) -and $_.Issuer -eq $TrustedIssuer) -or
+                (![string]::IsNullOrEmpty($TrustedIssuerSki) -and [string]::IsNullOrEmpty($TrustedIssuer) -and $_.IssuerSki -eq $TrustedIssuerSki))
+                {
+                    $data = @{
+                        AuthorityType = "IntermediateAuthority"
+                        TrustedCertificate = $_.Certificate
+                        CrlDistributionPoint = $_.CertificateRevocationListUrl
+                        DeltaCrlDistributionPoint = $_.DeltaCertificateRevocationListUrl
+                        TrustedIssuer = $_.Issuer
+                        TrustedIssuerSki = $_.IssuerSki   
+                    }
+                    
+                    if($_.IsRootAuthority){
+                        $data.AuthorityType = "RootAuthority"
+                    }
+                    $dataJson = ConvertTo-Json $data
+                    $response += [Newtonsoft.Json.JsonConvert]::DeserializeObject($dataJson, [Microsoft.Open.AzureAD.Model.CertificateAuthorityInformation])
                 }
-                
-                if($_.IsRootAuthority){
-                    $data.AuthorityType = "RootAuthority"
-                }
-                $dataJson = ConvertTo-Json $data
-                $response += [Newtonsoft.Json.JsonConvert]::DeserializeObject($dataJson, [Microsoft.Open.AzureAD.Model.CertificateAuthorityInformation])
-            }
         }
         $response
     }  
