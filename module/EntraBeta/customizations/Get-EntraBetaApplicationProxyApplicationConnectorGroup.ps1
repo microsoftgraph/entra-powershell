@@ -6,26 +6,26 @@
     TargetName   = $null
     Parameters   = $null
     Outputs      = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {        
-        `$params = @{}
-        if (`$PSBoundParameters.ContainsKey("Debug")) {
-            `$params["Debug"] = `$Null
+        $params = @{}
+        if ($PSBoundParameters.ContainsKey("Debug")) {
+            $params["Debug"] = $Null
         }
-        if (`$null -ne `$PSBoundParameters["ObjectId"]) {
-            `$params["ApplicationId"] = `$PSBoundParameters["ObjectId"]
+        if ($null -ne $PSBoundParameters["ObjectId"]) {
+            $params["ApplicationId"] = $PSBoundParameters["ObjectId"]
         }
-        if (`$PSBoundParameters.ContainsKey("Verbose")) {
-            `$params["Verbose"] = `$Null
+        if ($PSBoundParameters.ContainsKey("Verbose")) {
+            $params["Verbose"] = $Null
         }
         
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================``n")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================")
         
-        `$response = Get-MgBetaApplicationConnectorGroup @params
-        `$response = `$response | Select-Object Id, Name, ConnectorGroupType, IsDefault
-        `$response
+        $response = Get-MgBetaApplicationConnectorGroup @params
+        $response = $response | Select-Object Id, Name, ConnectorGroupType, IsDefault
+        $response
     }
-"@
+'@
 }
