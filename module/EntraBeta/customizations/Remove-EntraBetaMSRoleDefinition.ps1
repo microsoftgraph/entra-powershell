@@ -3,7 +3,10 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Remove-AzureADMSRoleDefinition"
-    TargetName = "Remove-MgBetaRoleManagementDirectoryRoleDefinition"
+    TargetName = $null
     Parameters = $null
     Outputs = $null
+    CustomScript = @'
+        Remove-MgBetaRoleManagementDirectoryRoleDefinition -UnifiedRoleDefinitionId $PSBoundParameters["Id"]
+'@
 }
