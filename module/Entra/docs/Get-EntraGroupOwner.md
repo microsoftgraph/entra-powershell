@@ -1,4 +1,14 @@
 ---
+title: Get-EntraGroupOwner.
+description: This article provides details on the Get-EntraGroupOwner command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,7 +23,11 @@ Gets an owner of a group.
 ## SYNTAX
 
 ```
-Get-EntraGroupOwner -ObjectId <String> [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraGroupOwner 
+ -ObjectId <String>  
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,14 +37,27 @@ The Get-EntraGroupOwner cmdlet gets an owner of a group in Microsoft Entra ID.
 
 ### Example 1: Get a group owner by ID
 ```
-PS C:\>Get-EntraGroupOwner -ObjectId "62438306-7c37-4638-a72d-0ee8d9217680"
+PS C:\>Get-EntraGroupOwner -ObjectId "ba828166-dcd3-4349-aee9-9fbbf619105d"
 
-ObjectId                             ObjectType
---------                             ----------
-0a1068c0-dbb6-4537-9db3-b48f3e31dd76 User
 ```
 
 This command gets the specified group owner.
+
+### Example 2: Gets all group owners
+```
+PS C:\>Get-EntraGroupOwner -ObjectId "c072b115-ed7b-47cb-90d3-d5019d8bfd51" -All $true
+
+```
+
+This command gets the all owners of a group.
+
+### Example 3: Gets two group owners
+```
+PS C:\>Get-EntraGroupOwner -ObjectId "c072b115-ed7b-47cb-90d3-d5019d8bfd51" -Top 2
+
+```
+
+This command gets the top two owners of a group.
 
 ## PARAMETERS
 
@@ -51,7 +78,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a group in Azure AD.
+Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: String

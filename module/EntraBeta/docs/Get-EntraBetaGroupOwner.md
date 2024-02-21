@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaGroupOwner.
+description: This article provides details on the Get-EntraBetaGroupOwner command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -13,24 +23,53 @@ Gets an owner of a group.
 ## SYNTAX
 
 ```
-Get-EntraBetaGroupOwner -ObjectId <String> [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraBetaGroupOwner 
+ -ObjectId <String> 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaGroupOwner cmdlet gets an owner of a group in Azure Active Directory (AD).
+The Get-EntraBetaGroupOwner cmdlet gets an owner of a group in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Get a group owner by ID
 ```
-PS C:\>Get-EntraBetaGroupOwner -ObjectId "62438306-7c37-4638-a72d-0ee8d9217680"
+PS C:\> Get-EntraBetaGroupOwner -ObjectId "ba828166-dcd3-4349-aee9-9fbbf619105d"
 
-ObjectId                             ObjectType
---------                             ----------
-0a1068c0-dbb6-4537-9db3-b48f3e31dd76 User
+Id                                   DeletedDateTime
+--                                   ---------------
+996d39aa-fdac-4d97-aa3d-c81fb47362ac
 ```
 
 This command gets the specified group owner.
+
+### Example 2: Gets all group owners
+```
+PS C:\>Get-EntraBetaGroupOwner -ObjectId "c072b115-ed7b-47cb-90d3-d5019d8bfd51" -All $true
+
+Id                                   DeletedDateTime
+--                                   ---------------
+996d39aa-fdac-4d97-aa3d-c81fb47362ac
+ea53750f-e28a-4645-b174-89618edd034a
+2ae2d97b-4bde-42aa-b7c0-7c91a4c91a77
+```
+
+This command gets the all owners of a group.
+
+### Example 3: Gets two group owners
+```
+PS C:\>Get-EntraBetaGroupOwner -ObjectId "c072b115-ed7b-47cb-90d3-d5019d8bfd51" -Top 2
+
+Id                                   DeletedDateTime
+--                                   ---------------
+996d39aa-fdac-4d97-aa3d-c81fb47362ac
+ea53750f-e28a-4645-b174-89618edd034a
+```
+
+This command gets the top two owners of a group.
 
 ## PARAMETERS
 
@@ -51,7 +90,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a group in Azure AD.
+Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: String
