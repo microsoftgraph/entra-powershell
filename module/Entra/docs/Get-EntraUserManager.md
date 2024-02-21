@@ -1,4 +1,14 @@
 ---
+title: Get-EntraUserManager.
+description: This article provides details on the Get-EntraUserManager command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,7 +23,10 @@ Gets the manager of a user.
 ## SYNTAX
 
 ```
-Get-EntraUserManager -ObjectId <String> [-InformationAction <ActionPreference>] [-InformationVariable <String>]
+Get-EntraUserManager 
+ -ObjectId <String> 
+ [-InformationAction <ActionPreference>] 
+ [-InformationVariable <String>]
  [<CommonParameters>]
 ```
 
@@ -26,12 +39,18 @@ The Get-EntraUserManager cmdlet gets the manager of a user in Microsoft Entra ID
 ```
 PS C:\>Get-EntraUserManager -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16"
 
-ObjectId                             ObjectType
---------                             ----------
-5e8b0f4d-2cd4-4e17-9467-b0f6a5c0c4d0 User
+
 ```
 
 This command gets the manager of the specified user.
+
+### Example 2: Get the manager of a user
+```
+PS C:\>Get-EntraUserManager -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16" -InformationAction Continue -InformationVariable "Test"
+
+```
+
+This command gets the manager of the specified user for the specified information action and information variable.
 
 ## PARAMETERS
 

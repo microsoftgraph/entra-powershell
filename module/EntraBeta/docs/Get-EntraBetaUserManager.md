@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaUserManager.
+description: This article provides details on the Get-EntraBetaUserManager command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -13,12 +23,15 @@ Gets the manager of a user.
 ## SYNTAX
 
 ```
-Get-EntraBetaUserManager -ObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Get-EntraBetaUserManager 
+ -ObjectId <String> 
+ [-InformationAction <ActionPreference>]
+ [-InformationVariable <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaUserManager cmdlet gets the manager of a user in Azure Active Directory (AD).
+The Get-EntraBetaUserManager cmdlet gets the manager of a user in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -26,12 +39,18 @@ The Get-EntraBetaUserManager cmdlet gets the manager of a user in Azure Active D
 ```
 PS C:\>Get-EntraBetaUserManager -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16"
 
-ObjectId                             ObjectType
---------                             ----------
-5e8b0f4d-2cd4-4e17-9467-b0f6a5c0c4d0 User
+
 ```
 
 This command gets the manager of the specified user.
+
+### Example 2: Get the manager of a user
+```
+PS C:\>Get-EntraBetaUserManager -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16" -InformationAction Continue -InformationVariable "Test"
+
+```
+
+This command gets the manager of the specified user for the specified information action and information variable.
 
 ## PARAMETERS
 
@@ -74,7 +93,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-The unique identifier of a user in Azure Active Directory (UPN or ObjectId)
+The unique identifier of a user in Microsoft Entra ID (UPN or ObjectId)
 
 ```yaml
 Type: String
