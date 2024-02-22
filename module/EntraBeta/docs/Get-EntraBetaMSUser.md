@@ -96,7 +96,7 @@ DisplayName Id                                   Mail                           
 Alex Wilber a23541ee-4fe9-4cf2-b628-102ebaef8f7e AlexW@M365x99297270.OnMicrosoft.com AlexW@M365x99297270.OnMicrosoft.com
 ```
 
-This command gets This command gets the specified user.
+This command gets the specified user.
 
 ### Example 5: Search among retrieved users
 ```
