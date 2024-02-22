@@ -32,7 +32,7 @@ Add-EntraBetaAdministrativeUnitMember
 ```
 
 ## DESCRIPTION
-The Add-EntraBetaAdministrativeUnitMember cmdlet adds an Active Directory administrative unit member.
+The Add-EntraBetaAdministrativeUnitMember cmdlet adds an Microsoft Entra ID administrative unit member.
 
 ## EXAMPLES
 
@@ -83,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of an Active Directory administrative unit.
+Specifies the ID of an Microsoft Entra ID administrative unit.
 
 ```yaml
 Type: String
