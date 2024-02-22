@@ -3,7 +3,16 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADMSDeletedGroup"
-    TargetName = "Get-MgBetaDirectoryDeletedItem"
-    Parameters = $null
+    TargetName = "Get-MgBetaDirectoryDeletedItemAsGroup"
+    Parameters = @(
+        @{
+            SourceName = "SearchString"
+            TargetName = "Filter"
+            ConversionType = "ScriptBlock"
+            SpecialMapping = @'
+            $Value = "mailNickName eq '$TmpValue' or (mail eq '$TmpValue' or (displayName eq '$TmpValue' or startswith(displayName,'$TmpValue')))"
+'@
+        }
+    )
     Outputs = $null
 }
