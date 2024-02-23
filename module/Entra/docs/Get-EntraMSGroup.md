@@ -31,7 +31,7 @@ Get-EntraMSGroup
  [<CommonParameters>]
 ```
 
-### GetVague
+### GetValue
 ```
 Get-EntraMSGroup 
  [-SearchString <String>] 

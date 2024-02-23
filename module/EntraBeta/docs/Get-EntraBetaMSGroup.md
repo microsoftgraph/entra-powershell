@@ -41,7 +41,7 @@ Get-EntraBetaMSGroup
  [<CommonParameters>]
 ```
 
-### GetVague
+### GetValue
 ```
 Get-EntraBetaMSGroup 
  [-All <Boolean>] 
