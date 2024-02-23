@@ -41,7 +41,7 @@ Get-EntraBetaMSUser
  [<CommonParameters>]
 ```
 
-### GetVague
+### GetValue
 ```
 Get-EntraBetaMSUser 
  [-SearchString <String>] 
