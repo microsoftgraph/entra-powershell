@@ -1,4 +1,14 @@
 ---
+title: Add-EntraBetaGroupMember.
+description: This article provides details on the Add-EntraBetaGroupMember command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -13,8 +23,12 @@ Adds a member to a group.
 ## SYNTAX
 
 ```
-Add-EntraBetaGroupMember -ObjectId <String> -RefObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Add-EntraBetaGroupMember 
+ -ObjectId <String> 
+ -RefObjectId <String> 
+ [-InformationAction <ActionPreference>]
+ [-InformationVariable <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -24,7 +38,7 @@ The Add-EntraBetaGroupMember cmdlet adds a member to a group.
 
 ### Example 1: Add a member to a group
 ```
-PS C:\>Add-EntraBetaGroupMember -ObjectId "62438306-7c37-4638-a72d-0ee8d9217680" -RefObjectId "0a1068c0-dbb6-4537-9db3-b48f3e31dd76"
+PS C:\> Add-EntraBetaGroupMember -ObjectId "056b2531-005e-4f3e-be78-01a71ea30a04" -RefObjectId "996d39aa-fdac-4d97-aa3d-c81fb47362ac"
 ```
 
 This command adds a member to a group.
@@ -70,7 +84,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a group in Azure Active Directory.
+Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -85,7 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
-Specifies the ID of the Active Directory object that will be assigned as owner/manager/member.
+Specifies the ID of the Microsoft Entra ID object that will be assigned as owner/manager/member.
 
 ```yaml
 Type: String
