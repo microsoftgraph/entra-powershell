@@ -31,7 +31,7 @@ Get-EntraUser
 [<CommonParameters>]
 ```
 
-### GetVague
+### GetValue
 ```
 Get-EntraUser 
 [-SearchString <String>] 
