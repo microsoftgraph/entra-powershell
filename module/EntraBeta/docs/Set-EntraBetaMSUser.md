@@ -1,4 +1,14 @@
 ---
+title: Set-EntraBetaMSUser.
+description: This article provides details on the Set-EntraBetaMSUser command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,31 +18,50 @@ schema: 2.0.0
 # Set-EntraBetaMSUser
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Updates a user.
 
 ## SYNTAX
 
 ```
-Set-EntraBetaMSUser -Id <String> [-CustomSecurityAttributes <Object>] [-UserPrincipalName <String>]
- [-DisplayName <String>] [<CommonParameters>]
+Set-EntraBetaMSUser 
+ -Id <String> 
+ [-CustomSecurityAttributes <Object>] 
+ [-UserPrincipalName <String>]
+ [-DisplayName <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The Set-EntraBetaMSUser cmdlet updates a user in Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Update a user's display name and user principal name
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Set-EntraBetaMSUser -Id d67d8b7b-57e1-486e-9361-26a1e2f0e8fe -UserPrincipalName Test2@M365x99297270.onmicrosoft.com -DisplayName "Test One Updated"
 ```
 
-{{ Add example description here }}
+This command updates the specified user's display name and user principal name.
+
+
+### Example 2: Update a user's custom security attributes
+```powershell
+PS C:\> $attributes = @{
+>>       engineering = @{
+>>           "@odata.type" = "#Microsoft.DirectoryServices.CustomSecurityAttributeValue"
+>>           "newvalue@odata.type" = "#Collection(String)"
+>>          newvalue = @("Baker","Cascade")
+>>       }
+>> }
+PS C:\> Set-EntraBetaMSUser -Id d67d8b7b-57e1-486e-9361-26a1e2f0e8fe -CustomSecurityAttributes $attributes
+```
+
+This command updates the specified user's custom security attributes.
 
 ## PARAMETERS
 
 ### -CustomSecurityAttributes
-{{ Fill CustomSecurityAttributes Description }}
+Custom security attributes for the user.
 
 ```yaml
 Type: Object
@@ -47,7 +76,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-{{ Fill DisplayName Description }}
+Specifies the user's display name.
 
 ```yaml
 Type: String
@@ -62,7 +91,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+Specifies the ID of a user in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -77,7 +106,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserPrincipalName
-{{ Fill UserPrincipalName Description }}
+Specifies the user principal name of a user in Microsoft Entra ID.
 
 ```yaml
 Type: String
