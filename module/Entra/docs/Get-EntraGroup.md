@@ -31,7 +31,7 @@ Get-EntraGroup
  [<CommonParameters>]
 ```
 
-### GetVague
+### GetValue
 ```
 Get-EntraGroup 
  [-SearchString <String>] 
