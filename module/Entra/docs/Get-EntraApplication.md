@@ -31,7 +31,7 @@ Get-EntraApplication
  [<CommonParameters>]
 ```
 
-### GetVague
+### GetValue
 ```
 Get-EntraApplication 
  [-SearchString <String>] 

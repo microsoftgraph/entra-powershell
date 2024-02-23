@@ -31,7 +31,7 @@ Get-EntraBetaApplication
  [<CommonParameters>]
 ```
 
-### GetVague
+### GetValue
 ```
 Get-EntraBetaApplication 
  [-SearchString <String>] 
