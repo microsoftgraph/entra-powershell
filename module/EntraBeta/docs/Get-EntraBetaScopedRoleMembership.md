@@ -1,6 +1,6 @@
 ---
 title: Get-EntraBetaScopedRoleMembership
-description: This article provides details on the EntraBetaScopedRoleMembership command.
+description: This article provides details on the Get-EntraBetaScopedRoleMembership command.
 
 ms.service: active-directory
 ms.topic: reference
