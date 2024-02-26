@@ -84,17 +84,15 @@
                 $inpu = $TmpValue
                 foreach($v in $inpu)
                 {
-                    
-                    $hash = @{
-                        CustomKeyIdentifier= $v.CustomKeyIdentifier
-                        EndDateTime = $v.EndDateTime
-                        Key= $v.Key
-                        StartDateTime= $v.StartDateTime
-                        Type= $v.Type
-                        Usage= $v.Usage
-                        KeyId= $v.KeyId
-                    }
-                    
+                    $hash = @{}
+                    if($TmpValue.CustomKeyIdentifier) { $hash["CustomKeyIdentifier"] = $v.CustomKeyIdentifier }
+                    if($TmpValue.EndDateTime) { $hash["EndDateTime"] = $v.EndDateTime }
+                    if($TmpValue.Key) { $hash["Key"] = $v.Key }
+                    if($TmpValue.StartDateTime) { $hash["StartDateTime"] = $v.StartDateTime }
+                    if($TmpValue.Type) { $hash["Type"] = $v.Type }
+                    if($TmpValue.Usage) { $hash["Usage"] = $v.Usage }
+                    if($TmpValue.KeyId) { $hash["KeyId"] = $v.KeyId }
+
                     $a += $hash
                 }
     
@@ -147,16 +145,14 @@
                 $inpu = $TmpValue
                 foreach($v in $inpu)
                 {
-                    
-                    $hash = @{
-                        CustomKeyIdentifier= $v.CustomKeyIdentifier
-                        EndDateTime = $v.EndDateTime
-                        Hint= $v.Hint
-                        StartDateTime= $v.StartDateTime
-                        SecretText= $v.SecretText
-                        KeyId= $v.KeyId
-                    }
-                    
+                    $hash = @{}
+                    if($TmpValue.CustomKeyIdentifier) { $hash["CustomKeyIdentifier"] = $v.CustomKeyIdentifier }
+                    if($TmpValue.EndDateTime) { $hash["EndDateTime"] = $v.EndDateTime }
+                    if($TmpValue.Hint) { $hash["Hint"] = $v.Hint }
+                    if($TmpValue.StartDateTime) { $hash["StartDateTime"] = $v.StartDateTime }
+                    if($TmpValue.SecretText) { $hash["SecretText"] = $v.SecretText }
+                    if($TmpValue.KeyId) { $hash["KeyId"] = $v.KeyId }
+
                     $a += $hash
                 }
     
