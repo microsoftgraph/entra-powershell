@@ -31,7 +31,7 @@ Get-EntraUser
 [<CommonParameters>]
 ```
 
-### GetValue
+### GetByValue
 ```
 Get-EntraUser 
 [-SearchString <String>] 
