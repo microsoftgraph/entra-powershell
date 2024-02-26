@@ -156,15 +156,23 @@
         if($null -ne $PSBoundParameters["AppRoles"])
         {
             $TmpValue = $PSBoundParameters["AppRoles"]
-                        $Value = @()
-                foreach($data in $TmpValue)
+                        $a = @()
+                $inpu = $TmpValue
+                foreach($v in $inpu)
                 {
-                $Temp = $data | ConvertTo-Json
                     $hash = @{}
-    
-                    (ConvertFrom-Json $Temp).psobject.properties | Foreach { $hash[$_.Name] = $_.Value }
-                    $Value += $hash
+                    if($TmpValue.AllowedMemberTypes) { $hash["AllowedMemberTypes"] = $v.AllowedMemberTypes }
+                    if($TmpValue.Description) { $hash["Description"] = $v.Description }
+                    if($TmpValue.DisplayName) { $hash["DisplayName"] = $v.DisplayName }
+                    if($TmpValue.Id) { $hash["Id"] = $v.Id }
+                    if($TmpValue.IsEnabled) { $hash["IsEnabled"] = $v.IsEnabled }
+                    if($TmpValue.Origin) { $hash["Origin"] = $v.Origin }
+                    if($TmpValue.Value) { $hash["Value"] = $v.Value }
+
+                    $a += $hash
                 }
+    
+                $Value = $a
             $params["AppRoles"] = $Value
         }
         if($null -ne $PSBoundParameters["PasswordCredentials"])
