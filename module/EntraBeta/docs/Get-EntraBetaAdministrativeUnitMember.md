@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaAdministrativeUnitMember.
+description: This article provides details on the Get-EntraBetaAdministrativeUnitMember command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -13,19 +23,58 @@ Gets a member of an administrative unit.
 ## SYNTAX
 
 ```
-Get-EntraBetaAdministrativeUnitMember -ObjectId <String> [-All <Boolean>] [-Top <Int32>]
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+Get-EntraBetaAdministrativeUnitMember 
+ -ObjectId <String> 
+ [-All <Boolean>] 
+ [-Top <Int32>]
+ [-InformationAction <ActionPreference>] 
+ [-InformationVariable <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaAdministrativeUnitMember cmdlet gets a member of an Active Directory administrative unit.
+The Get-EntraBetaAdministrativeUnitMember cmdlet gets a member of an Microsoft Entra ID administrative unit.
 
 ## EXAMPLES
 
-### Example 1 Get an administrative unit member by ID
+### Example 1: Get an administrative unit member by ID
 ```
-PS C:\> Get-EntraBetaAdministrativeUnitMember -ObjectId "ef08b536-9d0a-4f8f-bda5-8b9cd01a9159"
+PS C:\> Get-EntraBetaAdministrativeUnitMember -ObjectId "3da073b9-e731-4ec1-a4f6-6e02865a8c8a"
+
+Id                                   DeletedDateTime
+--                                   ---------------
+996d39aa-fdac-4d97-aa3d-c81fb47362ac
+a23541ee-4fe9-4cf2-b628-102ebaef8f7e
+fd560167-ff1f-471a-8d74-3b0070abcea1
 ```
+
+This command gets the administrative unit member for specified ObjectId.
+
+
+### Example 2: Get all administrative unit members 
+```
+PS C:\> Get-EntraBetaAdministrativeUnitMember -ObjectId "3da073b9-e731-4ec1-a4f6-6e02865a8c8a" -All $true
+
+Id                                   DeletedDateTime
+--                                   ---------------
+996d39aa-fdac-4d97-aa3d-c81fb47362ac
+a23541ee-4fe9-4cf2-b628-102ebaef8f7e
+fd560167-ff1f-471a-8d74-3b0070abcea1
+```
+
+This command gets the all administrative unit members for specified ObjectId.
+
+### Example 3: Get two administrative unit members 
+```
+PS C:\> Get-EntraBetaAdministrativeUnitMember -ObjectId "3da073b9-e731-4ec1-a4f6-6e02865a8c8a" -Top 2
+
+Id                                   DeletedDateTime
+--                                   ---------------
+996d39aa-fdac-4d97-aa3d-c81fb47362ac
+a23541ee-4fe9-4cf2-b628-102ebaef8f7e
+```
+
+This command gets the top two administrative unit members for specified ObjectId.
+
 
 ## PARAMETERS
 
@@ -67,7 +116,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of an administrative unit in Azure Active Directory.
+Specifies the ID of an administrative unit in Microsoft Entra ID.
 
 ```yaml
 Type: String
