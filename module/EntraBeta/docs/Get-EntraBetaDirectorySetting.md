@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaDirectorySetting.
+description: This article provides details on the Get-EntraBetaDirectorySetting command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -14,25 +24,52 @@ Gets a directory setting.
 
 ### GetQuery (Default)
 ```
-Get-EntraBetaDirectorySetting [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraBetaDirectorySetting 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```
-Get-EntraBetaDirectorySetting [-All <Boolean>] -Id <String> [<CommonParameters>]
+Get-EntraBetaDirectorySetting 
+-Id <String> 
+[-All <Boolean>] 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaDirectorySetting cmdlet gets a directory setting from Azure Active Directory (AD).
+The Get-EntraBetaDirectorySetting cmdlet gets a directory setting from Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Gets directory setting by ID
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-EntraBetaDirectorySetting -Id a658c48f-fd66-498d-8199-27ed3d33c7c3
+
+Id                                   DisplayName TemplateId
+--                                   ----------- ----------
+a658c48f-fd66-498d-8199-27ed3d33c7c3 Application 4bc7f740-180e-4586-adb6-38b2e9024e6b
 ```
 
-{{ Add example description here }}
+This command gets the directory setting for specified Id.
+
+
+### Example 2: Gets all directory settings
+```
+PS C:\> Get-EntraBetaDirectorySetting -All $true
+
+```
+
+This command gets the all directory settings.
+
+### Example 3: Gets five directory settings
+```
+PS C:\> Get-EntraBetaDirectorySetting -Top 5
+```
+
+This command gets the top five directory settings.
+
 
 ## PARAMETERS
 
@@ -53,7 +90,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Specifies the ID of a directory in Azure AD.
+Specifies the ID of a directory in Microsoft Entra ID.
 
 ```yaml
 Type: String
