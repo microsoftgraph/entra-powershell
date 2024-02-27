@@ -1,4 +1,14 @@
 ---
+title: Get-EntraUserRegisteredDevice.
+description: This article provides details on the Get-EntraUserRegisteredDevice command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,7 +23,11 @@ Get devices registered by a user.
 ## SYNTAX
 
 ```
-Get-EntraUserRegisteredDevice -ObjectId <String> [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraUserRegisteredDevice
+ -ObjectId <String>
+ [-All <Boolean>]
+ [-Top <Int32>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -27,6 +41,21 @@ PS C:\>Get-EntraUserRegisteredDevice -ObjectId  "df19e8e6-2ad7-453e-87f5-037f652
 ```
 
 This command gets the devices that are registered to the specified user.
+
+### Example 2: Get all registered devices
+```
+PS C:\>Get-EntraUserRegisteredDevice -ObjectId  "df19e8e6-2ad7-453e-87f5-037f6529ae16" -All $true
+```
+
+This command gets all the devices that are registered to the specified user.
+
+
+### Example 3: Get two registered devices
+```
+PS C:\>Get-EntraUserRegisteredDevice -ObjectId  "df19e8e6-2ad7-453e-87f5-037f6529ae16" -Top 2
+```
+
+This command gets the top two devices that are registered to the specified user.
 
 ## PARAMETERS
 
@@ -46,7 +75,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a user (as a UPN or ObjectId) in Azure AD.
+Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: String
