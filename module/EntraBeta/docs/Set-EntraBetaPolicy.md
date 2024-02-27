@@ -1,4 +1,14 @@
 ---
+title: Set-EntraBetaPolicy.
+description: This article provides details on the Set-EntraBetaPolicy command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -13,23 +23,56 @@ Updates a policy.
 ## SYNTAX
 
 ```
-Set-EntraBetaPolicy [-AlternativeIdentifier <String>] -Id <String>
- [-Definition <System.Collections.Generic.List`1[System.String]>] [-DisplayName <String>] [-Type <String>]
+Set-EntraBetaPolicy
+ -Id <String>
+ [-AlternativeIdentifier <String>]
+ [-Definition <System.Collections.Generic.List`1[System.String]>]
+ [-DisplayName <String>]
+ [-Type <String>]
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]>]
- [-IsOrganizationDefault <Boolean>] [<CommonParameters>]
+ [-IsOrganizationDefault <Boolean>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Set-EntraBetaPolicy cmdlet sets a policy in Azure Active Directory (AD).
+The Set-EntraBetaPolicy cmdlet sets a policy in Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1: Update a policy
+### Example 1: Update a policy display name
 ```
-PS C:\>Set-EntraBetaPolicy -ObjectId <object id of policy> -DisplayName <string>
+PS C:\>Set-EntraBetaPolicy  -Id "364e07d3-529b-4ffc-96be-56bbacf34ace" -DisplayName "New update"
 ```
 
-This command updates the specified policy in Azure AD.
+This command updates display name of the specified policy in Microsoft Entra ID.
+
+### Example 2: Update a policy definition
+```
+PS C:\>Set-EntraBetaPolicy  -Id "364e07d3-529b-4ffc-96be-56bbacf34ace" -Definition @('{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')
+```
+
+This command updates defination of the specified policy in Microsoft Entra ID.
+
+### Example 3: Update a policy organization default
+```
+PS C:\Set-EntraBetaPolicy  -Id "364e07d3-529b-4ffc-96be-56bbacf34ace" -IsOrganizationDefault $false
+```
+
+This command updates organization default of the specified policy in Microsoft Entra ID.
+
+### Example 4: Update policy type
+```
+PS C:\Set-EntraBetaPolicy  -Id "364e07d3-529b-4ffc-96be-56bbacf34ace" -Type "HomeRealmDiscoveryPolicy"
+```
+
+This command updates type of the specified policy in Microsoft Entra ID.
+
+### Example 5: Update policy alternative Identifier
+```
+PS C:\Set-EntraBetaPolicy  -Id "364e07d3-529b-4ffc-96be-56bbacf34ace" -AlternativeIdentifier "4f2283ed-ad98-48ea-9ade-4c77d55ed983"
+```
+
+This command updates alternative identifier of the specified policy in Microsoft Entra ID.
 
 ## PARAMETERS
 
