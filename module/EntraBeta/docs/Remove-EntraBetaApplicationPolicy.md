@@ -1,4 +1,15 @@
 ---
+title: Remove-EntraBetaApplicationPolicy.
+description: This article provides details on the Remove-EntraBetaApplicationPolicy command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -13,18 +24,17 @@ Removes an application policy.
 ## SYNTAX
 
 ```
-Remove-EntraBetaApplicationPolicy -Id <String> -PolicyId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Remove-EntraBetaApplicationPolicy -Id <String> -PolicyId <String> [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Remove-EntraBetaApplicationPolicy cmdlet removes an application policy from Azure Active Directory (AD).
+The Remove-EntraBetaApplicationPolicy cmdlet removes an application policy from Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Remove an application policy
 ```
-PS C:\>Remove-EntraBetaApplicationPolicy -ObjectId <object id of application> -PolicyId <object id of policy>
+PS C:\>Remove-EntraBetaApplicationPolicy -Id <object id of application> -PolicyId <object id of policy>
 ```
 
 This command removes the specified application policy.
@@ -85,7 +95,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: String
