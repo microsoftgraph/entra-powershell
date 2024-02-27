@@ -1,4 +1,15 @@
 ---
+title: Remove-EntraUser
+description: This article provides details on the Remove-EntraUser command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -18,7 +29,7 @@ Remove-EntraUser -ObjectId <String> [-InformationAction <ActionPreference>] [-In
 ```
 
 ## DESCRIPTION
-The Remove-EntraUser cmdlet removes a user in Microsoft Entra ID.
+The **Remove-EntraUser** cmdlet removes a user in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -27,7 +38,7 @@ The Remove-EntraUser cmdlet removes a user in Microsoft Entra ID.
 PS C:\>Remove-EntraUser -ObjectId "TestUser@example.com"
 ```
 
-This command removes the specified user in Azure AD.
+This command removes the specified user in Microsoft Entra ID.
 
 ## PARAMETERS
 
@@ -70,7 +81,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a user (as a UPN or ObjectId) in Azure AD.
+Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -95,9 +106,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraUser]()
+[Get-EntraUser](Get-EntraUser.md)
 
-[New-EntraUser]()
+[New-EntraUser](New-EntraUser.md)
 
-[Set-EntraUser]()
+[Set-EntraUser](Set-EntraUser.md)
 
