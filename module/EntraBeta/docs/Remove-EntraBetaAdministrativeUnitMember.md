@@ -38,6 +38,8 @@ The **Remove-EntraBetaAdministrativeUnitMember** cmdlet removes an administrativ
 PS C:\> Remove-AzureADAdministrativeUnitMember -ObjectId "49263478-3dda-4112-821d-4e6ccaa1c2d5" -MemberId "c26aa946-90cd-4e9a-a8f1-43eeef655500"
 ```
 
+This command removes an administrative unit member in Microsoft Entra ID. 
+
 ## PARAMETERS
 
 ### -InformationAction
