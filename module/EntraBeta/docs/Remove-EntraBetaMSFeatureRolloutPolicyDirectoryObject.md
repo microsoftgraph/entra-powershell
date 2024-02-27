@@ -1,4 +1,15 @@
 ---
+title: Remove-EntraBetaMSFeatureRolloutPolicyDirectoryObject.
+description: This article provides details on the Remove-EntraBetaMSFeatureRolloutPolicyDirectoryObject command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,7 +19,7 @@ schema: 2.0.0
 # Remove-EntraBetaMSFeatureRolloutPolicyDirectoryObject
 
 ## SYNOPSIS
-Allows an admin to remove a group from the cloud authentication rollout policy in Azure AD.
+Allows an admin to remove a group from the cloud authentication rollout policy in Microsoft Entra ID.
 Users in this group will revert back to the authenticating using the global policy (in most cases this will be federation).
 
 ## SYNTAX
@@ -24,17 +35,17 @@ federation).
 
 ## EXAMPLES
 
-### Example 1: Removes a group from the cloud authentication roll-out policy from Azure AD.
+### Example 1: Removes a group from the cloud authentication roll-out policy from Microsoft Entra ID.
 ```
 PS C:\> Remove-EntraBetaMSFeatureRolloutPolicyDirectoryObject -Id "a03b6d9e-6654-46e6-8d0a-8ed83c675ca9" -ObjectId "0a1068c0-dbb6-4537-9db3-b48f3e31dd76"
 ```
 
-This command removes a group from the cloud authentication roll-out policy from Azure AD.
+This command removes a group from the cloud authentication roll-out policy from Microsoft Entra ID.
 
 ## PARAMETERS
 
 ### -Id
-The unique identifier of the cloud authentication roll-out policy in Azure AD.
+The unique identifier of the cloud authentication roll-out policy in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -49,7 +60,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-The unique identifier of the specific Azure AD object that will be assigned to the cloud authentication roll-out policy in Azure AD.
+The unique identifier of the specific Microsoft Entra ID object that will be assigned to the cloud authentication roll-out policy in Microsoft Entra ID.
 
 ```yaml
 Type: String
