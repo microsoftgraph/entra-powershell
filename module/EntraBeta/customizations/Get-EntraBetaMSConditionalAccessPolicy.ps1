@@ -4,6 +4,13 @@
 @{
     SourceName = "Get-AzureADMSConditionalAccessPolicy"
     TargetName = "Get-MgBetaIdentityConditionalAccessPolicy"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "PolicyId"
+            TargetName = "ConditionalAccessPolicyId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+    )
     Outputs = $null
 }
