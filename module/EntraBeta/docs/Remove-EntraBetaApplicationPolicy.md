@@ -28,7 +28,7 @@ Remove-EntraBetaApplicationPolicy -Id <String> -PolicyId <String> [-InformationA
 ```
 
 ## DESCRIPTION
-The Remove-EntraBetaApplicationPolicy cmdlet removes an application policy from Microsoft Entra ID.
+The **Remove-EntraBetaApplicationPolicy** cmdlet removes an application policy from Microsoft Entra ID.
 
 ## EXAMPLES
 
