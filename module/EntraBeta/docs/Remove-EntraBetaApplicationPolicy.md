@@ -34,7 +34,7 @@ The **Remove-EntraBetaApplicationPolicy** cmdlet removes an application policy f
 
 ### Example 1: Remove an application policy
 ```
-PS C:\>Remove-EntraBetaApplicationPolicy -Id <object id of application> -PolicyId <object id of policy>
+PS C:\>Remove-AzureADApplicationPolicy -Id e3108c4d-86ff-4ceb-9429-24e85b4b8cea -PolicyId 3789ac74-16df-4c22-8ffe-6fc1cb30a399
 ```
 
 This command removes the specified application policy.
