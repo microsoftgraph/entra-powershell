@@ -1,4 +1,15 @@
 ---
+title: New-EntraBetaUser
+description: This article provides details on the New-EntraBetaUser command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,7 +19,7 @@ schema: 2.0.0
 # New-EntraBetaUser
 
 ## SYNOPSIS
-Creates an AD user.
+Creates a Microsoft Entra ID user.
 
 ## SYNTAX
 
@@ -28,20 +39,64 @@ New-EntraBetaUser [-PostalCode <String>] [-MailNickName <String>] [-ShowInAddres
 ```
 
 ## DESCRIPTION
-The New-EntraBetaUser cmdlet creates a user in Azure Active Directory (AD).
+The **New-EntraBetaUser** cmdlet creates a user in Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1: Create a user
+### Example 1
 ```
--EntraBetaUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser"
+$PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+$PasswordProfile.Password = "<Password>"
+New-EntraBetaUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser"
 
 ObjectId                             DisplayName UserPrincipalName               UserType
 --------                             ----------- -----------------               --------
 5e8b0f4d-2cd4-4e17-9467-b0f6a5c0c4d0 New user    NewUser@contoso.com             Member
 ```
 
-This command creates a new user.
+### Example 2
+```
+$PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+$PasswordProfile.Password = "<Password>"
+New-EntraBetaUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser" -AgeGroup "adult"
+
+ObjectId                             DisplayName UserPrincipalName               UserType
+--------                             ----------- -----------------               --------
+5e8b0f4d-2cd4-4e17-9467-b0f6a5c0c4d0 New user    NewUser@contoso.com             Member
+```
+
+### Example 3
+```
+$PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+$PasswordProfile.Password = "<Password>"
+New-EntraBetaUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser" -City "New York"
+
+ObjectId                             DisplayName UserPrincipalName               UserType
+--------                             ----------- -----------------               --------
+5e8b0f4d-2cd4-4e17-9467-b0f6a5c0c4d0 New user    NewUser@contoso.com             Member
+```
+
+### Example 4
+```
+$PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+$PasswordProfile.Password = "<Password>"
+New-EntraBetaUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser" -Department "IT"
+
+ObjectId                             DisplayName UserPrincipalName               UserType
+--------                             ----------- -----------------               --------
+5e8b0f4d-2cd4-4e17-9467-b0f6a5c0c4d0 New user    NewUser@contoso.com             Member
+```
+
+### Example 5
+```
+$PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+$PasswordProfile.Password = "<Password>"
+New-EntraBetaUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser" -Mobile "02883655253"
+
+ObjectId                             DisplayName UserPrincipalName               UserType
+--------                             ----------- -----------------               --------
+5e8b0f4d-2cd4-4e17-9467-b0f6a5c0c4d0 New user    NewUser@contoso.com             Member
+```
 
 ## PARAMETERS
 
@@ -91,7 +146,7 @@ Accept wildcard characters: False
 ```
 
 ### -CreationType
-Indicates whether the user account is a local account for an Azure Active Directory B2C tenant.
+Indicates whether the user account is a local account for an Microsoft Entra ID B2C tenant.
 Possible values are "LocalAccount" and null.
 When creating a local account, the property is required and you must set it to "LocalAccount".
 When creating a work or school account, do not specify the property or set it to null.
@@ -169,7 +224,7 @@ Accept wildcard characters: False
 ```
 
 ### -ImmutableId
-This property is used to associate an on-premises Active Directory user account to their Azure AD user object.
+This property is used to associate an on-premises user account to their Microsoft Entra ID user object.
 This property must be specified when creating a new user account in the Graph if you are using a federated domain for the user's userPrincipalName (UPN) property.
 
 Important: The $ and _ characters cannot be used when specifying this property.
@@ -371,7 +426,7 @@ Accept wildcard characters: False
 ```
 
 ### -SignInNames
-Specifies the collection of sign-in names for a local account in an Azure Active Directory B2C tenant.
+Specifies the collection of sign-in names for a local account in an Microsoft Entra ID B2C tenant.
 Each sign-in name must be unique across the company/tenant.
 The property must be specified when you create a local account user; do not specify it when you create a work or school account.
 
@@ -500,7 +555,7 @@ Accept wildcard characters: False
 ```
 
 ### -FacsimileTelephoneNumber
-{{Fill FacsimileTelephoneNumber Description}}
+This specifies the user's telephone number.
 
 ```yaml
 Type: String
@@ -515,7 +570,7 @@ Accept wildcard characters: False
 ```
 
 ### -AgeGroup
-{{ Fill AgeGroup Description }}
+This specifies the user's age group.
 
 ```yaml
 Type: String
@@ -530,7 +585,7 @@ Accept wildcard characters: False
 ```
 
 ### -CompanyName
-{{ Fill CompanyName Description }}
+This specifies the user's company name.
 
 ```yaml
 Type: String
@@ -545,7 +600,7 @@ Accept wildcard characters: False
 ```
 
 ### -ConsentProvidedForMinor
-{{ Fill ConsentProvidedForMinor Description }}
+Sets whether consent was obtained for minors.
 
 ```yaml
 Type: String
@@ -560,7 +615,8 @@ Accept wildcard characters: False
 ```
 
 ### -UserState
-{{ Fill UserState Description }}
+For an external user invited to the tenant using the invitation API, this property represents the invited user's 
+invitation status. 
 
 ```yaml
 Type: String
@@ -575,7 +631,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserStateChangedOn
-{{ Fill UserStateChangedOn Description }}
+Shows the timestamp for the latest change to the userState property.
 
 ```yaml
 Type: String
@@ -600,9 +656,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraBetaUser]()
+[Get-EntraBetaUser](Get-EntraBetaUser.md)
 
-[Remove-EntraBetaUser]()
+[Remove-EntraBetaUser](Remove-EntraBetaUser.md)
 
-[Set-EntraBetaUser]()
+[Set-EntraBetaUser](Set-EntraBetaUser.md)
 
