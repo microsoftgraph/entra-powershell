@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraBetaPolicy.
+description: This article provides details on the Remove-EntraBetaPolicy command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -13,18 +23,21 @@ Removes a policy.
 ## SYNTAX
 
 ```
-Remove-EntraBetaPolicy -Id <String> [-InformationAction <ActionPreference>] [-InformationVariable <String>]
+Remove-EntraBetaPolicy
+ -Id <String> 
+ [-InformationAction <ActionPreference>] 
+ [-InformationVariable <String>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Remove-EntraBetaPolicy cmdlet removes a policy from Azure Active Directory (AD).
+The Remove-EntraBetaPolicy cmdlet removes a policy from Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Remove a policy
 ```
-PS C:\>Remove-EntraBetaPolicy -Id *<ID>*.
+PS C:\>Remove-EntraBetaPolicy -Id da0bce5a-d2d2-4d68-9816-967d05f93eb2
 ```
 
 This command removes the specified policy.
