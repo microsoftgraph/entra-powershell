@@ -1,4 +1,14 @@
 ---
+title: Set-EntraDevice.
+description: This article provides details on the Set-EntraDevice command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,14 +23,24 @@ Updates a device.
 ## SYNTAX
 
 ```
-Set-EntraDevice [-DevicePhysicalIds <System.Collections.Generic.List`1[System.String]>]
- [-DeviceOSType <String>] [-DeviceTrustType <String>] [-DisplayName <String>] [-DeviceMetadata <String>]
- -ObjectId <String> [-ApproximateLastLogonTimeStamp <DateTime>] [-AccountEnabled <Boolean>]
- [-IsManaged <Boolean>] [-DeviceId <String>] [-DeviceObjectVersion <Int32>] [-IsCompliant <Boolean>]
- [-DeviceOSVersion <String>]
- [-AlternativeSecurityIds <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AlternativeSecurityId]>]
- [-ProfileType <String>] [-SystemLabels <System.Collections.Generic.List`1[System.String]>]
- [<CommonParameters>]
+Set-EntraDevice
+-ObjectId <String> 
+[-DevicePhysicalIds <System.Collections.Generic.List`1[System.String]>]
+[-DeviceOSType <String>] 
+[-DeviceTrustType <String>] 
+[-DisplayName <String>] 
+[-DeviceMetadata <String>]
+[-ApproximateLastLogonTimeStamp <DateTime>] 
+[-AccountEnabled <Boolean>]
+[-IsManaged <Boolean>] 
+[-DeviceId <String>] 
+[-DeviceObjectVersion <Int32>] 
+[-IsCompliant <Boolean>]
+[-DeviceOSVersion <String>]
+[-AlternativeSecurityIds <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AlternativeSecurityId]>]
+[-ProfileType <String>] 
+[-SystemLabels <System.Collections.Generic.List`1[System.String]>]
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,12 +48,43 @@ The Set-EntraDevice cmdlet updates a device in Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1: Update a device
+### Example 1: Update a device display name
 ```
 PS C:\>Set-EntraDevice -ObjectId "99a1915d-298f-42d1-93ae-71646b85e2fa" -DisplayName "My OS/2 computer"
 ```
 
-This command updates the specified device.
+This command updates the display name of a specified device.
+
+### Example 2: Update a device alternative secuiuty Id
+```
+PS C:\> $NewId= New-Object Microsoft.Open.AzureAD.Model.AlternativeSecurityId
+$NewId.Key =[System.Text.Encoding]::UTF8.GetBytes("test")
+$NewId.type = 2
+PS C:\> Set-EntraDevice -ObjectId "2d3a1947-4e0f-4136-9be5-9721f12bd887" -AlternativeSecurityIds $NewId
+```
+
+This command updates the alternative security Id of a specified device.
+
+### Example 3: Update a device account enabled
+```
+PS C:\>Set-EntraDevice -ObjectId "00c3df15-a322-4b60-8887-a8830316c6b5" -AccountEnabled $true
+```
+
+This command updates the account enabled of a specified device.
+
+### Example 4: Update a device OS type
+```
+PS C:\>Set-EntraDevice -ObjectId "2d3a1947-4e0f-4136-9be5-9721f12bd887" -DeviceOSType Windows
+```
+
+This command updates the OS type of a specified device.
+
+### Example 5: Update a device
+```
+PS C:\>Set-EntraDevice -ObjectId "2d3a1947-4e0f-4136-9be5-9721f12bd887" -DeviceMetadata "Testdeivce" -DeviceObjectVersion 4 -DevicePhysicalIds "[GID]:g:6966518641169131" -IsCompliant $false
+```
+
+This command updates the specified properties of a specified device.
 
 ## PARAMETERS
 
@@ -233,7 +284,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the object ID of a device in Azure AD.
+Specifies the object ID of a device in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -248,7 +299,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProfileType
-{{ Fill ProfileType Description }}
+Specifies the profile type of the device. Possible values: RegisteredDevice (default), SecureVM, Printer, Shared, IoT.
 
 ```yaml
 Type: String
@@ -263,7 +314,7 @@ Accept wildcard characters: False
 ```
 
 ### -SystemLabels
-{{ Fill SystemLabels Description }}
+Specifies list of labels applied to the device by the system.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
