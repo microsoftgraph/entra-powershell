@@ -35,7 +35,7 @@ The Get-EntraBetaDeviceRegisteredOwner cmdlet gets the registered owner of a dev
 ### Example 1: Retrieve the registered owner of a device
 ```
 PS C:\> $DevId = (Get-EntraDevice -Top 1).ObjectId
-PS C:\> Get-EntraDeviceRegisteredOwner -ObjectId $DevId
+PS C:\> Get-EntraBetaDeviceRegisteredOwner -ObjectId $DevId
 
 ObjectId                             DisplayName     UserPrincipalName     UserType
 --------                             -----------    -----------------      --------
@@ -47,7 +47,7 @@ The second command gets the registered owner of the device in $DevId.
 
 ### Example 2: Retrieve the registered owner of a device
 ```
-PS C:\> Get-AzureADDeviceRegisteredOwner -ObjectId 8542ebd1-3d49-4073-9dce-30f197c67755
+PS C:\> Get-EntraBetaDeviceRegisteredOwner -ObjectId 8542ebd1-3d49-4073-9dce-30f197c67755
 
 ObjectId                             DisplayName     UserPrincipalName     UserType
 --------                             -----------    -----------------      --------
@@ -59,7 +59,7 @@ This command gets the registered owner of a device.
 
 ### Example 3: Retrieve all the registered owners of a device
 ```
-PS C:\> Get-AzureADDeviceRegisteredOwner -ObjectId 8542ebd1-3d49-4073-9dce-30f197c67755 -All $true
+PS C:\> Get-EntraBetaDeviceRegisteredOwner -ObjectId 8542ebd1-3d49-4073-9dce-30f197c67755 -All $true
 
 ObjectId                             DisplayName     UserPrincipalName     UserType
 --------                             -----------    -----------------      --------
@@ -71,7 +71,7 @@ This command retrieves all the registered owners of a device.
 
 ### Example 4: Retrieve top 1 registered owner of a device
 ```
-PS C:\> Get-AzureADDeviceRegisteredOwner -ObjectId 8542ebd1-3d49-4073-9dce-30f197c67755 -Top 1
+PS C:\> Get-EntraBetaDeviceRegisteredOwner -ObjectId 8542ebd1-3d49-4073-9dce-30f197c67755 -Top 1
 
 ObjectId                             DisplayName     UserPrincipalName     UserType
 --------                             -----------    -----------------      --------
