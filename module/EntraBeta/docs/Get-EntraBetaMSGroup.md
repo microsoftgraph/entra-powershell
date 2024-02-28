@@ -41,7 +41,7 @@ Get-EntraBetaMSGroup
  [<CommonParameters>]
 ```
 
-### GetValue
+### GetByValue
 ```
 Get-EntraBetaMSGroup 
  [-All <Boolean>] 

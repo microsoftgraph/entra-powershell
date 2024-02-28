@@ -31,7 +31,7 @@ Get-EntraMSGroup
  [<CommonParameters>]
 ```
 
-### GetValue
+### GetByValue
 ```
 Get-EntraMSGroup 
  [-SearchString <String>] 
