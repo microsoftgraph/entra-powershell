@@ -34,7 +34,7 @@ The Get-EntraBetaDeviceRegisteredOwner cmdlet gets the registered owner of a dev
 
 ### Example 1: Retrieve the registered owner of a device
 ```
-PS C:\> $DevId = (Get-EntraDevice -Top 1).ObjectId
+PS C:\> $DevId = (Get-EntraBetaDevice -Top 1).ObjectId
 PS C:\> Get-EntraBetaDeviceRegisteredOwner -ObjectId $DevId
 
 ObjectId                             DisplayName     UserPrincipalName     UserType
@@ -42,7 +42,7 @@ ObjectId                             DisplayName     UserPrincipalName     UserT
 412be9d1-1460-4061-8eed-cca203fcb215 Mary kom       mary@contoso.com       Member
 ```
 
-The first command gets the object ID of a device by using the Get-EntraDevice (./Get-EntraDevice.md)cmdlet, and then stores it in the $DevId variable.
+The first command gets the object ID of a device by using the Get-EntraBetaDevice (./Get-EntraBetaDevice.md)cmdlet, and then stores it in the $DevId variable.
 The second command gets the registered owner of the device in $DevId.
 
 ### Example 2: Retrieve the registered owner of a device
