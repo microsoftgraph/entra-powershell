@@ -31,7 +31,7 @@ Get-EntraBetaGroup
  [<CommonParameters>]
 ```
 
-### GetValue
+### GetByValue
 ```
 Get-EntraBetaGroup 
  [-SearchString <String>] 

@@ -31,7 +31,7 @@ Get-EntraGroup
  [<CommonParameters>]
 ```
 
-### GetValue
+### GetByValue
 ```
 Get-EntraGroup 
  [-SearchString <String>] 
