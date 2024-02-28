@@ -41,7 +41,7 @@ Get-EntraBetaMSUser
  [<CommonParameters>]
 ```
 
-### GetValue
+### GetByValue
 ```
 Get-EntraBetaMSUser 
  [-SearchString <String>] 
