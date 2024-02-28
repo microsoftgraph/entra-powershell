@@ -1,4 +1,15 @@
 ---
+title: Set-EntraBetaUserLicense
+description: This article provides details on the Set-EntraBetaUserLicense command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -104,7 +115,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a user (as a UPN or ObjectId) in Azure AD.
+Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -129,5 +140,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraBetaUser]()
+[Get-EntraBetaUser](Get-EntraBetaUser.md)
 
