@@ -252,8 +252,13 @@ class CompatibilityAdapterBuilder {
 `$def = @"
 
 "@
-
+        Write-Host "Creating types definitions for $($types.Count) types."
         foreach($type in $types) {
+        Write-Host "- Generating type for $type"
+        if($type.contains("+")){
+            $type = $type.Substring(0,$type.IndexOf("+"))
+            Write-Host "- Real type is $type"
+        }
         $object = New-Object -TypeName $type
         $namespaceNew = $object.GetType().Namespace
         $enumsDefined = @()
@@ -284,6 +289,14 @@ namespace  $namespaceNew
         }
 
         $name = $object.GetType().Name
+        if($object.GetType().IsEnum){ 
+            $name = $object.GetType().Name
+            if(!$enumsDefined.Contains($name)){
+                $def += $this.GetEnumString($name, $object.GetType().FullName)
+                $enumsDefined += $name
+                continue
+            }                    
+        }
         $def += @"
     public class $name
     {
@@ -299,8 +312,7 @@ $extraFunctions
 "@
         }
         else {
-            
-        
+                    
         $object.GetType().GetProperties() | ForEach-Object {   
             if($_.PropertyType.Name -eq 'Nullable`1') {
                 $name = $_.PropertyType.GenericTypeArguments.FullName
@@ -537,6 +549,7 @@ Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList 
     }
 
     hidden [CommandTranslation] NewCustomFunctionMap([PSCustomObject] $Command){
+        Write-Host "Creating custom function map for $($Command.Generate)"
         $parameterDefinitions = $this.GetParametersDefinitions($Command)
         $ParamterTransformations = $this.GetParametersTransformations($Command)
         $OutputTransformations = $this.GetOutputTransformations($Command)
@@ -556,6 +569,7 @@ $($Command.CustomScript)
     }
 
     hidden [CommandTranslation] NewFunctionMap([PSCustomObject] $Command){
+        Write-Host "Creating new function for $($Command.Generate)"
         $parameterDefinitions = $this.GetParametersDefinitions($Command)
         $ParamterTransformations = $this.GetParametersTransformations($Command)
         $OutputTransformations = $this.GetOutputTransformations($Command)
