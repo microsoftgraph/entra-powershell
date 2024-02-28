@@ -31,6 +31,7 @@ Get-EntraUserAppRoleAssignment
 ```
 
 ## DESCRIPTION
+The Get-EntraUserAppRoleAssignment cmdlet gets a user application role assignment.
 
 ## EXAMPLES
 
