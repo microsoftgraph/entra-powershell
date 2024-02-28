@@ -31,7 +31,7 @@ Get-EntraBetaUser
 [<CommonParameters>]
 ```
 
-### GetVague
+### GetByValue
 ```
 Get-EntraBetaUser 
 [-SearchString <String>] 
@@ -85,7 +85,7 @@ PS C:\>Get-EntraBetaUser -Filter "userPrincipalName eq 'jondoe@contoso.com'"
 
 This command gets the specified user.
 
-### Example 5: Get a user by userPrincipalName
+### Example 5: Get a user by title
 ```
 PS C:\>Get-EntraBetaUser -Filter "startswith(Title,'Sales')"
 ```
