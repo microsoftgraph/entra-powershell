@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaUser.
+description: This article provides details on the Get-EntraBetaUser command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -14,21 +24,31 @@ Gets a user.
 
 ### GetQuery (Default)
 ```
-Get-EntraBetaUser [-Filter <String>] [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraBetaUser 
+[-Filter <String>] 
+[-All <Boolean>]
+[-Top <Int32>]
+[<CommonParameters>]
 ```
 
 ### GetVague
 ```
-Get-EntraBetaUser [-SearchString <String>] [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaUser 
+[-SearchString <String>] 
+[-All <Boolean>] 
+[<CommonParameters>]
 ```
 
 ### GetById
 ```
-Get-EntraBetaUser -ObjectId <String> [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaUser 
+-ObjectId <String> 
+[-All <Boolean>] 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaUser cmdlet gets a user from Azure Active Directory (AD).
+The Get-EntraBetaUser cmdlet gets a user from a Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -110,7 +130,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID (as a UPN or ObjectId) of a user in Azure AD.
+Specifies the ID (as a UPN or ObjectId) of a user in Microsoft Entra ID.
 
 ```yaml
 Type: String
