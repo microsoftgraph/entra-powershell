@@ -31,7 +31,7 @@ Get-EntraBetaApplication
  [<CommonParameters>]
 ```
 
-### GetValue
+### GetByValue
 ```
 Get-EntraBetaApplication 
  [-SearchString <String>] 

@@ -31,7 +31,7 @@ Get-EntraApplication
  [<CommonParameters>]
 ```
 
-### GetValue
+### GetByValue
 ```
 Get-EntraApplication 
  [-SearchString <String>] 
