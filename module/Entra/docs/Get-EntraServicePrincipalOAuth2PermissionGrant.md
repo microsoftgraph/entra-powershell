@@ -1,4 +1,14 @@
 ---
+title: Get-EntraServicePrincipalOAuth2PermissionGrant.
+description: This article provides details on the Get-EntraServicePrincipalOAuth2PermissionGrant command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,11 @@ Gets an oAuth2PermissionGrant object.
 ## SYNTAX
 
 ```
-Get-EntraServicePrincipalOAuth2PermissionGrant [-All <Boolean>] -ObjectId <String> [-Top <Int32>]
- [<CommonParameters>]
+Get-EntraServicePrincipalOAuth2PermissionGrant
+-ObjectId <String>
+[-All <Boolean>]
+[-Top <Int32>]
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -32,6 +45,31 @@ The first command gets the ID of a service principal by using the Get-EntraServi
 The command stores the ID in the $ServicePrincipalId variable.
 
 The second command gets the OAuth2 permission grants of a service principal identified by $ServicePrincipalId.
+
+### Example 2: Get all OAuth2 permission grants of a service principal
+```
+PS C:\> Get-EntraServicePrincipalOAuth2PermissionGrant -ObjectId 4773e0f6-b400-40b3-8508-340de8ee0893 -All $true
+
+Id                                                               ClientId                             ConsentType   PrincipalId                          ResourceId                           Scope
+--                                                               --------                             -----------   -----------                          ----------                           -----
+9uBzRwC0s0CFCDQN6O4Ik_fW8XpadQNIoHik9aQxrVE                      4773e0f6-b400-40b3-8508-340de8ee0893 AllPrincipals                                      7af1d6f7-755a-4803-a078-a4f5a431ad51  openid profile U...
+9uBzRwC0s0CFCDQN6O4Ik_fW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 4773e0f6-b400-40b3-8508-340de8ee0893 Principal     412be9d1-1460-4061-8eed-cca203fcb215 7af1d6f7-755a-4803-a078-a4f5a431ad51  openid profile U...
+9uBzRwC0s0CFCDQN6O4Ik_fW8XpadQNIoHik9aQxrVGqOW2ZrP2XTao9yB-0c2Ks 4773e0f6-b400-40b3-8508-340de8ee0893 Principal     996d39aa-fdac-4d97-aa3d-c81fb47362ac 7af1d6f7-755a-4803-a078-a4f5a431ad51  PrivilegedAccess...
+```
+
+This command gets all OAuth2 permission grants of a service principal for specified objectId.
+
+### Example 3: Get two OAuth2 permission grants of a service principal
+```
+PS C:\> Get-EntraServicePrincipalOAuth2PermissionGrant -ObjectId 4773e0f6-b400-40b3-8508-340de8ee0893 -Top 2
+
+Id                                                               ClientId                             ConsentType   PrincipalId                          ResourceId                           Scope
+--                                                               --------                             -----------   -----------                          ----------                           -----
+9uBzRwC0s0CFCDQN6O4Ik_fW8XpadQNIoHik9aQxrVE                      4773e0f6-b400-40b3-8508-340de8ee0893 AllPrincipals                                      7af1d6f7-755a-4803-a078-a4f5a431ad51  openid profile U...
+9uBzRwC0s0CFCDQN6O4Ik_fW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 4773e0f6-b400-40b3-8508-340de8ee0893 Principal     412be9d1-1460-4061-8eed-cca203fcb215 7af1d6f7-755a-4803-a078-a4f5a431ad51  openid profile U...
+```
+
+This command gets two OAuth2 permission grants of a service principal for specified objectId.
 
 ## PARAMETERS
 
@@ -52,7 +90,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a service principal in Azure AD.
+Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: String
