@@ -1,4 +1,14 @@
 ---
+title: Get-EntraDeviceRegisteredUser.
+description: This article provides details on the Get-EntraDeviceRegisteredUser command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,7 +23,11 @@ Gets a registered user.
 ## SYNTAX
 
 ```
-Get-EntraDeviceRegisteredUser -ObjectId <String> [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraDeviceRegisteredUser 
+ -ObjectId <String> 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,6 +43,27 @@ PS C:\> Get-EntraDeviceRegisteredUser -ObjectId $DevId
 
 The first command gets the object ID of a device by using the Get-EntraDevice (./Get-EntraDevice.md)cmdlet, and then stores it in the $DevId variable.
 The second command gets the registered users of the device in $DevId.
+
+### Example 2: Retrieve the registered users of a device
+```
+PS C:\> Get-EntraDeviceRegisteredUser -ObjectId "74825acb-c984-4b54-ab65-d38347ea5e90"
+```
+
+This command gets the registered users of the specified device.
+
+### Example 3: Get all registered users of a device
+```
+PS C:\> Get-EntraDeviceRegisteredUser -ObjectId "74825acb-c984-4b54-ab65-d38347ea5e90" -All $true
+```
+
+This command gets the all registered users of the specified device.
+
+### Example 4: Get five registered users of a device
+```
+PS C:\> Get-EntraDeviceRegisteredUser -ObjectId "74825acb-c984-4b54-ab65-d38347ea5e90" -Top 5
+```
+
+This command gets five registered users of the specified device.
 
 ## PARAMETERS
 
