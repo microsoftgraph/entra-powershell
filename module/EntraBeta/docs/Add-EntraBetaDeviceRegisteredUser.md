@@ -1,4 +1,15 @@
 ---
+title: Add-EntraBetaDeviceRegisteredUser
+description: This article provides details on the Add-EntraBetaDeviceRegisteredUser command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -17,7 +28,7 @@ Add-EntraBetaDeviceRegisteredUser -ObjectId <String> -RefObjectId <String> [<Com
 ```
 
 ## DESCRIPTION
-The Add-EntraBetaDeviceRegisteredUser cmdlet adds a registered user for an Azure Active Directory device.
+The Add-EntraBetaDeviceRegisteredUser cmdlet adds a registered user for an a Microsoft Entra ID device.
 
 ## EXAMPLES
 
@@ -78,11 +89,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraBetaDevice]()
+[Get-EntraBetaDevice](Get-EntraBetaDevice.md)
 
-[Get-EntraBetaDeviceRegisteredUser]()
+[Get-EntraBetaDeviceRegisteredUser](Get-EntraBetaDeviceRegisteredUser.md)
 
-[Get-EntraBetaUser]()
+[Get-EntraBetaUser](Get-EntraBetaUser.md)
 
-[Remove-EntraBetaDeviceRegisteredUser]()
+[Remove-EntraBetaDeviceRegisteredUser](Remove-EntraBetaDeviceRegisteredUser.md)
 

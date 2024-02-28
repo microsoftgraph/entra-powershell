@@ -1,4 +1,15 @@
 ---
+title: Add-EntraDeviceRegisteredUser
+description: This article provides details on the Add-EntraDeviceRegisteredUser command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -78,11 +89,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraDevice]()
+[Get-EntraDevice](Get-EntraDevice.md)
 
-[Get-EntraDeviceRegisteredUser]()
+[Get-EntraDeviceRegisteredUser](Get-EntraDeviceRegisteredUser.md)
 
-[Get-EntraUser]()
+[Get-EntraUser](Get-EntraUser.md)
 
-[Remove-EntraDeviceRegisteredUser]()
+[Remove-EntraDeviceRegisteredUser](Remove-EntraDeviceRegisteredUser.md)
 
