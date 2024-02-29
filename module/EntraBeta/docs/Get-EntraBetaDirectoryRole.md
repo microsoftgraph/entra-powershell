@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaDirectoryRole
+description: This article provides details on the Get-EntraBetaDirectoryRole command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
