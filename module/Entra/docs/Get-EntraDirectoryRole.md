@@ -55,6 +55,24 @@ b89a48d4-7595-48d0-bb36-69fe4b220668 Device Administrators              Device A
 d96eb2b3-0970-4827-8f26-6008efd86511 Security Administrator             Security Administrator allows ability to read and manage security configuration and reports.
 ```
 
+### Example 3: Get a directory role filter by objectId
+```
+PS C:\>Get-EntraDirectoryRole -Filter "objectId eq '019ea7a2-1613-47c9-81cb-20ba35b1ae48'"
+
+ObjectId                             DisplayName                        Description
+--------                             -----------                        -----------
+019ea7a2-1613-47c9-81cb-20ba35b1ae48 Company Administrator              Company Administrator role has full access to perform any operation in the company scope.
+```
+
+### Example 4: Get a directory role filter by displayName
+```
+PS C:\>Get-EntraDirectoryRole -Filter "displayName eq 'Company Administrator'"
+
+ObjectId                             DisplayName                        Description
+--------                             -----------                        -----------
+019ea7a2-1613-47c9-81cb-20ba35b1ae48 Company Administrator              Company Administrator role has full access to perform any operation in the company scope.
+```
+
 ## PARAMETERS
 
 ### -Filter
@@ -113,7 +131,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a directory role in Azure AD.
+Specifies the ID of a directory role in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -138,5 +156,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Enable-EntraDirectoryRole]()
+[Enable-EntraDirectoryRole](Enable-EntraDirectoryRole.md)
 
