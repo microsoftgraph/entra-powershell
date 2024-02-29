@@ -1,4 +1,15 @@
 ---
+
+title: Get-EntraBetaMSApplication
+description: This article provides details on the Get-EntraBetaMSApplication command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,7 +19,7 @@ schema: 2.0.0
 # Get-EntraBetaMSApplication
 
 ## SYNOPSIS
-Retrieves the?list?of?applications?within?the?organization.
+Retrieves the list of applications within the organization.
 
 ## SYNTAX
 
@@ -28,7 +39,7 @@ Get-EntraBetaMSApplication -ObjectId <String> [-All <Boolean>] [<CommonParameter
 ```
 
 ## DESCRIPTION
-Retrieves the?list?of?applications?within?the?organization.
+Retrieves the list of applications within the organization.
 With an ObjectId argument, it can retrieve the properties of the application object associated with the ObjectId.
 
 ## EXAMPLES
@@ -355,7 +366,7 @@ Id                        : 121ce3aa-64cb-44f2-99e8-deb705caeddd
 PS C:\>Get-EntraBetaMSApplication -All $true
 ```
 
-### Example 5: Retrieve a list of all applications which have a display name that contains "asdfl"
+### Example 7: Retrieve a list of all applications which have a display name that contains "asdfl"
 ```
 PS C:\>Get-EntraBetaMSApplication -SearchString asdfl
 ```
@@ -426,7 +437,7 @@ Id                        : 88da75d4-2cba-4c47-9a15-80a983228ad4
 ## PARAMETERS
 
 ### -ObjectId
-Specifies the ID of an application in Azure Active Directory
+Specifies the ID of an application in Microsoft Entra ID
 
 ```yaml
 Type: String
@@ -517,9 +528,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[New-EntraBetaMSApplication]()
+[New-EntraBetaMSApplication](New-EntraBetaMSApplication.md)
 
-[Remove-EntraBetaMSApplication]()
+[Remove-EntraBetaMSApplication](Remove-EntraBetaMSApplication.md)
 
-[Set-EntraBetaMSApplication]()
+[Set-EntraBetaMSApplication](Set-EntraBetaMSApplication.md)
 

@@ -1,4 +1,14 @@
 ---
+title: Get-EntraMSApplication
+description: This article provides details on the Get-EntraMSApplication command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -349,7 +359,7 @@ Id                        : 121ce3aa-64cb-44f2-99e8-deb705caeddd
 PS C:\>Get-EntraMSApplication -All $true
 ```
 
-### Example 5: Retrieve a list of all applications which have a display name that contains "asdfl"
+### Example 7: Retrieve a list of all applications which have a display name that contains "asdfl"
 ```
 PS C:\>Get-EntraMSApplication -SearchString asdfl
 ```
@@ -509,9 +519,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[New-EntraMSApplication]()
+[New-EntraMSApplication](New-EntraMSApplication.md)
 
-[Remove-EntraMSApplication]()
+[Remove-EntraMSApplication](Remove-EntraMSApplication.md)
 
-[Set-EntraMSApplication]()
+[Set-EntraMSApplication](Set-EntraMSApplication.md)
 
