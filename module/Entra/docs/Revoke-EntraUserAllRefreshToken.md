@@ -1,4 +1,14 @@
 ---
+title: Revoke-EntraUserAllRefreshToken.
+description: This article provides details on the Revoke-EntraUserAllRefreshToken command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,7 +23,9 @@ Invalidates the refresh tokens issued to applications for a user.
 ## SYNTAX
 
 ```
-Revoke-EntraUserAllRefreshToken -ObjectId <String> [<CommonParameters>]
+Revoke-EntraUserAllRefreshToken 
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -60,5 +72,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Revoke-EntraSignedInUserAllRefreshToken]()
 
-[(#AzureAD: Certificate based authentication for iOS and Android now in preview!](https://blogs.technet.microsoft.com/enterprisemobility/2016/07/18/azuread-certificate-based-authentication-for-ios-and-android-now-in-preview/)
+[(#Microsoft Entra ID: Certificate based authentication for iOS and Android now in preview!](https://blogs.technet.microsoft.com/enterprisemobility/2016/07/18/azuread-certificate-based-authentication-for-ios-and-android-now-in-preview/)
 
