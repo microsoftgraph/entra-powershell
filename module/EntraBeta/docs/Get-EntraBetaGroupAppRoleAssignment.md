@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaGroupAppRoleAssignment
+description: This article provides details on the Get-EntraBetaGroupAppRoleAssignment command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -17,7 +27,7 @@ Get-EntraBetaGroupAppRoleAssignment -ObjectId <String> [-All <Boolean>] [-Top <I
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaGroupAppRoleAssignment cmdlet gets a group application role assignment in Azure Active Directory (AD).
+The Get-EntraBetaGroupAppRoleAssignment cmdlet gets a group application role assignment in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -25,12 +35,41 @@ The Get-EntraBetaGroupAppRoleAssignment cmdlet gets a group application role ass
 ```
 $GroupId = (Get-EntraBetaGroup -Top 1).ObjectId
 Get-EntraBetaGroupAppRoleAssignment -ObjectId $GroupId
+
+ObjectId                                    ResourceDisplayName                 PrincipalDisplayName
+--------                                    -------------------                 --------------------
+MSVrBV4APk--eAGnHqMKBLflsQG3rU1EmDFKvgra41I Microsoft Device Management Checkin Ask HR
+MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 Ask HR
+MSVrBV4APk--eAGnHqMKBDtEqPRvu8xLqWHDSXUhoTE M365 License Manager                Ask HR
 ```
 
 The first command gets the object ID of a group by using the Get-EntraBetaGroup (./Get-EntraBetaGroup.md)cmdlet.
 The command stores the ID in the $GroupId variable.
 
 The second command gets the application role assignments of the group in $GroupId.
+
+### Example 2: Retrieve all application role assignments of a group
+```
+$GroupId = (Get-EntraBetaGroup -Top 1).ObjectId
+Get-EntraBetaGroupAppRoleAssignment -ObjectId $GroupId -All $true
+
+ObjectId                                    ResourceDisplayName                 PrincipalDisplayName
+--------                                    -------------------                 --------------------
+MSVrBV4APk--eAGnHqMKBLflsQG3rU1EmDFKvgra41I Microsoft Device Management Checkin Ask HR
+MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 Ask HR
+MSVrBV4APk--eAGnHqMKBDtEqPRvu8xLqWHDSXUhoTE M365 License Manager                Ask HR
+```
+
+### Example 3: Retrieve top 2 application role assignments of a group
+```
+$GroupId = (Get-EntraBetaGroup -Top 1).ObjectId
+Get-EntraBetaGroupAppRoleAssignment -ObjectId $GroupId -Top 2
+
+ObjectId                                    ResourceDisplayName                 PrincipalDisplayName
+--------                                    -------------------                 --------------------
+MSVrBV4APk--eAGnHqMKBLflsQG3rU1EmDFKvgra41I Microsoft Device Management Checkin Ask HR
+MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 Ask HR
+```
 
 ## PARAMETERS
 
@@ -51,7 +90,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a group in Azure AD.
+Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -91,9 +130,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraBetaGroup]()
+[Get-EntraBetaGroup](Get-EntraBetaGroup.md)
 
-[New-EntraBetaGroupAppRoleAssignment]()
+[New-EntraBetaGroupAppRoleAssignment](New-EntraBetaGroupAppRoleAssignment.md)
 
-[Remove-EntraBetaGroupAppRoleAssignment]()
+[Remove-EntraBetaGroupAppRoleAssignment](Remove-EntraBetaGroupAppRoleAssignment.md)
 
