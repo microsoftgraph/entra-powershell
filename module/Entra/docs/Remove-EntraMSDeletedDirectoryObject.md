@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraMSDeletedDirectoryObject.
+description: This article provides details on the Remove-EntraMSDeletedDirectoryObject command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -8,12 +18,14 @@ schema: 2.0.0
 # Remove-EntraMSDeletedDirectoryObject
 
 ## SYNOPSIS
-This cmdlet is used to permanently delete a previously deleted directory object
+This cmdlet is used to permanently delete a previously deleted directory object.
 
 ## SYNTAX
 
 ```
-Remove-EntraMSDeletedDirectoryObject -Id <String> [<CommonParameters>]
+Remove-EntraMSDeletedDirectoryObject 
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,12 +34,12 @@ When a directory object is permanently deleted it can no longer be restored.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Delete a previously deleted directory object
 ```
 Remove-EntraMSDeletedDirectoryObject -Id aa644285-eb75-4389-885e-7233f096984c
 ```
 
-This example shows how to permanently delete a previously deleted directory object with Id = aa644285-eb75-4389-885e-7233f096984c
+This command shows how to permanently delete a previously deleted directory object with Id = aa644285-eb75-4389-885e-7233f096984c
 
 ## PARAMETERS
 
