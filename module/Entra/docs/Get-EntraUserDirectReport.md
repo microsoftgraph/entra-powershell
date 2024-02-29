@@ -1,4 +1,14 @@
 ---
+title: Get-EntraUserDirectReport.
+description: This article provides details on the Get-EntraUserDirectReport command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,7 +23,11 @@ Get the user's direct reports.
 ## SYNTAX
 
 ```
-Get-EntraUserDirectReport -ObjectId <String> [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraUserDirectReport 
+   -ObjectId <String> 
+   [-All <Boolean>] 
+   [-Top <Int32>] 
+   [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,14 +37,24 @@ The Get-EntraUserDirectReport cmdlet gets the direct reports for a user in Micro
 
 ### Example 1: Get a user's direct reports
 ```
-PS C:\>Get-EntraUserDirectReport -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16"
-
-ObjectId                             ObjectType
---------                             ----------
-5e8b0f4d-2cd4-4e17-9467-b0f6a5c0c4d0 User
+PS C:\> Get-EntraUserDirectReport -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16"
 ```
 
 This command gets the direct report for the specified user.
+
+### Example 2: Get a all direct reports
+```
+PS C:\> Get-EntraUserDirectReport -ObjectId "c300541f-2c03-49cb-b25b-72f09cb29abf" -All $true
+```
+
+This command gets the all direct report for the specified user.
+
+### Example 3: Get a top five direct reports
+```
+PS C:\> Get-EntraUserDirectReport -ObjectId "c300541f-2c03-49cb-b25b-72f09cb29abf" -Top 5
+```
+
+This command gets the five direct report for the specified user.
 
 ## PARAMETERS
 
