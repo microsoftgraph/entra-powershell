@@ -1,4 +1,14 @@
 ---
+title: Get-EntraApplicationOwner.
+description: This article provides details on the Get-EntraApplicationOwner command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,7 +23,11 @@ Gets the owner of an application.
 ## SYNTAX
 
 ```
-Get-EntraApplicationOwner -ObjectId <String> [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraApplicationOwner 
+   -ObjectId <String> 
+   [-All <Boolean>] 
+   [-Top <Int32>] 
+   [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -24,13 +38,23 @@ The Get-EntraApplicationOwner cmdlet get an owner of a Microsoft Entra ID applic
 ### Example 1: Get the owner of an application
 ```
 PS C:\>Get-EntraApplicationOwner -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84"
-
-ObjectId                             ObjectType
---------                             ----------
-c13dd34a-492b-4561-b171-40fcce2916c5 User
 ```
 
-This command gets the owner of an application.
+This command gets the owners of an application.
+
+### Example 2: Get all owners of an application
+```
+PS C:\>Get-EntraApplicationOwner -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -All $true
+```
+
+This command gets the all owners of an specified application.
+
+### Example 3: Get top two owners of an application
+```
+PS C:\>Get-EntraApplicationOwner -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -Top 2
+```
+
+This command gets the two owners of an specified application.
 
 ## PARAMETERS
 
