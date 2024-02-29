@@ -1,4 +1,14 @@
 ---
+title: Get-EntraDirectoryRoleMember
+description: This article provides details on the Get-EntraDirectoryRoleMember command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -78,7 +88,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a directory role in Azure AD.
+Specifies the ID of a directory role in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -103,7 +113,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraDirectoryRoleMember]()
+[Add-EntraDirectoryRoleMember](Add-EntraDirectoryRoleMember.md)
 
-[Remove-EntraDirectoryRoleMember]()
+[Remove-EntraDirectoryRoleMember](Remove-EntraDirectoryRoleMember.md)
 

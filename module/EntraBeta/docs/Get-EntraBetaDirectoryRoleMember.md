@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaDirectoryRoleMember
+description: This article provides details on the Get-EntraBetaDirectoryRoleMember command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -18,7 +28,7 @@ Get-EntraBetaDirectoryRoleMember -ObjectId <String> [-InformationAction <ActionP
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaDirectoryRoleMember cmdlet gets the members of a directory role in Azure Active Directory (AD).
+The Get-EntraBetaDirectoryRoleMember cmdlet gets the members of a directory role in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -78,7 +88,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a directory role in Azure AD.
+Specifies the ID of a directory role in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -103,7 +113,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraBetaDirectoryRoleMember]()
+[Add-EntraBetaDirectoryRoleMember](Add-EntraBetaDirectoryRoleMember.md)
 
-[Remove-EntraBetaDirectoryRoleMember]()
+[Remove-EntraBetaDirectoryRoleMember](Remove-EntraBetaDirectoryRoleMember.md)
 
