@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraDevice
+description: This article provides details on the Remove-EntraDevice command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -70,7 +80,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the object ID of a device in Azure AD.
+Specifies the object ID of a device in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -95,9 +105,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraDevice]()
+[Get-EntraDevice](Get-EntraDevice.md)
 
-[New-EntraDevice]()
+[New-EntraDevice](New-EntraDevice.md)
 
-[Set-EntraDevice]()
+[Set-EntraDevice](Set-EntraDevice.md)
 

@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraBetaDevice
+description: This article provides details on the Remove-EntraBetaDevice command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -18,7 +28,7 @@ Remove-EntraBetaDevice -ObjectId <String> [-InformationAction <ActionPreference>
 ```
 
 ## DESCRIPTION
-The Remove-EntraBetaDevice cmdlet removes a device from Azure Active Directory (AD).
+The Remove-EntraBetaDevice cmdlet removes a device from Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -70,7 +80,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the object ID of a device in Azure AD.
+Specifies the object ID of a device in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -95,9 +105,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraBetaDevice]()
+[Get-EntraBetaDevice](Get-EntraBetaDevice.md)
 
-[New-EntraBetaDevice]()
+[New-EntraBetaDevice](New-EntraBetaDevice.md)
 
-[Set-EntraBetaDevice]()
+[Set-EntraBetaDevice](Set-EntraBetaDevice.md)
 
