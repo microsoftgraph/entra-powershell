@@ -1,4 +1,14 @@
 ---
+title: Get-EntraTenantDetail.
+description: This article provides details on the Get-EntraTenantDetail command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,7 +23,10 @@ Gets the details of a tenant.
 ## SYNTAX
 
 ```
-Get-EntraTenantDetail [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraTenantDetail 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,10 +38,26 @@ The Get-EntraTenantDetail cmdlet gets the details of a tenant in Microsoft Entra
 ```
 PS C:\>Get-EntraTenantDetail
 
-ObjectId                             DisplayName            VerifiedDomains
---------                             -----------            ---------------
-85b5ff1e-0402-400c-9e3c-0f9e965325d1 Coho Vineyard & Winery {class VerifiedDomain {...
+DisplayName Id                                   TenantType CountryLetterCode VerifiedDomains
+----------- --                                   ---------- ----------------- ---------------
+Contoso     d5aec55f-2d12-4442-8d2f-ccca95d4390e AAD        NL                {@{Capabilities=Email, OfficeCommunicationsOnline; IsDefault=False; IsInitial=True; Name=M365x99297270.onmicrosoft.com; Type=Mana...
 ```
+
+This command gets a details for a tenant.
+
+### Example 2: Get all tenant details 
+```
+PS C:\> Get-EntraTenantDetail -All $true
+```
+
+This command gets all tenant details.
+
+### Example 3: Get top five tenant details 
+```
+Get-EntraTenantDetail -Top 5
+```
+
+This command gets five tenant details.
 
 ## PARAMETERS
 
@@ -73,3 +102,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[Set-EntraTenantDetail]()
