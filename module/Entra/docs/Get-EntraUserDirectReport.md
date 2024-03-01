@@ -24,10 +24,10 @@ Get the user's direct reports.
 
 ```
 Get-EntraUserDirectReport 
-   -ObjectId <String> 
-   [-All <Boolean>] 
-   [-Top <Int32>] 
-   [<CommonParameters>]
+ -ObjectId <String> 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
