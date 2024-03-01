@@ -1,4 +1,14 @@
 ---
+title: Get-EntraApplication
+description: This article provides details on the Get-EntraApplication command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -45,20 +55,44 @@ This command gets an application by its display name.
 
 ### Example 2: Get an application by ID
 ```
-PS C:\>Get-EntraApplication -Filter "AppId eq 'ed192e92-84d4-4baf-997d-1e190a81f28e'"
+PS C:\>Get-EntraApplication -Filter "AppId eq '421599eb-eed7-4988-9b31-02b43a4d37b8'"
+
+ObjectId                             AppId                                DisplayName     
+--------                             -----                                -----------
+ed192e92-84d4-4baf-997d-1e190a81f28e 421599eb-eed7-4988-9b31-02b43a4d37b8 MyNewApp
 ```
 
 This command gets an application by its ID.
 
-Output:
-
-ObjectId                             AppId                                DisplayName     --------                             -----                                -----------
-ed192e92-84d4-4baf-997d-1e190a81f28e 36ee4c6c-0812-40a2-b820-b22ebd02bce3 MyNewApp
-
-### Retrieve an application by identifierUris
+### Example 3: Retrieve an application by identifierUris
 ```
 Get-EntraApplication -Filter "identifierUris/any(uri:uri eq 'http://wingtips.wingtiptoysonline.com')"
 ```
+
+### Example 4: Gets top 2 applications
+```
+PS C:\>Get-EntraApplication -Top 2
+
+ObjectId                             AppId                                DisplayName
+--------                             -----                                -----------
+3ddd22e7-a150-4bb3-b100-e410dea1cb84 36ee4c6c-0812-40a2-b820-b22ebd02bce3 TestName
+010cc9b5-fce9-485e-9566-c68debafac5f 5f783237-3457-45d8-93e7-a0edb1cfbfd1 test app
+```
+
+This command gets top 2 applications.
+
+### Example 5: Gets all the applications
+```
+PS C:\>Get-EntraApplication -All $true
+
+ObjectId                             AppId                                DisplayName
+--------                             -----                                -----------
+3ddd22e7-a150-4bb3-b100-e410dea1cb84 36ee4c6c-0812-40a2-b820-b22ebd02bce3 TestName
+010cc9b5-fce9-485e-9566-c68debafac5f 5f783237-3457-45d8-93e7-a0edb1cfbfd1 test app
+fe8ec725-463b-4cad-aeda-545281946aac 23c4c550-62c6-4072-8fd9-4593c17282d8 test adms
+```
+
+This command gets all the applications.
 
 ## PARAMETERS
 
@@ -150,9 +184,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[New-EntraApplication]()
+[New-EntraApplication](New-EntraApplication.md)
 
-[Remove-EntraApplication]()
+[Remove-EntraApplication](Remove-EntraApplication.md)
 
-[Set-EntraApplication]()
+[Set-EntraApplication](Set-EntraApplication.md)
 
