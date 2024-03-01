@@ -3,14 +3,46 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Get-AzureADMSNamedLocationPolicy"
-    TargetName = "Get-MgIdentityConditionalAccessNamedLocation"
-    Parameters = @(
-        @{
-            SourceName = "PolicyId"
-            TargetName = "NamedLocationId"
-            ConversionType = "Name"
-            SpecialMapping = $null
+    TargetName = $null
+    Parameters = $null
+    outputs = $null
+    CustomScript = @' 
+    PROCESS {    
+        $params = @{}
+        $keysChanged = @{PolicyId = "NamedLocationId"}
+        if($PSBoundParameters.ContainsKey("Verbose"))
+        {
+            $params["Verbose"] = $Null
         }
-    )
-    Outputs = $null
+        if($null -ne $PSBoundParameters["PolicyId"])
+        {
+            $params["NamedLocationId"] = $PSBoundParameters["PolicyId"]
+        }
+        if($PSBoundParameters.ContainsKey("Debug"))
+        {
+            $params["Debug"] = $Null
+        }
+    
+        Write-Debug("============================ TRANSFORMATIONS ============================")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================`n")
+        
+        $response = Get-MgIdentityConditionalAccessNamedLocation @params
+        $response | ForEach-Object {
+            if($null -ne $_) {
+                Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+            $propsToConvert = @('ipRanges')
+            try {
+                foreach ($prop in $propsToConvert) {
+                    $value = $_.$prop | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
+                }
+            }
+            catch {}   
+            }
+        }
+        $response
+        }
+'@
 }
