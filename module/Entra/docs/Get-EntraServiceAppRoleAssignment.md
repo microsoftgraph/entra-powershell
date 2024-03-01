@@ -1,4 +1,14 @@
 ---
+title: Get-EntraServiceAppRoleAssignment.
+description: This article provides details on the Get-EntraServiceAppRoleAssignment command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,7 +23,11 @@ Gets a service principal application role assignment.
 ## SYNTAX
 
 ```
-Get-EntraServiceAppRoleAssignment [-All <Boolean>] -ObjectId <String> [-Top <Int32>] [<CommonParameters>]
+Get-EntraServiceAppRoleAssignment 
+ -ObjectId <String>
+ [-All <Boolean>]
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,12 +39,30 @@ The Get-EntraServiceAppRoleAssignment cmdlet gets a role assignment for a servic
 ```
 PS C:\> $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
 PS C:\> Get-EntraServiceAppRoleAssignment -ObjectId $ServicePrincipalId
+
+DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId                          PrincipalType ResourceDisplayName
+--------------- --                                          ---------                            ---------------     -------------------- -----------                          ------------- -------------------
+                MSVrBV4APk--eAGnHqMKBDtEqPRvu8xLqWHDSXUhoTE 00000000-0000-0000-0000-000000000000 29-02-2024 05:53:00 Ask HR               056b2531-005e-4f3e-be78-01a71ea30a04 Group         M365 License Manager
 ```
 
 The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md)cmdlet. 
 The command stores the ID in the $ServicePrincipalId variable.
 
 The second command gets the application role assignments for the service principal in identified by $ServicePrincipalId.
+
+### Example 2: Retrieve all application role assignments for a service principal
+```
+PS C:\> Get-EntraServiceAppRoleAssignment -ObjectId "021510b7-e753-40aa-b668-29753295ca34" -All $true
+```
+
+This command gets all application role assignments for specified service principal.
+
+### Example 3: Retrieve the top five application role assignments for a service principal
+```
+PS C:\> Get-EntraServiceAppRoleAssignment -ObjectId "021510b7-e753-40aa-b668-29753295ca34" -Top 5
+```
+
+This command gets five application role assignments for specified service principal.
 
 ## PARAMETERS
 
@@ -51,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a service principal in Azure AD.
+Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: String
