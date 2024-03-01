@@ -1,4 +1,14 @@
 ---
+title: Select-EntraGroupIdsUserIsMemberOf.
+description: This article provides details on the Select-EntraGroupIdsUserIsMemberOf command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,12 +23,16 @@ Selects the groups that a user is a member of.
 ## SYNTAX
 
 ```
-Select-EntraGroupIdsUserIsMemberOf -ObjectId <String> -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+Select-EntraGroupIdsUserIsMemberOf 
+ -ObjectId <String> 
+ -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
+ [-InformationAction <ActionPreference>] 
+ [-InformationVariable <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Select-EntraGroupIdsUserIsMemberOf cmdlet selects the groups that a user is a member of in Azure Actve Directory (AD).
+The Select-EntraGroupIdsUserIsMemberOf cmdlet selects the groups that a user is a member of in microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -29,9 +43,7 @@ PS C:\> $Groups.GroupIds = (Get-EntraGroup -Top 1).ObjectId
 PS C:\> $UserID = (Get-EntraUser -Top 1).ObjectId
 PS C:\> Select-EntraGroupIdsUserIsMemberOf  -ObjectId $UserId -GroupIdsForMembershipCheck $Groups
 
-OdataMetadata                                                                                   Value
--------------                                                                                   -----
-https://graph.windows.net/85b5ff1e-0402-400c-9e3c-0f9e965325d1/$metadata#Collection(Edm.String) {093fc0e2-1d6e-4a1b-9bf8-effa0196f1f7}
+056b2531-005e-4f3e-be78-01a71ea30a04
 ```
 
 The first command creates a GroupIdsForMembershipCheck object, and then stores it in the $Groups variable.
@@ -100,7 +112,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a user (as a UPN or ObjectId) in Azure AD.
+Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: String
