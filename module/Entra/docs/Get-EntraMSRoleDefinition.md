@@ -1,4 +1,14 @@
 ---
+title: Get-EntraMSRoleDefinition
+description: This article provides details on the Get-EntraMSRoleDefinition command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -8,13 +18,13 @@ schema: 2.0.0
 # Get-EntraMSRoleDefinition
 
 ## SYNOPSIS
-Get a Microsoft Entra ID roleDefinition by objectId.
+Gets information about role definitions in Microsoft Entra ID.
 
 ## SYNTAX
 
 ### GetQuery (Default)
 ```
-Get-EntraMSRoleDefinition [-Filter <String>] [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraMSRoleDefinition [-All <Boolean>] [-Top <Int32>] [-Filter <String>] [<CommonParameters>]
 ```
 
 ### GetVague
@@ -28,22 +38,106 @@ Get-EntraMSRoleDefinition -Id <String> [-All <Boolean>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Get a Microsoft Entra ID roleDefinition object by id.
-For more info see https://go.microsoft.com/fwlink/?linkid=2097519.
+The Get-EntraMSRoleDefinition cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the Id parameter. Specify the SearchString or Filter parameter to find particular role definition.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-EntraMSRoleDefinition
+
+Id              : 690e93e9-da28-4b25-9d0d-2f0b4e6b2ff9
+OdataType       :
+Description     : SampleRoleDefinition1.
+DisplayName     : SampleRoleDef
+IsBuiltIn       : False
+ResourceScopes  : {/}
+IsEnabled       : True
+RolePermissions : {class RolePermission {
+                  AllowedResourceActions:
+                  microsoft.directory/applications/create
+                    Condition:
+                  }
+                  }
+Id              : 1a327991-10cb-4266-877a-998fb4df78ec
+OdataType       :
+Description     :
+DisplayName     : SampleRoleDefinition2.
+IsBuiltIn       : False
+ResourceScopes  : {/}
+IsEnabled       : True
+RolePermissions : {class RolePermission {
+                  AllowedResourceActions:
+                  microsoft.directory/applications/create
+                    Condition:
+                  }
+                  }
+TemplateId      : 332a8659-25b8-4b3e-b545-38b331c48b2b
+Version         :
 ```
 
-{{ Add example description here }}
+### Example 2
+```powershell
+PS C:\> Get-EntraMSRoleDefinition -Id 1a327991-10cb-4266-877a-998fb4df78ec
+
+Id              : 1a327991-10cb-4266-877a-998fb4df78ec
+OdataType       :
+Description     :
+DisplayName     : SampleRoleDefinition2.
+IsBuiltIn       : False
+ResourceScopes  : {/}
+IsEnabled       : True
+RolePermissions : {class RolePermission {
+                  AllowedResourceActions:
+                  microsoft.directory/applications/create
+                    Condition:
+                  }
+                  }
+TemplateId      : 332a8659-25b8-4b3e-b545-38b331c48b2b
+Version         :
+```
+
+### Example 3
+```powershell
+PS C:\> Get-EntraMSRoleDefinition -Filter "startswith(displayName, 'Sample')"
+
+Id              : 690e93e9-da28-4b25-9d0d-2f0b4e6b2ff9
+OdataType       :
+Description     : SampleRoleDefinition1.
+DisplayName     : SampleRoleDef
+IsBuiltIn       : False
+ResourceScopes  : {/}
+IsEnabled       : True
+RolePermissions : {class RolePermission {
+                  AllowedResourceActions:
+                  microsoft.directory/applications/create
+                    Condition:
+                  }
+                  }
+TemplateId      : 332a8659-25b8-4b3e-b545-38b331c48b2b
+Version         :
+
+Id              : 1a327991-10cb-4266-877a-998fb4df78ec
+OdataType       :
+Description     :
+DisplayName     : SampleRoleDefinition2.
+IsBuiltIn       : False
+ResourceScopes  : {/}
+IsEnabled       : True
+RolePermissions : {class RolePermission {
+                  AllowedResourceActions:
+                  microsoft.directory/applications/create
+                    Condition:
+                  }
+                  }
+TemplateId      : 332a8659-25b8-4b3e-b545-38b331c48b2b
+Version         :
+```
 
 ## PARAMETERS
 
 ### -Id
-The unique identifier of a Microsoft Entra ID roleDefinition object.
+Specifies the ID of the role definition.
 
 ```yaml
 Type: String
@@ -58,7 +152,7 @@ Accept wildcard characters: False
 ```
 
 ### -All
-Boolean to express that return all results from the server for the specific query
+If true, return all role definitions. If false, return the number of objects specified by the Top parameter.
 
 ```yaml
 Type: Boolean
@@ -73,7 +167,7 @@ Accept wildcard characters: False
 ```
 
 ### -Top
-The maximum number of records to return.
+Specifies the maximum number of records that this cmldet gets. The default value is 100.
 
 ```yaml
 Type: Int32
@@ -88,8 +182,7 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-The oData v3.0 filter statement. 
-Controls which objects are returned.
+Specifies an oData v3.0 filter string to match a set of role definitions.
 
 ```yaml
 Type: String
@@ -104,7 +197,7 @@ Accept wildcard characters: False
 ```
 
 ### -SearchString
-{{ Fill SearchString Description }}
+Specifies a search string.
 
 ```yaml
 Type: String
@@ -130,6 +223,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleDefinition
-## NOTES
 
 ## RELATED LINKS
