@@ -24,10 +24,10 @@ Gets the owner of an application.
 
 ```
 Get-EntraApplicationOwner 
-   -ObjectId <String> 
-   [-All <Boolean>] 
-   [-Top <Int32>] 
-   [<CommonParameters>]
+ -ObjectId <String> 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
