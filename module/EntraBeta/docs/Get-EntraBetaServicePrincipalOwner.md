@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaServicePrincipalOwner
+description: This article provides details on the Get-EntraBetaServicePrincipalOwner command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -13,11 +23,11 @@ Get the owner of a service principal.
 ## SYNTAX
 
 ```
-Get-EntraBetaServicePrincipalOwner [-Top <Int32>] -ObjectId <String> [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaServicePrincipalOwner -ObjectId <String> [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaServicePrincipalOwner cmdlet gets the owners of a service principal in Azure Active Directory (AD).
+The Get-EntraBetaServicePrincipalOwner cmdlet gets the owners of a service principal in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -25,12 +35,41 @@ The Get-EntraBetaServicePrincipalOwner cmdlet gets the owners of a service princ
 ```
 PS C:\> $ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
 PS C:\> Get-EntraBetaServicePrincipalOwner -ObjectId $ServicePrincipalId
+
+ObjectId                             DisplayName    UserPrincipalName   UserType
+--------                             -----------    -----------------   --------
+fd560167-ff1f-471a-8d74-3b0070abcea1 Adams Smith    Adams@contoso.com   Member
+15b958d9-af43-40be-8e91-bcd5676556f7 Peter Kons     Peter@contoso.com   Member
+b7753478-6cec-4965-96cc-560c5fb6fcd4 Mary Kom       Mary@contoso.com    Member
 ```
 
 The first command gets the ID of a service principal by using the Get-EntraBetaServicePrincipal (./Get-EntraBetaServicePrincipal.md)cmdlet. 
 The command stores the ID in the $ServicePrincipalId variable.
 
 The second command gets the owner of a service principal identified by $ServicePrincipalId.
+
+### Example 2: Retrieve all the owners of a service principal
+```
+PS C:\> $ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
+PS C:\> Get-EntraBetaServicePrincipalOwner -ObjectId $ServicePrincipalId -All $true
+
+ObjectId                             DisplayName    UserPrincipalName   UserType
+--------                             -----------    -----------------   --------
+fd560167-ff1f-471a-8d74-3b0070abcea1 Adams Smith    Adams@contoso.com   Member
+15b958d9-af43-40be-8e91-bcd5676556f7 Peter Kons     Peter@contoso.com   Member
+b7753478-6cec-4965-96cc-560c5fb6fcd4 Mary Kom       Mary@contoso.com    Member
+```
+
+### Example 3: Retrieve top 2 owners of a service principal
+```
+PS C:\> $ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
+PS C:\> Get-EntraBetaServicePrincipalOwner -ObjectId $ServicePrincipalId -Top 2
+
+ObjectId                             DisplayName    UserPrincipalName   UserType
+--------                             -----------    -----------------   --------
+fd560167-ff1f-471a-8d74-3b0070abcea1 Adams Smith    Adams@contoso.com   Member
+15b958d9-af43-40be-8e91-bcd5676556f7 Peter Kons     Peter@contoso.com   Member
+```
 
 ## PARAMETERS
 
@@ -51,7 +90,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a service principal in Azure AD.
+Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -91,9 +130,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraBetaServicePrincipalOwner]()
+[Add-EntraBetaServicePrincipalOwner](Add-EntraBetaServicePrincipalOwner.md)
 
-[Get-EntraBetaServicePrincipal]()
+[Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)
 
-[Remove-EntraBetaServicePrincipalOwner]()
+[Remove-EntraBetaServicePrincipalOwner](Remove-EntraBetaServicePrincipalOwner.md)
 
