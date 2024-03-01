@@ -1,4 +1,14 @@
 ---
+title: Get-EntraDirectoryRoleMember.
+description: This article provides details on the Get-EntraDirectoryRoleMember command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,11 @@ Gets members of a directory role.
 ## SYNTAX
 
 ```
-Get-EntraDirectoryRoleMember -ObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Get-EntraDirectoryRoleMember 
+ -ObjectId <String> 
+ [-InformationAction <ActionPreference>]
+ [-InformationVariable <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -24,15 +37,17 @@ The Get-EntraDirectoryRoleMember cmdlet gets the members of a directory role in 
 
 ### Example 1: Get members by role ID
 ```
-PS C:\>Get-EntraDirectoryRoleMember -ObjectId "019ea7a2-1613-47c9-81cb-20ba35b1ae48"
+PS C:\>Get-EntraDirectoryRoleMember -ObjectId 1d73e796-aac5-4b3a-b7e7-74a3d1926a85
 
-ObjectId                             ObjectType
---------                             ----------
-ba6752c4-6a2e-4be5-a23d-67d8d5980796 User
-df19e8e6-2ad7-453e-87f5-037f6529ae16 User
-c13dd34a-492b-4561-b171-40fcce2916c5 User
-0558a23b-438a-48aa-8e30-5042e0746f69 User
-1fbae2b2-bb4b-48f9-bb38-83e9e1ad4bff User
+
+ageGroup                        :
+onPremisesLastSyncDateTime      :
+creationType                    :
+imAddresses                     : {admin@m365x99297270.onmicrosoft.com}
+preferredLanguage               : en
+mail                            : admin@M365x99297270.onmicrosoft.com
+securityIdentifier              : S-1-12-1-2574072234-1301806508-533216682-2892133300
+identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=admin@M365x99297270.onmicrosoft.com}}
 ```
 
 This command gets the members of the specified role.
@@ -78,7 +93,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a directory role in Azure AD.
+Specifies the ID of a directory role in Microsoft Entra ID.
 
 ```yaml
 Type: String
