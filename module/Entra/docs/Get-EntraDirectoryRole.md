@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraDirectoryRole command
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 11/10/2023
+ms.date: 02/29/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
