@@ -27,7 +27,7 @@ Remove-EntraBetaDeviceRegisteredOwner -OwnerId <String> -ObjectId <String> [<Com
 ```
 
 ## DESCRIPTION
-The **Remove-EntraBetaDeviceRegisteredOwner** cmdlet removes the registered owner of a device in Microsoft Entra ID.
+The Remove-EntraBetaDeviceRegisteredOwner cmdlet removes the registered owner of a device in Microsoft Entra ID.
 
 ## EXAMPLES
 
