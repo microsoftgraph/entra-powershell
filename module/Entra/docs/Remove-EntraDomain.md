@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraDomain.
+description: This article provides details on the Remove-EntraDomain command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,7 +23,9 @@ Removes a domain.
 ## SYNTAX
 
 ```
-Remove-EntraDomain -Name <String> [<CommonParameters>]
+Remove-EntraDomain 
+ -Name <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -26,7 +38,7 @@ The Remove-EntraDomain cmdlet removes a domain from Microsoft Entra ID.
 PS C:\>Remove-EntraDomain -Name Contoso.com
 ```
 
-This command removes a domain.
+This command removes a domain from Microsoft Entra ID.
 
 ## PARAMETERS
 
