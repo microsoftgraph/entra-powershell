@@ -1,4 +1,14 @@
 ---
+title: Get-EntraMSAdministrativeUnitMember
+description: This article provides details on the Get-EntraMSAdministrativeUnitMember command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -18,13 +28,40 @@ Get-EntraMSAdministrativeUnitMember [-All <Boolean>] [-Top <Int32>] -Id <String>
 ```
 
 ## DESCRIPTION
-The Get-EntraMSAdministrativeUnitMember cmdlet gets a member of an Active Directory administrative unit.
+The Get-EntraMSAdministrativeUnitMember cmdlet gets a member of a Microsoft Entra ID administrative unit.
 
 ## EXAMPLES
 
-### Example 1 Get an administrative unit member by ID
+### Example 1: Get an administrative unit member by ID
 ```
 PS C:\> Get-EntraMSAdministrativeUnitMember -Id "ef08b536-9d0a-4f8f-bda5-8b9cd01a9159"
+
+Id                                   OdataType
+--                                   ---------
+b54e1419-0c09-4fdf-a7d6-0729afce35f8 #microsoft.graph.user
+4321d7f5-3457-4dd6-8117-e771a053f412 #microsoft.graph.user
+6e0a596f-982d-4b18-ba4b-a533ce775f8d #microsoft.graph.user
+```
+
+### Example 2: Get all administrative unit members by ID
+```
+PS C:\> Get-EntraMSAdministrativeUnitMember -Id "ef08b536-9d0a-4f8f-bda5-8b9cd01a9159" -All $true
+
+Id                                   OdataType
+--                                   ---------
+b54e1419-0c09-4fdf-a7d6-0729afce35f8 #microsoft.graph.user
+4321d7f5-3457-4dd6-8117-e771a053f412 #microsoft.graph.user
+6e0a596f-982d-4b18-ba4b-a533ce775f8d #microsoft.graph.user
+```
+
+### Example 3: Get top 2 administrative unit members by ID
+```
+PS C:\> Get-EntraMSAdministrativeUnitMember -Id "ef08b536-9d0a-4f8f-bda5-8b9cd01a9159" -All $false -Top 2
+
+Id                                   OdataType
+--                                   ---------
+b54e1419-0c09-4fdf-a7d6-0729afce35f8 #microsoft.graph.user
+4321d7f5-3457-4dd6-8117-e771a053f412 #microsoft.graph.user
 ```
 
 ## PARAMETERS
@@ -123,7 +160,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraMSAdministrativeUnitMember]()
+[Add-EntraMSAdministrativeUnitMember](Add-EntraMSAdministrativeUnitMember.md)
 
-[Remove-EntraMSAdministrativeUnitMember]()
+[Remove-EntraMSAdministrativeUnitMember](Remove-EntraMSAdministrativeUnitMember.md)
 
