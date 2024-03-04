@@ -1,4 +1,14 @@
 ---
+title: Add-EntraMSScopedRoleMembership
+description: This article provides details on the Add-EntraMSScopedRoleMembership command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/04/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -25,16 +35,18 @@ The Add-EntraMSScopedRoleMembership cmdlet adds a scoped role membership to an a
 ### Example 1
 ```
 $User = Get-EntraUser -SearchString "The user that will be an admin on this unit"
-	$Role = Get-EntraDirectoryRole | Where-Object -Property DisplayName -EQ -Value "User Account Administrator"
-	$Unit = Get-EntraMSAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value "<The display name of the unit"
-	$RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRolememberinfo.RoleMemberInfo
-	$RoleMember.Id = $User.ObjectID
-	Add-EntraMSScopedRoleMembership -Id $Unit.Id -RoleId $Role.ObjectId -RoleMemberInfo $RoleMember
+$Role = Get-EntraDirectoryRole | Where-Object -Property DisplayName -EQ -Value "User Account Administrator"
+$Unit = Get-EntraMSAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value "<The display name of the unit"
+$RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRolememberinfo.RoleMemberInfo
+$RoleMember.Id = $User.ObjectID
+Add-EntraMSScopedRoleMembership -Id $Unit.Id -RoleId $Role.ObjectId -RoleMemberInfo $RoleMember
+
+AdministrativeUnitId					RoleId 	
+--------------------------           	------------ 	
+c9ab56cc-e349-4237-856e-cab03157a91e 	526b7173-5a6e-49dc-88ec-b677a9093709
 ```
 
 This cmdlet returns the Scope role membership object:
-
-AdministrativeUnitId           RoleId 	--------------------------           ------------ 	c9ab56cc-e349-4237-856e-cab03157a91e 526b7173-5a6e-49dc-88ec-b677a9093709
 
 ## PARAMETERS
 
@@ -54,7 +66,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-@{Text=}
+Specifies the ID of an admininstrative unit.
 
 ```yaml
 Type: String
@@ -84,7 +96,7 @@ Accept wildcard characters: False
 ```
 
 ### -RoleId
-{{ Fill RoleId Description }}
+Specifies the ID of a directory role.
 
 ```yaml
 Type: String

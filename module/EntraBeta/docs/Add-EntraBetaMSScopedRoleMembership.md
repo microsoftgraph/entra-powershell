@@ -1,4 +1,14 @@
 ---
+title: Add-EntraBetaMSScopedRoleMembership
+description: This article provides details on the Add-EntraBetaMSScopedRoleMembership command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/04/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -25,11 +35,15 @@ The Add-EntraBetaMSScopedRoleMembership cmdlet adds a scoped role membership to 
 ### Example 1
 ```
 $User = Get-EntraBetaUser -SearchString "The user that will be an admin on this unit"
-	$Role = Get-EntraBetaDirectoryRole | Where-Object -Property DisplayName -Eq -Value "User Account Administrator"
-	$Unit = Get-EntraBetaMSAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value "The display name of the unit"
-	$RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRolememberinfo.RoleMemberInfo
-	$RoleMember.Id = $User.ObjectID
-	Add-EntraBetaMSScopedRoleMembership -Id $Unit.Id -RoleId $Role.ObjectId -RoleMemberInfo $RoleMember
+$Role = Get-EntraBetaDirectoryRole | Where-Object -Property DisplayName -Eq -Value "User Account Administrator"
+$Unit = Get-EntraBetaMSAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value "The display name of the unit"
+$RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRolememberinfo.RoleMemberInfo
+$RoleMember.Id = $User.ObjectID
+Add-EntraBetaMSScopedRoleMembership -Id $Unit.Id -RoleId $Role.ObjectId -RoleMemberInfo $RoleMember
+
+AdministrativeUnitId					RoleId 	
+--------------------------           	------------ 	
+c9ab56cc-e349-4237-856e-cab03157a91e 	526b7173-5a6e-49dc-88ec-b677a9093709
 ```
 
 This cmdlet returns the Scoped role membership object.
@@ -67,7 +81,7 @@ Accept wildcard characters: False
 ```
 
 ### -AdministrativeUnitId
-{{ Fill AdministrativeUnitId Description }}
+Specifies the ID of an admininstrative unit.
 
 ```yaml
 Type: String
@@ -82,7 +96,7 @@ Accept wildcard characters: False
 ```
 
 ### -RoleId
-{{ Fill RoleId Description }}
+Specifies the ID of a directory role.
 
 ```yaml
 Type: String
