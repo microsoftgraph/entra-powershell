@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraDomainServiceConfigur
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 11/10/2023
+ms.date: 03/04/2023
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
