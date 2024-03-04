@@ -1,14 +1,4 @@
 ---
-title: Remove-EntraDeviceRegisteredUser
-description: This article provides details on the Remove-EntraDeviceRegisteredUser command.
-
-ms.service: active-directory
-ms.topic: reference
-ms.date: 11/10/2023
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -27,7 +17,7 @@ Remove-EntraDeviceRegisteredUser -ObjectId <String> -UserId <String> [<CommonPar
 ```
 
 ## DESCRIPTION
-The **Remove-EntraDeviceRegisteredUser** cmdlet removes a registered user from a Microsoft Entra ID device.
+The Remove-EntraDeviceRegisteredUser cmdlet removes a registered user from a Microsoft Entra ID device.
 
 ## EXAMPLES
 
@@ -88,7 +78,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraDeviceRegisteredUser](Add-EntraDeviceRegisteredUser.md)
+[Add-EntraDeviceRegisteredUser]()
 
-[Get-EntraDeviceRegisteredUser](Get-EntraDeviceRegisteredUser.md)
+[Get-EntraDeviceRegisteredUser]()
 

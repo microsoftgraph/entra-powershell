@@ -1,14 +1,4 @@
 ---
-title: Remove-EntraBetaDeviceRegisteredUser
-description: This article provides details on the Remove-EntraBetaDeviceRegisteredUser command.
-
-ms.service: active-directory
-ms.topic: reference
-ms.date: 11/10/2023
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -27,7 +17,7 @@ Remove-EntraBetaDeviceRegisteredUser -ObjectId <String> -UserId <String> [<Commo
 ```
 
 ## DESCRIPTION
-The **Remove-EntraBetaDeviceRegisteredUser** cmdlet removes a registered user from a Microsoft Entra ID device.
+The Remove-EntraBetaDeviceRegisteredUser cmdlet removes a registered user from an Azure Active Directory device.
 
 ## EXAMPLES
 
@@ -88,7 +78,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraBetaDeviceRegisteredUser](Add-EntraBetaDeviceRegisteredUser.md)
+[Add-EntraBetaDeviceRegisteredUser]()
 
-[Get-EntraBetaDeviceRegisteredUser](Get-EntraBetaDeviceRegisteredUser.md)
+[Get-EntraBetaDeviceRegisteredUser]()
 

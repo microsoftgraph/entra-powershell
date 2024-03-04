@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraDeviceRegisteredOwner
+description: This article provides details on the Remove-EntraDeviceRegisteredOwner command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 02/28/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -78,9 +88,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraDeviceRegisteredOwner]()
+[Add-EntraDeviceRegisteredOwner](Add-EntraDeviceRegisteredOwner.md)
 
-[Get-EntraDevice]()
+[Get-EntraDevice](Get-EntraDevice.md)
 
-[Get-EntraDeviceRegisteredOwner]()
+[Get-EntraDeviceRegisteredOwner](Get-EntraDeviceRegisteredOwner.md)
 
