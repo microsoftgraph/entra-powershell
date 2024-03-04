@@ -1,4 +1,14 @@
 ---
+title: Get-EntraApplicationExtensionProperty
+description: This article provides details on the Get-EntraApplicationExtensionProperty command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/04/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -100,7 +110,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[New-EntraApplicationExtensionProperty]()
+[New-EntraApplicationExtensionProperty](New-EntraApplicationExtensionProperty.md)
 
-[Remove-EntraApplicationExtensionProperty]()
+[Remove-EntraApplicationExtensionProperty](Remove-EntraApplicationExtensionProperty.md)
 

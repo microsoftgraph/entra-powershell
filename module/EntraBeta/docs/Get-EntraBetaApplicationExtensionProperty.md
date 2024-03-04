@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaApplicationExtensionProperty
+description: This article provides details on the Get-EntraBetaApplicationExtensionProperty command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/04/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -18,7 +28,7 @@ Get-EntraBetaApplicationExtensionProperty -ObjectId <String> [-InformationAction
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaApplicationExtensionProperty cmdlet gets application extension properties in Azure Active Directory.
+The Get-EntraBetaApplicationExtensionProperty cmdlet gets application extension properties in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -31,7 +41,7 @@ ObjectId                             Name                                       
 344ed560-f8e7-410e-ab9f-c795a7df5c36 extension_36ee4c6c081240a2b820b22ebd02bce3_NewAttribute {}
 ```
 
-This command gets the extension properties for the specified application in Azure Active Directory.
+This command gets the extension properties for the specified application in Microsoft Entra ID.
 
 ## PARAMETERS
 
@@ -75,7 +85,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the unique ID of an application in Azure Active Directory.
+Specifies the unique ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -100,7 +110,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[New-EntraBetaApplicationExtensionProperty]()
+[New-EntraBetaApplicationExtensionProperty](New-EntraBetaApplicationExtensionProperty.md)
 
-[Remove-EntraBetaApplicationExtensionProperty]()
+[Remove-EntraBetaApplicationExtensionProperty](Remove-EntraBetaApplicationExtensionProperty.md)
 
