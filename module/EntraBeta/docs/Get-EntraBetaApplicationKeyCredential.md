@@ -1,4 +1,14 @@
 ---
+title: Get-EntraApplicationKeyCredential
+description: This article provides details on the Get-EntraApplicationKeyCredential command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/04/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -25,6 +35,22 @@ The Get-EntraBetaApplicationKeyCredential cmdlet gets the key credentials for an
 ### Example 1: Get key credentials
 ```
 PS C:\> Get-EntraBetaApplicationKeyCredential -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84"
+
+CustomKeyIdentifier : {116, 101, 115, 116}
+EndDate             : 10/23/2024 11:36:56 AM
+KeyId               : 52ab6cca-bc59-4f06-8450-75a3d2b8e53b
+StartDate           : 11/22/2023 11:35:16 AM
+Type                : Symmetric
+Usage               : Sign
+Value               :
+
+CustomKeyIdentifier : {84, 101, 115, 116}
+EndDate             : 10/23/2024 9:46:49 AM
+KeyId               : 2e5143ee-9912-40c1-8c6a-a84f8124a6af
+StartDate           : 10/23/2023 9:46:48 AM
+Type                : Symmetric
+Usage               : Sign
+Value               :
 ```
 
 This command gets the key credentials for the specified application.
@@ -71,7 +97,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies a unique ID of an application in Azure Active Directory for which to get key credentials
+Specifies a unique ID of an application in Microsoft Entra ID for which to get key credentials
 
 ```yaml
 Type: String
@@ -96,7 +122,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[New-EntraBetaApplicationKeyCredential]()
+[New-EntraBetaApplicationKeyCredential](New-EntraBetaApplicationKeyCredential.md)
 
-[Remove-EntraBetaApplicationKeyCredential]()
+[Remove-EntraBetaApplicationKeyCredential](Remove-EntraBetaApplicationKeyCredential.md)
 
