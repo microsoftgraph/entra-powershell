@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaMSScopedRoleMembership
+description: This article provides details on the Get-EntraBetaMSScopedRoleMembership command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -17,18 +27,27 @@ Get-EntraBetaMSScopedRoleMembership -Id <String> [-ScopedRoleMembershipId <Strin
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaMSScopedRoleMembership cmdlet gets a scoped role membership from an administrative unit in Azure Active Directory (AD).
+The Get-EntraBetaMSScopedRoleMembership cmdlet gets a scoped role membership from an administrative unit in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1 Get Scoped Role Administrator
 ```
 PS C:\>Get-EntraBetaMSScopedRoleMembership -Id "526b7173-5a6e-49dc-88ec-b677a9093709" -ScopedRoleMembershipId "356b7173-5a6e-49dc-88ec-b677a9093709"
+
+AdministrativeUnitId                 Id                                                                RoleId
+--------------------                 --                                                                ------
+526b7173-5a6e-49dc-88ec-b677a9093709 BMYgih8pw0y20CQerx3BhEAwHXd98V5Gi-vwYVZQpAouYj-NPIZuQYv0G7SehpIUU 356b7173-5a6e-49dc-88ec-b...
 ```
 
 ### Example 2 List scoped administrators for AU.
 ```
 PS C:\>Get-EntraBetaMSScopedRoleMembership -Id "526b7173-5a6e-49dc-88ec-b677a9093709"
+
+AdministrativeUnitId                 Id                                                                RoleId
+--------------------                 --                                                                ------
+526b7173-5a6e-49dc-88ec-b677a9093709 BMYgih8pw0y20CQerx3BhEAwHXd98V5Gi-vwYVZQpAouYj-NPIZuQYv0G7SehpIUU 8a20c604-291f-4cc3-b6d0-2...
+526b7173-5a6e-49dc-88ec-b677a9093709 BMYgih8pw0y20CQerx3BhEAwHXd98V5Gi-vwYVZQpApdfqODbZQvQbS2rHEuDlWmU 8a20c604-291f-4cc3-b6d0-2...
 ```
 
 ## PARAMETERS
