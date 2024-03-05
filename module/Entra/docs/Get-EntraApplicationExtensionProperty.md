@@ -1,4 +1,14 @@
 ---
+title: Get-EntraApplicationExtensionProperty.
+description: This article provides details on the Get-EntraApplicationExtensionProperty command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/05/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,11 @@ Gets application extension properties.
 ## SYNTAX
 
 ```
-Get-EntraApplicationExtensionProperty -ObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Get-EntraApplicationExtensionProperty 
+ -ObjectId <String> 
+ [-InformationAction <ActionPreference>]
+ [-InformationVariable <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -24,11 +37,13 @@ The Get-EntraApplicationExtensionProperty cmdlet gets application extension prop
 
 ### Example 1: Get extension properties
 ```
-PS C:\>Get-EntraApplicationExtensionProperty -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84"
+PS C:\>Get-EntraApplicationExtensionProperty -ObjectID 010cc9b5-fce9-485e-9566-c68debafac5f
 
-ObjectId                             Name                                                    TargetObjects
---------                             ----                                                    -------------
-344ed560-f8e7-410e-ab9f-c795a7df5c36 extension_36ee4c6c081240a2b820b22ebd02bce3_NewAttribute {}
+DeletedDateTime Id                                   AppDisplayName DataType IsSyncedFromOnPremises Name                                                     TargetObjects
+--------------- --                                   -------------- -------- ---------------------- ----                                                     -------------
+                aae84ce7-62fb-4d16-87e8-af4e2e865096                String   False                  extension_5f783237345745d893e7a0edb1cfbfd1_NewAttribute3 {}
+                99429b1a-602c-4a78-b797-f63850ba1af7                String   False                  extension_5f783237345745d893e7a0edb1cfbfd1_NewAttribute1 {}
+                f2bfdbb9-e5d3-4ff9-8fb1-4e5d36726875                String   False                  extension_5f783237345745d893e7a0edb1cfbfd1_NewAttribute  {}
 ```
 
 This command gets the extension properties for the specified application in Microsoft Entra ID.
