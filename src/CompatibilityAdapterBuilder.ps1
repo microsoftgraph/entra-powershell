@@ -575,7 +575,9 @@ $($Command.CustomScript)
         $OutputTransformations = $this.GetOutputTransformations($Command)
         $keyId = $this.GetKeyIdPair($Command)
         $psVersion = $global:PSVersionTable.PSVersion
-        $userAgentHeaderValue = "$psVersion EntraPowershell/0.6.0 $($Command.Generate)"
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/0.6.0 $($Command.Generate)"
+        $customHeaders = New-Object 'system.collections.generic.dictionary[string,string]'
+        $customHeaders["User-Agent"] = $userAgentHeaderValue
         $function = @"
 function $($Command.Generate) {
     [CmdletBinding($($Command.DefaultParameterSet))]
@@ -591,7 +593,7 @@ $ParamterTransformations
     `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
     Write-Debug("=========================================================================``n")
     
-    `$response = $($Command.New) @params -Headers "User-Agent: $userAgentHeaderValue"
+    `$response = $($Command.New) @params -Headers $customHeaders
 $OutputTransformations
     `$response
     }
