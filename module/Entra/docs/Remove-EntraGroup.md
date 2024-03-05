@@ -1,4 +1,13 @@
 ---
+title: Remove-EntraGroup
+description: This article provides details on the Remove-EntraGroup command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +22,11 @@ Removes a group.
 ## SYNTAX
 
 ```
-Remove-EntraGroup -ObjectId <String> [-InformationAction <ActionPreference>] [-InformationVariable <String>]
- [<CommonParameters>]
+Remove-EntraGroup 
+-ObjectId <String> 
+[-InformationAction <ActionPreference>] 
+[-InformationVariable <String>]
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,7 +41,7 @@ Security groups cannot be restored after deletion.
 PS C:\>Remove-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606"
 ```
 
-This command removes the specified group from Azure AD.
+This command removes the specified group from Microsoft Entra ID.
 
 ## PARAMETERS
 
@@ -72,7 +84,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the object ID of a group in Azure AD.
+Specifies the object ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: String
