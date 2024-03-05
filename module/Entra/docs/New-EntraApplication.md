@@ -1,4 +1,14 @@
 ---
+title: New-EntraApplication
+description: This article provides details on the New-EntraApplication command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -49,7 +59,43 @@ ObjectId                             AppId                                Displa
 acd10942-5747-4385-8824-4c5d5fa904f9 b5fecfab-0ea2-4fd1-8570-b2c41b3d5149 My new application
 ```
 
-This command creates an application in Azure AD.
+This command creates an application in Microsoft Entra ID.
+
+### Example 2
+```
+PS C:\>New-EntraApplication -DisplayName "My new application"
+
+ObjectId                             AppId                                DisplayName 
+--------                             -----                                ----------- 
+acd10942-5747-4385-8824-4c5d5fa904f9 b5fecfab-0ea2-4fd1-8570-b2c41b3d5149 My new application
+```
+
+### Example 3
+```
+PS C:\>New-EntraApplication -DisplayName "My new application" -HomePage "http://mynewapp.home.com"
+
+ObjectId                             AppId                                DisplayName 
+--------                             -----                                ----------- 
+acd10942-5747-4385-8824-4c5d5fa904f9 b5fecfab-0ea2-4fd1-8570-b2c41b3d5149 My new application
+```
+
+### Example 4
+```
+PS C:\>New-EntraApplication -DisplayName "My new application" -LogoutUrl "https://mynewapp.com/logout.aspx"
+
+ObjectId                             AppId                                DisplayName 
+--------                             -----                                ----------- 
+acd10942-5747-4385-8824-4c5d5fa904f9 b5fecfab-0ea2-4fd1-8570-b2c41b3d5149 My new application
+```
+
+### Example 5
+```
+PS C:\>New-EntraApplication -DisplayName "My new application" -IsDeviceOnlyAuthSupported $false
+
+ObjectId                             AppId                                DisplayName 
+--------                             -----                                ----------- 
+acd10942-5747-4385-8824-4c5d5fa904f9 b5fecfab-0ea2-4fd1-8570-b2c41b3d5149 My new application
+```
 
 ## PARAMETERS
 
@@ -133,8 +179,8 @@ Accept wildcard characters: False
 
 ### -GroupMembershipClaims
 A bitmask that configures the "groups" claim issued in a user or OAuth 2.0 access token that the application expects.
-The bitmask values are: 0: None, 1: Security groups and Azure AD roles, 2: Reserved, and 4: Reserved.
-Setting the bitmask to 7 will get all of the security groups, distribution groups, and Azure AD directory roles that the signed-in user is a member of.
+The bitmask values are: 0: None, 1: Security groups and Microsoft Entra ID roles, 2: Reserved, and 4: Reserved.
+Setting the bitmask to 7 will get all of the security groups, distribution groups, and Microsoft Entra ID roles that the signed-in user is a member of.
 
 ```yaml
 Type: String
@@ -164,10 +210,10 @@ Accept wildcard characters: False
 ```
 
 ### -IdentifierUris
-User-defined URI(s) that uniquely identify a Web application within its Azure AD tenant, or within a verified custom domain (see "Domains" tab in the Azure classic portal) if the application is multi-tenant.
+User-defined URI(s) that uniquely identify a Web application within its Microsoft Entra ID tenant, or within a verified custom domain (see "Domains" tab in the Azure classic portal) if the application is multi-tenant.
 
-The first element is populated from the Web application's "APP ID URI" field if updated via the Azure classic portal (or respective Azure AD PowerShell cmdlet parameter).
-Additional URIs can be added via the application manifest; see Understanding the Azure AD Application Manifest for details.
+The first element is populated from the Web application's "APP ID URI" field if updated via the Azure classic portal (or respective Microsoft Entra ID PowerShell cmdlet parameter).
+Additional URIs can be added via the application manifest; see Understanding the Microsoft Entra ID Application Manifest for details.
 This collection is also used to populate the Web application's servicePrincipalNames collection.
 
 ```yaml
@@ -245,7 +291,7 @@ Accept wildcard characters: False
 ```
 
 ### -Oauth2AllowUrlPathMatching
-Specifies whether, as part of OAuth 2.0 token requests, Azure AD will allow path matching of the redirect URI against the application's replyUrls.
+Specifies whether, as part of OAuth 2.0 token requests, Microsoft Entra ID will allow path matching of the redirect URI against the application's replyUrls.
 The default is false.
 
 ```yaml
@@ -370,7 +416,7 @@ Accept wildcard characters: False
 ```
 
 ### -Oauth2RequirePostResponse
-Set this to true if an Oauth2 psot response is required
+Set this to true if an Oauth2 post response is required
 
 ```yaml
 Type: Boolean
@@ -385,7 +431,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowGuestsSignIn
-{{ Fill AllowGuestsSignIn Description }}
+Sets a property on the application to indicate if the application accepts other IDPs or not or partially accepts.
 
 ```yaml
 Type: Boolean
@@ -400,7 +446,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowPassthroughUsers
-{{ Fill AllowPassthroughUsers Description }}
+Sets indicates that the application supports pass through users who have no presence in the resource tenant.
 
 ```yaml
 Type: Boolean
@@ -415,7 +461,7 @@ Accept wildcard characters: False
 ```
 
 ### -AppLogoUrl
-{{ Fill AppLogoUrl Description }}
+Sets the url for the application logo image stored in a CDN.
 
 ```yaml
 Type: String
@@ -430,7 +476,7 @@ Accept wildcard characters: False
 ```
 
 ### -InformationalUrls
-{{ Fill InformationalUrls Description }}
+Basic profile information of the application such as app's marketing, support, terms of service and privacy statement URLs. The terms of service and privacy statement are surfaced to users through the user consent experience.
 
 ```yaml
 Type: InformationalUrl
@@ -445,7 +491,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsDeviceOnlyAuthSupported
-{{ Fill IsDeviceOnlyAuthSupported Description }}
+Specifies if the application supports authentication using a device token.
 
 ```yaml
 Type: Boolean
@@ -460,7 +506,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsDisabled
-{{ Fill IsDisabled Description }}
+Enables or disables the application.
 
 ```yaml
 Type: Boolean
@@ -475,7 +521,7 @@ Accept wildcard characters: False
 ```
 
 ### -OptionalClaims
-{{ Fill OptionalClaims Description }}
+Application developers can configure optional claims in their Microsoft Entra ID apps to specify which claims they want in tokens sent to their application by the Microsoft security token service.
 
 ```yaml
 Type: OptionalClaims
@@ -490,7 +536,7 @@ Accept wildcard characters: False
 ```
 
 ### -OrgRestrictions
-{{ Fill OrgRestrictions Description }}
+Sets a list of tenants allowed to access application.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -505,7 +551,7 @@ Accept wildcard characters: False
 ```
 
 ### -ParentalControlSettings
-{{ Fill ParentalControlSettings Description }}
+Specifies parental control settings for an application.
 
 ```yaml
 Type: ParentalControlSettings
@@ -520,7 +566,7 @@ Accept wildcard characters: False
 ```
 
 ### -PreAuthorizedApplications
-{{ Fill PreAuthorizedApplications Description }}
+Sets list of pre-authorized applications.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PreAuthorizedApplication]
@@ -535,7 +581,7 @@ Accept wildcard characters: False
 ```
 
 ### -PublisherDomain
-{{ Fill PublisherDomain Description }}
+Sets reliable domain which can be used to identify an application.
 
 ```yaml
 Type: String
@@ -550,7 +596,7 @@ Accept wildcard characters: False
 ```
 
 ### -SignInAudience
-{{ Fill SignInAudience Description }}
+Sets audience for signing in to the application.
 
 ```yaml
 Type: String
@@ -565,7 +611,7 @@ Accept wildcard characters: False
 ```
 
 ### -WwwHomepage
-{{ Fill WwwHomepage Description }}
+Sets the primary Web page.
 
 ```yaml
 Type: String
@@ -590,15 +636,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraApplication]()
+[Get-EntraApplication](Get-EntraApplication.md)
 
-[Remove-EntraApplication]()
+[Remove-EntraApplication](Remove-EntraApplication.md)
 
-[Set-EntraApplication]()
-
-[Get-EntraApplication]()
-
-[Remove-EntraApplication]()
-
-[Set-EntraApplication]()
+[Set-EntraApplication](Set-EntraApplication.md)
 
