@@ -1,4 +1,14 @@
 ---
+title: New-EntraMSAdministrativeUnit
+description: This article provides details on the New-EntraMSAdministrativeUnit command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -23,11 +33,22 @@ The New-EntraMSAdministrativeUnit cmdlet creates an administrative unit in Micro
 ## EXAMPLES
 
 ### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+```
+PS C:\> New-EntraMSAdministrativeUnit -DisplayName "TestAU"
+
+DeletedDateTime Id                                   Description DisplayName Visibility
+--------------- --                                   ----------- ----------- ----------
+                eb7dee2b-4938-4835-b3e1-bb8207ae0814             TestAU
 ```
 
-{{ Add example description here }}
+### Example 2
+```
+PS C:\> New-EntraMSAdministrativeUnit -Description "test111" -DisplayName "test111"
+
+DeletedDateTime Id                                   Description DisplayName Visibility
+--------------- --                                   ----------- ----------- ----------
+                eb7dee2b-4938-4835-b3e1-bb8207ae0814 test111     test111
+```
 
 ## PARAMETERS
 
@@ -110,9 +131,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraMSAdministrativeUnit]()
+[Get-EntraMSAdministrativeUnit](Get-EntraMSAdministrativeUnit.md)
 
-[Remove-EntraMSAdministrativeUnit]()
+[Remove-EntraMSAdministrativeUnit](Remove-EntraMSAdministrativeUnit.md)
 
-[Set-EntraMSAdministrativeUnit]()
+[Set-EntraMSAdministrativeUnit](Set-EntraMSAdministrativeUnit.md)
 

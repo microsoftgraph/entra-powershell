@@ -1,4 +1,14 @@
 ---
+title: New-EntraBetaMSAdministrativeUnit
+description: This article provides details on the New-EntraBetaMSAdministrativeUnit command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -19,16 +29,27 @@ New-EntraBetaMSAdministrativeUnit [-MembershipType <String>] [-Description <Stri
 ```
 
 ## DESCRIPTION
-The New-EntraBetaMSAdministrativeUnit cmdlet creates an administrative unit in Azure Active Directory (AD).
+The New-EntraBetaMSAdministrativeUnit cmdlet creates an administrative unit in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+```
+PS C:\> New-EntraBetaMSAdministrativeUnit -DisplayName "TestAU"
+
+DeletedDateTime Id                                   Description DisplayName IsMemberManagementRestricted Visibility
+--------------- --                                   ----------- ----------- ---------------------------- ----------
+                a30efb43-195c-4544-a754-fcd6df695020             TestAU      False
 ```
 
-{{ Add example description here }}
+### Example 2
+```
+PS C:\> New-EntraBetaMSAdministrativeUnit -Description "test111" -DisplayName "test111" -IsMemberManagementRestricted $true
+
+DeletedDateTime Id                                   Description DisplayName IsMemberManagementRestricted Visibility
+--------------- --                                   ----------- ----------- ---------------------------- ----------
+                a30efb43-195c-4544-a754-fcd6df695020 test111     test111     True
+```
 
 ## PARAMETERS
 
@@ -117,7 +138,8 @@ Accept wildcard characters: False
 ```
 
 ### -MembershipRule
-{{ Fill MembershipRule Description }}
+Specifies the membership rule for a dynamic administrative unit.
+For more information about the rules that you can use for dynamic administrative units and dynamic groups, see [Using attributes to create advanced rules](https://azure.microsoft.com/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/).
 
 ```yaml
 Type: String
@@ -132,7 +154,10 @@ Accept wildcard characters: False
 ```
 
 ### -MembershipRuleProcessingState
-{{ Fill MembershipRuleProcessingState Description }}
+Specifies the rule processing state. The acceptable values for this parameter are:
+- "On". Process the group rule.
+- "Paused". Stop processing the group rule.
+Changing the value of the processing state does not change the members list of the administrative unit.
 
 ```yaml
 Type: String
@@ -147,7 +172,10 @@ Accept wildcard characters: False
 ```
 
 ### -MembershipType
-{{ Fill MembershipType Description }}
+Specifies whether the membership of this administrative unit is controlled dynamically or by manual assignment.
+The acceptable values for this parameter are:
+- Assigned
+- Dynamic
 
 ```yaml
 Type: String
@@ -172,9 +200,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraBetaMSAdministrativeUnit]()
+[Get-EntraBetaMSAdministrativeUnit](Get-EntraBetaMSAdministrativeUnit.md)
 
-[Remove-EntraBetaMSAdministrativeUnit]()
+[Remove-EntraBetaMSAdministrativeUnit](Remove-EntraBetaMSAdministrativeUnit.md)
 
-[Set-EntraBetaMSAdministrativeUnit]()
+[Set-EntraBetaMSAdministrativeUnit](Set-EntraBetaMSAdministrativeUnit.md)
 
