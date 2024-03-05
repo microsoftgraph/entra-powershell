@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraBetaApplication
+description: This article provides details on the Remove-EntraBetaApplication command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -18,7 +28,7 @@ Remove-EntraBetaApplication -ObjectId <String> [-InformationAction <ActionPrefer
 ```
 
 ## DESCRIPTION
-The Remove-EntraBetaApplication cmdlet removes the specified application from Azure Active Directory (AD).
+The Remove-EntraBetaApplication cmdlet removes the specified application from Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -71,7 +81,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of an application in Azure AD.
+Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -96,9 +106,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraBetaApplication]()
+[Get-EntraBetaApplication](Get-EntraBetaApplication.md)
 
-[New-EntraBetaApplication]()
+[New-EntraBetaApplication](New-EntraBetaApplication.md)
 
-[Set-EntraBetaApplication]()
+[Set-EntraBetaApplication](Set-EntraBetaApplication.md)
 

@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraApplication
+description: This article provides details on the Remove-EntraApplication command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -71,7 +81,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of an application in Azure AD.
+Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -96,9 +106,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraApplication]()
+[Get-EntraApplication](Get-EntraApplication.md)
 
-[New-EntraApplication]()
+[New-EntraApplication](New-EntraApplication.md)
 
-[Set-EntraApplication]()
+[Set-EntraApplication](Set-EntraApplication.md)
 
