@@ -1,4 +1,14 @@
 ---
+title: Add-EntraBetaApplicationOwner
+description: This article provides details on the Add-EntraBetaApplicationOwner command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -18,13 +28,15 @@ Add-EntraBetaApplicationOwner -ObjectId <String> -RefObjectId <String> [-Informa
 ```
 
 ## DESCRIPTION
-The Add-EntraBetaApplicationOwner cmdlet adds an owner to an Azure Active Directory application.
+The Add-EntraBetaApplicationOwner cmdlet adds an owner to a Microsoft Entra ID application.
 
 ## EXAMPLES
 
-### Example 1: Add an owner to an application
+### Example 1: Add a user as an owner to an application
 ```
-PS C:\>Add-EntraBetaApplicationOwner -ObjectId 3ddd22e7-a150-4bb3-b100-e410dea1cb84 -RefObjectId c13dd34a-492b-4561-b171-40fcce2916c5
+PS C:\> $ApplicationId = (Get-AzureADApplication -Top 1).ObjectId
+PS C:\> $UserObjectId = (Get-AzureADUser -Top 1).ObjectId
+PS C:\> Add-EntraBetaApplicationOwner -ObjectId $ApplicationId -RefObjectId $UserObjectId
 ```
 
 This command adds an owner to an application.
@@ -69,7 +81,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of an application in Azure Active Directory.
+Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -109,7 +121,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraBetaApplicationOwner]()
+[Get-EntraBetaApplicationOwner](Get-EntraBetaApplicationOwner.md)
 
-[Remove-EntraBetaApplicationOwner]()
+[Remove-EntraBetaApplicationOwner](Remove-EntraBetaApplicationOwner.md)
 

@@ -1,4 +1,14 @@
 ---
+title: Add-EntraApplicationOwner
+description: This article provides details on the Add-EntraApplicationOwner command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -22,9 +32,11 @@ The Add-EntraApplicationOwner cmdlet adds an owner to a Microsoft Entra ID appli
 
 ## EXAMPLES
 
-### Example 1: Add an owner to an application
+### Example 1: Add a user as an owner to an application
 ```
-PS C:\>Add-EntraApplicationOwner -ObjectId 3ddd22e7-a150-4bb3-b100-e410dea1cb84 -RefObjectId c13dd34a-492b-4561-b171-40fcce2916c5
+PS C:\> $ApplicationId = (Get-AzureADApplication -Top 1).ObjectId
+PS C:\> $UserObjectId = (Get-AzureADUser -Top 1).ObjectId
+PS C:\> Add-EntraApplicationOwner -ObjectId $ApplicationId -RefObjectId $UserObjectId
 ```
 
 This command adds an owner to an application.
@@ -109,7 +121,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraApplicationOwner]()
+[Get-EntraApplicationOwner](Get-EntraApplicationOwner.md)
 
-[Remove-EntraApplicationOwner]()
+[Remove-EntraApplicationOwner](Remove-EntraApplicationOwner.md)
 
