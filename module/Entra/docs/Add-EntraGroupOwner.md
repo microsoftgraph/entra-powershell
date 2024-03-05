@@ -1,4 +1,14 @@
 ---
+title: Add-EntraGroupOwner
+description: This article provides details on the Add-EntraGroupOwner command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,12 @@ Adds an owner to a group.
 ## SYNTAX
 
 ```
-Add-EntraGroupOwner -ObjectId <String> -RefObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Add-EntraGroupOwner 
+-ObjectId <String> 
+-RefObjectId <String> 
+[-InformationAction <ActionPreference>]
+[-InformationVariable <String>] 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
