@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraApplicationOwner
+description: This article provides details on the Remove-EntraApplicationOwner command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -71,7 +81,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of an application in Azure AD.
+Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: String

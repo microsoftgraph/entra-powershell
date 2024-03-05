@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraBetaApplicationOwner
+description: This article provides details on the Remove-EntraBetaApplicationOwner command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -18,7 +28,7 @@ Remove-EntraBetaApplicationOwner -OwnerId <String> -ObjectId <String> [-Informat
 ```
 
 ## DESCRIPTION
-The Remove-EntraBetaApplicationOwner cmdlet removes an owner from an application in Azure Active Directory (AD).
+The Remove-EntraBetaApplicationOwner cmdlet removes an owner from an application in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -71,7 +81,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of an application in Azure AD.
+Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: String
