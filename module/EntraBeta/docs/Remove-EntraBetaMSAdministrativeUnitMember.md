@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraBetaMSAdministrativeUnitMember
+description: This article provides details on the Remove-EntraBetaMSAdministrativeUnitMember command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -18,16 +28,14 @@ Remove-EntraBetaMSAdministrativeUnitMember -Id <String> -MemberId <String>
 ```
 
 ## DESCRIPTION
-The Remove-EntraBetaMSAdministrativeUnitMember cmdlet removes an administrative unit member in Azure Active Directory (AD).
+The Remove-EntraBetaMSAdministrativeUnitMember cmdlet removes an administrative unit member in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
 ```
-
-{{ Add example description here }}
+PS C:\> Remove-EntraBetaMSAdministrativeUnitMember -MemberId 201a21a3-201a-4101-92cb-239c00ef4a2a -Id c1c1decd-fec8-4899-9cea-5ca55a84965f
+```
 
 ## PARAMETERS
 
@@ -86,7 +94,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Specifies the ID of an administrative unit in Azure AD.
+Specifies the ID of an administrative unit in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -111,7 +119,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraBetaMSAdministrativeUnitMember]()
+[Add-EntraBetaMSAdministrativeUnitMember](Add-EntraBetaMSAdministrativeUnitMember.md)
 
-[Remove-EntraBetaMSAdministrativeUnitMember]()
+[Remove-EntraBetaMSAdministrativeUnitMember](Remove-EntraBetaMSAdministrativeUnitMember.md)
 
