@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaMSAdministrativeUnit
+description: This article provides details on the Get-EntraBetaMSAdministrativeUnit command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -23,16 +33,60 @@ Get-EntraBetaMSAdministrativeUnit -Id <String> [-All <Boolean>] [<CommonParamete
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaMSAdministrativeUnit cmdlet gets an Azure Active Directory administrative unit.
+The Get-EntraBetaMSAdministrativeUnit cmdlet gets a Microsoft Entra IDy administrative unit.
 
 ## EXAMPLES
 
 ### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+```
+PS C:\> Get-EntraBetaMSAdministrativeUnit
+
+Id                                   OdataType Description                                     DisplayName
+--                                   --------- -----------                                     -----------
+4bfe2ef5-9c2b-4118-9a3a-6e540c37920c           Dynamic AU testing in CORP tenant               DAU-Test
+771d3040-f17d-465e-8beb-f0615650a40a                                                           SOC Retention
+8441a019-a0cf-4ce8-9c9b-2af5a7ee672e           Container AU for restricted object control      DSR RMAU
+e2ecf941-b24e-4957-9e33-b6e6d7409b9e           Use to contain Personnel-managed project groups Personnel Projects
 ```
 
-{{ Add example description here }}
+### Example 2
+```
+PS C:\> Get-EntraBetaMSAdministrativeUnit -All $true
+
+Id                                   OdataType Description                                     DisplayName
+--                                   --------- -----------                                     -----------
+4bfe2ef5-9c2b-4118-9a3a-6e540c37920c           Dynamic AU testing in CORP tenant               DAU-Test
+771d3040-f17d-465e-8beb-f0615650a40a                                                           SOC Retention
+8441a019-a0cf-4ce8-9c9b-2af5a7ee672e           Container AU for restricted object control      DSR RMAU
+e2ecf941-b24e-4957-9e33-b6e6d7409b9e           Use to contain Personnel-managed project groups Personnel Projects
+```
+
+### Example 3
+```
+PS C:\> Get-EntraBetaMSAdministrativeUnit -Id 4bfe2ef5-9c2b-4118-9a3a-6e540c37920c
+
+Id                                   OdataType Description                                     DisplayName
+--                                   --------- -----------                                     -----------
+4bfe2ef5-9c2b-4118-9a3a-6e540c37920c           Dynamic AU testing in CORP tenant               DAU-Test
+```
+
+### Example 4
+```
+PS C:\> Get-EntraBetaMSAdministrativeUnit -Filter "DisplayName eq 'DAU-Test'"
+
+Id                                   OdataType Description                                     DisplayName
+--                                   --------- -----------                                     -----------
+4bfe2ef5-9c2b-4118-9a3a-6e540c37920c           Dynamic AU testing in CORP tenant               DAU-Test
+```
+
+### Example 5
+```
+PS C:\> Get-EntraBetaMSAdministrativeUnit -Top 1
+
+Id                                   OdataType Description                                     DisplayName
+--                                   --------- -----------                                     -----------
+4bfe2ef5-9c2b-4118-9a3a-6e540c37920c           Dynamic AU testing in CORP tenant               DAU-Test
+```
 
 ## PARAMETERS
 
@@ -71,7 +125,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Specifies the ID of an administrative unit in Azure Active Directory.
+Specifies the ID of an administrative unit in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -111,9 +165,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[New-EntraBetaMSAdministrativeUnit]()
+[New-EntraBetaMSAdministrativeUnit](New-EntraBetaMSAdministrativeUnit.md)
 
-[Remove-EntraBetaMSAdministrativeUnit]()
+[Remove-EntraBetaMSAdministrativeUnit](Remove-EntraBetaMSAdministrativeUnit.md)
 
-[Set-EntraBetaMSAdministrativeUnit]()
+[Set-EntraBetaMSAdministrativeUnit](Set-EntraBetaMSAdministrativeUnit.md)
 
