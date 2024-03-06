@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraGroupMember command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 11/10/2023
+ms.date: 03/06/2023
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
