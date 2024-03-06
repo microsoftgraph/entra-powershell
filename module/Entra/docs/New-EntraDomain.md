@@ -1,4 +1,14 @@
 ---
+title: New-EntraDomain.
+description: This article provides details on the New-EntraDomain command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,12 @@ Creates a domain.
 ## SYNTAX
 
 ```
-New-EntraDomain [-IsDefault <Boolean>] [-IsDefaultForCloudRedirections <Boolean>]
- [-SupportedServices <System.Collections.Generic.List`1[System.String]>] -Name <String> [<CommonParameters>]
+New-EntraDomain 
+ -Name <String>
+ [-IsDefault <Boolean>] 
+ [-IsDefaultForCloudRedirections <Boolean>]
+ [-SupportedServices <System.Collections.Generic.List`1[System.String]>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
