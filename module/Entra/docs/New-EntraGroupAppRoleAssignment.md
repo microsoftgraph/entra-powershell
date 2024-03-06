@@ -1,4 +1,14 @@
 ---
+title: New-EntraGroupAppRoleAssignment.
+description: This article provides details on the New-EntraGroupAppRoleAssignment command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/06/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,14 @@ Assign a group of users to an application role.
 ## SYNTAX
 
 ```
-New-EntraGroupAppRoleAssignment -ObjectId <String> -PrincipalId <String> -Id <String> -ResourceId <String>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+New-EntraGroupAppRoleAssignment 
+ -ObjectId <String> 
+ -PrincipalId <String> 
+ -Id <String> 
+ -ResourceId <String>
+ [-InformationAction <ActionPreference>] 
+ [-InformationVariable <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,12 +38,12 @@ The New-EntraGroupAppRoleAssignment cmdlet assigns a group of users to an applic
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Assign a group of users to an application
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> New-EntraGroupAppRoleAssignment -Id e18f0405-fdec-4ae8-a8a0-d8edb98b061f -ResourceId cc7fcc82-ac1b-4785-af47-2ca3b7052886 -ObjectId 0877c6c6-fc99-4d51-9871-8335be7cfc9d  -PrincipalId 0877c6c6-fc99-4d51-9871-8335be7cfc9d
 ```
 
-{{ Add example description here }}
+This command assigns a group of users to an application role in Microsoft Entra ID.
 
 ## PARAMETERS
 
@@ -86,7 +102,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a user (as a UPN or ObjectId) in Azure AD.
+Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: String
