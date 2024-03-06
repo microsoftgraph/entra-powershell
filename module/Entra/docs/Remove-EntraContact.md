@@ -23,8 +23,7 @@ Removes a contact.
 ## SYNTAX
 
 ```
-Remove-EntraContact -ObjectId <String> [-InformationAction <ActionPreference>] [-InformationVariable <String>]
- [<CommonParameters>]
+Remove-EntraContact -ObjectId <String> [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
