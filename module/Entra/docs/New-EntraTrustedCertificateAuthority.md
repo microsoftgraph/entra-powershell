@@ -1,4 +1,14 @@
 ---
+title: New-EntraTrustedCertificateAuthority
+description: This article provides details on the New-EntraTrustedCertificateAuthority command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/06/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -25,11 +35,15 @@ The New-EntraTrustedCertificateAuthority cmdlet creates a trusted certificate au
 ### Example 1: Creates the trusted certificate authorities in your directory
 ```
 PS C:\> $new_ca = New-Object -TypeName Microsoft.Open.AzureAD.Model.CertificateAuthorityInformation #Create CertificateAuthorityInformation object
-		PS C:\> $new_ca.AuthorityType = "RootAuthority"
-		PS C:\> $new_ca.CrlDistributionPoint = "https://example.crl"
-		PS C:\> $new_ca.DeltaCrlDistributionPoint = "https://deltaexample.crl"
-		PS C:\> $new_ca.TrustedCertificate = "Path to .cer file(including cer file name)"
-		PS C:\> New-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $new_ca
+PS C:\> $new_ca.AuthorityType = "RootAuthority"
+PS C:\> $new_ca.CrlDistributionPoint = "https://example.crl"
+PS C:\> $new_ca.DeltaCrlDistributionPoint = "https://deltaexample.crl"
+PS C:\> $new_ca.TrustedCertificate = "Path to .cer file(including cer file name)"
+PS C:\> New-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $new_ca
+
+Id                                   CertificateAuthorities
+--                                   ----------------------
+29728ade-6ae4-4ee9-9103-412912537da5 {class CertificateAuthorityInformation {...
 ```
 
 This command creates the trusted certificate authorities in your directory.
@@ -37,7 +51,7 @@ This command creates the trusted certificate authorities in your directory.
 ## PARAMETERS
 
 ### -CertificateAuthorityInformation
-@{Text=}
+Specifies a CertificateAuthorityInformation object.
 
 ```yaml
 Type: CertificateAuthorityInformation
