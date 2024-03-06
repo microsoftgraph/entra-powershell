@@ -1,4 +1,14 @@
 ---
+title: Get-EntraServicePrincipalMembership.
+description: This article provides details on the Get-EntraServicePrincipalMembership command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/06/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,7 +23,11 @@ Get a service principal membership.
 ## SYNTAX
 
 ```
-Get-EntraServicePrincipalMembership [-All <Boolean>] -ObjectId <String> [-Top <Int32>] [<CommonParameters>]
+Get-EntraServicePrincipalMembership 
+ -ObjectId <String>
+ [-All <Boolean>] 
+ [-Top <Int32>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,6 +45,20 @@ The first command gets the ID of a service principal by using the Get-EntraServi
 The command stores the ID in the $ServicePrincipalId variable.
 
 The second command gets the memberships of a service principal identified by $ServicePrincipalId.
+
+### Example 2: Retrieve all memberships of a service principal
+```
+PS C:\> Get-EntraServicePrincipalMembership -ObjectId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -All $true
+```
+
+This command gets all memberships of a specified service principal.
+
+### Example 3: Retrieve top five memberships of a service principal
+```
+PS C:\> Get-EntraServicePrincipalMembership -ObjectId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -Top 5
+```
+
+This command gets five memberships of a specified service principal.
 
 ## PARAMETERS
 
@@ -51,7 +79,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a service principal in Azure AD.
+Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: String
