@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraServiceAppRoleAssignment.
+description: This article provides details on the Remove-EntraServiceAppRoleAssignment command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/06/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,12 @@ Removes a service principal application role assignment.
 ## SYNTAX
 
 ```
-Remove-EntraServiceAppRoleAssignment -AppRoleAssignmentId <String> -ObjectId <String>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+Remove-EntraServiceAppRoleAssignment 
+ -AppRoleAssignmentId <String> 
+ -ObjectId <String>
+ [-InformationAction <ActionPreference>] 
+ [-InformationVariable <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,12 +36,13 @@ The Remove-EntraServiceAppRoleAssignment cmdlet removes a service principal appl
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Removes a service principal application role assignment
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-EntraServiceAppRoleAssignment -ObjectId cc7fcc82-ac1b-4785-af47-2ca3b7052886  -AppRoleAssignmentId u7EFjxI8P061FwF7a-d81zXC6iDJ4llOsgQr_6xUFLk
+ 
 ```
 
-{{ Add example description here }}
+This command removes a service principal application role assignment in Microsoft Entra ID.
 
 ## PARAMETERS
 
@@ -85,7 +100,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a service principal in Azure AD.
+Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: String
