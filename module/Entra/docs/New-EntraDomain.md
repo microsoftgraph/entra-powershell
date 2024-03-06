@@ -4,7 +4,7 @@ description: This article provides details on the New-EntraDomain command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 11/10/2023
+ms.date: 03/06/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -38,22 +38,22 @@ The New-EntraDomain cmdlet creates a domain in Microsoft Entra ID.
 
 ### Example 1: Create a new Domain
 ```
-PS C:\>New-EntraDomain -Name Contoso.com 
+PS C:\>New-EntraDomain -Name testingDemo.com
 
-Name        AvailabilityStatus AuthenticationType
-----        ------------------ ------------------
-Contoso.com                    Managed
+Id              AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified Manufacturer Model PasswordNotificationWindowInDays PasswordValidityPeriodInDays SupportedServices
+--              ------------------ ------------------ -------------- --------- --------- ------ ---------- ------------ ----- -------------------------------- ---------------------------- -----------------
+testingDemo.com Managed                               True           False     False     False  False                                                                                       {}
 ```
 
 This command creates a new domain.
 
 ### Example 2: Create a new Domain with a list of domain capabilities
 ```
-PS C:\>New-EntraDomain -Name Contoso.com -SupportedServices @("Email", "OfficeCommunicationsOnline")
+PS C:\>New-EntraDomain -Name testingDemo1.com -SupportedServices @("Email", "OfficeCommunicationsOnline")
 
-Name        AvailabilityStatus AuthenticationType
-----        ------------------ ------------------
-Contoso.com                    Managed
+Id               AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified Manufacturer Model PasswordNotificationWindowInDays PasswordValidityPeriodInDays SupportedServices
+--               ------------------ ------------------ -------------- --------- --------- ------ ---------- ------------ ----- -------------------------------- ---------------------------- -----------------
+testingDemo1.com Managed                               True           False     False     False  False                                                                                       {}
 ```
 
 This command creates a new domain with the specified services for this domain.
@@ -71,11 +71,11 @@ This command creates a new domain and marks it as the default for cross cloud re
 
 ### Example 4: Create a new Domain and make if the default new user creation
 ```
-PS C:\>New-EntraDomain -Name Contoso.com -IsDefault
+PS C:\>New-EntraDomain -Name testingDemo2.com -IsDefault $True
 
-          Name        AvailabilityStatus AuthenticationType
-          ----        ------------------ ------------------
-          Contoso.com                    Managed
+Id               AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified Manufacturer Model PasswordNotificationWindowInDays PasswordValidityPeriodInDays SupportedServices
+--               ------------------ ------------------ -------------- --------- --------- ------ ---------- ------------ ----- -------------------------------- ---------------------------- -----------------
+testingDemo2.com Managed                               True           False     False     False  False                                                                                       {}
 ```
 
 This command creates a new domain and marks it as the default to be used for new user creation.
