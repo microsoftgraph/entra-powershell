@@ -1,4 +1,14 @@
 ---
+title: Set-EntraDomain.
+description: This article provides details on the Set-EntraDomain command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/06/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,11 @@ Updates a domain.
 ## SYNTAX
 
 ```
-Set-EntraDomain [-IsDefault <Boolean>] [-IsDefaultForCloudRedirections <Boolean>]
- [-SupportedServices <System.Collections.Generic.List`1[System.String]>] -Name <String> [<CommonParameters>]
+Set-EntraDomain 
+ -Name <String>
+ [-IsDefault <Boolean>]
+ [-SupportedServices <System.Collections.Generic.List`1[System.String]>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -36,33 +49,11 @@ PS C:\>Set-EntraDomain -Name Contoso.com -SupportedServices @("Email", "OfficeCo
 
 This command updates the supported services for this domain.
 
-### Example 3: Set the default domain for cloud redirections
-```
-PS C:\>Set-EntraDomain -Name Contoso.com -IsDefaultForCloudRedirections $true
-```
-
-This command updates the default domain used for cloud redirections.
-
 ## PARAMETERS
 
 ### -IsDefault
 Indicates whether or not this is the default domain that is used for user creation.
 There is only one default domain per company.
-
-```yaml
-Type: Boolean
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -IsDefaultForCloudRedirections
-Indicates whether or not this is the default domain used for cloud redirections.
 
 ```yaml
 Type: Boolean
