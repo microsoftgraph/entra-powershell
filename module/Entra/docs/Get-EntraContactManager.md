@@ -1,4 +1,14 @@
 ---
+title: Get-EntraContactManager
+description: This article provides details on the Get-EntraContactManager command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/06/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -99,9 +109,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraContact]()
+[Get-EntraContact](Get-EntraContact.md)
 
-[Remove-EntraContactManager]()
+[Remove-EntraContactManager](Remove-EntraContactManager.md)
 
-[Set-EntraContactManager]()
+[Set-EntraContactManager](Set-EntraContactManager.md)
 
