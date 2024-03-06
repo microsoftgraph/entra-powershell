@@ -26,7 +26,6 @@ Creates a domain.
 New-EntraDomain 
  -Name <String>
  [-IsDefault <Boolean>] 
- [-IsDefaultForCloudRedirections <Boolean>]
  [-SupportedServices <System.Collections.Generic.List`1[System.String]>] 
  [<CommonParameters>]
 ```
@@ -58,18 +57,7 @@ testingDemo1.com Managed                               True           False     
 
 This command creates a new domain with the specified services for this domain.
 
-### Example 3: Create a new Domain as the default for cross cloud redirections
-```
-PS C:\>New-EntraDomain -Name Contoso.com -IsDefaultForCloudRedirections
-
-          Name        AvailabilityStatus AuthenticationType
-          ----        ------------------ ------------------
-          Contoso.com                    Managed
-```
-
-This command creates a new domain and marks it as the default for cross cloud redirections.
-
-### Example 4: Create a new Domain and make if the default new user creation
+### Example 3: Create a new Domain and make if the default new user creation
 ```
 PS C:\>New-EntraDomain -Name testingDemo2.com -IsDefault $True
 
