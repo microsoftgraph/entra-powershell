@@ -1,4 +1,13 @@
 ---
+title: Remove-EntraGroupAppRoleAssignment
+description: This article provides details on the Remove-EntraGroupAppRoleAssignment command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/06/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +22,12 @@ Delete a group application role assignment.
 ## SYNTAX
 
 ```
-Remove-EntraGroupAppRoleAssignment -AppRoleAssignmentId <String> -ObjectId <String>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+Remove-EntraGroupAppRoleAssignment 
+-AppRoleAssignmentId <String> 
+-ObjectId <String>
+[-InformationAction <ActionPreference>]
+[-InformationVariable <String>] 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,12 +35,12 @@ The Remove-EntraGroupAppRoleAssignment cmdlet removes a group application role a
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Removes an group application role assignment
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-AzureADGroupAppRoleAssignment -ObjectId 0877c6c6-fc99-4d51-9871-8335be7cfc9d -AppRoleAssignmentId xsZ3CJn8UU2YcYM1vnz8nXBBPlQgBApOqrWsVNJlsa4
 ```
 
-{{ Add example description here }}
+This command removes the specified group application role assignment.
 
 ## PARAMETERS
 
@@ -85,7 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the object ID of a group in Azure AD.
+Specifies the object ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: String
