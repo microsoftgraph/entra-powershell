@@ -1,4 +1,13 @@
 ---
+title: Add-EntraServicePrincipalOwner
+description: This article provides details on the Add-EntraServicePrincipalOwner command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/06/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +22,12 @@ Adds an owner to a service principal.
 ## SYNTAX
 
 ```
-Add-EntraServicePrincipalOwner -ObjectId <String> -RefObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Add-EntraServicePrincipalOwner 
+-ObjectId <String> 
+-RefObjectId <String> 
+[-InformationAction <ActionPreference>]
+[-InformationVariable <String>] 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -76,7 +89,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a service principal in Active Directory.
+Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -91,7 +104,7 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
-Specifies the ID of the Active Directory object to assign as owner/manager/member.
+Specifies the ID of the Microsoft Entra ID object to assign as owner/manager/member.
 
 ```yaml
 Type: String
@@ -120,7 +133,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Get-EntraServicePrincipalOwner]()
 
-[Get-EntraUser]()
-
 [Remove-EntraServicePrincipalOwner]()
-
