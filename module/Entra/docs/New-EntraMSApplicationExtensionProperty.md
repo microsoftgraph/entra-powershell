@@ -1,4 +1,14 @@
 ---
+title: New-EntraMSApplicationExtensionProperty
+description: This article provides details on the New-EntraMSApplicationExtensionProperty command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/06/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -27,9 +37,9 @@ Creates an extension property on an application object.
 PS C:\>New-EntraMSApplicationExtensionProperty -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -DataType "string" -Name "NewAttribute" -TargetObjects "Application"
 
 
-          ObjectId                             Name                                                    TargetObjects
-          --------                             ----                                                    -------------
-          3ddd22e7-a150-4bb3-b100-e410dea1cb84 extension_36ee4c6c081240a2b820b22ebd02bce3_NewAttribute {}
+ObjectId                             Name                                                    TargetObjects
+--------                             ----                                                    -------------
+3ddd22e7-a150-4bb3-b100-e410dea1cb84 extension_36ee4c6c081240a2b820b22ebd02bce3_NewAttribute {}
 ```
 
 This command creates an application extension property of the string type for the specified object.
