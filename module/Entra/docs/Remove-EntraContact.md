@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraContact
+description: This article provides details on the Remove-EntraContact command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/06/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -73,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the object ID of a contact in Azure AD.
+Specifies the object ID of a contact in Microsoft Entra ID.
 
 ```yaml
 Type: String
