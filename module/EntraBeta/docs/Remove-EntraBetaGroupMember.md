@@ -4,7 +4,7 @@ description: This article provides details on the Remove-EntraBetaGroupMember co
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 11/10/2023
+ms.date: 03/07/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -37,18 +37,33 @@ The Remove-EntraBetaGroupMember cmdlet removes a member from a group in Microsof
 ## EXAMPLES
 
 ### Example 1: Remove a member
-```
+
+This example demonstrates how to remove a member from a group in Microsoft Entra ID.
+
+```powershell
 PS C:\>Remove-EntraBetaGroupMember -ObjectId "62438306-7c37-4638-a72d-0ee8d9217680" -MemberId "0a1068c0-dbb6-4537-9db3-b48f3e31dd76"
 ```
 
-This command removes the specified member from the specified group.
+This command removes the specified member from the specified group.  
+
+ObjectId - Specifies the object ID of a group in Microsoft Entra ID. 
+
+MemberId - Specifies the ID of the member to remove.
 
 ### Example 2: Remove a member
-```
+
+This example demonstrates how to remove a member from a group in Microsoft Entra ID.
+
+```powershell
 PS C:\>Remove-EntraBetaGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -MemberId "2ae2d97b-4bde-42aa-b7c0-7c91a4c91a77" -InformationAction Continue -InformationVariable "Test"
 ```
 
 This command removes the specified member with the specified information action and information variable from the specified group.
+
+ObjectId - Specifies the object ID of a group in Microsoft Entra ID. 
+
+MemberId - Specifies the ID of the member to remove.
+
 
 ## PARAMETERS
 
@@ -131,7 +146,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraBetaGroupMember]()
+[Add-EntraBetaGroupMember](Add-EntraBetaGroupMember.md)
 
-[Get-EntraBetaGroupMember]()
+[Get-EntraBetaGroupMember](Get-EntraBetaGroupMember.md)
 
