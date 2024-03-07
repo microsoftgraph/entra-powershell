@@ -23,9 +23,13 @@ Adds or removes licenses for a Microsoft online service to the list of assigned 
 
 ## SYNTAX
 
-```
-Set-EntraBetaUserLicense -ObjectId <String> -AssignedLicenses <AssignedLicenses>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Set-EntraBetaUserLicense 
+    -ObjectId <String> 
+    -AssignedLicenses <AssignedLicenses>
+    [-InformationAction <ActionPreference>]
+    [-InformationVariable <String>]
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,7 +38,7 @@ The Set-EntraBetaUserLicense adds or removes licenses for a Microsoft online ser
 ## EXAMPLES
 
 ### Example 1: Add a license to a user based on a template user
-```
+```powershell
 PS C:\> $LicensedUser = Get-EntraBetaUser -ObjectId "TemplateUser@contoso.com"  
 PS C:\> $User = Get-EntraBetaUser -ObjectId "User@contoso.com"  
 PS C:\> $License = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense 
