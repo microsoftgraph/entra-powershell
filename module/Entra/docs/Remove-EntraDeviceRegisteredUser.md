@@ -35,7 +35,9 @@ The Remove-EntraDeviceRegisteredUser cmdlet removes a registered user from a Mic
 ## EXAMPLES
 
 ### Example 1: Remove a registered user from a device
+
 This example demonstrates how to remove the registered user from device.
+
 ```powershell
 PS C:\> $Device = Get-EntraDevice -Top 1
 PS C:\> $User = Get-EntraDeviceRegisteredUser -ObjectId $Device.ObjectId
@@ -92,7 +94,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraDeviceRegisteredUser]()
+[Add-EntraDeviceRegisteredUser](Add-EntraDeviceRegisteredUser.md)
 
-[Get-EntraDeviceRegisteredUser]()
+[Get-EntraDeviceRegisteredUser](Get-EntraDeviceRegisteredUser.md)
 
