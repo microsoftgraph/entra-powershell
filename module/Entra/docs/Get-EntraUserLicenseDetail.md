@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraUserLicenseDetail com
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 11/10/2023
+ms.date: 03/07/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -33,10 +33,15 @@ This cmdlet retrieves license details for a user.
 
 ## EXAMPLES
 
-### Example 1: Get license details of specific user by ObjectId 
-```
-PS C:\WINDOWS\system32> Get-EntraUserLicenseDetail -ObjectId df19e8e6-2ad7-453e-87f5-037f6529ae16
+### Example 1: Retrieve user license details 
 
+This example demonstrates how to retrieve license details for a user from Microsoft Entra ID.
+
+```powershell
+PS C:\WINDOWS\system32> Get-EntraUserLicenseDetail -ObjectId df19e8e6-2ad7-453e-87f5-037f6529ae16
+```
+
+```output
 ObjectId                                    ServicePlans
 --------                                    ------------
 Hv-1hQIEDECePA-ellMl0cjsRfKvdY5Pth8n2BFN5fM {class ServicePlanInfo {...
