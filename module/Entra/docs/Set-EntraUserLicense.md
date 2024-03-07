@@ -38,6 +38,8 @@ The Set-EntraUserLicense adds or removes licenses for a Microsoft online service
 ## EXAMPLES
 
 ### Example 1: Add a license to a user based on a template user
+This example shows how to add a license to a user.
+
 ```powershell
 PS C:\> $LicensedUser = Get-EntraUser -ObjectId "TemplateUser@contoso.com"  
 PS C:\> $User = Get-EntraUser -ObjectId "User@contoso.com"  

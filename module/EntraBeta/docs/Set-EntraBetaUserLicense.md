@@ -38,6 +38,8 @@ The Set-EntraBetaUserLicense adds or removes licenses for a Microsoft online ser
 ## EXAMPLES
 
 ### Example 1: Add a license to a user based on a template user
+This example shows how to add a license to a user.
+
 ```powershell
 PS C:\> $LicensedUser = Get-EntraBetaUser -ObjectId "TemplateUser@contoso.com"  
 PS C:\> $User = Get-EntraBetaUser -ObjectId "User@contoso.com"  
