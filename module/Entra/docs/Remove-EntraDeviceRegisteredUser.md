@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraDeviceRegisteredUser.
+description: This article provides details on the Remove-EntraDeviceRegisteredUser command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/07/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,7 +23,10 @@ Removes a registered user from a device.
 ## SYNTAX
 
 ```
-Remove-EntraDeviceRegisteredUser -ObjectId <String> -UserId <String> [<CommonParameters>]
+Remove-EntraDeviceRegisteredUser 
+ -ObjectId <String> 
+ -UserId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,7 +35,8 @@ The Remove-EntraDeviceRegisteredUser cmdlet removes a registered user from a Mic
 ## EXAMPLES
 
 ### Example 1: Remove a registered user from a device
-```
+This example demonstrates how to remove the registered user from device.
+```powershell
 PS C:\> $Device = Get-EntraDevice -Top 1
 PS C:\> $User = Get-EntraDeviceRegisteredUser -ObjectId $Device.ObjectId
 PS C:\> Remove-EntraDeviceRegisteredOwner -ObjectId $Device.ObjectId -OwnerId $Owner.ObjectId
