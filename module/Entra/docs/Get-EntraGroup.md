@@ -53,10 +53,14 @@ The Get-EntraGroup cmdlet gets a group in Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Get all groups
-```
+
+This example demonstrates how to get all groups from Microsoft Entra ID.
+
+```powershell
 PS C:\>Get-EntraGroup
+```
 
-
+```output
 ObjectId                             DisplayName                          Description
 --------                             -----------                          -----------
 00628948-b509-4362-aa73-380c4dbd2a44 ADSyncBrowse
@@ -79,12 +83,17 @@ Its members ...
 This group should not be deleted.
 ```
 
-This command gets all groups in Microsoft Entra ID.
+This command retrieves all groups in Microsoft Entra ID.
 
 ### Example 2: Get a specific group by using an ObjectId
-```
-PS C:\>Get-EntraGroup -ObjectId "fc446647-e8ff-47f1-a489-cf31694c0d35"
 
+This example demonstrates how to retrieve group by ObjectId from Microsoft Entra ID.
+
+```powershell
+PS C:\>Get-EntraGroup -ObjectId "fc446647-e8ff-47f1-a489-cf31694c0d35"
+```
+
+```output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
 UPDISPLAY   fc446647-e8ff-47f1-a489-cf31694c0d35 Remoteliving Upd1        {Unified}
@@ -92,10 +101,15 @@ UPDISPLAY   fc446647-e8ff-47f1-a489-cf31694c0d35 Remoteliving Upd1        {Unifi
 
 This command gets information for the group that has the specified ID.
 
-### Example 3: Get five groups 
-```
-PS C:\>Get-EntraGroup -Top 5
+### Example 3: Get top five groups 
 
+This example demonstrates how to retrieve top five groups from Microsoft Entra ID.
+
+```powershell
+PS C:\>Get-EntraGroup -Top 5
+```
+
+```output
 DisplayName             Id                                   MailNickname          Description
 -----------             --                                   ------------          -----------
 Ask HR                  056b2531-005e-4f3e-be78-01a71ea30a04 askhr
@@ -108,9 +122,14 @@ New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboardi
 This command gets the top five groups in Microsoft Entra ID.
 
 ### Example 4: Get a group by DisplayName
-```
-PS C:\>Get-EntraGroup -Filter "DisplayName eq 'Parents of Contoso'"
 
+This example demonstrates how to retrieve group by DisplayName from Microsoft Entra ID.
+
+```powershell
+PS C:\>Get-EntraGroup -Filter "DisplayName eq 'Parents of Contoso'"
+```
+
+```output
 DisplayName        Id                                   MailNickname     Description        GroupTypes
 -----------        --                                   ------------     -----------        ----------
 Parents of Contoso 05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso Parents of Contoso {Unified}
@@ -119,9 +138,14 @@ Parents of Contoso 05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso Parents
 This command gets the specified group.
 
 ### Example 5: Get groups that contain a search string
-```
-PS C:\>Get-EntraGroup -SearchString "New"
 
+This example demonstrates how to retrieve groups that include the text new in their display names from Microsoft Entra ID.
+
+```powershell
+PS C:\>Get-EntraGroup -SearchString "New"
+```
+
+```output
 DisplayName             Id                                   MailNickname          Description             GroupTypes
 -----------             --                                   ------------          -----------             ----------
 New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding New Employee Onboarding {Unified}
@@ -220,9 +244,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[New-EntraGroup]()
+[New-EntraGroup](New-EntraGroup.md)
 
-[Remove-EntraGroup]()
+[Remove-EntraGroup](Remove-EntraGroup.md)
 
-[Set-EntraGroup]()
+[Set-EntraGroup](Set-EntraGroup.md)
 
