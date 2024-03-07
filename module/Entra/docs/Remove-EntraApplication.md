@@ -22,9 +22,12 @@ Delete an application by objectId.
 
 ## SYNTAX
 
-```
-Remove-EntraApplication -ObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Remove-EntraApplication 
+    -ObjectId <String> 
+    [-InformationAction <ActionPreference>] 
+    [-InformationVariable <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -33,7 +36,9 @@ The Remove-EntraApplication cmdlet removes the specified application from Micros
 ## EXAMPLES
 
 ### Example 1: Remove an application
-```
+This example shows how to remove the specified application.
+
+```powershell
 PS C:\>Remove-EntraApplication -ObjectId "acd10942-5747-4385-8824-4c5d5fa904f9"
 ```
 
