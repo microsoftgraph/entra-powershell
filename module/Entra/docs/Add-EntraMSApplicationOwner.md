@@ -35,6 +35,8 @@ Adds an owner for an application object.
 ## EXAMPLES
 
 ### Example 1: Add an owner to an application
+This example shows how to add an owner to an application.
+
 ```powershell
 PS C:\> $ApplicationId = (Get-EntraMSApplication -Top 1).ObjectId
 PS C:\> $UserObjectId = (Get-EntraMSUser -Top 1).ObjectId
