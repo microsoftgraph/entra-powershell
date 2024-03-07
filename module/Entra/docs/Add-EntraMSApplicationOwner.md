@@ -22,8 +22,11 @@ Adds an owner for an application object.
 
 ## SYNTAX
 
-```
-Add-EntraMSApplicationOwner -ObjectId <String> -RefObjectId <String> [<CommonParameters>]
+```powershell
+Add-EntraMSApplicationOwner 
+    -ObjectId <String> 
+    -RefObjectId <String> 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -32,8 +35,10 @@ Adds an owner for an application object.
 ## EXAMPLES
 
 ### Example 1: Add an owner to an application
-```
-PS C:\>Add-EntraMSApplicationOwner -ObjectId 3ddd22e7-a150-4bb3-b100-e410dea1cb84 -RefObjectId c13dd34a-492b-4561-b171-40fcce2916c5
+```powershell
+PS C:\> $ApplicationId = (Get-EntraMSApplication -Top 1).ObjectId
+PS C:\> $UserObjectId = (Get-EntraMSUser -Top 1).ObjectId
+PS C:\> Add-EntraMSApplicationOwner -ObjectId $ApplicationId -RefObjectId $UserObjectId
 ```
 
 This command adds an owner to an application.
