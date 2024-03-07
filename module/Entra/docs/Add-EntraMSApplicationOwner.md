@@ -89,7 +89,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraMSApplicationOwner]()
+[Get-EntraMSApplicationOwner](Get-EntraMSApplicationOwner.md)
 
-[Remove-EntraMSApplicationOwner]()
+[Remove-EntraMSApplicationOwner](Remove-EntraMSApplicationOwner.md)
 
