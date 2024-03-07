@@ -112,5 +112,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraContact]()
+[Get-EntraContact](Get-EntraContact.md)
 
