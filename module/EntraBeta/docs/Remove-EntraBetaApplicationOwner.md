@@ -22,9 +22,13 @@ Removes an owner from an application.
 
 ## SYNTAX
 
-```
-Remove-EntraBetaApplicationOwner -OwnerId <String> -ObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Remove-EntraBetaApplicationOwner 
+    -OwnerId <String> 
+    -ObjectId <String> 
+    [-InformationAction <ActionPreference>] 
+    [-InformationVariable <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -33,7 +37,9 @@ The Remove-EntraBetaApplicationOwner cmdlet removes an owner from an application
 ## EXAMPLES
 
 ### Example 1: Remove an owner from an application
-```
+This example shows how to remove an owner from an application.
+
+```powershell
 PS C:\>Remove-EntraBetaApplicationOwner -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -OwnerId "c13dd34a-492b-4561-b171-40fcce2916c5"
 ```
 
