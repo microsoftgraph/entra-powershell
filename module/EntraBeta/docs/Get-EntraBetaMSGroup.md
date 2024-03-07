@@ -58,27 +58,54 @@ If you specify no parameters, this cmdlet gets all groups.
 ## EXAMPLES
 
 ### Example 1: Get all groups
-```
+
+This example demonstrates how to retrieve all groups from Microsoft Entra ID.
+
+```powershell
 PS C:\> Get-EntraBetaMSGroup
+```
+```output
+
+DisplayName                         Id                                   MailNickname                     Description
+-----------                         --                                   ------------                     -----------
+Ask HR                              056b2531-005e-4f3e-be78-01a71ea30a04 askhr
+Parents of Contoso                  05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso                 Parents of Contoso
+Contoso Team                        0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam                      A collaboration area for the Contoso Team.
+HelpDesk admin group                0883fd77-0ee8-45de-a21e-f32af1623acc helpDeskAdminGroup               Group assignable to role
+New Employee Onboarding             0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding            New Employee Onboarding
+HelpDesk admin group3               0bdddeb1-88a6-4251-aaa5-98b48271158b helpDeskAdminGroup               group des
 
 ```
 
 This command gets all groups in Microsoft Entra ID.
 
 ### Example 2: Get a specific group by using an ID
-```
+
+In this example, we'll provide the  ID to retrieve a specific group.
+
+```powershell
+
 PS C:\> Get-EntraBetaMSGroup -Id "0877c6c6-fc99-4d51-9871-8335be7cfc9d"
+
+```
+```output
 
 DisplayName  Id                                   MailNickname Description                                GroupTypes
 -----------  --                                   ------------ -----------                                ----------
 Contoso Team 0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam  A collaboration area for the Contoso Team. {Unified}
+
 ```
 
 This command gets information for the group that has the specified ID.
 
 ### Example 3: Get top five groups
-```
+
+This example demonstrates how to retrieve top five groups from Microsoft Entra ID.
+
+```powershell
 PS C:\> Get-EntraBetaMSGroup -Top 5
+```
+```output
 
 DisplayName             Id                                   MailNickname          Description                                GroupTypes
 -----------             --                                   ------------          -----------                                ----------
@@ -92,8 +119,13 @@ New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboardi
 This command gets the top five groups in Microsoft Entra ID.
 
 ### Example 4: Get a group by DisplayName
-```
+
+This example retrieve group by DisplayName.
+
+```powershell
 PS C:\> Get-EntraBetaMSGroup -Filter "DisplayName eq 'Parents of Contoso'"
+```
+```output
 
 DisplayName        Id                                   MailNickname     Description        GroupTypes
 -----------        --                                   ------------     -----------        ----------
@@ -103,8 +135,14 @@ Parents of Contoso 05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso Parents
 This command gets the specified group.
 
 ### Example 5: Search among retrieved groups
-```
+
+This example demonstrates how to retrieve groups using  SearchString against the first characters in DisplayName or Description attributes.
+
+```powershell
 PS C:\> Get-EntraBetaMSGroup -SearchString "New"
+
+```
+```output
 
 DisplayName             Id                                   MailNickname          Description             GroupTypes
 -----------             --                                   ------------          -----------             ----------
@@ -115,9 +153,24 @@ new1                    27d134ad-466b-43dd-8856-ba9f0bc17d24 new1               
 This cmdlet gets all groups that match the value of SearchString against the first characters in DisplayName or Description attributes.
 
 ### Example 6: Get AssignedLabels and DisplayName property values for all groups
-```
-PS C:\> Get-EntraBetaMSGroup -Select "AssignedLabels,DisplayName"
 
+This example demonstrates how to retrieve AssignedLabels and DisplayName property values for all groups.
+
+```powershell
+PS C:\> Get-EntraBetaMSGroup -Select "AssignedLabels,DisplayName"
+```
+```output
+ 
+DisplayName                         Id MailNickname Description GroupTypes
+-----------                         -- ------------ ----------- ----------
+Ask HR
+Parents of Contoso
+Contoso Team
+HelpDesk admin group
+New Employee Onboarding
+HelpDesk admin group3
+testGroupInAU10
+Parents of Conto
 ```
 
 This command gets AssignedLabels and DisplayName property values for all groups.
@@ -125,8 +178,13 @@ This command gets AssignedLabels and DisplayName property values for all groups.
 AssignedLabels group property could be retrieved only by Select parameter.
 
 ### Example 7: Get DisplayName, Id and Description property values for a group
-```
+
+This example gets DisplayName, Id and Discription property values for a specific group.
+
+```powershell
 PS C:\> Get-EntraBetaMSGroup -Id "0877c6c6-fc99-4d51-9871-8335be7cfc9d" -Select "DisplayName,Id,Description"
+```
+```output
 
 DisplayName  Id                                   MailNickname Description                                GroupTypes
 -----------  --                                   ------------ -----------                                ----------
@@ -250,11 +308,11 @@ We recommend that you do not use this cmdlet in a production environment.
 
 ## RELATED LINKS
 
-[New-EntraBetaMSGroup]()
+[New-EntraBetaMSGroup](New-EntraBetaMSGroup.md)
 
-[Remove-EntraBetaMSGroup]()
+[Remove-EntraBetaMSGroup](Remove-EntraBetaMSGroup.md)
 
-[Set-EntraBetaMSGroup]()
+[Set-EntraBetaMSGroup](Set-EntraBetaMSGroup.md)
 
 [#Microsoft Entra ID: Certificate based authentication for iOS and Android now in preview!](https://blogs.technet.microsoft.com/enterprisemobility/2016/07/18/azuread-certificate-based-authentication-for-ios-and-android-now-in-preview/)
 
