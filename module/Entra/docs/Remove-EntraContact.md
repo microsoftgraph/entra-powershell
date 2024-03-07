@@ -36,6 +36,7 @@ The Remove-EntraContact removes a contact from Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Remove a contact
+This example shows how to remove a contact.
 ```powershell
 PS C:\> $Contact = Get-EntraContact -Top 1
 PS C:\> Remove-EntraContact -ObjectId $Contact.ObjectId
