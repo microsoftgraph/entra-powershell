@@ -38,8 +38,8 @@ The Add-EntraBetaApplicationOwner cmdlet adds an owner to a Microsoft Entra ID a
 
 ### Example 1: Add a user as an owner to an application
 ```powershell
-PS C:\> $ApplicationId = (Get-AzureADApplication -Top 1).ObjectId
-PS C:\> $UserObjectId = (Get-AzureADUser -Top 1).ObjectId
+PS C:\> $ApplicationId = (Get-EntraBetaApplication -Top 1).ObjectId
+PS C:\> $UserObjectId = (Get-EntraBetaUser -Top 1).ObjectId
 PS C:\> Add-EntraBetaApplicationOwner -ObjectId $ApplicationId -RefObjectId $UserObjectId
 ```
 
