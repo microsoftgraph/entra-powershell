@@ -23,24 +23,35 @@ Gets an administrative unit.
 ## SYNTAX
 
 ### GetQuery (Default)
-```
-Get-EntraMSAdministrativeUnit [-Top <Int32>] [-All <Boolean>] [-Filter <String>] [<CommonParameters>]
+```powershell
+Get-EntraMSAdministrativeUnit 
+    [-Top <Int32>] 
+    [-All <Boolean>] 
+    [-Filter <String>] 
+    [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraMSAdministrativeUnit -Id <String> [-All <Boolean>] [<CommonParameters>]
+```powershell
+Get-EntraMSAdministrativeUnit 
+    -Id <String> 
+    [-All <Boolean>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraMSAdministrativeUnit cmdlet gets a Microsoft Entra ID administrative unit.
+The **Get-EntraMSAdministrativeUnit** cmdlet gets a Microsoft Entra ID administrative unit.
 
 ## EXAMPLES
 
-### Example 1
-```
+### Example 1 : Get all administrative units.
+This example shows how to get all administrative units without passing any paramters.
+
+```powershell
 PS C:\> Get-EntraMSAdministrativeUnit
+```
 
+```output
 Id                                   OdataType Description                                     DisplayName
 --                                   --------- -----------                                     -----------
 4bfe2ef5-9c2b-4118-9a3a-6e540c37920c           Dynamic AU testing in CORP tenant               DAU-Test
@@ -49,10 +60,16 @@ Id                                   OdataType Description                      
 e2ecf941-b24e-4957-9e33-b6e6d7409b9e           Use to contain Personnel-managed project groups Personnel Projects
 ```
 
-### Example 2
-```
+This command gets all the administrative units.
+
+### Example 2 : Get all administrative units
+This example shows how to get all administrative units using '-All' paramter.
+
+```powershell
 PS C:\> Get-EntraMSAdministrativeUnit -All $true
+```
 
+```output
 Id                                   OdataType Description                                     DisplayName
 --                                   --------- -----------                                     -----------
 4bfe2ef5-9c2b-4118-9a3a-6e540c37920c           Dynamic AU testing in CORP tenant               DAU-Test
@@ -61,32 +78,52 @@ Id                                   OdataType Description                      
 e2ecf941-b24e-4957-9e33-b6e6d7409b9e           Use to contain Personnel-managed project groups Personnel Projects
 ```
 
-### Example 3
-```
+This command gets all the administrative units.
+
+### Example 3 : Get a specific administrative unit
+In this example, we'll provide the administrative unit ID to retrieve a specific administrative unit.
+
+```powershell
 PS C:\> Get-EntraMSAdministrativeUnit -Id 4bfe2ef5-9c2b-4118-9a3a-6e540c37920c
+```
 
+```output
 Id                                   OdataType Description                                     DisplayName
 --                                   --------- -----------                                     -----------
 4bfe2ef5-9c2b-4118-9a3a-6e540c37920c           Dynamic AU testing in CORP tenant               DAU-Test
 ```
 
-### Example 4
-```
+This example returns the details of the administrative unit with the ID ```4bfe2ef5-9c2b-4118-9a3a-6e540c37920c```.
+
+### Example 4 : Get administrative units filter by display name
+This example shows how to get administrative units whose display name contains specified name.
+
+```powershell
 PS C:\> Get-EntraMSAdministrativeUnit -Filter "DisplayName eq 'DAU-Test'"
+```
 
+```output
 Id                                   OdataType Description                                     DisplayName
 --                                   --------- -----------                                     -----------
 4bfe2ef5-9c2b-4118-9a3a-6e540c37920c           Dynamic AU testing in CORP tenant               DAU-Test
 ```
 
-### Example 5
-```
+This example list of administrative units containing display name with the specified name.
+
+### Example 5 : Get top 1 administrative unit
+This example shows how to get specified top administrative units.
+
+```powershell
 PS C:\> Get-EntraMSAdministrativeUnit -Top 1
+```
 
+```output
 Id                                   OdataType Description                                     DisplayName
 --                                   --------- -----------                                     -----------
 4bfe2ef5-9c2b-4118-9a3a-6e540c37920c           Dynamic AU testing in CORP tenant               DAU-Test
 ```
+
+This example returns the specified top administrative units.
 
 ## PARAMETERS
 
