@@ -36,39 +36,77 @@ The Get-EntraGroupMember cmdlet gets a member of a group in Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Get a group member by ID
-```
+
+This example demonstrates how to retrieve group member by ID.
+
+```powershell
 PS C:\>Get-EntraGroupMember -ObjectId "05b0552e-39cd-4df4-a8f5-00ade912e83d" 
 
-ageGroup onPremisesLastSyncDateTime creationType imAddresses                            preferredLanguage mail                                 securityIdentifier                                  identities
--------- -------------------------- ------------ -----------                            ----------------- ----                                 ------------------                                  ----------
-                                                 {meganb@m365x99297270.onmicrosoft.com}                   MeganB@M365x99297270.OnMicrosoft.com S-1-12-1-719509883-1118456798-2440872119-1998244260 {@{signInTyp...
+```
+```output
+ageGroup                        :
+onPremisesLastSyncDateTime      :
+creationType                    :
+imAddresses                     : {meganb@m365x99297270.onmicrosoft.com}
+preferredLanguage               :
+mail                            : MeganB@M365x99297270.OnMicrosoft.com
+securityIdentifier              : S-1-12-1-719509883-1118456798-2440872119-1998244260
+identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=MeganB@M365x99297270.OnMicrosoft.com}}
+consentProvidedForMinor         :
+onPremisesUserPrincipalName     :
+
 ```
 This command gets a member of a specified Group.
 
 ### Example 2: Get two group member
-```
-PS C:\>Get-EntraGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -Top 2 
 
-ageGroup onPremisesLastSyncDateTime creationType imAddresses                              preferredLanguage mail                                   securityIdentifier                                  identities
--------- -------------------------- ------------ -----------                              ----------------- ----                                   ------------------                                  ----------
-                                                 {admin@m365x99297270.onmicrosoft.com}    en                admin@M365x99297270.onmicrosoft.com    S-1-12-1-2574072234-1301806508-533216682-2892133300 {System....
-                                                 {pradeepg@m365x99297270.onmicrosoft.com}                   PradeepG@M365x99297270.OnMicrosoft.com S-1-12-1-357891266-1147903342-476387998-329568156   {System....
+This example demonstrates how to retrieve top five groups from Microsoft Entra ID.
+
+```powershell
+PS C:\>Get-EntraGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -Top 2 
+```
+```output
+ageGroup                        :
+onPremisesLastSyncDateTime      :
+creationType                    :
+imAddresses                     : {admin@m365x99297270.onmicrosoft.com}
+preferredLanguage               : en
+mail                            : admin@M365x99297270.onmicrosoft.com
+securityIdentifier              : S-1-12-1-2574072234-1301806508-533216682-2892133300
+identities                      : {System.Collections.Hashtable}
+consentProvidedForMinor         :
+onPremisesUserPrincipalName     :
+
+ageGroup                        :
+onPremisesLastSyncDateTime      :
+creationType                    :
+imAddresses                     : {pradeepg@m365x99297270.onmicrosoft.com}
+preferredLanguage               :
+mail                            : PradeepG@M365x99297270.OnMicrosoft.com
+securityIdentifier              : S-1-12-1-357891266-1147903342-476387998-329568156
+identities                      : {System.Collections.Hashtable}
+consentProvidedForMinor         :
+
 ```
 This command gets the top two Group members.
 
 ### Example 3: Get all members within a group by group ID
-```
-PS C:\>Get-EntraGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -All $true 
 
-ageGroup onPremisesLastSyncDateTime creationType imAddresses                               preferredLanguage mail                                    securityIdentifier                                   identiti
-                                                                                                                                                                                                          es
--------- -------------------------- ------------ -----------                               ----------------- ----                                    ------------------                                   --------
-                                                 {admin@m365x99297270.onmicrosoft.com}     en                admin@M365x99297270.onmicrosoft.com     S-1-12-1-2574072234-1301806508-533216682-2892133300  {Syst...
-                                                 {pradeepg@m365x99297270.onmicrosoft.com}                    PradeepG@M365x99297270.OnMicrosoft.com  S-1-12-1-357891266-1147903342-476387998-329568156    {Syst...
-                                                 {jonis@m365x99297270.onmicrosoft.com}                       JoniS@M365x99297270.OnMicrosoft.com     S-1-12-1-3785119861-1177853799-1418655642-1701291850 {Syst...
-                                                 {christiec@m365x99297270.onmicrosoft.com}                   ChristieC@M365x99297270.OnMicrosoft.com S-1-12-1-338427849-1319166220-3770554284-4251481260  {Syst...
-                                                 {meganb@m365x99297270.onmicrosoft.com}                      MeganB@M365x99297270.OnMicrosoft.com    S-1-12-1-719509883-1118456798-2440872119-1998244260  {Syst...
-                                                 {gradya@m365x99297270.onmicrosoft.com}                      GradyA@M365x99297270.OnMicrosoft.com    S-1-12-1-1243136890-1218291773-2919062691-886537280  {Syst...
+This example retrieve all members within a group by group ID.
+
+```powershell
+PS C:\>Get-EntraGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -All $true 
+```
+```output
+ageGroup                        :
+onPremisesLastSyncDateTime      :
+creationType                    :
+imAddresses                     : {admin@m365x99297270.onmicrosoft.com}
+preferredLanguage               : en
+mail                            : admin@M365x99297270.onmicrosoft.com
+securityIdentifier              : S-1-12-1-2574072234-1301806508-533216682-2892133300
+identities                      : {System.Collections.Hashtable}
+consentProvidedForMinor         :
 ```
 This command gets all members within a Group.
 
@@ -131,7 +169,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraGroupMember]()
+[Add-EntraGroupMember](Add-EntraGroupMember.md)
 
-[Remove-EntraGroupMember]()
+[Remove-EntraGroupMember](Remove-EntraGroupMember.md)
 
