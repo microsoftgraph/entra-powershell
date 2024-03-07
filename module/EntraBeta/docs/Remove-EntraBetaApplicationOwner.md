@@ -127,7 +127,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraBetaApplicationOwner]()
+[Add-EntraBetaApplicationOwner](Add-EntraBetaApplicationOwner.md)
 
-[Get-EntraBetaApplicationOwner]()
+[Get-EntraBetaApplicationOwner](Get-EntraBetaApplicationOwner.md)
 
