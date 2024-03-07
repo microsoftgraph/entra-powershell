@@ -36,14 +36,20 @@ The Set-EntraDomain cmdlet updates a domain in Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Set the domain as the default domain for new user account creation
-```
+
+This example demonstrates how to set default domain for new user account in Microsoft Entra ID.
+
+```powershell
 PS C:\>Set-EntraDomain -Name Contoso.com -IsDefault $true
 ```
 
 This command updates the default domain (One per company) used for new account creation.
 
 ### Example 2: Set the list of domain capabilities
-```
+
+This example demonstrates how to set default domain capabalities for new user account in Microsoft Entra ID.
+
+```powershell
 PS C:\>Set-EntraDomain -Name Contoso.com -SupportedServices @("Email", "OfficeCommunicationsOnline")
 ```
 
@@ -108,11 +114,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Confirm-EntraDomain]()
+[Confirm-EntraDomain](Confirm-EntraDomain.md)
 
-[Get-EntraDomain]()
+[Get-EntraDomain](Get-EntraDomain.md)
 
-[New-EntraDomain]()
+[New-EntraDomain](New-EntraDomain.md)
 
-[Remove-EntraDomain]()
+[Remove-EntraDomain](Remove-EntraDomain.md)
 
