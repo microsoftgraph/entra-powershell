@@ -22,8 +22,12 @@ Removes a contact.
 
 ## SYNTAX
 
-```
-Remove-EntraContact -ObjectId <String> [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Remove-EntraContact 
+    -ObjectId <String> 
+    [-InformationAction <ActionPreference>] 
+    [-InformationVariable <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -32,7 +36,7 @@ The Remove-EntraContact removes a contact from Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Remove a contact
-```
+```powershell
 PS C:\> $Contact = Get-EntraContact -Top 1
 PS C:\> Remove-EntraContact -ObjectId $Contact.ObjectId
 ```
