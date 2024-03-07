@@ -56,28 +56,52 @@ If you specify no parameters, this cmdlet gets all groups.
 ## EXAMPLES
 
 ### Example 1: Get all groups
-```
+
+This example demonstrates how to retrieve all groups from Microsoft Entra ID.
+
+```powershell
 PS C:\> Get-EntraMSGroup
 
 ```
+```output
 
-This command gets all groups in Microsoft Entra ID.
+DisplayName                         Id                                   MailNickname                     Description
+-----------                         --                                   ------------                     -----------
+Ask HR                              056b2531-005e-4f3e-be78-01a71ea30a04 askhr
+Parents of Contoso                  05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso                 Parents of Contoso
+Contoso Team                        0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam                      A collaboration area for the Contoso Team.
+HelpDesk admin group                0883fd77-0ee8-45de-a21e-f32af1623acc helpDeskAdminGroup               Group assignable to role
+New Employee Onboarding             0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding            New Employee Onboarding
+HelpDesk admin group3               0bdddeb1-88a6-4251-aaa5-98b48271158b helpDeskAdminGroup               group des
+
+```
+
+This command retrieves  all groups in Microsoft Entra ID.
 
 ### Example 2: Get a specific group by using an ID
-```
-PS C:\> Get-EntraMSGroup -Id "0877c6c6-fc99-4d51-9871-8335be7cfc9d"
 
+In this example, we'll provide the  ID to retrieve a specific group.
+
+```powershell
+PS C:\> Get-EntraMSGroup -Id "0877c6c6-fc99-4d51-9871-8335be7cfc9d"
+```
+
+```output
 DisplayName  Id                                   MailNickname Description                                GroupTypes
 -----------  --                                   ------------ -----------                                ----------
 Contoso Team 0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam  A collaboration area for the Contoso Team. {Unified}
 ```
-
 This command gets information for the group that has the specified ID.
 
 ### Example 3: Get top five groups
+
+This example demonstrates how to retrieve top five groups from Microsoft Entra ID.
+
 ```
 PS C:\> Get-EntraMSGroup -Top 5
 
+```
+```output
 DisplayName             Id                                   MailNickname          Description                                GroupTypes
 -----------             --                                   ------------          -----------                                ----------
 Ask HR                  056b2531-005e-4f3e-be78-01a71ea30a04 askhr                                                            {Unified}
@@ -90,8 +114,13 @@ New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboardi
 This command gets the top five groups in Microsoft Entra ID.
 
 ### Example 4: Get a group by DisplayName
-```
+
+This example retrieve group by DisplayName.
+
+```powershell
 PS C:\> Get-EntraMSGroup -Filter "DisplayName eq 'Parents of Contoso'"
+```
+```output
 
 DisplayName        Id                                   MailNickname     Description        GroupTypes
 -----------        --                                   ------------     -----------        ----------
@@ -101,9 +130,13 @@ Parents of Contoso 05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso Parents
 This command gets the specified group.
 
 ### Example 5: Search among retrieved groups
-```
-PS C:\> Get-EntraMSGroup -SearchString "New"
 
+This example demonstrates how to retrieve groups using  SearchString against the first characters in DisplayName or Description attributes.
+
+```powershell
+PS C:\> Get-EntraMSGroup -SearchString "New"
+```
+```output
 DisplayName             Id                                   MailNickname          Description             GroupTypes
 -----------             --                                   ------------          -----------             ----------
 New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding New Employee Onboarding {Unified}
@@ -210,11 +243,11 @@ We recommend that you do not use this cmdlet in a production environment.
 
 ## RELATED LINKS
 
-[New-EntraMSGroup]()
+[New-EntraMSGroup](New-EntraMSGroup.md)
 
-[Remove-EntraMSGroup]()
+[Remove-EntraMSGroup](Remove-EntraMSGroup.md)
 
-[Set-EntraMSGroup]()
+[Set-EntraMSGroup](Set-EntraMSGroup.md)
 
 [#Microsoft Entra ID: Certificate based authentication for iOS and Android now in preview!](https://blogs.technet.microsoft.com/enterprisemobility/2016/07/18/azuread-certificate-based-authentication-for-ios-and-android-now-in-preview/)
 
