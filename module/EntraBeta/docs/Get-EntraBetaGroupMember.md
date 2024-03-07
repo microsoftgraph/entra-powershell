@@ -36,9 +36,13 @@ The Get-EntraBetaGroupMember cmdlet gets a member of a group in Microsoft Entra 
 ## EXAMPLES
 
 ### Example 1: Get a group member by ID
-```
-PS C:\>EntraBetaGroupMember -ObjectId "05b0552e-39cd-4df4-a8f5-00ade912e83d"
 
+This example demonstrates how to retrieve group member by ID.
+
+```Powershell
+PS C:\>Get-EntraBetaGroupMember -ObjectId "05b0552e-39cd-4df4-a8f5-00ade912e83d"
+```
+```output
 Id                                   DeletedDateTime
 --                                   ---------------
 2ae2d97b-4bde-42aa-b7c0-7c91a4c91a77
@@ -46,8 +50,13 @@ Id                                   DeletedDateTime
 This command gets a member of a specified group.
 
 ### Example 2: Get two group member
+
+This example demonstrates how to retrieve top five groups from Microsoft Entra ID.
+
+```powershell
+PS C:\>Get-EntraBetaGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -Top 2
 ```
-PS C:\>EntraBetaGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -Top 2
+```output
 
 Id                                   DeletedDateTime
 --                                   ---------------
@@ -57,9 +66,13 @@ Id                                   DeletedDateTime
 This command gets the top two group members.
 
 ### Example 3: Get all members within a group by group ID
-```
-PS C:\>EntraBetaGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -All $true
 
+This example retrieve all members within a group by group ID.
+
+```powershell
+PS C:\>Get-EntraBetaGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -All $true
+```
+```output
 Id                                   DeletedDateTime
 --                                   ---------------
 996d39aa-fdac-4d97-aa3d-c81fb47362ac
@@ -130,7 +143,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraBetaGroupMember]()
+[Add-EntraBetaGroupMember](Add-EntraBetaGroupMember.md)
 
-[Remove-EntraBetaGroupMember]()
+[Remove-EntraBetaGroupMember](Remove-EntraBetaGroupMember.md)
 
