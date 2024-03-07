@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraUserMembership comman
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 11/10/2023
+ms.date: 03/07/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -36,9 +36,14 @@ The Get-EntraUserMembership cmdlet gets user memberships in Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Get user memberships
-```
-PS C:\>Get-EntraUserMembership  -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1"
 
+This example demonstrates how to retrieve user memberships in Microsoft Entra ID.
+
+```powershell
+PS C:\>Get-EntraUserMembership  -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1"
+```
+
+```output
 Id                                   DeletedDateTime
 --                                   ---------------
 056b2531-005e-4f3e-be78-01a71ea30a04
@@ -53,9 +58,14 @@ This command gets the memberships for the specified user.
 
 
 ### Example 2: Get All memberships
-```
-PS C:\>Get-EntraUserMembership  -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -All $true
 
+This example demonstrates how to retrieve users all memberships in Microsoft Entra ID.
+
+```powershell
+PS C:\>Get-EntraUserMembership  -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -All $true
+```
+
+```output
 Id                                   DeletedDateTime
 --                                   ---------------
 056b2531-005e-4f3e-be78-01a71ea30a04
@@ -69,10 +79,15 @@ eeee7782-696d-4be3-ace0-e20c1df6693e
 This command gets the all memberships for the specified user.
 
 
-### Example 3: Get five memberships
-```
-PS C:\>Get-EntraUserMembership  -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -Top 5
+### Example 3: Get top five memberships
 
+This example demonstrates how to retrieve users top five memberships in Microsoft Entra ID.
+
+```powershell
+PS C:\>Get-EntraUserMembership  -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -Top 5
+```
+
+```
 Id                                   DeletedDateTime
 --                                   ---------------
 056b2531-005e-4f3e-be78-01a71ea30a04
