@@ -41,6 +41,7 @@ This example demonstrates how to removes an owner from a group in Microsoft Entr
 ```powershell
 PS C:\>Remove-EntraGroupOwner -ObjectId "62438306-7c37-4638-a72d-0ee8d9217680" -OwnerId "0a1068c0-dbb6-4537-9db3-b48f3e31dd76"
 ```
+
 This exanple removes an specified owner from a group  
 
 ObjectID - Specifies the ID of a group in Microsoft Entra ID.  
@@ -129,7 +130,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraGroupOwner]()
+[Add-EntraGroupOwner](Add-EntraGroupOwner.md)
 
-[Get-EntraGroupOwner]()
+[Get-EntraGroupOwner](Get-EntraGroupOwner.md)
 
