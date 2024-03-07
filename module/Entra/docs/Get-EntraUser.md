@@ -225,9 +225,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[New-EntraUser]()
+[New-EntraUser](New-EntraUser.md)
 
-[Remove-EntraUser]()
+[Remove-EntraUser](Remove-EntraUser.md)
 
-[Set-EntraUser]()
+[Set-EntraUser](Set-EntraUser.md)
 
