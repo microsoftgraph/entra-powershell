@@ -22,33 +22,49 @@ Creates an administrative unit.
 
 ## SYNTAX
 
-```
-New-EntraMSAdministrativeUnit -DisplayName <String> [-Description <String>]
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+New-EntraMSAdministrativeUnit 
+    -DisplayName <String> 
+    [-Description <String>] 
+    [-InformationAction <ActionPreference>] 
+    [-InformationVariable <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The New-EntraMSAdministrativeUnit cmdlet creates an administrative unit in Microsoft Entra ID.
+The **New-EntraMSAdministrativeUnit** cmdlet creates an administrative unit in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1
-```
-PS C:\> New-EntraMSAdministrativeUnit -DisplayName "TestAU"
+This example shows how to create an administrative unit using '-DisplayName' paramter.
 
+```powershell
+PS C:\> New-EntraMSAdministrativeUnit -DisplayName "TestAU"
+```
+
+```output
 DeletedDateTime Id                                   Description DisplayName Visibility
 --------------- --                                   ----------- ----------- ----------
                 eb7dee2b-4938-4835-b3e1-bb8207ae0814             TestAU
 ```
 
-### Example 2
-```
-PS C:\> New-EntraMSAdministrativeUnit -Description "test111" -DisplayName "test111"
+This command creates an administrative unit.
 
+### Example 2
+This example shows how to create an administrative unit using '-DisplayName' and '-Description' paramter.
+
+```powershell
+PS C:\> New-EntraMSAdministrativeUnit -Description "test111" -DisplayName "test111"
+```
+
+```output
 DeletedDateTime Id                                   Description DisplayName Visibility
 --------------- --                                   ----------- ----------- ----------
                 eb7dee2b-4938-4835-b3e1-bb8207ae0814 test111     test111
 ```
+
+This command creates an administrative unit.
 
 ## PARAMETERS
 

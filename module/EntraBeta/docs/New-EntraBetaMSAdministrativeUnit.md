@@ -22,34 +22,53 @@ Creates an administrative unit.
 
 ## SYNTAX
 
-```
-New-EntraBetaMSAdministrativeUnit [-MembershipType <String>] [-Description <String>] [-MembershipRule <String>]
- [-IsMemberManagementRestricted <Boolean>] [-MembershipRuleProcessingState <String>] -DisplayName <String>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+New-EntraBetaMSAdministrativeUnit 
+    -DisplayName <String>
+    [-MembershipType <String>] 
+    [-Description <String>] 
+    [-MembershipRule <String>] 
+    [-IsMemberManagementRestricted <Boolean>] 
+    [-MembershipRuleProcessingState <String>]  
+    [-InformationAction <ActionPreference>] 
+    [-InformationVariable <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The New-EntraBetaMSAdministrativeUnit cmdlet creates an administrative unit in Microsoft Entra ID.
+The **New-EntraBetaMSAdministrativeUnit** cmdlet creates an administrative unit in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1
-```
-PS C:\> New-EntraBetaMSAdministrativeUnit -DisplayName "TestAU"
+This example shows how to create an administrative unit using '-DisplayName' paramter.
 
+```powershell
+PS C:\> New-EntraBetaMSAdministrativeUnit -DisplayName "TestAU"
+```
+
+```output
 DeletedDateTime Id                                   Description DisplayName IsMemberManagementRestricted Visibility
 --------------- --                                   ----------- ----------- ---------------------------- ----------
                 a30efb43-195c-4544-a754-fcd6df695020             TestAU      False
 ```
 
-### Example 2
-```
-PS C:\> New-EntraBetaMSAdministrativeUnit -Description "test111" -DisplayName "test111" -IsMemberManagementRestricted $true
+This command creates an administrative unit.
 
+### Example 2
+This example shows how to create an administrative unit using '-DisplayName' and '-Description' paramter.
+
+```powershell
+PS C:\> New-EntraBetaMSAdministrativeUnit -Description "test111" -DisplayName "test111" -IsMemberManagementRestricted $true
+```
+
+```output
 DeletedDateTime Id                                   Description DisplayName IsMemberManagementRestricted Visibility
 --------------- --                                   ----------- ----------- ---------------------------- ----------
                 a30efb43-195c-4544-a754-fcd6df695020 test111     test111     True
 ```
+
+This command creates an administrative unit.
 
 ## PARAMETERS
 
