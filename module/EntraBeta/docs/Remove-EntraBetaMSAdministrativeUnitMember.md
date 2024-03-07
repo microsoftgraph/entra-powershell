@@ -22,20 +22,28 @@ Removes an administrative unit member.
 
 ## SYNTAX
 
-```
-Remove-EntraBetaMSAdministrativeUnitMember -Id <String> -MemberId <String>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Remove-EntraBetaMSAdministrativeUnitMember 
+    -Id <String> 
+    -MemberId <String> 
+    [-InformationAction <ActionPreference>] 
+    [-InformationVariable <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Remove-EntraBetaMSAdministrativeUnitMember cmdlet removes an administrative unit member in Microsoft Entra ID.
+The **Remove-EntraBetaMSAdministrativeUnitMember** cmdlet removes an administrative unit member in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1
-```
+This example shows how to remove a specified member from a specified administrative unit.
+
+```powershell
 PS C:\> Remove-EntraBetaMSAdministrativeUnitMember -MemberId 201a21a3-201a-4101-92cb-239c00ef4a2a -Id c1c1decd-fec8-4899-9cea-5ca55a84965f
 ```
+
+This command removes an administrative unit member.
 
 ## PARAMETERS
 
