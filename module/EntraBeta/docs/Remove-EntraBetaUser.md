@@ -37,6 +37,8 @@ The **Remove-EntraBetaUser** cmdlet removes a user in Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Remove a user
+This example shows how to remove a user.
+
 ```powershell
 PS C:\>Remove-EntraBetaUser -ObjectId "TestUser@example.com"
 ```
