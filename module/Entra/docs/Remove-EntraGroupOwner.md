@@ -1,4 +1,13 @@
 ---
+title: Remove-EntraGroupOwner
+description: This article provides details on the Remove-EntraGroupOwner command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/07/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +22,12 @@ Removes an owner from a group.
 ## SYNTAX
 
 ```
-Remove-EntraGroupOwner -OwnerId <String> -ObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Remove-EntraGroupOwner 
+-OwnerId <String> 
+-ObjectId <String> 
+[-InformationAction <ActionPreference>]
+[-InformationVariable <String>] 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,9 +36,20 @@ The Remove-EntraGroupOwner cmdlet removes an owner from a group in Microsoft Ent
 ## EXAMPLES
 
 ### Example 1: Remove an owner
-```
+This example demonstrates how to removes an owner from a group in Microsoft Entra ID.
+
+```powershell
 PS C:\>Remove-EntraGroupOwner -ObjectId "62438306-7c37-4638-a72d-0ee8d9217680" -OwnerId "0a1068c0-dbb6-4537-9db3-b48f3e31dd76"
 ```
+
+```output
+No output
+```
+This exanple removes an specified owner from a group  
+
+ObjectID - Specifies the ID of a group in Microsoft Entra ID.  
+
+OwnerId  - Specifies the ID of an owner.
 
 ## PARAMETERS
 
@@ -69,7 +93,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a group in Azure AD.
+Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: String
