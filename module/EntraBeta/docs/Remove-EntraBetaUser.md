@@ -23,9 +23,12 @@ Removes a user.
 
 ## SYNTAX
 
-```
-Remove-EntraBetaUser -ObjectId <String> [-InformationAction <ActionPreference>] [-InformationVariable <String>]
- [<CommonParameters>]
+```powershell
+Remove-EntraBetaUser 
+    -ObjectId <String> 
+    [-InformationAction <ActionPreference>] 
+    [-InformationVariable <String>]
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,7 +37,7 @@ The **Remove-EntraBetaUser** cmdlet removes a user in Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Remove a user
-```
+```powershell
 PS C:\>Remove-EntraBetaUser -ObjectId "TestUser@example.com"
 ```
 
