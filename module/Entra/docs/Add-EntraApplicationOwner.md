@@ -37,6 +37,8 @@ The Add-EntraApplicationOwner cmdlet adds an owner to a Microsoft Entra ID appli
 ## EXAMPLES
 
 ### Example 1: Add a user as an owner to an application
+This example shows how to add user as an owner to an application.
+
 ```powershell
 PS C:\> $ApplicationId = (Get-EntraApplication -Top 1).ObjectId
 PS C:\> $UserObjectId = (Get-EntraUser -Top 1).ObjectId
