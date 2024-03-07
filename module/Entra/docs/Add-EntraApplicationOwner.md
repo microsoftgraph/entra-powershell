@@ -22,9 +22,13 @@ Adds an owner to an application.
 
 ## SYNTAX
 
-```
-Add-EntraApplicationOwner -ObjectId <String> -RefObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Add-EntraApplicationOwner 
+    -ObjectId <String> 
+    -RefObjectId <String> 
+    [-InformationAction <ActionPreference>] 
+    [-InformationVariable <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -33,7 +37,7 @@ The Add-EntraApplicationOwner cmdlet adds an owner to a Microsoft Entra ID appli
 ## EXAMPLES
 
 ### Example 1: Add a user as an owner to an application
-```
+```powershell
 PS C:\> $ApplicationId = (Get-AzureADApplication -Top 1).ObjectId
 PS C:\> $UserObjectId = (Get-AzureADUser -Top 1).ObjectId
 PS C:\> Add-EntraApplicationOwner -ObjectId $ApplicationId -RefObjectId $UserObjectId
