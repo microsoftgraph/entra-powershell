@@ -36,14 +36,14 @@ The **Remove-EntraBetaMSAdministrativeUnitMember** cmdlet removes an administrat
 
 ## EXAMPLES
 
-### Example 1
-This example shows how to remove a specified member from a specified administrative unit.
+### Example 1: Remove an administrative unit
+This example shows how to remove 
 
 ```powershell
-PS C:\> Remove-EntraBetaMSAdministrativeUnitMember -MemberId 201a21a3-201a-4101-92cb-239c00ef4a2a -Id c1c1decd-fec8-4899-9cea-5ca55a84965f
+PS C:\> Remove-EntraBetaMSAdministrativeUnitMember -Id c1c1decd-fec8-4899-9cea-5ca55a84965f -MemberId 201a21a3-201a-4101-92cb-239c00ef4a2a
 ```
 
-This command removes an administrative unit member.
+This command removes a specified member from a specified administrative unit.
 
 ## PARAMETERS
 
