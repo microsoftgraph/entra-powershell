@@ -3,7 +3,39 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Set-AzureADTenantDetail"
-    TargetName = "Update-MgBetaOrganization"
+    TargetName = $null
     Parameters = $null
     Outputs = $null
+    CustomScript = @'
+    PROCESS {
+        $params = @{}
+
+        if($null -ne $PSBoundParameters["MarketingNotificationEmails"])
+        {
+            $params["MarketingNotificationEmails"] = $PSBoundParameters["MarketingNotificationEmails"]
+        }
+
+        if($null -ne $PSBoundParameters["SecurityComplianceNotificationMails"])
+        {
+            $params["SecurityComplianceNotificationMails"] = $PSBoundParameters["SecurityComplianceNotificationMails"]
+        }
+
+        if($null -ne $PSBoundParameters["SecurityComplianceNotificationPhones"])
+        {
+            $params["SecurityComplianceNotificationPhones"] = $PSBoundParameters["SecurityComplianceNotificationPhones"]
+        }
+
+        if($null -ne $PSBoundParameters["TechnicalNotificationMails"])
+        {
+            $params["TechnicalNotificationMails"] = $PSBoundParameters["TechnicalNotificationMails"]
+        }
+
+        Write-Debug("============================ TRANSFORMATIONS ============================")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================")
+        
+        $params["OrganizationId"] = (Get-MgBetaOrganization).Id
+        Update-MgBetaOrganization @params
+    }
+'@
 }
