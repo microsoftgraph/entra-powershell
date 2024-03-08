@@ -22,20 +22,26 @@ Gets the trusted certificate authority.
 
 ## SYNTAX
 
-```
-Get-EntraTrustedCertificateAuthority [-TrustedIssuerSki <String>] [-TrustedIssuer <String>]
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Get-EntraTrustedCertificateAuthority 
+    [-TrustedIssuerSki <String>] 
+    [-TrustedIssuer <String>]
+    [-InformationAction <ActionPreference>] 
+    [-InformationVariable <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraTrustedCertificateAuthority cmdlet gets the trusted certificate authority in Microsoft Entra ID.
+The **Get-EntraTrustedCertificateAuthority** cmdlet gets the trusted certificate authority in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Retrieve the trusted certificate authorities that are defined in your directory
-```
+```powershell
 PS C:\> Get-EntraTrustedCertificateAuthority
+```
 
+```output
 AuthorityType             : RootAuthority
 CrlDistributionPoint      : https://example.crl1
 DeltaCrlDistributionPoint :
@@ -61,9 +67,11 @@ TrustedIssuerSki          : 4BA2D7AC2A5DF47C70E19E61EDFB4E62B3BF67FD
 This command retrieve the trusted certificate authorities that are defined in your directory.
 
 ### Example 2: Retrieve the trusted certificate authorities that are defined in your directory based on TrustedIssuer
-```
+```powershell
 PS C:\> Get-EntraTrustedCertificateAuthority -TrustedIssuer "CN=example.azure.com, O=MSIT. Ltd, L=Redmond, C=US"
+```
 
+```output
 AuthorityType             : RootAuthority
 CrlDistributionPoint      : https://example.crl1
 DeltaCrlDistributionPoint :
@@ -82,9 +90,11 @@ TrustedIssuerSki          : 69506400C9806497DCB48F160C31CFFEA87E544C
 This command retrieve the trusted certificate authorities that are defined in your directory based on TrustedIssuer.
 
 ### Example 3: Retrieve the trusted certificate authorities that are defined in your directory based on TrustedIssuerSki
-```
+```powershell
 PS C:\> Get-EntraTrustedCertificateAuthority -TrustedIssuerSki 4BA2D7AC2A5DF47C70E19E61EDFB4E62B3BF67FD
+```
 
+```output
 AuthorityType             : RootAuthority
 CrlDistributionPoint      : https://example.crl
 DeltaCrlDistributionPoint :
@@ -176,11 +186,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[New-EntraTrustedCertificateAuthority]()
+[New-EntraTrustedCertificateAuthority](New-EntraTrustedCertificateAuthority.md)
 
-[Remove-EntraTrustedCertificateAuthority]()
+[Remove-EntraTrustedCertificateAuthority](Remove-EntraTrustedCertificateAuthority.md)
 
-[Set-EntraTrustedCertificateAuthority]()
+[Set-EntraTrustedCertificateAuthority](Set-EntraTrustedCertificateAuthority.md)
 
 [Online help and examples for working with certificate authority](https://azure.microsoft.com/en-us/documentation/articles/active-directory-certificate-based-authentication-ios/)
 
