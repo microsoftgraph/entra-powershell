@@ -22,38 +22,56 @@ Creates an application.
 
 ## SYNTAX
 
-```
-New-EntraApplication [-PublicClient <Boolean>] [-PublisherDomain <String>] [-OptionalClaims <OptionalClaims>]
- [-ErrorUrl <String>] [-AppRoles <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AppRole]>]
- [-Homepage <String>] [-IsDisabled <Boolean>] [-AvailableToOtherTenants <Boolean>]
- [-Oauth2AllowImplicitFlow <Boolean>] [-InformationalUrls <InformationalUrl>] [-SamlMetadataUrl <String>]
- [-LogoutUrl <String>]
- [-RequiredResourceAccess <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.RequiredResourceAccess]>]
- [-Oauth2Permissions <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.OAuth2Permission]>]
- [-ReplyUrls <System.Collections.Generic.List`1[System.String]>] [-GroupMembershipClaims <String>]
- [-IdentifierUris <System.Collections.Generic.List`1[System.String]>] [-IsDeviceOnlyAuthSupported <Boolean>]
- [-AppLogoUrl <String>] [-WwwHomepage <String>]
- [-OrgRestrictions <System.Collections.Generic.List`1[System.String]>]
- [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]>]
- [-Oauth2AllowUrlPathMatching <Boolean>]
- [-PreAuthorizedApplications <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PreAuthorizedApplication]>]
- [-ParentalControlSettings <ParentalControlSettings>] -DisplayName <String>
- [-Oauth2RequirePostResponse <Boolean>] [-AllowGuestsSignIn <Boolean>]
- [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]>]
- [-SignInAudience <String>] [-AddIns <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AddIn]>]
- [-KnownClientApplications <System.Collections.Generic.List`1[System.String]>]
- [-RecordConsentConditions <String>] [-AllowPassthroughUsers <Boolean>] [<CommonParameters>]
+```powershell
+New-EntraApplication 
+    -DisplayName <String>
+    [-PublicClient <Boolean>] 
+    [-PublisherDomain <String>] 
+    [-OptionalClaims <OptionalClaims>] 
+    [-ErrorUrl <String>] 
+    [-AppRoles <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AppRole]>] 
+    [-Homepage <String>] 
+    [-IsDisabled <Boolean>] 
+    [-AvailableToOtherTenants <Boolean>] 
+    [-Oauth2AllowImplicitFlow <Boolean>] 
+    [-InformationalUrls <InformationalUrl>] 
+    [-SamlMetadataUrl <String>]
+    [-LogoutUrl <String>] 
+    [-RequiredResourceAccess <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.RequiredResourceAccess]>] 
+    [-Oauth2Permissions <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.OAuth2Permission]>] 
+    [-ReplyUrls <System.Collections.Generic.List`1[System.String]>] 
+    [-GroupMembershipClaims <String>] 
+    [-IdentifierUris <System.Collections.Generic.List`1[System.String]>] 
+    [-IsDeviceOnlyAuthSupported <Boolean>] 
+    [-AppLogoUrl <String>] 
+    [-WwwHomepage <String>] 
+    [-OrgRestrictions <System.Collections.Generic.List`1[System.String]>] 
+    [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]>]  
+    [-Oauth2AllowUrlPathMatching <Boolean>]  
+    [-PreAuthorizedApplications <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PreAuthorizedApplication]>]
+    [-ParentalControlSettings <ParentalControlSettings>] 
+    [-Oauth2RequirePostResponse <Boolean>] 
+    [-AllowGuestsSignIn <Boolean>]
+    [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]>]
+    [-SignInAudience <String>] 
+    [-AddIns <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AddIn]>]
+    [-KnownClientApplications <System.Collections.Generic.List`1[System.String]>]
+    [-RecordConsentConditions <String>] 
+    [-AllowPassthroughUsers <Boolean>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The New-EntraApplication cmdlet creates an application in Microsoft Entra ID.
+The **New-EntraApplication** cmdlet creates an application in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Create an application
+```powershell
+PS C:\>New-EntraApplication -DisplayName "My new application"
 ```
-PS C:\>New-EntraApplication -DisplayName "My new application"  -IdentifierUris "http://mynewapp.contoso.com"
 
+```output
 ObjectId                             AppId                                DisplayName 
 --------                             -----                                ----------- 
 acd10942-5747-4385-8824-4c5d5fa904f9 b5fecfab-0ea2-4fd1-8570-b2c41b3d5149 My new application
@@ -61,41 +79,65 @@ acd10942-5747-4385-8824-4c5d5fa904f9 b5fecfab-0ea2-4fd1-8570-b2c41b3d5149 My new
 
 This command creates an application in Microsoft Entra ID.
 
-### Example 2
+### Example 2: Create an application with '-IdentifierUris' paramter
+```powershell
+PS C:\>New-EntraApplication -DisplayName "My new application" -IdentifierUris "http://mynewapp.contoso.com"
 ```
-PS C:\>New-EntraApplication -DisplayName "My new application"
 
+```output
 ObjectId                             AppId                                DisplayName 
 --------                             -----                                ----------- 
 acd10942-5747-4385-8824-4c5d5fa904f9 b5fecfab-0ea2-4fd1-8570-b2c41b3d5149 My new application
 ```
 
-### Example 3
-```
+This example shows how to create an application having **-IdentifierUris** paramter.  
+
+This command creates an application in Microsoft Entra ID.  
+
+### Example 3: Create an application with '-HomePage' paramter
+```powershell
 PS C:\>New-EntraApplication -DisplayName "My new application" -HomePage "http://mynewapp.home.com"
+```
 
+```output
 ObjectId                             AppId                                DisplayName 
 --------                             -----                                ----------- 
 acd10942-5747-4385-8824-4c5d5fa904f9 b5fecfab-0ea2-4fd1-8570-b2c41b3d5149 My new application
 ```
 
-### Example 4
-```
+This example shows how to create an application having **-HomePage** paramter.  
+
+This command creates an application in Microsoft Entra ID.  
+
+### Example 4: Create an application with '-LogoutUrl' paramter
+```powershell
 PS C:\>New-EntraApplication -DisplayName "My new application" -LogoutUrl "https://mynewapp.com/logout.aspx"
+```
 
+```output
 ObjectId                             AppId                                DisplayName 
 --------                             -----                                ----------- 
 acd10942-5747-4385-8824-4c5d5fa904f9 b5fecfab-0ea2-4fd1-8570-b2c41b3d5149 My new application
 ```
 
-### Example 5
-```
+This example shows how to create an application having **-LogoutUrl** paramter.  
+
+This command creates an application in Microsoft Entra ID.  
+
+### Example 5: Create an application with '-IsDeviceOnlyAuthSupported' paramter
+```powershell
 PS C:\>New-EntraApplication -DisplayName "My new application" -IsDeviceOnlyAuthSupported $false
+```
 
+```output
 ObjectId                             AppId                                DisplayName 
 --------                             -----                                ----------- 
 acd10942-5747-4385-8824-4c5d5fa904f9 b5fecfab-0ea2-4fd1-8570-b2c41b3d5149 My new application
 ```
+
+This example shows how to create an application having **-IsDeviceOnlyAuthSupported** paramter.  
+
+This command creates an application in Microsoft Entra ID.  
 
 ## PARAMETERS
 
