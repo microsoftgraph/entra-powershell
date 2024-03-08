@@ -22,25 +22,43 @@ Adds a scoped role membership to an administrative unit.
 
 ## SYNTAX
 
-```
-Add-EntraBetaMSScopedRoleMembership [-AdministrativeUnitId <String>] -Id <String>
- [-RoleMemberInfo <MsRoleMemberInfo>] [-RoleId <String>] [<CommonParameters>]
+```powershell
+Add-EntraBetaMSScopedRoleMembership 
+    -Id <String>
+    [-RoleMemberInfo <MsRoleMemberInfo>] 
+    [-AdministrativeUnitId <String>] 
+    [-RoleId <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Add-EntraBetaMSScopedRoleMembership cmdlet adds a scoped role membership to an administrative unit.
+The **Add-EntraBetaMSScopedRoleMembership** cmdlet adds a scoped role membership to an administrative unit.
 
 ## EXAMPLES
 
 ### Example 1
+```powershell
+PS C:\> $User = Get-EntraBetaUser -SearchString "The user that will be an admin on this unit"
+PS C:\> $Role = Get-EntraBetaDirectoryRole | Where-Object -Property DisplayName -Eq -Value "User Account Administrator"
+PS C:\> $Unit = Get-EntraBetaMSAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value "The display name of the unit"
+PS C:\> $RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRolememberinfo.RoleMemberInfo
+PS C:\> $RoleMember.Id = $User.ObjectID
+PS C:\> Add-EntraBetaMSScopedRoleMembership -Id $Unit.Id -RoleId $Role.ObjectId -RoleMemberInfo $RoleMember
 ```
-$User = Get-EntraBetaUser -SearchString "The user that will be an admin on this unit"
-$Role = Get-EntraBetaDirectoryRole | Where-Object -Property DisplayName -Eq -Value "User Account Administrator"
-$Unit = Get-EntraBetaMSAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value "The display name of the unit"
-$RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRolememberinfo.RoleMemberInfo
-$RoleMember.Id = $User.ObjectID
-Add-EntraBetaMSScopedRoleMembership -Id $Unit.Id -RoleId $Role.ObjectId -RoleMemberInfo $RoleMember
 
+The first command gets a user by using the [Get-EntraBetaUser](./Get-EntraBetaUser.md) cmdlet, and then stores it in the $User variable.
+
+The second command gets a directory role by using [Get-EntraBetaDirectoryRole](./Get-EntraBetaDirectoryRole.md) cmdlet, and then stores it in the $Role variable.
+
+The third command gets an administrative unit by using [Get-EntraBetaMSAdministrativeUnit](./Get-EntraBetaMSAdministrativeUnit.md) cmdlet, and then stores it in the $Unit variable.
+
+The fourth command creates an RoleMemberInfo type, and then stores it in the $RoleMember variable.
+
+The fith command set the Id property of $RoleMember to the same value as the ObjectId property of $User.
+
+The final command assigns the role member in $RoleMember and role in $Role to the administrative unit in $Unit.
+
+```output
 AdministrativeUnitId					RoleId 	
 --------------------------           	------------ 	
 c9ab56cc-e349-4237-856e-cab03157a91e 	526b7173-5a6e-49dc-88ec-b677a9093709
