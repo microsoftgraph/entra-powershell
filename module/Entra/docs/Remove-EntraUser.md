@@ -37,8 +37,6 @@ The **Remove-EntraUser** cmdlet removes a user in Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Remove a user
-This example shows how to remove a user.
-
 ```powershell
 PS C:\>Remove-EntraUser -ObjectId "TestUser@example.com"
 ```
