@@ -89,7 +89,7 @@ TemplateId      : 332a8659-25b8-4b3e-b545-38b331c48b2b
 Version         :
 ```
 
-This command returns all role definitions present.
+This command returns all the role definitions present.
 
 ### Example 2 : Get a role definition by ID
 ```powershell
