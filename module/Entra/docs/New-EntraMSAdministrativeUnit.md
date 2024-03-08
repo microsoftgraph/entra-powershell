@@ -36,9 +36,7 @@ The **New-EntraMSAdministrativeUnit** cmdlet creates an administrative unit in M
 
 ## EXAMPLES
 
-### Example 1
-This example shows how to create an administrative unit using '-DisplayName' paramter.
-
+### Example 1 : Create an administrative unit
 ```powershell
 PS C:\> New-EntraMSAdministrativeUnit -DisplayName "TestAU"
 ```
@@ -51,11 +49,9 @@ DeletedDateTime Id                                   Description DisplayName Vis
 
 This command creates an administrative unit.
 
-### Example 2
-This example shows how to create an administrative unit using '-DisplayName' and '-Description' paramter.
-
+### Example 2: Create an administrative unit using '-Description' parameter
 ```powershell
-PS C:\> New-EntraMSAdministrativeUnit -Description "test111" -DisplayName "test111"
+PS C:\> New-EntraMSAdministrativeUnit -DisplayName "test111" -Description "test111"
 ```
 
 ```output

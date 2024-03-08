@@ -40,9 +40,7 @@ The **New-EntraBetaMSAdministrativeUnit** cmdlet creates an administrative unit 
 
 ## EXAMPLES
 
-### Example 1
-This example shows how to create an administrative unit using '-DisplayName' paramter.
-
+### Example 1: Create an administrative unit
 ```powershell
 PS C:\> New-EntraBetaMSAdministrativeUnit -DisplayName "TestAU"
 ```
@@ -55,17 +53,26 @@ DeletedDateTime Id                                   Description DisplayName IsM
 
 This command creates an administrative unit.
 
-### Example 2
-This example shows how to create an administrative unit using '-DisplayName' and '-Description' paramter.
-
+### Example 2: Create an administrative unit using '-Description' parameter
 ```powershell
-PS C:\> New-EntraBetaMSAdministrativeUnit -Description "test111" -DisplayName "test111" -IsMemberManagementRestricted $true
+PS C:\> New-EntraBetaMSAdministrativeUnit -DisplayName "test111" -Description "test111"
 ```
 
 ```output
 DeletedDateTime Id                                   Description DisplayName IsMemberManagementRestricted Visibility
 --------------- --                                   ----------- ----------- ---------------------------- ----------
-                a30efb43-195c-4544-a754-fcd6df695020 test111     test111     True
+                a30efb43-195c-4544-a754-fcd6df695020 test111     test111     False
+```
+
+### Example 3: Create an administrative unit using '-IsMemberManagementRestricted' parameter
+```powershell
+PS C:\> New-EntraBetaMSAdministrativeUnit -DisplayName "test111" -IsMemberManagementRestricted $true
+```
+
+```output
+DeletedDateTime Id                                   Description DisplayName IsMemberManagementRestricted Visibility
+--------------- --                                   ----------- ----------- ---------------------------- ----------
+                a30efb43-195c-4544-a754-fcd6df695020             test111     True
 ```
 
 This command creates an administrative unit.
