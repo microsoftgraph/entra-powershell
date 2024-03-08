@@ -36,12 +36,8 @@ The Get-EntraGroupMember cmdlet gets a member of a group in Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Get a group member by ID
-
-This example demonstrates how to retrieve group member by ID.
-
 ```powershell
 PS C:\>Get-EntraGroupMember -ObjectId "05b0552e-39cd-4df4-a8f5-00ade912e83d" 
-
 ```
 ```output
 ageGroup                        :
@@ -54,14 +50,13 @@ securityIdentifier              : S-1-12-1-719509883-1118456798-2440872119-19982
 identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=MeganB@M365x99297270.OnMicrosoft.com}}
 consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
-
 ```
+
+This example demonstrates how to retrieve group member by ID.  
+
 This command gets a member of a specified Group.
 
 ### Example 2: Get two group member
-
-This example demonstrates how to retrieve top five groups from Microsoft Entra ID.
-
 ```powershell
 PS C:\>Get-EntraGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -Top 2 
 ```
@@ -86,14 +81,13 @@ mail                            : PradeepG@M365x99297270.OnMicrosoft.com
 securityIdentifier              : S-1-12-1-357891266-1147903342-476387998-329568156
 identities                      : {System.Collections.Hashtable}
 consentProvidedForMinor         :
-
 ```
+
+This example demonstrates how to retrieve top two groups from Microsoft Entra ID.  
+
 This command gets the top two Group members.
 
 ### Example 3: Get all members within a group by group ID
-
-This example retrieve all members within a group by group ID.
-
 ```powershell
 PS C:\>Get-EntraGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -All $true 
 ```
@@ -108,6 +102,9 @@ securityIdentifier              : S-1-12-1-2574072234-1301806508-533216682-28921
 identities                      : {System.Collections.Hashtable}
 consentProvidedForMinor         :
 ```
+
+This example retrieve all members within a group by group ID.  
+
 This command gets all members within a Group.
 
 ## PARAMETERS
