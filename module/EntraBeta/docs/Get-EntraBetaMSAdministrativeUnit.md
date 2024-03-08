@@ -44,9 +44,7 @@ The **Get-EntraBetaMSAdministrativeUnit** cmdlet gets a Microsoft Entra IDy admi
 
 ## EXAMPLES
 
-### Example 1 : Get all administrative units.
-This example shows how to get all administrative units without passing any paramters.
-
+### Example 1 : Get all administrative units
 ```powershell
 PS C:\> Get-EntraBetaMSAdministrativeUnit
 ```
@@ -62,9 +60,7 @@ e2ecf941-b24e-4957-9e33-b6e6d7409b9e           Use to contain Personnel-managed 
 
 This command gets all the administrative units.
 
-### Example 2 : Get all administrative units
-This example shows how to get all administrative units using '-All' paramter.
-
+### Example 2 : Get all administrative units using '-All' parameter
 ```powershell
 PS C:\> Get-EntraBetaMSAdministrativeUnit -All $true
 ```
@@ -81,8 +77,6 @@ e2ecf941-b24e-4957-9e33-b6e6d7409b9e           Use to contain Personnel-managed 
 This command gets all the administrative units.
 
 ### Example 3 : Get a specific administrative unit
-In this example, we'll provide the administrative unit ID to retrieve a specific administrative unit.
-
 ```powershell
 PS C:\> Get-EntraBetaMSAdministrativeUnit -Id 4bfe2ef5-9c2b-4118-9a3a-6e540c37920c
 ```
@@ -93,11 +87,9 @@ Id                                   OdataType Description                      
 4bfe2ef5-9c2b-4118-9a3a-6e540c37920c           Dynamic AU testing in CORP tenant               DAU-Test
 ```
 
-This example returns the details of the administrative unit with the ID ```4bfe2ef5-9c2b-4118-9a3a-6e540c37920c```.
+This example returns the details of the specified administrative unit.
 
 ### Example 4 : Get administrative units filter by display name
-This example shows how to get administrative units whose display name contains specified name.
-
 ```powershell
 PS C:\> Get-EntraBetaMSAdministrativeUnit -Filter "DisplayName eq 'DAU-Test'"
 ```
@@ -111,8 +103,6 @@ Id                                   OdataType Description                      
 This example list of administrative units containing display name with the specified name.
 
 ### Example 5 : Get top 1 administrative unit
-This example shows how to get specified top administrative units.
-
 ```powershell
 PS C:\> Get-EntraBetaMSAdministrativeUnit -Top 1
 ```
