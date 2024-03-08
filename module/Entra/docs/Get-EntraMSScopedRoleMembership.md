@@ -45,6 +45,8 @@ AdministrativeUnitId                 Id                                         
 526b7173-5a6e-49dc-88ec-b677a9093709 BMYgih8pw0y20CQerx3BhEAwHXd98V5Gi-vwYVZQpAouYj-NPIZuQYv0G7SehpIUU 356b7173-5a6e-49dc-88ec-b...
 ```
 
+This command gets the scoped role membership from an specified AU with specified scoped role membership ID.
+
 ### Example 2: List scoped administrators for AU.
 ```powershell
 PS C:\>Get-EntraMSScopedRoleMembership -Id "526b7173-5a6e-49dc-88ec-b677a9093709"
@@ -56,6 +58,8 @@ AdministrativeUnitId                 Id                                         
 526b7173-5a6e-49dc-88ec-b677a9093709 BMYgih8pw0y20CQerx3BhEAwHXd98V5Gi-vwYVZQpAouYj-NPIZuQYv0G7SehpIUU 8a20c604-291f-4cc3-b6d0-2...
 526b7173-5a6e-49dc-88ec-b677a9093709 BMYgih8pw0y20CQerx3BhEAwHXd98V5Gi-vwYVZQpApdfqODbZQvQbS2rHEuDlWmU 8a20c604-291f-4cc3-b6d0-2...
 ```
+
+This command gets the list of scoped role membership from an specified AU.
 
 ## PARAMETERS
 
