@@ -36,7 +36,7 @@ The **Add-EntraMSScopedRoleMembership** cmdlet adds a scoped role membership to 
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Add a scoped role membership to an administrative unit
 ```powershell
 PS C:\> $User = Get-EntraUser -SearchString "The user that will be an admin on this unit"
 PS C:\> $Role = Get-EntraDirectoryRole | Where-Object -Property DisplayName -EQ -Value "User Account Administrator"
@@ -46,23 +46,23 @@ PS C:\> $RoleMember.Id = $User.ObjectID
 PS C:\> Add-EntraMSScopedRoleMembership -Id $Unit.Id -RoleId $Role.ObjectId -RoleMemberInfo $RoleMember
 ```
 
-The first command gets a user by using the [Get-EntraUser](./Get-EntraUser.md) cmdlet, and then stores it in the $User variable.
-
-The second command gets a directory role by using [Get-EntraDirectoryRole](./Get-EntraDirectoryRole.md) cmdlet, and then stores it in the $Role variable.
-
-The third command gets an administrative unit by using [Get-EntraMSAdministrativeUnit](./Get-EntraMSAdministrativeUnit.md) cmdlet, and then stores it in the $Unit variable.
-
-The fourth command creates an RoleMemberInfo type, and then stores it in the $RoleMember variable.
-
-The fith command set the Id property of $RoleMember to the same value as the ObjectId property of $User.
-
-The final command assigns the role member in $RoleMember and role in $Role to the administrative unit in $Unit.
-
 ```output
 AdministrativeUnitId					RoleId 	
 --------------------------           	------------ 	
 c9ab56cc-e349-4237-856e-cab03157a91e 	526b7173-5a6e-49dc-88ec-b677a9093709
 ```
+
+The first command gets a user by using the [Get-EntraUser](./Get-EntraUser.md) cmdlet, and then stores it in the $User variable.  
+
+The second command gets a directory role by using [Get-EntraDirectoryRole](./Get-EntraDirectoryRole.md) cmdlet, and then stores it in the $Role variable.  
+
+The third command gets an administrative unit by using [Get-EntraMSAdministrativeUnit](./Get-EntraMSAdministrativeUnit.md) cmdlet, and then stores it in the $Unit variable.  
+
+The fourth command creates an RoleMemberInfo type, and then stores it in the $RoleMember variable.  
+
+The fith command set the Id property of $RoleMember to the same value as the ObjectId property of $User.  
+
+The final command assigns the role member in $RoleMember and role in $Role to the administrative unit in $Unit.  
 
 This cmdlet returns the Scope role membership object.
 
