@@ -37,9 +37,7 @@ The **Get-EntraBetaMSAdministrativeUnitMember** cmdlet gets a member of a Micros
 
 ## EXAMPLES
 
-### Example 1 Get an administrative unit member by ID
-This example shows how to get administrative unit members.
-
+### Example 1: Get an administrative unit member by ID
 ```powershell
 PS C:\> Get-EntraBetaMSAdministrativeUnitMember -Id "ef08b536-9d0a-4f8f-bda5-8b9cd01a9159"
 ```
@@ -52,11 +50,9 @@ b54e1419-0c09-4fdf-a7d6-0729afce35f8 #microsoft.graph.user
 6e0a596f-982d-4b18-ba4b-a533ce775f8d #microsoft.graph.user
 ```
 
-This example returns the list of administrative unit members from administrative unit ID ```ef08b536-9d0a-4f8f-bda5-8b9cd01a9159```.
+This example returns the list of administrative unit members from specified administrative unit ID.
 
 ### Example 2: Get all administrative unit members by ID
-This example shows how to get all administrative unit members using paramter '-All' paramter.
-
 ```powershell
 PS C:\> Get-EntraBetaMSAdministrativeUnitMember -Id "ef08b536-9d0a-4f8f-bda5-8b9cd01a9159" -All $true
 ```
@@ -69,11 +65,9 @@ b54e1419-0c09-4fdf-a7d6-0729afce35f8 #microsoft.graph.user
 6e0a596f-982d-4b18-ba4b-a533ce775f8d #microsoft.graph.user
 ```
 
-This example returns the list of administrative unit members from administrative unit ID ```ef08b536-9d0a-4f8f-bda5-8b9cd01a9159```.
+This example returns the list of administrative unit members from specified administrative unit ID.
 
 ### Example 3: Get top 2 administrative unit members by ID
-This example shows how to get top specified administrative unit members from an AU.
-
 ```powershell
 PS C:\> Get-EntraBetaMSAdministrativeUnitMember -Id "ef08b536-9d0a-4f8f-bda5-8b9cd01a9159" -All $false -Top 2
 ```
@@ -85,7 +79,7 @@ b54e1419-0c09-4fdf-a7d6-0729afce35f8 #microsoft.graph.user
 4321d7f5-3457-4dd6-8117-e771a053f412 #microsoft.graph.user
 ```
 
-This example returns top specified administrative unit members from administrative unit ID ```ef08b536-9d0a-4f8f-bda5-8b9cd01a9159```.
+This example returns top specified administrative unit members from specified administrative unit ID.
 
 ## PARAMETERS
 
