@@ -37,13 +37,19 @@ The Add-EntraBetaApplicationOwner cmdlet adds an owner to a Microsoft Entra ID a
 ## EXAMPLES
 
 ### Example 1: Add a user as an owner to an application
-This example shows how to add user as an owner to an application.
-
 ```powershell
 PS C:\> $ApplicationId = (Get-EntraBetaApplication -Top 1).ObjectId
 PS C:\> $UserObjectId = (Get-EntraBetaUser -Top 1).ObjectId
 PS C:\> Add-EntraBetaApplicationOwner -ObjectId $ApplicationId -RefObjectId $UserObjectId
 ```
+
+The first command gets an application using [Get-EntraBetaApplication](./Get-EntraBetaApplication.md) cmdlet, and stores 
+the ObjectId property value in $ApplicationId variable.  
+
+The second command gets an user using [Get-EntraBetaUser](./Get-EntraBetaUser.md) cmdlet, and stores 
+the ObjectId property value in $UserObjectId variable.  
+
+This final command adds an owner in $UserObjectId to an application in $ApplicationId.
 
 This command adds an owner to an application.
 
