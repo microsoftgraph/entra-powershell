@@ -22,25 +22,30 @@ Creates a trusted certificate authority.
 
 ## SYNTAX
 
-```
-New-EntraTrustedCertificateAuthority -CertificateAuthorityInformation <CertificateAuthorityInformation>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+New-EntraTrustedCertificateAuthority 
+    -CertificateAuthorityInformation <CertificateAuthorityInformation>
+    [-InformationAction <ActionPreference>] 
+    [-InformationVariable <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The New-EntraTrustedCertificateAuthority cmdlet creates a trusted certificate authority in Microsoft Entra ID.
+The **New-EntraTrustedCertificateAuthority** cmdlet creates a trusted certificate authority in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Creates the trusted certificate authorities in your directory
-```
+```powershell
 PS C:\> $new_ca = New-Object -TypeName Microsoft.Open.AzureAD.Model.CertificateAuthorityInformation #Create CertificateAuthorityInformation object
 PS C:\> $new_ca.AuthorityType = "RootAuthority"
 PS C:\> $new_ca.CrlDistributionPoint = "https://example.crl"
 PS C:\> $new_ca.DeltaCrlDistributionPoint = "https://deltaexample.crl"
 PS C:\> $new_ca.TrustedCertificate = "Path to .cer file(including cer file name)"
 PS C:\> New-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $new_ca
+```
 
+```output
 Id                                   CertificateAuthorities
 --                                   ----------------------
 29728ade-6ae4-4ee9-9103-412912537da5 {class CertificateAuthorityInformation {...
@@ -114,9 +119,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraTrustedCertificateAuthority]()
+[Get-EntraTrustedCertificateAuthority](Get-EntraTrustedCertificateAuthority.md)
 
-[Remove-EntraTrustedCertificateAuthority]()
+[Remove-EntraTrustedCertificateAuthority](Remove-EntraTrustedCertificateAuthority.md)
 
-[Set-EntraTrustedCertificateAuthority]()
+[Set-EntraTrustedCertificateAuthority](Set-EntraTrustedCertificateAuthority.md)
 
