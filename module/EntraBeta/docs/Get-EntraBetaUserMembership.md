@@ -36,9 +36,6 @@ The Get-EntraBetaUserMembership cmdlet gets user memberships in Microsoft Entra 
 ## EXAMPLES
 
 ### Example 1: Get user memberships
-
-This example demonstrates how to retrieve user memberships in Microsoft Entra ID.
-
 ```powershell
 PS C:\>Get-EntraBetaUserMembership  -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1"
 ```
@@ -54,13 +51,11 @@ cc3cc7a2-ba9a-4158-814c-d5ee1af66d24
 eeee7782-696d-4be3-ace0-e20c1df6693e
 ```
 
+This example demonstrates how to retrieve user memberships in Microsoft Entra ID.  
+
 This command gets the memberships for the specified user.
 
-
 ### Example 2: Get All memberships
-
-This example demonstrates how to retrieve users all memberships in Microsoft Entra ID.
-
 ```powershell
 PS C:\>Get-EntraBetaUserMembership  -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -All $true
 ```
@@ -76,13 +71,11 @@ cc3cc7a2-ba9a-4158-814c-d5ee1af66d24
 eeee7782-696d-4be3-ace0-e20c1df6693e
 ```
 
+This example demonstrates how to retrieve users all memberships in Microsoft Entra ID.  
+
 This command gets the all memberships for the specified user.
 
-
 ### Example 3: Get top five memberships
-
-This example demonstrates how to retrieve users top five memberships in Microsoft Entra ID.
-
 ```powershell
 PS C:\>Get-EntraBetaUserMembership  -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -Top 5
 ```
@@ -96,6 +89,8 @@ cc3cc7a2-ba9a-4158-814c-d5ee1af66d24
 2788a657-62c9-4546-9d4d-2ddee8a8bc9b
 0bdddeb1-88a6-4251-aaa5-98b48271158b
 ```
+
+This example demonstrates how to retrieve users top five memberships in Microsoft Entra ID.  
 
 This command gets the top five memberships for the specified user.
 
