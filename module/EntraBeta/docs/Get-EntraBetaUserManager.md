@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaUserManager comma
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 11/10/2023
+ms.date: 03/08/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -25,8 +25,6 @@ Gets the manager of a user.
 ```
 Get-EntraBetaUserManager 
  -ObjectId <String> 
- [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] 
  [<CommonParameters>]
 ```
 
@@ -56,29 +54,6 @@ displayName                     : Miriam Graham
 This example demonstrates how to retrieve the manager of a specific user.  
 
 This command gets the manager of a specified user.
-
-### Example 2: Get the manager of a user
-```powershell
-PS C:\>Get-EntraBetaUserManager -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -InformationAction Continue -InformationVariable "Test"
-```
-```output
-DeletedDateTime                 :
-Id                              : 26bb22db-6b8e-4adb-b761-264c869d5245
-@odata.context                  : https://graph.microsoft.com/beta/$metadata#directoryObjects/$entity
-@odata.type                     : #microsoft.graph.user
-accountEnabled                  : True
-businessPhones                  : {+1 858 555 0109}
-city                            : San Diego
-createdDateTime                 : 2023-07-07T14:18:05Z
-country                         : United States
-department                      : Sales & Marketing
-displayName                     : Miriam Graham
-givenName                       : Miriam
-```
-
-This example demonstrates how to retrieve the manager of a specific user.  
-
-This command gets the manager of the specified user for a specified information action and information variable.
 
 ## PARAMETERS
 

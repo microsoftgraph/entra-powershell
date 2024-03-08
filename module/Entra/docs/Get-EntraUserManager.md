@@ -25,8 +25,6 @@ Gets the manager of a user.
 ```
 Get-EntraUserManager 
  -ObjectId <String> 
- [-InformationAction <ActionPreference>] 
- [-InformationVariable <String>]
  [<CommonParameters>]
 ```
 
@@ -55,27 +53,6 @@ onPremisesUserPrincipalName     :
 This example demonstrates how to retrieve the manager of a specific user.  
 
 This command gets the manager of a specified user.
-
-### Example 2: Get the manager of a user
-```powershell
-PS C:\>Get-EntraUserManager -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16" -InformationAction Continue -InformationVariable "Test"
-```
-```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {miriamg@m365x99297270.onmicrosoft.com}
-preferredLanguage               :
-mail                            : MiriamG@M365x99297270.OnMicrosoft.com
-securityIdentifier              : S-1-12-1-649798363-1255893902-1277583799-1163042182
-identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=MiriamG@M365x99297270.OnMicrosoft.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-```
-
-This example demonstrates how to retrieve the manager of a specific user.  
-
-This command gets the manager of a specified user for the specified information action and information variable.
 
 ## PARAMETERS
 
