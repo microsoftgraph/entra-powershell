@@ -23,24 +23,33 @@ Gets a contact from Microsoft Entra ID.
 ## SYNTAX
 
 ### GetQuery (Default)
-```
-Get-EntraContact [-Filter <String>] [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+```powershell
+Get-EntraContact 
+    [-Filter <String>] 
+    [-All <Boolean>] 
+    [-Top <Int32>] 
+    [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraContact -ObjectId <String> [-All <Boolean>] [<CommonParameters>]
+```powershell
+Get-EntraContact 
+    -ObjectId <String> 
+    [-All <Boolean>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraContact cmdlet gets a contact from Microsoft Entra ID.
+The **Get-EntraContact** cmdlet gets a contact from Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1 Retrieve all contact objects in the directory
-```
+### Example 1: Retrieve all contact objects in the directory
+```powershell
 PS C:\> Get-EntraContact
+```
 
+```output
 ObjectId                             Mail                 DisplayName
 --------                             ----                 -----------
 b052db07-e7ec-4c0e-b481-a5ba550b9ee7 contact@contoso.com  Contoso Contact
@@ -50,19 +59,23 @@ b8ec01f4-0cf5-485e-9215-8db9c7acdde8 contact2@contoso.com Contoso Contact2
 
 This command retrieves all contact objects in the directory.
 
-### Example 2 Retrieve specific contact object in the directory
-```
+### Example 2: Retrieve specific contact object in the directory
+```powershell
 PS C:\> Get-EntraContact -ObjectId b052db07-e7ec-4c0e-b481-a5ba550b9ee7
+```
 
+```output
 ObjectId                             Mail                 DisplayName
 --------                             ----                 -----------
 b052db07-e7ec-4c0e-b481-a5ba550b9ee7 contact@contoso.com  Contoso Contact
 ```
 
-### Example 3 Retrieve all contacts objects in the directory
-```
+### Example 3: Retrieve all contacts objects in the directory
+```powershell
 PS C:\> Get-EntraContact -All $true
+```
 
+```output
 ObjectId                             Mail                 DisplayName
 --------                             ----                 -----------
 b052db07-e7ec-4c0e-b481-a5ba550b9ee7 contact@contoso.com  Contoso Contact
@@ -70,20 +83,24 @@ b052db07-e7ec-4c0e-b481-a5ba550b9ee7 contact@contoso.com  Contoso Contact
 b8ec01f4-0cf5-485e-9215-8db9c7acdde8 contact2@contoso.com Contoso Contact2
 ```
 
-### Example 4 Retrieve top 2 contacts objects in the directory
-```
+### Example 4: Retrieve top 2 contacts objects in the directory
+```powershell
 PS C:\> Get-EntraContact -Top 2
+```
 
+```output
 ObjectId                             Mail                 DisplayName
 --------                             ----                 -----------
 b052db07-e7ec-4c0e-b481-a5ba550b9ee7 contact@contoso.com  Contoso Contact
 16e268fb-2379-4806-bcad-80e60b855acc contact1@contoso.com Contoso Contact1
 ```
 
-### Example 5 Retrieve all contacts objects in the directory filter by DisplayName
-```
+### Example 5: Retrieve all contacts objects in the directory filter by DisplayName
+```powershell
 PS C:\> Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
+```
 
+```output
 ObjectId                             Mail                 DisplayName
 --------                             ----                 -----------
 b052db07-e7ec-4c0e-b481-a5ba550b9ee7 contact@contoso.com  Contoso Contact
