@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraServicePrincipalOwner.
+description: This article provides details on the Remove-EntraServicePrincipalOwner command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/08/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,10 @@ Removes an owner from a service principal.
 ## SYNTAX
 
 ```
-Remove-EntraServicePrincipalOwner -OwnerId <String> -ObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Remove-EntraServicePrincipalOwner 
+-OwnerId <String> 
+-ObjectId <String> 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,12 +34,13 @@ The Remove-EntraServicePrincipalOwner cmdlet removes an owner from a service pri
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Removes an owner from a service principal.
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-EntraServicePrincipalOwner -ObjectId 4a795157-504b-4473-ae28-1c54592e7702 -OwnerId d67d8b7b-57e1-486e-9361-26a1e2f0e8fe
 ```
 
-{{ Add example description here }}
+This example demonstrates how to remove entra service principal owner.
+
 
 ## PARAMETERS
 
@@ -110,7 +123,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraServicePrincipalOwner]()
+[Add-EntraServicePrincipalOwner](Add-EntraServicePrincipalOwner.md)
 
-[Get-EntraServicePrincipalOwner]()
+[Get-EntraServicePrincipalOwner](Get-EntraServicePrincipalOwner.md)
 
