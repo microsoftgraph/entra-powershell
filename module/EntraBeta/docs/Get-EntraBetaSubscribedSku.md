@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaSubscribedSku com
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 11/10/2023
+ms.date: 03/08/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -25,8 +25,6 @@ Gets subscribed SKUs to Microsoft services.
 ### GetQuery (Default)
 ```
 Get-EntraBetaSubscribedSku 
- [-InformationAction <ActionPreference>] 
- [-InformationVariable <String>]
  [<CommonParameters>]
 ```
 
@@ -34,8 +32,6 @@ Get-EntraBetaSubscribedSku
 ```
 Get-EntraBetaSubscribedSku 
  -ObjectId <String> 
- [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] 
  [<CommonParameters>]
 ```
 
@@ -45,9 +41,10 @@ The Get-EntraBetaSubscribedSku cmdlet gets subscribed SKUs to Microsoft services
 ## EXAMPLES
 
 ### Example 1: Get subscribed SKUs
-```
+```powershell
 PS C:\>Get-EntraBetaSubscribedSku
-
+```
+```
 Id                                                                        AccountId                            AccountName   AppliesTo CapabilityStatus ConsumedUnits SkuId                                SkuPart
                                                                                                                                                                                                            Number
 --                                                                        ---------                            -----------   --------- ---------------- ------------- -----                                -------
@@ -59,20 +56,25 @@ d5aec55f-2d12-4442-8d2f-ccca95d4390e_6a0f6da5-0b87-4190-a6ae-9bb5a2b9546a d5aec5
 d5aec55f-2d12-4442-8d2f-ccca95d4390e_184efa21-98c3-4e5d-95ab-d07053a96e67 d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User      Enabled          20            184efa21-98c3-4e5d-95ab-d07053a96e67 INFO...
 ```
 
+This example demonstrates how to retrieve subscribed SKUs to Microsoft services.
+
 This command gets subscribed SKUs.
 
 
 ### Example 2: Get subscribed SKUs by ObjectId
-```
+```powershell
 PS C:\>Get-EntraBetaSubscribedSku -ObjectId "d5aec55f-2d12-4442-8d2f-ccca95d4390e_b05e124f-c7cc-45a0-a6aa-8cf78c946968"
-
+```
+```output
 Id                                                                        AccountId                            AccountName   AppliesTo CapabilityStatus ConsumedUnits SkuId                                SkuPart
                                                                                                                                                                                                            Number
 --                                                                        ---------                            -----------   --------- ---------------- ------------- -----                                -------
 d5aec55f-2d12-4442-8d2f-ccca95d4390e_b05e124f-c7cc-45a0-a6aa-8cf78c946968 d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User      Enabled          20            b05e124f-c7cc-45a0-a6aa-8cf78c946968 EMSP...
 ```
 
-This command gets subscribed SKUs for the specified ObjectId.
+This example demonstrates how to retrieve specified subscribed SKUs to Microsoft services.  
+
+This command gets specified subscribed SKUs to Microsoft services.
 
 ## PARAMETERS
 
