@@ -36,21 +36,49 @@ The Get-EntraBetaUserManager cmdlet gets the manager of a user in Microsoft Entr
 ## EXAMPLES
 
 ### Example 1: Get the manager of a user
+```powershell
+PS C:\>Get-EntraBetaUserManager -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215"
 ```
-PS C:\>Get-EntraBetaUserManager -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16"
-
-
+```output
+DeletedDateTime                 :
+Id                              : 26bb22db-6b8e-4adb-b761-264c869d5245
+@odata.context                  : https://graph.microsoft.com/beta/$metadata#directoryObjects/$entity
+@odata.type                     : #microsoft.graph.user
+accountEnabled                  : True
+businessPhones                  : {+1 858 555 0109}
+city                            : San Diego
+createdDateTime                 : 2023-07-07T14:18:05Z
+country                         : United States
+department                      : Sales & Marketing
+displayName                     : Miriam Graham
 ```
 
-This command gets the manager of the specified user.
+This example demonstrates how to retrieve the manager of a specific user.  
+
+This command gets the manager of a specified user.
 
 ### Example 2: Get the manager of a user
+```powershell
+PS C:\>Get-EntraBetaUserManager -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -InformationAction Continue -InformationVariable "Test"
 ```
-PS C:\>Get-EntraBetaUserManager -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16" -InformationAction Continue -InformationVariable "Test"
-
+```output
+DeletedDateTime                 :
+Id                              : 26bb22db-6b8e-4adb-b761-264c869d5245
+@odata.context                  : https://graph.microsoft.com/beta/$metadata#directoryObjects/$entity
+@odata.type                     : #microsoft.graph.user
+accountEnabled                  : True
+businessPhones                  : {+1 858 555 0109}
+city                            : San Diego
+createdDateTime                 : 2023-07-07T14:18:05Z
+country                         : United States
+department                      : Sales & Marketing
+displayName                     : Miriam Graham
+givenName                       : Miriam
 ```
 
-This command gets the manager of the specified user for the specified information action and information variable.
+This example demonstrates how to retrieve the manager of a specific user.  
+
+This command gets the manager of the specified user for a specified information action and information variable.
 
 ## PARAMETERS
 
@@ -118,7 +146,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Remove-EntraBetaUserManager]()
+[Remove-EntraBetaUserManager](Remove-EntraBetaUserManager.md)
 
-[Set-EntraBetaUserManager]()
+[Set-EntraBetaUserManager](Set-EntraBetaUserManager.md)
 

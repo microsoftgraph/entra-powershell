@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraUserManager command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 11/10/2023
+ms.date: 03/08/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -36,21 +36,46 @@ The Get-EntraUserManager cmdlet gets the manager of a user in Microsoft Entra ID
 ## EXAMPLES
 
 ### Example 1: Get the manager of a user
+```powershell
+PS C:\>Get-EntraUserManager -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215"
 ```
-PS C:\>Get-EntraUserManager -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16"
-
-
+```output
+ageGroup                        :
+onPremisesLastSyncDateTime      :
+creationType                    :
+imAddresses                     : {miriamg@m365x99297270.onmicrosoft.com}
+preferredLanguage               :
+mail                            : MiriamG@M365x99297270.OnMicrosoft.com
+securityIdentifier              : S-1-12-1-649798363-1255893902-1277583799-1163042182
+identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=MiriamG@M365x99297270.OnMicrosoft.com}}
+consentProvidedForMinor         :
+onPremisesUserPrincipalName     :
 ```
 
-This command gets the manager of the specified user.
+This example demonstrates how to retrieve the manager of a specific user.  
+
+This command gets the manager of a specified user.
 
 ### Example 2: Get the manager of a user
-```
+```powershell
 PS C:\>Get-EntraUserManager -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16" -InformationAction Continue -InformationVariable "Test"
-
+```
+```output
+ageGroup                        :
+onPremisesLastSyncDateTime      :
+creationType                    :
+imAddresses                     : {miriamg@m365x99297270.onmicrosoft.com}
+preferredLanguage               :
+mail                            : MiriamG@M365x99297270.OnMicrosoft.com
+securityIdentifier              : S-1-12-1-649798363-1255893902-1277583799-1163042182
+identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=MiriamG@M365x99297270.OnMicrosoft.com}}
+consentProvidedForMinor         :
+onPremisesUserPrincipalName     :
 ```
 
-This command gets the manager of the specified user for the specified information action and information variable.
+This example demonstrates how to retrieve the manager of a specific user.  
+
+This command gets the manager of a specified user for the specified information action and information variable.
 
 ## PARAMETERS
 
@@ -118,7 +143,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Remove-EntraUserManager]()
+[Remove-EntraUserManager](Remove-EntraUserManager.md)
 
-[Set-EntraUserManager]()
+[Set-EntraUserManager](Set-EntraUserManager.md)
 
