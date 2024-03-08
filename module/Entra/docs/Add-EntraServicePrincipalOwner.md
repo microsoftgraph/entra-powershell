@@ -34,11 +34,14 @@ The Add-EntraServicePrincipalOwner cmdlet adds an owner to a service principal i
 ## EXAMPLES
 
 ### Example 1: Add a user as an owner to a service principal
+
 ```powershell
 PS C:\> $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
 PS C:\> $OwnerId = (Get-EntraUser -Top 1).ObjectId
 PS C:\> Add-EntraServicePrincipalOwner -ObjectId $ServicePrincipalId -RefObjectId -$OwnerId
 ```
+
+This example demonstrates how to adds an owner to a service principal
 
 The first command gets the object ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md)cmdlet, and then stores it in the $ServicePrincipalId variable.
 
