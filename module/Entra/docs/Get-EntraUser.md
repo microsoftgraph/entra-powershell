@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraUser command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/06/2023
+ms.date: 03/06/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -52,9 +52,8 @@ The Get-EntraUser cmdlet gets a user from Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1: Get ten users
+### Example 1: Get top ten users
 
-This example demonstrates how to get ten users from Microsoft Entra ID.
 ```powershell
 PS C:\>Get-EntraUser -Top 10
 ```
@@ -73,11 +72,11 @@ Automate Bot        c26aa946-90cd-4e9a-a8f1-43eeef655500                        
 Conf Room Baker     a3ee30fe-b00d-4d7d-8921-b72ff03bb77d Baker@M365x99297270.OnMicrosoft.com  Baker@M365x99297270.OnMicrosoft.com
 ```
 
+This example demonstrates how to get top ten users from Microsoft Entra ID.
 This command gets ten users.
 
 ### Example 2: Get a user by ID
 
-This example demonstrates how to retrieve specific user by providing ID.
 ```powershell
 PS C:\>Get-EntraUser -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1"
 ```
@@ -87,15 +86,14 @@ DisplayName     Id                                   Mail                       
 Conf Room Adams fd560167-ff1f-471a-8d74-3b0070abcea1 Adams@M365x99297270.OnMicrosoft.com Adams@M365x99297270.OnMicrosoft.com
 ```
 
+This example demonstrates how to retrieve specific user by providing ID.
 This command gets the details of specified user.
 
 ### Example 3: Search among retrieved users
 
-This example demonstrates how to retrive users for specific string from Microsoft Entra ID.
 ```powershell
 PS C:\> Get-EntraUser -SearchString "New"
 ```
-
 ```output
 ObjectId                             DisplayName UserPrincipalName                   UserType
 --------                             ----------- -----------------                   --------
@@ -103,11 +101,11 @@ ObjectId                             DisplayName UserPrincipalName              
 2b450b8e-1db6-42cb-a545-1b05eb8a358b New user    NewTestUser@contoso.onmicrosoft.com Member
 ```
 
+This example demonstrates how to retrive users for specific string from Microsoft Entra ID.
 This cmdlet gets all users that match the value of SearchString against the first characters in DisplayName or UserPrincipalName .
 
 ### Example 4: Get a user by userPrincipalName
 
-In this example we'll retrive user by userPrincipalName from Microsoft Entra ID.
 ```powershell
 PS C:\>Get-EntraUser -Filter "userPrincipalName eq 'jondoe@contoso.com'"
 ```
@@ -117,21 +115,23 @@ ObjectId                             DisplayName UserPrincipalName              
 5e8b0f4d-2cd4-4e17-9467-b0f6a5c0c4d0 New user    NewUser@contoso.onmicrosoft.com     Member
 2b450b8e-1db6-42cb-a545-1b05eb8a358b New user    NewTestUser@contoso.onmicrosoft.com Member
 ```
+
+In this example we'll retrive user by userPrincipalName from Microsoft Entra ID.
 This command gets the specified user.
 
 ### Example 5: Get a user by MailNickname
 
-In this example we'll retrive all users whose MailNickname starts with Ada.
 ```powershell
 PS C:\>Get-EntraUser -Filter "startswith(MailNickname,'Ada')"
 ```
-
 ```output
 DisplayName     Id                                   Mail                                UserPrincipalName
 -----------     --                                   ----                                -----------------
 Conf Room Adams fd560167-ff1f-471a-8d74-3b0070abcea1 Adams@M365x99297270.OnMicrosoft.com Adams@M365x99297270.OnMicrosoft.com
 ```
-This command gets all the users whos mail nickname starts with Ada. 
+
+In this example we'll retrive all users whose MailNickname starts with Ada.
+
 
 ## PARAMETERS
 
