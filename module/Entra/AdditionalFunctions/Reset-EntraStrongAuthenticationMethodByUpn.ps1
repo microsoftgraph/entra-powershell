@@ -63,7 +63,7 @@ function Reset-EntraStrongAuthenticationMethodByUpn {
                     # Password cannot be removed currently
                 }        
                 Default {
-                    Write-Host 'This script does not handle removing this auth method type: ' + $method.AdditionalProperties['@odata.type']
+                    
                 }
             }
             return $? # Return true if no error and false if there is an error
