@@ -36,8 +36,6 @@ The **Get-EntraBetaApplicationKeyCredential** cmdlet gets the key credentials fo
 ## EXAMPLES
 
 ### Example 1: Get key credentials
-In this example, we'll provide the application ID to retrieve key credentials.
-
 ```powershell
 PS C:\> Get-EntraBetaApplicationKeyCredential -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84"
 ```
