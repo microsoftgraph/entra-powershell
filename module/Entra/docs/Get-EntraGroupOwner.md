@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraGroupOwner command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 11/10/2023
+ms.date: 03/08/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -36,26 +36,75 @@ The Get-EntraGroupOwner cmdlet gets an owner of a group in Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Get a group owner by ID
-```
+```powershell
 PS C:\>Get-EntraGroupOwner -ObjectId "ba828166-dcd3-4349-aee9-9fbbf619105d"
-
 ```
+```output
+ageGroup                        :
+onPremisesLastSyncDateTime      :
+creationType                    :
+imAddresses                     : {admin@m365x99297270.onmicrosoft.com}
+preferredLanguage               : en
+mail                            : admin@M365x99297270.onmicrosoft.com
+securityIdentifier              : S-1-12-1-2574072234-1301806508-533216682-2892133300
+identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=admin@M365x99297270.onmicrosoft.com}}
+consentProvidedForMinor         :
+onPremisesUserPrincipalName     :
+```
+
+This example demonstrates how to retrieve the owner of a specific group.  
 
 This command gets the specified group owner.
 
 ### Example 2: Gets all group owners
-```
+```powershell
 PS C:\>Get-EntraGroupOwner -ObjectId "c072b115-ed7b-47cb-90d3-d5019d8bfd51" -All $true
-
 ```
+```output
+ageGroup                        :
+onPremisesLastSyncDateTime      :
+creationType                    :
+imAddresses                     : {admin@m365x99297270.onmicrosoft.com}
+preferredLanguage               : en
+mail                            : admin@M365x99297270.onmicrosoft.com
+securityIdentifier              : S-1-12-1-2574072234-1301806508-533216682-2892133300
+identities                      : {System.Collections.Hashtable}
+consentProvidedForMinor         :
+onPremisesUserPrincipalName     :
+assignedLicenses                : {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
+department                      :
+jobTitle                        :
+```
+
+This example demonstrates how to retrieve the all owner of a specific group.  
 
 This command gets the all owners of a group.
 
 ### Example 3: Gets two group owners
-```
+```powershell
 PS C:\>Get-EntraGroupOwner -ObjectId "c072b115-ed7b-47cb-90d3-d5019d8bfd51" -Top 2
-
 ```
+```output
+ageGroup                        :
+onPremisesLastSyncDateTime      :
+creationType                    :
+imAddresses                     : {admin@m365x99297270.onmicrosoft.com}
+preferredLanguage               : en
+mail                            : admin@M365x99297270.onmicrosoft.com
+securityIdentifier              : S-1-12-1-2574072234-1301806508-533216682-2892133300
+identities                      : {System.Collections.Hashtable}
+consentProvidedForMinor         :
+onPremisesUserPrincipalName     :
+assignedLicenses                : {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
+department                      :
+jobTitle                        :
+proxyAddresses                  : {SMTP:admin@M365x99297270.onmicrosoft.com}
+legalAgeGroupClassification     :
+assignedPlans                   : {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
+id                              : 996d39aa-fdac-4d97-aa3d-c81fb47362ac
+```
+
+This example demonstrates how to retrieve the top two owner of a specific group.  
 
 This command gets the top two owners of a group.
 
@@ -118,7 +167,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraGroupOwner]()
+[Add-EntraGroupOwner](Add-EntraGroupOwner.md)
 
-[Remove-EntraGroupOwner]()
+[Remove-EntraGroupOwner](Remove-EntraGroupOwner.md)
 
