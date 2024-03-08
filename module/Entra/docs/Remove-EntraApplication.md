@@ -31,13 +31,11 @@ Remove-EntraApplication
 ```
 
 ## DESCRIPTION
-The Remove-EntraApplication cmdlet removes the specified application from Microsoft Entra ID.
+The **Remove-EntraApplication** cmdlet removes the specified application from Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Remove an application
-This example shows how to remove the specified application.
-
 ```powershell
 PS C:\>Remove-EntraApplication -ObjectId "acd10942-5747-4385-8824-4c5d5fa904f9"
 ```
