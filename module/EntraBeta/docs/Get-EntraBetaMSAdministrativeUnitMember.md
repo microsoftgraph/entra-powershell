@@ -22,31 +22,46 @@ Gets a member of an administrative unit.
 
 ## SYNTAX
 
-```
-Get-EntraBetaMSAdministrativeUnitMember [-All <Boolean>] -Id <String> [-Top <Int32>]
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Get-EntraBetaMSAdministrativeUnitMember 
+    -Id <String> 
+    [-All <Boolean>] 
+    [-Top <Int32>] 
+    [-InformationAction <ActionPreference>] 
+    [-InformationVariable <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaMSAdministrativeUnitMember cmdlet gets a member of a Microsoft Entra ID administrative unit.
+The **Get-EntraBetaMSAdministrativeUnitMember** cmdlet gets a member of a Microsoft Entra ID administrative unit.
 
 ## EXAMPLES
 
 ### Example 1 Get an administrative unit member by ID
-```
-PS C:\> Get-EntraBetaMSAdministrativeUnitMember -Id "ef08b536-9d0a-4f8f-bda5-8b9cd01a9159"
+This example shows how to get administrative unit members.
 
+```powershell
+PS C:\> Get-EntraBetaMSAdministrativeUnitMember -Id "ef08b536-9d0a-4f8f-bda5-8b9cd01a9159"
+```
+
+```output
 Id                                   OdataType
 --                                   ---------
 b54e1419-0c09-4fdf-a7d6-0729afce35f8 #microsoft.graph.user
 4321d7f5-3457-4dd6-8117-e771a053f412 #microsoft.graph.user
 6e0a596f-982d-4b18-ba4b-a533ce775f8d #microsoft.graph.user
 ```
+
+This example returns the list of administrative unit members from administrative unit ID ```ef08b536-9d0a-4f8f-bda5-8b9cd01a9159```.
 
 ### Example 2: Get all administrative unit members by ID
-```
-PS C:\> Get-EntraBetaMSAdministrativeUnitMember -Id "ef08b536-9d0a-4f8f-bda5-8b9cd01a9159" -All $true
+This example shows how to get all administrative unit members using paramter '-All' paramter.
 
+```powershell
+PS C:\> Get-EntraBetaMSAdministrativeUnitMember -Id "ef08b536-9d0a-4f8f-bda5-8b9cd01a9159" -All $true
+```
+
+```output
 Id                                   OdataType
 --                                   ---------
 b54e1419-0c09-4fdf-a7d6-0729afce35f8 #microsoft.graph.user
@@ -54,15 +69,23 @@ b54e1419-0c09-4fdf-a7d6-0729afce35f8 #microsoft.graph.user
 6e0a596f-982d-4b18-ba4b-a533ce775f8d #microsoft.graph.user
 ```
 
-### Example 3: Get top 2 administrative unit members by ID
-```
-PS C:\> Get-EntraBetaMSAdministrativeUnitMember -Id "ef08b536-9d0a-4f8f-bda5-8b9cd01a9159" -All $false -Top 2
+This example returns the list of administrative unit members from administrative unit ID ```ef08b536-9d0a-4f8f-bda5-8b9cd01a9159```.
 
+### Example 3: Get top 2 administrative unit members by ID
+This example shows how to get top specified administrative unit members from an AU.
+
+```powershell
+PS C:\> Get-EntraBetaMSAdministrativeUnitMember -Id "ef08b536-9d0a-4f8f-bda5-8b9cd01a9159" -All $false -Top 2
+```
+
+```output
 Id                                   OdataType
 --                                   ---------
 b54e1419-0c09-4fdf-a7d6-0729afce35f8 #microsoft.graph.user
 4321d7f5-3457-4dd6-8117-e771a053f412 #microsoft.graph.user
 ```
+
+This example returns top specified administrative unit members from administrative unit ID ```ef08b536-9d0a-4f8f-bda5-8b9cd01a9159```.
 
 ## PARAMETERS
 
