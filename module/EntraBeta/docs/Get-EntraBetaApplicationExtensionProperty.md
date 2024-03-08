@@ -36,8 +36,6 @@ The **Get-EntraBetaApplicationExtensionProperty** cmdlet gets application extens
 ## EXAMPLES
 
 ### Example 1: Get extension properties
-In this example, we'll provide the application ID to retrieve extension properties.
-
 ```powershell
 PS C:\>Get-EntraBetaApplicationExtensionProperty -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84"
 ```
