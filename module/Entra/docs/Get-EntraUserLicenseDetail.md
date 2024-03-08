@@ -35,8 +35,6 @@ This cmdlet retrieves license details for a user.
 
 ### Example 1: Retrieve user license details 
 
-This example demonstrates how to retrieve license details for a user from Microsoft Entra ID.
-
 ```powershell
 PS C:\WINDOWS\system32> Get-EntraUserLicenseDetail -ObjectId df19e8e6-2ad7-453e-87f5-037f6529ae16
 ```
@@ -48,7 +46,8 @@ Hv-1hQIEDECePA-ellMl0cjsRfKvdY5Pth8n2BFN5fM {class ServicePlanInfo {...
 Hv-1hQIEDECePA-ellMl0QQrjQe98RFBu9S0sbNUzvQ {class ServicePlanInfo {...
 ```
 
-This example retrieves the license details of the user specified through the ObjectId parameter.
+This example demonstrates how to retrieve license details for a user from Microsoft Entra ID.
+This command retrieves the license details of the user specified through the ObjectId parameter.
 
 ## PARAMETERS
 
