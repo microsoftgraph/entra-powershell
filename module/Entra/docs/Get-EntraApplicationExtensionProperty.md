@@ -22,20 +22,27 @@ Gets application extension properties.
 
 ## SYNTAX
 
-```
-Get-EntraApplicationExtensionProperty -ObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Get-EntraApplicationExtensionProperty 
+    -ObjectId <String> 
+    [-InformationAction <ActionPreference>] 
+    [-InformationVariable <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraApplicationExtensionProperty cmdlet gets application extension properties in Microsoft Entra ID.
+The **Get-EntraApplicationExtensionProperty** cmdlet gets application extension properties in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Get extension properties
-```
-PS C:\>Get-EntraApplicationExtensionProperty -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84"
+In this example, we'll provide the application ID to retrieve extension properties.
 
+```powershell
+PS C:\>Get-EntraApplicationExtensionProperty -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84"
+```
+
+```output
 ObjectId                             Name                                                    TargetObjects
 --------                             ----                                                    -------------
 344ed560-f8e7-410e-ab9f-c795a7df5c36 extension_36ee4c6c081240a2b820b22ebd02bce3_NewAttribute {}
