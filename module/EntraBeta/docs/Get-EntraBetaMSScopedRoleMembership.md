@@ -22,28 +22,35 @@ Gets a scoped role membership from an administrative unit.
 
 ## SYNTAX
 
-```
-Get-EntraBetaMSScopedRoleMembership -Id <String> [-ScopedRoleMembershipId <String>] [<CommonParameters>]
+```powershell
+Get-EntraBetaMSScopedRoleMembership 
+    -Id <String> 
+    [-ScopedRoleMembershipId <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaMSScopedRoleMembership cmdlet gets a scoped role membership from an administrative unit in Microsoft Entra ID.
+The **Get-EntraBetaMSScopedRoleMembership** cmdlet gets a scoped role membership from an administrative unit in Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1 Get Scoped Role Administrator
-```
+### Example 1: Get Scoped Role Administrator
+```powershell
 PS C:\>Get-EntraBetaMSScopedRoleMembership -Id "526b7173-5a6e-49dc-88ec-b677a9093709" -ScopedRoleMembershipId "356b7173-5a6e-49dc-88ec-b677a9093709"
+```
 
+```output
 AdministrativeUnitId                 Id                                                                RoleId
 --------------------                 --                                                                ------
 526b7173-5a6e-49dc-88ec-b677a9093709 BMYgih8pw0y20CQerx3BhEAwHXd98V5Gi-vwYVZQpAouYj-NPIZuQYv0G7SehpIUU 356b7173-5a6e-49dc-88ec-b...
 ```
 
-### Example 2 List scoped administrators for AU.
-```
+### Example 2: List scoped administrators for AU.
+```powershell
 PS C:\>Get-EntraBetaMSScopedRoleMembership -Id "526b7173-5a6e-49dc-88ec-b677a9093709"
+```
 
+```output
 AdministrativeUnitId                 Id                                                                RoleId
 --------------------                 --                                                                ------
 526b7173-5a6e-49dc-88ec-b677a9093709 BMYgih8pw0y20CQerx3BhEAwHXd98V5Gi-vwYVZQpAouYj-NPIZuQYv0G7SehpIUU 8a20c604-291f-4cc3-b6d0-2...
@@ -93,7 +100,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraBetaMSScopedRoleMembership]()
+[Add-EntraBetaMSScopedRoleMembership](Add-EntraBetaMSScopedRoleMembership.md)
 
-[Remove-EntraBetaMSScopedRoleMembership]()
+[Remove-EntraBetaMSScopedRoleMembership](Remove-EntraBetaMSScopedRoleMembership.md)
 
