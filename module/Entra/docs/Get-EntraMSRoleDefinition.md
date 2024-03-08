@@ -89,6 +89,8 @@ TemplateId      : 332a8659-25b8-4b3e-b545-38b331c48b2b
 Version         :
 ```
 
+This command returns all role definitions present.
+
 ### Example 2 : Get a role definition by ID
 ```powershell
 PS C:\> Get-EntraMSRoleDefinition -Id 1a327991-10cb-4266-877a-998fb4df78ec
@@ -111,6 +113,8 @@ RolePermissions : {class RolePermission {
 TemplateId      : 332a8659-25b8-4b3e-b545-38b331c48b2b
 Version         :
 ```
+
+This command returns a specified role definition.
 
 ### Example 3: Filter role definitions by display name
 ```powershell
@@ -150,6 +154,8 @@ RolePermissions : {class RolePermission {
 TemplateId      : 332a8659-25b8-4b3e-b545-38b331c48b2b
 Version         :
 ```
+
+This command return all the role definitions containing the specified display name.
 
 ## PARAMETERS
 
