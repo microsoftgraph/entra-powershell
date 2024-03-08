@@ -46,7 +46,8 @@ Hv-1hQIEDECePA-ellMl0cjsRfKvdY5Pth8n2BFN5fM {class ServicePlanInfo {...
 Hv-1hQIEDECePA-ellMl0QQrjQe98RFBu9S0sbNUzvQ {class ServicePlanInfo {...
 ```
 
-This example demonstrates how to retrieve license details for a user from Microsoft Entra ID.
+This example demonstrates how to retrieves license details for a user from Microsoft Entra ID.  
+
 This command retrieves the license details of the user specified through the ObjectId parameter.
 
 ## PARAMETERS
