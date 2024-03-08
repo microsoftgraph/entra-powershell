@@ -37,11 +37,11 @@ Security groups cannot be restored after deletion.
 ## EXAMPLES
 
 ### Example 1: Remove a group
-```
+
+```powershell
 PS C:\>Remove-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606"
 ```
-
-This command removes the specified group from Microsoft Entra ID.
+This example removes the specified group from Microsoft Entra ID.
 
 ## PARAMETERS
 
@@ -109,9 +109,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraGroup]()
+[Get-EntraGroup](Get-EntraGroup.md)
 
-[New-EntraGroup]()
+[New-EntraGroup](New-EntraGroup.md)
 
-[Set-EntraGroup]()
+[Set-EntraGroup](Set-EntraGroup.md)
 
