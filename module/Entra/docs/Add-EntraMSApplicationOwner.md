@@ -35,13 +35,19 @@ Adds an owner for an application object.
 ## EXAMPLES
 
 ### Example 1: Add an owner to an application
-This example shows how to add an owner to an application.
-
 ```powershell
 PS C:\> $ApplicationId = (Get-EntraMSApplication -Top 1).ObjectId
 PS C:\> $UserObjectId = (Get-EntraMSUser -Top 1).ObjectId
 PS C:\> Add-EntraMSApplicationOwner -ObjectId $ApplicationId -RefObjectId $UserObjectId
 ```
+
+The first command gets an application using [Get-EntraMSApplication](./Get-EntraMSApplication.md) cmdlet, and stores 
+the ObjectId property value in $ApplicationId variable.  
+
+The second command gets an user using [Get-EntraMSUser](./Get-EntraMSUser.md) cmdlet, and stores 
+the ObjectId property value in $UserObjectId variable.  
+
+This final command adds an owner in $UserObjectId to an application in $ApplicationId.
 
 This command adds an owner to an application.
 
