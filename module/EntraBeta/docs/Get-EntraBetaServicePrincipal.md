@@ -23,29 +23,41 @@ Gets a service principal.
 ## SYNTAX
 
 ### GetQuery (Default)
-```
-Get-EntraBetaServicePrincipal [-Filter <String>] [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+```powershell
+Get-EntraBetaServicePrincipal 
+    [-Top <Int32>] 
+    [-All <Boolean>] 
+    [-Filter <String>] 
+    [<CommonParameters>]
 ```
 
 ### GetVague
-```
-Get-EntraBetaServicePrincipal [-SearchString <String>] [-All <Boolean>] [<CommonParameters>]
+```powershell
+Get-EntraBetaServicePrincipal 
+    [-SearchString <String>] 
+    [-All <Boolean>] 
+    [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraBetaServicePrincipal -ObjectId <String> [-All <Boolean>] [<CommonParameters>]
+```powershell
+Get-EntraBetaServicePrincipal 
+    -ObjectId <String> 
+    [-All <Boolean>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaServicePrincipal cmdlet gets a service principal in Microsoft Entra ID.
+The **Get-EntraBetaServicePrincipal** cmdlet gets a service principal in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Retrieve all service principal from the directory
-```
+```powershell
 PS C:\> Get-EntraBetaServicePrincipal
+```
 
+```output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 00221b6f-4387-4f3f-aa85-34316ad7f956 e5e29b8a-85d9-41ea-b8d1-2162bd004528 Tenant Schema Extension App
@@ -61,24 +73,29 @@ ObjectId                             AppId                                Displa
 This command retrieves all service principal from the directory.
 
 ### Example 2: Retrieve a service principal by ID
-```
+```powershell
 PS C:\> $ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
 PS C:\> Get-EntraBetaServicePrincipal $ServicePrincipalId
+```
 
+```output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 00221b6f-4387-4f3f-aa85-34316ad7f956 e5e29b8a-85d9-41ea-b8d1-2162bd004528 Tenant Schema Extension App
 ```
 
-The first command gets the ID of a service principal by using the Get-EntraBetaServicePrincipal (./Get-EntraBetaServicePrincipal.md)cmdlet. 
-The command stores the ID in the $ServicePrincipalId variable.
+The first command gets the ID of a service principal by using the [Get-EntraBetaServicePrincipal](./Get-EntraBetaServicePrincipal.md) cmdlet.  
+
+The command stores the ID in the $ServicePrincipalId variable.  
 
 The second command gets the service principal identified by $ServicePrincipalId.
 
 ### Example 3: Retrieve all service principals from the directory
-```
+```powershell
 PS C:\> Get-EntraBetaServicePrincipal -All $true
+```
 
+```output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 00221b6f-4387-4f3f-aa85-34316ad7f956 e5e29b8a-85d9-41ea-b8d1-2162bd004528 Tenant Schema Extension App
@@ -94,9 +111,11 @@ ObjectId                             AppId                                Displa
 This command retrieves all service principals from the directory.
 
 ### Example 4: Retrieve top 3 service principal from the directory
-```
+```powershell
 PS C:\> Get-EntraBetaServicePrincipal -Top 3
+```
 
+```output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 00221b6f-4387-4f3f-aa85-34316ad7f956 e5e29b8a-85d9-41ea-b8d1-2162bd004528 Tenant Schema Extension App
@@ -107,9 +126,11 @@ ObjectId                             AppId                                Displa
 This command retrieves top 3 service principals from the directory.
 
 ### Example 5: Get a service principal by display name
-```
+```powershell
 PS C:\> Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'ProjectWorkManagement'"
+```
 
+```output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 06ab01eb-3e77-4d14-ae31-322c7730a65b 09abbdfd-ed23-44ee-a2d9-a627aa1c90f3 ProjectWorkManagement
@@ -118,9 +139,11 @@ ObjectId                             AppId                                Displa
 This command gets a service principal by its display name.
 
 ### Example 6: Retrieve a list of all service principal which have a display name that contains "ProjectWorkManagement"
-```
+```powershell
 PS C:\> Get-EntraBetaServicePrincipal -SearchString "ProjectWorkManagement"
+```
 
+```output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 06ab01eb-3e77-4d14-ae31-322c7730a65b 09abbdfd-ed23-44ee-a2d9-a627aa1c90f3 ProjectWorkManagement
