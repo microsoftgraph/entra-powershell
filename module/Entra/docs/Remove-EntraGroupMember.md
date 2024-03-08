@@ -26,8 +26,6 @@ Removes a member from a group.
 Remove-EntraGroupMember 
  -ObjectId <String> 
  -MemberId <String> 
- [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] 
  [<CommonParameters>]
 ```
 
@@ -50,20 +48,6 @@ ObjectId - Specifies the object ID of a group in Microsoft Entra ID.
 
 MemberId - Specifies the ID of the member to remove.
 
-
-### Example 2: Remove a member
-
-This example demonstrates how to remove a member from a group in Microsoft Entra ID.
-
-```powershell
-PS C:\>Remove-EntraGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -MemberId "2ae2d97b-4bde-42aa-b7c0-7c91a4c91a77" -InformationAction Continue -InformationVariable "Test"
-```
-
-This command removes the specified member with the specified information action and information variable from the specified group. 
-
-ObjectId - Specifies the object ID of a group in Microsoft Entra ID.  
-
-MemberId - Specifies the ID of the member to remove.
 
 ## PARAMETERS
 
