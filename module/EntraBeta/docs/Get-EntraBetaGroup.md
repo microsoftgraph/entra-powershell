@@ -53,11 +53,9 @@ The Get-EntraBetaGroup cmdlet gets a group in Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Get all groups
-
 ```powershell
 PS C:\>Get-EntraBetaGroup
 ```
-
 ```output
 ObjectId                             DisplayName                          Description
 --------                             -----------                          -----------
@@ -81,31 +79,28 @@ Its members ...
 This group should not be deleted.
 ```
 
-This example demonstrates how to get all groups from Microsoft Entra ID.
+This example demonstrates how to get all groups from Microsoft Entra ID.  
+
 This command gets all groups in Microsoft Entra ID.
 
 ### Example 2: Get a specific group by using an ObjectId
-
 ```powershell
 PS C:\>Get-EntraBetaGroup -ObjectId "fc446647-e8ff-47f1-a489-cf31694c0d35"
 ```
-
 ```output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
 UPDISPLAY   fc446647-e8ff-47f1-a489-cf31694c0d35 Remoteliving Upd1        {Unified}
 ```
 
-This example demonstrates how to retrieve group by ObjectId from Microsoft Entra ID.
+This example demonstrates how to retrieve group by ObjectId from Microsoft Entra ID.  
 
 This command gets information for the group that has the specified ID.
 
 ### Example 3: Get top five groups 
-
 ```powershell
 PS C:\>Get-EntraBetaGroup -Top 5
 ```
-
 ```output
 DisplayName             Id                                   MailNickname          Description
 -----------             --                                   ------------          -----------
@@ -116,30 +111,28 @@ HelpDesk admin group    0883fd77-0ee8-45de-a21e-f32af1623acc helpDeskAdminGroup 
 New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding New Employee Onboarding
 ```
 
-This example demonstrates how to retrieve top five groups from Microsoft Entra ID.
+This example demonstrates how to retrieve top five groups from Microsoft Entra ID.  
+
 This command gets the five groups in Microsoft Entra ID.
 
 ### Example 4: Get a group by DisplayName
-
 ```powershell
 PS C:\>Get-EntraBetaGroup -Filter "DisplayName eq 'Parents of Contoso'"
 ```
-
 ```output
 DisplayName        Id                                   MailNickname     Description        GroupTypes
 -----------        --                                   ------------     -----------        ----------
 Parents of Contoso 05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso Parents of Contoso {Unified}
 ```
 
-This example demonstrates how to retrieve group by DisplayName from Microsoft Entra ID.
+This example demonstrates how to retrieve group by DisplayName from Microsoft Entra ID.  
+
 This command gets the specified group.
 
 ### Example 5: Get groups that contain a search string
-
 ```powershell
 PS C:\>Get-EntraBetaGroup -SearchString "New"
 ```
-
 ```output
 DisplayName             Id                                   MailNickname          Description             GroupTypes
 -----------             --                                   ------------          -----------             ----------
