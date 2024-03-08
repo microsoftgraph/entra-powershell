@@ -22,20 +22,27 @@ Gets the key credentials for an application.
 
 ## SYNTAX
 
-```
-Get-EntraBetaApplicationKeyCredential -ObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Get-EntraBetaApplicationKeyCredential 
+    -ObjectId <String> 
+    [-InformationAction <ActionPreference>] 
+    [-InformationVariable <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaApplicationKeyCredential cmdlet gets the key credentials for an application.
+The **Get-EntraBetaApplicationKeyCredential** cmdlet gets the key credentials for an application.
 
 ## EXAMPLES
 
 ### Example 1: Get key credentials
-```
-PS C:\> Get-EntraBetaApplicationKeyCredential -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84"
+In this example, we'll provide the application ID to retrieve key credentials.
 
+```powershell
+PS C:\> Get-EntraBetaApplicationKeyCredential -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84"
+```
+
+```output
 CustomKeyIdentifier : {116, 101, 115, 116}
 EndDate             : 10/23/2024 11:36:56 AM
 KeyId               : 52ab6cca-bc59-4f06-8450-75a3d2b8e53b
