@@ -22,9 +22,13 @@ Creates an extension property on an application object.
 
 ## SYNTAX
 
-```
-New-EntraMSApplicationExtensionProperty [-DataType <String>] -ObjectId <String>
- [-TargetObjects <System.Collections.Generic.List`1[System.String]>] [-Name <String>] [<CommonParameters>]
+```powershell
+New-EntraMSApplicationExtensionProperty 
+    -ObjectId <String> 
+    [-DataType <String>] 
+    [-TargetObjects <System.Collections.Generic.List`1[System.String]>] 
+    [-Name <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -33,10 +37,11 @@ Creates an extension property on an application object.
 ## EXAMPLES
 
 ### Example 1: Create an extension property
-```
+```powershell
 PS C:\>New-EntraMSApplicationExtensionProperty -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -DataType "string" -Name "NewAttribute" -TargetObjects "Application"
+```
 
-
+```output
 ObjectId                             Name                                                    TargetObjects
 --------                             ----                                                    -------------
 3ddd22e7-a150-4bb3-b100-e410dea1cb84 extension_36ee4c6c081240a2b820b22ebd02bce3_NewAttribute {}
@@ -120,7 +125,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraMSApplicationExtensionProperty]()
+[Get-EntraMSApplicationExtensionProperty](Get-EntraMSApplicationExtensionProperty.md)
 
-[Remove-EntraMSApplicationExtensionProperty]()
+[Remove-EntraMSApplicationExtensionProperty](Remove-EntraMSApplicationExtensionProperty.md)
 
