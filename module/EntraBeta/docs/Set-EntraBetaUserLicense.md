@@ -33,13 +33,11 @@ Set-EntraBetaUserLicense
 ```
 
 ## DESCRIPTION
-The Set-EntraBetaUserLicense adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
+The **Set-EntraBetaUserLicense** adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
 ## EXAMPLES
 
 ### Example 1: Add a license to a user based on a template user
-This example shows how to add a license to a user.
-
 ```powershell
 PS C:\> $LicensedUser = Get-EntraBetaUser -ObjectId "TemplateUser@contoso.com"  
 PS C:\> $User = Get-EntraBetaUser -ObjectId "User@contoso.com"  
@@ -50,7 +48,7 @@ PS C:\> $Licenses.AddLicenses = $License
 PS C:\> Set-EntraBetaUserLicense -ObjectId $User.ObjectId -AssignedLicenses $Licenses
 ```
 
-The first command gets a user by using the Get-EntraBetaUser (./Get-EntraBetaUser.md)cmdlet, and then stores it in the $LicensedUser variable.
+The first command gets a user by using the [Get-EntraBetaUser](./Get-EntraBetaUser.md) cmdlet, and then stores it in the $LicensedUser variable.
 
 The second command gets another user by using Get-EntraBetaUser , and then stores it in the $User variable.
 
