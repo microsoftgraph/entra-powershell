@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraMSGroup command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/06/2023
+ms.date: 03/06/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -56,15 +56,10 @@ If you specify no parameters, this cmdlet gets all groups.
 ## EXAMPLES
 
 ### Example 1: Get all groups
-
-This example demonstrates how to retrieve all groups from Microsoft Entra ID.
-
 ```powershell
 PS C:\> Get-EntraMSGroup
-
 ```
 ```output
-
 DisplayName                         Id                                   MailNickname                     Description
 -----------                         --                                   ------------                     -----------
 Ask HR                              056b2531-005e-4f3e-be78-01a71ea30a04 askhr
@@ -76,30 +71,27 @@ HelpDesk admin group3               0bdddeb1-88a6-4251-aaa5-98b48271158b helpDes
 
 ```
 
-This command retrieves  all groups in Microsoft Entra ID.
+This example demonstrates how to retrieve all groups from Microsoft Entra ID.  
+
+This command retrieves all groups in Microsoft Entra ID.
 
 ### Example 2: Get a specific group by using an ID
-
-In this example, we'll provide the  ID to retrieve a specific group.
-
 ```powershell
 PS C:\> Get-EntraMSGroup -Id "0877c6c6-fc99-4d51-9871-8335be7cfc9d"
 ```
-
 ```output
 DisplayName  Id                                   MailNickname Description                                GroupTypes
 -----------  --                                   ------------ -----------                                ----------
 Contoso Team 0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam  A collaboration area for the Contoso Team. {Unified}
 ```
+
+In this example, we'll provide the ID to retrieve a specific group.  
+
 This command gets information for the group that has the specified ID.
 
 ### Example 3: Get top five groups
-
-This example demonstrates how to retrieve top five groups from Microsoft Entra ID.
-
-```
+```powershell
 PS C:\> Get-EntraMSGroup -Top 5
-
 ```
 ```output
 DisplayName             Id                                   MailNickname          Description                                GroupTypes
@@ -111,28 +103,25 @@ HelpDesk admin group    0883fd77-0ee8-45de-a21e-f32af1623acc helpDeskAdminGroup 
 New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding New Employee Onboarding                    {Unified}
 ```
 
-This command gets the top five groups in Microsoft Entra ID.
+This example demonstrates how to retrieve top five groups from Microsoft Entra ID.  
+
+This command gets the five groups in Microsoft Entra ID.
 
 ### Example 4: Get a group by DisplayName
-
-This example retrieve group by DisplayName.
-
 ```powershell
 PS C:\> Get-EntraMSGroup -Filter "DisplayName eq 'Parents of Contoso'"
 ```
 ```output
-
 DisplayName        Id                                   MailNickname     Description        GroupTypes
 -----------        --                                   ------------     -----------        ----------
 Parents of Contoso 05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso Parents of Contoso {Unified}
 ```
 
+This example demonstrates how to retrieve group by DisplayName.  
+
 This command gets the specified group.
 
 ### Example 5: Search among retrieved groups
-
-This example demonstrates how to retrieve groups using  SearchString against the first characters in DisplayName or Description attributes.
-
 ```powershell
 PS C:\> Get-EntraMSGroup -SearchString "New"
 ```
@@ -143,7 +132,7 @@ New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboardi
 new1                    27d134ad-466b-43dd-8856-ba9f0bc17d24 new1                  new1                    {DynamicMembership, Unified}
 ```
 
-This cmdlet gets all groups that match the value of SearchString against the first characters in DisplayName or Description attributes.
+This example demonstrates how to retrieve groups using SearchString against the first characters in DisplayName or Description attributes.
 
 ## PARAMETERS
 
