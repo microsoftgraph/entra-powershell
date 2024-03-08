@@ -37,13 +37,11 @@ The Remove-EntraApplicationOwner cmdlet removes an owner from an application in 
 ## EXAMPLES
 
 ### Example 1: Remove an owner from an application
-This example shows how to remove an owner from an application.
-
 ```powershell
 PS C:\>Remove-EntraApplicationOwner -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -OwnerId "c13dd34a-492b-4561-b171-40fcce2916c5"
 ```
 
-This command removes the owner from the specified application.
+This command removes the specified owner from the specified application.
 
 ## PARAMETERS
 
