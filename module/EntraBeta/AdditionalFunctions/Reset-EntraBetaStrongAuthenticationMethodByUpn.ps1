@@ -90,6 +90,8 @@ function Reset-EntraBetaStrongAuthenticationMethodByUpn {
         }
         catch {}
    
-        $methods = Get-MgBetaUserAuthenticationMethod -UserId $userId
+        if($null -ne $methods){
+            $methods = Get-MgBetaUserAuthenticationMethod -UserId $userId
+        }
     }
 }

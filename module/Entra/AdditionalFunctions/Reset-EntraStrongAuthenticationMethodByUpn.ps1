@@ -90,6 +90,8 @@ function Reset-EntraStrongAuthenticationMethodByUpn {
         }
         catch {}
    
-        $methods = Get-MgUserAuthenticationMethod -UserId $userId
+        if($null -ne $methods){
+            $methods = Get-MgUserAuthenticationMethod -UserId $userId
+        }
     }
 }
