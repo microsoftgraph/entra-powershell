@@ -23,29 +23,41 @@ Gets information about role definitions in Microsoft Entra ID.
 ## SYNTAX
 
 ### GetQuery (Default)
-```
-Get-EntraBetaMSRoleDefinition [-All <Boolean>] [-Top <Int32>] [-Filter <String>] [<CommonParameters>]
+```powershell
+Get-EntraBetaMSRoleDefinition 
+  [-All <Boolean>] 
+  [-Top <Int32>] 
+  [-Filter <String>] 
+  [<CommonParameters>]
 ```
 
 ### GetVague
-```
-Get-EntraBetaMSRoleDefinition [-SearchString <String>] [-All <Boolean>] [<CommonParameters>]
+```powershell
+Get-EntraBetaMSRoleDefinition 
+  [-SearchString <String>] 
+  [-All <Boolean>] 
+  [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraBetaMSRoleDefinition -Id <String> [-All <Boolean>] [<CommonParameters>]
+```powershell
+Get-EntraBetaMSRoleDefinition 
+  -Id <String> 
+  [-All <Boolean>] 
+  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaMSRoleDefinition cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the Id parameter. Specify the SearchString or Filter parameter to find particular role definition.
+The **Get-EntraBetaMSRoleDefinition** cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the Id parameter. Specify the SearchString or Filter parameter to find particular role definition.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Get all role definitions
 ```powershell
 PS C:\> Get-EntraBetaMSRoleDefinition
+```
 
+```output
 Id              : 690e93e9-da28-4b25-9d0d-2f0b4e6b2ff9
 OdataType       :
 Description     : SampleRoleDefinition1.
@@ -59,6 +71,7 @@ RolePermissions : {class RolePermission {
                     Condition:
                   }
                   }
+
 Id              : 1a327991-10cb-4266-877a-998fb4df78ec
 OdataType       :
 Description     :
@@ -76,10 +89,12 @@ TemplateId      : 332a8659-25b8-4b3e-b545-38b331c48b2b
 Version         :
 ```
 
-### Example 2
+### Example 2: Get a role definition by ID
 ```powershell
 PS C:\> Get-EntraBetaMSRoleDefinition -Id 1a327991-10cb-4266-877a-998fb4df78ec
+```
 
+```output
 Id              : 1a327991-10cb-4266-877a-998fb4df78ec
 OdataType       :
 Description     :
@@ -97,10 +112,12 @@ TemplateId      : 332a8659-25b8-4b3e-b545-38b331c48b2b
 Version         :
 ```
 
-### Example 3
+### Example 3: Filter role definitions by display name
 ```powershell
 PS C:\> Get-EntraBetaMSRoleDefinition -Filter "startswith(displayName, 'Sample')"
+```
 
+```output
 Id              : 690e93e9-da28-4b25-9d0d-2f0b4e6b2ff9
 OdataType       :
 Description     : SampleRoleDefinition1.
