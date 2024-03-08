@@ -53,7 +53,6 @@ The Get-EntraUser cmdlet gets a user from Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Get top ten users
-
 ```powershell
 PS C:\>Get-EntraUser -Top 10
 ```
@@ -72,11 +71,11 @@ Automate Bot        c26aa946-90cd-4e9a-a8f1-43eeef655500                        
 Conf Room Baker     a3ee30fe-b00d-4d7d-8921-b72ff03bb77d Baker@M365x99297270.OnMicrosoft.com  Baker@M365x99297270.OnMicrosoft.com
 ```
 
-This example demonstrates how to get top ten users from Microsoft Entra ID.
+This example demonstrates how to get top ten users from Microsoft Entra ID.  
+
 This command gets ten users.
 
 ### Example 2: Get a user by ID
-
 ```powershell
 PS C:\>Get-EntraUser -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1"
 ```
@@ -86,11 +85,11 @@ DisplayName     Id                                   Mail                       
 Conf Room Adams fd560167-ff1f-471a-8d74-3b0070abcea1 Adams@M365x99297270.OnMicrosoft.com Adams@M365x99297270.OnMicrosoft.com
 ```
 
-This example demonstrates how to retrieve specific user by providing ID.
+This example demonstrates how to retrieve specific user by providing ID.  
+
 This command gets the details of specified user.
 
 ### Example 3: Search among retrieved users
-
 ```powershell
 PS C:\> Get-EntraUser -SearchString "New"
 ```
@@ -101,11 +100,11 @@ ObjectId                             DisplayName UserPrincipalName              
 2b450b8e-1db6-42cb-a545-1b05eb8a358b New user    NewTestUser@contoso.onmicrosoft.com Member
 ```
 
-This example demonstrates how to retrive users for specific string from Microsoft Entra ID.
-This cmdlet gets all users that match the value of SearchString against the first characters in DisplayName or UserPrincipalName .
+This example demonstrates how to retrieve users for specific string from Microsoft Entra ID.  
+
+This cmdlet gets all users that match the value of SearchString against the first characters in DisplayName or UserPrincipalName.
 
 ### Example 4: Get a user by userPrincipalName
-
 ```powershell
 PS C:\>Get-EntraUser -Filter "userPrincipalName eq 'jondoe@contoso.com'"
 ```
@@ -116,11 +115,11 @@ ObjectId                             DisplayName UserPrincipalName              
 2b450b8e-1db6-42cb-a545-1b05eb8a358b New user    NewTestUser@contoso.onmicrosoft.com Member
 ```
 
-In this example we'll retrive user by userPrincipalName from Microsoft Entra ID.
+In this example we'll retrieve user by userPrincipalName from Microsoft Entra ID.  
+
 This command gets the specified user.
 
 ### Example 5: Get a user by MailNickname
-
 ```powershell
 PS C:\>Get-EntraUser -Filter "startswith(MailNickname,'Ada')"
 ```
@@ -130,7 +129,7 @@ DisplayName     Id                                   Mail                       
 Conf Room Adams fd560167-ff1f-471a-8d74-3b0070abcea1 Adams@M365x99297270.OnMicrosoft.com Adams@M365x99297270.OnMicrosoft.com
 ```
 
-In this example we'll retrive all users whose MailNickname starts with Ada.
+In this example we'll retrieve all users whose MailNickname starts with Ada.
 
 
 ## PARAMETERS
