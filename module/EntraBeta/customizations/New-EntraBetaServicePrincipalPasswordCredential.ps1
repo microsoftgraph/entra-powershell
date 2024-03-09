@@ -18,10 +18,14 @@
         if($null -ne $PSBoundParameters["ObjectId"])
         {
             $params["ObjectId"] = $PSBoundParameters["ObjectId"]
+            $params["StartDate"] = $PSBoundParameters["StartDate"]
+            $params["EndDate"] = $PSBoundParameters["EndDate"]
+
             $URI = "$baseUri/$($params.ObjectId)/addPassword"
             $body = @{
                 passwordCredential = @{
-                    displayName = ""
+                    startDateTime = $PSBoundParameters["StartDate"];
+                    endDateTime = $PSBoundParameters["EndDate"];
                 }
             }
         }
