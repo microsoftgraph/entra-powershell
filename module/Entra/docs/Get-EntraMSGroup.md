@@ -49,8 +49,8 @@ Get-EntraMSGroup
 
 ## DESCRIPTION
 The Get-EntraMSGroup cmdlet gets information about groups in Microsoft Entra ID.
-To get a group, specify the Id parameter. 
-Specify the SearchString or Filter parameter to find particular groups. 
+To get a group, specify the ID parameter. 
+Specify the SearchString or Filter parameter finds particular groups. 
 If you specify no parameters, this cmdlet gets all groups.
 
 ## EXAMPLES
@@ -71,9 +71,7 @@ HelpDesk admin group3               0bdddeb1-88a6-4251-aaa5-98b48271158b helpDes
 
 ```
 
-This example demonstrates how to retrieve all groups from Microsoft Entra ID.  
-
-This command retrieves all groups in Microsoft Entra ID.
+This example demonstrates how to retrieve all groups from Microsoft Entra ID. 
 
 ### Example 2: Get a specific group by using an ID
 ```powershell
@@ -85,9 +83,7 @@ DisplayName  Id                                   MailNickname Description      
 Contoso Team 0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam  A collaboration area for the Contoso Team. {Unified}
 ```
 
-In this example, we'll provide the ID to retrieve a specific group.  
-
-This command gets information for the group that has the specified ID.
+In this example, provide the ID to retrieve a specific group. 
 
 ### Example 3: Get top five groups
 ```powershell
@@ -103,9 +99,7 @@ HelpDesk admin group    0883fd77-0ee8-45de-a21e-f32af1623acc helpDeskAdminGroup 
 New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding New Employee Onboarding                    {Unified}
 ```
 
-This example demonstrates how to retrieve top five groups from Microsoft Entra ID.  
-
-This command gets the five groups in Microsoft Entra ID.
+This example demonstrates how to retrieve top five groups from Microsoft Entra ID. 
 
 ### Example 4: Get a group by DisplayName
 ```powershell
@@ -117,9 +111,7 @@ DisplayName        Id                                   MailNickname     Descrip
 Parents of Contoso 05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso Parents of Contoso {Unified}
 ```
 
-This example demonstrates how to retrieve group by DisplayName.  
-
-This command gets the specified group.
+This example demonstrates how to retrieve a group using the DisplayName. 
 
 ### Example 5: Search among retrieved groups
 ```powershell
@@ -138,7 +130,7 @@ This example demonstrates how to retrieve groups using SearchString against the 
 
 ### -All
 If true, return all groups.
-If false, return the number of objects specified by the Top parameter
+If false, return the number of objects specified by the Top parameter.
 
 ```yaml
 Type: Boolean
@@ -199,7 +191,7 @@ Accept wildcard characters: False
 ```
 
 ### -Top
-Specifies the maximum number of records that this cmldet gets.
+Specifies the maximum number of records that this cmdlet gets.
 The default value is 100.
 
 ```yaml
@@ -225,10 +217,6 @@ System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, 
 ## OUTPUTS
 
 ### System.Object
-## NOTES
-This cmdlet is currently in Public Preview.
-While a cmdlet is in Public Preview, we may make changes to the cmdlet which could have unexpected effects.
-We recommend that you do not use this cmdlet in a production environment.
 
 ## RELATED LINKS
 
@@ -237,6 +225,3 @@ We recommend that you do not use this cmdlet in a production environment.
 [Remove-EntraMSGroup](Remove-EntraMSGroup.md)
 
 [Set-EntraMSGroup](Set-EntraMSGroup.md)
-
-[#Microsoft Entra ID: Certificate based authentication for iOS and Android now in preview!](https://blogs.technet.microsoft.com/enterprisemobility/2016/07/18/azuread-certificate-based-authentication-for-ios-and-android-now-in-preview/)
-
