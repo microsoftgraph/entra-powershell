@@ -45,7 +45,7 @@ PS C:\>Set-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -Descript
 
 This example demonstrates how to update a group description.  
 
-This command updates the desciption of a specfied group in Microsoft Entra ID.  
+This command updates the description of a specified group in Microsoft Entra ID.  
 
 ### Example 2: Update a group display name
 ```powershell
@@ -54,7 +54,7 @@ PS C:\>Set-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -DisplayN
 
 This example demonstrates how to update a group display name.  
 
-This command updates the display name of a specfied group in Microsoft Entra ID.  
+This command updates the display name of a specified group in Microsoft Entra ID.  
 
 ### Example 3: Update a group mail nickname
 ```powershell
@@ -63,7 +63,7 @@ PS C:\>Set-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -MailNick
 
 This example demonstrates how to update a group mail nickname.  
 
-This command updates the mail nickname of a specfied group in Microsoft Entra ID.  
+This command updates the mail nickname of a specified group in Microsoft Entra ID.  
 
 ### Example 4: Update a group security enabled
 ```powershell
@@ -72,7 +72,7 @@ PS C:\>Set-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -Security
 
 This example demonstrates how to update a group security enabled.  
 
-This command updates the security enabled of a specfied group in Microsoft Entra ID.  
+This command updates the security enabled of a specified group in Microsoft Entra ID.  
 
 ### Example 5: Update a group mail enabled
 ```powershell
@@ -81,12 +81,12 @@ PS C:\>Set-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -MailEnab
 
 This example demonstrates how to update a group main enabled.  
 
-This command updates the mail enabled of a specfied group in Microsoft Entra ID.  
+This command updates the mail enabled of a specified group in Microsoft Entra ID.  
 
 ## PARAMETERS
 
 ### -Description
-Specfies a description.
+Specifies a description.
 
 ```yaml
 Type: String
