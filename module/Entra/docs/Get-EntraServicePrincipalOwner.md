@@ -22,20 +22,26 @@ Get the owner of a service principal.
 
 ## SYNTAX
 
-```
-Get-EntraServicePrincipalOwner -ObjectId <String> [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+```powershell
+Get-EntraServicePrincipalOwner 
+    -ObjectId <String> 
+    [-All <Boolean>] 
+    [-Top <Int32>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraServicePrincipalOwner cmdlet gets the owners of a service principal in Microsoft Entra ID.
+The **Get-EntraServicePrincipalOwner** cmdlet gets the owners of a service principal in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Retrieve the owner of a service principal
-```
+```powershell
 PS C:\> $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
 PS C:\> Get-EntraServicePrincipalOwner -ObjectId $ServicePrincipalId
+```
 
+```output
 ObjectId                             DisplayName    UserPrincipalName   UserType
 --------                             -----------    -----------------   --------
 fd560167-ff1f-471a-8d74-3b0070abcea1 Adams Smith    Adams@contoso.com   Member
@@ -43,16 +49,18 @@ fd560167-ff1f-471a-8d74-3b0070abcea1 Adams Smith    Adams@contoso.com   Member
 b7753478-6cec-4965-96cc-560c5fb6fcd4 Mary Kom       Mary@contoso.com    Member
 ```
 
-The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md)cmdlet. 
+The first command gets the ID of a service principal by using the [Get-EntraServicePrincipal](./Get-EntraServicePrincipal.md) cmdlet. 
 The command stores the ID in the $ServicePrincipalId variable.
 
 The second command gets the owner of a service principal identified by $ServicePrincipalId.
 
 ### Example 2: Retrieve all the owners of a service principal
-```
+```powershell
 PS C:\> $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
 PS C:\> Get-EntraServicePrincipalOwner -ObjectId $ServicePrincipalId -All $true
+```
 
+```output
 ObjectId                             DisplayName    UserPrincipalName   UserType
 --------                             -----------    -----------------   --------
 fd560167-ff1f-471a-8d74-3b0070abcea1 Adams Smith    Adams@contoso.com   Member
@@ -60,16 +68,22 @@ fd560167-ff1f-471a-8d74-3b0070abcea1 Adams Smith    Adams@contoso.com   Member
 b7753478-6cec-4965-96cc-560c5fb6fcd4 Mary Kom       Mary@contoso.com    Member
 ```
 
+This command gets all the owners of a service principal.
+
 ### Example 3: Retrieve top 2 owners of a service principal
-```
+```powershell
 PS C:\> $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
 PS C:\> Get-EntraServicePrincipalOwner -ObjectId $ServicePrincipalId -Top 2
+```
 
+```output
 ObjectId                             DisplayName    UserPrincipalName   UserType
 --------                             -----------    -----------------   --------
 fd560167-ff1f-471a-8d74-3b0070abcea1 Adams Smith    Adams@contoso.com   Member
 15b958d9-af43-40be-8e91-bcd5676556f7 Peter Kons     Peter@contoso.com   Member
 ```
+
+This command gets top 2 owners of a service principal.
 
 ## PARAMETERS
 
