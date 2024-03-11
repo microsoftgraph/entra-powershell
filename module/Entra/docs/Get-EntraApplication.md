@@ -23,29 +23,41 @@ Gets an application.
 ## SYNTAX
 
 ### GetQuery (Default)
-```
-Get-EntraApplication [-Filter <String>] [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+```powershell
+Get-EntraApplication 
+    [-Filter <String>] 
+    [-All <Boolean>] 
+    [-Top <Int32>] 
+    [<CommonParameters>]
 ```
 
 ### GetVague
-```
-Get-EntraApplication [-SearchString <String>] [-All <Boolean>] [<CommonParameters>]
+```powershell
+Get-EntraApplication 
+    [-SearchString <String>] 
+    [-All <Boolean>] 
+    [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraApplication -ObjectId <String> [-All <Boolean>] [<CommonParameters>]
+```powershell
+Get-EntraApplication 
+    -ObjectId <String> 
+    [-All <Boolean>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraApplication cmdlet gets a Microsoft Entra ID application.
+The **Get-EntraApplication** cmdlet gets a Microsoft Entra ID application.
 
 ## EXAMPLES
 
 ### Example 1: Get an application by display name
-```
+```powershell
 PS C:\>Get-EntraApplication -Filter "DisplayName eq 'TestName'"
+```
 
+```output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 3ddd22e7-a150-4bb3-b100-e410dea1cb84 36ee4c6c-0812-40a2-b820-b22ebd02bce3 TestName
@@ -54,9 +66,11 @@ ObjectId                             AppId                                Displa
 This command gets an application by its display name.
 
 ### Example 2: Get an application by ID
-```
+```powershell
 PS C:\>Get-EntraApplication -Filter "AppId eq '421599eb-eed7-4988-9b31-02b43a4d37b8'"
+```
 
+```output
 ObjectId                             AppId                                DisplayName     
 --------                             -----                                -----------
 ed192e92-84d4-4baf-997d-1e190a81f28e 421599eb-eed7-4988-9b31-02b43a4d37b8 MyNewApp
@@ -65,14 +79,24 @@ ed192e92-84d4-4baf-997d-1e190a81f28e 421599eb-eed7-4988-9b31-02b43a4d37b8 MyNewA
 This command gets an application by its ID.
 
 ### Example 3: Retrieve an application by identifierUris
-```
+```powershell
 Get-EntraApplication -Filter "identifierUris/any(uri:uri eq 'http://wingtips.wingtiptoysonline.com')"
 ```
 
-### Example 4: Gets top 2 applications
+```output
+ObjectId                             AppId                                DisplayName     
+--------                             -----                                -----------
+ed192e92-84d4-4baf-997d-1e190a81f28e 421599eb-eed7-4988-9b31-02b43a4d37b8 MyNewApp
 ```
-PS C:\>Get-EntraApplication -Top 2
 
+This command gets an application by its identifierUris.
+
+### Example 4: Gets top 2 applications
+```powershell
+PS C:\>Get-EntraApplication -Top 2
+```
+
+```output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 3ddd22e7-a150-4bb3-b100-e410dea1cb84 36ee4c6c-0812-40a2-b820-b22ebd02bce3 TestName
@@ -82,9 +106,11 @@ ObjectId                             AppId                                Displa
 This command gets top 2 applications.
 
 ### Example 5: Gets all the applications
-```
+```powershell
 PS C:\>Get-EntraApplication -All $true
+```
 
+```output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 3ddd22e7-a150-4bb3-b100-e410dea1cb84 36ee4c6c-0812-40a2-b820-b22ebd02bce3 TestName
