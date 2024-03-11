@@ -8,7 +8,7 @@ schema: 2.0.0
 # Remove-EntraBetaMSRoleDefinition
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Delete a Microsoft Entra ID roleDefinition by objectId
 
 ## SYNTAX
 
@@ -17,7 +17,8 @@ Remove-EntraBetaMSRoleDefinition [-Id] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Delete a Microsoft Entra ID roleDefinition object by id.
+For more info see https://go.microsoft.com/fwlink/?linkid=2097519.
 
 ## EXAMPLES
 
@@ -31,7 +32,7 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -Id
-{{ Fill Id Description }}
+The unique identifier of an object in Microsoft Entra ID
 
 ```yaml
 Type: String
