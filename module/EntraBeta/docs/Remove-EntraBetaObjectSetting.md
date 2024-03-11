@@ -23,9 +23,12 @@ Deletes settings in Microsoft Entra ID.
 
 ## SYNTAX
 
-```
-Remove-EntraBetaObjectSetting -Id <String> -TargetType <String> -TargetObjectId <String> 
-[-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Remove-EntraBetaObjectSetting 
+    -Id <String> 
+    -TargetType <String> 
+    -TargetObjectId <String> 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,51 +37,13 @@ The **Remove-EntraBetaObjectSetting** cmdlet removes object settings in Microsof
 ## EXAMPLES
 
 ### Example 1
-```
+```powershell
 PS C:\> Remove-EntraBetaObjectSetting -TargetType Groups -TargetObjectId "ec83af6b-bb96-4d2e-8ad5-f21f4f613400" -Id bd56f3f2-5589-464c-9e69-58da3003ff2e
 ```
 
 This command removes the specified setting.
 
 ## PARAMETERS
-
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Id
 Specfies the ID of a settings object in Microsoft Entra ID.
