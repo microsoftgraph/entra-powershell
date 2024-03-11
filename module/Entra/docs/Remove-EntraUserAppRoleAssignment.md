@@ -40,7 +40,7 @@ PS C:\>  Remove-EntraUserAppRoleAssignment  -ObjectId bbf5d921-bb52-434b-96a0-95
 
 ```
 
-This example demonstrates how to Remove the user approle assignment in Microsoft Entra ID.   
+This example demonstrates how to Remove the user app role assignment in Microsoft Entra ID.   
 
 ## PARAMETERS
 
@@ -60,7 +60,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID (as a UPN or ObjectId) of a user in Microsoft Entra ID.
+Specifies the ID (as a User Principal Name or ObjectId) of a user in Microsoft Entra ID.
 
 ```yaml
 Type: String
