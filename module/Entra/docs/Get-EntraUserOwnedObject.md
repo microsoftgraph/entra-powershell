@@ -22,19 +22,25 @@ Get objects owned by a user.
 
 ## SYNTAX
 
-```
-Get-EntraUserOwnedObject -ObjectId <String> [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+```powershell
+Get-EntraUserOwnedObject 
+    -ObjectId <String> 
+    [-All <Boolean>] 
+    [-Top <Int32>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraUserOwnedObject cmdlet gets objects owned by a user in Microsoft Entra ID.
+The **Get-EntraUserOwnedObject** cmdlet gets objects owned by a user in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Get objects owned by a user
-```
+```powershell
 PS C:\>Get-EntraUserOwnedObject -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16"
+```
 
+```output
 ObjectId                             ObjectType
 --------                             ----------
 9c2564d6-e4d7-4167-a79f-4b961512f232 Group
@@ -50,9 +56,11 @@ a0dada57-89ef-4db8-9e5f-46cca3bf2398 Group
 This command gets objects owned by the specified user.
 
 ### Example 2: Get all objects owned by a user
-```
+```powershell
 PS C:\>Get-EntraUserOwnedObject -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16" -All $true
+```
 
+```output
 ObjectId                             ObjectType
 --------                             ----------
 9c2564d6-e4d7-4167-a79f-4b961512f232 Group
@@ -68,9 +76,11 @@ a0dada57-89ef-4db8-9e5f-46cca3bf2398 Group
 This command gets all the objects owned by the specified user.
 
 ### Example 3: Get top 3 objects owned by a user
-```
+```powershell
 PS C:\>Get-EntraUserOwnedObject -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16" -Top 3
+```
 
+```output
 ObjectId                             ObjectType
 --------                             ----------
 9c2564d6-e4d7-4167-a79f-4b961512f232 Group
