@@ -23,18 +23,43 @@ Creates a Microsoft Entra ID user.
 
 ## SYNTAX
 
-```
-New-EntraUser [-City <String>] [-UserStateChangedOn <String>] [-CompanyName <String>]
- [-PreferredLanguage <String>] [-FacsimileTelephoneNumber <String>] [-GivenName <String>] [-Mobile <String>]
- [-UsageLocation <String>] [-PostalCode <String>] [-AgeGroup <String>] [-CreationType <String>]
- [-ExtensionProperty <System.Collections.Generic.Dictionary`2[System.String,System.String]>]
- [-ConsentProvidedForMinor <String>] [-MailNickName <String>] [-ImmutableId <String>] [-Country <String>]
- [-SignInNames <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]>]
- [-Department <String>] [-PasswordPolicies <String>] [-JobTitle <String>] [-IsCompromised <Boolean>]
- [-UserState <String>] [-UserType <String>] [-OtherMails <System.Collections.Generic.List`1[System.String]>]
- [-PhysicalDeliveryOfficeName <String>] [-UserPrincipalName <String>] -DisplayName <String>
- -AccountEnabled <Boolean> -PasswordProfile <PasswordProfile> [-State <String>] [-StreetAddress <String>]
- [-TelephoneNumber <String>] [-Surname <String>] [-ShowInAddressList <Boolean>] [<CommonParameters>]
+```powershell
+New-EntraUser 
+    -DisplayName <String>
+    -AccountEnabled <Boolean> 
+    -PasswordProfile <PasswordProfile>
+    [-City <String>] 
+    [-UserStateChangedOn <String>] 
+    [-CompanyName <String>]
+    [-PreferredLanguage <String>] 
+    [-FacsimileTelephoneNumber <String>] 
+    [-GivenName <String>] 
+    [-Mobile <String>]
+    [-UsageLocation <String>] 
+    [-PostalCode <String>] 
+    [-AgeGroup <String>] 
+    [-CreationType <String>]
+    [-ExtensionProperty <System.Collections.Generic.Dictionary`2[System.String,System.String]>]
+    [-ConsentProvidedForMinor <String>] 
+    [-MailNickName <String>] 
+    [-ImmutableId <String>] 
+    [-Country <String>]
+    [-SignInNames <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]>]
+    [-Department <String>] 
+    [-PasswordPolicies <String>] 
+    [-JobTitle <String>] 
+    [-IsCompromised <Boolean>]
+    [-UserState <String>] 
+    [-UserType <String>] 
+    [-OtherMails <System.Collections.Generic.List`1[System.String]>]
+    [-PhysicalDeliveryOfficeName <String>] 
+    [-UserPrincipalName <String>] 
+    [-State <String>] 
+    [-StreetAddress <String>]
+    [-TelephoneNumber <String>] 
+    [-Surname <String>] 
+    [-ShowInAddressList <Boolean>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -42,60 +67,80 @@ The **New-EntraUser** cmdlet creates a user in Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Create a user using MailNickName parameter
+```powershell
+PS C:\> $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+PS C:\> $PasswordProfile.Password = "<Password>"
+PS C:\> New-EntraUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser"
 ```
-$PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-$PasswordProfile.Password = "<Password>"
-New-EntraUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser"
 
+```output
 ObjectId                             DisplayName UserPrincipalName               UserType
 --------                             ----------- -----------------               --------
 5e8b0f4d-2cd4-4e17-9467-b0f6a5c0c4d0 New user    NewUser@contoso.com             Member
 ```
 
-### Example 2
-```
-$PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-$PasswordProfile.Password = "<Password>"
-New-EntraUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser" -AgeGroup "adult"
+This command creates a new user.
 
+### Example 2: Create a user using AgeGroup parameter
+```powershell
+PS C:\> $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+PS C:\> $PasswordProfile.Password = "<Password>"
+PS C:\> New-EntraUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser" -AgeGroup "adult"
+```
+
+```output
 ObjectId                             DisplayName UserPrincipalName               UserType
 --------                             ----------- -----------------               --------
 5e8b0f4d-2cd4-4e17-9467-b0f6a5c0c4d0 New user    NewUser@contoso.com             Member
 ```
 
-### Example 3
-```
-$PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-$PasswordProfile.Password = "<Password>"
-New-EntraUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser" -City "New York"
+This command creates a new user.
 
+### Example 3: Create a user using City parameter
+```powershell
+PS C:\> $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+PS C:\> $PasswordProfile.Password = "<Password>"
+PS C:\> New-EntraUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser" -City "New York"
+```
+
+```output
 ObjectId                             DisplayName UserPrincipalName               UserType
 --------                             ----------- -----------------               --------
 5e8b0f4d-2cd4-4e17-9467-b0f6a5c0c4d0 New user    NewUser@contoso.com             Member
 ```
 
-### Example 4
-```
-$PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-$PasswordProfile.Password = "<Password>"
-New-EntraUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser" -Department "IT"
+This command creates a new user.
 
+### Example 4: Create a user using Department parameter
+```powershell
+PS C:\> $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+PS C:\> $PasswordProfile.Password = "<Password>"
+PS C:\> New-EntraUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser" -Department "IT"
+```
+
+```output
 ObjectId                             DisplayName UserPrincipalName               UserType
 --------                             ----------- -----------------               --------
 5e8b0f4d-2cd4-4e17-9467-b0f6a5c0c4d0 New user    NewUser@contoso.com             Member
 ```
 
-### Example 5
-```
-$PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-$PasswordProfile.Password = "<Password>"
-New-EntraUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser" -Mobile "02883655253"
+This command creates a new user.
 
+### Example 5: Create a user using Mobile parameter
+```powershell
+PS C:\> $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+PS C:\> $PasswordProfile.Password = "<Password>"
+PS C:\> New-EntraUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser" -Mobile "02883655253"
+```
+
+```output
 ObjectId                             DisplayName UserPrincipalName               UserType
 --------                             ----------- -----------------               --------
 5e8b0f4d-2cd4-4e17-9467-b0f6a5c0c4d0 New user    NewUser@contoso.com             Member
 ```
+
+This command creates a new user.
 
 ## PARAMETERS
 
