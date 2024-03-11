@@ -1,0 +1,31 @@
+{
+  "docsets_to_publish": [],
+  "notification_subscribers": [],
+  "sync_notification_subscribers": [],
+  "branches_to_filter": [],
+  "need_preview_pull_request": true,
+  "dependent_repositories": [
+    {
+      "path_to_root": "_themes",
+      "url": "https://github.com/Microsoft/templates.docs.msft",
+      "branch": "main",
+      "branch_mapping": {}
+    }
+  ],
+  "branch_target_mapping": {},
+  "skip_source_output_uploading": false,
+  "contribution_branch_mappings": {},
+  "dependent_packages": [
+    {
+      "id": "Microsoft.DocAsCode.MAML2Yaml",
+      "nuget_feed": "https://www.myget.org/F/op-dev/api/v2",
+      "path_to_root": "_dependentPackages/MAML2Yaml",
+      "target_framework": "net45",
+      "version": "latest-prerelease"
+    }
+  ],
+  "monikerPath": [
+    "mapping/monikerMapping.json"
+  ],
+  "need_generate_pdf_url_template": false
+}
