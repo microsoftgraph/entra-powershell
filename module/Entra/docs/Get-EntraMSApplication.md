@@ -23,18 +23,28 @@ Retrieves the list of applications within the organization.
 ## SYNTAX
 
 ### GetQuery (Default)
-```
-Get-EntraMSApplication [-Filter <String>] [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+```powershell
+Get-EntraMSApplication 
+    [-Filter <String>] 
+    [-All <Boolean>] 
+    [-Top <Int32>] 
+    [<CommonParameters>]
 ```
 
 ### GetVague
-```
-Get-EntraMSApplication [-SearchString <String>] [-All <Boolean>] [<CommonParameters>]
+```powershell
+Get-EntraMSApplication 
+    [-SearchString <String>] 
+    [-All <Boolean>] 
+    [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraMSApplication -ObjectId <String> [-All <Boolean>] [<CommonParameters>]
+```powershell
+Get-EntraMSApplication 
+    -ObjectId <String> 
+    [-All <Boolean>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -44,386 +54,510 @@ With an ObjectId argument, it can retrieve the properties of the application obj
 ## EXAMPLES
 
 ### Example 1: Get an application by display name
-```
+```powershell
 PS C:\>Get-EntraMSApplication -Filter "DisplayName eq 'My App'"
+```
 
-          Id                        : ba4a97a7-3815-4752-bf4c-f1c0cccfff6a
-          OdataType                 :
-          Api                       : class ApiApplication {
-          AcceptMappedClaims:
-          KnownClientApplications:
-          PreAuthorizedApplications:
-          RequestedAccessTokenVersion: 2
-          Oauth2PermissionScopes:
-          System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PermissionScope]
-          }
+```output
+Id                        : ba4a97a7-3815-4752-bf4c-f1c0cccfff6a
+OdataType                 :
+Api                       : class ApiApplication {
+                                AcceptMappedClaims:
+                                KnownClientApplications:
+                                PreAuthorizedApplications:
+                                RequestedAccessTokenVersion: 2
+                                Oauth2PermissionScopes:
+                                System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PermissionScope]
+                            }
 
-          AppId                     : 807dd73f-8451-4cfa-b3bc-52ac3fd95330
-          AppRoles                  : {}
-          IsDeviceOnlyAuthSupported :
-          IsFallbackPublicClient    :
-          IdentifierUris            : {}
-          DeletedDateTime           :
-          DisplayName               : My App
-          Info                      : class InformationalUrl {
-          TermsOfServiceUrl:
-          MarketingUrl:
-          PrivacyStatementUrl:
-          SupportUrl:
-          LogoUrl:
-          }
+AppId                     : 807dd73f-8451-4cfa-b3bc-52ac3fd95330
+AppRoles                  : {}
+IsDeviceOnlyAuthSupported :
+IsFallbackPublicClient    :
+IdentifierUris            : {}
+DeletedDateTime           :
+DisplayName               : My App
+Info                      : class InformationalUrl {
+                                TermsOfServiceUrl:
+                                MarketingUrl:
+                                PrivacyStatementUrl:
+                                SupportUrl:
+                                LogoUrl:
+                            }
 
-          KeyCredentials            : {}
-          OptionalClaims            :
-          ParentalControlSettings   : class ParentalControlSettings {
-          CountriesBlockedForMinors: System.Collections.Generic.List`1[System.String]
-          LegalAgeGroupRule: Allow
-          }
+KeyCredentials            : {}
+OptionalClaims            :
+ParentalControlSettings   : class ParentalControlSettings {
+                                CountriesBlockedForMinors: System.Collections.Generic.List`1[System.String]
+                                LegalAgeGroupRule: Allow
+                            }
 
-          PasswordCredentials       : {}
-          PublicClientApplication   :
-          RequiredResourceAccess    : {}
-          SignInAudience            : AzureADandPersonalMicrosoftAccount
-          Tags                      : {}
-          TokenEncryptionKeyId      :
-          Web                       : class WebApplication {
-          LogoutUrl:
-          Oauth2AllowImplicitFlow:
-          RedirectUris: System.Collections.Generic.List`1[System.String]
-          ImplicitGrantSettings: class ImplicitGrantSettings {
-          EnableIdTokenIssuance: False
-          EnableAccessTokenIssuance: False
-          }
-
-          }
+PasswordCredentials       : {}
+PublicClientApplication   :
+RequiredResourceAccess    : {}
+SignInAudience            : AzureADandPersonalMicrosoftAccount
+Tags                      : {}
+TokenEncryptionKeyId      :
+Web                       : class WebApplication {
+                                LogoutUrl:
+                                Oauth2AllowImplicitFlow:
+                                RedirectUris: System.Collections.Generic.List`1[System.String]
+                                ImplicitGrantSettings: class ImplicitGrantSettings {
+                                    EnableIdTokenIssuance: False
+                                    EnableAccessTokenIssuance: False
+                                }
+                            }
 ```
 
 This command gets an application by its display name.
 
 ### Example 2: Get an application by ID
+```powershell
+PS C:\>Get-EntraMSApplication -Filter "AppId eq '807dd73f-8451-4cfa-b3bc-52ac3fd95330'"
 ```
-PS C:\>Get-EntraMSApplication -Filter "AppId eq 'ed192e92-84d4-4baf-997d-1e190a81f28e'"
+
+```output
+Id                        : ba4a97a7-3815-4752-bf4c-f1c0cccfff6a
+OdataType                 :
+Api                       : class ApiApplication {
+                                AcceptMappedClaims:
+                                KnownClientApplications:
+                                PreAuthorizedApplications:
+                                RequestedAccessTokenVersion: 2
+                                Oauth2PermissionScopes:
+                                System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PermissionScope]
+                            }
+
+AppId                     : 807dd73f-8451-4cfa-b3bc-52ac3fd95330
+AppRoles                  : {}
+IsDeviceOnlyAuthSupported :
+IsFallbackPublicClient    :
+IdentifierUris            : {}
+DeletedDateTime           :
+DisplayName               : My App
+Info                      : class InformationalUrl {
+                                TermsOfServiceUrl:
+                                MarketingUrl:
+                                PrivacyStatementUrl:
+                                SupportUrl:
+                                LogoUrl:
+                            }
+
+KeyCredentials            : {}
+OptionalClaims            :
+ParentalControlSettings   : class ParentalControlSettings {
+                                CountriesBlockedForMinors: System.Collections.Generic.List`1[System.String]
+                                LegalAgeGroupRule: Allow
+                            }
+
+PasswordCredentials       : {}
+PublicClientApplication   :
+RequiredResourceAccess    : {}
+SignInAudience            : AzureADandPersonalMicrosoftAccount
+Tags                      : {}
+TokenEncryptionKeyId      :
+Web                       : class WebApplication {
+                                LogoutUrl:
+                                Oauth2AllowImplicitFlow:
+                                RedirectUris: System.Collections.Generic.List`1[System.String]
+                                ImplicitGrantSettings: class ImplicitGrantSettings {
+                                    EnableIdTokenIssuance: False
+                                    EnableAccessTokenIssuance: False
+                                }
+                            }
 ```
 
 This command gets an application by its ID.
 
-Output:
-
-Id                        : ba4a97a7-3815-4752-bf4c-f1c0cccfff6a
-            OdataType                 :
-            Api                       : class ApiApplication {
-            AcceptMappedClaims:
-            KnownClientApplications:
-            PreAuthorizedApplications:
-            RequestedAccessTokenVersion: 2
-            Oauth2PermissionScopes:
-            System.Collections.Generic.List\`1\[Microsoft.Open.MSGraph.Model.PermissionScope\]
-            }
-
-            AppId                     : 807dd73f-8451-4cfa-b3bc-52ac3fd95330
-            AppRoles                  : {}
-            IsDeviceOnlyAuthSupported :
-            IsFallbackPublicClient    :
-            IdentifierUris            : {}
-            DeletedDateTime           :
-            DisplayName               : My App
-            Info                      : class InformationalUrl {
-            TermsOfServiceUrl:
-            MarketingUrl:
-            PrivacyStatementUrl:
-            SupportUrl:
-            LogoUrl:
-            }
-
-            KeyCredentials            : {}
-            OptionalClaims            :
-            ParentalControlSettings   : class ParentalControlSettings {
-            CountriesBlockedForMinors: System.Collections.Generic.List\`1\[System.String\]
-            LegalAgeGroupRule: Allow
-            }
-
-            PasswordCredentials       : {}
-            PublicClientApplication   :
-            RequiredResourceAccess    : {}
-            SignInAudience            : AzureADandPersonalMicrosoftAccount
-            Tags                      : {}
-            TokenEncryptionKeyId      :
-            Web                       : class WebApplication {
-            LogoutUrl:
-            Oauth2AllowImplicitFlow:
-            RedirectUris: System.Collections.Generic.List\`1\[System.String\]
-            ImplicitGrantSettings: class ImplicitGrantSettings {
-            EnableIdTokenIssuance: False
-            EnableAccessTokenIssuance: False
-            }
-
-            }
-
 ### Example 3: Retrieve an application by identifierUris
-```
+```powershell
 Get-EntraMSApplication -Filter "identifierUris/any(uri:uri eq 'http://wingtips.wingtiptoysonline.com')"
 ```
 
-### Example 4: Get an application by object ID
+```output
+Id                        : ba4a97a7-3815-4752-bf4c-f1c0cccfff6a
+OdataType                 :
+Api                       : class ApiApplication {
+                                AcceptMappedClaims:
+                                KnownClientApplications:
+                                PreAuthorizedApplications:
+                                RequestedAccessTokenVersion: 2
+                                Oauth2PermissionScopes:
+                                System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PermissionScope]
+                            }
+
+AppId                     : 807dd73f-8451-4cfa-b3bc-52ac3fd95330
+AppRoles                  : {}
+IsDeviceOnlyAuthSupported :
+IsFallbackPublicClient    :
+IdentifierUris            : {
+                                http://wingtips.wingtiptoysonline.com
+                            }
+DeletedDateTime           :
+DisplayName               : My App
+Info                      : class InformationalUrl {
+                                TermsOfServiceUrl:
+                                MarketingUrl:
+                                PrivacyStatementUrl:
+                                SupportUrl:
+                                LogoUrl:
+                            }
+
+KeyCredentials            : {}
+OptionalClaims            :
+ParentalControlSettings   : class ParentalControlSettings {
+                                CountriesBlockedForMinors: System.Collections.Generic.List`1[System.String]
+                                LegalAgeGroupRule: Allow
+                            }
+
+PasswordCredentials       : {}
+PublicClientApplication   :
+RequiredResourceAccess    : {}
+SignInAudience            : AzureADandPersonalMicrosoftAccount
+Tags                      : {}
+TokenEncryptionKeyId      :
+Web                       : class WebApplication {
+                                LogoutUrl:
+                                Oauth2AllowImplicitFlow:
+                                RedirectUris: System.Collections.Generic.List`1[System.String]
+                                ImplicitGrantSettings: class ImplicitGrantSettings {
+                                    EnableIdTokenIssuance: False
+                                    EnableAccessTokenIssuance: False
+                                }
+                            }
 ```
-PS C:\>Get-EntraMSApplication -ObjectId ffe886bc-e978-4002-829e-cf5b1e83d56a
+
+This command gets an application by its IdentifierUris.
+
+### Example 4: Get an application by object ID
+```powershell
+PS C:\>Get-EntraMSApplication -ObjectId ba4a97a7-3815-4752-bf4c-f1c0cccfff6a
+```
+
+```output
+Id                        : ba4a97a7-3815-4752-bf4c-f1c0cccfff6a
+OdataType                 :
+Api                       : class ApiApplication {
+                                AcceptMappedClaims:
+                                KnownClientApplications:
+                                PreAuthorizedApplications:
+                                RequestedAccessTokenVersion: 2
+                                Oauth2PermissionScopes:
+                                System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PermissionScope]
+                            }
+
+AppId                     : 807dd73f-8451-4cfa-b3bc-52ac3fd95330
+AppRoles                  : {}
+IsDeviceOnlyAuthSupported :
+IsFallbackPublicClient    :
+IdentifierUris            : {}
+DeletedDateTime           :
+DisplayName               : My App
+Info                      : class InformationalUrl {
+                                TermsOfServiceUrl:
+                                MarketingUrl:
+                                PrivacyStatementUrl:
+                                SupportUrl:
+                                LogoUrl:
+                            }
+
+KeyCredentials            : {}
+OptionalClaims            :
+ParentalControlSettings   : class ParentalControlSettings {
+                                CountriesBlockedForMinors: System.Collections.Generic.List`1[System.String]
+                                LegalAgeGroupRule: Allow
+                            }
+
+PasswordCredentials       : {}
+PublicClientApplication   :
+RequiredResourceAccess    : {}
+SignInAudience            : AzureADandPersonalMicrosoftAccount
+Tags                      : {}
+TokenEncryptionKeyId      :
+Web                       : class WebApplication {
+                                LogoutUrl:
+                                Oauth2AllowImplicitFlow:
+                                RedirectUris: System.Collections.Generic.List`1[System.String]
+                                ImplicitGrantSettings: class ImplicitGrantSettings {
+                                    EnableIdTokenIssuance: False
+                                    EnableAccessTokenIssuance: False
+                                }
+                            }
 ```
 
 This command gets an application by its object ID.
 
-Output:
-
-Id                        : f8bbcbe4-df80-4a6b-80c5-926e28e41407
-            OdataType                 :
-            AddIns                    : {}
-            Api                       : class ApiApplication {
-            AcceptMappedClaims:
-            KnownClientApplications:
-            PreAuthorizedApplications:
-            RequestedAccessTokenVersion:
-            Oauth2PermissionScopes:
-            System.Collections.Generic.List\`1\[Microsoft.Open.MSGraph.Model.PermissionScope\]
-
-            AppId                     : 18f78c92-365c-4fa0-9b6f-7e06fff27ffe
-            ApplicationTemplateId     :
-            AppRoles                  : {}
-            GroupMembershipClaims     :
-            IsDeviceOnlyAuthSupported :
-            IsFallbackPublicClient    :
-            IdentifierUris            : {}
-            CreatedDateTime           :
-            DeletedDateTime           :
-            DisplayName               : my app
-            Info                      : class InformationalUrl {
-            TermsOfServiceUrl:
-            MarketingUrl:
-            PrivacyStatementUrl:
-            SupportUrl:
-            LogoUrl:
-            }
-
-            KeyCredentials            : {}
-            OptionalClaims            :
-            ParentalControlSettings   : class ParentalControlSettings {
-            CountriesBlockedForMinors: System.Collections.Generic.List\`1\[System.String\]
-            LegalAgeGroupRule: Allow
-            }
-
-            PasswordCredentials       : {}
-            PublicClient              : class PublicClientApplication {
-            RedirectUris: System.Collections.Generic.List\`1\[System.String\]
-            }
-
-            PublisherDomain           :
-            RequiredResourceAccess    : {}
-            SignInAudience            : AzureADMyOrg
-            Tags                      : {}
-            TokenEncryptionKeyId      :
-            Web                       : class WebApplication {
-            HomePageUrl:
-            LogoutUrl:
-            RedirectUris: System.Collections.Generic.List\`1\[System.String\]
-            ImplicitGrantSettings: class ImplicitGrantSettings {
-            EnableIdTokenIssuance: True
-            EnableAccessTokenIssuance: False
-            }
-
-            }
-
 ### Example 5: Get the first 2 applications
-```
+```powershell
 PS C:\>Get-EntraMSApplication -Top 2
 ```
 
-This command gets the first 2 applications
+```output
+Id                        : ba4a97a7-3815-4752-bf4c-f1c0cccfff6a
+OdataType                 :
+Api                       : class ApiApplication {
+                                AcceptMappedClaims:
+                                KnownClientApplications:
+                                PreAuthorizedApplications:
+                                RequestedAccessTokenVersion: 2
+                                Oauth2PermissionScopes:
+                                System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PermissionScope]
+                            }
 
-Output:
+AppId                     : 807dd73f-8451-4cfa-b3bc-52ac3fd95330
+AppRoles                  : {}
+IsDeviceOnlyAuthSupported :
+IsFallbackPublicClient    :
+IdentifierUris            : {}
+DeletedDateTime           :
+DisplayName               : My App
+Info                      : class InformationalUrl {
+                                TermsOfServiceUrl:
+                                MarketingUrl:
+                                PrivacyStatementUrl:
+                                SupportUrl:
+                                LogoUrl:
+                            }
 
-Id                        : 121ce3aa-64cb-44f2-99e8-deb705caeddd
-            OdataType                 :
-            AddIns                    : {}
-            Api                       : class ApiApplication {
-            AcceptMappedClaims:
-            KnownClientApplications:
-            PreAuthorizedApplications:
-            RequestedAccessTokenVersion: 2
-            Oauth2PermissionScopes:
-            System.Collections.Generic.List\`1\[Microsoft.Open.MSGraph.Model.PermissionScope\]
+KeyCredentials            : {}
+OptionalClaims            :
+ParentalControlSettings   : class ParentalControlSettings {
+                                CountriesBlockedForMinors: System.Collections.Generic.List`1[System.String]
+                                LegalAgeGroupRule: Allow
+                            }
 
-            AppId                     : a1293e4b-97ae-4f58-9eeb-d0ba5b4b821a
-            ApplicationTemplateId     :
-            AppRoles                  : {}
-            GroupMembershipClaims     :
-            IsDeviceOnlyAuthSupported :
-            IsFallbackPublicClient    :
-            IdentifierUris            : {}
-            CreatedDateTime           :
-            DeletedDateTime           :
-            DisplayName               : My App
-            Info                      : class InformationalUrl {
-            TermsOfServiceUrl:
-            MarketingUrl:
-            PrivacyStatementUrl:
-            SupportUrl:
-            LogoUrl:
-            }
+PasswordCredentials       : {}
+PublicClientApplication   :
+RequiredResourceAccess    : {}
+SignInAudience            : AzureADandPersonalMicrosoftAccount
+Tags                      : {}
+TokenEncryptionKeyId      :
+Web                       : class WebApplication {
+                                LogoutUrl:
+                                Oauth2AllowImplicitFlow:
+                                RedirectUris: System.Collections.Generic.List`1[System.String]
+                                ImplicitGrantSettings: class ImplicitGrantSettings {
+                                    EnableIdTokenIssuance: False
+                                    EnableAccessTokenIssuance: False
+                                }
+                            }
 
-            KeyCredentials            : {}
-            OptionalClaims            :
-            ParentalControlSettings   : class ParentalControlSettings {
-            CountriesBlockedForMinors: System.Collections.Generic.List\`1\[System.String\]
-            LegalAgeGroupRule: Allow
-            }
+Id                        : d27bb37d-e1c0-4298-8308-ee5c239c0e3f
+OdataType                 :
+Api                       : class ApiApplication {
+                                AcceptMappedClaims:
+                                KnownClientApplications:
+                                PreAuthorizedApplications:
+                                RequestedAccessTokenVersion: 2
+                                Oauth2PermissionScopes:
+                                System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PermissionScope]
+                            }
 
-            PasswordCredentials       : {}
-            PublicClient              : class PublicClientApplication {
-            RedirectUris: System.Collections.Generic.List\`1\[System.String\]
-            }
+AppId                     : d9d4567d-6b71-4c58-b1ac-decbeb28c3b8
+AppRoles                  : {}
+IsDeviceOnlyAuthSupported :
+IsFallbackPublicClient    :
+IdentifierUris            : {}
+DeletedDateTime           :
+DisplayName               : My App
+Info                      : class InformationalUrl {
+                                TermsOfServiceUrl:
+                                MarketingUrl:
+                                PrivacyStatementUrl:
+                                SupportUrl:
+                                LogoUrl:
+                            }
 
-            PublisherDomain           :
-            RequiredResourceAccess    : {}
-            SignInAudience            : AzureADandPersonalMicrosoftAccount
-            Tags                      : {}
-            TokenEncryptionKeyId      :
-            Web                       : class WebApplication {
-            HomePageUrl:
-            LogoutUrl:
-            RedirectUris: System.Collections.Generic.List\`1\[System.String\]
-            ImplicitGrantSettings: class ImplicitGrantSettings {
-            EnableIdTokenIssuance: False
-            EnableAccessTokenIssuance: False
-            }
+KeyCredentials            : {}
+OptionalClaims            :
+ParentalControlSettings   : class ParentalControlSettings {
+                                CountriesBlockedForMinors: System.Collections.Generic.List`1[System.String]
+                                LegalAgeGroupRule: Allow
+                            }
 
-            }
+PasswordCredentials       : {}
+PublicClientApplication   :
+RequiredResourceAccess    : {}
+SignInAudience            : AzureADandPersonalMicrosoftAccount
+Tags                      : {}
+TokenEncryptionKeyId      :
+Web                       : class WebApplication {
+                                LogoutUrl:
+                                Oauth2AllowImplicitFlow:
+                                RedirectUris: System.Collections.Generic.List`1[System.String]
+                                ImplicitGrantSettings: class ImplicitGrantSettings {
+                                    EnableIdTokenIssuance: False
+                                    EnableAccessTokenIssuance: False
+                                }
+                            }                            
+```
 
-
-            Id                        : 14a3f1ac-46a7-4d00-b1ca-0b2b84f033c2
-            OdataType                 :
-            AddIns                    : {}
-            Api                       : class ApiApplication {
-            AcceptMappedClaims:
-            KnownClientApplications:
-            PreAuthorizedApplications:
-            RequestedAccessTokenVersion: 2
-            Oauth2PermissionScopes:
-            System.Collections.Generic.List\`1\[Microsoft.Open.MSGraph.Model.PermissionScope\]
-
-            AppId                     : 51546bbc-4233-42d3-a08e-c73a370f5d41
-            ApplicationTemplateId     :
-            AppRoles                  : {}
-            GroupMembershipClaims     :
-            IsDeviceOnlyAuthSupported :
-            IsFallbackPublicClient    :
-            IdentifierUris            : {}
-            CreatedDateTime           :
-            DeletedDateTime           :
-            DisplayName               : My App
-            Info                      : class InformationalUrl {
-            TermsOfServiceUrl:
-            MarketingUrl:
-            PrivacyStatementUrl:
-            SupportUrl:
-            LogoUrl:
-            }
-
-            KeyCredentials            : {}
-            OptionalClaims            :
-            ParentalControlSettings   : class ParentalControlSettings {
-            CountriesBlockedForMinors: System.Collections.Generic.List\`1\[System.String\]
-            LegalAgeGroupRule: Allow
-            }
-
-            PasswordCredentials       : {}
-            PublicClient              : class PublicClientApplication {
-            RedirectUris: System.Collections.Generic.List\`1\[System.String\]
-            }
-
-            PublisherDomain           :
-            RequiredResourceAccess    : {}
-            SignInAudience            : AzureADandPersonalMicrosoftAccount
-            Tags                      : {}
-            TokenEncryptionKeyId      :
-            Web                       : class WebApplication {
-            HomePageUrl:
-            LogoutUrl:
-            RedirectUris: System.Collections.Generic.List\`1\[System.String\]
-            ImplicitGrantSettings: class ImplicitGrantSettings {
-            EnableIdTokenIssuance: False
-            EnableAccessTokenIssuance: False
-            }
-
-            }
+This command gets the first 2 applications.
 
 ### Example 6: Retrieve a list of all applications
-```
+```powershell
 PS C:\>Get-EntraMSApplication -All $true
 ```
 
-### Example 7: Retrieve a list of all applications which have a display name that contains "asdfl"
+```output
+Id                        : ba4a97a7-3815-4752-bf4c-f1c0cccfff6a
+OdataType                 :
+Api                       : class ApiApplication {
+                                AcceptMappedClaims:
+                                KnownClientApplications:
+                                PreAuthorizedApplications:
+                                RequestedAccessTokenVersion: 2
+                                Oauth2PermissionScopes:
+                                System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PermissionScope]
+                            }
+
+AppId                     : 807dd73f-8451-4cfa-b3bc-52ac3fd95330
+AppRoles                  : {}
+IsDeviceOnlyAuthSupported :
+IsFallbackPublicClient    :
+IdentifierUris            : {}
+DeletedDateTime           :
+DisplayName               : My App
+Info                      : class InformationalUrl {
+                                TermsOfServiceUrl:
+                                MarketingUrl:
+                                PrivacyStatementUrl:
+                                SupportUrl:
+                                LogoUrl:
+                            }
+
+KeyCredentials            : {}
+OptionalClaims            :
+ParentalControlSettings   : class ParentalControlSettings {
+                                CountriesBlockedForMinors: System.Collections.Generic.List`1[System.String]
+                                LegalAgeGroupRule: Allow
+                            }
+
+PasswordCredentials       : {}
+PublicClientApplication   :
+RequiredResourceAccess    : {}
+SignInAudience            : AzureADandPersonalMicrosoftAccount
+Tags                      : {}
+TokenEncryptionKeyId      :
+Web                       : class WebApplication {
+                                LogoutUrl:
+                                Oauth2AllowImplicitFlow:
+                                RedirectUris: System.Collections.Generic.List`1[System.String]
+                                ImplicitGrantSettings: class ImplicitGrantSettings {
+                                    EnableIdTokenIssuance: False
+                                    EnableAccessTokenIssuance: False
+                                }
+                            }
+
+Id                        : d27bb37d-e1c0-4298-8308-ee5c239c0e3f
+OdataType                 :
+Api                       : class ApiApplication {
+                                AcceptMappedClaims:
+                                KnownClientApplications:
+                                PreAuthorizedApplications:
+                                RequestedAccessTokenVersion: 2
+                                Oauth2PermissionScopes:
+                                System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PermissionScope]
+                            }
+
+AppId                     : d9d4567d-6b71-4c58-b1ac-decbeb28c3b8
+AppRoles                  : {}
+IsDeviceOnlyAuthSupported :
+IsFallbackPublicClient    :
+IdentifierUris            : {}
+DeletedDateTime           :
+DisplayName               : My App
+Info                      : class InformationalUrl {
+                                TermsOfServiceUrl:
+                                MarketingUrl:
+                                PrivacyStatementUrl:
+                                SupportUrl:
+                                LogoUrl:
+                            }
+
+KeyCredentials            : {}
+OptionalClaims            :
+ParentalControlSettings   : class ParentalControlSettings {
+                                CountriesBlockedForMinors: System.Collections.Generic.List`1[System.String]
+                                LegalAgeGroupRule: Allow
+                            }
+
+PasswordCredentials       : {}
+PublicClientApplication   :
+RequiredResourceAccess    : {}
+SignInAudience            : AzureADandPersonalMicrosoftAccount
+Tags                      : {}
+TokenEncryptionKeyId      :
+Web                       : class WebApplication {
+                                LogoutUrl:
+                                Oauth2AllowImplicitFlow:
+                                RedirectUris: System.Collections.Generic.List`1[System.String]
+                                ImplicitGrantSettings: class ImplicitGrantSettings {
+                                    EnableIdTokenIssuance: False
+                                    EnableAccessTokenIssuance: False
+                                }
+                            }                            
 ```
+
+This command gets all the applications.
+
+### Example 7: Retrieve a list of all applications which have a display name that contains "asdfl"
+```powershell
 PS C:\>Get-EntraMSApplication -SearchString asdfl
 ```
 
-This command gets a list of applications which have the specified display name
+```output
+Id                        : d27bb37d-e1c0-4298-8308-ee5c239c0e3f
+OdataType                 :
+Api                       : class ApiApplication {
+                                AcceptMappedClaims:
+                                KnownClientApplications:
+                                PreAuthorizedApplications:
+                                RequestedAccessTokenVersion: 2
+                                Oauth2PermissionScopes:
+                                System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PermissionScope]
+                            }
 
-Output:
+AppId                     : d9d4567d-6b71-4c58-b1ac-decbeb28c3b8
+AppRoles                  : {}
+IsDeviceOnlyAuthSupported :
+IsFallbackPublicClient    :
+IdentifierUris            : {}
+DeletedDateTime           :
+DisplayName               : asdflfgh
+Info                      : class InformationalUrl {
+                                TermsOfServiceUrl:
+                                MarketingUrl:
+                                PrivacyStatementUrl:
+                                SupportUrl:
+                                LogoUrl:
+                            }
 
-Id                        : 88da75d4-2cba-4c47-9a15-80a983228ad4
-            OdataType                 :
-            AddIns                    : {}
-            Api                       : class ApiApplication {
-            AcceptMappedClaims:
-            KnownClientApplications:
-            PreAuthorizedApplications:
-            RequestedAccessTokenVersion: 2
-            Oauth2PermissionScopes:
-            System.Collections.Generic.List\`1\[Microsoft.Open.MSGraph.Model.PermissionScope\]
+KeyCredentials            : {}
+OptionalClaims            :
+ParentalControlSettings   : class ParentalControlSettings {
+                                CountriesBlockedForMinors: System.Collections.Generic.List`1[System.String]
+                                LegalAgeGroupRule: Allow
+                            }
 
-            AppId                     : 2cffc854-bbcf-404a-8bba-70d043534129
-            ApplicationTemplateId     :
-            AppRoles                  : {}
-            GroupMembershipClaims     :
-            IsDeviceOnlyAuthSupported :
-            IsFallbackPublicClient    :
-            IdentifierUris            : {}
-            CreatedDateTime           : 10/24/2019 6:27:25 AM
-            DeletedDateTime           :
-            DisplayName               : asdflkj
-            Info                      : class InformationalUrl {
-            TermsOfServiceUrl:
-            MarketingUrl:
-            PrivacyStatementUrl:
-            SupportUrl:
-            LogoUrl:
-            }
+PasswordCredentials       : {}
+PublicClientApplication   :
+RequiredResourceAccess    : {}
+SignInAudience            : AzureADandPersonalMicrosoftAccount
+Tags                      : {}
+TokenEncryptionKeyId      :
+Web                       : class WebApplication {
+                                LogoutUrl:
+                                Oauth2AllowImplicitFlow:
+                                RedirectUris: System.Collections.Generic.List`1[System.String]
+                                ImplicitGrantSettings: class ImplicitGrantSettings {
+                                    EnableIdTokenIssuance: False
+                                    EnableAccessTokenIssuance: False
+                                }
+                            } 
+```
 
-            KeyCredentials            : {}
-            OptionalClaims            :
-            ParentalControlSettings   : class ParentalControlSettings {
-            CountriesBlockedForMinors: System.Collections.Generic.List\`1\[System.String\]
-            LegalAgeGroupRule: Allow
-            }
-
-            PasswordCredentials       : {}
-            PublicClient              : class PublicClientApplication {
-            RedirectUris: System.Collections.Generic.List\`1\[System.String\]
-            }
-
-            PublisherDomain           :
-            RequiredResourceAccess    : {}
-            SignInAudience            : AzureADandPersonalMicrosoftAccount
-            Tags                      : {}
-            TokenEncryptionKeyId      :
-            Web                       : class WebApplication {
-            HomePageUrl:
-            LogoutUrl:
-            RedirectUris: System.Collections.Generic.List\`1\[System.String\]
-            ImplicitGrantSettings: class ImplicitGrantSettings {
-            EnableIdTokenIssuance: False
-            EnableAccessTokenIssuance: False
-            }
-
-            }
+This command gets a list of applications which have the specified display name.
 
 ## PARAMETERS
 
