@@ -22,62 +22,25 @@ Deletes a device.
 
 ## SYNTAX
 
-```
-Remove-EntraDevice -ObjectId <String> [-InformationAction <ActionPreference>] [-InformationVariable <String>]
- [<CommonParameters>]
+```powershell
+Remove-EntraDevice 
+    -ObjectId <String>
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Remove-EntraDevice cmdlet removes a device from Microsoft Entra ID.
+The **Remove-EntraDevice** cmdlet removes a device from Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Remove a device
-```
+```powershell
 PS C:\>Remove-EntraDevice -ObjectId "99a1915d-298f-42d1-93ae-71646b85e2fa"
 ```
 
 This command removes the specified device.
 
 ## PARAMETERS
-
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -ObjectId
 Specifies the object ID of a device in Microsoft Entra ID.
