@@ -48,7 +48,7 @@ PS C:\> Set-EntraMSGroup -Id 2c199eed-f77f-4cf4-9270-299071598fa7 -DisplayName "
 
 This example demonstrates how to update a group display name.  
 
-This command updates the display name of a specfied group in Microsoft Entra ID.
+This command updates the display name of a specified group in Microsoft Entra ID.
 
 ### Example 2: Update a group description
 ```powershell
@@ -57,7 +57,7 @@ PS C:\> Set-EntraMSGroup -Id 2c199eed-f77f-4cf4-9270-299071598fa7 -Description "
 
 This example demonstrates how to update a group description.  
 
-This command updates the desciption of a specfied group in Microsoft Entra ID.
+This command updates the description of a specified group in Microsoft Entra ID.
 
 ### Example 3: Update a group mail nickname
 ```powershell
@@ -66,7 +66,7 @@ PS C:\> Set-EntraMSGroup -Id 2c199eed-f77f-4cf4-9270-299071598fa7 -MailNickName 
 
 This example demonstrates how to update a group mail nickname.  
 
-This command updates the mail nickname of a specfied group in Microsoft Entra ID.
+This command updates the mail nickname of a specified group in Microsoft Entra ID.
 
 ### Example 4: Update a group security enabled
 ```powershell
@@ -75,7 +75,7 @@ PS C:\>  Set-EntraMSGroup -Id 2c199eed-f77f-4cf4-9270-299071598fa7 -SecurityEnab
 
 This example demonstrates how to update a group security enabled.  
 
-This command updates the security enabled of a specfied group in Microsoft Entra ID.
+This command updates the security enabled of a specified group in Microsoft Entra ID.
 
 ### Example 5: Update a group mail enabled
 ```powershell
@@ -84,7 +84,7 @@ PS C:\> Set-EntraMSGroup -Id 2c199eed-f77f-4cf4-9270-299071598fa7 -MailEnabled $
 
 This example demonstrates how to update a group main enabled.  
 
-This command updates the mail enabled of a specfied group in Microsoft Entra ID.
+This command updates the mail enabled of a specified group in Microsoft Entra ID.
 
 ### Example 6: Update a properties for a group
 ```powershell
@@ -93,7 +93,7 @@ PS C:\>  Set-EntraMSGroup -Id 2c199eed-f77f-4cf4-9270-299071598fa7 -Visibility "
 
 This example demonstrates how to update a properties for an existing Microsoft Entra ID group.  
 
-This command updates the properties of a specfied group in Microsoft Entra ID.
+This command updates the properties of a specified group in Microsoft Entra ID.
 
 ## PARAMETERS
 
