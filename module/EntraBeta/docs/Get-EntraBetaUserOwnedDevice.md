@@ -75,7 +75,7 @@ ObjectId                             DeviceId                             Displa
 74825acb-c984-4b54-ab65-d38347ea5e90 6e9d44e6-f191-4957-bb31-c52f33817204 Device1
 ```
 
-This command gets top 1 registered devices owned by the specified user.
+This command gets top 1 registered device owned by the specified user.
 
 
 ## PARAMETERS
