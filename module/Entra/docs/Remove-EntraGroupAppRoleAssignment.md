@@ -33,7 +33,7 @@ The Remove-EntraGroupAppRoleAssignment cmdlet removes a group application role a
 
 ## EXAMPLES
 
-### Example 1: Removes an group application role assignment
+### Example 1: Removes a group application role assignment
 
 
 ```powershell
