@@ -23,33 +23,37 @@ Adds a registered user for a device.
 
 ## SYNTAX
 
-```
-Add-EntraBetaDeviceRegisteredUser -ObjectId <String> -RefObjectId <String> [<CommonParameters>]
+```powershell
+Add-EntraBetaDeviceRegisteredUser 
+    -ObjectId <String> 
+    -RefObjectId <String> 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Add-EntraBetaDeviceRegisteredUser cmdlet adds a registered user for an a Microsoft Entra ID device.
+The **Add-EntraBetaDeviceRegisteredUser** cmdlet adds a registered user for an a Microsoft Entra ID device.
 
 ## EXAMPLES
 
 ### Example 1: Add a user as a registered user
-```
+```powershell
 PS C:\> $User = Get-EntraBetaUser -Top 1
 PS C:\> $Device = Get-EntraBetaDevice -Top 1
 PS C:\> Add-EntraBetaDeviceRegisteredUser -ObjectId $Device.ObjectId -RefObjectId $User.ObjectId
 ```
 
-The first command gets a user by using the Get-EntraBetaUser (./Get-EntraBetaUser.md)cmdlet, and then stores it in the $User variable.
+The first command gets a user by using the [Get-EntraBetaUser](./Get-EntraBetaUser.md) cmdlet, and then stores it in the $User variable.  
 
-The second command gets a device by using the Get-EntraBetaDevice (./Get-EntraBetaDevice.md)cmdlet, and then stores it in the $Device variable.
+The second command gets a device by using the [Get-EntraBetaDevice](./Get-EntraBetaDevice.md) cmdlet, and then stores it in the $Device variable.  
 
 The final command adds the user in $User as the registered user for the device in $Device. 
+
 Both parameters use the ObjectId property of specified object.
 
 ## PARAMETERS
 
 ### -ObjectId
-@{Text=}
+Specifies the ID of the device.
 
 ```yaml
 Type: String
@@ -64,7 +68,7 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
-@{Text=}
+Specifies the ID of the user.
 
 ```yaml
 Type: String
