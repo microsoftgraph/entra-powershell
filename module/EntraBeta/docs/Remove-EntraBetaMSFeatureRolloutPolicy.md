@@ -23,7 +23,7 @@ Allows an admin to remove the policy for cloud authentication roll-out in Micros
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraBetaMSFeatureRolloutPolicy -Id <String> [<CommonParameters>]
 ```
 
@@ -34,7 +34,7 @@ Users in groups that were assigned to the policy will fall back to the global au
 ## EXAMPLES
 
 ### Example 1: Removes the policy for cloud authentication roll-out in Microsoft Entra ID.
-```
+```powershell
 PS C:\> Remove-EntraBetaMSFeatureRolloutPolicy -Id "7b10cf40-bc0e-46b5-9456-4520179eef5d"
 ```
 
@@ -67,9 +67,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 ## RELATED LINKS
 
-[New-EntraBetaMSFeatureRolloutPolicy]()
+[New-EntraBetaMSFeatureRolloutPolicy](New-EntraBetaMSFeatureRolloutPolicy.md)
 
-[Get-EntraBetaMSFeatureRolloutPolicy]()
+[Get-EntraBetaMSFeatureRolloutPolicy](Get-EntraBetaMSFeatureRolloutPolicy.md)
 
-[Set-EntraBetaMSFeatureRolloutPolicy]()
+[Set-EntraBetaMSFeatureRolloutPolicy](Set-EntraBetaMSFeatureRolloutPolicy.md)
 
