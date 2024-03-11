@@ -22,20 +22,26 @@ Gets a group application role assignment.
 
 ## SYNTAX
 
-```
-Get-EntraBetaGroupAppRoleAssignment -ObjectId <String> [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+```powershell
+Get-EntraBetaGroupAppRoleAssignment 
+    -ObjectId <String> 
+    [-All <Boolean>] 
+    [-Top <Int32>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaGroupAppRoleAssignment cmdlet gets a group application role assignment in Microsoft Entra ID.
+The **Get-EntraBetaGroupAppRoleAssignment** cmdlet gets a group application role assignment in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Retrieve application role assignments of a group
-```
+```powershell
 $GroupId = (Get-EntraBetaGroup -Top 1).ObjectId
 Get-EntraBetaGroupAppRoleAssignment -ObjectId $GroupId
+```
 
+```output
 ObjectId                                    ResourceDisplayName                 PrincipalDisplayName
 --------                                    -------------------                 --------------------
 MSVrBV4APk--eAGnHqMKBLflsQG3rU1EmDFKvgra41I Microsoft Device Management Checkin Ask HR
@@ -43,16 +49,17 @@ MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 
 MSVrBV4APk--eAGnHqMKBDtEqPRvu8xLqWHDSXUhoTE M365 License Manager                Ask HR
 ```
 
-The first command gets the object ID of a group by using the Get-EntraBetaGroup (./Get-EntraBetaGroup.md)cmdlet.
+The first command gets the object ID of a group by using the [Get-EntraBetaGroup](./Get-EntraBetaGroup.md) cmdlet.
 The command stores the ID in the $GroupId variable.
 
 The second command gets the application role assignments of the group in $GroupId.
 
 ### Example 2: Retrieve all application role assignments of a group
+```powershell
+Get-EntraBetaGroupAppRoleAssignment -ObjectId b220a523-d97c-44c3-a535-b55fe1fa1163 -All $true
 ```
-$GroupId = (Get-EntraBetaGroup -Top 1).ObjectId
-Get-EntraBetaGroupAppRoleAssignment -ObjectId $GroupId -All $true
 
+```output
 ObjectId                                    ResourceDisplayName                 PrincipalDisplayName
 --------                                    -------------------                 --------------------
 MSVrBV4APk--eAGnHqMKBLflsQG3rU1EmDFKvgra41I Microsoft Device Management Checkin Ask HR
@@ -60,16 +67,21 @@ MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 
 MSVrBV4APk--eAGnHqMKBDtEqPRvu8xLqWHDSXUhoTE M365 License Manager                Ask HR
 ```
 
-### Example 3: Retrieve top 2 application role assignments of a group
-```
-$GroupId = (Get-EntraBetaGroup -Top 1).ObjectId
-Get-EntraBetaGroupAppRoleAssignment -ObjectId $GroupId -Top 2
+This command gets all application role assignments of the specified group.
 
+### Example 3: Retrieve top 2 application role assignments of a group
+```powershell
+Get-EntraBetaGroupAppRoleAssignment -ObjectId b220a523-d97c-44c3-a535-b55fe1fa1163 -Top 2
+```
+
+```output
 ObjectId                                    ResourceDisplayName                 PrincipalDisplayName
 --------                                    -------------------                 --------------------
 MSVrBV4APk--eAGnHqMKBLflsQG3rU1EmDFKvgra41I Microsoft Device Management Checkin Ask HR
 MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 Ask HR
 ```
+
+This command gets top 2 application role assignments of the specified group.
 
 ## PARAMETERS
 
