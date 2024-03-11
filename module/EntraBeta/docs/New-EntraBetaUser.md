@@ -67,7 +67,7 @@ The **New-EntraBetaUser** cmdlet creates a user in Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Create a user using MailNickName parameter
 ```powershell
 PS C:\> $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
 PS C:\> $PasswordProfile.Password = "<Password>"
@@ -82,7 +82,7 @@ ObjectId                             DisplayName UserPrincipalName              
 
 This command creates a new user.
 
-### Example 2
+### Example 2: Create a user using AgeGroup parameter
 ```powershell
 PS C:\> $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
 PS C:\> $PasswordProfile.Password = "<Password>"
@@ -97,7 +97,7 @@ ObjectId                             DisplayName UserPrincipalName              
 
 This command creates a new user.
 
-### Example 3
+### Example 3: Create a user using City parameter
 ```powershell
 PS C:\> $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
 PS C:\> $PasswordProfile.Password = "<Password>"
@@ -112,7 +112,7 @@ ObjectId                             DisplayName UserPrincipalName              
 
 This command creates a new user.
 
-### Example 4
+### Example 4: Create a user using Department parameter
 ```powershell
 PS C:\> $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
 PS C:\> $PasswordProfile.Password = "<Password>"
@@ -127,7 +127,7 @@ ObjectId                             DisplayName UserPrincipalName              
 
 This command creates a new user.
 
-### Example 5
+### Example 5: Create a user using Mobile parameter
 ```powershell
 PS C:\> $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
 PS C:\> $PasswordProfile.Password = "<Password>"
