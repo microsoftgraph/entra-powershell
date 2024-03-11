@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraUserManager.
+description: This article provides details on the Remove-EntraUserManager command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/11/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,9 @@ Removes a user's manager.
 ## SYNTAX
 
 ```
-Remove-EntraUserManager -ObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Remove-EntraUserManager 
+-ObjectId <String>
+ 
 ```
 
 ## DESCRIPTION
@@ -34,46 +45,10 @@ The second command removes the user in $User.
 
 ## PARAMETERS
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
 
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -ObjectId
-Specifies the ID of a user (as a UPN or ObjectId) in Azure AD.
+Specifies the ID of a user (as a User Principle Name or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -98,7 +73,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraUserManager]()
+[Get-EntraUserManager](Get-EntraUserManager.md)
 
-[Set-EntraUserManager]()
+[Set-EntraUserManager](Set-EntraUserManager.md)
 
