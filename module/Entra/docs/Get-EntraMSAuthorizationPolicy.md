@@ -30,9 +30,19 @@ The Get-EntraMSAuthorizationPolicy cmdlet gets a Microsoft Entra ID authorizatio
 
 ## EXAMPLES
 
-### Example 1: Get an authorization policy by ID
-```
+### Example 1: Get an authorization policy by ID.
+
+```powershell
 PS C:\>Get-EntraMSAuthorizationPolicy
+```
+```Output
+DeletedDateTime Description DisplayName            Id                  AllowEmailVerifiedUsersToJoinOrganization AllowInvitesFrom AllowUserConsentForRiskyApps AllowedToSig
+                                                                                                                                                               nUpEmailBase
+                                                                                                                                                               dSubscriptio
+                                                                                                                                                               ns
+--------------- ----------- -----------            --                  ----------------------------------------- ---------------- ---------------------------- ------------
+                test        Authorization Policies authorizationPolicy True                                      everyone                                      False
+
 ```
 
 ## PARAMETERS
@@ -48,5 +58,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Set-EntraMSAuthorizationPolicy]()
+[Set-EntraMSAuthorizationPolicy](Set-EntraMSAuthorizationPolicy.md)
 
