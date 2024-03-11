@@ -23,19 +23,25 @@ Get registered devices owned by a user.
 
 ## SYNTAX
 
-```
-Get-EntraBetaUserOwnedDevice [-Top <Int32>] -ObjectId <String> [-All <Boolean>] [<CommonParameters>]
+```powershell
+Get-EntraBetaUserOwnedDevice 
+    -ObjectId <String> 
+    [-Top <Int32>] 
+    [-All <Boolean>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaUserOwnedDevice cmdlet gets registered devices owned by the specified user in Microsoft Entra ID.
+The **Get-EntraBetaUserOwnedDevice** cmdlet gets registered devices owned by the specified user in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Get devices owned by a user
-```
+```powershell
 PS C:\>Get-EntraUserOwnedDevice -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16"
+```
 
+```output
 ObjectId                             DeviceId                             DisplayName
 --------                             --------                             -----------
 74825acb-c984-4b54-ab65-d38347ea5e90 6e9d44e6-f191-4957-bb31-c52f33817204 Device1
@@ -45,9 +51,11 @@ ObjectId                             DeviceId                             Displa
 This command gets the registered devices owned by the specified user.
 
 ### Example 2: Get all devices owned by a user
+```powershell
+PS C:\>Get-EntraUserOwnedDevice -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16" -All $true
 ```
-PS C:\>Get-EntraUserOwnedDevice -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16" -All:$true
 
+```output
 ObjectId                             DeviceId                             DisplayName
 --------                             --------                             -----------
 74825acb-c984-4b54-ab65-d38347ea5e90 6e9d44e6-f191-4957-bb31-c52f33817204 Device1
@@ -57,9 +65,11 @@ ObjectId                             DeviceId                             Displa
 This command gets all the registered devices owned by the specified user.
 
 ### Example 3: Get top 1 device owned by a user
-```
+```powershell
 PS C:\>Get-EntraUserOwnedDevice -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16" -Top 1
+```
 
+```output
 ObjectId                             DeviceId                             DisplayName
 --------                             --------                             -----------
 74825acb-c984-4b54-ab65-d38347ea5e90 6e9d44e6-f191-4957-bb31-c52f33817204 Device1
