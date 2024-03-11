@@ -46,7 +46,7 @@ This command update's the manager for the specified user.
 ## PARAMETERS
 
 ### -ObjectId
-Specifies the ID (as a UPN or ObjectId) of a user in Microsoft Entra ID.
+Specifies the ID (as a User Principal Name or ObjectId) of a user in Microsoft Entra ID.
 
 ```yaml
 Type: String
