@@ -22,26 +22,30 @@ Removes the registered owner of a device.
 
 ## SYNTAX
 
-```
-Remove-EntraBetaDeviceRegisteredOwner -OwnerId <String> -ObjectId <String> [<CommonParameters>]
+```powershell
+Remove-EntraBetaDeviceRegisteredOwner 
+    -OwnerId <String> 
+    -ObjectId <String> 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Remove-EntraBetaDeviceRegisteredOwner cmdlet removes the registered owner of a device in Microsoft Entra ID.
+The **Remove-EntraBetaDeviceRegisteredOwner** cmdlet removes the registered owner of a device in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Remove an owner from a device
-```
+```powershell
 PS C:\> $Device = Get-EntraBetaDevice -Top 1
 PS C:\> $Owner = Get-EntraBetaDeviceRegisteredOwner -ObjectId $Device.ObjectId
 PS C:\> Remove-EntraBetaDeviceRegisteredOwner -ObjectId $Device.ObjectId -OwnerId $Owner.ObjectId
 ```
 
-The first command gets a device by using the Get-EntraBetaDevice (./Get-EntraBetaDevice.md)cmdlet, and then stores it in the $Device variable.
+The first command gets a device by using the [Get-EntraBetaDevice](./Get-EntraBetaDevice.md) cmdlet, and then stores it in the $Device variable.  
 
-The second command gets the registered owner for the device in $Device by using the Get-EntraBetaDeviceRegisteredOwner (./Get-EntraBetaDeviceRegisteredOwner.md)cmdlet.
-The command stores it in the $Owner variable.
+The second command gets the registered owner for the device in $Device by using the [Get-EntraBetaDeviceRegisteredOwner](./Get-EntraBetaDeviceRegisteredOwner.md) cmdlet.  
+
+The command stores it in the $Owner variable.  
 
 The final command removes the owner in $Owner from the device in $Device.
 
