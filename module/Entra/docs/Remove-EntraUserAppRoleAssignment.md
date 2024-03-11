@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraUserAppRoleAssignment.
+description: This article provides details on the Remove-EntraUserAppRoleAssignment command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/11/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,10 @@ Removes a user application role assignment.
 ## SYNTAX
 
 ```
-Remove-EntraUserAppRoleAssignment -AppRoleAssignmentId <String> -ObjectId <String>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+Remove-EntraUserAppRoleAssignment
+ -AppRoleAssignmentId <String> 
+ -ObjectId <String>
+  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -24,10 +36,11 @@ The Remove-EntraUserAppRoleAssignment cmdlet removes a user application role ass
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\>  Remove-EntraUserAppRoleAssignment  -ObjectId bbf5d921-bb52-434b-96a0-95888e44faf5 -AppRoleAssignmentId Idn1u1K7S0OWoJWIjkT69ZuAI6_HyiZJv_bPBryomlg
+
 ```
 
-{{ Add example description here }}
+This example demonstrates how to Remove the user approle assignment in Microsoft Entra ID.   
 
 ## PARAMETERS
 
@@ -46,46 +59,8 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -ObjectId
-Specifies the ID (as a UPN or ObjectId) of a user in Azure AD.
+Specifies the ID (as a UPN or ObjectId) of a user in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -110,7 +85,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraUserAppRoleAssignment]()
+[Get-EntraUserAppRoleAssignment](Get-EntraUserAppRoleAssignment.md)
 
-[New-EntraUserAppRoleAssignment]()
+[New-EntraUserAppRoleAssignment](New-EntraUserAppRoleAssignment.md)
 
