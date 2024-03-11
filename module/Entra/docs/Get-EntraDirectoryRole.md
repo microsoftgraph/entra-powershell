@@ -23,35 +23,43 @@ Gets a directory role.
 ## SYNTAX
 
 ### GetQuery (Default)
-```
-Get-EntraDirectoryRole [-Filter <String>] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Get-EntraDirectoryRole 
+    [-Filter <String>] 
+    [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraDirectoryRole -ObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Get-EntraDirectoryRole 
+    -ObjectId <String> 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraDirectoryRole cmdlet gets a directory role from Microsoft Entra ID.
+The **Get-EntraDirectoryRole** cmdlet gets a directory role from Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Get a directory role by ID
-```
+```powershell
 PS C:\>Get-EntraDirectoryRole -ObjectId "019ea7a2-1613-47c9-81cb-20ba35b1ae48"
+```
 
+```output
 ObjectId                             DisplayName                        Description
 --------                             -----------                        -----------
 019ea7a2-1613-47c9-81cb-20ba35b1ae48 Company Administrator              Company Administrator role has full access to perform any operation in the company scope.
 ```
 
-### Example 2: Get all directory roles
-```
-PS C:\>Get-EntraDirectoryRole
+This command gets the specified directory role.
 
+### Example 2: Get all directory roles
+```powershell
+PS C:\>Get-EntraDirectoryRole
+```
+
+```output
 ObjectId                             DisplayName                        Description
 --------                             -----------                        -----------
 019ea7a2-1613-47c9-81cb-20ba35b1ae48 Company Administrator              Company Administrator role has full access to perform any operation in the company scope.
@@ -65,23 +73,33 @@ b89a48d4-7595-48d0-bb36-69fe4b220668 Device Administrators              Device A
 d96eb2b3-0970-4827-8f26-6008efd86511 Security Administrator             Security Administrator allows ability to read and manage security configuration and reports.
 ```
 
-### Example 3: Get a directory role filter by objectId
-```
-PS C:\>Get-EntraDirectoryRole -Filter "objectId eq '019ea7a2-1613-47c9-81cb-20ba35b1ae48'"
+This command gets all the directory roles.
 
+### Example 3: Get a directory role filter by objectId
+```powershell
+PS C:\>Get-EntraDirectoryRole -Filter "objectId eq '019ea7a2-1613-47c9-81cb-20ba35b1ae48'"
+```
+
+```output
 ObjectId                             DisplayName                        Description
 --------                             -----------                        -----------
 019ea7a2-1613-47c9-81cb-20ba35b1ae48 Company Administrator              Company Administrator role has full access to perform any operation in the company scope.
 ```
+
+This command get the directory role by objectId.
 
 ### Example 4: Get a directory role filter by displayName
-```
+```powershell
 PS C:\>Get-EntraDirectoryRole -Filter "displayName eq 'Company Administrator'"
+```
 
+```output
 ObjectId                             DisplayName                        Description
 --------                             -----------                        -----------
 019ea7a2-1613-47c9-81cb-20ba35b1ae48 Company Administrator              Company Administrator role has full access to perform any operation in the company scope.
 ```
+
+This command gets the directory role by display name.
 
 ## PARAMETERS
 
@@ -98,45 +116,6 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
