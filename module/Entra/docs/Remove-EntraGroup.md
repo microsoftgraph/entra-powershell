@@ -30,7 +30,7 @@ Remove-EntraGroup
 ## DESCRIPTION
 The Remove-EntraGroup cmdlet removes a group from Microsoft Entra ID.
 Note that a Unified Group can be restored withing 30 days after deletion using the Restore-EntraMSDeletedDirectoryObject cmdlet.
-Security groups cannot be restored after deletion.
+Security groups can't be restored after deletion.
 
 ## EXAMPLES
 
