@@ -23,9 +23,11 @@ Removes an administrative unit member.
 
 ## SYNTAX
 
-```
-Remove-EntraBetaAdministrativeUnitMember -ObjectId <String> -MemberId <String>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Remove-EntraBetaAdministrativeUnitMember 
+    -ObjectId <String> 
+    -MemberId <String>
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,52 +36,13 @@ The **Remove-EntraBetaAdministrativeUnitMember** cmdlet removes an administrativ
 ## EXAMPLES
 
 ### Example 1
-```
+```powershell
 PS C:\> Remove-AzureADAdministrativeUnitMember -ObjectId "49263478-3dda-4112-821d-4e6ccaa1c2d5" -MemberId "c26aa946-90cd-4e9a-a8f1-43eeef655500"
 ```
 
 This command removes an administrative unit member in Microsoft Entra ID. 
 
 ## PARAMETERS
-
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -MemberId
 Specifies the ID of the administrative unit member.
