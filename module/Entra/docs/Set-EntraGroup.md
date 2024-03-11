@@ -30,8 +30,6 @@ Set-EntraGroup
  [-Description <String>]
  [-MailEnabled <Boolean>] 
  [-MailNickName <String>] 
- [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] 
  [<CommonParameters>]
 ```
 
@@ -41,70 +39,49 @@ The Set-EntraGroup cmdlet updates a group in Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Update a group description
-
-This example demonstrates how to update a group description.
 ```powershell
 PS C:\>Set-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -Description "This is my new group"
 ```
-```output
-No output
-```
+
+This example demonstrates how to update a group description.  
+
 This command updates the desciption of a specfied group in Microsoft Entra ID.  
 
-ObjectId- Specifies the object ID of a group.
-
 ### Example 2: Update a group display name
-This example demonstrates how to update a group display name.
-
 ```powershell
 PS C:\>Set-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -DisplayName "Parents of Conto"
 ```
-```
-No output
-```
+
+This example demonstrates how to update a group display name.  
 
 This command updates the display name of a specfied group in Microsoft Entra ID.  
 
-ObjectId- Specifies the object ID of a group.
-
 ### Example 3: Update a group mail nickname
-This example demonstrates how to update a group mail nickname.
 ```powershell
 PS C:\>Set-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -MailNickName "newnickname"
 ```
-```output
-No output
-```
+
+This example demonstrates how to update a group mail nickname.  
 
 This command updates the mail nickname of a specfied group in Microsoft Entra ID.  
 
-ObjectId- Specifies the object ID of a group.
-
 ### Example 4: Update a group security enabled
-This example demonstrates how to update a group security enabled.
 ```powershell
 PS C:\>Set-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -SecurityEnabled $true
 ```
-```output
-No output
-```
+
+This example demonstrates how to update a group security enabled.  
 
 This command updates the security enabled of a specfied group in Microsoft Entra ID.  
 
-ObjectId- Specifies the object ID of a group.
-
 ### Example 5: Update a group mail enabled
-This example demonstrates how to update a group main enabled.
 ```powershell
 PS C:\>Set-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -MailEnabled $true
 ```
-```output
-No output
-```
+
+This example demonstrates how to update a group main enabled.  
 
 This command updates the mail enabled of a specfied group in Microsoft Entra ID.  
-
-ObjectId- Specifies the object ID of a group.
 
 ## PARAMETERS
 
@@ -130,44 +107,6 @@ Specifies a display name.
 Type: String
 Parameter Sets: (All)
 Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
 
 Required: False
 Position: Named
@@ -247,9 +186,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraGroup]()
+[Get-EntraGroup](Get-EntraGroup.md)
 
-[New-EntraGroup]()
+[New-EntraGroup](New-EntraGroup.md)
 
-[Remove-EntraGroup]()
+[Remove-EntraGroup](Remove-EntraGroup.md)
 
