@@ -4,6 +4,29 @@
 @{
     SourceName = "Set-AzureADMSRoleDefinition"
     TargetName = "Update-MgBetaRoleManagementDirectoryRoleDefinition"
-    Parameters = $null
+    Parameters = @(
+        @{
+            SourceName = "Id"
+            TargetName = "UnifiedRoleDefinitionId"
+            ConversionType = "Name"
+            SpecialMapping = $null
+        }
+        @{
+            SourceName = "RolePermissions"
+            TargetName = "RolePermissions"
+            ConversionType = "ScriptBlock"
+            SpecialMapping = @'
+            $Value = @()
+            foreach($val in $TmpValue)
+            {
+                $Temp = $val | ConvertTo-Json
+                $hash = @{}
+
+                (ConvertFrom-Json $Temp).psobject.properties | Foreach { $hash[$_.Name] = $_.Value }
+                $Value += $hash
+            }
+'@
+        }
+    )
     Outputs = $null
 }
