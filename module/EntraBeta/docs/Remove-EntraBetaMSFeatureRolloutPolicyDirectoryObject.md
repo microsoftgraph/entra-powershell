@@ -24,8 +24,11 @@ Users in this group will revert back to the authenticating using the global poli
 
 ## SYNTAX
 
-```
-Remove-EntraBetaMSFeatureRolloutPolicyDirectoryObject -ObjectId <String> -Id <String> [<CommonParameters>]
+```powershell
+Remove-EntraBetaMSFeatureRolloutPolicyDirectoryObject 
+    -ObjectId <String> 
+    -Id <String> 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -36,7 +39,7 @@ federation).
 ## EXAMPLES
 
 ### Example 1: Removes a group from the cloud authentication roll-out policy from Microsoft Entra ID.
-```
+```powershell
 PS C:\> Remove-EntraBetaMSFeatureRolloutPolicyDirectoryObject -Id "a03b6d9e-6654-46e6-8d0a-8ed83c675ca9" -ObjectId "0a1068c0-dbb6-4537-9db3-b48f3e31dd76"
 ```
 
@@ -84,5 +87,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 ## RELATED LINKS
 
-[Add-EntraBetaMSFeatureRolloutPolicyDirectoryObject]()
+[Add-EntraBetaMSFeatureRolloutPolicyDirectoryObject](Add-EntraBetaMSFeatureRolloutPolicyDirectoryObject.md)
 
