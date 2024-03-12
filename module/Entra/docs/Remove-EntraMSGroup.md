@@ -39,7 +39,7 @@ The Remove-EntraMSGroup cmdlet removes a Microsoft Entra ID group.
 PS C:\> Remove-EntraMSGroup -Id "ce0a2213-bd57-4e2f-b9fa-408582e2e260"
 ```
 
-This Example demonstrates how to remove the group with specified ID.
+This example demonstrates how to remove the group with specified ID.
 
 ## PARAMETERS
 
@@ -68,9 +68,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.Object
 ## NOTES
-This cmdlet is currently in Public Preview.
-While a cmdlet is in Public Preview, we might make changes to the cmdlet, which could have unexpected effects.
-We recommend that you don't use this cmdlet in a production environment.
 
 ## RELATED LINKS
 
