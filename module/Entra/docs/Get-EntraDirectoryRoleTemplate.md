@@ -1,4 +1,14 @@
 ---
+title: Get-EntraDirectoryRoleTemplate
+description: This article provides details on the Get-EntraDirectoryRoleTemplate command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/12/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,20 +22,22 @@ Gets directory role templates.
 
 ## SYNTAX
 
-```
-Get-EntraDirectoryRoleTemplate [-InformationAction <ActionPreference>] [-InformationVariable <String>]
- [<CommonParameters>]
+```powershell
+Get-EntraDirectoryRoleTemplate 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraDirectoryRoleTemplate cmdlet gets directory role templates in Microsoft Entra ID.
+The **Get-EntraDirectoryRoleTemplate** cmdlet gets directory role templates in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Get role templates
-```
+```powershell
 PS C:\>Get-EntraDirectoryRoleTemplate
+```
 
+```output
 ObjectId                             DisplayName                             Description
 --------                             -----------                             -----------
 729827e3-9c14-49f7-bb1b-9608f156bbb8 Helpdesk Administrator                  Helpdesk Administrator has access to perform common helpdesk related tasks.
@@ -63,47 +75,9 @@ e8611ab8-c189-46e8-94e1-60213ab1f814 Privileged Role Administrator           Pri
 a9ea8996-122f-4c74-9520-8edcd192826c Power BI Service Administrator          Full access in the Power BI Service.
 ```
 
-This command gets the role templates in Azure AD.
+This command gets the role templates in Microsoft Entra ID.
 
 ## PARAMETERS
-
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
