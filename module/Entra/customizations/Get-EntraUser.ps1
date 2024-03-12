@@ -8,12 +8,7 @@
     outputs = $null
     CustomScript = @'
     PROCESS {
-        $psVersion = $global:PSVersionTable.PSVersion
-        $moduleVersion = (Get-Module Microsoft.Graph.Entra).Version
-        $ver = $moduleVersion.Major, $moduleVersion.Minor, $moduleVersion.Build -Join "."
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$ver Get-EntraUser"
-        $customHeaders = New-Object 'system.collections.generic.dictionary[string,string]'
-        $customHeaders["User-Agent"] = $userAgentHeaderValue
+        $customHeaders = New-CustomHeaders -Module Entra -Command Get-EntraUser
         $params = @{}
         $keysChanged = @{SearchString = "Filter"; ObjectId = "Id"}
         if($null -ne $PSBoundParameters["SearchString"])

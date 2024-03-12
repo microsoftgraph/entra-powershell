@@ -574,12 +574,7 @@ $($Command.CustomScript)
         $ParamterTransformations = $this.GetParametersTransformations($Command)
         $OutputTransformations = $this.GetOutputTransformations($Command)
         $keyId = $this.GetKeyIdPair($Command)
-        $psVersion = $global:PSVersionTable.PSVersion
-        $moduleVersion = (Get-Module Microsoft.Graph.Entra).Version
-        $ver = $moduleVersion.Major, $moduleVersion.Minor, $moduleVersion.Build -Join "."
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$ver $($Command.Generate)"
-        $customHeaders = New-Object 'system.collections.generic.dictionary[string,string]'
-        $customHeaders["User-Agent"] = $userAgentHeaderValue
+        $customHeaders = New-CustomHeaders -Module $this.NewPrefix
         $function = @"
 function $($Command.Generate) {
     [CmdletBinding($($Command.DefaultParameterSet))]
