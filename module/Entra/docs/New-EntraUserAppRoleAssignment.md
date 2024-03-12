@@ -1,4 +1,14 @@
 ---
+title: New-EntraUserAppRoleAssignment.
+description: This article provides details on the New-EntraUserAppRoleAssignment command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/12/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,12 @@ Assigns a user to an application role.
 ## SYNTAX
 
 ```
-New-EntraUserAppRoleAssignment -ObjectId <String> -PrincipalId <String> -Id <String> -ResourceId <String>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+New-EntraUserAppRoleAssignment 
+ -ObjectId <String> 
+ -PrincipalId <String> 
+ -Id <String> 
+ -ResourceId <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -41,33 +55,41 @@ $servicePrincipal = Get-EntraServicePrincipal -Filter "appId eq 'appId'"
 New-EntraUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.ObjectId -ResourceId $servicePrincipal.ObjectId -Id ([Guid]::Empty)
 ```
 
-This command assigns a user to and application that doesn;t have any roles.
+This example demonstrates how to assign a user to an application role in Microsoft Entra ID.  
+
+This command assigns a user to and application that doesn't have any roles.
 
 ### Example 2: Assign a user to a specific role within an application
-```
-$username = "<You user's UPN>"
-$appname = "<Your App's display name>"
+```powershell
+$username = "Test4@M365x99297270.onmicrosoft.com"
+$appname = "Box"
 $spo = Get-EntraServicePrincipal -Filter "Displayname eq '$appname'"
 $user = Get-EntraUser -ObjectId $username
 New-EntraUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.ObjectId -ResourceId $spo.ObjectId -Id $spo.Approles[1].id
 ```
+```output
+DeletedDateTime Id                                          AppRoleId                            CreatedDateTime       PrincipalDisplayName PrincipalId
+--------------- --                                          ---------                            ---------------       -------------------- -----------
+                Idn1u1K7S0OWoJWIjkT69SVIUTZVOARFnAExHJFzgRs e18f0405-fdec-4ae8-a8a0-d8edb98b061f 3/12/2024 10:09:07 AM Test One Updated     bbf5d921-bb52-434b-96a0-9588...
+```
 
-This cmdlet assigns to the specified user the application role of which the Id is specified with $spo.Approles\[1\].id.
-please refer to the description of the -Id parameter for more information on how to retrieve application roles for an application.
+This example demonstrates how to assign a user to an application role in Microsoft Entra ID.  
+This cmdlet assigns to the specified user the application role of which the Id is specified with $spo.Approles\[1\].id.  
+Please refer to the description of the -Id parameter for more information on how to retrieve application roles for an application.
 
 ## PARAMETERS
 
 ### -Id
 The ID of the app role to assign.
-Provide an empty guid when creating a new app role assignement for an application that does not have any roles, or the Id of the role to assign to the user.
+Provide an empty guid when creating a new app role assignment for an application that does not have any roles, or the Id of the role to assign to the user.
 
 You can retrieve the application's roles by examining the application object's AppRoles property:
 
-Get-AzureadApplication -SearchString "Your Application display name" | select Approles | Fl
+Get-EntraApplication -SearchString "Your Application display name" | select Approles | Fl
 
 This cmdlet returns the list of roles that are defined in an application:
 
-AppRoles : {class AppRole {              AllowedMemberTypes: System.Collections.Generic.List1\[System.String\]              Description: \<description for this role\>              DisplayName: \<display name for this role\>              Id: 97e244a2-6ccd-4312-9de6-ecb21884c9f7              IsEnabled: True              Value: \<Value that will be transmitted as a claim in a token for this role\>            }            }
+AppRoles: {class AppRole {              AllowedMemberTypes: System.Collections.Generic.List1\[System.String\]              Description: \<description for this role\>              DisplayName: \<display name for this role\>              Id: 97e244a2-6ccd-4312-9de6-ecb21884c9f7              IsEnabled: True              Value: \<Value that will be transmitted as a claim in a token for this role\>            }            }
 
 ```yaml
 Type: String
@@ -81,46 +103,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -ObjectId
-Specifies the ID of the user (as a UPN or ObjectId) in Azure AD to which the new app role is to be assigned
+Specifies the ID of the user (as a User Principal Name or ObjectId) in Microsoft Entra ID to which the new app role is to be assigned.
 
 ```yaml
 Type: String
@@ -176,7 +160,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraUserAppRoleAssignment]()
+[Get-EntraUserAppRoleAssignment](Get-EntraUserAppRoleAssignment.md)
 
-[Remove-EntraUserAppRoleAssignment]()
+[Remove-EntraUserAppRoleAssignment](Remove-EntraUserAppRoleAssignment.md)
 
