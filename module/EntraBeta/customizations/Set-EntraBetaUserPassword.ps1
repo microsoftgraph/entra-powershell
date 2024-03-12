@@ -39,6 +39,7 @@
 
         $PasswordProfile = @{}
         if($null -ne $PSBoundParameters["ForceChangePasswordNextLogin"]) { $PasswordProfile["ForceChangePasswordNextSignIn"] = $ForceChangePasswordNextSignIn }
+        if($null -ne $PSBoundParameters["EnforceChangePasswordPolicy"]) { $PasswordProfile["ForceChangePasswordNextSignInWithMfa"] = $ForceChangePasswordNextSignInWithMfa }
         if($null -ne $PSBoundParameters["Password"]) { $PasswordProfile["password"] = $PlainPassword }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
