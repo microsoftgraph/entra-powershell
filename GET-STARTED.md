@@ -47,7 +47,7 @@ Download the latest [Microsoft Entra PowerShell release](https://github.com/micr
 cd c:\test\entra-powershell
 
 # Unblock the content using
-Get-ChildItem -Path . | Unblock-File -Confirm
+Get-ChildItem -Path . -Recurse| Unblock-File -Confirm
 
 # Add the folder to your module's path; this is temporary. To make it permanent, run the following with admin privileges
 $env:PSModulePath += ";C:\test\entra-powerShell"
