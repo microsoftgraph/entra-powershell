@@ -1,1 +1,1 @@
-# Welcome to MAML2Yaml Sample
+# Welcome to Microsoft.Graph.Entra
