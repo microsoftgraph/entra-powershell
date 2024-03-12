@@ -1,4 +1,14 @@
 ---
+title: New-EntraMSInvitation.
+description: This article provides details on the New-EntraMSInvitation command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/12/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,9 +23,13 @@ This cmdlet is used to invite a new external user to your directory
 ## SYNTAX
 
 ```
-New-EntraMSInvitation [-InvitedUser <User>] [-InvitedUserType <String>] -InvitedUserEmailAddress <String>
- [-SendInvitationMessage <Boolean>] -InviteRedirectUrl <String>
- [-InvitedUserMessageInfo <InvitedUserMessageInfo>] [-InvitedUserDisplayName <String>] [<CommonParameters>]
+New-EntraMSInvitation 
+[-InvitedUser <User>] 
+[-InvitedUserType <String>] -InvitedUserEmailAddress <String>
+[-SendInvitationMessage <Boolean>] -InviteRedirectUrl <String>
+[-InvitedUserMessageInfo <InvitedUserMessageInfo>] 
+[-InvitedUserDisplayName <String>] 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
