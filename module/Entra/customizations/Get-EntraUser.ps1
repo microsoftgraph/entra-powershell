@@ -9,7 +9,9 @@
     CustomScript = @'
     PROCESS {
         $psVersion = $global:PSVersionTable.PSVersion
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/0.6.0 Get-EntraUser"
+        $moduleVersion = (Get-Module Microsoft.Graph.Entra).Version
+        $ver = $moduleVersion.Major, $moduleVersion.Minor, $moduleVersion.Build -Join "."
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$ver Get-EntraUser"
         $customHeaders = New-Object 'system.collections.generic.dictionary[string,string]'
         $customHeaders["User-Agent"] = $userAgentHeaderValue
         $params = @{}

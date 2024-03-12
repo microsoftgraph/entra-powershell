@@ -575,7 +575,9 @@ $($Command.CustomScript)
         $OutputTransformations = $this.GetOutputTransformations($Command)
         $keyId = $this.GetKeyIdPair($Command)
         $psVersion = $global:PSVersionTable.PSVersion
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/0.6.0 $($Command.Generate)" # TODO: Get EntraPowerShell module version via command
+        $moduleVersion = (Get-Module Microsoft.Graph.Entra).Version
+        $ver = $moduleVersion.Major, $moduleVersion.Minor, $moduleVersion.Build -Join "."
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$ver $($Command.Generate)"
         $customHeaders = New-Object 'system.collections.generic.dictionary[string,string]'
         $customHeaders["User-Agent"] = $userAgentHeaderValue
         $function = @"
