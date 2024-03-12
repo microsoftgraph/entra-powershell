@@ -219,3 +219,30 @@ function Create-ModuleHelp {
 	$moduleDocsPath = Join-Path ($moduleDocsPath) (Get-ConfigValue -Name ($Module + "Path"))
 	New-ExternalHelp -Path $moduleDocsPath -OutputPath $binPath -Force
 }
+
+function New-CustomHeaders {
+	param (
+		[string]
+		$Module = "Entra",
+
+		[string]
+		$Command
+	)
+
+	if($Module -eq 'Entra')
+	{
+		$moduleVersion = (Get-Module Microsoft.Graph.Entra).Version
+	}
+	else
+	{
+		$moduleVersion = (Get-Module Microsoft.Graph.Entra.Beta).Version
+	}
+
+	$psVersion = $global:PSVersionTable.PSVersion
+	$ver = $moduleVersion.Major, $moduleVersion.Minor, $moduleVersion.Build -Join "."
+	$userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$ver $Command"
+	$customHeaders = New-Object 'system.collections.generic.dictionary[string,string]'
+	$customHeaders["User-Agent"] = $userAgentHeaderValue
+
+	$customHeaders
+}
