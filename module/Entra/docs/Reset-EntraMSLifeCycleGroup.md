@@ -1,4 +1,14 @@
 ---
+title: Reset-EntraMSLifeCycleGroup.
+description: This article provides details on the Reset-EntraMSLifeCycleGroup command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/13/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,26 +23,29 @@ Renews a group by updating the RenewedDateTime property on a group to the curren
 ## SYNTAX
 
 ```
-Reset-EntraMSLifeCycleGroup -Id <String> [<CommonParameters>]
+Reset-EntraMSLifeCycleGroup 
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 The Reset-EntraMSLifeCycleGroup renews a group by updating the RenewedDateTime property on a group to the current DateTime.
-When a group is renewed, the group expiration is extended by the number of days defined in the policy.
+When a group is renewed, it extends the group expiration by the number of days defined in the policy.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> Reset-EntraMSLifeCycleGroup -groupId cffd97bd-6b91-4c4e-b553-6918a320211c
+### Example 1: Renew a group 
+```powershell
+PS C:\> Reset-EntraMSLifeCycleGroup -Id 056b2531-005e-4f3e-be78-01a71ea30a04
 ```
 
+This example demonstrates how to renew a specified group.  
 The Reset-EntraMSLifeCycleGroup renews a specified group by updating the RenewedDateTime property on a group to the current DateTime.
 
 ## PARAMETERS
 
 ### -Id
-{{ Fill Id Description }}
+The unique identifier of group.
 
 ```yaml
 Type: String
