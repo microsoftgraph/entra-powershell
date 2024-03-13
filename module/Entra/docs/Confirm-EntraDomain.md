@@ -1,4 +1,14 @@
 ---
+title: Confirm-EntraDomain
+description: This article provides details on the Confirm-EntraDomain command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/13/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,25 +22,27 @@ Validate the ownership of a domain.
 
 ## SYNTAX
 
-```
-Confirm-EntraDomain -Name <String> [-CrossCloudVerificationCode <CrossCloudVerificationCodeBody>]
- [<CommonParameters>]
+```powershell
+Confirm-EntraDomain 
+    -Name <String> 
+    [-CrossCloudVerificationCode <CrossCloudVerificationCodeBody>]
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Confirm-EntraDomain cmdlet validates the ownership of a Microsoft Entra ID domain.
+The **Confirm-EntraDomain** cmdlet validates the ownership of a Microsoft Entra ID domain.
 
 ## EXAMPLES
 
 ### Example 1: Confirm the domain
-```
+```powershell
 PS C:\>Confirm-EntraDomain -Name Contoso.com
 ```
 
 This command will confirm your domain; changing the status to "Verified".
 
 ### Example 2: Confirm the domain with a cross cloud verification code
-```
+```powershell
 PS C:\>Confirm-EntraDomain -Name Contoso.com -CrossCloudVerificationCode ms84324896
 ```
 
@@ -79,11 +91,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraDomain]()
+[Get-EntraDomain](Get-EntraDomain.md)
 
-[New-EntraDomain]()
+[New-EntraDomain](New-EntraDomain.md)
 
-[Remove-EntraDomain]()
+[Remove-EntraDomain](Remove-EntraDomain.md)
 
-[Set-EntraDomain]()
+[Set-EntraDomain](Set-EntraDomain.md)
 
