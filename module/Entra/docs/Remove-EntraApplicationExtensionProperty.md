@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraApplicationExtensionProperty.
+description: This article provides details on the Remove-EntraApplicationExtensionProperty command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/13/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,10 @@ Removes an application extension property.
 ## SYNTAX
 
 ```
-Remove-EntraApplicationExtensionProperty -ExtensionPropertyId <String> -ObjectId <String>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+Remove-EntraApplicationExtensionProperty 
+-ExtensionPropertyId <String> 
+-ObjectId <String>
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,7 +34,7 @@ The Remove-EntraApplicationExtensionProperty cmdlet removes an application exten
 
 ## EXAMPLES
 
-### Example 1: Remove an extension property
+### Example 1: Remove an application extension property
 ```
 PS C:\> Remove-EntraApplicationExtensionProperty -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -ExtensionPropertyId "344ed560-f8e7-410e-ab9f-c79df5c36"
 ```
@@ -46,44 +58,6 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -ObjectId
 Specifies the unique ID of an application in Microsoft Entra ID.
@@ -111,7 +85,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraApplicationExtensionProperty]()
+[Get-EntraApplicationExtensionProperty](Get-EntraApplicationExtensionProperty.md)
 
-[New-EntraApplicationExtensionProperty]()
+[New-EntraApplicationExtensionProperty](New-EntraApplicationExtensionProperty.md)
 
