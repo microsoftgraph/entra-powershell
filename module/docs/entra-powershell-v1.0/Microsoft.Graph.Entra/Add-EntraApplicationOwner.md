@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-EntraApplicationOwner
 
 ## SYNOPSIS
-Adds an owner to an application.
+Adds an owner to an application...
 
 ## SYNTAX
 
