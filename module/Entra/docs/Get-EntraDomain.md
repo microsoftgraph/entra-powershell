@@ -46,9 +46,8 @@ PS C:\>Get-AzureADDomain
 ```
 
 ```output
-Id         AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified Manufacturer Model PasswordNotificationWindowInDays PasswordValidityPeriodInDays SupportedServi
-                                                                                                                                                                                       ces
---         ------------------ ------------------ -------------- --------- --------- ------ ---------- ------------ ----- -------------------------------- ---------------------------- --------------
+Id         AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified Manufacturer Model PasswordNotificationWindowInDays PasswordValidityPeriodInDays SupportedServices
+--         ------------------ ------------------ -------------- --------- --------- ------ ---------- ------------ ----- -------------------------------- ---------------------------- -----------------
 TEST22.com Managed                               True           False     False     False  False                                                                                       {}
 test26.com Managed                               True           False     False     False  False                                                                                       {}
 test25.com Managed                               True           False     False     False  False                                                                                       {}
@@ -62,9 +61,8 @@ PS C:\>Get-AzureADDomain -Name TEST22.com
 ```
 
 ```output
-Id         AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified Manufacturer Model PasswordNotificationWindowInDays PasswordValidityPeriodInDays SupportedServi
-                                                                                                                                                                                       ces
---         ------------------ ------------------ -------------- --------- --------- ------ ---------- ------------ ----- -------------------------------- ---------------------------- --------------
+Id         AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified Manufacturer Model PasswordNotificationWindowInDays PasswordValidityPeriodInDays SupportedServices
+--         ------------------ ------------------ -------------- --------- --------- ------ ---------- ------------ ----- -------------------------------- ---------------------------- -----------------
 TEST22.com Managed                               True           False     False     False  False                                                                                       {}
 ```
 
