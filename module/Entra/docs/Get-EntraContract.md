@@ -1,4 +1,14 @@
 ---
+title: Get-EntraContract
+description: This article provides details on the Get-EntraContract command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/13/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,17 +23,24 @@ Gets a contract.
 ## SYNTAX
 
 ### GetQuery (Default)
-```
-Get-EntraContract [-Top <Int32>] [-All <Boolean>] [-Filter <String>] [<CommonParameters>]
+```powershell
+Get-EntraContract 
+    [-Top <Int32>] 
+    [-All <Boolean>] 
+    [-Filter <String>] 
+    [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraContract -ObjectId <String> [-All <Boolean>] [<CommonParameters>]
+```powershell
+Get-EntraContract 
+    -ObjectId <String> 
+    [-All <Boolean>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraContract cmdlet gets a contract from Microsoft Entra ID.
+The **Get-EntraContract** cmdlet gets a contract from Microsoft Entra ID.
 This cmdlet returns a contract object for each contract that is selected by the request.
 The contract object contains the following attributes:
 
@@ -49,9 +66,9 @@ The value is always "Contract".
 
 ## EXAMPLES
 
-### Example 1: Get all contracts in the directory
+### Example 1: Get all contracts in the directory.
 ```
-Get-EntraContract
+PS C:\> Get-EntraContract
 ```
 
 This command gets all contracts in the directory.
@@ -60,7 +77,7 @@ This command gets all contracts in the directory.
 
 ### -All
 If true, return all contracts.
-If false, return the number of objects specified by the Top parameter
+If false, return the number of objects specified by the Top parameter.
 
 ```yaml
 Type: Boolean
