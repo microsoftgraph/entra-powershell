@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraTrustedCertificateAuthority
+description: This article provides details on the Remove-EntraTrustedCertificateAuthority command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/13/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,20 +22,29 @@ Removes a trusted certificate authority.
 
 ## SYNTAX
 
-```
-Remove-EntraTrustedCertificateAuthority -CertificateAuthorityInformation <CertificateAuthorityInformation>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Remove-EntraTrustedCertificateAuthority 
+	-CertificateAuthorityInformation <CertificateAuthorityInformation>
+	[<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Remove-EntraTrustedCertificateAuthority cmdlet removes a trusted certificate authority from Microsoft Entra ID.
+The **Remove-EntraTrustedCertificateAuthority** cmdlet removes a trusted certificate authority from Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Remove the trusted certificate authorities that are defined in your directory
-```
+```powershell
 PS C:\> $cer = Get-EntraTrustedCertificateAuthority #Get the CertificateAuthorityInformation object
-		PS C:\> Remove-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
+PS C:\> Remove-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
+```
+
+```output
+Name                           Value
+----                           -----
+@odata.context                 https://graph.microsoft.com/v1.0/$metadata#certificateBasedAuthConfiguration/$entity
+certificateAuthorities         {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
+id                             29728ade-6ae4-4ee9-9103-412912537da5
 ```
 
 This command deletes the trusted certificate authorities that are defined in your directory.
@@ -33,7 +52,7 @@ This command deletes the trusted certificate authorities that are defined in you
 ## PARAMETERS
 
 ### -CertificateAuthorityInformation
-@{Text=}
+Specifies a CertificateAuthorityInformation object.
 
 ```yaml
 Type: CertificateAuthorityInformation
@@ -44,44 +63,6 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -96,9 +77,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraTrustedCertificateAuthority]()
+[Get-EntraTrustedCertificateAuthority](Get-EntraTrustedCertificateAuthority.md)
 
-[New-EntraTrustedCertificateAuthority]()
+[New-EntraTrustedCertificateAuthority](New-EntraTrustedCertificateAuthority.md)
 
-[Set-EntraTrustedCertificateAuthority]()
+[Set-EntraTrustedCertificateAuthority](Set-EntraTrustedCertificateAuthority.md)
 
