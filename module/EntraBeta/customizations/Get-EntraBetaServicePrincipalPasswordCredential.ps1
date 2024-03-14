@@ -7,6 +7,7 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
+    $customHeaders = New-CustomHeaders -Module Entra -Command $MyInvocation.MyCommand
     $response = (Get-MgBetaServicePrincipal -ServicePrincipalId $PSBoundParameters["ObjectId"]).PasswordCredentials
     $response | ForEach-Object {
         if($null -ne $_) {

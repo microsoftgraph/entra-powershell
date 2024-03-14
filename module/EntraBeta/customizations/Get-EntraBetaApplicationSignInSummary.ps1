@@ -9,6 +9,7 @@
     CustomScript = @"
     PROCESS {  
         `$params = @{}
+        `$customHeaders = New-CustomHeaders -Module Entra -Command `$MyInvocation.MyCommand
         `$filterApplied = `$null
         `$topCount = `$null
                 if (`$null -ne `$PSBoundParameters["Days"]) {

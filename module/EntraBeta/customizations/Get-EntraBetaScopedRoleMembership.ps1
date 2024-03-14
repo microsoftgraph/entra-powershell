@@ -9,6 +9,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
+        `$customHeaders = New-CustomHeaders -Module Entra -Command `$MyInvocation.MyCommand
         `$keysChanged = @{ObjectId = "Id"}
         if(`$PSBoundParameters.ContainsKey("Verbose"))
         {

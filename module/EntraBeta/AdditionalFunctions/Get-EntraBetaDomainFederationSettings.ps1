@@ -46,6 +46,7 @@ function Get-EntraBetaDomainFederationSettings {
             ) 
         process { 
             $params = @{}
+            $customHeaders = New-CustomHeaders -Module Entra -Command $MyInvocation.MyCommand
             if ($PSBoundParameters.ContainsKey("Verbose")) {
                 $Verbose = $Null
             }

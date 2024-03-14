@@ -8,7 +8,8 @@
     Outputs = $null
     CustomScript = @"
     PROCESS {    
-        `$params = @{}  
+        `$params = @{}
+        `$customHeaders = New-CustomHeaders -Module Entra -Command `$MyInvocation.MyCommand
          
         if(`$null -eq `$PSBoundParameters["Id"] -and `$null -eq `$PSBoundParameters["OutputFilePath"])
         {
@@ -20,9 +21,9 @@
             `$Id = `$PSBoundParameters["Id"]
            `$tempFilePath = [System.IO.Path]::GetTempFileName()
            
-           `$outFile =  `$tempFilePath
-           
-            if(`$null -ne `$PSBoundParameters["OutputFilePath"]){
+           `$outFile =  `$tempFilePath           
+            
+           if(`$null -ne `$PSBoundParameters["OutputFilePath"]){
                 `$outFile = `$PSBoundParameters["OutputFilePath"]
             }
 

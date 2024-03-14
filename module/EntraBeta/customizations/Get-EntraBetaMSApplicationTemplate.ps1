@@ -8,6 +8,7 @@
     Outputs = $null
     CustomScript = @'
     PROCESS {
+        $customHeaders = New-CustomHeaders -Module Entra -Command $MyInvocation.MyCommand
         if($null -ne $PSBoundParameters["Id"]){
             Get-MgBetaApplicationTemplate -ApplicationTemplateId $PSBoundParameters["Id"]
         }

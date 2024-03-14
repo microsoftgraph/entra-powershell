@@ -38,6 +38,7 @@ function Get-EntraBetaPasswordPolicy {
 
     PROCESS {    
         $params = @{}
+        $customHeaders = New-CustomHeaders -Module Entra -Command $MyInvocation.MyCommand
         $keysChanged = @{}
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $Null

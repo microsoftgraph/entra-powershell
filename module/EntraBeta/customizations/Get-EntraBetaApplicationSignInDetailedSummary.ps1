@@ -6,6 +6,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
+        `$customHeaders = New-CustomHeaders -Module Entra -Command `$MyInvocation.MyCommand
         `$keysChanged = @{}
         if(`$null -ne `$PSBoundParameters["Top"])
         {

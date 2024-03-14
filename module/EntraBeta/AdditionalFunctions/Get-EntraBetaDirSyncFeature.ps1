@@ -9,6 +9,7 @@ function Get-EntraBetaDirSyncfeature {
         )
         PROCESS {    
             $params = @{}
+            $customHeaders = New-CustomHeaders -Module Entra -Command $MyInvocation.MyCommand
             if ($PSBoundParameters.ContainsKey("Verbose")) {
                 $params["Verbose"] = $Null
             }

@@ -9,6 +9,7 @@
     CustomScript = @'   
     PROCESS {    
         $params = @{}
+        $customHeaders = New-CustomHeaders -Module Entra -Command $MyInvocation.MyCommand
         $topCount = $null
         $baseUri = 'https://graph.microsoft.com/beta/users'
         $properties = '$select=*'
