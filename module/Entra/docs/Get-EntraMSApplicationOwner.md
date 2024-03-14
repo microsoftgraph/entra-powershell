@@ -132,9 +132,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### bool?
-### int?
-### string
+### Bool?
+### Int?
+### String
 ## OUTPUTS
 
 ### Microsoft.Open.MSGraph.Model.GetDirectoryObjectsResponse
@@ -145,4 +145,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Add-EntraMSApplicationOwner](Add-EntraMSApplicationOwner.md)
 
 [Remove-EntraMSApplicationOwner](Remove-EntraMSApplicationOwner.md)
-
