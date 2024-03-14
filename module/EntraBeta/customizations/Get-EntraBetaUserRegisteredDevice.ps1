@@ -39,7 +39,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Get-MgBetaUserRegisteredDevice @params
+        $response = Get-MgBetaUserRegisteredDevice @params -Headers $customHeaders
         $response | ForEach-Object {
             if ($null -ne $_) {
                 $propsToConvert = @('AdditionalProperties')

@@ -65,7 +65,7 @@ function Convert-EntraBetaFederatedUser {
         Write-Debug("=========================================================================`n")
         if($null -ne $AuthenticationMethodId)
         {
-            $response = Reset-MgBetaUserAuthenticationMethodPassword @params
+            $response = Reset-MgBetaUserAuthenticationMethodPassword @params -Headers $customHeaders
         }
         $response
         }

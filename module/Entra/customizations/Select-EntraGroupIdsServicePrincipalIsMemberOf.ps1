@@ -25,7 +25,7 @@
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $initalResponse = Get-MgServicePrincipalMemberOf @params
+        $initalResponse = Get-MgServicePrincipalMemberOf @params -Headers $customHeaders
         $response = $initalResponse | Where-Object -Filterscript {$_.Id -in ($GroupIdsForMembershipCheck.GroupIds)} 
         if($response){
             $response.Id

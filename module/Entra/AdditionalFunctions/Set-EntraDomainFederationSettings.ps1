@@ -151,7 +151,7 @@ function Set-EntraDomainFederationSettings {
             Write-Debug("=========================================================================`n")
             if($null -ne $params.InternalDomainFederationId)
             {
-                $response =  Update-MgDomainFederationConfiguration @params
+                $response =  Update-MgDomainFederationConfiguration @params -Headers $customHeaders
                 $response
             }
         }

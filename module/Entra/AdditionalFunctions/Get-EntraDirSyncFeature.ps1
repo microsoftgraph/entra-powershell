@@ -25,7 +25,7 @@ function Get-EntraDirSyncfeature {
             Write-Debug("============================ TRANSFORMATIONS ============================")
             $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
             Write-Debug("=========================================================================`n")
-            $jsonData = Get-MgDirectoryOnPremiseSynchronization @params | ConvertTo-Json
+            $jsonData = Get-MgDirectoryOnPremiseSynchronization @params -Headers $customHeaders | ConvertTo-Json
             $object = ConvertFrom-Json $jsonData
             $table =@()
             foreach ($featureName in $object.Features.PSObject.Properties.Name) {

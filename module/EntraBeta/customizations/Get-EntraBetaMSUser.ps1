@@ -53,7 +53,7 @@
         Write-Debug("=========================================================================
 ")
         
-        $response = Get-MgBetaUser @params 
+        $response = Get-MgBetaUser @params -Headers $customHeaders 
         $response | ForEach-Object {
             if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id

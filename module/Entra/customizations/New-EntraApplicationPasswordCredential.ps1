@@ -40,7 +40,7 @@
         Write-Debug("=========================================================================
 ")
         
-        $response = Add-MgApplicationPassword @params 
+        $response = Add-MgApplicationPassword @params -Headers $customHeaders 
         $response
         }  
 '@

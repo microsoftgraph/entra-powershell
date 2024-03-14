@@ -54,7 +54,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Get-MgBetaRoleManagementDirectoryRoleDefinition @params
+        $response = Get-MgBetaRoleManagementDirectoryRoleDefinition @params -Headers $customHeaders
         $response | ForEach-Object {
             if($null -ne $_) {
             $propsToConvert = @('RolePermissions')

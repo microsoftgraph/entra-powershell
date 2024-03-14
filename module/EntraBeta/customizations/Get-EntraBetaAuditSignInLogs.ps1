@@ -44,7 +44,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        `$response = Get-MgBetaAuditLogSignIn @params
+        `$response = Get-MgBetaAuditLogSignIn @params -Headers $customHeaders
         `$response | ForEach-Object {
             if (`$null -ne `$_) {
                 `$_ | Add-Member -MemberType AliasProperty -Name RiskEventTypes -Value RiskEventTypesV2 -Force

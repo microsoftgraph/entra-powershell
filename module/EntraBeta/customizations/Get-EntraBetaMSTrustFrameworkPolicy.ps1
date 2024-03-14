@@ -13,7 +13,7 @@
          
         if(`$null -eq `$PSBoundParameters["Id"] -and `$null -eq `$PSBoundParameters["OutputFilePath"])
         {
-            `$response = Get-MgBetaTrustFrameworkPolicy @params
+            `$response = Get-MgBetaTrustFrameworkPolicy @params -Headers $customHeaders
             `$response
         }
         elseif(`$null -ne `$PSBoundParameters["Id"]) {

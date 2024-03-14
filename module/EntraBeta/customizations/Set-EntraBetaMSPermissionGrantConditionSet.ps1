@@ -69,10 +69,10 @@
         Write-Debug("=========================================================================``n")
         
         if("`$conditionalSet" -eq "includes"){
-            `$response = Update-MgBetaPolicyPermissionGrantPolicyInclude @params
+            `$response = Update-MgBetaPolicyPermissionGrantPolicyInclude @params -Headers $customHeaders
         }
         elseif("`$conditionalSet" -eq "excludes"){
-            `$response = Update-MgBetaPolicyPermissionGrantPolicyExclude @params
+            `$response = Update-MgBetaPolicyPermissionGrantPolicyExclude @params -Headers $customHeaders
         }
         else{
             Write-Error("Message: Resource not found for the segment '`$conditionalSet'.")

@@ -24,7 +24,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Get-MgPolicyAuthorizationPolicy @params
+        $response = Get-MgPolicyAuthorizationPolicy @params -Headers $customHeaders
         $response | ForEach-Object {
             if ($null -ne $_) {
                 $propsToConvert = @('DefaultUserRolePermissions')

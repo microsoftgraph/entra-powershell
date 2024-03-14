@@ -52,7 +52,7 @@ function Get-EntraBetaPasswordPolicy {
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $response = Get-MgBetaDomain @params
+        $response = Get-MgBetaDomain @params -Headers $customHeaders
         # Create a custom table
         $customTable = [PSCustomObject]@{
             "NotificationDays" = $response.PasswordNotificationWindowInDays

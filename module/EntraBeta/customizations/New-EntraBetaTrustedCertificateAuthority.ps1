@@ -55,7 +55,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
-        $response = Invoke-GraphRequest @params
+        $response = Invoke-GraphRequest @params -Headers $customHeaders
 
         $customObject = [PSCustomObject]@{
             "@odata.context" = $response["@odata.context"]
