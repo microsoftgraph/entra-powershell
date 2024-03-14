@@ -8,7 +8,8 @@
     Outputs = $null
     CustomScript = @"
     PROCESS {  
-        `$params = @{}  
+        `$params = @{}
+        `$customHeaders = New-CustomHeaders -Module Entra -Command `$MyInvocation.MyCommand
                 if (`$null -ne `$PSBoundParameters["ObjectId"]) {
                     `$params["UserId"] = `$PSBoundParameters["ObjectId"]
                 }

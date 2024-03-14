@@ -7,6 +7,7 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
+    $customHeaders = New-CustomHeaders -Module Entra -Command $MyInvocation.MyCommand
     $body = @{
         passwordCredential = @{
             startDateTime = $PSBoundParameters["StartDate"];

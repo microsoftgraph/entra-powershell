@@ -6,7 +6,8 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
+    CustomScript = @'
+    $customHeaders = New-CustomHeaders -Module Entra -Command $MyInvocation.MyCommand
     (Get-MgApplication -ApplicationId `$PSBoundParameters["ObjectId"]).PasswordCredentials
-"@
+'@
 }
