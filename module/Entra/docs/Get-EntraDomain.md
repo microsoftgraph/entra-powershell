@@ -42,7 +42,7 @@ The **Get-EntraDomain** cmdlet gets a domain in Microsoft Entra ID.
 
 ### Example 1: Get a list of Domains that are created.
 ```powershell
-PS C:\>Get-AzureADDomain
+PS C:\>Get-EntraDomain
 ```
 
 ```output
@@ -57,7 +57,7 @@ This command retrieves a list of domains.
 
 ### Example 2: Get a specific Domain.
 ```powershell
-PS C:\>Get-AzureADDomain -Name TEST22.com
+PS C:\>Get-EntraDomain -Name TEST22.com
 ```
 
 ```output
