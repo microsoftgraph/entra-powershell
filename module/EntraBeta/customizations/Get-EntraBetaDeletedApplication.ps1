@@ -9,6 +9,7 @@
     CustomScript = @'
     PROCESS {    
         $params = @{}
+        $customHeaders = New-CustomHeaders -Module Entra -Command $MyInvocation.MyCommand
 
         $keysChanged = @{SearchString = "Filter"; ObjectId = "Id"}
 

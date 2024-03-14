@@ -9,6 +9,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
+        `$customHeaders = New-CustomHeaders -Module Entra -Command `$MyInvocation.MyCommand
         `$Id = `$PSBoundParameters["Id"]
         `$params["Uri"] = "https://graph.microsoft.com/beta/legacy/policies/`$Id/appliesTo"
         `$params["Method"] = "GET"

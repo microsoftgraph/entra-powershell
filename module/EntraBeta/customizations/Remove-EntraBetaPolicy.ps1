@@ -9,6 +9,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
+        `$customHeaders = New-CustomHeaders -Module Entra -Command `$MyInvocation.MyCommand
         `$array = ("activityBasedTimeoutPolicies",	"defaultAppManagementPolicy",	"appManagementPolicies",	"authenticationFlowsPolicy",	"authenticationMethodsPolicy",	"claimsMappingPolicies",	"featureRolloutPolicies",	"homeRealmDiscoveryPolicies",	"permissionGrantPolicies",	"tokenIssuancePolicies",	"tokenLifetimePolicies")
     
         foreach (`$a in `$array) {

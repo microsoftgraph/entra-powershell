@@ -9,6 +9,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
+        `$customHeaders = New-CustomHeaders -Module Entra -Command `$MyInvocation.MyCommand
         `$params["Type"] = `$Type
 
         if(`$params.type -eq "activityBasedTimeoutPolicy" ) {
