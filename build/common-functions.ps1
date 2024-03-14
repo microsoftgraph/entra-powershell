@@ -232,7 +232,7 @@ function New-CustomHeaders {
 	$basePath = (join-path $PSScriptRoot '../module/')
 	$basePath = (join-path $basePath $Module)
 	$settingPath = join-path $basePath "./config/ModuleMetadata.json"
-    $content = Get-Content -Path $settingPath | ConvertFrom-Json
+	$content = Get-Content -Path $settingPath | ConvertFrom-Json
 	$psVersion = $global:PSVersionTable.PSVersion
 	$entraVersion = $content.version
 	$userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion $Command"
