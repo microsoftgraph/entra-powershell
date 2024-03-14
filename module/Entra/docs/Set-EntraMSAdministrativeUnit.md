@@ -37,14 +37,14 @@ The **Set-EntraMSAdministrativeUnit** cmdlet updates an administrative unit in M
 
 ### Example 1 : Update the display name
 ```powershell
-PS C:\> Set-AzureADMSAdministrativeUnit -Id f306a126-cf2e-439d-b20f-95ce4bcb7ffa -DisplayName 'displayName updated'
+PS C:\> Set-EntraMSAdministrativeUnit -Id f306a126-cf2e-439d-b20f-95ce4bcb7ffa -DisplayName 'displayName updated'
 ```
 
 This command updates the display name of the specified administrative unit.
 
 ### Example 2 : Update the description
 ```powershell
-PS C:\> Set-AzureADMSAdministrativeUnit -Id f306a126-cf2e-439d-b20f-95ce4bcb7ffa -Description 'description updated'
+PS C:\> Set-EntraMSAdministrativeUnit -Id f306a126-cf2e-439d-b20f-95ce4bcb7ffa -Description 'description updated'
 ```
 
 This command updates the description of the specified administrative unit.
