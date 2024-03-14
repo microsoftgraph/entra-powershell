@@ -54,7 +54,7 @@ The **Get-EntraMSRoleAssignment** cmdlet gets information about role assignments
 
 ### Example 1: Get role assignments
 ```powershell
-PS C:\> Get-AzureADMSRoleAssignment
+PS C:\> Get-EntraMSRoleAssignment
 ```
 
 ```output
@@ -71,7 +71,7 @@ This command gets the role assignments in Microsoft Entra ID.
 
 ### Example 2: Get role assignments using 'All' parameter
 ```powershell
-PS C:\> Get-AzureADMSRoleAssignment -All $true
+PS C:\> Get-EntraMSRoleAssignment -All $true
 ```
 
 ```output
@@ -88,7 +88,7 @@ This command gets all the role assignments in Microsoft Entra ID.
 
 ### Example 3: Get role assignments filter by principalId
 ```powershell
-PS C:\> Get-AzureADMSRoleAssignment -Filter "principalId eq '91d71f29-1c12-40db-8a5e-70dafbb0df6f'"
+PS C:\> Get-EntraMSRoleAssignment -Filter "principalId eq '91d71f29-1c12-40db-8a5e-70dafbb0df6f'"
 ```
 
 ```output
@@ -102,7 +102,7 @@ This command gets the role assignments containing the specified principalId.
 
 ### Example 4: Get role assignments filter by roleDefinitionId
 ```powershell
-PS C:\> Get-AzureADMSRoleAssignment -Filter "roleDefinitionId eq '91d71f29-1c12-40db-8a5e-70dafbb0df6f'"
+PS C:\> Get-EntraMSRoleAssignment -Filter "roleDefinitionId eq '91d71f29-1c12-40db-8a5e-70dafbb0df6f'"
 ```
 
 ```output
@@ -119,7 +119,7 @@ This command gets the role assignments containing the specified roleDefinitionId
 
 ### Example 5: Get top two role assignments
 ```powershell
-PS C:\> Get-AzureADMSRoleAssignment -Top 2
+PS C:\> Get-EntraMSRoleAssignment -Top 2
 ```
 
 ```output
