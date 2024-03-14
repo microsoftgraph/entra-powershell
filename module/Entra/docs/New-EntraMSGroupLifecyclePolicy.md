@@ -1,4 +1,14 @@
 ---
+title: New-EntraMSGroupLifecyclePolicy.
+description: This article provides details on the New-EntraMSGroupLifecyclePolicy command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/14/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -8,32 +18,43 @@ schema: 2.0.0
 # New-EntraMSGroupLifecyclePolicy
 
 ## SYNOPSIS
-Creates a new groupLifecyclePolicy
+Creates a new groupLifecyclePolicy.
 
 ## SYNTAX
 
 ```
-New-EntraMSGroupLifecyclePolicy -ManagedGroupTypes <String> -GroupLifetimeInDays <Int32>
- -AlternateNotificationEmails <String> [<CommonParameters>]
+New-EntraMSGroupLifecyclePolicy 
+-ManagedGroupTypes <String> 
+-GroupLifetimeInDays <Int32>
+-AlternateNotificationEmails <String> 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Creates a new groupLifecyclePolicy in Microsoft Entra ID
+Creates a new groupLifecyclePolicy in Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1
-```
+### Example 1: Creates a new groupLifecyclePolicy.
+
+```powershell
 PS C:\> New-EntraMSGroupLifecyclePolicy -GroupLifetimeInDays 99 -ManagedGroupTypes "Selected" -AlternateNotificationEmails "example@contoso.com"
 ```
 
-This will create a a new groupLifecyclePolicy setting the group lifetime to 99 days for a selected set of Office 365 groups and send renewal notification emails to groups that have no owners to "example@contoso.com"
+```output
+Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
+--                                   --------------------------- ------------------- -----------------
+357ab978-332e-474d-b30c-c04709e4bd32 example@contoso.com         99                  Selected
+
+```
+
+This example creates a new groupLifecyclePolicy setting the group lifetime to 99 days for a selected set of Office 365 groups and sends renewal notification emails to groups that have no owners to "example@contoso.com".
 
 ## PARAMETERS
 
 ### -AlternateNotificationEmails
 Notification emails for groups that have no owners will be sent to these email addresses.
-List of email addresses separated by a ";".
+List of email addresses separated by a ";"
 
 ```yaml
 Type: String
@@ -48,7 +69,7 @@ Accept wildcard characters: False
 ```
 
 ### -GroupLifetimeInDays
-The number of days a group can exist before it needs to be renewed
+The number of days a group can exist before it needs to be renewed.
 
 ```yaml
 Type: Int32
@@ -63,10 +84,10 @@ Accept wildcard characters: False
 ```
 
 ### -ManagedGroupTypes
-This parameter allows the admin to select which office 365 groups the policy will apply to.
+This parameter allows the admin to select which office 365 groups the policy applies to.
 "None" will create the policy in a disabled state.
 "All" will apply the policy to every Office 365 group in the tenant.
-"Selected" will allow the admin to choose specific Office 365 groups that the policy will apply to.
+"Selected" will allow the admin to choose specific Office 365 groups that the policy applies to.
 
 ```yaml
 Type: String
@@ -92,3 +113,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+[Get-EntraMSGroupLifecyclePolicy](Get-EntraMSGroupLifecyclePolicy.md)
+
+[Set-EntraMSGroupLifecyclePolicy](Set-EntraMSGroupLifecyclePolicy.md)
+
+[Remove-EntraMSGroupLifecyclePolicy](Remove-EntraMSGroupLifecyclePolicy.md)
