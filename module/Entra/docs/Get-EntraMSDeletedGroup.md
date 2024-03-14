@@ -58,7 +58,7 @@ Office 365 Groups).
 
 ### Example 1: Get deleted groups in the directory.
 ```powershell
-PS C:\> Get-AzureAdMSDeletedGroup
+PS C:\> Get-EntraMSDeletedGroup
 ```
 
 ```output
@@ -106,7 +106,7 @@ This cmdlet retrieves top two deleted groups in the directory.
 
 ### Example 4: Get deleted groups containing string 'test2'.
 ```powershell
-PS C:\> Get-AzureAdMSDeletedGroup -SearchString 'test2'
+PS C:\> Get-EntraMSDeletedGroup -SearchString 'test2'
 ```
 
 ```output
@@ -122,7 +122,7 @@ This cmdlet retrieves deleted groups in the directory, containing the specified 
 
 ### Example 5: Get deleted groups filter by display name.
 ```powershell
-PS C:\> Get-AzureAdMSDeletedGroup -Filter "displayname eq 'test21'"
+PS C:\> Get-EntraMSDeletedGroup -Filter "displayname eq 'test21'"
 ```
 
 ```output
@@ -135,7 +135,7 @@ This cmdlet retrieves deleted groups in the directory, having the specified disp
 
 ### Example 6: Get deleted group by Id.
 ```powershell
-PS C:\> Get-AzureAdMSDeletedGroup -Id 018d2911-94e6-4f19-add6-d752b4f13b51
+PS C:\> Get-EntraMSDeletedGroup -Id 018d2911-94e6-4f19-add6-d752b4f13b51
 ```
 
 ```output
