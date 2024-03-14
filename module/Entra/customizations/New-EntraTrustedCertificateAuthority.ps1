@@ -9,6 +9,7 @@
     CustomScript = @'
     PROCESS {    
         $params = @{}
+        $customHeaders = New-CustomHeaders -Module Entra -Command $MyInvocation.MyCommand
         
         $tenantId = (Get-MgContext).TenantId
         $params["Uri"] = "/v1.0/organization/$tenantId/certificateBasedAuthConfiguration"
