@@ -35,7 +35,7 @@ The **Remove-EntraMSRoleAssignment** cmdlet removes a role assignment from Micro
 
 ### Example 1: Remove a role assignment
 ```powershell
-PS C:\> Remove-AzureADMSRoleAssignment -Id Y1vFBcN4i0e3ngdNDocmngJAWGnAbFVAnJQyBBLv1lM-1
+PS C:\> Remove-EntraMSRoleAssignment -Id Y1vFBcN4i0e3ngdNDocmngJAWGnAbFVAnJQyBBLv1lM-1
 ```
 
 Removes the specified role assignment from Microsoft Entra ID.
