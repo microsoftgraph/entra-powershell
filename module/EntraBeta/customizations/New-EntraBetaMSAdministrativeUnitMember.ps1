@@ -6,64 +6,65 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
-    PROCESS {    
-        `$params = @{}
+    CustomScript = @'
+    PROCESS {
+        $params = @{}
         
-        if(`$null -ne `$PSBoundParameters["OdataType"])
+        if($null -ne $PSBoundParameters["OdataType"])
         {
-            `$params["@odata.type"] = `$PSBoundParameters["OdataType"]
+            $params["@odata.type"] = $PSBoundParameters["OdataType"]
         }
-        if(`$null -ne `$PSBoundParameters["AssignedLabels"])
+        if($null -ne $PSBoundParameters["AssignedLabels"])
         {
-            `$params["AssignedLabels"] = `$PSBoundParameters["AssignedLabels"]
+            $params["AssignedLabels"] = $PSBoundParameters["AssignedLabels"]
         }
-        if(`$null -ne `$PSBoundParameters["Description"])
+        if($null -ne $PSBoundParameters["Description"])
         {
-            `$params["description"] = `$PSBoundParameters["Description"]
+            $params["description"] = $PSBoundParameters["Description"]
         }
-        if(`$null -ne `$PSBoundParameters["DisplayName"])
+        if($null -ne $PSBoundParameters["DisplayName"])
         {
-            `$params["displayName"] = `$PSBoundParameters["DisplayName"]
+            $params["displayName"] = $PSBoundParameters["DisplayName"]
         }
-        if(  (`$PSBoundParameters["IsAssignableToRole"]) -or (-not `$PSBoundParameters["IsAssignableToRole"]))
+        if(  ($PSBoundParameters["IsAssignableToRole"]) -or (-not $PSBoundParameters["IsAssignableToRole"]))
         {
-            `$params["IsAssignableToRole"] = `$PSBoundParameters["IsAssignableToRole"]
+            $params["IsAssignableToRole"] = $PSBoundParameters["IsAssignableToRole"]
         }
-        if( (`$PSBoundParameters["MailEnabled"]) -or (-not `$PSBoundParameters["MailEnabled"]))
+        if( ($PSBoundParameters["MailEnabled"]) -or (-not $PSBoundParameters["MailEnabled"]))
         {
-            `$params["mailEnabled"] = `$PSBoundParameters["MailEnabled"]
+            $params["mailEnabled"] = $PSBoundParameters["MailEnabled"]
         }
-        if( `$PSBoundParameters["mailNickname"])
+        if( $PSBoundParameters["mailNickname"])
         {
-            `$params["mailNickname"] = `$PSBoundParameters["mailNickname"]
+            $params["mailNickname"] = $PSBoundParameters["mailNickname"]
         }
-        if( (`$PSBoundParameters["SecurityEnabled"]) -or (-not `$PSBoundParameters["SecurityEnabled"]))
+        if( ($PSBoundParameters["SecurityEnabled"]) -or (-not $PSBoundParameters["SecurityEnabled"]))
         {
-            `$params["securityEnabled"] = `$PSBoundParameters["SecurityEnabled"]
+            $params["securityEnabled"] = $PSBoundParameters["SecurityEnabled"]
         }
-        if(`$null -ne `$PSBoundParameters["GroupTypes"])
+        if($null -ne $PSBoundParameters["GroupTypes"])
         {
-            `$params["groupTypes"] = `$PSBoundParameters["GroupTypes"]
+            $params["groupTypes"] = $PSBoundParameters["GroupTypes"]
         }
-        if(`$null -ne `$PSBoundParameters["membershipRule"])
+        if($null -ne $PSBoundParameters["membershipRule"])
         {
-            `$params["membershipRule"] = `$PSBoundParameters["membershipRule"]
+            $params["membershipRule"] = $PSBoundParameters["membershipRule"]
         }
-        if(`$null -ne `$PSBoundParameters["membershipRuleProcessingState"])
+        if($null -ne $PSBoundParameters["membershipRuleProcessingState"])
         {
-            `$params["membershipRuleProcessingState"] = `$PSBoundParameters["MembershipRuleProcessingState"]
+            $params["membershipRuleProcessingState"] = $PSBoundParameters["MembershipRuleProcessingState"]
         }
-        if(`$null -ne `$PSBoundParameters["visibility"])
+        if($null -ne $PSBoundParameters["visibility"])
         {
-            `$params["visibility"] = `$PSBoundParameters["Visibility"]
+            $params["visibility"] = $PSBoundParameters["Visibility"]
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================``n")
-            `$response = New-MGBetaAdministrativeUnitMember -AdministrativeUnitId `$ID -BodyParameter `$params
-        `$response
-        }
-"@
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================")
+        $response = New-MGBetaAdministrativeUnitMember -AdministrativeUnitId $ID -BodyParameter $params
+
+        $response
+    }
+'@
 }

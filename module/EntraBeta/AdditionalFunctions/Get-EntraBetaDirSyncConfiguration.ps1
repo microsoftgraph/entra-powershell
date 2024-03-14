@@ -35,7 +35,7 @@ function Get-EntraBetaDirSyncConfiguration {
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        Write-Debug("=========================================================================")
         $response = ((Get-MgBetaDirectoryOnPremiseSynchronization @params).configuration | Select-Object -Property AccidentalDeletionPrevention).AccidentalDeletionPrevention
         # Create a custom table
         $customTable = [PSCustomObject]@{

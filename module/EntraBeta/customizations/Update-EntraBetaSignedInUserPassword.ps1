@@ -6,45 +6,46 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
-    PROCESS {    
-        `$params = @{}
-        `$keysChanged = @{}
-        if(`$null -ne `$PSBoundParameters["NewPassword"])
+    CustomScript = @'
+    PROCESS {
+        $params = @{}
+        $keysChanged = @{}
+
+        if($null -ne $PSBoundParameters["NewPassword"])
         {
-            `$params["NewPassword"] = `$PSBoundParameters["NewPassword"]
+            $params["NewPassword"] = $PSBoundParameters["NewPassword"]
         }
-        if(`$PSBoundParameters.ContainsKey("Verbose"))
+        if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            `$params["Verbose"] = `$Null
+            $params["Verbose"] = $Null
         }
-        if(`$PSBoundParameters.ContainsKey("Debug"))
+        if($PSBoundParameters.ContainsKey("Debug"))
         {
-            `$params["Debug"] = `$Null
+            $params["Debug"] = $Null
         }
-        if(`$null -ne `$PSBoundParameters["CurrentPassword"])
+        if($null -ne $PSBoundParameters["CurrentPassword"])
         {
-            `$params["CurrentPassword"] = `$PSBoundParameters["CurrentPassword"]
+            $params["CurrentPassword"] = $PSBoundParameters["CurrentPassword"]
         } 
-        `$currsecur = [System.Runtime.InteropServices.Marshal]::SecureStringToGlobalAllocUnicode(`$params.CurrentPassword)
-        `$curr = [System.Runtime.InteropServices.Marshal]::PtrToStringUni(`$currsecur)
+        $currsecur = [System.Runtime.InteropServices.Marshal]::SecureStringToGlobalAllocUnicode($params.CurrentPassword)
+        $curr = [System.Runtime.InteropServices.Marshal]::PtrToStringUni($currsecur)
     
-        `$newsecur = [System.Runtime.InteropServices.Marshal]::SecureStringToGlobalAllocUnicode(`$params.NewPassword)
-        `$new = [System.Runtime.InteropServices.Marshal]::PtrToStringUni(`$newsecur)
+        $newsecur = [System.Runtime.InteropServices.Marshal]::SecureStringToGlobalAllocUnicode($params.NewPassword)
+        $new = [System.Runtime.InteropServices.Marshal]::PtrToStringUni($newsecur)
     
-        `$params["Url"]  = "https://graph.microsoft.com/beta/me/changePassword"
-        `$body = @{
-            currentPassword = `$curr
-            newPassword = `$new 
+        $params["Url"]  = "https://graph.microsoft.com/beta/me/changePassword"
+        $body = @{
+            currentPassword = $curr
+            newPassword = $new 
         }
-        `$body = `$body | ConvertTo-Json
+        $body = $body | ConvertTo-Json
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================")
         
-        `$response = Invoke-GraphRequest -Uri `$params.Url -Method POST -Body `$body
-        `$response
-        }
-"@
+        $response = Invoke-GraphRequest -Uri $params.Url -Method POST -Body $body
+        $response
+    }
+'@
 }

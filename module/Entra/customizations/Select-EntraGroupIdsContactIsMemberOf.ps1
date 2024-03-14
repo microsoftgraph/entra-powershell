@@ -23,7 +23,7 @@
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        Write-Debug("=========================================================================")
         $initalResponse = Get-MgContactMemberOfAsGroup @params
         $response = $initalResponse | Where-Object -Filterscript {$_.Id -in ($GroupIdsForMembershipCheck.GroupIds)} 
         if($response){

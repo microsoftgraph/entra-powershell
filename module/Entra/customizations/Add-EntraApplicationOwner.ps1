@@ -6,33 +6,33 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
-    `$params = @{}
-    if(`$PSBoundParameters.ContainsKey("Verbose"))
+    CustomScript = @'
+    $params = @{}
+    if($PSBoundParameters.ContainsKey("Verbose"))
     {
-        `$params["Verbose"] = `$Null
+        $params["Verbose"] = $Null
     }
-    if(`$null -ne `$PSBoundParameters["ObjectId"])
+    if($null -ne $PSBoundParameters["ObjectId"])
     {
-        `$params["ApplicationId"] = `$PSBoundParameters["ObjectId"]
+        $params["ApplicationId"] = $PSBoundParameters["ObjectId"]
     }
 
-    `$newOwner = @{}
+    $newOwner = @{}
 
-    if(`$null -ne `$PSBoundParameters["RefObjectId"])
+    if($null -ne $PSBoundParameters["RefObjectId"])
     {
-        `$newOwner["@odata.id"]  = "https://graph.microsoft.com/v1.0/directoryObjects/"+`$PSBoundParameters["RefObjectId"]
-        `$params["BodyParameter"] = `$newOwner
+        $newOwner["@odata.id"]  = "https://graph.microsoft.com/v1.0/directoryObjects/"+$PSBoundParameters["RefObjectId"]
+        $params["BodyParameter"] = $newOwner
     }
-    if(`$PSBoundParameters.ContainsKey("Debug"))
+    if($PSBoundParameters.ContainsKey("Debug"))
     {
-        `$params["Debug"] = `$Null
+        $params["Debug"] = $Null
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")
-    $`params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-    Write-Debug("=========================================================================``n")
+    $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+    Write-Debug("=========================================================================")
     
     New-MgApplicationOwnerByRef @params
-"@
+'@
 }

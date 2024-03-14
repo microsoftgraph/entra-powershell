@@ -6,77 +6,76 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {    
-        `$params = @{}
+        $params = @{}
         
-        if(`$null -ne `$PSBoundParameters["PermissionType"])
+        if($null -ne $PSBoundParameters["PermissionType"])
         {
-            `$params["PermissionType"] = `$PSBoundParameters["PermissionType"]
+            $params["PermissionType"] = $PSBoundParameters["PermissionType"]
         }
-        if(`$null -ne `$PSBoundParameters["PermissionClassification"])
+        if($null -ne $PSBoundParameters["PermissionClassification"])
         {
-            `$params["PermissionClassification"] = `$PSBoundParameters["PermissionClassification"]
+            $params["PermissionClassification"] = $PSBoundParameters["PermissionClassification"]
         }
-        if(`$null -ne `$PSBoundParameters["ResourceApplication"])
+        if($null -ne $PSBoundParameters["ResourceApplication"])
         {
-            `$params["ResourceApplication"] = `$PSBoundParameters["ResourceApplication"]
+            $params["ResourceApplication"] = $PSBoundParameters["ResourceApplication"]
         }
-        if(`$null -ne `$PSBoundParameters["Permissions"])
+        if($null -ne $PSBoundParameters["Permissions"])
         {
-            `$params["Permissions"] = `$PSBoundParameters["Permissions"]
+            $params["Permissions"] = $PSBoundParameters["Permissions"]
         }
-        if(`$PSBoundParameters.ContainsKey("Verbose"))
+        if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            `$params["Verbose"] = `$Null
+            $params["Verbose"] = $Null
         }
-        if(`$null -ne `$PSBoundParameters["ClientApplicationTenantIds"])
+        if($null -ne $PSBoundParameters["ClientApplicationTenantIds"])
         {
-            `$params["ClientApplicationTenantIds"] = `$PSBoundParameters["ClientApplicationTenantIds"]
+            $params["ClientApplicationTenantIds"] = $PSBoundParameters["ClientApplicationTenantIds"]
         }
-        if(`$PSBoundParameters.ContainsKey("Debug"))
+        if($PSBoundParameters.ContainsKey("Debug"))
         {
-            `$params["Debug"] = `$Null
+            $params["Debug"] = $Null
         }
-        if(`$null -ne `$PSBoundParameters["PolicyId"])
+        if($null -ne $PSBoundParameters["PolicyId"])
         {
-            `$params["PermissionGrantPolicyId"] = `$PSBoundParameters["PolicyId"]
+            $params["PermissionGrantPolicyId"] = $PSBoundParameters["PolicyId"]
         }
-        if(`$null -ne `$PSBoundParameters["ConditionSetType"])
+        if($null -ne $PSBoundParameters["ConditionSetType"])
         {
-            `$conditionalSet = `$PSBoundParameters["ConditionSetType"]
+            $conditionalSet = $PSBoundParameters["ConditionSetType"]
         }
-        if(`$null -ne `$PSBoundParameters["ClientApplicationsFromVerifiedPublisherOnly"])
+        if($null -ne $PSBoundParameters["ClientApplicationsFromVerifiedPublisherOnly"])
         {
-            `$params["ClientApplicationsFromVerifiedPublisherOnly"] = `$PSBoundParameters["ClientApplicationsFromVerifiedPublisherOnly"]
+            $params["ClientApplicationsFromVerifiedPublisherOnly"] = $PSBoundParameters["ClientApplicationsFromVerifiedPublisherOnly"]
         }
-        if(`$null -ne `$PSBoundParameters["ClientApplicationPublisherIds"])
+        if($null -ne $PSBoundParameters["ClientApplicationPublisherIds"])
         {
-            `$params["ClientApplicationPublisherIds"] = `$PSBoundParameters["ClientApplicationPublisherIds"]
+            $params["ClientApplicationPublisherIds"] = $PSBoundParameters["ClientApplicationPublisherIds"]
         }
-        if(`$null -ne `$PSBoundParameters["ClientApplicationIds"])
+        if($null -ne $PSBoundParameters["ClientApplicationIds"])
         {
-            `$params["ClientApplicationIds"] = `$PSBoundParameters["ClientApplicationIds"]
+            $params["ClientApplicationIds"] = $PSBoundParameters["ClientApplicationIds"]
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================``n")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================")
         
 
-        if("`$conditionalSet" -eq "includes"){
-            `$response = New-MgBetaPolicyPermissionGrantPolicyInclude @params
+        if("$conditionalSet" -eq "includes"){
+            $response = New-MgBetaPolicyPermissionGrantPolicyInclude @params
         }
-        elseif("`$conditionalSet" -eq "excludes"){
-            `$response = New-MgBetaPolicyPermissionGrantPolicyExclude @params
+        elseif("$conditionalSet" -eq "excludes"){
+            $response = New-MgBetaPolicyPermissionGrantPolicyExclude @params
         }
         else{
-            Write-Error("Message: Resource not found for the segment '`$conditionalSet'.")
+            Write-Error("Message: Resource not found for the segment '$conditionalSet'.")
             return
         }
-        
-        
-        `$response
-        }
-"@
+
+        $response
+    }
+'@
 }

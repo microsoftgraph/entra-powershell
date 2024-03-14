@@ -45,7 +45,7 @@ function Get-EntraFederationProperty {
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        Write-Debug("=========================================================================")
         $response = Get-MgDomainFederationConfiguration @params
         $response | ForEach-Object {
             if($null -ne $_) {

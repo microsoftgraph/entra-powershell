@@ -6,44 +6,44 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
-    `$params = @{}
-    if(`$PSBoundParameters.ContainsKey("Verbose"))
+    CustomScript = @'
+    $params = @{}
+    if($PSBoundParameters.ContainsKey("Verbose"))
     {
-        `$params["Verbose"] = `$Null
+        $params["Verbose"] = $Null
     }
-    if(`$null -ne `$PSBoundParameters["Id"])
+    if($null -ne $PSBoundParameters["Id"])
     {
-        `$params["PermissionGrantConditionSetId"] = `$PSBoundParameters["Id"]
+        $params["PermissionGrantConditionSetId"] = $PSBoundParameters["Id"]
     }
-    if(`$null -ne `$PSBoundParameters["ConditionSetType"])
+    if($null -ne $PSBoundParameters["ConditionSetType"])
     {
-        `$conditionalSet = `$PSBoundParameters["ConditionSetType"]
+        $conditionalSet = $PSBoundParameters["ConditionSetType"]
     }
-    if(`$null -ne `$PSBoundParameters["PolicyId"])
+    if($null -ne $PSBoundParameters["PolicyId"])
     {
-        `$params["PermissionGrantPolicyId"] = `$PSBoundParameters["PolicyId"]
+        $params["PermissionGrantPolicyId"] = $PSBoundParameters["PolicyId"]
     }
-    if(`$PSBoundParameters.ContainsKey("Debug"))
+    if($PSBoundParameters.ContainsKey("Debug"))
     {
-        `$params["Debug"] = `$Null
+        $params["Debug"] = $Null
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")
-    $`params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-    Write-Debug("=========================================================================``n")
+    $`params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+    Write-Debug("=========================================================================")
     
-    if("`$conditionalSet" -eq "includes"){
-        `$response = Get-MgPolicyPermissionGrantPolicyInclude @params
+    if("$conditionalSet" -eq "includes"){
+        $response = Get-MgPolicyPermissionGrantPolicyInclude @params
     }
-    elseif("`$conditionalSet" -eq "excludes"){
-        `$response = Get-MgPolicyPermissionGrantPolicyExclude @params
+    elseif("$conditionalSet" -eq "excludes"){
+        $response = Get-MgPolicyPermissionGrantPolicyExclude @params
     }
     else{
-        Write-Error("Message: Resource not found for the segment '`$conditionalSet'.")
+        Write-Error("Message: Resource not found for the segment '$conditionalSet'.")
         return
     }
     
-    `$response
-"@
+    $response
+'@
 }

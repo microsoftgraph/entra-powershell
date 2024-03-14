@@ -6,44 +6,45 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
-    `$params = @{}
-    if(`$PSBoundParameters.ContainsKey("Verbose"))
-    {
-        `$params["Verbose"] = `$Null
-    }
-    if(`$null -ne `$PSBoundParameters["Id"])
-    {
-        `$params["PermissionGrantConditionSetId"] = `$PSBoundParameters["Id"]
-    }
-    if(`$null -ne `$PSBoundParameters["ConditionSetType"])
-    {
-        `$conditionalSet = `$PSBoundParameters["ConditionSetType"]
-    }
-    if(`$null -ne `$PSBoundParameters["PolicyId"])
-    {
-        `$params["PermissionGrantPolicyId"] = `$PSBoundParameters["PolicyId"]
-    }
-    if(`$PSBoundParameters.ContainsKey("Debug"))
-    {
-        `$params["Debug"] = `$Null
-    }
+    CustomScript = @'
+        $params = @{}
 
-    Write-Debug("============================ TRANSFORMATIONS ============================")
-    $`params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-    Write-Debug("=========================================================================``n")
-    
-    if("`$conditionalSet" -eq "includes"){
-        `$response = Get-MgBetaPolicyPermissionGrantPolicyInclude @params
-    }
-    elseif("`$conditionalSet" -eq "excludes"){
-        `$response = Get-MgBetaPolicyPermissionGrantPolicyExclude @params
-    }
-    else{
-        Write-Error("Message: Resource not found for the segment '`$conditionalSet'.")
-        return
-    }
-    
-    `$response
-"@
+        if($PSBoundParameters.ContainsKey("Verbose"))
+        {
+            $params["Verbose"] = $Null
+        }
+        if($null -ne $PSBoundParameters["Id"])
+        {
+            $params["PermissionGrantConditionSetId"] = $PSBoundParameters["Id"]
+        }
+        if($null -ne $PSBoundParameters["ConditionSetType"])
+        {
+            $conditionalSet = $PSBoundParameters["ConditionSetType"]
+        }
+        if($null -ne $PSBoundParameters["PolicyId"])
+        {
+            $params["PermissionGrantPolicyId"] = $PSBoundParameters["PolicyId"]
+        }
+        if($PSBoundParameters.ContainsKey("Debug"))
+        {
+            $params["Debug"] = $Null
+        }
+
+        Write-Debug("============================ TRANSFORMATIONS ============================")
+        $`params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================")
+        
+        if("$conditionalSet" -eq "includes"){
+            $response = Get-MgBetaPolicyPermissionGrantPolicyInclude @params
+        }
+        elseif("$conditionalSet" -eq "excludes"){
+            $response = Get-MgBetaPolicyPermissionGrantPolicyExclude @params
+        }
+        else{
+            Write-Error("Message: Resource not found for the segment '$conditionalSet'.")
+            return
+        }
+        
+        $response
+'@
 }

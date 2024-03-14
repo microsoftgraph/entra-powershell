@@ -47,7 +47,7 @@ function Get-EntraBetaPartnerInformation {
     
             Write-Debug("============================ TRANSFORMATIONS ============================")
             $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
-            Write-Debug("=========================================================================`n")
+            Write-Debug("=========================================================================")
             if ([string]::IsNullOrWhiteSpace($TenantId)) {
                 $TenantID = ((invoke-mggraphrequest -Method GET -Uri "https://graph.microsoft.com/beta/organization").value).id
             }

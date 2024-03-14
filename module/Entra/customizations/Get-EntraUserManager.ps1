@@ -26,7 +26,7 @@
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        Write-Debug("=========================================================================")
     
         try {
             $URI = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager?`$select=*"

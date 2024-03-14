@@ -23,7 +23,7 @@ function Get-EntraDirSyncfeature {
             }
             Write-Debug("============================ TRANSFORMATIONS ============================")
             $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
-            Write-Debug("=========================================================================`n")
+            Write-Debug("=========================================================================")
             $jsonData = Get-MgDirectoryOnPremiseSynchronization @params | ConvertTo-Json
             $object = ConvertFrom-Json $jsonData
             $table =@()

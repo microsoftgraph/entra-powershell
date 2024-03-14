@@ -6,29 +6,30 @@
     TargetName = $null
     Parameters = $null
     outputs = $null
-    CustomScript = @"
-    PROCESS {    
-        `$params = @{}
-        if(`$null -ne `$PSBoundParameters["ObjectId"])
+    CustomScript = @'
+    PROCESS {
+        $params = @{}
+
+        if($null -ne $PSBoundParameters["ObjectId"])
         {
-            `$params["UserId"] = `$PSBoundParameters["ObjectId"]
+            $params["UserId"] = $PSBoundParameters["ObjectId"]
         }
-        if(`$PSBoundParameters.ContainsKey("Debug"))
+        if($PSBoundParameters.ContainsKey("Debug"))
         {
-            `$params["Debug"] = `$Null
+            $params["Debug"] = $Null
         }
-        if(`$PSBoundParameters.ContainsKey("Verbose"))
+        if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            `$params["Verbose"] = `$Null
+            $params["Verbose"] = $Null
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================``n")
-        `$initalResponse = Get-MgBetaUserMemberOfAsGroup -UserId `$params["UserId"]
-        `$response = `$initalResponse | Where-Object -Filterscript {`$_.ID -in (`$GroupIdsForMembershipCheck.GroupIds)} 
-        if(`$response){
-            `$response.ID
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================")
+        $initalResponse = Get-MgBetaUserMemberOfAsGroup -UserId $params["UserId"]
+        $response = $initalResponse | Where-Object -Filterscript {$_.ID -in ($GroupIdsForMembershipCheck.GroupIds)} 
+        if($response){
+            $response.ID
         }
-        }
-"@
+    }
+'@
 }

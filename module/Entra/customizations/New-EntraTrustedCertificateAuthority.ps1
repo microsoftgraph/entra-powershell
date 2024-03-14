@@ -52,7 +52,7 @@
         $params["Body"] = ConvertTo-Json $body
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        Write-Debug("=========================================================================")
        
         $response = Invoke-GraphRequest @params
 

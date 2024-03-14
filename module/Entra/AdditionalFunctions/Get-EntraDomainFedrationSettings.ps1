@@ -68,7 +68,7 @@ C:\PS>Get-EntraDomainFederationSettings -DomainName contoso.com
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        Write-Debug("=========================================================================")
         $response =  Get-MgDomainFederationConfiguration -DomainId $params["DomainId"] | ConvertTo-Json -Depth 10 | ConvertFrom-Json 
         $customTable = [PSCustomObject]@{
             "ActiveLogOnUri"      = $response.ActiveSignInUri

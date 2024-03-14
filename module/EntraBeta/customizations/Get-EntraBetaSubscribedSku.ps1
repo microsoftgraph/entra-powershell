@@ -6,37 +6,39 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {    
-        `$params = @{}
-        `$keysChanged = @{ObjectId = "Id"}
-        if(`$PSBoundParameters.ContainsKey("Verbose"))
+        $params = @{}
+        $keysChanged = @{ObjectId = "Id"}
+
+        if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            `$params["Verbose"] = `$Null
+            $params["Verbose"] = $Null
         }
-        if(`$null -ne `$PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["ObjectId"])
         {
-            `$params["SubscribedSkuId"] = `$PSBoundParameters["ObjectId"]
+            $params["SubscribedSkuId"] = $PSBoundParameters["ObjectId"]
         }
-        if(`$PSBoundParameters.ContainsKey("Debug"))
+        if($PSBoundParameters.ContainsKey("Debug"))
         {
-            `$params["Debug"] = `$Null
+            $params["Debug"] = $Null
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================")
         
-        `$response = Get-MgBetaSubscribedSku @params
-        `$response | ForEach-Object {
-            if (`$null -ne `$_) {
-                `$propsToConvert = @('PrepaidUnits')
-                foreach (`$prop in `$propsToConvert) {
-                    `$value = `$_.`$prop | ConvertTo-Json | ConvertFrom-Json
-                    `$_ | Add-Member -MemberType NoteProperty -Name `$prop -Value (`$value) -Force
+        $response = Get-MgBetaSubscribedSku @params
+        $response | ForEach-Object {
+            if ($null -ne $_) {
+                $propsToConvert = @('PrepaidUnits')
+                foreach ($prop in $propsToConvert) {
+                    $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
+                    $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
                 }
             }
         }
-        `$response
-        }
-"@
+        
+        $response
+    }
+'@
 }

@@ -54,7 +54,7 @@
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        Write-Debug("=========================================================================")
         
         $response = Get-MgBetaDirectoryDeletedItemAsApplication @params
         

@@ -67,7 +67,7 @@ function Set-EntraDirSyncFeature {
     
             Write-Debug("============================ TRANSFORMATIONS ============================")
             $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
-            Write-Debug("=========================================================================`n")
+            Write-Debug("=========================================================================")
             if ([string]::IsNullOrWhiteSpace($TenantId)) {
                 $OnPremisesDirectorySynchronizationId = (Get-MgDirectoryOnPremiseSynchronization).Id
             }

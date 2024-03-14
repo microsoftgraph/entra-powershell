@@ -44,7 +44,7 @@ function Get-EntraBetaAccountSku {
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        Write-Debug("=========================================================================")
         $response = Get-MgBetaSubscribedSku @params
         $response | ForEach-Object {
             if($null -ne $_) {

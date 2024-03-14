@@ -23,7 +23,7 @@ function Get-EntraBetaDirSyncfeature {
             }
             Write-Debug("============================ TRANSFORMATIONS ============================")
             $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
-            Write-Debug("=========================================================================`n")
+            Write-Debug("=========================================================================")
             $jsonData = Get-MgBetaDirectoryOnPremiseSynchronization @params | ConvertTo-Json
             $object = ConvertFrom-Json $jsonData
             $table =@()

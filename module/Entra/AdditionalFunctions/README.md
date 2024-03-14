@@ -137,7 +137,7 @@ function Test-EntraScript {
                     continue
                 }
     
-                $scriptContent = (Get-Content -LiteralPath $resolvedPath) -join "`n"
+                $scriptContent = (Get-Content -LiteralPath $resolvedPath) -join ""
                 Test-ScriptCommand -Name $resolvedPath -Content $scriptContent @testParam
             }
         }

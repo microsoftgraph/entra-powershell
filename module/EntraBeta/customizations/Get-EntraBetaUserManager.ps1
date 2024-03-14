@@ -25,7 +25,7 @@
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        Write-Debug("=========================================================================")
         try {
             $response = Get-MgBetaUserManager @params -ErrorAction Stop
             $response | ForEach-Object {

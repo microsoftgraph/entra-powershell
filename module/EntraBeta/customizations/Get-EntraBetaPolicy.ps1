@@ -6,66 +6,66 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {    
-        `$params = @{}
-        `$baseUrl = "https://graph.microsoft.com/beta/policies/"
-        `$endpoints = @("homeRealmDiscoveryPolicies", "claimsMappingPolicies", "tokenIssuancePolicies", "tokenLifetimePolicies", "activityBasedTimeoutPolicies", "featureRolloutPolicies", 	"defaultAppManagementPolicy", "appManagementPolicies", "authenticationFlowsPolicy",	"authenticationMethodsPolicy", "permissionGrantPolicies")
+        $params = @{}
+        $baseUrl = "https://graph.microsoft.com/beta/policies/"
+        $endpoints = @("homeRealmDiscoveryPolicies", "claimsMappingPolicies", "tokenIssuancePolicies", "tokenLifetimePolicies", "activityBasedTimeoutPolicies", "featureRolloutPolicies", 	"defaultAppManagementPolicy", "appManagementPolicies", "authenticationFlowsPolicy",	"authenticationMethodsPolicy", "permissionGrantPolicies")
         
-        `$response = @()
-        foreach (`$endpoint in `$endpoints) {
-            `$url = "`${baseUrl}`${endpoint}"
+        $response = @()
+        foreach ($endpoint in $endpoints) {
+            $url = "${baseUrl}${endpoint}"
             try {
-                `$policies = (Invoke-GraphRequest -Uri `$url -Method GET).value
+                $policies = (Invoke-GraphRequest -Uri $url -Method GET).value
             }
             catch {
-                `$policies = (Invoke-GraphRequest -Uri `$url -Method GET)
+                $policies = (Invoke-GraphRequest -Uri $url -Method GET)
             }
-            `$policies | ForEach-Object {
-                `$_.Type = (`$endpoint.Substring(0, 1).ToUpper() + `$endpoint.Substring(1) -replace "ies", "y")
-                `$response += `$_
-                if (`$Top -and (`$response.Count -ge `$Top)) {
+            $policies | ForEach-Object {
+                $_.Type = ($endpoint.Substring(0, 1).ToUpper() + $endpoint.Substring(1) -replace "ies", "y")
+                $response += $_
+                if ($Top -and ($response.Count -ge $Top)) {
                     break 
                 }
             }
         }
 
-        if (`$PSBoundParameters.ContainsKey("Debug")) {
-            `$params["Debug"] = `$Null
+        if ($PSBoundParameters.ContainsKey("Debug")) {
+            $params["Debug"] = $Null
         }
-        if (`$PSBoundParameters.ContainsKey("Verbose")) {
-            `$params["Verbose"] = `$Null
+        if ($PSBoundParameters.ContainsKey("Verbose")) {
+            $params["Verbose"] = $Null
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================")
 
-        `$response | ForEach-Object {
-            if (`$null -ne `$_) {
-                foreach (`$Keys in `$_.Keys) { 
-                    `$Keys=`$Keys.SubString(0, 1).ToUpper() + `$Keys.Substring(1)
-                    `$_ | Add-Member -MemberType NoteProperty -Name `$Keys -Value (`$_.`$Keys) -Force
+        $response | ForEach-Object {
+            if ($null -ne $_) {
+                foreach ($Keys in $_.Keys) { 
+                    $Keys=$Keys.SubString(0, 1).ToUpper() + $Keys.Substring(1)
+                    $_ | Add-Member -MemberType NoteProperty -Name $Keys -Value ($_.$Keys) -Force
                 }
             }
         }
         
-        if (`$PSBoundParameters.ContainsKey("ID")) {
-            `$response = `$response | Where-Object { `$_.id -eq `$Id }
-            if(`$Null -eq `$response ) {
+        if ($PSBoundParameters.ContainsKey("ID")) {
+            $response = $response | Where-Object { $_.id -eq $Id }
+            if($Null -eq $response ) {
                 Write-Error "Get-AzureADPolicy : Error occurred while executing Get-Policy 
                 Code: Request_BadRequest
-                Message: Invalid object identifier '`$Id' ."
+                Message: Invalid object identifier '$Id' ."
             }
-        } elseif (-not `$All -and `$Top) {
-            `$response = `$response | Select-Object -First `$Top
+        } elseif (-not $All -and $Top) {
+            $response = $response | Select-Object -First $Top
         }
         
-        if (`$MyInvocation.PipelineLength -gt 1) {
-            `$response  
+        if ($MyInvocation.PipelineLength -gt 1) {
+            $response  
         }
         else {
-            `$response | Select-Object Id, DisplayName, Type, IsOrganizationDefault
+            $response | Select-Object Id, DisplayName, Type, IsOrganizationDefault
         }    
-        } 
-"@
+    } 
+'@
 }

@@ -3,40 +3,43 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {    
-        `$params = @{}
-        `$keysChanged = @{}
-        if(`$null -ne `$PSBoundParameters["Top"])
+        $params = @{}
+        $keysChanged = @{}
+
+        if($null -ne $PSBoundParameters["Top"])
         {
-            `$params["Top"] = `$PSBoundParameters["Top"]
+            $params["Top"] = $PSBoundParameters["Top"]
         }
-        if(`$null -ne `$PSBoundParameters["Filter"])
+        if($null -ne $PSBoundParameters["Filter"])
         {
-            `$params["Filter"] = `$PSBoundParameters["Filter"]
+            $params["Filter"] = $PSBoundParameters["Filter"]
         }
     
-        if(`$PSBoundParameters.ContainsKey("Verbose"))
+        if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            `$params["Verbose"] = `$Null
+            $params["Verbose"] = $Null
         }
         
-        if(`$PSBoundParameters.ContainsKey("Debug"))
+        if($PSBoundParameters.ContainsKey("Debug"))
         {
-            `$params["Debug"] = `$Null
+            $params["Debug"] = $Null
         }
+
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================")
         
-        `$response = Get-MgBetaReportApplicationSignInDetailedSummary @params
-        `$response | ForEach-Object {
-            if (`$null -ne `$_) {
-                    `$value = `$_.Status | ConvertTo-Json | ConvertFrom-Json
-                    `$_ | Add-Member -MemberType NoteProperty -Name Status -Value (`$value) -Force
+        $response = Get-MgBetaReportApplicationSignInDetailedSummary @params
+        $response | ForEach-Object {
+            if ($null -ne $_) {
+                    $value = $_.Status | ConvertTo-Json | ConvertFrom-Json
+                    $_ | Add-Member -MemberType NoteProperty -Name Status -Value ($value) -Force
             }
         }
-        `$response
-        }
-"@
+
+        $response
+    }
+'@
 }

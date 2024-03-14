@@ -6,57 +6,59 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {    
-        `$params = @{}
-        `$keysChanged = @{}
-        if(`$null -ne `$PSBoundParameters["Filter"])
+        $params = @{}
+        $keysChanged = @{}
+        
+        if($null -ne $PSBoundParameters["Filter"])
         {
-            `$TmpValue = `$PSBoundParameters["Filter"]
-            foreach(`$i in `$keysChanged.GetEnumerator()){
-                `$TmpValue = `$TmpValue.Replace(`$i.Key, `$i.Value)
+            $TmpValue = $PSBoundParameters["Filter"]
+            foreach($i in $keysChanged.GetEnumerator()){
+                $TmpValue = $TmpValue.Replace($i.Key, $i.Value)
             }
-            `$Value = `$TmpValue
-            `$params["Filter"] = `$Value
+            $Value = $TmpValue
+            $params["Filter"] = $Value
         }
-        if(`$null -ne `$PSBoundParameters["Top"])
+        if($null -ne $PSBoundParameters["Top"])
         {
-            `$params["Top"] = `$PSBoundParameters["Top"]
+            $params["Top"] = $PSBoundParameters["Top"]
         }
-        if(`$PSBoundParameters.ContainsKey("Verbose"))
+        if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            `$params["Verbose"] = `$Null
+            $params["Verbose"] = $Null
         }
-        if(`$null -ne `$PSBoundParameters["All"])
+        if($null -ne $PSBoundParameters["All"])
         {
-            if(`$PSBoundParameters["All"])
+            if($PSBoundParameters["All"])
             {
-                `$params["All"] = `$Null
+                $params["All"] = $Null
             }
         }
-        if(`$PSBoundParameters.ContainsKey("Debug"))
+        if($PSBoundParameters.ContainsKey("Debug"))
         {
-            `$params["Debug"] = `$Null
+            $params["Debug"] = $Null
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================")
         
-        `$response = Get-MgBetaAuditLogSignIn @params
-        `$response | ForEach-Object {
-            if (`$null -ne `$_) {
-                `$_ | Add-Member -MemberType AliasProperty -Name RiskEventTypes -Value RiskEventTypesV2 -Force
+        $response = Get-MgBetaAuditLogSignIn @params
+        $response | ForEach-Object {
+            if ($null -ne $_) {
+                $_ | Add-Member -MemberType AliasProperty -Name RiskEventTypes -Value RiskEventTypesV2 -Force
         
-                `$propsToConvert = @('MfaDetail', 'AppliedConditionalAccessPolicies', 'NetworkLocationDetails', 'Location', 'DeviceDetail', 'Status', 'AuthenticationProcessingDetails')
+                $propsToConvert = @('MfaDetail', 'AppliedConditionalAccessPolicies', 'NetworkLocationDetails', 'Location', 'DeviceDetail', 'Status', 'AuthenticationProcessingDetails')
         
-                foreach (`$prop in `$propsToConvert) {
-                    `$value = `$_.`$prop | ConvertTo-Json | ConvertFrom-Json
-                    `$_ | Add-Member -MemberType NoteProperty -Name `$prop -Value (`$value) -Force
+                foreach ($prop in $propsToConvert) {
+                    $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
+                    $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
                 }
             }
         }
-        `$response
-        }
-"@
+
+        $response
+    }
+'@
 }

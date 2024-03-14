@@ -44,7 +44,7 @@
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        Write-Debug("=========================================================================")
         
         $response = Invoke-GraphRequest -Uri $graphApiEndpoint -Method Post -Headers $headers -Body $jsonBody
 

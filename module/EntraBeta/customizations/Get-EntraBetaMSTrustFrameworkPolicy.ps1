@@ -6,43 +6,43 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {    
-        `$params = @{}  
+        $params = @{}  
          
-        if(`$null -eq `$PSBoundParameters["Id"] -and `$null -eq `$PSBoundParameters["OutputFilePath"])
+        if($null -eq $PSBoundParameters["Id"] -and $null -eq $PSBoundParameters["OutputFilePath"])
         {
-            `$response = Get-MgBetaTrustFrameworkPolicy @params
-            `$response
+            $response = Get-MgBetaTrustFrameworkPolicy @params
+            $response
         }
-        elseif(`$null -ne `$PSBoundParameters["Id"]) {
+        elseif($null -ne $PSBoundParameters["Id"]) {
             # Define a temporary file path
-            `$Id = `$PSBoundParameters["Id"]
-           `$tempFilePath = [System.IO.Path]::GetTempFileName()
+            $Id = $PSBoundParameters["Id"]
+           $tempFilePath = [System.IO.Path]::GetTempFileName()
            
-           `$outFile =  `$tempFilePath
+           $outFile =  $tempFilePath
            
-            if(`$null -ne `$PSBoundParameters["OutputFilePath"]){
-                `$outFile = `$PSBoundParameters["OutputFilePath"]
+            if($null -ne $PSBoundParameters["OutputFilePath"]){
+                $outFile = $PSBoundParameters["OutputFilePath"]
             }
 
-           `$V = '`$value'
-           `$uri = '/beta/trustframework/policies/'+`$Id+'/'+`$V
+           $V = '$value'
+           $uri = '/beta/trustframework/policies/'+$Id+'/'+$V
            
-            `$response = Invoke-GraphRequest -Method 'GET' -Uri `$uri -OutputFilePath `$outFile
+            $response = Invoke-GraphRequest -Method 'GET' -Uri $uri -OutputFilePath $outFile
 
             # Read the content from the temporary file
-            `$xmlContent = Get-Content -Path `$tempFilePath
+            $xmlContent = Get-Content -Path $tempFilePath
 
             # Display the content if output file path not specified
-            if(`$null -eq `$PSBoundParameters["OutputFilePath"]){
-               `$xmlContent
+            if($null -eq $PSBoundParameters["OutputFilePath"]){
+               $xmlContent
             }
 
             # Clean up the temporary file
-            Remove-Item -Path `$tempFilePath -Force
+            Remove-Item -Path $tempFilePath -Force
         }
     
     }
-"@
+'@
 }

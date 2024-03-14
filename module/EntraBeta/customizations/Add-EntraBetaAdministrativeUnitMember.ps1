@@ -6,41 +6,43 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {    
-        `$params = @{}
-        `$keysChanged = @{ObjectId = "Id"; RefObjectId = "BodyParameter"}
-        if(`$PSBoundParameters.ContainsKey("Verbose"))
+        $params = @{}
+        $keysChanged = @{ObjectId = "Id"; RefObjectId = "BodyParameter"}
+        
+        if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            `$params["Verbose"] = `$Null
+            $params["Verbose"] = $Null
         }
-        if(`$null -ne `$PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["ObjectId"])
         {
-            `$params["AdministrativeUnitId"] = `$PSBoundParameters["ObjectId"]
+            $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]
         }
-        if(`$null -ne `$PSBoundParameters["RefObjectId"])
+        if($null -ne $PSBoundParameters["RefObjectId"])
         {
-            `$TmpValue = `$PSBoundParameters["RefObjectId"]
-            `$Value = @{ "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/`$TmpValue"}
-            `$params["BodyParameter"] = `$Value
+            $TmpValue = $PSBoundParameters["RefObjectId"]
+            $Value = @{ "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/$TmpValue"}
+            $params["BodyParameter"] = $Value
         }
-        if(`$PSBoundParameters.ContainsKey("Debug"))
+        if($PSBoundParameters.ContainsKey("Debug"))
         {
-            `$params["Debug"] = `$Null
+            $params["Debug"] = $Null
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================")
         
-        `$response = New-MgBetaAdministrativeUnitMemberByRef @params
-        `$response | ForEach-Object {
-            if(`$null -ne `$_) {
-            Add-Member -InputObject `$_ -MemberType AliasProperty -Name ObjectId -Value Id
+        $response = New-MgBetaAdministrativeUnitMemberByRef @params
+        $response | ForEach-Object {
+            if($null -ne $_) {
+            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
     
             }
         }
-        `$response
-        }
-"@
+
+        $response
+    }
+'@
 }

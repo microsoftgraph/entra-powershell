@@ -6,37 +6,38 @@
     TargetName   = $null
     Parameters   = $null
     Outputs      = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {        
-        `$params = @{}
-        `$keysChanged = @{}
-        if (`$PSBoundParameters.ContainsKey("Debug")) {
-            `$params["Debug"] = `$Null
+        $params = @{}
+        $keysChanged = @{}
+        
+        if ($PSBoundParameters.ContainsKey("Debug")) {
+            $params["Debug"] = $Null
         }
-        if (`$null -ne `$PSBoundParameters["ID"]) {
-            `$id = `$PSBoundParameters["ID"]
+        if ($null -ne $PSBoundParameters["ID"]) {
+            $id = $PSBoundParameters["ID"]
         }
-        if (`$null -ne `$PSBoundParameters["RefObjectId"]) {
-            `$RefObjectId = `$PSBoundParameters["RefObjectId"]
+        if ($null -ne $PSBoundParameters["RefObjectId"]) {
+            $RefObjectId = $PSBoundParameters["RefObjectId"]
         }
-        if (`$PSBoundParameters.ContainsKey("Verbose")) {
-            `$params["Verbose"] = `$Null
+        if ($PSBoundParameters.ContainsKey("Verbose")) {
+            $params["Verbose"] = $Null
         }
 
-        `$uri = "https://graph.microsoft.com/beta/applications/`$id/Policies/" + '`$ref'
-        `$body = @{
-            "@odata.id" = "https://graph.microsoft.com/beta/legacy/policies/`$RefObjectId"
+        $uri = "https://graph.microsoft.com/beta/applications/$id/Policies/" + '$ref'
+        $body = @{
+            "@odata.id" = "https://graph.microsoft.com/beta/legacy/policies/$RefObjectId"
         }
-        `$body = `$body | ConvertTo-Json
+        $body = $body | ConvertTo-Json
 
         
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================``n")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================")
         
-        `$response = Invoke-MgGraphRequest -Method POST -Uri `$uri -Body `$body -ContentType "application/json"
-        `$response
+        $response = Invoke-MgGraphRequest -Method POST -Uri $uri -Body $body -ContentType "application/json"
+        $response
     }
-"@
+'@
 }
         
