@@ -36,7 +36,7 @@
         Write-Debug("=========================================================================")
         
         $params["OrganizationId"] = (Get-MgBetaOrganization).Id
-        Update-MgBetaOrganization @params
+        Update-MgBetaOrganization @params -Headers $customHeaders
     }
 '@
 }

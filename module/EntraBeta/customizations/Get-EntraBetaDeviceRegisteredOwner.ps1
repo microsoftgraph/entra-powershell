@@ -39,7 +39,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Get-MgBetaDeviceRegisteredOwner @params
+        $response = Get-MgBetaDeviceRegisteredOwner @params -Headers $customHeaders
         $properties = @{
             ObjectId = "Id"
             DeletionTimestamp = "deletedDateTime"

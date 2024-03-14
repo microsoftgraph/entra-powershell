@@ -37,7 +37,7 @@ function Get-EntraBetaDirSyncConfiguration {
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $response = ((Get-MgBetaDirectoryOnPremiseSynchronization @params).configuration | Select-Object -Property AccidentalDeletionPrevention).AccidentalDeletionPrevention
+        $response = ((Get-MgBetaDirectoryOnPremiseSynchronization @params -Headers $customHeaders).configuration | Select-Object -Property AccidentalDeletionPrevention).AccidentalDeletionPrevention
         # Create a custom table
         $customTable = [PSCustomObject]@{
             "AccidentalDeletionThreshold" = $response.AlertThreshold

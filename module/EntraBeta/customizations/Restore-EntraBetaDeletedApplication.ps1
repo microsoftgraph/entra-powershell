@@ -32,7 +32,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Restore-MgBetaDirectoryDeletedItem @params
+        $response = Restore-MgBetaDirectoryDeletedItem @params -Headers $customHeaders
         $response | ForEach-Object {
             if($null -ne $_) {        
             Add-Member -InputObject $_ -MemberType NoteProperty -Name Homepage -value $_.AdditionalProperties['web']['homePageUrl']

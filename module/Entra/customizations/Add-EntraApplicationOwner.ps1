@@ -8,6 +8,7 @@
     Outputs = $null
     CustomScript = @"
     `$params = @{}
+    `$customHeaders = New-CustomHeaders -Module Entra -Command `$MyInvocation.MyCommand
     if(`$PSBoundParameters.ContainsKey("Verbose"))
     {
         `$params["Verbose"] = `$Null
@@ -33,6 +34,6 @@
     $`params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
     Write-Debug("=========================================================================``n")
     
-    New-MgApplicationOwnerByRef @params
+    New-MgApplicationOwnerByRef @params -Headers $customHeaders
 "@
 }

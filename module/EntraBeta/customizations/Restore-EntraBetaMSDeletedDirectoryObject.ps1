@@ -28,7 +28,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Restore-MgBetaDirectoryDeletedItem @params
+        $response = Restore-MgBetaDirectoryDeletedItem @params -Headers $customHeaders
         $response | ForEach-Object {
             if($null -ne $_) {
             Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties

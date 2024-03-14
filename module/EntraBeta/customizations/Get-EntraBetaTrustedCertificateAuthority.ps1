@@ -33,7 +33,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $responseData = Get-MgBetaOrganizationCertificateBasedAuthConfiguration @params
+        $responseData = Get-MgBetaOrganizationCertificateBasedAuthConfiguration @params -Headers $customHeaders
         $response= @()
         $responseData.CertificateAuthorities | ForEach-Object {
             if (

@@ -151,7 +151,7 @@ function Set-EntraBetaDomainFederationSettings {
             Write-Debug("=========================================================================`n")
             if($null -ne $params.InternalDomainFederationId)
             {
-                $response =  Update-MgBetaDomainFederationConfiguration @params
+                $response =  Update-MgBetaDomainFederationConfiguration @params -Headers $customHeaders
                 $response
             }
         }

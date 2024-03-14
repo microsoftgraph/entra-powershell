@@ -58,7 +58,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = New-MgBetaInvitation @params
+        $response = New-MgBetaInvitation @params -Headers $customHeaders
         $response | ForEach-Object {
             if($null -ne $_) {
             Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id

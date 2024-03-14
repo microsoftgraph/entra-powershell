@@ -37,7 +37,7 @@ function Get-EntraDirSyncConfiguration {
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $response = ((Get-MgDirectoryOnPremiseSynchronization @params).configuration | Select-Object -Property AccidentalDeletionPrevention).AccidentalDeletionPrevention
+        $response = ((Get-MgDirectoryOnPremiseSynchronization @params -Headers $customHeaders).configuration | Select-Object -Property AccidentalDeletionPrevention).AccidentalDeletionPrevention
         # Create a custom table
         $customTable = [PSCustomObject]@{
             "AccidentalDeletionThreshold" = $response.AlertThreshold

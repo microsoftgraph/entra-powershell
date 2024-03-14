@@ -65,7 +65,7 @@ function Convert-EntraFederatedUser {
         Write-Debug("=========================================================================`n")
         if($null -ne $AuthenticationMethodId)
         {
-            $response = Reset-MgUserAuthenticationMethodPassword @params
+            $response = Reset-MgUserAuthenticationMethodPassword @params -Headers $customHeaders
         }
         $response
         }

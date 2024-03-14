@@ -58,7 +58,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Get-MgBetaUser @params 
+        $response = Get-MgBetaUser @params -Headers $customHeaders 
         
         $response | ForEach-Object {
             if ($null -ne $_) {

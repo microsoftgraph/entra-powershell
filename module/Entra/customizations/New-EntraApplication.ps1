@@ -209,7 +209,7 @@
     $`params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
     Write-Debug("=========================================================================``n")
 
-    `$response = New-MgApplication @params
+    `$response = New-MgApplication @params -Headers $customHeaders
 
     
     `$response
