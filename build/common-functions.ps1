@@ -229,18 +229,13 @@ function New-CustomHeaders {
 		$Command
 	)
 
-	if($Module -eq 'Entra')
-	{
-		$moduleVersion = (Get-Module Microsoft.Graph.Entra).Version
-	}
-	else
-	{
-		$moduleVersion = (Get-Module Microsoft.Graph.Entra.Beta).Version
-	}
-
+	$basePath = (join-path $PSScriptRoot '../module/')
+	$basePath = (join-path $basePath $Module)
+	$settingPath = join-path $basePath "./config/ModuleMetadata.json"
+    $content = Get-Content -Path $settingPath | ConvertFrom-Json
 	$psVersion = $global:PSVersionTable.PSVersion
-	$ver = $moduleVersion.Major, $moduleVersion.Minor, $moduleVersion.Build -Join "."
-	$userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$ver $Command"
+	$entraVersion = $content.version
+	$userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion $Command"
 	$customHeaders = New-Object 'system.collections.generic.dictionary[string,string]'
 	$customHeaders["User-Agent"] = $userAgentHeaderValue
 
