@@ -74,7 +74,7 @@ This cmdlet retrieves all recoverable deleted groups in the directory.
 
 ### Example 2: Get deleted groups in the directory using All parameter.
 ```powershell
-PS C:\> Get-AzureAdMSDeletedGroup -All $true
+PS C:\> Get-EntraMSDeletedGroup -All $true
 ```
 
 ```output
@@ -90,7 +90,7 @@ This cmdlet retrieves all recoverable deleted groups in the directory, using All
 
 ### Example 3: Get top two deleted groups.
 ```powershell
-PS C:\> Get-AzureAdMSDeletedGroup -All $true
+PS C:\> Get-EntraMSDeletedGroup -All $true
 ```
 
 ```output
