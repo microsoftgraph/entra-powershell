@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraMSPermissionGrantPolicy.
+description: This article provides details on the Remove-EntraMSPermissionGrantPolicy command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/14/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,7 +23,9 @@ Removes a permission grant policy.
 ## SYNTAX
 
 ```
-Remove-EntraMSPermissionGrantPolicy -Id <String> [<CommonParameters>]
+Remove-EntraMSPermissionGrantPolicy 
+-Id <String>
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -54,9 +66,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[New-EntraMSPermissionGrantPolicy]()
+[New-EntraMSPermissionGrantPolicy](New-EntraMSPermissionGrantPolicy.md)
 
-[Get-EntraMSPermissionGrantPolicy]()
+[Get-EntraMSPermissionGrantPolicy](Get-EntraMSPermissionGrantPolicy.md)
 
-[Set-EntraMSPermissionGrantPolicy]()
+[Set-EntraMSPermissionGrantPolicy](Set-EntraMSPermissionGrantPolicy.md)
 
