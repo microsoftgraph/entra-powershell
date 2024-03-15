@@ -25,7 +25,7 @@
         `$certNotFound = `$true
         `$modifiedCert = `$PSBoundParameters["CertificateAuthorityInformation"]
         `$previusCerts = @()        
-        Get-EntraTrustedCertificateAuthority | ForEach-Object {
+        Get-EntraBetaTrustedCertificateAuthority | ForEach-Object {
             
             if((`$_.TrustedIssuer -eq `$modifiedCert.TrustedIssuer) -and (`$_.TrustedIssuerSki -eq `$modifiedCert.TrustedIssuerSki)){
                 `$certNotFound = `$false
