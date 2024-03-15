@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraContact
+description: This article provides details on the Remove-EntraContact command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/06/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,9 +22,12 @@ Removes a contact.
 
 ## SYNTAX
 
-```
-Remove-EntraContact -ObjectId <String> [-InformationAction <ActionPreference>] [-InformationVariable <String>]
- [<CommonParameters>]
+```powershell
+Remove-EntraContact 
+    -ObjectId <String> 
+    [-InformationAction <ActionPreference>] 
+    [-InformationVariable <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,12 +36,12 @@ The Remove-EntraContact removes a contact from Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Remove a contact
-```
+```powershell
 PS C:\> $Contact = Get-EntraContact -Top 1
 PS C:\> Remove-EntraContact -ObjectId $Contact.ObjectId
 ```
 
-The first command gets a contact by using the Get-EntraContact (./Get-EntraContact.md)cmdlet, and then stores it in the $Contact variable.
+The first command gets a contact by using the [Get-EntraContact](./Get-EntraContact.md) cmdlet, and then stores it in the $Contact variable.
 
 The second command removes the contact in $Contact.
 
@@ -73,7 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the object ID of a contact in Azure AD.
+Specifies the object ID of a contact in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -98,5 +111,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraContact]()
+[Get-EntraContact](Get-EntraContact.md)
 
