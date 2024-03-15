@@ -1,14 +1,4 @@
 ---
-title: Remove-EntraApplicationPasswordCredential.
-description: This article provides details on the Remove-EntraApplicationPasswordCredential command.
-
-ms.service: active-directory
-ms.topic: reference
-ms.date: 03/14/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -23,9 +13,8 @@ Removes a password credential from an application.
 ## SYNTAX
 
 ```
-Remove-EntraApplicationPasswordCredential 
--ObjectId <String> -KeyId <String>
-[<CommonParameters>]
+Remove-EntraApplicationPasswordCredential -ObjectId <String> -KeyId <String>
+ [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -40,14 +29,53 @@ PS C:\> $KeyIDs = Get-EntraApplicationPasswordCredential -ObjectId $AppId
 PS C:\> Remove-EntraApplicationPasswordCredential -ObjectId $AppId -KeyId $KeyIds[0].KeyId
 ```
 
-The first command gets the ID of an application by using the Get-EntraApplication (./Get-EntraApplication.md) cmdlet, and then stores it in the $AppID variable.
+The first command gets the ID of an application by using the Get-EntraApplication (./Get-EntraApplication.md)cmdlet, and then stores it in the $AppID variable.
 
-The second command gets the password credential for the application identified by $AppID by using the Get-EntraApplicationPasswordCredential (./ Get-EntraApplicationPasswordCredential.md) cmdlet. 
+The second command gets the password credential for the application identified by $AppID by using the Get-EntraApplicationPasswordCredential (./ Get-EntraApplicationPasswordCredential.md)cmdlet. 
 The command stores it in the $KeyId variable.
 
 The final command removes the application password credential for the application identified by $AppID.
 
 ## PARAMETERS
+
+### -InformationAction
+Specifies how this cmdlet responds to an information event.
+
+The acceptable values for this parameter are:
+
+- Continue
+- Ignore
+- Inquire
+- SilentlyContinue
+- Stop
+- Suspend
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: infa
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -InformationVariable
+Specifies an information variable.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: iv
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -KeyId
 @{Text=}
@@ -65,7 +93,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of the application in Microsoft Entra ID.
+Specifies the ID of the application in Azure AD.
 
 ```yaml
 Type: String
@@ -90,9 +118,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraApplication](Get-EntraApplication.md)
+[Get-EntraApplication]()
 
-[Get-EntraApplicationPasswordCredential](Get-EntraApplicationPasswordCredential.md)
+[Get-EntraApplicationPasswordCredential]()
 
-[Remove-EntraApplicationPasswordCredential](Remove-EntraApplicationPasswordCredential.md)
+[Remove-EntraApplicationPasswordCredential]()
 
