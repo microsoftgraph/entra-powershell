@@ -91,84 +91,14 @@ ForEach-Object  { Set-EntraUser -ObjectId $($_.ObjectId) -AgeGroup 'minor' -Cons
 ```
 This example updates the specified user's property.
 
-### Example 4: Set the specified user's City property
+### Example 4: Set the specified user's propertys.
 
 ```powershell
-Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -City "Add city name"
+Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -City "Add city name" -CompanyName "Microsoft" -ConsentProvidedForMinor Granted -Country 'Add country name' -Department "Add department name" -GivenName "Mircosoft" -ImmutableId "#1" -JobTitle "Manager" -MailNickName "Add mailnickname" -Mobile "9984534564" -OtherMails "test12@M365x99297270.OnMicrosoft.com" -PasswordPolicies "DisableStrongPassword" -State "UP" -StreetAddress "Add address"
 ```
-This example updates the specified user's City property.
+This example updates the specified user's City propertys.
 
-### Example 5: Set the specified user's CompanyName property
-
-```powershell
-Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -CompanyName "Microsoft"
-```
-This example updates the specified user's CompanyName property.
-
-### Example 6: Set the specified user's ConsentProvidedForMinor property
-
-```powershell
- Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -ConsentProvidedForMinor Granted
-```
-This example updates the specified user's ConsentProvidedForMinor property.
-
-### Example 7: Set the specified user's country/region property
-
-```powershell
-  Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -Country 'Add country name'
-```
-This example updates the specified user's country/region property.
-
-### Example 8: Set the specified user's Department property
-
-```powershell
-  Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -Department "Add department name"
-```
-This example updates the specified user's Department property.
-
-### Example 9: Set the specified user's GivenName property
-
-```powershell
-  Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -GivenName "Mircosoft"
-```
-This example updates the specified user's GivenName property.
-
-### Example 10: Set the specified user's ImmutableId property
-
-```powershell
-   Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -ImmutableId "#1"
-```
-This example updates the specified user's ImmutableId property.
-
-### Example 10: Set the specified user's JobTitle and MailNickName property
-
-```powershell
-    Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -JobTitle "Manager" -MailNickName "Add mailnickname"
-```
-This example updates the specified user's JobTitle and MailNickName property.
-
-### Example 11: Set the specified user's Mobile property
-
-```powershell
-    Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -Mobile "9984534564"
-```
-This example updates the specified user's Mobile property.
-
-### Example 12: Set the specified user's OtherMails property
-
-```powershell
-    Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -OtherMails "test12@M365x99297270.OnMicrosoft.com"
-```
-This example updates the specified user's OtherMails property.
-
-### Example 13: Set the specified user's PasswordPolicies, State, and StreetAddress property.
-
-```powershell
-    Set-EntraUser -ObjectId 9e3593e3-1918-475e-ab44-91364b50c091 -PasswordPolicies "DisableStrongPassword" -State "UP" -StreetAddress "Add address"
-```
-This example updates the specified user's PasswordPolicies, State, and StreetAddress property.
-
-### Example 14: Set the specified user's PasswordProfile property
+### Example 5: Set the specified user's PasswordProfile property
 
 ```powershell
    $a = @{
@@ -180,26 +110,27 @@ This example updates the specified user's PasswordPolicies, State, and StreetAdd
 ```
 This example updates the specified user's PasswordProfile property.
 
-## Example 14: Set the specified user's PostalCode, PreferredLanguage, and ShowInAddressList property
+## Example 6: Set the specified user's PostalCode, PreferredLanguage, and ShowInAddressList property
 
 ```powershell
    Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -PostalCode 444601 -PreferredLanguage "EN" -ShowInAddressList $true
 ```
 This example updates the specified user's PostalCode, PreferredLanguage, and ShowInAddressList property.
 
-## Example 15: Set the specified user's UserPrincipalName, UsageLocation, and Surname property
+## Example 7: Set the specified user's UserPrincipalName, UsageLocation, and Surname property
 
 ```powershell
    Set-EntraUser -ObjectId 9e3593e3-1918-475e-ab44-91364b50c091 -UserPrincipalName "demos131@M365x99297270.OnMicrosoft.com" -UsageLocation "CH" -Surname "Add surname"
 ```
 This example updates the specified user's UserPrincipalName, UsageLocation, and Surname property.
 
-## Example 16: Set the specified user's UserType property
+## Example 8: Set the specified user's UserType property
 
 ```powershell
    Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -UserType "Member"
 ```
 This example updates the specified user's UserType property.
+
 ## PARAMETERS
 
 ### -AccountEnabled
