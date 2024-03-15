@@ -1,4 +1,14 @@
 ---
+title: Set-EntraMSAdministrativeUnit
+description: This article provides details on the Set-EntraMSAdministrativeUnit command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/11/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,22 +22,32 @@ Updates an administrative unit.
 
 ## SYNTAX
 
-```
-Set-EntraMSAdministrativeUnit [-DisplayName <String>] [-Description <String>] -Id <String>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Set-EntraMSAdministrativeUnit 
+    -Id <String>
+    [-DisplayName <String>] 
+    [-Description <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Set-EntraMSAdministrativeUnit cmdlet updates an administrative unit in Microsoft Entra ID.
+The **Set-EntraMSAdministrativeUnit** cmdlet updates an administrative unit in Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Update the display name
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Set-EntraMSAdministrativeUnit -Id f306a126-cf2e-439d-b20f-95ce4bcb7ffa -DisplayName 'displayName updated'
 ```
 
-{{ Add example description here }}
+This command updates the display name of the specified administrative unit.
+
+### Example 2: Update the description
+```powershell
+PS C:\> Set-EntraMSAdministrativeUnit -Id f306a126-cf2e-439d-b20f-95ce4bcb7ffa -Description 'description updated'
+```
+
+This command updates the description of the specified administrative unit.
 
 ## PARAMETERS
 
@@ -61,46 +81,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Id
-Specifies the ID of an administrative unit in Azure AD.
+Specifies the ID of an administrative unit in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -125,9 +107,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraMSAdministrativeUnit]()
+[Get-EntraMSAdministrativeUnit](Get-EntraMSAdministrativeUnit.md)
 
-[New-EntraMSAdministrativeUnit]()
+[New-EntraMSAdministrativeUnit](New-EntraMSAdministrativeUnit.md)
 
-[Remove-EntraMSAdministrativeUnit]()
+[Remove-EntraMSAdministrativeUnit](Remove-EntraMSAdministrativeUnit.md)
 
