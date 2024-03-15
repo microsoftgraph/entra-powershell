@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraDeletedApplication co
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/13/2024
+ms.date: 03/15/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -31,7 +31,7 @@ Get-EntraDeletedApplication
     [<CommonParameters>]
 ```
 
-### GetVague
+### GetValue
 ```powershell
 Get-EntraDeletedApplication 
     [-SearchString <String>] 
