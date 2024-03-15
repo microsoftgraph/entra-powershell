@@ -1,4 +1,14 @@
 ---
+title: Set-EntraUser.
+description: This article provides details on the Set-EntraUser command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/15/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,19 +23,40 @@ Updates a user.
 ## SYNTAX
 
 ```
-Set-EntraUser [-PostalCode <String>] [-UserStateChangedOn <String>] [-CompanyName <String>]
- [-FacsimileTelephoneNumber <String>] [-GivenName <String>] [-Mobile <String>] [-PreferredLanguage <String>]
- [-CreationType <String>] [-UsageLocation <String>] [-UserType <String>] [-AgeGroup <String>]
- [-MailNickName <String>]
- [-ExtensionProperty <System.Collections.Generic.Dictionary`2[System.String,System.String]>]
- [-ConsentProvidedForMinor <String>] -ObjectId <String> [-ImmutableId <String>] [-Country <String>]
- [-SignInNames <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]>]
- [-Department <String>] [-StreetAddress <String>] [-PasswordPolicies <String>] [-JobTitle <String>]
- [-IsCompromised <Boolean>] [-City <String>] [-UserState <String>]
- [-OtherMails <System.Collections.Generic.List`1[System.String]>] [-PhysicalDeliveryOfficeName <String>]
- [-UserPrincipalName <String>] [-DisplayName <String>] [-AccountEnabled <Boolean>]
- [-PasswordProfile <PasswordProfile>] [-State <String>] [-TelephoneNumber <String>] [-Surname <String>]
- [-ShowInAddressList <Boolean>] [<CommonParameters>]
+Set-EntraUser 
+[-PostalCode <String>] 
+[-UserStateChangedOn <String>] 
+[-CompanyName <String>]
+[-FacsimileTelephoneNumber <String>] 
+[-GivenName <String>] 
+[-Mobile <String>] 
+[-PreferredLanguage <String>]
+[-CreationType <String>] 
+[-UsageLocation <String>] 
+[-UserType <String>] 
+[-AgeGroup <String>]
+[-MailNickName <String>]
+[-ExtensionProperty <System.Collections.Generic.Dictionary`2[System.String,System.String]>]
+[-ConsentProvidedForMinor <String>] 
+-ObjectId <String> 
+[-ImmutableId <String>] 
+[-Country <String>]
+[-SignInNames <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]>]
+[-Department <String>] [-StreetAddress <String>] [-PasswordPolicies <String>] [-JobTitle <String>]
+[-IsCompromised <Boolean>] 
+[-City <String>] 
+[-UserState <String>]
+[-OtherMails <System.Collections.Generic.List`1[System.String]>] 
+[-PhysicalDeliveryOfficeName <String>]
+[-UserPrincipalName <String>] 
+[-DisplayName <String>] 
+[-AccountEnabled <Boolean>]
+[-PasswordProfile <PasswordProfile>] 
+[-State <String>] 
+[-TelephoneNumber <String>]
+[-Surname <String>]
+[-ShowInAddressList <Boolean>] 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,14 +65,141 @@ The Set-EntraUser cmdlet updates a user in Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Update a user
-```
+
+```powershell
 PS C:\> $user = Get-EntraUser -ObjectId TestUser@example.com 
 PS C:\> $user.DisplayName = 'YetAnotherTestUser' 
 PS C:\> Set-EntraUser -ObjectId TestUser@example.com -Displayname $user.Displayname
 ```
 
-This command updates the specified user's property.
+This example updates the specified user's Display name property.
 
+### Example 2: Set the specified user's AccountEnabled property
+
+```powershell
+Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -AccountEnabled $true
+```
+
+This example updates the specified user's AccountEnabled property.
+
+### Example 3: Set all but specified users as minors with parental consent
+
+```powershell
+Get-AzureADUser -All $true | 
+Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } | 
+ForEach-Object  { Set-EntraUser -ObjectId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
+```
+This example updates the specified user's property.
+
+### Example 4: Set the specified user's City property
+
+```powershell
+Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -City "Add city name"
+```
+This example updates the specified user's City property.
+
+### Example 5: Set the specified user's CompanyName property
+
+```powershell
+Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -CompanyName "Microsoft"
+```
+This example updates the specified user's CompanyName property.
+
+### Example 6: Set the specified user's ConsentProvidedForMinor property
+
+```powershell
+ Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -ConsentProvidedForMinor Granted
+```
+This example updates the specified user's ConsentProvidedForMinor property.
+
+### Example 7: Set the specified user's country/region property
+
+```powershell
+  Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -Country 'Add country name'
+```
+This example updates the specified user's country/region property.
+
+### Example 8: Set the specified user's Department property
+
+```powershell
+  Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -Department "Add department name"
+```
+This example updates the specified user's Department property.
+
+### Example 9: Set the specified user's GivenName property
+
+```powershell
+  Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -GivenName "Mircosoft"
+```
+This example updates the specified user's GivenName property.
+
+### Example 10: Set the specified user's ImmutableId property
+
+```powershell
+   Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -ImmutableId "#1"
+```
+This example updates the specified user's ImmutableId property.
+
+### Example 10: Set the specified user's JobTitle and MailNickName property
+
+```powershell
+    Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -JobTitle "Manager" -MailNickName "Add mailnickname"
+```
+This example updates the specified user's JobTitle and MailNickName property.
+
+### Example 11: Set the specified user's Mobile property
+
+```powershell
+    Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -Mobile "9984534564"
+```
+This example updates the specified user's Mobile property.
+
+### Example 12: Set the specified user's OtherMails property
+
+```powershell
+    Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -OtherMails "test12@M365x99297270.OnMicrosoft.com"
+```
+This example updates the specified user's OtherMails property.
+
+### Example 13: Set the specified user's PasswordPolicies, State, and StreetAddress property.
+
+```powershell
+    Set-EntraUser -ObjectId 9e3593e3-1918-475e-ab44-91364b50c091 -PasswordPolicies "DisableStrongPassword" -State "UP" -StreetAddress "Add address"
+```
+This example updates the specified user's PasswordPolicies, State, and StreetAddress property.
+
+### Example 14: Set the specified user's PasswordProfile property
+
+```powershell
+   $a = @{
+>>    Password= "*****"
+>>    ForceChangePasswordNextLogin = $true
+>>    EnforceChangePasswordPolicy = $false
+>>  }
+>>   Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -PasswordProfile $a
+```
+This example updates the specified user's PasswordProfile property.
+
+## Example 14: Set the specified user's PostalCode, PreferredLanguage, and ShowInAddressList property
+
+```powershell
+   Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -PostalCode 444601 -PreferredLanguage "EN" -ShowInAddressList $true
+```
+This example updates the specified user's PostalCode, PreferredLanguage, and ShowInAddressList property.
+
+## Example 15: Set the specified user's UserPrincipalName, UsageLocation, and Surname property
+
+```powershell
+   Set-EntraUser -ObjectId 9e3593e3-1918-475e-ab44-91364b50c091 -UserPrincipalName "demos131@M365x99297270.OnMicrosoft.com" -UsageLocation "CH" -Surname "Add surname"
+```
+This example updates the specified user's UserPrincipalName, UsageLocation, and Surname property.
+
+## Example 16: Set the specified user's UserType property
+
+```powershell
+   Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -UserType "Member"
+```
+This example updates the specified user's UserType property.
 ## PARAMETERS
 
 ### -AccountEnabled
@@ -75,7 +233,7 @@ Accept wildcard characters: False
 ```
 
 ### -Country
-Specifies the user's country.
+Specifies the user's country/region.
 
 ```yaml
 Type: String
@@ -92,8 +250,8 @@ Accept wildcard characters: False
 ### -CreationType
 Indicates whether the user account is a local account for a Microsoft Entra ID B2C tenant.
 Possible values are "LocalAccount" and null.
-When creating a local account, the property is required and you must set it to "LocalAccount".
-When creating a work or school account, do not specify the property or set it to null.
+When we create a local account, the property is required and you must set it to "LocalAccount."
+When creating a work or school account, don't specify the property or set it to null.
 
 ```yaml
 Type: String
@@ -138,7 +296,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExtensionProperty
-@{Text=}
+Add data to custom user properties as the basic open extensions or the more versatile schema extensions. See [more about extensions][Learn more about extensions].
 
 ```yaml
 Type: System.Collections.Generic.Dictionary`2[System.String,System.String]
@@ -168,7 +326,7 @@ Accept wildcard characters: False
 ```
 
 ### -ImmutableId
-@{Text=}
+This property is used to associate an on-premises Active Directory user account to their Microsoft Entra ID user object. This property must be specified when creating a new user account in the Graph if you're using a federated domain for the user's userPrincipalName property. Important: The $ and _ characters can't be used when specifying this property.
 
 ```yaml
 Type: String
@@ -183,7 +341,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsCompromised
-True if this user is compromised
+True if this user is compromised.
 
 ```yaml
 Type: Boolean
@@ -243,7 +401,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a user (as a UPN or ObjectId) in Azure AD.
+Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -303,7 +461,7 @@ Accept wildcard characters: False
 ```
 
 ### -PhysicalDeliveryOfficeName
-@{Text=}
+The office location in the user's place of business. Maximum length is 128 characters.
 
 ```yaml
 Type: String
@@ -438,8 +596,7 @@ Accept wildcard characters: False
 ```
 
 ### -UsageLocation
-@{Text=}
-
+A two letter country or region code (ISO standard 3166). Required for users that assigned licenses due to legal requirement to check for availability of services in country and regions. Examples include: "US," "JP," and "GB." Not nullable.
 ```yaml
 Type: String
 Parameter Sets: (All)
@@ -468,7 +625,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserType
-@{Text=}
+A string value that can be used to classify user types in your directory, such as "Member" and "Guest."
 
 ```yaml
 Type: String
@@ -483,7 +640,7 @@ Accept wildcard characters: False
 ```
 
 ### -FacsimileTelephoneNumber
-{{Fill FacsimileTelephoneNumber Description}}
+The fax number of the user.
 
 ```yaml
 Type: String
@@ -498,7 +655,7 @@ Accept wildcard characters: False
 ```
 
 ### -AgeGroup
-{{ Fill AgeGroup Description }}
+Used by enterprise applications to determine the legal age group of the user. This property is read-only and calculated based on ageGroup and consentProvidedForMinor properties. Allowed values: null, minor, notAdult, and adult. Refer to the [legal age group property definitions][Learn more about age group and minor consent definitions].
 
 ```yaml
 Type: String
@@ -513,7 +670,7 @@ Accept wildcard characters: False
 ```
 
 ### -CompanyName
-{{ Fill CompanyName Description }}
+The company name, which the user is associated. This property can be useful for describing the company that an external user comes from. The maximum length of the company name is 64 characters.
 
 ```yaml
 Type: String
@@ -528,7 +685,7 @@ Accept wildcard characters: False
 ```
 
 ### -ConsentProvidedForMinor
-{{ Fill ConsentProvidedForMinor Description }}
+Sets whether consent has been obtained for minors. Allowed values: null, granted, denied, and notRequired.
 
 ```yaml
 Type: String
@@ -543,7 +700,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserState
-{{ Fill UserState Description }}
+For an external user invited to the tenant using the invitation API, this property represents the invited user's invitation status. For invited users, the state can be PendingAcceptance or Accepted, or null for all other users.
 
 ```yaml
 Type: String
@@ -558,7 +715,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserStateChangedOn
-{{ Fill UserStateChangedOn Description }}
+Shows the timestamp for the latest change to the externalUserState property.
 
 ```yaml
 Type: String
@@ -583,9 +740,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraUser]()
+[Get-EntraUser](Get-EntraUser.md)
 
-[New-EntraUser]()
+[New-EntraUser](New-EntraUser.md)
 
-[Remove-EntraUser]()
+[Remove-EntraUser](Remove-EntraUser.md)
 
