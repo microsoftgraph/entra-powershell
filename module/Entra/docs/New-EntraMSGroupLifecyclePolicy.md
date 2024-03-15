@@ -84,9 +84,9 @@ Accept wildcard characters: False
 
 ### -ManagedGroupTypes
 This parameter allows the admin to select which office 365 groups the policy applies to.
-"None"  create the policy in a disabled state.
-"All"  apply the policy to every Office 365 group in the tenant.
-"Selected"  allow the admin to choose specific Office 365 groups that the policy applies to.
+"None" create the policy in a disabled state.
+"All" apply the policy to every Office 365 group in the tenant.
+"Selected" allow the admin to choose specific Office 365 groups that the policy applies to.
 
 
 
