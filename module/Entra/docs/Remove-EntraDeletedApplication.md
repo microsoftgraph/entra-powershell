@@ -29,12 +29,12 @@ Remove-EntraDeletedApplication
 ```
 
 ## DESCRIPTION
-Permanently delete a recently deleted application object from deleted items. After an item is permanently deleted, it cannot be restored.
+Permanently delete a recently deleted application object from deleted items. After an item is permanently deleted, it can't be restored.
 
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Remove deleted application object
 ```powershell
 PS C:\> $Id = Get-AzureADDeletedApplication -SearchString "newtest10" 
 PS C:\> Remove-AzureADDeletedApplication -ObjectId $Id.id
