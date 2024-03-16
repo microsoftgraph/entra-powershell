@@ -4,7 +4,7 @@ description: This article provides details on the Revoke-EntraSignedInUserAllRef
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/12/2024
+ms.date: 03/16/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -34,7 +34,7 @@ The cmdlet operates by resetting the refreshTokensValidFromDateTime user propert
 ## EXAMPLES
 
 ### Example 1: Revoke refresh tokens for the current user
-```
+```powershell
 PS C:\> Revoke-EntraSignedInUserAllRefreshToken
 ```
 
