@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraMSRoleAssignment comm
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/12/2024
+ms.date: 03/16/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -31,7 +31,7 @@ Get-EntraMSRoleAssignment
     [<CommonParameters>]
 ```
 
-### GetVague
+### GetValue
 ```powershell
 Get-EntraMSRoleAssignment 
     [-SearchString <String>] 
@@ -199,7 +199,7 @@ Specifies a search string.
 
 ```yaml
 Type: String
-Parameter Sets: GetVague
+Parameter Sets: GetValue
 Aliases:
 
 Required: False
