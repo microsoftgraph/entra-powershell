@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraDomainNameReference c
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/13/2024
+ms.date: 03/16/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,7 +18,7 @@ schema: 2.0.0
 # Get-EntraDomainNameReference
 
 ## SYNOPSIS
-This cmdlet retrieves the objects that are referenced by a given domain name.
+This cmdlet retrieves the objects that are referenced with a given domain name.
 
 ## SYNTAX
 
@@ -29,7 +29,7 @@ Get-EntraDomainNameReference
 ```
 
 ## DESCRIPTION
-This cmdlet retrieves the objects that are referenced by a given domain name.
+This cmdlet retrieves the objects that are referenced with a given domain name.
 
 ## EXAMPLES
 
