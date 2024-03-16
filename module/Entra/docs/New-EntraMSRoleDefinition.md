@@ -4,7 +4,7 @@ description: This article provides details on the New-EntraMSRoleDefinition comm
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/13/2024
+ms.date: 03/16/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
