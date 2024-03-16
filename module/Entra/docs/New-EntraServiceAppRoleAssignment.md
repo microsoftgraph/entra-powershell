@@ -4,7 +4,7 @@ description: This article provides details on the New-EntraServiceAppRoleAssignm
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/12/2024
+ms.date: 03/16/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -49,10 +49,10 @@ DeletedDateTime Id                                          AppRoleId           
 ```
 
 This example demonstrates how to assign an app role to another service principal in Microsoft Entra ID.    
-- `ObjectId`:  The ObjectId of the client service principal to which you are assigning the app role.
+- `ObjectId`:  The ObjectId of the client service principal to which you're assigning the app role.
 - `ResourceId`: The ObjectId of the resource service principal (for example, an API).
-- `Id`: The Id of the app role (defined on the resource service principal) to assign to the client service principal. If no app roles have been defined on the resource app, you can use `00000000-0000-0000-0000-000000000000`.
-- `PrincipalId`: The ObjectId of the client service principal to which you are assigning the app role.
+- `Id`: The Id of the app role (defined on the resource service principal) to assign to the client service principal. If no app roles are defined on the resource app, you can use `00000000-0000-0000-0000-000000000000`.
+- `PrincipalId`: The ObjectId of the client service principal to which you're assigning the app role.
 
 ### Example 2: Assign an app role to a user
 ```powershell
@@ -70,8 +70,8 @@ DeletedDateTime Id                                          AppRoleId           
 This example demonstrates how to assign an app role to a user in Microsoft Entra ID.    
 - `ObjectId`:  The ObjectId of the app's service principal.
 - `ResourceId`: The ObjectId of the app's service principal.
-- `Id`: The Id of the app role (defined on the app's service principal) to assign to the user. If no app roles have been defined to the resource app, you can use `00000000-0000-0000-0000-000000000000` to indicate that the app is assigned to the user.
-- `PrincipalId`: The ObjectId of the user to which you are assigning the app role.
+- `Id`: The Id of the app role (defined on the app's service principal) to assign to the user. If no app roles are defined to the resource app, you can use `00000000-0000-0000-0000-000000000000` to indicate that the app is assigned to the user.
+- `PrincipalId`: The ObjectId of the user to which you're assigning the app role.
 
 ### Example 3: Assign an app role to a group
 ```powershell
@@ -89,8 +89,8 @@ DeletedDateTime Id                                          AppRoleId           
 This example demonstrates how to assign an app role to a group in Microsoft Entra ID.   
 - `ObjectId`:  The ObjectId of the app's service principal.
 - `ResourceId`: The ObjectId of the app's service principal.
-- `Id`: The Id of the app role (defined on the app's service principal) to assign to the user. If no app roles have been defined to the resource app, you can use `00000000-0000-0000-0000-000000000000` to indicate that the app is assigned to the user.
-- `PrincipalId`: The ObjectId of the user to which you are assigning the app role.
+- `Id`: The Id of the app role (defined on the app's service principal) to assign to the user. If no app roles are defined to the resource app, you can use `00000000-0000-0000-0000-000000000000` to indicate that the app is assigned to the user.
+- `PrincipalId`: The ObjectId of the user to which you're assigning the app role.
 
 ## PARAMETERS
 
@@ -168,4 +168,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraServiceAppRoleAssignment](Get-EntraServiceAppRoleAssignment.md)
 
 [Remove-EntraServiceAppRoleAssignment](Remove-EntraServiceAppRoleAssignment.md)
-
