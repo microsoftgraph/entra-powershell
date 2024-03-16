@@ -4,7 +4,7 @@ description: This article provides details on the New-EntraUserAppRoleAssignment
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/12/2024
+ms.date: 03/16/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -75,13 +75,13 @@ DeletedDateTime Id                                          AppRoleId           
 
 This example demonstrates how to assign a user to an application role in Microsoft Entra ID.  
 This cmdlet assigns to the specified user the application role of which the Id is specified with $spo.Approles\[1\].id.  
-Please refer to the description of the -Id parameter for more information on how to retrieve application roles for an application.
+For more information on how to retrieve application roles for an application, see description of the Id parameter.
 
 ## PARAMETERS
 
 ### -Id
 The ID of the app role to assign.
-Provide an empty guid when creating a new app role assignment for an application that does not have any roles, or the Id of the role to assign to the user.
+If application doesn't have any roles while creating new app role assignment then provide an empty guid, or the Id of the role to assign to the user.
 
 You can retrieve the application's roles by examining the application object's AppRoles property:
 
@@ -89,7 +89,7 @@ Get-EntraApplication -SearchString "Your Application display name" | select Appr
 
 This cmdlet returns the list of roles that are defined in an application:
 
-AppRoles: {class AppRole {              AllowedMemberTypes: System.Collections.Generic.List1\[System.String\]              Description: \<description for this role\>              DisplayName: \<display name for this role\>              Id: 97e244a2-6ccd-4312-9de6-ecb21884c9f7              IsEnabled: True              Value: \<Value that will be transmitted as a claim in a token for this role\>            }            }
+AppRoles: {class AppRole {              AllowedMemberTypes: System.Collections.Generic.List1\[System.String\]              Description: \<description for this role\>              DisplayName: \<display name for this role\>              Id: 97e244a2-6ccd-4312-9de6-ecb21884c9f7              IsEnabled: True              Value: \<Value that is transmitted as a claim in a token for this role\>            }            }
 
 ```yaml
 Type: String
@@ -120,7 +120,7 @@ Accept wildcard characters: False
 
 ### -PrincipalId
 The object ID of the principal to which the new app role is assigned.
-When assigning a new role to a user provide the object ID of the user.
+When assigning a new role to a user, provide the object ID of the user.
 
 ```yaml
 Type: String
@@ -163,4 +163,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraUserAppRoleAssignment](Get-EntraUserAppRoleAssignment.md)
 
 [Remove-EntraUserAppRoleAssignment](Remove-EntraUserAppRoleAssignment.md)
-
