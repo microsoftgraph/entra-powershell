@@ -4,7 +4,7 @@ description: This article provides details on the Confirm-EntraDomain command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/13/2024
+ms.date: 03/16/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -39,14 +39,14 @@ The **Confirm-EntraDomain** cmdlet validates the ownership of a Microsoft Entra 
 PS C:\>Confirm-EntraDomain -Name Contoso.com
 ```
 
-This command will confirm your domain; changing the status to "Verified".
+This command confirms your domain; changing the status to "Verified".
 
 ### Example 2: Confirm the domain with a cross cloud verification code
 ```powershell
 PS C:\>Confirm-EntraDomain -Name Contoso.com -CrossCloudVerificationCode ms84324896
 ```
 
-This command will confirm your domain for dual federation scenarios.
+This command confirms your domain for dual federation scenarios.
 
 ## PARAMETERS
 
@@ -98,4 +98,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraDomain](Remove-EntraDomain.md)
 
 [Set-EntraDomain](Set-EntraDomain.md)
-
