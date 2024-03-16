@@ -1,10 +1,10 @@
 ---
-title: Get-EntraBetaAuditSignInLogs.
-description: This article provides details on the Get-EntraBetaAuditSignInLogs command.
+title: Remove-EntraDeletedApplication.
+description: This article provides details on the Remove-EntraDeletedApplication command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 11/10/2023
+ms.date: 03/16/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
