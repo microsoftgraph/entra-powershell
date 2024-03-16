@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraContactManager comman
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/06/2024
+ms.date: 03/16/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
