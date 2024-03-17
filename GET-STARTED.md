@@ -128,13 +128,13 @@ Get-EntraUser -SearchString "Adele" -Debug
 You can use the Microsoft Entra PowerShell to test an AzureAD PowerShell module-based script. This helps determine if a script can be migrated to the Microsoft Graph PowerShell SDK.
 
 ```powershell
-Test-EntraScript -Script .\export-apps-with-expiring-secrets.ps1
+Test-EntraScript -Path .\export-apps-with-expiring-secrets.ps1
 ```
 
 If the script is compatible, you won't see any output, although you can use `$?` to display that True was returned. If the script isn't compatible, a warning with details of the problem cmdlet(s) shows. Example:
 
 ```powershell
-Test-EntraScript -Script .\export-apps-with-expiring-secrets.ps1
+Test-EntraScript -Path .\export-apps-with-expiring-secrets.ps1
 
 WARNING: Command Get-AzureADApplicationKeyCredential is not supported
 WARNING: Script contains commands that are not supported by the compatibility adapter.
