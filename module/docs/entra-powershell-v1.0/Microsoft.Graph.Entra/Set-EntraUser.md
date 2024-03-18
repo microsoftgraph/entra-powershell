@@ -77,7 +77,7 @@ This example updates the specified user's Display name property.
 ### Example 2: Set the specified user's AccountEnabled property
 
 ```powershell
-Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -AccountEnabled $true
+PS C:\> Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -AccountEnabled $true
 ```
 
 This example updates the specified user's AccountEnabled property.
@@ -85,7 +85,7 @@ This example updates the specified user's AccountEnabled property.
 ### Example 3: Set all but specified users as minors with parental consent
 
 ```powershell
-Get-AzureADUser -All $true | 
+PS C:\>Get-AzureADUser -All $true | 
 Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } | 
 ForEach-Object  { Set-EntraUser -ObjectId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
 ```
@@ -94,40 +94,40 @@ This example updates the specified user's property.
 ### Example 4: Set the specified user's propertys.
 
 ```powershell
-Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -City "Add city name" -CompanyName "Microsoft" -ConsentProvidedForMinor Granted -Country 'Add country name' -Department "Add department name" -GivenName "Mircosoft" -ImmutableId "#1" -JobTitle "Manager" -MailNickName "Add mailnickname" -Mobile "9984534564" -OtherMails "test12@M365x99297270.OnMicrosoft.com" -PasswordPolicies "DisableStrongPassword" -State "UP" -StreetAddress "Add address"
+PS C:\>Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -City "Add city name" -CompanyName "Microsoft" -ConsentProvidedForMinor Granted -Country 'Add country name' -Department "Add department name" -GivenName "Mircosoft" -ImmutableId "#1" -JobTitle "Manager" -MailNickName "Add mailnickname" -Mobile "9984534564" -OtherMails "test12@M365x99297270.OnMicrosoft.com" -PasswordPolicies "DisableStrongPassword" -State "UP" -StreetAddress "Add address"
 ```
 This example updates the specified user's City propertys.
 
 ### Example 5: Set the specified user's PasswordProfile property
 
 ```powershell
-   $a = @{
->>    Password= "*****"
->>    ForceChangePasswordNextLogin = $true
->>    EnforceChangePasswordPolicy = $false
->>  }
->>   Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -PasswordProfile $a
+PS C:\> $a = @{
+   Password= "*****"
+   ForceChangePasswordNextLogin = $true
+   EnforceChangePasswordPolicy = $false
+ }
+PS C:\> Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -PasswordProfile $a
 ```
 This example updates the specified user's PasswordProfile property.
 
 ## Example 6: Set the specified user's PostalCode, PreferredLanguage, and ShowInAddressList property
 
 ```powershell
-   Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -PostalCode 444601 -PreferredLanguage "EN" -ShowInAddressList $true
+PS C:\>Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -PostalCode 444601 -PreferredLanguage "EN" -ShowInAddressList $true
 ```
 This example updates the specified user's PostalCode, PreferredLanguage, and ShowInAddressList property.
 
 ## Example 7: Set the specified user's UserPrincipalName, UsageLocation, and Surname property
 
 ```powershell
-   Set-EntraUser -ObjectId 9e3593e3-1918-475e-ab44-91364b50c091 -UserPrincipalName "demos131@M365x99297270.OnMicrosoft.com" -UsageLocation "CH" -Surname "Add surname"
+ PS C:\> Set-EntraUser -ObjectId 9e3593e3-1918-475e-ab44-91364b50c091 -UserPrincipalName "demos131@M365x99297270.OnMicrosoft.com" -UsageLocation "CH" -Surname "Add surname"
 ```
 This example updates the specified user's UserPrincipalName, UsageLocation, and Surname property.
 
 ## Example 8: Set the specified user's UserType property
 
 ```powershell
-   Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -UserType "Member"
+   PS C:\> Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -UserType "Member"
 ```
 This example updates the specified user's UserType property.
 
