@@ -32,7 +32,7 @@ This command sets the specified user's password.
 ## PARAMETERS
 
 ### -EnforceChangePasswordPolicy
-If set to true, force the user to change their password
+If set to true, force the user to change their password.
 
 ```yaml
 Type: Boolean
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -ForceChangePasswordNextLogin
-Forces a user to change their password during their next log in.
+Forces a user to change their password during their next sign in.
 
 ```yaml
 Type: Boolean
