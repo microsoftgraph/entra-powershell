@@ -35,36 +35,49 @@ The Get-EntraServicePrincipalMembership cmdlet gets the memberships of a service
 
 ## EXAMPLES
 
-### Example 1: Retrieve the memberships of a service principal
-```
+### Example 1: Retrieve the memberships of a service principal.
+
+```powershell
 PS C:\> $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
 PS C:\> Get-EntraServicePrincipalMembership -ObjectId $ServicePrincipalId
 ```
 
-The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md)cmdlet. 
+The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md) cmdlet. 
 The command stores the ID in the $ServicePrincipalId variable.
 
 The second command gets the memberships of a service principal identified by $ServicePrincipalId.
 
 ### Example 2: Retrieve all memberships of a service principal
-```
+
+```powershell
 PS C:\> Get-EntraServicePrincipalMembership -ObjectId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -All $true
 ```
+```output
+Id                                   DeletedDateTime
+--                                   ---------------
+7dc3a38a-4c92-40bd-b290-ea00f85b478c
 
+```
 This command gets all memberships of a specified service principal.
 
-### Example 3: Retrieve top five memberships of a service principal
+### Example 3: Retrieve top two memberships of a service principal
+```powershell
+PS C:\> Get-EntraServicePrincipalMembership -ObjectId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -Top 2
 ```
-PS C:\> Get-EntraServicePrincipalMembership -ObjectId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -Top 5
+```output
+Id                                   DeletedDateTime
+--                                   ---------------
+7dc3a38a-4c92-40bd-b290-ea00f85b478c
+
 ```
 
-This command gets five memberships of a specified service principal.
+This command gets two memberships of a specified service principal.
 
 ## PARAMETERS
 
 ### -All
 If true, return all memberships.
-If false, return the number of objects specified by the Top parameter
+If false, return the number of objects specified by the Top parameter.
 
 ```yaml
 Type: Boolean
@@ -119,5 +132,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraServicePrincipal]()
+[Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
 
