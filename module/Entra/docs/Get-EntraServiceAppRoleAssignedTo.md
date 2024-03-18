@@ -35,8 +35,9 @@ The Get-EntraServiceAppRoleAssignedTo cmdlet gets app role assignments for this 
 
 ## EXAMPLES
 
-### Example 1: Retrieve the app role assignments
-```
+### Example 1: Retrieve the app role assignments.
+
+```powershell
 PS C:\> $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
 PS C:\> Get-EntraServiceAppRoleAssignedTo -ObjectId $ServicePrincipalId
 ```
@@ -45,25 +46,34 @@ The first command gets the ID of a service principal and stores it in the $Servi
 
 The second command gets the app role assignments for the service principal granted to users, groups and other service principals.
 
-### Example 2: Get all app role assignments
-```
+### Example 2: Get all app role assignments.
+```powershell
 PS C:\> Get-EntraServiceAppRoleAssignedTo -ObjectId 4d8fcb23-adc7-4d47-9328-2420eb1075ef -All $true
+```
+```output
+DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId
+--------------- --                                          ---------                            ---------------     -------------------- -----------
+                I8uPTcetR02TKCQg6xB170ZWgaqJluBEqPHHxTxJ9Hs bdd80a03-d9bc-451d-b7c4-ce7c63fe3c8f 20/10/2023 17:03:41 Entra-App-Testing    4d8fcb23-adc7-4d47-9328-2420eb...
+                I8uPTcetR02TKCQg6xB175qAouG5TkBJnqyyYfnVJ7A 660b7406-55f1-41ca-a0ed-0b035e182f3e 20/10/2023 17:03:38 Entra-App-Testing    4d8fcb23-adc7-4d47-9328-2420eb...
+                I8uPTcetR02TKCQg6xB178ILFS4OdQlAmENpzFgzWRI 7e847308-e030-4183-9899-5235d7270f58 20/10/2023 17:03:37 Entra-App-Testing    4d8fcb23-adc7-4d47-9328-2420eb...
+                I8uPTcetR02TKCQg6xB17zfLIsSkkbtLlvBmfKY1ljk ba1ba90b-2d8f-487e-9f16-80728d85bb5c 20/10/2023 17:03:39 Entra-App-Testing    4d8fcb23-adc7-4d47-9328-2420eb...
+                I8uPTcetR02TKCQg6xB173uzLecDD3JNtanhmTsz4PE 9ce09611-f4f7-4abd-a629-a05450422a97 20/10/2023 17:03:39 Entra-App-Testing    4d8fcb23-adc7-4d47-9328-2420eb...
 ```
 
 This command gets the all app role assignments for the service principal granted to users, groups and other service principals.
 
 ### Example 3: Get five app role assignments
-```
+```powershell
 PS C:\> Get-EntraServiceAppRoleAssignedTo -ObjectId 4d8fcb23-adc7-4d47-9328-2420eb1075ef -Top 5
-
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId                          PrincipalType    ResourceDisplayNam
-                                                                                                                                                                                                e
---------------- --                                          ---------                            ---------------     -------------------- -----------                          -------------    ------------------
-                I8uPTcetR02TKCQg6xB170ZWgaqJluBEqPHHxTxJ9Hs bdd80a03-d9bc-451d-b7c4-ce7c63fe3c8f 20-10-2023 17:03:41 Entra-App-Testing    4d8fcb23-adc7-4d47-9328-2420eb1075ef ServicePrincipal Microsoft Graph
-                I8uPTcetR02TKCQg6xB175qAouG5TkBJnqyyYfnVJ7A 660b7406-55f1-41ca-a0ed-0b035e182f3e 20-10-2023 17:03:38 Entra-App-Testing    4d8fcb23-adc7-4d47-9328-2420eb1075ef ServicePrincipal Microsoft Graph
-                I8uPTcetR02TKCQg6xB178ILFS4OdQlAmENpzFgzWRI 7e847308-e030-4183-9899-5235d7270f58 20-10-2023 17:03:37 Entra-App-Testing    4d8fcb23-adc7-4d47-9328-2420eb1075ef ServicePrincipal Microsoft Graph
-                I8uPTcetR02TKCQg6xB17zfLIsSkkbtLlvBmfKY1ljk ba1ba90b-2d8f-487e-9f16-80728d85bb5c 20-10-2023 17:03:39 Entra-App-Testing    4d8fcb23-adc7-4d47-9328-2420eb1075ef ServicePrincipal Microsoft Graph
-                I8uPTcetR02TKCQg6xB173uzLecDD3JNtanhmTsz4PE 9ce09611-f4f7-4abd-a629-a05450422a97 20-10-2023 17:03:39 Entra-App-Testing    4d8fcb23-adc7-4d47-9328-2420eb1075ef ServicePrincipal Microsoft Graph
+```
+```output
+DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId
+--------------- --                                          ---------                            ---------------     -------------------- -----------
+                I8uPTcetR02TKCQg6xB170ZWgaqJluBEqPHHxTxJ9Hs bdd80a03-d9bc-451d-b7c4-ce7c63fe3c8f 20/10/2023 17:03:41 Entra-App-Testing    4d8fcb23-adc7-4d47-9328-2420eb...
+                I8uPTcetR02TKCQg6xB175qAouG5TkBJnqyyYfnVJ7A 660b7406-55f1-41ca-a0ed-0b035e182f3e 20/10/2023 17:03:38 Entra-App-Testing    4d8fcb23-adc7-4d47-9328-2420eb...
+                I8uPTcetR02TKCQg6xB178ILFS4OdQlAmENpzFgzWRI 7e847308-e030-4183-9899-5235d7270f58 20/10/2023 17:03:37 Entra-App-Testing    4d8fcb23-adc7-4d47-9328-2420eb...
+                I8uPTcetR02TKCQg6xB17zfLIsSkkbtLlvBmfKY1ljk ba1ba90b-2d8f-487e-9f16-80728d85bb5c 20/10/2023 17:03:39 Entra-App-Testing    4d8fcb23-adc7-4d47-9328-2420eb...
+                I8uPTcetR02TKCQg6xB173uzLecDD3JNtanhmTsz4PE 9ce09611-f4f7-4abd-a629-a05450422a97 20/10/2023 17:03:39 Entra-App-Testing    4d8fcb23-adc7-4d47-9328-2420eb...
 ```
 
 This command gets the five app role assignments for the service principal granted to users, groups and other service principals.
