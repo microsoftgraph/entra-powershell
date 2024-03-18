@@ -34,7 +34,7 @@ The Remove-EntraDomain cmdlet removes a domain from Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Remove a domain
-```
+```Powershell
 PS C:\>Remove-EntraDomain -Name Contoso.com
 ```
 
