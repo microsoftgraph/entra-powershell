@@ -81,8 +81,6 @@ This group should not be deleted.
 
 This example demonstrates how to get all groups from Microsoft Entra ID.  
 
-This command retrieves all groups in Microsoft Entra ID.
-
 ### Example 2: Get a specific group by using an ObjectId
 ```powershell
 PS C:\>Get-EntraGroup -ObjectId "fc446647-e8ff-47f1-a489-cf31694c0d35"
@@ -92,8 +90,6 @@ DisplayName Id                                   MailNickname Description GroupT
 ----------- --                                   ------------ ----------- ----------
 UPDISPLAY   fc446647-e8ff-47f1-a489-cf31694c0d35 Remoteliving Upd1        {Unified}
 ```
-
-This example demonstrates how to retrieve group by ObjectId from Microsoft Entra ID.  
 
 This command gets information for the group that has the specified ID.
 
@@ -110,9 +106,6 @@ Contoso Team            0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam        
 HelpDesk admin group    0883fd77-0ee8-45de-a21e-f32af1623acc helpDeskAdminGroup    Group assignable to role
 New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding New Employee Onboarding
 ```
-
-This example demonstrates how to retrieve top five groups from Microsoft Entra ID.  
-
 This command gets the five groups in Microsoft Entra ID.
 
 ### Example 4: Get a group by DisplayName
@@ -126,8 +119,6 @@ Parents of Contoso 05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso Parents
 ```
 
 This example demonstrates how to retrieve group by DisplayName from Microsoft Entra ID.  
-
-This command gets the specified group.
 
 ### Example 5: Get groups that contain a search string
 ```powershell
@@ -146,7 +137,7 @@ This example demonstrates how to retrieve groups that include the text new in th
 
 ### -All
 If true, return all groups.
-If false, return the number of objects specified by the Top parameter
+If false, return the number of objects specified by the Top parameter.
 
 ```yaml
 Type: Boolean
