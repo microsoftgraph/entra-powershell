@@ -35,7 +35,8 @@ The Get-EntraServicePrincipalOAuth2PermissionGrant cmdlet gets an oAuth2Permissi
 
 ## EXAMPLES
 
-### Example 1: Retrieve the OAuth2 permission grants of a service principal
+### Example 1: Retrieve the OAuth2 permission grants of a service principal.
+
 ```powershell
 PS C:\> ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
 PS C:\> Get-EntraServicePrincipalOAuth2PermissionGrant -ObjectId $ServicePrincipalId
@@ -51,7 +52,7 @@ The command stores the ID in the $ServicePrincipalId variable.
 
 The second command gets the OAuth2 permission grants of a service principal identified by $ServicePrincipalId.
 
-### Example 2: Get all OAuth2 permission grants of a service principal
+### Example 2: Get all OAuth2 permission grants of a service principal.
 ```powershell
 PS C:\> Get-EntraServicePrincipalOAuth2PermissionGrant -ObjectId 4773e0f6-b400-40b3-8508-340de8ee0893 -All $true
 ```
@@ -66,7 +67,8 @@ Id                                                               ClientId       
 This example demonstrates how to get all oAuth2PermissionGrant object for a service principal in Microsoft Entra ID.  
 This command gets all OAuth2 permission grants of a service principal for specified objectId.
 
-### Example 3: Get two OAuth2 permission grants of a service principal
+### Example 3: Get two OAuth2 permission grants of a service principal.
+
 ```powershell
 PS C:\> Get-EntraServicePrincipalOAuth2PermissionGrant -ObjectId 4773e0f6-b400-40b3-8508-340de8ee0893 -Top 2
 ```
