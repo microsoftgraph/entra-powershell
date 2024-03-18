@@ -1,7 +1,7 @@
 function Get-EntraBetaApplicationProxyConnectorGroupMembers {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Id,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Nullable`1[System.Int32]] $Top,
