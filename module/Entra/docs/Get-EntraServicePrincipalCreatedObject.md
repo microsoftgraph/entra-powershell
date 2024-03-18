@@ -44,7 +44,7 @@ PS C:\> Get-EntraServicePrincipalCreatedObject -ObjectId $ServicePrincipalId
 The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md) cmdlet. 
 The command stores the ID in the $ServicePrincipalId variable.
 
-The second command get the objects created by the service principal identified by $ServicePrincipalId.
+The second command gets the objects created by the service principal identified by $ServicePrincipalId.
 
 
 ### Example 2: Retrieve the all objects created by a service principal
