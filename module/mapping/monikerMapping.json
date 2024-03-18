@@ -1,15 +1,14 @@
 {
-  "samples-v1.0": {
-    "packageRoot": "samples-v2.0",
-    "conceptualToc": "docs-conceptual/toc.yml",
-    "conceptualTocUrl": "/powershell/docs-conceptual/toc.json",
-    "referenceTocUrl": "/powershell/module/toc.json"
+  "entra-powershell-preview": {
+    "packageRoot": "entra-powershell-v1.0",
+    "conceptualToc": "docs/entra-powershell-v1.0/toc.yml",
+    "conceptualTocUrl": "/powershell/entra-preview/toc.json",
+    "referenceTocUrl": "/powershell/module/entra-powershell-v1.0/toc.json"
   },
-  "testmoniker-1.0": {
-    "packageRoot": "samples-v3.0",
-    "conceptualToc": "docs-conceptual/toc.yml",
-    "conceptualTocUrl": "/powershell/docs-conceptual/toc.json",
-    "referenceTocUrl": "/powershell/module/toc.json",
-    "serviceMap": "mapping/serviceMapping.json"
+  "entra-powershell-beta-preview": {
+    "packageRoot": "entra-powershell-beta",
+    "conceptualToc": "docs/entra-powershell-beta/toc.yml",
+    "conceptualTocUrl": "/powershell/entra-preview/toc.json",
+    "referenceTocUrl": "/powershell/module/entra-powershell-beta/toc.json"
   }
 }
