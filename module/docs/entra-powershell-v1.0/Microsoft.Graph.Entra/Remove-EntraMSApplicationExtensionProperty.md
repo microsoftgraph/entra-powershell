@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraMSApplicationExtensionProperty.
+description: This article provides details on the Remove-EntraMSApplicationExtensionProperty command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/18/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,7 +23,9 @@ Deletes an extension property from an application object.
 ## SYNTAX
 
 ```
-Remove-EntraMSApplicationExtensionProperty -ExtensionPropertyId <String> -ObjectId <String>
+Remove-EntraMSApplicationExtensionProperty 
+-ExtensionPropertyId <String> 
+-ObjectId <String>
  [<CommonParameters>]
 ```
 
@@ -28,6 +40,8 @@ PS C:\> Remove-EntraMSApplicationExtensionProperty -ObjectId "3ddd22e7-a150-4bb3
 ```
 
 This command removes the extension property that has the specified ID from an application in Microsoft Entra ID.
+- ObjectId:  The ObjectId of the specified Application.
+- ExtensionPropertyId: The unique ID of the extension property to remove.
 
 ## PARAMETERS
 
@@ -66,14 +80,14 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### string
+### String
 ## OUTPUTS
 
 ## NOTES
 
 ## RELATED LINKS
 
-[Get-EntraMSApplicationExtensionProperty]()
+[Get-EntraMSApplicationExtensionProperty](Get-EntraMSApplicationExtensionProperty.md)
 
-[New-EntraMSApplicationExtensionProperty]()
+[New-EntraMSApplicationExtensionProperty](New-EntraMSApplicationExtensionProperty.md)
 
