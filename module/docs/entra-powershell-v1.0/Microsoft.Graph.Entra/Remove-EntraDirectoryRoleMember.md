@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraDirectoryRoleMember
+description: This article provides details on the Remove-EntraDirectoryRoleMember command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/16/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,62 +22,26 @@ Removes a member of a directory role.
 
 ## SYNTAX
 
-```
-Remove-EntraDirectoryRoleMember -ObjectId <String> -MemberId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Remove-EntraDirectoryRoleMember 
+    -ObjectId <String> 
+    -MemberId <String> 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Remove-EntraDirectoryRoleMember cmdlet removes a member from a directory role in Microsoft Entra ID.
+The **Remove-EntraDirectoryRoleMember** cmdlet removes a member from a directory role in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Remove a member from a directory role
-```
+```powershell
 PS C:\>Remove-EntraDirectoryRoleMember -ObjectId "019ea7a2-1613-47c9-81cb-20ba35b1ae48" -MemberId "c13dd34a-492b-4561-b171-40fcce2916c5"
 ```
 
 This command removes the specified member from the specified role.
 
 ## PARAMETERS
-
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -MemberId
 Specifies the object ID of a role member.
@@ -85,7 +59,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the object ID of a directory role in Azure AD.
+Specifies the object ID of a directory role in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -110,7 +84,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraDirectoryRoleMember]()
+[Add-EntraDirectoryRoleMember](Add-EntraDirectoryRoleMember.md)
 
-[Get-EntraDirectoryRoleMember]()
+[Get-EntraDirectoryRoleMember](Get-EntraDirectoryRoleMember.md)
 
