@@ -1,6 +1,6 @@
 ---
-title: Add-EntraGroupOwner
-description: This article provides details on the Add-EntraGroupOwner command.
+title: Remove-EntraOAuth2PermissionGrant 
+description: This article provides details on the Remove-EntraOAuth2PermissionGrant command.
 
 ms.service: active-directory
 ms.topic: reference
