@@ -13,8 +13,9 @@
         if($null -ne $PSBoundParameters["SearchString"])
         {
             $TmpValue = $PSBoundParameters["SearchString"]
-            $Value = "userPrincipalName eq '$TmpValue' or (state eq '$TmpValue' or (mailNickName eq '$TmpValue' or (mail eq '$TmpValue' or (jobTitle eq '$TmpValue' or (displayName eq '$TmpValue' or (startswith(displayName,'$TmpValue') or (department eq '$TmpValue' or (country eq '$TmpValue' or city eq '$TmpValue'))))))))"
-            $params["Filter"] = $Value
+            $Value = "`"userprincipalname:$TmpValue`" OR `"state:$TmpValue`" OR `"mailNickName:$TmpValue`" OR `"mail:$TmpValue`" OR `"jobTitle:$TmpValue`" OR `"displayName:$TmpValue`" OR `"department:$TmpValue`" OR `"country:$TmpValue`" OR `"city:$TmpValue`""
+            $params["Search"] = $Value
+            $params["ConsistencyLevel"] = "eventual"
         }
         if($null -ne $PSBoundParameters["ObjectId"])
         {
