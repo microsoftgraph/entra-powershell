@@ -1,4 +1,14 @@
 ---
+title: Set-EntraUserPassword.
+description: This article provides details on the Set-EntraUserPassword command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/18/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,12 @@ Sets the password of a user.
 ## SYNTAX
 
 ```
-Set-EntraUserPassword [-ForceChangePasswordNextLogin <Boolean>] [-EnforceChangePasswordPolicy <Boolean>]
- -ObjectId <String> -Password <SecureString> [<CommonParameters>]
+Set-EntraUserPassword 
+[-ForceChangePasswordNextLogin <Boolean>] 
+[-EnforceChangePasswordPolicy <Boolean>]
+-ObjectId <String> 
+-Password <SecureString> 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,12 +36,26 @@ The Set-EntraUserPassword cmdlet sets the password for a user in Microsoft Entra
 
 ## EXAMPLES
 
-### Example 1: Set a user's password
-```
+### Example 1: Set a user's password.
+
+```powershell
 PS C:\>Set-EntraUserPassword -ObjectId  "df19e8e6-2ad7-453e-87f5-037f6529ae16" -Password $password
 ```
-
 This command sets the specified user's password.
+
+### Example 2: Set a user's password with EnforceChangePasswordPolicy parameter.
+
+```powershell
+PS C:\>Set-EntraUserPassword -ObjectId  "df19e8e6-2ad7-453e-87f5-037f6529ae16" -Password $password -EnforceChangePasswordPolicy $true
+```
+This command sets the specified user's password with EnforceChangePasswordPolicy parameter.
+
+### Example 3: Set a user's password with ForceChangePasswordNextLogin parameter.
+
+```powershell
+PS C:\>Set-EntraUserPassword -ObjectId  "df19e8e6-2ad7-453e-87f5-037f6529ae16" -Password $password -ForceChangePasswordNextLogin $true
+```
+This command sets the specified user's password with ForceChangePasswordNextLogin parameter.
 
 ## PARAMETERS
 
