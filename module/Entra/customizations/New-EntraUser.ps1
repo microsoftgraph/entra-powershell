@@ -9,7 +9,7 @@
     CustomScript = @'
     PROCESS {    
         $params = @{}
-        $customHeaders = New-CustomHeaders -Module Entra -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{Mobile = "MobilePhone"; SignInNames = "Identities"; UserState = "ExternalUserState"; ImmutableId = "OnPremisesImmutableId"; UserStateChangedOn = "ExternalUserStateChangeDateTime"; TelephoneNumber = "BusinessPhones"}
         if($null -ne $PSBoundParameters["PostalCode"])
         {

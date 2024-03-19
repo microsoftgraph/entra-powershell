@@ -8,7 +8,7 @@
     outputs = $null
     CustomScript = @'
     PROCESS {
-        $customHeaders = New-CustomHeaders -Module Entra -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
         $keysChanged = @{SearchString = "Filter"; ObjectId = "Id"}
         if($null -ne $PSBoundParameters["SearchString"])

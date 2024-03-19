@@ -574,6 +574,12 @@ $($Command.CustomScript)
         $ParamterTransformations = $this.GetParametersTransformations($Command)
         $OutputTransformations = $this.GetOutputTransformations($Command)
         $keyId = $this.GetKeyIdPair($Command)
+        $customHeadersCommandName = "New-EntraCustomHeaders"
+
+        if($this.ModuleName -eq "EntraBeta")
+        {
+            $customHeadersCommandName = "New-EntraBetaCustomHeaders"
+        }
         $function = @"
 function $($Command.Generate) {
     [CmdletBinding($($Command.DefaultParameterSet))]
@@ -583,7 +589,7 @@ $parameterDefinitions
 
     PROCESS {    
     `$params = @{}
-    `$customHeaders = New-CustomHeaders -Module Entra -Command `$MyInvocation.MyCommand
+    `$customHeaders = $customHeadersCommandName -Command `$MyInvocation.MyCommand
     $($keyId)
 $ParamterTransformations
     Write-Debug("============================ TRANSFORMATIONS ============================")
