@@ -40,8 +40,6 @@ PS C:\>Remove-EntraGroupOwner -ObjectId "62438306-7c37-4638-a72d-0ee8d9217680" -
 ```
 This example demonstrates how to remove an owner from a group in Microsoft Entra ID.
 
-This example removes a specified owner from a group. 
-
 ObjectID - Specifies the ID of a group in Microsoft Entra ID.  
 
 OwnerId  - Specifies the ID of an owner.
