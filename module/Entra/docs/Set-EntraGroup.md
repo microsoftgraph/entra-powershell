@@ -45,14 +45,10 @@ PS C:\>Set-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -Descript
 
 This example demonstrates how to update a group description.  
 
-This command updates the description of a specified group in Microsoft Entra ID.  
-
 ### Example 2: Update a group display name
 ```powershell
 PS C:\>Set-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -DisplayName "Parents of Conto"
 ```
-
-This example demonstrates how to update a group display name.  
 
 This command updates the display name of a specified group in Microsoft Entra ID.  
 
@@ -61,17 +57,12 @@ This command updates the display name of a specified group in Microsoft Entra ID
 PS C:\>Set-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -MailNickName "newnickname"
 ```
 
-This example demonstrates how to update a group mail nickname.  
-
 This command updates the mail nickname of a specified group in Microsoft Entra ID.  
 
 ### Example 4: Update a group security enabled
 ```powershell
 PS C:\>Set-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -SecurityEnabled $true
 ```
-
-This example demonstrates how to update a group security enabled.  
-
 This command updates the security enabled of a specified group in Microsoft Entra ID.  
 
 ### Example 5: Update a group mail enabled
@@ -79,10 +70,8 @@ This command updates the security enabled of a specified group in Microsoft Entr
 PS C:\>Set-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -MailEnabled $true
 ```
 
-This example demonstrates how to update a group main enabled.  
-
-This command updates the mail enabled of a specified group in Microsoft Entra ID.  
-
+This example demonstrates how to update a group mail enabled.  
+  
 ## PARAMETERS
 
 ### -Description
