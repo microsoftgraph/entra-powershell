@@ -8,7 +8,7 @@
     Outputs = $null
     CustomScript = @"
     PROCESS {
-        `$customHeaders = New-CustomHeaders -Module Entra -Command `$MyInvocation.MyCommand
+        `$customHeaders = New-EntraCustomHeaders -Command `$MyInvocation.MyCommand
 
         # Define a temporary file path
         `$tempFilePath = [System.IO.Path]::GetTempFileName()

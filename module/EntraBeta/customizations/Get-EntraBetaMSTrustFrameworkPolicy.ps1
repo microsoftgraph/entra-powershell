@@ -9,7 +9,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
-        `$customHeaders = New-CustomHeaders -Module Entra -Command `$MyInvocation.MyCommand
+        `$customHeaders = New-EntraCustomHeaders -Command `$MyInvocation.MyCommand
          
         if(`$null -eq `$PSBoundParameters["Id"] -and `$null -eq `$PSBoundParameters["OutputFilePath"])
         {

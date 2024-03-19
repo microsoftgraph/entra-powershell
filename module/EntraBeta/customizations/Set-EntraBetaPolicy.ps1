@@ -9,7 +9,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
-        `$customHeaders = New-CustomHeaders -Module Entra -Command `$MyInvocation.MyCommand
+        `$customHeaders = New-EntraCustomHeaders -Command `$MyInvocation.MyCommand
         
         `$array = ("activityBasedTimeoutPolicies",	"defaultAppManagementPolicy",	"appManagementPolicies",	"authenticationFlowsPolicy",	"authenticationMethodsPolicy",	"claimsMappingPolicies",	"featureRolloutPolicies",	"homeRealmDiscoveryPolicies",	"permissionGrantPolicies",	"tokenIssuancePolicies",	"tokenLifetimePolicies")
         if (`$null -ne `$PSBoundParameters["type"]) {

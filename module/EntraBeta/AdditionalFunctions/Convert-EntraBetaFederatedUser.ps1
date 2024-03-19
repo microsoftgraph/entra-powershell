@@ -39,7 +39,7 @@ function Convert-EntraBetaFederatedUser {
 
     PROCESS {    
         $params = @{}
-        $customHeaders = New-CustomHeaders -Module Entra -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{}
         if ($null -ne $PSBoundParameters["UserPrincipalName"]) {
             $UserPrincipalName = $PSBoundParameters.UserPrincipalName

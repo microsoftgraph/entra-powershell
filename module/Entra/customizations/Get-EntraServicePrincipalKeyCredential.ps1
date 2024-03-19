@@ -7,7 +7,7 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
-    $customHeaders = New-CustomHeaders -Module Entra -Command $MyInvocation.MyCommand
+    $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     $response = (Get-MgServicePrincipal -ServicePrincipalId $PSBoundParameters["ObjectId"]).KeyCredentials
     $response | ForEach-Object {
         if($null -ne $_) {

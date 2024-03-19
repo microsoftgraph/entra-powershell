@@ -9,7 +9,7 @@
     CustomScript = @'
     PROCESS{
         $params = @{}
-        $customHeaders = New-CustomHeaders -Module Entra -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $baseUri = 'https://graph.microsoft.com/beta/servicePrincipals'
         $Method = "POST"
         if($PSBoundParameters.ContainsKey("Verbose"))
