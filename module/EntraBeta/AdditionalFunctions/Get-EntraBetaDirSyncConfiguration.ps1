@@ -23,7 +23,7 @@ function Get-EntraBetaDirSyncConfiguration {
 
     PROCESS {    
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{}
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $Null

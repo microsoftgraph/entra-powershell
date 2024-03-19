@@ -9,7 +9,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
-        `$customHeaders = New-EntraCustomHeaders -Command `$MyInvocation.MyCommand
+        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
         `$baseUrl = "https://graph.microsoft.com/beta/policies/"
         `$endpoints = @("homeRealmDiscoveryPolicies", "claimsMappingPolicies", "tokenIssuancePolicies", "tokenLifetimePolicies", "activityBasedTimeoutPolicies", "featureRolloutPolicies", 	"defaultAppManagementPolicy", "appManagementPolicies", "authenticationFlowsPolicy",	"authenticationMethodsPolicy", "permissionGrantPolicies")
         

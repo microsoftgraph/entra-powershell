@@ -8,7 +8,7 @@
     Outputs = $null
     CustomScript = @'
     PROCESS {
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         if($null -ne $PSBoundParameters["Id"]){
             Get-MgBetaApplicationTemplate -Headers $customHeaders -ApplicationTemplateId $PSBoundParameters["Id"]
         }

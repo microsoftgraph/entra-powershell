@@ -7,7 +7,7 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
-    $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+    $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     $response = (Get-MgBetaServicePrincipal -Headers $customHeaders -ServicePrincipalId $PSBoundParameters["ObjectId"]).KeyCredentials
     $response | ForEach-Object {
         if($null -ne $_) {

@@ -9,7 +9,7 @@
     CustomScript = @'
     PROCESS {    
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         
         $params["OrganizationId"] = (Get-MgContext).TenantId
         if($PSBoundParameters.ContainsKey("Debug"))
