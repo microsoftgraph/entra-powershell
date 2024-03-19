@@ -85,7 +85,6 @@ Contoso Team 0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam  A collaboration a
 
 In this example, we'll provide the ID to retrieve a specific group.  
 
-This command gets information for the group that has the specified ID.
 
 ### Example 3: Get top five groups
 
@@ -116,8 +115,6 @@ Parents of Contoso 05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso Parents
 ```
 
 This example demonstrates how to retrieve group by DisplayName.  
-
-This command gets the specified group.
 
 ### Example 5: Search among retrieved groups
 ```powershell
