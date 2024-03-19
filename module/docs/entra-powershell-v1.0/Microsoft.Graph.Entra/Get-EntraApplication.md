@@ -23,7 +23,7 @@ Gets an application.
 ## SYNTAX
 
 ### GetQuery (Default)
-```
+```powershell
 Get-EntraApplication 
  [-Filter <String>] 
  [-All <Boolean>] 
@@ -32,7 +32,7 @@ Get-EntraApplication
 ```
 
 ### GetByValue
-```
+```powershell
 Get-EntraApplication 
  [-SearchString <String>] 
  [-All <Boolean>] 
@@ -40,7 +40,7 @@ Get-EntraApplication
 ```
 
 ### GetById
-```
+```powershell
 Get-EntraApplication 
  -ObjectId <String> 
  [-All <Boolean>] 
@@ -48,7 +48,7 @@ Get-EntraApplication
 ```
 
 ## DESCRIPTION
-The Get-EntraApplication cmdlet gets a Microsoft Entra ID application.
+The **Get-EntraApplication** cmdlet gets a Microsoft Entra ID application.
 
 ## EXAMPLES
 
@@ -210,7 +210,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

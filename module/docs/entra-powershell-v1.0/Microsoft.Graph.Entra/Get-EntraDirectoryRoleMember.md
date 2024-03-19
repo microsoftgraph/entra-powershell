@@ -1,4 +1,14 @@
 ---
+title: Get-EntraDirectoryRoleMember
+description: This article provides details on the Get-EntraDirectoryRoleMember command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 02/29/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,20 +22,23 @@ Gets members of a directory role.
 
 ## SYNTAX
 
-```
-Get-EntraDirectoryRoleMember -ObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Get-EntraDirectoryRoleMember 
+    -ObjectId <String> 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraDirectoryRoleMember cmdlet gets the members of a directory role in Microsoft Entra ID.
+The **Get-EntraDirectoryRoleMember** cmdlet gets the members of a directory role in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Get members by role ID
-```
+```powershell
 PS C:\>Get-EntraDirectoryRoleMember -ObjectId "019ea7a2-1613-47c9-81cb-20ba35b1ae48"
+```
 
+```output
 ObjectId                             ObjectType
 --------                             ----------
 ba6752c4-6a2e-4be5-a23d-67d8d5980796 User
@@ -39,46 +52,8 @@ This command gets the members of the specified role.
 
 ## PARAMETERS
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -ObjectId
-Specifies the ID of a directory role in Azure AD.
+Specifies the ID of a directory role in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -93,7 +68,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -103,7 +78,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraDirectoryRoleMember]()
+[Add-EntraDirectoryRoleMember](Add-EntraDirectoryRoleMember.md)
 
-[Remove-EntraDirectoryRoleMember]()
+[Remove-EntraDirectoryRoleMember](Remove-EntraDirectoryRoleMember.md)
 
