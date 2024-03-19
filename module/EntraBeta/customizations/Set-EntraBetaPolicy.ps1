@@ -23,7 +23,7 @@
             foreach (`$a in `$array) {
                 `$uri = "https://graph.microsoft.com/beta/policies/" + `$a + "/" + `$id
                 try {
-                    `$response = Invoke-GraphRequest -Headers `$customHeaders -Uri `$uri -Method GET
+                    `$response = Invoke-GraphRequest -Uri `$uri -Method GET
                     break
                 }
                 catch {}
