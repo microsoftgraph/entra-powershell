@@ -66,7 +66,7 @@
         Write-Debug("=========================================================================``n")
 
 
-        `$response = Invoke-GraphRequest -Uri `$params.uri -Method `$params.method -Body `$body
+        `$response = Invoke-GraphRequest -Headers $customHeaders -Uri `$params.uri -Method `$params.method -Body `$body
         `$response.Add("KeyCredentials", "`$KeyCredentials")
         `$response.Add("Type", "`$type")
         

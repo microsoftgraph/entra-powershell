@@ -27,7 +27,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        `$response = Get-MgBetaSubscribedSku @params -Headers $customHeaders
+        `$response = Get-MgBetaSubscribedSku @params -Headers `$customHeaders
         `$response | ForEach-Object {
             if (`$null -ne `$_) {
                 `$propsToConvert = @('PrepaidUnits')

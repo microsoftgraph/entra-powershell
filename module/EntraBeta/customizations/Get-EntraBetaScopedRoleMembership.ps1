@@ -32,7 +32,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        `$response = Get-MgBetaDirectoryAdministrativeUnitScopedRoleMember @params -Headers $customHeaders
+        `$response = Get-MgBetaDirectoryAdministrativeUnitScopedRoleMember @params -Headers `$customHeaders
         `$response | ForEach-Object {
             if (`$null -ne `$_) {
                 

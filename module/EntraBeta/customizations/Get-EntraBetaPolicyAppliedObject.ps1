@@ -28,7 +28,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================``n")
                 
-        `$response = (Invoke-GraphRequest -Method `$params.method -Uri `$params.uri | ConvertTo-Json | ConvertFrom-Json).value   
+        `$response = (Invoke-GraphRequest -Headers $customHeaders -Method `$params.method -Uri `$params.uri | ConvertTo-Json | ConvertFrom-Json).value   
         `$response | Add-Member -MemberType AliasProperty -Value '@odata.type' -Name 'odata.type'
         `$response  
     }
