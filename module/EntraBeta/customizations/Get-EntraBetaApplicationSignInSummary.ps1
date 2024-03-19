@@ -34,7 +34,7 @@
                     `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
                     Write-Debug("=========================================================================``n")
                     `$URI = "https://graph.microsoft.com/beta/reports/getAzureADApplicationSignInSummary(period='D{0}'){1}{2}" -f `$Days, `$filterApplied, `$topCount
-                    `$response = (Invoke-GraphRequest -Headers $customHeaders -Uri `$uri -Method `$Method | ConvertTo-Json | ConvertFrom-Json).value
+                    `$response = (Invoke-GraphRequest -Headers `$customHeaders -Uri `$uri -Method `$Method | ConvertTo-Json | ConvertFrom-Json).value
                     `$response
             }
 "@
