@@ -56,7 +56,7 @@ function Set-EntraDirSyncConfiguration {
                     }
                 }
             }
-            $response = Update-MgDirectoryOnPremiseSynchronization -OnPremisesDirectorySynchronizationId $OnPremisesDirectorySynchronizationId -BodyParameter $params
+            $response = Update-MgDirectoryOnPremiseSynchronization -Headers $customHeaders -OnPremisesDirectorySynchronizationId $OnPremisesDirectorySynchronizationId -BodyParameter $params
             $response
         }
         else {

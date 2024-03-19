@@ -52,7 +52,7 @@ function Get-EntraPartnerInformation {
             if ([string]::IsNullOrWhiteSpace($TenantId)) {
                 $TenantID = ((invoke-mggraphrequest -Method GET -Uri "https://graph.microsoft.com/v1.0/organization").value).id
             }
-            $response = invoke-mggraphrequest -Method GET -Uri "https://graph.microsoft.com/v1.0/organization/$TenantID/partnerInformation"
+            $response = invoke-mggraphrequest -Headers $customHeaders -Method GET -Uri "https://graph.microsoft.com/v1.0/organization/$TenantID/partnerInformation"
             # Create a custom table
             $customTable = [PSCustomObject]@{
                 "PartnerCompanyName"       = $response.companyName

@@ -63,7 +63,7 @@
         Write-Debug("============================ TRANSFORMATIONS ============================")
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================``n")
-            `$response = New-MGBetaAdministrativeUnitMember -AdministrativeUnitId `$ID -BodyParameter `$params
+            `$response = New-MGBetaAdministrativeUnitMember -Headers `$customHeaders -AdministrativeUnitId `$ID -BodyParameter `$params
         `$response
         }
 "@

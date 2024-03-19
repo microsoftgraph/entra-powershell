@@ -25,7 +25,7 @@
         Write-Debug("============================ TRANSFORMATIONS ============================")
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================``n")
-        `$initalResponse = Get-MgUserMemberOfAsGroup -UserId `$params["UserId"]
+        `$initalResponse = Get-MgUserMemberOfAsGroup -Headers `$customHeaders -UserId `$params["UserId"]
         `$response = `$initalResponse | Where-Object -Filterscript {`$_.ID -in (`$GroupIdsForMembershipCheck.GroupIds)} 
         if(`$response){
             `$response.ID

@@ -93,7 +93,7 @@ function Set-EntraDirSyncFeature {
                 $decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
             }
             if ($decision -eq 0) {
-                $response = Update-MgDirectoryOnPremiseSynchronization -OnPremisesDirectorySynchronizationId $OnPremisesDirectorySynchronizationId -BodyParameter $body 
+                $response = Update-MgDirectoryOnPremiseSynchronization -Headers $customHeaders -OnPremisesDirectorySynchronizationId $OnPremisesDirectorySynchronizationId -BodyParameter $body 
                 $response
             }
             else {

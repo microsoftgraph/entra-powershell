@@ -35,7 +35,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================``n")
         
-        `$response = Invoke-MgGraphRequest -Method POST -Uri `$uri -Body `$body -ContentType "application/json"
+        `$response = Invoke-MgGraphRequest -Headers `$customHeaders -Method POST -Uri `$uri -Body `$body -ContentType "application/json"
         `$response
     }
 "@
