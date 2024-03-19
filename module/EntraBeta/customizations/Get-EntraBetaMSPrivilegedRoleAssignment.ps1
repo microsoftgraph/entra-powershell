@@ -9,7 +9,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
-        `$customHeaders = New-EntraCustomHeaders -Command `$MyInvocation.MyCommand
+        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
         `$ProviderId = `$PSBoundParameters["ProviderId"]
         `$ResourceId = `$PSBoundParameters["ResourceId"]
         `$params["Uri"] = "https://graph.microsoft.com/beta/privilegedAccess/`$ProviderId/resources/`$ResourceId/roleAssignments"

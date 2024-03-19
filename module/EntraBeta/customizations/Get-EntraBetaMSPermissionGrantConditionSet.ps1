@@ -8,7 +8,7 @@
     Outputs = $null
     CustomScript = @"
     `$params = @{}
-    `$customHeaders = New-EntraCustomHeaders -Command `$MyInvocation.MyCommand
+    `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
     if(`$PSBoundParameters.ContainsKey("Verbose"))
     {
         `$params["Verbose"] = `$Null

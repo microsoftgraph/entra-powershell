@@ -52,7 +52,7 @@ function Set-EntraBetaDirSyncFeature {
         PROCESS {
     
             $params = @{}
-            $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+            $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
             if ($PSBoundParameters.ContainsKey("Verbose")) {
                 $Verbose = $Null
             }

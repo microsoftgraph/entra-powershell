@@ -8,7 +8,7 @@
     Outputs = $null
     CustomScript = @'
      PROCESS {
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         (Get-MgBetaApplication -Headers $customHeaders -ApplicationId $PSBoundParameters["ObjectId"]).KeyCredentials
     }
 '@

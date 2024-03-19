@@ -9,7 +9,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
-        `$customHeaders = New-EntraCustomHeaders -Command `$MyInvocation.MyCommand
+        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
         `$Id = `$PSBoundParameters["Id"]
         `$params["Uri"] = "https://graph.microsoft.com/beta/legacy/policies/`$Id/appliesTo"
         `$params["Method"] = "GET"
