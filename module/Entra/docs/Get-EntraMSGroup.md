@@ -56,10 +56,6 @@ If you specify no parameters, this cmdlet gets all groups.
 ## EXAMPLES
 
 ### Example 1: Get all groups
-<<<<<<< HEAD
-
-=======
->>>>>>> ee1d39c3da2cbf6f54f1fcd5405d4a30a27bdaf2
 ```powershell
 PS C:\> Get-EntraMSGroup
 ```
@@ -74,19 +70,10 @@ New Employee Onboarding             0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newempl
 HelpDesk admin group3               0bdddeb1-88a6-4251-aaa5-98b48271158b helpDeskAdminGroup               group des
 
 ```
-<<<<<<< HEAD
 This example demonstrates how to retrieve all groups from Microsoft Entra ID.
 
 ### Example 2: Get a specific group by using an ID
 
-=======
-
-This example demonstrates how to retrieve all groups from Microsoft Entra ID.  
-
-This command retrieves all groups in Microsoft Entra ID.
-
-### Example 2: Get a specific group by using an ID
->>>>>>> ee1d39c3da2cbf6f54f1fcd5405d4a30a27bdaf2
 ```powershell
 PS C:\> Get-EntraMSGroup -Id "0877c6c6-fc99-4d51-9871-8335be7cfc9d"
 ```
@@ -101,12 +88,8 @@ In this example, we'll provide the ID to retrieve a specific group.
 This command gets information for the group that has the specified ID.
 
 ### Example 3: Get top five groups
-<<<<<<< HEAD
 
 ```
-=======
-```powershell
->>>>>>> ee1d39c3da2cbf6f54f1fcd5405d4a30a27bdaf2
 PS C:\> Get-EntraMSGroup -Top 5
 ```
 ```output
@@ -119,18 +102,10 @@ HelpDesk admin group    0883fd77-0ee8-45de-a21e-f32af1623acc helpDeskAdminGroup 
 New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding New Employee Onboarding                    {Unified}
 ```
 
-<<<<<<< HEAD
 This example demonstrates how to retrieve top five groups from Microsoft Entra ID.
 
 ### Example 4: Get a group by DisplayName
 
-=======
-This example demonstrates how to retrieve top five groups from Microsoft Entra ID.  
-
-This command gets the five groups in Microsoft Entra ID.
-
-### Example 4: Get a group by DisplayName
->>>>>>> ee1d39c3da2cbf6f54f1fcd5405d4a30a27bdaf2
 ```powershell
 PS C:\> Get-EntraMSGroup -Filter "DisplayName eq 'Parents of Contoso'"
 ```
@@ -145,10 +120,6 @@ This example demonstrates how to retrieve group by DisplayName.
 This command gets the specified group.
 
 ### Example 5: Search among retrieved groups
-<<<<<<< HEAD
-
-=======
->>>>>>> ee1d39c3da2cbf6f54f1fcd5405d4a30a27bdaf2
 ```powershell
 PS C:\> Get-EntraMSGroup -SearchString "New"
 ```

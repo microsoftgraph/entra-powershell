@@ -73,9 +73,7 @@ New Employee Onboarding             0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newempl
 HelpDesk admin group3               0bdddeb1-88a6-4251-aaa5-98b48271158b helpDeskAdminGroup               group des
 
 ```
-
-This example demonstrates how to retrieve all groups from Microsoft Entra ID.  
-
+ 
 This command gets all groups in Microsoft Entra ID.
 
 ### Example 2: Get a specific group by using an ID
@@ -91,8 +89,6 @@ DisplayName  Id                                   MailNickname Description      
 Contoso Team 0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam  A collaboration area for the Contoso Team. {Unified}
 
 ```
-
-In this example, we'll provide the  ID to retrieve a specific group.  
 
 In this example, we provide the  ID to retrieve a specific group.
 
@@ -164,7 +160,6 @@ Parents of Conto
 
 This example demonstrates how to retrieve AssignedLabels and DisplayName property values for all groups.  
 
-This example demonstrates how to retrieve AssignedLabels and DisplayName property values for all groups.
 
 AssignedLabels group property retrieved only by Select parameter.
 
