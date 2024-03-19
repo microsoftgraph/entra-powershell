@@ -9,7 +9,7 @@
     CustomScript = @'
      PROCESS {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        (Get-MgBetaApplication -ApplicationId $PSBoundParameters["ObjectId"]).KeyCredentials
+        (Get-MgBetaApplication -Headers $customHeaders -ApplicationId $PSBoundParameters["ObjectId"]).KeyCredentials
     }
 '@
 }

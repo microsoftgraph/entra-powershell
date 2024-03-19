@@ -8,7 +8,7 @@
     Outputs = $null
     CustomScript = @'
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-    $response = (Get-MgServicePrincipal -ServicePrincipalId $PSBoundParameters["ObjectId"]).PasswordCredentials
+    $response = (Get-MgServicePrincipal -Headers $customHeaders -ServicePrincipalId $PSBoundParameters["ObjectId"]).PasswordCredentials
     $response | ForEach-Object {
         if($null -ne $_) {
         Add-Member -InputObject $_ -MemberType AliasProperty -Name StartDate -Value StartDateTime
