@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaUserMembership.
+description: This article provides details on the Get-EntraBetaUserMembership command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/07/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -13,41 +23,76 @@ Get user memberships.
 ## SYNTAX
 
 ```
-Get-EntraBetaUserMembership -ObjectId <String> [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraBetaUserMembership 
+ -ObjectId <String> 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaUserMembership cmdlet gets user memberships in Azure Active Directory (AD).
+The Get-EntraBetaUserMembership cmdlet gets user memberships in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Get user memberships
+```powershell
+PS C:\>Get-EntraBetaUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1"
 ```
-PS C:\>Get-EntraBetaUserMembership  -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16"
-
-ObjectId                             ObjectType
---------                             ----------
-019ea7a2-1613-47c9-81cb-20ba35b1ae48 Role
-ef58cdc0-3e08-4e02-ab16-db99ef8dfa49 Group
-52b94dfa-293a-496c-b98e-e16a20247065 Group
-a7cf942b-248c-4bec-9f52-f1a6493959c4 Group
-31dba078-ade5-4f97-ac38-3b2edb1af6e0 Group
-8c6a5c45-e93e-4f2b-81be-b57ad4c43ddd Role
-d96eb2b3-0970-4827-8f26-6008efd86511 Role
-9c2564d6-e4d7-4167-a79f-4b961512f232 Group
-36db8aaf-022a-448d-aedc-34ef2ceb943c Group
-0e6cf869-82ca-4647-b330-420b9a6f8ef7 Group
-78045c26-218e-46fb-94b6-1a47320da153 Group
-093fc0e2-1d6e-4a1b-9bf8-effa0196f1f7 Group
+```output
+Id                                   DeletedDateTime
+--                                   ---------------
+056b2531-005e-4f3e-be78-01a71ea30a04
+3da073b9-e731-4ec1-a4f6-6e02865a8c8a
+cc3cc7a2-ba9a-4158-814c-d5ee1af66d24
+2788a657-62c9-4546-9d4d-2ddee8a8bc9b
+0bdddeb1-88a6-4251-aaa5-98b48271158b
+eeee7782-696d-4be3-ace0-e20c1df6693e
 ```
 
+This example demonstrates how to retrieve user memberships in Microsoft Entra ID.    
 This command gets the memberships for the specified user.
+
+### Example 2: Get All memberships
+```powershell
+PS C:\>Get-EntraBetaUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -All $true
+```
+```output
+Id                                   DeletedDateTime
+--                                   ---------------
+056b2531-005e-4f3e-be78-01a71ea30a04
+3da073b9-e731-4ec1-a4f6-6e02865a8c8a
+cc3cc7a2-ba9a-4158-814c-d5ee1af66d24
+2788a657-62c9-4546-9d4d-2ddee8a8bc9b
+0bdddeb1-88a6-4251-aaa5-98b48271158b
+eeee7782-696d-4be3-ace0-e20c1df6693e
+```
+
+This example demonstrates how to retrieve users all memberships in Microsoft Entra ID.    
+This command gets the all memberships for the specified user.
+
+### Example 3: Get top five memberships
+```powershell
+PS C:\>Get-EntraBetaUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -Top 5
+```
+```output
+Id                                   DeletedDateTime
+--                                   ---------------
+056b2531-005e-4f3e-be78-01a71ea30a04
+3da073b9-e731-4ec1-a4f6-6e02865a8c8a
+cc3cc7a2-ba9a-4158-814c-d5ee1af66d24
+2788a657-62c9-4546-9d4d-2ddee8a8bc9b
+0bdddeb1-88a6-4251-aaa5-98b48271158b
+```
+
+This example demonstrates how to retrieve users top five memberships in Microsoft Entra ID.   
+This command gets the top five memberships for the specified user.
 
 ## PARAMETERS
 
 ### -All
 If true, return all memberships of this user.
-If false, return the number of objects specified by the Top parameter
+If false, return the number of objects specified by the Top parameter.
 
 ```yaml
 Type: Boolean
@@ -62,7 +107,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a user (as a UPN or ObjectId) in Azure AD.
+Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: String
