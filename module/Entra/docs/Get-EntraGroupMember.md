@@ -54,8 +54,6 @@ onPremisesUserPrincipalName     :
 
 This example demonstrates how to retrieve group member by ID.  
 
-This command gets a member of a specified Group.
-
 ### Example 2: Get two group member
 ```powershell
 PS C:\>Get-EntraGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -Top 2 
@@ -85,8 +83,6 @@ consentProvidedForMinor         :
 
 This example demonstrates how to retrieve top two groups from Microsoft Entra ID.  
 
-This command gets the top two Group members.
-
 ### Example 3: Get all members within a group by group ID
 ```powershell
 PS C:\>Get-EntraGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -All $true 
@@ -103,15 +99,13 @@ identities                      : {System.Collections.Hashtable}
 consentProvidedForMinor         :
 ```
 
-This example retrieve all members within a group by group ID.  
-
-This command gets all members within a Group.
+This example retrieves all members within a group by group ID.  
 
 ## PARAMETERS
 
 ### -All
 If true, return all group members.
-If false, return the number of objects specified by the Top parameter
+If false, return the number of objects specified by the Top parameter.
 
 ```yaml
 Type: Boolean
