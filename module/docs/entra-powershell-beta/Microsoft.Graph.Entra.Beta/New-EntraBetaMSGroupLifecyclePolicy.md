@@ -1,11 +1,11 @@
 ---
-external help file: Microsoft.Graph.Entra-Help.xml
-Module Name: Microsoft.Graph.Entra
+external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Module Name: Microsoft.Graph.Entra.Beta
 online version:
 schema: 2.0.0
 ---
 
-# New-EntraMSGroupLifecyclePolicy
+# New-EntraBetaMSGroupLifecyclePolicy
 
 ## SYNOPSIS
 Creates a new groupLifecyclePolicy
@@ -13,18 +13,18 @@ Creates a new groupLifecyclePolicy
 ## SYNTAX
 
 ```
-New-EntraMSGroupLifecyclePolicy -ManagedGroupTypes <String> -GroupLifetimeInDays <Int32>
- -AlternateNotificationEmails <String> [<CommonParameters>]
+New-EntraBetaMSGroupLifecyclePolicy -AlternateNotificationEmails <String> -ManagedGroupTypes <String>
+ -GroupLifetimeInDays <Int32> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Creates a new groupLifecyclePolicy in Microsoft Entra ID
+Creates a new groupLifecyclePolicy in Azure Active Directory
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> New-EntraMSGroupLifecyclePolicy -GroupLifetimeInDays 99 -ManagedGroupTypes "Selected" -AlternateNotificationEmails "example@contoso.com"
+PS C:\> New-EntraBetaMSGroupLifecyclePolicy -GroupLifetimeInDays 99 -ManagedGroupTypes "Selected" -AlternateNotificationEmails "example@contoso.com"
 ```
 
 This will create a a new groupLifecyclePolicy setting the group lifetime to 99 days for a selected set of Office 365 groups and send renewal notification emails to groups that have no owners to "example@contoso.com"
