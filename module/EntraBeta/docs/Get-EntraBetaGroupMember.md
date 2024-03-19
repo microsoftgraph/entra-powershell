@@ -36,9 +36,6 @@ The Get-EntraBetaGroupMember cmdlet gets a member of a group in Microsoft Entra 
 ## EXAMPLES
 
 ### Example 1: Get a group member by ID
-
-This example demonstrates how to retrieve group member by ID.
-
 ```Powershell
 PS C:\>Get-EntraBetaGroupMember -ObjectId "05b0552e-39cd-4df4-a8f5-00ade912e83d"
 ```
@@ -47,28 +44,27 @@ Id                                   DeletedDateTime
 --                                   ---------------
 2ae2d97b-4bde-42aa-b7c0-7c91a4c91a77
 ```
+
+This example demonstrates how to retrieve group member by ID.  
+
 This command gets a member of a specified group.
 
 ### Example 2: Get two group member
-
-This example demonstrates how to retrieve top five groups from Microsoft Entra ID.
-
 ```powershell
 PS C:\>Get-EntraBetaGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -Top 2
 ```
 ```output
-
 Id                                   DeletedDateTime
 --                                   ---------------
 996d39aa-fdac-4d97-aa3d-c81fb47362ac
 1554fcc2-9d6e-446b-9e1a-651c9ccfa413
 ```
+
+This example demonstrates how to retrieve top two groups from Microsoft Entra ID.  
+
 This command gets the top two group members.
 
 ### Example 3: Get all members within a group by group ID
-
-This example retrieve all members within a group by group ID.
-
 ```powershell
 PS C:\>Get-EntraBetaGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -All $true
 ```
@@ -82,6 +78,9 @@ e19c5875-9f67-4634-9af7-8e544aa76765
 2ae2d97b-4bde-42aa-b7c0-7c91a4c91a77
 4a18c37a-a83d-489d-a35c-fdad407cd734
 ```
+
+This example retrieve all members within a group by group ID.  
+
 This command gets all members within a Group.
 
 ## PARAMETERS
