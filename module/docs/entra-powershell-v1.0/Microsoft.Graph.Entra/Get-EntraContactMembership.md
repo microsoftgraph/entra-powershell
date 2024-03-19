@@ -1,4 +1,14 @@
 ---
+title: Get-EntraContactMembership
+description: This article provides details on the Get-EntraContactMembership command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/16/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,34 +22,71 @@ Get a contact membership.
 
 ## SYNTAX
 
-```
-Get-EntraContactMembership [-All <Boolean>] -ObjectId <String> [-Top <Int32>] [<CommonParameters>]
+```powershell
+Get-EntraContactMembership 
+    -ObjectId <String> 
+    [-All <Boolean>] 
+    [-Top <Int32>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraContactMembership cmdlet gets a contact membership in Microsoft Entra ID.
+The **Get-EntraContactMembership** cmdlet gets a contact membership in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Get the memberships of a contact
-```
+```powershell
 PS C:\> $Contact = Get-EntraContact -Top 1
 PS C:\> Get-EntraContactMembership -ObjectId $Contact.ObjectId
-
-ObjectId                             ObjectType
---------                             ----------
-0015df25-808e-4715-9c24-a6929c25c201 Group
 ```
 
-The first command gets a contact by using the Get-EntraContact (./Get-EntraContact.md)cmdlet, and then stores it in the $Contact variable.
+```output
+Id                                   DeletedDateTime
+--                                   ---------------
+69641f6c-41dc-4f63-9c21-cc9c8ed12931
+4484fbc1-0d0e-4cc3-96e3-162f1e4acf35
+68ac8234-a304-4f1c-8b07-6f4a6bdcaca7
+```
 
-The second command gets the memberships for $Contact.
+The first command gets a contact by using the [Get-EntraContact](./Get-EntraContact.md) cmdlet, and then stores it in the $Contact variable.  
+
+The second command gets the memberships for $Contact.  
+
+### Example 2: Get all memberships of a contact
+```powershell
+PS C:\> Get-EntraContactMembership -ObjectId d110c2ba-d5ef-4e4d-aa22-b964ba966895 -All $true
+```
+
+```output
+Id                                   DeletedDateTime
+--                                   ---------------
+69641f6c-41dc-4f63-9c21-cc9c8ed12931
+4484fbc1-0d0e-4cc3-96e3-162f1e4acf35
+68ac8234-a304-4f1c-8b07-6f4a6bdcaca7
+```
+
+This command gets all the memberships for specified contact.
+
+### Example 3: Get top two memberships of a contact
+```powershell
+PS C:\> Get-EntraContactMembership -ObjectId d110c2ba-d5ef-4e4d-aa22-b964ba966895 -Top 2
+```
+
+```output
+Id                                   DeletedDateTime
+--                                   ---------------
+69641f6c-41dc-4f63-9c21-cc9c8ed12931
+4484fbc1-0d0e-4cc3-96e3-162f1e4acf35
+```
+
+This command gets top two memberships for specified contact.
 
 ## PARAMETERS
 
 ### -All
 If true, return all memberships.
-If false, return the number of objects specified by the Top parameter
+If false, return the number of objects specified by the Top parameter.
 
 ```yaml
 Type: Boolean
@@ -94,5 +141,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraContact]()
+[Get-EntraContact](Get-EntraContact.md)
 
