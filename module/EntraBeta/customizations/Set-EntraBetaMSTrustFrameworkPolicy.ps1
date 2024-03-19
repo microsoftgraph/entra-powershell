@@ -29,7 +29,7 @@
         `$V = '`$value'
         `$uri = '/beta/trustframework/policies/'+`$Id+'/'+`$V        
         
-        `$response = Invoke-GraphRequest -Headers $customHeaders -Method 'PUT' -ContentType 'application/xml' -Uri `$uri -Body `$Body -OutputFilePath `$outFile
+        `$response = Invoke-GraphRequest -Headers `$customHeaders -Method 'PUT' -ContentType 'application/xml' -Uri `$uri -Body `$Body -OutputFilePath `$outFile
 
         # Read the content from the temporary file
         # Display the content if output file path not specified

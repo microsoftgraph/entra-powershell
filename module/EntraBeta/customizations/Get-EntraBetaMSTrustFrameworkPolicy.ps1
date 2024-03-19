@@ -30,7 +30,7 @@
            `$V = '`$value'
            `$uri = '/beta/trustframework/policies/'+`$Id+'/'+`$V
            
-            `$response = Invoke-GraphRequest -Headers $customHeaders -Method 'GET' -Uri `$uri -OutputFilePath `$outFile
+            `$response = Invoke-GraphRequest -Headers `$customHeaders -Method 'GET' -Uri `$uri -OutputFilePath `$outFile
 
             # Read the content from the temporary file
             `$xmlContent = Get-Content -Path `$tempFilePath

@@ -27,7 +27,7 @@
 
         `$uri = '/beta/trustframework/policies'        
         
-        `$response = Invoke-GraphRequest -Headers $customHeaders -Method 'POST' -ContentType 'application/xml' -Uri `$uri -Body `$Body -OutputFilePath `$outFile
+        `$response = Invoke-GraphRequest -Headers `$customHeaders -Method 'POST' -ContentType 'application/xml' -Uri `$uri -Body `$Body -OutputFilePath `$outFile
 
         # Read the content from the temporary file
         # Display the content if output file path not specified
