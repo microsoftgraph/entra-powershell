@@ -215,6 +215,6 @@
     $`params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
     Write-Debug("=========================================================================``n")
 
-    Update-MgApplication @params -Headers $customHeaders
+    Update-MgApplication @params -Headers `$customHeaders
 "@
 }

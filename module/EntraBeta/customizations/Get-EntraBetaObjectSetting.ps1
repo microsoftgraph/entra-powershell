@@ -39,13 +39,13 @@
                     `$URI = 'https://graph.microsoft.com/beta/{0}/{1}/settings/' -f `$TargetType,`$TargetObjectId
                     if(`$null -ne `$PSBoundParameters["ID"]){
                         `$URI = 'https://graph.microsoft.com/beta/{0}/{1}/settings/{2}' -f `$TargetType,`$TargetObjectId,`$ID
-                        `$response = (Invoke-GraphRequest -Uri `$uri -Method `$Method) | ConvertTo-Json | ConvertFrom-Json
+                        `$response = (Invoke-GraphRequest -Headers $customHeaders -Uri `$uri -Method `$Method) | ConvertTo-Json | ConvertFrom-Json
                          return `$response
                     }
                     elseif(`$null -ne `$params["Top"]){
                         `$URI = 'https://graph.microsoft.com/beta/{0}/{1}/settings/{2}' -f `$TargetType,`$TargetObjectId,`$params["Top"]
                     }
-                    `$rawresponse = (Invoke-GraphRequest -Uri `$uri -Method `$Method).Value
+                    `$rawresponse = (Invoke-GraphRequest -Headers $customHeaders -Uri `$uri -Method `$Method).Value
                     `$response = `$rawresponse | ConvertTo-Json -Depth 3 | ConvertFrom-Json
                     `$response | ForEach-Object {Add-Member -InputObject `$_ -NotePropertyName "TargetType" -NotePropertyValue `$TargetType; Add-Member -InputObject `$_ -NotePropertyName "TargetObjectID" -NotePropertyValue `$TargetObjectId}
                     `$response

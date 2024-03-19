@@ -28,7 +28,7 @@ function Get-EntraBetaHasObjectsWithDirSyncProvisioningError {
             foreach ($obj in $object) {
                 $obj = ($obj | Out-String).trimend()
                 $uri = 'https://graph.microsoft.com/beta/' + $obj + '?$select=onPremisesProvisioningErrors'
-                $response += ((Invoke-GraphRequest -Uri $uri -Method GET).value).onPremisesProvisioningErrors
+                $response += ((Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method GET).value).onPremisesProvisioningErrors
             } 
         }
         catch {}

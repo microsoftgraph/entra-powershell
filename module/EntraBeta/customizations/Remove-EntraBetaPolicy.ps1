@@ -15,7 +15,7 @@
         foreach (`$a in `$array) {
             `$uri = "https://graph.microsoft.com/beta/policies/" + `$a + "/" + `$id
             try {
-                `$response = Invoke-GraphRequest -Uri `$uri -Method GET
+                `$response = Invoke-GraphRequest -Headers $customHeaders -Uri `$uri -Method GET
                 break
             }
             catch {}
@@ -36,7 +36,7 @@
         Write-Debug("============================ TRANSFORMATIONS ============================")
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================``n")
-        `$response = Invoke-GraphRequest -Uri `$uri -Method `$Method
+        `$response = Invoke-GraphRequest -Headers $customHeaders -Uri `$uri -Method `$Method
         `$response
     }
 "@

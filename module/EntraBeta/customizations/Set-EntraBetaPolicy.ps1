@@ -23,7 +23,7 @@
             foreach (`$a in `$array) {
                 `$uri = "https://graph.microsoft.com/beta/policies/" + `$a + "/" + `$id
                 try {
-                    `$response = Invoke-GraphRequest -Uri `$uri -Method GET
+                    `$response = Invoke-GraphRequest -Headers $customHeaders -Uri `$uri -Method GET
                     break
                 }
                 catch {}
@@ -68,7 +68,7 @@
                     Write-Debug("=========================================================================``n")
                 
                     `$body = `$params | ConvertTo-Json
-                    `$response = Invoke-GraphRequest -Uri `$uri -Body `$body -Method `$Method
+                    `$response = Invoke-GraphRequest -Headers $customHeaders -Uri `$uri -Body `$body -Method `$Method
                     `$response
             }
         

@@ -34,7 +34,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        `$response = New-MgBetaAdministrativeUnitMemberByRef @params -Headers $customHeaders
+        `$response = New-MgBetaAdministrativeUnitMemberByRef @params -Headers `$customHeaders
         `$response | ForEach-Object {
             if(`$null -ne `$_) {
             Add-Member -InputObject `$_ -MemberType AliasProperty -Name ObjectId -Value Id

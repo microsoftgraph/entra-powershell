@@ -27,7 +27,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================``n")
 
-        `$response = Invoke-MgBetaInstantiateApplicationTemplate @params -Headers $customHeaders
+        `$response = Invoke-MgBetaInstantiateApplicationTemplate @params -Headers `$customHeaders
         `$Application = [PSCustomObject]@{
             "ObjectId"                = (`$response.Application | select-object -ExpandProperty AdditionalProperties)["objectId"]
             "ApplicationTemplateId"   = (`$response.Application | select-object -ExpandProperty AdditionalProperties)["applicationTemplateId"]

@@ -44,7 +44,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        `$response = Invoke-GraphRequest -Uri `$params.Url -Method POST -Body `$body
+        `$response = Invoke-GraphRequest -Headers $customHeaders -Uri `$params.Url -Method POST -Body `$body
         `$response
         }
 "@

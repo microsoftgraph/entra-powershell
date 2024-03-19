@@ -34,6 +34,6 @@
     $`params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
     Write-Debug("=========================================================================``n")
     
-    New-MgApplicationOwnerByRef @params -Headers $customHeaders
+    New-MgApplicationOwnerByRef @params -Headers `$customHeaders
 "@
 }
