@@ -1,51 +1,44 @@
 ---
-title: Set-EntraUserManager.
-description: This article provides details on the Set-EntraUserManager command.
-
-ms.service: active-directory
-ms.topic: reference
-ms.date: 03/11/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
 schema: 2.0.0
 ---
 
-# Set-EntraUserManager
+# Remove-EntraDeviceRegisteredUser
 
 ## SYNOPSIS
-Updates a user's manager.
+Removes a registered user from a device.
 
 ## SYNTAX
 
 ```
-Set-EntraUserManager 
- -ObjectId <String> 
- -RefObjectId <String> 
- [<CommonParameters>]
+Remove-EntraDeviceRegisteredUser -ObjectId <String> -UserId <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Set-EntraUserManager cmdlet update the manager for a user in Microsoft Entra ID.
+The Remove-EntraDeviceRegisteredUser cmdlet removes a registered user from a Microsoft Entra ID device.
 
 ## EXAMPLES
 
-### Example 1: Update a user's manager
-```powershell
-PS C:\>Set-EntraUserManager -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16" -RefObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16"
+### Example 1: Remove a registered user from a device
+```
+PS C:\> $Device = Get-EntraDevice -Top 1
+PS C:\> $User = Get-EntraDeviceRegisteredUser -ObjectId $Device.ObjectId
+PS C:\> Remove-EntraDeviceRegisteredOwner -ObjectId $Device.ObjectId -OwnerId $Owner.ObjectId
 ```
 
-This example demonstrates how to update the manager for a user in Microsoft Entra ID.     
-This command update's the manager for the specified user.
+The first command gets a device by using the Get-EntraDevice (./Get-EntraDevice.md)cmdlet, and then stores it in the $Device variable.
+
+The second command gets the registered user for the device in $Device by using the Get-EntraDeviceRegisteredUser (./Get-EntraDeviceRegisteredUser.md)cmdlet.
+The command stores it in the $User variable.
+
+The final command removes the user in $User from the device in $Device.
 
 ## PARAMETERS
 
 ### -ObjectId
-Specifies the ID (as a UserPrincipalName or ObjectId) of a user in Microsoft Entra ID.
+Specifies the ID of an object.
 
 ```yaml
 Type: String
@@ -59,8 +52,8 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -RefObjectId
-Specifies the ID of the Microsoft Entra ID object to assign as owner/manager/member.
+### -UserId
+Specifies the ID of a user.
 
 ```yaml
 Type: String
@@ -85,7 +78,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraUserManager](Get-EntraUserManager.md)
+[Add-EntraDeviceRegisteredUser]()
 
-[Remove-EntraUserManager](Remove-EntraUserManager.md)
+[Get-EntraDeviceRegisteredUser]()
 
