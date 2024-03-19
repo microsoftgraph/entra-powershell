@@ -42,22 +42,18 @@ PS C:\>Set-EntraDomain -Name Contoso.com -IsDefault $true
 ```
 This example demonstrates how to set default domain for new user account in Microsoft Entra ID.  
 
-This command updates the default domain (One per company) used for new account creation.
-
 ### Example 2: Set the list of domain capabilities
 
 ```powershell
 PS C:\>Set-EntraDomain -Name Contoso.com -SupportedServices @("Email", "OfficeCommunicationsOnline")
 ```
-This example demonstrates how to set domain capabalities for new user account in Microsoft Entra ID.  
-
-This command updates the supported services for this domain.
+This example demonstrates how to set domain capabilities for new user account in Microsoft Entra ID.  
 
 ## PARAMETERS
 
 ### -IsDefault
-Indicates whether or not this is the default domain that is used for user creation.
-There is only one default domain per company.
+Indicates whether or not this is the default domain used for user creation.
+There's only one default domain per company.
 
 ```yaml
 Type: Boolean
