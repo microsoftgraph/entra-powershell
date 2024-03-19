@@ -44,10 +44,7 @@ Id                                   DeletedDateTime
 --                                   ---------------
 996d39aa-fdac-4d97-aa3d-c81fb47362ac
 ```
-
 This example demonstrates how to retrieve the owner of a specific group.  
-
-This command gets the specified group owner.
 
 ### Example 2: Gets all group owners
 ```powershell
@@ -60,10 +57,7 @@ Id                                   DeletedDateTime
 ea53750f-e28a-4645-b174-89618edd034a
 2ae2d97b-4bde-42aa-b7c0-7c91a4c91a77
 ```
-
 This example demonstrates how to retrieve the all owner of a specific group.  
-
-This command gets the all owners of a group.
 
 ### Example 3: Gets two group owners
 ```powershell
@@ -75,16 +69,13 @@ Id                                   DeletedDateTime
 996d39aa-fdac-4d97-aa3d-c81fb47362ac
 ea53750f-e28a-4645-b174-89618edd034a
 ```
-
-This example demonstrates how to retrieve the top two owner of a specific group. 
-
-This command gets the top two owners of a group.
+This example demonstrates how to retrieve the top two owners of a specific group. 
 
 ## PARAMETERS
 
 ### -All
 If true, return all group owners.
-If false, return the number of objects specified by the Top parameter
+If false, return the number of objects specified by the Top parameter.
 
 ```yaml
 Type: Boolean
