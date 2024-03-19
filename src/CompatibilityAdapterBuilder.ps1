@@ -576,10 +576,11 @@ $($Command.CustomScript)
         $keyId = $this.GetKeyIdPair($Command)
         $customHeadersCommandName = "New-EntraCustomHeaders"
 
-        if($this.ModuleName -eq "EntraBeta")
+        if($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta')
         {
             $customHeadersCommandName = "New-EntraBetaCustomHeaders"
         }
+
         $function = @"
 function $($Command.Generate) {
     [CmdletBinding($($Command.DefaultParameterSet))]
