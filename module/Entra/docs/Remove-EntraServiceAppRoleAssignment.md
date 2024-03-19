@@ -34,7 +34,7 @@ The Remove-EntraServiceAppRoleAssignment cmdlet removes a service principal appl
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Removes a service principal application role assignment
 ```powershell
 PS C:\>  Remove-AzureADServiceAppRoleAssignment -ObjectId cc7fcc82-ac1b-4785-af47-2ca3b7052886  -AppRoleAssignmentId u7EFjxI8P061FwF7a-d81zXC6iDJ4llOsgQr_6xUFLk
 ```
