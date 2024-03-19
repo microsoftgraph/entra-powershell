@@ -63,7 +63,6 @@ If you specify no parameters, this cmdlet gets all groups.
 PS C:\> Get-EntraBetaMSGroup
 ```
 ```output
-
 DisplayName                         Id                                   MailNickname                     Description
 -----------                         --                                   ------------                     -----------
 Ask HR                              056b2531-005e-4f3e-be78-01a71ea30a04 askhr
@@ -75,6 +74,8 @@ HelpDesk admin group3               0bdddeb1-88a6-4251-aaa5-98b48271158b helpDes
 
 ```
 
+This example demonstrates how to retrieve all groups from Microsoft Entra ID.  
+
 This command gets all groups in Microsoft Entra ID.
 
 ### Example 2: Get a specific group by using an ID
@@ -85,12 +86,13 @@ PS C:\> Get-EntraBetaMSGroup -Id "0877c6c6-fc99-4d51-9871-8335be7cfc9d"
 
 ```
 ```output
-
 DisplayName  Id                                   MailNickname Description                                GroupTypes
 -----------  --                                   ------------ -----------                                ----------
 Contoso Team 0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam  A collaboration area for the Contoso Team. {Unified}
 
 ```
+
+In this example, we'll provide the  ID to retrieve a specific group.  
 
 In this example, we provide the  ID to retrieve a specific group.
 
@@ -100,7 +102,6 @@ In this example, we provide the  ID to retrieve a specific group.
 PS C:\> Get-EntraBetaMSGroup -Top 5
 ```
 ```output
-
 DisplayName             Id                                   MailNickname          Description                                GroupTypes
 -----------             --                                   ------------          -----------                                ----------
 Ask HR                  056b2531-005e-4f3e-be78-01a71ea30a04 askhr                                                            {Unified}
@@ -120,7 +121,6 @@ This example demonstrates how to retrieve top five groups from Microsoft Entra I
 PS C:\> Get-EntraBetaMSGroup -Filter "DisplayName eq 'Parents of Contoso'"
 ```
 ```output
-
 DisplayName        Id                                   MailNickname     Description        GroupTypes
 -----------        --                                   ------------     -----------        ----------
 Parents of Contoso 05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso Parents of Contoso {Unified}
@@ -134,7 +134,6 @@ PS C:\> Get-EntraBetaMSGroup -SearchString "New"
 
 ```
 ```output
-
 DisplayName             Id                                   MailNickname          Description             GroupTypes
 -----------             --                                   ------------          -----------             ----------
 New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding New Employee Onboarding {Unified}
@@ -151,7 +150,6 @@ This example demonstrates how to retrieve groups using  SearchString against the
 PS C:\> Get-EntraBetaMSGroup -Select "AssignedLabels,DisplayName"
 ```
 ```output
- 
 DisplayName                         Id MailNickname Description GroupTypes
 -----------                         -- ------------ ----------- ----------
 Ask HR
@@ -164,6 +162,8 @@ testGroupInAU10
 Parents of Conto
 ```
 
+This example demonstrates how to retrieve AssignedLabels and DisplayName property values for all groups.  
+
 This example demonstrates how to retrieve AssignedLabels and DisplayName property values for all groups.
 
 AssignedLabels group property retrieved only by Select parameter.
@@ -175,7 +175,6 @@ AssignedLabels group property retrieved only by Select parameter.
 PS C:\> Get-EntraBetaMSGroup -Id "0877c6c6-fc99-4d51-9871-8335be7cfc9d" -Select "DisplayName,Id,Description"
 ```
 ```output
-
 DisplayName  Id                                   MailNickname Description                                GroupTypes
 -----------  --                                   ------------ -----------                                ----------
 Contoso Team 0877c6c6-fc99-4d51-9871-8335be7cfc9d              A collaboration area for the Contoso Team.
