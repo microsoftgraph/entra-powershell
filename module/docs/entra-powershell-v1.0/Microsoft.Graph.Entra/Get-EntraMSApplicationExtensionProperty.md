@@ -1,4 +1,14 @@
 ---
+title: Get-EntraMSApplicationExtensionProperty
+description: This article provides details on the Get-EntraMSApplicationExtensionProperty command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/14/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,8 +22,10 @@ Retrieves the list of extension properties on an application object.
 
 ## SYNTAX
 
-```
-Get-EntraMSApplicationExtensionProperty -ObjectId <String> [<CommonParameters>]
+```powershell
+Get-EntraMSApplicationExtensionProperty 
+    -ObjectId <String> 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -21,13 +33,17 @@ Retrieves the list of extension properties on an application object.
 
 ## EXAMPLES
 
-### Example 1: Get extension properties
+### Example 1: Get extension properties.
 ```
 PS C:\>Get-EntraMSApplicationExtensionProperty -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84"
+```
 
-          ObjectId                             Name                                                    TargetObjects
-          --------                             ----                                                    -------------
-          344ed560-f8e7-410e-ab9f-c795a7df5c36 extension_36ee4c6c081240a2b820b22ebd02bce3_NewAttribute {}
+```output
+DeletedDateTime Id                                   AppDisplayName DataType IsSyncedFromOnPremises Name                                                     TargetObjects
+--------------- --                                   -------------- -------- ---------------------- ----                                                     -------------
+                9978e52f-1499-4a11-aead-95df460ffa0b                String   False                  extension_418f12ad979549bbaebda0102973258b_NewAttribute2 {}
+                76ff06dc-65cb-4a9b-bf66-5b8e20aa8abf                String   False                  extension_418f12ad979549bbaebda0102973258b_NewAttribute1 {}
+                b901db71-2d86-454b-b2f7-fd1dfbfceac9                String   False                  extension_418f12ad979549bbaebda0102973258b_NewAttribute  {}
 ```
 
 This command gets the extension properties for the specified application in Microsoft Entra ID.
@@ -35,7 +51,7 @@ This command gets the extension properties for the specified application in Micr
 ## PARAMETERS
 
 ### -ObjectId
-The unique identifier of the object specific Microsoft Entra ID object
+The unique identifier of the object specific Microsoft Entra ID object.
 
 ```yaml
 Type: String
@@ -62,7 +78,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[New-EntraMSApplicationExtensionProperty]()
+[New-EntraMSApplicationExtensionProperty](New-EntraMSApplicationExtensionProperty.md)
 
-[Remove-EntraMSApplicationExtensionProperty]()
+[Remove-EntraMSApplicationExtensionProperty](Remove-EntraMSApplicationExtensionProperty.md)
 
