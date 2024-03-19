@@ -61,7 +61,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================``n")
                 
-        Invoke-GraphRequest -Headers $customHeaders @params -Headers `$customHeaders
+        Invoke-GraphRequest @params -Headers `$customHeaders
         }
 "@
 }
