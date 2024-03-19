@@ -46,8 +46,6 @@ The Set-EntraMSGroup cmdlet sets the properties for an existing Microsoft Entra 
 PS C:\> Set-EntraMSGroup -Id 2c199eed-f77f-4cf4-9270-299071598fa7 -DisplayName "UPDATE helpdesk"
 ```
 
-This example demonstrates how to update a group display name.  
-
 This command updates the display name of a specified group in Microsoft Entra ID.
 
 ### Example 2: Update a group description
@@ -57,14 +55,10 @@ PS C:\> Set-EntraMSGroup -Id 2c199eed-f77f-4cf4-9270-299071598fa7 -Description "
 
 This example demonstrates how to update a group description.  
 
-This command updates the description of a specified group in Microsoft Entra ID.
-
 ### Example 3: Update a group mail nickname
 ```powershell
 PS C:\> Set-EntraMSGroup -Id 2c199eed-f77f-4cf4-9270-299071598fa7 -MailNickName "newnickname"
 ```
-
-This example demonstrates how to update a group mail nickname.  
 
 This command updates the mail nickname of a specified group in Microsoft Entra ID.
 
@@ -72,28 +66,20 @@ This command updates the mail nickname of a specified group in Microsoft Entra I
 ```powershell
 PS C:\>  Set-EntraMSGroup -Id 2c199eed-f77f-4cf4-9270-299071598fa7 -SecurityEnabled $true
 ```
-
-This example demonstrates how to update a group security enabled.  
-
 This command updates the security enabled of a specified group in Microsoft Entra ID.
 
 ### Example 5: Update a group mail enabled
 ```powershell
 PS C:\> Set-EntraMSGroup -Id 2c199eed-f77f-4cf4-9270-299071598fa7 -MailEnabled $false
 ```
-
 This example demonstrates how to update a group main enabled.  
 
-This command updates the mail enabled of a specified group in Microsoft Entra ID.
-
-### Example 6: Update a properties for a group
+### Example 6: Update a property for a group
 ```powershell
 PS C:\>  Set-EntraMSGroup -Id 2c199eed-f77f-4cf4-9270-299071598fa7 -Visibility "Private" -GroupTypes "DynamicMembership" -IsAssignableToRole $true
 ```
 
-This example demonstrates how to update a properties for an existing Microsoft Entra ID group.  
-
-This command updates the properties of a specified group in Microsoft Entra ID.
+This example demonstrates how to update a property for an existing Microsoft Entra ID group.  
 
 ## PARAMETERS
 
@@ -207,17 +193,17 @@ Accept wildcard characters: False
 Specifies the visibility of the group's content and members list.
 This parameter can take one of the following values:
 
-* "Public" - Anyone can view the contents of the group
-* "Private" - Only members can view the content of the group
-* "HiddenMembership" - Only members can view the content of the group and only members, owners, Global/Company Administrator, User Administrator and Helpdesk Administrators can view the members list of the group.
+* "Public": Anyone can view the contents of the group.
+* "Private": Only members can view the content of the group.
+* "HiddenMembership": Only members can view the content of the group and only members, owners, Global/Company Administrator, User Administrator, and Helpdesk Administrators can view the members list of the group.
 
-If no value is provided, the default value will be "Public".
+If no value is provided, the default value is "Public."
 
 Notes:
 
-* This parameter is only valid for groups that have the groupType set to "Unified".
-* If a group has this attribute set to "HiddenMembership" it cannot be changed later.
-* Anyone can join a group that has this attribute set to "Public". If the attribute is set to Private or HiddenMembership, only owner(s) can add new members to the group and requests to join the group need approval of the owner(s).
+* This parameter is only valid for groups that have the groupType set to "Unified."
+* If a group has this attribute set to "HiddenMembership," it can't be changed later.
+* Anyone can join a group that has this attribute set to "Public." If the attribute is set to Private or HiddenMembership, only owner can add new members to the group and requests to join the group need approval of the owner.
 
 ```yaml
 Type: String
@@ -232,7 +218,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsAssignableToRole
-This property can only be set at the time of group creation and cannot be modified on an existing group.
+This property can only be set at the time of group creation and can't be modified on an existing group.
 
 ```yaml
 Type: Boolean
