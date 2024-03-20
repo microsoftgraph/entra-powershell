@@ -1,4 +1,14 @@
 ---
+title: Set-EntraMSGroupLifecyclePolicy.
+description: This article provides details on the Set-EntraMSGroupLifecyclePolicy command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/15/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -8,31 +18,39 @@ schema: 2.0.0
 # Set-EntraMSGroupLifecyclePolicy
 
 ## SYNOPSIS
-Updates a specific group Lifecycle Policy in Microsoft Entra ID
+Updates a specific group Lifecycle Policy in Microsoft Entra ID.
 
 ## SYNTAX
 
 ```
-Set-EntraMSGroupLifecyclePolicy [-AlternateNotificationEmails <String>] [-GroupLifetimeInDays <Int32>]
- [-ManagedGroupTypes <String>] -Id <String> [<CommonParameters>]
+Set-EntraMSGroupLifecyclePolicy 
+ -Id <String>
+ [-AlternateNotificationEmails <String>] 
+ [-GroupLifetimeInDays <Int32>]
+ [-ManagedGroupTypes <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Set-EntraMSGroupLifecyclePolicy command updates a specific group Lifecycle Policy in Microsoft Entra ID
+The Set-EntraMSGroupLifecyclePolicy command updates a specific group Lifecycle Policy in Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Updates group lifecycle policy
+```powershell
+PS C:\>  Set-EntraMSGroupLifecyclePolicy -Id "098e32e0-06e0-4ca2-b398-f521b6a7ddef" -GroupLifetimeInDays 200 -AlternateNotificationEmails "admingroup@contoso.com" -ManagedGroupTypes "All"
 ```
-PS C:\> Set-EntraMSGroupLifecyclePolicy -Id "b4c908b0-3595-4add-91b4-c5400b31b57b" -GroupLifetimeInDays 200 -AlternateNotificationEmails "admingroup@contoso.com"
+```output
+Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
+--                                   --------------------------- ------------------- -----------------
+098e32e0-06e0-4ca2-b398-f521b6a7ddef admingroup@contoso.com      200                 All
 ```
-
-This command updates the specified groupLifecyclePolicy in Microsoft Entra ID
+This example demonstrates how to update the specified group lifecycle policy in Microsoft Entra ID.
 
 ## PARAMETERS
 
 ### -AlternateNotificationEmails
-Notification emails for groups that have no owners will be sent to these email addresses.
+Notification emails for groups that have no owners are sent to these email addresses.
 List of email addresses separated by a ";".
 
 ```yaml
@@ -48,7 +66,7 @@ Accept wildcard characters: False
 ```
 
 ### -GroupLifetimeInDays
-The number of days a group can exist before it needs to be renewed
+The number of days a group can exist before it needs to be renewed.
 
 ```yaml
 Type: Int32
@@ -63,7 +81,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID
+Specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -78,10 +96,10 @@ Accept wildcard characters: False
 ```
 
 ### -ManagedGroupTypes
-Allows the admin to select which office 365 groups the policy will apply to.
-"None" will create the policy in a disabled state.
-"All" will apply the policy to every Office 365 group in the tenant.
-"Selected" will allow the admin to choose specific Office 365 groups that the policy will apply to.
+Allows the admin to select which office 365 groups the policy applies to.  
+"None" create the policy in a disabled state.  
+"All" apply the policy to every Office 365 group in the tenant.  
+"Selected" allow the admin to choose specific Office 365 groups that the policy applies to.
 
 ```yaml
 Type: String
@@ -107,3 +125,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[Get-EntraMSGroupLifecyclePolicy](Get-EntraMSGroupLifecyclePolicy.md)
+[New-EntraMSGroupLifecyclePolicy](New-EntraMSGroupLifecyclePolicy.md)
+[Remove-EntraMSGroupLifecyclePolicy](Remove-EntraMSGroupLifecyclePolicy.md)
