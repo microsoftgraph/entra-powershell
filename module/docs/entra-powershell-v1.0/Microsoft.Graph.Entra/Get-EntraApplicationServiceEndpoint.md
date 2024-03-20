@@ -1,4 +1,14 @@
 ---
+title: Get-EntraApplicationServiceEndpoint.
+description: This article provides details on the Get-EntraApplicationServiceEndpoint command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/04/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -8,33 +18,51 @@ schema: 2.0.0
 # Get-EntraApplicationServiceEndpoint
 
 ## SYNOPSIS
-Retrieve the service endpoint of an application
+Retrieve the service endpoint of an application.
 
 ## SYNTAX
 
 ```
-Get-EntraApplicationServiceEndpoint [-All <Boolean>] -ObjectId <String> [-Top <Int32>] [<CommonParameters>]
+Get-EntraApplicationServiceEndpoint
+ -ObjectId <String>
+ [-All <Boolean>]
+ [-Top <Int32>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 This cmdlet retrieves the service endpoint(s) of an application.
 The service endpoint entity contains service discovery information.
-The serviceEndpoints property of the Application entitie is of type ServiceEndpoint.
+The serviceEndpoints property of the Application entity is of type ServiceEndpoint.
 Other services can use the information stored in the ServiceEndpoint entity to find this service and its addressable endpoints.
 
 ## EXAMPLES
 
-### Example 1
-```
+### Example 1: Retrieve the application service endpoint by ID
+```powershell
 PS C:\WINDOWS\system32> Get-EntraApplicationServiceEndpoint -ObjectId 79592454-dea7-4660-9d91-f1768e5055ac
 ```
 
-Retrieves the Service EndPoint of the application that is specified through the Object ID parameter
+This example demonstrates how to retrieve service endpoint of the application that is specified through the Object ID parameter.
+
+### Example 2: Get all service endpoints 
+```powershell
+PS C:\WINDOWS\system32> Get-EntraApplicationServiceEndpoint -ObjectId 79592454-dea7-4660-9d91-f1768e5055ac -All true
+```
+
+This example demonstrates how to retrieve all service endpoints of a specified application.
+
+### Example 2: Get top five service endpoints 
+```
+PS C:\WINDOWS\system32> Get-EntraApplicationServiceEndpoint -ObjectId 79592454-dea7-4660-9d91-f1768e5055ac -Top 5
+```
+
+This example demonstrates how to retrieve five service endpoints of a specified application.
 
 ## PARAMETERS
 
 ### -All
-Return all service endpoints
+Return all service endpoints.
 
 ```yaml
 Type: Boolean
@@ -49,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the object ID of the application for which the service endpoint is retrieved
+Specifies the object ID of the application for which the service endpoint is retrieved.
 
 ```yaml
 Type: String
@@ -64,8 +92,8 @@ Accept wildcard characters: False
 ```
 
 ### -Top
-specifies the maximum number of results that are returned.
-the default is 100.
+Specifies the maximum number of results that are returned.
+The default is 100.
 
 ```yaml
 Type: Int32
