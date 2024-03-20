@@ -1,7 +1,7 @@
 - name: Entra PowerShell v1.0 Cmdlets Reference
   items:
     - name: Identity
-      href: entra-powershell-v1.0/index.yml
+      href: index.md
       items:
         - name: Users
           items:
@@ -9,6 +9,7 @@
               href: Microsoft.Graph.Entra/Get-EntraUser.md
             - name: New-EntraUser
               href: Microsoft.Graph.Entra/New-EntraUser.md
+              
 - name: Entra PowerShell v1.0 Cmdlets
   items:
   - name: Welcome
