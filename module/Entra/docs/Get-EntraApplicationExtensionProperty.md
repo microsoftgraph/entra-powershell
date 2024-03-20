@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraApplicationExtensionP
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/05/2023
+ms.date: 03/20/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -25,8 +25,6 @@ Gets application extension properties.
 ```
 Get-EntraApplicationExtensionProperty 
  -ObjectId <String> 
- [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] 
  [<CommonParameters>]
 ```
 
@@ -36,9 +34,10 @@ The Get-EntraApplicationExtensionProperty cmdlet gets application extension prop
 ## EXAMPLES
 
 ### Example 1: Get extension properties
-```
+```Powershell
 PS C:\>Get-EntraApplicationExtensionProperty -ObjectID 010cc9b5-fce9-485e-9566-c68debafac5f
-
+```
+```Output
 DeletedDateTime Id                                   AppDisplayName DataType IsSyncedFromOnPremises Name                                                     TargetObjects
 --------------- --                                   -------------- -------- ---------------------- ----                                                     -------------
                 aae84ce7-62fb-4d16-87e8-af4e2e865096                String   False                  extension_5f783237345745d893e7a0edb1cfbfd1_NewAttribute3 {}
@@ -46,48 +45,10 @@ DeletedDateTime Id                                   AppDisplayName DataType IsS
                 f2bfdbb9-e5d3-4ff9-8fb1-4e5d36726875                String   False                  extension_5f783237345745d893e7a0edb1cfbfd1_NewAttribute  {}
 ```
 
+This example demonstrates how to retrieve extension properties for the specified application in Microsoft Entra ID.
 This command gets the extension properties for the specified application in Microsoft Entra ID.
 
 ## PARAMETERS
-
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -ObjectId
 Specifies the unique ID of an application in Microsoft Entra ID.
@@ -115,7 +76,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[New-EntraApplicationExtensionProperty]()
+[New-EntraApplicationExtensionProperty](New-EntraApplicationExtensionProperty.md)
 
-[Remove-EntraApplicationExtensionProperty]()
+[Remove-EntraApplicationExtensionProperty](Remove-EntraApplicationExtensionProperty.md)
 
