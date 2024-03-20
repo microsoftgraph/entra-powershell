@@ -1,4 +1,15 @@
 ---
+title: Set-EntraBetaUserLicense
+description: This article provides details on the Set-EntraBetaUserLicense command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 02/28/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -12,18 +23,22 @@ Adds or removes licenses for a Microsoft online service to the list of assigned 
 
 ## SYNTAX
 
-```
-Set-EntraBetaUserLicense -ObjectId <String> -AssignedLicenses <AssignedLicenses>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Set-EntraBetaUserLicense 
+    -ObjectId <String> 
+    -AssignedLicenses <AssignedLicenses>
+    [-InformationAction <ActionPreference>]
+    [-InformationVariable <String>]
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Set-EntraBetaUserLicense adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
+The **Set-EntraBetaUserLicense** adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
 ## EXAMPLES
 
 ### Example 1: Add a license to a user based on a template user
-```
+```powershell
 PS C:\> $LicensedUser = Get-EntraBetaUser -ObjectId "TemplateUser@contoso.com"  
 PS C:\> $User = Get-EntraBetaUser -ObjectId "User@contoso.com"  
 PS C:\> $License = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense 
@@ -33,7 +48,7 @@ PS C:\> $Licenses.AddLicenses = $License
 PS C:\> Set-EntraBetaUserLicense -ObjectId $User.ObjectId -AssignedLicenses $Licenses
 ```
 
-The first command gets a user by using the Get-EntraBetaUser (./Get-EntraBetaUser.md)cmdlet, and then stores it in the $LicensedUser variable.
+The first command gets a user by using the [Get-EntraBetaUser](./Get-EntraBetaUser.md) cmdlet, and then stores it in the $LicensedUser variable.
 
 The second command gets another user by using Get-EntraBetaUser , and then stores it in the $User variable.
 
@@ -104,7 +119,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a user (as a UPN or ObjectId) in Azure AD.
+Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -129,5 +144,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraBetaUser]()
+[Get-EntraBetaUser](Get-EntraBetaUser.md)
 
