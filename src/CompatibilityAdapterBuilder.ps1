@@ -728,7 +728,7 @@ $OutputTransformations
     {
         if(`$PSBoundParameters["$($OldName)"])
         {
-            `$params["$($NewName)"] = `$Null
+            `$params["$($NewName)"] = `$PSBoundParameters["$($OldName)"]
         }
     }
 
