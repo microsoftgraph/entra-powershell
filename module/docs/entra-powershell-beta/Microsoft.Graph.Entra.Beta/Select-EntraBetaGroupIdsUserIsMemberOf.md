@@ -1,4 +1,14 @@
 ---
+title: Select-EntraBetaGroupIdsUserIsMemberOf.
+description: This article provides details on the Select-EntraBetaGroupIdsUserIsMemberOf command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 11/10/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -13,37 +23,37 @@ Selects the groups that a user is a member of.
 ## SYNTAX
 
 ```
-Select-EntraBetaGroupIdsUserIsMemberOf -ObjectId <String>
- -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Select-EntraBetaGroupIdsUserIsMemberOf 
+ -ObjectId <String>
+ -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> 
+ [-InformationAction <ActionPreference>]
+ [-InformationVariable <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Select-EntraBetaGroupIdsUserIsMemberOf cmdlet selects the groups that a user is a member of in Azure Actve Directory (AD).
+The Select-EntraBetaGroupIdsUserIsMemberOf cmdlet selects the groups that a user is a member of in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Get the group membership of a group for a user
-```
+```powershell
 PS C:\> $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
 PS C:\> $Groups.GroupIds = (Get-EntraBetaGroup -Top 1).ObjectId
 PS C:\> $UserID = (Get-EntraBetaUser -Top 1).ObjectId
 PS C:\> Select-EntraBetaGroupIdsUserIsMemberOf  -ObjectId $UserId -GroupIdsForMembershipCheck $Groups
-
-OdataMetadata                                                                                   Value
--------------                                                                                   -----
-https://graph.windows.net/85b5ff1e-0402-400c-9e3c-0f9e965325d1/$metadata#Collection(Edm.String) {093fc0e2-1d6e-4a1b-9bf8-effa0196f1f7}
+```
+```output
+056b2531-005e-4f3e-be78-01a71ea30a04
 ```
 
 The first command creates a GroupIdsForMembershipCheck object, and then stores it in the $Groups variable.
 
-The second command gets an ID for a group by using the Get-EntraBetaGroup (./Get-EntraBetaGroup.md)cmdlet, and then stores it as a property of $Groups.
+The second command gets an ID for a group by using the Get-EntraBetaGroup (./Get-EntraBetaGroup.md) cmdlet, and then stores it as a property of $Groups.
 
-The third command gets the ID of a user by using the Get-EntraBetaUser (./Get-EntraBetaUser.md)cmdlet, and then stores it in the $UserId variable.
+The third command gets the ID of a user by using the Get-EntraBetaUser (./Get-EntraBetaUser.md) cmdlet, and then stores it in the $UserId variable.
 
 The final command gets the group membership of a group for a user identified by $UserId.
-This cmdlet returns an oData object.
-To find the groups this user is a member of, iterate through the Value attribute of the returned oData objects.
 
 ## PARAMETERS
 
@@ -62,46 +72,8 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -ObjectId
-Specifies the ID of a user (as a UPN or ObjectId) in Azure AD.
+Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: String
