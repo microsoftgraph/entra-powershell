@@ -1,4 +1,15 @@
 ---
+title: Get-EntraBetaScopedRoleMembership
+description: This article provides details on the Get-EntraBetaScopedRoleMembership command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 02/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -12,24 +23,44 @@ Gets a scoped role membership from an administrative unit.
 
 ## SYNTAX
 
-```
-Get-EntraBetaScopedRoleMembership -ObjectId <String> [-ScopedRoleMembershipId <String>] [<CommonParameters>]
+```powershell
+Get-EntraBetaScopedRoleMembership 
+    -ObjectId <String> 
+    [-ScopedRoleMembershipId <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaScopedRoleMembership cmdlet gets a scoped role membership from an administrative unit in Azure Active Directory (AD).
+The **Get-EntraBetaScopedRoleMembership** cmdlet gets a scoped role membership from an administrative unit in Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1 Get Scoped Role Administrator
-```
+### Example 1: Get Scoped Role Administrator
+```powershell
 PS C:\>Get-EntraBetaScopedRoleMembership -ObjectId "526b7173-5a6e-49dc-88ec-b677a9093709" -ScopedRoleMembershipId "356b7173-5a6e-49dc-88ec-b677a9093709"
 ```
 
-### Example 2 List scoped administrators for AU.
+```output
+AdministrativeUnitId                 Id                                                                RoleId
+--------------------                 --                                                                ------
+526b7173-5a6e-49dc-88ec-b677a9093709 BMYgih8pw0y20CQerx3BhEAwHXd98V5Gi-vwYVZQpAouYj-NPIZuQYv0G7SehpIUU 356b7173-5a6e-49dc-88ec-b...
 ```
+
+This command gets the scoped role membership from an specified AU with specified scoped role membership ID.
+
+### Example 2: List scoped administrators for AU.
+```powershell
 PS C:\>Get-EntraBetaScopedRoleMembership -ObjectId "526b7173-5a6e-49dc-88ec-b677a9093709"
 ```
+
+```output
+AdministrativeUnitId                 Id                                                                RoleId
+--------------------                 --                                                                ------
+526b7173-5a6e-49dc-88ec-b677a9093709 BMYgih8pw0y20CQerx3BhEAwHXd98V5Gi-vwYVZQpAouYj-NPIZuQYv0G7SehpIUU 8a20c604-291f-4cc3-b6d0-2...
+526b7173-5a6e-49dc-88ec-b677a9093709 BMYgih8pw0y20CQerx3BhEAwHXd98V5Gi-vwYVZQpApdfqODbZQvQbS2rHEuDlWmU 8a20c604-291f-4cc3-b6d0-2...
+```
+
+This command gets the list of scoped role membership from an specified AU.
 
 ## PARAMETERS
 
@@ -74,7 +105,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraBetaScopedRoleMembership]()
+[Add-EntraBetaScopedRoleMembership](./Add-EntraBetaScopedRoleMembership.md)
 
-[Remove-EntraBetaScopedRoleMembership]()
+[Remove-EntraBetaScopedRoleMembership](./Remove-EntraBetaScopedRoleMembership.md)
 
