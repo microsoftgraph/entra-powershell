@@ -108,7 +108,7 @@ DisplayName     Id                                   AppId                      
 ToGraph_443DEMO 5e1ac4d3-015e-404a-87df-b108a9a7f924 d92f1688-37a7-4b2d-9db4-7efdecd4db10 AzureADMyOrg   M365x99297270.onmicrosoft.com
 ```
 
-In this example, we retrieve application by userPrincipalName from Microsoft Entra ID.  
+In this example, we retrieve application by userPrincipalName from Microsoft Entra ID.   
 This command gets an application by its display name.
 
 ### Example 5: Search among retrieved applications
@@ -121,7 +121,7 @@ DisplayName          Id                                   AppId                 
 My new application 2 88a329d6-9a3d-46bb-bd24-8ba1e218d4f5 b36127fd-3bca-4e1c-8698-78d26782ed65 AzureADandPersonalMicrosoftAccount M365x99297270.onmicrosoft.com
 ```
 
-This example demonstrates how to retrieve applications for specific string from Microsoft Entra ID.  
+This example demonstrates how to retrieve applications for specific string from Microsoft Entra ID.    
 This cmdlet gets all applications that match the value of SearchString against the first characters in DisplayName.
 
 ### Example 6: Retrieve an application by identifierUris
