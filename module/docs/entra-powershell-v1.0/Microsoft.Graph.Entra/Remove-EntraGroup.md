@@ -1,4 +1,13 @@
 ---
+title: Remove-EntraGroup
+description: This article provides details on the Remove-EntraGroup command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,66 +22,30 @@ Removes a group.
 ## SYNTAX
 
 ```
-Remove-EntraGroup -ObjectId <String> [-InformationAction <ActionPreference>] [-InformationVariable <String>]
- [<CommonParameters>]
+Remove-EntraGroup 
+-ObjectId <String> 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
 The Remove-EntraGroup cmdlet removes a group from Microsoft Entra ID.
 Note that a Unified Group can be restored withing 30 days after deletion using the Restore-EntraMSDeletedDirectoryObject cmdlet.
-Security groups cannot be restored after deletion.
+Security groups can't be restored after deletion.
 
 ## EXAMPLES
 
 ### Example 1: Remove a group
-```
+
+```powershell
 PS C:\>Remove-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606"
 ```
-
-This command removes the specified group from Azure AD.
+This example demonstrates how to remove a specified group from Microsoft Entra ID.  
+This example removes the specified group from Microsoft Entra ID.
 
 ## PARAMETERS
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -ObjectId
-Specifies the object ID of a group in Azure AD.
+Specifies the object ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -97,9 +70,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraGroup]()
+[Get-EntraGroup](Get-EntraGroup.md)
 
-[New-EntraGroup]()
+[New-EntraGroup](New-EntraGroup.md)
 
-[Set-EntraGroup]()
+[Set-EntraGroup](Set-EntraGroup.md)
 
