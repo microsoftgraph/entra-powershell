@@ -5,42 +5,53 @@
       items:
         - name: Users
           items:
-            - name: Get-EntraUser
-              href: Microsoft.Graph.Entra/Get-EntraUser.md
-            - name: New-EntraUser
-              href: Microsoft.Graph.Entra/New-EntraUser.md
-            - name: Set-EntraUser
-              href: Microsoft.Graph.Entra/Set-EntraUser.md
-            - name: Remove-EntraUser
-              href: Microsoft.Graph.Entra/Remove-EntraUser.md
-            - name: Get-EntraUserAppRoleAssignment
-              href: Microsoft.Graph.Entra/Get-EntraUserAppRoleAssignment.md
-            - name: Get-EntraUserCreatedObject
-              href: Microsoft.Graph.Entra/Get-EntraUserCreatedObject.md
-            - name: Get-EntraUserDirectReport
-              href: Microsoft.Graph.Entra/Get-EntraUserDirectReport.md
-            - name: Get-EntraUserExtension
-              href: Microsoft.Graph.Entra/Get-EntraUserExtension.md
-            - name: Get-EntraUserLicenseDetail
-              href: Microsoft.Graph.Entra/Get-EntraUserLicenseDetail.md
-            - name: Get-EntraUserManager
-              href: Microsoft.Graph.Entra/Get-EntraUserManager.md
-            - name: Get-EntraUserMembership
-              href: Microsoft.Graph.Entra/Get-EntraUserMembership.md
-            - name: Get-EntraUserOAuth2PermissionGrant
-              href: Microsoft.Graph.Entra/Get-EntraUserOAuth2PermissionGrant.md
-            - name: Get-EntraUserOwnedDevice
-              href: Microsoft.Graph.Entra/Get-EntraUserOwnedDevice.md
-            - name: Get-EntraUserOwnedObject
-              href: Microsoft.Graph.Entra/Get-EntraUserOwnedObject.md
-            - name: Get-EntraUserRegisteredDevice
-              href: Microsoft.Graph.Entra/Get-EntraUserRegisteredDevice.md
-            - name: Get-EntraUserThumbnailPhoto
-              href: Microsoft.Graph.Entra/Get-EntraUserThumbnailPhoto.md
+            - name: List
+              items:
+                - name: Get-EntraUser
+                  href: Microsoft.Graph.Entra/Get-EntraUser.md
+                - name: Get-EntraUserManager
+                  href: Microsoft.Graph.Entra/Get-EntraUserManager.md
+                - name: Get-EntraUserMembership
+                  href: Microsoft.Graph.Entra/Get-EntraUserMembership.md
+                - name: Get-EntraUserOAuth2PermissionGrant
+                  href: Microsoft.Graph.Entra/Get-EntraUserOAuth2PermissionGrant.md
+                - name: Get-EntraUserOwnedDevice
+                  href: Microsoft.Graph.Entra/Get-EntraUserOwnedDevice.md
+                - name: Get-EntraUserOwnedObject
+                  href: Microsoft.Graph.Entra/Get-EntraUserOwnedObject.md
+                - name: Get-EntraUserRegisteredDevice
+                  href: Microsoft.Graph.Entra/Get-EntraUserRegisteredDevice.md
+                - name: Get-EntraUserThumbnailPhoto
+                  href: Microsoft.Graph.Entra/Get-EntraUserThumbnailPhoto.md
+                - name: Get-EntraUserAppRoleAssignment
+                  href: Microsoft.Graph.Entra/Get-EntraUserAppRoleAssignment.md
+                - name: Get-EntraUserCreatedObject
+                  href: Microsoft.Graph.Entra/Get-EntraUserCreatedObject.md
+                - name: Get-EntraUserDirectReport
+                  href: Microsoft.Graph.Entra/Get-EntraUserDirectReport.md
+                - name: Get-EntraUserExtension
+                  href: Microsoft.Graph.Entra/Get-EntraUserExtension.md
+                - name: Get-EntraUserLicenseDetail
+                  href: Microsoft.Graph.Entra/Get-EntraUserLicenseDetail.md
+            - name: Create
+              items:
+                - name: New-EntraUser
+                  href: Microsoft.Graph.Entra/New-EntraUser.md
+            - name: Update
+              items:
+                - name: Set-EntraUser
+                  href: Microsoft.Graph.Entra/Set-EntraUser.md
+            - name: Remove
+              items:
+                - name: Remove-EntraUser
+                  href: Microsoft.Graph.Entra/Remove-EntraUser.md
         - name: Groups
           items:
-            - name: Get-EntraGroup
-              href: Microsoft.Graph.Entra/Get-EntraGroup.md
-            - name: New-EntraGroup
-              href: Microsoft.Graph.Entra/New-EntraGroup.md
-              
+            - name: List
+              items:
+                - name: Get-EntraGroup
+                  href: Microsoft.Graph.Entra/Get-EntraGroup.md
+            - name: Create
+              items:
+                - name: New-EntraGroup
+                  href: Microsoft.Graph.Entra/New-EntraGroup.md
