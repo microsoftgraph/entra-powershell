@@ -1,13 +1,12 @@
 items:
-- name: Entra PowerShell v1.0 Cmdlets Reference
-  items:
-  - name: Identity
-    href: entra-powershell-v1.0/index.yml
+  - name: Entra PowerShell v1.0 Cmdlets Reference
     items:
-    - name: Users
-      uid: AzureAD.Add-AzureADMSAdministrativeUnitMember
-      - items:
-        - name: Get-EntraUser
-          href: Microsoft.Graph.Entra/Get-EntraUser.md
-        - name: New-EntraUser
-          href: Microsoft.Graph.Entra/New-EntraUser.md
+      - name: Identity
+        href: entra-powershell-v1.0/index.yml
+        items:
+          - name: Users
+            items:
+              - name: Get-EntraUser
+                href: Microsoft.Graph.Entra/Get-EntraUser.md
+              - name: New-EntraUser
+                href: Microsoft.Graph.Entra/New-EntraUser.md
