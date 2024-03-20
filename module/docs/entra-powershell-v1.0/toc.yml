@@ -1,4 +1,53 @@
-- name: Overview
+items:
+- name: Entra PowerShell v1.0 Cmdlets Reference
+  items:
+  - name: Identity
+    href: entra-powershell-v1.0/index.yml
+    items:
+    - name: Users
+      uid: AzureAD.Add-AzureADMSAdministrativeUnitMember
+      - items:
+        - name: Get-EntraUser
+          href: Microsoft.Graph.Entra/Get-EntraUser.md
+        - name: New-EntraUser
+          href: Microsoft.Graph.Entra/New-EntraUser.md
+    - name: Add-AzureADMSScopedRoleMembership
+      uid: AzureAD.Add-AzureADMSScopedRoleMembership
+    - name: Get-AzureADMSAdministrativeUnit
+      uid: AzureAD.Get-AzureADMSAdministrativeUnit
+    - name: Get-AzureADMSAdministrativeUnitMember
+      uid: AzureAD.Get-AzureADMSAdministrativeUnitMember
+    - name: Get-AzureADMSScopedRoleMembership
+      uid: AzureAD.Get-AzureADMSScopedRoleMembership
+    - name: New-AzureADMSAdministrativeUnit
+      uid: AzureAD.New-AzureADMSAdministrativeUnit
+    - name: Remove-AzureADMSAdministrativeUnit
+      uid: AzureAD.Remove-AzureADMSAdministrativeUnit
+    - name: Remove-AzureADMSAdministrativeUnitMember
+      uid: AzureAD.Remove-AzureADMSAdministrativeUnitMember
+    - name: Remove-AzureADMSScopedRoleMembership
+      uid: AzureAD.Remove-AzureADMSScopedRoleMembership
+  - name: Application Proxy Application Management
+    href: AzureAD/index.yml#application-proxy-application-management
+    items:
+    - name: Get-AzureADApplicationProxyApplication
+      uid: AzureAD.Get-AzureADApplicationProxyApplication
+    - name: Get-AzureADApplicationProxyApplicationConnectorGroup
+      uid: AzureAD.Get-AzureADApplicationProxyApplicationConnectorGroup
+    - name: New-AzureADApplicationProxyApplication
+      uid: AzureAD.New-AzureADApplicationProxyApplication
+    - name: Remove-AzureADApplicationProxyApplication
+      uid: AzureAD.Remove-AzureADApplicationProxyApplication
+    - name: Remove-AzureADApplicationProxyApplicationConnectorGroup
+      uid: AzureAD.Remove-AzureADApplicationProxyApplicationConnectorGroup
+    - name: Set-AzureADApplicationProxyApplication
+      uid: AzureAD.Set-AzureADApplicationProxyApplication
+    - name: Set-AzureADApplicationProxyApplicationCustomDomainCertificate
+      uid: AzureAD.Set-AzureADApplicationProxyApplicationCustomDomainCertificate
+    - name: Set-AzureADApplicationProxyApplicationSingleSignOn
+      uid: AzureAD.Set-AzureADApplicationProxyApplicationSingleSignOn
+
+- name: Entra PowerShell v1.0 Cmdlets
   items:
   - name: Welcome
     href: index.md
