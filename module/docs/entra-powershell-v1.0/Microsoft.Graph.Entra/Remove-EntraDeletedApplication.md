@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraDeletedApplication.
+description: This article provides details on the Remove-EntraDeletedApplication command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/16/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -8,30 +18,36 @@ schema: 2.0.0
 # Remove-EntraDeletedApplication
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Permanently delete a recently deleted application object from deleted items.
 
 ## SYNTAX
 
 ```
-Remove-EntraDeletedApplication [-ObjectId] <String> [<CommonParameters>]
+Remove-EntraDeletedApplication 
+[-ObjectId] <String> 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Permanently delete a recently deleted application object from deleted items. After an item is permanently deleted, it can't be restored.
+
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Remove deleted application object
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> $Id = Get-AzureADDeletedApplication -SearchString "newtest10" 
+PS C:\> Remove-AzureADDeletedApplication -ObjectId $Id.id
+
 ```
 
-{{ Add example description here }}
+This command removes recently deleted application.
+- `ObjectId`:  The ObjectId of the deleted application.
 
 ## PARAMETERS
 
 ### -ObjectId
-{{ Fill ObjectId Description }}
+The unique identifier of deleted application.
 
 ```yaml
 Type: String
@@ -58,3 +74,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[Get-EntraDeletedApplication](Get-EntraDeletedApplication.md)
+
+[Restore-EntraDeletedApplication](Restore-EntraDeletedApplication.md)
+
+
