@@ -12,7 +12,6 @@ trigger:
 
 pr:
 - main
-- kemunga/*
 
 pool:
   vmImage: windows-latest
