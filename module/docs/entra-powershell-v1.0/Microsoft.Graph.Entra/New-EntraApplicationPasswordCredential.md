@@ -44,9 +44,9 @@ PS C:\>New-EntraApplicationPasswordCredential -ObjectId "3ddd22e7-a150-4bb3-b100
 ```
 
 ```output
-CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                               StartDateTime
-------------------- ----------- -----------          ---- -----                                ----------                               -------------
-                                3/21/2026 9:48:40 AM n34  b30c6289-7903-4a61-97e6-2ada9742fd3b n348Q~f5s5.wbBNW8kCuiPjNRg9NX98W_EaU6cqG 3/21/2024 9:48:40 AM
+CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                    StartDateTime
+------------------- ----------- -----------          ---- -----                                ----------                    -------------
+                                3/21/2026 9:48:40 AM n34  b30c6289-7903-4a61-97e6-2ada9742fd3b wbBNW8kCuiPjNRg9NX98W_EaU6cqG 3/21/2024 9:48:40 AM
 ```
 
 This command creates new password credential for specified application.
@@ -57,9 +57,9 @@ PS C:\>New-EntraApplicationPasswordCredential -ObjectId "3ddd22e7-a150-4bb3-b100
 ```
 
 ```output
-CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                               StartDateTime
-------------------- ----------- -----------          ---- -----                                ----------                               -------------
-                                3/21/2026 9:48:40 AM n34  b30c6289-7903-4a61-97e6-2ada9742fd3b n348Q~f5s5.wbBNW8kCuiPjNRg9NX98W_EaU6cqG 3/21/2024 9:48:40 AM
+CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                    StartDateTime
+------------------- ----------- -----------          ---- -----                                ----------                    -------------
+                                3/21/2026 9:48:40 AM n34  b30c6289-7903-4a61-97e6-2ada9742fd3b wbBNW8kCuiPjNRg9NX98W_EaU6cqG 3/21/2024 9:48:40 AM
 ```
 
 This command creates new password credential for specified application.
@@ -70,9 +70,9 @@ PS C:\>New-EntraApplicationPasswordCredential -ObjectId "3ddd22e7-a150-4bb3-b100
 ```
 
 ```output
-CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                               StartDateTime
-------------------- ----------- -----------          ---- -----                                ----------                               -------------
-                                3/21/2026 9:48:40 AM n34  b30c6289-7903-4a61-97e6-2ada9742fd3b n348Q~f5s5.wbBNW8kCuiPjNRg9NX98W_EaU6cqG 3/21/2024 9:48:40 AM
+CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                    StartDateTime
+------------------- ----------- -----------          ---- -----                                ----------                    -------------
+                                3/21/2026 9:48:40 AM n34  b30c6289-7903-4a61-97e6-2ada9742fd3b wbBNW8kCuiPjNRg9NX98W_EaU6cqG 3/21/2024 9:48:40 AM
 ```
 
 This command creates new password credential for specified application.
@@ -83,22 +83,22 @@ PS C:\>New-EntraApplicationPasswordCredential -ObjectId "3ddd22e7-a150-4bb3-b100
 ```
 
 ```output
-CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                               StartDateTime
-------------------- ----------- -----------          ---- -----                                ----------                               -------------
-                                3/21/2026 9:48:40 AM n34  b30c6289-7903-4a61-97e6-2ada9742fd3b n348Q~f5s5.wbBNW8kCuiPjNRg9NX98W_EaU6cqG 3/21/2024 9:48:40 AM
+CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                    StartDateTime
+------------------- ----------- -----------          ---- -----                                ----------                    -------------
+                                3/21/2026 9:48:40 AM n34  b30c6289-7903-4a61-97e6-2ada9742fd3b wbBNW8kCuiPjNRg9NX98W_EaU6cqG 3/21/2024 9:48:40 AM
 ```
 
 This command creates new password credential for specified application.
 
 ### Example 5: Create a password credential using Value parameter
 ```powershell
-PS C:\>New-EntraApplicationPasswordCredential -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -Value ZJ0V1Yg4cp4eWIey9DrYspqVdX1pdvY437P/ueGxVLU=
+PS C:\>New-EntraApplicationPasswordCredential -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -Value "myPassword"
 ```
 
 ```output
-CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                               StartDateTime
-------------------- ----------- -----------          ---- -----                                ----------                               -------------
-                                3/21/2026 9:48:40 AM n34  b30c6289-7903-4a61-97e6-2ada9742fd3b n348Q~f5s5.wbBNW8kCuiPjNRg9NX98W_EaU6cqG 3/21/2024 9:48:40 AM
+CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                    StartDateTime
+------------------- ----------- -----------          ---- -----                                ----------                    -------------
+                                3/21/2026 9:48:40 AM n34  b30c6289-7903-4a61-97e6-2ada9742fd3b wbBNW8kCuiPjNRg9NX98W_EaU6cqG 3/21/2024 9:48:40 AM
 ```
 
 This command creates new password credential for specified application.
