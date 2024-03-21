@@ -26,6 +26,7 @@ class CompatibilityAdapterBuilder {
     hidden [string] $LoadMessage
 
     # Constructor that changes the output folder, load all the Required Modules and creates the output folder.
+    #dummy comment
     CompatibilityAdapterBuilder() {  
         $this.BasePath = (join-path $PSScriptRoot '../module/Entra/')    
         $this.HelpFolder = (join-path $this.BasePath './help')
