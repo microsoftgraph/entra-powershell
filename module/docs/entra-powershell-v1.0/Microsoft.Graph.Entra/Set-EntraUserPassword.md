@@ -47,6 +47,7 @@ This command sets the specified user's password.
 
 ```powershell
 PS C:\>Set-EntraUserPassword -ObjectId  "df19e8e6-2ad7-453e-87f5-037f6529ae16" -Password $password -EnforceChangePasswordPolicy $true
+
 ```
 This command sets the specified user's password with EnforceChangePasswordPolicy parameter.
 
@@ -55,6 +56,7 @@ This command sets the specified user's password with EnforceChangePasswordPolicy
 ```powershell
 PS C:\>Set-EntraUserPassword -ObjectId  "df19e8e6-2ad7-453e-87f5-037f6529ae16" -Password $password -ForceChangePasswordNextLogin $true
 ```
+
 This command sets the specified user's password with ForceChangePasswordNextLogin parameter.
 
 ## PARAMETERS
