@@ -7,6 +7,9 @@ name: $(SourceBranchName)-PR-$(Date:yyyy-MM-dd)$(Rev:.r)
 trigger:
 - main
 
+pr:
+- main
+
 pool:
   vmImage: windows-latest
 stages:
