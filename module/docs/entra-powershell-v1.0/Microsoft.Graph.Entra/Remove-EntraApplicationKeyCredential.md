@@ -42,7 +42,6 @@ This command removes the specified key credential from the specified application
 
 ## PARAMETERS
 
-```
 
 ### -KeyId
 Specifies a custom key ID.
@@ -88,4 +87,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraApplicationKeyCredential](Get-EntraApplicationKeyCredential.md)
 
 [New-EntraApplicationKeyCredential](New-EntraApplicationKeyCredential.md)
-
