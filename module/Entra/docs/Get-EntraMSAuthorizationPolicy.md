@@ -22,7 +22,8 @@ Gets an authorization policy, which represents a policy that can control Microso
 ## SYNTAX
 
 ```
-Get-EntraMSAuthorizationPolicy [<CommonParameters>]
+Get-EntraMSAuthorizationPolicy 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -44,6 +45,7 @@ DeletedDateTime Description DisplayName            Id                  AllowEmai
                 test        Authorization Policies authorizationPolicy True                                      everyone                                      False
 
 ```
+This command gets the Microsoft Entra ID authorization policy.
 
 ## PARAMETERS
 

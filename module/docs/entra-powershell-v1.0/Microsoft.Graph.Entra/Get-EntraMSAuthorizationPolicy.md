@@ -1,4 +1,13 @@
 ---
+title: Get-EntraMSAuthorizationPolicy
+description: This article provides details on the Get-EntraMSAuthorizationPolicy command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -8,12 +17,13 @@ schema: 2.0.0
 # Get-EntraMSAuthorizationPolicy
 
 ## SYNOPSIS
-Gets an authorization policy.
+Gets an authorization policy, which represents a policy that can control Microsoft Entra ID authorization settings.
 
 ## SYNTAX
 
 ```
-Get-EntraMSAuthorizationPolicy [<CommonParameters>]
+Get-EntraMSAuthorizationPolicy 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -21,10 +31,21 @@ The Get-EntraMSAuthorizationPolicy cmdlet gets a Microsoft Entra ID authorizatio
 
 ## EXAMPLES
 
-### Example 1: Get an authorization policy by ID
-```
+### Example 1: Get an authorization policy by ID.
+
+```powershell
 PS C:\>Get-EntraMSAuthorizationPolicy
 ```
+```Output
+DeletedDateTime Description DisplayName            Id                  AllowEmailVerifiedUsersToJoinOrganization AllowInvitesFrom AllowUserConsentForRiskyApps AllowedToSig
+                                                                                                                                                               nUpEmailBase
+                                                                                                                                                               dSubscriptio
+                                                                                                                                                               ns
+--------------- ----------- -----------            --                  ----------------------------------------- ---------------- ---------------------------- ------------
+                test        Authorization Policies authorizationPolicy True                                      everyone                                      False
+
+```
+This command gets the Microsoft Entra ID authorization policy.
 
 ## PARAMETERS
 
@@ -39,5 +60,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Set-EntraMSAuthorizationPolicy]()
+[Set-EntraMSAuthorizationPolicy](Set-EntraMSAuthorizationPolicy.md)
 
