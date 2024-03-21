@@ -5,7 +5,9 @@
 name: $(SourceBranchName)-PR-$(Date:yyyy-MM-dd)$(Rev:.r)
 
 trigger:
-- main
+  branches:
+    include:
+      - main
 
 pr:
 - main
