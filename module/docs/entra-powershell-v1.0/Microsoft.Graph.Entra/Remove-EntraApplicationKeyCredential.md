@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraApplicationKeyCredential.
+description: This article provides details on the Remove-EntraApplicationKeyCredential command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/15/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,9 @@ Removes a key credential from an application.
 ## SYNTAX
 
 ```
-Remove-EntraApplicationKeyCredential -ObjectId <String> -KeyId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Remove-EntraApplicationKeyCredential
+ -ObjectId <String> -KeyId <String> 
+  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,44 +42,6 @@ This command removes the specified key credential from the specified application
 
 ## PARAMETERS
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -KeyId
 Specifies a custom key ID.
@@ -111,7 +84,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraApplicationKeyCredential]()
+[Get-EntraApplicationKeyCredential](Get-EntraApplicationKeyCredential.md)
 
-[New-EntraApplicationKeyCredential]()
-
+[New-EntraApplicationKeyCredential](New-EntraApplicationKeyCredential.md)
