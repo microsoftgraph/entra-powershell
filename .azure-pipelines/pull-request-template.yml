@@ -5,12 +5,14 @@
 name: $(SourceBranchName)-PR-$(Date:yyyy-MM-dd)$(Rev:.r)
 
 trigger:
+  batch: true
   branches:
     include:
       - main
 
 pr:
 - main
+- kemunga/*
 
 pool:
   vmImage: windows-latest
