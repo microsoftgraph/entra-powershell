@@ -37,7 +37,7 @@
     {
         if($PSBoundParameters["All"])
         {
-            $params["All"] = $Null
+            $params["All"] = $PSBoundParameters["All"]
         }
     }
     if($PSBoundParameters.ContainsKey("Debug"))
@@ -66,8 +66,21 @@
              'PublisherDomain','Web','RequiredResourceAccess','SignInAudience')
              try {
                 foreach ($prop in $propsToConvert) {
-                    $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
-                    $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
+                    if($prop -eq 'AppRoles'){
+                        $myAppRoles = New-Object System.Collections.Generic.List[Microsoft.Open.AzureAD.Model.AppRole]
+                        foreach ($appRole in $_.$prop) {
+                            $hash = New-Object Microsoft.Open.AzureAD.Model.AppRole
+                            foreach ($propertyName in $hash.psobject.Properties.Name) {
+                                $hash.$propertyName = $appRole.$propertyName
+                            }
+                            $myAppRoles.Add($hash)
+                        }
+                        $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($myAppRoles) -Force
+                    }
+                    else {
+                        $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
+                        $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
+                    }
                 }
              }
              catch {}
