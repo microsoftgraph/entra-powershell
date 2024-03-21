@@ -96,4 +96,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Get-EntraServicePrincipalOwner](Get-EntraServicePrincipalOwner.md)
 
+[Get-EntraUser](Get-EntraUser.md)
+
 [Remove-EntraServicePrincipalOwner](Remove-EntraServicePrincipalOwner.md)
