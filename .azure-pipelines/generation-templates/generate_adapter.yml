@@ -15,6 +15,12 @@ steps:
     script: 'echo $PSVersionTable'
     pwsh: false
 - task: powershell@2
+  displayName: 'Set maximum function count'
+  inputs:
+    targetType: inline
+    script: '$MaximumFunctionCount=32768'
+    pwsh: false
+- task: powershell@2
   displayName: 'Install Dependencies Entra'
   inputs:
     targetType: inline
