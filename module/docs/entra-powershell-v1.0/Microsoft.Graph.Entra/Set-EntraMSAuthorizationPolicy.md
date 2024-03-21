@@ -1,4 +1,14 @@
 ---
+title: Set-EntraMSAuthorizationPolicy.
+description: This article provides details on the Set-EntraMSAuthorizationPolicy command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/21/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,10 +23,15 @@ Updates an authorization policy.
 ## SYNTAX
 
 ```
-Set-EntraMSAuthorizationPolicy [-BlockMsolPowerShell <Boolean>]
- [-AllowedToSignUpEmailBasedSubscriptions <Boolean>] [-AllowEmailVerifiedUsersToJoinOrganization <Boolean>]
- [-DisplayName <String>] [-Description <String>] [-DefaultUserRolePermissions <DefaultUserRolePermissions>]
- [-AllowedToUseSSPR <Boolean>] [<CommonParameters>]
+Set-EntraMSAuthorizationPolicy 
+ [-BlockMsolPowerShell <Boolean>]
+ [-AllowedToSignUpEmailBasedSubscriptions <Boolean>] 
+ [-AllowEmailVerifiedUsersToJoinOrganization <Boolean>]
+ [-DisplayName <String>] 
+ [-Description <String>] 
+ [-DefaultUserRolePermissions <DefaultUserRolePermissions>]
+ [-AllowedToUseSSPR <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,9 +40,24 @@ The Set-EntraMSAuthorizationPolicy cmdlet updates a Microsoft Entra ID authoriza
 ## EXAMPLES
 
 ### Example 1: Update an authorization policy
+```powershell
+PS C:\>Set-EntraMSAuthorizationPolicy -DisplayName "updated displayname" -Description "updated description"  -BlockMsolPowerShell $true -AllowedToUseSSPR $false -AllowEmailVerifiedUsersToJoinOrganization $true -AllowedToSignUpEmailBasedSubscriptions $true  
 ```
-PS C:\>Set-EntraMSAuthorizationPolicy -DisplayName "updated displayname" -Description "updated description" -DefaultUserRolePermissions @{ AllowedToCreateApps = $false }
+
+This example demonstrates how to update a Microsoft Entra ID authorization policy. 
+
+### Example 2: Update DefaultUserRolePermissions of authorization policy
+```powershell
+PS C:\> $DefaultUserRolePermissions = New-Object -TypeName Microsoft.Open.MSGraph.Model.DefaultUserRolePermissions
+$DefaultUserRolePermissions.AllowedToCreateApps = $false
+$DefaultUserRolePermissions.AllowedToCreateSecurityGroups = $false
+$DefaultUserRolePermissions.AllowedToReadOtherUsers = $false
+PS C:\> Set-EntraMSAuthorizationPolicy -DefaultUserRolePermissions $DefaultUserRolePermissions 
 ```
+
+This example demonstrates how to update a DefaultUserRolePermissions of authorization policy in Microsoft Entra ID.  
+First command stored the DefaultUserRolePermissions in a variable.  
+Second command updates the DefaultUserRolePermissions of authorization policy.
 
 ## PARAMETERS
 
@@ -48,7 +78,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowedToUseSSPR
-Specifies whether the Self-Serve Password Reset feature can be used by users on the tenant.
+Specifies whether the Self-Serve Password Reset feature used by users on the tenant.
 The initial default value is true.
 
 ```yaml
@@ -80,7 +110,7 @@ Accept wildcard characters: False
 ```
 
 ### -BlockMsolPowerShell
-Specifies whether the user-based access to the legacy service endpoint used by MSOL PowerShell is blocked or not.
+Specifies whether the user-based access to the legacy service endpoint used by Microsoft Online PowerShell is blocked or not.
 
 ```yaml
 Type: Boolean
@@ -151,5 +181,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraMSAuthorizationPolicy]()
+[Get-EntraMSAuthorizationPolicy](Get-EntraMSAuthorizationPolicy.md)
 
