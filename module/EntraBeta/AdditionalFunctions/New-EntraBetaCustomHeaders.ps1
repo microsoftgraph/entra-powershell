@@ -1,17 +1,16 @@
-<#
-.SYNOPSIS
-    A short one-line action-based description, e.g. 'Tests if a function is valid'
-.DESCRIPTION
-    A longer description of the function, its purpose, common use cases, etc.
-.NOTES
-    Information or caveats about the function e.g. 'This function is not supported in Linux'
-.LINK
-    Specify a URI to a help page, this will show when Get-Help -Online is used.
-.EXAMPLE
-    Test-MyTestFunction -Verbose
-    Explanation of the function or its result. You can include multiple examples with additional .EXAMPLE lines
-#>
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 function New-EntraBetaCustomHeaders {
+    <#
+    .SYNOPSIS
+        Creates a custom header for use in telemetry.
+    .DESCRIPTION
+        THe custom header created is a User-Agent with header value "<PowerShell version> EntraPowershell/<EntraPowershell version> <Entra PowerShell command>"
+    .EXAMPLE
+        New-EntraBetaCustomHeaders -Command Get-EntraUser
+    #>
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
