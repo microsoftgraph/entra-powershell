@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraMSApplicationOwner.
+description: This article provides details on the Remove-EntraMSApplicationOwner command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/22/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,7 +23,10 @@ Removes an owner from an application object.
 ## SYNTAX
 
 ```
-Remove-EntraMSApplicationOwner -OwnerId <String> -ObjectId <String> [<CommonParameters>]
+Remove-EntraMSApplicationOwner 
+-OwnerId <String> 
+-ObjectId <String> 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,7 +35,7 @@ Removes an owner from an application object.
 ## EXAMPLES
 
 ### Example 1: Remove an owner from an application
-```
+```Powershell
 PS C:\>Remove-EntraMSApplicationOwner -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -OwnerId "c13dd34a-492b-4561-b171-40fcce2916c5"
 ```
 
@@ -31,7 +44,7 @@ This command removes the owner from the specified application.
 ## PARAMETERS
 
 ### -ObjectId
-Specifies the ID of an application in Azure AD.
+Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -72,7 +85,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraMSApplicationOwner]()
+[Add-EntraMSApplicationOwner](Add-EntraMSApplicationOwner.md)
 
-[Get-EntraMSApplicationOwner]()
+[Get-EntraMSApplicationOwner](Get-EntraMSApplicationOwner.md)
 
