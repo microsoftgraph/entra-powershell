@@ -120,6 +120,12 @@ steps:
       Create-ModuleHelp -Module EntraBeta
     pwsh: false
 - task: powershell@2
+  displayName: 'Set maximum function count'
+  inputs:
+    targetType: inline
+    script: '$MaximumFunctionCount=32768'
+    pwsh: false
+- task: powershell@2
   displayName: 'Build EntraBeta'
   inputs:
     targetType: inline
