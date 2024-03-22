@@ -1,4 +1,14 @@
 ---
+title: Get-EntraUserExtension.
+description: This article provides details on the Get-EntraUserExtension command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/22/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,7 +23,9 @@ Gets a user extension.
 ## SYNTAX
 
 ```
-Get-EntraUserExtension -ObjectId <String> [<CommonParameters>]
+Get-EntraUserExtension 
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,27 +34,13 @@ The Get-EntraUserExtension cmdlet gets a user extension in Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Retrieve extension attributes for a user
-```
+```powershell
 PS C:\> $UserId = (Get-EntraUser -Top 1).ObjectId
 PS C:\> Get-EntraUserExtension -ObjectId $UserId
-
-Key                            Value 
----                            ----- 
-odata.metadata                 https://graph.windows.net/85b5ff1e-0402-400c-9e3c0f9e965325d1$metadata#directoryObjects/Microsoft.Director... 
-odata.type                     Microsoft.DirectoryServices.User
-deletionTimestamps
-signInNames                    [] 
-companyName 
-creationType 
-facsimileTelephoneNumber 
-isCompromised 
-refreshTokensValidFromDateTime 11/7/2016 10:11:09 PM 
-showInAddressList
 ```
 
-The first command gets the ID of an Azure AD user by using the Get-EntraUser (./Get-EntraUser.md)cmdlet. 
-The command stores the value in the $UserId variable.
-
+The first command gets the ID of a Microsoft Entra ID user by using the Get-EntraUser (./Get-EntraUser.md) cmdlet. 
+The command stores the value in the $UserId variable.  
 The second command retrieves all extension attributes that have a value assigned to them for the user identified by $UserId.
 
 ## PARAMETERS
@@ -73,9 +71,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraUser]()
+[Get-EntraUser](Get-EntraUser.md)
 
-[Remove-EntraUserExtension]()
+[Remove-EntraUserExtension](Remove-EntraUserExtension.md)
 
-[Set-EntraUserExtension]()
+[Set-EntraUserExtension](Set-EntraUserExtension.md)
 
