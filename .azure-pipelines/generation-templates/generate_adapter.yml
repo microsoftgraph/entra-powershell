@@ -120,16 +120,12 @@ steps:
       Create-ModuleHelp -Module EntraBeta
     pwsh: false
 - task: powershell@2
-  displayName: 'Set maximum function count'
-  inputs:
-    targetType: inline
-    script: '$MaximumFunctionCount=32768'
-    pwsh: false
-- task: powershell@2
   displayName: 'Build EntraBeta'
   inputs:
     targetType: inline
-    script: ./build/Create-CompatModule.ps1 -Module EntraBeta -Verbose
+    script: |
+      $MaximumFunctionCount=32768
+      ./build/Create-CompatModule.ps1 -Module EntraBeta -Verbose
     pwsh: false
 - ${{ if eq(parameters.Sign, true) }}:
   - template: ../common-templates/esrp/codesign.yml
