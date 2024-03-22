@@ -7,7 +7,7 @@ function New-EntraBetaCustomHeaders {
     .SYNOPSIS
         Creates a custom header for use in telemetry.
     .DESCRIPTION
-        THe custom header created is a User-Agent with header value "<PowerShell version> EntraPowershell/<EntraPowershell version> <Entra PowerShell command>"
+        The custom header created is a User-Agent with header value "<PowerShell version> EntraPowershell/<EntraPowershell version> <Entra PowerShell command>"
     .EXAMPLE
         New-EntraBetaCustomHeaders -Command Get-EntraUser
     #>
