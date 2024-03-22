@@ -1,6 +1,6 @@
 ---
-title: Get-EntraBetaAuditSignInLogs.
-description: This article provides details on the Get-EntraBetaAuditSignInLogs command.
+title: Remove-EntraDeviceRegisteredUser.
+description: This article provides details on the Remove-EntraDeviceRegisteredUser command.
 
 ms.service: active-directory
 ms.topic: reference
@@ -41,11 +41,11 @@ PS C:\> $User = Get-EntraDeviceRegisteredUser -ObjectId $Device.ObjectId
 PS C:\> Remove-EntraDeviceRegisteredOwner -ObjectId $Device.ObjectId -OwnerId $Owner.ObjectId
 ```
 
-The first command gets a device by using the Get-EntraDevice (./Get-EntraDevice.md)cmdlet, and then stores it in the $Device variable.
-
-The second command gets the registered user for the device in $Device by using the Get-EntraDeviceRegisteredUser (./Get-EntraDeviceRegisteredUser.md)cmdlet.
-The command stores it in the $User variable.
-
+This example demonstrates how to remove the registered user from device.  
+The first command gets a device by using the Get-EntraDevice (./Get-EntraDevice.md) cmdlet, and then stores it in the $Device variable.  
+The second command gets the registered user for the device in $Device by using the Get-EntraDeviceRegisteredUser
+(./Get-EntraDeviceRegisteredUser.md) cmdlet.
+The command stores it in the $User variable.  
 The final command removes the user in $User from the device in $Device.
 
 ## PARAMETERS
@@ -92,6 +92,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Add-EntraDeviceRegisteredUser](Add-EntraDeviceRegisteredUser.md)
-
 [Get-EntraDeviceRegisteredUser](Get-EntraDeviceRegisteredUser.md)
+
+
 
