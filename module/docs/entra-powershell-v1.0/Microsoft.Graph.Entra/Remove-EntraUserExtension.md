@@ -1,4 +1,14 @@
 ---
+title: Get-Remove-EntraUserExtension.
+description: This article provides details on the Remove-EntraUserExtension command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/22/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -14,13 +24,18 @@ Removes a user extension.
 
 ### SetMultiple
 ```
-Remove-EntraUserExtension -ObjectId <String> -ExtensionNames <System.Collections.Generic.List`1[System.String]>
- [<CommonParameters>]
+Remove-EntraUserExtension 
+-ObjectId <String> 
+-ExtensionNames <System.Collections.Generic.List`1[System.String]>
+[<CommonParameters>]
 ```
 
 ### SetSingle
 ```
-Remove-EntraUserExtension -ObjectId <String> -ExtensionName <String> [<CommonParameters>]
+Remove-EntraUserExtension 
+-ObjectId <String> 
+-ExtensionName <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -93,7 +108,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraUserExtension]()
+[Get-EntraUserExtension](Get-EntraUserExtension.md)
 
-[Set-EntraUserExtension]()
+[Set-EntraUserExtension](Set-EntraUserExtension.md)
 
