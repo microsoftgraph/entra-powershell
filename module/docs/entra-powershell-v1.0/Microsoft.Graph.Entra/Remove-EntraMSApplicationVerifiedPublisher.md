@@ -4,7 +4,7 @@ description: This article provides details on the Remove-EntraMSApplicationVerif
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/25/2023
+ms.date: 03/25/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
