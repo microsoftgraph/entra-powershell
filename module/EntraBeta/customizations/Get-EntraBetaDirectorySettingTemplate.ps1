@@ -9,6 +9,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
+        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
         `$keysChanged = @{}
         if(`$PSBoundParameters.ContainsKey("Verbose"))
         {
@@ -27,7 +28,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================``n")
         
-        `$apiResponse = Get-MgBetaDirectorySettingTemplate @params
+        `$apiResponse = Get-MgBetaDirectorySettingTemplate @params -Headers `$customHeaders
         `$response = @()
         `$apiResponse | ForEach-Object {
             if(`$null -ne `$_) {

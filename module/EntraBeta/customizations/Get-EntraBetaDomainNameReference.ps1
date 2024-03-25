@@ -9,6 +9,7 @@
     CustomScript = @'   
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{Name = "DomainId"}
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
@@ -27,7 +28,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Get-MgBetaDomainNameReference @params
+        $response = Get-MgBetaDomainNameReference @params -Headers $customHeaders
         $properties = @{
             ObjectId = "Id"
             DeletionTimestamp = "deletedDateTime"

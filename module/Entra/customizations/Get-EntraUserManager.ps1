@@ -9,6 +9,7 @@
     CustomScript = @'   
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $Method = "GET"
         $keysChanged = @{ObjectId = "Id"}
         if($PSBoundParameters.ContainsKey("Verbose"))
@@ -30,7 +31,7 @@
     
         try {
             $URI = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager?`$select=*"
-            $response = Invoke-GraphRequest -Uri $URI -Method $Method -ErrorAction Stop
+            $response = Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method -ErrorAction Stop
             $response = $response | ConvertTo-Json | ConvertFrom-Json
             $response | ForEach-Object {
                 if($null -ne $_) {

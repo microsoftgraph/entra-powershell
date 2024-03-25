@@ -85,6 +85,7 @@ function Set-EntraBetaDomainFederationSettings {
             ) 
         process { 
             $params = @{}
+            $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
             if($PSBoundParameters.ContainsKey("Verbose"))
             {
                 $params["Verbose"] = $Null
@@ -150,7 +151,7 @@ function Set-EntraBetaDomainFederationSettings {
             Write-Debug("=========================================================================`n")
             if($null -ne $params.InternalDomainFederationId)
             {
-                $response =  Update-MgBetaDomainFederationConfiguration @params
+                $response =  Update-MgBetaDomainFederationConfiguration @params -Headers $customHeaders
                 $response
             }
         }
