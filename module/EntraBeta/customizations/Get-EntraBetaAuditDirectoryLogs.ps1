@@ -9,6 +9,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
+        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
         `$keysChanged = @{}
         if(`$null -ne `$PSBoundParameters["Filter"])
         {
@@ -43,7 +44,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        `$response = Get-MgBetaAuditLogDirectoryAudit @params
+        `$response = Get-MgBetaAuditLogDirectoryAudit @params -Headers `$customHeaders
         `$response | ForEach-Object {
             if (`$null -ne `$_) {
                 `$propsToConvert = @('InitiatedBy', 'TargetResources', 'AdditionalDetails')

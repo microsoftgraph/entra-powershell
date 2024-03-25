@@ -8,7 +8,8 @@
     Outputs = $null
     CustomScript = @"
     PROCESS {  
-        `$params = @{}  
+        `$params = @{}
+        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
                 if (`$null -ne `$PSBoundParameters["Id"]) {
                     `$params["Id"] = `$PSBoundParameters["Id"]
                 }
@@ -23,7 +24,7 @@
                     `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
                     Write-Debug("=========================================================================``n")
                     `$URI = "https://graph.microsoft.com/beta/serviceprincipals/`$Id/policies"
-                    `$response = (Invoke-GraphRequest -Uri `$uri -Method `$Method | ConvertTo-Json | ConvertFrom-Json).value
+                    `$response = (Invoke-GraphRequest -Headers `$customHeaders -Uri `$uri -Method `$Method | ConvertTo-Json | ConvertFrom-Json).value
                     `$response | Add-Member -MemberType AliasProperty -Value '@odata.type' -Name 'odata.type'
                     `$response
             }

@@ -9,6 +9,7 @@
     CustomScript = @'
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         
         $params["OrganizationId"] = (Get-MgContext).TenantId
         if($PSBoundParameters.ContainsKey("Debug"))
@@ -32,7 +33,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $responseData = Get-MgBetaOrganizationCertificateBasedAuthConfiguration @params
+        $responseData = Get-MgBetaOrganizationCertificateBasedAuthConfiguration @params -Headers $customHeaders
         $response= @()
         $responseData.CertificateAuthorities | ForEach-Object {
             if (
