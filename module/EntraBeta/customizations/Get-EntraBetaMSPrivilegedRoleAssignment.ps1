@@ -9,6 +9,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
+        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
         `$ProviderId = `$PSBoundParameters["ProviderId"]
         `$ResourceId = `$PSBoundParameters["ResourceId"]
         `$params["Uri"] = "https://graph.microsoft.com/beta/privilegedAccess/`$ProviderId/resources/`$ResourceId/roleAssignments"
@@ -41,7 +42,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================``n")
                 
-        `$response = Invoke-GraphRequest -Method `$params.method -Uri `$params.uri 
+        `$response = Invoke-GraphRequest -Headers `$customHeaders -Method `$params.method -Uri `$params.uri
         try {    
             `$call = `$response.value 
             `$call.GetEnumerator() | format-table -HideTableHeaders

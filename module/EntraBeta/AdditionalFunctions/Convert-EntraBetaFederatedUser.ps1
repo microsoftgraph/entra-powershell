@@ -39,6 +39,7 @@ function Convert-EntraBetaFederatedUser {
 
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{}
         if ($null -ne $PSBoundParameters["UserPrincipalName"]) {
             $UserPrincipalName = $PSBoundParameters.UserPrincipalName
@@ -64,7 +65,7 @@ function Convert-EntraBetaFederatedUser {
         Write-Debug("=========================================================================`n")
         if($null -ne $AuthenticationMethodId)
         {
-            $response = Reset-MgBetaUserAuthenticationMethodPassword @params
+            $response = Reset-MgBetaUserAuthenticationMethodPassword @params -Headers $customHeaders
         }
         $response
         }

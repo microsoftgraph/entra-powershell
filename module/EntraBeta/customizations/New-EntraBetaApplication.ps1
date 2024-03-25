@@ -8,6 +8,7 @@
     outputs = $null
     CustomScript = @'
     $params = @{}
+    $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     if($PSBoundParameters.ContainsKey("Verbose"))
     {
         $params["Verbose"] = $Null
@@ -208,7 +209,7 @@
     $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
     Write-Debug("=========================================================================``n")
 
-    $response = New-MgBetaApplication @params
+    $response = New-MgBetaApplication @params -Headers $customHeaders
 
     
     $response

@@ -38,6 +38,7 @@ function Get-EntraPasswordPolicy {
 
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{}
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $Null
@@ -51,7 +52,7 @@ function Get-EntraPasswordPolicy {
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $response = Get-MgDomain @params
+        $response = Get-MgDomain @params -Headers $customHeaders
         # Create a custom table
         $customTable = [PSCustomObject]@{
             "NotificationDays" = $response.PasswordNotificationWindowInDays

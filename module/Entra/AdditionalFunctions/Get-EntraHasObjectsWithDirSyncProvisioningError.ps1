@@ -8,6 +8,7 @@ function Get-EntraHasObjectsWithDirSyncProvisioningError {
     )
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $Null
         }
@@ -27,7 +28,7 @@ function Get-EntraHasObjectsWithDirSyncProvisioningError {
             foreach ($obj in $object) {
                 $obj = ($obj | Out-String).trimend()
                 $uri = 'https://graph.microsoft.com/v1.0/' + $obj + '?$select=onPremisesProvisioningErrors'
-                $response += ((Invoke-GraphRequest -Uri $uri -Method GET).value).onPremisesProvisioningErrors   
+                $response += ((Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method GET).value).onPremisesProvisioningErrors
             }
         }
         catch {}
