@@ -1,4 +1,15 @@
 ---
+title: Set-EntraMSApplicationVerifiedPublisher
+description: This article provides details on the Set-EntraMSApplicationVerifiedPublisher command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/25/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,9 +23,11 @@ Sets the verified publisher of an application to a verified Microsoft Partner Ne
 
 ## SYNTAX
 
-```
-Set-EntraMSApplicationVerifiedPublisher -AppObjectId <String>
- -SetVerifiedPublisherRequest <SetVerifiedPublisherRequest> [<CommonParameters>]
+```powershell
+Set-EntraMSApplicationVerifiedPublisher 
+    -AppObjectId <String>
+    -SetVerifiedPublisherRequest <SetVerifiedPublisherRequest> 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,12 +36,14 @@ Sets the verified publisher of an application to a verified Microsoft Partner Ne
 ## EXAMPLES
 
 ### Example 1: Set the verified publisher of an application.
+```powershell
+PS C:\> $appObjId = 'ad6c71a5-e48f-4320-bb59-92642a2d8d9f'
+PS C:\> $mpnId =  '0433167'
+PS C:\> $req =  @{verifiedPublisherId=$mpnId}
+PS C:\> Set-EntraMSApplicationVerifiedPublisher -AppObjectId $appObjId -SetVerifiedPublisherRequest $req
 ```
-$appObjId = 'ad6c71a5-e48f-4320-bb59-92642a2d8d9f'
-          $mpnId =  '0433167'
-          $req =  @{verifiedPublisherId=$mpnId}
-          Set-EntraMSApplicationVerifiedPublisher -AppObjectId $appObjId -SetVerifiedPublisherRequest $req
-```
+
+This command sets the verified publisher of an application.
 
 ## PARAMETERS
 
@@ -48,7 +63,7 @@ Accept wildcard characters: False
 ```
 
 ### -SetVerifiedPublisherRequest
-A request body object containing the verifiedPublisherId property its the MPNID value.
+A request body object containing the verifiedPublisherId property it's the MPNID value.
 
 ```yaml
 Type: SetVerifiedPublisherRequest
@@ -63,17 +78,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
-### string
-### string
+### String
+### String
 ## OUTPUTS
 
 ## NOTES
 
 ## RELATED LINKS
 
-[Remove-EntraMSApplicationVerifiedPublisher]()
+[Remove-EntraMSApplicationVerifiedPublisher](Remove-EntraMSApplicationVerifiedPublisher.md)
 
