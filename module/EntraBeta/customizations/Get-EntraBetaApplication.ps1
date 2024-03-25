@@ -9,6 +9,7 @@
     CustomScript = @'
     PROCESS {  
         $params = @{}
+        $customHeaders = New-CustomHeaders -Module Entra -Command $MyInvocation.MyCommand
         $keysChanged = @{SearchString = "Filter"; ObjectId = "Id"}
         if($null -ne $PSBoundParameters["SearchString"])
         {
@@ -50,10 +51,10 @@
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================")
         
-        $response = Get-MgBetaApplication @params
+        $response = Get-MgBetaApplication @params -Headers $customHeaders
         $response | ForEach-Object {
             if($null -ne $_) {
             Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id

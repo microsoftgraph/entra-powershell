@@ -9,6 +9,7 @@
     CustomScript = @"
     PROCESS {
         `$params = @{}
+        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
         `$keysChanged = @{`$Id = "ApplicationTemplateId" }
         if (`$null -ne `$PSBoundParameters["Id"]) {
             `$params["ApplicationTemplateId"] = `$PSBoundParameters["Id"]
@@ -26,7 +27,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================``n")
 
-        `$response = Invoke-MgBetaInstantiateApplicationTemplate @params
+        `$response = Invoke-MgBetaInstantiateApplicationTemplate @params -Headers `$customHeaders
         `$Application = [PSCustomObject]@{
             "ObjectId"                = (`$response.Application | select-object -ExpandProperty AdditionalProperties)["objectId"]
             "ApplicationTemplateId"   = (`$response.Application | select-object -ExpandProperty AdditionalProperties)["applicationTemplateId"]
