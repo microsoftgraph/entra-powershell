@@ -8,7 +8,8 @@
     Outputs = $null
     CustomScript = @"
     PROCESS {  
-        `$params = @{}  
+        `$params = @{}
+        `$customHeaders = New-EntraCustomHeaders -Command `$MyInvocation.MyCommand
                 if (`$null -ne `$PSBoundParameters["Id"]) {
                     `$params["Id"] = `$PSBoundParameters["Id"]
                 }
@@ -24,7 +25,7 @@
                     `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
                     Write-Debug("=========================================================================``n")
                     `$URI = "https://graph.microsoft.com/v1.0/directory/deletedItems/`$Id"
-                    `$response = Invoke-GraphRequest -Uri `$uri -Method `$Method
+                    `$response = Invoke-GraphRequest -Headers `$customHeaders -Uri `$uri -Method `$Method
                     `$response
     }
 "@

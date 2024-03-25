@@ -9,6 +9,7 @@
     CustomScript = @'
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{ObjectId = "Id"}
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
@@ -28,7 +29,7 @@
         Write-Debug("=========================================================================`n")
         
         try {
-            $response = Get-MgBetaDirectoryRoleMember @params
+            $response = Get-MgBetaDirectoryRoleMember @params -Headers $customHeaders
             $response | ForEach-Object {
                 if ($null -ne $_) {
                     Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties

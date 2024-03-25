@@ -39,6 +39,7 @@ function Convert-EntraFederatedUser {
 
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{}
         if ($null -ne $PSBoundParameters["UserPrincipalName"]) {
             $UserPrincipalName = $PSBoundParameters.UserPrincipalName
@@ -64,7 +65,7 @@ function Convert-EntraFederatedUser {
         Write-Debug("=========================================================================`n")
         if($null -ne $AuthenticationMethodId)
         {
-            $response = Reset-MgUserAuthenticationMethodPassword @params
+            $response = Reset-MgUserAuthenticationMethodPassword @params -Headers $customHeaders
         }
         $response
         }

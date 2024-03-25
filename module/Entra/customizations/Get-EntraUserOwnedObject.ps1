@@ -8,7 +8,8 @@
     Outputs = $null
     CustomScript = @"
     PROCESS {  
-        `$params = @{}  
+        `$params = @{}
+        `$customHeaders = New-EntraCustomHeaders -Command `$MyInvocation.MyCommand
                 if (`$null -ne `$PSBoundParameters["ObjectId"]) {
                     `$params["UserId"] = `$PSBoundParameters["ObjectId"]
                 }
@@ -28,7 +29,7 @@
                 `$Method = "GET"
                 `$URI = '/v1.0/users/'+`$params["UserId"]+'/ownedObjects'
 
-                `$response = (Invoke-GraphRequest -Uri `$uri -Method `$Method).value;
+                `$response = (Invoke-GraphRequest -Headers `$customHeaders -Uri `$uri -Method `$Method).value;
                 
                 `$Top = `$null
                 if (`$null -ne `$PSBoundParameters["Top"]) {
