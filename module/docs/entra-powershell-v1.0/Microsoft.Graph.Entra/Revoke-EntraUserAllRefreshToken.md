@@ -1,4 +1,14 @@
 ---
+title: Revoke-EntraUserAllRefreshToken.
+description: This article provides details on the Revoke-EntraUserAllRefreshToken command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/19/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,21 +23,24 @@ Invalidates the refresh tokens issued to applications for a user.
 ## SYNTAX
 
 ```
-Revoke-EntraUserAllRefreshToken -ObjectId <String> [<CommonParameters>]
+Revoke-EntraUserAllRefreshToken 
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 The Revoke-EntraUserAllRefreshToken cmdlet invalidates the refresh tokens issued to applications for a user. 
-The cmdlet also invalidates tokens issued to session cookies in a browser for the user. 
+The cmdlet also invalidates tokens issued to session cookies in a browser for the user.
 The cmdlet operates by resetting the refreshTokensValidFromDateTime user property to the current date and time.
 
 ## EXAMPLES
 
 ### Example 1: Revoke refresh tokens for a user
-```
+```powershell
 PS C:\> Revoke-EntraUserAllRefreshToken -ObjectId "a1d91a49-70c6-4d1d-a80a-b74c820a9a33"
 ```
 
+This example demonstrates how to revoke the tokens for the specified user.  
 This command revokes the tokens for the specified user.
 
 ## PARAMETERS
@@ -58,7 +71,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Revoke-EntraSignedInUserAllRefreshToken]()
+[Revoke-EntraSignedInUserAllRefreshToken](Revoke-EntraSignedInUserAllRefreshToken.md)
 
-[(#AzureAD: Certificate based authentication for iOS and Android now in preview!](https://blogs.technet.microsoft.com/enterprisemobility/2016/07/18/azuread-certificate-based-authentication-for-ios-and-android-now-in-preview/)
+[(#Microsoft Entra ID: Certificate based authentication for iOS and Android now in preview!](https://blogs.technet.microsoft.com/enterprisemobility/2016/07/18/azuread-certificate-based-authentication-for-ios-and-android-now-in-preview/)
 

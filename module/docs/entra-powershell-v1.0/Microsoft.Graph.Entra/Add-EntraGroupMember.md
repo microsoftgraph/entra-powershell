@@ -85,7 +85,7 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
-Specifies the ID of the Active Directory object that will be assigned as owner/manager/member.
+Specifies the ID of the Active Directory object that is assigned as owner/manager/member.
 
 ```yaml
 Type: String

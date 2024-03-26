@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaGroupOwner.
+description: This article provides details on the Get-EntraBetaGroupOwner command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/20/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -13,30 +23,59 @@ Gets an owner of a group.
 ## SYNTAX
 
 ```
-Get-EntraBetaGroupOwner -ObjectId <String> [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraBetaGroupOwner 
+ -ObjectId <String> 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaGroupOwner cmdlet gets an owner of a group in Azure Active Directory (AD).
+The Get-EntraBetaGroupOwner cmdlet gets an owner of a group in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Get a group owner by ID
+```powershell
+PS C:\> Get-EntraBetaGroupOwner -ObjectId "ba828166-dcd3-4349-aee9-9fbbf619105d"
 ```
-PS C:\>Get-EntraBetaGroupOwner -ObjectId "62438306-7c37-4638-a72d-0ee8d9217680"
-
-ObjectId                             ObjectType
---------                             ----------
-0a1068c0-dbb6-4537-9db3-b48f3e31dd76 User
+```output
+Id                                   DeletedDateTime
+--                                   ---------------
+996d39aa-fdac-4d97-aa3d-c81fb47362ac
 ```
+This example demonstrates how to retrieve the owner of a specific group.  
 
-This command gets the specified group owner.
+### Example 2: Gets all group owners
+```powershell
+PS C:\>Get-EntraBetaGroupOwner -ObjectId "c072b115-ed7b-47cb-90d3-d5019d8bfd51" -All $true
+```
+```output
+Id                                   DeletedDateTime
+--                                   ---------------
+996d39aa-fdac-4d97-aa3d-c81fb47362ac
+ea53750f-e28a-4645-b174-89618edd034a
+2ae2d97b-4bde-42aa-b7c0-7c91a4c91a77
+```
+This example demonstrates how to retrieve the all owner of a specific group.  
+
+### Example 3: Gets two group owners
+```powershell
+PS C:\>Get-EntraBetaGroupOwner -ObjectId "c072b115-ed7b-47cb-90d3-d5019d8bfd51" -Top 2
+```
+```output
+Id                                   DeletedDateTime
+--                                   ---------------
+996d39aa-fdac-4d97-aa3d-c81fb47362ac
+ea53750f-e28a-4645-b174-89618edd034a
+```
+This example demonstrates how to retrieve the top two owners of a specific group. 
 
 ## PARAMETERS
 
 ### -All
 If true, return all group owners.
-If false, return the number of objects specified by the Top parameter
+If false, return the number of objects specified by the Top parameter.
 
 ```yaml
 Type: Boolean
@@ -51,7 +90,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a group in Azure AD.
+Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -91,7 +130,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraBetaGroupOwner]()
+[Add-EntraBetaGroupOwner](Add-EntraBetaGroupOwner.md)
 
-[Remove-EntraBetaGroupOwner]()
+[Remove-EntraBetaGroupOwner](Remove-EntraBetaGroupOwner.md)
 

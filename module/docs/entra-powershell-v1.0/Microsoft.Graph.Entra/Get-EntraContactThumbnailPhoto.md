@@ -1,6 +1,6 @@
 ---
-title: Get-EntraApplicationLogo
-description: This article provides details on the Get-EntraApplicationLogo command.
+title: Get-EntraContactThumbnailPhoto
+description: This article provides details on the Get-EntraContactThumbnailPhoto command.
 
 ms.service: active-directory
 ms.topic: reference
@@ -8,7 +8,6 @@ ms.date: 03/21/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
-author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
@@ -16,30 +15,29 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-EntraApplicationLogo
-
+# Get-EntraContactThumbnailPhoto
 ## SYNOPSIS
-Retrieve the logo of an application.
+Retrieves the thumbnail photo of a contact.
 
 ## SYNTAX
 
-```powershell
-Get-EntraApplicationLogo 
-    -ObjectId <String> 
-    [-FileName <String>] 
-    [-View <Boolean>] 
-    [-FilePath <String>]
-    [<CommonParameters>]
+```
+Get-EntraContactThumbnailPhoto 
+-ObjectId <String> 
+[-FilePath <String>] 
+[-FileName <String>] 
+[-View <Boolean>]
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This cmdlet retrieves the logo that is set for an application.
+Retrieves the thumbnail photo of a contact.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Get the memberships of a contact
 ```powershell
-PS C:\WINDOWS\system32> Get-EntraApplicationLogo -ObjectId 79592454-dea7-4660-9d91-f1768e5055ac
+PS C:\> Get-EntraContactThumbnailPhoto -ObjectId b052db07-e7ec-4c0e-b481-a5ba550b9ee7
 ```
 
 ```output
@@ -59,12 +57,12 @@ PropertyIdList       : {274, 305, 306, 36867...}
 PropertyItems        : {274, 305, 306, 36867...}
 ```
 
-This example shows how to retrieve the application logo for an application that is specified through the Object ID parameter.
+This example retrieves the thumbnail photo of the contact object specified with the object ID parameter.
 
 ## PARAMETERS
 
 ### -FileName
-If provided, the application logo is copied to the file who's name is provided in this parameter.
+When provided, the cmdlet writes a copy of the thumbnail photo to this filename.
 
 ```yaml
 Type: String
@@ -79,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -FilePath
-If provided, the application logo is copied with a random filename to the file path that is specified in this parameter.
+When provided, the cmdlet writes a copy of the thumbnail photo to this file path using a random filename.
 
 ```yaml
 Type: String
@@ -94,7 +92,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-The ObjectID of the application for which the logo is to be retrieved.
+The object ID of the contact for which the thumbnail photo is retrieved.
 
 ```yaml
 Type: String
@@ -109,7 +107,7 @@ Accept wildcard characters: False
 ```
 
 ### -View
-If set to $true, the application's logo is displayed in a new window on the screen.
+If this parameter value is set to $True, display the retrieved thumbnail photo in a new window.
 
 ```yaml
 Type: Boolean
@@ -124,12 +122,12 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### System.String
-### System.Boolean
+System.Boolean
 
 ## OUTPUTS
 

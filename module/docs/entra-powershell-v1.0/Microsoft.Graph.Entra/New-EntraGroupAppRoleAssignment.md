@@ -1,4 +1,14 @@
 ---
+title: New-EntraGroupAppRoleAssignment.
+description: This article provides details on the New-EntraGroupAppRoleAssignment command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/06/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,12 @@ Assign a group of users to an application role.
 ## SYNTAX
 
 ```
-New-EntraGroupAppRoleAssignment -ObjectId <String> -PrincipalId <String> -Id <String> -ResourceId <String>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+New-EntraGroupAppRoleAssignment 
+ -ObjectId <String> 
+ -PrincipalId <String> 
+ -Id <String> 
+ -ResourceId <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,17 +36,33 @@ The New-EntraGroupAppRoleAssignment cmdlet assigns a group of users to an applic
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Assign a group of users to an application
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> $appname = "Box"
+$spo = Get-EntraServicePrincipal -Filter "Displayname eq '$appname'"
+$group = Get-EntraGroup -SearchString "Contoso Team"
+New-EntraGroupAppRoleAssignment -ObjectId $group.ObjectId -PrincipalId $group.ObjectId -ResourceId $spo.ObjectId -Id $spo.Approles[1].id
+```
+```output
+DeletedDateTime Id                                          AppRoleId                            CreatedDateTime      PrincipalDisplayName PrincipalId
+--------------- --                                          ---------                            ---------------      -------------------- -----------
+                xsZ3CJn8UU2YcYM1vnz8ndg-B0S9OklCltgw8SWHUTc e18f0405-fdec-4ae8-a8a0-d8edb98b061f 3/13/2024 4:41:43 AM Contoso Team         0877c6c6-fc99-4d51-9871-8335b...
 ```
 
-{{ Add example description here }}
+This example demonstrates how to assign a group of users to an application role in Microsoft Entra ID.  
+
+- `ObjectId`: The ID of the group to which you're assigning the app role.
+
+- `PrincipalId`: The ID of the group to which you're assigning the app role.
+
+- `ResourceId`: The ID of the resource service Principal, which has defined the app role.
+
+- `Id`: The ID of the appRole (defined on the resource service principal) to assign to the group.
 
 ## PARAMETERS
 
 ### -Id
-Specifies the ID.
+Specifies the ID of the app role (defined on the resource service principal) to assign.
 
 ```yaml
 Type: String
@@ -46,47 +76,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -ObjectId
-Specifies the ID of a user (as a UPN or ObjectId) in Azure AD.
+Specifies the unique identifier of group to which the new app role is to be assigned.
 
 ```yaml
 Type: String
@@ -101,7 +92,7 @@ Accept wildcard characters: False
 ```
 
 ### -PrincipalId
-Specifies the principal ID.
+Specifies the ID of a group.
 
 ```yaml
 Type: String
@@ -116,7 +107,8 @@ Accept wildcard characters: False
 ```
 
 ### -ResourceId
-Specifies the resource ID.
+The unique identifier (ID) for the resource service principal for which the assignment is made.  
+Required on create. Supports $filter (eq only).
 
 ```yaml
 Type: String
@@ -141,9 +133,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraGroupAppRoleAssignment]()
+[Get-EntraGroupAppRoleAssignment](Get-EntraGroupAppRoleAssignment.md)
 
-[Remove-EntraGroupAppRoleAssignment]()
+[Remove-EntraGroupAppRoleAssignment](Remove-EntraGroupAppRoleAssignment.md)
 
 [Managing applications in Microsoft Entra ID using PowerShell](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/ManageAppsAzureADPowerShell)
 
