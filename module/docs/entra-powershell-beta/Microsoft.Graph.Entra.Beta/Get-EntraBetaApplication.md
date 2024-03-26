@@ -127,7 +127,7 @@ This cmdlet gets all applications that match the value of SearchString against t
 
 ### Example 6: Retrieve an application by identifierUris
 ```powershell
-Get-EntraBetaApplication -Filter "identifierUris/any(uri:uri eq 'http://wingtips.wingtiptoysonline.com')"
+Get-EntraBetaApplication -Filter "identifierUris/any(uri:uri eq 'https://wingtips.wingtiptoysonline.com')"
 ```
 
 This example demonstrates how to retrieve applications by its identifierUris from Microsoft Entra ID. 

@@ -81,7 +81,7 @@ This command creates an application in Microsoft Entra ID.
 
 ### Example 2: Create an application with '-IdentifierUris' parameter
 ```powershell
-PS C:\>New-EntraBetaApplication -DisplayName "My new application" -IdentifierUris "http://mynewapp.contoso.com"
+PS C:\>New-EntraBetaApplication -DisplayName "My new application" -IdentifierUris "https://mynewapp.contoso.com"
 ```
 
 ```output
@@ -96,7 +96,7 @@ This command creates an application in Microsoft Entra ID.
 
 ### Example 3: Create an application with '-HomePage' parameter
 ```powershell
-PS C:\>New-EntraBetaApplication -DisplayName "My new application" -HomePage "http://mynewapp.home.com"
+PS C:\>New-EntraBetaApplication -DisplayName "My new application" -HomePage "https://mynewapp.home.com"
 ```
 
 ```output

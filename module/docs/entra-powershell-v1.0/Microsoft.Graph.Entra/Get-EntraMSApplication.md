@@ -171,7 +171,7 @@ This command gets an application by its ID.
 
 ### Example 3: Retrieve an application by identifierUris
 ```powershell
-Get-EntraMSApplication -Filter "identifierUris/any(uri:uri eq 'http://wingtips.wingtiptoysonline.com')"
+Get-EntraMSApplication -Filter "identifierUris/any(uri:uri eq 'https://wingtips.wingtiptoysonline.com')"
 ```
 
 ```output
@@ -191,7 +191,7 @@ AppRoles                  : {}
 IsDeviceOnlyAuthSupported :
 IsFallbackPublicClient    :
 IdentifierUris            : {
-                                http://wingtips.wingtiptoysonline.com
+                                https://wingtips.wingtiptoysonline.com
                             }
 DeletedDateTime           :
 DisplayName               : My App
