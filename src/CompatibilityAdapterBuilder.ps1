@@ -574,6 +574,13 @@ $($Command.CustomScript)
         $ParamterTransformations = $this.GetParametersTransformations($Command)
         $OutputTransformations = $this.GetOutputTransformations($Command)
         $keyId = $this.GetKeyIdPair($Command)
+        $customHeadersCommandName = "New-EntraCustomHeaders"
+
+        if($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta')
+        {
+            $customHeadersCommandName = "New-EntraBetaCustomHeaders"
+        }
+
         $function = @"
 function $($Command.Generate) {
     [CmdletBinding($($Command.DefaultParameterSet))]
@@ -583,13 +590,14 @@ $parameterDefinitions
 
     PROCESS {    
     `$params = @{}
+    `$customHeaders = $customHeadersCommandName -Command `$MyInvocation.MyCommand
     $($keyId)
 $ParamterTransformations
     Write-Debug("============================ TRANSFORMATIONS ============================")
     `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
     Write-Debug("=========================================================================``n")
     
-    `$response = $($Command.New) @params
+    `$response = $($Command.New) @params -Headers `$customHeaders
 $OutputTransformations
     `$response
     }

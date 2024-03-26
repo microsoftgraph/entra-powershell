@@ -9,6 +9,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
+        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
         
         `$array = ("activityBasedTimeoutPolicies",	"defaultAppManagementPolicy",	"appManagementPolicies",	"authenticationFlowsPolicy",	"authenticationMethodsPolicy",	"claimsMappingPolicies",	"featureRolloutPolicies",	"homeRealmDiscoveryPolicies",	"permissionGrantPolicies",	"tokenIssuancePolicies",	"tokenLifetimePolicies")
         if (`$null -ne `$PSBoundParameters["type"]) {
@@ -67,7 +68,7 @@
                     Write-Debug("=========================================================================``n")
                 
                     `$body = `$params | ConvertTo-Json
-                    `$response = Invoke-GraphRequest -Uri `$uri -Body `$body -Method `$Method
+                    `$response = Invoke-GraphRequest -Headers `$customHeaders -Uri `$uri -Body `$body -Method `$Method
                     `$response
             }
         

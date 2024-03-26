@@ -6,7 +6,8 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
-    (Get-MgApplication -ApplicationId `$PSBoundParameters["ObjectId"]).PasswordCredentials
-"@
+    CustomScript = @'
+    $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+    (Get-MgApplication -Headers $customHeaders -ApplicationId `$PSBoundParameters["ObjectId"]).PasswordCredentials
+'@
 }
