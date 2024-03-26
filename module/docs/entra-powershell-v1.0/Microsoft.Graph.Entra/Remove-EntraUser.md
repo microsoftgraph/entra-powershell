@@ -4,7 +4,7 @@ description: This article provides details on the Remove-EntraUser command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 02/27/2024
+ms.date: 03/27/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
