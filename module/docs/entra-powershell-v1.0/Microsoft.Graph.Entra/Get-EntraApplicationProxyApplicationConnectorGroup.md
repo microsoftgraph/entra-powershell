@@ -15,7 +15,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-EntraApplicationServiceEndpoint
+# Get-EntraApplicationProxyApplicationConnectorGroup
 
 ## SYNOPSIS
 The Get-EntraApplicationProxyApplicationConnectorGroup cmdlet retrieves the connector group assigned for a specific application.
