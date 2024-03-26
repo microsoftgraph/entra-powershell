@@ -35,7 +35,7 @@ Creates (registers) a new application object.
 
 ### Example 1: Create an application
 ```
-PS C:\>New-EntraMSApplication -DisplayName "My new application"  -IdentifierUris "http://mynewapp.contoso.com"
+PS C:\>New-EntraMSApplication -DisplayName "My new application"  -IdentifierUris "https://mynewapp.contoso.com"
 
           ObjectId                             AppId                                DisplayName
           --------                             -----                                -----------
@@ -468,7 +468,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
