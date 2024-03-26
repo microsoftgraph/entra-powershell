@@ -1,5 +1,5 @@
 ---
-itle: New-EntraMSNamedLocationPolicy
+title: New-EntraMSNamedLocationPolicy
 description: This article provides details on the New-EntraMSNamedLocationPolicy command.
 
 ms.service: active-directory

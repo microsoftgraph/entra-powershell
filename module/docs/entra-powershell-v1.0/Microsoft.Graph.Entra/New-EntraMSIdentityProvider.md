@@ -1,5 +1,5 @@
 ---
-itle: New-EntraMSIdentityProvider
+title: New-EntraMSIdentityProvider
 description: This article provides details on the New-EntraMSIdentityProvider command.
 
 ms.service: active-directory
