@@ -91,12 +91,12 @@ ForEach-Object  { Set-EntraUser -ObjectId $($_.ObjectId) -AgeGroup 'minor' -Cons
 ```
 This example updates the specified user's property.
 
-### Example 4: Set the specified user's propertys.
+### Example 4: Set the specified user's property.
 
 ```powershell
 PS C:\>Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -City "Add city name" -CompanyName "Microsoft" -ConsentProvidedForMinor Granted -Country 'Add country name' -Department "Add department name" -GivenName "Mircosoft" -ImmutableId "#1" -JobTitle "Manager" -MailNickName "Add mailnickname" -Mobile "9984534564" -OtherMails "test12@M365x99297270.OnMicrosoft.com" -PasswordPolicies "DisableStrongPassword" -State "UP" -StreetAddress "Add address"
 ```
-This example updates the specified user's City propertys.
+This example updates the specified user's City property.
 
 ### Example 5: Set the specified user's PasswordProfile property
 
@@ -105,7 +105,7 @@ PS C:\> $a = @{
    Password= "*****"
    ForceChangePasswordNextLogin = $true
    EnforceChangePasswordPolicy = $false
- }
+   }
 PS C:\> Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -PasswordProfile $a
 ```
 This example updates the specified user's PasswordProfile property.
@@ -120,7 +120,7 @@ This example updates the specified user's UserPrincipalName, UsageLocation, and 
 ## Example 7: Set the specified user's UserType property
 
 ```powershell
-   PS C:\> Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -UserType "Member"
+ PS C:\> Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -UserType "Member"
 ```
 This example updates the specified user's UserType property.
 
@@ -609,7 +609,7 @@ Accept wildcard characters: False
 ```
 
 ### -ConsentProvidedForMinor
-Sets whether consent has been obtained for minors. Allowed values: null, granted, denied, and notRequired.
+Sets whether consent has to obtained for minors. Allowed values: null, granted, denied, and notRequired.
 
 ```yaml
 Type: String
