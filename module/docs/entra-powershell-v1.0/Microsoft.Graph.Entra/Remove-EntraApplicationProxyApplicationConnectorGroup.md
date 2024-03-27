@@ -36,7 +36,7 @@ If your application is already in the 'Default' group, you see an error because 
 ### Example 1:  Remove the Connector Group associated with an application.
 
 ```powershell
-PS C:\> Remove-AzureADApplicationProxyApplicationConnectorGroup -ObjectId 59462d3c-a1bc-40a0-9bed-be799357ebce
+PS C:\> Remove-EntraApplicationProxyApplicationConnectorGroup -ObjectId 59462d3c-a1bc-40a0-9bed-be799357ebce
 ```
 This example demonstrates how to remove the Connector Group associated with an application, setting the group to 'Default.'
 

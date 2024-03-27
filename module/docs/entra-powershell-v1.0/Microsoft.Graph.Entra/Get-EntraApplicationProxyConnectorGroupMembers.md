@@ -83,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-The ID of the Connector group. This can be found by running the Get-AzureADApplicationProxyConnectorGroup command. 
+The ID of the Connector group. This can be found by running the Get-EntraApplicationProxyConnectorGroup command. 
 
 ```yaml
 Type: String

@@ -131,7 +131,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Get-EntraUserExtension](Get-EntraUserExtension.md)
 
-[Get-AzureAdExtensionProperty](Get-AzureAdExtensionProperty.md)
+[Get-EntraExtensionProperty](Get-EntraExtensionProperty.md)
 
 [Remove-EntraUserExtension](Remove-EntraUserExtension.md)
 

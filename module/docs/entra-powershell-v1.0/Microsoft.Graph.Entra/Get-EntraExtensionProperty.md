@@ -1,10 +1,10 @@
 ---
-title: Get-EntraApplicationExtensionProperty.
-description: This article provides details on the Get-EntraApplicationExtensionProperty command.
+title: Get-EntraExtensionProperty.
+description: This article provides details on the Get-EntraExtensionProperty command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/20/2024
+ms.date: 03/12/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -15,53 +15,55 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-EntraApplicationExtensionProperty
+# Get-EntraExtensionProperty
 
 ## SYNOPSIS
-Gets application extension properties.
+Gets extension properties registered with Microsoft Entra ID.
 
 ## SYNTAX
 
 ```
-Get-EntraApplicationExtensionProperty 
- -ObjectId <String> 
- [<CommonParameters>]
+Get-EntraExtensionProperty [-IsSyncedFromOnPremises <Boolean>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraApplicationExtensionProperty cmdlet gets application extension properties in Microsoft Entra ID.
+The Get-EntraExtensionProperty cmdlet gets a collection that contains the extension properties registered with Microsoft Entra ID through Microsoft Entra ID Connect. 
+You can get extension properties that are synced with on-premises Microsoft Entra ID, those that are not synced with on-premises Microsoft Entra ID, or both types.
 
 ## EXAMPLES
 
-### Example 1: Get extension properties
-```Powershell
-PS C:\>Get-EntraApplicationExtensionProperty -ObjectID 010cc9b5-fce9-485e-9566-c68debafac5f
+### Example 1: Get extension properties synced from on-premises Microsoft Entra ID
 ```
-```Output
-DeletedDateTime Id                                   AppDisplayName DataType IsSyncedFromOnPremises Name                                                     TargetObjects
---------------- --                                   -------------- -------- ---------------------- ----                                                     -------------
-                aae84ce7-62fb-4d16-87e8-af4e2e865096                String   False                  extension_5f783237345745d893e7a0edb1cfbfd1_NewAttribute3 {}
-                99429b1a-602c-4a78-b797-f63850ba1af7                String   False                  extension_5f783237345745d893e7a0edb1cfbfd1_NewAttribute1 {}
-                f2bfdbb9-e5d3-4ff9-8fb1-4e5d36726875                String   False                  extension_5f783237345745d893e7a0edb1cfbfd1_NewAttribute  {}
+PS C:\> Get-EntraExtensionProperty -IsSyncedFromOnPremises $True
+
+ObjectId                             Name                                                          TargetObjects
+--------                             ----                                                          -------------
+b3c7b2c2-bb9a-4e30-a9fc-46adbe8c0899 extension_6e151e1a9cf44f8689a410023ac39235_weather            {User}
+05af194f-1068-4539-83c9-06e03a1a1f44 extension_6e151e1a9cf44f8689a410023ac39235_extension_location {User}
+9bf6f631-e6a6-41d1-b0a3-777f2acea2d1 extension_ed192e9284d44baf997d1e190a81f28e_extension_4A3UwDDC {User}
 ```
 
-This example demonstrates how to retrieve extension properties for the specified application in Microsoft Entra ID.
-This command gets the extension properties for the specified application in Microsoft Entra ID.
+This command gets extension properties that have been synced from on-premises Microsoft Entra ID.
 
 ## PARAMETERS
 
-### -ObjectId
-Specifies the unique ID of an application in Microsoft Entra ID.
+### -IsSyncedFromOnPremises
+Specifies whether this cmdlet gets extension properties that are synced or not synced.
+- $True.
+Get extension properties that are synced from the on-premises Microsoft Entra ID.
+
+- $False. Get extension properties that are not synced from the on-premises Microsoft Entra ID.
+- No value. Get all extension properties.
 
 ```yaml
-Type: String
+Type: Boolean
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -75,8 +77,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
-
-[New-EntraApplicationExtensionProperty](New-EntraApplicationExtensionProperty.md)
-
-[Remove-EntraApplicationExtensionProperty](Remove-EntraApplicationExtensionProperty.md)
-
