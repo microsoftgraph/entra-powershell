@@ -1,4 +1,14 @@
 ---
+title: Get-EntraOAuth2PermissionGrant.
+description: This article provides details on the Get-EntraOAuth2PermissionGrant Command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/22/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,7 +23,10 @@ Gets OAuth2PermissionGrant entities.
 ## SYNTAX
 
 ```
-Get-EntraOAuth2PermissionGrant [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraOAuth2PermissionGrant 
+[-All <Boolean>] 
+[-Top <Int32>] 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,32 +35,52 @@ The Get-EntraOAuth2PermissionGrant cmdlet gets OAuth2PermissionGrant entities in
 ## EXAMPLES
 
 ### Example 1: Get the OAuth2 permission grants
-```
+```powershell
 PS C:\> Get-EntraOAuth2PermissionGrant
-
-ObjectId                                                         ResourceId                           Scope
---------                                                         ----------                           -----
-c-AY9qPNx0-4vVrWPxmED3iGICfrJnZDi2Jsj7SIpfXm6Bnf1yo-RYf1A39lKa4W 27208678-26eb-4376-8b62-6c8fb488a5f5 UserProfile.Read
-aPlw7ew41kiuWN7P6Av9X3iGICfrJnZDi2Jsj7SIpfV-R0UdFU0WTZ2ut7ZkWFvD 27208678-26eb-4376-8b62-6c8fb488a5f5 User.Read Directory.AccessAsUser.All
-aPlw7ew41kiuWN7P6Av9X3iGICfrJnZDi2Jsj7SIpfXm6Bnf1yo-RYf1A39lKa4W 27208678-26eb-4376-8b62-6c8fb488a5f5 UserProfile.Read user_impersonation
-WUarNRz2dUqY0u8dBKwglXiGICfrJnZDi2Jsj7SIpfXm6Bnf1yo-RYf1A39lKa4W 27208678-26eb-4376-8b62-6c8fb488a5f5 User.Read
-rbzRnQl5W0C0TpzshPS41HiGICfrJnZDi2Jsj7SIpfU                      27208678-26eb-4376-8b62-6c8fb488a5f5 User.Read
-Qp3O0EPJoUOgsLHe2NDOPXiGICfrJnZDi2Jsj7SIpfXm6Bnf1yo-RYf1A39lKa4W 27208678-26eb-4376-8b62-6c8fb488a5f5 User.Read
-Qp3O0EPJoUOgsLHe2NDOPUD-XnoDbmtOmpMPVcQFKs7m6Bnf1yo-RYf1A39lKa4W 7a5efe40-6e03-4e6b-9a93-0f55c4052ace MailboxSettings.ReadWrite Files.ReadWrite Files.Read profile email Tasks.ReadWrite Notes.Re...
-tCNicMsr30C8E6LrHPvvNniGICfrJnZDi2Jsj7SIpfU                      27208678-26eb-4376-8b62-6c8fb488a5f5 User.Read
-tCNicMsr30C8E6LrHPvvNl0FVbgdl8pHjyd2jlKSaDM                      b855055d-971d-47ca-8f27-768e52926833 AllSites.Read
-mK8RroiOPk6Yt1owm-5d_HiGICfrJnZDi2Jsj7SIpfU                      27208678-26eb-4376-8b62-6c8fb488a5f5 User.Read
-p4wNLtFXh0qcKrNjikytv3iGICfrJnZDi2Jsj7SIpfU                      27208678-26eb-4376-8b62-6c8fb488a5f5 Directory.ReadWrite.All User.Read
-p4wNLtFXh0qcKrNjikytv0D-XnoDbmtOmpMPVcQFKs4                      7a5efe40-6e03-4e6b-9a93-0f55c4052ace Directory.ReadWrite.All
 ```
-
+```output
+Id                                                               ClientId                             ConsentType   PrincipalId                          ResourceId
+--                                                               --------                             -----------   -----------                          ----------
+p9u1ll7Iq0-Gh9M3EERXhffW8XpadQNIoHik9aQxrVE                      96b5dba7-c85e-4fab-8687-d33710445785 AllPrincipals                                      7af1d6f7-755a-4...
+85EWleXZQ0-OSJsWJPYf48h9YfkUIuVJtj20MxKD_F4                      951691f3-d9e5-4f43-8e48-9b1624f61fe3 AllPrincipals                                      f9617dc8-2214-4...
+85EWleXZQ0-OSJsWJPYf4_fW8XpadQNIoHik9aQxrVE                      951691f3-d9e5-4f43-8e48-9b1624f61fe3 AllPrincipals                                      7af1d6f7-755a-4...
+85EWleXZQ0-OSJsWJPYf4wRcLIEmmNBKqrY2qSflLnU                      951691f3-d9e5-4f43-8e48-9b1624f61fe3 AllPrincipals                                      812c5c04-9826-4...
+85EWleXZQ0-OSJsWJPYf4zQov6XUsHVJkQd5wk-LuuM                      951691f3-d9e5-4f43-8e48-9b1624f61fe3 AllPrincipals                                      a5bf2834-b0d4-4...
+```
 This command gets the OAuth2 permission grants.
+
+### Example 2: Get All the OAuth2 permission grants 
+```powershell
+PS C:\>Get-EntraOAuth2PermissionGrant -All $true
+```
+```output
+Id                                                               ClientId                             ConsentType   PrincipalId                          ResourceId
+--                                                               --------                             -----------   -----------                          ----------
+p9u1ll7Iq0-Gh9M3EERXhffW8XpadQNIoHik9aQxrVE                      96b5dba7-c85e-4fab-8687-d33710445785 AllPrincipals                                      7af1d6f7-755a-4...
+85EWleXZQ0-OSJsWJPYf48h9YfkUIuVJtj20MxKD_F4                      951691f3-d9e5-4f43-8e48-9b1624f61fe3 AllPrincipals                                      f9617dc8-2214-4...
+85EWleXZQ0-OSJsWJPYf4_fW8XpadQNIoHik9aQxrVE                      951691f3-d9e5-4f43-8e48-9b1624f61fe3 AllPrincipals                                      7af1d6f7-755a-4...
+85EWleXZQ0-OSJsWJPYf4wRcLIEmmNBKqrY2qSflLnU                      951691f3-d9e5-4f43-8e48-9b1624f61fe3 AllPrincipals                                      812c5c04-9826-4...
+85EWleXZQ0-OSJsWJPYf4zQov6XUsHVJkQd5wk-LuuM                      951691f3-d9e5-4f43-8e48-9b1624f61fe3 AllPrincipals                                      a5bf2834-b0d4-4...
+```
+This command gets all the OAuth2 permission grants.
+
+### Example 3: Get top 2 OAuth2 permission grants record.
+```powershell
+PS C:\> Get-EntraOAuth2PermissionGrant -Top 1
+```
+```output
+Id                                          ClientId                             ConsentType   PrincipalId ResourceId                           Scope
+--                                          --------                             -----------   ----------- ----------                           -----
+p9u1ll7Iq0-Gh9M3EERXhffW8XpadQNIoHik9aQxrVE 96b5dba7-c85e-4fab-8687-d33710445785 AllPrincipals             7af1d6f7-755a-4803-a078-a4f5a431ad51 Policy.Read.All Policy.R...
+85EWleXZQ0-OSJsWJPYf48h9YfkUIuVJtj20MxKD_F4 951691f3-d9e5-4f43-8e48-9b1624f61fe3 AllPrincipals             f9617dc8-2214-49e5-b63d-b4331283fc5e User.Read Group.ReadWrit...
+```
+This command gets top 2 OAuth2 permission grants records.
 
 ## PARAMETERS
 
 ### -All
-If true, return all OAth2 permission grants.
-If false, return the number of objects specified by the Top parameter
+If true, return all Oath 2 permission grants.
+If false, return the number of objects specified by the Top parameter.
 
 ```yaml
 Type: Boolean
@@ -77,7 +110,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -87,5 +120,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Remove-EntraOAuth2PermissionGrant]()
+[Remove-EntraOAuth2PermissionGrant](Remove-EntraOAuth2PermissionGrant.md)
 

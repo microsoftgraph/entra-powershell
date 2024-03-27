@@ -1,4 +1,15 @@
 ---
+title: New-EntraApplicationKeyCredential
+description: This article provides details on the New-EntraApplicationKeyCredential command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/21/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,22 +23,30 @@ Creates a key credential for an application.
 
 ## SYNTAX
 
-```
-New-EntraApplicationKeyCredential [-CustomKeyIdentifier <String>] [-Type <KeyType>] [-Usage <KeyUsage>]
- -ObjectId <String> [-Value <String>] [-EndDate <DateTime>] [-StartDate <DateTime>]
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+New-EntraApplicationKeyCredential 
+    -ObjectId <String>
+    [-CustomKeyIdentifier <String>] 
+    [-Type <KeyType>] 
+    [-Usage <KeyUsage>]
+    [-Value <String>] 
+    [-EndDate <DateTime>] 
+    [-StartDate <DateTime>]
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The New-EntraApplicationKeyCredential cmdlet creates a key credential for an application.
+The **New-EntraApplicationKeyCredential** cmdlet creates a key credential for an application.
 
 ## EXAMPLES
 
 ### Example 1: Create a new application key credential
-```
+```powershell
 PS C:\> $AppID = (Get-EntraApplication -Top 1).Objectid
 PS C:\> New-EntraApplicationKeyCredential -ObjectId $AppId -CustomKeyIdentifier "Test" -StartDate "11/7/2016" -Type "Symmetric" -Usage "Sign" -Value "123"
+```
 
+```output
 CustomKeyIdentifier : {84, 101, 115, 116}
 EndDate             : 11/7/2017 12:00:00 AM
 KeyId               : a5845538-3f67-402d-a03e-36d768f1441e
@@ -37,8 +56,8 @@ Usage               : Sign
 Value               : {49, 50, 51}
 ```
 
-The first command gets the ID of an application by using the Get-EntraApplication (./Get-EntraApplication.md)cmdlet.
-The command stores it in the $AppId variable.
+The first command gets the ID of an application by using the [Get-EntraApplication](./Get-EntraApplication.md) cmdlet.
+The command stores it in the $AppId variable.  
 
 The second command creates the application key credential for the application identified by $AppId.
 
@@ -54,7 +73,7 @@ PS C:\> $keyid = [System.Guid]::NewGuid().ToString()
 PS C:\> New-EntraApplicationKeyCredential -ObjectId 009d786a-3503-4217-b8ab-db03d71c179a -CustomKeyIdentifier  $base64Thumbprint  -Type AsymmetricX509Cert -Usage Verify -Value $base64Value  -StartDate $cer.GetEffectiveDateString() -EndDate cer.GetExpirationDateString()
 ```
 
-The first seven commands create values for the application key credential and stores them in variables.
+The first seven commands create values for the application key credential and store them in variables.  
 
 The final command uses a certificate to add an application key credential.
 
@@ -87,45 +106,6 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -205,7 +185,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -215,11 +195,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraApplication]()
+[Get-EntraApplication](Get-EntraApplication.md)
 
-[Get-EntraApplicationKeyCredential]()
+[Get-EntraApplicationKeyCredential](Get-EntraApplicationKeyCredential.md)
 
-[Remove-EntraApplicationKeyCredential]()
+[Remove-EntraApplicationKeyCredential](Remove-EntraApplicationKeyCredential.md)
 
-[This cmdlet uses the ADAL library in Microsoft Entra ID. To learn more about ADAL, please follow this link:](http://www.cloudidentity.com/blog/2013/09/12/active-directory-authentication-library-adal-v1-for-net-general-availability/)
+[This cmdlet uses the ADAL library in Microsoft Entra ID. To learn more about ADAL, please follow this link:](https://www.cloudidentity.com/blog/2013/09/12/active-directory-authentication-library-adal-v1-for-net-general-availability/)
 
