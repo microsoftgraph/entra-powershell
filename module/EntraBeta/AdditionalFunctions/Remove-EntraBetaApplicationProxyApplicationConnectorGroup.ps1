@@ -11,7 +11,7 @@ function Remove-EntraBetaApplicationProxyApplicationConnectorGroup {
         $body = @{}
         if($null -ne $PSBoundParameters["ObjectId"])
         {
-            $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$ObjectId"
+            $params["Uri"] = "https://graph.microsoft.com/beta/applications/$ObjectId/connectorGroup/"+'$ref'
         }
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
