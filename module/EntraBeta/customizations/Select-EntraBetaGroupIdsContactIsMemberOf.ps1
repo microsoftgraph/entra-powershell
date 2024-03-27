@@ -9,6 +9,7 @@
     CustomScript = @'
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         if($null -ne $PSBoundParameters["ObjectId"])
         {
             $params["OrgContactId"] = $PSBoundParameters["ObjectId"]
@@ -24,7 +25,7 @@
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $initalResponse = Get-MgBetaContactMemberOfAsGroup @params
+        $initalResponse = Get-MgBetaContactMemberOfAsGroup @params -Headers $customHeaders
         $response = $initalResponse | Where-Object -Filterscript {$_.Id -in ($GroupIdsForMembershipCheck.GroupIds)} 
         if($response){
             $response.Id

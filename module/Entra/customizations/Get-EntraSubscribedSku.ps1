@@ -9,6 +9,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
+        `$customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         `$keysChanged = @{ObjectId = "Id"}
         if(`$PSBoundParameters.ContainsKey("Verbose"))
         {
@@ -26,7 +27,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        `$response = Get-MgSubscribedSku @params
+        `$response = Get-MgSubscribedSku @params -Headers `$customHeaders
         `$response | ForEach-Object {
             if (`$null -ne `$_) {
                 `$propsToConvert = @('PrepaidUnits')

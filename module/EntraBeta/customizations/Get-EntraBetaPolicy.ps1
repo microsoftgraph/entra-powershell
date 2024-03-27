@@ -9,6 +9,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
+        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
         `$baseUrl = "https://graph.microsoft.com/beta/policies/"
         `$endpoints = @("homeRealmDiscoveryPolicies", "claimsMappingPolicies", "tokenIssuancePolicies", "tokenLifetimePolicies", "activityBasedTimeoutPolicies", "featureRolloutPolicies", 	"defaultAppManagementPolicy", "appManagementPolicies", "authenticationFlowsPolicy",	"authenticationMethodsPolicy", "permissionGrantPolicies")
         
@@ -16,10 +17,10 @@
         foreach (`$endpoint in `$endpoints) {
             `$url = "`${baseUrl}`${endpoint}"
             try {
-                `$policies = (Invoke-GraphRequest -Uri `$url -Method GET).value
+                `$policies = (Invoke-GraphRequest -Headers `$customHeaders -Uri `$url -Method GET).value
             }
             catch {
-                `$policies = (Invoke-GraphRequest -Uri `$url -Method GET)
+                `$policies = (Invoke-GraphRequest -Headers `$customHeaders -Uri `$url -Method GET)
             }
             `$policies | ForEach-Object {
                 `$_.Type = (`$endpoint.Substring(0, 1).ToUpper() + `$endpoint.Substring(1) -replace "ies", "y")

@@ -1,4 +1,14 @@
 ---
+title: Update-EntraSignedInUserPassword.
+description: This article provides details on the Update-EntraSignedInUserPassword command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/16/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,10 @@ Updates the password for the signed-in user.
 ## SYNTAX
 
 ```
-Update-EntraSignedInUserPassword -NewPassword <SecureString> -CurrentPassword <SecureString>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+Update-EntraSignedInUserPassword 
+-NewPassword <SecureString> 
+-CurrentPassword <SecureString>
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,8 +35,11 @@ The Update-EntraSignedInUserPassword cmdlet updates the password for the signed-
 ## EXAMPLES
 
 ### Example 1: Update a password
-```
-PS C:\>Update-EntraSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword
+
+```powershell
+PS C:\>$CurrentPassword = ConvertTo-SecureString 'Test@1234' -AsPlainText -Force
+PS C:\>$NewPassword = ConvertTo-SecureString 'Test@1234' -AsPlainText -Force
+PS C:\>Update-AzureADSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword
 ```
 
 This command updates the password for the signed-in user.
@@ -46,43 +61,7 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
 
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -NewPassword
 Specifies the new password for the signed-in user.
