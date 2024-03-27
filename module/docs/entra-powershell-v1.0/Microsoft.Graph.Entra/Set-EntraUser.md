@@ -91,10 +91,10 @@ ForEach-Object  { Set-EntraUser -ObjectId $($_.ObjectId) -AgeGroup 'minor' -Cons
 ```
 This example updates the specified user's property.
 
-### Example 4: Set the specified user's property.
+### Example 4: Set the specified user's property
 
 ```powershell
-PS C:\>Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -City "Add city name" -CompanyName "Microsoft" -ConsentProvidedForMinor Granted -Country 'Add country name' -Department "Add department name" -GivenName "Mircosoft" -ImmutableId "#1" -JobTitle "Manager" -MailNickName "Add mailnickname" -Mobile "9984534564" -OtherMails "test12@M365x99297270.OnMicrosoft.com" -PasswordPolicies "DisableStrongPassword" -State "UP" -StreetAddress "Add address"
+PS C:\>Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -City "Add city name" -CompanyName "Microsoft" -ConsentProvidedForMinor Granted -Country 'Add country name' -Department "Add department name" -GivenName "Mircosoft" -ImmutableId "#1" -JobTitle "Manager" -MailNickName "Add mailnickname" -Mobile "9984534564" -OtherMails "test12@M365x99297270.OnMicrosoft.com" -PasswordPolicies "DisableStrongPassword" -State "UP" -StreetAddress "Add address" -UserType "Member"
 ```
 This example updates the specified user's City property.
 
@@ -109,20 +109,6 @@ PS C:\> $a = @{
 PS C:\> Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -PasswordProfile $a
 ```
 This example updates the specified user's PasswordProfile property.
-
-## Example 6: Set the specified user's UserPrincipalName, UsageLocation, and Surname property
-
-```powershell
- PS C:\> Set-EntraUser -ObjectId 9e3593e3-1918-475e-ab44-91364b50c091 -UserPrincipalName "demos131@M365x99297270.OnMicrosoft.com" -UsageLocation "CH" -Surname "Add surname"
-```
-This example updates the specified user's UserPrincipalName, UsageLocation, and Surname property.
-
-## Example 7: Set the specified user's UserType property
-
-```powershell
- PS C:\> Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -UserType "Member"
-```
-This example updates the specified user's UserType property.
 
 ## PARAMETERS
 
