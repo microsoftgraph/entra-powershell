@@ -110,21 +110,14 @@ PS C:\> Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -PasswordPr
 ```
 This example updates the specified user's PasswordProfile property.
 
-## Example 6: Set the specified user's PostalCode, PreferredLanguage, and ShowInAddressList property
-
-```powershell
-PS C:\>Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -PostalCode 444601 -PreferredLanguage "EN" -ShowInAddressList $true
-```
-This example updates the specified user's PostalCode, PreferredLanguage, and ShowInAddressList property.
-
-## Example 7: Set the specified user's UserPrincipalName, UsageLocation, and Surname property
+## Example 6: Set the specified user's UserPrincipalName, UsageLocation, and Surname property
 
 ```powershell
  PS C:\> Set-EntraUser -ObjectId 9e3593e3-1918-475e-ab44-91364b50c091 -UserPrincipalName "demos131@M365x99297270.OnMicrosoft.com" -UsageLocation "CH" -Surname "Add surname"
 ```
 This example updates the specified user's UserPrincipalName, UsageLocation, and Surname property.
 
-## Example 8: Set the specified user's UserType property
+## Example 7: Set the specified user's UserType property
 
 ```powershell
    PS C:\> Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -UserType "Member"
