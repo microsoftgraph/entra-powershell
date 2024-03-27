@@ -67,7 +67,7 @@ The tag "-Tags {WindowsAzureActiveDirectoryIntegratedApp}" is used to have this 
 ### Example 2: Create a new service principal by Homepage, logoutUrl, and ReplyUrls 
 ```powershell
 PS C:\> $MyApp=(Get-EntraApplication -Filter "DisplayName eq 'ToGraph_443DEM'")
-PS C:\> New-EntraServicePrincipal  -AppId $MyApp.AppId -Homepage 'http://localhost/home' -LogoutUrl 'htpp://localhost/logout' -ReplyUrls 'http://localhost/redirect'  
+PS C:\> New-EntraServicePrincipal  -AppId $MyApp.AppId -Homepage 'https://localhost/home' -LogoutUrl 'htpp://localhost/logout' -ReplyUrls 'https://localhost/redirect'  
 ```
 ```output
 DisplayName Id                                   AppId                                SignInAudience                     ServicePrincipalType
@@ -90,7 +90,7 @@ $creds.Usage = 'Sign'
 $creds.Value = [System.Text.Encoding]::UTF8.GetBytes("123")
 $creds.EndDate = Get-Date -Year 2024 -Month 10 -Day 23
 PS C:\> $MyApp=(Get-EntraApplication -Filter "DisplayName eq 'ToGraph_443DEM'")
->> New-AzureADServicePrincipal -AppId 00e08ac1-6dcb-443d-bf3b-d3723b6bd45f -Homepage 'http://localhost/home' -KeyCredentials $creds
+>> New-AzureADServicePrincipal -AppId 00e08ac1-6dcb-443d-bf3b-d3723b6bd45f -Homepage 'https://localhost/home' -KeyCredentials $creds
 PS C:\> New-EntraServicePrincipal  -AppId $MyApp.AppId  -KeyCredentials $creds
 ```
 
@@ -370,7 +370,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

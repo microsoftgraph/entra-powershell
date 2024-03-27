@@ -41,14 +41,14 @@ This cmdlet is used to invite a new external user to your directory.
 ### Example 1: Invite a new external user to your directory.
 
 ```powershell
-New-EntraMSInvitation -InvitedUserEmailAddress someexternaluser@externaldomain.com -SendInvitationMessage $True -InviteRedirectUrl "http://myapps.onmicrosoft.com"
+New-EntraMSInvitation -InvitedUserEmailAddress someexternaluser@externaldomain.com -SendInvitationMessage $True -InviteRedirectUrl "https://myapps.onmicrosoft.com"
 ```
 ```output
 Id                      : 3d8a715c-d652-4f28-80ed-8cc58bf4dbb9
 InviteRedeemUrl         : https://login.microsoftonline.com/redeem?rd=https%3a%2f%2finvitations.microsoft.com%2fredeem%2f%3ftenant%3dd5aec55f-2d12-4442-8d2f
                           -ccca95d4390e%26user%3d3d8a715c-d652-4f28-80ed-8cc58bf4dbb9%26ticket%3dTXpn2wc0Oa2HCz7tgjMPT1xVHXTTC0tw3Nd%25252fr78tKXg%25253d%26
                           ver%3d2.0
-InviteRedirectUrl       : http://myapps.onmicrosoft.com/
+InviteRedirectUrl       : https://myapps.onmicrosoft.com/
 InvitedUser             : @{AboutMe=; AccountEnabled=; Activities=; AgeGroup=; AgreementAcceptances=; AppRoleAssignments=; AssignedLicenses=;
                           AssignedPlans=; Authentication=; AuthorizationInfo=; Birthday=; BusinessPhones=; Calendar=; CalendarGroups=; CalendarView=;
                           Calendars=; Chats=; City=; CompanyName=; ConsentProvidedForMinor=; ContactFolders=; Contacts=; Country=; CreatedDateTime=;
@@ -83,14 +83,14 @@ When the user accepts the invitation, they're forwarded to the url as specified 
 ### Example 2: Invite a new external user to your directory with InvitedUserDisplayName parameter.
 
 ```powershell
-New-EntraMSInvitation -InvitedUserEmailAddress someexternaluser@externaldomain.com -SendInvitationMessage $True -InviteRedirectUrl "http://myapps.onmicrosoft.com" -InvitedUserDisplayName "microsoftuser"
+New-EntraMSInvitation -InvitedUserEmailAddress someexternaluser@externaldomain.com -SendInvitationMessage $True -InviteRedirectUrl "https://myapps.onmicrosoft.com" -InvitedUserDisplayName "microsoftuser"
 ```
 ```output
 Id                      : 3d8a715c-d652-4f28-80ed-8cc58bf4dbb9
 InviteRedeemUrl         : https://login.microsoftonline.com/redeem?rd=https%3a%2f%2finvitations.microsoft.com%2fredeem%2f%3ftenant%3dd5aec55f-2d12-4442-8d2f
                           -ccca95d4390e%26user%3d3d8a715c-d652-4f28-80ed-8cc58bf4dbb9%26ticket%3dTXpn2wc0Oa2HCz7tgjMPT1xVHXTTC0tw3Nd%25252fr78tKXg%25253d%26
                           ver%3d2.0
-InviteRedirectUrl       : http://myapps.onmicrosoft.com/
+InviteRedirectUrl       : https://myapps.onmicrosoft.com/
 InvitedUser             : @{AboutMe=; AccountEnabled=; Activities=; AgeGroup=; AgreementAcceptances=; AppRoleAssignments=; AssignedLicenses=;
                           AssignedPlans=; Authentication=; AuthorizationInfo=; Birthday=; BusinessPhones=; Calendar=; CalendarGroups=; CalendarView=;
                           Calendars=; Chats=; City=; CompanyName=; ConsentProvidedForMinor=; ContactFolders=; Contacts=; Country=; CreatedDateTime=;
@@ -128,14 +128,14 @@ This example demonstrates how to invite a new external user to your directory wi
 $a= New-Object Microsoft.Open.MSGraph.Model.InvitedUserMessageInfo
 >> $a.CustomizedMessageBody = "Hi there, how are you"
 >> $a.MessageLanguage = "EN"
->> New-AzureADMSInvitation -InvitedUserEmailAddress "someexternaluser@externaldomain.com" -SendInvitationMessage $True -InviteRedirectUrl "http://myapps.microsoft.com" -InvitedUserMessageInfo $a
+>> New-AzureADMSInvitation -InvitedUserEmailAddress "someexternaluser@externaldomain.com" -SendInvitationMessage $True -InviteRedirectUrl "https://myapps.microsoft.com" -InvitedUserMessageInfo $a
 ```
 ```output
 Id                      : b47dfdd8-727e-46ae-8f72-807166f09e6c
 InviteRedeemUrl         : https://login.microsoftonline.com/redeem?rd=https%3a%2f%2finvitations.microsoft.com%2fredeem%2f%3ftenant%3dd5aec55f-2d12-4442-8d2f
                           -ccca95d4390e%26user%3db47dfdd8-727e-46ae-8f72-807166f09e6c%26ticket%3dKk%25252faQ8k1Jr1Z9F9didqY%25252b4mDkVf%25252b5%25252f6gZcZ
                           Gn9qki%25252bM%25253d%26ver%3d2.0
-InviteRedirectUrl       : http://myapps.microsoft.com/
+InviteRedirectUrl       : https://myapps.microsoft.com/
 InvitedUser             : @{AboutMe=; AccountEnabled=; Activities=; AgeGroup=; AgreementAcceptances=; AppRoleAssignments=; AssignedLicenses=;
                           AssignedPlans=; Authentication=; AuthorizationInfo=; Birthday=; BusinessPhones=; Calendar=; CalendarGroups=; CalendarView=;
                           Calendars=; Chats=; City=; CompanyName=; ConsentProvidedForMinor=; ContactFolders=; Contacts=; Country=; CreatedDateTime=;
@@ -169,7 +169,7 @@ This example demonstrates how to invite a new external user to your directory wi
 ### Example 4: Invite a new external user to your directory with InvitedUserType parameter.
 
 ```powershell
- New-AzureADMSInvitation -InvitedUserEmailAddress "someexternaluser@externaldomain.com" -SendInvitationMessage $True -InviteRedirectUrl "http://myapps.microsoft.com"  -InvitedUserType Guest
+ New-AzureADMSInvitation -InvitedUserEmailAddress "someexternaluser@externaldomain.com" -SendInvitationMessage $True -InviteRedirectUrl "https://myapps.microsoft.com"  -InvitedUserType Guest
 ```
 
 ```output
@@ -177,7 +177,7 @@ Id                      : b47dfdd8-727e-46ae-8f72-807166f09e6c
 InviteRedeemUrl         : https://login.microsoftonline.com/redeem?rd=https%3a%2f%2finvitations.microsoft.com%2fredeem%2f%3ftenant%3dd5aec55f-2d12-4442-8d2f
                           -ccca95d4390e%26user%3db47dfdd8-727e-46ae-8f72-807166f09e6c%26ticket%3dKk%25252faQ8k1Jr1Z9F9didqY%25252b4mDkVf%25252b5%25252f6gZcZ
                           Gn9qki%25252bM%25253d%26ver%3d2.0
-InviteRedirectUrl       : http://myapps.microsoft.com/
+InviteRedirectUrl       : https://myapps.microsoft.com/
 InvitedUser             : @{AboutMe=; AccountEnabled=; Activities=; AgeGroup=; AgreementAcceptances=; AppRoleAssignments=; AssignedLicenses=;
                           AssignedPlans=; Authentication=; AuthorizationInfo=; Birthday=; BusinessPhones=; Calendar=; CalendarGroups=; CalendarView=;
                           Calendars=; Chats=; City=; CompanyName=; ConsentProvidedForMinor=; ContactFolders=; Contacts=; Country=; CreatedDateTime=;
@@ -318,7 +318,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
