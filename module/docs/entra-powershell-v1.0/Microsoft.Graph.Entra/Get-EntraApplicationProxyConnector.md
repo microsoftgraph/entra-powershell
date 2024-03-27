@@ -1,6 +1,6 @@
 ---
-title: Get-EntraApplicationProxyConnectorGroupMember.
-description: This article provides details on the Get-EntraApplicationProxyConnectorGroupMember. Command.
+title: Get-EntraApplicationProxyConnector.
+description: This article provides details on the Get-EntraApplicationProxyConnector Command.
 
 ms.service: active-directory
 ms.topic: reference
@@ -24,7 +24,7 @@ The Get-EntraApplicationProxyConnector cmdlet a list of all connectors, or if sp
 
 ### GetQuery (Default)
 ```
-Get-AzureADApplicationProxyConnector 
+Get-EntraApplicationProxyConnector
 [-All <Boolean>] 
 [-Top <Int32>] 
 [-Filter <String>] 
@@ -33,7 +33,7 @@ Get-AzureADApplicationProxyConnector
 
 ### GetVague
 ```
-Get-AzureADApplicationProxyConnector 
+Get-EntraApplicationProxyConnector
 [-SearchString <String>] 
 [-All <Boolean>] 
 [<CommonParameters>]
@@ -41,7 +41,7 @@ Get-AzureADApplicationProxyConnector
 
 ### GetById
 ```
-Get-AzureADApplicationProxyConnector 
+Get-EntraApplicationProxyConnector
 -Id <String> 
 [-All <Boolean>] 
 [<CommonParameters>]
@@ -63,11 +63,11 @@ Id                                   MachineName                      ExternalIp
 4c8b06e7-9751-41d5-8e5e-48e9b9bc2c66 AWCyclesApps.adventure-works.com 52.165.149.115 active
 834c5dd6-f2e8-47ae-973a-9fc769289b3d AWCyclesAD.adventure-works.com   52.165.149.131 active
 ```
-This example demonstrated how to retrieve all connectors.
+This example demonstrates how to retrieve all connectors.
 
 ### Example 2: Retrieve connectors with ID parameter
 ```powershell
-PS C:\> Get-AzureADApplicationProxyConnector -Id 4c8b06e7-9751-41d5-8e5e-48e9b9bc2c66
+PS C:\> Get-EntraApplicationProxyConnector -Id 4c8b06e7-9751-41d5-8e5e-48e9b9bc2c66
 ```
 ```output
 Id                                   MachineName                      ExternalIp     Status
