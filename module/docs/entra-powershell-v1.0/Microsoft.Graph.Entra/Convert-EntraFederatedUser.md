@@ -1,4 +1,15 @@
 ---
+title: Convert-EntraFederatedUser
+description: This article provides details on the Convert-EntraFederatedUser command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/28/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,27 +23,37 @@ Updates a user in a domain that was recently converted from single sign-on (also
 
 ## SYNTAX
 
-```
-Convert-EntraFederatedUser [-UserPrincipalName] <String> [[-NewPassword] <String>] [[-TenantId] <Guid>]
- [<CommonParameters>]
+```powershell
+Convert-EntraFederatedUser
+    -UserPrincipalName <String>
+    [-NewPassword <String>]
+    [-TenantId <Guid>]
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Convert-EntraFederatedUser cmdlet is used to update a user in a domain that was recently converted from single sign-on (also known as identity federation) to
-standard authentication type. 
-A new password must be provided for the user.
+The **Convert-EntraFederatedUser** cmdlet is used to update a user in a domain that was recently converted from single sign-on (also known as identity federation) to standard authentication type. A new password must be provided for the user.
 
 ## EXAMPLES
 
-### EXAMPLE 1
+### EXAMPLE 1: Update a user in a domain
+```powershell
+PS C:\> Convert-EntraFederatedUser -UserPrincipalName "pattifuller@contoso.com"
 ```
-Convert-EntraFederatedUser -UserPrincipalName "pattifuller@contoso.com"
+
+This command updates a user in a domain.
+
+### EXAMPLE 2: Update a user in a domain by TenantId
+```powershell
+PS C:\> Convert-EntraFederatedUser -UserPrincipalName "pattifuller@contoso.com" -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
 ```
+
+This command updates a user in a domain by TenantId.
 
 ## PARAMETERS
 
 ### -UserPrincipalName
-The Microsoft Azure Active Directory UserID for the user to convert.
+The Microsoft Entra ID UserID for the user to convert.
 
 ```yaml
 Type: String
@@ -63,9 +84,8 @@ Accept wildcard characters: False
 
 ### -TenantId
 The unique ID of the tenant to perform the operation on. 
-If this is not provided then it will default to the tenant of the current user. 
-This parameter is only
-applicable to partner users.
+If this isn't provided then it defaults to the tenant of the current user. 
+This parameter is only applicable to partner users.
 
 ```yaml
 Type: Guid
