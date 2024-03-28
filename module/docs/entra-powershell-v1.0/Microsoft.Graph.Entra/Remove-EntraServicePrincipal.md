@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraServicePrincipal.
+description: This article provides details on the Remove-EntraServicePrincipal command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/08/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,11 @@ Removes a service principal.
 ## SYNTAX
 
 ```
-Remove-EntraServicePrincipal -ObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Remove-EntraServicePrincipal 
+ -ObjectId <String> 
+ [-InformationAction <ActionPreference>]
+ [-InformationVariable <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,12 +35,13 @@ The Remove-EntraServicePrincipal cmdlet removes a service principal in Microsoft
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Removes a service principal
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-EntraServicePrincipal -ObjectId 99a6f8c7-6424-4e48-b0fd-1ee92549fd8f
 ```
 
-{{ Add example description here }}
+This example demonstrates how to remove service principal in Microsoft Entra ID.
+
 
 ## PARAMETERS
 
@@ -70,7 +84,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a service principal in Azure AD.
+Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -95,9 +109,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraServicePrincipal]()
+[Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
 
-[New-EntraServicePrincipal]()
+[New-EntraServicePrincipal](New-EntraServicePrincipal.md)
 
-[Set-EntraServicePrincipal]()
+[Set-EntraServicePrincipal](Set-EntraServicePrincipal.md)
 

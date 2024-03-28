@@ -1,5 +1,5 @@
 ---
-title: Get-Remove-EntraUserExtension.
+title: Remove-EntraUserExtension.
 description: This article provides details on the Remove-EntraUserExtension command.
 
 ms.service: active-directory

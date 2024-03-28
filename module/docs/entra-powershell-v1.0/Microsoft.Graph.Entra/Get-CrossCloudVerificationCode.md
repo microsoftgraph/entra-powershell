@@ -1,49 +1,50 @@
 ---
-title: Remove-EntraMSApplicationVerifiedPublisher.
-description: This article provides details on the Remove-EntraMSApplicationVerifiedPublisher command.
+title: Get-CrossCloudVerificationCode
+description: This article provides details on the Get-CrossCloudVerificationCode command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/25/2024
+ms.date: 03/27/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
 schema: 2.0.0
 ---
 
-# Remove-EntraMSApplicationVerifiedPublisher
+# Get-CrossCloudVerificationCode
 
 ## SYNOPSIS
-Removes the verified publisher from an application.
+Gets the verification code used to validate the ownership of the domain in another connected cloud.
+Important: Only applies to a verified domain.
 
 ## SYNTAX
 
-```
-Remove-EntraMSApplicationVerifiedPublisher 
--AppObjectId <String> 
-[<CommonParameters>]
+```powershell
+Get-CrossCloudVerificationCode 
+    -Name <String> 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Removes the verified publisher from an application.
 
 ## EXAMPLES
 
-### Example 1: Remove the verified publisher from an application.
-```Powershell
-$appObjId = 'ad6c71a5-e48f-4320-bb59-92642a2d8d9f'
-          Remove-EntraMSApplicationVerifiedPublisher -AppObjectId $appObjId
+### Example 1: Get the cross cloud verification code
+```powershell
+PS C:\>Get-CrossCloudVerificationCode -Name Contoso.com
 ```
-This command demonstrates how to remove the verified publisher from an application.  
+
+This command returns a string that can be used to enable cross cloud federation scenarios.
 
 ## PARAMETERS
 
-### -AppObjectId
-The unique identifier of a Microsoft Entra ID Application object.
+### -Name
+Specifies the name of a domain.
 
 ```yaml
 Type: String
@@ -62,12 +63,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### String
 ## OUTPUTS
 
+### Microsoft.Online.Administration.GetCrossCloudVerificationCodeResponse
 ## NOTES
 
 ## RELATED LINKS
-
-[Set-EntraMSApplicationVerifiedPublisher](Set-EntraMSApplicationVerifiedPublisher.md)
-
