@@ -17,8 +17,7 @@ function New-EntraCustomHeaders {
         [string]
 		$Command
     )
-
-    $basePath = (join-path $PSScriptRoot '../module/Entra')	
+    
     $psVersion = $global:PSVersionTable.PSVersion
     $entraVersion = (Get-module Microsoft.Graph.Entra | select version).Version.ToString()
     $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion $Command"
