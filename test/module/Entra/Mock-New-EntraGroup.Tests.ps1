@@ -1,0 +1,38 @@
+BeforeAll {  
+    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        Import-Module Microsoft.Graph.Entra
+    }
+    $scriptblock = {
+        param($args)
+        Write-Host "Mocking New-EntraGroup with parameters: $($args | ConvertTo-Json -Depth 3)"
+        return @(
+            [PSCustomObject]@{
+              "DisplayName"              = "demo"
+              "Id"                         = "056b2531-005e-4f3e-be78-01a71ea30a04"
+              "MailEnabled"    = "False"
+              "Description"    = "test"
+              "MailNickname"       = "demoNickname"
+              "SecurityEnabled"               = "True"
+            }
+        )
+        }     
+        Mock -CommandName New-MgGroup -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
+  }
+  
+  Describe "New-EntraGroup" {
+    Context "Test for New-EntraGroup" {
+        It "Should return specific application" {
+            $result = New-EntraGroup -DisplayName "demo" -MailEnabled $false -SecurityEnabled $true -MailNickName "demoNickname" -Description "test"
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | should -Be "demo"
+            $result.MailEnabled | should -Be "False"
+            $result.SecurityEnabled | should -Be "True"
+            $result.Description | should -Be "test" 
+
+            Should -Invoke -CommandName New-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should fail when Description is empty" {
+            { New-EntraGroup -DisplayName "" -MailEnabled -SecurityEnabled -MailNickName "" -Description ""  } | Should -Throw "Missing an argument for parameter*"
+        }      
+    }
+  }

@@ -1,6 +1,7 @@
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        Import-Module .\bin\Microsoft.Graph.Entra.psm1 -Force
+        # Import-Module .\bin\Microsoft.Graph.Entra.psm1 -Force
+        Import-Module Microsoft.Graph.Entra
     }
     $scriptblock = {
         param($args)
@@ -68,6 +69,10 @@ BeforeAll {
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
-        }        
+        }  
+        It "Result should Contain ObjectId" {
+            $result = Get-EntraApplication -ObjectId "111cc9b5-fce9-485e-9566-c68debafac5f"
+            $result.ObjectId | should -Be "111cc9b5-fce9-485e-9566-c68debafac5f"
+        }      
     }
   }
