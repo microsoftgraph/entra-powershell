@@ -1,4 +1,14 @@
 ---
+title: Get-EntraDirectoryRoleMember.
+description: This article provides details on the Get-EntraDirectoryRoleMember command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/20/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,9 @@ Gets members of a directory role.
 ## SYNTAX
 
 ```
-Get-EntraDirectoryRoleMember -ObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Get-EntraDirectoryRoleMember 
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,62 +34,26 @@ The Get-EntraDirectoryRoleMember cmdlet gets the members of a directory role in 
 ## EXAMPLES
 
 ### Example 1: Get members by role ID
+```powershell
+PS C:\>Get-EntraDirectoryRoleMember -ObjectId 1d73e796-aac5-4b3a-b7e7-74a3d1926a85
 ```
-PS C:\>Get-EntraDirectoryRoleMember -ObjectId "019ea7a2-1613-47c9-81cb-20ba35b1ae48"
-
-ObjectId                             ObjectType
---------                             ----------
-ba6752c4-6a2e-4be5-a23d-67d8d5980796 User
-df19e8e6-2ad7-453e-87f5-037f6529ae16 User
-c13dd34a-492b-4561-b171-40fcce2916c5 User
-0558a23b-438a-48aa-8e30-5042e0746f69 User
-1fbae2b2-bb4b-48f9-bb38-83e9e1ad4bff User
+```Output
+ageGroup                        :
+onPremisesLastSyncDateTime      :
+creationType                    :
+imAddresses                     : {admin@m365x99297270.onmicrosoft.com}
+preferredLanguage               : en
+mail                            : admin@M365x99297270.onmicrosoft.com
+securityIdentifier              : S-1-12-1-2574072234-1301806508-533216682-2892133300
+identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=admin@M365x99297270.onmicrosoft.com}}
 ```
 
-This command gets the members of the specified role.
+This command demonstrates how to get the members of the specified role.
 
 ## PARAMETERS
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -ObjectId
-Specifies the ID of a directory role in Azure AD.
+Specifies the ID of a directory role in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -93,7 +68,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -103,7 +78,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraDirectoryRoleMember]()
+[Add-EntraDirectoryRoleMember](Add-EntraDirectoryRoleMember.md)
 
-[Remove-EntraDirectoryRoleMember]()
+[Remove-EntraDirectoryRoleMember](Remove-EntraDirectoryRoleMember.md)
 
