@@ -1,4 +1,15 @@
 ---
+title: Get-EntraPartnerInformation
+description: This article provides details on the Get-EntraPartnerInformation command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/28/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,33 +24,43 @@ Retrieves company-level information for partners.
 ## SYNTAX
 
 ### GetQuery (Default)
-```
+```powershell
 Get-EntraPartnerInformation [<CommonParameters>]
 ```
 
 ### GetById
-```
+```powershell
 Get-EntraPartnerInformation [-TenantId <Guid>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaPartnerInformation cmdlet is used to retrieve partner-specific information.
+The **Get-EntraBetaPartnerInformation** cmdlet is used to retrieve partner-specific information.
 This cmdlet should only be used for partner tenants.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Retrieve partner information
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-EntraPartnerInformation
 ```
 
-{{ Add example description here }}
+```output
+PartnerCompanyName       : Contoso
+companyType              :
+PartnerSupportTelephones : {12123, +1911}
+PartnerSupportEmails     : {}
+PartnerHelpUrl           : http://www.help.contoso.com
+PartnerCommerceUrl       :
+ObjectID                 : d5aec55f-2d12-4442-8d2f-ccca95d4390e
+```
+
+This command retrieves partner-specific information.
 
 ## PARAMETERS
 
 ### -TenantId
 The unique ID of the tenant to perform the operation on.
-If this is not provided, then the value will default to the tenant of the current user.
+If this isn't provided, then the value defaults to the tenant of the current user.
 This parameter is only applicable to partner users.
 
 ```yaml
@@ -61,7 +82,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### The cmdlet will return the following company level information:
+### The cmdlet returns the following company level information:
 ### - CompanyType: The type of this company (can be partner or regular tenant)
 ### - DapEnabled: Flag to determine if the partner has delegated admin privileges.
 ### - PartnerCompanyName: The name of the company

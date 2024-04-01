@@ -1,4 +1,15 @@
 ---
+title: Get-EntraHasObjectsWithDirSyncProvisioningError
+description: This article provides details on the Get-EntraHasObjectsWithDirSyncProvisioningError command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/28/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -8,29 +19,39 @@ schema: 2.0.0
 # Get-EntraHasObjectsWithDirSyncProvisioningError
 
 ## SYNOPSIS
+Returns whether Microsoft Entra ID has objects with DirSync provisioning error.
 
 ## SYNTAX
 
-```
-Get-EntraHasObjectsWithDirSyncProvisioningError [-TenantId <Guid>] [<CommonParameters>]
+```powershell
+Get-EntraHasObjectsWithDirSyncProvisioningError 
+    [-TenantId <Guid>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The **Get-EntraHasObjectsWithDirSyncProvisioningError** returns whether Microsoft Entra ID has objects 
+with DirSync provisioning error.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Return whether Microsoft Entra ID has objects with DirSync provisioning error
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-EntraHasObjectsWithDirSyncProvisioningError 
 ```
 
-{{ Add example description here }}
+```output
+False
+```
+
+This command returns whether Microsoft Entra ID has objects with DirSync provisioning error.
 
 ## PARAMETERS
 
 ### -TenantId
-{{ Fill TenantId Description }}
+The unique ID of the tenant to perform the operation on.
+If this isn't provided then the value defaults to the tenant of the current user.
+This parameter is only applicable to partner users.
 
 ```yaml
 Type: Guid
@@ -49,7 +70,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### System.Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+### System. Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
 ## OUTPUTS
 
 ## NOTES

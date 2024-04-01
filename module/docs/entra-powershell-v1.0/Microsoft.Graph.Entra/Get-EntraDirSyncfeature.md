@@ -1,4 +1,15 @@
 ---
+title: Get-EntraDirSyncfeature
+description: This article provides details on the Get-EntraDirSyncfeature command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/28/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,55 +23,63 @@ Used to check the status of identity synchronization features for a tenant.
 
 ## SYNTAX
 
-```
-Get-EntraDirSyncfeature [-TenantId <Guid>] [-Feature <String>] [<CommonParameters>]
+```powershell
+Get-EntraDirSyncfeature 
+    [-TenantId <Guid>] 
+    [-Feature <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraDirSyncfeature cmdlet is used to check the status of identity synchronization features for a tenant.
+The **Get-EntraDirSyncfeature** cmdlet is used to check the status of identity synchronization features for a tenant.
 Features that can be used with this cmdlet include:
+- **DeviceWriteback**
+- **DirectoryExtensions**
+- **DuplicateProxyAddressResiliency**
+- **DuplicateUPNResiliency**
+- **EnableSoftMatchOnUpn**
+- **PasswordSync**
+- **SynchronizeUpnForManagedUsers**
+- **UnifiedGroupWriteback**
+- **UserWriteback**
 
-    DeviceWriteback
-    DirectoryExtensions
-    DuplicateProxyAddressResiliency
-    DuplicateUPNResiliency
-    EnableSoftMatchOnUpn
-    PasswordSync
-    SynchronizeUpnForManagedUsers
-    UnifiedGroupWriteback
-    UserWriteback
-
-    The cmdlet can also be run without any feature being specified, in which case it will return a list of all features and whether they are enabled or disabled.
+The cmdlet can also be run without any feature being specified, in which case it returns a list of all features and whether they're enabled or disabled.
 
 ## EXAMPLES
 
-### EXAMPLE 1
-```
-Get-EntraDirSyncfeature
-```
-
-Description
-
------------
-
-Returns a list of all possible DirSync features and whether they are enabled (True) or disabled (False).
-
-### EXAMPLE 2
-```
-Get-EntraDirSyncfeature -Feature PasswordSync
-s
-Description
+### EXAMPLE 1: Return a list of all possible DirSync features and whether they're enabled (True) or disabled (False)
+```powershell
+PS C:\> Get-EntraDirSyncfeature
 ```
 
------------
+```output
+Enabled DirSyncFeature
+------- --------------
+  False BlockCloudObjectTakeoverThroughHardMatch
+  False BlockSoftMatch
+  False BypassDirSyncOverrides
+```
 
-Returns whether PasswordSync is enabled for the tenant (True) or disabled (False).
+This command returns a list of all possible DirSync features and whether they're enabled (True) or disabled (False).
+
+### EXAMPLE 2: Return whether PasswordSync is enabled for the tenant (True) or disabled (False)
+```powershell
+PS C:\> Get-EntraDirSyncfeature -Feature PasswordSync
+```
+
+```output
+Enabled DirSyncFeature
+------- --------------
+  False PasswordSync
+```
+
+This command returns whether PasswordSync is enabled for the tenant (True) or disabled (False).
 
 ## PARAMETERS
 
 ### -TenantId
 The unique ID of the tenant to perform the operation on.
-If this is not provided then the value will default to the tenant of the current user.
+If this isn't provided then the value defaults to the tenant of the current user.
 This parameter is only applicable to partner users.
 
 ```yaml
@@ -100,3 +119,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[Set-EntraDirSyncFeature](./Set-EntraDirSyncFeature.md)
