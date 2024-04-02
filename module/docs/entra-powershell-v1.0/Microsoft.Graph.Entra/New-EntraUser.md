@@ -1,4 +1,15 @@
 ---
+title: New-EntraUser
+description: This article provides details on the New-EntraUser command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 02/27/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -8,33 +19,122 @@ schema: 2.0.0
 # New-EntraUser
 
 ## SYNOPSIS
-Creates an AD user.
+Creates a Microsoft Entra ID user.
 
 ## SYNTAX
 
-```
-New-EntraUser [-City <String>] [-UserStateChangedOn <String>] [-CompanyName <String>]
- [-PreferredLanguage <String>] [-FacsimileTelephoneNumber <String>] [-GivenName <String>] [-Mobile <String>]
- [-UsageLocation <String>] [-PostalCode <String>] [-AgeGroup <String>] [-CreationType <String>]
- [-ExtensionProperty <System.Collections.Generic.Dictionary`2[System.String,System.String]>]
- [-ConsentProvidedForMinor <String>] [-MailNickName <String>] [-ImmutableId <String>] [-Country <String>]
- [-SignInNames <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]>]
- [-Department <String>] [-PasswordPolicies <String>] [-JobTitle <String>] [-IsCompromised <Boolean>]
- [-UserState <String>] [-UserType <String>] [-OtherMails <System.Collections.Generic.List`1[System.String]>]
- [-PhysicalDeliveryOfficeName <String>] [-UserPrincipalName <String>] -DisplayName <String>
- -AccountEnabled <Boolean> -PasswordProfile <PasswordProfile> [-State <String>] [-StreetAddress <String>]
- [-TelephoneNumber <String>] [-Surname <String>] [-ShowInAddressList <Boolean>] [<CommonParameters>]
+```powershell
+New-EntraUser 
+    -DisplayName <String>
+    -AccountEnabled <Boolean> 
+    -PasswordProfile <PasswordProfile>
+    [-City <String>] 
+    [-UserStateChangedOn <String>] 
+    [-CompanyName <String>]
+    [-PreferredLanguage <String>] 
+    [-FacsimileTelephoneNumber <String>] 
+    [-GivenName <String>] 
+    [-Mobile <String>]
+    [-UsageLocation <String>] 
+    [-PostalCode <String>] 
+    [-AgeGroup <String>] 
+    [-CreationType <String>]
+    [-ExtensionProperty <System.Collections.Generic.Dictionary`2[System.String,System.String]>]
+    [-ConsentProvidedForMinor <String>] 
+    [-MailNickName <String>] 
+    [-ImmutableId <String>] 
+    [-Country <String>]
+    [-SignInNames <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]>]
+    [-Department <String>] 
+    [-PasswordPolicies <String>] 
+    [-JobTitle <String>] 
+    [-IsCompromised <Boolean>]
+    [-UserState <String>] 
+    [-UserType <String>] 
+    [-OtherMails <System.Collections.Generic.List`1[System.String]>]
+    [-PhysicalDeliveryOfficeName <String>] 
+    [-UserPrincipalName <String>] 
+    [-State <String>] 
+    [-StreetAddress <String>]
+    [-TelephoneNumber <String>] 
+    [-Surname <String>] 
+    [-ShowInAddressList <Boolean>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The New-EntraUser cmdlet creates a user in Microsoft Entra ID.
+The **New-EntraUser** cmdlet creates a user in Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1: Create a user
+### Example 1: Create a user using MailNickName parameter
+```powershell
+PS C:\> $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+PS C:\> $PasswordProfile.Password = "<Password>"
+PS C:\> New-EntraUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser"
 ```
--EntraUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser"
 
+```output
+ObjectId                             DisplayName UserPrincipalName               UserType
+--------                             ----------- -----------------               --------
+5e8b0f4d-2cd4-4e17-9467-b0f6a5c0c4d0 New user    NewUser@contoso.com             Member
+```
+
+This command creates a new user.
+
+### Example 2: Create a user using AgeGroup parameter
+```powershell
+PS C:\> $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+PS C:\> $PasswordProfile.Password = "<Password>"
+PS C:\> New-EntraUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser" -AgeGroup "adult"
+```
+
+```output
+ObjectId                             DisplayName UserPrincipalName               UserType
+--------                             ----------- -----------------               --------
+5e8b0f4d-2cd4-4e17-9467-b0f6a5c0c4d0 New user    NewUser@contoso.com             Member
+```
+
+This command creates a new user.
+
+### Example 3: Create a user using City parameter
+```powershell
+PS C:\> $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+PS C:\> $PasswordProfile.Password = "<Password>"
+PS C:\> New-EntraUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser" -City "New York"
+```
+
+```output
+ObjectId                             DisplayName UserPrincipalName               UserType
+--------                             ----------- -----------------               --------
+5e8b0f4d-2cd4-4e17-9467-b0f6a5c0c4d0 New user    NewUser@contoso.com             Member
+```
+
+This command creates a new user.
+
+### Example 4: Create a user using Department parameter
+```powershell
+PS C:\> $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+PS C:\> $PasswordProfile.Password = "<Password>"
+PS C:\> New-EntraUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser" -Department "IT"
+```
+
+```output
+ObjectId                             DisplayName UserPrincipalName               UserType
+--------                             ----------- -----------------               --------
+5e8b0f4d-2cd4-4e17-9467-b0f6a5c0c4d0 New user    NewUser@contoso.com             Member
+```
+
+This command creates a new user.
+
+### Example 5: Create a user using Mobile parameter
+```powershell
+PS C:\> $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+PS C:\> $PasswordProfile.Password = "<Password>"
+PS C:\> New-EntraUser -DisplayName "New User" -PasswordProfile $PasswordProfile -UserPrincipalName "NewUser@contoso.com" -AccountEnabled $true -MailNickName "Newuser" -Mobile "02883655253"
+```
+
+```output
 ObjectId                             DisplayName UserPrincipalName               UserType
 --------                             ----------- -----------------               --------
 5e8b0f4d-2cd4-4e17-9467-b0f6a5c0c4d0 New user    NewUser@contoso.com             Member
@@ -93,7 +193,7 @@ Accept wildcard characters: False
 Indicates whether the user account is a local account for a Microsoft Entra ID B2C tenant.
 Possible values are "LocalAccount" and null.
 When creating a local account, the property is required and you must set it to "LocalAccount".
-When creating a work or school account, do not specify the property or set it to null.
+When creating a work or school account, don't specify the property or set it to null.
 
 ```yaml
 Type: String
@@ -138,7 +238,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExtensionProperty
-@{Text=}
+Add data to custom user properties as the basic **open extensions** or the more versatile **schema extensions**.
 
 ```yaml
 Type: System.Collections.Generic.Dictionary`2[System.String,System.String]
@@ -168,10 +268,10 @@ Accept wildcard characters: False
 ```
 
 ### -ImmutableId
-This property is used to associate an on-premises Active Directory user account to their Azure AD user object.
-This property must be specified when creating a new user account in the Graph if you are using a federated domain for the user's userPrincipalName (UPN) property.
+This property is used to associate an on-premises user account to their Microsoft Entra ID user object.
+This property must be specified when creating a new user account in the Graph if you're using a federated domain for the user's userPrincipalName (UPN) property.
 
-Important: The $ and _ characters cannot be used when specifying this property.
+Important: The $ and _ characters can't be used when specifying this property.
 
 ```yaml
 Type: String
@@ -246,7 +346,7 @@ Accept wildcard characters: False
 ```
 
 ### -OtherMails
-A list of additional email addresses for the user; for example: "bob@contoso.com", "Robert@fabrikam.com".
+A list of other email addresses for the user; for example: "bob@contoso.com", "Robert@fabrikam.com".
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -264,7 +364,7 @@ Accept wildcard characters: False
 Specifies password policies for the user.
 This value is an enumeration with one possible value being "DisableStrongPassword", which allows weaker passwords than the default policy to be specified.
 "DisablePasswordExpiration" can also be specified.
-The two may be specified together; for example: "DisablePasswordExpiration, DisableStrongPassword".
+The two might be specified together; for example: "DisablePasswordExpiration, DisableStrongPassword".
 
 ```yaml
 Type: String
@@ -280,8 +380,8 @@ Accept wildcard characters: False
 
 ### -PasswordProfile
 Specifies the user's password profile.
-Note that the parameter type for this parameter is "PasswordProfile".
-in order to pass a parameter of this type, you first need to create a vairable in PowerShell with that type:
+The parameter type for this parameter is "PasswordProfile".
+In order to pass a parameter of this type, you first need to create a variable in PowerShell with that type:
 
 $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
 
@@ -295,7 +395,7 @@ New-EntraUser -PasswordProfile $PasswordProfile ...
 
 Other attributes that can be set in the PasswordProfile are
 
-$PasswordProfile.EnforceChangePasswordPolicy - a boolean indicating that the change password policy is enababled or disabled for this user $PasswordProfile.ForceChangePasswordNextLogin - a boolean indicating that the user must change the password at the next sign in
+$PasswordProfile.EnforceChangePasswordPolicy - a boolean indicating that the change password policy is enababled or disabled for this user $PasswordProfile.ForceChangePasswordNextLogin - a boolean indicating that the user must change the password at the next sign in.
 
 ```yaml
 Type: PasswordProfile
@@ -372,7 +472,7 @@ Accept wildcard characters: False
 ### -SignInNames
 Specifies the collection of sign-in names for a local account in a Microsoft Entra ID B2C tenant.
 Each sign-in name must be unique across the company/tenant.
-The property must be specified when you create a local account user; do not specify it when you create a work or school account.
+The property must be specified when you create a local account user; don't specify it when you create a work or school account.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]
@@ -448,7 +548,7 @@ Accept wildcard characters: False
 
 ### -UsageLocation
 A two letter country code (ISO standard 3166).
-Required for users that will be assigned licenses due to legal requirement to check for availability of services in countries.
+Required for users that are assigned licenses due to legal requirement to check for availability of services in countries.
 Examples include: "US", "JP", and "GB".
 
 ```yaml
@@ -469,7 +569,7 @@ The UPN is an Internet-style login name for the user based on the Internet stand
 By convention, this should map to the user's email name.
 The general format is "alias@domain".
 For work or school accounts, the domain must be present in the tenant's collection of verified domains.
-This property is required when a work or school account is created; it is optional for local accounts.
+This property is required when a work or school account is created; it's optional for local accounts.
 
 ```yaml
 Type: String
@@ -499,7 +599,7 @@ Accept wildcard characters: False
 ```
 
 ### -FacsimileTelephoneNumber
-{{Fill FacsimileTelephoneNumber Description}}
+This specifies the user's telephone number.
 
 ```yaml
 Type: String
@@ -514,7 +614,7 @@ Accept wildcard characters: False
 ```
 
 ### -AgeGroup
-{{ Fill AgeGroup Description }}
+This specifies the user's age group.
 
 ```yaml
 Type: String
@@ -529,7 +629,7 @@ Accept wildcard characters: False
 ```
 
 ### -CompanyName
-{{ Fill CompanyName Description }}
+This specifies the user's company name.
 
 ```yaml
 Type: String
@@ -544,7 +644,7 @@ Accept wildcard characters: False
 ```
 
 ### -ConsentProvidedForMinor
-{{ Fill ConsentProvidedForMinor Description }}
+Sets whether consent was obtained for minors.
 
 ```yaml
 Type: String
@@ -559,7 +659,8 @@ Accept wildcard characters: False
 ```
 
 ### -UserState
-{{ Fill UserState Description }}
+For an external user invited to the tenant using the invitation API, this property represents the invited user's 
+invitation status.
 
 ```yaml
 Type: String
@@ -574,7 +675,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserStateChangedOn
-{{ Fill UserStateChangedOn Description }}
+Shows the timestamp for the latest change to the userState property.
 
 ```yaml
 Type: String
@@ -589,7 +690,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -599,9 +700,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraUser]()
+[Get-EntraUser](Get-EntraUser.md)
 
-[Remove-EntraUser]()
+[Remove-EntraUser](Remove-EntraUser.md)
 
-[Set-EntraUser]()
+[Set-EntraUser](Set-EntraUser.md)
 

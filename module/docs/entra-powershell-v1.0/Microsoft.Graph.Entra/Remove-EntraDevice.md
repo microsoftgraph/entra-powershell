@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraDevice
+description: This article provides details on the Remove-EntraDevice command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/01/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,18 +22,19 @@ Deletes a device.
 
 ## SYNTAX
 
-```
-Remove-EntraDevice -ObjectId <String> [-InformationAction <ActionPreference>] [-InformationVariable <String>]
- [<CommonParameters>]
+```powershell
+Remove-EntraDevice 
+    -ObjectId <String>
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Remove-EntraDevice cmdlet removes a device from Microsoft Entra ID.
+The **Remove-EntraDevice** cmdlet removes a device from Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Remove a device
-```
+```powershell
 PS C:\>Remove-EntraDevice -ObjectId "99a1915d-298f-42d1-93ae-71646b85e2fa"
 ```
 
@@ -31,46 +42,8 @@ This command removes the specified device.
 
 ## PARAMETERS
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -ObjectId
-Specifies the object ID of a device in Azure AD.
+Specifies the object ID of a device in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -85,7 +58,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -95,9 +68,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraDevice]()
+[Get-EntraDevice](Get-EntraDevice.md)
 
-[New-EntraDevice]()
+[New-EntraDevice](New-EntraDevice.md)
 
-[Set-EntraDevice]()
+[Set-EntraDevice](Set-EntraDevice.md)
 
