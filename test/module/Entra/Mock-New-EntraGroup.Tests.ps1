@@ -21,7 +21,7 @@ BeforeAll {
   
   Describe "New-EntraGroup" {
     Context "Test for New-EntraGroup" {
-        It "Should return specific application" {
+        It "Should return created Group" {
             $result = New-EntraGroup -DisplayName "demo" -MailEnabled $false -SecurityEnabled $true -MailNickName "demoNickname" -Description "test"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be "demo"
@@ -31,7 +31,7 @@ BeforeAll {
 
             Should -Invoke -CommandName New-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when Description is empty" {
+        It "Should fail when parameters are empty" {
             { New-EntraGroup -DisplayName "" -MailEnabled -SecurityEnabled -MailNickName "" -Description ""  } | Should -Throw "Missing an argument for parameter*"
         }      
     }

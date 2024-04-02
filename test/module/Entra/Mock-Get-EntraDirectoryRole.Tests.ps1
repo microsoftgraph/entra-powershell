@@ -22,7 +22,7 @@ BeforeAll {
   
   Describe "Get-EntraDirectoryRole" {
     Context "Test for Get-EntraDirectoryRole" {
-        It "Should return specific application" {
+        It "Should return specific role" {
             $result = Get-EntraDirectoryRole -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be "dc587a80-d49c-4700-a73b-57227856fc32"
@@ -32,7 +32,7 @@ BeforeAll {
         It "Should fail when ObjectId is empty" {
             { Get-EntraDirectoryRole -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
-        It "Should return specific application by filter" {
+        It "Should return specific role by filter" {
             $result = Get-EntraDirectoryRole -Filter "DisplayName -eq 'Attribute Assignment Reader'"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Attribute Assignment Reader'

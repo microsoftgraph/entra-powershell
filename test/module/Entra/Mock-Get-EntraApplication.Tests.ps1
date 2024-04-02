@@ -25,8 +25,8 @@ BeforeAll {
               "Web"                          = @{HomePageUrl="https://localhost/demoapp"; ImplicitGrantSettings=""; LogoutUrl="";}
             }
         )
-        }     
-          Mock -CommandName Get-MgApplication -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
+    }     
+    Mock -CommandName Get-MgApplication -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
   }
   
   Describe "Get-EntraApplication" {
