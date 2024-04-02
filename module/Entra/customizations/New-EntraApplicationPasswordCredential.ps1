@@ -9,6 +9,7 @@
     CustomScript = @'
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{ObjectId = "Id"}
         $body=@{}
 
@@ -39,7 +40,7 @@
         Write-Debug("=========================================================================
 ")
         
-        $response = Add-MgApplicationPassword @params 
+        $response = Add-MgApplicationPassword @params -Headers $customHeaders 
         $response
         }  
 '@

@@ -85,6 +85,7 @@ function Set-EntraDomainFederationSettings {
             ) 
         process { 
             $params = @{}
+            $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
             if($PSBoundParameters.ContainsKey("Verbose"))
             {
                 $params["Verbose"] = $Null
@@ -150,7 +151,7 @@ function Set-EntraDomainFederationSettings {
             Write-Debug("=========================================================================`n")
             if($null -ne $params.InternalDomainFederationId)
             {
-                $response =  Update-MgDomainFederationConfiguration @params
+                $response =  Update-MgDomainFederationConfiguration @params -Headers $customHeaders
                 $response
             }
         }

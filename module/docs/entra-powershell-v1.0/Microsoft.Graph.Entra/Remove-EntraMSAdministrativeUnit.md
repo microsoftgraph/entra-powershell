@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraMSAdministrativeUnit.
+description: This article provides details on the Remove-EntraMSAdministrativeUnit command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/15/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,9 @@ Removes an administrative unit.
 ## SYNTAX
 
 ```
-Remove-EntraMSAdministrativeUnit -Id <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Remove-EntraMSAdministrativeUnit 
+-Id <String> 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,54 +33,20 @@ The Remove-EntraMSAdministrativeUnit cmdlet removes an administrative unit from 
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Remove an administrative unit
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-EntraMSAdministrativeUnit -Id 76373ce0-821a-40b5-9aa2-e108e318f62e
+
 ```
 
-{{ Add example description here }}
+This example demonstrates how to remove an administrative unit with specified ID.
 
 ## PARAMETERS
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are: * Continue
 
-* Ignore
-* Inquire
-* SilentlyContinue
-* Stop
-* Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies a variable in which to store an information event message.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Id
-Specifies the ID of an administrative unit in Active Directory.
+Specifies the ID of an administrative unit in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -84,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -94,7 +71,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraMSAdministrativeUnit]()
+[Get-EntraMSAdministrativeUnit](Get-EntraMSAdministrativeUnit.md)
 
-[Set-EntraMSAdministrativeUnit]()
+[Set-EntraMSAdministrativeUnit](Set-EntraMSAdministrativeUnit.md)
 

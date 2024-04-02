@@ -1,4 +1,14 @@
 ---
+title: Revoke-EntraSignedInUserAllRefreshToken.
+description: This article provides details on the Revoke-EntraSignedInUserAllRefreshToken command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/16/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -24,7 +34,7 @@ The cmdlet operates by resetting the refreshTokensValidFromDateTime user propert
 ## EXAMPLES
 
 ### Example 1: Revoke refresh tokens for the current user
-```
+```powershell
 PS C:\> Revoke-EntraSignedInUserAllRefreshToken
 ```
 
@@ -33,7 +43,7 @@ This command revokes the tokens for the current user.
 ## PARAMETERS
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

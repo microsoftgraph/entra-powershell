@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraMSGroup
+description: This article provides details on the Remove-EntraMSGroup command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/16/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -8,12 +18,14 @@ schema: 2.0.0
 # Remove-EntraMSGroup
 
 ## SYNOPSIS
-Removes an Azure AD group.
+Removes a Microsoft Entra ID group.
 
 ## SYNTAX
 
 ```
-Remove-EntraMSGroup -Id <String> [<CommonParameters>]
+Remove-EntraMSGroup 
+-Id <String> 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,11 +34,12 @@ The Remove-EntraMSGroup cmdlet removes a Microsoft Entra ID group.
 ## EXAMPLES
 
 ### Example 1: Remove a group
-```
+
+```powershell
 PS C:\> Remove-EntraMSGroup -Id "ce0a2213-bd57-4e2f-b9fa-408582e2e260"
 ```
 
-This cmdlet removes the group that has the specified ID.
+This example demonstrates how to remove the group with specified ID.
 
 ## PARAMETERS
 
@@ -46,7 +59,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -55,17 +68,14 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.Object
 ## NOTES
-This cmdlet is currently in Public Preview.
-While a cmdlet is in Public Preview, we may make changes to the cmdlet which could have unexpected effects.
-We recommend that you do not use this cmdlet in a production environment.
 
 ## RELATED LINKS
 
-[Get-EntraMSGroup]()
+[Get-EntraMSGroup](Get-EntraMSGroup.md)
 
-[New-EntraMSGroup]()
+[New-EntraMSGroup](New-EntraMSGroup.md)
 
-[Set-EntraMSGroup]()
+[Set-EntraMSGroup](Set-EntraMSGroup.md)
 
 [Using attributes to create advanced rules](https://azure.microsoft.com/en-us/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/)
 

@@ -9,6 +9,7 @@
     CustomScript = @'
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
 
         $keysChanged = @{SearchString = "Filter"; ObjectId = "Id"}
 
@@ -56,7 +57,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Get-MgBetaDirectoryDeletedItemAsApplication @params
+        $response = Get-MgBetaDirectoryDeletedItemAsApplication @params -Headers $customHeaders
         
         $response | ForEach-Object {
             if($null -ne $_) {

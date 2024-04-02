@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraGroupMember.
+description: This article provides details on the Remove-EntraGroupMember command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/07/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,10 @@ Removes a member from a group.
 ## SYNTAX
 
 ```
-Remove-EntraGroupMember -ObjectId <String> -MemberId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Remove-EntraGroupMember 
+ -ObjectId <String> 
+ -MemberId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,51 +35,21 @@ The Remove-EntraGroupMember cmdlet removes a member from a group in Microsoft En
 ## EXAMPLES
 
 ### Example 1: Remove a member
-```
+
+This example demonstrates how to remove a member from a group in Microsoft Entra ID.
+
+```powershell
 PS C:\>Remove-EntraGroupMember -ObjectId "62438306-7c37-4638-a72d-0ee8d9217680" -MemberId "0a1068c0-dbb6-4537-9db3-b48f3e31dd76"
 ```
 
-This command removes the specified member from the specified group.
+This command removes the specified member from the specified group.  
+
+ObjectId - Specifies the object ID of a group in Microsoft Entra ID. 
+
+MemberId - Specifies the ID of the member to remove.
+
 
 ## PARAMETERS
-
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -MemberId
 Specifies the ID of the member to remove.
@@ -85,7 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the object ID of a group in Azure AD.
+Specifies the object ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -100,7 +82,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -110,7 +92,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraGroupMember]()
+[Add-EntraGroupMember](Add-EntraGroupMember.md)
 
-[Get-EntraGroupMember]()
+[Get-EntraGroupMember](Get-EntraGroupMember.md)
 

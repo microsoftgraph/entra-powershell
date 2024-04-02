@@ -1,4 +1,15 @@
 ---
+title: Select-EntraGroupIdsGroupIsMemberOf
+description: This article provides details on the Select-EntraGroupIdsGroupIsMemberOf command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/16/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +24,10 @@ Gets group IDs that a group is a member of.
 ## SYNTAX
 
 ```
-Select-EntraGroupIdsGroupIsMemberOf -ObjectId <String> -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+Select-EntraGroupIdsGroupIsMemberOf 
+-ObjectId <String> 
+-GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,23 +35,20 @@ The Select-EntraGroupIdsGroupIsMemberOf cmdlet gets the groups that a specified 
 
 ## EXAMPLES
 
-### Example 1: Get the group membership of a group for a group
-```
+### Example 1: Get the group membership of a group for a group.
+
+```powershell
 PS C:\> $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
 PS C:\> $Groups.GroupIds = (Get-EntraGroup -Top 1).ObjectId
 PS C:\> $GroupId = (Get-EntraGroup -Top 1).ObjectId
 PS C:\> Select-EntraGroupIdsGroupIsMemberOf  -ObjectId $GroupId -GroupIdsForMembershipCheck $Groups
-
-OdataMetadata                                                                                   Value
--------------                                                                                   -----
-https://graph.windows.net/85b5ff1e-0402-400c-9e3c-0f9e965325d1/$metadata#Collection(Edm.String) {093fc0e2-1d6e-4a1b-9bf8-effa0196f1f7}
 ```
 
 The first command creates a GroupIdsForMembershipCheck object, and then stores it in the $Groups variable.
 
-The second command gets an ID for a group by using the Get-EntraGroup (./Get-EntraGroup.md)cmdlet, and then stores it as a property of $Groups.
+The second command gets an ID for a group by using the Get-EntraGroup (./Get-EntraGroup.md) cmdlet, and then stores it as a property of $Groups.
 
-The third command gets the ID of a group by using Get-EntraGroup , and then stores it in the $GroupId variable.
+The third command gets the ID of a group by using Get-EntraGroup, and then stores it in the $GroupId variable.
 
 The final command gets the group membership of a group identified by $GroupId.
 
@@ -58,47 +68,8 @@ Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
-
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -ObjectId
-Specifies the ID of a group in Azure AD.
+Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -113,7 +84,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -123,5 +94,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraGroup]()
+[Get-EntraGroup](Get-EntraGroup.md)
 

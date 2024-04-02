@@ -1,4 +1,14 @@
 ---
+title: New-EntraMSGroup.
+description: This article provides details on the New-EntraMSGroup command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/14/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -8,14 +18,21 @@ schema: 2.0.0
 # New-EntraMSGroup
 
 ## SYNOPSIS
-Creates an Azure AD group.
+Creates a Microsoft Entra ID group.
 
 ## SYNTAX
 
 ```
-New-EntraMSGroup -DisplayName <String> [-GroupTypes <System.Collections.Generic.List`1[System.String]>]
- -SecurityEnabled <Boolean> [-Description <String>] -MailEnabled <Boolean> -MailNickname <String>
- [-Visibility <String>] [-IsAssignableToRole <Boolean>] [<CommonParameters>]
+New-EntraMSGroup 
+-DisplayName <String> 
+[-GroupTypes <System.Collections.Generic.List`1[System.String]>]
+-SecurityEnabled <Boolean> 
+[-Description <String>] 
+-MailEnabled <Boolean> 
+-MailNickname <String>
+[-Visibility <String>] 
+[-IsAssignableToRole <Boolean>] 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,34 +42,65 @@ For information about creating dynamic groups, see Using attributes to create ad
 
 ## EXAMPLES
 
-### Example 1: Create a dynamic group
-```
-PS C:\> New-EntraMSGroup -DisplayName "Dynamic Group 01" -Description "Dynamic group created from PS" -MailEnabled $False -MailNickName "group" -SecurityEnabled $True -GroupTypes "DynamicMembership" -MembershipRule "(user.department -contains ""Marketing"")" -MembershipRuleProcessingState "On"
+### Example 1: Create a group.
 
-Id                            : 9126185e-25df-4522-a380-7ab697a7241c
-Description                   : Dynamic group created from PS
-OnPremisesSyncEnabled         :
-DisplayName                   : Dynamic Group 01
-OnPremisesLastSyncDateTime    :
-Mail                          :
-MailEnabled                   : False
-MailNickname                  : group
-OnPremisesSecurityIdentifier  :
-ProxyAddresses                : {}
-SecurityEnabled               : True
-GroupTypes                    : {}
-MembershipRule                : (user.department -eq "Marketing") MembershipRuleProcessingState : Paused
+```powershell
+PS C:\> New-EntraMSGroup -DisplayName "HelpDesk admin group2"  -MailEnabled $False -MailNickname "helpDeskAdminGroup" -SecurityEnabled $True
 ```
 
-This command creates a new dynamic group with the following rule:
+```output
 
-\`user.department -contains "Marketing"\`
+DisplayName           Id                                   MailNickname       Description GroupTypes
+-----------           --                                   ------------       ----------- ----------
+HelpDesk admin group2 68563e90-3cbb-408a-beb6-ea93f7b5b4d4 helpDeskAdminGroup             {}
 
-The double quotation marks are replaced with single quotation marks.
+```
+This example demonstrates how to create the new group.
 
-The processing state is On. 
-This means that all users in the directory that qualify the rule are added as members to the group.
-Any users that do not qualify are removed from the group.
+### Example 2: Create a group with Description parameter.
+
+```powershell
+PS C:\>  New-EntraMSGroup -DisplayName "HelpDesk admin group"  -MailEnabled $false -MailNickname "helpDeskAdminGroup" -SecurityEnabled $true  -Description "Group assignable to role"
+```
+
+```output
+
+DisplayName          Id                                   MailNickname       Description              GroupTypes
+-----------          --                                   ------------       -----------              ----------
+HelpDesk admin group dcbf038d-613c-498f-a695-28199246d9ee helpDeskAdminGroup Group assignable to role {}
+
+```
+This example demonstrates how to create the new group with description parameter.
+
+### Example 3: Create a group with IsAssignableToRole parameter.
+
+```powershell
+PS C:\>  New-EntraMSGroup -DisplayName "HelpDesk admin group2" -Description "Group assignable to role" -MailEnabled $False -MailNickname "helpDeskAdminGroup" -SecurityEnabled $True -IsAssignableToRole $True 
+```
+
+```output
+
+DisplayName           Id                                   MailNickname       Description              GroupTypes
+-----------           --                                   ------------       -----------              ----------
+HelpDesk admin group2 380f8097-ecd8-4d0b-b553-5ba1f53d16a7 helpDeskAdminGroup Group assignable to role {}
+
+```
+This example demonstrates how to create the new group with IsAssignableToRole parameter.
+
+### Example 4: Create a group with Visibility parameter.
+
+```powershell
+PS C:\>  New-EntraMSGroup -DisplayName "HelpDesk admin group2" -Description "Group assignable to role" -MailEnabled $False -MailNickname "helpDeskAdminGroup" -SecurityEnabled $True -Visibility "Private"
+```
+
+```output
+
+DisplayName           Id                                   MailNickname       Description              GroupTypes
+-----------           --                                   ------------       -----------              ----------
+HelpDesk admin group2 380f8097-ecd8-4d0b-b553-5ba1f53d16a7 helpDeskAdminGroup Group assignable to role {}
+
+```
+This example demonstrates how to create the new group with Visibility parameter.
 
 ## PARAMETERS
 
@@ -89,7 +137,7 @@ Accept wildcard characters: False
 ### -MailEnabled
 Specifies whether this group is mail enabled.
 
-Currently, you cannot create mail enabled groups in Azure AD.
+Currently, you can't create mail enabled groups in  Microsoft Entra ID.
 
 ```yaml
 Type: Boolean
@@ -105,7 +153,7 @@ Accept wildcard characters: False
 
 ### -MailNickname
 Specifies a mail nickname for the group.
-If MailEnabled is $False you must still specify a mail nickname.
+If MailEnabled is $False, you must still specify a mail nickname.
 
 ```yaml
 Type: String
@@ -155,17 +203,17 @@ Accept wildcard characters: False
 This parameter determines the visibility of the group's content and members list.
 This parameter can take one of the following values:
 
-* "Public" - Anyone can view the contents of the group
-* "Private" - Only members can view the content of the group
-* "HiddenMembership" - Only members can view the content of the group and only members, owners, Global/Company Administrator, User Administrator and Helpdesk Administrators can view the members list of the group.
+* Public: Anyone can view the contents of the group.
+* Private: Only members can view the content of the group.
+* HiddenMembership:  Only members can view the content of the group and only members, owners, Global/Company Administrator, User Administrator, and Helpdesk Administrators can view the members list of the group.
 
-If no value is provided, the default value will be "Public".
+If no value is provided, the default value is "Public."
 
 Notes:
 
-* This parameter is only valid for groups that have the groupType set to "Unified".
-* If a group has this attribute set to "HiddenMembership" it cannot be changed later.
-* Anyone can join a group that has this attribute set to "Public". If the attribute is set to Private or HiddenMembership, only owner(s) can add new members to the group and requests to join the group need approval of the owner(s).
+* This parameter is only valid for groups that have the groupType set to "Unified."
+* If a group has this attribute set to "HiddenMembership," it can't be changed later.
+* Anyone can join a group that has this attribute set to "Public" If the attribute is set to Private or HiddenMembership, only owner(s) can add new members to the group and requests to join the group need approval of the owner(s).
 
 ```yaml
 Type: String
@@ -180,7 +228,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsAssignableToRole
-{{ Fill IsAssignableToRole Description }}
+Indicates whether group can be assigned to a role. This property can only be set at the time of group creation and can't be modified on an existing group.
 
 ```yaml
 Type: Boolean
@@ -195,7 +243,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -205,16 +253,16 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.Object
 ## NOTES
 This cmdlet is currently in Public Preview.
-While a cmdlet is in Public Preview, we may make changes to the cmdlet which could have unexpected effects.
-We recommend that you do not use this cmdlet in a production environment.
+While a cmdlet is in Public Preview, we might make changes to the cmdlet, which could have unexpected effects.
+We recommend that you don't use this cmdlet in a production environment.
 
 ## RELATED LINKS
 
-[Get-EntraMSGroup]()
+[Get-EntraMSGroup](Get-EntraMSGroup.md)
 
-[Remove-EntraMSGroup]()
+[Remove-EntraMSGroup](Remove-EntraMSGroup.md)
 
-[Set-EntraMSGroup]()
+[Set-EntraMSGroup](Set-EntraMSGroup.md)
 
 [Using attributes to create advanced rules](https://azure.microsoft.com/en-us/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/)
 

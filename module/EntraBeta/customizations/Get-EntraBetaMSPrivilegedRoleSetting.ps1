@@ -10,6 +10,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
+        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
         `$keysChanged = @{}
 
         if(`$null -ne `$PSBoundParameters["ProviderId"])
@@ -48,7 +49,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        `$response = Get-MgBetaPrivilegedAccessRoleSetting @params
+        `$response = Get-MgBetaPrivilegedAccessRoleSetting @params -Headers `$customHeaders
         `$response | ForEach-Object {
             if (`$null -ne `$_) {
                 `$propsToConvert = @('AdminEligibleSettings', 'AdminMemberSettings', 'UserEligibleSettings','UserMemberSettings')

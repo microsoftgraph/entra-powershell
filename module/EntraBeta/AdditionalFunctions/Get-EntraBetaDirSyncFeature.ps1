@@ -9,6 +9,7 @@ function Get-EntraBetaDirSyncfeature {
         )
         PROCESS {    
             $params = @{}
+            $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
             if ($PSBoundParameters.ContainsKey("Verbose")) {
                 $params["Verbose"] = $Null
             }
@@ -24,7 +25,7 @@ function Get-EntraBetaDirSyncfeature {
             Write-Debug("============================ TRANSFORMATIONS ============================")
             $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
             Write-Debug("=========================================================================`n")
-            $jsonData = Get-MgBetaDirectoryOnPremiseSynchronization @params | ConvertTo-Json
+            $jsonData = Get-MgBetaDirectoryOnPremiseSynchronization @params -Headers $customHeaders | ConvertTo-Json
             $object = ConvertFrom-Json $jsonData
             $table =@()
             foreach ($featureName in $object.Features.PSObject.Properties.Name) {

@@ -9,6 +9,7 @@
     CustomScript = @'
     PROCESS {
         $params = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
 
         if($null -ne $PSBoundParameters["MarketingNotificationEmails"])
         {
@@ -35,7 +36,7 @@
         Write-Debug("=========================================================================")
         
         $params["OrganizationId"] = (Get-MgOrganization).Id
-        Update-MgOrganization @params
+        Update-MgOrganization @params -Headers $customHeaders
     }
 '@
 }
