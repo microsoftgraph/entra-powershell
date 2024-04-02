@@ -35,12 +35,8 @@ Set-EntraDomainFederationSettings
    [-FederationBrandName <String>]
    [-MetadataExchangeUri <String>]
    [-PreferredAuthenticationProtocol <AuthenticationProtocol>]
-   [-SupportsMfa <Boolean>]
-   [-DefaultInteractiveAuthenticationMethod <String>]
-   [-OpenIdConnectDiscoveryEndpoint <String>]
    [-SigningCertificateUpdateStatus <SigningCertificateUpdateStatus>]
    [-PromptLoginBehavior <PromptLoginBehavior>]
-   [-TenantId <Guid>]
    [<CommonParameters>]
 ```
 
@@ -51,7 +47,7 @@ The **Set-EntraDomainFederationSettings** cmdlet is used to update the settings 
 
 ### Example 1: Set the PromptLoginBehavior
 ```powershell
-PS C:\> Set-EntraDomainFederationSettings –DomainName "contoso.com" -PreferredAuthenticationProtocol "WsFed" -SupportsMfa $false -PromptLoginBehavior <TranslateToFreshPasswordAuth|NativeSupport|Disabled>
+PS C:\> Set-EntraDomainFederationSettings –DomainName "contoso.com" -PreferredAuthenticationProtocol "WsFed" -PromptLoginBehavior <TranslateToFreshPasswordAuth|NativeSupport|Disabled>
 ```
 
 This command updates the `PromptLoginBehavior` to either `TranslateToFreshPasswordAuth`, `NativeSupport`, or `Disabled`. These possible values are described:
@@ -60,7 +56,7 @@ This command updates the `PromptLoginBehavior` to either `TranslateToFreshPasswo
 - **NativeSupport**: means that the `prompt=login` parameter is sent as is to ADFS.
 - **Disabled**: means that only wfresh=0 is sent to ADFS
 
-Use the `Get-EntraDomainFederationSettings -DomainName <your_domain_name> | Format-List *` to get the values for `PreferredAuthenticationProtocol`, `SupportsMfa`, and `PromptLoginBehavior` for the federated domain.
+Use the `Get-EntraDomainFederationSettings -DomainName <your_domain_name> | Format-List *` to get the values for `PreferredAuthenticationProtocol` and `PromptLoginBehavior` for the federated domain.
 
 ## PARAMETERS
 

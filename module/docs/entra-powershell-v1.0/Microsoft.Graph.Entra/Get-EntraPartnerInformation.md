@@ -52,6 +52,7 @@ PartnerSupportEmails     : {}
 PartnerHelpUrl           : http://www.help.contoso.com
 PartnerCommerceUrl       :
 ObjectID                 : d5aec55f-2d12-4442-8d2f-ccca95d4390e
+PartnerSupportUrl        :
 ```
 
 This command retrieves partner-specific information.
@@ -84,7 +85,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### The cmdlet returns the following company level information:
 ### - CompanyType: The type of this company (can be partner or regular tenant)
-### - DapEnabled: Flag to determine if the partner has delegated admin privileges.
 ### - PartnerCompanyName: The name of the company
 ### - PartnerSupportTelephones: Support Telephone numbers for the partner.
 ### - PartnerSupportEmails: Support E-Mail address for the partner.

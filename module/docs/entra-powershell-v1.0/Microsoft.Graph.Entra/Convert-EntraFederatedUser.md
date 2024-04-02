@@ -27,7 +27,6 @@ Updates a user in a domain that was recently converted from single sign-on (also
 Convert-EntraFederatedUser
     -UserPrincipalName <String>
     [-NewPassword <String>]
-    [-TenantId <Guid>]
     [<CommonParameters>]
 ```
 
@@ -42,13 +41,6 @@ PS C:\> Convert-EntraFederatedUser -UserPrincipalName "pattifuller@contoso.com"
 ```
 
 This command updates a user in a domain.
-
-### EXAMPLE 2: Update a user in a domain by TenantId
-```powershell
-PS C:\> Convert-EntraFederatedUser -UserPrincipalName "pattifuller@contoso.com" -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
-```
-
-This command updates a user in a domain by TenantId.
 
 ## PARAMETERS
 
@@ -77,23 +69,6 @@ Aliases:
 
 Required: False
 Position: 2
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -TenantId
-The unique ID of the tenant to perform the operation on. 
-If this isn't provided then it defaults to the tenant of the current user. 
-This parameter is only applicable to partner users.
-
-```yaml
-Type: Guid
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 3
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False

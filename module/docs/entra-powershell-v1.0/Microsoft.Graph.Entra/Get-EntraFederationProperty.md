@@ -26,7 +26,6 @@ Displays the properties of the Active Directory Federation Services 2.0 server a
 ```powershell
 Get-EntraFederationProperty 
     -DomainName <String> 
-    [-SupportMultipleDomain] 
     [<CommonParameters>]
 ```
 
@@ -55,21 +54,6 @@ Aliases:
 Required: True
 Position: Named
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -SupportMultipleDomain
-Specifies to support multiple domains.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: GetQuery
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
