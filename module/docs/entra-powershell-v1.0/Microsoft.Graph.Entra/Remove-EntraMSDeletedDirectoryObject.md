@@ -71,6 +71,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraMSDeletedDirectoryObject](Get-EntraMSDeletedDirectoryObject.md)  
+[Get-EntraMSDeletedDirectoryObject](Get-EntraMSDeletedDirectoryObject.md)
 
 [Restore-EntraMSDeletedDirectoryObject](Restore-EntraMSDeletedDirectoryObject.md)
