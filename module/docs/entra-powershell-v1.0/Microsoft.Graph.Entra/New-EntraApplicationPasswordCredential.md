@@ -28,8 +28,6 @@ New-EntraApplicationPasswordCredential
     -ObjectId <String> 
     [-StartDate <DateTime>] 
     [-EndDate <DateTime>] 
-    [-CustomKeyIdentifier <String>] 
-    [-Value <String>] 
     [<CommonParameters>]
 ```
 
@@ -51,20 +49,7 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This command creates new password credential for specified application.
 
-### Example 2: Create a password credential using CustomKeyIdentifier parameter
-```powershell
-PS C:\>New-EntraApplicationPasswordCredential -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -CustomKeyIdentifier "test"
-```
-
-```output
-CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                    StartDateTime
-------------------- ----------- -----------          ---- -----                                ----------                    -------------
-                                3/21/2026 9:48:40 AM n34  b30c6289-7903-4a61-97e6-2ada9742fd3b wbBNW8kCuiPjNRg9NX98W_EaU6cqG 3/21/2024 9:48:40 AM
-```
-
-This command creates new password credential for specified application.
-
-### Example 3: Create a password credential using StartDate parameter
+### Example 2: Create a password credential using StartDate parameter
 ```powershell
 PS C:\>New-EntraApplicationPasswordCredential -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -StartDate (get-date).AddYears(0)
 ```
@@ -77,7 +62,7 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This command creates new password credential for specified application.
 
-### Example 4: Create a password credential using EndDate parameter
+### Example 3: Create a password credential using EndDate parameter
 ```powershell
 PS C:\>New-EntraApplicationPasswordCredential -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -EndDate (get-date).AddYears(2)
 ```
@@ -90,35 +75,7 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This command creates new password credential for specified application.
 
-### Example 5: Create a password credential using Value parameter
-```powershell
-PS C:\>New-EntraApplicationPasswordCredential -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -Value "myPassword"
-```
-
-```output
-CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                    StartDateTime
-------------------- ----------- -----------          ---- -----                                ----------                    -------------
-                                3/21/2026 9:48:40 AM n34  b30c6289-7903-4a61-97e6-2ada9742fd3b wbBNW8kCuiPjNRg9NX98W_EaU6cqG 3/21/2024 9:48:40 AM
-```
-
-This command creates new password credential for specified application.
-
 ## PARAMETERS
-
-### -CustomKeyIdentifier
-A unique binary identifier.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
 
 ### -EndDate
 The date and time at which the password expires.
@@ -155,21 +112,6 @@ The date and time at which the password becomes valid.
 
 ```yaml
 Type: DateTime
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -Value
-The password for the user.
-
-```yaml
-Type: String
 Parameter Sets: (All)
 Aliases:
 

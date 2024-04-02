@@ -23,27 +23,11 @@ Set the thumbnail photo for a user.
 ## SYNTAX
 
 ### File (Default)
-```
+```powershell
 Set-EntraUserThumbnailPhoto 
-[-ObjectId <String>] 
--FilePath <String> 
-[<CommonParameters>]
-```
-
-### Stream
-```
-Set-EntraUserThumbnailPhoto 
--FileStream <Stream> 
-[-ObjectId <String>] 
-[<CommonParameters>]
-```
-
-### ByteArray
-```
-Set-EntraUserThumbnailPhoto 
-[-ObjectId <String>] 
--ImageByteArray <Byte[]> 
-[<CommonParameters>]
+ -FilePath <String> 
+ [-ObjectId <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -57,7 +41,7 @@ This cmdlet is used to set the thumbnail photo for a user.
 PS C:\WINDOWS\system32> Set-EntraUserThumbnailPhoto -ObjectId ba6752c4-6a2e-4be5-a23d-67d8d5980796 -FilePath D:\UserThumbnailPhoto.jpg
 ```
 
-This example sets the thumbnail photo of the user specified with the bjectId parameter to the image specified with the FilePath parameter.
+This example sets the thumbnail photo of the user specified with the objectId parameter to the image specified with the FilePath parameter.
 
 ## PARAMETERS
 
@@ -67,36 +51,6 @@ The file path of the image to be uploaded as the user thumbnail photo.
 ```yaml
 Type: String
 Parameter Sets: File
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -FileStream
-A filestream that contains the user thumbnail photo.
-
-```yaml
-Type: Stream
-Parameter Sets: Stream
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -ImageByteArray
-An Image Byte Array that contains the user thumbnail photo.
-
-```yaml
-Type: Byte[]
-Parameter Sets: ByteArray
 Aliases:
 
 Required: True
