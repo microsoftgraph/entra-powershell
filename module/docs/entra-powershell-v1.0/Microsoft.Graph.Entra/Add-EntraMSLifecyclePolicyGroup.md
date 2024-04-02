@@ -27,7 +27,7 @@ Adds a group to a lifecycle policy
 Add-EntraMSLifecyclePolicyGroup 
     -GroupId <String> 
     -Id <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

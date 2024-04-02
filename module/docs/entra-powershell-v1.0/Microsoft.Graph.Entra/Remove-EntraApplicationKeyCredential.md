@@ -25,7 +25,7 @@ Removes a key credential from an application.
 ```
 Remove-EntraApplicationKeyCredential
  -ObjectId <String> -KeyId <String> 
-  [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

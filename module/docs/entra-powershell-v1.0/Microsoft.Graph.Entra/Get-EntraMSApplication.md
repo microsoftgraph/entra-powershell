@@ -28,7 +28,7 @@ Get-EntraMSApplication
     [-Filter <String>] 
     [-All <Boolean>] 
     [-Top <Int32>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetVague
@@ -36,7 +36,7 @@ Get-EntraMSApplication
 Get-EntraMSApplication 
     [-SearchString <String>] 
     [-All <Boolean>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
@@ -44,7 +44,7 @@ Get-EntraMSApplication
 Get-EntraMSApplication 
     -ObjectId <String> 
     [-All <Boolean>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

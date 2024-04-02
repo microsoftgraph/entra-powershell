@@ -27,7 +27,7 @@ The Set-EntraApplicationProxyConnector cmdlet allows reassignment of the connect
 Set-EntraApplicationProxyConnector
    -Id <String>
    -ConnectorGroupId <String>
-   [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

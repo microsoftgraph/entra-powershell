@@ -28,7 +28,7 @@ Get a Microsoft Entra ID permission grant condition set by id.
 Get-EntraMSPermissionGrantConditionSet 
     -ConditionSetType <String> 
     -PolicyId <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
@@ -37,7 +37,7 @@ Get-EntraMSPermissionGrantConditionSet
     -ConditionSetType <String> 
     -Id <String> 
     -PolicyId <String>
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

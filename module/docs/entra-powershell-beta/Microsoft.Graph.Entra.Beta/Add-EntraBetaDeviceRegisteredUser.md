@@ -27,7 +27,7 @@ Adds a registered user for a device.
 Add-EntraBetaDeviceRegisteredUser 
     -ObjectId <String> 
     -RefObjectId <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

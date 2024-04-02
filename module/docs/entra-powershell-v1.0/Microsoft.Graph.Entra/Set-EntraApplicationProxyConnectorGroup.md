@@ -27,7 +27,7 @@ The Set-EntraApplicationProxyConnectorGroup cmdlet allows you to change the name
 Set-EntraApplicationProxyConnectorGroup
    -Id <String>
    -Name <Name>
-   [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

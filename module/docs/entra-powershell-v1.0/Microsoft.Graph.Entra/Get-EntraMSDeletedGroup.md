@@ -28,7 +28,7 @@ Get-EntraMSDeletedGroup
     [-Top <Int32>] 
     [-All <Boolean>] 
     [-Filter <String>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetVague
@@ -36,7 +36,7 @@ Get-EntraMSDeletedGroup
 Get-EntraMSDeletedGroup 
     [-SearchString <String>] 
     [-All <Boolean>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
@@ -44,7 +44,7 @@ Get-EntraMSDeletedGroup
 Get-EntraMSDeletedGroup 
     -Id <String> 
     [-All <Boolean>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

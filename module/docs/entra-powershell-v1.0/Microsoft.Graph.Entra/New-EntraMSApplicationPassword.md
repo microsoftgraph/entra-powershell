@@ -27,7 +27,7 @@ Adds a strong password to an application.
 New-EntraMSApplicationPassword 
     -ObjectId <String> 
     -PasswordCredential <PasswordCredential> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

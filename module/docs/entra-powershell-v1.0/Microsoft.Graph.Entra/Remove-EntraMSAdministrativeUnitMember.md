@@ -26,7 +26,7 @@ Removes an administrative unit member.
 Remove-EntraMSAdministrativeUnitMember 
     -Id <String> 
     -MemberId <String>
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

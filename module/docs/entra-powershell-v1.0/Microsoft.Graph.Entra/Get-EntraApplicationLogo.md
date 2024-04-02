@@ -29,7 +29,7 @@ Get-EntraApplicationLogo
     [-FileName <String>] 
     [-View <Boolean>] 
     [-FilePath <String>]
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

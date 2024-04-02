@@ -27,7 +27,7 @@ Sets the verified publisher of an application to a verified Microsoft Partner Ne
 Set-EntraMSApplicationVerifiedPublisher 
     -AppObjectId <String>
     -SetVerifiedPublisherRequest <SetVerifiedPublisherRequest> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

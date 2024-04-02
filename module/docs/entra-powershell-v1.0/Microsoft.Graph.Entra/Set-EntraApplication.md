@@ -59,7 +59,7 @@ Set-EntraApplication
     [-KnownClientApplications <System.Collections.Generic.List`1[System.String]>]
     [-RecordConsentConditions <String>] 
     [-AllowPassthroughUsers <Boolean>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

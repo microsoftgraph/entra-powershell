@@ -45,7 +45,7 @@ Set-EntraMSApplication
     [-IsFallbackPublicClient <Boolean>] 
     [-IsDeviceOnlyAuthSupported <Boolean>]
     [-RequiredResourceAccess <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]>]
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

@@ -27,7 +27,7 @@ Adds an administrative unit member.
 Add-EntraMSAdministrativeUnitMember 
     -RefObjectId <String> 
     -Id <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

@@ -26,7 +26,7 @@ Adds an owner for an application object.
 Add-EntraMSApplicationOwner 
     -ObjectId <String> 
     -RefObjectId <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

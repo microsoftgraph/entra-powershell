@@ -29,7 +29,7 @@ Set-EntraApplicationProxyApplicationCustomDomainCertificate
    -ObjectId <String>
    -PfxFilePath <String>
    -Password <SecureString>
-   [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

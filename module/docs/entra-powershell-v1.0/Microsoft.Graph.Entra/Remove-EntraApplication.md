@@ -18,14 +18,14 @@ schema: 2.0.0
 # Remove-EntraApplication
 
 ## SYNOPSIS
-Delete an application by objectId.
+Delete an application by ObjectId.
 
 ## SYNTAX
 
 ```powershell
 Remove-EntraApplication 
     -ObjectId <String>
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

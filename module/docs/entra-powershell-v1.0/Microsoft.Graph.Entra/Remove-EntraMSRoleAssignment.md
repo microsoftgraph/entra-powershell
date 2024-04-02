@@ -25,7 +25,7 @@ Delete a Microsoft Entra ID roleAssignment.
 ```powershell
 Remove-EntraMSRoleAssignment 
     -Id <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

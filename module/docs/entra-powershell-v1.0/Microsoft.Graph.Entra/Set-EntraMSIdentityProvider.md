@@ -30,7 +30,7 @@ Set-EntraMSIdentityProvider
     [-ClientSecret <String>] 
     [-ClientId <String>]
     [-Name <String>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

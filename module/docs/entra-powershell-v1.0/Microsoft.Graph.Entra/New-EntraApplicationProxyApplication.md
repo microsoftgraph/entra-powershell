@@ -36,7 +36,7 @@ New-EntraApplicationProxyApplication
     [-IsTranslateLinksInBodyEnabled <Boolean>] 
     [-ApplicationServerTimeout <ApplicationServerTimeoutEnum>]
     [-ConnectorGroupId <String>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

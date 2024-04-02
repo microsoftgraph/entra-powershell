@@ -33,7 +33,7 @@ Set-EntraMSNamedLocationPolicy
     [-DisplayName <String>] 
     [-Id <String>]    
     [-CountriesAndRegions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.CountriesAndRegion]>]
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

@@ -27,7 +27,7 @@ Retrieve the delegated permission classification objects on a service principal.
 Get-EntraMSServicePrincipalDelegatedPermissionClassification 
     -ServicePrincipalId <String> 
     [-Filter <String>]
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
@@ -35,7 +35,7 @@ Get-EntraMSServicePrincipalDelegatedPermissionClassification
 Get-EntraMSServicePrincipalDelegatedPermissionClassification 
     -ServicePrincipalId <String> 
     -Id <String>
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

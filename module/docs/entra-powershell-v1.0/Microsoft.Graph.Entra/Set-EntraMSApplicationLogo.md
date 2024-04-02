@@ -27,7 +27,7 @@ Sets the logo for an application object.
 Set-EntraMSApplicationLogo 
     -ObjectId <String> 
     -Content <Byte[]> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

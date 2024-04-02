@@ -59,7 +59,7 @@ New-EntraUser
     [-TelephoneNumber <String>] 
     [-Surname <String>] 
     [-ShowInAddressList <Boolean>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

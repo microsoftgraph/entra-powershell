@@ -26,7 +26,7 @@ Gets a scoped role membership from an administrative unit.
 Get-EntraMSScopedRoleMembership 
     -Id <String> 
     [-ScopedRoleMembershipId <String>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

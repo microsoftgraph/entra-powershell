@@ -26,7 +26,7 @@ This cmdlet is used to restore a previously deleted object.
 ```powershell
 Restore-EntraMSDeletedDirectoryObject 
     -Id <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

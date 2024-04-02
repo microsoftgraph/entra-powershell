@@ -30,7 +30,7 @@ New-EntraApplicationPasswordCredential
     [-EndDate <DateTime>] 
     [-CustomKeyIdentifier <String>] 
     [-Value <String>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

@@ -32,7 +32,7 @@ Get-EntraMSNamedLocationPolicy [<CommonParameters>]
 ```powershell
 Get-EntraMSNamedLocationPolicy 
   -PolicyId <String> 
-  [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

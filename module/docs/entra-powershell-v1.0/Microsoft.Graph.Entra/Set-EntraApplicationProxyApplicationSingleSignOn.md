@@ -29,7 +29,7 @@ Set-EntraApplicationProxyApplicationSingleSignOn
    -SingleSignOnMode <SingleSignOnModeEnum>
    [-KerberosInternalApplicationServicePrincipalName <String>]
    [-KerberosDelegatedLoginIdentity <KerberosSignOnMappingAttributeTypeEnum>]
-   [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

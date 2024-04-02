@@ -27,7 +27,7 @@ Set-EntraMSAdministrativeUnit
     -Id <String>
     [-DisplayName <String>] 
     [-Description <String>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

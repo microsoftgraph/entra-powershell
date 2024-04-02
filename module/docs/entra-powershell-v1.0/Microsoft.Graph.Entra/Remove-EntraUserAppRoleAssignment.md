@@ -26,7 +26,7 @@ Removes a user application role assignment.
 Remove-EntraUserAppRoleAssignment
  -AppRoleAssignmentId <String> 
  -ObjectId <String>
-  [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

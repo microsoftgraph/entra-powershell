@@ -26,14 +26,14 @@ Gets a directory role.
 ```powershell
 Get-EntraDirectoryRole 
     [-Filter <String>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraDirectoryRole 
     -ObjectId <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -75,9 +75,9 @@ d96eb2b3-0970-4827-8f26-6008efd86511 Security Administrator             Security
 
 This command gets all the directory roles.
 
-### Example 3: Get a directory role filter by objectId
+### Example 3: Get a directory role filter by ObjectId
 ```powershell
-PS C:\>Get-EntraDirectoryRole -Filter "objectId eq '019ea7a2-1613-47c9-81cb-20ba35b1ae48'"
+PS C:\>Get-EntraDirectoryRole -Filter "ObjectId eq '019ea7a2-1613-47c9-81cb-20ba35b1ae48'"
 ```
 
 ```output
@@ -86,7 +86,7 @@ ObjectId                             DisplayName                        Descript
 019ea7a2-1613-47c9-81cb-20ba35b1ae48 Company Administrator              Company Administrator role has full access to perform any operation in the company scope.
 ```
 
-This command gets the directory role by objectId.
+This command gets the directory role by ObjectId.
 
 ### Example 4: Get a directory role filter by displayName
 ```powershell

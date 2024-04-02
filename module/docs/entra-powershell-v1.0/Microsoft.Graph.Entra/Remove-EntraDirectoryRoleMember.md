@@ -26,7 +26,7 @@ Removes a member of a directory role.
 Remove-EntraDirectoryRoleMember 
     -ObjectId <String> 
     -MemberId <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

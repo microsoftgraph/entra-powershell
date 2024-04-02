@@ -26,7 +26,7 @@ Removes a user.
 ```powershell
 Remove-EntraUser 
     -ObjectId <String>
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

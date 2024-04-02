@@ -27,7 +27,7 @@ New-EntraMSRoleAssignment
     -PrincipalId <String>     
     -RoleDefinitionId <String>
     [-DirectoryScopeId <String>]
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

@@ -32,7 +32,7 @@ New-EntraApplicationKeyCredential
     [-Value <String>] 
     [-EndDate <DateTime>] 
     [-StartDate <DateTime>]
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

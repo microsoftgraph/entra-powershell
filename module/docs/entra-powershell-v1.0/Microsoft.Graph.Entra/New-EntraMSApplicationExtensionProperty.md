@@ -28,7 +28,7 @@ New-EntraMSApplicationExtensionProperty
     [-DataType <String>] 
     [-TargetObjects <System.Collections.Generic.List`1[System.String]>] 
     [-Name <String>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

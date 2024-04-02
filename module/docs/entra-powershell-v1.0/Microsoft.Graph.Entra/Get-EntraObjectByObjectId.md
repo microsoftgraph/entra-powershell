@@ -18,7 +18,7 @@ schema: 2.0.0
 # Get-EntraObjectByObjectId
 
 ## SYNOPSIS
-Retrieves the object(s) specified by the objectIds parameter.
+Retrieves the object(s) specified by the ObjectIds parameter.
 
 ## SYNTAX
 
@@ -30,7 +30,7 @@ Get-EntraObjectByObjectId
 ```
 
 ## DESCRIPTION
-Retrieves the object(s) specified by the objectIds parameter.
+Retrieves the object(s) specified by the ObjectIds parameter.
 
 ## EXAMPLES
 
@@ -39,7 +39,7 @@ Retrieves the object(s) specified by the objectIds parameter.
 PS C:\WINDOWS\system32> Get-EntraObjectByObjectId -ObjectIds 2af3478a-27da-4837-a387-b22b3fb236a8, c4fdf87f-f68e-4859-8bcf-36579b66005e
 ```
 
-This example demonstrates how to retrieve objects specified by the objectIds.
+This example demonstrates how to retrieve objects specified by the ObjectIds.
 
 ### Example 2: Get an object by types
 ```powershell

@@ -32,7 +32,7 @@ Set-EntraMSConditionalAccessPolicy
     [-Id <String>] 
     [-State <String>] 
     [-SessionControls <ConditionalAccessSessionControls>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

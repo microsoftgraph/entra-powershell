@@ -28,7 +28,7 @@ Sets the logo for an Application
 Set-EntraApplicationLogo 
     -ObjectId <String> 
     -FilePath <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### Stream
@@ -36,7 +36,7 @@ Set-EntraApplicationLogo
 Set-EntraApplicationLogo 
     -ObjectId <String> 
     -FileStream <Stream> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### ByteArray
@@ -44,7 +44,7 @@ Set-EntraApplicationLogo
 Set-EntraApplicationLogo 
     -ObjectId <String> 
     -ImageByteArray <Byte[]> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

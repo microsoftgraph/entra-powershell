@@ -28,7 +28,7 @@ Get-EntraMSRoleAssignment
     [-Top <Int32>] 
     [-All <Boolean>] 
     [-Filter <String>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetValue
@@ -36,7 +36,7 @@ Get-EntraMSRoleAssignment
 Get-EntraMSRoleAssignment 
     [-SearchString <String>] 
     [-All <Boolean>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
@@ -44,7 +44,7 @@ Get-EntraMSRoleAssignment
 Get-EntraMSRoleAssignment 
     -Id <String> 
     [-All <Boolean>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

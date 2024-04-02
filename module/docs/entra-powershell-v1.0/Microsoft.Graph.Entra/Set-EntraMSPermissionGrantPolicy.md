@@ -28,7 +28,7 @@ Set-EntraMSPermissionGrantPolicy
     -Id <String>
     [-DisplayName <String>] 
     [-Description <String>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

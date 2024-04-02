@@ -28,7 +28,7 @@ Get-EntraContact
     [-Filter <String>] 
     [-All <Boolean>] 
     [-Top <Int32>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
@@ -36,7 +36,7 @@ Get-EntraContact
 Get-EntraContact 
     -ObjectId <String> 
     [-All <Boolean>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
