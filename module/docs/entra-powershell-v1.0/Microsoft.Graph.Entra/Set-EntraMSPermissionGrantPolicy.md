@@ -1,4 +1,15 @@
 ---
+title: Set-EntraMSPermissionGrantPolicy
+description: This article provides details on the Set-EntraMSPermissionGrantPolicy command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/25/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,20 +23,32 @@ Updates a permission grant policy.
 
 ## SYNTAX
 
-```
-Set-EntraMSPermissionGrantPolicy [-DisplayName <String>] [-Description <String>] -Id <String>
- [<CommonParameters>]
+```powershell
+Set-EntraMSPermissionGrantPolicy 
+    -Id <String>
+    [-DisplayName <String>] 
+    [-Description <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Set-EntraMSPermissionGrantPolicy command updates a Microsoft Entra ID permission grant policy.
+The **Set-EntraMSPermissionGrantPolicy** command updates a Microsoft Entra ID permission grant policy.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Update description of permission grant policy
+```powershell
+PS C:\> Set-EntraMSPermissionGrantPolicy -Id "my_permission_grant_policy_id" -Description "updated description"
 ```
-PS C:\> Set-EntraMSPermissionGrantPolicy -Id "my_permission_grant_policy_id" -Description "updated description" -DisplayName "update displayname"
+
+This command updates the description of the specified permission grant policy.
+
+### Example 2: Update display name of permission grant policy
+```powershell
+PS C:\> Set-EntraMSPermissionGrantPolicy -Id "my_permission_grant_policy_id" -DisplayName "update displayname"
 ```
+
+This command updates the display name of the specified permission grant policy.
 
 ## PARAMETERS
 
@@ -85,9 +108,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[New-EntraMSPermissionGrantPolicy]()
+[New-EntraMSPermissionGrantPolicy](New-EntraMSPermissionGrantPolicy.md)
 
-[Get-EntraMSPermissionGrantPolicy]()
+[Get-EntraMSPermissionGrantPolicy](Get-EntraMSPermissionGrantPolicy.md)
 
-[Remove-EntraMSPermissionGrantPolicy]()
+[Remove-EntraMSPermissionGrantPolicy](Remove-EntraMSPermissionGrantPolicy.md)
 

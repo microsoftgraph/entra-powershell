@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraMSApplicationKey.
+description: This article provides details on the Remove-EntraMSApplicationKey command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/18/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,7 +23,11 @@ Removes a key from an application.
 ## SYNTAX
 
 ```
-Remove-EntraMSApplicationKey -ObjectId <String> [-Proof <String>] [-KeyId <String>] [<CommonParameters>]
+Remove-EntraMSApplicationKey 
+-ObjectId <String> 
+[-Proof <String>] 
+[-KeyId <String>] 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -87,5 +101,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[New-EntraMSApplicationKey]()
+[New-EntraMSApplicationKey](New-EntraMSApplicationKey.md)
 
