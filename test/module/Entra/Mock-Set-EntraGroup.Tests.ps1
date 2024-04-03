@@ -1,10 +1,10 @@
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        #Import-Module .\bin\Microsoft.Graph.Entra.psm1 -Force
         Import-Module Microsoft.Graph.Entra
     }
-    $scriptblock = {
-        param($args)
-        Write-Host "Mocking Set-EntraGroup with parameters: $($args | ConvertTo-Json -Depth 3)"
+    $scriptblock = {        
+        #Write-Host "Mocking Set-EntraGroup with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @()
         }     
         Mock -CommandName Update-MgGroup -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra

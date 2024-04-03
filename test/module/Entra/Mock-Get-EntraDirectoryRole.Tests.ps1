@@ -1,10 +1,10 @@
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+        #Import-Module .\bin\Microsoft.Graph.Entra.psm1 -Force
         Import-Module Microsoft.Graph.Entra
     }
     $scriptblock = {
-        param($args)
-        Write-Host "Mocking Get-EntraDirectoryRole with parameters: $($args | ConvertTo-Json -Depth 3)"
+        # Write-Host "Mocking Get-EntraDirectoryRole with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
               "DeletedDateTime"              = $null

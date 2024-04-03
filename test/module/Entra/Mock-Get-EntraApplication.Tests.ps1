@@ -1,11 +1,10 @@
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        # Import-Module .\bin\Microsoft.Graph.Entra.psm1 -Force
+        #Import-Module .\bin\Microsoft.Graph.Entra.psm1 -Force
         Import-Module Microsoft.Graph.Entra
     }
     $scriptblock = {
-        param($args)
-        Write-Host "Mocking Get-MgApplication with parameters: $($args | ConvertTo-Json -Depth 3)"
+        # Write-Host "Mocking Get-MgApplication with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
               "AppId"                        = "5f783237-3457-45d8-93e7-a0edb1cfbfd1"
