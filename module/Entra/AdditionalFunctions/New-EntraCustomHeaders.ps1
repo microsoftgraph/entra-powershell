@@ -17,15 +17,12 @@ function New-EntraCustomHeaders {
         [string]
 		$Command
     )
-
-    $basePath = (join-path $PSScriptRoot '../module/Entra')
-	$settingPath = join-path $basePath "./config/ModuleMetadata.json"
-	$content = Get-Content -Path $settingPath | ConvertFrom-Json
-	$psVersion = $global:PSVersionTable.PSVersion
-	$entraVersion = $content.version
-	$userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion $Command"
-	$customHeaders = New-Object 'system.collections.generic.dictionary[string,string]'
-	$customHeaders["User-Agent"] = $userAgentHeaderValue
-
-	$customHeaders
+    
+    $psVersion = $global:PSVersionTable.PSVersion
+    $entraVersion = (Get-module Microsoft.Graph.Entra | select version).Version.ToString()
+    $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion $Command"
+    $customHeaders = New-Object 'system.collections.generic.dictionary[string,string]'
+    $customHeaders["User-Agent"] = $userAgentHeaderValue
+    
+    $customHeaders
 }
