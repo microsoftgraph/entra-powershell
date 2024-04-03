@@ -19,7 +19,7 @@ BeforeAll {
             Should -Invoke -CommandName Remove-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when ObjectId is empty" {
-            { Set-EntraGroup -ObjectId "" }
+            { Remove-EntraGroup -ObjectId "" }
         }      
     }
   }
