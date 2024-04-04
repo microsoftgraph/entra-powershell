@@ -25,14 +25,14 @@ Gets a directory role.
 ### GetQuery (Default)
 ```powershell
 Get-EntraDirectoryRole 
-    [-Filter <String>] 
+ [-Filter <String>] 
  [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraDirectoryRole 
-    -ObjectId <String> 
+ -ObjectId <String> 
  [<CommonParameters>]
 ```
 

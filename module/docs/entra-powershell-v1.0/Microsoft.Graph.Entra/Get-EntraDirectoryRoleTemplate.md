@@ -28,7 +28,7 @@ Get-EntraDirectoryRoleTemplate
 ```
 
 ## DESCRIPTION
-The **Get-EntraDirectoryRoleTemplate** cmdlet gets directory role templates in Microsoft Entra ID.
+The Get-EntraDirectoryRoleTemplate cmdlet gets directory role templates in Microsoft Entra ID.
 
 ## EXAMPLES
 

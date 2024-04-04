@@ -23,7 +23,7 @@ Gets a device from Microsoft Entra ID.
 ## SYNTAX
 
 ### GetQuery (Default)
-```
+```powershell
 Get-EntraDevice 
  [-Top <Int32>]
  [-All <Boolean>]
@@ -32,7 +32,7 @@ Get-EntraDevice
 ```
 
 ### GetByValue
-```
+```powershell
 Get-EntraDevice 
  [-SearchString <String>]
  [-All <Boolean>]
@@ -40,7 +40,7 @@ Get-EntraDevice
 ```
 
 ### GetById
-```
+```powershell
 Get-EntraDevice 
  -ObjectId <String>
  [-All <Boolean>]

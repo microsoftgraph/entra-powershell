@@ -23,46 +23,46 @@ Connects with an authenticated account to use Microsoft Entra ID cmdlet requests
 ## SYNTAX
 
 ### UserCredential (Default)
-``` 
+```powershell 
 Connect-Entra 
-[-AzureEnvironmentName <EnvironmentName>] 
-[-TenantId <String>] 
-[-Credential <PSCredential>]
-[-AccountId <String>] 
-[-LogLevel <LogLevel>] 
-[-LogFilePath <String>] 
-[-WhatIf] 
-[-Confirm] 
-[<CommonParameters>]
+ [-AzureEnvironmentName <EnvironmentName>] 
+ [-TenantId <String>] 
+ [-Credential <PSCredential>]
+ [-AccountId <String>] 
+ [-LogLevel <LogLevel>] 
+ [-LogFilePath <String>] 
+ [-WhatIf] 
+ [-Confirm] 
+ [<CommonParameters>]
 ```
 
 ### ServicePrincipalCertificate
-```
+```powershell
 Connect-Entra 
-[-AzureEnvironmentName <EnvironmentName>] 
--TenantId <String> 
--CertificateThumbprint <String>
--ApplicationId <String> 
-[-LogLevel <LogLevel>] 
-[-LogFilePath <String>] 
-[-WhatIf] 
-[-Confirm] 
-[<CommonParameters>]
+ [-AzureEnvironmentName <EnvironmentName>] 
+ -TenantId <String> 
+ -CertificateThumbprint <String>
+ -ApplicationId <String> 
+ [-LogLevel <LogLevel>] 
+ [-LogFilePath <String>] 
+ [-WhatIf] 
+ [-Confirm] 
+ [<CommonParameters>]
 ```
 
 ### AccessToken
-```
+```powershell
 Connect-Entra 
-[-AzureEnvironmentName <EnvironmentName>] 
-[-TenantId <String>] 
--AadAccessToken <String>
-[-MsAccessToken <String>] 
--AccountId <String> 
-[-LogLevel <LogLevel>] 
-[-LogFilePath <String>]
-[-WhatIf] 
-[-Confirm]
-[<CommonParameters>]
+ [-AzureEnvironmentName <EnvironmentName>] 
+ [-TenantId <String>] 
+ -AadAccessToken <String>
+ [-MsAccessToken <String>] 
+ -AccountId <String> 
+ [-LogLevel <LogLevel>] 
+ [-LogFilePath <String>]
+ [-WhatIf] 
+ [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -153,7 +153,7 @@ Accept wildcard characters: False
 
 ### -AccountId
 Specifies the ID of an account.
-You must specify the UPN of the user when authenticating with a user access token.
+You must specify the UserPrincipalName of the user when authenticating with a user access token.
 
 ```yaml
 Type: String

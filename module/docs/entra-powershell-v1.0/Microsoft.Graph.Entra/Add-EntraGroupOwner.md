@@ -21,11 +21,11 @@ schema: 2.0.0
 Adds an owner to a group.
 
 ## SYNTAX
-```
+```powershell
 Add-EntraGroupOwner 
--ObjectId <String> 
--RefObjectId <String> 
-[<CommonParameters>]
+ -ObjectId <String> 
+ -RefObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

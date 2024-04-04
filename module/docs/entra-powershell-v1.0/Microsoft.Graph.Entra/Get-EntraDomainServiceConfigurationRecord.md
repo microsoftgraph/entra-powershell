@@ -22,7 +22,7 @@ Gets the domain's service configuration records from the serviceConfigurationRec
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraDomainServiceConfigurationRecord 
  -Name <String> 
  [<CommonParameters>]

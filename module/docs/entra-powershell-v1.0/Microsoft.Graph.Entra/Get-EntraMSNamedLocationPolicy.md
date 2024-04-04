@@ -25,13 +25,14 @@ Gets a Microsoft Entra ID named location policy.
 
 ### GetQuery (Default)
 ```powershell
-Get-EntraMSNamedLocationPolicy [<CommonParameters>]
+Get-EntraMSNamedLocationPolicy 
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraMSNamedLocationPolicy 
-  -PolicyId <String> 
+ -PolicyId <String> 
  [<CommonParameters>]
 ```
 

@@ -24,14 +24,14 @@ Gets a member of an administrative unit.
 
 ```powershell
 Get-EntraMSAdministrativeUnitMember
-    -Id <String> 
-    [-All <Boolean>] 
-    [-Top <Int32>]
+ -Id <String> 
+ [-All <Boolean>] 
+ [-Top <Int32>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraMSAdministrativeUnitMember** cmdlet gets a member of a Microsoft Entra ID administrative unit.
+The Get-EntraMSAdministrativeUnitMember cmdlet gets a member of a Microsoft Entra ID administrative unit.
 
 ## EXAMPLES
 

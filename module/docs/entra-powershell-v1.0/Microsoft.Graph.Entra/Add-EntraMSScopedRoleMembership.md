@@ -24,15 +24,15 @@ Adds a scoped role membership to an administrative unit.
 
 ```powershell
 Add-EntraMSScopedRoleMembership 
-    -Id <String>
-    [-RoleMemberInfo <MsRoleMemberInfo>] 
-    [-AdministrativeUnitId <String>] 
-    [-RoleId <String>] 
+ -Id <String>
+ [-RoleMemberInfo <MsRoleMemberInfo>] 
+ [-AdministrativeUnitId <String>] 
+ [-RoleId <String>] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Add-EntraMSScopedRoleMembership** cmdlet adds a scoped role membership to an administrative unit.
+The Add-EntraMSScopedRoleMembership cmdlet adds a scoped role membership to an administrative unit.
 
 ## EXAMPLES
 

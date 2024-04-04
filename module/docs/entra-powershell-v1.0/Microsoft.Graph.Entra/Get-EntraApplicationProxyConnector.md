@@ -23,28 +23,28 @@ The Get-EntraApplicationProxyConnector cmdlet a list of all connectors, or if sp
 ## SYNTAX
 
 ### GetQuery (Default)
-```
+```powershell
 Get-EntraApplicationProxyConnector
-[-All <Boolean>] 
-[-Top <Int32>] 
-[-Filter <String>] 
-[<CommonParameters>]
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [-Filter <String>] 
+ [<CommonParameters>]
 ```
 
-### GetVague
-```
+### GetByValue
+```powershell
 Get-EntraApplicationProxyConnector
-[-SearchString <String>] 
-[-All <Boolean>] 
-[<CommonParameters>]
+ [-SearchString <String>] 
+ [-All <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ### GetById
-```
+```powershell
 Get-EntraApplicationProxyConnector
--Id <String> 
-[-All <Boolean>] 
-[<CommonParameters>]
+ -Id <String> 
+ [-All <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

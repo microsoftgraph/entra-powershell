@@ -25,22 +25,22 @@ Gets a contact from Microsoft Entra ID.
 ### GetQuery (Default)
 ```powershell
 Get-EntraContact 
-    [-Filter <String>] 
-    [-All <Boolean>] 
-    [-Top <Int32>] 
+ [-Filter <String>] 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
  [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraContact 
-    -ObjectId <String> 
-    [-All <Boolean>] 
+ -ObjectId <String> 
+ [-All <Boolean>] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraContact** cmdlet gets a contact from Microsoft Entra ID.
+The Get-EntraContact cmdlet gets a contact from Microsoft Entra ID.
 
 ## EXAMPLES
 

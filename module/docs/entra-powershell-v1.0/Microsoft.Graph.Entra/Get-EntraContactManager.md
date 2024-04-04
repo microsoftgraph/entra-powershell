@@ -24,12 +24,12 @@ Gets the manager of a contact.
 
 ```powershell
 Get-EntraContactManager 
-    -ObjectId <String> 
+ -ObjectId <String> 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraContactManager** cmdlet gets the manager of a contact in Microsoft Entra ID.
+The Get-EntraContactManager cmdlet gets the manager of a contact in Microsoft Entra ID.
 
 ## EXAMPLES
 

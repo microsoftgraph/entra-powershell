@@ -22,10 +22,10 @@ The Get-EntraApplicationProxyConnectorMemberOf command gets the ConnectorGroup t
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraApplicationProxyConnectorMemberOf 
--Id <String> 
-[<CommonParameters>]
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

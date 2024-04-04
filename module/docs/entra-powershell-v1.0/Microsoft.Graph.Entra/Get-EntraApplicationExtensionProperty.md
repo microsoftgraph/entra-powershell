@@ -24,12 +24,12 @@ Gets application extension properties.
 
 ```powershell
 Get-EntraApplicationExtensionProperty 
-    -ObjectId <String>
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraApplicationExtensionProperty** cmdlet gets application extension properties in Microsoft Entra ID.
+The Get-EntraApplicationExtensionProperty cmdlet gets application extension properties in Microsoft Entra ID.
 
 ## EXAMPLES
 

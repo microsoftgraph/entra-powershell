@@ -24,12 +24,12 @@ Gets the password credential for an application.
 
 ```powershell
 Get-EntraApplicationPasswordCredential 
-    -ObjectId <String> 
+ -ObjectId <String> 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraApplicationPasswordCredential** cmdlet gets the password credentials for a Microsoft Entra ID application.
+The Get-EntraApplicationPasswordCredential cmdlet gets the password credentials for a Microsoft Entra ID application.
 
 ## EXAMPLES
 

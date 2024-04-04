@@ -19,18 +19,18 @@ schema: 2.0.0
 # Get-EntraApplicationProxyApplication
 
 ## SYNOPSIS
-The **Get-EntraApplicationProxyApplication** cmdlet retrieves an application configured for Application Proxy in Microsoft Entra ID.
+The Get-EntraApplicationProxyApplication cmdlet retrieves an application configured for Application Proxy in Microsoft Entra ID.
 
 ## SYNTAX
 
 ```powershell
 Get-EntraApplicationProxyApplication 
-    -ObjectId <String> 
+ -ObjectId <String> 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraApplicationProxyApplication** cmdlet retrieves an application configured for Application Proxy in Microsoft Entra ID.
+The Get-EntraApplicationProxyApplication cmdlet retrieves an application configured for Application Proxy in Microsoft Entra ID.
 
 ## EXAMPLES
 

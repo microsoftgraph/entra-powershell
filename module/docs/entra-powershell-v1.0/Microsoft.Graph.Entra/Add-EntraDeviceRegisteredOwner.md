@@ -24,8 +24,8 @@ Adds a registered owner for a device.
 
 ```powershell
 Add-EntraDeviceRegisteredOwner 
-    -ObjectId <String> 
-    -RefObjectId <String> 
+ -ObjectId <String> 
+ -RefObjectId <String> 
  [<CommonParameters>]
 ```
 

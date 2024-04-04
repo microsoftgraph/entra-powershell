@@ -22,11 +22,11 @@ Disconnects the current session from a Microsoft Entra ID tenant.
 
 ## SYNTAX
 
-```
+```powershell
 Disconnect-Entra
-[-WhatIf] 
-[-Confirm]
-[<CommonParameters>]
+ [-WhatIf] 
+ [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
