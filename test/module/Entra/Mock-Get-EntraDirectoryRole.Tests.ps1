@@ -42,6 +42,22 @@ BeforeAll {
         It "Result should Contain ObjectId" {
             $result = Get-EntraDirectoryRole -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32"
             $result.ObjectId | should -Be "dc587a80-d49c-4700-a73b-57227856fc32"
-        }      
+        } 
+        It "Should contain DirectoryRoleId in parameters when passed ObjectId to it" {
+            $scriptblock = {
+                param($args)
+                return $args
+            }     
+            Mock -CommandName Get-MgDirectoryRole -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
+
+            $result = Get-EntraDirectoryRole -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32"
+            $params = @{}
+            for ($i = 0; $i -lt $result.Length; $i += 2) {
+                $key = $result[$i] -replace '-', '' -replace ':', ''
+                $value = $result[$i + 1]
+                $params[$key] = $value
+            }
+            $params.DirectoryRoleId | Should -Be "dc587a80-d49c-4700-a73b-57227856fc32"
+        }     
     }
   }

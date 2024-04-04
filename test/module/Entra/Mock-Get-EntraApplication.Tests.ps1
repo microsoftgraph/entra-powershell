@@ -72,6 +72,39 @@ BeforeAll {
         It "Result should Contain ObjectId" {
             $result = Get-EntraApplication -ObjectId "111cc9b5-fce9-485e-9566-c68debafac5f"
             $result.ObjectId | should -Be "111cc9b5-fce9-485e-9566-c68debafac5f"
-        }      
+        }     
+        It "Should contain ApplicationId in parameters when passed ObjectId to it" {
+            $scriptblock = {
+                param($args)
+                return $args
+            }     
+            Mock -CommandName Get-MgApplication -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
+
+            $result = Get-EntraApplication -ObjectId "111cc9b5-fce9-485e-9566-c68debafac5f"
+            $params = @{}
+            $params = @{}
+            for ($i = 0; $i -lt $result.Length; $i += 2) {
+                $key = $result[$i] -replace '-', '' -replace ':', ''
+                $value = $result[$i + 1]
+                $params[$key] = $value
+            }
+            $params.GroupId | Should -Be "111cc9b5-fce9-485e-9566-c68debafac5f"
+        }
+        It "Should contain Filter in parameters when passed SearchString to it" {
+            $scriptblock = {
+                param($args)
+                return $args
+            }     
+            Mock -CommandName Get-MgApplication -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
+
+            $result = Get-EntraApplication -SearchString 'Mock-App'
+            $params = @{}
+            for ($i = 0; $i -lt $result.Length; $i += 2) {
+                $key = $result[$i] -replace '-', '' -replace ':', ''
+                $value = $result[$i + 1]
+                $params[$key] = $value
+            }
+            $params.Filter | Should -Match "Mock-App"
+        } 
     }
   }

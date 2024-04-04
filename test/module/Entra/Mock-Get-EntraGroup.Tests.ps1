@@ -63,6 +63,38 @@ BeforeAll {
         It "Result should Contain ObjectId" {
             $result = Get-EntraGroup -ObjectId "056b2531-005e-4f3e-be78-01a71ea30a04"
             $result.ObjectId | should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
+        } 
+        It "Should contain GroupId in parameters when passed ObjectId to it" {
+            $scriptblock = {
+                param($args)
+                return $args
+            }     
+            Mock -CommandName Get-MgGroup -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
+
+            $result = Get-EntraGroup -ObjectId "056b2531-005e-4f3e-be78-01a71ea30a04"
+            $params = @{}
+            for ($i = 0; $i -lt $result.Length; $i += 2) {
+                $key = $result[$i] -replace '-', '' -replace ':', ''
+                $value = $result[$i + 1]
+                $params[$key] = $value
+            }
+            $params.GroupId | Should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
+        }
+        It "Should contain Filter in parameters when passed SearchString to it" {
+            $scriptblock = {
+                param($args)
+                return $args
+            }     
+            Mock -CommandName Get-MgGroup -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
+
+            $result = Get-EntraGroup -SearchString 'demo'
+            $params = @{}
+            for ($i = 0; $i -lt $result.Length; $i += 2) {
+                $key = $result[$i] -replace '-', '' -replace ':', ''
+                $value = $result[$i + 1]
+                $params[$key] = $value
+            }
+            $params.Filter | Should -Match "demo"
         }      
     }
   }

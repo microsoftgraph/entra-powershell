@@ -20,6 +20,22 @@ BeforeAll {
         }
         It "Should fail when ObjectId is empty" {
             { Remove-EntraGroup -ObjectId "" }
-        }      
+        }   
+        It "Should contain GroupId in parameters when passed ObjectId to it" {
+            $scriptblock = {
+                param($args)
+                return $args
+            }     
+            Mock -CommandName Remove-MgGroup -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
+
+            $result = Remove-EntraGroup -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04
+            $params = @{}
+            for ($i = 0; $i -lt $result.Length; $i += 2) {
+                $key = $result[$i] -replace '-', '' -replace ':', ''
+                $value = $result[$i + 1]
+                $params[$key] = $value
+            }
+            $params.GroupId | Should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
+        }   
     }
   }
