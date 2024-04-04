@@ -22,11 +22,11 @@ Removes a user application role assignment.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraUserAppRoleAssignment
  -AppRoleAssignmentId <String> 
  -ObjectId <String>
-  [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -36,8 +36,7 @@ The Remove-EntraUserAppRoleAssignment cmdlet removes a user application role ass
 
 ### Example 1
 ```powershell
-PS C:\>  Remove-EntraUserAppRoleAssignment  -ObjectId bbf5d921-bb52-434b-96a0-95888e44faf5 -AppRoleAssignmentId Idn1u1K7S0OWoJWIjkT69ZuAI6_HyiZJv_bPBryomlg
-
+PS C:\>  Remove-EntraUserAppRoleAssignment -ObjectId bbf5d921-bb52-434b-96a0-95888e44faf5 -AppRoleAssignmentId Idn1u1K7S0OWoJWIjkT69ZuAI6_HyiZJv_bPBryomlg
 ```
 
 This example demonstrates how to Remove the user app role assignment in Microsoft Entra ID.   

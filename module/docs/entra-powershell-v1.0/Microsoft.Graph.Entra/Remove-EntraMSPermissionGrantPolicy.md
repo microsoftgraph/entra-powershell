@@ -22,10 +22,10 @@ Removes a permission grant policy.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraMSPermissionGrantPolicy 
--Id <String>
-[<CommonParameters>]
+ -Id <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,7 +34,7 @@ The Remove-EntraMSPermissionGrantPolicy cmdlet removes a Microsoft Entra ID perm
 ## EXAMPLES
 
 ### Example 1: Remove a permission grant policy
-```
+```powershell
 PS C:\> Remove-EntraMSPermissionGrantPolicy -Id "my_permission_grant_policy_id"
 ```
 This example demonstrates how to remove permission grant policy with specified ID.

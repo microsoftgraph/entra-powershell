@@ -23,18 +23,18 @@ Removes a user extension.
 ## SYNTAX
 
 ### SetMultiple
-```
+```powershell
 Remove-EntraUserExtension 
--ObjectId <String> 
--ExtensionNames <System.Collections.Generic.List`1[System.String]>
-[<CommonParameters>]
+ -ObjectId <String> 
+ -ExtensionNames <System.Collections.Generic.List`1[System.String]>
+ [<CommonParameters>]
 ```
 
 ### SetSingle
-```
+```powershell
 Remove-EntraUserExtension 
--ObjectId <String> 
--ExtensionName <String>
+ -ObjectId <String> 
+ -ExtensionName <String>
  [<CommonParameters>]
 ```
 
@@ -43,12 +43,12 @@ The Remove-EntraUserExtension cmdlet removes a user extension from Microsoft Ent
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Remove the "Test Extension" attribute from user: TestUser@example.com
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-EntraUserExtension -ObjectId TestUser@example.com -ExtensionName "Test Extension"
 ```
 
-{{ Add example description here }}
+This will remove the "Test Extension" attribute from user: TestUser@example.com.
 
 ## PARAMETERS
 

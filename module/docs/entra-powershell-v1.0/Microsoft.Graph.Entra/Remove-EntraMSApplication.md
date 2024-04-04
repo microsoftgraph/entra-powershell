@@ -22,10 +22,10 @@ Deletes an application object.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraMSApplication 
--ObjectId <String>
-[<CommonParameters>]
+ -ObjectId <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,7 +34,7 @@ Deletes an application object identified by objectId.
 ## EXAMPLES
 
 ### Example 1: Remove an application
-```
+```powershell
 PS C:\>Remove-EntraMSApplication -ObjectId "acd10942-5747-4385-8824-4c5d5fa904f9"
 ```
 

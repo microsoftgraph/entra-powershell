@@ -22,10 +22,10 @@ This cmdlet is used to delete an identity provider in the directory.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraMSIdentityProvider 
--Id <String> 
-[<CommonParameters>]
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

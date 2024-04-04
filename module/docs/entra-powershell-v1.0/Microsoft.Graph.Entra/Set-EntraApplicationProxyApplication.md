@@ -25,22 +25,22 @@ The Set-EntraApplicationProxyApplication allows you to modify and set configurat
 
 ```powershell
 Set-EntraApplicationProxyApplication
-   -ObjectId <String>
-   [-ExternalUrl <String>]
-   [-InternalUrl <String>]
-   [-ExternalAuthenticationType <ExternalAuthenticationTypeEnum>]
-   [-IsTranslateHostHeaderEnabled <Boolean>]
-   [-IsHttpOnlyCookieEnabled <Boolean>]
-   [-IsSecureCookieEnabled <Boolean>]
-   [-IsPersistentCookieEnabled <Boolean>]
-   [-IsTranslateLinksInBodyEnabled <Boolean>]
-   [-ApplicationServerTimeout <ApplicationServerTimeoutEnum>]
-   [-ConnectorGroupId <String>]
-   [<CommonParameters>]
+ -ObjectId <String>
+ [-ExternalUrl <String>]
+ [-InternalUrl <String>]
+ [-ExternalAuthenticationType <ExternalAuthenticationTypeEnum>]
+ [-IsTranslateHostHeaderEnabled <Boolean>]
+ [-IsHttpOnlyCookieEnabled <Boolean>]
+ [-IsSecureCookieEnabled <Boolean>]
+ [-IsPersistentCookieEnabled <Boolean>]
+ [-IsTranslateLinksInBodyEnabled <Boolean>]
+ [-ApplicationServerTimeout <ApplicationServerTimeoutEnum>]
+ [-ConnectorGroupId <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Set-EntraApplicationProxyApplication** allows you to modify and set more settings for an application in Microsoft Entra ID configured to use ApplicationProxy.
+The Set-EntraApplicationProxyApplication allows you to modify and set more settings for an application in Microsoft Entra ID configured to use ApplicationProxy.
 
 ## EXAMPLES
 

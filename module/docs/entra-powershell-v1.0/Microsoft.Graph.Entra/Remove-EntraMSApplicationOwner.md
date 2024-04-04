@@ -22,11 +22,11 @@ Removes an owner from an application object.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraMSApplicationOwner 
--OwnerId <String> 
--ObjectId <String> 
-[<CommonParameters>]
+ -OwnerId <String> 
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

@@ -22,11 +22,11 @@ Remove a password from an application.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraMSApplicationPassword 
--ObjectId <String> 
-[-KeyId <String>] 
-[<CommonParameters>]
+ -ObjectId <String> 
+ [-KeyId <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -35,7 +35,7 @@ Remove a password from an application.
 ## EXAMPLES
 
 ### Example 1: Removes a password from an application
-```
+```powershell
 PS C:\>Remove-EntraMSApplicationPassWord -ObjectId 1f88e99f-37a3-468f-80ae-e07b62ed0287 -KeyId 80e561ed-44ed-48dc-8c09-9d4803e26e4c
 ```
 

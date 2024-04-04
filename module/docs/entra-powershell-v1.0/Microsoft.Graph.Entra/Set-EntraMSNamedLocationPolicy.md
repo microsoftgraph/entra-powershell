@@ -25,15 +25,15 @@ Updates a named location policy in Microsoft Entra ID by PolicyId.
 
 ```powershell
 Set-EntraMSNamedLocationPolicy 
-    -PolicyId <String>
-    [-OdataType <String>]
-    [-IpRanges <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.IpRange]>]
-    [-IncludeUnknownCountriesAndRegions <Boolean>] 
-    [-IsTrusted <Boolean>] 
-    [-DisplayName <String>] 
-    [-Id <String>]    
-    [-CountriesAndRegions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.CountriesAndRegion]>]
-    [<CommonParameters>]
+ -PolicyId <String>
+ [-OdataType <String>]
+ [-IpRanges <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.IpRange]>]
+ [-IncludeUnknownCountriesAndRegions <Boolean>] 
+ [-IsTrusted <Boolean>] 
+ [-DisplayName <String>] 
+ [-Id <String>]
+ [-CountriesAndRegions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.CountriesAndRegion]>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -43,21 +43,21 @@ Conditional access policies are custom rules that define an access scenario.
 ## EXAMPLES
 
 ### Example 1: Update an ip named location policy in Microsoft Entra ID by PolicyId.
-```
+```powershell
 PS C:\> Set-EntraMSNamedLocationPolicy -PolicyId 07a1f48d-0cbb-4c2c-8ea2-1ea00e3eb3b6 -OdataType "#microsoft.graph.ipNamedLocation" -IsTrusted $false
 ```
 
 This command updates an ip named location policy in Microsoft Entra ID by PolicyId.
 
 ### Example 2: Update a country named location policy in Microsoft Entra ID by PolicyId.
-```
+```powershell
 PS C:\> Set-EntraMSNamedLocationPolicy -PolicyId 76fdfd4d-bd80-4c1e-8fd4-6abf49d121fe -OdataType "#microsoft.graph.countryNamedLocation" -IncludeUnknownCountriesAndRegions $true
 ```
 
 This command updates a country named location policy in Microsoft Entra ID by PolicyId.
 
 ### Example 3: Update display name of a named location policy in Microsoft Entra ID by PolicyId.
-```
+```powershell
 PS C:\> Set-EntraMSNamedLocationPolicy -PolicyId 07a1f48d-0cbb-4c2c-8ea2-1ea00e3eb3b6 -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName NewName
 ```
 

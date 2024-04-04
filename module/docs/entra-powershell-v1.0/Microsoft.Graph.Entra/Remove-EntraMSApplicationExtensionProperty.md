@@ -22,10 +22,10 @@ Deletes an extension property from an application object.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraMSApplicationExtensionProperty 
--ExtensionPropertyId <String> 
--ObjectId <String>
+ -ExtensionPropertyId <String> 
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 
@@ -35,7 +35,7 @@ Deletes an extension property from an application object.
 ## EXAMPLES
 
 ### Example 1: Remove an extension property
-```
+```powershell
 PS C:\> Remove-EntraMSApplicationExtensionProperty -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -ExtensionPropertyId "344ed560-f8e7-410e-ab9f-c79df5c36"
 ```
 

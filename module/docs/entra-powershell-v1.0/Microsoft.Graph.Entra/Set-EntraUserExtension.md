@@ -23,19 +23,20 @@ Sets a user extension.
 ## SYNTAX
 
 ### SetMultiple
-```
+```powershell
 Set-EntraUserExtension
--ExtensionNameValues <System.Collections.Generic.Dictionary`2[System.String,System.String]> -ObjectId <String>
-[<CommonParameters>]
+ -ObjectId <String>
+ -ExtensionNameValues <System.Collections.Generic.Dictionary`2[System.String,System.String]>
+ [<CommonParameters>]
 ```
 
 ### SetSingle
-```
+```powershell
 Set-EntraUserExtension 
--ObjectId <String> 
--ExtensionName <String> 
--ExtensionValue <String> 
-[<CommonParameters>]
+ -ObjectId <String> 
+ -ExtensionName <String> 
+ -ExtensionValue <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -49,10 +50,10 @@ PS C:\> $User = Get-EntraUser -Top 1
 PS C:\> Set-EntraUserExtension -ObjectId $User.ObjectId -ExtensionName extension_e5e29b8a85d941eab8d12162bd004528_extensionAttribute8 -ExtensionValue "New Value"
 ```
 
-The first command gets a user by using the Get-EntraUser (./Get-EntraUser.md) cmdlet, and then stores it in the $User variable.
+The first command gets a user by using the [Get-EntraUser](./Get-EntraUser.md) cmdlet, and then stores it in the $User variable.
 
 The second command  sets the value of the extension attribute that has specific name to the value New Value.
-You can get extension attribute names by using the Get-EntraExtensionProperty (./Get-EntraExtensionProperty.md) cmdlet.
+You can get extension attribute names by using the [Get-EntraExtensionProperty](./Get-EntraExtensionProperty.md) cmdlet.
 
 ## PARAMETERS
 

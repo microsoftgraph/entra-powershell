@@ -22,10 +22,10 @@ Removes an oAuth2PermissionGrant.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraOAuth2PermissionGrant 
--ObjectId <String> 
-[<CommonParameters>]
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -41,10 +41,10 @@ PS C:\> $SharePointOA2AllSitesRead = Get-EntraOAuth2PermissionGrant | Where-Obje
 PS C:\> Remove-EntraOAuth2PermissionGrant -ObjectId $SharePointOA2AllSitesRead.ObjectId
 ```
 
-The first command gets a service principal that matches the specified display name by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md) cmdlet. 
+The first command gets a service principal that matches the specified display name by using the [Get-EntraServicePrincipal](./Get-EntraServicePrincipal.md) cmdlet. 
 The command stores the result in the $SharePointSP variable.
 
-The second command gets certain permission grants by using the Get-EntraOAuth2PermissionGrant (./Get-EntraOAuth2PermissionGrant.md) cmdlet. 
+The second command gets certain permission grants by using the [Get-EntraOAuth2PermissionGrant](./Get-EntraOAuth2PermissionGrant.md) cmdlet. 
 The command stores the result in the $SharePointOA2AllSitesRead variable.
 
 The final command removes the permission grant in $SharePointOA2AllSitesRead.

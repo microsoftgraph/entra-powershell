@@ -25,9 +25,9 @@ Sets the logo for an application object.
 
 ```powershell
 Set-EntraMSApplicationLogo 
-    -ObjectId <String> 
-    -Content <Byte[]> 
-    [<CommonParameters>]
+ -ObjectId <String> 
+ -Content <Byte[]> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

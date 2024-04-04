@@ -25,14 +25,14 @@ Updates a conditional access policy in Microsoft Entra ID by Id.
 
 ```powershell
 Set-EntraMSConditionalAccessPolicy 
-    -PolicyId <String> 
-    [-Conditions <ConditionalAccessConditionSet>]
-    [-GrantControls <ConditionalAccessGrantControls>] 
-    [-DisplayName <String>] 
-    [-Id <String>] 
-    [-State <String>] 
-    [-SessionControls <ConditionalAccessSessionControls>] 
-    [<CommonParameters>]
+ -PolicyId <String> 
+ [-Conditions <ConditionalAccessConditionSet>]
+ [-GrantControls <ConditionalAccessGrantControls>] 
+ [-DisplayName <String>] 
+ [-Id <String>] 
+ [-State <String>] 
+ [-SessionControls <ConditionalAccessSessionControls>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

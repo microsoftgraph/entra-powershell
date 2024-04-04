@@ -22,7 +22,7 @@ This cmdlet is used to permanently delete a previously deleted directory object.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraMSDeletedDirectoryObject 
  -Id <String> 
  [<CommonParameters>]

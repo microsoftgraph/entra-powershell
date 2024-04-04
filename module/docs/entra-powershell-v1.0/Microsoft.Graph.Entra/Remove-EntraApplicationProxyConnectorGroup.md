@@ -22,10 +22,10 @@ The Remove-EntraApplicationProxyConnectorGroup cmdlet deletes an Application Pro
 
 ## SYNTAX
 
-```
-Remove-EntraApplicationProxyConnectorGroup 
--Id <String> 
-[<CommonParameters>]
+```powershell
+ Remove-EntraApplicationProxyConnectorGroup 
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

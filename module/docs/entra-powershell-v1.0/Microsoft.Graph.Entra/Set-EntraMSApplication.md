@@ -25,27 +25,27 @@ Updates the properties of an application object.
 
 ```powershell
 Set-EntraMSApplication 
-    -ObjectId <String> 
-    [-AddIns <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]>]
-    [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]>]
-    [-TokenEncryptionKeyId <String>] 
-    [-SignInAudience <String>]
-    [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]>]
-    [-ParentalControlSettings <ParentalControlSettings>]
-    [-IdentifierUris <System.Collections.Generic.List`1[System.String]>]
-    [-AppRoles <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]>]
-    [-PublicClient <PublicClientApplication>] 
-    [-InformationalUrl <InformationalUrl>] 
-    [-Tags <System.Collections.Generic.List`1[System.String]>] 
-    [-Api <ApiApplication>]
-    [-OptionalClaims <OptionalClaims>] 
-    [-GroupMembershipClaims <String>] 
-    [-Web <WebApplication>]
-    [-DisplayName <String>] 
-    [-IsFallbackPublicClient <Boolean>] 
-    [-IsDeviceOnlyAuthSupported <Boolean>]
-    [-RequiredResourceAccess <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]>]
-    [<CommonParameters>]
+ -ObjectId <String> 
+ [-AddIns <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]>]
+ [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]>]
+ [-TokenEncryptionKeyId <String>] 
+ [-SignInAudience <String>]
+ [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]>]
+ [-ParentalControlSettings <ParentalControlSettings>]
+ [-IdentifierUris <System.Collections.Generic.List`1[System.String]>]
+ [-AppRoles <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]>]
+ [-PublicClient <PublicClientApplication>] 
+ [-InformationalUrl <InformationalUrl>] 
+ [-Tags <System.Collections.Generic.List`1[System.String]>] 
+ [-Api <ApiApplication>]
+ [-OptionalClaims <OptionalClaims>] 
+ [-GroupMembershipClaims <String>] 
+ [-Web <WebApplication>]
+ [-DisplayName <String>] 
+ [-IsFallbackPublicClient <Boolean>] 
+ [-IsDeviceOnlyAuthSupported <Boolean>]
+ [-RequiredResourceAccess <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

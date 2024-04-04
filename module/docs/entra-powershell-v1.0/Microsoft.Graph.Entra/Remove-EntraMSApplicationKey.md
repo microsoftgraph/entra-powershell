@@ -22,12 +22,12 @@ Removes a key from an application.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraMSApplicationKey 
--ObjectId <String> 
-[-Proof <String>] 
-[-KeyId <String>] 
-[<CommonParameters>]
+ -ObjectId <String> 
+ [-Proof <String>] 
+ [-KeyId <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -36,7 +36,7 @@ Removes a key from an application.
 ## EXAMPLES
 
 ### Example 1: Removes a key credential from an application
-```
+```powershell
 PS C:\>Remove-EntraMSApplicationKey -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -KeyId "FDA27CF-1B58-4CAE-8CE7-CD04F0AAB945" -Proof {token}
 ```
 
