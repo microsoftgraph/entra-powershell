@@ -26,30 +26,30 @@ The Get-EntraApplicationProxyConnectorGroup cmdlet retrieves a list of all conne
 ### GetQuery (Default)
 ```powershell
 Get-EntraApplicationProxyConnectorGroup
-   [-All <Boolean>]
-   [-Top <Int32>]
-   [-Filter <String>]
+ [-All <Boolean>]
+ [-Top <Int32>]
+ [-Filter <String>]
  [<CommonParameters>]
 ```
 
-### GetVague
+### GetByValue
 ```powershell
 Get-EntraApplicationProxyConnectorGroup
-   [-SearchString <String>]
-   [-All <Boolean>]
+ [-SearchString <String>]
+ [-All <Boolean>]
  [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraApplicationProxyConnectorGroup
-   -Id <String>
-   [-All <Boolean>]
+ -Id <String>
+ [-All <Boolean>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraApplicationProxyConnectorGroup** cmdlet retrieves a list of all connector groups, or if specified, details of the specified connector group.
+The Get-EntraApplicationProxyConnectorGroup cmdlet retrieves a list of all connector groups, or if specified, details of the specified connector group.
 
 ## EXAMPLES
 

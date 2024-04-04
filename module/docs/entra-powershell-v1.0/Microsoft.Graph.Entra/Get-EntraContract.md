@@ -25,22 +25,22 @@ Gets a contract.
 ### GetQuery (Default)
 ```powershell
 Get-EntraContract 
-    [-Top <Int32>] 
-    [-All <Boolean>] 
-    [-Filter <String>] 
+ [-Top <Int32>] 
+ [-All <Boolean>] 
+ [-Filter <String>] 
  [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraContract 
-    -ObjectId <String> 
-    [-All <Boolean>] 
+ -ObjectId <String> 
+ [-All <Boolean>] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraContract** cmdlet gets a contract from Microsoft Entra ID.
+The Get-EntraContract cmdlet gets a contract from Microsoft Entra ID.
 This cmdlet returns a contract object for each contract that is selected from the request.
 The contract object contains the following attributes:
 
@@ -66,12 +66,12 @@ The value is always "Contract".
 
 ## EXAMPLES
 
-### Example 1: Get all contracts in the directory.
-```
+### Example 1: Get all contracts
+```powershell
 PS C:\> Get-EntraContract
 ```
 
-This command gets all contracts in the directory.
+This command gets all contracts in the Microsoft Entra ID.
 
 ## PARAMETERS
 

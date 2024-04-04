@@ -22,7 +22,7 @@ Gets a registered user.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraDeviceRegisteredUser 
  -ObjectId <String> 
  [-All <Boolean>] 

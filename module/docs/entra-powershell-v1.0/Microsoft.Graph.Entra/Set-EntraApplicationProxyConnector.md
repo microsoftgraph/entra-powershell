@@ -25,13 +25,13 @@ The Set-EntraApplicationProxyConnector cmdlet allows reassignment of the connect
 
 ```powershell
 Set-EntraApplicationProxyConnector
-   -Id <String>
-   -ConnectorGroupId <String>
+ -Id <String>
+ -ConnectorGroupId <String>
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Set-EntraApplicationProxyConnector** cmdlet allows reassignment of the connector to another connector group.
+The Set-EntraApplicationProxyConnector cmdlet allows reassignment of the connector to another connector group.
 
 ## EXAMPLES
 

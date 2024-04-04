@@ -24,12 +24,12 @@ Gets the key credentials for an application.
 
 ```powershell
 Get-EntraApplicationKeyCredential 
-    -ObjectId <String>
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraApplicationKeyCredential** cmdlet gets the key credentials for an application.
+The Get-EntraApplicationKeyCredential cmdlet gets the key credentials for an application.
 
 ## EXAMPLES
 
@@ -61,7 +61,7 @@ This command gets the key credentials for the specified application.
 ## PARAMETERS
 
 ### -ObjectId
-Specifies a unique ID of an application in Microsoft Entra ID for which to get key credentials
+Specifies a unique ID of an application in Microsoft Entra ID for which to get key credentials.
 
 ```yaml
 Type: String

@@ -26,24 +26,24 @@ Sets the logo for an Application
 ### File (Default)
 ```powershell
 Set-EntraApplicationLogo 
-    -ObjectId <String> 
-    -FilePath <String> 
+ -ObjectId <String> 
+ -FilePath <String> 
  [<CommonParameters>]
 ```
 
 ### Stream
 ```powershell
 Set-EntraApplicationLogo 
-    -ObjectId <String> 
-    -FileStream <Stream> 
+ -ObjectId <String> 
+ -FileStream <Stream> 
  [<CommonParameters>]
 ```
 
 ### ByteArray
 ```powershell
 Set-EntraApplicationLogo 
-    -ObjectId <String> 
-    -ImageByteArray <Byte[]> 
+ -ObjectId <String> 
+ -ImageByteArray <Byte[]> 
  [<CommonParameters>]
 ```
 

@@ -25,12 +25,12 @@ Activates an existing directory role in Microsoft Entra ID.
 
 ```powershell
 Enable-EntraDirectoryRole 
-    [-RoleTemplateId <String>] 
+ [-RoleTemplateId <String>] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Enable-EntraDirectoryRole** cmdlet activates an existing directory role in Microsoft Entra ID.
+The Enable-EntraDirectoryRole cmdlet activates an existing directory role in Microsoft Entra ID.
 
 ## EXAMPLES
 

@@ -24,8 +24,11 @@ Updates a user.
 
 ```powershell
 Set-EntraUser 
+ -ObjectId <String> 
  [-PostalCode <String>] 
+ [-UserStateChangedOn <String>] 
  [-CompanyName <String>]
+ [-FacsimileTelephoneNumber <String>] 
  [-GivenName <String>] 
  [-Mobile <String>] 
  [-PreferredLanguage <String>]
@@ -35,14 +38,19 @@ Set-EntraUser
  [-AgeGroup <String>]
  [-MailNickName <String>]
  [-ExtensionProperty <System.Collections.Generic.Dictionary`2[System.String,System.String]>]
- [-ConsentProvidedForMinor <String>] 
- -ObjectId <String> 
+ [-ConsentProvidedForMinor <String>]
  [-ImmutableId <String>] 
  [-Country <String>]
  [-SignInNames <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]>]
- [-Department <String>] [-StreetAddress <String>] [-PasswordPolicies <String>] [-JobTitle <String>]
+ [-Department <String>] 
+ [-StreetAddress <String>] 
+ [-PasswordPolicies <String>]
+ [-JobTitle <String>]
+ [-IsCompromised <Boolean>] 
  [-City <String>] 
+ [-UserState <String>]
  [-OtherMails <System.Collections.Generic.List`1[System.String]>] 
+ [-PhysicalDeliveryOfficeName <String>]
  [-UserPrincipalName <String>] 
  [-DisplayName <String>] 
  [-AccountEnabled <Boolean>]

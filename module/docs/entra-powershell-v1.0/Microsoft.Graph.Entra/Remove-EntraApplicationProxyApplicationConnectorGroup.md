@@ -22,10 +22,10 @@ The Remove-EntraApplicationProxyApplicationConnectorGroup cmdlet sets the connec
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraApplicationProxyApplicationConnectorGroup 
--ObjectId <String> 
-[<CommonParameters>]
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

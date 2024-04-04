@@ -25,11 +25,11 @@ This cmdlet is used to update the properties of an existing identity provider co
 
 ```powershell
 Set-EntraMSIdentityProvider 
-    -Id <String> 
-    [-Type <String>] 
-    [-ClientSecret <String>] 
-    [-ClientId <String>]
-    [-Name <String>] 
+ -Id <String> 
+ [-Type <String>] 
+ [-ClientSecret <String>] 
+ [-ClientId <String>]
+ [-Name <String>] 
  [<CommonParameters>]
 ```
 

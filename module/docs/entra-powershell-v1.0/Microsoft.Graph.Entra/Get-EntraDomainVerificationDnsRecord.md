@@ -22,7 +22,7 @@ Retrieve the domain verification DNS record for a domain.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraDomainVerificationDnsRecord 
  -Name <String> 
  [<CommonParameters>]

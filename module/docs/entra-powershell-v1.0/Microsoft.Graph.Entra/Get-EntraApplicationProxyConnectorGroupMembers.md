@@ -25,14 +25,14 @@ The Get-EntraApplicationProxyConnectorGroupMembers get all the Application Proxy
 
 ```powershell
 Get-EntraApplicationProxyConnectorGroupMembers
-   -Id <String>
-   [-All <Boolean>]
-   [-Top <Int32>]
-   [-Filter <String>]
+ -Id <String>
+ [-All <Boolean>]
+ [-Top <Int32>]
+ [-Filter <String>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraApplicationProxyConnectorGroupMembers** gets all the Application Proxy connectors associated with the given connector group. 
+The Get-EntraApplicationProxyConnectorGroupMembers gets all the Application Proxy connectors associated with the given connector group. 
 
 ## EXAMPLES
 

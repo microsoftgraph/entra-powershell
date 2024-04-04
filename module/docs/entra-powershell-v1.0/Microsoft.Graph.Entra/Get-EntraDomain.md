@@ -31,12 +31,12 @@ Get-EntraDomain
 ### GetById
 ```powershell
 Get-EntraDomain 
-    -Name <String> 
+ -Name <String> 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraDomain** cmdlet gets a domain in Microsoft Entra ID.
+The Get-EntraDomain cmdlet gets a domain in Microsoft Entra ID.
 
 ## EXAMPLES
 

@@ -24,13 +24,13 @@ Removes a member of a directory role.
 
 ```powershell
 Remove-EntraDirectoryRoleMember 
-    -ObjectId <String> 
-    -MemberId <String> 
+ -ObjectId <String> 
+ -MemberId <String> 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Remove-EntraDirectoryRoleMember** cmdlet removes a member from a directory role in Microsoft Entra ID.
+The Remove-EntraDirectoryRoleMember cmdlet removes a member from a directory role in Microsoft Entra ID.
 
 ## EXAMPLES
 

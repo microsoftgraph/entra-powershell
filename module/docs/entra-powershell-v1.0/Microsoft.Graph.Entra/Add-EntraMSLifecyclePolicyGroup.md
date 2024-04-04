@@ -25,8 +25,8 @@ Adds a group to a lifecycle policy
 
 ```powershell
 Add-EntraMSLifecyclePolicyGroup 
-    -GroupId <String> 
-    -Id <String> 
+ -GroupId <String> 
+ -Id <String> 
  [<CommonParameters>]
 ```
 

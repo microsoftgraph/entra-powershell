@@ -25,14 +25,14 @@ Get the direct reports for a contact.
 
 ```powershell
 Get-EntraContactDirectReport 
-    -ObjectId <String> 
-    [-All <Boolean>] 
-    [-Top <Int32>] 
+ -ObjectId <String> 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraContactDirectReport** cmdlet gets the direct reports for a contact.
+The Get-EntraContactDirectReport cmdlet gets the direct reports for a contact.
 
 ## EXAMPLES
 

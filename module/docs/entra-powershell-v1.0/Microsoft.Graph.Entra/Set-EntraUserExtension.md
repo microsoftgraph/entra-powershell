@@ -39,7 +39,7 @@ PS C:\> $User = Get-EntraUser -Top 1
 PS C:\> Set-EntraUserExtension -ObjectId $User.ObjectId 
 ```
 
-The first command gets a user by using the Get-EntraUser (./Get-EntraUser.md) cmdlet, and then stores it in the $User variable.
+The first command gets a user by using the [Get-EntraUser](./Get-EntraUser.md) cmdlet, and then stores it in the $User variable.
 
 The second command  sets the value of the extension attribute for a specified user.
 

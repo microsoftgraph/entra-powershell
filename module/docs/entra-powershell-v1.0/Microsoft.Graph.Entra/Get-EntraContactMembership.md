@@ -24,14 +24,14 @@ Get a contact membership.
 
 ```powershell
 Get-EntraContactMembership 
-    -ObjectId <String> 
-    [-All <Boolean>] 
-    [-Top <Int32>] 
+ -ObjectId <String> 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraContactMembership** cmdlet gets a contact membership in Microsoft Entra ID.
+The Get-EntraContactMembership cmdlet gets a contact membership in Microsoft Entra ID.
 
 ## EXAMPLES
 

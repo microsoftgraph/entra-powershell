@@ -22,7 +22,7 @@ Gets the owner of an application.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraApplicationOwner 
  -ObjectId <String> 
  [-All <Boolean>] 

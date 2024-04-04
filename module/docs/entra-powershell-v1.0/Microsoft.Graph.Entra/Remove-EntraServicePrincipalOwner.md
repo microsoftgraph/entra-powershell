@@ -22,11 +22,11 @@ Removes an owner from a service principal.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraServicePrincipalOwner 
--OwnerId <String> 
--ObjectId <String> 
-[<CommonParameters>]
+ -OwnerId <String> 
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

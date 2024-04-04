@@ -31,7 +31,7 @@ Get-EntraMSIdentityProvider
 ### GetById
 ```powershell
 Get-EntraMSIdentityProvider 
-    -Id <String> 
+ -Id <String> 
  [<CommonParameters>]
 ```
 
@@ -47,7 +47,7 @@ The current set of identity providers can be Microsoft, Google, Facebook, Amazon
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Retrieve all identity providers
 ```powershell
 PS C:\> Get-EntraMSIdentityProvider
 ```
@@ -63,7 +63,7 @@ MSASignup-OAUTH      Microsoft Account
 
 This example retrieves the list of all configured identity providers and their properties.
 
-### Example 2
+### Example 2: Retrieve identity provider by Id
 ```powershell
 PS C:\> Get-EntraMSIdentityProvider -Id Google-OAUTH
 ```
@@ -74,7 +74,7 @@ Id           DisplayName
 Google-OAUTH Test
 ```
 
-This example retrieves the properties for the identity provider specified.
+This example retrieves the properties for the specified identity provider.
 
 ## PARAMETERS
 

@@ -25,17 +25,17 @@ Retrieves the list of previously deleted applications.
 ### GetQuery (Default)
 ```powershell
 Get-EntraDeletedApplication 
-    [-Filter <String>] 
-    [-All <Boolean>] 
-    [-Top <Int32>] 
+ [-Filter <String>] 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
  [<CommonParameters>]
 ```
 
-### GetValue
+### GetByValue
 ```powershell
 Get-EntraDeletedApplication 
-    [-SearchString <String>] 
-    [-All <Boolean>] 
+ [-SearchString <String>] 
+ [-All <Boolean>] 
  [<CommonParameters>]
 ```
 

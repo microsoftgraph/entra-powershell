@@ -22,7 +22,7 @@ Removes a service principal.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraServicePrincipal 
  -ObjectId <String> 
  [<CommonParameters>]

@@ -26,14 +26,14 @@ This uploads the certificate and allows the application to use Custom Domains.
 
 ```powershell
 Set-EntraApplicationProxyApplicationCustomDomainCertificate
-   -ObjectId <String>
-   -PfxFilePath <String>
-   -Password <SecureString>
+ -ObjectId <String>
+ -PfxFilePath <String>
+ -Password <SecureString>
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Set-EntraApplicationProxyApplicationCustomDomainCertificate** cmdlet assigns a certificate to an application configured for Application Proxy in Microsoft Entra ID.
+The Set-EntraApplicationProxyApplicationCustomDomainCertificate cmdlet assigns a certificate to an application configured for Application Proxy in Microsoft Entra ID.
 This uploads the certificate and allows the application to use Custom Domains.
 If you have one certificate that includes many of your applications, you only need to upload it with one application and are assigned to the other relevant applications.
 

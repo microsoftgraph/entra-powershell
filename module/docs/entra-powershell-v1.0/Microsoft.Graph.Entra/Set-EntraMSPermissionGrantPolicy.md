@@ -25,14 +25,14 @@ Updates a permission grant policy.
 
 ```powershell
 Set-EntraMSPermissionGrantPolicy 
-    -Id <String>
-    [-DisplayName <String>] 
-    [-Description <String>] 
+ -Id <String>
+ [-DisplayName <String>] 
+ [-Description <String>] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Set-EntraMSPermissionGrantPolicy** command updates a Microsoft Entra ID permission grant policy.
+The Set-EntraMSPermissionGrantPolicy command updates a Microsoft Entra ID permission grant policy.
 
 ## EXAMPLES
 

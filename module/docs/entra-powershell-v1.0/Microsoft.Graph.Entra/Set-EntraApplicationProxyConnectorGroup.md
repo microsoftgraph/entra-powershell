@@ -25,13 +25,13 @@ The Set-EntraApplicationProxyConnectorGroup cmdlet allows you to change the name
 
 ```powershell
 Set-EntraApplicationProxyConnectorGroup
-   -Id <String>
-   -Name <Name>
+ -Id <String>
+ -Name <Name>
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Set-EntraApplicationProxyConnectorGroup** cmdlet allows you to change the name of a given Application Proxy connector group.
+The Set-EntraApplicationProxyConnectorGroup cmdlet allows you to change the name of a given Application Proxy connector group.
 
 ## EXAMPLES
 

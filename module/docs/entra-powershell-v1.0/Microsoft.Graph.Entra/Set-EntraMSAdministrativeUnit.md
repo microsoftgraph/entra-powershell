@@ -24,14 +24,14 @@ Updates an administrative unit.
 
 ```powershell
 Set-EntraMSAdministrativeUnit 
-    -Id <String>
-    [-DisplayName <String>] 
-    [-Description <String>] 
+ -Id <String>
+ [-DisplayName <String>] 
+ [-Description <String>] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Set-EntraMSAdministrativeUnit** cmdlet updates an administrative unit in Microsoft Entra ID.
+The Set-EntraMSAdministrativeUnit cmdlet updates an administrative unit in Microsoft Entra ID.
 
 ## EXAMPLES
 

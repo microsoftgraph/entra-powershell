@@ -25,13 +25,13 @@ Adds or removes licenses for a Microsoft online service to the list of assigned 
 
 ```powershell
 Set-EntraUserLicense 
-    -ObjectId <String>
-    -AssignedLicenses <AssignedLicenses>
+ -ObjectId <String>
+ -AssignedLicenses <AssignedLicenses>
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Set-EntraUserLicense** adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
+The Set-EntraUserLicense adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
 ## EXAMPLES
 

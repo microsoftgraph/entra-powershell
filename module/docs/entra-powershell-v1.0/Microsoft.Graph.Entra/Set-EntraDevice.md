@@ -22,25 +22,25 @@ Updates a device.
 
 ## SYNTAX
 
-```
+```powershell
 Set-EntraDevice
--ObjectId <String> 
-[-DevicePhysicalIds <System.Collections.Generic.List`1[System.String]>]
-[-DeviceOSType <String>] 
-[-DeviceTrustType <String>] 
-[-DisplayName <String>] 
-[-DeviceMetadata <String>]
-[-ApproximateLastLogonTimeStamp <DateTime>] 
-[-AccountEnabled <Boolean>]
-[-IsManaged <Boolean>] 
-[-DeviceId <String>] 
-[-DeviceObjectVersion <Int32>] 
-[-IsCompliant <Boolean>]
-[-DeviceOSVersion <String>]
-[-AlternativeSecurityIds <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AlternativeSecurityId]>]
-[-ProfileType <String>] 
-[-SystemLabels <System.Collections.Generic.List`1[System.String]>]
-[<CommonParameters>]
+ -ObjectId <String> 
+ [-DevicePhysicalIds <System.Collections.Generic.List`1[System.String]>]
+ [-DeviceOSType <String>] 
+ [-DeviceTrustType <String>] 
+ [-DisplayName <String>] 
+ [-DeviceMetadata <String>]
+ [-ApproximateLastLogonTimeStamp <DateTime>] 
+ [-AccountEnabled <Boolean>]
+ [-IsManaged <Boolean>] 
+ [-DeviceId <String>] 
+ [-DeviceObjectVersion <Int32>] 
+ [-IsCompliant <Boolean>]
+ [-DeviceOSVersion <String>]
+ [-AlternativeSecurityIds <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AlternativeSecurityId]>]
+ [-ProfileType <String>] 
+ [-SystemLabels <System.Collections.Generic.List`1[System.String]>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

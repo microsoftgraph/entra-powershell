@@ -22,7 +22,7 @@ Removes a domain.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraDomain 
  -Name <String> 
  [<CommonParameters>]

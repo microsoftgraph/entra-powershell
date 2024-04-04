@@ -22,10 +22,10 @@ Deletes a conditional access policy in Microsoft Entra ID by ID.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraMSConditionalAccessPolicy 
--PolicyId <String> 
-[<CommonParameters>]
+ -PolicyId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -66,6 +66,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+
 ## RELATED LINKS
 
 [Get-EntraMSConditionalAccessPolicy](Get-EntraMSConditionalAccessPolicy.md)

@@ -21,11 +21,11 @@ Adds an owner to a service principal.
 
 ## SYNTAX
 
-```
+```powershell
 Add-EntraServicePrincipalOwner 
--ObjectId <String> 
--RefObjectId <String> 
-[<CommonParameters>]
+ -ObjectId <String> 
+ -RefObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

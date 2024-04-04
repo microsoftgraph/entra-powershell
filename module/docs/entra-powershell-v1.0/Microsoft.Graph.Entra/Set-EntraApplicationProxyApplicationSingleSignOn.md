@@ -25,15 +25,15 @@ The Set-EntraApplicationProxyApplicationSingleSignOn cmdlet allows you to set an
 
 ```powershell
 Set-EntraApplicationProxyApplicationSingleSignOn
-   -ObjectId <String>
-   -SingleSignOnMode <SingleSignOnModeEnum>
-   [-KerberosInternalApplicationServicePrincipalName <String>]
-   [-KerberosDelegatedLoginIdentity <KerberosSignOnMappingAttributeTypeEnum>]
+ -ObjectId <String>
+ -SingleSignOnMode <SingleSignOnModeEnum>
+ [-KerberosInternalApplicationServicePrincipalName <String>]
+ [-KerberosDelegatedLoginIdentity <KerberosSignOnMappingAttributeTypeEnum>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Set-EntraApplicationProxyApplicationSingleSignOn** cmdlet allows you to set and modify single sign-on (SSO) settings for an application configured for Application Proxy in Microsoft Entra ID.
+The Set-EntraApplicationProxyApplicationSingleSignOn cmdlet allows you to set and modify single sign-on (SSO) settings for an application configured for Application Proxy in Microsoft Entra ID.
 This is limited to setting No SSO, Kerberos Constrained Delegation (for applications using Integrated Windows Authentication), and Header-based SSO.
 
 ## EXAMPLES

@@ -22,10 +22,10 @@ Removes the verified publisher from an application.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraMSApplicationVerifiedPublisher 
--AppObjectId <String> 
-[<CommonParameters>]
+ -AppObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
