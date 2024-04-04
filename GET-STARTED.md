@@ -40,7 +40,7 @@ This module depends on the [Microsoft Graph PowerShell SDK](https://github.com/m
 
 ### Option 1 - Zipped folder option
 
-Download the latest [Microsoft Entra PowerShell release](https://github.com/microsoftgraph/entra-powershell/releases/download/0.6.0-preview/EntraPowerShell_0.6.0-preview.zip) zipped file. Follow the instructions as per this snippet.
+Download the latest [Microsoft Entra PowerShell release](https://github.com/microsoftgraph/entra-powershell/releases/download/0.7.1-preview/EntraPowerShell_0.7.1-preview.zip) zipped file. Follow the instructions as per this snippet.
 
 ```powershell
 # Let's assume the unpacked files are in c:\test\entra-powershell
