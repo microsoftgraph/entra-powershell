@@ -35,7 +35,7 @@ The Remove-EntraApplicationPasswordCredential cmdlet removes a password credenti
 
 ### Example 1: Remove an application password credential
 ```
-PS C:\> $AppID = (Get-EntraApplication -Top 1).objectId
+PS C:\> $AppID = (Get-EntraApplication -Top 1).ObjectId
 PS C:\> $KeyIDs = Get-EntraApplicationPasswordCredential -ObjectId $AppId
 PS C:\> Remove-EntraApplicationPasswordCredential -ObjectId $AppId -KeyId $KeyIds[0].KeyId
 ```

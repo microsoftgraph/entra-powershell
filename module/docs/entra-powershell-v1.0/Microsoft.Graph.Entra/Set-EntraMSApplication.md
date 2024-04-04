@@ -90,23 +90,6 @@ This command updates an application in Microsoft Entra ID.
 
 ## PARAMETERS
 
-### -AddIns
-Defines custom behavior that a consuming service can use to call an app in specific contexts.
-For example, applications that can render file streams might set the addIns property for its "FileHandler" functionality.
-This lets services like Office 365 call the application in the context of a document the user is working on.
-
-```yaml
-Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Api
 Specifies settings for an application that implements a web API.
 

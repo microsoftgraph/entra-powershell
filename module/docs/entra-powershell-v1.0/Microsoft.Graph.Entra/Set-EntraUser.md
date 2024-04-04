@@ -253,21 +253,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IsCompromised
-True if this user is compromised.
-
-```yaml
-Type: Boolean
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -JobTitle
 Specifies the user's job title.
 
@@ -363,21 +348,6 @@ Specifies the user's password profile.
 
 ```yaml
 Type: PasswordProfile
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -PhysicalDeliveryOfficeName
-The office location in the user's place of business. Maximum length is 128 characters.
-
-```yaml
-Type: String
 Parameter Sets: (All)
 Aliases:
 
@@ -552,21 +522,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FacsimileTelephoneNumber
-The fax number of the user.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -AgeGroup
 Used by enterprise applications to determine the legal age group of the user. This property is read-only and calculated based on ageGroup and consentProvidedForMinor properties. Allowed values: null, minor, notAdult, and adult. Refer to the [legal age group property definitions][Learn more about age group and minor consent definitions].
 
@@ -599,36 +554,6 @@ Accept wildcard characters: False
 
 ### -ConsentProvidedForMinor
 Sets whether consent has to obtained for minors. Allowed values: null, granted, denied, and notRequired.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -UserState
-For an external user invited to the tenant using the invitation API, this property represents the invited user's invitation status. For invited users, the state can be PendingAcceptance or Accepted, or null for all other users.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -UserStateChangedOn
-Shows the timestamp for the latest change to the externalUserState property.
 
 ```yaml
 Type: String

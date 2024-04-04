@@ -25,14 +25,14 @@ Gets a permission grant policy.
 ### GetQuery (Default)
 ```powershell
 Get-EntraMSPermissionGrantPolicy 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraMSPermissionGrantPolicy 
     -Id <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

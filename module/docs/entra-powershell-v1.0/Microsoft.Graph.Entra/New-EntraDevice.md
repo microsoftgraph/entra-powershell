@@ -40,7 +40,7 @@ New-EntraDevice
     [-IsCompliant <Boolean>]  
     [-ProfileType <String>] 
     [-SystemLabels <System.Collections.Generic.List`1[System.String]>]
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

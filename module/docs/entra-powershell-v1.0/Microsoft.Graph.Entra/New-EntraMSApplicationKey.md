@@ -29,7 +29,7 @@ New-EntraMSApplicationKey
     -KeyCredential <KeyCredential>  
     [-PasswordCredential <PasswordCredential>] 
     -Proof <String>
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

@@ -26,7 +26,7 @@ Validate the ownership of a domain.
 Confirm-EntraDomain 
     -Name <String> 
     [-CrossCloudVerificationCode <CrossCloudVerificationCodeBody>]
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

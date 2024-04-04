@@ -25,14 +25,14 @@ Gets a domain.
 ### GetQuery (Default)
 ```powershell
 Get-EntraDomain 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraDomain 
     -Name <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

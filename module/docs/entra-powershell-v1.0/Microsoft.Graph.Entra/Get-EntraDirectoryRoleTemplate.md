@@ -24,7 +24,7 @@ Gets directory role templates.
 
 ```powershell
 Get-EntraDirectoryRoleTemplate 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

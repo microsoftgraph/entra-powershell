@@ -17,7 +17,7 @@ Remove-EntraBetaMSApplication -ObjectId <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Deletes an application object identified by objectId.
+Deletes an application object identified by ObjectId.
 
 ## EXAMPLES
 

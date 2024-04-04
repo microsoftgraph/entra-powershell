@@ -25,7 +25,7 @@ Gets the manager of a contact.
 ```powershell
 Get-EntraContactManager 
     -ObjectId <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

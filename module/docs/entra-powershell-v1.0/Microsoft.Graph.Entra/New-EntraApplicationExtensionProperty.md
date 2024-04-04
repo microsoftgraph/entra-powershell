@@ -29,7 +29,7 @@ New-EntraApplicationExtensionProperty
     -Name <String>
     [-DataType <String>]     
     [-TargetObjects <System.Collections.Generic.List`1[System.String]>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

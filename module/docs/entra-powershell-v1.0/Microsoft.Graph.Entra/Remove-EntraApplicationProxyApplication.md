@@ -27,7 +27,7 @@ Deletes an Application Proxy application.
 Remove-EntraApplicationProxyApplication 
     -ObjectId <String> 
     [-RemoveADApplication <Boolean>]
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

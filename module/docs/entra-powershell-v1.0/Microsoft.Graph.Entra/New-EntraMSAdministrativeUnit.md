@@ -26,7 +26,7 @@ Creates an administrative unit.
 New-EntraMSAdministrativeUnit 
     -DisplayName <String> 
     [-Description <String>]
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

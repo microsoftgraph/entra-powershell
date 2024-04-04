@@ -27,7 +27,7 @@ Get-EntraGroupAppRoleAssignment
     -ObjectId <String> 
     [-All <Boolean>] 
     [-Top <Int32>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

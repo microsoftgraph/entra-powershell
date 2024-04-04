@@ -28,7 +28,7 @@ Get-EntraMSRoleDefinition
   [-All <Boolean>] 
   [-Top <Int32>] 
   [-Filter <String>] 
-  [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetVague
@@ -36,7 +36,7 @@ Get-EntraMSRoleDefinition
 Get-EntraMSRoleDefinition 
   [-SearchString <String>] 
   [-All <Boolean>] 
-  [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
@@ -44,7 +44,7 @@ Get-EntraMSRoleDefinition
 Get-EntraMSRoleDefinition 
   -Id <String> 
   [-All <Boolean>] 
-  [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

@@ -26,7 +26,7 @@ Adds a member to a directory role.
 Add-EntraDirectoryRoleMember 
     -ObjectId <String> 
     -RefObjectId <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

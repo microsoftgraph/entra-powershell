@@ -30,7 +30,7 @@ New-EntraBetaMSAdministrativeUnit
     [-MembershipRule <String>] 
     [-IsMemberManagementRestricted <Boolean>] 
     [-MembershipRuleProcessingState <String>]
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

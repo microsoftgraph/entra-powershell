@@ -28,7 +28,7 @@ Get-EntraDeletedApplication
     [-Filter <String>] 
     [-All <Boolean>] 
     [-Top <Int32>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetValue
@@ -36,7 +36,7 @@ Get-EntraDeletedApplication
 Get-EntraDeletedApplication 
     [-SearchString <String>] 
     [-All <Boolean>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

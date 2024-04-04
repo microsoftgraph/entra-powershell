@@ -19,7 +19,7 @@ schema: 2.0.0
 # Remove-EntraMSRoleDefinition
 
 ## SYNOPSIS
-Delete a Microsoft Entra ID roleDefinition by objectId.
+Delete a Microsoft Entra ID roleDefinition by ObjectId.
 
 ## SYNTAX
 

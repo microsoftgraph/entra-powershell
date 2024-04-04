@@ -25,7 +25,7 @@ This cmdlet retrieves the objects that are referenced with a given domain name.
 ```powershell
 Get-EntraDomainNameReference 
     -Name <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

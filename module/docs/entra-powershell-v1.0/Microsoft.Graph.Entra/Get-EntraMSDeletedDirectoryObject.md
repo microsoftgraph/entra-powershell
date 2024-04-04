@@ -25,7 +25,7 @@ This cmdlet is used to retrieve a soft deleted directory object from the directo
 ```powershell
 Get-EntraMSDeletedDirectoryObject 
     -Id <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

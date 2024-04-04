@@ -26,7 +26,7 @@ Gets the trusted certificate authority.
 Get-EntraTrustedCertificateAuthority 
     [-TrustedIssuerSki <String>] 
     [-TrustedIssuer <String>]
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

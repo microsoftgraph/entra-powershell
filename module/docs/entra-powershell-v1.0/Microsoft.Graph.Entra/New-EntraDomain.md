@@ -92,21 +92,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IsDefaultForCloudRedirections
-Indicates whether or not this is the default domain used for cloud redirections.
-
-```yaml
-Type: Boolean
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Name
 The fully qualified name of the domain.
 

@@ -29,7 +29,7 @@ Get-EntraApplicationProxyConnectorGroup
    [-All <Boolean>]
    [-Top <Int32>]
    [-Filter <String>]
-   [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetVague
@@ -37,7 +37,7 @@ Get-EntraApplicationProxyConnectorGroup
 Get-EntraApplicationProxyConnectorGroup
    [-SearchString <String>]
    [-All <Boolean>]
-   [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
@@ -45,7 +45,7 @@ Get-EntraApplicationProxyConnectorGroup
 Get-EntraApplicationProxyConnectorGroup
    -Id <String>
    [-All <Boolean>]
-   [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

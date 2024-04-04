@@ -28,7 +28,7 @@ Get-EntraMSAdministrativeUnit
     [-Top <Int32>] 
     [-All <Boolean>] 
     [-Filter <String>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
@@ -36,7 +36,7 @@ Get-EntraMSAdministrativeUnit
 Get-EntraMSAdministrativeUnit 
     -Id <String> 
     [-All <Boolean>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

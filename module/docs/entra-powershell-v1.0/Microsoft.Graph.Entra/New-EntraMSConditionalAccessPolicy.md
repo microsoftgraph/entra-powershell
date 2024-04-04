@@ -31,7 +31,7 @@ New-EntraMSConditionalAccessPolicy
     [-Conditions <ConditionalAccessConditionSet>]
     [-GrantControls <ConditionalAccessGrantControls>]
     [-SessionControls <ConditionalAccessSessionControls>]
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

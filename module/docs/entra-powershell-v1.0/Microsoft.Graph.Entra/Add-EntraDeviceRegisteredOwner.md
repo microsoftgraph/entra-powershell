@@ -26,7 +26,7 @@ Adds a registered owner for a device.
 Add-EntraDeviceRegisteredOwner 
     -ObjectId <String> 
     -RefObjectId <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

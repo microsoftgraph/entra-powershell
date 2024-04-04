@@ -26,7 +26,7 @@ The **Get-EntraApplicationProxyApplication** cmdlet retrieves an application con
 ```powershell
 Get-EntraApplicationProxyApplication 
     -ObjectId <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

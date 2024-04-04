@@ -25,7 +25,7 @@ Retrieves the list of extension properties on an application object.
 ```powershell
 Get-EntraMSApplicationExtensionProperty 
     -ObjectId <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

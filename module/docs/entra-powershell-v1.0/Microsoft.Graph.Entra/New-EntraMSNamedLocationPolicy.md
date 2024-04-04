@@ -32,7 +32,7 @@ New-EntraMSNamedLocationPolicy
   [-IsTrusted <Boolean>]
   [-CountriesAndRegions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.CountriesAndRegion]>]
   [-IncludeUnknownCountriesAndRegions <Boolean>]
-  [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

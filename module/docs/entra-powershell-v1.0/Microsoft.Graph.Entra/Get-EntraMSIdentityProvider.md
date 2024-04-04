@@ -25,14 +25,14 @@ This cmdlet is used to retrieve the configured identity providers in the directo
 ### GetQuery (Default)
 ```powershell
 Get-EntraMSIdentityProvider 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraMSIdentityProvider 
     -Id <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

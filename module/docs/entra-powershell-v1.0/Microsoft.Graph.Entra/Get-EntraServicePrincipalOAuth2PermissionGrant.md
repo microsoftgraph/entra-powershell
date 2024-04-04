@@ -65,7 +65,7 @@ Id                                                               ClientId       
 ```
 
 This example demonstrates how to get all oAuth2PermissionGrant object for a service principal in Microsoft Entra ID.  
-This command gets all OAuth2 permission grants of a service principal for specified objectId.
+This command gets all OAuth2 permission grants of a service principal for specified ObjectId.
 
 ### Example 3: Get two OAuth2 permission grants of a service principal.
 
@@ -80,7 +80,7 @@ Id                                                               ClientId       
 ```
 
 This example demonstrates how to get top two oAuth2PermissionGrant object for a service principal in Microsoft Entra ID.  
-This command gets two OAuth2 permission grants of a service principal for specified objectId.
+This command gets two OAuth2 permission grants of a service principal for specified ObjectId.
 
 ## PARAMETERS
 
