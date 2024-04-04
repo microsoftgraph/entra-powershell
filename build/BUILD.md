@@ -22,6 +22,10 @@ or
 # Install the dependencies for the Microsoft Entra PowerShell preview
 .\build\Install-Dependencies.ps1 -ModuleName EntraBeta
 ```
+
+> [!TIP]
+> In case you encounter Execution Policies error, run the command `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`.
+
 ### Build help
 The module help files are generated from markdown documentation (using platyPS module). To install PlatyPS module, run the command `Install-Module -Name PlatyPS`.
 
