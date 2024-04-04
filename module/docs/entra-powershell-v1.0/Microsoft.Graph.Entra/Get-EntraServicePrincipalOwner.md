@@ -24,14 +24,14 @@ Get the owner of a service principal.
 
 ```powershell
 Get-EntraServicePrincipalOwner 
-    -ObjectId <String> 
-    [-All <Boolean>] 
-    [-Top <Int32>] 
+ -ObjectId <String> 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraServicePrincipalOwner** cmdlet gets the owners of a service principal in Microsoft Entra ID.
+The Get-EntraServicePrincipalOwner cmdlet gets the owners of a service principal in Microsoft Entra ID.
 
 ## EXAMPLES
 

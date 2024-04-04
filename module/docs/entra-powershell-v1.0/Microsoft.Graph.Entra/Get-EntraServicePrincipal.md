@@ -25,30 +25,30 @@ Gets a service principal.
 ### GetQuery (Default)
 ```powershell
 Get-EntraServicePrincipal 
-    [-Top <Int32>] 
-    [-All <Boolean>] 
-    [-Filter <String>] 
+ [-Top <Int32>] 
+ [-All <Boolean>] 
+ [-Filter <String>] 
  [<CommonParameters>]
 ```
 
 ### GetVague
 ```powershell
 Get-EntraServicePrincipal 
-    [-SearchString <String>] 
-    [-All <Boolean>] 
+ [-SearchString <String>] 
+ [-All <Boolean>] 
  [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraServicePrincipal 
-    -ObjectId <String> 
-    [-All <Boolean>] 
+ -ObjectId <String> 
+ [-All <Boolean>] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraServicePrincipal** cmdlet gets a service principal in Microsoft Entra ID.
+The Get-EntraServicePrincipal cmdlet gets a service principal in Microsoft Entra ID.
 
 ## EXAMPLES
 

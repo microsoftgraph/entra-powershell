@@ -31,12 +31,12 @@ Get-EntraMSPermissionGrantPolicy
 ### GetById
 ```powershell
 Get-EntraMSPermissionGrantPolicy 
-    -Id <String> 
+ -Id <String> 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraMSPermissionGrantPolicy** cmdlet gets a Microsoft Entra ID permission grant policy.
+The Get-EntraMSPermissionGrantPolicy cmdlet gets a Microsoft Entra ID permission grant policy.
 
 ## EXAMPLES
 

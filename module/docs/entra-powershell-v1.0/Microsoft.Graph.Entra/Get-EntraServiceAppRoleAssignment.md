@@ -22,7 +22,7 @@ Gets a service principal application role assignment.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraServiceAppRoleAssignment 
  -ObjectId <String>
  [-All <Boolean>]

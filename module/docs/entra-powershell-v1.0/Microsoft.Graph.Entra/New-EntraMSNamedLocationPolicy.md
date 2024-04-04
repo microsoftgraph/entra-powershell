@@ -25,13 +25,13 @@ Creates a new named location policy in Microsoft Entra ID.
 
 ```powershell
 New-EntraMSNamedLocationPolicy
-  [-OdataType <String>]
-  [-Id <String>]
-  [-DisplayName <String>]
-  [-IpRanges <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.IpRange]>]
-  [-IsTrusted <Boolean>]
-  [-CountriesAndRegions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.CountriesAndRegion]>]
-  [-IncludeUnknownCountriesAndRegions <Boolean>]
+ [-OdataType <String>]
+ [-Id <String>]
+ [-DisplayName <String>]
+ [-IpRanges <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.IpRange]>]
+ [-IsTrusted <Boolean>]
+ [-CountriesAndRegions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.CountriesAndRegion]>]
+ [-IncludeUnknownCountriesAndRegions <Boolean>]
  [<CommonParameters>]
 ```
 

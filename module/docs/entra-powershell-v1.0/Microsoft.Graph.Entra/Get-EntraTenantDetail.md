@@ -22,7 +22,7 @@ Gets the details of a tenant.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraTenantDetail 
  [-All <Boolean>] 
  [-Top <Int32>] 

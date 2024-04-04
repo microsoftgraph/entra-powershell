@@ -25,13 +25,13 @@ Deletes an Application Proxy application.
 
 ```powershell
 Remove-EntraApplicationProxyApplication 
-    -ObjectId <String> 
-    [-RemoveADApplication <Boolean>]
+ -ObjectId <String> 
+ [-RemoveADApplication <Boolean>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Remove-EntraApplicationProxyApplication** cmdlet removes Application Proxy configurations from a specific application in Microsoft Entra ID, and can delete the application completely if specified.
+The Remove-EntraApplicationProxyApplication cmdlet removes Application Proxy configurations from a specific application in Microsoft Entra ID, and can delete the application completely if specified.
 
 ## EXAMPLES
 

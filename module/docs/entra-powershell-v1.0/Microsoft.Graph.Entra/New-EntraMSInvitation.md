@@ -22,15 +22,15 @@ This cmdlet is used to invite a new external user to your directory.
 
 ## SYNTAX
 
-```
+```powershell
 New-EntraMSInvitation 
-[-InvitedUser <User>] 
-[-InvitedUserType <String>] 
--InvitedUserEmailAddress <String>
-[-SendInvitationMessage <Boolean>] 
+ [-InvitedUser <User>] 
+ [-InvitedUserType <String>] 
+ -InvitedUserEmailAddress <String>
+ [-SendInvitationMessage <Boolean>] 
 -InviteRedirectUrl <String>
-[-InvitedUserMessageInfo <InvitedUserMessageInfo>] [-InvitedUserDisplayName <String>] 
-[<CommonParameters>]
+ [-InvitedUserMessageInfo <InvitedUserMessageInfo>] [-InvitedUserDisplayName <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

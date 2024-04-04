@@ -22,7 +22,7 @@ Get objects created by a service principal.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraServicePrincipalCreatedObject 
  -ObjectId <String>
  [-All <Boolean>] 

@@ -26,17 +26,17 @@ Get a Microsoft Entra ID permission grant condition set by id.
 ### GetQuery (Default)
 ```powershell
 Get-EntraMSPermissionGrantConditionSet 
-    -ConditionSetType <String> 
-    -PolicyId <String> 
+ -ConditionSetType <String> 
+ -PolicyId <String> 
  [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraMSPermissionGrantConditionSet 
-    -ConditionSetType <String> 
-    -Id <String> 
-    -PolicyId <String>
+ -ConditionSetType <String> 
+ -Id <String> 
+ -PolicyId <String>
  [<CommonParameters>]
 ```
 

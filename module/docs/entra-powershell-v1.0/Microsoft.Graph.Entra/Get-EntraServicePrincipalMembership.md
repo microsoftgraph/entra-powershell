@@ -22,7 +22,7 @@ Get a service principal membership.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraServicePrincipalMembership 
  -ObjectId <String>
  [-All <Boolean>] 

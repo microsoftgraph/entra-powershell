@@ -25,10 +25,10 @@ This cmdlet is used to configure a new identity provider in the directory.
 
 ```powershell
 New-EntraMSIdentityProvider 
-    -Type <String> 
-    -ClientSecret <String> 
-    -ClientId <String> 
-    [-Name <String>]
+ -Type <String> 
+ -ClientSecret <String> 
+ -ClientId <String> 
+ [-Name <String>]
  [<CommonParameters>]
 ```
 

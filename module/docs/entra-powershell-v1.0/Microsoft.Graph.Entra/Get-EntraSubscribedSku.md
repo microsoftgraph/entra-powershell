@@ -23,13 +23,13 @@ Gets subscribed SKUs to Microsoft services.
 ## SYNTAX
 
 ### GetQuery (Default)
-```
+```powershell
 Get-EntraSubscribedSku 
  [<CommonParameters>]
 ```
 
 ### GetById
-```
+```powershell
 Get-EntraSubscribedSku 
  -ObjectId <String> 
  [<CommonParameters>]

@@ -25,18 +25,18 @@ Creates a key credential for an application.
 
 ```powershell
 New-EntraApplicationKeyCredential 
-    -ObjectId <String>
-    [-CustomKeyIdentifier <String>] 
-    [-Type <KeyType>] 
-    [-Usage <KeyUsage>]
-    [-Value <String>] 
-    [-EndDate <DateTime>] 
-    [-StartDate <DateTime>]
+ -ObjectId <String>
+ [-CustomKeyIdentifier <String>] 
+ [-Type <KeyType>] 
+ [-Usage <KeyUsage>]
+ [-Value <String>] 
+ [-EndDate <DateTime>] 
+ [-StartDate <DateTime>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **New-EntraApplicationKeyCredential** cmdlet creates a key credential for an application.
+The New-EntraApplicationKeyCredential cmdlet creates a key credential for an application.
 
 ## EXAMPLES
 

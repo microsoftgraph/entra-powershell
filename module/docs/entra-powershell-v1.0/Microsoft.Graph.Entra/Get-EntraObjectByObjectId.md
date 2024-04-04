@@ -22,7 +22,7 @@ Retrieves the object(s) specified by the ObjectIds parameter.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraObjectByObjectId 
  -ObjectIds <System.Collections.Generic.List`1[System.String]>
  [-Types <System.Collections.Generic.List`1[System.String]>]

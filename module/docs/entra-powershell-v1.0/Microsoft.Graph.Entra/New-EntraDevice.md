@@ -25,26 +25,26 @@ Creates a device.
 
 ```powershell
 New-EntraDevice 
-    -DisplayName <String> 
-    -DeviceOSType <String>
-    -AccountEnabled <Boolean>
-    -DeviceId <String>
-    -DeviceOSVersion <String>
-    -AlternativeSecurityIds <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AlternativeSecurityId]>
-    [-DevicePhysicalIds <System.Collections.Generic.List`1[System.String]>] 
-    [-DeviceTrustType <String>] 
-    [-DeviceMetadata <String>]
-    [-ApproximateLastLogonTimeStamp <DateTime>] 
-    [-IsManaged <Boolean>]
-    [-DeviceObjectVersion <Int32>] 
-    [-IsCompliant <Boolean>]  
-    [-ProfileType <String>] 
-    [-SystemLabels <System.Collections.Generic.List`1[System.String]>]
+ -DisplayName <String> 
+ -DeviceOSType <String>
+ -AccountEnabled <Boolean>
+ -DeviceId <String>
+ -DeviceOSVersion <String>
+ -AlternativeSecurityIds <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AlternativeSecurityId]>
+ [-DevicePhysicalIds <System.Collections.Generic.List`1[System.String]>] 
+ -DeviceTrustType <String>] 
+ [-DeviceMetadata <String>]
+ [-ApproximateLastLogonTimeStamp <DateTime>] 
+ [-IsManaged <Boolean>]
+ [-DeviceObjectVersion <Int32>] 
+ [-IsCompliant <Boolean>]  
+ [-ProfileType <String>] 
+ [-SystemLabels <System.Collections.Generic.List`1[System.String]>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **New-EntraDevice** cmdlet creates a device in Microsoft Entra ID.
+The New-EntraDevice cmdlet creates a device in Microsoft Entra ID.
 
 ## EXAMPLES
 

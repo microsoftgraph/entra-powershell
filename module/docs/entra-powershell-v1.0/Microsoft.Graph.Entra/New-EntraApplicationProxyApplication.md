@@ -19,28 +19,28 @@ schema: 2.0.0
 # New-EntraApplicationProxyApplication
 
 ## SYNOPSIS
-The **New-EntraApplicationProxyApplication** cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
+The New-EntraApplicationProxyApplication cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
 
 ## SYNTAX
 
 ```powershell
 New-EntraApplicationProxyApplication 
-    -DisplayName <String> 
-    -ExternalUrl <String> 
-    -InternalUrl <String>
-    [-ExternalAuthenticationType <ExternalAuthenticationTypeEnum>] 
-    [-IsTranslateHostHeaderEnabled <Boolean>]
-    [-IsHttpOnlyCookieEnabled <Boolean>] 
-    [-IsSecureCookieEnabled <Boolean>] 
-    [-IsPersistentCookieEnabled <Boolean>]
-    [-IsTranslateLinksInBodyEnabled <Boolean>] 
-    [-ApplicationServerTimeout <ApplicationServerTimeoutEnum>]
-    [-ConnectorGroupId <String>] 
- [<CommonParameters>]
+  -DisplayName <String> 
+  -ExternalUrl <String> 
+  -InternalUrl <String>
+  [-ExternalAuthenticationType <ExternalAuthenticationTypeEnum>] 
+  [-IsTranslateHostHeaderEnabled <Boolean>]
+  [-IsHttpOnlyCookieEnabled <Boolean>] 
+  [-IsSecureCookieEnabled <Boolean>] 
+  [-IsPersistentCookieEnabled <Boolean>]
+  [-IsTranslateLinksInBodyEnabled <Boolean>] 
+  [-ApplicationServerTimeout <ApplicationServerTimeoutEnum>]
+  [-ConnectorGroupId <String>] 
+  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **New-EntraApplicationProxyApplication** cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
+The New-EntraApplicationProxyApplication cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
 To ensure this application is usable, also make sure you assign users and configure SSO if needed.
 Without specifying a ConnectorGroupId, this application by default uses the Default connector group in your tenant.
 

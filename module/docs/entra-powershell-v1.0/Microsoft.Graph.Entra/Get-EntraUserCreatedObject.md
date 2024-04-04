@@ -22,12 +22,12 @@ Get objects created by the user.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraUserCreatedObject 
--ObjectId <String> 
-[-All <Boolean>] 
-[-Top <Int32>] 
-[<CommonParameters>]
+ -ObjectId <String> 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

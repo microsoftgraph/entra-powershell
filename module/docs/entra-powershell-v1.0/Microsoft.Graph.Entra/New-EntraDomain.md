@@ -22,7 +22,7 @@ Creates a domain.
 
 ## SYNTAX
 
-```
+```powershell
 New-EntraDomain 
  -Name <String>
  [-IsDefault <Boolean>] 

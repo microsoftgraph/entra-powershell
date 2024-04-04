@@ -22,12 +22,12 @@ Get a user application role assignment.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraUserAppRoleAssignment
--ObjectId <String>
-[-All <Boolean>]
-[-Top <Int32>]
-[<CommonParameters>]
+ -ObjectId <String>
+ [-All <Boolean>]
+ [-Top <Int32>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

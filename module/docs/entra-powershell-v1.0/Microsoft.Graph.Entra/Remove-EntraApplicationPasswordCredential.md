@@ -22,9 +22,10 @@ Removes a password credential from an application.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraApplicationPasswordCredential 
--ObjectId <String> -KeyId <String>
+-ObjectId <String> 
+-KeyId <String>
 [<CommonParameters>]
 ```
 

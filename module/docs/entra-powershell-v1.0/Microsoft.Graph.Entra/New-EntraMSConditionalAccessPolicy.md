@@ -25,12 +25,12 @@ Creates a new conditional access policy in Microsoft Entra ID.
 
 ```powershell
 New-EntraMSConditionalAccessPolicy 
-    [-Id <String>]
-    [-DisplayName <String>]
-    [-State <String>]
-    [-Conditions <ConditionalAccessConditionSet>]
-    [-GrantControls <ConditionalAccessGrantControls>]
-    [-SessionControls <ConditionalAccessSessionControls>]
+ [-Id <String>]
+ [-DisplayName <String>]
+ [-State <String>]
+ [-Conditions <ConditionalAccessConditionSet>]
+ [-GrantControls <ConditionalAccessGrantControls>]
+ [-SessionControls <ConditionalAccessSessionControls>]
  [<CommonParameters>]
 ```
 

@@ -24,12 +24,12 @@ Delete an application by ObjectId.
 
 ```powershell
 Remove-EntraApplication 
-    -ObjectId <String>
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Remove-EntraApplication** cmdlet removes the specified application from Microsoft Entra ID.
+The Remove-EntraApplication cmdlet removes the specified application from Microsoft Entra ID.
 
 ## EXAMPLES
 

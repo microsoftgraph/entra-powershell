@@ -23,7 +23,7 @@ Gets a user.
 ## SYNTAX
 
 ### GetQuery (Default)
-```
+```powershell
 Get-EntraUser 
  [-Filter <String>] 
  [-All <Boolean>] 
@@ -32,7 +32,7 @@ Get-EntraUser
 ```
 
 ### GetByValue
-```
+```powershell
 Get-EntraUser 
  [-SearchString <String>] 
  [-All <Boolean>] 
@@ -40,7 +40,7 @@ Get-EntraUser
 ```
 
 ### GetById
-```
+```powershell
 Get-EntraUser 
  -ObjectId <String> 
  [-All <Boolean>] 

@@ -22,7 +22,7 @@ Gets an oAuth2PermissionGrant object.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraServicePrincipalOAuth2PermissionGrant
 -ObjectId <String>
 [-All <Boolean>]

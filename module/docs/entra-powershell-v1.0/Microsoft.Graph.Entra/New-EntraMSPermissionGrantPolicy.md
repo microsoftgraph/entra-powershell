@@ -25,14 +25,14 @@ Creates a permission grant policy.
 
 ```powershell
 New-EntraMSPermissionGrantPolicy 
-    -Id <String>
-    [-DisplayName <String>] 
-    [-Description <String>] 
+ -Id <String>
+ [-DisplayName <String>] 
+ [-Description <String>] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **New-EntraMSPermissionGrantPolicy** cmdlet creates a Microsoft Entra ID permission grant policy.
+The New-EntraMSPermissionGrantPolicy cmdlet creates a Microsoft Entra ID permission grant policy.
 
 ## EXAMPLES
 

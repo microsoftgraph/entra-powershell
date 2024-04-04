@@ -22,10 +22,10 @@ The New-EntraApplicationProxyConnectorGroup cmdlet creates a new Application Pro
 
 ## SYNTAX
 
-```
+```powershell
 New-EntraApplicationProxyConnectorGroup 
--Name <Name> 
-[<CommonParameters>]
+ -Name <Name> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

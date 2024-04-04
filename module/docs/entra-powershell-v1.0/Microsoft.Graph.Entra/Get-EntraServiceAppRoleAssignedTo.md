@@ -22,7 +22,7 @@ Gets app role assignments for this app or service, granted to users, groups and 
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraServiceAppRoleAssignedTo 
  -ObjectId <String>
  [-All <Boolean>]

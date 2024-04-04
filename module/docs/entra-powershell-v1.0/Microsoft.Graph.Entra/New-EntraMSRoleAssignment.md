@@ -24,9 +24,9 @@ Create a new Microsoft Entra ID roleAssignment.
 
 ```powershell
 New-EntraMSRoleAssignment 
-    -PrincipalId <String>     
-    -RoleDefinitionId <String>
-    [-DirectoryScopeId <String>]
+ -PrincipalId <String>     
+ -RoleDefinitionId <String>
+ [-DirectoryScopeId <String>]
  [<CommonParameters>]
 ```
 

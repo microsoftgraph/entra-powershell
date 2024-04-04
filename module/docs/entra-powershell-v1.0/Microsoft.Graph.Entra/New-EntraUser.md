@@ -25,45 +25,45 @@ Creates a Microsoft Entra ID user.
 
 ```powershell
 New-EntraUser 
-    -DisplayName <String>
-    -AccountEnabled <Boolean> 
-    -PasswordProfile <PasswordProfile>
-    [-City <String>] 
-    [-UserStateChangedOn <String>] 
-    [-CompanyName <String>]
-    [-PreferredLanguage <String>] 
-    [-FacsimileTelephoneNumber <String>] 
-    [-GivenName <String>] 
-    [-Mobile <String>]
-    [-UsageLocation <String>] 
-    [-PostalCode <String>] 
-    [-AgeGroup <String>] 
-    [-CreationType <String>]
-    [-ExtensionProperty <System.Collections.Generic.Dictionary`2[System.String,System.String]>]
-    [-ConsentProvidedForMinor <String>] 
-    [-MailNickName <String>] 
-    [-ImmutableId <String>] 
-    [-Country <String>]
-    [-SignInNames <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]>]
-    [-Department <String>] 
-    [-PasswordPolicies <String>] 
-    [-JobTitle <String>] 
-    [-IsCompromised <Boolean>]
-    [-UserState <String>] 
-    [-UserType <String>] 
-    [-OtherMails <System.Collections.Generic.List`1[System.String]>]
-    [-PhysicalDeliveryOfficeName <String>] 
-    [-UserPrincipalName <String>] 
-    [-State <String>] 
-    [-StreetAddress <String>]
-    [-TelephoneNumber <String>] 
-    [-Surname <String>] 
-    [-ShowInAddressList <Boolean>] 
+ -DisplayName <String>
+ -AccountEnabled <Boolean> 
+ -PasswordProfile <PasswordProfile>
+ [-City <String>] 
+ [-UserStateChangedOn <String>] 
+ [-CompanyName <String>]
+ [-PreferredLanguage <String>] 
+ [-FacsimileTelephoneNumber <String>] 
+ [-GivenName <String>] 
+ [-Mobile <String>]
+ [-UsageLocation <String>] 
+ [-PostalCode <String>] 
+ [-AgeGroup <String>] 
+ [-CreationType <String>]
+ [-ExtensionProperty <System.Collections.Generic.Dictionary`2[System.String,System.String]>]
+ [-ConsentProvidedForMinor <String>] 
+ [-MailNickName <String>] 
+ [-ImmutableId <String>] 
+ [-Country <String>]
+ [-SignInNames <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]>]
+ [-Department <String>] 
+ [-PasswordPolicies <String>] 
+ [-JobTitle <String>] 
+ [-IsCompromised <Boolean>]
+ [-UserState <String>] 
+ [-UserType <String>] 
+ [-OtherMails <System.Collections.Generic.List`1[System.String]>]
+ [-PhysicalDeliveryOfficeName <String>] 
+ [-UserPrincipalName <String>] 
+ [-State <String>] 
+ [-StreetAddress <String>]
+ [-TelephoneNumber <String>] 
+ [-Surname <String>] 
+ [-ShowInAddressList <Boolean>] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **New-EntraUser** cmdlet creates a user in Microsoft Entra ID.
+The New-EntraUser cmdlet creates a user in Microsoft Entra ID.
 
 ## EXAMPLES
 

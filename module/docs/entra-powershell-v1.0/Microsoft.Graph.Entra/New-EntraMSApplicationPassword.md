@@ -25,8 +25,8 @@ Adds a strong password to an application.
 
 ```powershell
 New-EntraMSApplicationPassword 
-    -ObjectId <String> 
-    -PasswordCredential <PasswordCredential> 
+ -ObjectId <String> 
+ -PasswordCredential <PasswordCredential> 
  [<CommonParameters>]
 ```
 

@@ -25,15 +25,15 @@ Creates an application extension property.
 
 ```powershell
 New-EntraApplicationExtensionProperty 
-    -ObjectId <String> 
-    -Name <String>
-    [-DataType <String>]     
-    [-TargetObjects <System.Collections.Generic.List`1[System.String]>] 
+ -ObjectId <String> 
+ -Name <String>
+ [-DataType <String>]     
+ [-TargetObjects <System.Collections.Generic.List`1[System.String]>] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **New-EntraApplicationExtensionProperty** cmdlet creates an application extension property for an object in Microsoft Entra ID.
+The New-EntraApplicationExtensionProperty cmdlet creates an application extension property for an object in Microsoft Entra ID.
 
 ## EXAMPLES
 

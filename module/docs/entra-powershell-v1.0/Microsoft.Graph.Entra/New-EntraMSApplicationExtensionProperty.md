@@ -24,10 +24,10 @@ Creates an extension property on an application object.
 
 ```powershell
 New-EntraMSApplicationExtensionProperty 
-    -ObjectId <String> 
-    [-DataType <String>] 
-    [-TargetObjects <System.Collections.Generic.List`1[System.String]>] 
-    [-Name <String>] 
+ -ObjectId <String> 
+ [-DataType <String>] 
+ [-TargetObjects <System.Collections.Generic.List`1[System.String]>] 
+ [-Name <String>] 
  [<CommonParameters>]
 ```
 

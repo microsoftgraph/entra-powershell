@@ -22,7 +22,7 @@ Creates a service principal.
 
 ## SYNTAX
 
-```
+```powershell
 New-EntraServicePrincipal
  -AppId <String>
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]>]
