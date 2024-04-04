@@ -4,7 +4,7 @@ description: About Microsoft Entra PowerShell installation and usage guide.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 02/07/2024
+ms.date: 04/05/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
