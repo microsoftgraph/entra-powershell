@@ -20,7 +20,7 @@ function New-EntraBetaApplicationProxyApplication {
     [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Nullable`1[System.Boolean]] $IsTranslateLinksInBodyEnabled,
     [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Boolean]] $ApplicationServerTimeout,
+    [System.String] $ApplicationServerTimeout,
     [Parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $ConnectorGroupId
 
@@ -28,49 +28,50 @@ function New-EntraBetaApplicationProxyApplication {
 
     PROCESS {    
         $params = @{}
+        $onPremisesPublishing = @{}
         if($null -ne $PSBoundParameters["DisplayName"])
         {
             $DisplayName = $PSBoundParameters["DisplayName"]
         }
         if($null -ne $PSBoundParameters["ExternalUrl"])
         {
-            
+            $onPremisesPublishing["externalUrl"] = $PSBoundParameters["ExternalUrl"]
         }
         if($null -ne $PSBoundParameters["InternalUrl"])
         {
-            
+            $onPremisesPublishing["internalUrl"] = $PSBoundParameters["InternalUrl"]   
         }
         if($null -ne $PSBoundParameters["ExternalAuthenticationType"])
         {
-           
+            $onPremisesPublishing["externalAuthenticationType"] = $PSBoundParameters["ExternalAuthenticationType"]
         }
         if($null -ne $PSBoundParameters["IsTranslateHostHeaderEnabled"])
         {
-           
+            $onPremisesPublishing["isTranslateHostHeaderEnabled"] = $PSBoundParameters["IsTranslateHostHeaderEnabled"]
         }
         if($null -ne $PSBoundParameters["IsHttpOnlyCookieEnabled"])
         {
-           
+            $onPremisesPublishing["isHttpOnlyCookieEnabled"] = $PSBoundParameters["IsHttpOnlyCookieEnabled"]
         }
         if($null -ne $PSBoundParameters["IsSecureCookieEnabled"])
         {
-           
+            $onPremisesPublishing["isSecureCookieEnabled"] = $PSBoundParameters["IsSecureCookieEnabled"]
         }
         if($null -ne $PSBoundParameters["IsPersistentCookieEnabled"])
         {
-           
+            $onPremisesPublishing["isPersistentCookieEnabled"] = $PSBoundParameters["IsPersistentCookieEnabled"]
         }
         if($null -ne $PSBoundParameters["IsTranslateLinksInBodyEnabled"])
         {
-           
+            $onPremisesPublishing["isTranslateLinksInBodyEnabled"] = $PSBoundParameters["IsTranslateLinksInBodyEnabled"]
         }
         if($null -ne $PSBoundParameters["ApplicationServerTimeout"])
         {
-           
+            $onPremisesPublishing["applicationServerTimeout"] = $PSBoundParameters["ApplicationServerTimeout"]
         }
         if($null -ne $PSBoundParameters["ConnectorGroupId"])
         {
-           
+           $ConnectorGroupId = $PSBoundParameters["ConnectorGroupId"]
         }
 
         if($PSBoundParameters.ContainsKey("Verbose"))
@@ -82,6 +83,7 @@ function New-EntraBetaApplicationProxyApplication {
             $params["Debug"] = $Null
         }
 
+        #Create New App
         $newAppBody = @{
             displayName =  $DisplayName
         } | ConvertTo-Json
@@ -96,21 +98,39 @@ function New-EntraBetaApplicationProxyApplication {
             homePageUrl = $InternalUrl 
             } 
         } 
-        Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$Id" -Method PATCH -Body $updateUrlBody
+        $Application = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$Id" -Method PATCH -Body $updateUrlBody
 
-        #Create ServicePrincipal
+        # Create ServicePrincipal
         $serviceBody = @{
             appId = $NewApp.AppId
         } | ConvertTo-Json
-        Invoke-GraphRequest -Uri "https://graph.microsoft.com/v1.0/servicePrincipals" -Method POST -Body $serviceBody
+        $ServicePrincipal = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/servicePrincipals" -Method POST -Body $serviceBody
 
-        
-            
+        # update onpremises
+        if($null -ne $ServicePrincipal){
+            $onPremisesPublishingBody = @{onPremisesPublishing = $onPremisesPublishing}
+            Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$Id" -Method PATCH -Body $onPremisesPublishingBody
+        }
+       
+        #update connector group
+        $ConnectorGroupBody = @{
+            "@odata.id" = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/$ConnectorGroupId"
+        } 
+        $ConnectorGroupBody = $ConnectorGroupBody | ConvertTo-Json
+        $ConnectorGroupUri = "https://graph.microsoft.com/beta/applications/$Id/connectorGroup/" + '$ref'
+        Invoke-GraphRequest -Method PUT -Uri $ConnectorGroupUri -Body $ConnectorGroupBody -ContentType "application/json"
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
-        Invoke-GraphRequest -Method $params.method -Uri $params.uri -Body $body -ContentType "application/json"
+        $response = (Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$Id/onPremisesPublishing" -Method GET) | ConvertTo-Json -depth 10 | ConvertFrom-Json
+        $response | ForEach-Object {
+            if($null -ne $_) {
+            Add-Member -InputObject $_ -MemberType NoteProperty -Name ObjectId -Value $Id
+           }
+        }
+        $response | Select-Object ObjectId,ExternalAuthenticationType,ExternalUrl,InternalUrl,IsTranslateHostHeaderEnabled,IsTranslateLinksInBodyEnabled,IsOnPremPublishingEnabled,VerifiedCustomDomainCertificatesMetadata,VerifiedCustomDomainKeyCredential,VerifiedCustomDomainPasswordCredential,SingleSignOnSettings,IsHttpOnlyCookieEnabled,IsSecureCookieEnabled,IsPersistentCookieEnabled
+
     }        
 }
