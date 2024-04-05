@@ -1,4 +1,14 @@
 ---
+title: Add-EntraMSApplicationOwner
+description: This article provides details on the Add-EntraMSApplicationOwner command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/06/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,8 +22,11 @@ Adds an owner for an application object.
 
 ## SYNTAX
 
-```
-Add-EntraMSApplicationOwner -ObjectId <String> -RefObjectId <String> [<CommonParameters>]
+```powershell
+Add-EntraMSApplicationOwner 
+    -ObjectId <String> 
+    -RefObjectId <String> 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,9 +35,19 @@ Adds an owner for an application object.
 ## EXAMPLES
 
 ### Example 1: Add an owner to an application
+```powershell
+PS C:\> $ApplicationId = (Get-EntraMSApplication -Top 1).ObjectId
+PS C:\> $UserObjectId = (Get-EntraMSUser -Top 1).ObjectId
+PS C:\> Add-EntraMSApplicationOwner -ObjectId $ApplicationId -RefObjectId $UserObjectId
 ```
-PS C:\>Add-EntraMSApplicationOwner -ObjectId 3ddd22e7-a150-4bb3-b100-e410dea1cb84 -RefObjectId c13dd34a-492b-4561-b171-40fcce2916c5
-```
+
+The first command gets an application using [Get-EntraMSApplication](./Get-EntraMSApplication.md) cmdlet, and stores 
+the ObjectId property value in $ApplicationId variable.  
+
+The second command gets a user using [Get-EntraMSUser](./Get-EntraMSUser.md) cmdlet, and stores 
+the ObjectId property value in $UserObjectId variable.  
+
+This final command adds an owner in $UserObjectId to an application in $ApplicationId.
 
 This command adds an owner to an application.
 
@@ -46,7 +69,7 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
-The unique identifier of the specific Microsoft Entra ID object that will be assigned as owner/manager/member
+The unique identifier of the specific Microsoft Entra ID object that is assigned as owner/manager/member
 
 ```yaml
 Type: String
@@ -61,18 +84,18 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
-### string
+### String
 ## OUTPUTS
 
 ## NOTES
 
 ## RELATED LINKS
 
-[Get-EntraMSApplicationOwner]()
+[Get-EntraMSApplicationOwner](Get-EntraMSApplicationOwner.md)
 
-[Remove-EntraMSApplicationOwner]()
+[Remove-EntraMSApplicationOwner](Remove-EntraMSApplicationOwner.md)
 
