@@ -9,6 +9,7 @@
     CustomScript = @'
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $body = @{}
         $Web = @{}
         $keysChanged = @{ObjectId = "Id"}
@@ -136,7 +137,7 @@ Message: Cannot convert a primitive value to the expected type 'Edm.Boolean'. Se
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================
 ")  
-        $response = Update-MgServicePrincipal @params
+        $response = Update-MgServicePrincipal @params -Headers $customHeaders
         $response | ForEach-Object {
             if($null -ne $_) {
             Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id

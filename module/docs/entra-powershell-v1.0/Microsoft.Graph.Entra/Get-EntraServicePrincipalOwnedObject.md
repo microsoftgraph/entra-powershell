@@ -1,4 +1,14 @@
 ---
+title:  Get-EntraServicePrincipalOwnedObject.
+description: This article provides details on the  Get-EntraServicePrincipalOwnedObject Command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/22/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,7 +23,10 @@ Gets an object owned by a service principal.
 ## SYNTAX
 
 ```
-Get-EntraServicePrincipalOwnedObject [-All <Boolean>] -ObjectId <String> [-Top <Int32>] [<CommonParameters>]
+Get-EntraServicePrincipalOwnedObject 
+[-All <Boolean>] 
+-ObjectId <String> 
+[-Top <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,7 +35,8 @@ The Get-EntraServicePrincipalOwnedObject cmdlet gets an object that is owned by 
 ## EXAMPLES
 
 ### Example 1: Retrieve the owned objects of a service principal
-```
+
+```powershell
 PS C:\> $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
 PS C:\> Get-EntraServicePrincipalOwnedObject -ObjectId $ServicePrincipalId
 ```
@@ -51,7 +65,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a service principal in Azure AD.
+Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -81,7 +95,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -91,5 +105,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraServicePrincipal]()
+[Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
 
