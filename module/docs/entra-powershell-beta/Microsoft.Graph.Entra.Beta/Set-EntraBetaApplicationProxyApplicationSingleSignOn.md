@@ -47,7 +47,7 @@ This command Assign an application to use Kerberos Constrained Delegation, and s
 
 ### Example 2: Remove SSO from an application
 ```
-PS C:\> Set-AzureADApplicationProxyApplicationSingleSignOn -ObjectId 4eba5342-8d17-4eac-a1f6-62a0de26311e -SingleSignOnMode None
+PS C:\> Set-EntraBetaApplicationProxyApplicationSingleSignOn -ObjectId 4eba5342-8d17-4eac-a1f6-62a0de26311e -SingleSignOnMode None
 ```
 
 This example demonstrates how to Remove SSO from an application.
