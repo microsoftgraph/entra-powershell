@@ -88,7 +88,7 @@ BeforeAll {
                 $value = $result[$i + 1]
                 $params[$key] = $value
             }
-            $params.GroupId | Should -Be "111cc9b5-fce9-485e-9566-c68debafac5f"
+            $params.ApplicationId | Should -Be "111cc9b5-fce9-485e-9566-c68debafac5f"
         }
         It "Should contain Filter in parameters when passed SearchString to it" {
             $scriptblock = {
