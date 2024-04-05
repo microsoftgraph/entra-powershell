@@ -25,14 +25,14 @@ Creates a password credential for an application.
 
 ```powershell
 New-EntraApplicationPasswordCredential 
-    -ObjectId <String> 
-    [-StartDate <DateTime>] 
-    [-EndDate <DateTime>] 
-    [<CommonParameters>]
+ -ObjectId <String> 
+ [-StartDate <DateTime>] 
+ [-EndDate <DateTime>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **New-EntraApplicationPasswordCredential** cmdlet creates a password credential for an application in Microsoft Entra ID.
+The New-EntraApplicationPasswordCredential cmdlet creates a password credential for an application in Microsoft Entra ID.
 
 ## EXAMPLES
 
