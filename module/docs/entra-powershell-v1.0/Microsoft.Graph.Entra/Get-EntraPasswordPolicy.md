@@ -26,19 +26,18 @@ Retrieves the current password policy for the tenant or the specified domain.
 ### GetQuery (Default)
 ```powershell
 Get-EntraPasswordPolicy 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraPasswordPolicy 
-    -DomainName <String> 
-    [<CommonParameters>]
+ -DomainName <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraPasswordPolicy** cmdlet can be used to retrieve the values associated with the Password Expiry
-window or Password Expiry Notification window for a tenant or specified domain. 
+The Get-EntraPasswordPolicy cmdlet can be used to retrieve the values associated with the Password Expiry window or Password Expiry Notification window for a tenant or specified domain. 
 When a domain name is specified, it must be a verified domain for the company.
 
 ## EXAMPLES

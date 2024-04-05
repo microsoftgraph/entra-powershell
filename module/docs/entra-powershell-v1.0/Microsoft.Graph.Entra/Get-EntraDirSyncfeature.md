@@ -25,13 +25,13 @@ Used to check the status of identity synchronization features for a tenant.
 
 ```powershell
 Get-EntraDirSyncfeature 
-    [-TenantId <Guid>] 
-    [-Feature <String>] 
-    [<CommonParameters>]
+ [-TenantId <Guid>] 
+ [-Feature <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraDirSyncfeature** cmdlet is used to check the status of identity synchronization features for a tenant.
+The Get-EntraDirSyncfeature cmdlet is used to check the status of identity synchronization features for a tenant.
 Features that can be used with this cmdlet include:
 - **DeviceWriteback**
 - **DirectoryExtensions**

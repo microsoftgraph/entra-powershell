@@ -25,16 +25,19 @@ Retrieves company-level information for partners.
 
 ### GetQuery (Default)
 ```powershell
-Get-EntraPartnerInformation [<CommonParameters>]
+Get-EntraPartnerInformation 
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
-Get-EntraPartnerInformation [-TenantId <Guid>] [<CommonParameters>]
+Get-EntraPartnerInformation 
+ [-TenantId <Guid>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraBetaPartnerInformation** cmdlet is used to retrieve partner-specific information.
+The Get-EntraBetaPartnerInformation cmdlet is used to retrieve partner-specific information.
 This cmdlet should only be used for partner tenants.
 
 ## EXAMPLES

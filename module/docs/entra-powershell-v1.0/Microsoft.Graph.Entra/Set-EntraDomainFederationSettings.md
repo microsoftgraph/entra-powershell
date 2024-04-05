@@ -25,23 +25,23 @@ Updates settings for a federated domain.
 
 ```powershell
 Set-EntraDomainFederationSettings 
-    -DomainName <String>
-   [-SigningCertificate <String>]
-   [-NextSigningCertificate <String>]
-   [-LogOffUri <String>]
-   [-PassiveLogOnUri <String>]
-   [-ActiveLogOnUri <String>]
-   [-IssuerUri <String>]
-   [-FederationBrandName <String>]
-   [-MetadataExchangeUri <String>]
-   [-PreferredAuthenticationProtocol <AuthenticationProtocol>]
-   [-SigningCertificateUpdateStatus <SigningCertificateUpdateStatus>]
-   [-PromptLoginBehavior <PromptLoginBehavior>]
-   [<CommonParameters>]
+ -DomainName <String>
+ [-SigningCertificate <String>]
+ [-NextSigningCertificate <String>]
+ [-LogOffUri <String>]
+ [-PassiveLogOnUri <String>]
+ [-ActiveLogOnUri <String>]
+ [-IssuerUri <String>]
+ [-FederationBrandName <String>]
+ [-MetadataExchangeUri <String>]
+ [-PreferredAuthenticationProtocol <AuthenticationProtocol>]
+ [-SigningCertificateUpdateStatus <SigningCertificateUpdateStatus>]
+ [-PromptLoginBehavior <PromptLoginBehavior>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Set-EntraDomainFederationSettings** cmdlet is used to update the settings of a single sign-on domain.
+The Set-EntraDomainFederationSettings cmdlet is used to update the settings of a single sign-on domain.
 
 ## EXAMPLES
 

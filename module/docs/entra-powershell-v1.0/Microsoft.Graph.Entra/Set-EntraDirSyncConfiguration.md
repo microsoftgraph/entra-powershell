@@ -25,14 +25,14 @@ Modifies the directory synchronization settings.
 
 ```powershell
 Set-EntraDirSyncConfiguration 
-   -AccidentalDeletionThreshold <UInt32>
-   [-Force]
-   [-TenantId <Guid>]
-   [<CommonParameters>]
+ -AccidentalDeletionThreshold <UInt32>
+ [-Force]
+ [-TenantId <Guid>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Set-EntraDirSyncConfiguration** cmdlet modifies the directory synchronization settings.
+The Set-EntraDirSyncConfiguration cmdlet modifies the directory synchronization settings.
 
 ## EXAMPLES
 

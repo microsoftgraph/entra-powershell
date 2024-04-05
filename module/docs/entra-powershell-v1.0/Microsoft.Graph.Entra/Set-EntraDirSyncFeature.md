@@ -25,15 +25,15 @@ Used to set identity synchronization features for a tenant.
 
 ```powershell
 Set-EntraDirSyncFeature 
-    -Feature <String> 
-    -Enabled <Boolean> 
-    [-TenantId <Guid>] 
-    [-Force] 
-    [<CommonParameters>]
+ -Feature <String> 
+ -Enabled <Boolean> 
+ [-TenantId <Guid>] 
+ [-Force] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Set-EntraDirSyncFeature** cmdlet sets identity synchronization features for a tenant.  
+The Set-EntraDirSyncFeature cmdlet sets identity synchronization features for a tenant.  
 
 You can use the following synchronization features with this cmdlet:  
 - **EnableSoftMatchOnUpn**: Soft match is the process used to link an object being synced from on-premises for the first time with one that already exists in the cloud. When this feature is enabled, soft match is attempted using the standard logic, based on the primary SMTP address. If a match isn't found based on primary SMTP, then a match is attempted based on UserPrincipalName. Once this feature is enabled, it can't be disabled.
@@ -44,7 +44,7 @@ You can use the following synchronization features with this cmdlet:
     -  an object is synced for which an object with a matching source anchor already exists in Microsoft Entra ID and,
     - that object in Microsoft Entra ID doesn't have DirSyncEnabled set to "true", then    
     the default behavior would be to hard match the cloud object with the on premises object and set the DirSyncEnabled flag of the Cloud object to "true". <br><br>
-    When enabling this feature, the cloud object is no longer matched and the DirSyncEnabled flag isn't set to "true". Instead, an error is thrown: Error Code: `InvalidHardMatch`, Error Message: `Another cloud created object with the same source anchor already exists in Azure Active Directory`.
+    When enabling this feature, the cloud object is no longer matched and the DirSyncEnabled flag isn't set to "true". Instead, an error is thrown: Error Code: `InvalidHardMatch`, Error Message: `Another cloud created object with the same source anchor already exists in Microsoft Entra ID`.
 
 Enabling some of these features, such as EnableSoftMatchOnUpn and SynchronizationUpnForManagedUsers, is a permanent operation.
 You can't disable these features once they're enabled.

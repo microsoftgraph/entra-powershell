@@ -25,12 +25,12 @@ Returns whether Microsoft Entra ID has objects with DirSync provisioning error.
 
 ```powershell
 Get-EntraHasObjectsWithDirSyncProvisioningError 
-    [-TenantId <Guid>] 
-    [<CommonParameters>]
+ [-TenantId <Guid>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraHasObjectsWithDirSyncProvisioningError** returns whether Microsoft Entra ID has objects 
+The Get-EntraHasObjectsWithDirSyncProvisioningError returns whether Microsoft Entra ID has objects 
 with DirSync provisioning error.
 
 ## EXAMPLES

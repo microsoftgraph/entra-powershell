@@ -19,18 +19,18 @@ schema: 2.0.0
 # Get-EntraFederationProperty
 
 ## SYNOPSIS
-Displays the properties of the Active Directory Federation Services 2.0 server and Microsoft Online.
+Displays the properties of the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online.
 
 ## SYNTAX
 
 ```powershell
 Get-EntraFederationProperty 
-    -DomainName <String> 
-    [<CommonParameters>]
+ -DomainName <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraFederationProperty** cmdlet gets key settings from both the Active Directory Federation Services 2.0 server and Microsoft Online. You can use this information to troubleshoot authentication problems caused by mismatched settings between the Active Directory Federation Services 2.0 server and Microsoft Online.
+The Get-EntraFederationProperty cmdlet gets key settings from both the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online. You can use this information to troubleshoot authentication problems caused by mismatched settings between the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online.
 
 ## EXAMPLES
 
@@ -44,7 +44,7 @@ This command displays properties for specified domain.
 ## PARAMETERS
 
 ### -DomainName
-The domain name for which the properties from both the Active Directory Federation Services 2.0 server and Microsoft Online are displayed.
+The domain name for which the properties from both the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online are displayed.
 
 ```yaml
 Type: String

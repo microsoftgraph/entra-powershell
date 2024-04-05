@@ -25,13 +25,13 @@ Gets key settings for a federated domain.
 
 ```powershell
 Get-EntraDomainFedrationSettings 
-    -DomainName <String>
-   [-TenantId <Guid>]
-   [<CommonParameters>]
+ -DomainName <String>
+ [-TenantId <Guid>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraDomainFederationSettings** cmdlet gets key settings from Microsoft Entra ID.
+The Get-EntraDomainFederationSettings cmdlet gets key settings from Microsoft Entra ID.
 Use the [Get-EntraFederationProperty](./Get-EntraFederationProperty.md) cmdlet to get settings for both Microsoft Entra ID and the Entra ID Federation Services server.
 
 ## EXAMPLES

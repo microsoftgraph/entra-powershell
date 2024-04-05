@@ -25,12 +25,12 @@ Gets the directory synchronization settings.
 
 ```powershell
 Get-EntraDirSyncConfiguration 
-    [-TenantId <Guid>] 
-    [<CommonParameters>]
+ [-TenantId <Guid>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraDirSyncConfiguration** cmdlet gets the directory synchronization settings.
+The Get-EntraDirSyncConfiguration cmdlet gets the directory synchronization settings.
 
 ## EXAMPLES
 

@@ -26,18 +26,18 @@ Retrieves all the SKUs for a company.
 ### GetQuery (Default)
 ```powershell
 Get-EntraAccountSku 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraAccountSku 
-    [-TenantId <Guid>] 
-    [<CommonParameters>]
+ [-TenantId <Guid>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraAccountSku** returns all the SKUs that the company owns.
+The Get-EntraAccountSku returns all the SKUs that the company owns.
 
 ## EXAMPLES
 

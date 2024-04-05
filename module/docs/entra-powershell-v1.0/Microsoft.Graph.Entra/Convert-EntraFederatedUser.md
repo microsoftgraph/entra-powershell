@@ -25,13 +25,13 @@ Updates a user in a domain that was recently converted from single sign-on (also
 
 ```powershell
 Convert-EntraFederatedUser
-    -UserPrincipalName <String>
-    [-NewPassword <String>]
-    [<CommonParameters>]
+ -UserPrincipalName <String>
+ [-NewPassword <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Convert-EntraFederatedUser** cmdlet is used to update a user in a domain that was recently converted from single sign-on (also known as identity federation) to standard authentication type. A new password must be provided for the user.
+The Convert-EntraFederatedUser cmdlet is used to update a user in a domain that was recently converted from single sign-on (also known as identity federation) to standard authentication type. A new password must be provided for the user.
 
 ## EXAMPLES
 
