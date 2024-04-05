@@ -26,9 +26,7 @@ Updates a user.
 Set-EntraUser 
  -ObjectId <String> 
  [-PostalCode <String>] 
- [-UserStateChangedOn <String>] 
  [-CompanyName <String>]
- [-FacsimileTelephoneNumber <String>] 
  [-GivenName <String>] 
  [-Mobile <String>] 
  [-PreferredLanguage <String>]
@@ -46,11 +44,8 @@ Set-EntraUser
  [-StreetAddress <String>] 
  [-PasswordPolicies <String>]
  [-JobTitle <String>]
- [-IsCompromised <Boolean>] 
  [-City <String>] 
- [-UserState <String>]
  [-OtherMails <System.Collections.Generic.List`1[System.String]>] 
- [-PhysicalDeliveryOfficeName <String>]
  [-UserPrincipalName <String>] 
  [-DisplayName <String>] 
  [-AccountEnabled <Boolean>]

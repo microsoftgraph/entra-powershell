@@ -26,7 +26,6 @@ Updates the properties of an application object.
 ```powershell
 Set-EntraMSApplication 
  -ObjectId <String> 
- [-AddIns <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]>]
  [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]>]
  [-TokenEncryptionKeyId <String>] 
  [-SignInAudience <String>]
