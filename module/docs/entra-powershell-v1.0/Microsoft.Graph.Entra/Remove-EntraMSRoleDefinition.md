@@ -19,26 +19,25 @@ schema: 2.0.0
 # Remove-EntraMSRoleDefinition
 
 ## SYNOPSIS
-Delete a Microsoft Entra ID roleDefinition by objectId.
+Delete a Microsoft Entra ID roleDefinition by ObjectId.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraMSRoleDefinition 
--Id <String> 
-[<CommonParameters>]
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Delete a Microsoft Entra ID roleDefinition object by ID.
-For more info, see https://go.microsoft.com/fwlink/?linkid=2097519.
 
 ## EXAMPLES
 
 ### Example 1: Remove a specified role definition.
 
 ```powershell
-PS C:\> Remove-EntraMSRoleDefinition  -Id 62e90894-69f5-4237-9190-012177145e10
+PS C:\> Remove-EntraMSRoleDefinition -Id 62e90894-69f5-4237-9190-012177145e10
 ```
 This example demonstrates how to remove the specified role definition from Microsoft Entra ID.
 

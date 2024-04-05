@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraMSApplicationVerifiedPublisher.
+description: This article provides details on the Remove-EntraMSApplicationVerifiedPublisher command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/25/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,8 +22,10 @@ Removes the verified publisher from an application.
 
 ## SYNTAX
 
-```
-Remove-EntraMSApplicationVerifiedPublisher -AppObjectId <String> [<CommonParameters>]
+```powershell
+Remove-EntraMSApplicationVerifiedPublisher 
+ -AppObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,10 +34,11 @@ Removes the verified publisher from an application.
 ## EXAMPLES
 
 ### Example 1: Remove the verified publisher from an application.
-```
+```Powershell
 $appObjId = 'ad6c71a5-e48f-4320-bb59-92642a2d8d9f'
           Remove-EntraMSApplicationVerifiedPublisher -AppObjectId $appObjId
 ```
+This command demonstrates how to remove the verified publisher from an application.  
 
 ## PARAMETERS
 
@@ -49,12 +62,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### string
+### String
 ## OUTPUTS
 
 ## NOTES
 
 ## RELATED LINKS
 
-[Set-EntraMSApplicationVerifiedPublisher]()
+[Set-EntraMSApplicationVerifiedPublisher](Set-EntraMSApplicationVerifiedPublisher.md)
 

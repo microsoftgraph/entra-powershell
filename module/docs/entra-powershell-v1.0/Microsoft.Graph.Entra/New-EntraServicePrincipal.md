@@ -22,7 +22,7 @@ Creates a service principal.
 
 ## SYNTAX
 
-```
+```powershell
 New-EntraServicePrincipal
  -AppId <String>
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]>]
@@ -90,7 +90,7 @@ $creds.Usage = 'Sign'
 $creds.Value = [System.Text.Encoding]::UTF8.GetBytes("123")
 $creds.EndDate = Get-Date -Year 2024 -Month 10 -Day 23
 PS C:\> $MyApp=(Get-EntraApplication -Filter "DisplayName eq 'ToGraph_443DEM'")
->> New-AzureADServicePrincipal -AppId 00e08ac1-6dcb-443d-bf3b-d3723b6bd45f -Homepage 'https://localhost/home' -KeyCredentials $creds
+>> New-EntraServicePrincipal -AppId 00e08ac1-6dcb-443d-bf3b-d3723b6bd45f -Homepage 'https://localhost/home' -KeyCredentials $creds
 PS C:\> New-EntraServicePrincipal  -AppId $MyApp.AppId  -KeyCredentials $creds
 ```
 

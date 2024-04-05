@@ -1,4 +1,15 @@
 ---
+title: Set-EntraMSApplication
+description: This article provides details on the Set-EntraMSApplication command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/25/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,18 +23,27 @@ Updates the properties of an application object.
 
 ## SYNTAX
 
-```
-Set-EntraMSApplication [-AddIns <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]>]
+```powershell
+Set-EntraMSApplication 
+ -ObjectId <String> 
+ [-AddIns <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]>]
  [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]>]
- [-TokenEncryptionKeyId <String>] [-SignInAudience <String>]
+ [-TokenEncryptionKeyId <String>] 
+ [-SignInAudience <String>]
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]>]
  [-ParentalControlSettings <ParentalControlSettings>]
  [-IdentifierUris <System.Collections.Generic.List`1[System.String]>]
  [-AppRoles <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]>]
- [-PublicClient <PublicClientApplication>] [-InformationalUrl <InformationalUrl>] -ObjectId <String>
- [-Tags <System.Collections.Generic.List`1[System.String]>] [-Api <ApiApplication>]
- [-OptionalClaims <OptionalClaims>] [-GroupMembershipClaims <String>] [-Web <WebApplication>]
- [-DisplayName <String>] [-IsFallbackPublicClient <Boolean>] [-IsDeviceOnlyAuthSupported <Boolean>]
+ [-PublicClient <PublicClientApplication>] 
+ [-InformationalUrl <InformationalUrl>] 
+ [-Tags <System.Collections.Generic.List`1[System.String]>] 
+ [-Api <ApiApplication>]
+ [-OptionalClaims <OptionalClaims>] 
+ [-GroupMembershipClaims <String>] 
+ [-Web <WebApplication>]
+ [-DisplayName <String>] 
+ [-IsFallbackPublicClient <Boolean>] 
+ [-IsDeviceOnlyAuthSupported <Boolean>]
  [-RequiredResourceAccess <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]>]
  [<CommonParameters>]
 ```
@@ -34,49 +54,41 @@ Updates the properties of an application object.
 ## EXAMPLES
 
 ### Example 1: Update an application
-```
-PS C:\>Set-EntraMSApplication -ObjectId fcd37fb8-449c-45af-92fc-5448c671fd30 `
-          -DisplayName "my name" `
-          -AddIns @{ Type = "mytype"; Properties = [PSCustomObject]@{ Key = "key"; Value = "value" } } `
-          -Api @{ AcceptMappedClaims = $true } `
-          -AppRoles @{ Id = "21111111-1111-1111-1111-111111111111"; DisplayName = "role"; AllowedMemberTypes = "User"; Description = "mydescription"; Value = "myvalue" } `
-          -InformationalUrl @{ SupportUrl = "https://mynewapp.contoso.com/support.html" } `
-          -IsDeviceOnlyAuthSupported $false `
-          -IsFallbackPublicClient $false `
-          -KeyCredentials @{ KeyId = "41111111-1111-1111-1111-111111111111"; Usage = "Encrypt"; Key = [System.IO.File]::ReadAllBytes("file.cer"); Type = "AsymmetricX509Cert" } `
-          -OptionalClaims @{ IdToken = [PSCustomObject]@{ Name = "claimName"; Source = "claimSource" } } `
-          -ParentalControlSettings @{ LegalAgeGroupRule = "Block" } `
-          -PublicClient @{ RedirectUris = "https://mynewapp.contoso.com/" } `
-          -RequiredResourceAccess @{ ResourceAppId = "31111111-1111-1111-1111-111111111111"; ResourceAccess = [PSCustomObject]@{ Type = "Scope" } } `
-          -SignInAudience AzureADandPersonalMicrosoftAccount `
-          -Tags "mytag" `
-          -TokenEncryptionKeyId "41111111-1111-1111-1111-111111111111" `
-          -Web @{ LogoutUrl = "https://mynewapp.contoso.com/logout.html" } `
-          -GroupMembershipClaims "SecurityGroup" `
-          -IdentifierUris "https://mynewapp.contoso.com"`
-          -PasswordCredentials {passwordcredentials}
+```powershell
+PS C:\> Set-EntraMSApplication -ObjectId fcd37fb8-449c-45af-92fc-5448c671fd30 -DisplayName "My new application"
 ```
 
-This command updates the specified application.
+This command updates an application in Microsoft Entra ID.
+
+### Example 2: Update an application using IdentifierUris parameter
+```powershell
+PS C:\> Set-EntraMSApplication -ObjectId fcd37fb8-449c-45af-92fc-5448c671fd30 -IdentifierUris "https://mynewapp.contoso.com"
+```
+
+This command updates an application in Microsoft Entra ID.
+
+### Example 3: Update an application using GroupMembershipClaims parameter
+```powershell
+PS C:\> Set-EntraMSApplication -ObjectId fcd37fb8-449c-45af-92fc-5448c671fd30 -GroupMembershipClaims "SecurityGroup"
+```
+
+This command updates an application in Microsoft Entra ID.
+
+### Example 4: Update an application using IsDeviceOnlyAuthSupported parameter
+```powershell
+PS C:\> Set-EntraMSApplication -ObjectId fcd37fb8-449c-45af-92fc-5448c671fd30 -IsDeviceOnlyAuthSupported $false
+```
+
+This command updates an application in Microsoft Entra ID.
+
+### Example 5: Update an application using Tags parameter
+```powershell
+PS C:\> Set-EntraMSApplication -ObjectId fcd37fb8-449c-45af-92fc-5448c671fd30 -Tags "mytag"
+```
+
+This command updates an application in Microsoft Entra ID.
 
 ## PARAMETERS
-
-### -AddIns
-Defines custom behavior that a consuming service can use to call an app in specific contexts.
-For example, applications that can render file streams may set the addIns property for its "FileHandler" functionality.
-This will let services like Office 365 call the application in the context of a document the user is working on.
-
-```yaml
-Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Api
 Specifies settings for an application that implements a web API.
@@ -94,8 +106,8 @@ Accept wildcard characters: False
 ```
 
 ### -AppRoles
-The collection of application roles that an application may declare.
-These roles can be assigned to users, groups or service principals.
+The collection of application roles that an application might declare.
+These roles can be assigned to users, groups, or service principals.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]
@@ -187,10 +199,10 @@ Accept wildcard characters: False
 
 ### -IsFallbackPublicClient
 Specifies the fallback application type as public client, such as an installed application running on a mobile device.
-The default value is false which means the fallback application type is confidential client such as web app.
-There are certain scenarios where Azure AD cannot determine the client application type (e.g.
-ROPC flow where it is configured without specifying a redirect URI).
-In those cases Azure AD will interpret the application type based on the value of this property.
+The default value is false that means the fallback application type is confidential client such as web app.
+There are certain scenarios where Microsoft Entra ID can't determine the client application type (for example,
+ROPC flow where it's configured without specifying a redirect URI).
+In those cases Microsoft Entra ID interprets the application type based on the value of this property.
 
 ```yaml
 Type: Boolean
@@ -220,7 +232,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of an application in Azure AD.
+Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -235,7 +247,7 @@ Accept wildcard characters: False
 ```
 
 ### -OptionalClaims
-Application developers can configure optional claims in their Azure AD apps to specify which claims they want in tokens sent to their application by the Microsoft security token service.
+Application developers can configure optional claims in their Microsoft Entra ID apps to specify which claims they want in tokens sent to their application by the Microsoft security token service.
 
 ```yaml
 Type: OptionalClaims
@@ -283,9 +295,6 @@ Accept wildcard characters: False
 Specifies whether this application is a public client (such as an installed application running on a mobile device).
 Default is false.
 
-Specifies whether this application is a public client (such as an installed application running on a mobile device).
-Default is false.
-
 ```yaml
 Type: PublicClientApplication
 Parameter Sets: (All)
@@ -299,7 +308,8 @@ Accept wildcard characters: False
 ```
 
 ### -RequiredResourceAccess
-@{Text=}
+Specifies resources that this application requires access to and the set of OAuth permission scopes and application roles that it needs under each of those resources.
+This preconfiguration of required resource access drives the consent experience.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]
@@ -345,7 +355,7 @@ Accept wildcard characters: False
 
 ### -TokenEncryptionKeyId
 Specifies the keyId of a public key from the keyCredentials collection.
-When configured, Azure AD encrypts all the tokens it emits by using the key this property points to.
+When configured, Microsoft Entra ID encrypts all the tokens it emits by using the key this property points to.
 The application code that receives the encrypted token must use the matching private key to decrypt the token before it can be used for the signed-in user.
 
 ```yaml
@@ -387,8 +397,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### Microsoft.Open.MSGraph.Model.ParentalControlSettings
 ### Microsoft.Open.MSGraph.Model.PublicClientApplication
 ### Microsoft.Open.MSGraph.Model.WebApplication
-### string
-### System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]
+### String
+### System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.Add-in]
 ### System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]
 ### System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]
 ### System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]
@@ -401,9 +411,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraMSApplication]()
+[Get-EntraMSApplication](Get-EntraMSApplication.md)
 
-[New-EntraMSApplication]()
+[New-EntraMSApplication](New-EntraMSApplication.md)
 
-[Remove-EntraMSApplication]()
+[Remove-EntraMSApplication](Remove-EntraMSApplication.md)
 

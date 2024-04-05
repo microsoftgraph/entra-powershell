@@ -25,14 +25,14 @@ Gets the registered owner of a device.
 
 ```powershell
 Get-EntraDeviceRegisteredOwner 
-    -ObjectId <String> 
-    [-All <Boolean>] 
-    [-Top <Int32>] 
-    [<CommonParameters>]
+ -ObjectId <String> 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraDeviceRegisteredOwner** cmdlet gets the registered owner of a device in Microsoft Entra ID.
+The Get-EntraDeviceRegisteredOwner cmdlet gets the registered owner of a device in Microsoft Entra ID.
 
 ## EXAMPLES
 

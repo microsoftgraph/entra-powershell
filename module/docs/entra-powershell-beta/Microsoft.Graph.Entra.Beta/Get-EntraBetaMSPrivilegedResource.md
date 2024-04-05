@@ -29,7 +29,7 @@ Get-EntraBetaMSPrivilegedResource
    -ProviderId <String>
    [-Top <Int32>]
    [-Filter <String>]
-   [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
@@ -37,7 +37,7 @@ Get-EntraBetaMSPrivilegedResource
 Get-EntraBetaMSPrivilegedResource
    -ProviderId <String>
    -Id <String>
-   [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

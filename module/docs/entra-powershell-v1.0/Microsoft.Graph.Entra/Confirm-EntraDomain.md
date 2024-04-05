@@ -24,13 +24,13 @@ Validate the ownership of a domain.
 
 ```powershell
 Confirm-EntraDomain 
-    -Name <String> 
-    [-CrossCloudVerificationCode <CrossCloudVerificationCodeBody>]
-    [<CommonParameters>]
+ -Name <String> 
+ [-CrossCloudVerificationCode <CrossCloudVerificationCodeBody>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Confirm-EntraDomain** cmdlet validates the ownership of a Microsoft Entra ID domain.
+The Confirm-EntraDomain cmdlet validates the ownership of a Microsoft Entra ID domain.
 
 ## EXAMPLES
 
