@@ -21,10 +21,10 @@ The Remove-EntraBetaApplicationProxyConnectorGroup cmdlet deletes an Application
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraBetaApplicationProxyConnectorGroup 
--Id <String> 
-[<CommonParameters>]
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

@@ -22,11 +22,11 @@ The Set-EntraBetaApplicationProxyConnector cmdlet allows reassignment of the con
 
 ## SYNTAX
 
-```
+```powershell
 Set-EntraBetaApplicationProxyConnector 
--Id <String> 
--ConnectorGroupId <String> 
-[<CommonParameters>]
+ -Id <String> 
+ -ConnectorGroupId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

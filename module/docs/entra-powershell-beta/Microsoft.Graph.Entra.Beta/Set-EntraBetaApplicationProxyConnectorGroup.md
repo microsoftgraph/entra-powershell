@@ -22,11 +22,11 @@ The Set-EntraBetaApplicationProxyConnectorGroup cmdlet allows you to change the 
 
 ## SYNTAX
 
-```
+```powershell
 Set-EntraBetaApplicationProxyConnectorGroup 
--Id <String> 
--Name <Name> 
-[<CommonParameters>]
+ -Id <String> 
+ -Name <Name> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

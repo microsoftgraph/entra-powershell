@@ -21,10 +21,10 @@ The Remove-EntraBetaApplicationProxyApplicationConnectorGroupcmdlet sets the con
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraBetaApplicationProxyApplicationConnectorGroup
--ObjectId <String> 
-[<CommonParameters>]
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

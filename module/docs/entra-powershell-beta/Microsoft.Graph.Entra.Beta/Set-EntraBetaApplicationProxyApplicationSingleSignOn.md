@@ -23,13 +23,13 @@ The Set-EntraBetaApplicationProxyApplicationSingleSignOn cmdlet allows you to se
 
 ## SYNTAX
 
-```
+```powershell
 Set-EntraBetaApplicationProxyApplicationSingleSignOn 
--ObjectId <String> 
--SingleSignOnMode <SingleSignOnModeEnum>
-[-KerberosInternalApplicationServicePrincipalName <String>]
-[-KerberosDelegatedLoginIdentity <KerberosSignOnMappingAttributeTypeEnum>] 
-[<CommonParameters>]
+ -ObjectId <String> 
+ -SingleSignOnMode <SingleSignOnModeEnum>
+ [-KerberosInternalApplicationServicePrincipalName <String>]
+ [-KerberosDelegatedLoginIdentity <KerberosSignOnMappingAttributeTypeEnum>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

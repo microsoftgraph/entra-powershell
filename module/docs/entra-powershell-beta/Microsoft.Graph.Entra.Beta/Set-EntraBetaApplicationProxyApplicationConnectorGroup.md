@@ -22,11 +22,11 @@ The Set-EntraBetaApplicationProxyApplicationConnectorGroup cmdlet assigns the gi
 
 ## SYNTAX
 
-```
+```powershell
 Set-EntraBetaApplicationProxyApplicationConnectorGroup 
--ObjectId <String> 
--ConnectorGroupId <String>
-[<CommonParameters>]
+ -ObjectId <String> 
+ -ConnectorGroupId <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
