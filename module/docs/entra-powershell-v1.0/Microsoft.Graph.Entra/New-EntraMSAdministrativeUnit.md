@@ -1,4 +1,14 @@
 ---
+title: New-EntraMSAdministrativeUnit
+description: This article provides details on the New-EntraMSAdministrativeUnit command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,22 +22,43 @@ Creates an administrative unit.
 
 ## SYNTAX
 
-```
-New-EntraMSAdministrativeUnit -DisplayName <String> [-Description <String>]
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+New-EntraMSAdministrativeUnit 
+    -DisplayName <String> 
+    [-Description <String>]
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The New-EntraMSAdministrativeUnit cmdlet creates an administrative unit in Microsoft Entra ID.
+The **New-EntraMSAdministrativeUnit** cmdlet creates an administrative unit in Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Create an administrative unit
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> New-EntraMSAdministrativeUnit -DisplayName "TestAU"
 ```
 
-{{ Add example description here }}
+```output
+DeletedDateTime Id                                   Description DisplayName Visibility
+--------------- --                                   ----------- ----------- ----------
+                eb7dee2b-4938-4835-b3e1-bb8207ae0814             TestAU
+```
+
+This command creates an administrative unit.
+
+### Example 2: Create an administrative unit using '-Description' parameter
+```powershell
+PS C:\> New-EntraMSAdministrativeUnit -DisplayName "test111" -Description "test111"
+```
+
+```output
+DeletedDateTime Id                                   Description DisplayName Visibility
+--------------- --                                   ----------- ----------- ----------
+                eb7dee2b-4938-4835-b3e1-bb8207ae0814 test111     test111
+```
+
+This command creates an administrative unit.
 
 ## PARAMETERS
 
@@ -61,46 +92,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -110,9 +103,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraMSAdministrativeUnit]()
+[Get-EntraMSAdministrativeUnit](Get-EntraMSAdministrativeUnit.md)
 
-[Remove-EntraMSAdministrativeUnit]()
+[Remove-EntraMSAdministrativeUnit](Remove-EntraMSAdministrativeUnit.md)
 
-[Set-EntraMSAdministrativeUnit]()
+[Set-EntraMSAdministrativeUnit](Set-EntraMSAdministrativeUnit.md)
 

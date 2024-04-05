@@ -9,6 +9,7 @@
     CustomScript = @'   
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $body = @{}
         $keysChanged = @{}
         if($null -ne $PSBoundParameters["Id"])
@@ -46,7 +47,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Update-MgBetaIdentityProvider @params
+        $response = Update-MgBetaIdentityProvider @params -Headers $customHeaders
         $response | ForEach-Object {
             if($null -ne $_) {
             Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id

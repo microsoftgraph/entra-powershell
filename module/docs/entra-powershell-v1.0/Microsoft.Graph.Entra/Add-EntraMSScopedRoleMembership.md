@@ -1,4 +1,14 @@
 ---
+title: Add-EntraMSScopedRoleMembership
+description: This article provides details on the Add-EntraMSScopedRoleMembership command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/04/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,34 +22,54 @@ Adds a scoped role membership to an administrative unit.
 
 ## SYNTAX
 
-```
-Add-EntraMSScopedRoleMembership [-RoleMemberInfo <MsRoleMemberInfo>] [-AdministrativeUnitId <String>]
- -Id <String> [-RoleId <String>] [<CommonParameters>]
+```powershell
+Add-EntraMSScopedRoleMembership 
+    -Id <String>
+    [-RoleMemberInfo <MsRoleMemberInfo>] 
+    [-AdministrativeUnitId <String>] 
+    [-RoleId <String>] 
+    [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Add-EntraMSScopedRoleMembership cmdlet adds a scoped role membership to an administrative unit.
+The **Add-EntraMSScopedRoleMembership** cmdlet adds a scoped role membership to an administrative unit.
 
 ## EXAMPLES
 
-### Example 1
-```
-$User = Get-EntraUser -SearchString "The user that will be an admin on this unit"
-	$Role = Get-EntraDirectoryRole | Where-Object -Property DisplayName -EQ -Value "User Account Administrator"
-	$Unit = Get-EntraMSAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value "<The display name of the unit"
-	$RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRolememberinfo.RoleMemberInfo
-	$RoleMember.Id = $User.ObjectID
-	Add-EntraMSScopedRoleMembership -Id $Unit.Id -RoleId $Role.ObjectId -RoleMemberInfo $RoleMember
+### Example 1: Add a scoped role membership to an administrative unit
+```powershell
+PS C:\> $User = Get-EntraUser -SearchString "The user that will be an admin on this unit"
+PS C:\> $Role = Get-EntraDirectoryRole | Where-Object -Property DisplayName -EQ -Value "User Account Administrator"
+PS C:\> $Unit = Get-EntraMSAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value "<The display name of the unit>"
+PS C:\> $RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRolememberinfo.RoleMemberInfo
+PS C:\> $RoleMember.Id = $User.ObjectID
+PS C:\> Add-EntraMSScopedRoleMembership -Id $Unit.Id -RoleId $Role.ObjectId -RoleMemberInfo $RoleMember
 ```
 
-This cmdlet returns the Scope role membership object:
+```output
+AdministrativeUnitId					RoleId 	
+--------------------------           	------------ 	
+c9ab56cc-e349-4237-856e-cab03157a91e 	526b7173-5a6e-49dc-88ec-b677a9093709
+```
 
-AdministrativeUnitId           RoleId 	--------------------------           ------------ 	c9ab56cc-e349-4237-856e-cab03157a91e 526b7173-5a6e-49dc-88ec-b677a9093709
+The first command gets a user by using the [Get-EntraUser](./Get-EntraUser.md) cmdlet, and then stores it in the $User variable.  
+
+The second command gets a directory role by using [Get-EntraDirectoryRole](./Get-EntraDirectoryRole.md) cmdlet, and then stores it in the $Role variable.  
+
+The third command gets an administrative unit by using [Get-EntraMSAdministrativeUnit](./Get-EntraMSAdministrativeUnit.md) cmdlet, and then stores it in the $Unit variable.  
+
+The fourth command creates a RoleMemberInfo type, and then stores it in the $RoleMember variable.  
+
+The fifth command set the Id property of $RoleMember to the same value as the ObjectId property of $User.  
+
+The final command assigns the role member in $RoleMember and role in $Role to the administrative unit in $Unit.  
+
+This cmdlet returns the Scope role membership object.
 
 ## PARAMETERS
 
 ### -AdministrativeUnitId
-Specifies the ID of an admininstrative unit.
+Specifies the ID of an administrative unit.
 
 ```yaml
 Type: String
@@ -54,7 +84,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-@{Text=}
+Specifies the ID of an administrative unit.
 
 ```yaml
 Type: String
@@ -84,7 +114,7 @@ Accept wildcard characters: False
 ```
 
 ### -RoleId
-{{ Fill RoleId Description }}
+Specifies the ID of a directory role.
 
 ```yaml
 Type: String
@@ -99,7 +129,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -109,7 +139,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraMSScopedRoleMembership]()
+[Get-EntraMSScopedRoleMembership](Get-EntraMSScopedRoleMembership.md)
 
-[Remove-EntraMSScopedRoleMembership]()
+[Remove-EntraMSScopedRoleMembership](Remove-EntraMSScopedRoleMembership.md)
 

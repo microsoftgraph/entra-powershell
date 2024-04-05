@@ -53,6 +53,7 @@ C:\PS>Get-EntraDomainFederationSettings -DomainName contoso.com
         ) 
     process { 
         $params = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $Verbose = $Null
         }
@@ -69,7 +70,7 @@ C:\PS>Get-EntraDomainFederationSettings -DomainName contoso.com
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $response =  Get-MgDomainFederationConfiguration -DomainId $params["DomainId"] | ConvertTo-Json -Depth 10 | ConvertFrom-Json 
+        $response =  Get-MgDomainFederationConfiguration -Headers $customHeaders -DomainId $params["DomainId"] | ConvertTo-Json -Depth 10 | ConvertFrom-Json 
         $customTable = [PSCustomObject]@{
             "ActiveLogOnUri"      = $response.ActiveSignInUri
             #"DefaultInteractiveAuthenticationMethod" = $response.

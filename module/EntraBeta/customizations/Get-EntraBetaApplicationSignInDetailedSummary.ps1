@@ -6,6 +6,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
+        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
         `$keysChanged = @{}
         if(`$null -ne `$PSBoundParameters["Top"])
         {
@@ -29,7 +30,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        `$response = Get-MgBetaReportApplicationSignInDetailedSummary @params
+        `$response = Get-MgBetaReportApplicationSignInDetailedSummary @params -Headers `$customHeaders
         `$response | ForEach-Object {
             if (`$null -ne `$_) {
                     `$value = `$_.Status | ConvertTo-Json | ConvertFrom-Json

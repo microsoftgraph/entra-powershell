@@ -1,4 +1,14 @@
 ---
+title: Set-EntraDomain.
+description: This article provides details on the Set-EntraDomain command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/06/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,8 +23,11 @@ Updates a domain.
 ## SYNTAX
 
 ```
-Set-EntraDomain [-IsDefault <Boolean>] [-IsDefaultForCloudRedirections <Boolean>]
- [-SupportedServices <System.Collections.Generic.List`1[System.String]>] -Name <String> [<CommonParameters>]
+Set-EntraDomain 
+ -Name <String>
+ [-IsDefault <Boolean>]
+ [-SupportedServices <System.Collections.Generic.List`1[System.String]>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,46 +36,24 @@ The Set-EntraDomain cmdlet updates a domain in Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Set the domain as the default domain for new user account creation
-```
+
+```powershell
 PS C:\>Set-EntraDomain -Name Contoso.com -IsDefault $true
 ```
-
-This command updates the default domain (One per company) used for new account creation.
+This example demonstrates how to set default domain for new user account in Microsoft Entra ID.  
 
 ### Example 2: Set the list of domain capabilities
-```
+
+```powershell
 PS C:\>Set-EntraDomain -Name Contoso.com -SupportedServices @("Email", "OfficeCommunicationsOnline")
 ```
-
-This command updates the supported services for this domain.
-
-### Example 3: Set the default domain for cloud redirections
-```
-PS C:\>Set-EntraDomain -Name Contoso.com -IsDefaultForCloudRedirections $true
-```
-
-This command updates the default domain used for cloud redirections.
+This example demonstrates how to set domain capabilities for new user account in Microsoft Entra ID.  
 
 ## PARAMETERS
 
 ### -IsDefault
-Indicates whether or not this is the default domain that is used for user creation.
-There is only one default domain per company.
-
-```yaml
-Type: Boolean
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -IsDefaultForCloudRedirections
-Indicates whether or not this is the default domain used for cloud redirections.
+Indicates whether or not this is the default domain used for user creation.
+There's only one default domain per company.
 
 ```yaml
 Type: Boolean
@@ -107,7 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -117,11 +108,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Confirm-EntraDomain]()
+[Confirm-EntraDomain](Confirm-EntraDomain.md)
 
-[Get-EntraDomain]()
+[Get-EntraDomain](Get-EntraDomain.md)
 
-[New-EntraDomain]()
+[New-EntraDomain](New-EntraDomain.md)
 
-[Remove-EntraDomain]()
+[Remove-EntraDomain](Remove-EntraDomain.md)
 

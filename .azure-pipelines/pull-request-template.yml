@@ -4,7 +4,14 @@
 
 name: $(SourceBranchName)-PR-$(Date:yyyy-MM-dd)$(Rev:.r)
 
-trigger: none
+trigger:
+  batch: true
+  branches:
+    include:
+      - main
+
+pr:
+- main
 
 pool:
   vmImage: windows-latest
