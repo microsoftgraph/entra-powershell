@@ -22,10 +22,10 @@ Get key credentials for a service principal.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraServicePrincipalKeyCredential 
--ObjectId <String> 
-[<CommonParameters>]
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

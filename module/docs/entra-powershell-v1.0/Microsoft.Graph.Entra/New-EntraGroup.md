@@ -22,14 +22,14 @@ Creates a group.
 
 ## SYNTAX
 
-```
+```powershell
 New-EntraGroup 
--DisplayName <String> 
--SecurityEnabled <Boolean> 
-[-Description <String>] 
--MailEnabled <Boolean>
--MailNickName <String> 
-[<CommonParameters>]
+ -DisplayName <String> 
+ -SecurityEnabled <Boolean> 
+ [-Description <String>] 
+ -MailEnabled <Boolean>
+ -MailNickName <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

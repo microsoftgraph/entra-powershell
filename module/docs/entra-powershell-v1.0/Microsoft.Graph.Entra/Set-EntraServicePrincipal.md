@@ -85,14 +85,14 @@ This example demonstrates how to update ServicePrincipalType and AppRoleAssignme
 ### Example 6: Update KeyCredentials of a service principal
 ```powershell
 PS C:\> $creds = New-Object Microsoft.Open.AzureAD.Model.KeyCredential
- $creds.CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes("Test")
- $startdate = Get-Date -Year 2024 -Month 10 -Day 10
- $creds.StartDate = $startdate
- $creds.Type = "Symmetric"
- $creds.Usage = 'Sign'
- $creds.Value = [System.Text.Encoding]::UTF8.GetBytes("A")
- $creds.EndDate = Get-Date -Year 2025 -Month 12 -Day 20 
- Set-EntraServicePrincipal -ObjectId "2e0d8ca7-57d1-4a87-9c2a-b3638a4cadbf" -KeyCredentials $creds
+PS C:\> $creds.CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes("Test")
+PS C:\> $startdate = Get-Date -Year 2024 -Month 10 -Day 10
+PS C:\> $creds.StartDate = $startdate
+PS C:\> $creds.Type = "Symmetric"
+PS C:\> $creds.Usage = 'Sign'
+PS C:\> $creds.Value = [System.Text.Encoding]::UTF8.GetBytes("A")
+PS C:\> $creds.EndDate = Get-Date -Year 2025 -Month 12 -Day 20 
+PS C:\> Set-EntraServicePrincipal -ObjectId "2e0d8ca7-57d1-4a87-9c2a-b3638a4cadbf" -KeyCredentials $creds
 ```
 
 This example demonstrates how to update KeyCredentials of a service principal in Microsoft Entra ID.   

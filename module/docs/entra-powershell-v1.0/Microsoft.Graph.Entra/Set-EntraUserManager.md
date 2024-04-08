@@ -22,7 +22,7 @@ Updates a user's manager.
 
 ## SYNTAX
 
-```
+```powershell
 Set-EntraUserManager 
  -ObjectId <String> 
  -RefObjectId <String> 

@@ -22,7 +22,7 @@ Get members from applicationProxyConnectorGroup.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraApplicationProxyConnectorGroupMember
  -Id <String> 
  [-All <Boolean>] 

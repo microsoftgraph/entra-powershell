@@ -22,11 +22,12 @@ Gets an oAuth2PermissionGrant object.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraUserOAuth2PermissionGrant 
-[-All <Boolean>] 
--ObjectId <String> 
-[-Top <Int32>] [<CommonParameters>]
+ [-All <Boolean>] 
+ -ObjectId <String> 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
