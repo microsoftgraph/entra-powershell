@@ -25,7 +25,7 @@ Gets members of a directory role.
 ```powershell
 Get-EntraBetaDirectoryRoleMember 
     -ObjectId <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

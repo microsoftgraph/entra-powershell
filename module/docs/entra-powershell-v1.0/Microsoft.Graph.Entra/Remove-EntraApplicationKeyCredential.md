@@ -22,10 +22,11 @@ Removes a key credential from an application.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraApplicationKeyCredential
- -ObjectId <String> -KeyId <String> 
-  [<CommonParameters>]
+ -ObjectId <String> 
+ -KeyId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

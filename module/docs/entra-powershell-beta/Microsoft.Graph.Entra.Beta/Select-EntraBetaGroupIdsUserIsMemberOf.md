@@ -26,8 +26,7 @@ Selects the groups that a user is a member of.
 Select-EntraBetaGroupIdsUserIsMemberOf 
  -ObjectId <String>
  -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> 
- [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] 
+  
  [<CommonParameters>]
 ```
 

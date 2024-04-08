@@ -25,14 +25,14 @@ Get registered devices owned by a user.
 
 ```powershell
 Get-EntraUserOwnedDevice 
-    -ObjectId <String> 
-    [-All <Boolean>] 
-    [-Top <Int32>] 
-    [<CommonParameters>]
+ -ObjectId <String> 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraUserOwnedDevice** cmdlet gets registered devices owned by the specified user in Microsoft Entra ID.
+The Get-EntraUserOwnedDevice cmdlet gets registered devices owned by the specified user in Microsoft Entra ID.
 
 ## EXAMPLES
 
