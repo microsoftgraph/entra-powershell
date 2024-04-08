@@ -44,6 +44,7 @@ function New-EntraBetaApplicationProxyApplication {
         if($null -ne $PSBoundParameters["ExternalAuthenticationType"])
         {
             $onPremisesPublishing["externalAuthenticationType"] = $PSBoundParameters["ExternalAuthenticationType"]
+            $onPremisesPublishing["externalAuthenticationType"] = $onPremisesPublishing.externalAuthenticationType.Substring(0, 1).ToLower() + $onPremisesPublishing.externalAuthenticationType.Substring(1)
         }
         if($null -ne $PSBoundParameters["IsTranslateHostHeaderEnabled"])
         {
@@ -69,11 +70,6 @@ function New-EntraBetaApplicationProxyApplication {
         {
             $onPremisesPublishing["applicationServerTimeout"] = $PSBoundParameters["ApplicationServerTimeout"]
         }
-        if($null -ne $PSBoundParameters["ConnectorGroupId"])
-        {
-           $ConnectorGroupId = $PSBoundParameters["ConnectorGroupId"]
-        }
-
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
             $params["Verbose"] = $Null
@@ -90,22 +86,27 @@ function New-EntraBetaApplicationProxyApplication {
         $NewApp = Invoke-GraphRequest -Uri 'https://graph.microsoft.com/v1.0/applications' -Method POST -Body $newAppBody
         $Id = $NewApp.Id
 
-        #Update InternalUrl and ExternalUrl
+        # Update InternalUrl and ExternalUrl
+        if ($ExternalUrl.EndsWith("/")) {
+            $exUrl = $ExternalUrl.TrimEnd("/")
+        }
         $UpdateUrlBody = @{ 
-            identifierUris = @($ExternalUrl) 
+            identifierUris = @($exUrl) 
             web = @{ 
-            redirectUris = @($ExternalUrl) 
+            redirectUris = @($exUrl) 
             homePageUrl = $InternalUrl 
             } 
         } 
         $Application = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$Id" -Method PATCH -Body $updateUrlBody
 
         # Create ServicePrincipal
-        $serviceBody = @{
-            appId = $NewApp.AppId
-        } | ConvertTo-Json
-        $ServicePrincipal = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/servicePrincipals" -Method POST -Body $serviceBody
-
+        if($null -ne $NewApp){
+            $serviceBody = @{
+                appId = $NewApp.AppId
+            } | ConvertTo-Json
+            $ServicePrincipal = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/servicePrincipals" -Method POST -Body $serviceBody    
+        }
+        
         # update onpremises
         if($null -ne $ServicePrincipal){
             $onPremisesPublishingBody = @{onPremisesPublishing = $onPremisesPublishing}
@@ -113,12 +114,15 @@ function New-EntraBetaApplicationProxyApplication {
         }
        
         #update connector group
-        $ConnectorGroupBody = @{
-            "@odata.id" = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/$ConnectorGroupId"
-        } 
-        $ConnectorGroupBody = $ConnectorGroupBody | ConvertTo-Json
-        $ConnectorGroupUri = "https://graph.microsoft.com/beta/applications/$Id/connectorGroup/" + '$ref'
-        Invoke-GraphRequest -Method PUT -Uri $ConnectorGroupUri -Body $ConnectorGroupBody -ContentType "application/json"
+        if($null -ne $PSBoundParameters["ConnectorGroupId"]){
+            $ConnectorGroupId = $PSBoundParameters["ConnectorGroupId"]
+            $ConnectorGroupBody = @{
+                "@odata.id" = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/$ConnectorGroupId"
+            } 
+            $ConnectorGroupBody = $ConnectorGroupBody | ConvertTo-Json
+            $ConnectorGroupUri = "https://graph.microsoft.com/beta/applications/$Id/connectorGroup/" + '$ref'
+            Invoke-GraphRequest -Method PUT -Uri $ConnectorGroupUri -Body $ConnectorGroupBody -ContentType "application/json"    
+        }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
@@ -130,7 +134,7 @@ function New-EntraBetaApplicationProxyApplication {
             Add-Member -InputObject $_ -MemberType NoteProperty -Name ObjectId -Value $Id
            }
         }
-        $response | Select-Object ObjectId,ExternalAuthenticationType,ExternalUrl,InternalUrl,IsTranslateHostHeaderEnabled,IsTranslateLinksInBodyEnabled,IsOnPremPublishingEnabled,VerifiedCustomDomainCertificatesMetadata,VerifiedCustomDomainKeyCredential,VerifiedCustomDomainPasswordCredential,SingleSignOnSettings,IsHttpOnlyCookieEnabled,IsSecureCookieEnabled,IsPersistentCookieEnabled
+        $response | Select-Object ObjectId,ExternalAuthenticationType,ApplicationServerTimeout,ExternalUrl,InternalUrl,IsTranslateHostHeaderEnabled,IsTranslateLinksInBodyEnabled,IsOnPremPublishingEnabled,VerifiedCustomDomainCertificatesMetadata,VerifiedCustomDomainKeyCredential,VerifiedCustomDomainPasswordCredential,SingleSignOnSettings,IsHttpOnlyCookieEnabled,IsSecureCookieEnabled,IsPersistentCookieEnabled
 
     }        
 }
