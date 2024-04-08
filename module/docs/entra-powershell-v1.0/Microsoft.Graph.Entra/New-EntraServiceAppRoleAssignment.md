@@ -22,7 +22,7 @@ Assigns a service principal to an application role.
 
 ## SYNTAX
 
-```
+```powershell
 New-EntraServiceAppRoleAssignment 
  -ObjectId <String> 
  -PrincipalId <String> 

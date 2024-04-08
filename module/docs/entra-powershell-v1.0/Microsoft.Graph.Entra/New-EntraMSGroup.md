@@ -22,17 +22,17 @@ Creates a Microsoft Entra ID group.
 
 ## SYNTAX
 
-```
+```powershell
 New-EntraMSGroup 
--DisplayName <String> 
-[-GroupTypes <System.Collections.Generic.List`1[System.String]>]
--SecurityEnabled <Boolean> 
-[-Description <String>] 
--MailEnabled <Boolean> 
--MailNickname <String>
-[-Visibility <String>] 
-[-IsAssignableToRole <Boolean>] 
-[<CommonParameters>]
+ -DisplayName <String> 
+ [-GroupTypes <System.Collections.Generic.List`1[System.String]>]
+ -SecurityEnabled <Boolean> 
+ [-Description <String>] 
+ -MailEnabled <Boolean> 
+ -MailNickname <String>
+ [-Visibility <String>] 
+ [-IsAssignableToRole <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

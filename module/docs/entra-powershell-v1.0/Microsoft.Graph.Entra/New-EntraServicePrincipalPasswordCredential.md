@@ -22,7 +22,7 @@ Creates a password credential for a service principal.
 
 ## SYNTAX
 
-```
+```powershell
 New-EntraServicePrincipalPasswordCredential 
  -ObjectId <String>
  [-CustomKeyIdentifier <String>] 
