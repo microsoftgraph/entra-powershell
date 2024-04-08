@@ -45,8 +45,8 @@ This command Remove the Connector Group associated with an application, setting 
 
 ### -ObjectId
 The unique application ID of the application.
-This can be found using the Get-EntraBetaApplication command.
-You can also find objectId  in the Microsoft Portal by navigating to Microsoft Entra ID > App registrations > All applications. Select your application. This takes you to the application's overview page. Use the ObjectId on that page.
+The application ID can be found using the Get-EntraBetaApplication command.
+You can also find objectId  in the Microsoft Entra Admin Center by navigating to Microsoft Entra ID > App registrations > All applications. Select your application. From the application overview page, copy the ObjectId.
 
 ```yaml
 Type: String
@@ -61,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
