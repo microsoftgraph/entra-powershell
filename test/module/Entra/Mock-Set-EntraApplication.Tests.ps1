@@ -4,6 +4,11 @@ BeforeAll {
         Import-Module Microsoft.Graph.Entra      
     }
     Import-Module .\test\module\Common-Functions.ps1 -Force
+
+    $argsBlock = {
+        param($args)
+        return $args
+    }
     
     Mock -CommandName Update-MgApplication -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
@@ -20,24 +25,14 @@ Describe "Set-EntraApplication"{
             { Set-EntraApplication -ObjectId ""  } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
         It "Should contain ApplicationId in parameters when passed ObjectId to it" {
-            $scriptblock = {
-                param($args)
-                return $args
-            }  
-
-            Mock -CommandName Update-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Update-MgApplication -MockWith $argsBlock -ModuleName Microsoft.Graph.Entra
 
             $result = Set-EntraApplication -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04
             $params = Get-Parameters -data $result
             $params.ApplicationId | Should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
         }
         It "Should contain 'User-Agent' header" {
-            $scriptblock = {
-                param($args)
-                return $args
-            }
-
-            Mock -CommandName Update-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Update-MgApplication -MockWith $argsBlock -ModuleName Microsoft.Graph.Entra
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraApplication"
 

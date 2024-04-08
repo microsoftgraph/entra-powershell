@@ -1,4 +1,5 @@
 Import-Module Pester
+Import-Module .\bin\Microsoft.Graph.Entra.psm1 -Force
 
 $testOutputFile = ".\TestReport\Entra\TestResults.xml"
 
@@ -16,6 +17,7 @@ $config.CodeCoverage.CoveragePercentTarget = 100
 $config.CodeCoverage.Path = @('.\bin\Microsoft.Graph.Entra.psm1')
 $config.TestResult.Enabled = $true
 $config.TestResult.OutputPath = $testOutputFile
+$config.Output.Verbosity = "Detailed"
 
 Invoke-Pester -Configuration $config
 
