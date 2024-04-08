@@ -22,7 +22,7 @@ Retrieve the service endpoint of an application.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraApplicationServiceEndpoint
  -ObjectId <String>
  [-All <Boolean>]
