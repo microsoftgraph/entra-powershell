@@ -28,7 +28,7 @@ Get-EntraBetaServicePrincipal
     [-Top <Int32>] 
     [-All <Boolean>] 
     [-Filter <String>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetVague
@@ -36,7 +36,7 @@ Get-EntraBetaServicePrincipal
 Get-EntraBetaServicePrincipal 
     [-SearchString <String>] 
     [-All <Boolean>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
@@ -44,7 +44,7 @@ Get-EntraBetaServicePrincipal
 Get-EntraBetaServicePrincipal 
     -ObjectId <String> 
     [-All <Boolean>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

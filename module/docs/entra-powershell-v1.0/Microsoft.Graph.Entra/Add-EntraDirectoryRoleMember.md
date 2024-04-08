@@ -24,9 +24,9 @@ Adds a member to a directory role.
 
 ```powershell
 Add-EntraDirectoryRoleMember 
-    -ObjectId <String> 
-    -RefObjectId <String> 
-    [<CommonParameters>]
+ -ObjectId <String> 
+ -RefObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

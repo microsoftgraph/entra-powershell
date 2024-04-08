@@ -28,7 +28,7 @@ Get-EntraBetaMSRoleDefinition
   [-All <Boolean>] 
   [-Top <Int32>] 
   [-Filter <String>] 
-  [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetVague
@@ -36,7 +36,7 @@ Get-EntraBetaMSRoleDefinition
 Get-EntraBetaMSRoleDefinition 
   [-SearchString <String>] 
   [-All <Boolean>] 
-  [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
@@ -44,7 +44,7 @@ Get-EntraBetaMSRoleDefinition
 Get-EntraBetaMSRoleDefinition 
   -Id <String> 
   [-All <Boolean>] 
-  [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

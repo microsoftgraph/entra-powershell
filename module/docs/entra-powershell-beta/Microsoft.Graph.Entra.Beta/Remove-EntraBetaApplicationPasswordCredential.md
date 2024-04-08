@@ -14,7 +14,7 @@ Removes a password credential from an application.
 
 ```
 Remove-EntraBetaApplicationPasswordCredential -ObjectId <String> -KeyId <String>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -24,7 +24,7 @@ The Remove-EntraBetaApplicationPasswordCredential cmdlet removes a password cred
 
 ### Example 1: Remove an application password credential
 ```
-PS C:\> $AppID = (Get-EntraBetaApplication -Top 1).objectId
+PS C:\> $AppID = (Get-EntraBetaApplication -Top 1).ObjectId
 PS C:\> $KeyIDs = Get-EntraBetaApplicationPasswordCredential -ObjectId $AppId
 PS C:\> Remove-EntraBetaApplicationPasswordCredential -ObjectId $AppId -KeyId $KeyIds[0].KeyId
 ```
@@ -38,44 +38,6 @@ The final command removes the application password credential for the applicatio
 
 ## PARAMETERS
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -KeyId
 @{Text=}
