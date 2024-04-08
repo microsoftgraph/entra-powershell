@@ -24,12 +24,12 @@ Delete a Microsoft Entra ID roleAssignment.
 
 ```powershell
 Remove-EntraMSRoleAssignment 
-    -Id <String> 
-    [<CommonParameters>]
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Remove-EntraMSRoleAssignment** cmdlet removes a role assignment from Microsoft Entra ID.
+The Remove-EntraMSRoleAssignment cmdlet removes a role assignment from Microsoft Entra ID.
 
 ## EXAMPLES
 

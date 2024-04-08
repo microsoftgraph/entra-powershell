@@ -26,7 +26,7 @@ Adds an owner to an application.
 Add-EntraBetaApplicationOwner 
     -ObjectId <String> 
     -RefObjectId <String>
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

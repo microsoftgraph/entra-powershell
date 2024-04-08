@@ -25,7 +25,7 @@ Deletes a device.
 ```powershell
 Remove-EntraBetaDevice 
     -ObjectId <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
