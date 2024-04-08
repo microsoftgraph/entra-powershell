@@ -50,7 +50,7 @@ status                         active
 ```
 The output of this command, showing all the connectors in the group.
 
-### Example 2: Gets top one connectors in the group.
+### Example 2: Gets top one connector in the group.
 ```powershell
 PS C:\>Get-EntraBetaApplicationProxyConnectorGroupMembers -Id 87ffe1e2-6313-4a22-93eb-da1eb8a2bf8d -Top 1
 ```
@@ -64,7 +64,7 @@ version                        1.5.3437.0
 status                         active
 
 ```
-The output of this command, showing top one connectors in the group.
+The output of this command, showing top one connector in the group.
 
 ### Example 3: Gets the connectors in the group with filter parameter.
 ```powershell
@@ -100,7 +100,7 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-Specifies an oData v3.0 filter statement. This parameter controls which objects are returned. Details on querying with oData can be found here: http://www.odata.org/documentation/odata-version-3-0/odata-version-3-0-core-protocol/#queryingcollections
+Specifies an oData v3.0 filter statement. This parameter controls which objects are returned. Details on querying with oData can be found here: https://www.odata.org/documentation/odata-version-3-0/odata-version-3-0-core-protocol/#queryingcollections
 
 ```yaml
 Type: String
