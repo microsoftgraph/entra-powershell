@@ -38,7 +38,7 @@ The Set-EntraBetaApplicationProxyConnector cmdlet allows reassignment of the con
 ```powershell
 PS C:\> Set-EntraBetaApplicationProxyConnector -Id 834c5dd6-f2e8-47ae-973a-9fc769289b3d -ConnectorGroupId a39b9095-8dc8-4d3a-86c3-e7b5c3f0fb84
 ```
-This example demonstrate how to Move a Connector to a different Connector Group
+This example demonstrates how to move a Connector to a different Connector Group.
 
 ## PARAMETERS
 
