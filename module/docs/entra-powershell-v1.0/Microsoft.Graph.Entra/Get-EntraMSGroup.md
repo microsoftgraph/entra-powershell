@@ -23,7 +23,7 @@ Gets information about groups in Microsoft Entra ID.
 ## SYNTAX
 
 ### GetQuery (Default)
-```
+```powershell
 Get-EntraMSGroup 
  [-Top <Int32>] 
  [-All <Boolean>] 
@@ -32,7 +32,7 @@ Get-EntraMSGroup
 ```
 
 ### GetByValue
-```
+```powershell
 Get-EntraMSGroup 
  [-SearchString <String>] 
  [-All <Boolean>] 
@@ -40,11 +40,11 @@ Get-EntraMSGroup
 ```
 
 ### GetById
-```
+```powershell
 Get-EntraMSGroup 
  -Id <String> 
-[-All <Boolean>] 
-[<CommonParameters>]
+ [-All <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

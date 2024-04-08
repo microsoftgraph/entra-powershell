@@ -22,11 +22,11 @@ Get groups in which a contact is a member.
 
 ## SYNTAX
 
-```
+```powershell
 Select-EntraGroupIdsContactIsMemberOf 
--ObjectId <String>
--GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> 
-[<CommonParameters>]
+ -ObjectId <String>
+ -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
