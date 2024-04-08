@@ -25,26 +25,26 @@ This cmdlet is used to retrieve the soft deleted groups in a directory.
 ### GetQuery (Default)
 ```powershell
 Get-EntraMSDeletedGroup 
-    [-Top <Int32>] 
-    [-All <Boolean>] 
-    [-Filter <String>] 
-    [<CommonParameters>]
+ [-Top <Int32>] 
+ [-All <Boolean>] 
+ [-Filter <String>] 
+ [<CommonParameters>]
 ```
 
-### GetVague
+### GetByValue
 ```powershell
 Get-EntraMSDeletedGroup 
-    [-SearchString <String>] 
-    [-All <Boolean>] 
-    [<CommonParameters>]
+ [-SearchString <String>] 
+ [-All <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraMSDeletedGroup 
-    -Id <String> 
-    [-All <Boolean>] 
-    [<CommonParameters>]
+ -Id <String> 
+ [-All <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -90,7 +90,7 @@ This cmdlet retrieves all recoverable deleted groups in the directory, using All
 
 ### Example 3: Get top two deleted groups.
 ```powershell
-PS C:\> Get-EntraMSDeletedGroup -All $true
+PS C:\> Get-EntraMSDeletedGroup -Top 2
 ```
 
 ```output
@@ -98,8 +98,6 @@ DisplayName Id                                   MailNickname Description GroupT
 ----------- --                                   ------------ ----------- ----------
 test21      018d2911-94e6-4f19-add6-d752b4f13b51 test21       desc1       {Unified, DynamicMembership}
 test22      96a2a217-5fe4-439e-b9ba-f9c10c78747a test22       desc2       {Unified, DynamicMembership}
-test23      e1774356-ac4a-4905-b9c5-88cfc7bf0c75 test23       desc3       {Unified, DynamicMembership}
-test24      f86362e2-1673-4421-bcca-77ae82f6e6d4 test24       desc4       {Unified, DynamicMembership}
 ```
 
 This cmdlet retrieves top two deleted groups in the directory.  
@@ -135,7 +133,7 @@ This cmdlet retrieves deleted groups in the directory, having the specified disp
 
 ### Example 6: Get deleted group by Id.
 ```powershell
-PS C:\> Get-EntraMSDeletedGroup -Id 018d2911-94e6-4f19-add6-d752b4f13b51
+PS C:\> Get-EntraMSDeletedGroup -Id "018d2911-94e6-4f19-add6-d752b4f13b51"
 ```
 
 ```output

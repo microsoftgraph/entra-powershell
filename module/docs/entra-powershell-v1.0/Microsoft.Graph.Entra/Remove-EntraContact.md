@@ -24,8 +24,8 @@ Removes a contact.
 
 ```powershell
 Remove-EntraContact 
-    -ObjectId <String> 
-    [<CommonParameters>]
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

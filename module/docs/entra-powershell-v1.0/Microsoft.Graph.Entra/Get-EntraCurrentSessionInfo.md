@@ -25,11 +25,11 @@ This cmdlet returns the current session state.
 
 ```powershell
 Get-EntraCurrentSessionInfo 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This cmdlet returns the current session state.
+The Get-EntraCurrentSessionInfo cmdlet returns the current session state.
 
 ## EXAMPLES
 

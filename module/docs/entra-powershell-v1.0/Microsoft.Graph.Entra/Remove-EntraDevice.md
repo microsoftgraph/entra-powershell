@@ -24,12 +24,12 @@ Deletes a device.
 
 ```powershell
 Remove-EntraDevice 
-    -ObjectId <String>
-    [<CommonParameters>]
+ -ObjectId <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Remove-EntraDevice** cmdlet removes a device from Microsoft Entra ID.
+The Remove-EntraDevice cmdlet removes a device from Microsoft Entra ID.
 
 ## EXAMPLES
 

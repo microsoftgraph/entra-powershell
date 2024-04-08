@@ -1,4 +1,15 @@
 ---
+title: Restore-EntraMSDeletedDirectoryObject
+description: This article provides details on the Restore-EntraMSDeletedDirectoryObject command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,27 +23,35 @@ This cmdlet is used to restore a previously deleted object.
 
 ## SYNTAX
 
-```
-Restore-EntraMSDeletedDirectoryObject -Id <String> [<CommonParameters>]
+```powershell
+Restore-EntraMSDeletedDirectoryObject 
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 This cmdlet is used to restore a previously deleted object.
 Currently, only restoring Group and Application objects is supported. 
-When a group or an application is deleted it is initially soft deleted and can be recovered during the first 30 days after deletion.
+When a group or an application is deleted, it's initially soft deleted and can be recovered during the first 30 days after deletion.
 After 30 days the deleted object is permanently deleted and can no longer be recovered.
-Note that only Unified Groups (a.k.a.
+Only Unified Groups (also known as
 Office 365 Groups) can be restored.
-Security groups cannot be restored.
+Security groups can't be restored.
 
 ## EXAMPLES
 
-### Example 1
-```
+### Example 1: Restore a deleted object with ID
+```powershell
 Restore-EntraMSDeletedDirectoryObject -Id aa644285-eb75-4389-885e-7233f096984c
 ```
 
-This example shows how to restore a deleted object with Id aa644285-eb75-4389-885e-7233f096984c
+```output
+Id                                   DeletedDateTime
+--                                   ---------------
+aa644285-eb75-4389-885e-7233f096984c
+```
+
+This example shows how to restore a deleted object with Id aa644285-eb75-4389-885e-7233f096984c.
 
 ## PARAMETERS
 
