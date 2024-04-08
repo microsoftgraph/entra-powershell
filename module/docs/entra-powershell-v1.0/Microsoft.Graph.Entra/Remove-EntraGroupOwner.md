@@ -21,11 +21,11 @@ Removes an owner from a group.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraGroupOwner 
--OwnerId <String> 
--ObjectId <String> 
-[<CommonParameters>]
+ -OwnerId <String> 
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

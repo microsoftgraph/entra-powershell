@@ -22,7 +22,7 @@ Removes a key credential from a service principal.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraServicePrincipalKeyCredential 
  -ObjectId <String> 
  -KeyId <String>

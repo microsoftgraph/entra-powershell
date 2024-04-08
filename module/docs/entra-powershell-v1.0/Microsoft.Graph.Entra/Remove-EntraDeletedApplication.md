@@ -22,10 +22,10 @@ Permanently delete a recently deleted application object from deleted items.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraDeletedApplication 
-[-ObjectId] <String> 
-[<CommonParameters>]
+ [-ObjectId] <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

@@ -23,7 +23,7 @@ Gets a group.
 ## SYNTAX
 
 ### GetQuery (Default)
-```
+```powershell
 Get-EntraGroup 
  [-Top <Int32>] 
  [-All <Boolean>] 
@@ -32,7 +32,7 @@ Get-EntraGroup
 ```
 
 ### GetByValue
-```
+```powershell
 Get-EntraGroup 
  [-SearchString <String>] 
  [-All <Boolean>] 
@@ -40,11 +40,11 @@ Get-EntraGroup
 ```
 
 ### GetById
-```
+```powershell
 Get-EntraGroup 
--ObjectId <String> 
-[-All <Boolean>] 
-[<CommonParameters>]
+ -ObjectId <String> 
+ [-All <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

@@ -22,7 +22,7 @@ Updates a service principal.
 
 ## SYNTAX
 
-```
+```powershell
 Set-EntraServicePrincipal
  -ObjectId <String>
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]>]
@@ -30,11 +30,8 @@ Set-EntraServicePrincipal
  [-AppId <String>] 
  [-LogoutUrl <String>] 
  [-ServicePrincipalType <String>]
- [-SamlMetadataUrl <String>] 
  [-AlternativeNames <System.Collections.Generic.List`1[System.String]>]
  [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]>]
- [-ErrorUrl <String>] 
- [-PublisherName <String>] 
  [-Tags <System.Collections.Generic.List`1[System.String]>] 
  [-AccountEnabled <String>]
  [-ServicePrincipalNames <System.Collections.Generic.List`1[System.String]>]
@@ -88,14 +85,14 @@ This example demonstrates how to update ServicePrincipalType and AppRoleAssignme
 ### Example 6: Update KeyCredentials of a service principal
 ```powershell
 PS C:\> $creds = New-Object Microsoft.Open.AzureAD.Model.KeyCredential
- $creds.CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes("Test")
- $startdate = Get-Date -Year 2024 -Month 10 -Day 10
- $creds.StartDate = $startdate
- $creds.Type = "Symmetric"
- $creds.Usage = 'Sign'
- $creds.Value = [System.Text.Encoding]::UTF8.GetBytes("A")
- $creds.EndDate = Get-Date -Year 2025 -Month 12 -Day 20 
- Set-EntraServicePrincipal -ObjectId "2e0d8ca7-57d1-4a87-9c2a-b3638a4cadbf" -KeyCredentials $creds
+PS C:\> $creds.CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes("Test")
+PS C:\> $startdate = Get-Date -Year 2024 -Month 10 -Day 10
+PS C:\> $creds.StartDate = $startdate
+PS C:\> $creds.Type = "Symmetric"
+PS C:\> $creds.Usage = 'Sign'
+PS C:\> $creds.Value = [System.Text.Encoding]::UTF8.GetBytes("A")
+PS C:\> $creds.EndDate = Get-Date -Year 2025 -Month 12 -Day 20 
+PS C:\> Set-EntraServicePrincipal -ObjectId "2e0d8ca7-57d1-4a87-9c2a-b3638a4cadbf" -KeyCredentials $creds
 ```
 
 This example demonstrates how to update KeyCredentials of a service principal in Microsoft Entra ID.   
@@ -166,21 +163,6 @@ Accept wildcard characters: False
 
 ### -DisplayName
 Specifies the display name.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ErrorUrl
-Specifies the error URL.
 
 ```yaml
 Type: String
@@ -269,41 +251,11 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -PublisherName
-Specifies the publisher name.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -ReplyUrls
 The URLs that user tokens are sent to for sign in with the associated application, or the redirect Uniform Resource Identifiers that OAuth 2.0 authorization codes and access tokens are sent to for the associated application.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -SamlMetadataUrl
-The URL for the Security Assertion Markup Language (SAML) metadata.
-
-```yaml
-Type: String
 Parameter Sets: (All)
 Aliases:
 
