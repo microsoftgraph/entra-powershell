@@ -21,10 +21,10 @@ Removes a group.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraGroup 
--ObjectId <String> 
-[<CommonParameters>]
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

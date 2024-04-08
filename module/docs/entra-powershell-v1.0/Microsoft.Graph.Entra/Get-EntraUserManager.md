@@ -22,7 +22,7 @@ Gets the manager of a user.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraUserManager 
  -ObjectId <String> 
  [<CommonParameters>]

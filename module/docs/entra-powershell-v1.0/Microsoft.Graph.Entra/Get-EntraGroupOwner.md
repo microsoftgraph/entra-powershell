@@ -22,7 +22,7 @@ Gets an owner of a group.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraGroupOwner 
  -ObjectId <String>  
  [-All <Boolean>] 

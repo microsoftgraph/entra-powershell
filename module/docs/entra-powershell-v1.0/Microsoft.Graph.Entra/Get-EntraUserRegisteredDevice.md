@@ -22,7 +22,7 @@ Get devices registered by a user.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraUserRegisteredDevice
  -ObjectId <String>
  [-All <Boolean>]

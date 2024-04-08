@@ -22,7 +22,7 @@ Retrieves license details for a user.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraUserLicenseDetail 
  -ObjectId <String> 
  [<CommonParameters>]

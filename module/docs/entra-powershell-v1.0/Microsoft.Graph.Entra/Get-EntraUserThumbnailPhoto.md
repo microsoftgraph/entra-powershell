@@ -22,7 +22,7 @@ Retrieve the thumbnail photo of a user.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraUserThumbnailPhoto 
  -ObjectId <String> 
  [-FileName <String>] 

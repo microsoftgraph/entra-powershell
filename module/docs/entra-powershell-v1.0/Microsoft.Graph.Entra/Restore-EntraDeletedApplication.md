@@ -22,11 +22,11 @@ Restores a previously deleted application
 
 ## SYNTAX
 
-```
+```powershell
 Restore-EntraDeletedApplication 
-[-IdentifierUris <System.Collections.Generic.List`1[System.String]>]
--ObjectId <String> 
-[<CommonParameters>]
+ [-IdentifierUris <System.Collections.Generic.List`1[System.String]>]
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

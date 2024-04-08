@@ -22,7 +22,7 @@ Gets a member of a group.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraGroupMember 
  -ObjectId <String> 
  [-All <Boolean>] 
