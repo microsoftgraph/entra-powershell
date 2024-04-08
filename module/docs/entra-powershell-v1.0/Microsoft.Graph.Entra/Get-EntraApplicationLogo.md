@@ -25,15 +25,15 @@ Retrieve the logo of an application.
 
 ```powershell
 Get-EntraApplicationLogo 
-    -ObjectId <String> 
-    [-FileName <String>] 
-    [-View <Boolean>] 
-    [-FilePath <String>]
-    [<CommonParameters>]
+ -ObjectId <String> 
+ [-FileName <String>] 
+ [-View <Boolean>] 
+ [-FilePath <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This cmdlet retrieves the logo that is set for an application.
+The Get-EntraApplicationLogo cmdlet retrieves the logo that is set for an application.
 
 ## EXAMPLES
 

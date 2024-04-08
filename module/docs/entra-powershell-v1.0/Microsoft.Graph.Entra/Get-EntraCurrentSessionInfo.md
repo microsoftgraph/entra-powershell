@@ -29,7 +29,7 @@ Get-EntraCurrentSessionInfo
 ```
 
 ## DESCRIPTION
-This cmdlet returns the current session state.
+The Get-EntraCurrentSessionInfo cmdlet returns the current session state.
 
 ## EXAMPLES
 

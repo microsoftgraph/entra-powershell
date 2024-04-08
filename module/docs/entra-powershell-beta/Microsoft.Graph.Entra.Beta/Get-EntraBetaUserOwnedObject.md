@@ -27,7 +27,7 @@ Get-EntraBetaUserOwnedObject
     -ObjectId <String>
     [-Top <Int32>] 
     [-All <Boolean>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

@@ -24,11 +24,11 @@ Gets directory role templates.
 
 ```powershell
 Get-EntraDirectoryRoleTemplate 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraDirectoryRoleTemplate** cmdlet gets directory role templates in Microsoft Entra ID.
+The Get-EntraDirectoryRoleTemplate cmdlet gets directory role templates in Microsoft Entra ID.
 
 ## EXAMPLES
 

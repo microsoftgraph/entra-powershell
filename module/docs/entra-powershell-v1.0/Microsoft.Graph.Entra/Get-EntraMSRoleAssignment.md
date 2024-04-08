@@ -25,30 +25,30 @@ Get a Microsoft Entra ID roleAssignment.
 ### GetQuery (Default)
 ```powershell
 Get-EntraMSRoleAssignment 
-    [-Top <Int32>] 
-    [-All <Boolean>] 
-    [-Filter <String>] 
-    [<CommonParameters>]
+ [-Top <Int32>] 
+ [-All <Boolean>] 
+ [-Filter <String>] 
+ [<CommonParameters>]
 ```
 
 ### GetValue
 ```powershell
 Get-EntraMSRoleAssignment 
-    [-SearchString <String>] 
-    [-All <Boolean>] 
-    [<CommonParameters>]
+ [-SearchString <String>] 
+ [-All <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraMSRoleAssignment 
-    -Id <String> 
-    [-All <Boolean>] 
-    [<CommonParameters>]
+ -Id <String> 
+ [-All <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraMSRoleAssignment** cmdlet gets information about role assignments in Microsoft Entra ID. To get a role assignment, specify the Id parameter. Specify the SearchString or Filter parameter to find a particular role assignment.
+The Get-EntraMSRoleAssignment cmdlet gets information about role assignments in Microsoft Entra ID. To get a role assignment, specify the Id parameter. Specify the SearchString or Filter parameter to find a particular role assignment.
 
 ## EXAMPLES
 

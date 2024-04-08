@@ -13,8 +13,7 @@ The Add-EntraBetaApplicationPolicy cmdlet is not available at this time .
 ## SYNTAX
 
 ```
-Add-EntraBetaApplicationPolicy -Id <String> -RefObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Add-EntraBetaApplicationPolicy -Id <String> -RefObjectId <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,42 +30,6 @@ This command adds an application policy.
 
 ## PARAMETERS
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are: * Continue
-
-* Ignore
-* Inquire
-* SilentlyContinue
-* Stop
-* Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies a variable in which to store an information event message.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -RefObjectId
 Specifies the ID of the policy.

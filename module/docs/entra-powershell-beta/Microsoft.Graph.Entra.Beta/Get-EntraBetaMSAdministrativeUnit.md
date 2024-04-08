@@ -28,7 +28,7 @@ Get-EntraBetaMSAdministrativeUnit
     [-Top <Int32>] 
     [-All <Boolean>] 
     [-Filter <String>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
@@ -36,7 +36,7 @@ Get-EntraBetaMSAdministrativeUnit
 Get-EntraBetaMSAdministrativeUnit 
     -Id <String> 
     [-All <Boolean>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
