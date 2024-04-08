@@ -22,10 +22,10 @@ Removes a Microsoft Entra ID group.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraMSGroup 
--Id <String> 
-[<CommonParameters>]
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

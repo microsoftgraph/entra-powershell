@@ -22,7 +22,7 @@ Updates a domain.
 
 ## SYNTAX
 
-```
+```powershell
 Set-EntraDomain 
  -Name <String>
  [-IsDefault <Boolean>]
