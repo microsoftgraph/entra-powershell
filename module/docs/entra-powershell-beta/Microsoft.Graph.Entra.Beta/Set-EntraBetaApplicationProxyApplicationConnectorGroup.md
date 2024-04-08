@@ -46,7 +46,7 @@ This command Set a new Connector Group for a specific application
 
 ### -ConnectorGroupId
 The Id of the Connector group that should be assigned to the application.
-You can find this by using the Get-EntraBetaApplicationProxyConnectorGroup command.
+You can find the Connector Group ID by using the Get-EntraBetaApplicationProxyConnectorGroup command.
 
 ```yaml
 Type: String
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 The unique application Id for the application the Connector group will be assigned to.
-This can be found using the Get-EntraBetaApplication command.
+The application ID can be found using the Get-EntraBetaApplication command.
 
 ```yaml
 Type: String
