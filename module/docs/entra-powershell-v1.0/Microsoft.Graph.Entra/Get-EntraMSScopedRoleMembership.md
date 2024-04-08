@@ -24,13 +24,13 @@ Gets a scoped role membership from an administrative unit.
 
 ```powershell
 Get-EntraMSScopedRoleMembership 
-    -Id <String> 
-    [-ScopedRoleMembershipId <String>] 
-    [<CommonParameters>]
+ -Id <String> 
+ [-ScopedRoleMembershipId <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraMSScopedRoleMembership** cmdlet gets a scoped role membership from an administrative unit in Microsoft Entra ID.
+The Get-EntraMSScopedRoleMembership cmdlet gets a scoped role membership from an administrative unit in Microsoft Entra ID.
 
 ## EXAMPLES
 

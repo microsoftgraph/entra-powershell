@@ -25,11 +25,11 @@ Adds a new key to an application.
 
 ```powershell
 New-EntraMSApplicationKey 
-    -ObjectId <String> 
-    -KeyCredential <KeyCredential>  
-    [-PasswordCredential <PasswordCredential>] 
-    -Proof <String>
-    [<CommonParameters>]
+ -ObjectId <String> 
+ -KeyCredential <KeyCredential>  
+ -PasswordCredential <PasswordCredential>] 
+ -Proof <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

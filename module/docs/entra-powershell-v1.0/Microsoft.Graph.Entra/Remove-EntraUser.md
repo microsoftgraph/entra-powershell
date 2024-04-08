@@ -25,12 +25,12 @@ Removes a user.
 
 ```powershell
 Remove-EntraUser 
-    -ObjectId <String>
-    [<CommonParameters>]
+ -ObjectId <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Remove-EntraUser** cmdlet removes a user in Microsoft Entra ID.
+The Remove-EntraUser cmdlet removes a user in Microsoft Entra ID.
 
 ## EXAMPLES
 

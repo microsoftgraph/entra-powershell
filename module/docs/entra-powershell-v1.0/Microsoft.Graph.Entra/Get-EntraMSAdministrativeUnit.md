@@ -25,22 +25,22 @@ Gets an administrative unit.
 ### GetQuery (Default)
 ```powershell
 Get-EntraMSAdministrativeUnit 
-    [-Top <Int32>] 
-    [-All <Boolean>] 
-    [-Filter <String>] 
-    [<CommonParameters>]
+ [-Top <Int32>] 
+ [-All <Boolean>] 
+ [-Filter <String>] 
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraMSAdministrativeUnit 
-    -Id <String> 
-    [-All <Boolean>] 
-    [<CommonParameters>]
+ -Id <String> 
+ [-All <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraMSAdministrativeUnit** cmdlet gets a Microsoft Entra ID administrative unit.
+The Get-EntraMSAdministrativeUnit cmdlet gets a Microsoft Entra ID administrative unit.
 
 ## EXAMPLES
 

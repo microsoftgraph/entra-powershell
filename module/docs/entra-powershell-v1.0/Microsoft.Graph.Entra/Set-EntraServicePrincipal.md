@@ -22,7 +22,7 @@ Updates a service principal.
 
 ## SYNTAX
 
-```
+```powershell
 Set-EntraServicePrincipal
  -ObjectId <String>
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]>]
@@ -30,11 +30,8 @@ Set-EntraServicePrincipal
  [-AppId <String>] 
  [-LogoutUrl <String>] 
  [-ServicePrincipalType <String>]
- [-SamlMetadataUrl <String>] 
  [-AlternativeNames <System.Collections.Generic.List`1[System.String]>]
  [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]>]
- [-ErrorUrl <String>] 
- [-PublisherName <String>] 
  [-Tags <System.Collections.Generic.List`1[System.String]>] 
  [-AccountEnabled <String>]
  [-ServicePrincipalNames <System.Collections.Generic.List`1[System.String]>]
@@ -179,21 +176,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ErrorUrl
-Specifies the error URL.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Homepage
 Specifies the home page or landing page of the application.
 
@@ -269,41 +251,11 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -PublisherName
-Specifies the publisher name.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -ReplyUrls
 The URLs that user tokens are sent to for sign in with the associated application, or the redirect Uniform Resource Identifiers that OAuth 2.0 authorization codes and access tokens are sent to for the associated application.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -SamlMetadataUrl
-The URL for the Security Assertion Markup Language (SAML) metadata.
-
-```yaml
-Type: String
 Parameter Sets: (All)
 Aliases:
 

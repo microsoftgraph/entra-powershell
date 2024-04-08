@@ -59,7 +59,7 @@ New-EntraBetaUser
     [-FacsimileTelephoneNumber <String>] 
     [-Surname <String>] 
     [-CreationType <String>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

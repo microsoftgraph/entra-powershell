@@ -24,13 +24,13 @@ Removes the registered owner of a device.
 
 ```powershell
 Remove-EntraDeviceRegisteredOwner 
-    -OwnerId <String> 
-    -ObjectId <String> 
-    [<CommonParameters>]
+ -OwnerId <String> 
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Remove-EntraDeviceRegisteredOwner** cmdlet removes the registered owner of a device in Microsoft Entra ID.
+The Remove-EntraDeviceRegisteredOwner cmdlet removes the registered owner of a device in Microsoft Entra ID.
 
 ## EXAMPLES
 
