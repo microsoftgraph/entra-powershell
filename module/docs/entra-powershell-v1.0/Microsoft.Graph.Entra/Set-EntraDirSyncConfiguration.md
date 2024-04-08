@@ -1,4 +1,15 @@
 ---
+title: Set-EntraDirSyncConfiguration
+description: This article provides details on the Set-EntraDirSyncConfiguration command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/28/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -8,31 +19,41 @@ schema: 2.0.0
 # Set-EntraDirSyncConfiguration
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Modifies the directory synchronization settings.
 
 ## SYNTAX
 
-```
-Set-EntraDirSyncConfiguration -AccidentalDeletionThreshold <UInt32> [-TenantId <Guid>] [-Force]
+```powershell
+Set-EntraDirSyncConfiguration 
+ -AccidentalDeletionThreshold <UInt32>
+ [-Force]
+ [-TenantId <Guid>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The Set-EntraDirSyncConfiguration cmdlet modifies the directory synchronization settings.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Set directory synchronization settings
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Set-EntraDirSyncConfiguration -AccidentalDeletionThreshold 600 -Force
 ```
 
-{{ Add example description here }}
+This command sets directory synchronization settings.
+
+### Example 2: Set directory synchronization settings by TenantId
+```powershell
+PS C:\> Set-EntraDirSyncConfiguration -AccidentalDeletionThreshold 600 -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -Force
+```
+
+This command sets directory synchronization settings by TenantId.
 
 ## PARAMETERS
 
 ### -AccidentalDeletionThreshold
-{{ Fill AccidentalDeletionThreshold Description }}
+Specifies the accidental deletion threshold.
 
 ```yaml
 Type: UInt32
@@ -47,7 +68,7 @@ Accept wildcard characters: False
 ```
 
 ### -Force
-{{ Fill Force Description }}
+Forces the command to run without asking for user confirmation.
 
 ```yaml
 Type: SwitchParameter
@@ -62,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -TenantId
-{{ Fill TenantId Description }}
+Specifies the unique ID of the tenant on which to perform the operation. The default value is the tenant of the current user. This parameter applies only to partner users.
 
 ```yaml
 Type: Guid
@@ -91,3 +112,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[Get-EntraDirSyncConfiguration](Get-EntraDirSyncConfiguration.md)
