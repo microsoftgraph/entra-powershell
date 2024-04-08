@@ -1,8 +1,10 @@
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         #Import-Module .\bin\Microsoft.Graph.Entra.psm1 -Force
-        Import-Module Microsoft.Graph.Entra
+        Import-Module Microsoft.Graph.Entra    
     }
+    Import-Module .\test\module\Common-Functions.ps1 -Force
+    
     $scriptblock = {
         # Write-Host "Mocking New-MgApplication with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
@@ -25,7 +27,7 @@ BeforeAll {
             }
         )
     }     
-    Mock -CommandName New-MgApplication -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName New-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "New-EntraApplication"{
@@ -42,6 +44,20 @@ Describe "New-EntraApplication"{
         }
         It "Should fail when DisplayName is empty" {
             { New-EntraApplication -DisplayName "" } | Should -Throw "Cannot bind argument to parameter 'DisplayName' because it is an empty string."
+        }
+        It "Should contain 'User-Agent' header" {
+            $scriptblock = {
+                param($args)
+                return $args
+            }
+
+            Mock -CommandName New-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraApplication"
+
+            $result = New-EntraApplication -DisplayName "Mock-App"
+            $params = Get-Parameters -data $result
+            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
     }
 }

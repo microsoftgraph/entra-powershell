@@ -1,8 +1,10 @@
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         #Import-Module .\bin\Microsoft.Graph.Entra.psm1 -Force
-        Import-Module Microsoft.Graph.Entra
+        Import-Module Microsoft.Graph.Entra      
     }
+    Import-Module .\test\module\Common-Functions.ps1 -Force
+    
     $scriptblock = {
         # Write-Host "Mocking Get-MgApplication with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
@@ -25,10 +27,10 @@ BeforeAll {
             }
         )
     }     
-    Mock -CommandName Get-MgApplication -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
-  }
+    Mock -CommandName Get-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+}
   
-  Describe "Get-EntraApplication" {
+Describe "Get-EntraApplication" {
     Context "Test for Get-EntraApplication" {
         It "Should return specific application" {
             $result = Get-EntraApplication -ObjectId "111cc9b5-fce9-485e-9566-c68debafac5f"
@@ -78,16 +80,10 @@ BeforeAll {
                 param($args)
                 return $args
             }     
-            Mock -CommandName Get-MgApplication -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Get-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 
             $result = Get-EntraApplication -ObjectId "111cc9b5-fce9-485e-9566-c68debafac5f"
-            $params = @{}
-            $params = @{}
-            for ($i = 0; $i -lt $result.Length; $i += 2) {
-                $key = $result[$i] -replace '-', '' -replace ':', ''
-                $value = $result[$i + 1]
-                $params[$key] = $value
-            }
+            $params = Get-Parameters -data $result
             $params.ApplicationId | Should -Be "111cc9b5-fce9-485e-9566-c68debafac5f"
         }
         It "Should contain Filter in parameters when passed SearchString to it" {
@@ -95,16 +91,25 @@ BeforeAll {
                 param($args)
                 return $args
             }     
-            Mock -CommandName Get-MgApplication -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Get-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 
             $result = Get-EntraApplication -SearchString 'Mock-App'
-            $params = @{}
-            for ($i = 0; $i -lt $result.Length; $i += 2) {
-                $key = $result[$i] -replace '-', '' -replace ':', ''
-                $value = $result[$i + 1]
-                $params[$key] = $value
-            }
+            $params = Get-Parameters -data $result
             $params.Filter | Should -Match "Mock-App"
-        } 
+        }
+        It "Should contain 'User-Agent' header" {
+            $scriptblock = {
+                param($args)
+                return $args
+            }
+
+            Mock -CommandName Get-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplication"
+
+            $result = Get-EntraApplication -SearchString 'Mock-App'
+            $params = Get-Parameters -data $result
+            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
     }
-  }
+}

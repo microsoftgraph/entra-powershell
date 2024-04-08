@@ -1,16 +1,14 @@
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         #Import-Module .\bin\Microsoft.Graph.Entra.psm1 -Force
-        Import-Module Microsoft.Graph.Entra
+        Import-Module Microsoft.Graph.Entra       
     }
-    $scriptblock = {
-        #Write-Host "Mocking Remove-EntraGroup with parameters: $($args | ConvertTo-Json -Depth 3)"
-        return @()
-        }     
-        Mock -CommandName Remove-MgGroup -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
-  }
+    Import-Module .\test\module\Common-Functions.ps1 -Force
+    
+    Mock -CommandName Remove-MgGroup -MockWith {} -ModuleName Microsoft.Graph.Entra
+}
   
-  Describe "Remove-EntraGroup" {
+Describe "Remove-EntraGroup" {
     Context "Test for Remove-EntraGroup" {
         It "Should return empty object" {
             $result = Remove-EntraGroup -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04
@@ -26,16 +24,25 @@ BeforeAll {
                 param($args)
                 return $args
             }     
-            Mock -CommandName Remove-MgGroup -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Remove-MgGroup -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 
             $result = Remove-EntraGroup -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04
-            $params = @{}
-            for ($i = 0; $i -lt $result.Length; $i += 2) {
-                $key = $result[$i] -replace '-', '' -replace ':', ''
-                $value = $result[$i + 1]
-                $params[$key] = $value
-            }
+            $params = Get-Parameters -data $result
             $params.GroupId | Should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
-        }   
+        }
+        It "Should contain 'User-Agent' header" {
+            $scriptblock = {
+                param($args)
+                return $args
+            }
+
+            Mock -CommandName Remove-MgGroup -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraGroup"
+
+            $result = Remove-EntraGroup -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04
+            $params = Get-Parameters -data $result
+            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }  
     }
-  }
+}

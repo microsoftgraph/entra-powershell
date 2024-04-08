@@ -1,16 +1,14 @@
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         #Import-Module .\bin\Microsoft.Graph.Entra.psm1 -Force
-        Import-Module Microsoft.Graph.Entra
+        Import-Module Microsoft.Graph.Entra        
     }
-    $scriptblock = {        
-        #Write-Host "Mocking Set-EntraGroup with parameters: $($args | ConvertTo-Json -Depth 3)"
-        return @()
-        }     
-        Mock -CommandName Update-MgGroup -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
-  }
+    Import-Module .\test\module\Common-Functions.ps1 -Force
+     
+    Mock -CommandName Update-MgGroup -MockWith {} -ModuleName Microsoft.Graph.Entra
+}
   
-  Describe "Set-EntraGroup" {
+Describe "Set-EntraGroup" {
     Context "Test for Set-EntraGroup" {
         It "Should return empty object" {
             $result = Set-EntraGroup -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04 -DisplayName "demo" -MailEnabled $false -SecurityEnabled $true -MailNickName "demoNickname" -Description "test"
@@ -26,16 +24,24 @@ BeforeAll {
                 param($args)
                 return $args
             }     
-            Mock -CommandName Update-MgGroup -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Update-MgGroup -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 
             $result = Set-EntraGroup -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04
-            $params = @{}
-            for ($i = 0; $i -lt $result.Length; $i += 2) {
-                $key = $result[$i] -replace '-', '' -replace ':', ''
-                $value = $result[$i + 1]
-                $params[$key] = $value
-            }
+            $params = Get-Parameters -data $result
             $params.GroupId | Should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
         }        
+        It "Should contain 'User-Agent' header" {
+            $scriptblock = {
+                param($args)
+                return $args
+            }     
+            Mock -CommandName Update-MgGroup -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraGroup"
+
+            $result = Set-EntraGroup -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04
+            $params = Get-Parameters -data $result
+            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
     }
-  }
+}

@@ -1,23 +1,26 @@
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         #Import-Module .\bin\Microsoft.Graph.Entra.psm1 -Force
-        Import-Module Microsoft.Graph.Entra
+        Import-Module Microsoft.Graph.Entra      
     }
+    Import-Module .\test\module\Common-Functions.ps1 -Force
+    
     $scriptblock = {
         # Write-Host "Mocking Get-EntraDirectoryRole with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
-              "DeletedDateTime"              = $null
-              "Description" = "Read custom security attribute keys and values for supported Microsoft Entra objects."
-              "DisplayName"                  = "Attribute Assignment Reader"
-              "Id"                         = "dc587a80-d49c-4700-a73b-57227856fc32"
-              "RoleTemplateId"    = "ffd52fa5-98dc-465c-991d-fc073eb59f8f"
-              "Members"       = $null
-              "ScopedMembers"               = $null
+              "DeletedDateTime" = $null
+              "Description"     = "Read custom security attribute keys and values for supported Microsoft Entra objects."
+              "DisplayName"     = "Attribute Assignment Reader"
+              "Id"              = "dc587a80-d49c-4700-a73b-57227856fc32"
+              "RoleTemplateId"  = "ffd52fa5-98dc-465c-991d-fc073eb59f8f"
+              "Members"         = $null
+              "ScopedMembers"   = $null
             }
         )
-        }     
-        Mock -CommandName Get-MgDirectoryRole -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
+    }     
+    
+    Mock -CommandName Get-MgDirectoryRole -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
   }
   
   Describe "Get-EntraDirectoryRole" {
@@ -48,16 +51,25 @@ BeforeAll {
                 param($args)
                 return $args
             }     
-            Mock -CommandName Get-MgDirectoryRole -MockWith $scriptBlock -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Get-MgDirectoryRole -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 
             $result = Get-EntraDirectoryRole -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32"
-            $params = @{}
-            for ($i = 0; $i -lt $result.Length; $i += 2) {
-                $key = $result[$i] -replace '-', '' -replace ':', ''
-                $value = $result[$i + 1]
-                $params[$key] = $value
-            }
+            $params = Get-Parameters -data $result
             $params.DirectoryRoleId | Should -Be "dc587a80-d49c-4700-a73b-57227856fc32"
+        }
+        It "Should contain 'User-Agent' header" {
+            $scriptblock = {
+                param($args)
+                return $args
+            }
+
+            Mock -CommandName Get-MgDirectoryRole -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirectoryRole"
+
+            $result = Get-EntraDirectoryRole -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32"
+            $params = Get-Parameters -data $result
+            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }     
     }
   }
