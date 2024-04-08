@@ -1,6 +1,6 @@
 ---
-title: Get-EntraMSGroupLifecyclePolicy.
-description: This article provides details on the Get-EntraMSGroupLifecyclePolicy command.
+title: Get-EntraMSGroupPermissionGrant.
+description: This article provides details on the Get-EntraMSGroupPermissionGrant command.
 
 ms.service: active-directory
 ms.topic: reference

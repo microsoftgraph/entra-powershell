@@ -38,7 +38,7 @@ New-EntraMSGroup
 ## DESCRIPTION
 The New-EntraMSGroup cmdlet creates a Microsoft Entra ID group.
 
-For information about creating dynamic groups, see Using attributes to create advanced rules (https://azure.microsoft.com/en-us/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/).
+For information about creating dynamic groups, see Using attributes to create advanced rules (https://azure.microsoft.com/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/).
 
 ## EXAMPLES
 
@@ -264,5 +264,5 @@ We recommend that you don't use this cmdlet in a production environment.
 
 [Set-EntraMSGroup](Set-EntraMSGroup.md)
 
-[Using attributes to create advanced rules](https://azure.microsoft.com/en-us/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/)
+[Using attributes to create advanced rules](https://azure.microsoft.com/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/)
 
