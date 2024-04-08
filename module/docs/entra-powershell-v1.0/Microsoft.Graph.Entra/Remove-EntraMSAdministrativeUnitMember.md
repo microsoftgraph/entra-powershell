@@ -24,13 +24,13 @@ Removes an administrative unit member.
 
 ```powershell
 Remove-EntraMSAdministrativeUnitMember 
-    -Id <String> 
-    -MemberId <String>
-    [<CommonParameters>]
+ -Id <String> 
+ -MemberId <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Remove-EntraMSAdministrativeUnitMember** cmdlet removes an administrative unit member in Microsoft Entra ID.
+The Remove-EntraMSAdministrativeUnitMember cmdlet removes an administrative unit member in Microsoft Entra ID.
 
 ## EXAMPLES
 

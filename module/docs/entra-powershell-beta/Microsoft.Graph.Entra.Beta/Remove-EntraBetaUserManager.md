@@ -13,8 +13,7 @@ Removes a user's manager.
 ## SYNTAX
 
 ```
-Remove-EntraBetaUserManager -ObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Remove-EntraBetaUserManager -ObjectId <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,43 +33,7 @@ The second command removes the user in $User.
 
 ## PARAMETERS
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
 
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -ObjectId
 Specifies the ID of a user (as a UPN or ObjectId) in Azure AD.

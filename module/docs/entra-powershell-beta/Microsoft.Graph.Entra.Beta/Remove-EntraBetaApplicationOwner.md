@@ -26,7 +26,7 @@ Removes an owner from an application.
 Remove-EntraBetaApplicationOwner 
     -OwnerId <String> 
     -ObjectId <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

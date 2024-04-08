@@ -24,14 +24,14 @@ Get objects owned by a user.
 
 ```powershell
 Get-EntraUserOwnedObject 
-    -ObjectId <String> 
-    [-All <Boolean>] 
-    [-Top <Int32>] 
-    [<CommonParameters>]
+ -ObjectId <String> 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraUserOwnedObject** cmdlet gets objects owned by a user in Microsoft Entra ID.
+The Get-EntraUserOwnedObject cmdlet gets objects owned by a user in Microsoft Entra ID.
 
 ## EXAMPLES
 

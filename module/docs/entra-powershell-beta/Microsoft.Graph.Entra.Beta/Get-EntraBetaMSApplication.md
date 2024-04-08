@@ -28,7 +28,7 @@ Get-EntraBetaMSApplication
     [-Filter <String>] 
     [-All <Boolean>] 
     [-Top <Int32>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetVague
@@ -36,7 +36,7 @@ Get-EntraBetaMSApplication
 Get-EntraBetaMSApplication 
     [-SearchString <String>] 
     [-All <Boolean>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
@@ -44,7 +44,7 @@ Get-EntraBetaMSApplication
 Get-EntraBetaMSApplication 
     -ObjectId <String> 
     [-All <Boolean>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
