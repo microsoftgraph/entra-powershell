@@ -1,6 +1,7 @@
 $modulePath = join-path $psscriptroot "..\..\..\bin\Microsoft.Graph.Entra.psm1"
 $testReportPath = join-path $psscriptroot "..\..\..\TestReport\Entra"
 $mockScriptsPath = join-path $psscriptroot "..\..\..\test\module\Entra\Mock-*.Tests.ps1"
+$reportGenPath = join-path $psscriptroot "..\..\..\reportgenerator\ReportUnit.exe"
 
 
 Import-Module Pester
@@ -25,4 +26,4 @@ $config.Output.Verbosity = "Detailed"
 
 Invoke-Pester -Configuration $config
 
-.\reportgenerator\ReportUnit.exe "$testOutputFile"
+& "$reportGenPath" "$testOutputFile"
