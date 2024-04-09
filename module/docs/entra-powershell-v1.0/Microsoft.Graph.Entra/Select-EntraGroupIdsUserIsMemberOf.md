@@ -22,7 +22,7 @@ Selects the groups that a user is a member of.
 
 ## SYNTAX
 
-```
+```powershell
 Select-EntraGroupIdsUserIsMemberOf 
  -ObjectId <String> 
  -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
@@ -47,9 +47,9 @@ PS C:\> Select-EntraGroupIdsUserIsMemberOf  -ObjectId $UserId -GroupIdsForMember
 
 The first command creates a GroupIdsForMembershipCheck object, and then stores it in the $Groups variable.
 
-The second command gets an ID for a group by using the Get-EntraGroup (./Get-EntraGroup.md) cmdlet, and then stores it as a property of $Groups.
+The second command gets an ID for a group by using the [Get-EntraGroup](./Get-EntraGroup.md) cmdlet, and then stores it as a property of $Groups.
 
-The third command gets the ID of a user by using the Get-EntraUser (./Get-EntraUser.md) cmdlet, and then stores it in the $UserId variable.
+The third command gets the ID of a user by using the [Get-EntraUser](./Get-EntraUser.md) cmdlet, and then stores it in the $UserId variable.
 
 The final command gets the group membership of a group for a user identified by $UserId.
 

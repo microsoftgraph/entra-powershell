@@ -28,7 +28,7 @@ Get-EntraBetaUserOwnedDevice
     -ObjectId <String> 
     [-Top <Int32>] 
     [-All <Boolean>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

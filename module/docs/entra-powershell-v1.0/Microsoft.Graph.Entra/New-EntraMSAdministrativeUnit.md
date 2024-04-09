@@ -24,13 +24,13 @@ Creates an administrative unit.
 
 ```powershell
 New-EntraMSAdministrativeUnit 
-    -DisplayName <String> 
-    [-Description <String>]
-    [<CommonParameters>]
+ -DisplayName <String> 
+ [-Description <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **New-EntraMSAdministrativeUnit** cmdlet creates an administrative unit in Microsoft Entra ID.
+The New-EntraMSAdministrativeUnit cmdlet creates an administrative unit in Microsoft Entra ID.
 
 ## EXAMPLES
 

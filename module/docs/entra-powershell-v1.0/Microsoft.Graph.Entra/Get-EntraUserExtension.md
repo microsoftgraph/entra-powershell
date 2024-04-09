@@ -22,7 +22,7 @@ Gets a user extension.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraUserExtension 
  -ObjectId <String> 
  [<CommonParameters>]

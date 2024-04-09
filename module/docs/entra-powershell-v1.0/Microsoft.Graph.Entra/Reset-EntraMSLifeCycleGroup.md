@@ -22,7 +22,7 @@ Renews a group by updating the RenewedDateTime property on a group to the curren
 
 ## SYNTAX
 
-```
+```powershell
 Reset-EntraMSLifeCycleGroup 
  -Id <String> 
  [<CommonParameters>]

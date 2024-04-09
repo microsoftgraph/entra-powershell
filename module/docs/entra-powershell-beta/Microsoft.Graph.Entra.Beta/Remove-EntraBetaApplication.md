@@ -18,14 +18,14 @@ schema: 2.0.0
 # Remove-EntraBetaApplication
 
 ## SYNOPSIS
-Delete an application by objectId.
+Delete an application by ObjectId.
 
 ## SYNTAX
 
 ```powershell
 Remove-EntraBetaApplication 
     -ObjectId <String>
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

@@ -22,7 +22,7 @@ Selects the groups in which a service principal is a member.
 
 ## SYNTAX
 
-```
+```powershell
 Select-EntraGroupIdsServicePrincipalIsMemberOf 
  -ObjectId <String>
  -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> 
@@ -47,9 +47,9 @@ PS C:\> Select-EntraGroupIdsServicePrincipalIsMemberOf -ObjectId $SPId -GroupIds
 
 The first command creates a GroupIdsForMembershipCheck object, and then stores it in the $Groups variable.
 
-The second command gets an ID for a group by using the Get-EntraGroup (./Get-EntraGroup.md) cmdlet, and then stores it as a property of $Groups.
+The second command gets an ID for a group by using the [Get-EntraGroup](./Get-EntraGroup.md) cmdlet, and then stores it as a property of $Groups.
 
-The third command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md) cmdlet, and then stores it in the $SPId variable.
+The third command gets the ID of a service principal by using the [Get-EntraServicePrincipal](./Get-EntraServicePrincipal.md) cmdlet, and then stores it in the $SPId variable.
 
 The final command gets the group membership of a group for a service principal identified by $SPId.
 

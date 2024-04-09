@@ -1,4 +1,15 @@
 ---
+title: New-EntraMSApplicationPassword
+description: This article provides details on the New-EntraMSApplicationPassword command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,8 +23,11 @@ Adds a strong password to an application.
 
 ## SYNTAX
 
-```
-New-EntraMSApplicationPassword -ObjectId <String> -PasswordCredential <PasswordCredential> [<CommonParameters>]
+```powershell
+New-EntraMSApplicationPassword 
+ -ObjectId <String> 
+ -PasswordCredential <PasswordCredential> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,16 +36,14 @@ Adds a strong password to an application.
 ## EXAMPLES
 
 ### Example 1: Add a password to an application
+```powershell
+PS C:\> New-EntraMSApplicationPassword -ObjectId 14a3f1ac-46a7-4d00-b1ca-0b2b84f033c2 -PasswordCredential @{ displayname = "mypassword" }
 ```
-PS C:\>New-EntraMSApplicationPassword -ObjectId 14a3f1ac-46a7-4d00-b1ca-0b2b84f033c2 -PasswordCredential @{ displayname = "mypassword" }
 
-          CustomKeyIdentifier :
-          EndDateTime         : 10/28/2021 3:57:37 PM
-          DisplayName         :
-          KeyId               : 024c4c6e-87c3-4473-8e36-650f16bb730d
-          StartDateTime       : 10/28/2019 3:57:37 PM
-          SecretText          : EQ:A-s45?Rt9/3Bp?7]-7__IO]3AG09E
-          Hint                : EQ:
+```output
+CustomKeyIdentifier DisplayName EndDateTime           Hint KeyId                                SecretText                       StartDateTime
+------------------- ----------- -----------           ---- -----                                ----------                       -------------
+                    mypassword  10/28/2021 3:57:37 PM EQ:  024c4c6e-87c3-4473-8e36-650f16bb730d EQ:A-s45?Rt9/3Bp?7]-7__IO]3AG09E 10/28/2019 3:57:37 PM
 ```
 
 This command adds a password to the specified application.
@@ -73,7 +85,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### string
+### String
 ### Microsoft.Open.MSGraph.Model.PasswordCredential
 ## OUTPUTS
 
@@ -82,5 +94,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Remove-EntraMSApplicationPassword]()
+[Remove-EntraMSApplicationPassword](Remove-EntraMSApplicationPassword.md)
 

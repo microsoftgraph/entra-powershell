@@ -22,11 +22,11 @@ Removes an application extension property.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraApplicationExtensionProperty 
--ExtensionPropertyId <String> 
--ObjectId <String>
-[<CommonParameters>]
+ -ExtensionPropertyId <String> 
+ -ObjectId <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

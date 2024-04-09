@@ -22,10 +22,9 @@ Updates a trusted certificate authority.
 
 ## SYNTAX
 
-```
+```powershell
 Set-EntraTrustedCertificateAuthority 
--CertificateAuthorityInformation <CertificateAuthorityInformation>
-
+ -CertificateAuthorityInformation <CertificateAuthorityInformation>
 ```
 
 ## DESCRIPTION
@@ -36,8 +35,8 @@ The Set-EntraTrustedCertificateAuthority cmdlet updates a trusted certificate au
 ### Example 1: Updates the trusted certificate authorities that are defined in your directory
 ```powershell
 PS C:\> $cer = Set-EntraTrustedCertificateAuthority #Get the CertificateAuthorityInformation object
-		PS C:\> $cer[0].CrlDistributionPoint = "https://example.crl"
-		PS C:\> Set-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
+PS C:\> $cer[0].CrlDistributionPoint = "https://example.crl"
+PS C:\> Set-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
 ```
 
 This command updates the trusted certificate authorities that are defined in your directory.
