@@ -22,11 +22,11 @@ Updates the password for the signed-in user.
 
 ## SYNTAX
 
-```
+```powershell
 Update-EntraSignedInUserPassword 
--NewPassword <SecureString> 
--CurrentPassword <SecureString>
-[<CommonParameters>]
+ -NewPassword <SecureString> 
+ -CurrentPassword <SecureString>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

@@ -24,13 +24,13 @@ Gets the trusted certificate authority.
 
 ```powershell
 Get-EntraTrustedCertificateAuthority 
-    [-TrustedIssuerSki <String>] 
-    [-TrustedIssuer <String>]
-    [<CommonParameters>]
+ [-TrustedIssuerSki <String>] 
+ [-TrustedIssuer <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraTrustedCertificateAuthority** cmdlet gets the trusted certificate authority in Microsoft Entra ID.
+The Get-EntraTrustedCertificateAuthority cmdlet gets the trusted certificate authority in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -152,5 +152,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Set-EntraTrustedCertificateAuthority](Set-EntraTrustedCertificateAuthority.md)
 
-[Online help and examples for working with certificate authority](https://azure.microsoft.com/en-us/documentation/articles/active-directory-certificate-based-authentication-ios/)
+[Online help and examples for working with certificate authority](https://azure.microsoft.com/documentation/articles/active-directory-certificate-based-authentication-ios/)
 

@@ -22,23 +22,23 @@ Creates a Microsoft Entra ID group.
 
 ## SYNTAX
 
-```
+```powershell
 New-EntraMSGroup 
--DisplayName <String> 
-[-GroupTypes <System.Collections.Generic.List`1[System.String]>]
--SecurityEnabled <Boolean> 
-[-Description <String>] 
--MailEnabled <Boolean> 
--MailNickname <String>
-[-Visibility <String>] 
-[-IsAssignableToRole <Boolean>] 
-[<CommonParameters>]
+ -DisplayName <String> 
+ [-GroupTypes <System.Collections.Generic.List`1[System.String]>]
+ -SecurityEnabled <Boolean> 
+ [-Description <String>] 
+ -MailEnabled <Boolean> 
+ -MailNickname <String>
+ [-Visibility <String>] 
+ [-IsAssignableToRole <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 The New-EntraMSGroup cmdlet creates a Microsoft Entra ID group.
 
-For information about creating dynamic groups, see Using attributes to create advanced rules (https://azure.microsoft.com/en-us/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/).
+For information about creating dynamic groups, see Using attributes to create advanced rules (https://azure.microsoft.com/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/).
 
 ## EXAMPLES
 
@@ -264,5 +264,5 @@ We recommend that you don't use this cmdlet in a production environment.
 
 [Set-EntraMSGroup](Set-EntraMSGroup.md)
 
-[Using attributes to create advanced rules](https://azure.microsoft.com/en-us/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/)
+[Using attributes to create advanced rules](https://azure.microsoft.com/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/)
 

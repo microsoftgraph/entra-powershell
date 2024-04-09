@@ -24,9 +24,9 @@ Adds an owner for an application object.
 
 ```powershell
 Add-EntraMSApplicationOwner 
-    -ObjectId <String> 
-    -RefObjectId <String> 
-    [<CommonParameters>]
+ -ObjectId <String> 
+ -RefObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -54,7 +54,7 @@ This command adds an owner to an application.
 ## PARAMETERS
 
 ### -ObjectId
-The unique identifier of the object specific Microsoft Entra ID object
+The unique identifier of the object specific Microsoft Entra ID object.
 
 ```yaml
 Type: String
@@ -69,7 +69,7 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
-The unique identifier of the specific Microsoft Entra ID object that is assigned as owner/manager/member
+The unique identifier of the specific Microsoft Entra ID object that is assigned as owner/manager/member.
 
 ```yaml
 Type: String

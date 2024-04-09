@@ -13,8 +13,7 @@ Get key credentials for a service principal.
 ## SYNTAX
 
 ```
-Get-EntraBetaServicePrincipalKeyCredential -ObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Get-EntraBetaServicePrincipalKeyCredential -ObjectId <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -35,43 +34,7 @@ The second command gets the key credential for the service principal identified 
 
 ## PARAMETERS
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
 
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -ObjectId
 Specifies the ID of the application for which to get the password credential.

@@ -21,13 +21,13 @@ Retrieves the thumbnail photo of a contact.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraContactThumbnailPhoto 
--ObjectId <String> 
-[-FilePath <String>] 
-[-FileName <String>] 
-[-View <Boolean>]
-[<CommonParameters>]
+ -ObjectId <String> 
+ [-FilePath <String>] 
+ [-FileName <String>] 
+ [-View <Boolean>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

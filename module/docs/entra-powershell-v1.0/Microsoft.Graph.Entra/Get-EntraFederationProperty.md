@@ -1,4 +1,15 @@
 ---
+title: Get-EntraFederationProperty
+description: This article provides details on the Get-EntraFederationProperty command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/28/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -8,38 +19,32 @@ schema: 2.0.0
 # Get-EntraFederationProperty
 
 ## SYNOPSIS
-For the specified domain, displays the properties of the Active Directory Federation Services 2.0 server and Microsoft Online.
+Displays the properties of the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online.
 
 ## SYNTAX
 
-### GetQuery (Default)
-```
-Get-EntraFederationProperty [-SupportMultipleDomain] [<CommonParameters>]
-```
-
-### GetById
-```
-Get-EntraFederationProperty -DomainName <String> [<CommonParameters>]
+```powershell
+Get-EntraFederationProperty 
+ -DomainName <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraFederationProperty cmdlet gets key settings from both the Active Directory Federation Services 2.0 server and Microsoft Online.
-You can use this
-information to troubleshoot authentication problems caused by mismatched settings between the Active Directory Federation Services 2.0 server and Microsoft Online.
+The Get-EntraFederationProperty cmdlet gets key settings from both the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online. You can use this information to troubleshoot authentication problems caused by mismatched settings between the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Display properties for specified domain
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-EntraFederationProperty -DomainName contoso.com
 ```
 
-{{ Add example description here }}
+This command displays properties for specified domain.
 
 ## PARAMETERS
 
 ### -DomainName
-The domain name for which the properties from both the Active Directory Federation Services 2.0 server and Microsoft Online will be displayed.
+The domain name for which the properties from both the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online are displayed.
 
 ```yaml
 Type: String
@@ -49,21 +54,6 @@ Aliases:
 Required: True
 Position: Named
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -SupportMultipleDomain
-{{ Fill SupportMultipleDomain Description }}
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: GetQuery
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

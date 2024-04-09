@@ -22,11 +22,11 @@ Removes a service principal application role assignment.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraServiceAppRoleAssignment 
--AppRoleAssignmentId <String> 
--ObjectId <String>
-[<CommonParameters>]
+ -AppRoleAssignmentId <String> 
+ -ObjectId <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

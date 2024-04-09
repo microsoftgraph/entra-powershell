@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraMSPermissionGrantConditionSet.
+description: This article provides details on the Remove-EntraMSPermissionGrantConditionSet command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/27/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -8,25 +18,30 @@ schema: 2.0.0
 # Remove-EntraMSPermissionGrantConditionSet
 
 ## SYNOPSIS
-Delete a Microsoft Entra ID permission grant condition set by id
+Delete a Microsoft Entra ID permission grant condition set by ID.
 
 ## SYNTAX
 
-```
-Remove-EntraMSPermissionGrantConditionSet -ConditionSetType <String> -Id <String> -PolicyId <String>
+```powershell
+Remove-EntraMSPermissionGrantConditionSet 
+ -ConditionSetType <String> 
+ -Id <String> 
+ -PolicyId <String>
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Delete a Microsoft Entra ID permission grant condition set object by id.
+Delete a Microsoft Entra ID permission grant condition set object by ID.
 
 ## EXAMPLES
 
 ### Example 1: Delete a permission grant condition set from a policy
-```
+```Powershell
 PS C:\>Remove-EntraMSPermissionGrantConditionSet -PolicyId "policy1" -ConditionSetType "excludes" -Id "665a9903-0398-48ab-b4e9-7a570d468b66"
 ```
 
+This command demonstrates how to remove the Microsoft Entra ID permission grant condition set by ID.
+  
 ## PARAMETERS
 
 ### -PolicyId
@@ -79,18 +94,18 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### string
-### string
-### string
+### String
+### String
+### String
 ## OUTPUTS
 
 ## NOTES
 
 ## RELATED LINKS
 
-[New-EntraMSPermissionGrantConditionSet]()
+[New-EntraMSPermissionGrantConditionSet](New-EntraMSPermissionGrantConditionSet.md)
 
-[Get-EntraMSPermissionGrantConditionSet]()
+[Get-EntraMSPermissionGrantConditionSet](Get-EntraMSPermissionGrantConditionSet.md)
 
-[Set-EntraMSPermissionGrantConditionSet]()
+[Set-EntraMSPermissionGrantConditionSet](Set-EntraMSPermissionGrantConditionSet.md)
 

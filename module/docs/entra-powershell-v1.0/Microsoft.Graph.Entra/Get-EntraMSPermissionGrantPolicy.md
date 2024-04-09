@@ -25,18 +25,18 @@ Gets a permission grant policy.
 ### GetQuery (Default)
 ```powershell
 Get-EntraMSPermissionGrantPolicy 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraMSPermissionGrantPolicy 
-    -Id <String> 
-    [<CommonParameters>]
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraMSPermissionGrantPolicy** cmdlet gets a Microsoft Entra ID permission grant policy.
+The Get-EntraMSPermissionGrantPolicy cmdlet gets a Microsoft Entra ID permission grant policy.
 
 ## EXAMPLES
 

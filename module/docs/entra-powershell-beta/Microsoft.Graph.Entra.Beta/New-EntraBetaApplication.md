@@ -58,7 +58,7 @@ New-EntraBetaApplication
     [-Homepage <String>] 
     [-AppRoles <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AppRole]>]
     [-InformationalUrls <InformationalUrl>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

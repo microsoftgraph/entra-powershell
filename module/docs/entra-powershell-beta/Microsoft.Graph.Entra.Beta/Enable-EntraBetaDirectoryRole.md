@@ -13,8 +13,7 @@ Activates an existing directory role in Azure Active Directory.
 ## SYNTAX
 
 ```
-Enable-EntraBetaDirectoryRole [-RoleTemplateId <String>] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Enable-EntraBetaDirectoryRole [-RoleTemplateId <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -51,43 +50,7 @@ The final command enables the directory role in $InviterRole.
 
 ## PARAMETERS
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
 
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies a variable in which to store an information event message.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -RoleTemplateId
 The ID of the Role template to enable
