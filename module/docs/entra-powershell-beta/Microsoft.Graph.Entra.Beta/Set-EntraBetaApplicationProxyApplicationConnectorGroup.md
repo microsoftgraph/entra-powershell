@@ -45,7 +45,7 @@ This command Set a new Connector Group for a specific application
 ## PARAMETERS
 
 ### -ConnectorGroupId
-The Id of the Connector group that should be assigned to the application.
+The ID of the Connector group that should be assigned to the application.
 You can find the Connector Group ID by using the Get-EntraBetaApplicationProxyConnectorGroup command.
 
 ```yaml
@@ -61,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-The unique application Id for the application the Connector group will be assigned to.
+The unique application ID for the application the Connector group assigns to.
 The application ID can be found using the Get-EntraBetaApplication command.
 
 ```yaml
@@ -88,5 +88,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
-[Get-EntraBetaApplicationProxyConnectorGroup](Get-EntraBetaApplicationProxyConnectorGroup.md)
-[Get-EntraBetaApplication](Get-EntraBetaApplication.md)
