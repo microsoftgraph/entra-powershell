@@ -25,18 +25,18 @@ Gets a domain.
 ### GetQuery (Default)
 ```powershell
 Get-EntraDomain 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraDomain 
-    -Name <String> 
-    [<CommonParameters>]
+ -Name <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraDomain** cmdlet gets a domain in Microsoft Entra ID.
+The Get-EntraDomain cmdlet gets a domain in Microsoft Entra ID.
 
 ## EXAMPLES
 

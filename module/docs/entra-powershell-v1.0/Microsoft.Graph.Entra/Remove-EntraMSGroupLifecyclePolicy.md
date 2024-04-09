@@ -23,10 +23,10 @@ Deletes a groupLifecyclePolicies object
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraMSGroupLifecyclePolicy 
--Id <String> 
-[<CommonParameters>]
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

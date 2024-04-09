@@ -18,18 +18,18 @@ schema: 2.0.0
 # Remove-EntraApplication
 
 ## SYNOPSIS
-Delete an application by objectId.
+Delete an application by ObjectId.
 
 ## SYNTAX
 
 ```powershell
 Remove-EntraApplication 
-    -ObjectId <String>
-    [<CommonParameters>]
+ -ObjectId <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Remove-EntraApplication** cmdlet removes the specified application from Microsoft Entra ID.
+The Remove-EntraApplication cmdlet removes the specified application from Microsoft Entra ID.
 
 ## EXAMPLES
 

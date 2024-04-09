@@ -25,30 +25,30 @@ Gets information about role definitions in Microsoft Entra ID.
 ### GetQuery (Default)
 ```powershell
 Get-EntraMSRoleDefinition 
-  [-All <Boolean>] 
-  [-Top <Int32>] 
-  [-Filter <String>] 
-  [<CommonParameters>]
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [-Filter <String>] 
+ [<CommonParameters>]
 ```
 
 ### GetVague
 ```powershell
 Get-EntraMSRoleDefinition 
-  [-SearchString <String>] 
-  [-All <Boolean>] 
-  [<CommonParameters>]
+ [-SearchString <String>] 
+ [-All <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraMSRoleDefinition 
-  -Id <String> 
-  [-All <Boolean>] 
-  [<CommonParameters>]
+ -Id <String> 
+ [-All <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraMSRoleDefinition** cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the Id parameter. Specify the SearchString or Filter parameter to find particular role definition.
+The Get-EntraMSRoleDefinition cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the Id parameter. Specify the SearchString or Filter parameter to find particular role definition.
 
 ## EXAMPLES
 

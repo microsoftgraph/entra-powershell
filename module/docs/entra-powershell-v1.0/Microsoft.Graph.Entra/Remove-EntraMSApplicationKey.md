@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraMSApplicationKey.
+description: This article provides details on the Remove-EntraMSApplicationKey command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/18/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,8 +22,12 @@ Removes a key from an application.
 
 ## SYNTAX
 
-```
-Remove-EntraMSApplicationKey -ObjectId <String> [-Proof <String>] [-KeyId <String>] [<CommonParameters>]
+```powershell
+Remove-EntraMSApplicationKey 
+ -ObjectId <String> 
+ [-Proof <String>] 
+ [-KeyId <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,7 +36,7 @@ Removes a key from an application.
 ## EXAMPLES
 
 ### Example 1: Removes a key credential from an application
-```
+```powershell
 PS C:\>Remove-EntraMSApplicationKey -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -KeyId "FDA27CF-1B58-4CAE-8CE7-CD04F0AAB945" -Proof {token}
 ```
 
@@ -87,5 +101,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[New-EntraMSApplicationKey]()
+[New-EntraMSApplicationKey](New-EntraMSApplicationKey.md)
 

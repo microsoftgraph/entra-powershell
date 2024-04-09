@@ -24,10 +24,10 @@ Retrieves the list of owners for an application object.
 
 ```powershell
 Get-EntraMSApplicationOwner 
-    -ObjectId <String> 
-    [-All <Boolean>] 
-    [-Top <Int32>] 
-    [<CommonParameters>]
+ -ObjectId <String> 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

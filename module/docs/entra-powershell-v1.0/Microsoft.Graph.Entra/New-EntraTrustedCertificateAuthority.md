@@ -24,12 +24,12 @@ Creates a trusted certificate authority.
 
 ```powershell
 New-EntraTrustedCertificateAuthority 
-    -CertificateAuthorityInformation <CertificateAuthorityInformation>
-    [<CommonParameters>]
+ -CertificateAuthorityInformation <CertificateAuthorityInformation>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **New-EntraTrustedCertificateAuthority** cmdlet creates a trusted certificate authority in Microsoft Entra ID.
+The New-EntraTrustedCertificateAuthority cmdlet creates a trusted certificate authority in Microsoft Entra ID.
 
 ## EXAMPLES
 

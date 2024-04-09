@@ -22,7 +22,7 @@ Removes a password credential from a service principal.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraServicePrincipalPasswordCredential
  -ObjectId <String>
  -KeyId <String>
@@ -46,7 +46,7 @@ KeyID: The unique identifier of the Password Credential.
 ## PARAMETERS
 
 ### -KeyId
-@{Text=}
+Specifies the unique identifier of password credential.
 
 ```yaml
 Type: String

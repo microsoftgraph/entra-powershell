@@ -28,7 +28,7 @@ Add-EntraBetaMSScopedRoleMembership
     [-RoleMemberInfo <MsRoleMemberInfo>] 
     [-AdministrativeUnitId <String>] 
     [-RoleId <String>] 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
