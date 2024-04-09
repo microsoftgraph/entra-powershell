@@ -40,7 +40,7 @@ This is limited to setting No SSO, Kerberos Constrained Delegation (for applicat
 
 ### Example 1:  Assign an application to use Kerberos Constrained Delegation, and specify required parameters.
 ```powershell
-PS C:\> Set-EntraBetaApplicationProxyApplicationSingleSignOn -ObjectId 4eba5342-8d17-4eac-a1f6-62a0de26311e -SingleSignOnMode OnPremisesKerberos -KerberosInternalApplicationServicePrincipalName "http/www.adventure-works.com" -KerberosDelegatedLoginIdentity OnPremisesUserPrincipalName
+PS C:\> Set-EntraBetaApplicationProxyApplicationSingleSignOn -ObjectId 4eba5342-8d17-4eac-a1f6-62a0de26311e -SingleSignOnMode OnPremisesKerberos -KerberosInternalApplicationServicePrincipalName "https/www.adventure-works.com" -KerberosDelegatedLoginIdentity OnPremisesUserPrincipalName
 ```
 
 This command Assign an application to use Kerberos Constrained Delegation, and specify required parameters.
@@ -121,7 +121,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
