@@ -17,7 +17,7 @@ schema: 2.0.0
 # Get-EntraBetaApplicationProxyConnectorMemberOf
 
 ## SYNOPSIS
-The Get-AzureADApplicationProxyConnectorMemberOf command gets the ConnectorGroup that the specified Connector is a member of.
+The Get-EntraBetaApplicationProxyConnectorMemberOf command gets the ConnectorGroup that the specified Connector is a member of.
 
 ## SYNTAX
 
