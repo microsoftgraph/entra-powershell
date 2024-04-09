@@ -25,7 +25,7 @@ Gets an oAuth2PermissionGrant object.
 ```powershell
 Get-EntraUserOAuth2PermissionGrant 
  [-All <Boolean>] 
--ObjectId <String> 
+ -ObjectId <String> 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
