@@ -83,58 +83,82 @@ function New-EntraBetaApplicationProxyApplication {
         $newAppBody = @{
             displayName =  $DisplayName
         } | ConvertTo-Json
-        $NewApp = Invoke-GraphRequest -Uri 'https://graph.microsoft.com/v1.0/applications' -Method POST -Body $newAppBody
-        $Id = $NewApp.Id
-
-        # Update InternalUrl and ExternalUrl
-        if ($ExternalUrl.EndsWith("/")) {
-            $exUrl = $ExternalUrl.TrimEnd("/")
+        try {
+            $NewApp = Invoke-GraphRequest -Uri 'https://graph.microsoft.com/v1.0/applications' -Method POST -Body $newAppBody
+            $Id = $NewApp.Id
+        } catch {
+            Write-Error $_
+            return
         }
-        $UpdateUrlBody = @{ 
-            identifierUris = @($exUrl) 
-            web = @{ 
-            redirectUris = @($exUrl) 
-            homePageUrl = $InternalUrl 
+        
+        # Update InternalUrl and ExternalUrl
+        if($null -ne $NewApp){
+            if ($ExternalUrl.EndsWith("/")) {
+                $exUrl = $ExternalUrl.TrimEnd("/")
+            }
+            $UpdateUrlBody = @{ 
+                identifierUris = @($exUrl) 
+                web = @{ 
+                redirectUris = @($exUrl) 
+                homePageUrl = $InternalUrl 
+                } 
             } 
-        } 
-        $Application = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$Id" -Method PATCH -Body $updateUrlBody
-
+            try {
+                $Application = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$Id" -Method PATCH -Body $updateUrlBody    
+            } catch {
+                Write-Error $_
+                return
+            }
+        }
+        
         # Create ServicePrincipal
         if($null -ne $NewApp){
             $serviceBody = @{
                 appId = $NewApp.AppId
             } | ConvertTo-Json
-            $ServicePrincipal = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/servicePrincipals" -Method POST -Body $serviceBody    
+            try {
+                $ServicePrincipal = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/servicePrincipals" -Method POST -Body $serviceBody    
+            } catch {
+                Write-Error $_
+                return
+            }
         }
         
         # update onpremises
-        if($null -ne $ServicePrincipal){
+        if($null -ne $ServicePrincipal -and $null -ne $NewApp){
             $onPremisesPublishingBody = @{onPremisesPublishing = $onPremisesPublishing}
-            Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$Id" -Method PATCH -Body $onPremisesPublishingBody
+            try {
+                Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$Id" -Method PATCH -Body $onPremisesPublishingBody
+            } catch {
+                Write-Error $_
+                return
+            }
         }
        
         #update connector group
-        if($null -ne $PSBoundParameters["ConnectorGroupId"]){
+        if($null -ne $PSBoundParameters["ConnectorGroupId"] -and $null -ne $NewApp){
             $ConnectorGroupId = $PSBoundParameters["ConnectorGroupId"]
             $ConnectorGroupBody = @{
                 "@odata.id" = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/$ConnectorGroupId"
             } 
             $ConnectorGroupBody = $ConnectorGroupBody | ConvertTo-Json
             $ConnectorGroupUri = "https://graph.microsoft.com/beta/applications/$Id/connectorGroup/" + '$ref'
-            Invoke-GraphRequest -Method PUT -Uri $ConnectorGroupUri -Body $ConnectorGroupBody -ContentType "application/json"    
-        }
-
+            try {
+                $ConnectorGroup = Invoke-GraphRequest -Method PUT -Uri $ConnectorGroupUri -Body $ConnectorGroupBody -ContentType "application/json" 
+            } catch {
+                Write-Error $_
+                return
+            }
+           }
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-
         $response = (Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$Id/onPremisesPublishing" -Method GET) | ConvertTo-Json -depth 10 | ConvertFrom-Json
         $response | ForEach-Object {
             if($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType NoteProperty -Name ObjectId -Value $Id
-           }
+                Add-Member -InputObject $_ -MemberType NoteProperty -Name ObjectId -Value $Id
+            }
         }
-        $response | Select-Object ObjectId,ExternalAuthenticationType,ApplicationServerTimeout,ExternalUrl,InternalUrl,IsTranslateHostHeaderEnabled,IsTranslateLinksInBodyEnabled,IsOnPremPublishingEnabled,VerifiedCustomDomainCertificatesMetadata,VerifiedCustomDomainKeyCredential,VerifiedCustomDomainPasswordCredential,SingleSignOnSettings,IsHttpOnlyCookieEnabled,IsSecureCookieEnabled,IsPersistentCookieEnabled
-
-    }        
+        $response | Select-Object ObjectId,ExternalAuthenticationType,ApplicationServerTimeout,ExternalUrl,InternalUrl,IsTranslateHostHeaderEnabled,IsTranslateLinksInBodyEnabled,IsOnPremPublishingEnabled,VerifiedCustomDomainCertificatesMetadata,VerifiedCustomDomainKeyCredential,VerifiedCustomDomainPasswordCredential,SingleSignOnSettings,IsHttpOnlyCookieEnabled,IsSecureCookieEnabled,IsPersistentCookieEnabled    
+        }        
 }
