@@ -22,11 +22,12 @@ Gets an object owned by a service principal.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraServicePrincipalOwnedObject 
-[-All <Boolean>] 
--ObjectId <String> 
-[-Top <Int32>] [<CommonParameters>]
+ [-All <Boolean>] 
+ -ObjectId <String> 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
