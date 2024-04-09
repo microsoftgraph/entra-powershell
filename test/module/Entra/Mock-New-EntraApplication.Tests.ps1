@@ -27,11 +27,6 @@ BeforeAll {
             }
         )
     }
-    
-    $argsBlock = {
-        param($args)
-        return $args
-    }
 
     Mock -CommandName New-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
@@ -52,7 +47,7 @@ Describe "New-EntraApplication"{
             { New-EntraApplication -DisplayName "" } | Should -Throw "Cannot bind argument to parameter 'DisplayName' because it is an empty string."
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName New-MgApplication -MockWith $argsBlock -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName New-MgApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraApplication"
 

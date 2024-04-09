@@ -20,11 +20,6 @@ BeforeAll {
         )
     }
     
-    $argsBlock = {
-        param($args)
-        return $args
-    }
-    
     Mock -CommandName Get-MgDirectoryRole -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
   }
   
@@ -52,14 +47,14 @@ BeforeAll {
             $result.ObjectId | should -Be "dc587a80-d49c-4700-a73b-57227856fc32"
         } 
         It "Should contain DirectoryRoleId in parameters when passed ObjectId to it" {     
-            Mock -CommandName Get-MgDirectoryRole -MockWith $argsBlock -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Get-MgDirectoryRole -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $result = Get-EntraDirectoryRole -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32"
             $params = Get-Parameters -data $result
             $params.DirectoryRoleId | Should -Be "dc587a80-d49c-4700-a73b-57227856fc32"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Get-MgDirectoryRole -MockWith $argsBlock -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Get-MgDirectoryRole -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirectoryRole"
 

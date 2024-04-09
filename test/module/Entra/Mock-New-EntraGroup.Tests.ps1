@@ -17,11 +17,6 @@ BeforeAll {
               "SecurityEnabled"  = "True"
             }
         )
-    }  
-    
-    $argsBlock = {
-        param($args)
-        return $args
     }
     
     Mock -CommandName New-MgGroup -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
@@ -43,7 +38,7 @@ Describe "New-EntraGroup" {
             { New-EntraGroup -DisplayName "" -MailEnabled -SecurityEnabled -MailNickName "" -Description ""  } | Should -Throw "Missing an argument for parameter*"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName New-MgGroup -MockWith $argsBlock -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName New-MgGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraGroup"
 

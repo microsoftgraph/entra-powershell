@@ -5,11 +5,6 @@ BeforeAll {
     }
     Import-Module .\test\module\Common-Functions.ps1 -Force
 
-    $argsBlock = {
-        param($args)
-        return $args
-    }
-    
     Mock -CommandName Remove-MgGroup -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
   
@@ -25,14 +20,14 @@ Describe "Remove-EntraGroup" {
             { Remove-EntraGroup -ObjectId "" }
         }   
         It "Should contain GroupId in parameters when passed ObjectId to it" {
-            Mock -CommandName Remove-MgGroup -MockWith $argsBlock -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Remove-MgGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $result = Remove-EntraGroup -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04
             $params = Get-Parameters -data $result
             $params.GroupId | Should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Remove-MgGroup -MockWith $argsBlock -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Remove-MgGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraGroup"
 

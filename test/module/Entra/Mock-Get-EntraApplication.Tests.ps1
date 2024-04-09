@@ -26,11 +26,6 @@ BeforeAll {
               "Web"                          = @{HomePageUrl="https://localhost/demoapp"; ImplicitGrantSettings=""; LogoutUrl="";}
             }
         )
-    } 
-    
-    $argsBlock = {
-        param($args)
-        return $args
     }
 
     Mock -CommandName Get-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
@@ -82,21 +77,21 @@ Describe "Get-EntraApplication" {
             $result.ObjectId | should -Be "111cc9b5-fce9-485e-9566-c68debafac5f"
         }     
         It "Should contain ApplicationId in parameters when passed ObjectId to it" {              
-            Mock -CommandName Get-MgApplication -MockWith $argsBlock -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Get-MgApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $result = Get-EntraApplication -ObjectId "111cc9b5-fce9-485e-9566-c68debafac5f"
             $params = Get-Parameters -data $result
             $params.ApplicationId | Should -Be "111cc9b5-fce9-485e-9566-c68debafac5f"
         }
         It "Should contain Filter in parameters when passed SearchString to it" {               
-            Mock -CommandName Get-MgApplication -MockWith $argsBlock -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Get-MgApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $result = Get-EntraApplication -SearchString 'Mock-App'
             $params = Get-Parameters -data $result
             $params.Filter | Should -Match "Mock-App"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Get-MgApplication -MockWith $argsBlock -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Get-MgApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplication"
 
