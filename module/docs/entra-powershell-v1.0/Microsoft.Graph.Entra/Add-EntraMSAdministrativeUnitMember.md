@@ -25,9 +25,9 @@ Adds an administrative unit member.
 
 ```powershell
 Add-EntraMSAdministrativeUnitMember 
-    -RefObjectId <String> 
-    -Id <String> 
-    [<CommonParameters>]
+ -RefObjectId <String> 
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

@@ -23,11 +23,11 @@ Removes a group from a lifecycle policy.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraMSLifecyclePolicyGroup 
--GroupId <String> 
--Id <String> 
-[<CommonParameters>]
+ -GroupId <String> 
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

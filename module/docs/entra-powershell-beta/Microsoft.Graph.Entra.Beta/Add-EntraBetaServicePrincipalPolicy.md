@@ -13,8 +13,7 @@ Adds a service principal policy.
 ## SYNTAX
 
 ```
-Add-EntraBetaServicePrincipalPolicy -Id <String> -RefObjectId <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Add-EntraBetaServicePrincipalPolicy -Id <String> -RefObjectId <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,43 +28,7 @@ PS C:\>Add-EntraBetaServicePrincipalPolicy -Id <object id of service principal> 
 
 ## PARAMETERS
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
 
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies a variable in which to store an information event message.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -RefObjectId
 Specifies the object Id of the policy.

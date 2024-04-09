@@ -22,15 +22,15 @@ This cmdlet is used to invite a new external user to your directory.
 
 ## SYNTAX
 
-```
+```powershell
 New-EntraMSInvitation 
-[-InvitedUser <User>] 
-[-InvitedUserType <String>] 
--InvitedUserEmailAddress <String>
-[-SendInvitationMessage <Boolean>] 
+ [-InvitedUser <User>] 
+ [-InvitedUserType <String>] 
+ -InvitedUserEmailAddress <String>
+ [-SendInvitationMessage <Boolean>] 
 -InviteRedirectUrl <String>
-[-InvitedUserMessageInfo <InvitedUserMessageInfo>] [-InvitedUserDisplayName <String>] 
-[<CommonParameters>]
+ [-InvitedUserMessageInfo <InvitedUserMessageInfo>] [-InvitedUserDisplayName <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -128,7 +128,7 @@ This example demonstrates how to invite a new external user to your directory wi
 $a= New-Object Microsoft.Open.MSGraph.Model.InvitedUserMessageInfo
 >> $a.CustomizedMessageBody = "Hi there, how are you"
 >> $a.MessageLanguage = "EN"
->> New-AzureADMSInvitation -InvitedUserEmailAddress "someexternaluser@externaldomain.com" -SendInvitationMessage $True -InviteRedirectUrl "https://myapps.microsoft.com" -InvitedUserMessageInfo $a
+>> New-EntraMSInvitation -InvitedUserEmailAddress "someexternaluser@externaldomain.com" -SendInvitationMessage $True -InviteRedirectUrl "https://myapps.microsoft.com" -InvitedUserMessageInfo $a
 ```
 ```output
 Id                      : b47dfdd8-727e-46ae-8f72-807166f09e6c
@@ -169,7 +169,7 @@ This example demonstrates how to invite a new external user to your directory wi
 ### Example 4: Invite a new external user to your directory with InvitedUserType parameter.
 
 ```powershell
- New-AzureADMSInvitation -InvitedUserEmailAddress "someexternaluser@externaldomain.com" -SendInvitationMessage $True -InviteRedirectUrl "https://myapps.microsoft.com"  -InvitedUserType Guest
+ New-EntraMSInvitation -InvitedUserEmailAddress "someexternaluser@externaldomain.com" -SendInvitationMessage $True -InviteRedirectUrl "https://myapps.microsoft.com"  -InvitedUserType Guest
 ```
 
 ```output

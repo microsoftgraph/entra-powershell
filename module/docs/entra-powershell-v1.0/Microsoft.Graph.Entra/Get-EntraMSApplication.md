@@ -25,26 +25,26 @@ Retrieves the list of applications within the organization.
 ### GetQuery (Default)
 ```powershell
 Get-EntraMSApplication 
-    [-Filter <String>] 
-    [-All <Boolean>] 
-    [-Top <Int32>] 
-    [<CommonParameters>]
+ [-Filter <String>] 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
-### GetVague
+### GetByValue
 ```powershell
 Get-EntraMSApplication 
-    [-SearchString <String>] 
-    [-All <Boolean>] 
-    [<CommonParameters>]
+ [-SearchString <String>] 
+ [-All <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraMSApplication 
-    -ObjectId <String> 
-    [-All <Boolean>] 
-    [<CommonParameters>]
+ -ObjectId <String> 
+ [-All <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -562,7 +562,7 @@ This command gets a list of applications, which have the specified display name.
 ## PARAMETERS
 
 ### -ObjectId
-Specifies the ID of an application in Microsoft Entra ID
+Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: String

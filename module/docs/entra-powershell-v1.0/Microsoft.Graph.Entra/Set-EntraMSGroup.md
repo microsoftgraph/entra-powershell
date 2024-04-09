@@ -22,7 +22,7 @@ Sets the properties for an existing Microsoft Entra ID group.
 
 ## SYNTAX
 
-```
+```powershell
 Set-EntraMSGroup 
  -Id <String>
  [-DisplayName <String>] 

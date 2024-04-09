@@ -22,7 +22,7 @@ Updates a domain.
 
 ## SYNTAX
 
-```
+```powershell
 Set-EntraDomain 
  -Name <String>
  [-IsDefault <Boolean>]
@@ -40,6 +40,7 @@ The Set-EntraDomain cmdlet updates a domain in Microsoft Entra ID.
 ```powershell
 PS C:\>Set-EntraDomain -Name Contoso.com -IsDefault $true
 ```
+
 This example demonstrates how to set default domain for new user account in Microsoft Entra ID.  
 
 ### Example 2: Set the list of domain capabilities
@@ -47,6 +48,7 @@ This example demonstrates how to set default domain for new user account in Micr
 ```powershell
 PS C:\>Set-EntraDomain -Name Contoso.com -SupportedServices @("Email", "OfficeCommunicationsOnline")
 ```
+
 This example demonstrates how to set domain capabilities for new user account in Microsoft Entra ID.  
 
 ## PARAMETERS

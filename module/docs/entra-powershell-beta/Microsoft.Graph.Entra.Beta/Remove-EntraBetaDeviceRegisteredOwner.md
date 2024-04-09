@@ -26,7 +26,7 @@ Removes the registered owner of a device.
 Remove-EntraBetaDeviceRegisteredOwner 
     -OwnerId <String> 
     -ObjectId <String> 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

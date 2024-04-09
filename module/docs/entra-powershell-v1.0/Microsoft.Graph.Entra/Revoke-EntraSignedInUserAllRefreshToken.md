@@ -22,8 +22,9 @@ Invalidates the refresh tokens issued to applications for the current user.
 
 ## SYNTAX
 
-```
-Revoke-EntraSignedInUserAllRefreshToken [<CommonParameters>]
+```powershell
+Revoke-EntraSignedInUserAllRefreshToken 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -53,7 +54,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Revoke-EntraUserAllRefreshToken]()
+[Revoke-EntraUserAllRefreshToken](Revoke-EntraUserAllRefreshToken.md)
 
 [#AzureAD: Certificate based authentication for iOS and Android now in preview!](https://blogs.technet.microsoft.com/enterprisemobility/2016/07/18/azuread-certificate-based-authentication-for-ios-and-android-now-in-preview/)
 

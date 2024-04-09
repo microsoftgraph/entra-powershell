@@ -22,7 +22,7 @@ The Get-EntraApplicationProxyApplicationConnectorGroup cmdlet retrieves the conn
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraApplicationProxyApplicationConnectorGroup 
  -ObjectId <String> 
  [<CommonParameters>]

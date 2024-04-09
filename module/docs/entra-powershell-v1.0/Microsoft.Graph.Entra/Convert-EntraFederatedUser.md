@@ -1,4 +1,15 @@
 ---
+title: Convert-EntraFederatedUser
+description: This article provides details on the Convert-EntraFederatedUser command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/28/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,27 +23,29 @@ Updates a user in a domain that was recently converted from single sign-on (also
 
 ## SYNTAX
 
-```
-Convert-EntraFederatedUser [-UserPrincipalName] <String> [[-NewPassword] <String>] [[-TenantId] <Guid>]
+```powershell
+Convert-EntraFederatedUser
+ -UserPrincipalName <String>
+ [-NewPassword <String>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Convert-EntraFederatedUser cmdlet is used to update a user in a domain that was recently converted from single sign-on (also known as identity federation) to
-standard authentication type. 
-A new password must be provided for the user.
+The Convert-EntraFederatedUser cmdlet is used to update a user in a domain that was recently converted from single sign-on (also known as identity federation) to standard authentication type. A new password must be provided for the user.
 
 ## EXAMPLES
 
-### EXAMPLE 1
+### EXAMPLE 1: Update a user in a domain
+```powershell
+PS C:\> Convert-EntraFederatedUser -UserPrincipalName "pattifuller@contoso.com"
 ```
-Convert-EntraFederatedUser -UserPrincipalName "pattifuller@contoso.com"
-```
+
+This command updates a user in a domain.
 
 ## PARAMETERS
 
 ### -UserPrincipalName
-The Microsoft Azure Active Directory UserID for the user to convert.
+The Microsoft Entra ID UserID for the user to convert.
 
 ```yaml
 Type: String
@@ -56,24 +69,6 @@ Aliases:
 
 Required: False
 Position: 2
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -TenantId
-The unique ID of the tenant to perform the operation on. 
-If this is not provided then it will default to the tenant of the current user. 
-This parameter is only
-applicable to partner users.
-
-```yaml
-Type: Guid
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 3
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False

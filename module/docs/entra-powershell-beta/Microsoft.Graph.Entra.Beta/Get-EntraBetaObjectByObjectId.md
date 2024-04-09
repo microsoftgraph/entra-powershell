@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-EntraBetaObjectByObjectId
 
 ## SYNOPSIS
-Retrieves the object(s) specified by the objectIds parameter
+Retrieves the object(s) specified by the ObjectIds parameter
 
 ## SYNTAX
 
@@ -18,7 +18,7 @@ Get-EntraBetaObjectByObjectId [-Types <System.Collections.Generic.List`1[System.
 ```
 
 ## DESCRIPTION
-Retrieves the object(s) specified by the objectIds parameter
+Retrieves the object(s) specified by the ObjectIds parameter
 
 ## EXAMPLES
 

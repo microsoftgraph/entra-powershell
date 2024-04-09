@@ -22,7 +22,7 @@ Updates a specific group Lifecycle Policy in Microsoft Entra ID.
 
 ## SYNTAX
 
-```
+```powershell
 Set-EntraMSGroupLifecyclePolicy 
  -Id <String>
  [-AlternateNotificationEmails <String>] 
@@ -127,5 +127,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Get-EntraMSGroupLifecyclePolicy](Get-EntraMSGroupLifecyclePolicy.md)
+
 [New-EntraMSGroupLifecyclePolicy](New-EntraMSGroupLifecyclePolicy.md)
+
 [Remove-EntraMSGroupLifecyclePolicy](Remove-EntraMSGroupLifecyclePolicy.md)

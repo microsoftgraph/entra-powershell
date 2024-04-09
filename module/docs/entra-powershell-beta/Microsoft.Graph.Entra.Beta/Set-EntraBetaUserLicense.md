@@ -27,7 +27,7 @@ Adds or removes licenses for a Microsoft online service to the list of assigned 
 Set-EntraBetaUserLicense 
     -ObjectId <String> 
     -AssignedLicenses <AssignedLicenses>
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
