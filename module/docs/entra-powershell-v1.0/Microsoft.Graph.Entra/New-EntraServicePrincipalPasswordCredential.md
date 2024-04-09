@@ -25,8 +25,6 @@ Creates a password credential for a service principal.
 ```powershell
 New-EntraServicePrincipalPasswordCredential 
  -ObjectId <String>
- [-CustomKeyIdentifier <String>] 
- [-Value <String>] 
  [-EndDate <DateTime>] 
  [-StartDate <DateTime>] 
  [<CommonParameters>]
@@ -39,7 +37,6 @@ The New-EntraServicePrincipalPasswordCredential cmdlet creates a password creden
 
 ### Example 1: Create a password credential with StartDate
 ```powershell
-PS C:\> $StartDate = Get-Date -Year 2024 -Month 3 -Day 25
 PS C:\> New-EntraServicePrincipalPasswordCredential -ObjectID "021510b7-e753-40aa-b668-29753295ca34" -StartDate 2024-03-21T14:14:14Z
 ```
 ```output
@@ -65,21 +62,6 @@ This example demonstrates how to create a password credential with EndDate for a
 This command creates a password credential for a service principal.
 
 ## PARAMETERS
-
-### -CustomKeyIdentifier
-Specifies a custom key ID.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
 
 ### -EndDate
 The date and time at which the password expires represented using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2024 is 2024-01-01T00:00:00Z.
@@ -116,21 +98,6 @@ The date and time at which the password becomes valid. The Timestamp type repres
 
 ```yaml
 Type: DateTime
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -Value
-Specifies the value for the key.
-
-```yaml
-Type: String
 Parameter Sets: (All)
 Aliases:
 

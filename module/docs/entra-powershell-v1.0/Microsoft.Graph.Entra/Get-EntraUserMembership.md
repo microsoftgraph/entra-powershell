@@ -22,7 +22,7 @@ Get user memberships.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraUserMembership 
  -ObjectId <String>
  [-All <Boolean>]  
