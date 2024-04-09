@@ -22,12 +22,12 @@ Creates a new groupLifecyclePolicy.
 
 ## SYNTAX
 
-```
+```powershell
 New-EntraMSGroupLifecyclePolicy 
--ManagedGroupTypes <String> 
--GroupLifetimeInDays <Int32>
--AlternateNotificationEmails <String> 
-[<CommonParameters>]
+ -ManagedGroupTypes <String> 
+ -GroupLifetimeInDays <Int32>
+ -AlternateNotificationEmails <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

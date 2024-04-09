@@ -24,13 +24,13 @@ If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 ## SYNTAX
 
 ### GetQuery (Default)
-```
+```powershell
 Get-EntraMSGroupLifecyclePolicy 
  [<CommonParameters>]
 ```
 
 ### GetById
-```
+```powershell
 Get-EntraMSGroupLifecyclePolicy 
  -Id <String> 
  [<CommonParameters>]

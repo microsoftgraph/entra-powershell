@@ -22,7 +22,7 @@ Gets members of a directory role.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraDirectoryRoleMember 
  -ObjectId <String> 
  [<CommonParameters>]

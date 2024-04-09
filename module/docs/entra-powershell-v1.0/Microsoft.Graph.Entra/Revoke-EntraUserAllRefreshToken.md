@@ -22,7 +22,7 @@ Invalidates the refresh tokens issued to applications for a user.
 
 ## SYNTAX
 
-```
+```powershell
 Revoke-EntraUserAllRefreshToken 
  -ObjectId <String> 
  [<CommonParameters>]

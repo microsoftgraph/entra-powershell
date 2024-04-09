@@ -22,7 +22,7 @@ Set contact details for a tenant.
 
 ## SYNTAX
 
-```
+```powershell
 Set-EntraTenantDetail 
  [-PrivacyProfile <PrivacyProfile>]
  [-MarketingNotificationEmails <System.Collections.Generic.List`1[System.String]>]

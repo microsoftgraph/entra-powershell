@@ -22,10 +22,10 @@ Removes an administrative unit.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraMSAdministrativeUnit 
--Id <String> 
-[<CommonParameters>]
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
