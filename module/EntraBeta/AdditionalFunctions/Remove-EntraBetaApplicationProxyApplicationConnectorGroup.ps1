@@ -7,6 +7,7 @@ function Remove-EntraBetaApplicationProxyApplicationConnectorGroup {
 
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params["Method"] = "DELETE"
         $body = @{}
         if($null -ne $PSBoundParameters["ObjectId"])
@@ -26,6 +27,6 @@ function Remove-EntraBetaApplicationProxyApplicationConnectorGroup {
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
-        Invoke-MgGraphRequest -Method $params.method -Uri $params.uri 
+        Invoke-MgGraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri 
     }        
 }
