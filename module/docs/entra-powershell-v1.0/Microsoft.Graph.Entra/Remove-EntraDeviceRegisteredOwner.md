@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraDeviceRegisteredOwner
+description: This article provides details on the Remove-EntraDeviceRegisteredOwner command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 02/28/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,8 +22,11 @@ Removes the registered owner of a device.
 
 ## SYNTAX
 
-```
-Remove-EntraDeviceRegisteredOwner -OwnerId <String> -ObjectId <String> [<CommonParameters>]
+```powershell
+Remove-EntraDeviceRegisteredOwner 
+ -OwnerId <String> 
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,16 +35,17 @@ The Remove-EntraDeviceRegisteredOwner cmdlet removes the registered owner of a d
 ## EXAMPLES
 
 ### Example 1: Remove an owner from a device
-```
+```powershell
 PS C:\> $Device = Get-EntraDevice -Top 1
 PS C:\> $Owner = Get-EntraDeviceRegisteredOwner -ObjectId $Device.ObjectId
 PS C:\> Remove-EntraDeviceRegisteredOwner -ObjectId $Device.ObjectId -OwnerId $Owner.ObjectId
 ```
 
-The first command gets a device by using the Get-EntraDevice (./Get-EntraDevice.md)cmdlet, and then stores it in the $Device variable.
+The first command gets a device by using the [Get-EntraDevice](./Get-EntraDevice.md) cmdlet, and then stores it in the $Device variable.  
 
-The second command gets the registered owner for the device in $Device by using the Get-EntraDeviceRegisteredOwner (./Get-EntraDeviceRegisteredOwner.md)cmdlet.
-The command stores it in the $Owner variable.
+The second command gets the registered owner for the device in $Device by using the [Get-EntraDeviceRegisteredOwner](./Get-EntraDeviceRegisteredOwner.md) cmdlet.  
+
+The command stores it in the $Owner variable.  
 
 The final command removes the owner in $Owner from the device in $Device.
 
@@ -68,7 +82,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -78,9 +92,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraDeviceRegisteredOwner]()
+[Add-EntraDeviceRegisteredOwner](Add-EntraDeviceRegisteredOwner.md)
 
-[Get-EntraDevice]()
+[Get-EntraDevice](Get-EntraDevice.md)
 
-[Get-EntraDeviceRegisteredOwner]()
+[Get-EntraDeviceRegisteredOwner](Get-EntraDeviceRegisteredOwner.md)
 

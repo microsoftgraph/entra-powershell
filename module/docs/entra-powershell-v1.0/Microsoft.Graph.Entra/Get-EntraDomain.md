@@ -1,4 +1,14 @@
 ---
+title: Get-EntraDomain
+description: This article provides details on the Get-EntraDomain command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/16/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,13 +23,16 @@ Gets a domain.
 ## SYNTAX
 
 ### GetQuery (Default)
-```
-Get-EntraDomain [<CommonParameters>]
+```powershell
+Get-EntraDomain 
+ [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraDomain -Name <String> [<CommonParameters>]
+```powershell
+Get-EntraDomain 
+ -Name <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -27,12 +40,33 @@ The Get-EntraDomain cmdlet gets a domain in Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Get a list of Domains that are created.
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\>Get-EntraDomain
 ```
 
-{{ Add example description here }}
+```output
+Id         AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified Manufacturer Model PasswordNotificationWindowInDays PasswordValidityPeriodInDays SupportedServices
+--         ------------------ ------------------ -------------- --------- --------- ------ ---------- ------------ ----- -------------------------------- ---------------------------- -----------------
+TEST22.com Managed                               True           False     False     False  False                                                                                       {}
+test26.com Managed                               True           False     False     False  False                                                                                       {}
+test25.com Managed                               True           False     False     False  False                                                                                       {}
+```
+
+This command retrieves a list of domains.
+
+### Example 2: Get a specific Domain.
+```powershell
+PS C:\>Get-EntraDomain -Name TEST22.com
+```
+
+```output
+Id         AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified Manufacturer Model PasswordNotificationWindowInDays PasswordValidityPeriodInDays SupportedServices
+--         ------------------ ------------------ -------------- --------- --------- ------ ---------- ------------ ----- -------------------------------- ---------------------------- -----------------
+TEST22.com Managed                               True           False     False     False  False                                                                                       {}
+```
+
+This command retrieves a domain with the specified name.
 
 ## PARAMETERS
 
@@ -52,7 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -62,11 +96,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Confirm-EntraDomain]()
+[Confirm-EntraDomain](Confirm-EntraDomain.md)
 
-[New-EntraDomain]()
+[New-EntraDomain](New-EntraDomain.md)
 
-[Remove-EntraDomain]()
+[Remove-EntraDomain](Remove-EntraDomain.md)
 
-[Set-EntraDomain]()
+[Set-EntraDomain](Set-EntraDomain.md)
 

@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraMSDeletedDirectoryObject.
+description: This article provides details on the Remove-EntraMSDeletedDirectoryObject command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/15/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -8,31 +18,33 @@ schema: 2.0.0
 # Remove-EntraMSDeletedDirectoryObject
 
 ## SYNOPSIS
-This cmdlet is used to permanently delete a previously deleted directory object
+This cmdlet is used to permanently delete a previously deleted directory object.
 
 ## SYNTAX
 
-```
-Remove-EntraMSDeletedDirectoryObject -Id <String> [<CommonParameters>]
+```powershell
+Remove-EntraMSDeletedDirectoryObject 
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 This cmdlet is used to permanently delete a previously deleted directory object.
-When a directory object is permanently deleted it can no longer be restored.
+When a directory object is permanently deleted, it can no longer be restored.
 
 ## EXAMPLES
 
-### Example 1
-```
-Remove-EntraMSDeletedDirectoryObject -Id aa644285-eb75-4389-885e-7233f096984c
+### Example 1: Delete a previously deleted directory object
+```powershell
+Remove-EntraMSDeletedDirectoryObject -Id "aa644285-eb75-4389-885e-7233f096984c"
 ```
 
-This example shows how to permanently delete a previously deleted directory object with Id = aa644285-eb75-4389-885e-7233f096984c
+This example demonstrates how to permanently delete a previously deleted directory object by Id.
 
 ## PARAMETERS
 
 ### -Id
-The Id of the directory object that is permanently deleted
+The Id of the directory object that is permanently deleted.
 
 ```yaml
 Type: String
@@ -47,7 +59,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -58,3 +70,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[Get-EntraMSDeletedDirectoryObject](Get-EntraMSDeletedDirectoryObject.md)
+
+[Restore-EntraMSDeletedDirectoryObject](Restore-EntraMSDeletedDirectoryObject.md)

@@ -8,7 +8,8 @@
     Outputs = $null
     CustomScript = @"
     PROCESS {  
-        `$params = @{}  
+        `$params = @{}
+        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
                 if (`$null -ne `$PSBoundParameters["TargetType"]) {
                     `$params["TargetType"] = `$PSBoundParameters["TargetType"]
                 }
@@ -44,7 +45,7 @@
                     elseif(`$null -ne `$params["Top"]){
                         `$URI = 'https://graph.microsoft.com/beta/{0}/{1}/settings/{2}' -f `$TargetType,`$TargetObjectId,`$params["Top"]
                     }
-                    `$rawresponse = (Invoke-GraphRequest -Uri `$uri -Method `$Method).Value
+                    `$rawresponse = (Invoke-GraphRequest -Headers `$customHeaders -Uri `$uri -Method `$Method).Value
                     `$response = `$rawresponse | ConvertTo-Json -Depth 3 | ConvertFrom-Json
                     `$response | ForEach-Object {Add-Member -InputObject `$_ -NotePropertyName "TargetType" -NotePropertyValue `$TargetType; Add-Member -InputObject `$_ -NotePropertyName "TargetObjectID" -NotePropertyValue `$TargetObjectId}
                     `$response

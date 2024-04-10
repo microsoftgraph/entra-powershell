@@ -1,4 +1,15 @@
 ---
+title: Add-EntraMSAdministrativeUnitMember
+description: This article provides details on the Add-EntraMSAdministrativeUnitMember command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/22/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,64 +23,29 @@ Adds an administrative unit member.
 
 ## SYNTAX
 
-```
-Add-EntraMSAdministrativeUnitMember -RefObjectId <String> -Id <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Add-EntraMSAdministrativeUnitMember 
+ -RefObjectId <String> 
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Add-EntraMSAdministrativeUnitMember cmdlet adds an Active Directory administrative unit member.
+The **Add-EntraMSAdministrativeUnitMember** cmdlet adds a Microsoft Entra ID administrative unit member.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Add user as an administrative unit member
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\>Add-EntraMSAdministrativeUnitMember -Id f306a126-cf2e-439d-b20f-95ce4bcb7ffa -RefObjectId d6873b36-81d6-4c5e-bec0-9e3ca2c86846
 ```
 
-{{ Add example description here }}
+This command adds a user as an administrative unit member.
 
 ## PARAMETERS
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are: * Continue
-
-* Ignore
-* Inquire
-* SilentlyContinue
-* Stop
-* Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies a variable in which to store an information event message.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Id
-Specifies the ID of an Active Directory administrative unit.
+Specifies the ID of a Microsoft Entra ID administrative unit.
 
 ```yaml
 Type: String
@@ -84,7 +60,7 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
-Specifies the unique ID of the specific Microsoft Entra ID object that will be assigned as owner/manager/member.
+Specifies the unique ID of the specific Microsoft Entra ID object that are as owner/manager/member.
 
 ```yaml
 Type: String
@@ -99,7 +75,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -109,7 +85,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraMSAdministrativeUnitMember]()
+[Get-EntraMSAdministrativeUnitMember](Get-EntraMSAdministrativeUnitMember.md)
 
-[Remove-EntraMSAdministrativeUnitMember]()
+[Remove-EntraMSAdministrativeUnitMember](Remove-EntraMSAdministrativeUnitMember.md)
 

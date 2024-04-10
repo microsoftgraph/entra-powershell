@@ -1,4 +1,14 @@
 ---
+title: New-EntraMSRoleAssignment
+description: This article provides details on the New-EntraMSRoleAssignment command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/16/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,28 +22,36 @@ Create a new Microsoft Entra ID roleAssignment.
 
 ## SYNTAX
 
-```
-New-EntraMSRoleAssignment -PrincipalId <String> [-DirectoryScopeId <String>] -RoleDefinitionId <String>
+```powershell
+New-EntraMSRoleAssignment 
+ -PrincipalId <String>     
+ -RoleDefinitionId <String>
+ [-DirectoryScopeId <String>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Create a new Microsoft Entra ID roleAssignment object.
-For more info see https://go.microsoft.com/fwlink/?linkid=2097519.
+The New-EntraMSRoleAssignment cmdlet creates a new Microsoft Entra ID role assignment.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Create a new Microsoft Entra ID role assignment
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> New-EntraMSRoleAssignment -RoleDefinitionId 54d418b2-4cc0-47ee-9b39-e8f84ed8e073 -PrincipalId 02ed943d-6eca-4f99-83d6-e6fbf9dc63ae -DirectoryScopeId '/'
 ```
 
-{{ Add example description here }}
+```output
+Id                                            PrincipalId                          RoleDefinitionId                     DirectoryScopeId AppScopeId
+--                                            -----------                          ----------------                     ---------------- ----------
+shjUVMBM7kebOej4Ttjgcz2U7QLKbplPg9bm-_ncY64-1 02ed943d-6eca-4f99-83d6-e6fbf9dc63ae 54d418b2-4cc0-47ee-9b39-e8f84ed8e073 /
+```
+
+This command creates a new role assignment.
 
 ## PARAMETERS
 
 ### -DirectoryScopeId
-{{ Fill DirectoryScopeId Description }}
+Specifies the scope for the role assignment.
 
 ```yaml
 Type: String
@@ -48,7 +66,7 @@ Accept wildcard characters: False
 ```
 
 ### -PrincipalId
-{{ Fill PrincipalId Description }}
+Specifies the principal for role assignment.
 
 ```yaml
 Type: String
@@ -63,7 +81,7 @@ Accept wildcard characters: False
 ```
 
 ### -RoleDefinitionId
-{{ Fill RoleDefinitionId Description }}
+Specifies the role definition for role assignment.
 
 ```yaml
 Type: String
@@ -78,7 +96,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

@@ -1,4 +1,14 @@
 ---
+title: New-EntraServicePrincipal.
+description: This article provides details on the New-EntraServicePrincipal command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/16/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,34 +22,105 @@ Creates a service principal.
 
 ## SYNTAX
 
-```
+```powershell
 New-EntraServicePrincipal
+ -AppId <String>
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]>]
- [-Homepage <String>] -AppId <String> [-LogoutUrl <String>] [-ServicePrincipalType <String>]
- [-SamlMetadataUrl <String>] [-AlternativeNames <System.Collections.Generic.List`1[System.String]>]
+ [-Homepage <String>] 
+ [-LogoutUrl <String>] 
+ [-ServicePrincipalType <String>]
+ [-AlternativeNames <System.Collections.Generic.List`1[System.String]>]
  [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]>]
- [-ErrorUrl <String>] [-PublisherName <String>] [-Tags <System.Collections.Generic.List`1[System.String]>]
- [-AccountEnabled <String>] [-ServicePrincipalNames <System.Collections.Generic.List`1[System.String]>]
- [-AppRoleAssignmentRequired <Boolean>] [-DisplayName <String>]
- [-ReplyUrls <System.Collections.Generic.List`1[System.String]>] [<CommonParameters>]
+ [-Tags <System.Collections.Generic.List`1[System.String]>]
+ [-AccountEnabled <String>] 
+ [-ServicePrincipalNames <System.Collections.Generic.List`1[System.String]>]
+ [-AppRoleAssignmentRequired <Boolean>] 
+ [-DisplayName <String>]
+ [-ReplyUrls <System.Collections.Generic.List`1[System.String]>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+Create a new service Principal.
 
 ## EXAMPLES
 
-### Example 1: Create a service principal
+### Example 1: Create a new service principal by DisplayName, AccountEnabled, Tags, and AppRoleAssignmentRequired
+```powershell
+PS C:\> $MyApp=(Get-EntraApplication -Filter "DisplayName eq 'ToGraph_443DEM'")
+PS C:\> New-EntraServicePrincipal -AccountEnabled $true -AppId $MyApp.AppId -AppRoleAssignmentRequired $true -DisplayName $MyApp.DisplayName -Tags {WindowsAzureActiveDirectoryIntegratedApp}
 ```
-PS C:\>New-EntraServicePrincipal -AccountEnabled $true -AppId $MyApp.AppId -AppRoleAssignmentRequired $true -DisplayName $App -Tags {WindowsAzureActiveDirectoryIntegratedApp}
+```output
+DisplayName Id                                   AppId                                SignInAudience                     ServicePrincipalType
+----------- --                                   -----                                --------------                     --------------------
+test adms   b7a93da9-710d-47ec-9ee9-8213ff0dee4b 9f795b31-e4b5-4ca7-a333-6c0890d62e3c AzureADandPersonalMicrosoftAccount Application
 ```
 
-This command creates a service principal.
-The tag "-Tags {WindowsAzureActiveDirectoryIntegratedApp}" is used to have this service principal show up in the list of Integrated Applicatins in the Admin Portal.
+This example demonstrates how to create a new service Principal in Microsoft Entra ID.  
+First command gets the application and stored in variable.  
+Second command creates a new service principal.  
+The tag "-Tags {WindowsAzureActiveDirectoryIntegratedApp}" is used to have this service principal show up in the list of Integrated Applications in the Admin Portal.
+
+### Example 2: Create a new service principal by Homepage, logoutUrl, and ReplyUrls 
+```powershell
+PS C:\> $MyApp=(Get-EntraApplication -Filter "DisplayName eq 'ToGraph_443DEM'")
+PS C:\> New-EntraServicePrincipal  -AppId $MyApp.AppId -Homepage 'https://localhost/home' -LogoutUrl 'htpp://localhost/logout' -ReplyUrls 'https://localhost/redirect'  
+```
+```output
+DisplayName Id                                   AppId                                SignInAudience                     ServicePrincipalType
+----------- --                                   -----                                --------------                     --------------------
+test adms   b7a93da9-710d-47ec-9ee9-8213ff0dee4b 9f795b31-e4b5-4ca7-a333-6c0890d62e3c AzureADandPersonalMicrosoftAccount Application
+```
+
+This example demonstrates how to create a new service Principal in Microsoft Entra ID.  
+First command gets the application and stored in variable.  
+Second command creates a new service principal.
+
+### Example 3: Create a new service principal by KeyCredentials
+```powershell
+PS C:\> $creds = New-Object Microsoft.Open.AzureAD.Model.KeyCredential
+$creds.CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes("Test")
+$startdate = Get-Date -Year 2023 -Month 10 -Day 23
+$creds.StartDate = $startdate
+$creds.Type = "Symmetric"
+$creds.Usage = 'Sign'
+$creds.Value = [System.Text.Encoding]::UTF8.GetBytes("123")
+$creds.EndDate = Get-Date -Year 2024 -Month 10 -Day 23
+PS C:\> $MyApp=(Get-EntraApplication -Filter "DisplayName eq 'ToGraph_443DEM'")
+>> New-EntraServicePrincipal -AppId 00e08ac1-6dcb-443d-bf3b-d3723b6bd45f -Homepage 'https://localhost/home' -KeyCredentials $creds
+PS C:\> New-EntraServicePrincipal  -AppId $MyApp.AppId  -KeyCredentials $creds
+```
+
+```output
+DisplayName Id                                   AppId                                SignInAudience                     ServicePrincipalType
+----------- --                                   -----                                --------------                     --------------------
+test adms2  ee683272-4d02-44b5-83df-ec0527b4e5db 418f12ad-9795-49bb-aebd-a0102973258b AzureADandPersonalMicrosoftAccount Application
+```
+
+This example demonstrates how to create a new service Principal in Microsoft Entra ID.  
+First command stored the key credentials in a variable.
+Second command gets the application and stored in variable.  
+Last command creates a new service principal.
+
+### Example 4: Create a new service principal by AlternativeNames, ServicePrincipalType, and ServicePrincipalName
+```powershell
+PS C:\> $MyApp=(Get-EntraApplication -Filter "DisplayName eq 'ToGraph_443DEM'")
+PS C:\> New-EntraServicePrincipal  -AppId $MyApp.AppId -AlternativeNames 'sktest2' -ServicePrincipalType "Application" -ServicePrincipalNames $MyApp.AppId
+```
+```output
+DisplayName Id                                   AppId                                SignInAudience                     ServicePrincipalType
+----------- --                                   -----                                --------------                     --------------------
+test adms   b7a93da9-710d-47ec-9ee9-8213ff0dee4b 9f795b31-e4b5-4ca7-a333-6c0890d62e3c AzureADandPersonalMicrosoftAccount Application
+```
+
+This example demonstrates how to create a new service Principal in Microsoft Entra ID.  
+First command gets the application and stored in variable.  
+Second command creates a new service principal.
 
 ## PARAMETERS
 
 ### -AccountEnabled
-true if the service principal account is enabled; otherwise, false.
+True if the service principal account is enabled; otherwise, false.
 
 ```yaml
 Type: String
@@ -54,7 +135,7 @@ Accept wildcard characters: False
 ```
 
 ### -AlternativeNames
-The atlernative names for this service principal
+The alternative names for this service principal
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -100,21 +181,6 @@ Accept wildcard characters: False
 
 ### -DisplayName
 Specifies the display name.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ErrorUrl
-Specifies the error URL.
 
 ```yaml
 Type: String
@@ -188,21 +254,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -PublisherName
-Specifies the publisher name.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -ReplyUrls
 The URLs that user tokens are sent to for sign in with the associated application, or the redirect URIs that OAuth 2.0 authorization codes and access tokens are sent to for the associated application.
 
@@ -218,27 +269,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -SamlMetadataUrl
-The URL for the SAML metadata
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -ServicePrincipalNames
 Specifies an array of service principal names.
 Based on the identifierURIs collection, plus the application's appId property, these URIs are used to reference an application's service principal.
-A client will use these to:
+A client uses ServicePrincipalNames to:
 
-- populate requiredResourceAccess, via "Permissions to other applications" in the Azure classic portal.  - specify a resource URI to acquire an access token, which is the URI returned in the claim.
+- populate requiredResourceAccess, via "Permissions to other applications" in the Microsoft Entra ID classic portal.  
+- specify a resource URI to acquire an access token, which is the URI returned in the claim.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -253,7 +290,7 @@ Accept wildcard characters: False
 ```
 
 ### -ServicePrincipalType
-THe type of the service principal
+The type of the service principal
 
 ```yaml
 Type: String
@@ -270,7 +307,7 @@ Accept wildcard characters: False
 ### -Tags
 Tags linked to this service principal.
 
-Note that if you intend for this service principal to show up in the All Applications list in the admin portal, you need to set this value to {WindowsAzureActiveDirectoryIntegratedApp}
+If you intend for this service principal to show up in the All Applications list in the admin portal, you need to set this value to {WindowsAzureActiveDirectoryIntegratedApp}.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -285,7 +322,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -295,9 +332,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraServicePrincipal]()
+[Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
 
-[Remove-EntraServicePrincipal]()
+[Remove-EntraServicePrincipal](Remove-EntraServicePrincipal.md)
 
-[Set-EntraServicePrincipal]()
+[Set-EntraServicePrincipal](Set-EntraServicePrincipal.md)
 

@@ -1,4 +1,14 @@
 ---
+title: Restore-EntraDeletedApplication
+description: This article provides details on the Restore-EntraDeletedApplication command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/21/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,19 +22,23 @@ Restores a previously deleted application
 
 ## SYNTAX
 
-```
-Restore-EntraDeletedApplication [-IdentifierUris <System.Collections.Generic.List`1[System.String]>]
- -ObjectId <String> [<CommonParameters>]
+```powershell
+Restore-EntraDeletedApplication 
+ [-IdentifierUris <System.Collections.Generic.List`1[System.String]>]
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This cmdlet restores a previously deleted application
+This cmdlet restores a previously deleted application.
 
 ## EXAMPLES
 
-### Example 1
-```
+### Example 1: Restores a previously deleted application.
+```powershell
 PS C:\WINDOWS\system32> Get-EntraApplication
+```
+```output
 
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
@@ -37,23 +51,27 @@ a5fd58ca-9f1b-4184-ba7c-2595b5831e21 641e422d-29af-49c9-a24e-c0ee05ff10d5 PowerS
 c4fdf87f-f68e-4859-8bcf-36579b66005e 71715b24-8cdd-432b-a138-86e8ad179274 Woodgrove HR App
 d58d399f-56c3-409c-9efc-fdc28a6bd50e 3ad57eaf-2547-4161-81ae-fde64b5e1c0f ExtensionAttributes
 e9cfe5ad-c9eb-4cd7-87c2-2a69059aeb69 576ea3a9-3d7f-4bcc-a2b5-2d1a5088075e GraphDirectoryExtension
-
-
+```
+```powershell
 PS C:\WINDOWS\system32> Remove-EntraApplication -ObjectId 79592454-dea7-4660-9d91-f1768e5055ac
 PS C:\WINDOWS\system32> Get-EntraDeletedApplication
-
-ObjectId                             AppId                                DisplayName
---------                             -----                                -----------
-79592454-dea7-4660-9d91-f1768e5055ac feabcdd1-711a-4d55-ad5e-0d0577aaaa5e analog
-
-PS C:\WINDOWS\system32> Restore-EntraDeletedApplication -ObjectId 79592454-dea7-4660-9d91-f1768e5055ac
+```
+```output
 
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 79592454-dea7-4660-9d91-f1768e5055ac feabcdd1-711a-4d55-ad5e-0d0577aaaa5e analog
 ```
+```powershell
+PS C:\WINDOWS\system32> Restore-EntraDeletedApplication -ObjectId 79592454-dea7-4660-9d91-f1768e5055ac
+```
+```output
+ObjectId                             AppId                                DisplayName
+--------                             -----                                -----------
+79592454-dea7-4660-9d91-f1768e5055ac feabcdd1-711a-4d55-ad5e-0d0577aaaa5e analog
+```
 
-This example shows how an application is deleted, then the deleted application is retrieved using the Get-EntraDeletedApplication cmdlet, and subsequently the application is restored by specifying the application's Object ID in the Restore-EntraDeletedApplication cmdlet
+This example shows how an application is deleted, then the deleted application is retrieved using the Get-EntraDeletedApplication cmdlet, and after the application is restored by specifying the application's Object ID in the Restore-EntraDeletedApplication cmdlet.
 
 ## PARAMETERS
 
@@ -88,7 +106,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

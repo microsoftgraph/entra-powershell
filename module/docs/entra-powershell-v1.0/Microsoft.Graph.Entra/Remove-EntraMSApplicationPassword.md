@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraMSApplicationPassword.
+description: This article provides details on the Remove-EntraMSApplicationPassword command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/25/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,8 +22,11 @@ Remove a password from an application.
 
 ## SYNTAX
 
-```
-Remove-EntraMSApplicationPassword -ObjectId <String> [-KeyId <String>] [<CommonParameters>]
+```powershell
+Remove-EntraMSApplicationPassword 
+ -ObjectId <String> 
+ [-KeyId <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,11 +35,13 @@ Remove a password from an application.
 ## EXAMPLES
 
 ### Example 1: Removes a password from an application
-```
+```powershell
 PS C:\>Remove-EntraMSApplicationPassWord -ObjectId 1f88e99f-37a3-468f-80ae-e07b62ed0287 -KeyId 80e561ed-44ed-48dc-8c09-9d4803e26e4c
 ```
 
-This command remove the specified password from the specified application.
+This command remove the specified password from the specified application.  
+ObjectId: The ObjectId of the specified application.
+KeyID: The unique identifier of the PasswordCredential.  
 
 ## PARAMETERS
 
@@ -61,7 +76,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -72,5 +87,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[New-EntraMSApplicationPassword]()
+[New-EntraMSApplicationPassword](New-EntraMSApplicationPassword.md)
 

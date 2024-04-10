@@ -1,4 +1,14 @@
 ---
+title: New-EntraGroup.
+description: This article provides details on the New-EntraGroup command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/14/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,9 +22,13 @@ Creates a group.
 
 ## SYNTAX
 
-```
-New-EntraGroup -DisplayName <String> -SecurityEnabled <Boolean> [-Description <String>] -MailEnabled <Boolean>
- -MailNickName <String> [-InformationAction <ActionPreference>] [-InformationVariable <String>]
+```powershell
+New-EntraGroup 
+ -DisplayName <String> 
+ -SecurityEnabled <Boolean> 
+ [-Description <String>] 
+ -MailEnabled <Boolean>
+ -MailNickName <String> 
  [<CommonParameters>]
 ```
 
@@ -23,14 +37,34 @@ The New-EntraGroup cmdlet creates a group in Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1: Create a group
-```
-PS C:\>New-EntraGroup -DisplayName "My new group" -MailEnabled $false -SecurityEnabled $true -MailNickName "NotSet"
+### Example 1: Create a group.
 
-ObjectId                             DisplayName  Description
---------                             -----------  -----------
-11fa5e1e-737c-40c5-835e-416ae3959606 My new group
+```powershell
+PS C:\>New-EntraGroup -DisplayName "My new group" -MailEnabled $false -SecurityEnabled $true -MailNickName "NotSet"
 ```
+```output
+
+DisplayName  Id                                   MailNickname Description GroupTypes
+-----------  --                                   ------------ ----------- ----------
+My new group 866fc97b-1171-4330-b4d0-d07f2cc8117b NotSet                   {}
+```
+This example demonstrates how to create a group.
+
+### Example 2: Create a group with Description parameter.
+
+```powershell
+PS C:\>New-EntraGroup -DisplayName "My new group" -MailEnabled $false -SecurityEnabled $true -MailNickName "NotSet" -Description "new created group"
+
+```
+```output
+DisplayName  Id                                   MailNickname Description       GroupTypes
+-----------  --                                   ------------ -----------       ----------
+My new group ab0a6502-2201-412f-9ca8-fae1558a8470 NotSet       new created group {}
+
+
+```
+This example demonstrates how to create a group with Description parameter.
+
 
 ## PARAMETERS
 
@@ -63,46 +97,6 @@ Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -MailEnabled
 Indicates whether mail is enabled.
 
@@ -149,7 +143,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -159,9 +153,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraGroup]()
+[Get-EntraGroup](Get-EntraGroup.md)
 
-[Remove-EntraGroup]()
+[Remove-EntraGroup](Remove-EntraGroup.md)
 
-[Set-EntraGroup]()
+[Set-EntraGroup](Set-EntraGroup.md)
 

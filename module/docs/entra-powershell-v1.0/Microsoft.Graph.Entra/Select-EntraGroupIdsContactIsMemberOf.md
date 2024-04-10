@@ -1,4 +1,14 @@
 ---
+title: Select-EntraGroupIdsContactIsMemberOf
+description: This article provides details on the Select-EntraGroupIdsContactIsMemberOf command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/21/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,10 +22,11 @@ Get groups in which a contact is a member.
 
 ## SYNTAX
 
-```
-Select-EntraGroupIdsContactIsMemberOf -ObjectId <String>
- -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Select-EntraGroupIdsContactIsMemberOf 
+ -ObjectId <String>
+ -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,12 +34,15 @@ The Select-EntraGroupIdsContactIsMemberOf cmdlet gets groups in Microsoft Entra 
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Get groups in which a contact is a member.
 ```powershell
-PS C:\> {{ Add example code here }}
-```
+PS C:\> $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+PS C:\>$Groups.GroupIds = (Get-AzureADGroup -ObjectId 69641f6c-41dc-4f63-9c21-cc9c8ed12931).ObjectId
+PS C:\>$UserID = (Get-AzureADContact -ObjectId cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c).ObjectId
+PS C:\>Select-AzureADGroupIdsContactIsMemberOf -ObjectId $UserID -GroupIdsForMembershipCheck $Groups
 
-{{ Add example description here }}
+```
+This example demonstrates how to get groups in which a contact is a member.
 
 ## PARAMETERS
 
@@ -47,46 +61,8 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -ObjectId
-Specifies the object ID of a contact in Azure AD.
+Specifies the object ID of a contact in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -101,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

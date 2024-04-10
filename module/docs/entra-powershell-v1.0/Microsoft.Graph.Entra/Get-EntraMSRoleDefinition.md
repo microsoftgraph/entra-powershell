@@ -1,4 +1,14 @@
 ---
+title: Get-EntraMSRoleDefinition
+description: This article provides details on the Get-EntraMSRoleDefinition command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/01/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -8,42 +18,149 @@ schema: 2.0.0
 # Get-EntraMSRoleDefinition
 
 ## SYNOPSIS
-Get a Microsoft Entra ID roleDefinition by objectId.
+Gets information about role definitions in Microsoft Entra ID.
 
 ## SYNTAX
 
 ### GetQuery (Default)
-```
-Get-EntraMSRoleDefinition [-Filter <String>] [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+```powershell
+Get-EntraMSRoleDefinition 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [-Filter <String>] 
+ [<CommonParameters>]
 ```
 
 ### GetVague
-```
-Get-EntraMSRoleDefinition [-SearchString <String>] [-All <Boolean>] [<CommonParameters>]
+```powershell
+Get-EntraMSRoleDefinition 
+ [-SearchString <String>] 
+ [-All <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraMSRoleDefinition -Id <String> [-All <Boolean>] [<CommonParameters>]
+```powershell
+Get-EntraMSRoleDefinition 
+ -Id <String> 
+ [-All <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Get a Microsoft Entra ID roleDefinition object by id.
-For more info see https://go.microsoft.com/fwlink/?linkid=2097519.
+The Get-EntraMSRoleDefinition cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the Id parameter. Specify the SearchString or Filter parameter to find particular role definition.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Get all role definitions
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-EntraMSRoleDefinition
 ```
 
-{{ Add example description here }}
+```output
+Id              : 690e93e9-da28-4b25-9d0d-2f0b4e6b2ff9
+OdataType       :
+Description     : SampleRoleDefinition1.
+DisplayName     : SampleRoleDef
+IsBuiltIn       : False
+ResourceScopes  : {/}
+IsEnabled       : True
+RolePermissions : {class RolePermission {
+                  AllowedResourceActions:
+                  microsoft.directory/applications/create
+                    Condition:
+                  }
+                  }
+
+Id              : 1a327991-10cb-4266-877a-998fb4df78ec
+OdataType       :
+Description     :
+DisplayName     : SampleRoleDefinition2.
+IsBuiltIn       : False
+ResourceScopes  : {/}
+IsEnabled       : True
+RolePermissions : {class RolePermission {
+                  AllowedResourceActions:
+                  microsoft.directory/applications/create
+                    Condition:
+                  }
+                  }
+TemplateId      : 332a8659-25b8-4b3e-b545-38b331c48b2b
+Version         :
+```
+
+This command returns all the role definitions present.
+
+### Example 2: Get a role definition by ID
+```powershell
+PS C:\> Get-EntraMSRoleDefinition -Id 1a327991-10cb-4266-877a-998fb4df78ec
+```
+
+```output
+Id              : 1a327991-10cb-4266-877a-998fb4df78ec
+OdataType       :
+Description     :
+DisplayName     : SampleRoleDefinition2.
+IsBuiltIn       : False
+ResourceScopes  : {/}
+IsEnabled       : True
+RolePermissions : {class RolePermission {
+                  AllowedResourceActions:
+                  microsoft.directory/applications/create
+                    Condition:
+                  }
+                  }
+TemplateId      : 332a8659-25b8-4b3e-b545-38b331c48b2b
+Version         :
+```
+
+This command returns a specified role definition.
+
+### Example 3: Filter role definitions by display name
+```powershell
+PS C:\> Get-EntraMSRoleDefinition -Filter "startswith(displayName, 'Sample')"
+```
+
+```output
+Id              : 690e93e9-da28-4b25-9d0d-2f0b4e6b2ff9
+OdataType       :
+Description     : SampleRoleDefinition1.
+DisplayName     : SampleRoleDef
+IsBuiltIn       : False
+ResourceScopes  : {/}
+IsEnabled       : True
+RolePermissions : {class RolePermission {
+                  AllowedResourceActions:
+                  microsoft.directory/applications/create
+                    Condition:
+                  }
+                  }
+TemplateId      : 332a8659-25b8-4b3e-b545-38b331c48b2b
+Version         :
+
+Id              : 1a327991-10cb-4266-877a-998fb4df78ec
+OdataType       :
+Description     :
+DisplayName     : SampleRoleDefinition2.
+IsBuiltIn       : False
+ResourceScopes  : {/}
+IsEnabled       : True
+RolePermissions : {class RolePermission {
+                  AllowedResourceActions:
+                  microsoft.directory/applications/create
+                    Condition:
+                  }
+                  }
+TemplateId      : 332a8659-25b8-4b3e-b545-38b331c48b2b
+Version         :
+```
+
+This command return all the role definitions containing the specified display name.
 
 ## PARAMETERS
 
 ### -Id
-The unique identifier of a Microsoft Entra ID roleDefinition object.
+Specifies the ID of the role definition.
 
 ```yaml
 Type: String
@@ -58,7 +175,7 @@ Accept wildcard characters: False
 ```
 
 ### -All
-Boolean to express that return all results from the server for the specific query
+If true, return all role definitions. If false, return the number of objects specified by the Top parameter.
 
 ```yaml
 Type: Boolean
@@ -73,7 +190,7 @@ Accept wildcard characters: False
 ```
 
 ### -Top
-The maximum number of records to return.
+Specifies the maximum number of records that this cmdlet gets. The default value is 100.
 
 ```yaml
 Type: Int32
@@ -88,8 +205,7 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-The oData v3.0 filter statement. 
-Controls which objects are returned.
+Specifies an oData v3.0 filter string to match a set of role definitions.
 
 ```yaml
 Type: String
@@ -104,7 +220,7 @@ Accept wildcard characters: False
 ```
 
 ### -SearchString
-{{ Fill SearchString Description }}
+Specifies a search string.
 
 ```yaml
 Type: String
@@ -119,17 +235,16 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
-### string
-### bool?
-### int?
-### string
+### String
+### Bool?
+### Int?
+### String
 ## OUTPUTS
 
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleDefinition
-## NOTES
 
 ## RELATED LINKS

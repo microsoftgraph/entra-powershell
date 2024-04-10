@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraMSServicePrincipalDelegatedPermissionClassification.
+description: This article provides details on the Remove-EntraMSServicePrincipalDelegatedPermissionClassification command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/14/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,22 +22,24 @@ Remove delegated permission classification.
 
 ## SYNTAX
 
-```
-Remove-EntraMSServicePrincipalDelegatedPermissionClassification -ServicePrincipalId <String> -Id <String>
+```powershell
+Remove-EntraMSServicePrincipalDelegatedPermissionClassification 
+ -ServicePrincipalId <String>
+ -Id <String>
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Remove-EntraMSServicePrincipalDelegatedPermissionClassification cmdlet deletes the given delegated permission classification by Id from service principal.
+The Remove-EntraMSServicePrincipalDelegatedPermissionClassification cmdlet deletes the given delegated permission classification by ID from service principal.
 
 ## EXAMPLES
 
-### Example 1: Remove a delegated permission classifications
-```
+### Example 1: Remove a delegated permission classification
+```powershell
 PS C:\> Remove-EntraMSServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "95f56359-0165-4f80-bffb-c89d06cf2c6f" -Id "5XBeIKarUkypdm0tRsSAQwE"
 ```
 
-This command delete the delegated permission classification by Id from the service principal.
+This command deletes the delegated permission classification by ID from the service principal.
 
 ## PARAMETERS
 
@@ -47,7 +59,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-The unique identifier of a delegated permission classification object id.
+The unique identifier of a delegated permission classification object ID.
 
 ```yaml
 Type: String
@@ -62,11 +74,12 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ## OUTPUTS
 
 ## NOTES
+
 ## RELATED LINKS

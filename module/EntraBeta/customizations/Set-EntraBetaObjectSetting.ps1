@@ -8,7 +8,8 @@
     Outputs = $null
     CustomScript = @"
     PROCESS {  
-        `$params = @{}  
+        `$params = @{}
+        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
                 if (`$null -ne `$PSBoundParameters["TargetType"]) {
                     `$params["TargetType"] = `$PSBoundParameters["TargetType"]
                 }
@@ -35,7 +36,7 @@
                         `$propertyValues = `$_ | Select-Object -Property `$NonEmptyProperties | ConvertTo-Json
                         [regex]::Replace(`$propertyValues,'(?<=")(\w+)(?=":)',{`$args[0].Groups[1].Value.ToLower()})
                          }
-                    `$response =  Invoke-GraphRequest -Method PATCH -Uri https://graph.microsoft.com/beta/`$TargetType/`$TargetObjectId/settings/`$ID -Body `$directorySettingsJson
+                    `$response =  Invoke-GraphRequest -Headers `$customHeaders -Method PATCH -Uri https://graph.microsoft.com/beta/`$TargetType/`$TargetObjectId/settings/`$ID -Body `$directorySettingsJson
                     `$response | ConvertTo-Json | ConvertFrom-Json
     }
 "@
