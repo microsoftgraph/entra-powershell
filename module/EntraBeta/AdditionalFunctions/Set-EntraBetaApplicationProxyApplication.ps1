@@ -87,7 +87,7 @@ function Set-EntraBetaApplicationProxyApplication {
             identifierUris = @($exUrl) 
             web = @{ 
             redirectUris = @($ExternalUrl) 
-            homePageUrl = $InternalUrl 
+            homePageUrl = $InternalUrl
             logoutUrl = $ExternalUrl+"?appproxy=logout"
             } 
         }
@@ -99,14 +99,12 @@ function Set-EntraBetaApplicationProxyApplication {
         }
   
         # update onpremises
-        if($null -ne $Application){
-            $onPremisesPublishingBody = @{onPremisesPublishing = $onPremisesPublishing}
-            try {
-                Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ObjectId" -Method PATCH -Body $onPremisesPublishingBody
-            } catch {
-                Write-Error $_
-                return
-            }
+        $onPremisesPublishingBody = @{onPremisesPublishing = $onPremisesPublishing}
+        try {
+            Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ObjectId" -Method PATCH -Body $onPremisesPublishingBody
+        } catch {
+            Write-Error $_
+            return
         }
        
         #update connector group
@@ -132,7 +130,7 @@ function Set-EntraBetaApplicationProxyApplication {
         $response = (Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ObjectId/onPremisesPublishing" -Method GET) | ConvertTo-Json -depth 10 | ConvertFrom-Json
         $response | ForEach-Object {
             if($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType NoteProperty -Name ObjectId -Value $Id
+            Add-Member -InputObject $_ -MemberType NoteProperty -Name ObjectId -Value $ObjectId
            }
         }
         $response | Select-Object ObjectId,ExternalAuthenticationType,ApplicationServerTimeout,ExternalUrl,InternalUrl,IsTranslateHostHeaderEnabled,IsTranslateLinksInBodyEnabled,IsOnPremPublishingEnabled,VerifiedCustomDomainCertificatesMetadata,VerifiedCustomDomainKeyCredential,VerifiedCustomDomainPasswordCredential,SingleSignOnSettings,IsHttpOnlyCookieEnabled,IsSecureCookieEnabled,IsPersistentCookieEnabled
