@@ -28,6 +28,7 @@ function New-EntraBetaApplicationProxyApplication {
 
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $onPremisesPublishing = @{}
         if($null -ne $PSBoundParameters["DisplayName"])
         {
@@ -84,7 +85,7 @@ function New-EntraBetaApplicationProxyApplication {
             displayName =  $DisplayName
         } | ConvertTo-Json
         try {
-            $NewApp = Invoke-GraphRequest -Uri 'https://graph.microsoft.com/v1.0/applications' -Method POST -Body $newAppBody
+            $NewApp = Invoke-GraphRequest -Uri 'https://graph.microsoft.com/v1.0/applications' -Headers $customHeaders -Method POST -Body $newAppBody
             $Id = $NewApp.Id
         } catch {
             Write-Error $_
@@ -104,7 +105,7 @@ function New-EntraBetaApplicationProxyApplication {
                 } 
             } 
             try {
-                $Application = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$Id" -Method PATCH -Body $updateUrlBody    
+                $Application = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$Id" -Headers $customHeaders -Method PATCH -Body $updateUrlBody    
             } catch {
                 Write-Error $_
                 return
@@ -117,7 +118,7 @@ function New-EntraBetaApplicationProxyApplication {
                 appId = $NewApp.AppId
             } | ConvertTo-Json
             try {
-                $ServicePrincipal = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/servicePrincipals" -Method POST -Body $serviceBody    
+                $ServicePrincipal = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/servicePrincipals" -Headers $customHeaders -Method POST -Body $serviceBody    
             } catch {
                 Write-Error $_
                 return
@@ -128,7 +129,7 @@ function New-EntraBetaApplicationProxyApplication {
         if($null -ne $ServicePrincipal -and $null -ne $NewApp){
             $onPremisesPublishingBody = @{onPremisesPublishing = $onPremisesPublishing}
             try {
-                Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$Id" -Method PATCH -Body $onPremisesPublishingBody
+                Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$Id" -Headers $customHeaders -Method PATCH -Body $onPremisesPublishingBody
             } catch {
                 Write-Error $_
                 return
@@ -144,7 +145,7 @@ function New-EntraBetaApplicationProxyApplication {
             $ConnectorGroupBody = $ConnectorGroupBody | ConvertTo-Json
             $ConnectorGroupUri = "https://graph.microsoft.com/beta/applications/$Id/connectorGroup/" + '$ref'
             try {
-                $ConnectorGroup = Invoke-GraphRequest -Method PUT -Uri $ConnectorGroupUri -Body $ConnectorGroupBody -ContentType "application/json" 
+                $ConnectorGroup = Invoke-GraphRequest -Headers $customHeaders -Method PUT -Uri $ConnectorGroupUri -Body $ConnectorGroupBody -ContentType "application/json" 
             } catch {
                 Write-Error $_
                 return
@@ -153,7 +154,7 @@ function New-EntraBetaApplicationProxyApplication {
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $response = (Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$Id/onPremisesPublishing" -Method GET) | ConvertTo-Json -depth 10 | ConvertFrom-Json
+        $response = (Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$Id/onPremisesPublishing" -Headers $customHeaders -Method GET) | ConvertTo-Json -depth 10 | ConvertFrom-Json
         $response | ForEach-Object {
             if($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType NoteProperty -Name ObjectId -Value $Id
