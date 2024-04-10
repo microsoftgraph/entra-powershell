@@ -31,7 +31,7 @@ Get-EntraServicePrincipalOwnedObject
 ```
 
 ## DESCRIPTION
-The Get-EntraServicePrincipalOwnedObject cmdlet gets an object that is owned by a service principal in Microsoft Entra ID.
+The Get-EntraServicePrincipalOwnedObject cmdlet gets an object owned by a service principal in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -42,7 +42,7 @@ PS C:\> $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
 PS C:\> Get-EntraServicePrincipalOwnedObject -ObjectId $ServicePrincipalId
 ```
 
-The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md)cmdlet. 
+The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md) cmdlet. 
 The command stores the ID in the $ServicePrincipalId variable.
 
 The second command gets the owned objects of a service principal identified by $ServicePrincipalId.
@@ -51,7 +51,7 @@ The second command gets the owned objects of a service principal identified by $
 
 ### -All
 If true, return all objects owned by this service principal.
-If false, return the number of objects specified by the Top parameter
+If false, return the number of objects specified by the Top parameter.
 
 ```yaml
 Type: Boolean
