@@ -22,7 +22,7 @@ Removes a member from a group.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraGroupMember 
  -ObjectId <String> 
  -MemberId <String> 

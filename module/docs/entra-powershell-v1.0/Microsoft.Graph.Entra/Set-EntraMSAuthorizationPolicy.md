@@ -22,7 +22,7 @@ Updates an authorization policy.
 
 ## SYNTAX
 
-```
+```powershell
 Set-EntraMSAuthorizationPolicy 
  [-BlockMsolPowerShell <Boolean>]
  [-AllowedToSignUpEmailBasedSubscriptions <Boolean>] 

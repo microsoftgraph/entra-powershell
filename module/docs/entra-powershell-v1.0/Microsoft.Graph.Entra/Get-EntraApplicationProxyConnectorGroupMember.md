@@ -1,10 +1,10 @@
 ---
-title: Get-EntraUserThumbnailPhoto.
-description: This article provides details on the Get-EntraUserThumbnailPhoto command.
+title: Get-EntraApplicationProxyConnectorGroupMember.
+description: This article provides details on the Get-EntraApplicationProxyConnectorGroupMember. Command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/15/2024
+ms.date: 03/22/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -15,38 +15,60 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-EntraUserThumbnailPhoto
+# Get-EntraApplicationProxyConnectorGroupMember.
 
 ## SYNOPSIS
-Retrieve the thumbnail photo of a user.
+Get members from applicationProxyConnectorGroup.
 
 ## SYNTAX
 
 ```powershell
-Get-EntraUserThumbnailPhoto 
- -ObjectId <String> 
- [-FileName <String>] 
- [-View <Boolean>] 
- [-FilePath <String>]
+Get-EntraApplicationProxyConnectorGroupMember
+ -Id <String> 
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [-Filter <String>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Retrieve the thumbnail photo of a user.
+Get members from applicationProxyConnectorGroup.
 
 ## EXAMPLES
 
-### Example 1: Retrieve thumbnail photo by Id
+### Example 1: Get members from applicationProxyConnectorGroup 
 ```powershell
-PS C:\WINDOWS\system32> Get-EntraUserThumbnailPhoto -ObjectId df19e8e6-2ad7-453e-87f5-037f6529ae16
+PS C:\> Get-EntraApplicationProxyConnectorGroupMember -Id 87ffe1e2-6313-4a22-93eb-da1eb8a2bf8d
 ```
-
-This example demonstrates how to retrieve the thumbnail photo of a user that is specified through the value of the ObejctId parameter.
+```output
+Name                           Value
+----                           -----
+id                             147bd8b4-2134-4454-8f2a-1da81cf27917
+externalIp                     3.7.211.5
+machineName                    PERE-VARSHAM-FULLSTAK
+version                        1.5.3437.0
+status                         active
+```
 
 ## PARAMETERS
 
-### -FileName
-If specified, a copy of the thumbnail photo is written to the specified file name.
+### -All
+If true, return all objects created by this user. If false, return the number of objects specified by the Top parameter.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Filter
+Specifies an oData v3.0 filter statement. This parameter controls which objects are returned.
 
 ```yaml
 Type: String
@@ -60,24 +82,8 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -FilePath
-If specified, a copy of the thumbnail photo is written to the specified file path with a random name.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -ObjectId
-The object ID of the user for which the thumbnail photo is retrieved.
-
+### -Id
+Specifies the ID of user in Microsoft Entra ID.
 ```yaml
 Type: String
 Parameter Sets: (All)
@@ -90,11 +96,11 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -View
-If true, view the photo on the screen in a new window.
+### -Top
+Specifies the maximum number of records to return.
 
 ```yaml
-Type: Boolean
+Type: Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -111,7 +117,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.String
-System.Boolean
+
+### System. Nullable`1[[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+
+### System. Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
 
 ## OUTPUTS
 
@@ -119,5 +128,3 @@ System.Boolean
 ## NOTES
 
 ## RELATED LINKS
-
-[Set-EntraUserThumbnailPhoto](Set-EntraUserThumbnailPhoto.md)

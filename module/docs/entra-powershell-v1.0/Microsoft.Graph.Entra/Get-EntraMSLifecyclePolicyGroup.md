@@ -22,7 +22,7 @@ Retrieves the lifecycle policy object to which a group belongs.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraMSLifecyclePolicyGroup 
  -Id <String> 
  [<CommonParameters>]

@@ -22,13 +22,13 @@ Sets the password of a user.
 
 ## SYNTAX
 
-```
+```powershell
 Set-EntraUserPassword 
-[-ForceChangePasswordNextLogin <Boolean>] 
-[-EnforceChangePasswordPolicy <Boolean>]
--ObjectId <String> 
--Password <SecureString> 
-[<CommonParameters>]
+ [-ForceChangePasswordNextLogin <Boolean>] 
+ [-EnforceChangePasswordPolicy <Boolean>]
+ -ObjectId <String> 
+ -Password <SecureString> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

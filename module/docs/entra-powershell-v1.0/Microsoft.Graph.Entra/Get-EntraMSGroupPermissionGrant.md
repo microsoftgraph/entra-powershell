@@ -1,4 +1,14 @@
 ---
+title: Get-EntraMSGroupPermissionGrant.
+description: This article provides details on the Get-EntraMSGroupPermissionGrant command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/22/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,8 +22,10 @@ Retrieves a list of permission grants that have been consented for this group.
 
 ## SYNTAX
 
-```
-Get-EntraMSGroupPermissionGrant -Id <String> [<CommonParameters>]
+```powershell
+Get-EntraMSGroupPermissionGrant 
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -21,12 +33,12 @@ Retrieves a list of permission grants that have been consented for this group.
 
 ## EXAMPLES
 
-### Example 1: List existing permission grants for the group. .
+### Example 1: List existing permission grants for the group.
+```powershell		
+PS C:\>Get-EntraMSGroupPermissionGrant -Id "4823e767eca44858aed244154009b764" 
 ```
-List exisiting permission grants for the group.
-		
-		Get-EntraMSGroupPermissionGrant -Id "4823e767eca44858aed244154009b764" 
 
+```output
 		Id             : vsMaSY2k_E7761KhRqpx7OGFvAwvdZnJM1s7Iqkt4PU
 		ClientId       : deefce9d-be43-4b49-a9d3-851af6d2c26c
 		ClientAppId    : ba4e4a78-c352-4e59-b657-81b2b395d32b
@@ -34,6 +46,7 @@ List exisiting permission grants for the group.
 		PermissionType : Application
 		Permission     : Member.Read.Group
 ```
+This cmdlet list exisiting permission grants for the specified group.
 
 ## PARAMETERS
 

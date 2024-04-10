@@ -22,11 +22,11 @@ Gets OAuth2PermissionGrant entities.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraOAuth2PermissionGrant 
-[-All <Boolean>] 
-[-Top <Int32>] 
-[<CommonParameters>]
+ [-All <Boolean>] 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

@@ -22,7 +22,7 @@ Assign a group of users to an application role.
 
 ## SYNTAX
 
-```
+```powershell
 New-EntraGroupAppRoleAssignment 
  -ObjectId <String> 
  -PrincipalId <String> 

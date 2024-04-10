@@ -22,7 +22,7 @@ Get the user's direct reports.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraUserDirectReport 
  -ObjectId <String> 
  [-All <Boolean>] 
