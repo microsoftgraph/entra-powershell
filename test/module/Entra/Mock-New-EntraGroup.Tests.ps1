@@ -3,7 +3,7 @@ BeforeAll {
         #Import-Module .\bin\Microsoft.Graph.Entra.psm1 -Force
         Import-Module Microsoft.Graph.Entra      
     }
-    Import-Module .\test\module\Common-Functions.ps1 -Force
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
     
     $scriptblock = {
         #Write-Host "Mocking New-EntraGroup with parameters: $($args | ConvertTo-Json -Depth 3)"
