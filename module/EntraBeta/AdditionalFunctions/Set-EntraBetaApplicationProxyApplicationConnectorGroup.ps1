@@ -9,6 +9,7 @@ function Set-EntraBetaApplicationProxyApplicationConnectorGroup {
 
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params["Method"] = "PUT"
         $body = @{}
         if($null -ne $PSBoundParameters["ObjectId"])
@@ -35,6 +36,6 @@ function Set-EntraBetaApplicationProxyApplicationConnectorGroup {
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
-        Invoke-MgGraphRequest -Method $params.method -Uri $params.uri -Body $body -ContentType "application/json"
+        Invoke-MgGraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri -Body $body -ContentType "application/json"
     }        
 }
