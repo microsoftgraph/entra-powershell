@@ -255,7 +255,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsHttpOnlyCookieEnabled
-Indicates if the HTTPOnly cookie flag should be set in the HTTP response headers. Set this value to true to have Application Proxy cookies include the HTTPOnly flag in the HTTP response headers. If using Remote Desktop Services, set this value to False. Default value is false.
+Yes allows application proxy to include the HTTPOnly flag in HTTP response headers. This flag provides extra security benefits, for example, it prevents client-side scripting (CSS) from copying or modifying the cookies.
 
 ```yaml
 Type: Boolean
@@ -270,7 +270,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsPersistentCookieEnabled
-Indicates if the Persistent cookie flag should be set in the HTTP response headers. Keep this value set to false. Only use this setting for applications that can't share cookies between processes. For more information about cookie settings, see Cookie settings for accessing on-premises applications in Microsoft Entra ID. Default value is false.
+Yes allows application proxy to set its access cookies to not expire when the web browser is closed. The persistence lasts until the access token expires, or until the user manually deletes the persistent cookies. 
 
 ```yaml
 Type: Boolean
@@ -285,7 +285,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsSecureCookieEnabled
-Indicates if the Secure cookie flag should be set in the HTTP response headers. Set this value to true to transmit cookies over a secure channel such as an encrypted HTTPS request. Default value is true.
+Yes allows application proxy to include the Secure flag in HTTP response headers. Secure Cookies enhances security by transmitting cookies over a TLS secured channel such as HTTPS. TLS prevents cookie transmission in clear text.
 
 ```yaml
 Type: Boolean
