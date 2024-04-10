@@ -28,6 +28,7 @@ function Set-EntraBetaApplicationProxyApplication {
 
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $onPremisesPublishing = @{}
         if($null -ne $PSBoundParameters["ObjectId"])
         {
@@ -92,7 +93,7 @@ function Set-EntraBetaApplicationProxyApplication {
             } 
         }
         try {
-            $Application = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ObjectId" -Method PATCH -Body $updateUrlBody    
+            $Application = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ObjectId" -Method PATCH -Body $updateUrlBody -Headers $customHeaders 
         } catch {
             Write-Error $_
             return
@@ -101,7 +102,7 @@ function Set-EntraBetaApplicationProxyApplication {
         # update onpremises
         $onPremisesPublishingBody = @{onPremisesPublishing = $onPremisesPublishing}
         try {
-            Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ObjectId" -Method PATCH -Body $onPremisesPublishingBody
+            Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ObjectId" -Method PATCH -Body $onPremisesPublishingBody -Headers $customHeaders
         } catch {
             Write-Error $_
             return
@@ -116,7 +117,7 @@ function Set-EntraBetaApplicationProxyApplication {
             $ConnectorGroupBody = $ConnectorGroupBody | ConvertTo-Json
             $ConnectorGroupUri = "https://graph.microsoft.com/beta/applications/$ObjectId/connectorGroup/" + '$ref'
             try {
-                $ConnectorGroup = Invoke-GraphRequest -Method PUT -Uri $ConnectorGroupUri -Body $ConnectorGroupBody -ContentType "application/json" 
+                $ConnectorGroup = Invoke-GraphRequest -Method PUT -Uri $ConnectorGroupUri -Body $ConnectorGroupBody -ContentType "application/json" -Headers $customHeaders
             } catch {
                 Write-Error $_
                 return
@@ -127,7 +128,7 @@ function Set-EntraBetaApplicationProxyApplication {
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
-        $response = (Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ObjectId/onPremisesPublishing" -Method GET) | ConvertTo-Json -depth 10 | ConvertFrom-Json
+        $response = (Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ObjectId/onPremisesPublishing" -Method GET -Headers $customHeaders) | ConvertTo-Json -depth 10 | ConvertFrom-Json
         $response | ForEach-Object {
             if($null -ne $_) {
             Add-Member -InputObject $_ -MemberType NoteProperty -Name ObjectId -Value $ObjectId
