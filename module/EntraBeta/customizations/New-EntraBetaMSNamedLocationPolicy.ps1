@@ -10,6 +10,7 @@
     PROCESS {    
         $body = @{}
         $params = @{}
+        $customHeaders = New-EntraCustomHeaders -Command `$MyInvocation.MyCommand
         $keysChanged = @{}
         if($null -ne $PSBoundParameters["IncludeUnknownCountriesAndRegions"])
         {
@@ -59,7 +60,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = New-MgBetaIdentityConditionalAccessNamedLocation @params
+        $response = New-MgBetaIdentityConditionalAccessNamedLocation @params -Headers $customHeaders
         $response | ForEach-Object {
             if($null -ne $_) {
                 Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties
