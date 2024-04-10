@@ -9,6 +9,7 @@
     CustomScript = @' 
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{PolicyId = "NamedLocationId"}
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
@@ -27,7 +28,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Get-MgIdentityConditionalAccessNamedLocation @params
+        $response = Get-MgIdentityConditionalAccessNamedLocation @params -Headers $customHeaders
         $response | ForEach-Object {
             if($null -ne $_) {
                 Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties
