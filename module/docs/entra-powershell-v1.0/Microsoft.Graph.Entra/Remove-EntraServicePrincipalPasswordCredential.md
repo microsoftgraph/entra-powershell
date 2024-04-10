@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaAuditSignInLogs.
+description: This article provides details on the Get-EntraBetaAuditSignInLogs command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/21/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,9 +22,11 @@ Removes a password credential from a service principal.
 
 ## SYNTAX
 
-```
-Remove-EntraServicePrincipalPasswordCredential -ObjectId <String> -KeyId <String>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Remove-EntraServicePrincipalPasswordCredential
+ -ObjectId <String>
+ -KeyId <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -24,53 +36,17 @@ The Remove-EntraServicePrincipalPasswordCredential cmdlet removes a password cre
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-AzureADServicePrincipalPasswordCredential -ObjectID 1a3d700a-bedb-4e8f-bdda-72979a952a8d -KeyId a25ad0b5-7537-4b0b-8065-cc1c016bc18e
 ```
 
-{{ Add example description here }}
+This command demonstrates how to remove a password credential from a service principal in Microsoft Entra ID.  
+ObjectId: The ObjectId of the specified Service Principal Password Credential.  
+KeyID: The unique identifier of the Password Credential.  
 
 ## PARAMETERS
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -KeyId
-@{Text=}
+Specifies the unique identifier of password credential.
 
 ```yaml
 Type: String
@@ -85,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of an application in Azure AD.
+Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -100,7 +76,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -110,7 +86,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraServicePrincipalPasswordCredential]()
+[Get-EntraServicePrincipalPasswordCredential](Get-EntraServicePrincipalPasswordCredential.md)
 
-[New-EntraServicePrincipalPasswordCredential]()
+[New-EntraServicePrincipalPasswordCredential](New-EntraServicePrincipalPasswordCredential.md)
 

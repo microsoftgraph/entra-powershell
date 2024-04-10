@@ -22,16 +22,16 @@ Create a new Microsoft Entra ID roleDefinition.
 
 ## SYNTAX
 
-```
+```powershell
 New-EntraMSRoleDefinition 
-[-TemplateId <String>] 
--DisplayName <String>
--RolePermissions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RolePermission]>
-[-Description <String>] 
-[-Version <String>] 
--IsEnabled <Boolean>
-[-ResourceScopes <System.Collections.Generic.List`1[System.String]>] 
-[<CommonParameters>]
+ [-TemplateId <String>] 
+ -DisplayName <String>
+ -RolePermissions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RolePermission]>
+ [-Description <String>] 
+ [-Version <String>] 
+ -IsEnabled <Boolean>
+ [-ResourceScopes <System.Collections.Generic.List`1[System.String]>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -233,7 +233,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

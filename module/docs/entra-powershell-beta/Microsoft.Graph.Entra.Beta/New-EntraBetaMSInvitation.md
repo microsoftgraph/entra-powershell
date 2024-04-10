@@ -26,7 +26,7 @@ This cmdlet is used to invite a new external user to your directory.
 
 ### Invite a new external user to your directory
 ```
-New-EntraBetaMSInvitation -InvitedUserEmailAddress someexternaluser@externaldomain.com -SendInvitationMessage $True -InviteRedirectUrl "http://myapps.onmicrosoft.com"
+New-EntraBetaMSInvitation -InvitedUserEmailAddress someexternaluser@externaldomain.com -SendInvitationMessage $True -InviteRedirectUrl "https://myapps.onmicrosoft.com"
 ```
 
 Using the cmdlet in this example, an email is sent to the user who's email address is in the -InvitedUserEmailAddress parameter.
@@ -34,7 +34,7 @@ When the user accepts the invitation, they are forwarded to the url as specified
 
 ### Reset a Redemption for an external user
 ```
-PS C:\> New-EntraBetaMSInvitation -InvitedUserEmailAddress someexternaluser@externaldomain.com -ResetRedemption $true -InvitedUser $user -InviteRedirectUrl "http://myapps.onmicrosoft.com"
+PS C:\> New-EntraBetaMSInvitation -InvitedUserEmailAddress someexternaluser@externaldomain.com -ResetRedemption $true -InvitedUser $user -InviteRedirectUrl "https://myapps.onmicrosoft.com"
 ```
 
 In this example we show how an admin can reset the redemption for an external user in the -InvitedUser parameter.
@@ -167,7 +167,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

@@ -35,6 +35,7 @@ function Get-EntraBetaAccountSku {
 
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{}
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $Null
@@ -45,7 +46,7 @@ function Get-EntraBetaAccountSku {
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $response = Get-MgBetaSubscribedSku @params
+        $response = Get-MgBetaSubscribedSku @params -Headers $customHeaders
         $response | ForEach-Object {
             if($null -ne $_) {
             Add-Member -InputObject $_ -MemberType NoteProperty -Name ActiveUnits -Value $_.PrepaidUnits.Enabled

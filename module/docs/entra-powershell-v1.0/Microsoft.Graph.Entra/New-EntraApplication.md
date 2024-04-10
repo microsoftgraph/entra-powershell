@@ -1,4 +1,14 @@
 ---
+title: New-EntraApplication
+description: This article provides details on the New-EntraApplication command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,27 +22,43 @@ Creates an application.
 
 ## SYNTAX
 
-```
-New-EntraApplication [-PublicClient <Boolean>] [-PublisherDomain <String>] [-OptionalClaims <OptionalClaims>]
- [-ErrorUrl <String>] [-AppRoles <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AppRole]>]
- [-Homepage <String>] [-IsDisabled <Boolean>] [-AvailableToOtherTenants <Boolean>]
- [-Oauth2AllowImplicitFlow <Boolean>] [-InformationalUrls <InformationalUrl>] [-SamlMetadataUrl <String>]
- [-LogoutUrl <String>]
- [-RequiredResourceAccess <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.RequiredResourceAccess]>]
- [-Oauth2Permissions <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.OAuth2Permission]>]
- [-ReplyUrls <System.Collections.Generic.List`1[System.String]>] [-GroupMembershipClaims <String>]
- [-IdentifierUris <System.Collections.Generic.List`1[System.String]>] [-IsDeviceOnlyAuthSupported <Boolean>]
- [-AppLogoUrl <String>] [-WwwHomepage <String>]
- [-OrgRestrictions <System.Collections.Generic.List`1[System.String]>]
- [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]>]
- [-Oauth2AllowUrlPathMatching <Boolean>]
+```powershell
+New-EntraApplication 
+ -DisplayName <String>
+ [-PublicClient <Boolean>] 
+ [-PublisherDomain <String>] 
+ [-OptionalClaims <OptionalClaims>] 
+ [-ErrorUrl <String>] 
+ [-AppRoles <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AppRole]>] 
+ [-Homepage <String>] 
+ [-IsDisabled <Boolean>] 
+ [-AvailableToOtherTenants <Boolean>] 
+ [-Oauth2AllowImplicitFlow <Boolean>] 
+ [-InformationalUrls <InformationalUrl>] 
+ [-SamlMetadataUrl <String>]
+ [-LogoutUrl <String>] 
+ [-RequiredResourceAccess <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.RequiredResourceAccess]>] 
+ [-Oauth2Permissions <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.OAuth2Permission]>] 
+ [-ReplyUrls <System.Collections.Generic.List`1[System.String]>] 
+ [-GroupMembershipClaims <String>] 
+ [-IdentifierUris <System.Collections.Generic.List`1[System.String]>] 
+ [-IsDeviceOnlyAuthSupported <Boolean>] 
+ [-AppLogoUrl <String>] 
+ [-WwwHomepage <String>] 
+ [-OrgRestrictions <System.Collections.Generic.List`1[System.String]>] 
+ [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]>]  
+ [-Oauth2AllowUrlPathMatching <Boolean>]  
  [-PreAuthorizedApplications <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PreAuthorizedApplication]>]
- [-ParentalControlSettings <ParentalControlSettings>] -DisplayName <String>
- [-Oauth2RequirePostResponse <Boolean>] [-AllowGuestsSignIn <Boolean>]
+ [-ParentalControlSettings <ParentalControlSettings>] 
+ [-Oauth2RequirePostResponse <Boolean>] 
+ [-AllowGuestsSignIn <Boolean>]
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]>]
- [-SignInAudience <String>] [-AddIns <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AddIn]>]
+ [-SignInAudience <String>] 
+ [-AddIns <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AddIn]>]
  [-KnownClientApplications <System.Collections.Generic.List`1[System.String]>]
- [-RecordConsentConditions <String>] [-AllowPassthroughUsers <Boolean>] [<CommonParameters>]
+ [-RecordConsentConditions <String>] 
+ [-AllowPassthroughUsers <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -41,22 +67,84 @@ The New-EntraApplication cmdlet creates an application in Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Create an application
+```powershell
+PS C:\>New-EntraApplication -DisplayName "My new application"
 ```
-PS C:\>New-EntraApplication -DisplayName "My new application"  -IdentifierUris "http://mynewapp.contoso.com"
 
+```output
 ObjectId                             AppId                                DisplayName 
 --------                             -----                                ----------- 
 acd10942-5747-4385-8824-4c5d5fa904f9 b5fecfab-0ea2-4fd1-8570-b2c41b3d5149 My new application
 ```
 
-This command creates an application in Azure AD.
+This command creates an application in Microsoft Entra ID.
+
+### Example 2: Create an application with '-IdentifierUris' parameter
+```powershell
+PS C:\>New-EntraApplication -DisplayName "My new application" -IdentifierUris "https://mynewapp.contoso.com"
+```
+
+```output
+ObjectId                             AppId                                DisplayName 
+--------                             -----                                ----------- 
+acd10942-5747-4385-8824-4c5d5fa904f9 b5fecfab-0ea2-4fd1-8570-b2c41b3d5149 My new application
+```
+
+This example shows how to create an application having **-IdentifierUris** parameter.  
+
+This command creates an application in Microsoft Entra ID.  
+
+### Example 3: Create an application with '-HomePage' parameter
+```powershell
+PS C:\>New-EntraApplication -DisplayName "My new application" -HomePage "https://mynewapp.home.com"
+```
+
+```output
+ObjectId                             AppId                                DisplayName 
+--------                             -----                                ----------- 
+acd10942-5747-4385-8824-4c5d5fa904f9 b5fecfab-0ea2-4fd1-8570-b2c41b3d5149 My new application
+```
+
+This example shows how to create an application having **-HomePage** parameter.  
+
+This command creates an application in Microsoft Entra ID.  
+
+### Example 4: Create an application with '-LogoutUrl' parameter
+```powershell
+PS C:\>New-EntraApplication -DisplayName "My new application" -LogoutUrl "https://mynewapp.com/logout.aspx"
+```
+
+```output
+ObjectId                             AppId                                DisplayName 
+--------                             -----                                ----------- 
+acd10942-5747-4385-8824-4c5d5fa904f9 b5fecfab-0ea2-4fd1-8570-b2c41b3d5149 My new application
+```
+
+This example shows how to create an application having **-LogoutUrl** parameter.  
+
+This command creates an application in Microsoft Entra ID.  
+
+### Example 5: Create an application with '-IsDeviceOnlyAuthSupported' parameter
+```powershell
+PS C:\>New-EntraApplication -DisplayName "My new application" -IsDeviceOnlyAuthSupported $false
+```
+
+```output
+ObjectId                             AppId                                DisplayName 
+--------                             -----                                ----------- 
+acd10942-5747-4385-8824-4c5d5fa904f9 b5fecfab-0ea2-4fd1-8570-b2c41b3d5149 My new application
+```
+
+This example shows how to create an application having **-IsDeviceOnlyAuthSupported** parameter.  
+
+This command creates an application in Microsoft Entra ID.  
 
 ## PARAMETERS
 
 ### -AddIns
 Defines custom behavior that a consuming service can use to call an app in specific contexts.
-For example, applications that can render file streams may set the addIns property for its "FileHandler" functionality.
-This will let services like Office 365 call the application in the context of a document the user is working on.
+For example, applications that can render file streams might set the addIns property for its "FileHandler" functionality.
+This lets services like Office 365 call the application in the context of a document the user is working on.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AddIn]
@@ -71,8 +159,8 @@ Accept wildcard characters: False
 ```
 
 ### -AppRoles
-The collection of application roles that an application may declare.
-These roles can be assigned to users, groups or service principals.
+The collection of application roles that an application might declare.
+These roles can be assigned to users, groups, or service principals.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AppRole]
@@ -133,8 +221,8 @@ Accept wildcard characters: False
 
 ### -GroupMembershipClaims
 A bitmask that configures the "groups" claim issued in a user or OAuth 2.0 access token that the application expects.
-The bitmask values are: 0: None, 1: Security groups and Azure AD roles, 2: Reserved, and 4: Reserved.
-Setting the bitmask to 7 will get all of the security groups, distribution groups, and Azure AD directory roles that the signed-in user is a member of.
+The bitmask values are: 0: None, 1: Security groups and Microsoft Entra ID roles, 2: Reserved, and 4: Reserved.
+Setting the bitmask to 7 gets all of the security groups, distribution groups, and Microsoft Entra ID roles that the signed-in user is a member of.
 
 ```yaml
 Type: String
@@ -164,10 +252,10 @@ Accept wildcard characters: False
 ```
 
 ### -IdentifierUris
-User-defined URI(s) that uniquely identify a Web application within its Azure AD tenant, or within a verified custom domain (see "Domains" tab in the Azure classic portal) if the application is multi-tenant.
+User-defined URIs that uniquely identify a Web application within its Microsoft Entra ID tenant, or within a verified custom domain (see "Domains" tab in the Azure classic portal) if the application is multitenant.
 
-The first element is populated from the Web application's "APP ID URI" field if updated via the Azure classic portal (or respective Azure AD PowerShell cmdlet parameter).
-Additional URIs can be added via the application manifest; see Understanding the Azure AD Application Manifest for details.
+The first element is populated from the Web application's "APP ID URI" field if updated via the Azure classic portal (or respective Microsoft Entra ID PowerShell cmdlet parameter).
+More URIs can be added via the application manifest; see Understanding the Microsoft Entra ID Application Manifest for details.
 This collection is also used to populate the Web application's servicePrincipalNames collection.
 
 ```yaml
@@ -199,7 +287,7 @@ Accept wildcard characters: False
 
 ### -KnownClientApplications
 Client applications that are tied to this resource application.
-Consent to any of the known client applications will result in implicit consent to the resource application through a combined consent dialog (showing the OAuth permission scopes required by the client and the resource).
+Consent to any of the known client applications result in implicit consent to the resource application through a combined consent dialog (showing the OAuth permission scopes required by the client and the resource).
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -245,7 +333,7 @@ Accept wildcard characters: False
 ```
 
 ### -Oauth2AllowUrlPathMatching
-Specifies whether, as part of OAuth 2.0 token requests, Azure AD will allow path matching of the redirect URI against the application's replyUrls.
+Specifies whether, as part of OAuth 2.0 token requests, Microsoft Entra ID allows path matching of the redirect URI against the application's replyUrls.
 The default is false.
 
 ```yaml
@@ -262,7 +350,7 @@ Accept wildcard characters: False
 
 ### -Oauth2Permissions
 The collection of OAuth 2.0 permission scopes that the web API (resource) application exposes to client applications.
-These permission scopes may be granted to client applications during consent.
+These permission scopes might be granted to client applications during consent.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.OAuth2Permission]
@@ -308,8 +396,8 @@ Accept wildcard characters: False
 ```
 
 ### -RecordConsentConditions
-Do not use.
-May be removed in future versions
+Don't use.
+Might be removed in future versions.
 
 ```yaml
 Type: String
@@ -340,7 +428,7 @@ Accept wildcard characters: False
 
 ### -RequiredResourceAccess
 Specifies resources that this application requires access to and the set of OAuth permission scopes and application roles that it needs under each of those resources.
-This pre-configuration of required resource access drives the consent experience.
+This preconfiguration of required resource access drives the consent experience.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.RequiredResourceAccess]
@@ -370,7 +458,7 @@ Accept wildcard characters: False
 ```
 
 ### -Oauth2RequirePostResponse
-Set this to true if an Oauth2 psot response is required
+Set this variable to true if an Oauth2 post response is required.
 
 ```yaml
 Type: Boolean
@@ -385,7 +473,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowGuestsSignIn
-{{ Fill AllowGuestsSignIn Description }}
+Sets a property on the application to indicate if the application accepts other IDPs or not or partially accepts.
 
 ```yaml
 Type: Boolean
@@ -400,7 +488,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowPassthroughUsers
-{{ Fill AllowPassthroughUsers Description }}
+Sets indicate that the application supports pass through users who have no presence in the resource tenant.
 
 ```yaml
 Type: Boolean
@@ -415,7 +503,7 @@ Accept wildcard characters: False
 ```
 
 ### -AppLogoUrl
-{{ Fill AppLogoUrl Description }}
+Sets the url for the application logo image stored in a CDN.
 
 ```yaml
 Type: String
@@ -430,7 +518,7 @@ Accept wildcard characters: False
 ```
 
 ### -InformationalUrls
-{{ Fill InformationalUrls Description }}
+Basic profile information of the application such as app's marketing, support, terms of service and privacy statement URLs. The terms of service and privacy statement are surfaced to users through the user consent experience.
 
 ```yaml
 Type: InformationalUrl
@@ -445,7 +533,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsDeviceOnlyAuthSupported
-{{ Fill IsDeviceOnlyAuthSupported Description }}
+Specifies if the application supports authentication using a device token.
 
 ```yaml
 Type: Boolean
@@ -460,7 +548,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsDisabled
-{{ Fill IsDisabled Description }}
+Enables or disables the application.
 
 ```yaml
 Type: Boolean
@@ -475,7 +563,7 @@ Accept wildcard characters: False
 ```
 
 ### -OptionalClaims
-{{ Fill OptionalClaims Description }}
+Application developers can configure optional claims in their Microsoft Entra ID apps to specify which claims they want in tokens sent to their application by the Microsoft security token service.
 
 ```yaml
 Type: OptionalClaims
@@ -490,7 +578,7 @@ Accept wildcard characters: False
 ```
 
 ### -OrgRestrictions
-{{ Fill OrgRestrictions Description }}
+Sets a list of tenants allowed to access application.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -505,7 +593,7 @@ Accept wildcard characters: False
 ```
 
 ### -ParentalControlSettings
-{{ Fill ParentalControlSettings Description }}
+Specifies parental control settings for an application.
 
 ```yaml
 Type: ParentalControlSettings
@@ -520,7 +608,7 @@ Accept wildcard characters: False
 ```
 
 ### -PreAuthorizedApplications
-{{ Fill PreAuthorizedApplications Description }}
+Sets list of pre-authorized applications.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PreAuthorizedApplication]
@@ -535,7 +623,7 @@ Accept wildcard characters: False
 ```
 
 ### -PublisherDomain
-{{ Fill PublisherDomain Description }}
+Sets reliable domain, which can be used to identify an application.
 
 ```yaml
 Type: String
@@ -550,7 +638,7 @@ Accept wildcard characters: False
 ```
 
 ### -SignInAudience
-{{ Fill SignInAudience Description }}
+Sets audience for signing in to the application.
 
 ```yaml
 Type: String
@@ -565,7 +653,7 @@ Accept wildcard characters: False
 ```
 
 ### -WwwHomepage
-{{ Fill WwwHomepage Description }}
+Sets the primary Web page.
 
 ```yaml
 Type: String
@@ -580,7 +668,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -590,15 +678,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraApplication]()
+[Get-EntraApplication](Get-EntraApplication.md)
 
-[Remove-EntraApplication]()
+[Remove-EntraApplication](Remove-EntraApplication.md)
 
-[Set-EntraApplication]()
-
-[Get-EntraApplication]()
-
-[Remove-EntraApplication]()
-
-[Set-EntraApplication]()
+[Set-EntraApplication](Set-EntraApplication.md)
 

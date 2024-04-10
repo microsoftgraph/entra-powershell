@@ -25,18 +25,18 @@ Gets a domain.
 ### GetQuery (Default)
 ```powershell
 Get-EntraDomain 
-    [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraDomain 
-    -Name <String> 
-    [<CommonParameters>]
+ -Name <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraDomain** cmdlet gets a domain in Microsoft Entra ID.
+The Get-EntraDomain cmdlet gets a domain in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -86,7 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

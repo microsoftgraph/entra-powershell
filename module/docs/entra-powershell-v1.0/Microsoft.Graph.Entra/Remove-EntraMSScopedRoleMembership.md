@@ -24,8 +24,8 @@ Removes a scoped role membership.
 
 ```powershell
 Remove-EntraMSScopedRoleMembership 
--ScopedRoleMembershipId <String> 
--Id <String> [<CommonParameters>]
+ -ScopedRoleMembershipId <String> 
+ -Id <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,8 +34,8 @@ The Remove-EntraMSScopedRoleMembership cmdlet removes a scoped role membership f
 ## EXAMPLES
 
 ### Example 1: Removes a scoped role membership
-```
-Remove-EntraMSScopedRoleMembership -Id "1026185e-25df-4522-a380-7ab697a7241c" -ScopedRoleMembershipId "3028185e-25df-4522-a380-7ab697a7241c"
+```powershell
+PS C:\> Remove-EntraMSScopedRoleMembership -Id "1026185e-25df-4522-a380-7ab697a7241c" -ScopedRoleMembershipId "3028185e-25df-4522-a380-7ab697a7241c"
 ```
 
 Removes scoped membership.
@@ -73,7 +73,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

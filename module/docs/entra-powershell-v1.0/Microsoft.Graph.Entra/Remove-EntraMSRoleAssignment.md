@@ -24,12 +24,12 @@ Delete a Microsoft Entra ID roleAssignment.
 
 ```powershell
 Remove-EntraMSRoleAssignment 
-    -Id <String> 
-    [<CommonParameters>]
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Remove-EntraMSRoleAssignment** cmdlet removes a role assignment from Microsoft Entra ID.
+The Remove-EntraMSRoleAssignment cmdlet removes a role assignment from Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -58,7 +58,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

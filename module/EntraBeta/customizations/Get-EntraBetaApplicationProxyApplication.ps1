@@ -9,6 +9,7 @@
     CustomScript = @"
     PROCESS {        
         `$params = @{}
+        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
         if (`$PSBoundParameters.ContainsKey("Debug")) {
             `$params["Debug"] = `$Null
         }
@@ -24,7 +25,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================``n")
         
-        `$app = Get-MgBetaApplication @params
+        `$app = Get-MgBetaApplication @params -Headers `$customHeaders
         `$response = `$app.OnPremisesPublishing
         `$response | ForEach-Object {
             if (`$null -ne `$_) {
