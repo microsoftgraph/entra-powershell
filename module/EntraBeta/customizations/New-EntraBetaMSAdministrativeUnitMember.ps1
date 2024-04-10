@@ -9,6 +9,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
+        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
         
         if(`$null -ne `$PSBoundParameters["OdataType"])
         {
@@ -62,7 +63,7 @@
         Write-Debug("============================ TRANSFORMATIONS ============================")
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================``n")
-            `$response = New-MGBetaAdministrativeUnitMember -AdministrativeUnitId `$ID -BodyParameter `$params
+            `$response = New-MGBetaAdministrativeUnitMember -Headers `$customHeaders -AdministrativeUnitId `$ID -BodyParameter `$params
         `$response
         }
 "@

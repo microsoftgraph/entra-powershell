@@ -8,11 +8,12 @@
     Outputs = $null
     CustomScript = @"
     PROCESS {    
-        `$params = @{}  
+        `$params = @{}
+        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
          
         if(`$null -eq `$PSBoundParameters["Id"] -and `$null -eq `$PSBoundParameters["OutputFilePath"])
         {
-            `$response = Get-MgBetaTrustFrameworkPolicy @params
+            `$response = Get-MgBetaTrustFrameworkPolicy @params -Headers `$customHeaders
             `$response
         }
         elseif(`$null -ne `$PSBoundParameters["Id"]) {
@@ -20,16 +21,16 @@
             `$Id = `$PSBoundParameters["Id"]
            `$tempFilePath = [System.IO.Path]::GetTempFileName()
            
-           `$outFile =  `$tempFilePath
-           
-            if(`$null -ne `$PSBoundParameters["OutputFilePath"]){
+           `$outFile =  `$tempFilePath           
+            
+           if(`$null -ne `$PSBoundParameters["OutputFilePath"]){
                 `$outFile = `$PSBoundParameters["OutputFilePath"]
             }
 
            `$V = '`$value'
            `$uri = '/beta/trustframework/policies/'+`$Id+'/'+`$V
            
-            `$response = Invoke-GraphRequest -Method 'GET' -Uri `$uri -OutputFilePath `$outFile
+            `$response = Invoke-GraphRequest -Headers `$customHeaders -Method 'GET' -Uri `$uri -OutputFilePath `$outFile
 
             # Read the content from the temporary file
             `$xmlContent = Get-Content -Path `$tempFilePath
