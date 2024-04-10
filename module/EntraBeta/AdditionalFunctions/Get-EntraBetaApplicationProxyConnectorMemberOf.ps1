@@ -7,6 +7,7 @@ function Get-EntraBetaApplicationProxyConnectorMemberOf {
 
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params["Method"] = "GET"
         $Id = $PSBoundParameters["Id"]
         $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectors/$Id/memberOf"
@@ -26,7 +27,7 @@ function Get-EntraBetaApplicationProxyConnectorMemberOf {
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
-        $response = Invoke-GraphRequest -Method $params.method -Uri $params.uri 
+        $response = Invoke-GraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri 
         try {    
             $call = $response.value 
             $call
