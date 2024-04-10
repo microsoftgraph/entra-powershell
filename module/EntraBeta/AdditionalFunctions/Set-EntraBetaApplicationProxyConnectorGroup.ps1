@@ -9,6 +9,7 @@ function Set-EntraBetaApplicationProxyConnectorGroup {
 
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params["Method"] = "PATCH"
         $body = @{}
         if($null -ne $PSBoundParameters["Id"])
@@ -34,6 +35,6 @@ function Set-EntraBetaApplicationProxyConnectorGroup {
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
-        Invoke-GraphRequest -Method $params.method -Uri $params.uri -Body $body
+        Invoke-GraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri -Body $body
     }        
 }
