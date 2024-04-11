@@ -27,7 +27,7 @@ class CompatibilityAdapterBuilder {
 
     # Constructor that changes the output folder, load all the Required Modules and creates the output folder.
     CompatibilityAdapterBuilder() {  
-        $this.BasePath = (join-path $PSScriptRoot '../module/AzureAD/')    
+        $this.BasePath = (join-path $PSScriptRoot '../module/Entra/')    
         $this.HelpFolder = (join-path $this.BasePath './help')
         $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
     }
@@ -42,7 +42,7 @@ class CompatibilityAdapterBuilder {
     CompatibilityAdapterBuilder([bool] $notRunningUT = $false){
         if($notRunningUT)
         {
-            $this.BasePath = (join-path $PSScriptRoot '../module/AzureAD/')    
+            $this.BasePath = (join-path $PSScriptRoot '../module/Entra/')    
             $this.HelpFolder = (join-path $this.BasePath './help')
             $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
         }                
@@ -73,7 +73,6 @@ class CompatibilityAdapterBuilder {
     # Generates the module then generates all the files required to create the module.
     BuildModule() {
         $this.WriteModuleFile()           
-        $this.GenerateHelpFiles()
         $this.WriteModuleManifest()             
     }
     
@@ -140,10 +139,13 @@ class CompatibilityAdapterBuilder {
     }
 
     hidden GenerateHelpFiles() {
-        $helpPath = Join-Path $this.OutputFolder "$($this.ModuleName)-Help.xml"
-        $this.GetHelpHeader() | Set-Content -Path $helpPath
-        $this.GetHelpCommandsFromFiles($helpPath)
-        $this.GetHelpFooter() | Add-Content -Path $helpPath
+        foreach($file in Get-ChildItem -Path $this.HelpFolder -Filter "*.xml") {
+            Copy-Item $file.FullName $this.OutputFolder -Force
+        }
+        #$helpPath = Join-Path $this.OutputFolder "$($this.ModuleName)-Help.xml"
+        #$this.GetHelpHeader() | Set-Content -Path $helpPath
+        #$this.GetHelpCommandsFromFiles($helpPath)
+        #$this.GetHelpFooter() | Add-Content -Path $helpPath
     }
 
     hidden [string] GetHelpHeader() {
@@ -250,8 +252,13 @@ class CompatibilityAdapterBuilder {
 `$def = @"
 
 "@
-
+        Write-Host "Creating types definitions for $($types.Count) types."
         foreach($type in $types) {
+        Write-Host "- Generating type for $type"
+        if($type.contains("+")){
+            $type = $type.Substring(0,$type.IndexOf("+"))
+            Write-Host "- Real type is $type"
+        }
         $object = New-Object -TypeName $type
         $namespaceNew = $object.GetType().Namespace
         $enumsDefined = @()
@@ -282,6 +289,14 @@ namespace  $namespaceNew
         }
 
         $name = $object.GetType().Name
+        if($object.GetType().IsEnum){ 
+            $name = $object.GetType().Name
+            if(!$enumsDefined.Contains($name)){
+                $def += $this.GetEnumString($name, $object.GetType().FullName)
+                $enumsDefined += $name
+                continue
+            }                    
+        }
         $def += @"
     public class $name
     {
@@ -297,8 +312,7 @@ $extraFunctions
 "@
         }
         else {
-            
-        
+                    
         $object.GetType().GetProperties() | ForEach-Object {   
             if($_.PropertyType.Name -eq 'Nullable`1') {
                 $name = $_.PropertyType.GenericTypeArguments.FullName
@@ -340,7 +354,11 @@ $extraFunctions
         if(1 -eq $object.GetType().GetProperties().Count){
 
             $constructor = @"
-public $($object.GetType().Name)($name value)
+public $($object.GetType().Name)()
+        {        
+        }
+        
+        public $($object.GetType().Name)($name value)
         {
             $($object.GetType().GetProperties()[0].Name) = value;
         }
@@ -401,20 +419,21 @@ public $($object.GetType().Name)($name value)
             Prerelease = $null
         }
         $manisfestPath = Join-Path $this.OutputFolder "$($this.ModuleName).psd1"
-        $functions = $this.ModuleMap.CommandsList + "Set-EntraAzureADAliases" + "Get-EntraUnsupportedCommand"
+        $functions = $this.ModuleMap.CommandsList + "Enable-EntraAzureADAlias" + "Get-EntraUnsupportedCommand"
         $requiredModules = @()
         foreach($module in $content.requiredModules){
             $requiredModules += @{ModuleName = $module; ModuleVersion = $content.requiredModulesVersion}
         }
         $moduleSettings = @{
             Path = $manisfestPath
+            GUID = $($content.guid)
             ModuleVersion = "$($content.version)"
             FunctionsToExport = $functions
             Author =  $($content.authors)
             CompanyName = $($content.owners)
             FileList = $files
             RootModule = "$($this.ModuleName).psm1" 
-            Description = 'Microsoft Graph PowerShell Compatibility for AzureAD.'    
+            Description = 'Microsoft Graph Entra PowerShell.'    
             DotNetFrameworkVersion = $([System.Version]::Parse('4.7.2')) 
             PowerShellVersion = $([System.Version]::Parse('5.1'))
             CompatiblePSEditions = @('Desktop','Core')
@@ -466,7 +485,7 @@ public $($object.GetType().Name)($name value)
     hidden [scriptblock] GetUnsupportedCommand(){
         $unsupported = @"
 function Get-EntraUnsupportedCommand {
-    Throw [System.NotSupportedException] "This commands is currently not supported by the Microsoft Graph Compatibility Adapter."
+    Throw [System.NotSupportedException] "This commands is currently not supported by the Microsoft Graph Entra PowerShell."
 }
 
 "@
@@ -484,7 +503,7 @@ function Get-EntraUnsupportedCommand {
                 $aliases += "   Set-Alias -Name $($func) -Value Get-EntraUnsupportedCommand -Scope Global -Force`n"
             }
     $aliasFunction = @"
-function Set-EntraAzureADAliases {
+function Enable-EntraAzureADAlias {
 $($aliases)}
 
 "@
@@ -497,7 +516,7 @@ $($aliases)}
     hidden [scriptblock] GetExportMemeber() {
         $CommandsToExport = $this.ModuleMap.CommandsList
         $CommandsToExport += "Get-EntraUnsupportedCommand"
-        $CommandsToExport += "Set-EntraAzureADAliases"
+        $CommandsToExport += "Enable-EntraAzureADAlias"
         $functionsToExport = @"
 
 Export-ModuleMember -Function @(
@@ -530,6 +549,7 @@ Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList 
     }
 
     hidden [CommandTranslation] NewCustomFunctionMap([PSCustomObject] $Command){
+        Write-Host "Creating custom function map for $($Command.Generate)"
         $parameterDefinitions = $this.GetParametersDefinitions($Command)
         $ParamterTransformations = $this.GetParametersTransformations($Command)
         $OutputTransformations = $this.GetOutputTransformations($Command)
@@ -549,10 +569,18 @@ $($Command.CustomScript)
     }
 
     hidden [CommandTranslation] NewFunctionMap([PSCustomObject] $Command){
+        Write-Host "Creating new function for $($Command.Generate)"
         $parameterDefinitions = $this.GetParametersDefinitions($Command)
         $ParamterTransformations = $this.GetParametersTransformations($Command)
         $OutputTransformations = $this.GetOutputTransformations($Command)
         $keyId = $this.GetKeyIdPair($Command)
+        $customHeadersCommandName = "New-EntraCustomHeaders"
+
+        if($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta')
+        {
+            $customHeadersCommandName = "New-EntraBetaCustomHeaders"
+        }
+
         $function = @"
 function $($Command.Generate) {
     [CmdletBinding($($Command.DefaultParameterSet))]
@@ -562,13 +590,14 @@ $parameterDefinitions
 
     PROCESS {    
     `$params = @{}
+    `$customHeaders = $customHeadersCommandName -Command `$MyInvocation.MyCommand
     $($keyId)
 $ParamterTransformations
     Write-Debug("============================ TRANSFORMATIONS ============================")
     `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
     Write-Debug("=========================================================================``n")
     
-    `$response = $($Command.New) @params
+    `$response = $($Command.New) @params -Headers `$customHeaders
 $OutputTransformations
     `$response
     }
@@ -707,7 +736,7 @@ $OutputTransformations
     {
         if(`$PSBoundParameters["$($OldName)"])
         {
-            `$params["$($NewName)"] = `$Null
+            `$params["$($NewName)"] = `$PSBoundParameters["$($OldName)"]
         }
     }
 
