@@ -34,7 +34,7 @@ Describe "Add-EntraMSScopedRoleMembership" {
         It "Should fail when parameters are empty" {
             { Add-EntraMSScopedRoleMembership -Id "" -RoleId "" } | Should -Throw "Cannot bind argument to parameter*"
         }
-        It "Should contain ApplicationId in parameters when passed Id to it" {              
+        It "Should contain AdministrativeUnitId in parameters when passed Id to it" {              
             Mock -CommandName New-MgDirectoryAdministrativeUnitScopedRoleMember -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $result = Add-EntraMSScopedRoleMembership -Id "c9ab56cc-e349-4237-856e-cab03157a91e" -RoleId "526b7173-5a6e-49dc-88ec-b677a9093709" -RoleMemberInfo $RoleMember
