@@ -1,7 +1,7 @@
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        # Import-Module .\bin\Microsoft.Graph.Entra.psm1 -Force
-         Import-Module Microsoft.Graph.Entra      
+        
+        Import-Module Microsoft.Graph.Entra      
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
@@ -25,6 +25,7 @@ $scriptblock = {
            "SupportedServices"                = {}
            "VerificationDnsRecords"           = $null
            "AdditionalProperties"             = {}
+           "Parameters"                       = $args
           
         } 
     )
@@ -59,23 +60,17 @@ Describe "Get-EntraDomain" {
 
             Should -Invoke -CommandName Get-MgDomain -ModuleName Microsoft.Graph.Entra -Times 1 
         }
-        # issue in addins DomainId param transformation in args, will uncomment after resolve.
-        # It "Should contain DomainId in parameters when passed Name to it" {
-        #     Mock -CommandName Get-MgDomain -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
-        #     $result = Get-EntraDomain -Name "test.mail.onmicrosoft.com"
-        #     $params = Get-Parameters -data $result
-        #     $params.DomainId | Should -Be "test.mail.onmicrosoft.com"
-        # }
-        # It "Should contain 'User-Agent' header" {
-        #     Mock -CommandName Get-MgDomain -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
-        #     $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDomain"
-
-        #     $result = Get-EntraDomain -Name "test.mail.onmicrosoft.com"
-        #     $params = Get-Parameters -data $result
-        #     $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        # }
+        It "Should contain DomainId in parameters when passed Name to it" {
+            $result = Get-EntraDomain -Name "test.mail.onmicrosoft.com"
+            $params = Get-Parameters -data $result.Parameters
+            $params.DomainId | Should -Be "test.mail.onmicrosoft.com"
+        }
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDomain"
+            $result = Get-EntraDomain -Name "test.mail.onmicrosoft.com"
+            $params = Get-Parameters -data $result.Parameters
+            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
 
     }
 }
