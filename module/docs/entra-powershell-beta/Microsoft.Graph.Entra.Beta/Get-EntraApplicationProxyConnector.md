@@ -119,7 +119,7 @@ status                         active
 
 This example demonstrates how to Retrieve information using SearchString.
 
-### Example 5: Retrieve information using machinName property
+### Example 5: Retrieve information using machineName property
 
 ```powershell
 PS C:\> Get-EntraBetaApplicationProxyConnector -Filter "machineName eq 'PERE-VARSHAM-FULLSTAK'"
@@ -134,7 +134,7 @@ version                        1.5.3437.0
 status                         active
 ```
 
-This example demonstrates how to Retrieve information using machinName property.
+This example demonstrates how to Retrieve information using machineName property.
 
 ## PARAMETERS
 

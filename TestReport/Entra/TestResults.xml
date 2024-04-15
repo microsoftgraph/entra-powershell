@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="90" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2024-04-12" time="14:03:13">
+  <environment clr-version="4.0.30319.42000" user-domain="REDMOND" cwd="C:\PereProjects\entra-powershell" platform="Microsoft Windows 11 Enterprise|C:\WINDOWS|\Device\Harddisk0\Partition4" machine-name="DESKTOP-BT86FE5" nunit-version="2.5.8.0" os-version="10.0.22631" user="v-skotwal" />
+  <culture-info current-culture="en-GB" current-uiculture="en-GB" />
+  <test-suite type="TestFixture" name="Pester" executed="True" result="Success" success="True" time="43.4846" asserts="0" description="Pester">
+    <results>
+      <test-suite type="TestFixture" name="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Enable-EntraDirectoryRole.Tests.ps1" executed="True" result="Success" success="True" time="7.3595" asserts="0" description="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Enable-EntraDirectoryRole.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Enable-EntraDirectoryRole" executed="True" result="Success" success="True" time="2.326" asserts="0" description="Enable-EntraDirectoryRole">
+            <results>
+              <test-suite type="TestFixture" name="Enable-EntraDirectoryRole.Test for Enable-EntraDirectoryRole" executed="True" result="Success" success="True" time="2.1684" asserts="0" description="Enable-EntraDirectoryRole.Test for Enable-EntraDirectoryRole">
+                <results>
+                  <test-case description="Should return empty object" name="Enable-EntraDirectoryRole.Test for Enable-EntraDirectoryRole.Should return empty object" time="1.4712" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when RoleTemplateId is empty" name="Enable-EntraDirectoryRole.Test for Enable-EntraDirectoryRole.Should fail when RoleTemplateId is empty" time="0.0765" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain 'User-Agent' header" name="Enable-EntraDirectoryRole.Test for Enable-EntraDirectoryRole.Should contain 'User-Agent' header" time="0.4056" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Get-EntraApplication.Tests.ps1" executed="True" result="Success" success="True" time="8.0973" asserts="0" description="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Get-EntraApplication.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Get-EntraApplication" executed="True" result="Success" success="True" time="4.2871" asserts="0" description="Get-EntraApplication">
+            <results>
+              <test-suite type="TestFixture" name="Get-EntraApplication.Test for Get-EntraApplication" executed="True" result="Success" success="True" time="4.2328" asserts="0" description="Get-EntraApplication.Test for Get-EntraApplication">
+                <results>
+                  <test-case description="Should return specific application" name="Get-EntraApplication.Test for Get-EntraApplication.Should return specific application" time="0.42" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when ObjectId is empty" name="Get-EntraApplication.Test for Get-EntraApplication.Should fail when ObjectId is empty" time="0.355" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should return all applications" name="Get-EntraApplication.Test for Get-EntraApplication.Should return all applications" time="0.2733" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when All is empty" name="Get-EntraApplication.Test for Get-EntraApplication.Should fail when All is empty" time="0.1582" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should return specific application by searchstring" name="Get-EntraApplication.Test for Get-EntraApplication.Should return specific application by searchstring" time="0.3225" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should return specific application by filter" name="Get-EntraApplication.Test for Get-EntraApplication.Should return specific application by filter" time="0.4017" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should return top application" name="Get-EntraApplication.Test for Get-EntraApplication.Should return top application" time="0.3372" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Result should Contain ObjectId" name="Get-EntraApplication.Test for Get-EntraApplication.Result should Contain ObjectId" time="0.352" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain ApplicationId in parameters when passed ObjectId to it" name="Get-EntraApplication.Test for Get-EntraApplication.Should contain ApplicationId in parameters when passed ObjectId to it" time="0.5166" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain Filter in parameters when passed SearchString to it" name="Get-EntraApplication.Test for Get-EntraApplication.Should contain Filter in parameters when passed SearchString to it" time="0.5297" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain 'User-Agent' header" name="Get-EntraApplication.Test for Get-EntraApplication.Should contain 'User-Agent' header" time="0.4695" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Get-EntraDevice.Tests.ps1" executed="True" result="Success" success="True" time="3.6856" asserts="0" description="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Get-EntraDevice.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Get-EntraDevice" executed="True" result="Success" success="True" time="3.0867" asserts="0" description="Get-EntraDevice">
+            <results>
+              <test-suite type="TestFixture" name="Get-EntraDevice.Test for Get-EntraDevice" executed="True" result="Success" success="True" time="3.0358" asserts="0" description="Get-EntraDevice.Test for Get-EntraDevice">
+                <results>
+                  <test-case description="Should return specific device" name="Get-EntraDevice.Test for Get-EntraDevice.Should return specific device" time="0.4797" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when ObjectId is empty" name="Get-EntraDevice.Test for Get-EntraDevice.Should fail when ObjectId is empty" time="0.1445" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should return all devices" name="Get-EntraDevice.Test for Get-EntraDevice.Should return all devices" time="0.303" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when All is empty" name="Get-EntraDevice.Test for Get-EntraDevice.Should fail when All is empty" time="0.1211" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should return specific device by searchstring" name="Get-EntraDevice.Test for Get-EntraDevice.Should return specific device by searchstring" time="0.3058" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should return specific device by filter" name="Get-EntraDevice.Test for Get-EntraDevice.Should return specific device by filter" time="0.2595" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should return top device" name="Get-EntraDevice.Test for Get-EntraDevice.Should return top device" time="0.2409" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Result should Contain ObjectId" name="Get-EntraDevice.Test for Get-EntraDevice.Result should Contain ObjectId" time="0.2006" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain DeviceId in parameters when passed ObjectId to it" name="Get-EntraDevice.Test for Get-EntraDevice.Should contain DeviceId in parameters when passed ObjectId to it" time="0.2895" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain Filter in parameters when passed SearchString to it" name="Get-EntraDevice.Test for Get-EntraDevice.Should contain Filter in parameters when passed SearchString to it" time="0.2932" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain 'User-Agent' header" name="Get-EntraDevice.Test for Get-EntraDevice.Should contain 'User-Agent' header" time="0.3183" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Get-EntraDirectoryRole.Tests.ps1" executed="True" result="Success" success="True" time="2.0582" asserts="0" description="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Get-EntraDirectoryRole.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Get-EntraDirectoryRole" executed="True" result="Success" success="True" time="1.4968" asserts="0" description="Get-EntraDirectoryRole">
+            <results>
+              <test-suite type="TestFixture" name="Get-EntraDirectoryRole.Test for Get-EntraDirectoryRole" executed="True" result="Success" success="True" time="1.4376" asserts="0" description="Get-EntraDirectoryRole.Test for Get-EntraDirectoryRole">
+                <results>
+                  <test-case description="Should return specific role" name="Get-EntraDirectoryRole.Test for Get-EntraDirectoryRole.Should return specific role" time="0.3285" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when ObjectId is empty" name="Get-EntraDirectoryRole.Test for Get-EntraDirectoryRole.Should fail when ObjectId is empty" time="0.1143" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should return specific role by filter" name="Get-EntraDirectoryRole.Test for Get-EntraDirectoryRole.Should return specific role by filter" time="0.2844" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Result should Contain ObjectId" name="Get-EntraDirectoryRole.Test for Get-EntraDirectoryRole.Result should Contain ObjectId" time="0.1948" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain DirectoryRoleId in parameters when passed ObjectId to it" name="Get-EntraDirectoryRole.Test for Get-EntraDirectoryRole.Should contain DirectoryRoleId in parameters when passed ObjectId to it" time="0.2395" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain 'User-Agent' header" name="Get-EntraDirectoryRole.Test for Get-EntraDirectoryRole.Should contain 'User-Agent' header" time="0.2173" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Get-EntraGroup.Tests.ps1" executed="True" result="Success" success="True" time="3.0099" asserts="0" description="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Get-EntraGroup.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Get-EntraGroup" executed="True" result="Success" success="True" time="2.4473" asserts="0" description="Get-EntraGroup">
+            <results>
+              <test-suite type="TestFixture" name="Get-EntraGroup.Test for Get-EntraGroup" executed="True" result="Success" success="True" time="2.3956" asserts="0" description="Get-EntraGroup.Test for Get-EntraGroup">
+                <results>
+                  <test-case description="Should return specific group" name="Get-EntraGroup.Test for Get-EntraGroup.Should return specific group" time="0.2725" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when ObjectId is empty" name="Get-EntraGroup.Test for Get-EntraGroup.Should fail when ObjectId is empty" time="0.1226" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should return all group" name="Get-EntraGroup.Test for Get-EntraGroup.Should return all group" time="0.2191" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when All is empty" name="Get-EntraGroup.Test for Get-EntraGroup.Should fail when All is empty" time="0.1007" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should return specific group by searchstring" name="Get-EntraGroup.Test for Get-EntraGroup.Should return specific group by searchstring" time="0.2285" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should return specific group by filter" name="Get-EntraGroup.Test for Get-EntraGroup.Should return specific group by filter" time="0.2467" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should return top group" name="Get-EntraGroup.Test for Get-EntraGroup.Should return top group" time="0.2262" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Result should Contain ObjectId" name="Get-EntraGroup.Test for Get-EntraGroup.Result should Contain ObjectId" time="0.186" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain GroupId in parameters when passed ObjectId to it" name="Get-EntraGroup.Test for Get-EntraGroup.Should contain GroupId in parameters when passed ObjectId to it" time="0.2455" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain Filter in parameters when passed SearchString to it" name="Get-EntraGroup.Test for Get-EntraGroup.Should contain Filter in parameters when passed SearchString to it" time="0.2571" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain 'User-Agent' header" name="Get-EntraGroup.Test for Get-EntraGroup.Should contain 'User-Agent' header" time="0.2244" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Get-EntraMSApplication.Tests.ps1" executed="True" result="Success" success="True" time="2.981" asserts="0" description="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Get-EntraMSApplication.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Get-EntraMSApplication" executed="True" result="Success" success="True" time="2.4659" asserts="0" description="Get-EntraMSApplication">
+            <results>
+              <test-suite type="TestFixture" name="Get-EntraMSApplication.Test for Get-EntraMSApplication" executed="True" result="Success" success="True" time="2.4097" asserts="0" description="Get-EntraMSApplication.Test for Get-EntraMSApplication">
+                <results>
+                  <test-case description="Should return specific application" name="Get-EntraMSApplication.Test for Get-EntraMSApplication.Should return specific application" time="0.4778" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when ObjectId is empty" name="Get-EntraMSApplication.Test for Get-EntraMSApplication.Should fail when ObjectId is empty" time="0.0968" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should return all applications" name="Get-EntraMSApplication.Test for Get-EntraMSApplication.Should return all applications" time="0.3535" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when All is empty" name="Get-EntraMSApplication.Test for Get-EntraMSApplication.Should fail when All is empty" time="0.0992" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should return specific application by searchstring" name="Get-EntraMSApplication.Test for Get-EntraMSApplication.Should return specific application by searchstring" time="0.324" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should return specific application by filter" name="Get-EntraMSApplication.Test for Get-EntraMSApplication.Should return specific application by filter" time="0.3563" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should return top application" name="Get-EntraMSApplication.Test for Get-EntraMSApplication.Should return top application" time="0.3522" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Result should Contain ObjectId" name="Get-EntraMSApplication.Test for Get-EntraMSApplication.Result should Contain ObjectId" time="0.285" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\PereProjects\entra-powershell\test\module\Entra\Mock-New-EntraApplication.Tests.ps1" executed="True" result="Success" success="True" time="1.5557" asserts="0" description="C:\PereProjects\entra-powershell\test\module\Entra\Mock-New-EntraApplication.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="New-EntraApplication" executed="True" result="Success" success="True" time="0.9348" asserts="0" description="New-EntraApplication">
+            <results>
+              <test-suite type="TestFixture" name="New-EntraApplication.Test for New-EntraApplication" executed="True" result="Success" success="True" time="0.8773" asserts="0" description="New-EntraApplication.Test for New-EntraApplication">
+                <results>
+                  <test-case description="Should return created Application" name="New-EntraApplication.Test for New-EntraApplication.Should return created Application" time="0.4734" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when DisplayName is empty" name="New-EntraApplication.Test for New-EntraApplication.Should fail when DisplayName is empty" time="0.0954" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain 'User-Agent' header" name="New-EntraApplication.Test for New-EntraApplication.Should contain 'User-Agent' header" time="0.2524" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\PereProjects\entra-powershell\test\module\Entra\Mock-New-EntraGroup.Tests.ps1" executed="True" result="Success" success="True" time="1.5691" asserts="0" description="C:\PereProjects\entra-powershell\test\module\Entra\Mock-New-EntraGroup.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="New-EntraGroup" executed="True" result="Success" success="True" time="0.944" asserts="0" description="New-EntraGroup">
+            <results>
+              <test-suite type="TestFixture" name="New-EntraGroup.Test for New-EntraGroup" executed="True" result="Success" success="True" time="0.8951" asserts="0" description="New-EntraGroup.Test for New-EntraGroup">
+                <results>
+                  <test-case description="Should return created Group" name="New-EntraGroup.Test for New-EntraGroup.Should return created Group" time="0.4141" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when parameters are empty" name="New-EntraGroup.Test for New-EntraGroup.Should fail when parameters are empty" time="0.0936" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain 'User-Agent' header" name="New-EntraGroup.Test for New-EntraGroup.Should contain 'User-Agent' header" time="0.3344" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\PereProjects\entra-powershell\test\module\Entra\Mock-New-EntraMSApplication.Tests.ps1" executed="True" result="Success" success="True" time="1.1965" asserts="0" description="C:\PereProjects\entra-powershell\test\module\Entra\Mock-New-EntraMSApplication.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="New-EntraMSApplication" executed="True" result="Success" success="True" time="0.5734" asserts="0" description="New-EntraMSApplication">
+            <results>
+              <test-suite type="TestFixture" name="New-EntraMSApplication.Test for New-EntraMSApplication" executed="True" result="Success" success="True" time="0.5212" asserts="0" description="New-EntraMSApplication.Test for New-EntraMSApplication">
+                <results>
+                  <test-case description="Should return created Application" name="New-EntraMSApplication.Test for New-EntraMSApplication.Should return created Application" time="0.3699" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when DisplayName is empty" name="New-EntraMSApplication.Test for New-EntraMSApplication.Should fail when DisplayName is empty" time="0.0934" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Remove-EntraApplication.Tests.ps1" executed="True" result="Success" success="True" time="1.2729" asserts="0" description="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Remove-EntraApplication.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Remove-EntraApplication" executed="True" result="Success" success="True" time="0.8381" asserts="0" description="Remove-EntraApplication">
+            <results>
+              <test-suite type="TestFixture" name="Remove-EntraApplication.Test for Remove-EntraApplication" executed="True" result="Success" success="True" time="0.7883" asserts="0" description="Remove-EntraApplication.Test for Remove-EntraApplication">
+                <results>
+                  <test-case description="Should return empty object" name="Remove-EntraApplication.Test for Remove-EntraApplication.Should return empty object" time="0.2484" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when ObjectId is empty" name="Remove-EntraApplication.Test for Remove-EntraApplication.Should fail when ObjectId is empty" time="0.0613" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain ApplicationId in parameters when passed ObjectId to it" name="Remove-EntraApplication.Test for Remove-EntraApplication.Should contain ApplicationId in parameters when passed ObjectId to it" time="0.2149" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain 'User-Agent' header" name="Remove-EntraApplication.Test for Remove-EntraApplication.Should contain 'User-Agent' header" time="0.2073" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Remove-EntraDevice.Tests.ps1" executed="True" result="Success" success="True" time="1.3113" asserts="0" description="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Remove-EntraDevice.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Remove-EntraDevice" executed="True" result="Success" success="True" time="0.9122" asserts="0" description="Remove-EntraDevice">
+            <results>
+              <test-suite type="TestFixture" name="Remove-EntraDevice.Test for Remove-EntraDevice" executed="True" result="Success" success="True" time="0.8576" asserts="0" description="Remove-EntraDevice.Test for Remove-EntraDevice">
+                <results>
+                  <test-case description="Should return empty object" name="Remove-EntraDevice.Test for Remove-EntraDevice.Should return empty object" time="0.2534" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when ObjectId is empty" name="Remove-EntraDevice.Test for Remove-EntraDevice.Should fail when ObjectId is empty" time="0.0795" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain DeviceId in parameters when passed ObjectId to it" name="Remove-EntraDevice.Test for Remove-EntraDevice.Should contain DeviceId in parameters when passed ObjectId to it" time="0.2275" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain 'User-Agent' header" name="Remove-EntraDevice.Test for Remove-EntraDevice.Should contain 'User-Agent' header" time="0.2372" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Remove-EntraGroup.Tests.ps1" executed="True" result="Success" success="True" time="1.2857" asserts="0" description="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Remove-EntraGroup.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Remove-EntraGroup" executed="True" result="Success" success="True" time="0.8919" asserts="0" description="Remove-EntraGroup">
+            <results>
+              <test-suite type="TestFixture" name="Remove-EntraGroup.Test for Remove-EntraGroup" executed="True" result="Success" success="True" time="0.8468" asserts="0" description="Remove-EntraGroup.Test for Remove-EntraGroup">
+                <results>
+                  <test-case description="Should return empty object" name="Remove-EntraGroup.Test for Remove-EntraGroup.Should return empty object" time="0.2825" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when ObjectId is empty" name="Remove-EntraGroup.Test for Remove-EntraGroup.Should fail when ObjectId is empty" time="0.071" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain GroupId in parameters when passed ObjectId to it" name="Remove-EntraGroup.Test for Remove-EntraGroup.Should contain GroupId in parameters when passed ObjectId to it" time="0.2291" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain 'User-Agent' header" name="Remove-EntraGroup.Test for Remove-EntraGroup.Should contain 'User-Agent' header" time="0.2108" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Remove-EntraMSApplication.Tests.ps1" executed="True" result="Success" success="True" time="1.268" asserts="0" description="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Remove-EntraMSApplication.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Remove-EntraMSApplication" executed="True" result="Success" success="True" time="0.7993" asserts="0" description="Remove-EntraMSApplication">
+            <results>
+              <test-suite type="TestFixture" name="Remove-EntraMSApplication.Test for Remove-EntraMSApplication" executed="True" result="Success" success="True" time="0.7482" asserts="0" description="Remove-EntraMSApplication.Test for Remove-EntraMSApplication">
+                <results>
+                  <test-case description="Should return empty object" name="Remove-EntraMSApplication.Test for Remove-EntraMSApplication.Should return empty object" time="0.2223" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when ObjectId is empty" name="Remove-EntraMSApplication.Test for Remove-EntraMSApplication.Should fail when ObjectId is empty" time="0.0655" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain ApplicationId in parameters when passed ObjectId to it" name="Remove-EntraMSApplication.Test for Remove-EntraMSApplication.Should contain ApplicationId in parameters when passed ObjectId to it" time="0.1967" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain 'User-Agent' header" name="Remove-EntraMSApplication.Test for Remove-EntraMSApplication.Should contain 'User-Agent' header" time="0.2081" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Set-EntraApplication.Tests.ps1" executed="True" result="Success" success="True" time="1.6369" asserts="0" description="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Set-EntraApplication.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Set-EntraApplication" executed="True" result="Success" success="True" time="0.9969" asserts="0" description="Set-EntraApplication">
+            <results>
+              <test-suite type="TestFixture" name="Set-EntraApplication.Test for Set-EntraApplication" executed="True" result="Success" success="True" time="0.9495" asserts="0" description="Set-EntraApplication.Test for Set-EntraApplication">
+                <results>
+                  <test-case description="Should return empty object" name="Set-EntraApplication.Test for Set-EntraApplication.Should return empty object" time="0.3154" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when ObjectId is empty" name="Set-EntraApplication.Test for Set-EntraApplication.Should fail when ObjectId is empty" time="0.0974" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain ApplicationId in parameters when passed ObjectId to it" name="Set-EntraApplication.Test for Set-EntraApplication.Should contain ApplicationId in parameters when passed ObjectId to it" time="0.2631" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain 'User-Agent' header" name="Set-EntraApplication.Test for Set-EntraApplication.Should contain 'User-Agent' header" time="0.2206" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Set-EntraDevice.Tests.ps1" executed="True" result="Success" success="True" time="1.5919" asserts="0" description="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Set-EntraDevice.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Set-EntraDevice" executed="True" result="Success" success="True" time="0.959" asserts="0" description="Set-EntraDevice">
+            <results>
+              <test-suite type="TestFixture" name="Set-EntraDevice.Test for Set-EntraDevice" executed="True" result="Success" success="True" time="0.9109" asserts="0" description="Set-EntraDevice.Test for Set-EntraDevice">
+                <results>
+                  <test-case description="Should return empty object" name="Set-EntraDevice.Test for Set-EntraDevice.Should return empty object" time="0.2856" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when ObjectId is empty" name="Set-EntraDevice.Test for Set-EntraDevice.Should fail when ObjectId is empty" time="0.1299" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain DeviceId in parameters when passed ObjectId to it" name="Set-EntraDevice.Test for Set-EntraDevice.Should contain DeviceId in parameters when passed ObjectId to it" time="0.2227" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain 'User-Agent' header" name="Set-EntraDevice.Test for Set-EntraDevice.Should contain 'User-Agent' header" time="0.2171" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Set-EntraGroup.Tests.ps1" executed="True" result="Success" success="True" time="2.0057" asserts="0" description="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Set-EntraGroup.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Set-EntraGroup" executed="True" result="Success" success="True" time="1.1437" asserts="0" description="Set-EntraGroup">
+            <results>
+              <test-suite type="TestFixture" name="Set-EntraGroup.Test for Set-EntraGroup" executed="True" result="Success" success="True" time="1.0911" asserts="0" description="Set-EntraGroup.Test for Set-EntraGroup">
+                <results>
+                  <test-case description="Should return empty object" name="Set-EntraGroup.Test for Set-EntraGroup.Should return empty object" time="0.4318" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when ObjectId is empty" name="Set-EntraGroup.Test for Set-EntraGroup.Should fail when ObjectId is empty" time="0.1276" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain GroupId in parameters when passed ObjectId to it" name="Set-EntraGroup.Test for Set-EntraGroup.Should contain GroupId in parameters when passed ObjectId to it" time="0.2458" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain 'User-Agent' header" name="Set-EntraGroup.Test for Set-EntraGroup.Should contain 'User-Agent' header" time="0.2332" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Set-EntraMSApplication.Tests.ps1" executed="True" result="Success" success="True" time="1.5996" asserts="0" description="C:\PereProjects\entra-powershell\test\module\Entra\Mock-Set-EntraMSApplication.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Set-EntraMSApplication" executed="True" result="Success" success="True" time="0.9219" asserts="0" description="Set-EntraMSApplication">
+            <results>
+              <test-suite type="TestFixture" name="Set-EntraMSApplication.Test for Set-EntraMSApplication" executed="True" result="Success" success="True" time="0.8701" asserts="0" description="Set-EntraMSApplication.Test for Set-EntraMSApplication">
+                <results>
+                  <test-case description="Should return empty object" name="Set-EntraMSApplication.Test for Set-EntraMSApplication.Should return empty object" time="0.2769" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should fail when ObjectId is empty" name="Set-EntraMSApplication.Test for Set-EntraMSApplication.Should fail when ObjectId is empty" time="0.0877" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain ApplicationId in parameters when passed ObjectId to it" name="Set-EntraMSApplication.Test for Set-EntraMSApplication.Should contain ApplicationId in parameters when passed ObjectId to it" time="0.2306" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Should contain 'User-Agent' header" name="Set-EntraMSApplication.Test for Set-EntraMSApplication.Should contain 'User-Agent' header" time="0.2181" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
