@@ -31,7 +31,6 @@ Describe "Set-EntraDomain"{
             Mock -CommandName Update-MgDomain -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDomain"
-
             $result = Set-EntraDomain -Name "test.mail.onmicrosoft.com"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue

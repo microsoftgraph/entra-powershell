@@ -39,7 +39,6 @@ Describe "Get-EntraDomain" {
     Context "Test for Get-EntraDomain" {
         It "Should return specific domain" {
             $result = Get-EntraDomain -Name "test.mail.onmicrosoft.com"
-            Write-Host $result
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'test.mail.onmicrosoft.com'
 
