@@ -3,7 +3,7 @@ title: Get-EntraBetaApplicationProxyConnectorMemberOf
 description: This article provides details on the Get-EntraBetaApplicationProxyConnectorMemberOf command.
 ms.service: active-directory
 ms.topic: reference
-ms.date: 04/04/2023
+ms.date: 04/15/2023
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
