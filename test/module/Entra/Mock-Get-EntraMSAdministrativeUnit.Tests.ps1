@@ -17,6 +17,7 @@ BeforeAll {
                 "ScopedRoleMembers"    = $null
                 "Visibility"           = $null
                 "AdditionalProperties" = {}
+                "Parameters"           = $args
             }
         )
     }
@@ -63,19 +64,14 @@ Describe "Get-EntraMSAdministrativeUnit" {
             $result.ObjectId | should -Be "09cb73a9-6d82-4d4d-a9f5-9e7ba0329106"
         }     
         It "Should contain AdministrativeUnitId in parameters when passed ObjectId to it" {              
-            Mock -CommandName Get-MgDirectoryAdministrativeUnit -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $result = Get-EntraMSAdministrativeUnit -Id "09cb73a9-6d82-4d4d-a9f5-9e7ba0329106"
-            $params = Get-Parameters -data $result
+            $params = Get-Parameters -data $result.Parameters
             $params.AdministrativeUnitId | Should -Be "09cb73a9-6d82-4d4d-a9f5-9e7ba0329106"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Get-MgDirectoryAdministrativeUnit -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraMSAdministrativeUnit"
-
             $result = Get-EntraMSAdministrativeUnit -Id "09cb73a9-6d82-4d4d-a9f5-9e7ba0329106"
-            $params = Get-Parameters -data $result
+            $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
     }

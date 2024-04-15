@@ -11,6 +11,7 @@ BeforeAll {
                 "DeletedDateTime"      = $null
                 "Id"                   = "d67d8b7b-57e1-486e-9361-26a1e2f0e8fe"
                 "AdditionalProperties" = @{displayName="Tests1";givenName="Tests1"}
+                "Parameters"           = $args
             }
         )
     }
@@ -49,19 +50,14 @@ Describe "Get-EntraMSAdministrativeUnitMember" {
             $result.ObjectId | should -Be "d67d8b7b-57e1-486e-9361-26a1e2f0e8fe"
         }     
         It "Should contain AdministrativeUnitId in parameters when passed ObjectId to it" {              
-            Mock -CommandName Get-MgDirectoryAdministrativeUnitMember -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $result = Get-EntraMSAdministrativeUnitMember -Id "09cb73a9-6d82-4d4d-a9f5-9e7ba0329106"
-            $params = Get-Parameters -data $result
+            $params = Get-Parameters -data $result.Parameters
             $params.AdministrativeUnitId | Should -Be "09cb73a9-6d82-4d4d-a9f5-9e7ba0329106"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Get-MgDirectoryAdministrativeUnitMember -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraMSAdministrativeUnitMember"
-
             $result = Get-EntraMSAdministrativeUnitMember -Id "09cb73a9-6d82-4d4d-a9f5-9e7ba0329106"
-            $params = Get-Parameters -data $result
+            $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
     }

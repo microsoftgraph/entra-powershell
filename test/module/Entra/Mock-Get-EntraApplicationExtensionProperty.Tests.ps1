@@ -11,6 +11,7 @@ BeforeAll {
               "Id"             = "dc587a80-d49c-4700-a73b-57227856fc32"
               "Name"           = "extension_36ee4c6c081240a2b820b22ebd02bce3_NewAttribute"
               "TargetObjects"  = {}
+              "Parameters"     = $args
             }
         )
     }
@@ -34,19 +35,14 @@ BeforeAll {
             $result.ObjectId | should -Be "dc587a80-d49c-4700-a73b-57227856fc32"
         } 
         It "Should contain ApplicationId in parameters when passed ObjectId to it" {     
-            Mock -CommandName Get-MgApplicationExtensionProperty -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $result = Get-EntraApplicationExtensionProperty -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32"
-            $params = Get-Parameters -data $result
+            $params = Get-Parameters -data $result.Parameters
             $params.ApplicationId | Should -Be "dc587a80-d49c-4700-a73b-57227856fc32"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Get-MgApplicationExtensionProperty -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationExtensionProperty"
-
             $result = Get-EntraApplicationExtensionProperty -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32"
-            $params = Get-Parameters -data $result
+            $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }     
     }

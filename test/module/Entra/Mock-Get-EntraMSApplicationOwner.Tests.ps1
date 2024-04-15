@@ -11,6 +11,7 @@ BeforeAll {
                 "Id"                   = "fd560167-ff1f-471a-8d74-3b0070abcea1"
                 "AdditionalProperties" = @{businessPhones={}; displayName="Conf Room Adams"; 
                                            mail="Adams@M365x99297270.OnMicrosoft.com"}
+                "Parameters"           = $args
             }
         )
     }
@@ -42,22 +43,16 @@ Describe "Get-EntraMSApplicationOwner" {
             $result = Get-EntraMSApplicationOwner -ObjectId "c81d387e-d431-43b4-b12e-f07cbb35b771"
             $result.ObjectId | should -Be "fd560167-ff1f-471a-8d74-3b0070abcea1"
         }
-        # issue in AdditionalProperties param transformation in args, will uncomment after resolve.
-        # It "Should contain ApplicationId in parameters when passed ObjectId to it" {              
-        #     Mock -CommandName Get-MgApplicationOwner -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
-        #     $result = Get-EntraMSApplicationOwner -ObjectId "c81d387e-d431-43b4-b12e-f07cbb35b771"
-        #     $params = Get-Parameters -data $result
-        #     $params.ApplicationId | Should -Be "c81d387e-d431-43b4-b12e-f07cbb35b771"
-        # }
-        # It "Should contain 'User-Agent' header" {
-        #     Mock -CommandName Get-MgApplicationOwner -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
-        #     $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraMSApplicationOwner"
-
-        #     $result = Get-EntraMSApplicationOwner -ObjectId "c81d387e-d431-43b4-b12e-f07cbb35b771"
-        #     $params = Get-Parameters -data $result
-        #     $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        # }
+        It "Should contain ApplicationId in parameters when passed ObjectId to it" {              
+            $result = Get-EntraMSApplicationOwner -ObjectId "c81d387e-d431-43b4-b12e-f07cbb35b771"
+            $params = Get-Parameters -data $result.Parameters
+            $params.ApplicationId | Should -Be "c81d387e-d431-43b4-b12e-f07cbb35b771"
+        }
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraMSApplicationOwner"
+            $result = Get-EntraMSApplicationOwner -ObjectId "c81d387e-d431-43b4-b12e-f07cbb35b771"
+            $params = Get-Parameters -data $result.Parameters
+            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
     }
 }

@@ -32,6 +32,7 @@ BeforeAll {
               "PublisherDomain"              = "M365x99297270.onmicrosoft.com"
               "SignInAudience"               = "AzureADandPersonalMicrosoftAccount"
               "Web"                          = @{HomePageUrl="https://localhost/demoapp"; ImplicitGrantSettings=""; LogoutUrl="";}
+              "Parameters"                   = $args
             }
         )
     }
@@ -83,30 +84,22 @@ Describe "Get-EntraMSApplication" {
         It "Result should Contain ObjectId" {            
             $result = Get-EntraMSApplication -ObjectId "111cc9b5-fce9-485e-9566-c68debafac5f"
             $result.ObjectId | should -Be "111cc9b5-fce9-485e-9566-c68debafac5f"
-        }  
-        # issue in addins param transformation in args, will uncomment after resolve.   
-        # It "Should contain ApplicationId in parameters when passed ObjectId to it" {    
-        #     Mock -CommandName Get-MgApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-            
-        #     $result = Get-EntraMSApplication -ObjectId "111cc9b5-fce9-485e-9566-c68debafac5f"
-        #     $params = Get-Parameters -data $result
-        #     $params.ApplicationId | Should -Be "111cc9b5-fce9-485e-9566-c68debafac5f"
-        # }
-        # It "Should contain Filter in parameters when passed SearchString to it" {               
-        #     Mock -CommandName Get-MgApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
-        #     $result = Get-EntraMSApplication -SearchString 'Mock-App'
-        #     $params = Get-Parameters -data $result
-        #     $params.Filter | Should -Match "Mock-App"
-        # }
-        # It "Should contain 'User-Agent' header" {
-        #     Mock -CommandName Get-MgApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
-        #     $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraMSApplication"
-
-        #     $result = Get-EntraMSApplication -SearchString 'Mock-App'
-        #     $params = Get-Parameters -data $result
-        #     $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        # }
+        }
+        It "Should contain ApplicationId in parameters when passed ObjectId to it" {    
+            $result = Get-EntraMSApplication -ObjectId "111cc9b5-fce9-485e-9566-c68debafac5f"
+            $params = Get-Parameters -data $result.Parameters
+            $params.ApplicationId | Should -Be "111cc9b5-fce9-485e-9566-c68debafac5f"
+        }
+        It "Should contain Filter in parameters when passed SearchString to it" {               
+            $result = Get-EntraMSApplication -SearchString 'Mock-App'
+            $params = Get-Parameters -data $result.Parameters
+            $params.Filter | Should -Match "Mock-App"
+        }
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraMSApplication"
+            $result = Get-EntraMSApplication -SearchString 'Mock-App'
+            $params = Get-Parameters -data $result.Parameters
+            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
     }
 }
