@@ -4,7 +4,7 @@ description: This article provides details on the Set-EntraBetaApplicationProxyC
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 04/02/2023
+ms.date: 04/15/2023
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
