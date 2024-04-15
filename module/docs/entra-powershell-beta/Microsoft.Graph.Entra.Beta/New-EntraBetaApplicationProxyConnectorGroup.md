@@ -3,7 +3,7 @@ title: New-EntraBetaApplicationProxyConnectorGroup
 description: This article provides details on the New-EntraBetaApplicationProxyConnectorGroupcommand.
 ms.service: active-directory
 ms.topic: reference
-ms.date: 04/05/2023
+ms.date: 04/05/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
