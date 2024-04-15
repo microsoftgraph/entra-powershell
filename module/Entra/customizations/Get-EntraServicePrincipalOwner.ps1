@@ -23,7 +23,7 @@
         {
             if($PSBoundParameters["All"])
             {
-                $params["All"] = $Null
+                $params["All"] = $PSBoundParameters["All"]
             }
         }
         if($PSBoundParameters.ContainsKey("Debug"))
