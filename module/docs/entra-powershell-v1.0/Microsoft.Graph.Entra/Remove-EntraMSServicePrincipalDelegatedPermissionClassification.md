@@ -22,11 +22,11 @@ Remove delegated permission classification.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraMSServicePrincipalDelegatedPermissionClassification 
--ServicePrincipalId <String>
--Id <String>
-[<CommonParameters>]
+ -ServicePrincipalId <String>
+ -Id <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -35,7 +35,7 @@ The Remove-EntraMSServicePrincipalDelegatedPermissionClassification cmdlet delet
 ## EXAMPLES
 
 ### Example 1: Remove a delegated permission classification
-```
+```powershell
 PS C:\> Remove-EntraMSServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "95f56359-0165-4f80-bffb-c89d06cf2c6f" -Id "5XBeIKarUkypdm0tRsSAQwE"
 ```
 
@@ -74,11 +74,12 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ## OUTPUTS
 
 ## NOTES
+
 ## RELATED LINKS

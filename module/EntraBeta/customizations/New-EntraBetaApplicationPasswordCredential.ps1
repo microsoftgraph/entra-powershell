@@ -9,6 +9,7 @@
     CustomScript = @'
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{ObjectId = "Id"}
         $body=@{}
 
@@ -39,7 +40,7 @@
         Write-Debug("=========================================================================
 ")
         
-        $response = Add-MgBetaApplicationPassword @params 
+        $response = Add-MgBetaApplicationPassword @params -Headers $customHeaders 
         $response
         }  
 '@

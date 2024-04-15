@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraMSNamedLocationPolicy.
+description: This article provides details on the Remove-EntraMSNamedLocationPolicy command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/27/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,22 +22,24 @@ Deletes a Microsoft Entra ID named location policy by PolicyId.
 
 ## SYNTAX
 
-```
-Remove-EntraMSNamedLocationPolicy -PolicyId <String> [<CommonParameters>]
+```powershell
+Remove-EntraMSNamedLocationPolicy 
+ -PolicyId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 This cmdlet allows an admin to delete the Microsoft Entra ID named location policy.
-Named locations are custom rules that define network locations which can then be used in a Conditional Access policy.
+Named locations are custom rules that define network locations, which can then be used in a Conditional Access policy.
 
 ## EXAMPLES
 
-### Example 1: Deletes a named location policy in Azure AD with given PolicyId.
-```
+### Example 1: Deletes a named location policy in  Microsoft Entra ID with given PolicyId.
+```Powershell
 PS C:\> Remove-EntraMSNamedLocationPolicy -PolicyId 76fdfd4d-bd80-4c1e-8fd4-6abf49d121fe
 ```
 
-This command deletes a named location policy in Azure AD.
+This command demonstrates how to delete the named location policy in  Microsoft Entra ID.
 
 ## PARAMETERS
 
@@ -47,7 +59,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -56,9 +68,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 ## RELATED LINKS
 
-[New-EntraMSNamedLocationPolicy]()
+[New-EntraMSNamedLocationPolicy](New-EntraMSNamedLocationPolicy.md)
 
-[Set-EntraMSNamedLocationPolicy]()
+[Set-EntraMSNamedLocationPolicy](Set-EntraMSNamedLocationPolicy.md)
 
-[Get-EntraMSNamedLocationPolicy]()
+[Get-EntraMSNamedLocationPolicy](Get-EntraMSNamedLocationPolicy.md)
 

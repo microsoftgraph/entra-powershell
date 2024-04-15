@@ -1,4 +1,15 @@
 ---
+title: Get-EntraDomainFedrationSettings
+description: This article provides details on the Get-EntraDomainFedrationSettings command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/28/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -8,32 +19,29 @@ schema: 2.0.0
 # Get-EntraDomainFedrationSettings
 
 ## SYNOPSIS
-Retrieves settings for a federated domain.
+Gets key settings for a federated domain.
 
 ## SYNTAX
 
-```
-Get-EntraDomainFedrationSettings [-DomainName] <String> [[-TenantId] <Guid>] [<CommonParameters>]
+```powershell
+Get-EntraDomainFedrationSettings 
+ -DomainName <String>
+ [-TenantId <Guid>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraDomainFederationSettings cmdlet gets key settings from Microsoft Azure Active Directory.
-Use the Get-EntraFederationProperty cmdlet to get settings for both Microsoft Azure Active Directory and the Active Directory Federation Services server.
+The Get-EntraDomainFederationSettings cmdlet gets key settings from Microsoft Entra ID.
+Use the [Get-EntraFederationProperty](./Get-EntraFederationProperty.md) cmdlet to get settings for both Microsoft Entra ID and the Entra ID Federation Services server.
 
 ## EXAMPLES
 
-### EXAMPLE 1
-```
-Get-EntraDomainFederationSettings -DomainName contoso.com
-    
-    Returns the federation settings for contoso.com.
+### EXAMPLE 1: Get federation settings for specified domain
+```powershell
+PS C:\> Get-EntraDomainFederationSettings -DomainName contoso.com
 ```
 
-Description
-    
-    -----------
-    
-    Returns the federation settings for contoso.com.
+This command gets federation settings for specified domain.
 
 ## PARAMETERS
 
@@ -54,7 +62,7 @@ Accept wildcard characters: False
 
 ### -TenantId
 The unique ID of the tenant to perform the operation on.
-If this is not provided then the value will default to the tenant of the current user.
+If this isn't provided then the value defaults to the tenant of the current user.
 This parameter is only applicable to partner users.
 
 ```yaml
@@ -70,7 +78,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

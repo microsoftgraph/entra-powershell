@@ -24,13 +24,13 @@ Removes a member of a directory role.
 
 ```powershell
 Remove-EntraDirectoryRoleMember 
-    -ObjectId <String> 
-    -MemberId <String> 
-    [<CommonParameters>]
+ -ObjectId <String> 
+ -MemberId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Remove-EntraDirectoryRoleMember** cmdlet removes a member from a directory role in Microsoft Entra ID.
+The Remove-EntraDirectoryRoleMember cmdlet removes a member from a directory role in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -74,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

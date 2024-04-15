@@ -25,21 +25,21 @@ Retrieve the delegated permission classification objects on a service principal.
 ### GetQuery (Default)
 ```powershell
 Get-EntraMSServicePrincipalDelegatedPermissionClassification 
-    -ServicePrincipalId <String> 
-    [-Filter <String>]
-    [<CommonParameters>]
+ -ServicePrincipalId <String> 
+ [-Filter <String>]
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraMSServicePrincipalDelegatedPermissionClassification 
-    -ServicePrincipalId <String> 
-    -Id <String>
-    [<CommonParameters>]
+ -ServicePrincipalId <String> 
+ -Id <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraMSServicePrincipalDelegatedPermissionClassification** cmdlet retrieves the delegated permission classifications from a service principal.
+The Get-EntraMSServicePrincipalDelegatedPermissionClassification cmdlet retrieves the delegated permission classifications from a service principal.
 
 ## EXAMPLES
 
@@ -132,7 +132,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

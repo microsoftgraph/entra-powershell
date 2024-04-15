@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraDomain.
+description: This article provides details on the Remove-EntraDomain command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/04/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,8 +22,10 @@ Removes a domain.
 
 ## SYNTAX
 
-```
-Remove-EntraDomain -Name <String> [<CommonParameters>]
+```powershell
+Remove-EntraDomain 
+ -Name <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,11 +34,11 @@ The Remove-EntraDomain cmdlet removes a domain from Microsoft Entra ID.
 ## EXAMPLES
 
 ### Example 1: Remove a domain
-```
+```Powershell
 PS C:\>Remove-EntraDomain -Name Contoso.com
 ```
 
-This command removes a domain.
+This command removes a domain from Microsoft Entra ID.
 
 ## PARAMETERS
 
@@ -46,7 +58,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -56,11 +68,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Confirm-EntraDomain]()
+[Confirm-EntraDomain](Confirm-EntraDomain.md)
 
-[Get-EntraDomain]()
+[Get-EntraDomain](Get-EntraDomain.md)
 
-[New-EntraDomain]()
+[New-EntraDomain](New-EntraDomain.md)
 
-[Set-EntraDomain]()
+[Set-EntraDomain](Set-EntraDomain.md)
 

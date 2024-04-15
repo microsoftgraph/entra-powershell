@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraServiceAppRoleAssignment.
+description: This article provides details on the Remove-EntraServiceAppRoleAssignment command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/19/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,9 +22,11 @@ Removes a service principal application role assignment.
 
 ## SYNTAX
 
-```
-Remove-EntraServiceAppRoleAssignment -AppRoleAssignmentId <String> -ObjectId <String>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Remove-EntraServiceAppRoleAssignment 
+ -AppRoleAssignmentId <String> 
+ -ObjectId <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,12 +34,12 @@ The Remove-EntraServiceAppRoleAssignment cmdlet removes a service principal appl
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Removes a service principal application role assignment
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\>  Remove-AzureADServiceAppRoleAssignment -ObjectId cc7fcc82-ac1b-4785-af47-2ca3b7052886  -AppRoleAssignmentId u7EFjxI8P061FwF7a-d81zXC6iDJ4llOsgQr_6xUFLk
 ```
 
-{{ Add example description here }}
+This example demonstrates how to remove a service principal application role assignment in Microsoft Entra ID.
 
 ## PARAMETERS
 
@@ -46,46 +58,8 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -ObjectId
-Specifies the ID of a service principal in Azure AD.
+Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -100,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -110,7 +84,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraServiceAppRoleAssignment]()
+[Get-EntraServiceAppRoleAssignment](Get-EntraServiceAppRoleAssignment.md)
 
-[New-EntraServiceAppRoleAssignment]()
+[New-EntraServiceAppRoleAssignment](New-EntraServiceAppRoleAssignment.md)
 

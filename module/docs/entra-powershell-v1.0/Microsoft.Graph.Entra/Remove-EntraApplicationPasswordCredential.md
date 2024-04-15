@@ -22,9 +22,10 @@ Removes a password credential from an application.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraApplicationPasswordCredential 
--ObjectId <String> -KeyId <String>
+-ObjectId <String> 
+-KeyId <String>
 [<CommonParameters>]
 ```
 
@@ -35,7 +36,7 @@ The Remove-EntraApplicationPasswordCredential cmdlet removes a password credenti
 
 ### Example 1: Remove an application password credential
 ```
-PS C:\> $AppID = (Get-EntraApplication -Top 1).objectId
+PS C:\> $AppID = (Get-EntraApplication -Top 1).ObjectId
 PS C:\> $KeyIDs = Get-EntraApplicationPasswordCredential -ObjectId $AppId
 PS C:\> Remove-EntraApplicationPasswordCredential -ObjectId $AppId -KeyId $KeyIds[0].KeyId
 ```
@@ -80,7 +81,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

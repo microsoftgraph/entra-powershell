@@ -1,4 +1,15 @@
 ---
+title: Set-EntraMSNamedLocationPolicy
+description: This article provides details on the Set-EntraMSNamedLocationPolicy command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/25/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,11 +23,15 @@ Updates a named location policy in Microsoft Entra ID by PolicyId.
 
 ## SYNTAX
 
-```
-Set-EntraMSNamedLocationPolicy [-OdataType <String>]
- [-IpRanges <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.IpRange]>]
- [-IncludeUnknownCountriesAndRegions <Boolean>] [-IsTrusted <Boolean>] [-DisplayName <String>] [-Id <String>]
+```powershell
+Set-EntraMSNamedLocationPolicy 
  -PolicyId <String>
+ [-OdataType <String>]
+ [-IpRanges <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.IpRange]>]
+ [-IncludeUnknownCountriesAndRegions <Boolean>] 
+ [-IsTrusted <Boolean>] 
+ [-DisplayName <String>] 
+ [-Id <String>]
  [-CountriesAndRegions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.CountriesAndRegion]>]
  [<CommonParameters>]
 ```
@@ -27,19 +42,26 @@ Conditional access policies are custom rules that define an access scenario.
 
 ## EXAMPLES
 
-### Example 1: Update an ip named location policy in Azure AD by PolicyId.
-```
+### Example 1: Update an ip named location policy in Microsoft Entra ID by PolicyId.
+```powershell
 PS C:\> Set-EntraMSNamedLocationPolicy -PolicyId 07a1f48d-0cbb-4c2c-8ea2-1ea00e3eb3b6 -OdataType "#microsoft.graph.ipNamedLocation" -IsTrusted $false
 ```
 
-This command updates an ip named location policy in Azure AD by PolicyId.
+This command updates an ip named location policy in Microsoft Entra ID by PolicyId.
 
-### Example 2: Update a country named location policy in Azure AD by PolicyId.
-```
+### Example 2: Update a country named location policy in Microsoft Entra ID by PolicyId.
+```powershell
 PS C:\> Set-EntraMSNamedLocationPolicy -PolicyId 76fdfd4d-bd80-4c1e-8fd4-6abf49d121fe -OdataType "#microsoft.graph.countryNamedLocation" -IncludeUnknownCountriesAndRegions $true
 ```
 
-This command updates a country named location policy in Azure AD by PolicyId.
+This command updates a country named location policy in Microsoft Entra ID by PolicyId.
+
+### Example 3: Update display name of a named location policy in Microsoft Entra ID by PolicyId.
+```powershell
+PS C:\> Set-EntraMSNamedLocationPolicy -PolicyId 07a1f48d-0cbb-4c2c-8ea2-1ea00e3eb3b6 -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName NewName
+```
+
+This command updates display name of named location policy in Microsoft Entra ID by PolicyId.
 
 ## PARAMETERS
 
@@ -149,7 +171,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+Specifies the ID of a named location policy in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -164,18 +186,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ## OUTPUTS
 
 ## NOTES
+
 ## RELATED LINKS
 
-[Get-EntraMSNamedLocationPolicy]()
+[Get-EntraMSNamedLocationPolicy](Get-EntraMSNamedLocationPolicy.md)
 
-[New-EntraMSNamedLocationPolicy]()
+[New-EntraMSNamedLocationPolicy](New-EntraMSNamedLocationPolicy.md)
 
-[Remove-EntraMSNamedLocationPolicy]()
+[Remove-EntraMSNamedLocationPolicy](Remove-EntraMSNamedLocationPolicy.md)
 

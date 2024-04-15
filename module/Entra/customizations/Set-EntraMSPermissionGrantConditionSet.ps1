@@ -9,6 +9,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
+        `$customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         
         if(`$null -ne `$PSBoundParameters["ClientApplicationTenantIds"])
         {
@@ -68,10 +69,10 @@
         Write-Debug("=========================================================================``n")
         
         if("`$conditionalSet" -eq "includes"){
-            `$response = Update-MgPolicyPermissionGrantPolicyInclude @params
+            `$response = Update-MgPolicyPermissionGrantPolicyInclude @params -Headers `$customHeaders
         }
         elseif("`$conditionalSet" -eq "excludes"){
-            `$response = Update-MgPolicyPermissionGrantPolicyExclude @params
+            `$response = Update-MgPolicyPermissionGrantPolicyExclude @params -Headers `$customHeaders
         }
         else{
             Write-Error("Message: Resource not found for the segment '`$conditionalSet'.")

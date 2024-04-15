@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraServicePrincipalKeyCredential.
+description: This article provides details on the Remove-EntraServicePrincipalKeyCredential command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/21/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,9 +22,11 @@ Removes a key credential from a service principal.
 
 ## SYNTAX
 
-```
-Remove-EntraServicePrincipalKeyCredential -ObjectId <String> -KeyId <String>
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Remove-EntraServicePrincipalKeyCredential 
+ -ObjectId <String> 
+ -KeyId <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,52 +34,19 @@ The Remove-EntraServicePrincipalKeyCredential cmdlet removes a key credential fr
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Remove a key credential
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> $SPObjectID = (Get-EntraServicePrincipal -SearchString 'Entra Multi-Factor Auth Client').ObjectID
+PS C:\> Get-EntraServicePrincipalKeyCredential -ObjectId $SPObjectID
+PS C:\> Remove-EntraServicePrincipalKeyCredential -ObjectID $SPObjectID -KeyId <PASTE_KEYID_VALUE>
 ```
 
-{{ Add example description here }}
+This example demonstrates how to remove a key credential from a service principal in Microsoft Entra ID.    
+First command stores the ObjectID of your service principal in the $SPObjectID variable.    
+The second command gets all the Key Credentials for the service principal. Copy the preferred KeyID associated with the certificate to be removed and paste it at the <PASTE_KEYID_VALUE> in the third command.      
+The last command removes the certificate (key credential) from the service principal configuration.
 
 ## PARAMETERS
-
-### -InformationAction
-Specifies how this cmdlet responds to an information event.
-The acceptable values for this parameter are:
-
-- Continue
-- Ignore
-- Inquire
-- SilentlyContinue
-- Stop
-- Suspend
-
-```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Specifies an information variable.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -KeyId
 Specifies the ID of a key credential.
@@ -100,7 +79,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -110,7 +89,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraServicePrincipalKeyCredential]()
+[Get-EntraServicePrincipalKeyCredential](Get-EntraServicePrincipalKeyCredential.md)
 
-[New-EntraServicePrincipalKeyCredential]()
+[New-EntraServicePrincipalKeyCredential](New-EntraServicePrincipalKeyCredential.md)
 

@@ -22,7 +22,7 @@ Assigns a user to an application role.
 
 ## SYNTAX
 
-```
+```powershell
 New-EntraUserAppRoleAssignment 
  -ObjectId <String> 
  -PrincipalId <String> 
@@ -37,7 +37,7 @@ The New-EntraUserAppRoleAssignment cmdlet assigns a user to an application role 
 ## EXAMPLES
 
 ### Example 1: Assign a user to an application without roles
-```
+```powershell
 # Get AppId of the app to assign the user to
 
 $appId = Get-EntraApplication -SearchString "<Your App's display name>"
@@ -56,8 +56,6 @@ New-EntraUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.Objec
 ```
 
 This example demonstrates how to assign a user to an application role in Microsoft Entra ID.  
-
-This command assigns a user to and application that doesn't have any roles.
 
 ### Example 2: Assign a user to a specific role within an application
 ```powershell
@@ -150,7 +148,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
