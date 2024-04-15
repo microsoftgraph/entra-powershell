@@ -28,7 +28,7 @@
         {
             $params["Debug"] = $Null
         }
-        Write-Debug("============================ TRANSFORMATIONS ============================")
+        Write-Debug("============================ TRANSFORMATIONS  ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         $response = (Invoke-GraphRequest -Uri $URI -Method $Method -Body $body)
