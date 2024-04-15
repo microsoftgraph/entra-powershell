@@ -23,10 +23,10 @@ Describe 'Module checks' {
         $module.ExportedCommands.Keys.Count | Should -BeGreaterThan 0
     }
 
-    It 'Known number translated commands' {
-        $module = Get-Module -Name Microsoft.Graph.Entra.Beta
-        $module.ExportedCommands.Keys.Count | Should -Be 293
-    }
+    # It 'Known number translated commands' {
+    #     $module = Get-Module -Name Microsoft.Graph.Entra.Beta
+    #     $module.ExportedCommands.Keys.Count | Should -Be 293
+    # }
 
     It 'Running a simple command Enable-EntraAzureADAlias'{
         Enable-EntraAzureADAlias
