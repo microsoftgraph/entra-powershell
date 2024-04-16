@@ -9,6 +9,7 @@
     CustomScript = @'
     PROCESS {    
     $params = @{}
+    $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     $keysChanged = @{ObjectIds = "Ids"}
     if($PSBoundParameters.ContainsKey("Debug"))
     {
@@ -31,7 +32,7 @@
     $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
     Write-Debug("=========================================================================`n")
     
-    $response = Get-MgBetaDirectoryObjectById @params
+    $response = Get-MgBetaDirectoryObjectById @params -Headers $customHeaders
     $response | ForEach-Object {
         if($null -ne $_) {
             Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
