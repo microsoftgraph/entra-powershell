@@ -25,12 +25,8 @@ Connects with an authenticated account to use Microsoft Entra ID cmdlet requests
 ### UserCredential (Default)
 ```powershell 
 Connect-Entra 
- [-AzureEnvironmentName <EnvironmentName>] 
  [-TenantId <String>] 
  [-Credential <PSCredential>]
- [-AccountId <String>] 
- [-LogLevel <LogLevel>] 
- [-LogFilePath <String>] 
  [-WhatIf] 
  [-Confirm] 
  [<CommonParameters>]
@@ -39,12 +35,9 @@ Connect-Entra
 ### ServicePrincipalCertificate
 ```powershell
 Connect-Entra 
- [-AzureEnvironmentName <EnvironmentName>] 
  -TenantId <String> 
+ -ApplicationId <String>
  -CertificateThumbprint <String>
- -ApplicationId <String> 
- [-LogLevel <LogLevel>] 
- [-LogFilePath <String>] 
  [-WhatIf] 
  [-Confirm] 
  [<CommonParameters>]
@@ -53,13 +46,8 @@ Connect-Entra
 ### AccessToken
 ```powershell
 Connect-Entra 
- [-AzureEnvironmentName <EnvironmentName>] 
  [-TenantId <String>] 
- -AadAccessToken <String>
  [-MsAccessToken <String>] 
- -AccountId <String> 
- [-LogLevel <LogLevel>] 
- [-LogFilePath <String>]
  [-WhatIf] 
  [-Confirm]
  [<CommonParameters>]
@@ -80,7 +68,7 @@ PS C:\> Connect-Entra -Confirm
 
 This command connects the current PowerShell session to a Microsoft Entra ID tenant.
 The command prompts you for a username and password for the tenant you want to connect to.
-The Confirm parameter prompts you for confirmation.
+The Confirmed parameter prompts you for confirmation.
 
 If multifactor authentication is enabled for your credentials, you must sign in using the interactive option or use service principal authentication.
 
@@ -97,8 +85,15 @@ The second command connects the current PowerShell session using the credentials
 This account authenticates with Microsoft Entra ID using organizational ID credentials.
 You can't use multifactor authentication or Microsoft account credentials to run Microsoft Entra ID cmdlets with this account.
 
-### Example 3: Connect a session as a service principal
+### Example 3: Connect a session using a ApplicationId and CertificateThumbprint
+```powershell
+PS C:\> Connect-Entra -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -ApplicationId "8886ad7b-1795-4542-9808-c85859d97f23" -CertificateThumbprint F8813914053FBFB5D84F1EFA9EDB3205621C1126
 ```
+
+This command Connect a session using a ApplicationId and CertificateThumbprint.
+
+### Example 4: Connect a session as a service principal
+```powershell
 # Login to Connect-Entra PowerShell With Admin Account
 Connect-Entra 
 
@@ -136,51 +131,8 @@ This command authenticates the user to Microsoft Entra ID as a service principal
 
 ## PARAMETERS
 
-### -AadAccessToken
-Specifies a Microsoft Entra ID Graph access token.
-
-```yaml
-Type: String
-Parameter Sets: AccessToken
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -AccountId
-Specifies the ID of an account.
-You must specify the UserPrincipalName of the user when authenticating with a user access token.
-
-```yaml
-Type: String
-Parameter Sets: UserCredential
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-```yaml
-Type: String
-Parameter Sets: AccessToken
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ApplicationId
-Specifies the application ID of the service principal.
+### -CertificateThumbprint
+Specifies the certificate thumbprint of a digital public key X.509 certificate of a user account that has permission to perform this action.
 
 ```yaml
 Type: String
@@ -193,32 +145,8 @@ Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
-### -AzureEnvironmentName
-Specifies the name of the Entra environment.
-The acceptable values for this parameter are:
-
-- AzureCloud
-- AzureChinaCloud
-- AzureUSGovernment
-- AzureGermanyCloud
-
-The default value is EntraCloud.
-
-```yaml
-Type: EnvironmentName
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -CertificateThumbprint
-Specifies the certificate thumbprint of a digital public key X.509 certificate of a user account that has permission to perform this action.
+### -ApplicationId
+Specifies the application ID of the service principal.
 
 ```yaml
 Type: String
@@ -249,28 +177,8 @@ Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-### -LogLevel
-Specifies the log level.
-The acceptable values for this parameter are:
 
-- Info
-- Error
-- Warning
-- None
 
-The default value is Info.
-
-```yaml
-Type: LogLevel
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -MsAccessToken
 Specifies a Microsoft Graph access token.
@@ -349,21 +257,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -LogFilePath
-The path where the log file for this PowerShell session is written to.
-Provide a value here if you need to deviate from the default PowerShell log file location.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
