@@ -12,7 +12,7 @@
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         if($null -ne $PSBoundParameters["ObjectId"])
         {
-            $params["OrgContactId"] = $PSBoundParameters["ObjectId"]
+            $params["GroupId"] = $PSBoundParameters["ObjectId"]
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
