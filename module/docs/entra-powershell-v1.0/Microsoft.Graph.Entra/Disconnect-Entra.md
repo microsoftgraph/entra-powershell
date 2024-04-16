@@ -21,11 +21,8 @@ schema: 2.0.0
 Disconnects the current session from a Microsoft Entra ID tenant.
 
 ## SYNTAX
-
 ```powershell
 Disconnect-Entra
- [-WhatIf] 
- [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -39,42 +36,9 @@ The Disconnect-Entra cmdlet disconnects the current session from a Microsoft Ent
 ```powershell
 PS C:\> Disconnect-Entra
 ```
-
 This command disconnects your session from a tenant.
 
 ## PARAMETERS
-
-### -Confirm
-Prompts you for confirmation before running the cmdlet. Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet isn't run. Shows what would happen if the cmdlet runs.
-The cmdlet isn't run.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: wi
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).

@@ -27,8 +27,6 @@ Connects with an authenticated account to use Microsoft Entra ID cmdlet requests
 Connect-Entra 
  [-TenantId <String>] 
  [-Credential <PSCredential>]
- [-WhatIf] 
- [-Confirm] 
  [<CommonParameters>]
 ```
 
@@ -38,8 +36,6 @@ Connect-Entra
  -TenantId <String> 
  -ApplicationId <String>
  -CertificateThumbprint <String>
- [-WhatIf] 
- [-Confirm] 
  [<CommonParameters>]
 ```
 
@@ -48,8 +44,6 @@ Connect-Entra
 Connect-Entra 
  [-TenantId <String>] 
  [-MsAccessToken <String>] 
- [-WhatIf] 
- [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -60,19 +54,7 @@ You can use this authenticated account only with Microsoft Entra ID cmdlets.
 
 ## EXAMPLES
 
-### Example 1: Connect a PowerShell session to a tenant
-
-```powershell
-PS C:\> Connect-Entra -Confirm
-```
-
-This command connects the current PowerShell session to a Microsoft Entra ID tenant.
-The command prompts you for a username and password for the tenant you want to connect to.
-The Confirmed parameter prompts you for confirmation.
-
-If multifactor authentication is enabled for your credentials, you must sign in using the interactive option or use service principal authentication.
-
-### Example 2: Connect a session using a variable
+### Example 1: Connect a session using a variable
 ```powershell
 PS C:\> $Credential = Get-Credential
 PS C:\> Connect-Entra -Credential $Credential
@@ -85,49 +67,11 @@ The second command connects the current PowerShell session using the credentials
 This account authenticates with Microsoft Entra ID using organizational ID credentials.
 You can't use multifactor authentication or Microsoft account credentials to run Microsoft Entra ID cmdlets with this account.
 
-### Example 3: Connect a session using a ApplicationId and CertificateThumbprint
+### Example 2: Connect a session using a ApplicationId and CertificateThumbprint
 ```powershell
 PS C:\> Connect-Entra -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -ApplicationId "8886ad7b-1795-4542-9808-c85859d97f23" -CertificateThumbprint F8813914053FBFB5D84F1EFA9EDB3205621C1126
 ```
-
 This command Connect a session using a ApplicationId and CertificateThumbprint.
-
-### Example 4: Connect a session as a service principal
-```powershell
-# Login to Connect-Entra PowerShell With Admin Account
-Connect-Entra 
-
-# Create the self signed cert
-$currentDate = Get-Date
-$endDate = $currentDate.AddYears(1)
-$notAfter = $endDate.AddYears(1)
-$pwd = "<password>"
-$thumb = (New-SelfSignedCertificate -CertStoreLocation cert:\localmachine\my -DnsName com.foo.bar -KeyExportPolicy Exportable -Provider "Microsoft Enhanced RSA and AES Cryptographic Provider" -NotAfter $notAfter).Thumbprint
-$pwd = ConvertTo-SecureString -String $pwd -Force -AsPlainText
-Export-PfxCertificate -cert "cert:\localmachine\my\$thumb" -FilePath c:\temp\examplecert.pfx -Password $pwd
-
-# Load the certificate
-$cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate("C:\temp\examplecert.pfx", $pwd)
-$keyValue = [System.Convert]::ToBase64String($cert.GetRawCertData())
-
-
-# Create the Microsoft Entra ID Application
-$application = New-EntraApplication -DisplayName "test123" -IdentifierUris "https://test123"
-New-EntraApplicationKeyCredential -ObjectId $application.ObjectId -CustomKeyIdentifier "Test123" -StartDate $currentDate -EndDate $endDate -Type AsymmetricX509Cert -Usage Verify -Value $keyValue
-
-# Create the Service Principal and connect it to the Application
-$sp=New-EntraServicePrincipal -AppId $application.AppId
-
-# Give the Service Principal Reader access to the current tenant (Get-EntraADDirectoryRole)
-Add-EntraDirectoryRoleMember -ObjectId 5997d714-c3b5-4d5b-9973-ec2f38fd49d5 -RefObjectId $sp.ObjectId
-
-# Get Tenant Detail
-$tenant=Get-EntraTenantDetail
-# Now you can login to Entra PowerShell with your Service Principal and Certificate
-Connect-Entra -TenantId $tenant.ObjectId -ApplicationId  $sp.AppId -CertificateThumbprint $thumb
-```
-
-This command authenticates the user to Microsoft Entra ID as a service principal.
 
 ## PARAMETERS
 
