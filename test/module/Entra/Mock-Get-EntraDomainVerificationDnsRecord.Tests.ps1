@@ -6,7 +6,6 @@ BeforeAll {
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
 $scriptblock = {
-    # Write-Host "Mocking Get-EntraDomainVerificationDnsRecord with parameters: $($args | ConvertTo-Json -Depth 3)"
     return @(
         [PSCustomObject]@{
            "Id"                               = "aceff52c-06a5-447f-ac5f-256ad243cc5c" 
@@ -29,11 +28,10 @@ $scriptblock = {
     Mock -CommandName Get-MgDomainVerificationDnsRecord -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }   
 
-Describe "Get-EntraDomainServiceConfigurationRecord" {
-    Context "Test for Get-EntraDomainServiceConfigurationRecord" {
-        It "Should return specific domain confuguration record" {
+Describe "Get-EntraDomainVerificationDnsRecord" {
+    Context "Test for Get-EntraDomainVerificationDnsRecord" {
+        It "Should return specific domain verification Dns record" {
             $result = Get-EntraDomainVerificationDnsRecord -Name "test.mail.onmicrosoft.com"
-            Write-Host $result
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'aceff52c-06a5-447f-ac5f-256ad243cc5c'
 

@@ -6,7 +6,6 @@ BeforeAll {
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
 $scriptblock = {
-    # Write-Host "Mocking Get-MgApplication with parameters: $($args | ConvertTo-Json -Depth 3)"
     return @(
         [PSCustomObject]@{
            "Id"                               = "test.mail.onmicrosoft.com" 

@@ -6,7 +6,6 @@ BeforeAll {
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
 $scriptblock = {
-    # Write-Host "Mocking Get-MgDomainServiceConfigurationRecord with parameters: $($args | ConvertTo-Json -Depth 3)"
     return @(
         [PSCustomObject]@{
            "Id"                               = "2b672ab0-0bee-476f-b334-be436f2449bd" 
