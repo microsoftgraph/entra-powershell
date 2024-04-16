@@ -8,44 +8,32 @@
     Outputs = $null
     CustomScript = @'
     PROCESS {    
-    $params = @{}
-    $keysChanged = @{ObjectIds = "Ids"}
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $Null
-    }
-    if($null -ne $PSBoundParameters["Types"])
-    {
-        $params["Types"] = $PSBoundParameters["Types"]
-    }
-    if($PSBoundParameters.ContainsKey("Verbose"))
-    {
-        $params["Verbose"] = $Null
-    }
-    if($null -ne $PSBoundParameters["ObjectIds"])
-    {
-        $params["Ids"] = $PSBoundParameters["ObjectIds"]
-    }
-
-    Write-Debug("============================ TRANSFORMATIONS ============================")
-    $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
-    Write-Debug("=========================================================================`n")
-    
-    $response = Get-MgDirectoryObjectById @params
-    $response | ForEach-Object {
-        if($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-
-            $dictionary = $_.AdditionalProperties
-             
-            foreach ($key in $dictionary.Keys) {
-               $value = ($dictionary[$key] | Convertto-json -Depth 10) | ConvertFrom-Json
-               $_ | Add-Member -MemberType NoteProperty -Name $key -Value ($value) -Force
-            }
+        $params = @{}
+        $body = @{}
+        $keysChanged = @{ObjectIds = "Ids"}
+        if($PSBoundParameters.ContainsKey("Debug"))
+        {
+            $params["Debug"] = $Null
         }
-    }
-
-    $response 
-}
+        if($null -ne $PSBoundParameters["Types"])
+        {
+            $body["Types"] = $PSBoundParameters["Types"]
+        }
+        if($PSBoundParameters.ContainsKey("Verbose"))
+        {
+            $params["Verbose"] = $Null
+        }
+        if($null -ne $PSBoundParameters["ObjectIds"])
+        {
+            $body["Ids"] = $PSBoundParameters["ObjectIds"]
+        }
+    
+        Write-Debug("============================ TRANSFORMATIONS ============================")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================`n")
+        
+        $response = Invoke-GraphRequest -Uri 'https://graph.microsoft.com/v1.0/directoryObjects/microsoft.graph.getByIds?$select=*' -Method POST -Body $body 
+        $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+    }    
 '@
 }
