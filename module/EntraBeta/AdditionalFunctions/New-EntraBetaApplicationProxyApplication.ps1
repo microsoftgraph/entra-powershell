@@ -97,10 +97,13 @@ function New-EntraBetaApplicationProxyApplication {
             if ($ExternalUrl.EndsWith("/")) {
                 $exUrl = $ExternalUrl.TrimEnd("/")
             }
+            else {
+                $exUrl = $ExternalUrl
+            }
             $UpdateUrlBody = @{ 
                 identifierUris = @($exUrl) 
                 web = @{ 
-                redirectUris = @($exUrl) 
+                redirectUris = @($ExternalUrl) 
                 homePageUrl = $InternalUrl 
                 } 
             } 
