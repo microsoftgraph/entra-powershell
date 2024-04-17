@@ -1,4 +1,15 @@
 ---
+title: Set-EntraMSIdentityProvider
+description: This article provides details on the Set-EntraMSIdentityProvider command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/25/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,23 +23,42 @@ This cmdlet is used to update the properties of an existing identity provider co
 
 ## SYNTAX
 
-```
-Set-EntraMSIdentityProvider [-Type <String>] -Id <String> [-ClientSecret <String>] [-ClientId <String>]
- [-Name <String>] [<CommonParameters>]
+```powershell
+Set-EntraMSIdentityProvider 
+ -Id <String> 
+ [-Type <String>] 
+ [-ClientSecret <String>] 
+ [-ClientId <String>]
+ [-Name <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 This cmdlet can be used to update the properties of an existing identity provider.
-The type of the identity provider cannot be modified.
+The type of the identity provider can't be modified.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> Set-EntraMSIdentityProvider -Id LinkedIn-OAUTH -ClientId NewClientId -ClientSecret NewClientSecret
+### Example 1: Update client id of an identity provider
+```powershell
+PS C:\> Set-EntraMSIdentityProvider -Id LinkedIn-OAUTH -ClientId NewClientId
 ```
 
-This example updates the client ID and client secret for the specified identity provider.
+This example updates the client ID for the specified identity provider.
+
+### Example 2: Update client secret of an identity provider
+```powershell
+PS C:\> Set-EntraMSIdentityProvider -Id LinkedIn-OAUTH -ClientSecret NewClientSecret
+```
+
+This example updates the client secret for the specified identity provider.
+
+### Example 3: Update display name of an identity provider
+```powershell
+PS C:\> Set-EntraMSIdentityProvider -Id LinkedIn-OAUTH -Name NewName
+```
+
+This example updates the display name for the specified identity provider.
 
 ## PARAMETERS
 
@@ -95,7 +125,7 @@ Accept wildcard characters: False
 ```
 
 ### -Type
-{{ Fill Type Description }}
+The identity provider type. It must be one of the following values: Microsoft, Google, Facebook, Amazon, or LinkedIn.
 
 ```yaml
 Type: String
@@ -110,7 +140,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

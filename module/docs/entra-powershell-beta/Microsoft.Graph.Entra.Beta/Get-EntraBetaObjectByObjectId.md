@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-EntraBetaObjectByObjectId
 
 ## SYNOPSIS
-Retrieves the object(s) specified by the objectIds parameter
+Retrieves the object(s) specified by the ObjectIds parameter
 
 ## SYNTAX
 
@@ -18,7 +18,7 @@ Get-EntraBetaObjectByObjectId [-Types <System.Collections.Generic.List`1[System.
 ```
 
 ## DESCRIPTION
-Retrieves the object(s) specified by the objectIds parameter
+Retrieves the object(s) specified by the ObjectIds parameter
 
 ## EXAMPLES
 
@@ -74,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

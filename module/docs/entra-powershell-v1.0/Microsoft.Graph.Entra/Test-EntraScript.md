@@ -1,5 +1,15 @@
 ---
-external help file: Microsoft.Graph.Entra-help.xml
+title: Test-EntraScript.
+description: This article provides details on the Test-EntraScript command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 04/08/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
 schema: 2.0.0
@@ -12,8 +22,12 @@ Checks, whether the provided script is using AzureAD commands that are not suppo
 
 ## SYNTAX
 
-```
-Test-EntraScript [-Path] <String[]> [[-Content] <String>] [-Quiet] [<CommonParameters>]
+```powershell
+Test-EntraScript 
+ -Path <String[]> 
+ [-Content <String>] 
+ [-Quiet] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,14 +36,14 @@ Checks, whether the provided script is using AzureAD commands that are not suppo
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 Test-EntraScript -Path .\usercreation.ps1 -Quiet
 ```
 
 Returns whether the script "usercreation.ps1" could run under Microsoft.Graph.Entra
 
 ### EXAMPLE 2
-```
+```powershell
 Get-ChildItem -Path \\contoso.com\it\code -Recurse -Filter *.ps1 | Test-EntraScript
 ```
 
@@ -86,7 +100,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

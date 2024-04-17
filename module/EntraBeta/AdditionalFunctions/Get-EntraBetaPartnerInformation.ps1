@@ -35,6 +35,7 @@ function Get-EntraBetaPartnerInformation {
     
         PROCESS {    
             $params = @{}
+            $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
             if ($PSBoundParameters.ContainsKey("Verbose")) {
                 $params["Verbose"] = $Null
             }
@@ -51,7 +52,7 @@ function Get-EntraBetaPartnerInformation {
             if ([string]::IsNullOrWhiteSpace($TenantId)) {
                 $TenantID = ((invoke-mggraphrequest -Method GET -Uri "https://graph.microsoft.com/beta/organization").value).id
             }
-            $response = invoke-mggraphrequest -Method GET -Uri "https://graph.microsoft.com/beta/organization/$TenantID/partnerInformation"
+            $response = invoke-mggraphrequest -Headers $customHeaders -Method GET -Uri "https://graph.microsoft.com/beta/organization/$TenantID/partnerInformation"
             # Create a custom table
             $customTable = [PSCustomObject]@{
                 "PartnerCompanyName"       = $response.companyName

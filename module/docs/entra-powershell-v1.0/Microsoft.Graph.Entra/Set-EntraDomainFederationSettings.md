@@ -1,4 +1,15 @@
 ---
+title: Set-EntraDomainFederationSettings
+description: This article provides details on the Set-EntraDomainFederationSettings command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/28/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -12,12 +23,21 @@ Updates settings for a federated domain.
 
 ## SYNTAX
 
-```
-Set-EntraDomainFederationSettings [-DomainName] <String> [[-SigningCertificate] <String>]
- [[-NextSigningCertificate] <String>] [[-LogOffUri] <String>] [[-PassiveLogOnUri] <String>]
- [[-ActiveLogOnUri] <String>] [[-IssuerUri] <String>] [[-FederationBrandName] <String>]
- [[-MetadataExchangeUri] <String>] [[-PreferredAuthenticationProtocol] <String>]
- [[-SigningCertificateUpdateStatus] <Object>] [[-PromptLoginBehavior] <String>] [<CommonParameters>]
+```powershell
+Set-EntraDomainFederationSettings 
+ -DomainName <String>
+ [-SigningCertificate <String>]
+ [-NextSigningCertificate <String>]
+ [-LogOffUri <String>]
+ [-PassiveLogOnUri <String>]
+ [-ActiveLogOnUri <String>]
+ [-IssuerUri <String>]
+ [-FederationBrandName <String>]
+ [-MetadataExchangeUri <String>]
+ [-PreferredAuthenticationProtocol <AuthenticationProtocol>]
+ [-SigningCertificateUpdateStatus <SigningCertificateUpdateStatus>]
+ [-PromptLoginBehavior <PromptLoginBehavior>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,12 +45,18 @@ The Set-EntraDomainFederationSettings cmdlet is used to update the settings of a
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Set the PromptLoginBehavior
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Set-EntraDomainFederationSettings –DomainName "contoso.com" -PreferredAuthenticationProtocol "WsFed" -PromptLoginBehavior <TranslateToFreshPasswordAuth|NativeSupport|Disabled>
 ```
 
-{{ Add example description here }}
+This command updates the `PromptLoginBehavior` to either `TranslateToFreshPasswordAuth`, `NativeSupport`, or `Disabled`. These possible values are described:
+
+- **TranslateToFreshPasswordAuth**: means the default Microsoft Entra ID behavior of translating `prompt=login` to `wauth=https://schemas.microsoft.com/ws/2008/06/identity/authenticationmethod/password` and `wfresh=0`.
+- **NativeSupport**: means that the `prompt=login` parameter is sent as is to ADFS.
+- **Disabled**: means that only wfresh=0 is sent to ADFS
+
+Use the `Get-EntraDomainFederationSettings -DomainName <your_domain_name> | Format-List *` to get the values for `PreferredAuthenticationProtocol` and `PromptLoginBehavior` for the federated domain.
 
 ## PARAMETERS
 
@@ -50,7 +76,7 @@ Accept wildcard characters: False
 ```
 
 ### -SigningCertificate
-The current certificate used to sign tokens passed to the Microsoft Azure Active Directory Identity platform.
+The current certificate used to sign tokens passed to the Microsoft Entra ID Identity platform.
 
 ```yaml
 Type: String
@@ -80,7 +106,7 @@ Accept wildcard characters: False
 ```
 
 ### -LogOffUri
-The URL clients are redirected to when they sign out of Microsoft Azure Active Directory services.
+The URL clients are redirected to when they sign out of Microsoft Entra ID services.
 
 ```yaml
 Type: String
@@ -95,7 +121,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassiveLogOnUri
-The URL that web-based clients will be directed to when signing in to Microsoft Azure Active Directory services.
+The URL that web-based clients are directed to when signing in to Microsoft Entra ID services.
 
 ```yaml
 Type: String
@@ -110,8 +136,7 @@ Accept wildcard characters: False
 ```
 
 ### -ActiveLogOnUri
-A URL that specifies the end point used by active clients when authenticating with domains set up for single sign-on (also known as identity federation) in
-Microsoft Azure Active Directory.
+A URL that specifies the end point used by active clients when authenticating with domains set up for single sign-on (also known as identity federation) in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -126,7 +151,7 @@ Accept wildcard characters: False
 ```
 
 ### -IssuerUri
-The unique identifier of the domain in the Microsoft Azure Active Directory Identity platform derived from the federation server.
+The unique identifier of the domain in the Microsoft Entra ID Identity platform derived from the federation server.
 
 ```yaml
 Type: String
@@ -141,7 +166,7 @@ Accept wildcard characters: False
 ```
 
 ### -FederationBrandName
-The name of the string value shown to users when signing in to Microsoft Azure Active Directory.
+The name of the string value shown to users when signing in to Microsoft Entra ID.
 We recommend that customers use something that is familiar to
 users such as "Contoso Inc."
 
@@ -203,7 +228,7 @@ Accept wildcard characters: False
 ```
 
 ### -PromptLoginBehavior
-Specifies the prompt login behavior.
+Specifies the prompt sign-in behavior.
 
 ```yaml
 Type: String
@@ -218,7 +243,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -227,3 +252,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+[Get-EntraDomainFederationSettings](./Get-EntraDomainFederationSettings.md)

@@ -24,13 +24,13 @@ Validate the ownership of a domain.
 
 ```powershell
 Confirm-EntraDomain 
-    -Name <String> 
-    [-CrossCloudVerificationCode <CrossCloudVerificationCodeBody>]
-    [<CommonParameters>]
+ -Name <String> 
+ [-CrossCloudVerificationCode <CrossCloudVerificationCodeBody>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Confirm-EntraDomain** cmdlet validates the ownership of a Microsoft Entra ID domain.
+The Confirm-EntraDomain cmdlet validates the ownership of a Microsoft Entra ID domain.
 
 ## EXAMPLES
 
@@ -81,7 +81,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

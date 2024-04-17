@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraUserExtension.
+description: This article provides details on the Remove-EntraUserExtension command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 03/22/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
@@ -13,14 +23,19 @@ Removes a user extension.
 ## SYNTAX
 
 ### SetMultiple
-```
-Remove-EntraUserExtension -ObjectId <String> -ExtensionNames <System.Collections.Generic.List`1[System.String]>
+```powershell
+Remove-EntraUserExtension 
+ -ObjectId <String> 
+ -ExtensionNames <System.Collections.Generic.List`1[System.String]>
  [<CommonParameters>]
 ```
 
 ### SetSingle
-```
-Remove-EntraUserExtension -ObjectId <String> -ExtensionName <String> [<CommonParameters>]
+```powershell
+Remove-EntraUserExtension 
+ -ObjectId <String> 
+ -ExtensionName <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,12 +43,12 @@ The Remove-EntraUserExtension cmdlet removes a user extension from Microsoft Ent
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Remove the "Test Extension" attribute from user: TestUser@example.com
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-EntraUserExtension -ObjectId TestUser@example.com -ExtensionName "Test Extension"
 ```
 
-{{ Add example description here }}
+This will remove the "Test Extension" attribute from user: TestUser@example.com.
 
 ## PARAMETERS
 
@@ -83,7 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -93,7 +108,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraUserExtension]()
+[Get-EntraUserExtension](Get-EntraUserExtension.md)
 
-[Set-EntraUserExtension]()
+[Set-EntraUserExtension](Set-EntraUserExtension.md)
 

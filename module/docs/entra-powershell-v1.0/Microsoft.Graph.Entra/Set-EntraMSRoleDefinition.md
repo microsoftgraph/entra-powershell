@@ -22,7 +22,7 @@ Update an existing Microsoft Entra ID roleDefinition.
 
 ## SYNTAX
 
-```
+```powershell
 Set-EntraMSRoleDefinition 
 [-TemplateId <String>] 
 [-DisplayName <String>]
@@ -37,7 +37,6 @@ Set-EntraMSRoleDefinition
 
 ## DESCRIPTION
 Updates a Microsoft Entra ID roleDefinition object identified by ID.
-For more info, see https://go.microsoft.com/fwlink/?linkid=2097519.
 
 ## EXAMPLES
 
@@ -68,9 +67,9 @@ This example updates the IsEnabled of specified role definition in Microsoft Ent
 ### Example 4: Update an roleDefinition.
 
 ```powershell
-PS C:\>  $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
->>  $RolePermissions.AllowedResourceActions = @("microsoft.directory/applications/standard/read")
->>  Set-EntraMSRoleDefinition -Id 54d418b2-4cc0-47ee-9b39-e8f84ed8e073 -Description "Update" -DisplayName "Update" -ResourceScopes "/" -IsEnabled $false -RolePermissions $RolePermissions -TemplateId 54d418b2-4cc0-47ee-9b39-e8f84ed8e073 -TemplateId  2
+PS C:\> $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
+PS C:\> $RolePermissions.AllowedResourceActions = @("microsoft.directory/applications/standard/read")
+PS C:\> Set-EntraMSRoleDefinition -Id 54d418b2-4cc0-47ee-9b39-e8f84ed8e073 -Description "Update" -DisplayName "Update" -ResourceScopes "/" -IsEnabled $false -RolePermissions $RolePermissions -TemplateId 54d418b2-4cc0-47ee-9b39-e8f84ed8e073 -TemplateId  2
 ```
 
 This example updates the RolePermissions, TemplateId, TemplateId, ResourceScopes  of specified role definition in Microsoft Entra ID.
@@ -198,11 +197,11 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
-### string
+### String
 ## OUTPUTS
 
 ## NOTES
