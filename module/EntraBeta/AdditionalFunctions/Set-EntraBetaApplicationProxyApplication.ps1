@@ -84,6 +84,9 @@ function Set-EntraBetaApplicationProxyApplication {
         if ($ExternalUrl.EndsWith("/")) {
             $exUrl = $ExternalUrl.TrimEnd("/")
         }
+        else {
+            $exUrl = $ExternalUrl
+        }
         $updateUrlBody = @{ 
             identifierUris = @($exUrl) 
             web = @{ 
