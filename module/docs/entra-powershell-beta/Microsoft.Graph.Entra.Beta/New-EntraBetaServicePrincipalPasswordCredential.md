@@ -45,8 +45,7 @@ endDateTime         : 17/04/2026 07:39:07
 customKeyIdentifier :
 @odata.type         : #microsoft.graph.servicePrincipal
 displayName         :
-keyId               : dfc1703c-c3b6-4036-99b8-4b41627a15a7
-secretText          : 
+keyId               : dfc1703c-c3b6-4036-99b8-4b41627a15a7          : 
 @odata.context      : https://graph.microsoft.com/beta/$metadata#servicePrincipals('000aa8f0-ccde-4b68-914b-d922971b6192')/addPassword
 hint                : i.W
 startDateTime       : 21/04/2024 14:14:14
@@ -66,8 +65,7 @@ endDateTime         : 21/03/2030 14:14:14
 customKeyIdentifier :
 @odata.type         : #microsoft.graph.servicePrincipal
 displayName         :
-keyId               : 810633b8-dbca-4af7-a4ea-8d3aa1d45588
-secretText          : 
+keyId               : 810633b8-dbca-4af7-a4ea-8d3aa1d45588          : 
 @odata.context      : https://graph.microsoft.com/beta/$metadata#servicePrincipals('000aa8f0-ccde-4b68-914b-d922971b6192')/addPassword
 hint                : T1Q
 startDateTime       : 17/04/2024 07:41:01
