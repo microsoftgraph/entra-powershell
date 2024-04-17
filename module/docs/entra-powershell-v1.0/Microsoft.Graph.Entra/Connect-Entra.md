@@ -59,6 +59,13 @@ PS C:\> Connect-Entra -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -Applicat
 ```
 This command Connect a session using a ApplicationId and CertificateThumbprint.
 
+### Example 2: Delegated access: Using interactive authentication, where you provide the scopes that you require during your session
+```powershell
+PS C:\> Connect-Entra -Scopes "User.Read.All", "Group.ReadWrite.All"
+```
+This example shows how to authenticate to Entra with scopes.
+
+
 ## PARAMETERS
 
 ### -CertificateThumbprint
