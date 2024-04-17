@@ -3,7 +3,7 @@ title: New-EntraBetaServicePrincipalPasswordCredential
 description: This article provides details on the New-EntraBetaServicePrincipalPasswordCredential command.
 ms.service: active-directory
 ms.topic: reference
-ms.date: 04/16/2024
+ms.date: 04/17/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -40,37 +40,12 @@ The New-EntraBetaServicePrincipalPasswordCredential cmdlet creates a password cr
 ```powershell
 PS C:\> New-EntraBetaServicePrincipalPasswordCredential -ObjectID "000aa8f0-ccde-4b68-914b-d922971b6192" -StartDate 2024-04-21T14:14:14Z
 ```
-```output
-endDateTime         : 17/04/2026 07:39:07
-customKeyIdentifier :
-@odata.type         : #microsoft.graph.servicePrincipal
-displayName         :
-keyId               : dfc1703c-c3b6-4036-99b8-4b41627a15a7          : 
-@odata.context      : https://graph.microsoft.com/beta/$metadata#servicePrincipals('000aa8f0-ccde-4b68-914b-d922971b6192')/addPassword
-hint                : i.W
-startDateTime       : 21/04/2024 14:14:14
-StartDate           : 21/04/2024 14:14:14
-EndDate             : 17/04/2026 07:39:07
-```
-
 This example demonstrates how to create a password credential with StartDate for a service principal in Microsoft Entra ID.  
 
 
 ### Example 2: Create a password credential with EndtDate
 ```powershell
 PS C:\> New-EntraBetaServicePrincipalPasswordCredential -ObjectID "021510b7-e753-40aa-b668-29753295ca34" -EndDate 2030-03-21T14:14:14Z
-```
-```output
-endDateTime         : 21/03/2030 14:14:14
-customKeyIdentifier :
-@odata.type         : #microsoft.graph.servicePrincipal
-displayName         :
-keyId               : 810633b8-dbca-4af7-a4ea-8d3aa1d45588          : 
-@odata.context      : https://graph.microsoft.com/beta/$metadata#servicePrincipals('000aa8f0-ccde-4b68-914b-d922971b6192')/addPassword
-hint                : T1Q
-startDateTime       : 17/04/2024 07:41:01
-StartDate           : 17/04/2024 07:41:01
-EndDate             : 21/03/2030 14:14:14
 ```
 This example demonstrates how to create a password credential with EndDate for a service principal in Microsoft Entra ID.       
 
