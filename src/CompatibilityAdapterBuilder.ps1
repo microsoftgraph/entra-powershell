@@ -502,6 +502,8 @@ function Get-EntraUnsupportedCommand {
             foreach ($func in $this.MissingCommandsToMap) {
                 $aliases += "   Set-Alias -Name $($func) -Value Get-EntraUnsupportedCommand -Scope Global -Force`n"
             }
+            $aliases += "   Set-Alias -Name Get-AzureADApplicationProxyConnectorGroupMember -Value Get-EntraUnsupportedCommand -Scope Global -Force`n"
+
             #Adding direct aliases for Connect-Entra and Disconnect-Entra
             $aliases += "   Set-Alias -Name Connect-Entra -Value Connect-MgGraph -Scope Global -Force`n"
             $aliases += "   Set-Alias -Name Disconnect-Entra -Value Disconnect-MgGraph -Scope Global -Force`n"
