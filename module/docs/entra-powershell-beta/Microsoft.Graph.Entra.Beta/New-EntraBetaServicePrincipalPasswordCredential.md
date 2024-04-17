@@ -58,7 +58,7 @@ This example demonstrates how to create a password credential with StartDate for
 
 ### Example 2: Create a password credential with EndtDate
 ```powershell
-PS C:\> New-EntraServicePrincipalPasswordCredential -ObjectID "021510b7-e753-40aa-b668-29753295ca34" -EndDate 2030-03-21T14:14:14Z
+PS C:\> New-EntraBetaServicePrincipalPasswordCredential -ObjectID "021510b7-e753-40aa-b668-29753295ca34" -EndDate 2030-03-21T14:14:14Z
 ```
 ```output
 endDateTime         : 21/03/2030 14:14:14
@@ -132,7 +132,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraServicePrincipalPasswordCredential](Get-EntraServicePrincipalPasswordCredential.md)
-
-[Remove-EntraServicePrincipalPasswordCredential](Remove-EntraServicePrincipalPasswordCredential.md)
 
