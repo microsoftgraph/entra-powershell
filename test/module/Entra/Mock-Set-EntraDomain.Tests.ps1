@@ -17,7 +17,23 @@ Describe "Set-EntraDomain"{
             Should -Invoke -CommandName Update-MgDomain -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Name is empty" {
+            { Set-EntraDomain -Name   } | Should -Throw "Missing an argument for parameter 'Name'*"
+
+        }
+        It "Should fail when Name is invalid" {
             { Set-EntraDomain -Name ""  } | Should -Throw "Cannot bind argument to parameter 'Name' because it is an empty string."
+
+        }
+        It "Should fail when SupportedServices is empty" {
+            { Set-EntraDomain -Name "test.mail.onmicrosoft.com" -SupportedServices  } | Should -Throw "Missing an argument for parameter 'SupportedServices'*"
+
+        }
+        It "Should fail when -IsDefault is empty" {
+            { Set-EntraDomain -Name "test.mail.onmicrosoft.com" -IsDefault  } | Should -Throw "Missing an argument for parameter 'IsDefault'*"
+
+        }
+        It "Should fail when -IsDefault is invalid" {
+            { Set-EntraDomain -Name "test.mail.onmicrosoft.com" -IsDefault xyz  } | Should -Throw "Cannot process argument transformation on parameter 'IsDefault'*"
 
         }
         It "Should contain DomainId in parameters when passed Name to it" {
