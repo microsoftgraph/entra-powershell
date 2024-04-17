@@ -9,7 +9,7 @@
     CustomScript = @'
     PROCESS {  
         $params = @{}
-        $customHeaders = New-EntraBetaCustomHeaders -Module Entra -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraBetaCustomHeaders -Module EntraBeta -Command $MyInvocation.MyCommand
         $keysChanged = @{SearchString = "Filter"; ObjectId = "Id"}
         if($null -ne $PSBoundParameters["SearchString"])
         {
