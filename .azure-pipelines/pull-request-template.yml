@@ -11,7 +11,9 @@ trigger:
     - main
 
 pr:
-- main
+  branches:
+    include:
+    - '*'
 
 pool:
   vmImage: windows-latest
