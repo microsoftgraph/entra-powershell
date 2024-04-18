@@ -14,6 +14,7 @@ pr:
   branches:
     include:
     - '*'
+    # Just a comment
 
 pool:
   vmImage: windows-latest
