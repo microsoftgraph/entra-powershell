@@ -9,7 +9,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
-        `$customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        `$customHeaders = New-EntraCustomHeaders -Command `$MyInvocation.MyCommand
         
         if(`$null -ne `$PSBoundParameters["ClientApplicationTenantIds"])
         {
