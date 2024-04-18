@@ -31,61 +31,13 @@ Connect-Entra
  [-UseDeviceCode]
  [-ClientTimeout <Double>]
  [-NoWelcome]
- [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
-```
-```powershell 
-Connect-Entra
- [-ClientId] <String>
  [[-CertificateSubjectName] <String>]
  [[-CertificateThumbprint] <String>]
  [-Certificate <X509Certificate2>]
- [-TenantId <String>]
- [-ContextScope <ContextScope>]
- [-Environment <String>]
- [-ClientTimeout <Double>]
- [-NoWelcome]
- [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
-```
-```powershell 
-Connect-Entra
- [[-ClientId] <String>]
- [-ContextScope <ContextScope>]
- [-Environment <String>]
- [-ClientTimeout <Double>]
  [-Identity]
- [-NoWelcome]
- [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
-```
-```powershell 
-Connect-Entra
  [-ClientSecretCredential <PSCredential>]
- [-TenantId <String>]
- [-ContextScope <ContextScope>]
- [-Environment <String>]
- [-ClientTimeout <Double>]
- [-NoWelcome]
- [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
-```
-```powershell 
-Connect-Entra
- [-AccessToken] <SecureString>
- [-Environment <String>]
- [-ClientTimeout <Double>]
- [-NoWelcome]
- [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
-```
-```powershell 
-Connect-Entra
- [-ContextScope <ContextScope>]
- [-Environment <String>]
- [-ClientTimeout <Double>]
+ [-AccessToken <SecureString> ]
  [-EnvironmentVariable]
- [-NoWelcome]
  [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
