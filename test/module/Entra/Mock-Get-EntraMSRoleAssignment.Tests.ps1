@@ -37,7 +37,6 @@ Describe "Get-EntraMSRoleAssignment" {
         It "Should fail when Id is empty" {
             { Get-EntraMSRoleAssignment -Id  } | Should -Throw "Missing an argument for parameter 'Id'*"
         }
-        }
         It "Should fail when Id is empty" {
             { Get-EntraMSRoleAssignment -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
         }
@@ -94,4 +93,4 @@ Describe "Get-EntraMSRoleAssignment" {
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
     }
-# }
+}
