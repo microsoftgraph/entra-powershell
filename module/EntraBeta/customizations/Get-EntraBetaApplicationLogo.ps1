@@ -9,7 +9,7 @@
     CustomScript = @'   
     PROCESS {    
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand        
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand        
         $baseUri = 'https://graph.microsoft.com/beta/applications'
         $Method = "GET"
         if($PSBoundParameters.ContainsKey("Verbose"))
