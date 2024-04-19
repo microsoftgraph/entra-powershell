@@ -22,6 +22,10 @@
             $URI = "$baseUri/$($params.ApplicationId)"
         }
 
+        if($null -ne $logoUrl){
+            $params["FilePath"] = $PSBoundParameters["FilePath"]            
+        }
+
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
@@ -29,7 +33,6 @@
         $logoUrl = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).Info.logoUrl
 
         if($null -ne $logoUrl){
-            $params["FilePath"] = $PSBoundParameters["FilePath"]
             Invoke-WebRequest -Uri $logoUrl -OutFile $($params.FilePath)
         }
     }
