@@ -96,7 +96,7 @@ function Set-EntraBetaApplicationProxyApplication {
             } 
         }
         try {
-            $Application = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ObjectId" -Method PATCH -Body $updateUrlBody -Headers $customHeaders 
+            $Application = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ObjectId" -Method PATCH -Body $updateUrlBody
         } catch {
             Write-Error $_
             return
@@ -105,7 +105,7 @@ function Set-EntraBetaApplicationProxyApplication {
         # update onpremises
         $onPremisesPublishingBody = @{onPremisesPublishing = $onPremisesPublishing}
         try {
-            Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ObjectId" -Method PATCH -Body $onPremisesPublishingBody -Headers $customHeaders
+            Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ObjectId" -Method PATCH -Body $onPremisesPublishingBody
         } catch {
             Write-Error $_
             return
@@ -120,7 +120,7 @@ function Set-EntraBetaApplicationProxyApplication {
             $ConnectorGroupBody = $ConnectorGroupBody | ConvertTo-Json
             $ConnectorGroupUri = "https://graph.microsoft.com/beta/applications/$ObjectId/connectorGroup/" + '$ref'
             try {
-                $ConnectorGroup = Invoke-GraphRequest -Method PUT -Uri $ConnectorGroupUri -Body $ConnectorGroupBody -ContentType "application/json" -Headers $customHeaders
+                $ConnectorGroup = Invoke-GraphRequest -Method PUT -Uri $ConnectorGroupUri -Body $ConnectorGroupBody -ContentType "application/json"
             } catch {
                 Write-Error $_
                 return
