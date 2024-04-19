@@ -3,7 +3,7 @@ title: Get-EntraBetaApplicationProxyConnectorMemberOf
 description: This article provides details on the Get-EntraBetaApplicationProxyConnectorMemberOf command.
 ms.service: active-directory
 ms.topic: reference
-ms.date: 04/04/2023
+ms.date: 04/15/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -81,3 +81,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+(Get-EntraBetaApplicationProxyConnector)[Get-EntraBetaApplicationProxyConnector.md]
