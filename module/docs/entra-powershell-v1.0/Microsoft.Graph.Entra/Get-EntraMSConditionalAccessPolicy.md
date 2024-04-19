@@ -25,14 +25,14 @@ Gets a Microsoft Entra ID conditional access policy.
 ### GetQuery (Default)
 ```powershell
 Get-EntraMSConditionalAccessPolicy 
-[<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraMSConditionalAccessPolicy 
--PolicyId <String> 
-[<CommonParameters>]
+ -PolicyId <String> 
+ [<CommonParameters>]
 ```
 ## DESCRIPTION
 This cmdlet allows an admin to get the Microsoft Entra ID conditional access policy.

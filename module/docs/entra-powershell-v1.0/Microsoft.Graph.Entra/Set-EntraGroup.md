@@ -22,7 +22,7 @@ Updates a specific group in Microsoft Entra ID.
 
 ## SYNTAX
 
-```
+```powershell
 Set-EntraGroup 
  -ObjectId <String>
  [-SecurityEnabled <Boolean>]  

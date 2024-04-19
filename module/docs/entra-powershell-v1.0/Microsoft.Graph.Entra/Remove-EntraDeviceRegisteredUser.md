@@ -22,11 +22,11 @@ Removes a registered user from a device.
 
 ## SYNTAX
 
-```
+```powershell
 Remove-EntraDeviceRegisteredUser 
--ObjectId <String> 
--UserId <String> 
-[<CommonParameters>]
+ -ObjectId <String> 
+ -UserId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -42,9 +42,8 @@ PS C:\> Remove-EntraDeviceRegisteredOwner -ObjectId $Device.ObjectId -OwnerId $O
 ```
 
 This example demonstrates how to remove the registered user from device.  
-The first command gets a device by using the Get-EntraDevice (./Get-EntraDevice.md) cmdlet, and then stores it in the $Device variable.  
-The second command gets the registered user for the device in $Device by using the Get-EntraDeviceRegisteredUser
-(./Get-EntraDeviceRegisteredUser.md) cmdlet.
+The first command gets a device by using the [Get-EntraDevice](./Get-EntraDevice.md) cmdlet, and then stores it in the $Device variable.  
+The second command gets the registered user for the device in $Device by using the [Get-EntraDeviceRegisteredUser](./Get-EntraDeviceRegisteredUser.md) cmdlet.
 The command stores it in the $User variable.  
 The final command removes the user in $User from the device in $Device.
 
@@ -92,6 +91,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Add-EntraDeviceRegisteredUser](Add-EntraDeviceRegisteredUser.md)
+
 [Get-EntraDeviceRegisteredUser](Get-EntraDeviceRegisteredUser.md)
 
 

@@ -23,11 +23,11 @@ Gets group IDs that a group is a member of.
 
 ## SYNTAX
 
-```
+```powershell
 Select-EntraGroupIdsGroupIsMemberOf 
--ObjectId <String> 
--GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
-[<CommonParameters>]
+ -ObjectId <String> 
+ -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -46,7 +46,7 @@ PS C:\> Select-EntraGroupIdsGroupIsMemberOf  -ObjectId $GroupId -GroupIdsForMemb
 
 The first command creates a GroupIdsForMembershipCheck object, and then stores it in the $Groups variable.
 
-The second command gets an ID for a group by using the Get-EntraGroup (./Get-EntraGroup.md) cmdlet, and then stores it as a property of $Groups.
+The second command gets an ID for a group by using the [Get-EntraGroup](./Get-EntraGroup.md) cmdlet, and then stores it as a property of $Groups.
 
 The third command gets the ID of a group by using Get-EntraGroup, and then stores it in the $GroupId variable.
 

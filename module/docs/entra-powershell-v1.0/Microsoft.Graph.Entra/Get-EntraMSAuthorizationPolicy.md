@@ -21,9 +21,9 @@ Gets an authorization policy, which represents a policy that can control Microso
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraMSAuthorizationPolicy 
-[<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION

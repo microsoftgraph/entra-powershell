@@ -24,12 +24,12 @@ Removes a trusted certificate authority.
 
 ```powershell
 Remove-EntraTrustedCertificateAuthority 
-	-CertificateAuthorityInformation <CertificateAuthorityInformation>
-	[<CommonParameters>]
+ -CertificateAuthorityInformation <CertificateAuthorityInformation>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Remove-EntraTrustedCertificateAuthority** cmdlet removes a trusted certificate authority from Microsoft Entra ID.
+The Remove-EntraTrustedCertificateAuthority cmdlet removes a trusted certificate authority from Microsoft Entra ID.
 
 ## EXAMPLES
 

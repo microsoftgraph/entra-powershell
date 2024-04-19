@@ -8,10 +8,12 @@ trigger:
   batch: true
   branches:
     include:
-      - main
+    - main
 
 pr:
-- main
+  branches:
+    include:
+    - '*'
 
 pool:
   vmImage: windows-latest

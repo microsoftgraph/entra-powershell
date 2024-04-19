@@ -22,10 +22,10 @@ Get credentials for a service principal.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraServicePrincipalPasswordCredential 
--ObjectId <String> 
-[<CommonParameters>]
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -44,7 +44,7 @@ CustomKeyIdentifier DisplayName EndDateTime         Hint KeyId                  
                                 21/03/2025 08:12:08 4fl  7f4414ec-8f72-49a8-b949-70d635899656            21/03/2024 08:12:08
                                 12/12/2024 08:39:07 mjl  0fff6b21-0a20-4f7c-93ba-26ed9b648344            12/12/2023 08:39:10
 ```
-The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md)cmdlet. 
+The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md) cmdlet. 
 The command stores the ID in the $ServicePrincipalId variable.
 
 The second command gets the password credential of a service principal identified by $ServicePrincipalId.
