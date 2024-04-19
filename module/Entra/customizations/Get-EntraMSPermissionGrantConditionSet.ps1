@@ -8,6 +8,7 @@
     Outputs = $null
     CustomScript = @"
     `$params = @{}
+    `$customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     if(`$PSBoundParameters.ContainsKey("Verbose"))
     {
         `$params["Verbose"] = `$Null
@@ -34,10 +35,10 @@
     Write-Debug("=========================================================================``n")
     
     if("`$conditionalSet" -eq "includes"){
-        `$response = Get-MgPolicyPermissionGrantPolicyInclude @params
+        `$response = Get-MgPolicyPermissionGrantPolicyInclude @params -Headers `$customHeaders
     }
     elseif("`$conditionalSet" -eq "excludes"){
-        `$response = Get-MgPolicyPermissionGrantPolicyExclude @params
+        `$response = Get-MgPolicyPermissionGrantPolicyExclude @params -Headers `$customHeaders
     }
     else{
         Write-Error("Message: Resource not found for the segment '`$conditionalSet'.")

@@ -1,12 +1,12 @@
 ---
 title: Microsoft Entra PowerShell installation and usage guide.
-description: About Microsoft Entra PowerShell installation and usage guide.
+description: Microsoft Entra PowerShell installation and usage guide.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 02/07/2024
+ms.date: 04/05/2024
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi
+ms.reviewer: stevemutungi254
 manager: CelesteDG
 author: msewaweru
 ---
@@ -40,14 +40,14 @@ This module depends on the [Microsoft Graph PowerShell SDK](https://github.com/m
 
 ### Option 1 - Zipped folder option
 
-Download the latest [Microsoft Entra PowerShell release](https://github.com/microsoftgraph/entra-powershell/releases/download/0.5.0-preview/EntraPowerShell_0.5.0-preview.zip) zipped file. Follow the instructions as per this snippet.
+Download the latest [Microsoft Entra PowerShell release](https://github.com/microsoftgraph/entra-powershell/releases/download/0.7.1-preview/EntraPowerShell_0.7.1-preview.zip) zipped file. Follow the instructions as per this snippet.
 
 ```powershell
 # Let's assume the unpacked files are in c:\test\entra-powershell
 cd c:\test\entra-powershell
 
 # Unblock the content using
-dir -r | unblock-file
+Get-ChildItem -Path . -Recurse| Unblock-File -Confirm
 
 # Add the folder to your module's path; this is temporary. To make it permanent, run the following with admin privileges
 $env:PSModulePath += ";C:\test\entra-powerShell"
@@ -57,6 +57,8 @@ Import-Module Microsoft.Graph.Entra -Force
 # or for beta
 Import-Module Microsoft.Graph.Entra.Beta -Force
 ```
+**Note**: In case you encounter dependency installation issues, run [this script](https://github.com/microsoftgraph/entra-powershell/discussions/368) first. [Attribution: [Sam Erde](https://github.com/SamErde) and [Aleksandar Nikolić](https://github.com/alexandair)]
+
 > [!TIP]
 > If you are using PowerShell 5.1, you may experience the error `Function <cmdlet-name> cannot be created because function capacity 4096 has been exceeded for this scope`. To fix this error, run the command: `$MaximumFunctionCount=32768`.
 
@@ -131,7 +133,7 @@ You can use the Microsoft Entra PowerShell to test an AzureAD PowerShell module-
 Test-EntraScript -Script .\export-apps-with-expiring-secrets.ps1
 ```
 
-If the script is compatible, you won't see any output, although you can use `$?` to display that True was returned. If the script isn't compatible, a warning with details of the problem cmdlet(s) shows. Example:
+If the script is compatible, you will not see any output, although you can use `$?` to display that True was returned. If the script isn't compatible, a warning with details of the issues is displayed. Example:
 
 ```powershell
 Test-EntraScript -Script .\export-apps-with-expiring-secrets.ps1
@@ -165,7 +167,7 @@ Get-AzureADUser -SearchString "Adele"
 
 ## Other Microsoft Entra PowerShell features
 
-Microsoft Entra PowerShell offers cool features such as pipelining, and migration adapter capabilities to help our customers migrate from legacy PowerShell modules such as [Azure AD](https://learn.microsoft.com/en-us/powershell/azure/active-directory/overview) and [MSOnline](https://learn.microsoft.com/en-us/powershell/module/msonline) modules. We'll continue to add more out-of-the-box usability features to make you productive and with pleasant experience.
+Microsoft Entra PowerShell offers cool features such as pipelining, and migration adapter capabilities to help our customers migrate from legacy PowerShell modules such as [Azure AD](https://learn.microsoft.com/en-us/powershell/azure/active-directory/overview) and [MSOnline](https://learn.microsoft.com/en-us/powershell/module/msonline) modules. We continue to add more out-of-the-box usability features to make you productive and with pleasant experience.
 
 ### Pipelining feature
 
@@ -218,7 +220,7 @@ Get-EntraGroup -Filter "DisplayName eq 'My new group'" | fl
 
 This command returns the details of the newly created group.
 
-_Hint_: You can use the ObjectId (GUID) to search, update or delete group
+_Hint_: You can use the ObjectId (GUID) to search, update, or delete group.
 
 **Step 3: Update group properties**
 
@@ -226,7 +228,7 @@ _Hint_: You can use the ObjectId (GUID) to search, update or delete group
 Set-EntraGroup -ObjectId "c1720fcf-0281-4c74-89c9-2fbc54f9b8f9" -Description "This is my new updated group details" 
 ```
 
-This command updates the group description. The `ObjectId` is the Group Id GUID.
+This command updates the group description. The `ObjectId` is the Group ID GUID.
 
 _Hint_: To confirm updated changes, run the `Get-EntraGroup` again.
 
@@ -258,9 +260,9 @@ This command adds an owner with UserId `a8f67daa-0d66-491a-b8af-e11c06218c19`` t
 Get-EntraGroupOwner -ObjectId "c1720fcf-0281-4c74-89c9-2fbc54f9b8f9" 
 ```
 
-This command returns the UserId of the group owner(s).
+This command returns the UserId of the group owners.
 
-_Hint_: You can run the command below to get the user details of the group owner based on the UserId returned.
+_Hint_: You can run the command in the next section to get the user details of the group owner based on the UserId returned.
 
 ```powershell
 Get-EntraUser -ObjectId "4580d0d6-a6fb-4125-b428-82d09064aa8a" 

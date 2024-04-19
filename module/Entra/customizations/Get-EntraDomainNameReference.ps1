@@ -9,6 +9,7 @@
     CustomScript = @'   
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $topCount = $null
         $baseUri = 'https://graph.microsoft.com/v1.0/domains'
         $properties = '$select=*'
@@ -32,7 +33,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = (Invoke-GraphRequest -Uri $URI -Method $Method).value
+        $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).value
         $response = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         $response | ForEach-Object {
             if($null -ne $_) {
