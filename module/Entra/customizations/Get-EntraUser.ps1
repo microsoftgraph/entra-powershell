@@ -26,7 +26,7 @@
             $TmpValue = $PSBoundParameters["SearchString"]
             $SearchString = "`$search=`"userprincipalname:$TmpValue`" OR `"state:$TmpValue`" OR `"mailNickName:$TmpValue`" OR `"mail:$TmpValue`" OR `"jobTitle:$TmpValue`" OR `"displayName:$TmpValue`" OR `"department:$TmpValue`" OR `"country:$TmpValue`" OR `"city:$TmpValue`""
             $params["Uri"] += "&$SearchString"
-            $params["Headers"] = @{ ConsistencyLevel = 'eventual'}
+            $customHeaders['ConsistencyLevel'] = 'eventual'
         }
         if($null -ne $PSBoundParameters["ObjectId"])
         {
@@ -52,7 +52,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Invoke-GraphRequest @params 
+        $response = Invoke-GraphRequest @params -Headers $customHeaders
         $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         try {
             $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
