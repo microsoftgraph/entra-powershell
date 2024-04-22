@@ -60,7 +60,7 @@
                 while($response.'@odata.nextLink'){
                     $params["Uri"] = $response.'@odata.nextLink'
                     $response = Invoke-GraphRequest @params 
-                    $data += $response.value
+                    $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
                 }
             }   
         }catch {}
