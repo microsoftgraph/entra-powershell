@@ -50,7 +50,7 @@ Describe "Select-EntraGroupIdsContactIsMemberOf" {
         #     $UserID = "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c"
         #     $result = Select-EntraGroupIdsContactIsMemberOf -ObjectId $UserID -GroupIdsForMembershipCheck $Groups
         #     $params = Get-Parameters -data $result.Parameters
-        #     $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        #     $params.Headers."User-Agent" | Should -Be $userAgentHeaderValue
         # } 
     }
 }
