@@ -34,7 +34,7 @@
                 $logoBytes = Get-Content $($params.FilePath) -Raw -Encoding Byte
             }
             else{
-                Write-Error -Message "Invalid file path" -ErrorAction Stop
+                Write-Error -Message "FilePath is invalid" -ErrorAction Stop
             }
         }
 
@@ -45,7 +45,7 @@
         Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method -ContentType "image/*" -Body $logoBytes
        }
        catch [System.Net.WebException]{
-        Write-Error -Message "Issue in file url. invalid or malformed url" -ErrorAction Stop
+        Write-Error -Message "FilePath is invalid. Invalid or malformed url" -ErrorAction Stop
        }
     }
 '@
