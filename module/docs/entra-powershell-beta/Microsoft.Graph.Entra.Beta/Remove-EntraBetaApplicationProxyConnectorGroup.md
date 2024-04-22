@@ -1,9 +1,9 @@
 ---
-title: Remove-EntraBetaDeletedApplication
-description: This article provides details on the Remove-EntraBetaDeletedApplication command.
+title: Remove-EntraBetaApplicationProxyConnectorGroup.
+description: This article provides details on the Remove-EntraBetaApplicationProxyConnectorGroup command.
 ms.service: active-directory
 ms.topic: reference
-ms.date: 04/17/2024
+ms.date: 04/03/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -14,42 +14,44 @@ online version:
 schema: 2.0.0
 ---
 
-# Remove-EntraBetaDeletedApplication
+# Remove-EntraBetaApplicationProxyConnectorGroup
 
 ## SYNOPSIS
-Permanently delete a recently deleted application object from deleted items.
+The Remove-EntraBetaApplicationProxyConnectorGroup cmdlet deletes an Application Proxy Connector group.
 
 ## SYNTAX
 
 ```powershell
-Remove-EntraBetaDeletedApplication 
- [-ObjectId] <String> 
-[<CommonParameters>]
+Remove-EntraBetaApplicationProxyConnectorGroup 
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Permanently delete a recently deleted application object from deleted items. After an item is permanently deleted, it can't be restored.
+The Remove-EntraBetaApplicationProxyConnectorGroup cmdlet deletes an Application Proxy Connector Group.
+It can only be used on an empty connector group, with no connectors assigned.
+
 ## EXAMPLES
 
-### Example 1: Remove deleted application object
+### Example 1: Remove a specific Connector Group
 ```powershell
-PS C:\> $Id = Get-EntraBetaDeletedApplication -SearchString "newtest10" 
-PS C:\> Remove-EntraBetaDeletedApplication -ObjectId $Id.id
+PS C:\> Get-EntraBetaApplicationProxyConnectorGroup -Id 59462d3c-a1bc-40a0-9bed-be799357ebce
 ```
-
-This command removes recently deleted application.
+This command Remove a specific Connector Group.
 
 ## PARAMETERS
 
-### -ObjectId
-The unique identifier of deleted application.
+### -Id
+The ID of the Connector group to delete.
+You can find this value by running the Get-EntraBetaApplicationProxyConnectorGroup command.
+
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 0
+Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
@@ -61,10 +63,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.String
-
 ## OUTPUTS
 
 ### System.Object
 ## NOTES
 
 ## RELATED LINKS
+
