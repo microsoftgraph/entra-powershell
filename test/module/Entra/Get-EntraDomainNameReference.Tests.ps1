@@ -55,24 +55,6 @@ Describe "Get-EntraDomainNameReference" {
             $result.UserStateChangedOn | should -Be $null
 
         }
-        # It "Should contain DomainId in parameters when passe Name to it" {
-
-        #     $result = Get-EntraDomainNameReference -Name "M365x99297270.mail.onmicrosoft.com"
-        #     Write-host $result.Parameters
-            # $params = Get-Parameters -data $result.Parameters
-            # Write-host $params
-            # $params.DomainId | Should -Be "M365x99297270.mail.onmicrosoft.com"
-        # }
-        # It "Should contain 'User-Agent' header" {
-
-        #     $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDomainNameReference"
-
-        #     $result = Get-EntraDomainNameReference -Name "M365x99297270.mail.onmicrosoft.com"
-        #     $params = Get-Parameters -data $result.Parameters
-        #     $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        # }  
-
-
 
     }
 
