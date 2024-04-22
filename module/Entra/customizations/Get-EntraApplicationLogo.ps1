@@ -22,7 +22,7 @@
             $URI = "$baseUri/$($params.ApplicationId)"
         }
 
-        if($null -ne $logoUrl){
+        if($null -ne $PSBoundParameters["FilePath"]){
             $params["FilePath"] = $PSBoundParameters["FilePath"]            
         }
 
