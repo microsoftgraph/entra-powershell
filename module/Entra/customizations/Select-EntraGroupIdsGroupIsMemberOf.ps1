@@ -17,6 +17,7 @@
         if($null -ne $PSBoundParameters["GroupIdsForMembershipCheck"])
         {
             $GroupIds = $PSBoundParameters["GroupIdsForMembershipCheck"]
+            $GroupIdData = Get-EntraGroup -All $true
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
@@ -35,11 +36,12 @@
         if($response){
             $result = $response.Id
         }
-        foreach ($Id in $GroupIds.GroupIds) {
-            if ($result -notcontains $Id) {
-                Write-Error "Select-EntraGroupIdsGroupIsMemberOf : Error occurred while executing SelectEntraGroupIdsGroupIsMemberOf
-            Code: Request_BadRequest
-            Message:  Invalid GUID:$Id"
+        $notMember = $GroupIdsForMembershipCheck.GroupIds | Where-Object -Filterscript { $_ -notin $result }
+        foreach ($Id in $notMember) {
+            if ($GroupIdData.Id -notcontains $Id) {
+                Write-Error "Error occurred while executing SelectEntraGroupIdsGroupIsMemberOf
+Code: Request_BadRequest
+Message:  Invalid GUID:$Id"
             return
             }
         }
