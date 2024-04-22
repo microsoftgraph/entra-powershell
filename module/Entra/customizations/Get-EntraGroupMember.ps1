@@ -6,7 +6,7 @@
     TargetName = $null
     Parameters = $null
     outputs = $null
-    CustomScript = @'   
+    CustomScript = @'
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
@@ -43,14 +43,24 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).value
-        $response = $response | ConvertTo-Json | ConvertFrom-Json
-        $response | ForEach-Object {
+        $response = Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method
+        $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+        try {
+            $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+            if($null -eq $PSBoundParameters["Top"]){
+                while($response.'@odata.nextLink'){
+                    $URI = $response.'@odata.nextLink'
+                    $response = Invoke-GraphRequest -Uri $URI -Method $Method
+                    $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                }
+            }   
+        }catch {}
+        $data | ForEach-Object {
             if($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
             }
         }
-        $response 
-        }
+        $data 
+    } 
 '@
 }
