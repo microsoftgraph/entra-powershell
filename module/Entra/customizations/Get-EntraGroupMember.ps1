@@ -47,7 +47,7 @@
         $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         try {
             $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-            if($null -eq $PSBoundParameters["Top"]){
+            if($null -eq $PSBoundParameters["Top"] -and $null -ne $PSBoundParameters["All"]){
                 while($response.'@odata.nextLink'){
                     $URI = $response.'@odata.nextLink'
                     $response = Invoke-GraphRequest -Uri $URI -Method $Method
