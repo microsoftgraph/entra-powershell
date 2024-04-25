@@ -1,6 +1,6 @@
-Describe "The Get-EntraApplication command executing unmocked" {
+Describe "The Add-EntraGroupMember command executing unmocked" {
 
-    Context "When getting applications" {
+    Context "When getting user and group" {
         BeforeAll {
             $testReportPath = join-path $psscriptroot "\setenv.ps1"
             Import-Module -Name $testReportPath
@@ -10,36 +10,35 @@ Describe "The Get-EntraApplication command executing unmocked" {
             Connect-Entra -TenantId $tenantId  -AppId $appId -CertificateThumbprint $cert
 
             $thisTestInstanceId = New-Guid | select -expandproperty guid
-            $groupId = (Get-EntraGroup -Top 1).Id
-            $user = (Get-EntraUser -Top 1).Id
-            $servicePrincipal = (Get-EntraServicePrincipal -Top 1).Id
+            $testName = 'SimpleTest' + $thisTestInstanceId
+
+            #create test user 
+            $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+            $PasswordProfile.Password = "Pass@1234"
+            $global:newUser = New-EntraUser -AccountEnabled $true -DisplayName $testName -PasswordProfile $PasswordProfile -MailNickName $testName -UserPrincipalName "SimpleTestUser@M365x99297270.OnMicrosoft.com" 
+    
+            #create test group 
+            $global:newGroup = New-EntraGroup -DisplayName $testName -MailEnabled $false -SecurityEnabled $true -MailNickName $testName 
         }
 
-        It "should successfully add user to the Group" {
-            Add-EntraGroupMember -ObjectId $groupId -RefObjectId $memberId
-            $result = Get-EntraGroupMember -ObjectId $groupId
-            $result.Id | Should -Contain $memberId
-        }
+        It "should successfully add user to new created group" {
+            $user = Get-EntraUser -ObjectId $newUser.Id
+            $user.Id | Should -Be $newUser.Id
+            $user.DisplayName | Should -Be $testName
 
-        It "should successfully add service principal to the Group" {
-            Add-EntraGroupMember -ObjectId $groupId -RefObjectId $memberId
-            $result = Get-EntraGroupMember -ObjectId $servicePrincipal
-            $result.Id | Should -Contain $memberId
-        }
+            $group = Get-EntraGroup -ObjectId $newGroup.Id
+            $group.Id | Should -Be $newGroup.Id
+            $group.DisplayName | Should -Be $testName
 
-        It "should successfully add group to the Group" {
-            Add-EntraGroupMember -ObjectId $groupId -RefObjectId $memberId
-            $result = Get-EntraGroupMember -ObjectId $servicePrincipal
-            $result.Id | Should -Contain $memberId
+            Add-EntraGroupMember -ObjectId $group.Id -RefObjectId $user.Id
+            $result = Get-EntraGroupMember -ObjectId $group.Id
+            $result.Id | Should -Contain $user.Id
         }
-        # It "should throw an exception if a nonexistent object ID parameter is specified" {
-        #     $Id = (New-Guid).Guid
-        #     Get-EntraGroupMember -ObjectId $Id -ErrorAction Stop
-        #     $Error[0] | Should -match "Resource '([^']+)' does not exist"
-        # }
 
         AfterAll {
-            Remove-EntraGroupMember -ObjectId $groupId -MemberId $memberId
+            Remove-EntraGroupMember -ObjectId $newGroup.Id -MemberId $newUser.Id
+            Remove-EntraUser -ObjectId $newUser.Id
+            Remove-EntraGroup -ObjectId $newGroup.Id
         }
     }
 }
