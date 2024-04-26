@@ -1015,7 +1015,7 @@ $($output)
             }
             
             if($commonParameterNames.Contains($param.Name)) {
-                continue
+                $paramObj.SetNone()
             }
             elseif($Bool2Switch.Contains($param.Name)) {
                 $paramObj.SetBool2Switch($param.Name)
