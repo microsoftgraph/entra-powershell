@@ -41,6 +41,11 @@ Describe "Get-EntraServicePrincipalPasswordCredential" {
 
         It "Should fail when ObjectId is empty" {
             $errorActionPreference = "Stop"
+            { Get-EntraServicePrincipalPasswordCredential -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        }
+
+        It "Should fail when ObjectId is invalid" {
+            $errorActionPreference = "Stop"
             { Get-EntraServicePrincipalPasswordCredential -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
 

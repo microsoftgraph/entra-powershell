@@ -44,7 +44,11 @@ Describe "Get-EntraMSGroupLifecyclePolicy" {
             Should -Invoke -CommandName Get-MgGroupLifecyclePolicy -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
-        It "Should fail when ObjectId is empty" {
+        It "Should fail when Id is empty" {
+            { Get-EntraMSGroupLifecyclePolicy -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
+        }
+
+        It "Should fail when Id is invalid" {
             { Get-EntraMSGroupLifecyclePolicy -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
         }
 

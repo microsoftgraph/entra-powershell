@@ -39,6 +39,10 @@ Describe "Get-EntraGroupMember" {
         }
 
         It "Should fail when ObjectId is empty" {
+            { Get-EntraGroupMember -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        }
+
+        It "Should fail when ObjectId is invalid" {
             { Get-EntraGroupMember -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
 
@@ -51,6 +55,10 @@ Describe "Get-EntraGroupMember" {
 
         It "Should fail when All is empty" {
             { Get-EntraGroupMember -ObjectId "0bdddeb1-88a6-4251-aaa5-98b48271158b" -All } | Should -Throw "Missing an argument for parameter 'All'*"
+        }  
+        
+        It "Should fail when All is invalid" {
+            { Get-EntraGroupMember -ObjectId "0bdddeb1-88a6-4251-aaa5-98b48271158b" -All XY } | Should -Throw "Cannot process argument transformation on parameter 'All'*"
         }       
         
         It "Get two group member" {
@@ -64,23 +72,13 @@ Describe "Get-EntraGroupMember" {
             { Get-EntraGroupMember -ObjectId "0bdddeb1-88a6-4251-aaa5-98b48271158b" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }  
 
+        It "Should fail when top is invalis" {
+            { Get-EntraGroupMember -ObjectId "0bdddeb1-88a6-4251-aaa5-98b48271158b" -Top XY} | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+        }  
+
         It "Result should Contain ObjectId" {
             $result = Get-EntraGroupMember -ObjectId "0bdddeb1-88a6-4251-aaa5-98b48271158b"
             $result.ObjectId | should -Be "996d39aa-fdac-4d97-aa3d-c81fb47362ac"
         } 
-
-        # It "Should contain GroupId in parameters when passed ObjectId to it" {
-        #     $result = Get-EntraGroupMember -ObjectId "0bdddeb1-88a6-4251-aaa5-98b48271158b"
-        #     $params = Get-Parameters -data $result.Parameters
-        #     $params.GroupId | Should -Be "0bdddeb1-88a6-4251-aaa5-98b48271158b"
-        # }
-
-        # It "Should contain 'User-Agent' header" {
-        #     $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraGroupMember"
-
-        #     $result = Get-EntraGroupMember -ObjectId "0bdddeb1-88a6-4251-aaa5-98b48271158b"
-        #     $params = Get-Parameters -data $result.Parameters
-        #     $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        # }    
     }
 }

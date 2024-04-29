@@ -32,10 +32,14 @@ Describe "Get-EntraUserMembership" {
         }
 
         It "Should fail when ObjectId is empty" {
+            { Get-EntraUserMembership -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        }
+
+        It "Should fail when ObjectId is invalid" {
             { Get-EntraUserMembership -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
 
-        It "Should return all User  user membership" {
+        It "Should return all user membership" {
             $result = Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -All $true
             $result | Should -Not -BeNullOrEmpty            
             
@@ -44,9 +48,13 @@ Describe "Get-EntraUserMembership" {
 
         It "Should fail when All is empty" {
             { Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -All } | Should -Throw "Missing an argument for parameter 'All'*"
-        }       
+        }  
         
-        It "Should return top User user membership" {
+        It "Should fail when All is invalid" {
+            { Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -All XY } | Should -Throw "Cannot process argument transformation on parameter 'All'*"
+        }     
+        
+        It "Should return top user membership" {
             $result = Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -Top 5
             $result | Should -Not -BeNullOrEmpty
 
@@ -55,6 +63,10 @@ Describe "Get-EntraUserMembership" {
 
         It "Should fail when top is empty" {
             { Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+        }  
+
+        It "Should fail when top is invalid" {
+            { Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }  
 
         It "Result should Contain Id" {

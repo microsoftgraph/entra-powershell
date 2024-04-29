@@ -83,6 +83,10 @@ Describe "Get-EntraServicePrincipal" {
         }
 
         It "Should fail when ObjectId is empty" {
+            { Get-EntraServicePrincipal -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        }
+
+        It "Should fail when ObjectId is invalid" {
             { Get-EntraServicePrincipal -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
 
@@ -95,6 +99,10 @@ Describe "Get-EntraServicePrincipal" {
 
         It "Should fail when All is empty" {
             { Get-EntraServicePrincipal -All } | Should -Throw "Missing an argument for parameter 'All'*"
+        } 
+        
+        It "Should fail when All is invalid" {
+            { Get-EntraServicePrincipal -All XY } | Should -Throw "Cannot process argument transformation on parameter 'All'*"
         }       
         
         It "Should return top service" {
@@ -106,6 +114,10 @@ Describe "Get-EntraServicePrincipal" {
 
         It "Should fail when top is empty" {
             { Get-EntraServicePrincipal -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+        } 
+        
+        It "Should fail when top is invalid" {
+            { Get-EntraServicePrincipal -Top XY} | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }  
 
         It "Result should Contain ObjectId" {
@@ -135,6 +147,11 @@ Describe "Get-EntraServicePrincipal" {
 
         It "Should fail when filter is empty" {
             { Get-EntraServicePrincipal -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
+        } 
+
+        It "Result should Contain ObjectId" {
+            $result = Get-EntraServicePrincipal -ObjectId "5db7ae5e-425a-4dfa-bd75-68ec06fe3aa9 "
+            $result.ObjectId | should -Be "5db7ae5e-425a-4dfa-bd75-68ec06fe3aa9"
         } 
 
         It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {

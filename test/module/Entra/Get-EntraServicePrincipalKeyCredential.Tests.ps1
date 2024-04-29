@@ -45,9 +45,14 @@ Describe "Get-EntraServicePrincipalKeyCredential" {
 
         It "Should fail when ObjectId is empty" {
             $errorActionPreference = "Stop"
-            { Get-EntraServicePrincipalKeyCredential -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+            { Get-EntraServicePrincipalKeyCredential -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
         }
         
+        It "Should fail when ObjectId is invalid" {
+            $errorActionPreference = "Stop"
+            { Get-EntraServicePrincipalKeyCredential -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        }
+
         It "Result should Contain ObjectId" {
             $objectId = "0008861a-d455-4671-bd24-ce9b3bfce288"
             $result = Get-EntraServicePrincipalKeyCredential -ObjectId $objectId
@@ -59,8 +64,7 @@ Describe "Get-EntraServicePrincipalKeyCredential" {
                     break
                 }
             }
-            Write-Host $resultJson
-
+            
             Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
         } 
 

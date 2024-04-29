@@ -34,6 +34,10 @@ Describe "Get-EntraUserOAuth2PermissionGrant" {
         }
 
         It "Should fail when ObjectId is empty" {
+            { Get-EntraUserOAuth2PermissionGrant -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        }
+
+        It "Should fail when ObjectId is invalid" {
             { Get-EntraUserOAuth2PermissionGrant -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
 
@@ -46,7 +50,11 @@ Describe "Get-EntraUserOAuth2PermissionGrant" {
 
         It "Should fail when All is empty" {
             { Get-EntraUserOAuth2PermissionGrant -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -All } | Should -Throw "Missing an argument for parameter 'All'*"
-        }       
+        }     
+        
+        It "Should fail when All is invalid" {
+            { Get-EntraUserOAuth2PermissionGrant -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -All XY } | Should -Throw "Cannot process argument transformation on parameter 'All'*"
+        }     
         
         It "Should return top User OAuth2Permission Grant" {
             $result = Get-EntraUserOAuth2PermissionGrant -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -Top 1
@@ -59,12 +67,16 @@ Describe "Get-EntraUserOAuth2PermissionGrant" {
             { Get-EntraUserOAuth2PermissionGrant -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }  
 
-        It "Result should Contain ObjectId" {
+        It "Should fail when top is invalid" {
+            { Get-EntraUserOAuth2PermissionGrant -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+        }  
+
+        It "Result should Contain PrincipalId" {
             $result = Get-EntraUserOAuth2PermissionGrant -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215"
             $result.PrincipalId | should -Contain "412be9d1-1460-4061-8eed-cca203fcb215"
         } 
 
-        It "Should contain PrincipalId in parameters when passed ObjectId to it" {
+        It "Should contain UserId in parameters when passed ObjectId to it" {
             $result = Get-EntraUserOAuth2PermissionGrant -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215 "
             $params = Get-Parameters -data $result.Parameters
             $params.UserId | Should -Be "412be9d1-1460-4061-8eed-cca203fcb215 "
