@@ -5,7 +5,6 @@ BeforeAll {
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
     $scriptblock = {
-        Write-Host "Mocking Get-MgContact with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
               "DeletedDateTime"                 = $null
@@ -60,6 +59,10 @@ Describe "Get-EntraContact" {
         }
         
         It "Should fail when ObjectId is empty" {
+            { Get-EntraContact -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        }
+
+        It "Should fail when ObjectId is invalid" {
             { Get-EntraContact -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
 
@@ -74,6 +77,10 @@ Describe "Get-EntraContact" {
             { Get-EntraContact -All } | Should -Throw "Missing an argument for parameter 'All'*"
         }           
         
+        It "Should fail when All is invalid" {
+            { Get-EntraContact -All XY } | Should -Throw  "Cannot process argument transformation on parameter 'All'*"
+        }        
+
         It "Should return specific group by filter" {
             $result = Get-EntraContact -Filter "DisplayName -eq 'Bob Kelly (TAILSPIN)'"
             $result | Should -Not -BeNullOrEmpty
@@ -84,7 +91,7 @@ Describe "Get-EntraContact" {
 
         It "Should fail when filter is empty" {
             { Get-EntraContact -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
-        }           
+        }         
 
         It "Should return top contact" {
             $result = Get-EntraContact -Top 1
@@ -94,7 +101,11 @@ Describe "Get-EntraContact" {
         }  
 
         It "Should fail when top is empty" {
-            {Get-EntraContact -Top} | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraContact -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+        }  
+
+        It "Should fail when top is invalid" {
+            { Get-EntraContact -Top HH } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }  
 
         It "Result should Contain ObjectId" {
@@ -102,7 +113,7 @@ Describe "Get-EntraContact" {
             $result.ObjectId | should -Be "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c"
         } 
 
-        It "Should contain OrgContactId in parameters when passed Name to it" {
+        It "Should contain OrgContactId in parameters when passed ObjectId to it" {
             $result = Get-EntraContact -ObjectId "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c"
             $params = Get-Parameters -data $result.Parameters
             $params.OrgContactId | Should -Match "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c"

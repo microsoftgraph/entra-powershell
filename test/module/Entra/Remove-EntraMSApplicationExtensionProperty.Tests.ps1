@@ -5,7 +5,6 @@ BeforeAll {
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
     
     $scriptblock = {
-        Write-Host "Mocking Get-MgContactMemberOf with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
               "Parameters"      = $args
@@ -26,7 +25,11 @@ Describe "Remove-EntraMSApplicationExtensionProperty" {
         }
 
         It "Should fail when ObjectId is empty" {
-            { Remove-EntraMSApplicationExtensionProperty -ObjectId "" -ExtensionPropertyId ""}
+            { Remove-EntraMSApplicationExtensionProperty -ObjectId -ExtensionPropertyId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        }   
+
+        It "Should fail when ObjectId is invalid" {
+            { Remove-EntraMSApplicationExtensionProperty -ObjectId "" -ExtensionPropertyId ""} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }   
 
         It "Should contain ApplicationId in parameters when passed ObjectId to it" {

@@ -5,7 +5,6 @@ BeforeAll {
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
     $scriptblock = {
-        Write-Host "Mocking Get-MgContactMemberOf with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
               "Parameters"      = $args
@@ -26,7 +25,11 @@ Describe "Remove-EntraDomain" {
         }
 
         It "Should fail when Name is empty" {
-            { Remove-EntraDomain -Name "" }
+            { Remove-EntraDomain -Name } | Should -Throw "Missing an argument for parameter 'Name'*"
+        }   
+
+        It "Should fail when Name is invalid" {
+            { Remove-EntraDomain -Name "" } | Should -Throw "Cannot bind argument to parameter 'Name' because it is an empty string."
         }   
 
         It "Should contain DomainId in parameters when passed Name to it" {

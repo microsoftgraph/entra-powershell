@@ -5,7 +5,6 @@ BeforeAll {
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
     $scriptblock = {
-        Write-Host "Mocking New-EntraDomain with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
               "AvailabilityStatus"                  = $null
@@ -47,13 +46,6 @@ Describe "New-EntraDomain" {
             $result.SupportedServices | should -Not -BeNullOrEmpty
         }
 
-        # It "Create a new Domain as the default for cross cloud redirections" {
-        #     $result = New-EntraDomain -Name "lala.uk" -IsDefaultForCloudRedirections
-        #     $result.ObjectId | should -Be "lala.uk" 
-        #     $result.Name | should -Be "lala.uk" 
-        #     $result.SupportedServices | should -Not -BeNullOrEmpty
-        # }
-
         It "Create a new Domain and make if the default new user creation" {
             $result = New-EntraDomain -Name "lala.uk" -IsDefault $false
             $result.IsDefault | should -Be "False" 
@@ -61,6 +53,10 @@ Describe "New-EntraDomain" {
 
         It "Should fail when parameters are empty" {
             { New-EntraDomain -Name -IsDefault -IsDefaultForCloudRedirections -SupportedServices} | Should -Throw "Missing an argument for parameter*"
+        }      
+
+        It "Should fail when parameters are invalid" {
+            { New-EntraDomain -Name HH -IsDefault FD -IsDefaultForCloudRedirections GH -SupportedServices HH } | Should -Throw "Cannot process argument transformation on parameter 'IsDefault'*"
         }      
 
         It "Should contain Id in parameters when passed Name to it" {
