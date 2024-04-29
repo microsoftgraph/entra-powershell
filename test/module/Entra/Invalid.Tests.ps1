@@ -79,5 +79,22 @@ Describe "Invalid Tests"{
                 { Invoke-Command -ScriptBlock $commandScriptBlock } | Should -Throw "Missing an argument for parameter 'SearchString'*"
             }
         }
+    }
+    It "Should fail with exception when no parameter is passed" {
+        $cmdlets = @(
+            @{ CmdletName = 'Enable-EntraDirectoryRole'; Exception = "Could not resolve request to a valid role template." }
+            @{ CmdletName = 'New-EntraMSConditionalAccessPolicy'; Exception = "1006: 'displayName' cannot be null" },
+            @{ CmdletName = 'New-EntraMSNamedLocationPolicy'; Exception = "1042: Unexpected type: namedLocationType for NamedLocations." },
+            @{ CmdletName = 'New-EntraMSPermissionGrantPolicy'; Exception = "PermissionGrantPolicy's Id must not be null or empty." }
+            )
+            $cmdlets | ForEach-Object {
+                $commandName = $_.CmdletName
+                $Exception = $_.Exception
+                $commandScriptBlock = [scriptblock]::Create("$commandName -ErrorAction Stop")
+                try {
+                    Invoke-Command -ScriptBlock $commandScriptBlock
+                }
+                catch { $_ -match $Exception | Should -BeTrue }
+            }
     }      
 }
