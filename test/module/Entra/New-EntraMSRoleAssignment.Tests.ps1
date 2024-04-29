@@ -52,9 +52,6 @@ Context "Test for New-EntraMSRoleAssignment" {
         It "Should fail when DirectoryScopeId is empty" {
             { New-EntraMSRoleAssignment -PrincipalId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -RoleDefinitionId "54d418b2-4cc0-47ee-9b39-e8f84ed8e073"  -DirectoryScopeId   } | Should -Throw "Missing an argument for parameter 'DirectoryScopeId'*"
         }
-        # It "Should fail when DirectoryScopeId is invalid" {
-        #     { New-EntraMSRoleAssignment -PrincipalId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -RoleDefinitionId  "54d418b2-4cc0-47ee-9b39-e8f84ed8e073" -DirectoryScopeId "" } | Should -Throw "Must specify valid property scope of entity RoleAssignment."
-        # }
         It "Result should Contain ObjectId" {
             $result = New-EntraMSRoleAssignment -PrincipalId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -RoleDefinitionId  "54d418b2-4cc0-47ee-9b39-e8f84ed8e073" -DirectoryScopeId "/54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
             $result.ObjectId | should -Be "shjUVMBM7kebOej4Ttjgcz2U7QLKbplPg9bm-_ncY66yGNRUwEzuR5s56PhO2OBz-1"

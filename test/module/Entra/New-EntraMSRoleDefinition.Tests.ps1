@@ -52,10 +52,20 @@ Describe "New-EntraMSRoleDefinition" {
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
             {New-EntraMSRoleDefinition -RolePermissions $RolePermissions -IsEnabled  -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2} | Should -Throw "Missing an argument for parameter 'IsEnabled'*"
         }
+        It "Should fail when IsEnabled is invalid" {
+            $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
+            $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
+            {New-EntraMSRoleDefinition -RolePermissions $RolePermissions -IsEnabled xy -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2} | Should -Throw "Cannot process argument transformation on parameter 'IsEnabled'*"
+        }
         It "Should fail when DisplayName is empty" {
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
             {New-EntraMSRoleDefinition -RolePermissions $RolePermissions -IsEnabled $false -DisplayName  -ResourceScopes "/" -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2} | Should -Throw "Missing an argument for parameter 'DisplayName'*"
+        }
+        It "Should fail when DisplayName is invalid" {
+            $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
+            $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
+            {New-EntraMSRoleDefinition -RolePermissions $RolePermissions -IsEnabled $false -DisplayName "" -ResourceScopes "/" -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2} | Should -Throw "Cannot bind argument to parameter 'DisplayName' because it is an empty string."
         }
         It "Should fail when ResourceScopes is empty" {
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission

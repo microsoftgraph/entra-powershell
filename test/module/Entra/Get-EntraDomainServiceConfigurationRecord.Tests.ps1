@@ -39,6 +39,9 @@ Describe "Get-EntraDomainServiceConfigurationRecord" {
 
         }   
         It "Should fail when Name is empty" {
+            { Get-EntraDomainServiceConfigurationRecord -Name  } | Should -Throw "Missing an argument for parameter 'Name'*"
+        }
+        It "Should fail when Name is invalid" {
             { Get-EntraDomainServiceConfigurationRecord -Name "" } | Should -Throw "Cannot bind argument to parameter 'Name' because it is an empty string."
         }
         It "Result should Contain DnsRecordId" {            

@@ -42,6 +42,9 @@ Describe "Get-EntraSubscribedSku" {
         It "Should fail when ObjectId empty" {
             { Get-EntraSubscribedSku -ObjectId  } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
         }
+        It "Should fail when ObjectId invalid" {
+            { Get-EntraSubscribedSku -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        }
         It "Should return all SubscribedSku" {
             $result = Get-EntraSubscribedSku 
             $result | Should -Not -BeNullOrEmpty

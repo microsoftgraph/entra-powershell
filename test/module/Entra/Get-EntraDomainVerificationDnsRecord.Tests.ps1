@@ -39,6 +39,9 @@ Describe "Get-EntraDomainVerificationDnsRecord" {
 
         }   
         It "Should fail when Name is empty" {
+            { Get-EntraDomainVerificationDnsRecord -Name  } | Should -Throw "Missing an argument for parameter 'Name'*"
+        }
+        It "Should fail when Name is invalid" {
             { Get-EntraDomainVerificationDnsRecord -Name "" } | Should -Throw "Cannot bind argument to parameter 'Name' because it is an empty string."
         }
         It "Result should Contain DnsRecordId" {            
