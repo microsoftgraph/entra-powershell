@@ -20,16 +20,19 @@ Describe "The Set-EntraMSRoleDefination command executing unmocked" {
         }
 
         It "should successfully update the msrole defination with expected properties when the msrole defination ID parameter is used" {
-        #    write-host $newmsRoleDefinition
            $thisTestInstanceId = New-Guid | select -expandproperty guid
            $newmsrolename = 'SimpleRoleDefinationUpdated' + $thisTestInstanceId
-           write-host $newmsRoleDefinition.Id
            Set-EntraMSRoleDefinition -Id $newmsRoleDefinition.Id -DisplayName $newmsrolename | Should -BeNullOrEmpty
             
             $app = Get-EntraMSRoleDefinition -Id $newmsRoleDefinition.Id
             $app | Should -Not -BeNullOrEmpty
             $app.Id | Should -Be $newmsRoleDefinition.Id
             $app.DisplayName | Should -Be $newmsrolename
+        }
+        It "should throw an exception if a nonexistent object ID parameter is specified" {
+            $Id = (New-Guid).Guid
+            Get-EntraMSRoleDefinition -Id $Id -ErrorAction Stop
+            $Error[0] | Should -match "Resource '([^']+)' does not exist"
         }
 
         AfterAll {
