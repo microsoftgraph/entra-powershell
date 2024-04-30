@@ -15,9 +15,12 @@ Describe "Remove-EntraGroupMember" {
 
             Should -Invoke -CommandName Remove-MgGroupMemberByRef -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when parameter is empty" {
+        It "Should fail when parameter is invalid" {
             { Remove-EntraGroupMember -ObjectId "" -MemberId "" } | Should -Throw "Cannot bind argument to parameter*"
-        }   
+        } 
+        It "Should fail when parameter is invalid" {
+            { Remove-EntraGroupMember -ObjectId  -MemberId  } | Should -Throw "Missing an argument for parameter 'ObjectId'.*"
+        } 
         It "Should contain GroupId in parameters when passed ObjectId to it" {
             Mock -CommandName Remove-MgGroupMemberByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
