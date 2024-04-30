@@ -29,7 +29,7 @@ Describe "The EntraGroup command executing unmocked" {
         }
 
         AfterAll {
-            Remove-EntraGroup -ObjectId $newGroup.Id
+            Remove-EntraGroup -ObjectId $newGroup.Id | Out-Null
         }
     }
 }

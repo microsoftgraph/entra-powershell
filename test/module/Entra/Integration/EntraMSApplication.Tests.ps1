@@ -32,7 +32,7 @@ Describe "The EntraMSApplication command executing unmocked" {
         }
 
         AfterAll {
-            Remove-EntraMSApplication -ObjectId $newMSApplication.ObjectId
+            Remove-EntraMSApplication -ObjectId $newMSApplication.ObjectId | Out-Null
         }
     }
 }
