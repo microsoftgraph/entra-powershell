@@ -19,7 +19,12 @@
         if($null -ne $PSBoundParameters["Top"])
         {
             $topCount = $PSBoundParameters["Top"]
-            $params["Uri"] += "&`$top=$topCount"
+            if ($topCount -gt 999) {
+                $params["Uri"] += "&`$top=999"
+            }
+            else{
+                $params["Uri"] += "&`$top=$topCount"
+            }
         }
         if($null -ne $PSBoundParameters["SearchString"])
         {
@@ -54,15 +59,32 @@
         
         $response = Invoke-GraphRequest @params -Headers $customHeaders
         $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+        $nextLinkCalled = $false
         try {
             $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-            if($null -eq $PSBoundParameters["Top"] -and $null -ne $PSBoundParameters["All"]){
+            if($null -ne $PSBoundParameters["All"]){
                 while($response.'@odata.nextLink'){
                     $params["Uri"] = $response.'@odata.nextLink'
                     $response = Invoke-GraphRequest @params 
                     $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $nextLinkCalled = $true
                 }
             }   
+            $increment = $topCount - $data.Count
+            while ($increment -gt 0) {
+                $params["Uri"] = $response.'@odata.nextLink'
+                if ($increment -gt 999) {
+                    $params["Uri"] = $params["Uri"].Replace('$top=999', "`$top=999")
+                    $response = Invoke-GraphRequest @params 
+                    $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $increment -= 999
+                } else {
+                    $params["Uri"] = $params["Uri"].Replace('$top=999', "`$top=$increment")
+                    $response = Invoke-GraphRequest @params 
+                    $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $increment = 0
+                }
+            }
         }catch {}
         $data | ForEach-Object {
             if ($null -ne $_) {
@@ -79,6 +101,6 @@
             }
         }
         $data
-    }    
+    } 
 '@
 }
