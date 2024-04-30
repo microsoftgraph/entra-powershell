@@ -189,7 +189,6 @@ This example shows how to authenticate to Entra with device.
 ```powershell
 PS C:\> Connect-Entra -ClientId "YOUR_APP_ID" -TenantId "YOUR_TENANT_ID" -CertificateName "YOUR_CERT_SUBJECT"
 ```
-
 Follow this link (https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands) for more information on how to load the certificate.
 
 ### Example 10: App-only access: Using client credential with a certificate - Certificate
@@ -198,7 +197,6 @@ Follow this link (https://learn.microsoft.com/powershell/microsoftgraph/authenti
 PS C:\> $Cert = Get-ChildItem Cert:\LocalMachine\My\$CertThumbprint
 PS C:\> Connect-Entra -ClientId "YOUR_APP_ID" -TenantId "YOUR_TENANT_ID" -Certificate $Cert
 ```
-
 Follow this link (https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands) for more information on how to load the certificate.
 
 ### Example 11: Using client secret credentials
