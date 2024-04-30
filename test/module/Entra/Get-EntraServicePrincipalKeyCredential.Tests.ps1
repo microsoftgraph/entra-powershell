@@ -32,13 +32,7 @@ Describe "Get-EntraServicePrincipalKeyCredential" {
             $objectId = "0008861a-d455-4671-bd24-ce9b3bfce288"
             $result = Get-EntraServicePrincipalKeyCredential -ObjectId $objectId
             $result | Should -Not -BeNullOrEmpty
-            $resultJson = $result | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-            $resultJson.Parameters | ForEach-Object {
-                if ($_.ServicePrincipalId -eq $objectId) {
-                    $objectIdFound = $true
-                    break
-                }
-            }
+            $result.KeyId | Should -Be "68b45e27-fef8-4f0d-bc7a-76bd949c16d1"
 
             Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -52,21 +46,6 @@ Describe "Get-EntraServicePrincipalKeyCredential" {
             $errorActionPreference = "Stop"
             { Get-EntraServicePrincipalKeyCredential -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
-
-        It "Result should Contain ObjectId" {
-            $objectId = "0008861a-d455-4671-bd24-ce9b3bfce288"
-            $result = Get-EntraServicePrincipalKeyCredential -ObjectId $objectId
-            $result | Should -Not -BeNullOrEmpty
-            $resultJson = $result | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-            $resultJson.Parameters | ForEach-Object {
-                if ($_.ObjectId -eq $objectId) {
-                    $objectIdFound = $true
-                    break
-                }
-            }
-            
-            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
-        } 
 
         It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {
             $result = Get-EntraServicePrincipalKeyCredential -ObjectId "0008861a-d455-4671-bd24-ce9b3bfce288"
@@ -82,7 +61,6 @@ Describe "Get-EntraServicePrincipalKeyCredential" {
             $a = $result | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $params = Get-Parameters -data $a.Parameters
             $params.Headers."User-Agent" | Should -Be $userAgentHeaderValue
-            Write-Host $a.Parameters
         }    
     }
 }
