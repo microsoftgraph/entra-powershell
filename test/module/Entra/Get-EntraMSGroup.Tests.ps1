@@ -54,12 +54,18 @@ Describe "Get-EntraMSGroup" {
             $result.DisplayName | should -Be 'Demo Help Group'
             Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Graph.Entra -Times 1
         }
+        It "Should fail when searchstring is empty" {
+            { Get-EntraMSGroup -SearchString } | Should -Throw "Missing an argument for parameter 'SearchString'.*"
+        } 
         It "Should return specific group by filter" {
             $result = Get-EntraMSGroup -Filter "DisplayName -eq 'Demo Help Group'"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Demo Help Group'
             Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Graph.Entra -Times 1
         }  
+        It "Should fail when Filter is empty" {
+            { Get-EntraMSGroup -Filter } | Should -Throw "Missing an argument for parameter 'Filter'.*"
+        } 
         It "Should return top group" {
             $result = Get-EntraMSGroup -Top 1
             $result | Should -Not -BeNullOrEmpty
