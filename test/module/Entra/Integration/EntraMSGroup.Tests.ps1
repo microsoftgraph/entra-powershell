@@ -30,7 +30,7 @@ Describe "The EntraMSGroup command executing unmocked" {
         }
 
         AfterAll {
-            Remove-EntraMSGroup -Id $newMSGroup.Id
+            Remove-EntraMSGroup -Id $newMSGroup.Id | Out-Null
         }
     }
 }

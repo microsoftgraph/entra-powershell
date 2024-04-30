@@ -9,32 +9,58 @@ Describe "The EntraMSLifecyclePolicyGroup command executing unmocked" {
             $tenantId = $env:TEST_TENANTID
             $cert = $env:CERTIFICATETHUMBPRINT
 
+            # Validate required environment variables
+            if (-not $appId -or -not $tenantId -or -not $cert) {
+                throw "Required environment variables are not set."
+            }
+
+            # Connect to Entra service
             Connect-Entra -TenantId $tenantId -AppId $appId -CertificateThumbprint $cert
 
             # Create a group with Description parameter.
-            $thisTestInstanceId = New-Guid | Select-Object -expandproperty guid
+            $thisTestInstanceId = New-Guid | Select-Object -ExpandProperty Guid
             $testName = 'Demo Help Group' + $thisTestInstanceId
-            $testNickname = "helpDeskAdminGroup"
-            $global:newMSGroup = New-EntraMSGroup -DisplayName $testName -MailEnabled $false -MailNickname $testNickname -SecurityEnabled $true
-            Write-host $newMSGroup
+            $testNickname = "testhelpDeskAdminGroup"
+            $global:newMSGroup = New-EntraMSGroup -DisplayName $testName -MailEnabled $false -MailNickname $testNickname -SecurityEnabled $true -GroupTypes "unified"
+            Write-Host "Group $($newMSGroup.Id)" 
+            # Validate group creation
+            if (-not $newMSGroup) {
+                throw "Failed to create a new group."
+            }
+            Start-Sleep 5
 
+            # Create a lifecycle policy
             $global:testGroupPolicy = New-EntraMSGroupLifecyclePolicy -GroupLifetimeInDays 99 -ManagedGroupTypes "Selected" -AlternateNotificationEmails "example@contoso.un"
-            Write-host $testGroupPolicy
-
-            $global:testLifePolicyGroup = Add-EntraMSLifecyclePolicyGroup -Id $testGroupPolicy.Id -GroupId $newMSGroup.Id
-            Write-host $testLifePolicyGroup
+            Write-Host "Policy $($testGroupPolicy.Id)"
+            # Validate policy creation
+            if (-not $testGroupPolicy) {
+                throw "Failed to create a new group lifecycle policy."
+            }
+            Start-Sleep 5
         }
 
         It "should successfully retrieve details of a LifecyclePolicyGroup" {
-            $lifecyclePolicyGroup = Get-EntraMSLifecyclePolicyGroup -Id $testLifePolicyGroup.Id
-
-            # Ensure that the retrieved group lifecycle policy matches the expected one
-            $lifecyclePolicyGroup.Id | Should -Be $testLifePolicyGroup.Id
+            # Associate the group with the lifecycle policy
+            $testLifePolicyGroup = Add-EntraMSLifecyclePolicyGroup -Id $testGroupPolicy.Id -GroupId $newMSGroup.Id
+            Write-Host "Lifecycle Policy Group $($testLifePolicyGroup.Id)"  
+            $testLifePolicyGroup.ObjectId | Should -BeNullOrEmpty
+            
+            # Get lifecycle policy group using group id 
+            $lifecyclePolicyGroup = Get-EntraMSLifecyclePolicyGroup -Id $newMSGroup.Id
+            $lifecyclePolicyGroup.ObjectId | Should -Be $testGroupPolicy.Id
             Write-Host $lifecyclePolicyGroup
         }
 
         AfterAll {
-            Remove-EntraMSLifecyclePolicyGroup -Id $testLifePolicyGroup.Id -GroupId $newMSGroup.Id | Out-Null
+            if ($newMSGroup) {
+                Remove-EntraMSGroup -Id $newMSGroup.Id | Out-Null
+            }
+            if ($testGroupPolicy) {
+                Remove-EntraMSGroupLifecyclePolicy -Id $testGroupPolicy.Id | Out-Null
+            }
+            if ($testLifePolicyGroup) {
+                Remove-EntraMSLifecyclePolicyGroup -Id $testLifePolicyGroup.Id -GroupId $newMSGroup.Id | Out-Null
+            }
         }
     }
 }
