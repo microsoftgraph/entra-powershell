@@ -2,7 +2,7 @@ Describe "The EntraGroup command executing unmocked" {
 
     Context "When getting user and group" {
         BeforeAll {
-            $testReportPath = join-path $psscriptroot "\env.ps1"
+            $testReportPath = join-path $psscriptroot "\setenv.ps1"
             Import-Module -Name $testReportPath
             $appId = $env:TEST_APPID
             $tenantId = $env:TEST_TENANTID

@@ -2,7 +2,7 @@ Describe "The EntraMSLifecyclePolicyGroup command executing unmocked" {
 
     Context "When getting LifecyclePolicyGroup" {
         BeforeAll {
-            $testReportPath = Join-Path $PSScriptRoot "\env.ps1"
+            $testReportPath = Join-Path $PSScriptRoot "\setenv.ps1"
             Import-Module -Name $testReportPath
 
             $appId = $env:TEST_APPID
