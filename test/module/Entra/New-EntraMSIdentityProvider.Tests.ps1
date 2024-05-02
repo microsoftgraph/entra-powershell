@@ -68,20 +68,24 @@ Context "Test for New-EntraMSIdentityProvider" {
             $result = New-EntraMSIdentityProvider -Type "Google" -Name "Mock-App" -ClientId "Google123" -ClientSecret "GoogleId"
             $result.Type | should -Be "Google"
         }
+            # Testcase failed not found params value
         # It "Should contain identityProviderType in parameters when passed Type to it" {    
             
         #     $result = New-EntraMSIdentityProvider -Type "Google" -Name "Mock-App" -ClientId "Google123" -ClientSecret "GoogleId"
         #     $params = Get-Parameters -data $result.Parameters
-        #     Write-host $params
-        #     $params.identityProviderType | Should -Be "Google"
+            # Write-host $params
+            # $params = Get-Parameters -data $result.Parameters
+            # $Para = $params | convertTo-json -depth 10 | convertFrom-json
+            #  Write-host $Para.BodyParameter
+            # $Para.BodyParameter.identityProviderType | Should -Be "Google"
         # }
-        # It "Should contain displayName in parameters when passed Name to it" {    
+        It "Should contain displayName in parameters when passed Name to it" {    
             
-        #     $result = New-EntraMSIdentityProvider -Type "Google" -Name "Mock-App" -ClientId "Google123" -ClientSecret "GoogleId"
-        #     $params = Get-Parameters -data $result.Parameters
-        #     Write-host $params
-        #     $params.displayName | Should -Be "Mock-App"
-        # }
+            $result = New-EntraMSIdentityProvider -Type "Google" -Name "Mock-App" -ClientId "Google123" -ClientSecret "GoogleId"
+            $params = Get-Parameters -data $result.Parameters
+            $Para = $params | convertTo-json -depth 10 | convertFrom-json
+            $Para.BodyParameter.displayName | Should -Be "Mock-App"
+        }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraMSIdentityProvider"
 
