@@ -36,7 +36,12 @@
         if($null -ne $PSBoundParameters["Top"])
         {
             $topCount = $PSBoundParameters["Top"]
-            $URI = "$baseUri/$($params.GroupId)/members?`$top=$topCount&$properties"
+            if ($topCount -gt 999) {
+                $URI = "$baseUri/$($params.GroupId)/members?`$top=999&$properties"
+            }
+            else{
+                $URI = "$baseUri/$($params.GroupId)/members?`$top=$topCount&$properties"
+            }
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
@@ -47,11 +52,28 @@
         $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         try {
             $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-            if($null -eq $PSBoundParameters["Top"] -and $null -ne $PSBoundParameters["All"]){
+            if($null -ne $PSBoundParameters["All"] -and $false -ne $PSBoundParameters["All"]){
                 while($response.'@odata.nextLink'){
                     $URI = $response.'@odata.nextLink'
                     $response = Invoke-GraphRequest -Uri $URI -Method $Method
                     $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                }
+            }
+            else{
+                $increment = $topCount - $data.Count
+                while ($increment -gt 0) {
+                    $URI = $response.'@odata.nextLink'
+                    if ($increment -gt 999) {
+                        $URI = $URI.Replace('$top=999', "`$top=999")
+                        $response = Invoke-GraphRequest -Uri $URI -Method $Method
+                        $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                        $increment -= 999
+                    } else {
+                        $URI = $URI.Replace('$top=999', "`$top=$increment")
+                        $response = Invoke-GraphRequest -Uri $URI -Method $Method
+                        $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                        $increment = 0
+                    }
                 }
             }   
         }catch {}
@@ -61,6 +83,6 @@
             }
         }
         $data 
-    } 
+    }  
 '@
 }
