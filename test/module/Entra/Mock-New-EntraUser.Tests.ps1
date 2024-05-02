@@ -1,5 +1,5 @@
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
         Import-Module Microsoft.Graph.Entra      
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
@@ -8,13 +8,13 @@ BeforeAll {
         #Write-Host "Mocking New-EntraUser with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
-              DisplayName     = "demo004"
-              Id = "sdjfksd-2343-n21kj"
-              UserPrincipalName = "demo004@M365x99297270.OnMicrosoft.com"
-              AccountEnabled = "True"
-              MailNickname = "demoUser"
-              AgeGroup  = "adult"
-              Parameters = $args
+                DisplayName       = "demo004"
+                Id                = "sdjfksd-2343-n21kj"
+                UserPrincipalName = "demo004@M365x99297270.OnMicrosoft.com"
+                AccountEnabled    = "True"
+                MailNickname      = "demoUser"
+                AgeGroup          = "adult"
+                Parameters        = $args
             }
         )
     }
@@ -38,7 +38,7 @@ Describe "New-EntraUser" {
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when parameters are empty" {
-            { New-EntraUser -DisplayName "" -AgeGroup "" -AccountEnabled -MailNickName "" -UserPrincipalName ""  } | Should -Throw "Missing an argument for parameter*"
+            { New-EntraUser -DisplayName "" -AgeGroup "" -AccountEnabled -MailNickName "" -UserPrincipalName "" } | Should -Throw "Missing an argument for parameter*"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraUser"

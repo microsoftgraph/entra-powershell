@@ -1,5 +1,5 @@
-BeforeAll{
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+BeforeAll {
+    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
         Import-Module Microsoft.Graph.Entra
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
@@ -9,16 +9,16 @@ BeforeAll{
 
         return @(
             [PSCustomObject]@{
-                Id = "fd560167-ff1f-471a-8d74-3b0070abcea1"
-                ExternalUserState = $null
+                Id                              = "fd560167-ff1f-471a-8d74-3b0070abcea1"
+                ExternalUserState               = $null
                 ExternalUserStateChangeDateTime = $null
-                mobilePhone = "123456789"
-                DeletedDateTime = $null
-                AssignedLicenses = $null
-                AssignedPlans = $null
-                PasswordProfile = $null
-                DisplayName = "Conf Room Adams"
-                Parameters = $args
+                mobilePhone                     = "123456789"
+                DeletedDateTime                 = $null
+                AssignedLicenses                = $null
+                AssignedPlans                   = $null
+                PasswordProfile                 = $null
+                DisplayName                     = "Conf Room Adams"
+                Parameters                      = $args
             }
         )
 
@@ -27,7 +27,7 @@ BeforeAll{
     Mock -CommandName Get-MgUser -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 
-Describe "Get-EntraUser"{
+Describe "Get-EntraUser" {
     Context "Test for Get-EntraUser" {
         It "Should return specific User" {
             $result = Get-EntraUser -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea11"
@@ -35,25 +35,26 @@ Describe "Get-EntraUser"{
             $result.Id | should -Be "fd560167-ff1f-471a-8d74-3b0070abcea1"
             $result.UserState | should -Be "fd560167-ff1f-471a-8d74-3b0070abcea1"
 
+
             should -Invoke -CommandName Get-MgUser -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should fail when ObjectId is empty string value" {
-           {Get-EntraUser -ObjectId ""} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+            { Get-EntraUser -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
 
         It "Should fail when ObjectId is empty" {
-            {Get-EntraUser -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'. Specify a parameter of type 'System.String' and try again."
-         }
+            { Get-EntraUser -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'. Specify a parameter of type 'System.String' and try again."
+        }
 
-         It "Should return all contact" {
+        It "Should return all contact" {
             $result = Get-EntraUser -All $true
             $result | Should -Not -BeNullOrEmpty            
 
             Should -Invoke -CommandName Get-MgUser  -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
-         It "Should fail when All is empty" {
+        It "Should fail when All is empty" {
             { Get-EntraUser -All } | Should -Throw "Missing an argument for parameter 'All'*"
         }
 
