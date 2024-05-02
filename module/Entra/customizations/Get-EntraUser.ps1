@@ -61,31 +61,19 @@
         $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         try {
             $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-            if($null -ne $PSBoundParameters["All"] -and $false -ne $PSBoundParameters["All"]){
-                while($response.'@odata.nextLink'){
-                    $params["Uri"] = $response.'@odata.nextLink'
-                    $response = Invoke-GraphRequest @params 
-                    $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+            $all = $null -ne $PSBoundParameters["All"] -and $PSBoundParameters["All"]
+            $increment = $topCount - $data.Count
+            while ($response.'@odata.nextLink' -and (($all) -or ($increment -gt 0 -and -not $all))) {
+                $params["Uri"] = $response.'@odata.nextLink'
+                if (-not $all) {
+                    $topValue = [Math]::Min($increment, 999)
+                    $params["Uri"] = $params["Uri"].Replace('$top=999', "`$top=$topValue")
+                    $increment -= $topValue
                 }
-            }  
-            else{
-                $increment = $topCount - $data.Count
-                while ($increment -gt 0) {
-                    $params["Uri"] = $response.'@odata.nextLink'
-                    if ($increment -gt 999) {
-                        $params["Uri"] = $params["Uri"].Replace('$top=999', "`$top=999")
-                        $response = Invoke-GraphRequest @params 
-                        $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-                        $increment -= 999
-                    } else {
-                        $params["Uri"] = $params["Uri"].Replace('$top=999', "`$top=$increment")
-                        $response = Invoke-GraphRequest @params 
-                        $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-                        $increment = 0
-                    }
-                }
-            } 
-        }catch {}
+                $response = Invoke-GraphRequest @params 
+                $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+            }
+        } catch {}        
         $data | ForEach-Object {
             if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
