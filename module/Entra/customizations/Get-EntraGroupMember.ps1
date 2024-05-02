@@ -52,31 +52,20 @@
         $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         try {
             $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-            if($null -ne $PSBoundParameters["All"] -and $false -ne $PSBoundParameters["All"]){
-                while($response.'@odata.nextLink'){
-                    $URI = $response.'@odata.nextLink'
-                    $response = Invoke-GraphRequest -Uri $URI -Method $Method
-                    $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+            # write-host $data.count
+            $all = $null -ne $PSBoundParameters["All"] -and $PSBoundParameters["All"]
+            $increment = $topCount - $data.Count
+            while ($response.'@odata.nextLink' -and (($all) -or ($increment -gt 0 -and -not $all))) {
+                $URI = $response.'@odata.nextLink'
+                if (-not $all) {
+                    $topValue = [Math]::Min($increment, 999)
+                    $URI = $URI.Replace('$top=999', "`$top=$topValue")
+                    $increment -= $topValue
                 }
+                $response = Invoke-GraphRequest -Uri $URI -Method $Method
+                $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             }
-            else{
-                $increment = $topCount - $data.Count
-                while ($increment -gt 0) {
-                    $URI = $response.'@odata.nextLink'
-                    if ($increment -gt 999) {
-                        $URI = $URI.Replace('$top=999', "`$top=999")
-                        $response = Invoke-GraphRequest -Uri $URI -Method $Method
-                        $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-                        $increment -= 999
-                    } else {
-                        $URI = $URI.Replace('$top=999', "`$top=$increment")
-                        $response = Invoke-GraphRequest -Uri $URI -Method $Method
-                        $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-                        $increment = 0
-                    }
-                }
-            }   
-        }catch {}
+        } catch {} 
         $data | ForEach-Object {
             if($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
