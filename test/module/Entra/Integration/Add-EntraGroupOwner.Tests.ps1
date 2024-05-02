@@ -10,12 +10,12 @@ Describe "The Add-EntraGroupOwner command executing unmocked" {
             Connect-Entra -TenantId $tenantId -AppId $appId -CertificateThumbprint $cert
 
             $thisTestInstanceId = New-Guid | select -expandproperty guid
-            $testName = 'SimpleTest1' + $thisTestInstanceId
+            $testName = 'SimpleTests' + $thisTestInstanceId
 
             #create test user 
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
             $PasswordProfile.Password = "Pass@1234"
-            $global:newUser = New-EntraUser -AccountEnabled $true -DisplayName $testName -PasswordProfile $PasswordProfile -MailNickName $testName -UserPrincipalName "SimpleTestUser1@M365x99297270.OnMicrosoft.com" 
+            $global:newUser = New-EntraUser -AccountEnabled $true -DisplayName $testName -PasswordProfile $PasswordProfile -MailNickName $testName -UserPrincipalName "SimpleTestUsers@M365x99297270.OnMicrosoft.com" 
     
             #create test group 
             $global:newGroup = New-EntraGroup -DisplayName $testName -MailEnabled $false -SecurityEnabled $true -MailNickName $testName 
