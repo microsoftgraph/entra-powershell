@@ -35,7 +35,7 @@ Retrieves the objects specified by the ObjectIds parameter.
 
 ### Example 1: Get an object One or more object IDs.
 ```powershell
-PS C:\WINDOWS\system32> Get-AzureADObjectByObjectId -ObjectIds f44fe7fb-462c-41bd-9d36-8e3be78c4d5f , b7fd7e22-eefe-4d37-97c4-9cb7ede0ab5e
+PS C:\WINDOWS\system32> Get-EntraObjectByObjectId  -ObjectIds f44fe7fb-462c-41bd-9d36-8e3be78c4d5f , b7fd7e22-eefe-4d37-97c4-9cb7ede0ab5e
 ```
 ```output
 ageGroup                        :
