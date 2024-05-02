@@ -10,8 +10,8 @@ BeforeAll {
         return @(
             [PSCustomObject]@{
                 Id                              = "fd560167-ff1f-471a-8d74-3b0070abcea1"
-                ExternalUserState               = $null
-                ExternalUserStateChangeDateTime = $null
+                ExternalUserState               = "PendingAcceptance"
+                ExternalUserStateChangeDateTime = "16-01-2024 10:30:25"
                 mobilePhone                     = "123456789"
                 DeletedDateTime                 = $null
                 AssignedLicenses                = $null
@@ -30,10 +30,13 @@ BeforeAll {
 Describe "Get-EntraUser" {
     Context "Test for Get-EntraUser" {
         It "Should return specific User" {
-            $result = Get-EntraUser -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea11"
+            $result = Get-EntraUser -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be "fd560167-ff1f-471a-8d74-3b0070abcea1"
-            $result.UserState | should -Be "fd560167-ff1f-471a-8d74-3b0070abcea1"
+            $result.mobilePhone | Should -Be "123456789"
+            $result.ExternalUserStateChangeDateTime | Should -Be "16-01-2024 10:30:25"
+            $result.ExternalUserState | Should -Be "PendingAcceptance"
+            $result.DisplayName | Should -Be "Conf Room Adams"
 
 
             should -Invoke -CommandName Get-MgUser -ModuleName Microsoft.Graph.Entra -Times 1
@@ -50,7 +53,6 @@ Describe "Get-EntraUser" {
         It "Should return all contact" {
             $result = Get-EntraUser -All $true
             $result | Should -Not -BeNullOrEmpty            
-
             Should -Invoke -CommandName Get-MgUser  -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
@@ -84,6 +86,19 @@ Describe "Get-EntraUser" {
 
             Should -Invoke -CommandName Get-MgUser  -ModuleName Microsoft.Graph.Entra -Times 1
         } 
+
+        It "Should return specific user by search string" {
+            $result = Get-EntraUser -SearchString "Conf Room Adams"
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be 'Conf Room Adams'
+        
+            Should -Invoke -CommandName Get-MgUser  -ModuleName Microsoft.Graph.Entra -Times 1
+
+        }
+
+        It "Should fail when search string is empty" {
+            { Get-EntraUser -SearchString } | Should -Throw "Missing an argument for parameter 'SearchString'.*"
+        }
 
         It "Should fail when Missing an argument for parameter Filter" {
             { Get-EntraUser -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
