@@ -51,11 +51,12 @@ BeforeAll {
   
 Describe "New-EntraUser" {
     Context "Test for New-EntraUser" {
-        # Define Password Profile
-        $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-        $PasswordProfile.Password = "test@1234"
 
         It "Should return created User" {
+            # Define Password Profile
+            $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+            $PasswordProfile.Password = "test@1234"
+
             $result = New-EntraUser `
                 -DisplayName "demo004" `
                 -PasswordProfile $PasswordProfile `
@@ -118,17 +119,74 @@ Describe "New-EntraUser" {
         }
 
         It "Should contain 'User-Agent' header" {
+            # Define Password Profile
+            $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+            $PasswordProfile.Password = "test@1234"
+             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraUser"
-            $result = New-EntraUser -DisplayName "demo002" -PasswordProfile $PasswordProfile -UserPrincipalName "demo001@M365x99297270.OnMicrosoft.com" -AccountEnabled $true -MailNickName "demo002NickName" -AgeGroup "adult" -PostalCode "10001"
+            $result = New-EntraUser -DisplayName "demo002" -PasswordProfile $PasswordProfile -UserPrincipalName "demo001@M365x99297270.OnMicrosoft.com" -AccountEnabled $true -MailNickName "demo002NickName" -AgeGroup "adult"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers."User-Agent" | Should -Be $userAgentHeaderValue
-            ($params.Body | ConvertFrom-Json ).PostalCode | Should -Be "10001"
         }  
         
-        It "Should contain 'Postal Code'" {
-            $result = New-EntraUser -DisplayName "demo002" -PasswordProfile $PasswordProfile -UserPrincipalName "demo001@M365x99297270.OnMicrosoft.com" -AccountEnabled $true -MailNickName "demo002NickName" -AgeGroup "adult" -PostalCode "10001"
+        It "Should contain MobilePhone in parameters when passed Mobile to it" {
+            # Define Password Profile
+            $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+            $PasswordProfile.Password = "test@1234"
+             
+            $result = New-EntraUser -DisplayName "demo002" -PasswordProfile $PasswordProfile -UserPrincipalName "demo001@M365x99297270.OnMicrosoft.com" -AccountEnabled $true -MailNickName "demo002NickName" -AgeGroup "adult" -Mobile "1234567890"
             $params = Get-Parameters -data $result.Parameters
-            ($params.Body | ConvertFrom-Json ).PostalCode | Should -Be "10001"
+            ($params.Body | ConvertFrom-Json ).MobilePhone | Should -Be "1234567890"
         }   
+
+        It "Should contain Identities in parameters when passed SignInNames to it" {
+            # Define Password Profile
+            $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+            $PasswordProfile.Password = "test@1234"
+             
+            # Create SignInName objects
+            $signInName1 = [Microsoft.Open.AzureAD.Model.SignInName]::new()
+            $signInName1.Type = "emailAddress"
+            $signInName1.Value = "example1@example.com"
+
+            $result = New-EntraUser -DisplayName "demo002" -PasswordProfile $PasswordProfile `
+                -UserPrincipalName "demo001@M365x99297270.OnMicrosoft.com" -AccountEnabled $true `
+                -MailNickName "demo002NickName" -AgeGroup "adult" -SignInNames @($signInName1)
+
+            $params = Get-Parameters -data $result.Parameters
+
+            # Check the request body for Identities
+            $requestBody = $params.Body | ConvertFrom-Json
+
+            # Assert that the Identities in the request body match the SignInName objects
+            $requestBody.Identities[0].Type | Should -Be "emailAddress"
+            $requestBody.Identities[0].Value | Should -Be "example1@example.com"
+        }  
+        
+        It "Should contain ExternalUserState, OnPremisesImmutableId, ExternalUserStateChangeDateTime, BusinessPhones" {
+            # Define Password Profile
+            $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+            $PasswordProfile.Password = "test@1234"
+
+            $result = New-EntraUser -DisplayName "demo002" -PasswordProfile $PasswordProfile `
+                -UserPrincipalName "demo001@M365x99297270.OnMicrosoft.com" -AccountEnabled $true `
+                -MailNickName "demo002NickName" -AgeGroup "adult" `
+                -UserState "PendingAcceptance" `
+                -UserStateChangedOn "Pending" `
+                -ImmutableId "djkjsajsa-e32j2-2i32" `
+                -TelephoneNumber "1234567890"
+            
+            $params = Get-Parameters -data $result.Parameters
+            
+            $requestBody = $params.Body | ConvertFrom-Json
+
+            $requestBody.BusinessPhones[0] | Should -Be "1234567890"
+
+            $requestBody.ExternalUserState | Should -Be "PendingAcceptance"
+
+            $requestBody.OnPremisesImmutableId | Should -Be "djkjsajsa-e32j2-2i32"
+
+            $requestBody.ExternalUserStateChangeDateTime | Should -Be "Pending"
+        }  
     }
 }
