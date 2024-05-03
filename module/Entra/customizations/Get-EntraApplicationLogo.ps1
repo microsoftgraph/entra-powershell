@@ -23,7 +23,14 @@
         }
 
         if($null -ne $PSBoundParameters["FilePath"]){
-            $params["FilePath"] = $PSBoundParameters["FilePath"]            
+            $params["FilePath"] = $PSBoundParameters["FilePath"]   
+            
+            $imageExtensions = @(".jpg", ".jpeg", ".png", ".gif", ".bmp")
+
+            if(-not (Test-Path $($params.FilePath) -PathType Leaf) -and $imageExtensions -notcontains [System.IO.Path]::GetExtension($($params.FilePath))){
+                Write-Error -Message "Get-EntraApplicationLogo : FilePath is invalid"
+                break;
+            }
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
@@ -33,7 +40,12 @@
         $logoUrl = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).Info.logoUrl
 
         if($null -ne $logoUrl){
-            Invoke-WebRequest -Uri $logoUrl -OutFile $($params.FilePath)
+            try {
+                Invoke-WebRequest -Uri $logoUrl -OutFile $($params.FilePath)
+            }
+            catch {
+                
+            }
         }
     }
 '@
