@@ -27,7 +27,7 @@
             $imageExtensions = @(".jpg", ".jpeg", ".png", ".gif", ".bmp")
 
             if(-not (Test-Path $($params.FilePath) -PathType Leaf) -and $imageExtensions -notcontains [System.IO.Path]::GetExtension($($params.FilePath))){
-                Write-Error -Message "Get-EntraApplicationLogo : FilePath is invalid"
+                Write-Error -Message "Get-EntraBetaApplicationLogo : FilePath is invalid"
                 break;
             }
         }
