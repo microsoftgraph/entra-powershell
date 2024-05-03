@@ -15,9 +15,12 @@ Describe "Remove-EntraUser" {
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Remove-MgUser -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is empty" {
+        It "Should fail when ObjectId is empty string" {
             { Remove-EntraUser -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }   
+        It "Should fail when ObjectId is empty" {
+            { Remove-EntraUser -ObjectId } | Should -Throw "Missing an argument for parameter*"
+        }  
         It "Should contain Id in parameters when passed ObjectId to it" {
             Mock -CommandName Remove-MgUser -MockWith { $args } -ModuleName Microsoft.Graph.Entra
 
