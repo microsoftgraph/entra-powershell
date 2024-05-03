@@ -45,10 +45,12 @@
                 Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
                 $propsToConvert = @('appRoles','oauth2PermissionScopes')
+                try{
                     foreach ($prop in $propsToConvert) {
                         $value = $_.$prop | ConvertTo-Json -Depth 10 | ConvertFrom-Json
                         $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
                     }
+                }catch{}  
             }
         }
         $response
