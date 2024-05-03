@@ -9,6 +9,7 @@
     CustomScript = @'
     PROCESS {  
     $params = @{}
+    $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
     $keysChanged = @{SearchString = "Filter"; ObjectId = "Id"}
     if($null -ne $PSBoundParameters["SearchString"])
     {
@@ -37,7 +38,7 @@
     {
         if($PSBoundParameters["All"])
         {
-            $params["All"] = $Null
+            $params["All"] = $PSBoundParameters["All"]
         }
     }
     if($PSBoundParameters.ContainsKey("Debug"))
@@ -53,7 +54,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================``n")
     
-    $response = Get-MgBetaApplication @params
+    $response = Get-MgBetaApplication @params -Headers $customHeaders
     $response | ForEach-Object {
         if($null -ne $_) {
         Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id

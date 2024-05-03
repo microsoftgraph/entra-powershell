@@ -33,6 +33,7 @@ function Get-EntraBetaFederationProperty {
 
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{}
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $Null
@@ -46,7 +47,7 @@ function Get-EntraBetaFederationProperty {
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $response = Get-MgBetaDomainFederationConfiguration @params
+        $response = Get-MgBetaDomainFederationConfiguration @params -Headers $customHeaders
         $response | ForEach-Object {
             if($null -ne $_) {
             Add-Member -InputObject $_ -MemberType AliasProperty -Name ActiveClientSignInUrl -Value ActiveSignInUri

@@ -502,6 +502,9 @@ function Get-EntraUnsupportedCommand {
             foreach ($func in $this.MissingCommandsToMap) {
                 $aliases += "   Set-Alias -Name $($func) -Value Get-EntraUnsupportedCommand -Scope Global -Force`n"
             }
+            #Adding direct aliases for Connect-Entra and Disconnect-Entra
+            $aliases += "   Set-Alias -Name Connect-Entra -Value Connect-MgGraph -Scope Global -Force`n"
+            $aliases += "   Set-Alias -Name Disconnect-Entra -Value Disconnect-MgGraph -Scope Global -Force`n"
     $aliasFunction = @"
 function Enable-EntraAzureADAlias {
 $($aliases)}
@@ -574,6 +577,13 @@ $($Command.CustomScript)
         $ParamterTransformations = $this.GetParametersTransformations($Command)
         $OutputTransformations = $this.GetOutputTransformations($Command)
         $keyId = $this.GetKeyIdPair($Command)
+        $customHeadersCommandName = "New-EntraCustomHeaders"
+
+        if($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta')
+        {
+            $customHeadersCommandName = "New-EntraBetaCustomHeaders"
+        }
+
         $function = @"
 function $($Command.Generate) {
     [CmdletBinding($($Command.DefaultParameterSet))]
@@ -583,13 +593,14 @@ $parameterDefinitions
 
     PROCESS {    
     `$params = @{}
+    `$customHeaders = $customHeadersCommandName -Command `$MyInvocation.MyCommand
     $($keyId)
 $ParamterTransformations
     Write-Debug("============================ TRANSFORMATIONS ============================")
     `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
     Write-Debug("=========================================================================``n")
     
-    `$response = $($Command.New) @params
+    `$response = $($Command.New) @params -Headers `$customHeaders
 $OutputTransformations
     `$response
     }
@@ -728,7 +739,7 @@ $OutputTransformations
     {
         if(`$PSBoundParameters["$($OldName)"])
         {
-            `$params["$($NewName)"] = `$Null
+            `$params["$($NewName)"] = `$PSBoundParameters["$($OldName)"]
         }
     }
 
