@@ -168,11 +168,15 @@ Describe "New-EntraUser" {
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
             $PasswordProfile.Password = "test@1234"
 
+            # format like "yyyy-MM-dd HH:mm:ss"
+            $userStateChangedOn = [System.DateTime]::Parse("2015-12-08 15:15:19")
+
+
             $result = New-EntraUser -DisplayName "demo002" -PasswordProfile $PasswordProfile `
                 -UserPrincipalName "demo001@M365x99297270.OnMicrosoft.com" -AccountEnabled $true `
                 -MailNickName "demo002NickName" -AgeGroup "adult" `
                 -UserState "PendingAcceptance" `
-                -UserStateChangedOn "Pending" `
+                -UserStateChangedOn $userStateChangedOn `
                 -ImmutableId "djkjsajsa-e32j2-2i32" `
                 -TelephoneNumber "1234567890"
             
@@ -186,7 +190,7 @@ Describe "New-EntraUser" {
 
             $requestBody.OnPremisesImmutableId | Should -Be "djkjsajsa-e32j2-2i32"
 
-            $requestBody.ExternalUserStateChangeDateTime | Should -Be "Pending"
+            $requestBody.ExternalUserStateChangeDateTime | Should -Be $userStateChangedOn
         }  
     }
 }

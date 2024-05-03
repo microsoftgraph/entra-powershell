@@ -52,8 +52,12 @@ Describe "Set-EntraUser" {
         It "Should contain ExternalUserState, OnPremisesImmutableId, ExternalUserStateChangeDateTime, BusinessPhones" {
             Mock -CommandName Update-MgUser -MockWith { $args } -ModuleName Microsoft.Graph.Entra
 
-            $result = Set-EntraUser -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04 `
+            # format like "yyyy-MM-dd HH:mm:ss"
+            $userStateChangedOn = [System.DateTime]::Parse("2015-12-08 15:15:19")
+
+            $result = Set-EntraUser -ObjectId "056b2531-005e-4f3e-be78-01a71ea30a04" `
                 -UserState "PendingAcceptance" `
+                -UserStateChangedOn  $userStateChangedOn `
                 -ImmutableId "djkjsajsa-e32j2-2i32" `
                 -TelephoneNumber "1234567890"
             
@@ -64,6 +68,8 @@ Describe "Set-EntraUser" {
             $params.ExternalUserState | Should -Be "PendingAcceptance"
 
             $params.OnPremisesImmutableId | Should -Be "djkjsajsa-e32j2-2i32"
+
+            $params.ExternalUserStateChangeDateTime | Should -Be $userStateChangedOn
 
         }  
     }
