@@ -4,20 +4,23 @@ BeforeAll {
         Import-Module Microsoft.Graph.Entra      
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
-$scriptblock = @{
-        value = @(
-            @{
-           "Id"                               = "996d39aa-fdac-4d97-aa3d-c81fb47362ac" 
-           "OnPremisesSyncEnabled"            = $null
-           "OnPremisesLastSyncDateTime"       = $null
-           "mobilePhone"                      = "425-555-0101"
-           "onPremisesProvisioningErrors"     = @{}
-           "businessPhones"                   = @("425-555-0100")
-            }
-        )
+    $scriptblock = {
+        return @{
+            value = @(
+                @{
+                    "Id"                               = "996d39aa-fdac-4d97-aa3d-c81fb47362ac" 
+                    "OnPremisesSyncEnabled"            = $null
+                    "OnPremisesLastSyncDateTime"       = $null
+                    "mobilePhone"                      = "425-555-0101"
+                    "onPremisesProvisioningErrors"     = @{}
+                    "businessPhones"                   = @("425-555-0100")
+                    "Parameters"                       = $args
+                }
+            )
+        }
     }
     
-    Mock -CommandName Invoke-GraphRequest -MockWith  { $scriptblock }  -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 
 }
 
@@ -45,6 +48,14 @@ Describe "EntraDirectoryRoleMember" {
             $result.Mobile | should -Be "425-555-0101"
             $result.ProvisioningErrors | Should -BeNullOrEmpty
             $result.TelephoneNumber | should -Be "425-555-0100"
+        }
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirectoryRoleMember"
+
+            $result = Get-EntraDirectoryRoleMember -ObjectId "1d73e796-aac5-4b3a-b7e7-74a3d1926a85" 
+            $params = Get-Parameters -data $result.Parameters
+            $a= $params | ConvertTo-json | ConvertFrom-Json
+            $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue
         }
 
     }
