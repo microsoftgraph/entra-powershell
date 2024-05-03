@@ -9,15 +9,12 @@ Describe "The EntraMSLifecyclePolicyGroup command executing unmocked" {
             $tenantId = $env:TEST_TENANTID
             $cert = $env:CERTIFICATETHUMBPRINT
 
-            # Validate required environment variables
             if (-not $appId -or -not $tenantId -or -not $cert) {
                 throw "Required environment variables are not set."
             }
 
-            # Connect to Entra service
             Connect-Entra -TenantId $tenantId -AppId $appId -CertificateThumbprint $cert
 
-            # Create a group with Description parameter.
             $thisTestInstanceId = New-Guid | Select-Object -ExpandProperty Guid
             $global:displayName = 'Demo Help Group' + $thisTestInstanceId
             $testNickname = "testhelpDeskAdminGroup"
@@ -39,14 +36,12 @@ Describe "The EntraMSLifecyclePolicyGroup command executing unmocked" {
         }
 
         It "should successfully Create a lifecycle policy" {
-            # Create a lifecycle policy
             $global:testGroupPolicy = New-EntraMSGroupLifecyclePolicy -GroupLifetimeInDays 99 -ManagedGroupTypes "Selected" -AlternateNotificationEmails "example@contoso.un"
         }
 
         It "should successfully retrieve properties of an groupLifecyclePolicy" {
             $groupLifecyclePolicy = Get-EntraMSGroupLifecyclePolicy -Id $testGroupPolicy.Id
 
-            # Ensure that the retrieved group lifecycle policy matches the expected one
             $groupLifecyclePolicy.Id | Should -Be $testGroupPolicy.Id
             $groupLifecyclePolicy.GroupLifetimeInDays | Should -Be 99
             $groupLifecyclePolicy.ManagedGroupTypes | Should -Contain "Selected"
@@ -58,29 +53,19 @@ Describe "The EntraMSLifecyclePolicyGroup command executing unmocked" {
             $global:updatedGroupLifecyclePolicy = Set-EntraMSGroupLifecyclePolicy -Id $testGroupPolicy.Id -GroupLifetimeInDays 200 -AlternateNotificationEmails $alternateNotificationEmails -ManagedGroupTypes "Selected"
             Start-Sleep -Seconds 10
 
-            # Ensure that the retrieved group lifecycle policy matches the expected one
             $updatedGroupLifecyclePolicy.Id | Should -Be $testGroupPolicy.Id
             $updatedGroupLifecyclePolicy.GroupLifetimeInDays | Should -Be 200
             $updatedGroupLifecyclePolicy.ManagedGroupTypes | Should -Contain "Selected"
             $updatedGroupLifecyclePolicy.AlternateNotificationEmails | Should -Contain $alternateNotificationEmails
         }
 
-        # It "should throw an exception if a nonexistent ID parameter is specified" {
-        #     $Id = (New-Guid).Guid
-        #     Get-EntraMSGroupLifecyclePolicy -Id $Id -ErrorAction ignore 
-        #     $errorMessage = $Error[0].Exception.Message
-        #     $errorMessage | Should -match "([\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12})"
-        # }
-
         It "should successfully associate the group with the lifecycle policy" {
-            # Associate the group with the lifecycle policy
             $testLifePolicyGroup = Add-EntraMSLifecyclePolicyGroup -Id $testGroupPolicy.Id -GroupId $newMSGroup.Id
             $testLifePolicyGroup.ObjectId | Should -BeNullOrEmpty
             Start-Sleep -Seconds 10
         }
 
         It "should successfully retrieve details of a LifecyclePolicyGroup" {
-            # Get lifecycle policy group using group id 
             $global:lifecyclePolicyGroup = Get-EntraMSLifecyclePolicyGroup -Id $newMSGroup.Id
             $lifecyclePolicyGroup.ObjectId | Should -Be $testGroupPolicy.Id
             $lifecyclePolicyGroup.GroupLifetimeInDays | Should -Be 200
