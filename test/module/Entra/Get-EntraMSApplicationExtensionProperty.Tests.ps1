@@ -24,8 +24,8 @@ BeforeAll {
     Mock -CommandName Get-MgApplicationExtensionProperty -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 
-Describe "New-EntraMSApplicationExtensionProperty" {
-Context "Test for New-EntraMSApplicationExtensionProperty" {
+Describe "Get-EntraMSApplicationExtensionProperty" {
+Context "Test for Get-EntraMSApplicationExtensionProperty" {
         It "Should return MS application extension property" {
             $result = Get-EntraMSApplicationExtensionProperty -ObjectId "9301311c-22b0-4835-9522-89ffacf6e502" 
             $result | Should -Not -BeNullOrEmpty
