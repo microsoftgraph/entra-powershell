@@ -27,14 +27,12 @@ Describe "The Add-EntraServicePrincipalOwner command executing unmocked" {
         }
 
         It "should update the properties of Application , ServicePrincipal and User" { 
-
             $updatedDisplayNameforappUser = 'appTetsUpdatedUser' 
             Set-EntraApplication -ObjectId $newApplication.Id -Displayname $updatedDisplayNameforappUser
 
             $Application = Get-EntraApplication -ObjectId $newApplication.Id 
             $Application.Id | Should -Be $newApplication.Id 
             $Application.DisplayName | Should -Be $updatedDisplayNameforappUser
-            
             
             Set-EntraServicePrincipal -ObjectId $newServicePrincipal.Id -Displayname $updatedDisplayNameforappUser
 
