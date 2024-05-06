@@ -1,6 +1,5 @@
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
-        #Import-Module .\bin\Microsoft.Graph.Entra.psm1 -Force
         Import-Module Microsoft.Graph.Entra
     }
     Import-Module .\test\module\Common-Functions.ps1 -Force
