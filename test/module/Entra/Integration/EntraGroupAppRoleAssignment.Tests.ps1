@@ -12,8 +12,7 @@ Describe "The EntraGroup command executing unmocked" {
             $thisTestInstanceId = New-Guid | Select-Object -expandproperty guid
             $global:displayName = 'DemoName' + $thisTestInstanceId
             
-            #create test group 
-            $global:newGroup = New-EntraGroup -DisplayName $displayName -MailEnabled $false -SecurityEnabled $true -MailNickName  $testName
+            $global:newGroup = New-EntraGroup -DisplayName $displayName -MailEnabled $false -SecurityEnabled $true -MailNickName $displayName
             Write-Host $newGroup
         }
 

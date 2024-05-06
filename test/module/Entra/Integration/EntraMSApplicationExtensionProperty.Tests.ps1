@@ -9,15 +9,12 @@ Describe "The EntraMSApplicationExtensionProperty command executing unmocked" {
             $tenantId = $env:TEST_TENANTID
             $cert = $env:CERTIFICATETHUMBPRINT
 
-            # Validate required environment variables
             if (-not $appId -or -not $tenantId -or -not $cert) {
                 throw "Required environment variables are not set."
             }
 
-            # Connect to Entra service
             Connect-Entra -TenantId $tenantId -AppId $appId -CertificateThumbprint $cert
-
-            # Create an application
+            
             $thisTestInstanceId = New-Guid | Select-Object -expandproperty guid
             $testApplicationName = 'Test Demo Name' + $thisTestInstanceId
             $global:newMSApplication = New-EntraMSApplication -DisplayName $testApplicationName
@@ -40,12 +37,10 @@ Describe "The EntraMSApplicationExtensionProperty command executing unmocked" {
         }
 
         It "should successfully create application extension property" {
-            # Create an extension property
             $global:newMSApplicationExtensionProperty = New-EntraMSApplicationExtensionProperty -ObjectId $newMSApplication.Id -DataType "string" -Name "NewAttribute" -TargetObjects "Application"
         }
 
         It "should successfully get application extension property" {
-            # Get application extension property using object id 
             $applicationExtensionProperty = Get-EntraMSApplicationExtensionProperty -ObjectId $newMSApplication.Id
             $applicationExtensionProperty.ObjectId | Should -Be $newMSApplicationExtensionProperty.Id
             $applicationExtensionProperty.Name | Should -Be $newMSApplicationExtensionProperty.Name
