@@ -32,7 +32,6 @@ Describe "Set-EntraUserManager" {
             Mock -CommandName Set-MgUserManagerByRef -MockWith { $args } -ModuleName Microsoft.Graph.Entra
 
             $result = Set-EntraUserManager -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -RefObjectId "c300541f-2c03-49cb-b25b-72f09cb29abf"
-            #  TODO: here UserId not comming from Get-Parameters -data $result.Parameters
             $params = Get-Parameters -data $result
             $params.UserId | Should -Match "412be9d1-1460-4061-8eed-cca203fcb215"
         }
@@ -42,8 +41,6 @@ Describe "Set-EntraUserManager" {
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserManager"
             $result = Set-EntraUserManager -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -RefObjectId "c300541f-2c03-49cb-b25b-72f09cb29abf"
-
-            #  TODO: here UserId not comming from Get-Parameters -data $result.Parameters
             $params = Get-Parameters -data $result
 
             $params.Headers."User-Agent" | Should -Be $userAgentHeaderValue
