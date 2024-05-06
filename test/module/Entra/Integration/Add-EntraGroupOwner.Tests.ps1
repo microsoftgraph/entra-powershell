@@ -7,7 +7,7 @@ Describe "The Add-EntraGroupOwner command executing unmocked" {
             $appId = $env:TEST_APPID
             $tenantId = $env:TEST_TENANTID
             $cert = $env:CERTIFICATETHUMBPRINT
-            Connect-Entra -TenantId $tenantId -AppId $appId -CertificateThumbprint $cert
+            Connect-MgGraph -TenantId $tenantId -AppId $appId -CertificateThumbprint $cert
 
             $thisTestInstanceId = New-Guid | select -expandproperty guid
             $testName = 'SimpleTests' + $thisTestInstanceId
@@ -27,36 +27,40 @@ Describe "The Add-EntraGroupOwner command executing unmocked" {
             $global:newGroup = New-EntraGroup -DisplayName $testName -MailEnabled $false -SecurityEnabled $true -MailNickName $testName 
         }
 
-        It "should successfully Adds an owner to a group" {
+        It "should update the proprties of user and group" {            
+            $updatedDisplayName = "SimpleTestsUpdated"
+            Set-EntraGroup -ObjectId $newGroup.Id -DisplayName $updatedDisplayName
             
-            $group = Get-EntraGroup -ObjectId $newGroup.Id
-            $group.Id | Should -Be $newGroup.Id
-            $group.DisplayName | Should -Be $testName
+            $result = Get-EntraGroup -ObjectId $newGroup.Id
+            $result.Id | Should -Contain $newGroup.Id
+            $result.DisplayName | Should -Contain $updatedDisplayName
 
-            $user = Get-EntraUser -ObjectId $newUser.Id
-            $user.Id | Should -Be $newUser.Id
-            $user.DisplayName | Should -Be $testName
+            $updatedDisplayNameInCreatedUser = 'SimpleTests1AnotherTestUser' 
+            Set-EntraUser -ObjectId $newUser.Id -Displayname $updatedDisplayNameInCreatedUser
+
+            $updatedUser = Get-EntraUser -ObjectId $newUser.Id
+            $updatedUser.Id | Should -Be $newUser.Id
+            $updatedUser.DisplayName | Should -Be $updatedDisplayNameInCreatedUser
 
             $user1 = Get-EntraUser -ObjectId $newUser1.Id
             $user1.Id | Should -Be $newUser1.Id
             $user1.DisplayName | Should -Be $testName1
+        }
+        It "Should successfully Adds an owner to a group" {   
+            Add-EntraGroupOwner -ObjectId $newGroup.Id -RefObjectId $newUser.Id
+            $result = Get-EntraGroupOwner -ObjectId $newGroup.Id
+            $result.Id | Should -Contain $newUser.Id
 
-            Add-EntraGroupOwner -ObjectId $group.Id -RefObjectId $user.Id
-            $result = Get-EntraGroupOwner -ObjectId $group.Id
-            $result.Id | Should -Contain $user.Id
-
-            Add-EntraGroupOwner -ObjectId $group.Id -RefObjectId $user1.Id
-            $result1 = Get-EntraGroupOwner -ObjectId $group.Id
-            $result1.Id | Should -Contain $user1.Id
+            Add-EntraGroupOwner -ObjectId $newGroup.Id -RefObjectId $newUser1.Id
+            $result1 = Get-EntraGroupOwner -ObjectId $newGroup.Id
+            $result1.Id | Should -Contain $newUser1.Id
         }
 
         AfterAll {
             Remove-EntraGroupOwner -ObjectId $newGroup.Id -OwnerId $newUser.Id
             Remove-EntraUser -ObjectId $newUser.Id
             Remove-EntraGroup -ObjectId $newGroup.Id
-            Remove-EntraUser -ObjectId $newUser1.Id
-
-            
+            Remove-EntraUser -ObjectId $newUser1.Id 
         }
     }
 }

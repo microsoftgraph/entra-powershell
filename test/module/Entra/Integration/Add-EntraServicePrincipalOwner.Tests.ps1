@@ -26,20 +26,31 @@ Describe "The Add-EntraServicePrincipalOwner command executing unmocked" {
     
         }
 
-        It "should successfully Adds an owner to a service principal." { 
+        It "should update the properties of Application , ServicePrincipal and User" { 
+
+            $updatedDisplayNameforappUser = 'appTetsUpdatedUser' 
+            Set-EntraApplication -ObjectId $newApplication.Id -Displayname $updatedDisplayNameforappUser
 
             $Application = Get-EntraApplication -ObjectId $newApplication.Id 
             $Application.Id | Should -Be $newApplication.Id 
-            $Application.DisplayName | Should -Be $testName2
+            $Application.DisplayName | Should -Be $updatedDisplayNameforappUser
             
+            
+            Set-EntraServicePrincipal -ObjectId $newServicePrincipal.Id -Displayname $updatedDisplayNameforappUser
+
             $ServicePrincipal = Get-EntraServicePrincipal -ObjectId $newServicePrincipal.Id
             $ServicePrincipal.Id | Should -Be $newServicePrincipal.Id
-            $ServicePrincipal.DisplayName | Should -Be $testName2
+            $ServicePrincipal.DisplayName | Should -Be $updatedDisplayNameforappUser
 
-            $user1 = Get-EntraUser -ObjectId $newUser1.Id
-            $user1.Id | Should -Be $newUser1.Id
-            $user1.DisplayName | Should -Be $testName1
- 
+            $updatedDisplayNameInCreatedUser = 'DemoTestsUpdatedUser' 
+            Set-EntraUser -ObjectId $newUser1.Id -Displayname $updatedDisplayNameInCreatedUser
+
+            $updatedUser = Get-EntraUser -ObjectId $newUser1.Id
+            $updatedUser.Id | Should -Be $newUser1.Id
+            $updatedUser.DisplayName | Should -Be $updatedDisplayNameInCreatedUser
+        }
+
+        It "should successfully Adds an owner to a service principal." { 
             Add-EntraServicePrincipalOwner -ObjectId $newServicePrincipal.Id -RefObjectId $newUser1.Id
             $result = Get-EntraServicePrincipalOwner -ObjectId $newServicePrincipal.Id
             $result.Id | Should -Contain $newUser1.Id
