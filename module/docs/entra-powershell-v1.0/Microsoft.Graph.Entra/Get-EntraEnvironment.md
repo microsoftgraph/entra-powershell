@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraEnvironment command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/16/2024
+ms.date: 05/07/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,17 +18,20 @@ schema: 2.0.0
 # Get-EntraEnvironment
 
 ## SYNOPSIS
+
 Gets global public Environments.
 
 ## SYNTAX
 
 ### GetQuery (Default)
+
 ```powershell
 Get-EntraEnvironment 
  [<CommonParameters>]
 ```
 
 ### GetByName
+
 ```powershell
 Get-EntraEnvironment 
  -Name <String> 
@@ -36,11 +39,13 @@ Get-EntraEnvironment
 ```
 
 ## DESCRIPTION
-When you use Connect-AzureAD or Connect-Entra, you can choose to target other environments. By default, Connect-AzureAD/Connect-Entra targets the global public cloud.
+
+When you use Connect-Entra, you can choose to target other environments. By default, Connect-Entra targets the global public cloud.
 
 ## EXAMPLES
 
 ### Example 1: Get a list of public cloud environments
+
 ```powershell
 PS C:\>Get-EntraEnvironment
 ```
@@ -58,6 +63,7 @@ Germany  https://login.microsoftonline.de  https://graph.microsoft.de           
 This command retrieves a list of global public Environments.
 
 ### Example 2: Get a specific environment created.
+
 ```powershell
 PS C:\>Get-EntraEnvironment -Name "Global"
 ```
@@ -74,6 +80,7 @@ This command retrieves an environment with the specified name.
 ## PARAMETERS
 
 ### -Name
+
 Specifies the name of an environment
 
 ```yaml
@@ -86,6 +93,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -97,6 +105,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Add-EntraEnvironment](Add-EntraEnvironment.md)
-
-
-
