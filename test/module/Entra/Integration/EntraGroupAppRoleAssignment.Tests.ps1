@@ -29,8 +29,18 @@ Describe "The EntraGroupAppRoleAssignment command executing unmocked" {
         }
 
         It "should successfully create application" {
-            $applicationDisplayName = "Demo new application"
-            $global:createdApplication = New-EntraApplication -DisplayName $applicationDisplayName
+            # $types = @()
+            # $types += 'User'
+            # $approle = New-Object Microsoft.Open.AzureAD.Model.AppRole
+            # $approle.AllowedMemberTypes =  $types
+            # $approle.Description  = 'msiam_access'
+            # $approle.DisplayName  = 'msiam_access'
+            # $approle.Id = '643985ce-3eaf-4a67-9550-ecca25cb6814'
+            # $approle.Value = 'Application'
+            # $approle.IsEnabled = $true 
+            $applicationDisplayName = "Demo new application" 
+            $global:createdApplication = New-EntraApplication -DisplayName $applicationDisplayName 
+            # -AppRoles $approle
             $createdApplication.DisplayName  | Should -Be $applicationDisplayName
         }
 
@@ -73,7 +83,7 @@ Describe "The EntraGroupAppRoleAssignment command executing unmocked" {
         }
 
         It "should successfully assign a group of users to an application" {
-           New-EntraGroupAppRoleAssignment -ObjectId $newGroup.ObjectId -PrincipalId $newGroup.ObjectId -ResourceId $updatedServicePrincipal.ObjectId -Id $updatedServicePrincipal.AppId
+           New-EntraGroupAppRoleAssignment -ObjectId $newGroup.ObjectId -PrincipalId $newGroup.ObjectId -ResourceId $updatedServicePrincipal.ObjectId -Id $updatedServicePrincipal.Approles[0].id
         }
 
         It "should successfully retrieve application role assignments of a group" {
