@@ -29,18 +29,17 @@ Describe "The EntraGroupAppRoleAssignment command executing unmocked" {
         }
 
         It "should successfully create application" {
-            # $types = @()
-            # $types += 'User'
-            # $approle = New-Object Microsoft.Open.AzureAD.Model.AppRole
-            # $approle.AllowedMemberTypes =  $types
-            # $approle.Description  = 'msiam_access'
-            # $approle.DisplayName  = 'msiam_access'
-            # $approle.Id = '643985ce-3eaf-4a67-9550-ecca25cb6814'
-            # $approle.Value = 'Application'
-            # $approle.IsEnabled = $true 
+            $types = @()
+            $types += 'User'
+            $approle = New-Object Microsoft.Open.AzureAD.Model.AppRole
+            $approle.AllowedMemberTypes =  $types
+            $approle.Description  = 'msiam_access'
+            $approle.DisplayName  = 'msiam_access'
+            $approle.Id = '643985ce-3eaf-4a67-9550-ecca25cb6814'
+            $approle.Value = 'Application'
+            $approle.IsEnabled = $true 
             $applicationDisplayName = "Demo new application" 
-            $global:createdApplication = New-EntraApplication -DisplayName $applicationDisplayName 
-            # -AppRoles $approle
+            $global:createdApplication = New-EntraApplication -DisplayName $applicationDisplayName -AppRoles $approle
             $createdApplication.DisplayName  | Should -Be $applicationDisplayName
         }
 
@@ -88,7 +87,8 @@ Describe "The EntraGroupAppRoleAssignment command executing unmocked" {
 
         It "should successfully retrieve application role assignments of a group" {
             $global:getGroupAppRoleAssignment = Get-EntraGroupAppRoleAssignment -ObjectId $newGroup.Id
-            Write-Host $getGroupAppRoleAssignment
+            $getGroupAppRoleAssignment.ResourceDisplayName  | Should -Be $createdServicePrincipal.DisplayName
+            $getGroupAppRoleAssignment.PrincipalDisplayName | Should -Be $updatedDisplayName
         }
         
         AfterAll {
