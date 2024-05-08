@@ -69,9 +69,9 @@ Describe "Get-EntraUserMembership" {
             { Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }  
 
-        It "Result should Contain Id" {
+        It "Result should Contain ObjectId" {
             $result = Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1"
-            $result.Id | should -Be "3da073b9-e731-4ec1-a4f6-6e02865a8c8a"
+            $result.ObjectId | should -Be "3da073b9-e731-4ec1-a4f6-6e02865a8c8a"
         } 
 
         It "Should contain UserId in parameters when passed ObjectId to it" {
@@ -86,7 +86,6 @@ Describe "Get-EntraUserMembership" {
             $result = Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Contain $userAgentHeaderValue
-            Write-Host $params
         }    
     }
 }

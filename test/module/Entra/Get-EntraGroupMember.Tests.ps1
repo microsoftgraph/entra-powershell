@@ -87,8 +87,8 @@ Describe "Get-EntraGroupMember" {
         It "Should contain GroupId in parameters when passed ObjectId to it" {
             $result = Get-EntraGroupMember -ObjectId "0bdddeb1-88a6-4251-aaa5-98b48271158b"
             $params = Get-Parameters -data $result.Parameters
-            $a= $params | ConvertTo-json | ConvertFrom-Json
-            $a.Uri -match "0bdddeb1-88a6-4251-aaa5-98b48271158b" | Should -BeTrue
+            $groupId= $params | ConvertTo-json | ConvertFrom-Json
+            $groupId.Uri -match "0bdddeb1-88a6-4251-aaa5-98b48271158b" | Should -BeTrue
         }
 
         It "Should contain 'User-Agent' header" {
@@ -96,8 +96,8 @@ Describe "Get-EntraGroupMember" {
 
             $result = Get-EntraGroupMember -ObjectId "0bdddeb1-88a6-4251-aaa5-98b48271158b"
             $params = Get-Parameters -data $result.Parameters
-            $a= $params | ConvertTo-json | ConvertFrom-Json
-            $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $userAgent= $params | ConvertTo-json | ConvertFrom-Json
+            $userAgent.headers.'User-Agent' | Should -Be $userAgentHeaderValue
         }    
     }
 }
