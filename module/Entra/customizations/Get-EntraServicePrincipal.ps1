@@ -10,7 +10,7 @@
             TargetName = "Filter"
             ConversionType = "ScriptBlock"
             SpecialMapping = @"
-`$Value = "publisherName eq '`$TmpValue' or (displayName eq '`$TmpValue' or startswith(displayName,'`$TmpValue'))"
+`$Value = "displayName eq '`$TmpValue' or startswith(displayName,'`$TmpValue')"
 "@
         }
     )
