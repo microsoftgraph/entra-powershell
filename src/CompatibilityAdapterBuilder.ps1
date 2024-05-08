@@ -505,8 +505,6 @@ function Get-EntraUnsupportedCommand {
             #Adding direct aliases for Connect-Entra and Disconnect-Entra
             $aliases += "   Set-Alias -Name Connect-Entra -Value Connect-MgGraph -Scope Global -Force`n"
             $aliases += "   Set-Alias -Name Disconnect-Entra -Value Disconnect-MgGraph -Scope Global -Force`n"
-            $aliases += "   Set-Alias -Name Get-EntraEnvironment -Value Get-MgEnvironment -Scope Global -Force`n"
-            $aliases += "   Set-Alias -Name Add-EntraEnvironment -Value Add-MgEnvironment -Scope Global -Force`n"
     $aliasFunction = @"
 function Enable-EntraAzureADAlias {
 $($aliases)}
