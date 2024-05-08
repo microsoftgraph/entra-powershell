@@ -1,5 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-help.xml
+title: Remove-EntraBetaDeletedApplication
+description: This article provides details on the Remove-EntraBetaDeletedApplication command.
+ms.service: active-directory
+ms.topic: reference
+ms.date: 04/17/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
 schema: 2.0.0
@@ -8,31 +17,32 @@ schema: 2.0.0
 # Remove-EntraBetaDeletedApplication
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Permanently delete a recently deleted application object from deleted items.
 
 ## SYNTAX
 
-```
-Remove-EntraBetaDeletedApplication [-ObjectId] <String> [<CommonParameters>]
+```powershell
+Remove-EntraBetaDeletedApplication 
+ [-ObjectId] <String> 
+[<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
-
+Permanently delete a recently deleted application object from deleted items. After an item is permanently deleted, it can't be restored.
 ## EXAMPLES
 
-### Example 1
+### Example 1: Remove deleted application object
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> $Id = Get-EntraBetaDeletedApplication -SearchString "newtest10" 
+PS C:\> Remove-EntraBetaDeletedApplication -ObjectId $Id.id
 ```
 
-{{ Add example description here }}
+This command removes recently deleted application.
 
 ## PARAMETERS
 
 ### -ObjectId
-{{ Fill ObjectId Description }}
-
+The unique identifier of deleted application.
 ```yaml
 Type: String
 Parameter Sets: (All)
