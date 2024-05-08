@@ -51,7 +51,7 @@ This command Remove a Proxy Application, and remove it from Microsoft Entra ID c
 
 ### -ObjectId
 The unique application ID of the application.
-This ObjectId can be found using the Get-EntraApplication command.
+This ObjectId can be found using the Get-EntraBetaApplication command.
 You can also find this ObjectId in the Microsoft by navigating to Microsoft Entra ID > App registrations > All applications. Select your application. This will takes you to the application's overview page. Use the ObjectId on that page.
 
 ```yaml
@@ -93,3 +93,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+[Get-EntraBetaApplication](Get-EntraBetaApplication.md)
