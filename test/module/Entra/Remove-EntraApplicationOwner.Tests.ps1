@@ -25,7 +25,7 @@ Describe "Remove-EntraApplicationOwner"{
         $params = Get-Parameters -data $result
         $params.ApplicationId | Should -Be "3ddd22e7-a150-4bb3-b100-e410dea1cb84"
     }
-    It "Should contain DeviceId in parameters" {
+    It "Should contain DirectoryObjectId in parameters" {
         Mock -CommandName Remove-MgApplicationOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra
         $result = Remove-EntraApplicationOwner -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -OwnerId "c13dd34a-492b-4561-b171-40fcce2916c5"
         $params = Get-Parameters -data $result
