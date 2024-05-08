@@ -61,16 +61,16 @@ Describe "Get-EntraDomainNameReference" {
 
             $result = Get-EntraDomainNameReference -Name "M365x99297270.mail.onmicrosoft.com" 
             $params = Get-Parameters -data $result.Parameters
-            $a= $params | ConvertTo-json | ConvertFrom-Json
-            $a.Uri -match "M365x99297270.mail.onmicrosoft.com" | Should -BeTrue
+            $para= $params | ConvertTo-json | ConvertFrom-Json
+            $para.Uri -match "M365x99297270.mail.onmicrosoft.com" | Should -BeTrue
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDomainNameReference"
 
             $result = Get-EntraDomainNameReference -Name "M365x99297270.mail.onmicrosoft.com"
             $params = Get-Parameters -data $result.Parameters
-            $a= $params | ConvertTo-json | ConvertFrom-Json
-            $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $para= $params | ConvertTo-json | ConvertFrom-Json
+            $para.headers.'User-Agent' | Should -Be $userAgentHeaderValue
         }
 
 
