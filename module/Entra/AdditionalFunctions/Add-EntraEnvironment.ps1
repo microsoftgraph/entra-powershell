@@ -11,7 +11,7 @@ function Add-EntraEnvironment{
   
       PROCESS{
         $params=@{}
-         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
   
          if ($PSBoundParameters.ContainsKey("Verbose")) {
               $params["Verbose"] = $Null
