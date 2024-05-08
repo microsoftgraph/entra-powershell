@@ -49,13 +49,21 @@ Describe "EntraDirectoryRoleMember" {
             $result.ProvisioningErrors | Should -BeNullOrEmpty
             $result.TelephoneNumber | should -Be "425-555-0100"
         }
+        It "Should contain ObjectId in URI" {
+            $result = Get-EntraDirectoryRoleMember -ObjectId "1d73e796-aac5-4b3a-b7e7-74a3d1926a85"
+            $result = Get-EntraDirectoryRoleMember -ObjectId "1d73e796-aac5-4b3a-b7e7-74a3d1926a85" 
+            $params = Get-Parameters -data $result.Parameters
+            $Para= $params | ConvertTo-json | ConvertFrom-Json
+            $Para.URI | Should -match "1d73e796-aac5-4b3a-b7e7-74a3d1926a85"
+        }
+        
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirectoryRoleMember"
 
             $result = Get-EntraDirectoryRoleMember -ObjectId "1d73e796-aac5-4b3a-b7e7-74a3d1926a85" 
             $params = Get-Parameters -data $result.Parameters
-            $a= $params | ConvertTo-json | ConvertFrom-Json
-            $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $Para= $params | ConvertTo-json | ConvertFrom-Json
+            $Para.headers.'User-Agent' | Should -Be $userAgentHeaderValue
         }
 
     }

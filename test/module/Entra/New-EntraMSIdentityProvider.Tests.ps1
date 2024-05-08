@@ -56,16 +56,10 @@ Context "Test for New-EntraMSIdentityProvider" {
         It "Should fail when ClientSecret is invalid" {
             { New-EntraMSIdentityProvider -Type "Google" -Name "Mock-App" -ClientId "Google123" -ClientSecret "" } | Should -Throw "Cannot bind argument to parameter 'ClientSecret' because it is an empty string."
         }
-        It "Result should Contain ObjectId" {
+        It "Result should contain Alias properties" {
             $result = New-EntraMSIdentityProvider -Type "Google" -Name "Mock-App" -ClientId "Google123" -ClientSecret "GoogleId"
             $result.ObjectId | should -Be "Google-OAUTH"
-        }
-        It "Result should Contain Name" {
-            $result = New-EntraMSIdentityProvider -Type "Google" -Name "Mock-App" -ClientId "Google123" -ClientSecret "GoogleId"
             $result.Name | should -Be "Mock-App"
-        }
-        It "Result should Contain Type" {
-            $result = New-EntraMSIdentityProvider -Type "Google" -Name "Mock-App" -ClientId "Google123" -ClientSecret "GoogleId"
             $result.Type | should -Be "Google"
         }
         It "Should contain displayName in parameters when passed Name to it" {    
@@ -78,8 +72,8 @@ Context "Test for New-EntraMSIdentityProvider" {
         It "Should contain identityProviderType in parameters when passed Type to it" {    
             
             $result = New-EntraMSIdentityProvider -Type "Google" -Name "Mock-App" -ClientId "Google123" -ClientSecret "GoogleId"
-            $a= $result.Parameters | convertTo-json -depth 10 | convertFrom-json
-            $params = Get-Parameters -data $a
+            $Param= $result.Parameters | convertTo-json -depth 10 | convertFrom-json
+            $params = Get-Parameters -data $Param
             $Para = $params | convertTo-json -depth 10 | convertFrom-json
             $Para.BodyParameter.AdditionalProperties.identityProviderType | Should -Be "Google"
         }

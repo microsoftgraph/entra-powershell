@@ -41,16 +41,10 @@ Context "Test for Get-EntraMSIdentityProvider" {
         It "Should fail when Id is invalid" {
             { Get-EntraMSIdentityProvider -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
         }
-        It "Result should Contain ObjectId" {
+        It "Result should Contain Alias properties" {
             $result = Get-EntraMSIdentityProvider -Id "Google-OAUTH"
             $result.ObjectId | should -Be "Google-OAUTH"
-        }
-        It "Result should Contain Name" {
-            $result = Get-EntraMSIdentityProvider -Id "Google-OAUTH"
             $result.Name | should -Be "Mock-App"
-        }
-        It "Result should Contain Type" {
-            $result = Get-EntraMSIdentityProvider -Id "Google-OAUTH"
             $result.Type | should -Be "Google"
         }
         It "Should contain IdentityProviderBaseId in parameters when passed Id to it" {    
