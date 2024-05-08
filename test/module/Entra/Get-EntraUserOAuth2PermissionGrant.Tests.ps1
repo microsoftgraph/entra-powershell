@@ -15,10 +15,9 @@ BeforeAll {
                 "Scope"                 = "User.Read openid profile offline_access"
                 "AdditionalProperties"  = @{}
                 "Parameters"            = $args
-        }
-    )
-}
-
+            }
+        )
+    }
     Mock -CommandName Get-MgUserOAuth2PermissionGrant -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
@@ -88,7 +87,6 @@ Describe "Get-EntraUserOAuth2PermissionGrant" {
             $result = Get-EntraUserOAuth2PermissionGrant -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Contain $userAgentHeaderValue
-            Write-Host $params
         }    
     }
 }

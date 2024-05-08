@@ -24,7 +24,6 @@ BeforeAll {
             }
         )
     }
-
     Mock -CommandName Get-MgServicePrincipal -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
@@ -51,8 +50,8 @@ Describe "Get-EntraServicePrincipalPasswordCredential" {
 
         It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {
             $result = Get-EntraServicePrincipalPasswordCredential -ObjectId "0008861a-d455-4671-bd24-ce9b3bfce288"
-            $a = $result | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-            $params = Get-Parameters -data $a.Parameters
+            $servicePrincipalPasswordCredential = $result | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+            $params = Get-Parameters -data $servicePrincipalPasswordCredential.Parameters
             $params.ServicePrincipalId | Should -Be "0008861a-d455-4671-bd24-ce9b3bfce288"
         }
 
@@ -60,8 +59,8 @@ Describe "Get-EntraServicePrincipalPasswordCredential" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalPasswordCredential"
 
             $result = Get-EntraServicePrincipalPasswordCredential -ObjectId "0008861a-d455-4671-bd24-ce9b3bfce288"
-            $a = $result | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-            $params = Get-Parameters -data $a.Parameters
+            $servicePrincipalPasswordCredentialHeader = $result | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+            $params = Get-Parameters -data $servicePrincipalPasswordCredentialHeader.Parameters
             $params.Headers."User-Agent" | Should -Be $userAgentHeaderValue
         }    
     }

@@ -65,10 +65,9 @@ BeforeAll {
                                                     "createdDateTime"   = "2023-07-07T14:07:33Z"
                                                 }
             "Parameters"                        = $args
-        }
-    )
-}
-
+            }
+        )
+    }
     Mock -CommandName Get-MgServicePrincipal -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   

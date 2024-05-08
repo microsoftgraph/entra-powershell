@@ -27,7 +27,6 @@ Describe "Get-EntraUserMembership" {
             $result = Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1"
             $result | Should -Not -BeNullOrEmpty
             
-
             Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
