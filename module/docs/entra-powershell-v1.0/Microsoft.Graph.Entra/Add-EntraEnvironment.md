@@ -18,12 +18,14 @@ schema: 2.0.0
 # Add-EntraEnvironment
 
 ## SYNOPSIS
+
 Adds Microsoft Entra environment to the settings file.
 
 ## SYNTAX
 
 
 ### Add Entra Environment Name
+
 ```powershell
 Add-EntraEnvironment 
  [-Name] <String>
@@ -36,11 +38,13 @@ Add-EntraEnvironment
 ```
 
 ## DESCRIPTION
+
 Adds Microsoft Entra environment to the settings file.
 
 ## EXAMPLES
 
 ### Example 1: Get a list of public cloud environments
+
 ```powershell
 Add-MgEnvironment -Name "Canary" -GraphEndpoint "https://canary.graph.microsoft.com" -AzureADEndpoint "https://login.microsoftonline.com"
 Name     AzureADEndpoint                      GraphEndpoint                 Type
@@ -48,11 +52,10 @@ Name     AzureADEndpoint                      GraphEndpoint                 Type
 Canary    https://login.microsoftonline.com   https://microsoftgraph.com User-defined                                                                                    {}
 ```
 
-
-
 ## PARAMETERS
 
 ### -Name
+
 Specifies the name of an environment
 
 ```yaml
@@ -65,6 +68,7 @@ Accept wildcard characters: False
 ```
 
 ### -GraphEndpoint
+
 Specifies the GraphEndpoint URL of an environment
 
 ```yaml
@@ -77,6 +81,7 @@ Accept wildcard characters: False
 ```
 
 ### -AzueADEndpoint
+
 Specifies the AzureADEndpoint URL of an environment
 
 ```yaml
@@ -89,6 +94,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -100,6 +106,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Get-EntraEnvironment](Get-EntraEnvironment.md)
-
-
-
