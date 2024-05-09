@@ -34,7 +34,7 @@ BeforeAll {
         It "Should fail when ObjectId is empty" {
             { Get-EntraApplicationPasswordCredential -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId'*"
         }
-        It "Should fail when ObjectId is empty" {
+        It "Should fail when ObjectId is null" {
             { Get-EntraApplicationPasswordCredential -ObjectId  } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
         }
         It "Should fail when invalid parameter is passed" {
