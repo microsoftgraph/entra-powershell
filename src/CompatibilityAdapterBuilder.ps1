@@ -645,6 +645,24 @@ $OutputTransformations
             $paramsList += $paramBlock
         }
 
+        if("Get" -eq $Command.Verb){
+            $propertyArray = [string[]]@()
+            $propertyType = $propertyArray.GetType().ToString()
+
+            $arrayAttrib = @()
+            $arrayAttrib += "Mandatory = `$false"
+            $arrayAttrib += "ValueFromPipeline = `$false"
+            $arrayAttrib += "ValueFromPipelineByPropertyName = `$true"
+            $strAttrib = $arrayAttrib -Join ', '
+            $attributesString += "[Parameter($strAttrib)]`n    "
+
+            $propertyParamBlock = @"
+            $attributesString [$($propertyType)] `$Property
+"@
+
+            $paramsList += $propertyParamBlock
+        }
+
         return $paramsList -Join ",`n"
     }
 
