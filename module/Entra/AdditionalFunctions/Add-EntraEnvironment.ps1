@@ -1,5 +1,5 @@
 function Add-EntraEnvironment{
-    [CmdletBinding(DefaultParameterSetName = '')]
+    [CmdletBinding(DefaultParameterSetName = 'AddQuery')]
       param (
       [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
       [System.String] $Name,
@@ -11,8 +11,6 @@ function Add-EntraEnvironment{
   
       PROCESS{
         $params=@{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-  
          if ($PSBoundParameters.ContainsKey("Verbose")) {
               $params["Verbose"] = $Null
           }
@@ -36,11 +34,9 @@ function Add-EntraEnvironment{
           $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
           Write-Debug("=========================================================================`n")
   
-          Add-MgEnvironment @params  -Headers $customHeaders
+          Add-MgEnvironment @params
       
       }
-  
-  
   }
   
   
