@@ -37,7 +37,8 @@ CertificateName - Account - AppName - ContextScope - Certificate - PSHostVersion
 ## EXAMPLES
 
 ### Example 1: Get the current session.
-```Get-EntraContext
+```powershell
+Get-EntraContext
 ClientId              : 615e6e7c-aa11-4402-91a1-6234967405d5
 TenantId              : 9f32a42e-6782-4b96-a4d3-e0828a292569
 CertificateThumbprint :
@@ -56,7 +57,8 @@ ClientTimeout         : 00:05:00
 This example demonstrates how to retrieve the details of the current session.
 
 ### Example 2: Get the current session scopes.
-```Get-EntraContext | Select -ExpandProperty Scopes
+```powershell
+Get-EntraContext | Select -ExpandProperty Scopes
 AppRoleAssignment.ReadWrite.All
 Directory.AccessAsUser.All
 Directory.ReadWrite.All
