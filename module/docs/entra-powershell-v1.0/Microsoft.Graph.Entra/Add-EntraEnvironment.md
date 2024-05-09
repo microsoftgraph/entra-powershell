@@ -52,6 +52,8 @@ Name     AzureADEndpoint                      GraphEndpoint                 Type
 Canary    https://login.microsoftonline.com   https://microsoftgraph.com User-defined                                                                                    {}
 ```
 
+Adds a User defined Entra environment to the settings file.
+
 ## PARAMETERS
 
 ### -Name
