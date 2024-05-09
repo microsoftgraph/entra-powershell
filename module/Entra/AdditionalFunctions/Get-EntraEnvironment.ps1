@@ -1,7 +1,7 @@
 function Get-EntraEnvironment{
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-          [Parameter(ParameterSetName = "GetById", Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+          [Parameter(ParameterSetName = "GetByName", Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Name)
     PROCESS{
         $params = @{}
@@ -20,7 +20,7 @@ function Get-EntraEnvironment{
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
        
-        if($null -ne $params["Name"] -or $params["Name"] -ne ''){
+        if($null -ne $params["Name"] -and $params["Name"] -ne ''){
           Get-MgEnvironment @params
         }else{
           Get-MgEnvironment
