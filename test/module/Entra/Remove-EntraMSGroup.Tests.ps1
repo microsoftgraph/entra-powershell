@@ -16,18 +16,18 @@ BeforeAll {
 
 Describe "Remove-EntraMSGroup" {
     Context "Test for Remove-EntraMSGroup" {
-        It "Should return empty object" {
+        It "Should return empty Id" {
             $result = Remove-EntraMSGroup -Id "1d8172f7-2552-473e-bb76-e6c9ef95609c"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
-        It "Should fail when ObjectId is empty" {
+        It "Should fail when Id is empty" {
             { Remove-EntraMSGroup -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
         }   
 
-        It "Should fail when ObjectId is invalid" {
+        It "Should fail when Id is invalid" {
             { Remove-EntraMSGroup -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
         }   
 
