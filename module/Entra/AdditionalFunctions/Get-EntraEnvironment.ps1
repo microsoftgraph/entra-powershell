@@ -5,8 +5,6 @@ function Get-EntraEnvironment{
     [System.String] $Name)
     PROCESS{
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{}
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $Null
         }
@@ -18,17 +16,14 @@ function Get-EntraEnvironment{
             $params["Name"] = $PSBoundParameters["Name"]
         }
         
-
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
        
         if($null -ne $params["Name"] -or $params["Name"] -ne ''){
-          Get-MgEnvironment -Headers $customerHeaders
+          Get-MgEnvironment
         }else{
-          Get-MgEnvironment @params -Headers $customHeaders
-        }
-       
-       
+          Get-MgEnvironment @params
+        }     
     }
 }
