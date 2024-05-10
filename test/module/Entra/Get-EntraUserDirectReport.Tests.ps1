@@ -98,8 +98,8 @@ Describe "Get-EntraUserDirectReport" {
 
             $result = Get-EntraUserDirectReport -ObjectId "c300541f-2c03-49cb-b25b-72f09cb29abf"
             $params = Get-Parameters -data $result.Parameters
-            $a= $params | ConvertTo-json | ConvertFrom-Json
-            $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $para= $params | ConvertTo-json | ConvertFrom-Json
+            $para.headers.'User-Agent' | Should -Be $userAgentHeaderValue
         }
 
 
