@@ -21,12 +21,16 @@ BeforeAll {
     Mock -CommandName New-MgPolicyPermissionGrantPolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
-Describe "New-MgPolicyPermissionGrantPolicy" {
-    Context "Test for New-MgPolicyPermissionGrantPolicy" {
+Describe "New-EntraMSPermissionGrantPolicy" {
+    Context "Test for New-EntraMSPermissionGrantPolicy" {
         It "Should return created PermissionGrantPolicy" {
             $result = New-EntraMSPermissionGrantPolicy -Id "my_new_permission_grant_policy_id" -DisplayName "MyNewPermissionGrantPolicy" -Description "My new permission grant policy" 
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be "my_new_permission_grant_policy_id"
+            $result.DisplayName | should -Be "My new permission grant policy"
+            $result.Description | should -Be "My new permission grant policy"
+            $result.Includes | should -Be @("bddda1ec-0174-44d5-84e2-47fb0ac01595")
+            $result.DeletedDateTime | should -Be "2/8/2024 6:39:16 AM"
 
             Should -Invoke -CommandName New-MgPolicyPermissionGrantPolicy -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -39,6 +43,10 @@ Describe "New-MgPolicyPermissionGrantPolicy" {
         It "Should fail when Description is empty" {
             { New-EntraMSPermissionGrantPolicy -Id "my_new_permission_grant_policy_id"  -DisplayName "MyNewPermissionGrantPolicy" -Description } | Should -Throw "Missing an argument for parameter 'Description'.*"
         }
+        It "Result should Contain ObjectId" {
+            $result = New-EntraMSPermissionGrantPolicy -Id "my_new_permission_grant_policy_id" -DisplayName "MyNewPermissionGrantPolicy" -Description "My new permission grant policy" 
+            $result.ObjectId | should -Be "my_new_permission_grant_policy_id"
+        } 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraMSPermissionGrantPolicy"
 
