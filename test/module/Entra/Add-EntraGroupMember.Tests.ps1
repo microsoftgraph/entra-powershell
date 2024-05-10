@@ -4,7 +4,14 @@ BeforeAll {
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
-    Mock -CommandName New-MgGroupMember -MockWith {} -ModuleName Microsoft.Graph.Entra
+    $scriptblock = {
+        return @(
+            [PSCustomObject]@{
+                "Parameters"    = $args
+            }
+        )
+    }  
+    Mock -CommandName New-MgGroupMember -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Add-EntraGroupMember" {
@@ -33,27 +40,22 @@ Describe "Add-EntraGroupMember" {
         }
 
         It "Should contain GroupId in parameters when passed ObjectId to it" {
-            Mock -CommandName New-MgGroupMember -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $result = Add-EntraGroupMember -ObjectId "fe4619d9-9ce7-4141-a367-ec10f3fb8af4" -RefObjectId "3015621f-bfb5-40ca-923d-8439ff7db286"
-            $params = Get-Parameters -data $result
+            $params = Get-Parameters -data $result.Parameters
             $params.GroupId | Should -Be "fe4619d9-9ce7-4141-a367-ec10f3fb8af4"
         }
 
         It "Should contain DirectoryObjectId in parameters when passed RefObjectId to it" {
-            Mock -CommandName New-MgGroupMember -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $result = Add-EntraGroupMember -ObjectId "fe4619d9-9ce7-4141-a367-ec10f3fb8af4" -RefObjectId "3015621f-bfb5-40ca-923d-8439ff7db286"
-            $params = Get-Parameters -data $result
+            $params = Get-Parameters -data $result.Parameters
             $params.DirectoryObjectId | Should -Be "3015621f-bfb5-40ca-923d-8439ff7db286"
         }
 
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName New-MgGroupMember -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraGroupMember"
+
             $result = Add-EntraGroupMember -ObjectId "fe4619d9-9ce7-4141-a367-ec10f3fb8af4" -RefObjectId "3015621f-bfb5-40ca-923d-8439ff7db286"
-            $params = Get-Parameters -data $result
+            $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
     }

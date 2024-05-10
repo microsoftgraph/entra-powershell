@@ -5,7 +5,14 @@ BeforeAll {
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
-    Mock -CommandName Update-MgGroup -MockWith {} -ModuleName Microsoft.Graph.Entra
+    $scriptblock = {
+        return @(
+            [PSCustomObject]@{
+                "Parameters"    = $args
+            }
+        )
+    }  
+    Mock -CommandName Update-MgGroup -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Set-EntraMSGroup" {
@@ -65,19 +72,16 @@ Describe "Set-EntraMSGroup" {
         } 
 
         It "Should contain GroupId in parameters when passed Id to it" {
-            Mock -CommandName Update-MgGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $result = Set-EntraMSGroup -Id "9a9ab239-269c-4d91-9935-9f2cb16074fb"
-            $params = Get-Parameters -data $result
+            $params = Get-Parameters -data $result.Parameters
             $params.GroupId | Should -Be "9a9ab239-269c-4d91-9935-9f2cb16074fb"
         }        
         
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Update-MgGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraMSGroup"
+
             $result = Set-EntraMSGroup -Id "9a9ab239-269c-4d91-9935-9f2cb16074fb"
-            $params = Get-Parameters -data $result
+            $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
     }
