@@ -63,15 +63,15 @@ Describe "Set-EntraMSNamedLocationPolicy" {
             $params.NamedLocationId | Should -Be "0f0125ee-d1b7-4285-9124-657009f38219"
         }
             # Got null value for odata.type
-        # It "Should contain odata.type in bodyparameters when passed OdataId to it" {
-        #     Mock -CommandName Update-MgIdentityConditionalAccessNamedLocation -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+        It "Should contain odata.type in bodyparameters when passed OdataId to it" {
+            Mock -CommandName Update-MgIdentityConditionalAccessNamedLocation -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-        #     $result = Set-EntraMSNamedLocationPolicy -PolicyId "0f0125ee-d1b7-4285-9124-657009f38219" -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies"
-        #     $params = Get-Parameters -data $result
-        #     $para = $params | ConvertTo-json | ConvertFrom-json
-        #     write-host $para.BodyParameter."@odata.type"
-        #     $para.BodyParameter."$odata.type" | Should -Be "#microsoft.graph.ipNamedLocation"
-        # }
+            $result = Set-EntraMSNamedLocationPolicy -PolicyId "0f0125ee-d1b7-4285-9124-657009f38219" -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies"
+            $params= $result | Convertto-json -Depth 10 | Convertfrom-json 
+            $additionalProperties = $params[-1].AdditionalProperties 
+            Write-Host $additionalProperties."@odata.type"
+            $additionalProperties."@odata.type" | Should -Be "#microsoft.graph.ipNamedLocation"
+        }
         It "Should contain 'User-Agent' header" {
             Mock -CommandName Update-MgIdentityConditionalAccessNamedLocation -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
