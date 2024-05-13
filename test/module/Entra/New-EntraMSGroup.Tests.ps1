@@ -9,12 +9,12 @@ BeforeAll {
             [PSCustomObject]@{
               "DisplayName"         = "demosampletest"
               "Id"                  = "9a9ab239-269c-4d91-9935-9f2cb16074fb"
-              "MailEnabled"         = "False"
+              "MailEnabled"         = $false
               "Description"         = "desc test"
               "MailNickname"        = "demoHelpDeskAdminGroup"
-              "SecurityEnabled"     = "True"
+              "SecurityEnabled"     = $true
               "Visibility"          = "Private"
-              "IsAssignableToRole"  = "True"
+              "IsAssignableToRole"  = $true
               "GroupTypes"          = @{}
               "Parameters"          = $args
             } 
