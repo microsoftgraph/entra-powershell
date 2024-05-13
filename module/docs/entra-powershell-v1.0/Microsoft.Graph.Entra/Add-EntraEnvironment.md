@@ -28,7 +28,7 @@ Adds Microsoft Entra environment to the settings file.
 
 ```powershell
 Add-EntraEnvironment 
- [-Name] <String>
+   [-Name] <String>
    [-AzureADEndpoint] <String>
    [-GraphEndpoint] <String>
    [-ProgressAction <ActionPreference>]
