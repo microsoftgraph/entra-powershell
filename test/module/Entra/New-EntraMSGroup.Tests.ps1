@@ -30,10 +30,10 @@ Describe "New-EntraMSGroup" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be "demosampletest"
             $result.Description | should -Be "desc test" 
-            $result.MailEnabled | should -Be "False"
+            $result.MailEnabled | should -Be $false
             $result.MailNickname | should -Be "demoHelpDeskAdminGroup"
-            $result.SecurityEnabled | should -Be "True"
-            $result.IsAssignableToRole | should -Be "True" 
+            $result.SecurityEnabled | should -Be $true
+            $result.IsAssignableToRole | should -Be $true
             $result.Visibility | should -Be "Private"
             $result.GroupTypes | should -BeNullOrEmpty
 
