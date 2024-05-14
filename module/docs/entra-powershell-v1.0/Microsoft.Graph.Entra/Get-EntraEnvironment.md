@@ -33,7 +33,7 @@ Get-EntraEnvironment
 ### GetByName
 
 ```powershell
-Get-EntraEnvironment 
+PS C:\>Get-EntraEnvironment 
  -Name <String> 
  [<CommonParameters>]
 ```

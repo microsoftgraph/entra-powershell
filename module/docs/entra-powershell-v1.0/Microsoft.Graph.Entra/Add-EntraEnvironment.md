@@ -43,10 +43,10 @@ Adds Microsoft Entra environment to the settings file.
 
 ## EXAMPLES
 
-### Example 1: Get a list of public cloud environments
+### Example 1: Add a user defined environment
 
 ```powershell
-Add-EntraEnvironment -Name "Canary" -GraphEndpoint "https://canary.graph.microsoft.com" -AzureADEndpoint "https://login.microsoftonline.com"
+PS C:\>Add-EntraEnvironment -Name "Canary" -GraphEndpoint "https://canary.graph.microsoft.com" -AzureADEndpoint "https://login.microsoftonline.com"
 Name     AzureADEndpoint                      GraphEndpoint                 Type
 ----     ---------------                      -------------                 ----
 Canary    https://login.microsoftonline.com   https://microsoftgraph.com User-defined                                                                                    {}
