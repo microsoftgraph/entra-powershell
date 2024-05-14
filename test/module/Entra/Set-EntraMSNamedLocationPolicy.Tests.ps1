@@ -62,8 +62,8 @@ Describe "Set-EntraMSNamedLocationPolicy" {
             $params = Get-Parameters -data $result
             $params.NamedLocationId | Should -Be "0f0125ee-d1b7-4285-9124-657009f38219"
         }
-            # Got null value for odata.type
-        It "Should contain odata.type in bodyparameters when passed OdataId to it" {
+            
+        It "Should contain @odata.type in bodyparameters when passed OdataId to it" {
             Mock -CommandName Update-MgIdentityConditionalAccessNamedLocation -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $result = Set-EntraMSNamedLocationPolicy -PolicyId "0f0125ee-d1b7-4285-9124-657009f38219" -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies"
