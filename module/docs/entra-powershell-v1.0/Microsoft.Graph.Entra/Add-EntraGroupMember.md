@@ -22,7 +22,7 @@ Adds a member to a group.
 
 ## SYNTAX
 
-```
+```powershell
 Add-EntraGroupMember 
  -ObjectId <String> 
  -RefObjectId <String> 
