@@ -86,7 +86,6 @@ Context "Test for New-EntraMSNamedLocationPolicy" {
             $result = New-EntraMSNamedLocationPolicy  -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies" -IpRanges $ipRanges -IsTrusted $true  -CountriesAndRegions @("US","ID","CA") -IncludeUnknownCountriesAndRegions $true
             $params= $result | Convertto-json -Depth 10 | Convertfrom-json 
             $additionalProperties = $params[-1].AdditionalProperties 
-            Write-Host $additionalProperties."@odata.type"
             $additionalProperties."@odata.type" | Should -Be "#microsoft.graph.ipNamedLocation"
         }
         It "Should contain 'User-Agent' header" {

@@ -69,7 +69,6 @@ Describe "Set-EntraMSNamedLocationPolicy" {
             $result = Set-EntraMSNamedLocationPolicy -PolicyId "0f0125ee-d1b7-4285-9124-657009f38219" -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies"
             $params= $result | Convertto-json -Depth 10 | Convertfrom-json 
             $additionalProperties = $params[-1].AdditionalProperties 
-            Write-Host $additionalProperties."@odata.type"
             $additionalProperties."@odata.type" | Should -Be "#microsoft.graph.ipNamedLocation"
         }
         It "Should contain 'User-Agent' header" {
