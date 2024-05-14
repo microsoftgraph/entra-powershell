@@ -20,87 +20,81 @@ schema: 2.0.0
 Connects with an authenticated account to use Microsoft Entra ID cmdlet requests.
 
 ## SYNTAX
-### UserParameterSet (Default) 
-```powershell 
-Connect-Entra
- [[-Scopes] <String[]>]
- [[-ClientId] <String>]
- [-TenantId <String>]
- [-ContextScope <ContextScope>]
- [-Environment <String>]
- [-UseDeviceCode]
- [-ClientTimeout <Double>]
- [-NoWelcome]
- [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
 
+### UserParameterSet (Default)
+```powershell
+Connect-Entra 
+[[-Scopes] <String[]>] 
+[[-ClientId] <String>] 
+[-TenantId <String>]
+ [-ContextScope <ContextScope>] 
+ [-Environment <String>] 
+ [-UseDeviceCode] 
+ [-ClientTimeout <Double>] 
+ [-NoWelcome]
+ [<CommonParameters>]
 ```
-### AppCertificateParameterSet
-```powershell 
-Connect-Entra
- [-ClientId] <String>
- [[-CertificateSubjectName] <String>]
- [[-CertificateThumbprint] <String>]
- [-SendCertificateChain <Boolean>]
- [-Certificate <X509Certificate2>]
- [-TenantId <String>]
- [-ContextScope <ContextScope>]
- [-Environment <String>]
- [-ClientTimeout <Double>]
- [-NoWelcome]
- [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
- 
- ```
- ### IdentityParameterSet
- ```powershell 
- Connect-Entra
-  [[-ClientId] <String>]
-  [-ContextScope <ContextScope>]
-  [-Environment <String>]
-  [-ClientTimeout <Double>]
-  [-Identity]
-  [-NoWelcome]
-  [-ProgressAction <ActionPreference>]
-  [<CommonParameters>]
- 
- ```
- ### AppSecretCredentialParameterSet
- ```powershell 
- Connect-Entra
-  [-ClientSecretCredential <PSCredential>]
-  [-TenantId <String>]
-  [-ContextScope <ContextScope>]
-  [-Environment <String>]
-  [-ClientTimeout <Double>]
-  [-NoWelcome]
-  [-ProgressAction <ActionPreference>]
-  [<CommonParameters>]
- 
- ```
- ### AccessTokenParameterSet
- ```powershell 
- Connect-Entra
- [-AccessToken] <SecureString>
- [-Environment <String>]
- [-ClientTimeout <Double>]
- [-NoWelcome]
- [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
 
- ```
- ### EnvironmentVariableParameterSet
- ```powershell 
- Connect-Entra
-  [-ContextScope <ContextScope>]
-  [-Environment <String>]
-  [-ClientTimeout <Double>]
-  [-EnvironmentVariable]
-  [-NoWelcome]
-  [-ProgressAction <ActionPreference>]
-  [<CommonParameters>]
- 
- ```
+### AppCertificateParameterSet
+```powershell
+Connect-Entra 
+[-ClientId] <String> 
+[[-CertificateSubjectName] <String>] 
+[[-CertificateThumbprint] <String>]
+[-Certificate <X509Certificate2>] 
+[-TenantId <String>] 
+[-ContextScope <ContextScope>] 
+[-Environment <String>]
+[-ClientTimeout <Double>] 
+[-NoWelcome] 
+[<CommonParameters>]
+```
+
+### IdentityParameterSet
+```powershell
+Connect-Entra 
+[[-ClientId] <String>] 
+[-ContextScope <ContextScope>] 
+[-Environment <String>]
+[-ClientTimeout <Double>] 
+[-Identity] 
+[-NoWelcome] 
+[<CommonParameters>]
+```
+
+### AppSecretCredentialParameterSet
+```powershell
+Connect-Entra 
+[-ClientSecretCredential <PSCredential>] 
+[-TenantId <String>] 
+[-ContextScope <ContextScope>]
+[-Environment <String>] 
+[-ClientTimeout <Double>] 
+[-NoWelcome] 
+[<CommonParameters>]
+```
+
+### AccessTokenParameterSet
+```powershell
+Connect-Entra 
+[-AccessToken] <SecureString> 
+[-Environment <String>] 
+[-ClientTimeout <Double>] 
+[-NoWelcome]
+[<CommonParameters>]
+```
+
+### EnvironmentVariableParameterSet
+```powershell
+Connect-Entra 
+[-ContextScope <ContextScope>] 
+[-Environment <String>] 
+[-ClientTimeout <Double>]
+[-EnvironmentVariable] 
+[-NoWelcome] 
+[<CommonParameters>]
+```
+
 ## DESCRIPTION
 
 The `Connect-Entra` cmdlet connects an authenticated account to use for Microsoft Entra ID cmdlet requests.
@@ -300,25 +294,36 @@ Specifies the certificate thumbprint of a digital public key X.509 certificate o
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: AppCertificateParameterSet
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-### -ApplicationId
+### -ClientId
 Specifies the application ID of the service principal.
 
 ```yaml
 Type: String
-Parameter Sets: (All)
-Aliases: ClientId , AppId
+Parameter Sets: UserParameterSet, IdentityParameterSet
+Aliases: AppId, ApplicationId
+
+Required: False
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+```yaml
+Type: String
+Parameter Sets: AppCertificateParameterSet
+Aliases: AppId, ApplicationId
 
 Required: True
-Position: Named
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -327,12 +332,12 @@ Accept wildcard characters: False
 Specifies a Microsoft Graph access token.
 
 ```yaml
-Type: String
-Parameter Sets: (All)
+Type: SecureString
+Parameter Sets: AccessTokenParameterSet
 Aliases:
 
 Required: False
-Position: Named
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -347,8 +352,8 @@ You must specify the TenantId parameter to authenticate as a service principal o
 
 ```yaml
 Type: String
-Parameter Sets: (All)
-Aliases: Domain, TenantDomain
+Parameter Sets: UserParameterSet, AppCertificateParameterSet, AppSecretCredentialParameterSet
+Aliases: Audience, Tenant
 
 Required: False
 Position: Named
@@ -361,7 +366,7 @@ Accept wildcard characters: False
 Specifies a bearer token for Microsoft Graph service. Access tokens do time out and you have to handle their refresh.
 ```yaml
 Type: SecureString
-Parameter Sets: (All)
+Parameter Sets: AccessTokenParameterSet
 Aliases: 
 Required: True
 Position: Named
@@ -390,7 +395,7 @@ Determines the scope of authentication context. This ContextScope accepts `Proce
 ```yaml
 Type: ContextScope
 Accepted values: Process, CurrentUser
-Parameter Sets: (All)
+Parameter Sets: UserParameterSet, AppCertificateParameterSet, IdentityParameterSet, AppSecretCredentialParameterSet, EnvironmentVariableParameterSet
 Aliases: 
 Required: False
 Position: Named
@@ -432,10 +437,10 @@ An array of delegated permissions to consent to.
 
 ```yaml
 Type: String[]
-Parameter Sets: (All)
+Parameter Sets: UserParameterSet
 Aliases: 
 Required: False
-Position: Named
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -446,7 +451,7 @@ Use device code authentication instead of a browser control.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: UserParameterSet
 Aliases: 	UseDeviceAuthentication, DeviceCode, DeviceAuth, Device
 Required: False
 Position: Named
@@ -460,7 +465,7 @@ An X.509 certificate supplied during invocation.
 
 ```yaml
 Type: X509Certificate2
-Parameter Sets: (All)
+Parameter Sets: AppCertificateParameterSet
 Aliases: 
 Required: False
 Position: Named
@@ -474,23 +479,9 @@ The subject distinguished name of a certificate. The Certificate is retrieved fr
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: AppCertificateParameterSet
 Aliases: CertificateSubject, CertificateName
 Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ClientId
-The client ID of your application.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: AppId, ApplicationId
-Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -502,7 +493,7 @@ The PSCredential object provides the application ID and client secret for servic
 
 ```yaml
 Type: PSCredential
-Parameter Sets: (All)
+Parameter Sets: AppSecretCredentialParameterSet
 Aliases: SecretCredential, Credential
 Required: False
 Position: Named
@@ -516,7 +507,7 @@ Allows for authentication using environment variables configured on the host mac
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: EnvironmentVariableParameterSet
 Aliases: 
 Required: False
 Position: Named
@@ -530,10 +521,10 @@ Sign-in using a Managed Identity
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: IdentityParameterSet
 Aliases: ManagedIdentity, ManagedServiceIdentity, MSI
 Required: False
-Position: Named
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
