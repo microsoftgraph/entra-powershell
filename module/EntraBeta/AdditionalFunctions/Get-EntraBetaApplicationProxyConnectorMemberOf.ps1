@@ -1,23 +1,23 @@
-# ------------------------------------------------------------------------------
-#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
-# ------------------------------------------------------------------------------
-@{
-    SourceName = "Get-AzureADMSNamedLocationPolicy"
-    TargetName = $null
-    Parameters = $null
-    outputs = $null
-    CustomScript = @' 
+function Get-EntraBetaApplicationProxyConnectorMemberOf {
+    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+    param (
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Id
+    )
+
     PROCESS {    
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{PolicyId = "NamedLocationId"}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        $params["Method"] = "GET"
+        $Id = $PSBoundParameters["Id"]
+        $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectors/$Id/memberOf"
+        if($PSBoundParameters.ContainsKey("Id"))
+        {
+            $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectors/$Id/memberOf"
+        }
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
             $params["Verbose"] = $Null
-        }
-        if($null -ne $PSBoundParameters["PolicyId"])
-        {
-            $params["NamedLocationId"] = $PSBoundParameters["PolicyId"]
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
@@ -59,27 +59,18 @@
         {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
-    
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        
-        $response = Get-MgIdentityConditionalAccessNamedLocation @params -Headers $customHeaders
-        $response | ForEach-Object {
-            if($null -ne $_) {
-                Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-            $propsToConvert = @('ipRanges')
-            try {
-                foreach ($prop in $propsToConvert) {
-                    $value = $_.$prop | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-                    $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
-                }
-            }
-            catch {}   
-            }
+
+        $response = Invoke-GraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri 
+        try {    
+            $call = $response.value 
+            $call
         }
-        $response
+        catch {
+            $response
         }
-'@
+
+    }        
 }
