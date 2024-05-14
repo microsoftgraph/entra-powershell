@@ -295,7 +295,6 @@ Specifies the certificate thumbprint of a digital public key X.509 certificate o
 ```yaml
 Type: String
 Parameter Sets: AppCertificateParameterSet
-Parameter Sets: AppCertificateParameterSet
 Aliases:
 
 Required: False
@@ -467,7 +466,6 @@ An X.509 certificate supplied during invocation.
 ```yaml
 Type: X509Certificate2
 Parameter Sets: AppCertificateParameterSet
-Parameter Sets: AppCertificateParameterSet
 Aliases: 
 Required: False
 Position: Named
@@ -482,7 +480,6 @@ The subject distinguished name of a certificate. The Certificate is retrieved fr
 ```yaml
 Type: String
 Parameter Sets: AppCertificateParameterSet
-Parameter Sets: AppCertificateParameterSet
 Aliases: CertificateSubject, CertificateName
 Required: False
 Position: Named
@@ -496,7 +493,6 @@ The PSCredential object provides the application ID and client secret for servic
 
 ```yaml
 Type: PSCredential
-Parameter Sets: AppSecretCredentialParameterSet
 Parameter Sets: AppSecretCredentialParameterSet
 Aliases: SecretCredential, Credential
 Required: False
@@ -525,7 +521,6 @@ Sign-in using a Managed Identity
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: IdentityParameterSet
 Parameter Sets: IdentityParameterSet
 Aliases: ManagedIdentity, ManagedServiceIdentity, MSI
 Required: False
