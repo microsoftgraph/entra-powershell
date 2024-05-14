@@ -20,6 +20,7 @@ schema: 2.0.0
 Connects with an authenticated account to use Microsoft Entra ID cmdlet requests.
 
 ## SYNTAX
+### UserParameterSet (Default) 
 ```powershell 
 Connect-Entra
  [[-Scopes] <String[]>]
@@ -30,17 +31,76 @@ Connect-Entra
  [-UseDeviceCode]
  [-ClientTimeout <Double>]
  [-NoWelcome]
- [[-CertificateSubjectName] <String>]
- [[-CertificateThumbprint] <String>]
- [-Certificate <X509Certificate2>]
- [-Identity]
- [-ClientSecretCredential <PSCredential>]
- [-AccessToken <SecureString> ]
- [-EnvironmentVariable]
  [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
-```
 
+```
+### AppCertificateParameterSet
+```powershell 
+Connect-Entra
+ [-ClientId] <String>
+ [[-CertificateSubjectName] <String>]
+ [[-CertificateThumbprint] <String>]
+ [-SendCertificateChain <Boolean>]
+ [-Certificate <X509Certificate2>]
+ [-TenantId <String>]
+ [-ContextScope <ContextScope>]
+ [-Environment <String>]
+ [-ClientTimeout <Double>]
+ [-NoWelcome]
+ [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
+ 
+ ```
+ ### IdentityParameterSet
+ ```powershell 
+ Connect-Entra
+  [[-ClientId] <String>]
+  [-ContextScope <ContextScope>]
+  [-Environment <String>]
+  [-ClientTimeout <Double>]
+  [-Identity]
+  [-NoWelcome]
+  [-ProgressAction <ActionPreference>]
+  [<CommonParameters>]
+ 
+ ```
+ ### AppSecretCredentialParameterSet
+ ```powershell 
+ Connect-Entra
+  [-ClientSecretCredential <PSCredential>]
+  [-TenantId <String>]
+  [-ContextScope <ContextScope>]
+  [-Environment <String>]
+  [-ClientTimeout <Double>]
+  [-NoWelcome]
+  [-ProgressAction <ActionPreference>]
+  [<CommonParameters>]
+ 
+ ```
+ ### AccessTokenParameterSet
+ ```powershell 
+ Connect-Entra
+ [-AccessToken] <SecureString>
+ [-Environment <String>]
+ [-ClientTimeout <Double>]
+ [-NoWelcome]
+ [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
+
+ ```
+ ### EnvironmentVariableParameterSet
+ ```powershell 
+ Connect-Entra
+  [-ContextScope <ContextScope>]
+  [-Environment <String>]
+  [-ClientTimeout <Double>]
+  [-EnvironmentVariable]
+  [-NoWelcome]
+  [-ProgressAction <ActionPreference>]
+  [<CommonParameters>]
+ 
+ ```
 ## DESCRIPTION
 
 The `Connect-Entra` cmdlet connects an authenticated account to use for Microsoft Entra ID cmdlet requests.
