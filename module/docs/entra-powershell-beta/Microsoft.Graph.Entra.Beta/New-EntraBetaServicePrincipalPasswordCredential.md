@@ -92,7 +92,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies an object ID.
+Specifies the ID of the service principal.
 
 ```yaml
 Type: String
@@ -131,5 +131,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
-
-
