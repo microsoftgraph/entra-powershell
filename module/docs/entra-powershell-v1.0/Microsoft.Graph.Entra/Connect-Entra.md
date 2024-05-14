@@ -300,7 +300,7 @@ Specifies the certificate thumbprint of a digital public key X.509 certificate o
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: AppCertificateParameterSet
 Aliases:
 
 Required: True
@@ -314,7 +314,7 @@ Specifies the application ID of the service principal.
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: UserParameterSet (Default), AppCertificateParameterSet, IdentityParameterSet
 Aliases: ClientId , AppId
 
 Required: True
@@ -328,7 +328,7 @@ Specifies a Microsoft Graph access token.
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: AccessTokenParameterSet
 Aliases:
 
 Required: False
@@ -347,23 +347,10 @@ You must specify the TenantId parameter to authenticate as a service principal o
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: UserParameterSet (Default), AppCertificateParameterSet, AppSecretCredentialParameterSet
 Aliases: Domain, TenantDomain
 
 Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -AccessToken
-Specifies a bearer token for Microsoft Graph service. Access tokens do time out and you have to handle their refresh.
-```yaml
-Type: SecureString
-Parameter Sets: (All)
-Aliases: 
-Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -390,7 +377,7 @@ Determines the scope of authentication context. This ContextScope accepts `Proce
 ```yaml
 Type: ContextScope
 Accepted values: Process, CurrentUser
-Parameter Sets: (All)
+Parameter Sets: EnvironmentVariableParameterSet, AppSecretCredentialParameterSet, IdentityParameterSet, AppCertificateParameterSet, UserParameterSet (Default) 
 Aliases: 
 Required: False
 Position: Named
@@ -432,7 +419,7 @@ An array of delegated permissions to consent to.
 
 ```yaml
 Type: String[]
-Parameter Sets: (All)
+Parameter Sets: UserParameterSet (Default)
 Aliases: 
 Required: False
 Position: Named
@@ -446,7 +433,7 @@ Use device code authentication instead of a browser control.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: UseDeviceCode
 Aliases: 	UseDeviceAuthentication, DeviceCode, DeviceAuth, Device
 Required: False
 Position: Named
@@ -460,7 +447,7 @@ An X.509 certificate supplied during invocation.
 
 ```yaml
 Type: X509Certificate2
-Parameter Sets: (All)
+Parameter Sets: AppCertificateParameterSet
 Aliases: 
 Required: False
 Position: Named
@@ -474,7 +461,7 @@ The subject distinguished name of a certificate. The Certificate is retrieved fr
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: AppCertificateParameterSet
 Aliases: CertificateSubject, CertificateName
 Required: False
 Position: Named
@@ -488,7 +475,7 @@ The client ID of your application.
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: UserParameterSet (Default), AppCertificateParameterSet, IdentityParameterSet
 Aliases: AppId, ApplicationId
 Required: True
 Position: Named
@@ -502,7 +489,7 @@ The PSCredential object provides the application ID and client secret for servic
 
 ```yaml
 Type: PSCredential
-Parameter Sets: (All)
+Parameter Sets: AppSecretCredentialParameterSet
 Aliases: SecretCredential, Credential
 Required: False
 Position: Named
@@ -516,7 +503,7 @@ Allows for authentication using environment variables configured on the host mac
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: EnvironmentVariableParameterSet
 Aliases: 
 Required: False
 Position: Named
@@ -530,7 +517,7 @@ Sign-in using a Managed Identity
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: IdentityParameterSet
 Aliases: ManagedIdentity, ManagedServiceIdentity, MSI
 Required: False
 Position: Named
