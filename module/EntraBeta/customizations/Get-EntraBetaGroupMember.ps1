@@ -6,26 +6,34 @@
     TargetName = $null
     Parameters = $null
     outputs = $null
-    CustomScript = @'   
+    CustomScript = @'
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        $topCount = $null
+        $baseUri = 'https://graph.microsoft.com/beta/groups'
+        $properties = '$select=*'
+        $Method = "GET"
         $keysChanged = @{ObjectId = "Id"}
 
         if($null -ne $PSBoundParameters["ObjectId"])
         {
             $params["GroupId"] = $PSBoundParameters["ObjectId"]
+            $URI = "$baseUri/$($params.GroupId)/members?$properties"
         }
         if($null -ne $PSBoundParameters["All"])
         {
-            if($PSBoundParameters["All"])
-            {
-                $params["All"] = $PSBoundParameters["All"]
-            }
+            $URI = "$baseUri/$($params.GroupId)/members?$properties"
         }
         if($null -ne $PSBoundParameters["Top"])
         {
-            $params["Top"] = $PSBoundParameters["Top"]
+            $topCount = $PSBoundParameters["Top"]
+            if ($topCount -gt 999) {
+                $URI = "$baseUri/$($params.GroupId)/members?`$top=999&$properties"
+            }
+            else{
+                $URI = "$baseUri/$($params.GroupId)/members?`$top=$topCount&$properties"
+            }
         }
         if($null -ne $PSBoundParameters["WarningVariable"])
         {
@@ -70,25 +78,36 @@
         if($null -ne $PSBoundParameters["WarningAction"])
         {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }       
+        }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Get-MgBetaGroupMember @params -Headers $customHeaders
-        $response | ForEach-Object {
-            if ($null -ne $_) {
-                Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-                $propsToConvert = @('assignedLicenses','assignedPlans','provisionedPlans','identities')
-                foreach ($prop in $propsToConvert) {
-                    $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
-                    $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
+        $response = Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method
+        $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+        try {
+            $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+            # write-host $data.count
+            $all = $null -ne $PSBoundParameters["All"] -and $PSBoundParameters["All"]
+            $increment = $topCount - $data.Count
+            while ($response.'@odata.nextLink' -and (($all) -or ($increment -gt 0 -and -not $all))) {
+                $URI = $response.'@odata.nextLink'
+                if (-not $all) {
+                    $topValue = [Math]::Min($increment, 999)
+                    $URI = $URI.Replace('$top=999', "`$top=$topValue")
+                    $increment -= $topValue
                 }
+                $response = Invoke-GraphRequest -Uri $URI -Method $Method
+                $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+            }
+        } catch {} 
+        $data | ForEach-Object {
+            if($null -ne $_) {
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
             }
         }
-        $response
-        }
+        $data 
+    }  
 '@
 }
