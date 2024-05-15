@@ -1,15 +1,15 @@
 function Connect-Entra {    
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-        [Parameter(ParameterSetName = "UserParameterSet")]
+        [Parameter(ParameterSetName = "UserParameterSet",Position = 1)]
         [System.String[]] $Scopes,
-        [Parameter(ParameterSetName = "AppCertificateParameterSet")]
+        [Parameter(ParameterSetName = "AppCertificateParameterSet",Position = 1)]
         [Parameter(ParameterSetName = "UserParameterSet")]
         [Parameter(ParameterSetName = "IdentityParameterSet")]
         [Alias("AppId", "ApplicationId")][System.String] $ClientId,
         [Parameter(ParameterSetName = "AppCertificateParameterSet")]
         [Parameter(ParameterSetName = "AppSecretCredentialParameterSet")]
-        [Parameter(ParameterSetName = "UserParameterSet")]
+        [Parameter(ParameterSetName = "UserParameterSet",Position = 4)]
         [Alias("Audience", "Tenant")][System.String] $TenantId,
         [Parameter(ParameterSetName = "AppCertificateParameterSet")]
         [Parameter(ParameterSetName = "AppSecretCredentialParameterSet")]
@@ -23,6 +23,7 @@ function Connect-Entra {
         [Parameter(ParameterSetName = "UserParameterSet")]
         [Parameter(ParameterSetName = "IdentityParameterSet")]
         [Parameter(ParameterSetName = "EnvironmentVariableParameterSet")]
+        [ValidateNotNullOrEmpty()]
         [Alias("EnvironmentName", "NationalCloud")][System.String] $Environment,
         [Parameter(ParameterSetName = "EnvironmentVariableParameterSet")]
         [Switch] $EnvironmentVariable,
@@ -34,20 +35,21 @@ function Connect-Entra {
         [Parameter(ParameterSetName = "UserParameterSet")]
         [Parameter(ParameterSetName = "IdentityParameterSet")]
         [Parameter(ParameterSetName = "EnvironmentVariableParameterSet")]
+        [ValidateNotNullOrEmpty()]
         [Double] $ClientTimeout,
         [Parameter()]
         [Switch] $NoWelcome,
-        [Parameter(ParameterSetName = "IdentityParameterSet")]
+        [Parameter(ParameterSetName = "IdentityParameterSet",Position = 1)]
         [Alias("ManagedIdentity", "ManagedServiceIdentity", "MSI")][System.Management.Automation.SwitchParameter] $Identity,
-        [Parameter(ParameterSetName = "AppCertificateParameterSet")]
+        [Parameter(ParameterSetName = "AppCertificateParameterSet",Position = 2)]
         [Alias("CertificateSubject", "CertificateName")][System.String] $CertificateSubjectName,
-        [Parameter(ParameterSetName = "AppCertificateParameterSet")]
+        [Parameter(ParameterSetName = "AppCertificateParameterSet",Position = 3)]
         [System.String] $CertificateThumbprint,
         [Parameter(ParameterSetName = "AppCertificateParameterSet")]
         [System.Security.Cryptography.X509Certificates.X509Certificate2] $Certificate,
         [Parameter(ParameterSetName = "AppSecretCredentialParameterSet")]
         [Alias("SecretCredential", "Credential")][System.Management.Automation.PSCredential] $ClientSecretCredential,
-        [Parameter(ParameterSetName = "AccessTokenParameterSet")]
+        [Parameter(ParameterSetName = "AccessTokenParameterSet",Position = 1)]
         [System.Security.SecureString] $AccessToken
         )
 
