@@ -2,7 +2,8 @@
 title: Get-EntraBetaServicePrincipal
 description: This article provides details on the Get-EntraBetaServicePrincipal command.
 
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 03/01/2024
 ms.author: eunicewaweru

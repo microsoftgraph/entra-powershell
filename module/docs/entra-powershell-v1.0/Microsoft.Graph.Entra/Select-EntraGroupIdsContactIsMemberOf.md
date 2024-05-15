@@ -2,7 +2,8 @@
 title: Select-EntraGroupIdsContactIsMemberOf
 description: This article provides details on the Select-EntraGroupIdsContactIsMemberOf command.
 
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 03/21/2024
 ms.author: eunicewaweru

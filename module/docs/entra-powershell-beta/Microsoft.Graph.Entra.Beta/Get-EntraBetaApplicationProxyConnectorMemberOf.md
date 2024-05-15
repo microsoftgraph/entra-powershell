@@ -1,7 +1,8 @@
 ---
 title: Get-EntraBetaApplicationProxyConnectorMemberOf
 description: This article provides details on the Get-EntraBetaApplicationProxyConnectorMemberOf command.
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 04/15/2024
 ms.author: eunicewaweru

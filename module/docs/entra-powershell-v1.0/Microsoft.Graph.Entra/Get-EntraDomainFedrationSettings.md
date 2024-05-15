@@ -2,7 +2,8 @@
 title: Get-EntraDomainFedrationSettings
 description: This article provides details on the Get-EntraDomainFedrationSettings command.
 
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 03/28/2024
 ms.author: eunicewaweru

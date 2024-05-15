@@ -1,7 +1,8 @@
 ---
 title: Remove-EntraBetaMSPermissionGrantConditionSet
 description: This article provides details on the Remove-EntraBetaMSPermissionGrantConditionSet command.
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 04/17/2024
 ms.author: eunicewaweru

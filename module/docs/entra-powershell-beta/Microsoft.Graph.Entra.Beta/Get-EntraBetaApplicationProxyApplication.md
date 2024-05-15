@@ -1,7 +1,8 @@
 ---
 title: Get-EntraBetaApplicationProxyApplication.
 description: This article provides details on the Get-EntraBetaApplicationProxyApplication.
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 04/11/2023
 ms.author: eunicewaweru

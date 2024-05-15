@@ -1,7 +1,8 @@
 ---
 title: Set-EntraBetaApplicationProxyApplication
 description: This article provides details on the Set-EntraBetaApplicationProxyApplication command.
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 04/15/2024
 ms.author: eunicewaweru

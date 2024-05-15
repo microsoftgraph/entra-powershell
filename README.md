@@ -2,7 +2,8 @@
 title: About Microsoft Entra PowerShell.
 description: About Microsoft Entra PowerShell.
 
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 01/26/2024
 ms.author: eunicewaweru

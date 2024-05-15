@@ -1,7 +1,8 @@
 ---
 title: Select-EntraBetaGroupIdsGroupIsMemberOf
 description: This article provides details on the Select-EntraBetaGroupIdsGroupIsMemberOf.
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 04/22/2023
 ms.author: eunicewaweru

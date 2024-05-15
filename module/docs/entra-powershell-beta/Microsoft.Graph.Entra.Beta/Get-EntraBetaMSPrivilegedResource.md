@@ -2,7 +2,8 @@
 title: Get-EntraBetaMSPrivilegedResource.
 description: This article provides details on Get-EntraBetaMSPrivilegedResource command.
 
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 11/22/2023
 ms.author: eunicewaweru

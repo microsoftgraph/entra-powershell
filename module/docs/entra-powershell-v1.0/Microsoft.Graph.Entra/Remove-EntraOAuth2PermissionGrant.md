@@ -2,7 +2,8 @@
 title: Remove-EntraOAuth2PermissionGrant 
 description: This article provides details on the Remove-EntraOAuth2PermissionGrant command.
 
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 03/11/2024
 ms.author: eunicewaweru

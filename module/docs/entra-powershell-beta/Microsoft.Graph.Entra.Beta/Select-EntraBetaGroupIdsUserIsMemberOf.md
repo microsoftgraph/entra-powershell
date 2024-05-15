@@ -2,7 +2,8 @@
 title: Select-EntraBetaGroupIdsUserIsMemberOf.
 description: This article provides details on the Select-EntraBetaGroupIdsUserIsMemberOf command.
 
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 11/10/2023
 ms.author: eunicewaweru

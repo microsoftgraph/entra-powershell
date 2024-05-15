@@ -2,7 +2,8 @@
 title: Get-EntraApplicationKeyCredential
 description: This article provides details on the Get-EntraApplicationKeyCredential command.
 
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 03/04/2024
 ms.author: eunicewaweru

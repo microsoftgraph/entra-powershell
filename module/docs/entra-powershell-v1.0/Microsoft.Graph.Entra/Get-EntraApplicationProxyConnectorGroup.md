@@ -2,7 +2,8 @@
 title: Get-EntraApplicationProxyConnectorGroup
 description: This article provides details on the Get-EntraApplicationProxyConnectorGroup command.
 
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 03/27/2024
 ms.author: eunicewaweru

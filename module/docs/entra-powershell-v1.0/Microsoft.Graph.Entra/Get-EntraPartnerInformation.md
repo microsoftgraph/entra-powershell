@@ -2,7 +2,8 @@
 title: Get-EntraPartnerInformation
 description: This article provides details on the Get-EntraPartnerInformation command.
 
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 03/28/2024
 ms.author: eunicewaweru

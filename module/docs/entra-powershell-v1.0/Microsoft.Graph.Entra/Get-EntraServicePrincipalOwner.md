@@ -2,7 +2,8 @@
 title: Get-EntraServicePrincipalOwner
 description: This article provides details on the Get-EntraServicePrincipalOwner command.
 
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 03/01/2024
 ms.author: eunicewaweru

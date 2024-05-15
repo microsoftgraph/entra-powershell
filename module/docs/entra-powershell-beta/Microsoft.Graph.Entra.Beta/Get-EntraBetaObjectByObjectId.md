@@ -1,7 +1,8 @@
 ---
 title: Get-EntraBetaObjectByObjectId
 description: This article provides details on the Get-EntraBetaObjectByObjectId.
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 04/24/2023
 ms.author: eunicewaweru

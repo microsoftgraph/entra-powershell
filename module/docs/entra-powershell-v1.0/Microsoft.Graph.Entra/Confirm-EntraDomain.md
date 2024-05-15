@@ -2,7 +2,8 @@
 title: Confirm-EntraDomain
 description: This article provides details on the Confirm-EntraDomain command.
 
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 03/16/2024
 ms.author: eunicewaweru

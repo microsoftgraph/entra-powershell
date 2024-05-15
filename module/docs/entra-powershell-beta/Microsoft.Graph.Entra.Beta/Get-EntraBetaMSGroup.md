@@ -2,7 +2,8 @@
 title: Get-EntraBetaMSGroup.
 description: This article provides details on the Get-EntraBetaMSGroup command.
 
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 03/06/2023
 ms.author: eunicewaweru

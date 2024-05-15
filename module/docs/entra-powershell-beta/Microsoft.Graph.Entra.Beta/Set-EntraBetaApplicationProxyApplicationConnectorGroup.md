@@ -2,7 +2,8 @@
 title: Set-EntraBetaApplicationProxyApplicationConnectorGroup.
 description: This article provides details on the Set-EntraBetaApplicationProxyApplicationConnectorGroup command.
 
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 04/03/2023
 ms.author: eunicewaweru

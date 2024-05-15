@@ -2,7 +2,8 @@
 title: Get-EntraDeviceRegisteredUser.
 description: This article provides details on the Get-EntraDeviceRegisteredUser command.
 
-ms.service: active-directory
+ms.service: entra
+ms.subservice: powershell
 ms.topic: reference
 ms.date: 03/15/2024
 ms.author: eunicewaweru
