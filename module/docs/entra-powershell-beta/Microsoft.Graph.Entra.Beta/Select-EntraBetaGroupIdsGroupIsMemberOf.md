@@ -1,4 +1,13 @@
 ---
+title: Select-EntraBetaGroupIdsGroupIsMemberOf
+description: This article provides details on the Select-EntraBetaGroupIdsGroupIsMemberOf.
+ms.service: active-directory
+ms.topic: reference
+ms.date: 04/22/2023
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -12,13 +21,15 @@ Gets group IDs that a group is a member of.
 
 ## SYNTAX
 
-```
-Select-EntraBetaGroupIdsGroupIsMemberOf -ObjectId <String>
- -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> [<CommonParameters>]
+```powershell
+Select-EntraBetaGroupIdsGroupIsMemberOf 
+ -ObjectId <String>
+ -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Select-EntraBetaGroupIdsGroupIsMemberOf cmdlet gets the groups that a specified group is a member of in Azure Active Directory (AD).
+The Select-EntraBetaGroupIdsGroupIsMemberOf cmdlet gets the groups that a specified group is a member of in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -28,17 +39,12 @@ PS C:\> $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipC
 PS C:\> $Groups.GroupIds = (Get-EntraBetaGroup -Top 1).ObjectId
 PS C:\> $GroupId = (Get-EntraBetaGroup -Top 1).ObjectId
 PS C:\> Select-EntraBetaGroupIdsGroupIsMemberOf  -ObjectId $GroupId -GroupIdsForMembershipCheck $Groups
-
-OdataMetadata                                                                                   Value
--------------                                                                                   -----
-https://graph.windows.net/85b5ff1e-0402-400c-9e3c-0f9e965325d1/$metadata#Collection(Edm.String) {093fc0e2-1d6e-4a1b-9bf8-effa0196f1f7}
 ```
-
 The first command creates a GroupIdsForMembershipCheck object, and then stores it in the $Groups variable.
 
-The second command gets an ID for a group by using the Get-EntraBetaGroup (./Get-EntraBetaGroup.md)cmdlet, and then stores it as a property of $Groups.
+The second command gets an ID for a group by using the Get-EntraBetaGroup (./Get-EntraBetaGroup.md) cmdlet, and then stores it as a property of $Groups.
 
-The third command gets the ID of a group by using Get-EntraBetaGroup , and then stores it in the $GroupId variable.
+The third command gets the ID of a group by using Get-EntraBetaGroup, and then stores it in the $GroupId variable.
 
 The final command gets the group membership of a group identified by $GroupId.
 
@@ -59,10 +65,8 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-
-
 ### -ObjectId
-Specifies the ID of a group in Azure AD.
+Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -87,5 +91,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraBetaGroup]()
+[Get-EntraBetaGroup](Get-EntraBetaGroup.md)
 
