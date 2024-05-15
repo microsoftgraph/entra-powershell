@@ -25,7 +25,7 @@ Gets a member of an administrative unit.
 ```powershell
 Get-EntraMSAdministrativeUnitMember
  -Id <String> 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>]
  [<CommonParameters>]
 ```
@@ -52,7 +52,7 @@ This example returns the list of administrative unit members from specified admi
 
 ### Example 2: Get all administrative unit members by ID
 ```powershell
-PS C:\> Get-EntraMSAdministrativeUnitMember -Id "ef08b536-9d0a-4f8f-bda5-8b9cd01a9159" -All $true
+PS C:\> Get-EntraMSAdministrativeUnitMember -Id "ef08b536-9d0a-4f8f-bda5-8b9cd01a9159" -All
 ```
 
 ```output
@@ -97,8 +97,7 @@ Accept wildcard characters: False
 ```
 
 ### -All
-If true, return all administrative unit members.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -107,8 +106,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

@@ -26,7 +26,7 @@ Gets a contact from Microsoft Entra ID.
 ```powershell
 Get-EntraContact 
  [-Filter <String>] 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -35,7 +35,7 @@ Get-EntraContact
 ```powershell
 Get-EntraContact 
  -ObjectId <String> 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -74,7 +74,7 @@ This command retrieves specified contact in the directory.
 
 ### Example 3: Retrieve all contacts objects in the directory
 ```powershell
-PS C:\> Get-EntraContact -All $true
+PS C:\> Get-EntraContact -All 
 ```
 
 ```output
@@ -118,18 +118,16 @@ This command retrieves contacts having the specified display name.
 ## PARAMETERS
 
 ### -All
-If true, return all contacts.
-If false, return the number of objects specified by the Top parameter.
-
+List all pages.
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

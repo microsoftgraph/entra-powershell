@@ -26,7 +26,7 @@ Gets a device from Microsoft Entra ID.
 ```powershell
 Get-EntraDevice 
  [-Top <Int32>]
- [-All <Boolean>]
+ [-All]
  [-Filter <String>]
  [<CommonParameters>]
 ```
@@ -35,7 +35,7 @@ Get-EntraDevice
 ```powershell
 Get-EntraDevice 
  [-SearchString <String>]
- [-All <Boolean>]
+ [-All]
  [<CommonParameters>]
 ```
 
@@ -43,7 +43,7 @@ Get-EntraDevice
 ```powershell
 Get-EntraDevice 
  -ObjectId <String>
- [-All <Boolean>]
+ [-All]
  [<CommonParameters>]
 ```
 
@@ -134,8 +134,7 @@ This command gets all devices that match the value of SearchString against the f
 ## PARAMETERS
 
 ### -All
-If true, return all devices.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -144,8 +143,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

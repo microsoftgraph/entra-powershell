@@ -25,7 +25,7 @@ Get objects owned by a user.
 ```powershell
 Get-EntraUserOwnedObject 
  -ObjectId <String> 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -57,7 +57,7 @@ This command gets objects owned by the specified user.
 
 ### Example 2: Get all objects owned by a user
 ```powershell
-PS C:\>Get-EntraUserOwnedObject -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16" -All $true
+PS C:\>Get-EntraUserOwnedObject -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16" -All 
 ```
 
 ```output
@@ -93,8 +93,7 @@ This command gets the top three objects owned by the specified user.
 ## PARAMETERS
 
 ### -All
-If true, return all objects owned by this user.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -103,8 +102,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

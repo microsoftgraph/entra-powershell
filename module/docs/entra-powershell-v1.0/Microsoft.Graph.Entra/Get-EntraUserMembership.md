@@ -25,7 +25,7 @@ Get user memberships.
 ```powershell
 Get-EntraUserMembership 
  -ObjectId <String>
- [-All <Boolean>]  
+ [-All]  
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -55,7 +55,7 @@ This command gets the memberships for the specified user.
 
 ### Example 2: Get All memberships
 ```powershell
-PS C:\>Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -All $true
+PS C:\>Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -All
 ```
 ```output
 Id                                   DeletedDateTime
@@ -91,8 +91,7 @@ This command gets the top five memberships for the specified user.
 ## PARAMETERS
 
 ### -All
-If true, return all memberships of this user.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -101,8 +100,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
