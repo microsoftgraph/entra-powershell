@@ -1,4 +1,13 @@
 ---
+title: Set-EntraBetaApplicationLogo
+description: This article provides details on the Set-EntraBetaApplicationLogo command.
+ms.service: active-directory
+ms.topic: reference
+ms.date: 04/22/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -13,31 +22,38 @@ Sets the logo for an Application
 ## SYNTAX
 
 ### File (Default)
-```
-Set-EntraBetaApplicationLogo [-ObjectId <String>] -FilePath <String> [<CommonParameters>]
+```powershell
+Set-EntraBetaApplicationLogo 
+ [-ObjectId <String>] 
+ -FilePath <String> 
+ [<CommonParameters>]
 ```
 
 ### ByteArray
-```
-Set-EntraBetaApplicationLogo [-ObjectId <String>] -ImageByteArray <Byte[]> [<CommonParameters>]
+```powershell
+Set-EntraBetaApplicationLogo 
+ [-ObjectId <String>] 
+ [<CommonParameters>]
 ```
 
 ### Stream
-```
-Set-EntraBetaApplicationLogo [-ObjectId <String>] -FileStream <Stream> [<CommonParameters>]
+```powershell
+Set-EntraBetaApplicationLogo 
+ [-ObjectId <String>]  
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This cmdlet is used to set the logo for an application
+This cmdlet is used to set the logo for an application.
 
 ## EXAMPLES
 
-### Example 1
-```
+### Example 1: Sets the application logo for the application specified by the ObjectID parameter
+```powershell
 PS C:\WINDOWS\system32> Set-EntraBetaApplicationLogo -ObjectId 79592454-dea7-4660-9d91-f1768e5055ac -FilePath D:\applogo.jpg
 ```
 
-This cmdlet sets the application logo for the application specified by the the ObjectID parameter to the image specified with the FIlepath parameter
+This cmdlet sets the application logo for the application specified by the ObjectID parameter to the image specified with the Filepath parameter.
 
 ## PARAMETERS
 
@@ -56,38 +72,8 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -FileStream
-A fileStream that is to be used as the application logo
-
-```yaml
-Type: Stream
-Parameter Sets: Stream
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -ImageByteArray
-And ImageByteArray that is to be used as the application logo
-
-```yaml
-Type: Byte[]
-Parameter Sets: ByteArray
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
 ### -ObjectId
-The ObjectID of the Application for which the logo is set
+The ObjectID of the Application for which the logo is set.
 
 ```yaml
 Type: String
