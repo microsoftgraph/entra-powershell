@@ -42,6 +42,30 @@ Describe "Set-EntraMSConditionalAccessPolicy" {
             { Set-EntraMSConditionalAccessPolicy -PolicyId "9cc10bb0-3d8f-4a2b-aafa-e00107b919fc" -State } | Should -Throw "Missing an argument for parameter*"
         }
 
+        It "Should fail when Conditions parameter is empty" {
+            { Set-EntraMSConditionalAccessPolicy -PolicyId "9cc10bb0-3d8f-4a2b-aafa-e00107b919fc" -Conditions  } | Should -Throw "Missing an argument for parameter*"
+        }
+
+        It "Should fail when Conditions parameter is invalid" {
+            { Set-EntraMSConditionalAccessPolicy -PolicyId "9cc10bb0-3d8f-4a2b-aafa-e00107b919fc" -Conditions "" } | Should -Throw "Cannot process argument transformation on parameter 'Conditions'.*"
+        }
+
+        It "Should fail when GrantControls parameter is empty" {
+            { Set-EntraMSConditionalAccessPolicy -PolicyId "9cc10bb0-3d8f-4a2b-aafa-e00107b919fc" -GrantControls } | Should -Throw "Missing an argument for parameter*"
+        }
+
+        It "Should fail when GrantControls parameter is invalid" {
+            { Set-EntraMSConditionalAccessPolicy -PolicyId "9cc10bb0-3d8f-4a2b-aafa-e00107b919fc" -GrantControls "" } | Should -Throw "Cannot process argument transformation on parameter 'GrantControls'.*"
+        }
+
+        It "Should fail when SessionControls parameter is empty" {
+            { Set-EntraMSConditionalAccessPolicy -PolicyId "9cc10bb0-3d8f-4a2b-aafa-e00107b919fc" -SessionControls } | Should -Throw "Missing an argument for parameter*"
+        }
+
+        It "Should fail when SessionControls parameter is invalid" {
+            { Set-EntraMSConditionalAccessPolicy -PolicyId "9cc10bb0-3d8f-4a2b-aafa-e00107b919fc" -SessionControls "" } | Should -Throw "Cannot process argument transformation on parameter 'SessionControls'.*"
+        }
+
         It "Should contain ConditionalAccessPolicyId in parameters when passed PolicyId to it" {
             $result = Set-EntraMSConditionalAccessPolicy -PolicyId "9cc10bb0-3d8f-4a2b-aafa-e00107b919fc" -DisplayName "test"
             $params = Get-Parameters -data $result.Parameters

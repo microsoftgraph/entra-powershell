@@ -24,11 +24,19 @@ Describe "Remove-EntraGroupMember" {
         }
 
         It "Should fail when ObjectId is empty" {
-            { Remove-EntraGroupMember -ObjectId -MemberId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+            { Remove-EntraGroupMember -ObjectId -MemberId "a23541ee-4fe9-4cf2-b628-102ebaef8f7e" } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
         }   
 
         It "Should fail when ObjectId is invalid" {
-            { Remove-EntraGroupMember -ObjectId "" -MemberId ""} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+            { Remove-EntraGroupMember -ObjectId "" -MemberId "a23541ee-4fe9-4cf2-b628-102ebaef8f7e" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        }   
+
+        It "Should fail when MemberId is empty" {
+            { Remove-EntraGroupMember -ObjectId "056b2531-005e-4f3e-be78-01a71ea30a04" -MemberId } | Should -Throw "Missing an argument for parameter 'MemberId'*"
+        }   
+
+        It "Should fail when MemberId is invalid" {
+            { Remove-EntraGroupMember -ObjectId "056b2531-005e-4f3e-be78-01a71ea30a04" -MemberId "" } | Should -Throw "Cannot bind argument to parameter 'MemberId' because it is an empty string."
         }   
 
         It "Should contain GroupId in parameters when passed ObjectId to it" {
