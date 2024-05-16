@@ -25,30 +25,30 @@ Gets a service principal.
 ### GetQuery (Default)
 ```powershell
 Get-EntraBetaServicePrincipal 
-    [-Top <Int32>] 
-    [-All <Boolean>] 
-    [-Filter <String>] 
+ [-Top <Int32>] 
+ [-All] 
+ [-Filter <String>] 
  [<CommonParameters>]
 ```
 
 ### GetVague
 ```powershell
 Get-EntraBetaServicePrincipal 
-    [-SearchString <String>] 
-    [-All <Boolean>] 
+ [-SearchString <String>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraBetaServicePrincipal 
-    -ObjectId <String> 
-    [-All <Boolean>] 
+ -ObjectId <String> 
+ [-All] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraBetaServicePrincipal** cmdlet gets a service principal in Microsoft Entra ID.
+The Get-EntraBetaServicePrincipal cmdlet gets a service principal in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -92,7 +92,7 @@ The second command gets the service principal identified by $ServicePrincipalId.
 
 ### Example 3: Retrieve all service principals from the directory
 ```powershell
-PS C:\> Get-EntraBetaServicePrincipal -All $true
+PS C:\> Get-EntraBetaServicePrincipal -All 
 ```
 
 ```output
@@ -154,18 +154,17 @@ This command gets a list of service principal, which has the specified display n
 ## PARAMETERS
 
 ### -All
-If true, return all service principal objects.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -246,4 +245,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraBetaServicePrincipal](Remove-EntraBetaServicePrincipal.md)
 
 [Set-EntraBetaServicePrincipal](Set-EntraBetaServicePrincipal.md)
-
