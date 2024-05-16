@@ -1,4 +1,13 @@
 ---
+title: Set-EntraBetaMSApplicationLogo
+description: This article provides details on the Set-EntraBetaMSApplicationLogo command.
+ms.service: active-directory
+ms.topic: reference
+ms.date: 04/22/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -12,8 +21,11 @@ Sets the logo for an application object.
 
 ## SYNTAX
 
-```
-Set-EntraBetaMSApplicationLogo -ObjectId <String> -Content <Byte[]> [<CommonParameters>]
+```powershell
+Set-EntraBetaMSApplicationLogo 
+ -ObjectId <String> 
+ -Content <Byte[]> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,7 +34,7 @@ Sets the logo for an application object.
 ## EXAMPLES
 
 ### Example 1: Sets the logo of the application
-```
+```powershell
 PS C:\>Set-EntraBetaMSApplicationLogo -ObjectId 121ce3aa-64cb-44f2-99e8-deb705caeddd -Content {imagebytearray}
 ```
 
@@ -31,7 +43,7 @@ This command updates the application logo.
 ## PARAMETERS
 
 ### -ObjectId
-The unique identifier of the object specific Azure Active Directory object
+The unique identifier of the object specific Microsoft Entra ID object
 
 ```yaml
 Type: String
@@ -65,7 +77,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### string
+### String
 ### Byte[]
 ## OUTPUTS
 
