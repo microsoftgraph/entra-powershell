@@ -7,7 +7,7 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-              "Id"               = "69641f6c-41dc-4f63-9c21-cc9c8ed12931"
+              "Id"               = "bea81df1-91cb-4b6e-aa79-b40888fe0b8b"
               "Parameters"       = $args
             }
         )
@@ -19,29 +19,35 @@ Describe "Select-EntraGroupIdsGroupIsMemberOf" {
     Context "Test for Select-EntraGroupIdsGroupIsMemberOf" {
         It "Should return specific Group Membership" {
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-            $Groups.GroupIds = "69641f6c-41dc-4f63-9c21-cc9c8ed12931"
-            $UserID = "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c"
-            $result = Select-EntraGroupIdsGroupIsMemberOf -ObjectId $UserID -GroupIdsForMembershipCheck $Groups
+            $Groups.GroupIds = "bea81df1-91cb-4b6e-aa79-b40888fe0b8b"
+            $GroupID = "bea81df1-91cb-4b6e-aa79-b40888fe0b8b"
+            $result = Select-EntraGroupIdsGroupIsMemberOf -ObjectId $GroupID -GroupIdsForMembershipCheck $Groups
             $result | Should -Not -BeNullOrEmpty
-            $result | Should -Be '69641f6c-41dc-4f63-9c21-cc9c8ed12931'
+            $result | Should -Be 'bea81df1-91cb-4b6e-aa79-b40888fe0b8b'
 
             Should -Invoke -CommandName Get-MgGroupMemberOf -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
-        It "Should fail when UserID is invalid " {
+        It "Should fail when ObjectId is missing" {
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-            $Groups.GroupIds = "69641f6c-41dc-4f63-9c21-cc9c8ed12931"
-            $UserID = ""
-            { Select-EntraGroupIdsGroupIsMemberOf -ObjectId $UserID -GroupIdsForMembershipCheck $Groups } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+            $Groups.GroupIds = "bea81df1-91cb-4b6e-aa79-b40888fe0b8b"
+            { Select-EntraGroupIdsGroupIsMemberOf -ObjectId  -GroupIdsForMembershipCheck $Groups } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
         }
 
-        It "Should fail when UserID is empty " {
+        It "Should fail when ObjectId is empty" {
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-            $Groups.GroupIds = "69641f6c-41dc-4f63-9c21-cc9c8ed12931"
-            $UserID =
-            { Select-EntraGroupIdsGroupIsMemberOf -ObjectId $UserID -GroupIdsForMembershipCheck $Groups } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+            $Groups.GroupIds = "bea81df1-91cb-4b6e-aa79-b40888fe0b8b"
+            { Select-EntraGroupIdsGroupIsMemberOf -ObjectId "" -GroupIdsForMembershipCheck $Groups } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        }
+
+        It "Should fail when GroupIdsForMembershipCheck is empty" {
+            $GroupID = "bea81df1-91cb-4b6e-aa79-b40888fe0b8b"
+            { Select-EntraGroupIdsGroupIsMemberOf -ObjectId $GroupID  -GroupIdsForMembershipCheck  } | Should -Throw "Missing an argument for parameter 'GroupIdsForMembershipCheck'*"
+        }
+
+        It "Should fail when GroupIdsForMembershipCheck is invalid" {
+            $GroupID = "bea81df1-91cb-4b6e-aa79-b40888fe0b8b"
+            { Select-EntraGroupIdsGroupIsMemberOf -ObjectId $GroupID -GroupIdsForMembershipCheck "ZZZ" } | Should -Throw "Cannot process argument transformation on parameter 'GroupIdsForMembershipCheck'.*"
         }
     }
 }
-
-# PR yet to be merged
