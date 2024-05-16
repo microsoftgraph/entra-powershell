@@ -1,5 +1,5 @@
 function Connect-Entra {    
-    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+    [CmdletBinding(DefaultParameterSetName = 'UserParameterSet')]
     param (
         [Parameter(ParameterSetName = "UserParameterSet",Position = 1)]
         [System.String[]] $Scopes,
