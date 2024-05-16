@@ -66,20 +66,18 @@ Describe "Set-EntraUserPassword" {
            $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
            { $result = Set-EntraUserPassword -ObjectId $userUPN -Password $secPassword -EnforceChangePasswordPolicy xyz } | Should -Throw "Cannot process argument transformation on parameter 'EnforceChangePasswordPolicy'*"
         }
-         # Header is Missing in psm file   
-        # It "Should contain 'User-Agent' header" {
-        #     Mock -CommandName Update-MgUser -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+        It "Should contain 'User-Agent' header" {
+            Mock -CommandName Update-MgUser -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-        #     $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserPassword"
-        #     $userUPN="mock106@M365x99297270.OnMicrosoft.com"
-        #     $newPassword="New@12345"
-        #     $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-        #     $result = Set-EntraUserPassword -ObjectId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
-        #     $params = Get-Parameters -data $result
-        #     $para = $params | ConvertTo-json | ConvertFrom-Json
-        #     write-host $para.PasswordProfile
-        #     $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        # }
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserPassword"
+            $userUPN="mock106@M365x99297270.OnMicrosoft.com"
+            $newPassword="New@12345"
+            $secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
+            $result = Set-EntraUserPassword -ObjectId $userUPN -Password $secPassword -ForceChangePasswordNextLogin $true -EnforceChangePasswordPolicy $true
+            $params = Get-Parameters -data $result
+            $para= $result | Convertto-json -Depth 10 | Convertfrom-json
+            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
 
     }
 }            
