@@ -35,7 +35,6 @@ Set-EntraApplicationLogo
 ```powershell
 Set-EntraApplicationLogo 
  -ObjectId <String> 
- -FileStream <Stream> 
  [<CommonParameters>]
 ```
 
@@ -43,7 +42,6 @@ Set-EntraApplicationLogo
 ```powershell
 Set-EntraApplicationLogo 
  -ObjectId <String> 
- -ImageByteArray <Byte[]> 
  [<CommonParameters>]
 ```
 
@@ -52,7 +50,8 @@ This cmdlet is used to set the logo for an application.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Sets the application logo for the application specified by the ObjectID parameter
+
 ```powershell
 PS C:\> Set-EntraApplicationLogo -ObjectId 79592454-dea7-4660-9d91-f1768e5055ac -FilePath D:\applogo.jpg
 ```
@@ -75,37 +74,6 @@ Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
-
-### -FileStream
-A fileStream that is to be used as the application logo.
-
-```yaml
-Type: Stream
-Parameter Sets: Stream
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -ImageByteArray
-And ImageByteArray that is to be used as the application logo.
-
-```yaml
-Type: Byte[]
-Parameter Sets: ByteArray
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
 ### -ObjectId
 The ObjectID of the Application for which the logo is set.
 
