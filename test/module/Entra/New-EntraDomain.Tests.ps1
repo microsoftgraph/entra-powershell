@@ -55,9 +55,21 @@ Describe "New-EntraDomain" {
             { New-EntraDomain -Name -IsDefault -IsDefaultForCloudRedirections -SupportedServices} | Should -Throw "Missing an argument for parameter*"
         }      
 
-        It "Should fail when parameters are invalid" {
-            { New-EntraDomain -Name HH -IsDefault FD -IsDefaultForCloudRedirections GH -SupportedServices HH } | Should -Throw "Cannot process argument transformation on parameter 'IsDefault'*"
+        It "Should fail when Name parameters are invalid" {
+            { New-EntraDomain -Name "" } | Should -Throw "Cannot bind argument to parameter 'Name' because it is an empty string."
         }      
+
+        It "Should fail when IsDefault parameters are invalid" {
+            { New-EntraDomain -Name "lala.uk" -IsDefault FD } | Should -Throw "Cannot process argument transformation on parameter 'IsDefault'*"
+        }     
+
+        It "Should fail when IsDefaultForCloudRedirections parameters are invalid" {
+            { New-EntraDomain -Name "lala.uk" -IsDefaultForCloudRedirections GH } | Should -Throw "Cannot process argument transformation on parameter 'IsDefaultForCloudRedirections'*"
+        }     
+
+        It "Should fail when SupportedServices parameters are invalid" {
+            { New-EntraDomain -Name "lala.uk" -SupportedServices $true } | Should -Throw "Cannot process argument transformation on parameter 'SupportedServices'*"
+        }     
 
         It "Should contain Id in parameters when passed Name to it" {
             $result = New-EntraDomain -Name "lala.uk"

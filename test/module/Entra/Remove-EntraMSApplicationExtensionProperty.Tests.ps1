@@ -11,7 +11,6 @@ BeforeAll {
             }
         )
     }  
-
     Mock -CommandName Remove-MgApplicationExtensionProperty -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 
@@ -25,11 +24,19 @@ Describe "Remove-EntraMSApplicationExtensionProperty" {
         }
 
         It "Should fail when ObjectId is empty" {
-            { Remove-EntraMSApplicationExtensionProperty -ObjectId -ExtensionPropertyId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+            { Remove-EntraMSApplicationExtensionProperty -ObjectId -ExtensionPropertyId "d0479464-8cae-4859-9a88-fa20cd6c5d3a" } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
         }   
 
         It "Should fail when ObjectId is invalid" {
-            { Remove-EntraMSApplicationExtensionProperty -ObjectId "" -ExtensionPropertyId ""} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+            { Remove-EntraMSApplicationExtensionProperty -ObjectId "" -ExtensionPropertyId "d0479464-8cae-4859-9a88-fa20cd6c5d3a" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        }   
+
+        It "Should fail when ExtensionPropertyId is empty" {
+            { Remove-EntraMSApplicationExtensionProperty -ObjectId "0f9742d9-a7ec-4ae3-8e15-223aed7e4e56" -ExtensionPropertyId } | Should -Throw "Missing an argument for parameter 'ExtensionPropertyId'*"
+        }   
+
+        It "Should fail when ExtensionPropertyId is invalid" {
+            { Remove-EntraMSApplicationExtensionProperty -ObjectId "0f9742d9-a7ec-4ae3-8e15-223aed7e4e56" -ExtensionPropertyId ""} | Should -Throw "Cannot bind argument to parameter 'ExtensionPropertyId' because it is an empty string."
         }   
 
         It "Should contain ApplicationId in parameters when passed ObjectId to it" {
