@@ -51,7 +51,7 @@ function Set-EntraPartnerInformation {
             $body["supportEmails"] = @($PSBoundParameters["PartnerSupportEmails"])
         }
         if ($null -ne $PSBoundParameters["PartnerSupportTelephones"]) {
-            $body["supportTelephones"] = @($PSBoundParameters["PartnerSupportTelephones"])
+            $body["supportTelephones"] = @($PSBoundParameters["PartnerSupportTelephones"] -as [string[]])
         }        
         if ($null -ne $PSBoundParameters["PartnerSupportUrl"]) {
             $body["supportUrl"] = $PSBoundParameters["PartnerSupportUrl"]
