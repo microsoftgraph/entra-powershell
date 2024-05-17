@@ -78,7 +78,11 @@ Describe "Get-EntraMSGroup" {
 
         It "Should fail when top is empty" {
             { Get-EntraMSGroup -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
-        }  
+        }
+
+        It "Should fail when top is invalid" {
+            { Get-EntraMSGroup -Top XYZ } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+        }    
 
         It "Should get a group by DisplayName" {
             $displayName = Get-EntraMSGroup -Filter "DisplayName eq 'Sales Team'"
