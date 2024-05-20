@@ -37,6 +37,7 @@ BeforeAll {
                 "TransitiveMemberOf"            = $null
                 "TrustType"                     = $null
                 "PhysicalIds"                   = @{}
+                "Parameters"                    = $args
             }
         )
     }
@@ -90,26 +91,19 @@ Describe "Get-EntraDevice" {
             $result.ObjectId | should -Be "74825acb-c984-4b54-ab65-d38347ea5e90"
         }     
         It "Should contain DeviceId in parameters when passed ObjectId to it" {              
-            Mock -CommandName Get-MgDevice -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $result = Get-EntraDevice -ObjectId "74825acb-c984-4b54-ab65-d38347ea5e90"
-            $params = Get-Parameters -data $result
+            $params = Get-Parameters -data $result.Parameters
             $params.DeviceId | Should -Be "74825acb-c984-4b54-ab65-d38347ea5e90"
         }
         It "Should contain Filter in parameters when passed SearchString to it" {               
-            Mock -CommandName Get-MgDevice -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $result = Get-EntraDevice -SearchString 'Mock-Device'
-            $params = Get-Parameters -data $result
+            $params = Get-Parameters -data $result.Parameters
             $params.Filter | Should -Match "Mock-Device"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Get-MgDevice -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDevice"
-
             $result = Get-EntraDevice -SearchString 'Mock-Device'
-            $params = Get-Parameters -data $result
+            $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
     }

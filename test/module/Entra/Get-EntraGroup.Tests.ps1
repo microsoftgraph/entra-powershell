@@ -14,6 +14,7 @@ BeforeAll {
               "Description"     = "test"
               "MailNickname"    = "demoNickname"
               "SecurityEnabled" = "True"
+              "Parameters"      = $args
             }
         )
     }
@@ -67,26 +68,19 @@ Describe "Get-EntraGroup" {
             $result.ObjectId | should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
         } 
         It "Should contain GroupId in parameters when passed ObjectId to it" {
-            Mock -CommandName Get-MgGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $result = Get-EntraGroup -ObjectId "056b2531-005e-4f3e-be78-01a71ea30a04"
-            $params = Get-Parameters -data $result
+            $params = Get-Parameters -data $result.Parameters
             $params.GroupId | Should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
         }
         It "Should contain Filter in parameters when passed SearchString to it" {
-            Mock -CommandName Get-MgGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $result = Get-EntraGroup -SearchString 'demo'
-            $params = Get-Parameters -data $result
+            $params = Get-Parameters -data $result.Parameters
             $params.Filter | Should -Match "demo"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Get-MgGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraGroup"
-
             $result = Get-EntraGroup -SearchString 'demo'
-            $params = Get-Parameters -data $result
+            $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }    
     }
