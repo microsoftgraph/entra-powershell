@@ -9,7 +9,7 @@ BeforeAll {
 
 Describe "Remove-EntraMSDeletedDirectoryObject" {
     Context "Test for Remove-EntraMSDeletedDirectoryObject" {
-        It "Should return empty id" {
+        It "Should delete a previously deleted directory object" {
             $result = Remove-EntraMSDeletedDirectoryObject -Id "c28ccec8-4c7e-43b8-a4a1-558d93eda04e"
             $result | Should -BeNullOrEmpty
 
@@ -25,7 +25,7 @@ Describe "Remove-EntraMSDeletedDirectoryObject" {
         }   
 
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Invoke-GraphRequest -MockWith { $args } -ModuleName Microsoft.Graph.Entra
+            Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraMSDeletedDirectoryObject"
             $result = Remove-EntraMSDeletedDirectoryObject -Id "c28ccec8-4c7e-43b8-a4a1-558d93eda04e"

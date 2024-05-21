@@ -4,19 +4,12 @@ BeforeAll {
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
-        return @(
-            [PSCustomObject]@{
-              "Parameters"      = $args
-            }
-        )
-    }  
-    Mock -CommandName Remove-MgDirectoryDeletedItem -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Remove-MgDirectoryDeletedItem -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Remove-EntraDeletedApplication" {
     Context "Test for Remove-EntraDeletedApplication" {
-        It "Should return empty object" {
+        It "Should remove deleted application object" {
             $result = Remove-EntraDeletedApplication -ObjectId "c28ccec8-4c7e-43b8-a4a1-558d93eda04e"
             $result | Should -BeNullOrEmpty
 
@@ -32,16 +25,19 @@ Describe "Remove-EntraDeletedApplication" {
         }   
 
         It "Should contain DirectoryObjectId in parameters when passed ObjectId to it" {
+            Mock -CommandName Remove-MgDirectoryDeletedItem -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+
             $result = Remove-EntraDeletedApplication -ObjectId "c28ccec8-4c7e-43b8-a4a1-558d93eda04e"
-            $params = Get-Parameters -data $result.Parameters
+            $params = Get-Parameters -data $result
             $params.DirectoryObjectId | Should -Be "c28ccec8-4c7e-43b8-a4a1-558d93eda04e"
         }
 
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraDeletedApplication"
+            Mock -CommandName Remove-MgDirectoryDeletedItem -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraDeletedApplication"
             $result = Remove-EntraDeletedApplication -ObjectId "c28ccec8-4c7e-43b8-a4a1-558d93eda04e"
-            $params = Get-Parameters -data $result.Parameters
+            $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         } 
     }

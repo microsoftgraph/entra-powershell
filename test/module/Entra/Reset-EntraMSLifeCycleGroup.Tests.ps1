@@ -4,19 +4,12 @@ BeforeAll {
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
-        return @(
-            [PSCustomObject]@{
-                "Parameters"    = $args
-            }
-        )
-    }  
-    Mock -CommandName Invoke-MgRenewGroup -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Invoke-MgRenewGroup -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Reset-EntraMSLifeCycleGroup" {
     Context "Test for Reset-EntraMSLifeCycleGroup" {
-        It "Should return empty id" {
+        It "Should renews a specified group" {
             $result = Reset-EntraMSLifeCycleGroup -Id "056b2531-005e-4f3e-be78-01a71ea30a04"
             $result | Should -BeNullOrEmpty
 
@@ -32,16 +25,19 @@ Describe "Reset-EntraMSLifeCycleGroup" {
         }
 
         It "Should contain GroupId in parameters when passed Id to it" {
+            Mock -CommandName Invoke-MgRenewGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+
             $result = Reset-EntraMSLifeCycleGroup -Id "056b2531-005e-4f3e-be78-01a71ea30a04"
-            $params = Get-Parameters -data $result.Parameters
+            $params = Get-Parameters -data $result
             $params.GroupId | Should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
         }
 
         It "Should contain 'User-Agent' header" {
+            Mock -CommandName Invoke-MgRenewGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Reset-EntraMSLifeCycleGroup"
-            
             $result = Reset-EntraMSLifeCycleGroup -Id "056b2531-005e-4f3e-be78-01a71ea30a04"
-            $params = Get-Parameters -data $result.Parameters
+            $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
     }

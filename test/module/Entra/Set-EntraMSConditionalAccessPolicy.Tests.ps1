@@ -4,14 +4,7 @@ BeforeAll {
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
-        return @(
-            [PSCustomObject]@{
-                "Parameters"    = $args
-            }
-        )
-    }  
-    Mock -CommandName Update-MgIdentityConditionalAccessPolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Update-MgIdentityConditionalAccessPolicy -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Set-EntraMSConditionalAccessPolicy" {
@@ -67,43 +60,48 @@ Describe "Set-EntraMSConditionalAccessPolicy" {
         }
 
         It "Should contain ConditionalAccessPolicyId in parameters when passed PolicyId to it" {
+            Mock -CommandName Update-MgIdentityConditionalAccessPolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            
             $result = Set-EntraMSConditionalAccessPolicy -PolicyId "9cc10bb0-3d8f-4a2b-aafa-e00107b919fc" -DisplayName "test"
-            $params = Get-Parameters -data $result.Parameters
+            $params = Get-Parameters -data $result
             $params.ConditionalAccessPolicyId | Should -Be "9cc10bb0-3d8f-4a2b-aafa-e00107b919fc"
         }
 
         It "Should contain ClientAppTypes in parameters when passed Conditions to it" {
+            Mock -CommandName Update-MgIdentityConditionalAccessPolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+
             $Condition = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
             $Condition.clientAppTypes = @("mobileAppsAndDesktopClients","browser")
             $Controls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls
             $SessionControls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls
             $result = Set-EntraMSConditionalAccessPolicy -PolicyId "9cc10bb0-3d8f-4a2b-aafa-e00107b919fc" -DisplayName "test" -State enabled -Conditions $Condition -GrantControls $Controls -SessionControls $SessionControls
-            $result | Should -BeNullOrEmpty
-            $params = Get-Parameters -data $result.Parameters
+            $params = Get-Parameters -data $result
             $params.Conditions.ClientAppTypes | Should -Be @("mobileAppsAndDesktopClients","browser")
 
             Should -Invoke -CommandName Update-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should contain BuiltInControls in parameters when passed GrantControls to it" {
+            Mock -CommandName Update-MgIdentityConditionalAccessPolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+
             $Condition = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
             $Controls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls
             $Controls._Operator = "AND"
             $Controls.BuiltInControls = @("mfa")
             $SessionControls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls
             $result = Set-EntraMSConditionalAccessPolicy -PolicyId "9cc10bb0-3d8f-4a2b-aafa-e00107b919fc" -DisplayName "test" -State enabled -Conditions $Condition -GrantControls $Controls -SessionControls $SessionControls
-            $result | Should -BeNullOrEmpty
-            $params = Get-Parameters -data $result.Parameters
+            $params = Get-Parameters -data $result
             $params.GrantControls.BuiltInControls | Should -Be @("mfa")
 
             Should -Invoke -CommandName Update-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraMSConditionalAccessPolicy"
+            Mock -CommandName Update-MgIdentityConditionalAccessPolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraMSConditionalAccessPolicy"
             $result = Set-EntraMSConditionalAccessPolicy -PolicyId "9cc10bb0-3d8f-4a2b-aafa-e00107b919fc" -DisplayName "test"
-            $params = Get-Parameters -data $result.Parameters
+            $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }  
     }

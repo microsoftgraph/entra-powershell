@@ -4,19 +4,12 @@ BeforeAll {
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
-        return @(
-            [PSCustomObject]@{
-              "Parameters"      = $args
-            }
-        )
-    }  
-    Mock -CommandName Remove-MgGroup -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Remove-MgGroup -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Remove-EntraMSGroup" {
     Context "Test for Remove-EntraMSGroup" {
-        It "Should return empty Id" {
+        It "Should remove a group" {
             $result = Remove-EntraMSGroup -Id "1d8172f7-2552-473e-bb76-e6c9ef95609c"
             $result | Should -BeNullOrEmpty
 
@@ -32,16 +25,19 @@ Describe "Remove-EntraMSGroup" {
         }   
 
         It "Should contain GroupId in parameters when passed Id to it" {
+            Mock -CommandName Remove-MgGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+
             $result = Remove-EntraMSGroup -Id "1d8172f7-2552-473e-bb76-e6c9ef95609c"
-            $params = Get-Parameters -data $result.Parameters
+            $params = Get-Parameters -data $result
             $params.GroupId | Should -Be "1d8172f7-2552-473e-bb76-e6c9ef95609c"
         }
 
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraMSGroup"
+            Mock -CommandName Remove-MgGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraMSGroup"
             $result = Remove-EntraMSGroup -Id "1d8172f7-2552-473e-bb76-e6c9ef95609c"
-            $params = Get-Parameters -data $result.Parameters
+            $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         } 
     }

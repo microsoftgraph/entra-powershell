@@ -17,7 +17,7 @@ BeforeAll {
 
 Describe "Remove-EntraMSLifecyclePolicyGroup" {
     Context "Test for Remove-EntraMSLifecyclePolicyGroup" {
-        It "Should return empty Id" {
+        It "Should remove a group from a lifecycle policy" {
             $result = Remove-EntraMSLifecyclePolicyGroup  -Id "c9a455d8-982e-4c06-86d8-8dab15f03295" -GroupId "bea81df1-91cb-4b6e-aa79-b40888fe0b8b"
             $result.Value | Should -Be $true
 

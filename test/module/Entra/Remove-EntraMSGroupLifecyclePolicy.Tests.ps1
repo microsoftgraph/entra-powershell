@@ -4,19 +4,12 @@ BeforeAll {
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
-        return @(
-            [PSCustomObject]@{
-              "Parameters"      = $args
-            }
-        )
-    }  
-    Mock -CommandName Remove-MgGroupLifecyclePolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Remove-MgGroupLifecyclePolicy -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Remove-EntraMSGroupLifecyclePolicy" {
     Context "Test for Remove-EntraMSGroupLifecyclePolicy" {
-        It "Should return empty Id" {
+        It "Should remove a groupLifecyclePolicies" {
             $result = Remove-EntraMSGroupLifecyclePolicy -Id "a47d4510-08c8-4437-99e9-71ca88e7af0f"
             $result | Should -BeNullOrEmpty
 
@@ -32,16 +25,19 @@ Describe "Remove-EntraMSGroupLifecyclePolicy" {
         }   
 
         It "Should contain GroupLifecyclePolicyId in parameters when passed Id to it" {
+            Mock -CommandName Remove-MgGroupLifecyclePolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+
             $result = Remove-EntraMSGroupLifecyclePolicy -Id "a47d4510-08c8-4437-99e9-71ca88e7af0f"
-            $params = Get-Parameters -data $result.Parameters
+            $params = Get-Parameters -data $result
             $params.GroupLifecyclePolicyId | Should -Be "a47d4510-08c8-4437-99e9-71ca88e7af0f"
         }
 
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraMSGroupLifecyclePolicy"
+            Mock -CommandName Remove-MgGroupLifecyclePolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraMSGroupLifecyclePolicy"
             $result = Remove-EntraMSGroupLifecyclePolicy -Id "a47d4510-08c8-4437-99e9-71ca88e7af0f"
-            $params = Get-Parameters -data $result.Parameters
+            $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         } 
     }
