@@ -9,7 +9,6 @@
     CustomScript = @'
     PROCESS {    
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{}
         if($null -ne $PSBoundParameters["ErrorAction"])
         {
@@ -68,7 +67,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Get-MgContext @params -Headers $customHeaders
+        $response = Get-MgContext @params
         $response | ForEach-Object {
             if($null -ne $_) {
             Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
