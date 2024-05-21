@@ -4,7 +4,7 @@ description: This article provides details on the Add-EntraGroupMember command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/27/2024
+ms.date: 11/10/2023
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -87,4 +87,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraGroupMember](Get-EntraGroupMember.md)
 
 [Remove-EntraGroupMember](Remove-EntraGroupMember.md)
-
