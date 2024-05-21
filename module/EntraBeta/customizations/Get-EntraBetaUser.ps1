@@ -9,6 +9,7 @@
     CustomScript = @'
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{SearchString = "Filter"; ObjectId = "Id"}
         if($null -ne $PSBoundParameters["SearchString"])
         {
@@ -41,7 +42,7 @@
         {
             if($PSBoundParameters["All"])
             {
-                $params["All"] = $Null
+                $params["All"] = $PSBoundParameters["All"]
             }
         }
         if($PSBoundParameters.ContainsKey("Debug"))
@@ -51,13 +52,49 @@
         if($null -ne $PSBoundParameters["Top"])
         {
             $params["Top"] = $PSBoundParameters["Top"]
+        }       
+	    if($null -ne $PSBoundParameters["WarningVariable"])
+        {
+            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+        }
+        if($null -ne $PSBoundParameters["InformationVariable"])
+        {
+            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+        }
+	    if($null -ne $PSBoundParameters["InformationAction"])
+        {
+            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+        }
+        if($null -ne $PSBoundParameters["OutVariable"])
+        {
+            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+        }
+        if($null -ne $PSBoundParameters["OutBuffer"])
+        {
+            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+        }
+        if($null -ne $PSBoundParameters["ErrorVariable"])
+        {
+            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+        }
+        if($null -ne $PSBoundParameters["PipelineVariable"])
+        {
+            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+        }
+        if($null -ne $PSBoundParameters["ErrorAction"])
+        {
+            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        }
+        if($null -ne $PSBoundParameters["WarningAction"])
+        {
+            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Get-MgBetaUser @params 
+        $response = Get-MgBetaUser @params -Headers $customHeaders 
         
         $response | ForEach-Object {
             if ($null -ne $_) {

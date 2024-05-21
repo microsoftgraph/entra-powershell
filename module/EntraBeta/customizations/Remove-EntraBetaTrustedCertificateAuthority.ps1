@@ -9,6 +9,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
+        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
         
         `$tenantId = (Get-MgContext).TenantId
         `$params["Uri"] = "/beta/organization/`$tenantId/certificateBasedAuthConfiguration"
@@ -25,7 +26,7 @@
         `$certNotFound = `$true
         `$modifiedCert = `$PSBoundParameters["CertificateAuthorityInformation"]
         `$previusCerts = @()        
-        Get-EntraTrustedCertificateAuthority | ForEach-Object {
+        Get-EntraBetaTrustedCertificateAuthority | ForEach-Object {
             
             if((`$_.TrustedIssuer -eq `$modifiedCert.TrustedIssuer) -and (`$_.TrustedIssuerSki -eq `$modifiedCert.TrustedIssuerSki)){
                 `$certNotFound = `$false
@@ -60,7 +61,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================``n")
                 
-        Invoke-GraphRequest @params
+        Invoke-GraphRequest @params -Headers `$customHeaders
         }
 "@
 }

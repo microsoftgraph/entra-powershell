@@ -9,6 +9,7 @@
     CustomScript = @"
     PROCESS {    
         `$params = @{}
+        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
         `$keysChanged = @{}
         if(`$null -ne `$PSBoundParameters["Filter"])
         {
@@ -31,7 +32,7 @@
         {
             if(`$PSBoundParameters["All"])
             {
-                `$params["All"] = `$Null
+                `$params["All"] = `$PSBoundParameters["All"]
             }
         }
         if(`$PSBoundParameters.ContainsKey("Debug"))
@@ -43,7 +44,7 @@
         `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        `$response = Get-MgBetaAuditLogSignIn @params
+        `$response = Get-MgBetaAuditLogSignIn @params -Headers `$customHeaders
         `$response | ForEach-Object {
             if (`$null -ne `$_) {
                 `$_ | Add-Member -MemberType AliasProperty -Name RiskEventTypes -Value RiskEventTypesV2 -Force

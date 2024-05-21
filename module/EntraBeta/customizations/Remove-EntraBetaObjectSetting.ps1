@@ -8,7 +8,8 @@
     Outputs = $null
     CustomScript = @"
     PROCESS {  
-        `$params = @{}  
+        `$params = @{}
+        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
                 if (`$null -ne `$PSBoundParameters["TargetType"]) {
                     `$params["TargetType"] = `$PSBoundParameters["TargetType"]
                 }
@@ -29,7 +30,7 @@
                     Write-Debug("=========================================================================``n")
                     `$Method = "DELETE"
                     `$URI = ' https://graph.microsoft.com/beta/{0}/{1}/settings/{2}' -f `$TargetType,`$TargetObjectId, `$ID
-                    `$response = Invoke-GraphRequest -Uri `$uri -Method `$Method
+                    `$response = Invoke-GraphRequest -Headers `$customHeaders -Uri `$uri -Method `$Method
                     `$response
     }
 "@

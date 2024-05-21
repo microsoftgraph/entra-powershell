@@ -52,6 +52,7 @@ function Set-EntraBetaDirSyncFeature {
         PROCESS {
     
             $params = @{}
+            $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
             if ($PSBoundParameters.ContainsKey("Verbose")) {
                 $Verbose = $Null
             }
@@ -101,7 +102,7 @@ function Set-EntraBetaDirSyncFeature {
                 $decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
             }
             if ($decision -eq 0) {
-                $response = Update-MgBetaDirectoryOnPremiseSynchronization -OnPremisesDirectorySynchronizationId $OnPremisesDirectorySynchronizationId -BodyParameter $body -ErrorAction SilentlyContinue -ErrorVariable "er"
+                $response = Update-MgBetaDirectoryOnPremiseSynchronization -Headers $customHeaders -OnPremisesDirectorySynchronizationId $OnPremisesDirectorySynchronizationId -BodyParameter $body -ErrorAction SilentlyContinue -ErrorVariable "er"
                 $er
                 break
                 if([string]::IsNullOrWhiteSpace($er)) {

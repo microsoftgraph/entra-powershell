@@ -11,6 +11,7 @@ function Set-EntraBetaDirSyncConfiguration {
 
     PROCESS {
         $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $Null
         }
@@ -55,7 +56,7 @@ function Set-EntraBetaDirSyncConfiguration {
                     }
                 }
             }
-            $response = Update-MgBetaDirectoryOnPremiseSynchronization -OnPremisesDirectorySynchronizationId $OnPremisesDirectorySynchronizationId -BodyParameter $params
+            $response = Update-MgBetaDirectoryOnPremiseSynchronization -Headers $customHeaders -OnPremisesDirectorySynchronizationId $OnPremisesDirectorySynchronizationId -BodyParameter $params
             $response
         }
         else {

@@ -9,6 +9,7 @@
     CustomScript = @'
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{ObjectId = "Id"}
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
@@ -32,9 +33,7 @@
                                })
         } | ConvertTo-Json
         
-        $headers = @{
-            'Content-Type' = 'application/json'
-        }
+        $customHeaders['Content-Type'] = 'application/json'
 
         $graphApiEndpoint = "https://graph.microsoft.com/v1.0/users/$UserId/microsoft.graph.assignLicense"
 
@@ -46,7 +45,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Invoke-GraphRequest -Uri $graphApiEndpoint -Method Post -Headers $headers -Body $jsonBody
+        $response = Invoke-GraphRequest -Headers $customHeaders -Uri $graphApiEndpoint -Method Post -Body $jsonBody
 
         $response | ForEach-Object {
             if($null -ne $_) {
