@@ -1,12 +1,12 @@
 ---
 title: Get-EntraGroup.
-description: This article provides details on the Get-EntraGroup command.
+description: This article explains the Get-EntraGroup command.
 
 ms.service: active-directory
 ms.topic: reference
 ms.date: 03/08/2024
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi
+ms.reviewer: stevemutungi254
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
@@ -18,11 +18,13 @@ schema: 2.0.0
 # Get-EntraGroup
 
 ## SYNOPSIS
+
 Gets a group.
 
 ## SYNTAX
 
 ### GetQuery (Default)
+
 ```powershell
 Get-EntraGroup 
  [-Top <Int32>] 
@@ -32,6 +34,7 @@ Get-EntraGroup
 ```
 
 ### GetByValue
+
 ```powershell
 Get-EntraGroup 
  [-SearchString <String>] 
@@ -40,6 +43,7 @@ Get-EntraGroup
 ```
 
 ### GetById
+
 ```powershell
 Get-EntraGroup 
  -ObjectId <String> 
@@ -48,14 +52,18 @@ Get-EntraGroup
 ```
 
 ## DESCRIPTION
+
 The Get-EntraGroup cmdlet gets a group in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Get all groups
+
 ```powershell
+PS C:\>Connect-Entra -Scopes 'GroupMember.Read.All'
 PS C:\>Get-EntraGroup
 ```
+
 ```output
 ObjectId                             DisplayName                          Description
 --------                             -----------                          -----------
@@ -82,9 +90,12 @@ This group should not be deleted.
 This example demonstrates how to get all groups from Microsoft Entra ID.  
 
 ### Example 2: Get a specific group by using an ObjectId
+
 ```powershell
-PS C:\>Get-EntraGroup -ObjectId "fc446647-e8ff-47f1-a489-cf31694c0d35"
+PS C:\>Connect-Entra -Scopes 'GroupMember.Read.All'
+PS C:\>Get-EntraGroup -ObjectId 'fc446647-e8ff-47f1-a489-cf31694c0d35'
 ```
+
 ```output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
@@ -94,10 +105,13 @@ UPDISPLAY   fc446647-e8ff-47f1-a489-cf31694c0d35 Remoteliving Upd1        {Unifi
 This example demonstrates how to retrieve specific group by providing ID.  
 This command gets information for the group that has the specified ID.
 
-### Example 3: Get top five groups 
+### Example 3: Get top five groups
+
 ```powershell
+PS C:\>Connect-Entra -Scopes 'GroupMember.Read.All'
 PS C:\>Get-EntraGroup -Top 5
 ```
+
 ```output
 DisplayName             Id                                   MailNickname          Description
 -----------             --                                   ------------          -----------
@@ -112,22 +126,28 @@ This example demonstrates how to get top five groups from Microsoft Entra ID.
 This command gets the five groups in Microsoft Entra ID.
 
 ### Example 4: Get a group by DisplayName
+
 ```powershell
+PS C:\>Connect-Entra -Scopes 'GroupMember.Read.All'
 PS C:\>Get-EntraGroup -Filter "DisplayName eq 'Parents of Contoso'"
 ```
+
 ```output
 DisplayName        Id                                   MailNickname     Description        GroupTypes
 -----------        --                                   ------------     -----------        ----------
 Parents of Contoso 05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso Parents of Contoso {Unified}
 ```
 
-In this example, we retrieve group by display name from Microsoft Entra ID.      
-This command gets the specified group. 
+In this example, we retrieve group by display name from Microsoft Entra ID.
+This command gets the specified group.
 
 ### Example 5: Get groups that contain a search string
+
 ```powershell
-PS C:\>Get-EntraGroup -SearchString "New"
+PS C:\>Connect-Entra -Scopes 'GroupMember.Read.All'
+PS C:\>Get-EntraGroup -SearchString 'New'
 ```
+
 ```output
 DisplayName             Id                                   MailNickname          Description             GroupTypes
 -----------             --                                   ------------          -----------             ----------
@@ -140,6 +160,7 @@ This example demonstrates how to retrieve groups that include the text new in th
 ## PARAMETERS
 
 ### -All
+
 If true, return all groups.
 If false, return the number of objects specified by the Top parameter.
 
@@ -156,6 +177,7 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
+
 Specifies an oData v3.0 filter statement.
 This parameter controls which objects are returned.
 
@@ -172,6 +194,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 The unique identifier of a group in Microsoft Entra ID (ObjectId)
 
 ```yaml
@@ -187,6 +210,7 @@ Accept wildcard characters: False
 ```
 
 ### -SearchString
+
 Specifies a search string.
 
 ```yaml
@@ -202,6 +226,7 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
@@ -217,6 +242,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS

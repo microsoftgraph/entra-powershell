@@ -6,7 +6,7 @@ ms.service: active-directory
 ms.topic: reference
 ms.date: 03/08/2024
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi
+ms.reviewer: stevemutungi254
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
@@ -18,6 +18,7 @@ schema: 2.0.0
 # Get-EntraGroupOwner
 
 ## SYNOPSIS
+
 Gets an owner of a group.
 
 ## SYNTAX
@@ -31,6 +32,7 @@ Get-EntraGroupOwner
 ```
 
 ## DESCRIPTION
+
 The Get-EntraGroupOwner cmdlet gets an owner of a group in Microsoft Entra ID.
 
 ## EXAMPLES
@@ -38,8 +40,10 @@ The Get-EntraGroupOwner cmdlet gets an owner of a group in Microsoft Entra ID.
 ### Example 1: Get a group owner by ID
 
 ```powershell
-PS C:\>Get-EntraGroupOwner -ObjectId "ba828166-dcd3-4349-aee9-9fbbf619105d"
+PS C:\>Connect-Entra -Scopes 'GroupMember.Read.All'
+PS C:\>Get-EntraGroupOwner -ObjectId 'ba828166-dcd3-4349-aee9-9fbbf619105d'
 ```
+
 ```output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
@@ -56,9 +60,12 @@ onPremisesUserPrincipalName     :
 This example demonstrates how to retrieve the owner of a specific group.  
 
 ### Example 2: Gets all group owners
+
 ```powershell
-PS C:\>Get-EntraGroupOwner -ObjectId "c072b115-ed7b-47cb-90d3-d5019d8bfd51" -All $true
+PS C:\>Connect-Entra -Scopes 'GroupMember.Read.All'
+PS C:\>Get-EntraGroupOwner -ObjectId 'c072b115-ed7b-47cb-90d3-d5019d8bfd51' -All
 ```
+
 ```output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
@@ -77,11 +84,13 @@ jobTitle                        :
 
 This example demonstrates how to retrieve the all owner of a specific group.  
 
-
 ### Example 3: Gets two group owners
+
 ```powershell
-PS C:\>Get-EntraGroupOwner -ObjectId "c072b115-ed7b-47cb-90d3-d5019d8bfd51" -Top 2
+PS C:\>Connect-Entra -Scopes 'GroupMember.Read.All'
+PS C:\>Get-EntraGroupOwner -ObjectId 'c072b115-ed7b-47cb-90d3-d5019d8bfd51' -Top 2
 ```
+
 ```output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
@@ -104,10 +113,10 @@ id                              : 996d39aa-fdac-4d97-aa3d-c81fb47362ac
 
 This example demonstrates how to retrieve the top two owners of a specific group.  
 
-
 ## PARAMETERS
 
 ### -All
+
 If true, return all group owners.
 If false, return the number of objects specified by the Top parameter.
 
@@ -124,6 +133,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
@@ -139,6 +149,7 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
@@ -154,6 +165,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -167,4 +179,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Add-EntraGroupOwner](Add-EntraGroupOwner.md)
 
 [Remove-EntraGroupOwner](Remove-EntraGroupOwner.md)
-

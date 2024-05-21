@@ -1,12 +1,12 @@
 ---
 title: Add-EntraGroupMember.
-description: This article provides details on the Add-EntraGroupMember command.
+description: This article explains the Add-EntraGroupMember command.
 
 ms.service: active-directory
 ms.topic: reference
 ms.date: 11/10/2023
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi
+ms.reviewer: stevemutungi254
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
@@ -18,6 +18,7 @@ schema: 2.0.0
 # Add-EntraGroupMember
 
 ## SYNOPSIS
+
 Adds a member to a group.
 
 ## SYNTAX
@@ -30,6 +31,7 @@ Add-EntraGroupMember
 ```
 
 ## DESCRIPTION
+
 The Add-EntraGroupMember cmdlet adds a member to a group.
 
 ## EXAMPLES
@@ -37,13 +39,16 @@ The Add-EntraGroupMember cmdlet adds a member to a group.
 ### Example 1: Add a member to a group
 
 ```powershell
-PS C:\>Add-EntraGroupMember -ObjectId "056b2531-005e-4f3e-be78-01a71ea30a04" -RefObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1"
+PS C:\>Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
+PS C:\>Add-EntraGroupMember -ObjectId '056b2531-005e-4f3e-be78-01a71ea30a04' -RefObjectId 'fd560167-ff1f-471a-8d74-3b0070abcea1'
 ```
-This command adds a member to a group.
+
+This command is used to add a member to a group. The `-ObjectId` parameter specifies the ID of the group to which the member should be added. The `-RefObjectId` parameter specifies the ID of the member to be added to the group.
 
 ## PARAMETERS
 
 ### -ObjectId
+
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
@@ -59,6 +64,7 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
+
 Specifies the ID of the Microsoft Entra ID object that assign as owner/manager/member.
 
 ```yaml
@@ -74,6 +80,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS

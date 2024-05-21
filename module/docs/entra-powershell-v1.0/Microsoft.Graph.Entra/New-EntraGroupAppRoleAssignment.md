@@ -6,7 +6,7 @@ ms.service: active-directory
 ms.topic: reference
 ms.date: 03/06/2024
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi
+ms.reviewer: stevemutungi254
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
@@ -18,6 +18,7 @@ schema: 2.0.0
 # New-EntraGroupAppRoleAssignment
 
 ## SYNOPSIS
+
 Assign a group of users to an application role.
 
 ## SYNTAX
@@ -32,17 +33,21 @@ New-EntraGroupAppRoleAssignment
 ```
 
 ## DESCRIPTION
+
 The New-EntraGroupAppRoleAssignment cmdlet assigns a group of users to an application role in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Assign a group of users to an application
+
 ```powershell
-PS C:\> $appname = "Box"
+PS C:\>Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+PS C:\>$appname = 'Box'
 $spo = Get-EntraServicePrincipal -Filter "Displayname eq '$appname'"
-$group = Get-EntraGroup -SearchString "Contoso Team"
+$group = Get-EntraGroup -SearchString 'Contoso Team'
 New-EntraGroupAppRoleAssignment -ObjectId $group.ObjectId -PrincipalId $group.ObjectId -ResourceId $spo.ObjectId -Id $spo.Approles[1].id
 ```
+
 ```output
 DeletedDateTime Id                                          AppRoleId                            CreatedDateTime      PrincipalDisplayName PrincipalId
 --------------- --                                          ---------                            ---------------      -------------------- -----------
@@ -62,6 +67,7 @@ This example demonstrates how to assign a group of users to an application role 
 ## PARAMETERS
 
 ### -Id
+
 Specifies the ID of the app role (defined on the resource service principal) to assign.
 
 ```yaml
@@ -77,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the unique identifier of group to which the new app role is to be assigned.
 
 ```yaml
@@ -92,6 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -PrincipalId
+
 Specifies the ID of a group.
 
 ```yaml
@@ -107,6 +115,7 @@ Accept wildcard characters: False
 ```
 
 ### -ResourceId
+
 The unique identifier (ID) for the resource service principal for which the assignment is made.  
 Required on create. Supports $filter (eq only).
 
@@ -123,6 +132,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -134,8 +144,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Get-EntraGroupAppRoleAssignment](Get-EntraGroupAppRoleAssignment.md)
-
 [Remove-EntraGroupAppRoleAssignment](Remove-EntraGroupAppRoleAssignment.md)
 
-[Managing applications in Microsoft Entra ID using PowerShell](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/ManageAppsAzureADPowerShell)
 

@@ -18,6 +18,7 @@ schema: 2.0.0
 # Get-EntraGroupMember
 
 ## SYNOPSIS
+
 Gets a member of a group.
 
 ## SYNTAX
@@ -31,14 +32,18 @@ Get-EntraGroupMember
 ```
 
 ## DESCRIPTION
+
 The Get-EntraGroupMember cmdlet gets a member of a group in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Get a group member by ID
+
 ```powershell
-PS C:\>Get-EntraGroupMember -ObjectId "05b0552e-39cd-4df4-a8f5-00ade912e83d" 
+PS C:\>Connect-Entra -Scopes 'GroupMember.Read.All'
+PS C:\>Get-EntraGroupMember -ObjectId '05b0552e-39cd-4df4-a8f5-00ade912e83d'
 ```
+
 ```output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
@@ -55,9 +60,12 @@ onPremisesUserPrincipalName     :
 This example demonstrates how to retrieve group member by ID.  
 
 ### Example 2: Get two group member
+
 ```powershell
-PS C:\>Get-EntraGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -Top 2 
+PS C:\>Connect-Entra -Scopes 'GroupMember.Read.All'
+PS C:\>Get-EntraGroupMember -ObjectId '0a58c57b-a9ae-49a2-824f-8e9cb86d4512' -Top 2 
 ```
+
 ```output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
@@ -84,9 +92,12 @@ consentProvidedForMinor         :
 This example demonstrates how to retrieve top two groups from Microsoft Entra ID.  
 
 ### Example 3: Get all members within a group by group ID
+
 ```powershell
-PS C:\>Get-EntraGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -All $true 
+PS C:\>Connect-Entra -Scopes 'GroupMember.Read.All'
+PS C:\>Get-EntraGroupMember -ObjectId '0a58c57b-a9ae-49a2-824f-8e9cb86d4512' -All 
 ```
+
 ```output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
@@ -99,11 +110,12 @@ identities                      : {System.Collections.Hashtable}
 consentProvidedForMinor         :
 ```
 
-This example retrieves all members within a group by group ID.  
+This command is used to retrieve all members of a specific group. The `-ObjectId` parameter specifies the ID of the group whose members should be retrieved. The `-All` parameter indicates that all members of the group should be retrieved.
 
 ## PARAMETERS
 
 ### -All
+
 If true, return all group members.
 If false, return the number of objects specified by the Top parameter.
 
@@ -120,6 +132,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
@@ -135,6 +148,7 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
@@ -150,6 +164,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
