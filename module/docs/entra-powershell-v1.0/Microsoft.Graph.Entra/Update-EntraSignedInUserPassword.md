@@ -39,7 +39,7 @@ The Update-EntraSignedInUserPassword cmdlet updates the password for the signed-
 ```powershell
 PS C:\>$CurrentPassword = ConvertTo-SecureString 'Test@1234' -AsPlainText -Force
 PS C:\>$NewPassword = ConvertTo-SecureString 'Test@1234' -AsPlainText -Force
-PS C:\>Update-AzureADSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword
+PS C:\>Update-EntraSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword
 ```
 
 This command updates the password for the signed-in user.
