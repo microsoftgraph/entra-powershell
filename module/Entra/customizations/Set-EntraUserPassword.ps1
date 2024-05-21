@@ -9,6 +9,7 @@
     CustomScript = @'
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{ObjectId = "Id"}
         if($null -ne $PSBoundParameters["ObjectId"])
         {
@@ -82,7 +83,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Update-MgUser -UserId $userId -PasswordProfile $PasswordProfile @params
+        $response = Update-MgUser -Headers $customHeaders -UserId $userId -PasswordProfile $PasswordProfile @params
         $response
     } 
 '@
