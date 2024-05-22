@@ -86,7 +86,7 @@ This example demonstrates how to create a group with Description parameter.
 Specifies a description of the group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -102,7 +102,7 @@ Accept wildcard characters: False
 Specifies the display name of the group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -118,7 +118,7 @@ Accept wildcard characters: False
 Indicates whether mail is enabled.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -134,7 +134,7 @@ Accept wildcard characters: False
 Specifies a nickname for mail.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -150,7 +150,7 @@ Accept wildcard characters: False
 Indicates whether the group is security-enabled.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 

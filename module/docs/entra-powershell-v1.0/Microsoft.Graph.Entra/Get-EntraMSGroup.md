@@ -96,7 +96,6 @@ Contoso Team 0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam  A collaboration a
 
 In this example, we'll provide the ID to retrieve a specific group.  
 
-
 ### Example 3: Get top five groups
 
 ```powershell
@@ -155,7 +154,7 @@ If true, return all groups.
 If false, return the number of objects specified by the Top parameter.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -171,7 +170,7 @@ Accept wildcard characters: False
 Specifies an oData v3.0 filter string to match a set of groups.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery
 Aliases:
 
@@ -187,7 +186,7 @@ Accept wildcard characters: False
 Specifies the ID of the group that this cmdlet gets.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -204,7 +203,7 @@ Specifies a search string.
 This cmdlet gets groups that have DisplayName or Description attributes that match the search string.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetVague
 Aliases:
 
@@ -221,7 +220,7 @@ Specifies the maximum number of records that this cmdlet gets.
 The default value is 100.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: GetQuery
 Aliases:
 
@@ -259,4 +258,3 @@ We recommend that you don't use this cmdlet in a production environment.
 [Remove-EntraMSGroup](Remove-EntraMSGroup.md)
 
 [Set-EntraMSGroup](Set-EntraMSGroup.md)
-

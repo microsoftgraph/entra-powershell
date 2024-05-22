@@ -52,7 +52,7 @@ This command is used to add an owner to a group. The `-ObjectId` parameter speci
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -68,7 +68,7 @@ Accept wildcard characters: False
 Specifies the ID of the Microsoft Entra ID object that will be assigned as owner/manager/member.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 

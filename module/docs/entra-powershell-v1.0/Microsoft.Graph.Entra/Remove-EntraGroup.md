@@ -59,7 +59,7 @@ This command is used to remove a group. The `-ObjectId` parameter specifies the 
 Specifies the object ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 

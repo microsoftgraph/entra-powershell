@@ -55,7 +55,7 @@ OwnerId  - Specifies the ID of an owner.
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -71,7 +71,7 @@ Accept wildcard characters: False
 Specifies the ID of an owner.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 

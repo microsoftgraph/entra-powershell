@@ -138,7 +138,7 @@ This example demonstrates how to create the new group with GroupTypes parameter.
 Specifies a description for the group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -154,7 +154,7 @@ Accept wildcard characters: False
 Specifies a display name for the group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -172,7 +172,7 @@ Specifies whether this group is mail enabled.
 Currently, you can't create mail enabled groups in  Microsoft Entra ID.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -189,7 +189,7 @@ Specifies a mail nickname for the group.
 If MailEnabled is $False, you must still specify a mail nickname.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -206,7 +206,7 @@ Specifies whether the group is security enabled.
 For security groups, this value must be $True.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -223,7 +223,7 @@ Specifies that the group is a unified or dynamic group.
 
 Notes: 
 
-* This parameter currently can't be used to create dynamic groups. To create a dynamic group in PowerShell, you must use the Entra module.
+- This parameter currently can't be used to create dynamic groups. To create a dynamic group in PowerShell, you must use the Entra module.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -242,20 +242,20 @@ Accept wildcard characters: False
 This parameter determines the visibility of the group's content and members list.
 This parameter can take one of the following values:
 
-* Public: Anyone can view the contents of the group.
-* Private: Only members can view the content of the group.
-* HiddenMembership:  Only members can view the content of the group and only members, owners, Global/Company Administrator, User Administrator, and Helpdesk Administrators can view the members list of the group.
+- Public: Anyone can view the contents of the group.
+- Private: Only members can view the content of the group.
+- HiddenMembership:  Only members can view the content of the group and only members, owners, Global/Company Administrator, User Administrator, and Helpdesk Administrators can view the members list of the group.
 
 If no value is provided, the default value is "Public."
 
 Notes:
 
-* This parameter is only valid for groups that have the groupType set to "Unified."
-* If a group has this attribute set to "HiddenMembership," it can't be changed later.
-* Anyone can join a group that has this attribute set to "Public" If the attribute is set to Private or HiddenMembership, only owners can add new members to the group and requests to join the group need approval of the owners.
+- This parameter is only valid for groups that have the groupType set to "Unified."
+- If a group has this attribute set to "HiddenMembership," it can't be changed later.
+- Anyone can join a group that has this attribute set to "Public" If the attribute is set to Private or HiddenMembership, only owners can add new members to the group and requests to join the group need approval of the owners.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -271,7 +271,7 @@ Accept wildcard characters: False
 Indicates whether group can be assigned to a role. This property can only be set at the time of group creation and can't be modified on an existing group.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -309,4 +309,3 @@ We recommend that you don't use this cmdlet in a production environment.
 [Set-EntraMSGroup](Set-EntraMSGroup.md)
 
 [Using attributes to create advanced rules](https://azure.microsoft.com/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/)
-

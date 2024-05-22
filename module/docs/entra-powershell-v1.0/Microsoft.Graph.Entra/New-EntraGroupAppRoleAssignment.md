@@ -71,7 +71,7 @@ This example demonstrates how to assign a group of users to an application role 
 Specifies the ID of the app role (defined on the resource service principal) to assign.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -87,7 +87,7 @@ Accept wildcard characters: False
 Specifies the unique identifier of group to which the new app role is to be assigned.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -103,7 +103,7 @@ Accept wildcard characters: False
 Specifies the ID of a group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -120,7 +120,7 @@ The unique identifier (ID) for the resource service principal for which the assi
 Required on create. Supports $filter (eq only).
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -144,6 +144,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Get-EntraGroupAppRoleAssignment](Get-EntraGroupAppRoleAssignment.md)
+
 [Remove-EntraGroupAppRoleAssignment](Remove-EntraGroupAppRoleAssignment.md)
-
-

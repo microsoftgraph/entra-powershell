@@ -121,7 +121,7 @@ If true, return all group owners.
 If false, return the number of objects specified by the Top parameter.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -137,7 +137,7 @@ Accept wildcard characters: False
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -153,7 +153,7 @@ Accept wildcard characters: False
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 

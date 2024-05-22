@@ -51,8 +51,6 @@ Id                                   AlternateNotificationEmails GroupLifetimeIn
 This example demonstrates how to retrieve lifecycle policy object by Id in Microsoft Entra ID.  
 This command retrieves the lifecycle policy object to which a group belongs.
 
-This command is used to retrieve the groups associated with a specific Microsoft Lifecycle Policy. The -Id parameter specifies the ID of the Lifecycle Policy whose associated groups should be retrieved.
-
 ## PARAMETERS
 
 ### -Id
@@ -60,7 +58,7 @@ This command is used to retrieve the groups associated with a specific Microsoft
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 

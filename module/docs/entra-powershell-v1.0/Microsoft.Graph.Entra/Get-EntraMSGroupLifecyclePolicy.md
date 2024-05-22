@@ -85,7 +85,7 @@ This command is used to retrieve a specific Microsoft Group Lifecycle Policy. Th
 Specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 

@@ -103,7 +103,7 @@ This example demonstrates how to update a property for an existing Microsoft Ent
 Specifies a description for the group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -119,7 +119,7 @@ Accept wildcard characters: False
 Specifies a display name for the group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -152,7 +152,7 @@ Accept wildcard characters: False
 Specifies the object ID of a group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -168,7 +168,7 @@ Accept wildcard characters: False
 Indicates whether this group is mail enabled.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -184,7 +184,7 @@ Accept wildcard characters: False
 Specifies a mail nickname for the group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -200,7 +200,7 @@ Accept wildcard characters: False
 Indicates whether the group is security enabled.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -229,7 +229,7 @@ Notes:
 * Anyone can join a group that has this attribute set to "Public." If the attribute is set to Private or HiddenMembership, only owner can add new members to the group and requests to join the group need approval of the owner.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -245,7 +245,7 @@ Accept wildcard characters: False
 This property can only be set at the time of group creation and can't be modified on an existing group.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 

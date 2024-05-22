@@ -165,7 +165,7 @@ If true, return all groups.
 If false, return the number of objects specified by the Top parameter.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -182,7 +182,7 @@ Specifies an oData v3.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery
 Aliases:
 
@@ -198,7 +198,7 @@ Accept wildcard characters: False
 The unique identifier of a group in Microsoft Entra ID (ObjectId)
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -214,7 +214,7 @@ Accept wildcard characters: False
 Specifies a search string.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetVague
 Aliases:
 
@@ -230,7 +230,7 @@ Accept wildcard characters: False
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: GetQuery
 Aliases:
 

@@ -68,7 +68,7 @@ Notification emails for groups that have no owners are sent to these email addre
 List of email addresses separated by a ";".
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -84,7 +84,7 @@ Accept wildcard characters: False
 The number of days a group can exist before it needs to be renewed.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -100,7 +100,7 @@ Accept wildcard characters: False
 Specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -119,7 +119,7 @@ Allows the admin to select which office 365 groups the policy applies to.
 "Selected" allow the admin to choose specific Office 365 groups that the policy applies to.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 

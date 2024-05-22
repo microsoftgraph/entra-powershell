@@ -58,7 +58,7 @@ MemberId - Specifies the ID of the member to remove.
 Specifies the ID of the member to remove.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -74,7 +74,7 @@ Accept wildcard characters: False
 Specifies the object ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 

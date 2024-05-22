@@ -53,7 +53,7 @@ AppRoleAssignmentId - Specifies the object ID of the group application role assi
 Specifies the object ID of the group application role assignment.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -69,7 +69,7 @@ Accept wildcard characters: False
 Specifies the object ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 

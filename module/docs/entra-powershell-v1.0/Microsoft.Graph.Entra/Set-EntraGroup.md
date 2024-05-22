@@ -92,7 +92,7 @@ This example demonstrates how to enable a group mail.
 Specifies a description.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -108,7 +108,7 @@ Accept wildcard characters: False
 Specifies a display name.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -124,7 +124,7 @@ Accept wildcard characters: False
 Indicates whether mail is enabled.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -140,7 +140,7 @@ Accept wildcard characters: False
 Specifies a nickname for the mail.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -156,7 +156,7 @@ Accept wildcard characters: False
 Specifies the object ID of a group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -172,7 +172,7 @@ Accept wildcard characters: False
 Indicates whether security is enabled.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
