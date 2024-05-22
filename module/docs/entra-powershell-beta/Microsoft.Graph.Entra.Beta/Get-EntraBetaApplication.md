@@ -26,7 +26,7 @@ Gets an application.
 ```powershell
 Get-EntraBetaApplication 
  [-Top <Int32>] 
- [-All <Boolean>] 
+ [-All] 
  [-Filter <String>] 
  [<CommonParameters>]
 ```
