@@ -3,71 +3,6 @@
 # ------------------------------------------------------------------------------
 
 function Set-EntraDomainFederationSettings {
-    <#
-    .SYNOPSIS
-        Updates settings for a federated domain.
-    
-    .DESCRIPTION
-        The Set-EntraDomainFederationSettings cmdlet is used to update the settings of a single sign-on domain.
-    
-    .PARAMETER ActiveLogOnUri
-        A URL that specifies the end point used by active clients when authenticating with domains set up for single sign-on (also known as identity federation) in
-        Microsoft Azure Active Directory.
-        
-    .PARAMETER DomainName 
-        The fully qualified domain name (FQDN) to update.
-
-    .PARAMETER FederationBrandName
-        The name of the string value shown to users when signing in to Microsoft Azure Active Directory. We recommend that customers use something that is familiar to
-        users such as "Contoso Inc."
-
-    .PARAMETER IssuerUri
-        The unique identifier of the domain in the Microsoft Azure Active Directory Identity platform derived from the federation server.
-    
-    .PARAMETER LogOffUri
-        The URL clients are redirected to when they sign out of Microsoft Azure Active Directory services.
-
-    .PARAMETER MetadataExchangeUri
-        The URL that specifies the metadata exchange end point used for authentication from rich client applications such as Lync Online.
-    
-    .PARAMETER NextSigningCertificate
-        The next token signing certificate that will be used to sign tokens when the primary signing certificate expires.
-
-    .PARAMETER PassiveLogOnUri
-        The URL that web-based clients will be directed to when signing in to Microsoft Azure Active Directory services.
-
-    .PARAMETER SigningCertificate
-        The current certificate used to sign tokens passed to the Microsoft Azure Active Directory Identity platform.
-
-    .PARAMETER TenantId
-        The unique ID of the tenant to perform the operation on. If this is not provided, then the value will default to the tenant of the current user. This parameter is
-        only applicable to partner users.
-
-    .PARAMETER SupportsMfa
-        Indicates whether the IDP STS supports MFA.
-
-    .PARAMETER DefaultInteractiveAuthenticationMethod
-        Indicates the default authentication method that should be used when an application requires the user to have interactive login.
-
-    .PARAMETER OpenIdConnectDiscoveryEndpoint
-        The OpenID Connect Discovery Endpoint of the federated IDP STS.
-
-    .PARAMETER PromptLoginBehavior
-        Specifies the prompt login behavior.
-
-    .PARAMETER PreferredAuthenticationProtocol
-        Specifies the preferred authentication protocol. 
-
-    .PARAMETER SigningCertificateUpdateStatus
-        Specifies the update status of the signing certificate.
-
-    .PARAMETER <CommonParameters>
-            This cmdlet supports the common parameters: Verbose, Debug,
-        ErrorAction, ErrorVariable, WarningAction, WarningVariable,
-        OutBuffer, PipelineVariable, and OutVariable. For more information, see
-        about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
-    
-    #>
         [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
         param(
             [Parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true)][string]$DomainName,
@@ -85,6 +20,7 @@ function Set-EntraDomainFederationSettings {
             ) 
         process { 
             $params = @{}
+            $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
             if($PSBoundParameters.ContainsKey("Verbose"))
             {
                 $params["Verbose"] = $Null
@@ -145,12 +81,48 @@ function Set-EntraDomainFederationSettings {
             if ($PSBoundParameters.ContainsKey("Debug")) {
                 $params["Debug"] = $Null
             }
+            if($null -ne $PSBoundParameters["WarningVariable"])
+            {
+                $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+            }
+            if($null -ne $PSBoundParameters["InformationVariable"])
+            {
+                $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+            }
+            if($null -ne $PSBoundParameters["InformationAction"])
+            {
+                $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+            }
+            if($null -ne $PSBoundParameters["OutVariable"])
+            {
+                $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+            }
+            if($null -ne $PSBoundParameters["OutBuffer"])
+            {
+                $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+            }
+            if($null -ne $PSBoundParameters["ErrorVariable"])
+            {
+                $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+            }
+            if($null -ne $PSBoundParameters["PipelineVariable"])
+            {
+                $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+            }
+            if($null -ne $PSBoundParameters["ErrorAction"])
+            {
+                $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+            }
+            if($null -ne $PSBoundParameters["WarningAction"])
+            {
+                $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+            }
             Write-Debug("============================ TRANSFORMATIONS ============================")
             $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
             Write-Debug("=========================================================================`n")
             if($null -ne $params.InternalDomainFederationId)
             {
-                $response =  Update-MgDomainFederationConfiguration @params
+                $response =  Update-MgDomainFederationConfiguration @params -Headers $customHeaders
                 $response
             }
         }

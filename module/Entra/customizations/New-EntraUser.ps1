@@ -9,6 +9,7 @@
     CustomScript = @'
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{Mobile = "MobilePhone"; SignInNames = "Identities"; UserState = "ExternalUserState"; ImmutableId = "OnPremisesImmutableId"; UserStateChangedOn = "ExternalUserStateChangeDateTime"; TelephoneNumber = "BusinessPhones"}
         if($null -ne $PSBoundParameters["PostalCode"])
         {
@@ -160,13 +161,49 @@
         {
             $params["CreationType"] = $PSBoundParameters["CreationType"]
         }
+        if($null -ne $PSBoundParameters["WarningVariable"])
+        {
+            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+        }
+        if($null -ne $PSBoundParameters["InformationVariable"])
+        {
+            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+        }
+	    if($null -ne $PSBoundParameters["InformationAction"])
+        {
+            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+        }
+        if($null -ne $PSBoundParameters["OutVariable"])
+        {
+            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+        }
+        if($null -ne $PSBoundParameters["OutBuffer"])
+        {
+            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+        }
+        if($null -ne $PSBoundParameters["ErrorVariable"])
+        {
+            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+        }
+        if($null -ne $PSBoundParameters["PipelineVariable"])
+        {
+            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+        }
+        if($null -ne $PSBoundParameters["ErrorAction"])
+        {
+            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        }
+        if($null -ne $PSBoundParameters["WarningAction"])
+        {
+            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+        }
         
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         $params = $params | ConvertTo-Json
-        $response = Invoke-GraphRequest -Uri 'https://graph.microsoft.com/v1.0/users?$select=*' -Method POST -Body $params
+        $response = Invoke-GraphRequest -Headers $customHeaders -Uri 'https://graph.microsoft.com/v1.0/users?$select=*' -Method POST -Body $params
         $response = $response | ConvertTo-Json | ConvertFrom-Json
         $response | ForEach-Object {
             if($null -ne $_) {

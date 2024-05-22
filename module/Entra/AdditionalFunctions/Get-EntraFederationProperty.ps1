@@ -2,29 +2,6 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 function Get-EntraFederationProperty {
-    <#
-    .SYNOPSIS
-        For the specified domain, displays the properties of the Active Directory Federation Services 2.0 server and Microsoft Online.
-    
-    
-    .DESCRIPTION
-        The Get-EntraFederationProperty cmdlet gets key settings from both the Active Directory Federation Services 2.0 server and Microsoft Online. You can use this
-    information to troubleshoot authentication problems caused by mismatched settings between the Active Directory Federation Services 2.0 server and Microsoft Online.
-
-    .PARAMETER DomainName
-        The domain name for which the properties from both the Active Directory Federation Services 2.0 server and Microsoft Online will be displayed.
-
-    .PARAMETER SupportMultipleDomain
-       
-
-    .PARAMETER <CommonParameters>
-        This cmdlet supports the common parameters: Verbose, Debug,
-        ErrorAction, ErrorVariable, WarningAction, WarningVariable,
-        OutBuffer, PipelineVariable, and OutVariable. For more information, see 
-        about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
-    
-        
-    #>
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false)][System.String] $DomainName,
@@ -33,6 +10,7 @@ function Get-EntraFederationProperty {
 
     PROCESS {    
         $params = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{}
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $Null
@@ -43,10 +21,46 @@ function Get-EntraFederationProperty {
         if ($PSBoundParameters.ContainsKey("Debug")) {
             $params["Debug"] = $Null
         }
+        if($null -ne $PSBoundParameters["WarningVariable"])
+        {
+            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+        }
+        if($null -ne $PSBoundParameters["InformationVariable"])
+        {
+            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+        }
+	    if($null -ne $PSBoundParameters["InformationAction"])
+        {
+            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+        }
+        if($null -ne $PSBoundParameters["OutVariable"])
+        {
+            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+        }
+        if($null -ne $PSBoundParameters["OutBuffer"])
+        {
+            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+        }
+        if($null -ne $PSBoundParameters["ErrorVariable"])
+        {
+            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+        }
+        if($null -ne $PSBoundParameters["PipelineVariable"])
+        {
+            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+        }
+        if($null -ne $PSBoundParameters["ErrorAction"])
+        {
+            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        }
+        if($null -ne $PSBoundParameters["WarningAction"])
+        {
+            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+        }
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $response = Get-MgDomainFederationConfiguration @params
+        $response = Get-MgDomainFederationConfiguration @params -Headers $customHeaders
         $response | ForEach-Object {
             if($null -ne $_) {
             Add-Member -InputObject $_ -MemberType AliasProperty -Name ActiveClientSignInUrl -Value ActiveSignInUri

@@ -252,8 +252,13 @@ class CompatibilityAdapterBuilder {
 `$def = @"
 
 "@
-
+        Write-Host "Creating types definitions for $($types.Count) types."
         foreach($type in $types) {
+        Write-Host "- Generating type for $type"
+        if($type.contains("+")){
+            $type = $type.Substring(0,$type.IndexOf("+"))
+            Write-Host "- Real type is $type"
+        }
         $object = New-Object -TypeName $type
         $namespaceNew = $object.GetType().Namespace
         $enumsDefined = @()
@@ -284,6 +289,14 @@ namespace  $namespaceNew
         }
 
         $name = $object.GetType().Name
+        if($object.GetType().IsEnum){ 
+            $name = $object.GetType().Name
+            if(!$enumsDefined.Contains($name)){
+                $def += $this.GetEnumString($name, $object.GetType().FullName)
+                $enumsDefined += $name
+                continue
+            }                    
+        }
         $def += @"
     public class $name
     {
@@ -299,8 +312,7 @@ $extraFunctions
 "@
         }
         else {
-            
-        
+                    
         $object.GetType().GetProperties() | ForEach-Object {   
             if($_.PropertyType.Name -eq 'Nullable`1') {
                 $name = $_.PropertyType.GenericTypeArguments.FullName
@@ -490,6 +502,9 @@ function Get-EntraUnsupportedCommand {
             foreach ($func in $this.MissingCommandsToMap) {
                 $aliases += "   Set-Alias -Name $($func) -Value Get-EntraUnsupportedCommand -Scope Global -Force`n"
             }
+            #Adding direct aliases for Connect-Entra and Disconnect-Entra
+            $aliases += "   Set-Alias -Name Connect-AzureAD -Value Connect-Entra -Scope Global -Force`n"
+            $aliases += "   Set-Alias -Name Disconnect-AzureAD -Value Disconnect-Entra -Scope Global -Force`n"
     $aliasFunction = @"
 function Enable-EntraAzureADAlias {
 $($aliases)}
@@ -537,6 +552,7 @@ Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList 
     }
 
     hidden [CommandTranslation] NewCustomFunctionMap([PSCustomObject] $Command){
+        Write-Host "Creating custom function map for $($Command.Generate)"
         $parameterDefinitions = $this.GetParametersDefinitions($Command)
         $ParamterTransformations = $this.GetParametersTransformations($Command)
         $OutputTransformations = $this.GetOutputTransformations($Command)
@@ -556,10 +572,18 @@ $($Command.CustomScript)
     }
 
     hidden [CommandTranslation] NewFunctionMap([PSCustomObject] $Command){
+        Write-Host "Creating new function for $($Command.Generate)"
         $parameterDefinitions = $this.GetParametersDefinitions($Command)
         $ParamterTransformations = $this.GetParametersTransformations($Command)
         $OutputTransformations = $this.GetOutputTransformations($Command)
         $keyId = $this.GetKeyIdPair($Command)
+        $customHeadersCommandName = "New-EntraCustomHeaders"
+
+        if($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta')
+        {
+            $customHeadersCommandName = "New-EntraBetaCustomHeaders"
+        }
+
         $function = @"
 function $($Command.Generate) {
     [CmdletBinding($($Command.DefaultParameterSet))]
@@ -569,13 +593,14 @@ $parameterDefinitions
 
     PROCESS {    
     `$params = @{}
+    `$customHeaders = $customHeadersCommandName -Command `$MyInvocation.MyCommand
     $($keyId)
 $ParamterTransformations
     Write-Debug("============================ TRANSFORMATIONS ============================")
     `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
     Write-Debug("=========================================================================``n")
     
-    `$response = $($Command.New) @params
+    `$response = $($Command.New) @params -Headers `$customHeaders
 $OutputTransformations
     `$response
     }
@@ -714,7 +739,7 @@ $OutputTransformations
     {
         if(`$PSBoundParameters["$($OldName)"])
         {
-            `$params["$($NewName)"] = `$Null
+            `$params["$($NewName)"] = `$PSBoundParameters["$($OldName)"]
         }
     }
 
@@ -990,7 +1015,7 @@ $($output)
             }
             
             if($commonParameterNames.Contains($param.Name)) {
-                continue
+                $paramObj.SetNone()
             }
             elseif($Bool2Switch.Contains($param.Name)) {
                 $paramObj.SetBool2Switch($param.Name)
