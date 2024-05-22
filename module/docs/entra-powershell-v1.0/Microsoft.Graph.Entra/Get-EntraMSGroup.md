@@ -247,10 +247,6 @@ System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, 
 
 ## NOTES
 
-This cmdlet is currently in Public Preview.
-While a cmdlet is in Public Preview, we might make changes to the cmdlet, which could have unexpected effects.
-We recommend that you don't use this cmdlet in a production environment.
-
 ## RELATED LINKS
 
 [New-EntraMSGroup](New-EntraMSGroup.md)

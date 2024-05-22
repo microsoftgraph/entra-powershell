@@ -54,7 +54,7 @@ For information about creating dynamic groups, see: [Using attributes to create 
 ```powershell
 PS C:\>Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
 PS C:\>Connect-Entra -Scopes 'Group.Create' #Application permission
-PS C:\> New-EntraMSGroup -DisplayName 'HelpDesk admin group2'  -MailEnabled $False -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $True
+PS C:\>New-EntraMSGroup -DisplayName 'HelpDesk admin group2'  -MailEnabled $False -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $True
 ```
 
 ```output
