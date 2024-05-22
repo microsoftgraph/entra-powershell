@@ -22,13 +22,15 @@ Describe "Set-EntraDirSyncFeature" {
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Update-MgDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra -Times 1
         }
+        
         It "Should fail when Feature is empty" {
             {Set-EntraDirSyncFeature -Feature  -Enable $false -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -Force} | Should -Throw "Missing an argument for parameter 'Feature'. Specify a parameter*"
         }
 
         It "Should fail when Feature is invalid" {
             {Set-EntraDirSyncFeature -Feature "" -Enable $false -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -Force} | Should -Throw "Cannot bind argument to parameter 'Feature' because it is an empty string.*"
-        }  
+        } 
+
         It "Should fail when Enable is empty" {
             {Set-EntraDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -Force } | Should -Throw "Missing an argument for parameter 'Enabled'.*"
         }
@@ -36,13 +38,15 @@ Describe "Set-EntraDirSyncFeature" {
         It "Should fail when Enable is invalid" {
             {Set-EntraDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable "" -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -Force} | Should -Throw "Cannot process argument transformation on parameter 'Enabled'.*"
         }
+
         It "Should fail when TenantId is empty" {
             {Set-EntraDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable $false -TenantId -Force } | Should -Throw "Missing an argument for parameter 'TenantId'. Specify a parameter*"
         }
+
         It "Should fail when TenantId is invalid" {
             {Set-EntraDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable $false -TenantId "" -Force} | Should -Throw "Cannot process argument transformation on parameter*"
-        }  
-       
+        }   
+
         It "Should fail when Force parameter is passes with argument" {
             {Set-EntraDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable $false -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -Force "xy"} | Should -Throw "A positional parameter cannot be found that accepts argument*"
         }   
