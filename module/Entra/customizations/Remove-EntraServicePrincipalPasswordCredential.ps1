@@ -7,6 +7,9 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
-    Remove-MgServicePrincipalPassword -ServicePrincipalId $PSBoundParameters["ObjectId"] -KeyId $PSBoundParameters["KeyId"]
+    PROCESS{
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        Remove-MgServicePrincipalPassword -Headers $customHeaders -ServicePrincipalId $PSBoundParameters["ObjectId"] -KeyId $PSBoundParameters["KeyId"]
+    }
 '@
 }
