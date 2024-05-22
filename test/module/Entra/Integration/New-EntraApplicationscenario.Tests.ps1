@@ -64,36 +64,18 @@ Describe "The Get-EntraApplication command executing unmocked" {
             $approle.Value = 'Application'
             $approle.IsEnabled = $true
 
-             # Assign approles to newly created applictaion
-            $thisTestInstanceId = New-Guid | select -expandproperty guid
-            $testAppName1 = 'SimpleTestApp' + $thisTestInstanceId
-            $global:newApp1 = New-EntraApplication -DisplayName $testAppName1 -AvailableToOtherTenants $true -AppRoles $approle
-            $newApp1.DisplayName | Should -Be $testAppName1
+             # Assign approles to existing applictaion
+            $global:AppUpdate = Set-EntraApplication -ObjectId $newApp.Id -AppRoles $approle
 
             # Retrive new application and verifying AppRoles 
-            $updatedApp = Get-EntraApplication -ObjectId $newApp1.Id
+            $updatedApp = Get-EntraApplication -ObjectId $newApp.Id
             $updatedApp.AppRoles.DisplayName | Should -Be 'msiam_access'
             $updatedApp.AppRoles.Id | Should -Be '643985ce-3eaf-4a67-9550-ecca25cb6814'
             $updatedApp.AppRoles.Value | Should -Be 'Application'
         }
         # It "Scen6: Assign user and groups to the newly created Service Principal and set right AppRole to it" {
             
-        #     $thisTestInstanceId = New-Guid | select -expandproperty guid
-            # $testGrpName = 'SimpleTestGrp' + $thisTestInstanceId
-            # $testUserName = 'SimpleTestUser' + $thisTestInstanceId
 
-        #     # store service principal object
-        #     $global:servicePrincipalObjectId = $NewServicePrincipal.ObjectId
-        #     write-host "serviceP  $servicePrincipalObjectId"
-
-        #     # Create new Group
-        #     $NewGroup = New-EntraGroup -DisplayName $testGrpName -MailEnabled $false -SecurityEnabled $true -MailNickName "NickName" | ConvertTo-json | ConvertFrom-json
-        #     write-host "New Group $NewGroup.Id"
-        #     # Create new User
-        #     $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-        #     $PasswordProfile.Password = "Pass@1234"
-        #     $NewUser = New-EntraUser -AccountEnabled $true -DisplayName $testUserName -PasswordProfile $PasswordProfile -MailNickName $testUserName -UserPrincipalName "$testUserName@M365x99297270.OnMicrosoft.com" 
-        #     write-host "NewUser $NewUser.Id"
 
         #     # $GrpToServicePrincipal = Add-EntraGroupOwner -ObjectId $NewGroup.ObjectId -RefObjectId $servicePrincipalObjectId
         #     # write-host $GrpToServicePrincipal
@@ -104,18 +86,19 @@ Describe "The Get-EntraApplication command executing unmocked" {
         It "Scen7: Create a new user and add that user to an existing group"{
             # Create new User
             $thisTestInstanceId = New-Guid | select -expandproperty guid
-            $user = 'userName' + $thisTestInstanceId
+            $user = 'SimpleTestUser' + $thisTestInstanceId
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
             $PasswordProfile.Password = "Pass@1234"
             $global:NewUser = New-EntraUser -AccountEnabled $true -DisplayName $user -PasswordProfile $PasswordProfile -MailNickName $user -UserPrincipalName "$user@M365x99297270.OnMicrosoft.com" 
+            # write-host "User:" $NewUser.Id 
             # Retrive existing group
-            $Group = Get-EntraGroup -top 1
+            $global:ExistGroup = Get-EntraGroup -top 1
 
             # Add Group member
-            $NewMem = Add-EntraGroupMember -ObjectId $Group.ObjectId -RefObjectId $NewUser.ObjectId
+            $NewMem = Add-EntraGroupMember -ObjectId $ExistGroup.ObjectId -RefObjectId $NewUser.ObjectId
 
             # Get group member
-            $GetMemb = Get-EntraGroupMember -ObjectId $Group.ObjectId 
+            $GetMemb = Get-EntraGroupMember -ObjectId $ExistGroup.ObjectId 
             $GetMemb.Id | Should -Contain $NewUser.Id
 
         }
@@ -130,20 +113,20 @@ Describe "The Get-EntraApplication command executing unmocked" {
             $NewMem = Add-EntraGroupMember -ObjectId $NewGroup.ObjectId -RefObjectId $User.ObjectId
 
             # Get group member
-            $GetMember = Get-EntraGroupMember -ObjectId $Group.ObjectId 
-            $GetMember.Id | Should -Contain $NewUser.Id
+            $GetMember = Get-EntraGroupMember -ObjectId $NewGroup.ObjectId 
+            $GetMember.Id | Should -Contain $User.Id
 
         }
          It "Scen9: Create a new user and create a new group and add that new user to the new group"{
             
             $thisTestInstanceId = New-Guid | select -expandproperty guid
             $testGrpName = 'SimpleGroup' + $thisTestInstanceId
-            $testUserName = 'SimpleUser' + $thisTestInstanceId
+            $testUserName = 'SimpleTestUser' + $thisTestInstanceId
             # Create new User
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
             $PasswordProfile.Password = "Pass@1234"
             $global:NewUser1 = New-EntraUser -AccountEnabled $true -DisplayName $testUserName -PasswordProfile $PasswordProfile -MailNickName $testUserName -UserPrincipalName "$testUserName@M365x99297270.OnMicrosoft.com" 
-            
+            # write-host "User1:" $NewUser1.Id
             # Create new Group
             $global:NewGroup1 = New-EntraGroup -DisplayName $testGrpName -MailEnabled $false -SecurityEnabled $true -MailNickName "NickName" | ConvertTo-json | ConvertFrom-json
 
@@ -159,12 +142,12 @@ Describe "The Get-EntraApplication command executing unmocked" {
             
             $thisTestInstanceId = New-Guid | select -expandproperty guid
             $testGrpName = 'SimpleGroup' + $thisTestInstanceId
-            $testUserName = 'SimpleUser' + $thisTestInstanceId
+            $testUserName = 'SimpleTestUser' + $thisTestInstanceId
             # Create new User
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
             $PasswordProfile.Password = "Pass@1234"
             $global:NewUser2 = New-EntraUser -AccountEnabled $true -DisplayName $testUserName -PasswordProfile $PasswordProfile -MailNickName $testUserName -UserPrincipalName "$testUserName@M365x99297270.OnMicrosoft.com" 
-            
+            # write-host "User2:" $NewUser2.Id 
             # Create new Group
             $global:NewGroup2 = New-EntraGroup -DisplayName $testGrpName -MailEnabled $false -SecurityEnabled $true -MailNickName "NickName" | ConvertTo-json | ConvertFrom-json
 
@@ -178,11 +161,11 @@ Describe "The Get-EntraApplication command executing unmocked" {
         It "Scen11: Create a new user and assign that user to the existing Service Principal"{
             # Create new User
             $thisTestInstanceId = New-Guid | select -expandproperty guid
-            $Tuser = 'user' + $thisTestInstanceId
+            $Tuser = 'SimpleTestUser' + $thisTestInstanceId
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
             $PasswordProfile.Password = "Pass@1234"
             $global:NewUser3 = New-EntraUser -AccountEnabled $true -DisplayName $Tuser -PasswordProfile $PasswordProfile -MailNickName $Tuser -UserPrincipalName "$Tuser@M365x99297270.OnMicrosoft.com" 
-            
+            # write-host "User3:" $NewUser3.Id
             # Assign user to service principal
             $NewOwner= Add-EntraServicePrincipalOwner -ObjectId $servicePrincipalObjectId  -RefObjectId $NewUser3.ObjectId
 
@@ -222,20 +205,28 @@ Describe "The Get-EntraApplication command executing unmocked" {
         AfterAll {
                 Remove-EntraMSConditionalAccessPolicy -PolicyId $NewConditionalAccessPolicy.Id
                 Remove-EntraServicePrincipalOwner -ObjectId $servicePrincipalObjectId -OwnerId $NewUser3.ObjectId
+                Remove-EntraUser -ObjectId $NewUser3.ObjectId | Out-Null
+
                 Remove-EntraGroupMember -ObjectId $NewGroup2.ObjectId -MemberId $NewUser2.ObjectId
+                Remove-EntraGroup -ObjectId $NewGroup2.ObjectId | Out-Null
+                Remove-EntraUser -ObjectId $NewUser2.ObjectId | Out-Null
+
                 Remove-EntraGroupMember -ObjectId $NewGroup1.ObjectId -MemberId $NewUser1.ObjectId
-                # Remove-EntraGroupMember -ObjectId $Group.ObjectId -MemberId $NewUser.ObjectId
+                Remove-EntraUser -ObjectId $NewUser1.ObjectId | Out-Null
+                Remove-EntraGroup -ObjectId $NewGroup1.ObjectId | Out-Null
+                
+                Remove-EntraGroupMember -ObjectId $ExistGroup.ObjectId -MemberId $NewUser.ObjectId
+                Remove-EntraUser -ObjectId $NewUser.ObjectId | Out-Null
+                Remove-EntraGroup -ObjectId $NewGroup.ObjectId | Out-Null
+
                 # Remove-EntraGroupMember -ObjectId $NewGroup.ObjectId -MemberId $User.ObjectId
                 Remove-EntraServicePrincipal -ObjectId $NewServicePrincipal.ObjectId 
                 Remove-EntraApplication -ObjectId $newApp.Id | Out-Null
-                Remove-EntraApplication -ObjectId $newApp1.Id | Out-Null
-                Remove-EntraGroup -ObjectId $NewGroup.ObjectId
-                Remove-EntraGroup -ObjectId $NewGroup1.ObjectId
-                Remove-EntraGroup -ObjectId $NewGroup2.ObjectId
-                Remove-EntraUser -ObjectId $NewUser.Id
-                Remove-EntraUser -ObjectId $NewUser1.Id
-                Remove-EntraUser -ObjectId $NewUser2.Id
-                Remove-EntraUser -ObjectId $NewUser3.Id
+
+                # foreach ($app in (Get-EntraUser -SearchString "SimpleTestUser")) {
+                #     write-host $app.ObjectId
+                # Remove-EntraUser -ObjectId $app.ObjectId | Out-Null
+            # }
 
         }
 
