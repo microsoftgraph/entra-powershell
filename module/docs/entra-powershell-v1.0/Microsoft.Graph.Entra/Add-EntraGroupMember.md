@@ -40,7 +40,7 @@ The Add-EntraGroupMember cmdlet adds a member to a group.
 
 ```powershell
 PS C:\>Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
-PS C:\>Add-EntraGroupMember -ObjectId '056b2531-005e-4f3e-be78-01a71ea30a04' -RefObjectId 'fd560167-ff1f-471a-8d74-3b0070abcea1'
+PS C:\>Add-EntraGroupMember -ObjectId 'xxxx-xxxx-xxxx-xxxx' -RefObjectId 'yyyy-yyyy-yyyy-yyyy'
 ```
 
 This command is used to add a member to a group. The `-ObjectId` parameter specifies the ID of the group to which the member should be added. The `-RefObjectId` parameter specifies the ID of the member to be added to the group.

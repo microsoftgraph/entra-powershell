@@ -44,7 +44,7 @@ PS C:\>Connect-Entra -Scopes 'Directory.ReadWrite.All'
 PS C:\>Add-EntraMSLifecyclePolicyGroup -Id 'b4c908b0-3595-4add-91b4-c5400b31b57b' -groupId 'cffd97bd-6b91-4c4e-b553-6918a320211c'
 ```
 
-This command is used to add a group to a Microsoft Lifecycle Policy. The `-Id` parameter specifies the ID of the Lifecycle Policy to which the group should be added. The `-groupId` parameter specifies the ID of the group to be added to the Lifecycle Policy.
+This command adds a group to a Microsoft Lifecycle Policy. The `-Id` parameter specifies the ID of the Lifecycle Policy to which the group should be added. The `-groupId` parameter specifies the ID of the group to be added to the Lifecycle Policy.
 
 ## PARAMETERS
 

@@ -40,7 +40,7 @@ The Add-EntraGroupOwner cmdlet adds an owner to a Microsoft Entra ID group.
 
 ```powershell
 PS C:\>Connect-Entra -Scopes 'Group.ReadWrite.All'
-PS C:\>Add-EntraGroupOwner -ObjectId '62438306-7c37-4638-a72d-0ee8d9217680' -RefObjectId '0a1068c0-dbb6-4537-9db3-b48f3e31dd76'
+PS C:\>Add-EntraGroupOwner -ObjectId 'xxxx-xxxx-xxxx-xxxx' -RefObjectId 'aaaa-aaaa-aaaa-aaaa'
 ```
 
 This command is used to add an owner to a group. The `-ObjectId` parameter specifies the ID of the group to which the owner should be added. The `-RefObjectId` parameter specifies the ID of the owner to be added to the group.
