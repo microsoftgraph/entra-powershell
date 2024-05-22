@@ -4,15 +4,7 @@ BeforeAll {
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
-        return @(
-            [PSCustomObject]@{
-              "Parameters"      = $args
-            }
-        )
-    }  
-
-    Mock -CommandName Remove-MgDomain -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Remove-MgDomain -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
 
 Describe "Remove-EntraDomain" {
@@ -33,16 +25,19 @@ Describe "Remove-EntraDomain" {
         }   
 
         It "Should contain DomainId in parameters when passed Name to it" {
+            Mock -CommandName Remove-MgDomain -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+
             $result = Remove-EntraDomain -Name Contoso.com
-            $params = Get-Parameters -data $result.Parameters
+            $params = Get-Parameters -data $result
             $params.DomainId | Should -Be Contoso.com
         }
 
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraDomain"
+            Mock -CommandName Remove-MgDomain -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraDomain"
             $result = Remove-EntraDomain -Name Contoso.com
-            $params = Get-Parameters -data $result.Parameters
+            $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         } 
     }
