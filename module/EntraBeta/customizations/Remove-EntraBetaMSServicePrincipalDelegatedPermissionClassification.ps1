@@ -7,6 +7,9 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
-        Remove-MgBetaServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $PSBoundParameters["ServicePrincipalId"] -DelegatedPermissionClassificationId $PSBoundParameters["Id"]
+    PROCESS{
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        Remove-MgBetaServicePrincipalDelegatedPermissionClassification -Headers $customHeaders -ServicePrincipalId $PSBoundParameters["ServicePrincipalId"] -DelegatedPermissionClassificationId $PSBoundParameters["Id"]
+    }
 '@
 }

@@ -7,6 +7,9 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
-        Remove-MgServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $PSBoundParameters["ServicePrincipalId"] -DelegatedPermissionClassificationId $PSBoundParameters["Id"]
+    PROCESS{
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        Remove-MgServicePrincipalDelegatedPermissionClassification -Headers $customHeaders -ServicePrincipalId $PSBoundParameters["ServicePrincipalId"] -DelegatedPermissionClassificationId $PSBoundParameters["Id"]
+    }
 '@
 }
