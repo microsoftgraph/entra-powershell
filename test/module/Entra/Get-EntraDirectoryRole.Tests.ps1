@@ -31,8 +31,11 @@ BeforeAll {
 
             Should -Invoke -CommandName Get-MgDirectoryRole  -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is empty" {
+        It "Should fail when ObjectId is invalid" {
             { Get-EntraDirectoryRole -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        }
+        It "Should fail when ObjectId is empty" {
+            { Get-EntraDirectoryRole -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
         }
         It "Should return specific role by filter" {
             $result = Get-EntraDirectoryRole -Filter "DisplayName -eq 'Attribute Assignment Reader'"

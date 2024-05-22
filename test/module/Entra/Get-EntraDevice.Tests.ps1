@@ -53,17 +53,32 @@ Describe "Get-EntraDevice" {
 
             Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is empty" {
+        It "Should fail when ObjectId is invalid" {
             { Get-EntraDevice -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
+        It "Should fail when ObjectId is empty" {
+            { Get-EntraDevice -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        }
+        It "Should fail when searchstring is empty" {
+            { Get-EntraDevice -SearchString } | Should -Throw "Missing an argument for parameter 'SearchString'*"
+        } 
+        It "Should fail when filter is empty" {
+            { Get-EntraDevice -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
+        }
+        It "Should fail when filter is empty" {
+            { Get-EntraDevice -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+        }
+        It "Should fail when filter is invalid" {
+            { Get-EntraDevice -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+        }
         It "Should return all devices" {
-            $result = Get-EntraDevice -All $true
+            $result = Get-EntraDevice -All
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when All is empty" {
-            { Get-EntraDevice -All } | Should -Throw "Missing an argument for parameter 'All'*"
+            { Get-EntraDevice -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
         }           
         It "Should return specific device by searchstring" {
             $result = Get-EntraDevice -SearchString 'Mock-Device'
@@ -80,8 +95,9 @@ Describe "Get-EntraDevice" {
             Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }  
         It "Should return top device" {
-            $result = Get-EntraDevice -Top 1
+            $result = @(Get-EntraDevice -Top 1)
             $result | Should -Not -BeNullOrEmpty
+            $result | Should -HaveCount 1 
 
             Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }  

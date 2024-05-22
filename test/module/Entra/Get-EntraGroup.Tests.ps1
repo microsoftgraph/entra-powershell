@@ -30,17 +30,32 @@ Describe "Get-EntraGroup" {
 
             Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is empty" {
+        It "Should fail when ObjectId is invalid" {
             { Get-EntraGroup -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
+        It "Should fail when ObjectId is empty" {
+            { Get-EntraGroup -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        }
+        It "Should fail when searchstring is empty" {
+            { Get-EntraGroup -SearchString } | Should -Throw "Missing an argument for parameter 'SearchString'*"
+        } 
+        It "Should fail when filter is empty" {
+            { Get-EntraGroup -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
+        }
+        It "Should fail when filter is empty" {
+            { Get-EntraGroup -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+        }
+        It "Should fail when filter is invalid" {
+            { Get-EntraGroup -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+        }
         It "Should return all group" {
-            $result = Get-EntraGroup -All $true
+            $result = Get-EntraGroup -All 
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when All is empty" {
-            { Get-EntraGroup -All } | Should -Throw "Missing an argument for parameter 'All'*"
+            { Get-EntraGroup -All $true} | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
         }           
         It "Should return specific group by searchstring" {
             $result = Get-EntraGroup -SearchString 'demo'
@@ -57,8 +72,9 @@ Describe "Get-EntraGroup" {
             Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Graph.Entra -Times 1
         }  
         It "Should return top group" {
-            $result = Get-EntraGroup -Top 1
+            $result = @(Get-EntraGroup -Top 1)
             $result | Should -Not -BeNullOrEmpty
+            $result | Should -HaveCount 1 
 
             Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Graph.Entra -Times 1
         }  

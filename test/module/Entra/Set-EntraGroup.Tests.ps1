@@ -15,9 +15,12 @@ Describe "Set-EntraGroup" {
 
             Should -Invoke -CommandName Update-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1
         }
+        It "Should fail when ObjectId is invalid" {
+            { Set-EntraGroup -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        }
         It "Should fail when ObjectId is empty" {
-            { Set-EntraGroup -ObjectId ""  } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
-        } 
+            { Set-EntraGroup -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        }
         It "Should contain GroupId in parameters when passed ObjectId to it" {
             Mock -CommandName Update-MgGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 

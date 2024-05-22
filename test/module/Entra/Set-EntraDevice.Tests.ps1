@@ -15,8 +15,11 @@ Describe "Set-EntraDevice"{
 
             Should -Invoke -CommandName Update-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1
         }
+        It "Should fail when ObjectId is invalid" {
+            { Set-EntraDevice -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        }
         It "Should fail when ObjectId is empty" {
-            { Set-EntraDevice -ObjectId ""  } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+            { Set-EntraDevice -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
         }
         It "Should contain DeviceId in parameters when passed ObjectId to it" {
             Mock -CommandName Update-MgDevice -MockWith {$args} -ModuleName Microsoft.Graph.Entra
