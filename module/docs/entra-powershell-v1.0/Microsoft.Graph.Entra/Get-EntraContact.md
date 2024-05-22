@@ -189,6 +189,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Remove-EntraContact](Remove-EntraContact.md)
-
-[Set-EntraContact](Set-EntraContact.md)
-
