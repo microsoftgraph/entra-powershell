@@ -200,12 +200,12 @@ Describe "New-EntraMSInvitation" {
             $result.ObjectId | should -Be "3135a58d-b417-40ae-bb44-a82df52b7957"
         } 
 
-        # It "Should contain 'User-Agent' header" {
-        #     $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraMSInvitation"
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraMSInvitation"
            
-        #     $result = New-EntraMSInvitation -InvitedUserEmailAddress sanjeev.kumar@perennialsys.com -SendInvitationMessage $True -InviteRedirectUrl "http://myapps.microsoft.com"
-        #     $params = Get-Parameters -data $result.Parameters
-        #     $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        # }   
+            $result = New-EntraMSInvitation -InvitedUserEmailAddress sanjeev.kumar@perennialsys.com -SendInvitationMessage $True -InviteRedirectUrl "http://myapps.microsoft.com"
+            $params = Get-Parameters -data $result.Parameters
+            $params.Headers."User-Agent" | Should -Be $userAgentHeaderValue
+        }   
     }
 }
