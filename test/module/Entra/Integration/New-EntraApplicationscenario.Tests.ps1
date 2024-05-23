@@ -33,7 +33,7 @@ Describe "The Get-EntraApplication command executing unmocked" {
         It "Scen3: Create Service Principal to the newly created application" {
 
             # Create service Principal for new application
-            $global:NewServicePrincipal = New-EntraServicePrincipal -AppId $application.AppId
+            $global:NewServicePrincipal = New-EntraServicePrincipal -AppId $application.AppId -AppRoleAssignmentRequired $true
 
             # store service principal objectId
             $global:servicePrincipalObjectId = $NewServicePrincipal.ObjectId
@@ -46,11 +46,13 @@ Describe "The Get-EntraApplication command executing unmocked" {
         It "Scen4: Configure App ID URI and Redirect URIs on the newly created application" {
 
              # configure application fot ID URI
-            $configureApp = Set-EntraApplication -ObjectId $newApp.Id -IdentifierUris @("IdM365x992972700.onmicrosoft.com")
+            $configureApp = Set-EntraApplication -ObjectId $newApp.Id -IdentifierUris @("IdM365x992972700.onmicrosoft.com") -ReplyUrls "https://contoso.com"
 
             # Retrive new application and verifying ID URI 
-            $updatedApp = Get-EntraApplication -ObjectId $newApp.Id
+            $updatedApp = Get-EntraApplication -ObjectId $newApp.Id | ConvertTo-json | ConvertFrom-json
+            write-host $updatedApp.Web.RedirectUris
             $updatedApp.IdentifierUris | Should -Be "IdM365x992972700.onmicrosoft.com"
+            $updatedApp.Web.RedirectUris | Should -Be "https://contoso.com"
         }
         It "Scen5: Create AppRoles to the Application" {
             
@@ -73,16 +75,26 @@ Describe "The Get-EntraApplication command executing unmocked" {
             $updatedApp.AppRoles.Id | Should -Be '643985ce-3eaf-4a67-9550-ecca25cb6814'
             $updatedApp.AppRoles.Value | Should -Be 'Application'
         }
-        # It "Scen6: Assign user and groups to the newly created Service Principal and set right AppRole to it" {
-            
+        It "Scen6: Assign user and groups to the newly created Service Principal and set right AppRole to it" {
+            $global:existUser =  Get-EntraUser -Top 1
+            $global:existGroup =  Get-EntraGroup -Top 1
 
+            # Add user to group
+            $userToServicePrincipal = Add-EntraServicePrincipalOwner -ObjectId $servicePrincipalObjectId -RefObjectId $existUser.ObjectId
+            # $userToServicePrincipal = Add-EntraServicePrincipalOwner -ObjectId $servicePrincipalObjectId -RefObjectId $existGroup.ObjectId
+            # write-host $userToServicePrincipal
 
-        #     # $GrpToServicePrincipal = Add-EntraGroupOwner -ObjectId $NewGroup.ObjectId -RefObjectId $servicePrincipalObjectId
-        #     # write-host $GrpToServicePrincipal
-        #     $userToServicePrincipal = Add-EntraGroupMember -ObjectId $NewGroup.Id -RefObjectId $servicePrincipalObjectId 
-        #      write-host $userToServicePrincipal
-           
-        # }
+            # Add group to service pricipal
+            $GrpToServicePrincipal = Add-EntraGroupMember -ObjectId $existGroup.ObjectId -RefObjectId $servicePrincipalObjectId
+
+            # Set app role to service principal
+            $existingServicePrincipal = Get-EntraServicePrincipal -ObjectId $servicePrincipalObjectId | ConvertTo-json | ConvertFrom-json
+               
+            $global:AppROletoServicePrincipal = New-EntraServiceAppRoleAssignment -ObjectId $existingServicePrincipal.ObjectId -ResourceId $existingServicePrincipal.ObjectId -Id $existingServicePrincipal.AppRoles.Id -PrincipalId $existingServicePrincipal.ObjectId
+            # Verifying app role assignment
+            $RoleAssignment = Get-EntraServiceAppRoleAssignment -ObjectId $existingServicePrincipal.ObjectId
+            $RoleAssignment.AppRoleId | Should -Be $AppROletoServicePrincipal.AppRoleId
+        }
         It "Scen7: Create a new user and add that user to an existing group"{
             # Create new User
             $thisTestInstanceId = New-Guid | select -expandproperty guid
@@ -218,6 +230,13 @@ Describe "The Get-EntraApplication command executing unmocked" {
                 Remove-EntraGroupMember -ObjectId $ExistGroup.ObjectId -MemberId $NewUser.ObjectId
                 Remove-EntraUser -ObjectId $NewUser.ObjectId | Out-Null
                 Remove-EntraGroup -ObjectId $NewGroup.ObjectId | Out-Null
+
+                # Scenario 6
+
+                Remove-EntraServiceAppRoleAssignment -ObjectId $servicePrincipalObjectId -AppRoleAssignmentId $AppROletoServicePrincipal.Id
+                # Remove-EntraServicePrincipalOwner -ObjectId $servicePrincipalObjectId -OwnerId $existGroup.ObjectId
+                Remove-EntraServicePrincipalOwner -ObjectId $servicePrincipalObjectId -OwnerId $existUser.ObjectId
+                Remove-EntraGroupMember -ObjectId $existGroup.ObjectId -MemberId $servicePrincipalObjectId
 
                 # Remove-EntraGroupMember -ObjectId $NewGroup.ObjectId -MemberId $User.ObjectId
                 Remove-EntraServicePrincipal -ObjectId $NewServicePrincipal.ObjectId 
