@@ -4,19 +4,12 @@ BeforeAll {
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
-        return @(
-            [PSCustomObject]@{
-              "Parameters"      = $args
-            }
-        )
-    }  
-    Mock -CommandName Update-MgBetaGroup -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
+    Mock -CommandName Update-MgBetaGroup -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta
 }
 
 Describe "Set-EntraBetaMSGroup" {
     Context "Test for Set-EntraBetaMSGroup" {
-        It "Should return empty object" {
+        It "Should update group" {
             $result = Set-EntraBetaMSGroup -Id "9a9ab239-269c-4d91-9935-9f2cb16074fb" -Description "Update Group" -DisplayName "Update helpdesk" -IsAssignableToRole $true -MailEnabled $false -MailNickname "Update nickname" -SecurityEnabled $true -Visibility "Private" -GroupTypes "unified"
             $result | Should -BeNullOrEmpty
 
@@ -72,16 +65,19 @@ Describe "Set-EntraBetaMSGroup" {
         } 
 
         It "Should contain GroupId in parameters when passed Id to it" {
+            Mock -CommandName Update-MgBetaGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
+
             $result = Set-EntraBetaMSGroup -Id "9a9ab239-269c-4d91-9935-9f2cb16074fb"
-            $params = Get-Parameters -data $result.Parameters
+            $params = Get-Parameters -data $result
             $params.GroupId | Should -Be "9a9ab239-269c-4d91-9935-9f2cb16074fb"
         }        
 
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaMSGroup"
+            Mock -CommandName Update-MgBetaGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaMSGroup"
             $result = Set-EntraBetaMSGroup -Id "9a9ab239-269c-4d91-9935-9f2cb16074fb"
-            $params = Get-Parameters -data $result.Parameters
+            $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
     }
