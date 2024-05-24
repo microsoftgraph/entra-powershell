@@ -25,7 +25,7 @@ Gets app role assignments for this app or service, granted to users, groups and 
 ```powershell
 Get-EntraServiceAppRoleAssignedTo 
  -ObjectId <String>
- [-All <Boolean>]
+ [-All ]
  [-Top <Int32>]
  [<CommonParameters>]
 ```
@@ -48,7 +48,7 @@ The second command gets the app role assignments for the service principal grant
 
 ### Example 2: Get all app role assignments.
 ```powershell
-PS C:\> Get-EntraServiceAppRoleAssignedTo -ObjectId 4d8fcb23-adc7-4d47-9328-2420eb1075ef -All $true
+PS C:\> Get-EntraServiceAppRoleAssignedTo -ObjectId 4d8fcb23-adc7-4d47-9328-2420eb1075ef -All 
 ```
 ```output
 DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId
@@ -81,8 +81,7 @@ This command gets the five app role assignments for the service principal grante
 ## PARAMETERS
 
 ### -All
-If true, return all application role assignments.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -91,8 +90,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

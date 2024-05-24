@@ -25,7 +25,7 @@ Get the owner of a service principal.
 ```powershell
 Get-EntraServicePrincipalOwner 
  -ObjectId <String> 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -57,7 +57,7 @@ The second command gets the owner of a service principal identified by $ServiceP
 ### Example 2: Retrieve all the owners of a service principal
 ```powershell
 PS C:\> $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
-PS C:\> Get-EntraServicePrincipalOwner -ObjectId $ServicePrincipalId -All $true
+PS C:\> Get-EntraServicePrincipalOwner -ObjectId $ServicePrincipalId -All
 ```
 
 ```output
@@ -88,8 +88,7 @@ This command gets top two owners of a service principal.
 ## PARAMETERS
 
 ### -All
-If true, return all service principal owners for this service principal.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -98,8 +97,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -149,4 +148,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
 
 [Remove-EntraServicePrincipalOwner](Remove-EntraServicePrincipalOwner.md)
-

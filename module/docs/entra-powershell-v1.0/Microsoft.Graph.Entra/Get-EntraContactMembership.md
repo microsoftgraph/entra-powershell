@@ -25,7 +25,7 @@ Get a contact membership.
 ```powershell
 Get-EntraContactMembership 
  -ObjectId <String> 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -55,7 +55,7 @@ The second command gets the memberships for $Contact.
 
 ### Example 2: Get all memberships of a contact
 ```powershell
-PS C:\> Get-EntraContactMembership -ObjectId d110c2ba-d5ef-4e4d-aa22-b964ba966895 -All $true
+PS C:\> Get-EntraContactMembership -ObjectId d110c2ba-d5ef-4e4d-aa22-b964ba966895 -All
 ```
 
 ```output
@@ -85,8 +85,7 @@ This command gets top two memberships for specified contact.
 ## PARAMETERS
 
 ### -All
-If true, return all memberships.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -95,8 +94,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -142,4 +141,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Get-EntraContact](Get-EntraContact.md)
-

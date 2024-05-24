@@ -26,7 +26,7 @@ The Get-EntraApplicationProxyConnectorGroup cmdlet retrieves a list of all conne
 ### GetQuery (Default)
 ```powershell
 Get-EntraApplicationProxyConnectorGroup
- [-All <Boolean>]
+ [-All]
  [-Top <Int32>]
  [-Filter <String>]
  [<CommonParameters>]
@@ -36,7 +36,7 @@ Get-EntraApplicationProxyConnectorGroup
 ```powershell
 Get-EntraApplicationProxyConnectorGroup
  [-SearchString <String>]
- [-All <Boolean>]
+ [-All]
  [<CommonParameters>]
 ```
 
@@ -44,7 +44,7 @@ Get-EntraApplicationProxyConnectorGroup
 ```powershell
 Get-EntraApplicationProxyConnectorGroup
  -Id <String>
- [-All <Boolean>]
+ [-All]
  [<CommonParameters>]
 ```
 
@@ -84,18 +84,17 @@ This command retrieves a specific connector group.
 ## PARAMETERS
 
 ### -All
-If true, return all users.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
