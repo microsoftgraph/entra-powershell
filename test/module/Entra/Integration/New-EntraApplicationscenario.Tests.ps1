@@ -46,12 +46,11 @@ Describe "The Get-EntraApplication command executing unmocked" {
         It "Scen4: Configure App ID URI and Redirect URIs on the newly created application" {
 
              # configure application fot ID URI
-            $configureApp = Set-EntraApplication -ObjectId $newApp.Id -IdentifierUris @("IdM365x992972700.onmicrosoft.com") -ReplyUrls "https://contoso.com"
+            $configureApp = Set-EntraApplication -ObjectId $newApp.Id -IdentifierUris @("IdM365x992972766.onmicrosoft.com") -ReplyUrls "https://contoso.com"
 
             # Retrive new application and verifying ID URI 
             $updatedApp = Get-EntraApplication -ObjectId $newApp.Id | ConvertTo-json | ConvertFrom-json
-            write-host $updatedApp.Web.RedirectUris
-            $updatedApp.IdentifierUris | Should -Be "IdM365x992972700.onmicrosoft.com"
+            $updatedApp.IdentifierUris | Should -Be "IdM365x992972766.onmicrosoft.com"
             $updatedApp.Web.RedirectUris | Should -Be "https://contoso.com"
         }
         It "Scen5: Create AppRoles to the Application" {
@@ -77,15 +76,20 @@ Describe "The Get-EntraApplication command executing unmocked" {
         }
         It "Scen6: Assign user and groups to the newly created Service Principal and set right AppRole to it" {
             $global:existUser =  Get-EntraUser -Top 1
+            # write-host "existUser" $existUser.Id
             $global:existGroup =  Get-EntraGroup -Top 1
-
+            # write-host "servicePrincipalObjectId" $servicePrincipalObjectId
             # Add user to group
             $userToServicePrincipal = Add-EntraServicePrincipalOwner -ObjectId $servicePrincipalObjectId -RefObjectId $existUser.ObjectId
+            $PrincipalOwners= Get-EntraServicePrincipalOwner -ObjectId $servicePrincipalObjectId | ConvertTo-json | ConvertFrom-json
+            $PrincipalOwners.Id | Should -Contain $existUser.Id
             # $userToServicePrincipal = Add-EntraServicePrincipalOwner -ObjectId $servicePrincipalObjectId -RefObjectId $existGroup.ObjectId
-            # write-host $userToServicePrincipal
-
+            
+            
             # Add group to service pricipal
-            $GrpToServicePrincipal = Add-EntraGroupMember -ObjectId $existGroup.ObjectId -RefObjectId $servicePrincipalObjectId
+            # $GrpToServicePrincipal = Add-EntraGroupMember -ObjectId $existGroup.ObjectId -RefObjectId $servicePrincipalObjectId
+            # $A = Get-EntraGroupMember -ObjectId $existGroup.ObjectId 
+            # $A.Id | should -Contain $servicePrincipalObjectId
 
             # Set app role to service principal
             $existingServicePrincipal = Get-EntraServicePrincipal -ObjectId $servicePrincipalObjectId | ConvertTo-json | ConvertFrom-json
@@ -177,8 +181,6 @@ Describe "The Get-EntraApplication command executing unmocked" {
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
             $PasswordProfile.Password = "Pass@1234"
             $global:NewUser3 = New-EntraUser -AccountEnabled $true -DisplayName $Tuser -PasswordProfile $PasswordProfile -MailNickName $Tuser -UserPrincipalName "$Tuser@M365x99297270.OnMicrosoft.com" 
-            # write-host "User3:" $NewUser3.Id
-            # Assign user to service principal
             $NewOwner= Add-EntraServicePrincipalOwner -ObjectId $servicePrincipalObjectId  -RefObjectId $NewUser3.ObjectId
 
             # Get group member
@@ -194,7 +196,7 @@ Describe "The Get-EntraApplication command executing unmocked" {
             $Condition = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
             $Condition.clientAppTypes = @("mobileAppsAndDesktopClients","browser")
             $Condition.Applications = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessApplicationCondition
-            $Condition.Applications.IncludeApplications = "00000002-0000-0ff1-ce00-000000000000"
+            $Condition.Applications.IncludeApplications = $NewServicePrincipal.AppId
             $Condition.Users = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessUserCondition
             $Condition.Users.IncludeUsers = "all"
 
@@ -208,13 +210,41 @@ Describe "The Get-EntraApplication command executing unmocked" {
             $SessionControls.applicationEnforcedRestrictions = $ApplicationEnforcedRestrictions
 
             $global:NewConditionalAccessPolicy = New-EntraMSConditionalAccessPolicy -DisplayName $testpolicyName -State enabled -Conditions $Condition -GrantControls $Controls -SessionControls $SessionControls
-
+            $result = Get-EntraMSConditionalAccessPolicy -policyid $NewConditionalAccessPolicy.Id 
+            $result.Conditions.Applications.IncludeApplications | should -Be $NewServicePrincipal.AppId
+        }
+        # It "Scen13: Create new claims issuance policy and attach that to the Service Principal" {
+        
+        #     # $global:NewClaimsIssuancePolicy = New-EntraBetaPolicy -Definition $policyDefinition -DisplayName $testpolicyName -Type "ClaimsIssuancePolicy"
+        #     $global:NewClaimsIssuancePolicy = New-EntraBetaPolicy -Definition @('{ "definition": [ "{\"ClaimsMappingPolicy\":{\"Version\":1,\"IncludeBasicClaimSet\":\"true\",\"ClaimsSchema\":[{\"Source\":\"user\",\"ID\":\"userPrincipalName\",\"SAMLClaimType\":\"http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name\",\"JwtClaimType\":\"upn\"},{\"Source\":\"user\",\"ID\":\"displayName\",\"SAMLClaimType\":\"http://schemas.microsoft.com/identity/claims/displayname\",\"JwtClaimType\":\"name\"}]}}" ], "displayName": "Custom Claims Issuance Policy", "isOrganizationDefault": false }') -DisplayName $testpolicyName -Type "claimsMappingPolicies" -IsOrganizationDefault $false -AlternativeIdentifier "1f587daa-d6fc-433f-88ee-48afa8daebe4"
             
-            # $ConditionalPolicyToServicePrincipal = Add-EntraServicePrincipalPolicy -Id $servicePrincipalObjectId -RefObjectId $NewConditionalAccessPolicy.Id
-            # write-Host $ConditionalPolicyToServicePrincipal
+        #     $A = Get-EntraBetaPolicy -
+        #     write-host $A
+        #     # Write-Host  "NewClaimsIssuancePolicy" $NewClaimsIssuancePolicy
+        #     write-host "ServicePrincipalID" $servicePrincipalObjectId
+            
+        #     $ClaimsIssuancePolicyToServicePrincipal = Add-EntraBetaServicePrincipalPolicy -Id $servicePrincipalObjectId -RefObjectId $NewClaimsIssuancePolicy.Id
+        #     # $A = Get-EntraBetaServicePrincipalPolicy -Id $servicePrincipalObjectId
+        #     # write-host "EntraBetaServicePrincipalPolicy" $A
+        # }
+        It "Scen14: Remove the policy attached to the existing Service Principal" {
+            $Policy = Get-EntraBetaPolicy -Top 1
+
+            # Add existing policy to service principal
+            Add-EntraBetaServicePrincipalPolicy -Id $servicePrincipalObjectId -RefObjectId $Policy.Id
+            $policyOfservicePrincipal = Get-EntraBetaServicePrincipalPolicy -Id $servicePrincipalObjectId
+
+            # Remove policy attached to existing service principal
+            Remove-EntraBetaServicePrincipalPolicy -Id $servicePrincipalObjectId -PolicyId $policyOfservicePrincipal.Id
+            $retrivePolicy = Get-EntraBetaServicePrincipalPolicy -Id $servicePrincipalObjectId
+            $retrivePolicy.Id | should -Not -Contain $Policy.Id
+
         }
 
         AfterAll {
+               
+                # Remove-EntraBetaServicePrincipalPolicy -Id $servicePrincipalObjectId -PolicyId $NewClaimsIssuancePolicy.Id
+                # Remove-EntraMSConditionalAccessPolicy -PolicyId $NewClaimsIssuancePolicy.Id
                 Remove-EntraMSConditionalAccessPolicy -PolicyId $NewConditionalAccessPolicy.Id
                 Remove-EntraServicePrincipalOwner -ObjectId $servicePrincipalObjectId -OwnerId $NewUser3.ObjectId
                 Remove-EntraUser -ObjectId $NewUser3.ObjectId | Out-Null
@@ -236,7 +266,7 @@ Describe "The Get-EntraApplication command executing unmocked" {
                 Remove-EntraServiceAppRoleAssignment -ObjectId $servicePrincipalObjectId -AppRoleAssignmentId $AppROletoServicePrincipal.Id
                 # Remove-EntraServicePrincipalOwner -ObjectId $servicePrincipalObjectId -OwnerId $existGroup.ObjectId
                 Remove-EntraServicePrincipalOwner -ObjectId $servicePrincipalObjectId -OwnerId $existUser.ObjectId
-                Remove-EntraGroupMember -ObjectId $existGroup.ObjectId -MemberId $servicePrincipalObjectId
+                # Remove-EntraGroupMember -ObjectId $existGroup.ObjectId -MemberId $servicePrincipalObjectId
 
                 # Remove-EntraGroupMember -ObjectId $NewGroup.ObjectId -MemberId $User.ObjectId
                 Remove-EntraServicePrincipal -ObjectId $NewServicePrincipal.ObjectId 
