@@ -6,47 +6,82 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {    
-        `$params = @{}
-        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
-        `$keysChanged = @{}
-        if(`$PSBoundParameters.ContainsKey("Verbose"))
+        $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        $keysChanged = @{}
+        if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            `$params["Verbose"] = `$Null
+            $params["Verbose"] = $Null
         }
-        if(`$PSBoundParameters.ContainsKey("Debug"))
+        if($PSBoundParameters.ContainsKey("Debug"))
         {
-            `$params["Debug"] = `$Null
+            $params["Debug"] = $Null
         }
-        if(`$null -ne `$PSBoundParameters["Id"])
+        if($null -ne $PSBoundParameters["Id"])
         {
-            `$params["DirectorySettingTemplateId"] = `$PSBoundParameters["Id"]
+            $params["DirectorySettingTemplateId"] = $PSBoundParameters["Id"]
+        }	if($null -ne $PSBoundParameters["WarningVariable"])
+        {
+            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+        }
+        if($null -ne $PSBoundParameters["InformationVariable"])
+        {
+            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+        }
+	    if($null -ne $PSBoundParameters["InformationAction"])
+        {
+            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+        }
+        if($null -ne $PSBoundParameters["OutVariable"])
+        {
+            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+        }
+        if($null -ne $PSBoundParameters["OutBuffer"])
+        {
+            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+        }
+        if($null -ne $PSBoundParameters["ErrorVariable"])
+        {
+            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+        }
+        if($null -ne $PSBoundParameters["PipelineVariable"])
+        {
+            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+        }
+        if($null -ne $PSBoundParameters["ErrorAction"])
+        {
+            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        }
+        if($null -ne $PSBoundParameters["WarningAction"])
+        {
+            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================``n")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================`n")
         
-        `$apiResponse = Get-MgBetaDirectorySettingTemplate @params -Headers `$customHeaders
-        `$response = @()
-        `$apiResponse | ForEach-Object {
-            if(`$null -ne `$_) {
-                `$item = New-Object -TypeName Microsoft.Open.MSGraph.Model.DirectorySettingTemplate
-                `$item.Id = `$_.Id
-                `$item.DisplayName = `$_.DisplayName
-                `$item.Description = `$_.Description
-                `$item.Values = @()
-                `$_.Values | ForEach-Object {
-                    `$value = New-Object -TypeName Microsoft.Open.MSGraph.Model.SettingTemplateValue
-                    `$value.Name = `$_.Name
-                    `$value.DefaultValue = `$_.DefaultValue
-                    `$item.Values.Add(`$value)
+        $apiResponse = Get-MgBetaDirectorySettingTemplate @params -Headers $customHeaders
+        $response = @()
+        $apiResponse | ForEach-Object {
+            if($null -ne $_) {
+                $item = New-Object -TypeName Microsoft.Open.MSGraph.Model.DirectorySettingTemplate
+                $item.Id = $_.Id
+                $item.DisplayName = $_.DisplayName
+                $item.Description = $_.Description
+                $item.Values = @()
+                $_.Values | ForEach-Object {
+                    $value = New-Object -TypeName Microsoft.Open.MSGraph.Model.SettingTemplateValue
+                    $value.Name = $_.Name
+                    $value.DefaultValue = $_.DefaultValue
+                    $item.Values.Add($value)
                 }
-                `$response += `$item
+                $response += $item
             }
         }
-        `$response
-    }
-"@
+        $response
+    }  
+'@
 }
