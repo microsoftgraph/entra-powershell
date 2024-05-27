@@ -1,48 +1,56 @@
 ---
-title: Select-EntraGroupIdsContactIsMemberOf
-description: This article provides details on the Select-EntraGroupIdsContactIsMemberOf command.
+title: Select-EntraGroupIdsGroupIsMemberOf
+description: This article provides details on the Select-EntraGroupIdsGroupIsMemberOf command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/21/2024
+ms.date: 03/16/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
 schema: 2.0.0
 ---
 
-# Select-EntraGroupIdsContactIsMemberOf
+# Select-EntraGroupIdsGroupIsMemberOf
 
 ## SYNOPSIS
-Get groups in which a contact is a member.
+Gets group IDs that a group is a member of.
 
 ## SYNTAX
 
 ```powershell
-Select-EntraGroupIdsContactIsMemberOf 
- -ObjectId <String>
- -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> 
+Select-EntraGroupIdsGroupIsMemberOf 
+ -ObjectId <String> 
+ -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck>
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Select-EntraGroupIdsContactIsMemberOf cmdlet gets groups in Microsoft Entra ID in which a contact is a member.
+The Select-EntraGroupIdsGroupIsMemberOf cmdlet gets the groups that a specified group is a member of in Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1: Get groups in which a contact is a member.
+### Example 1: Get the group membership of a group for a group.
+
 ```powershell
 PS C:\> $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-PS C:\>$Groups.GroupIds = (Get-AzureADGroup -ObjectId 69641f6c-41dc-4f63-9c21-cc9c8ed12931).ObjectId
-PS C:\>$UserID = (Get-AzureADContact -ObjectId cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c).ObjectId
-PS C:\>Select-AzureADGroupIdsContactIsMemberOf -ObjectId $UserID -GroupIdsForMembershipCheck $Groups
-
+PS C:\> $Groups.GroupIds = (Get-EntraGroup -Top 1).ObjectId
+PS C:\> $GroupId = (Get-EntraGroup -Top 1).ObjectId
+PS C:\> Select-EntraGroupIdsGroupIsMemberOf  -ObjectId $GroupId -GroupIdsForMembershipCheck $Groups
 ```
-This example demonstrates how to get groups in which a contact is a member.
+
+The first command creates a GroupIdsForMembershipCheck object, and then stores it in the $Groups variable.
+
+The second command gets an ID for a group by using the [Get-EntraGroup](./Get-EntraGroup.md) cmdlet, and then stores it as a property of $Groups.
+
+The third command gets the ID of a group by using Get-EntraGroup, and then stores it in the $GroupId variable.
+
+The final command gets the group membership of a group identified by $GroupId.
 
 ## PARAMETERS
 
@@ -60,9 +68,8 @@ Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
-
 ### -ObjectId
-Specifies the object ID of a contact in Microsoft Entra ID.
+Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: String
@@ -86,3 +93,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[Get-EntraGroup](Get-EntraGroup.md)
