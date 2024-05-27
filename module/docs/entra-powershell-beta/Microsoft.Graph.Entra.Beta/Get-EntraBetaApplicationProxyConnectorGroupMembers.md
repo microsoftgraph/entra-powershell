@@ -24,7 +24,7 @@ The Get-EntraBetaApplicationProxyConnectorGroupMembers get all the Application P
 ```powershell
 Get-EntraBetaApplicationProxyConnectorGroupMembers
  -Id <String> 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>]
  [-Filter <String>]
 ```
@@ -85,17 +85,17 @@ The output of this command, showing all the connectors in the group with filter 
 ## PARAMETERS
 
 ### -All
-If true, return all users. If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

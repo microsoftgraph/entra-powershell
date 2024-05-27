@@ -13,7 +13,7 @@ Gets an object owned by a service principal.
 ## SYNTAX
 
 ```
-Get-EntraBetaServicePrincipalOwnedObject -ObjectId <String> [-All <Boolean>] [-Top <Int32>]
+Get-EntraBetaServicePrincipalOwnedObject -ObjectId <String> [-All] [-Top <Int32>]
  [<CommonParameters>]
 ```
 
@@ -36,18 +36,17 @@ The second command gets the owned objects of a service principal identified by $
 ## PARAMETERS
 
 ### -All
-If true, return all objects owned by this service principal.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -93,4 +92,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Get-EntraBetaServicePrincipal]()
-

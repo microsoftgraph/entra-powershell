@@ -13,7 +13,7 @@ Gets the details of a tenant.
 ## SYNTAX
 
 ```
-Get-EntraBetaTenantDetail [-Top <Int32>] [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaTenantDetail [-Top <Int32>] [-All] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -33,18 +33,17 @@ ObjectId                             DisplayName            VerifiedDomains
 ## PARAMETERS
 
 ### -All
-If true, return all tenant details.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
