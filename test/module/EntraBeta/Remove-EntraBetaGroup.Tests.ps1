@@ -4,14 +4,7 @@ BeforeAll {
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
-        return @(
-            [PSCustomObject]@{
-              "Parameters"      = $args
-            }
-        )
-    }  
-    Mock -CommandName Remove-MgBetaGroup -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
+    Mock -CommandName Remove-MgBetaGroup -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta
 }
 
 Describe "Remove-EntraBetaGroup" {
@@ -32,16 +25,19 @@ Describe "Remove-EntraBetaGroup" {
         }   
 
         It "Should contain GroupId in parameters when passed ObjectId to it" {
+            Mock -CommandName Remove-MgBetaGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
+
             $result = Remove-EntraBetaGroup -ObjectId "fe4619d9-9ce7-4141-a367-ec10f3fb8af4"
-            $params = Get-Parameters -data $result.Parameters
+            $params = Get-Parameters -data $result
             $params.GroupId | Should -Be "fe4619d9-9ce7-4141-a367-ec10f3fb8af4"
         }
 
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaGroup"
+            Mock -CommandName Remove-MgBetaGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaGroup"
             $result = Remove-EntraBetaGroup -ObjectId "fe4619d9-9ce7-4141-a367-ec10f3fb8af4"
-            $params = Get-Parameters -data $result.Parameters
+            $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         } 
     }

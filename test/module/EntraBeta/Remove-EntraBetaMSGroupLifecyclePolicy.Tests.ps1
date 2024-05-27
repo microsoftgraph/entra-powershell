@@ -4,14 +4,7 @@ BeforeAll {
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
-    $scriptblock = {
-        return @(
-            [PSCustomObject]@{
-              "Parameters"      = $args
-            }
-        )
-    }  
-    Mock -CommandName Remove-MgBetaGroupLifecyclePolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
+    Mock -CommandName Remove-MgBetaGroupLifecyclePolicy -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta
 }
 
 Describe "Remove-EntraBetaMSGroupLifecyclePolicy" {
@@ -32,16 +25,19 @@ Describe "Remove-EntraBetaMSGroupLifecyclePolicy" {
         }  
 
         It "Should contain GroupLifecyclePolicyId in parameters when passed Id to it" {
+            Mock -CommandName Remove-MgBetaGroupLifecyclePolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
+
             $result = Remove-EntraBetaMSGroupLifecyclePolicy -Id "a47d4510-08c8-4437-99e9-71ca88e7af0f"
-            $params = Get-Parameters -data $result.Parameters
+            $params = Get-Parameters -data $result
             $params.GroupLifecyclePolicyId | Should -Be "a47d4510-08c8-4437-99e9-71ca88e7af0f"
         }
 
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaMSGroupLifecyclePolicy"
+            Mock -CommandName Remove-MgBetaGroupLifecyclePolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaMSGroupLifecyclePolicy"
             $result = Remove-EntraBetaMSGroupLifecyclePolicy -Id "a47d4510-08c8-4437-99e9-71ca88e7af0f"
-            $params = Get-Parameters -data $result.Parameters
+            $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         } 
     }
