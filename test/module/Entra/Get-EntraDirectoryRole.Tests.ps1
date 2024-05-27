@@ -1,5 +1,5 @@
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
         Import-Module Microsoft.Graph.Entra      
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
@@ -8,26 +8,27 @@ BeforeAll {
         # Write-Host "Mocking Get-EntraDirectoryRole with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
-              "DeletedDateTime" = $null
-              "Description"     = "Read custom security attribute keys and values for supported Microsoft Entra objects."
-              "DisplayName"     = "Attribute Assignment Reader"
-              "Id"              = "dc587a80-d49c-4700-a73b-57227856fc32"
-              "RoleTemplateId"  = "ffd52fa5-98dc-465c-991d-fc073eb59f8f"
-              "Members"         = $null
-              "ScopedMembers"   = $null
+                "DeletedDateTime" = $null
+                "Description"     = "Read custom security attribute keys and values for supported Microsoft Entra objects."
+                "DisplayName"     = "Attribute Assignment Reader"
+                "Id"              = "bbbbbbbb-1111-2222-3333-cccccccccccc"
+                "RoleTemplateId"  = "aaaaaaaa-1111-2222-3333-cccccccccccc"
+                "Members"         = $null
+                "ScopedMembers"   = $null
+                "Parameters"      = $args
             }
         )
     }
     
     Mock -CommandName Get-MgDirectoryRole -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
-  }
+}
   
-  Describe "Get-EntraDirectoryRole" {
+Describe "Get-EntraDirectoryRole" {
     Context "Test for Get-EntraDirectoryRole" {
         It "Should return specific role" {
-            $result = Get-EntraDirectoryRole -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32"
+            $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be "dc587a80-d49c-4700-a73b-57227856fc32"
+            $result.Id | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
             Should -Invoke -CommandName Get-MgDirectoryRole  -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -44,25 +45,24 @@ BeforeAll {
 
             Should -Invoke -CommandName Get-MgDirectoryRole  -ModuleName Microsoft.Graph.Entra -Times 1
         }  
+        It "Should fail when filter is empty" {
+            { Get-EntraDirectoryRole -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
+        }
         It "Result should Contain ObjectId" {
-            $result = Get-EntraDirectoryRole -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32"
-            $result.ObjectId | should -Be "dc587a80-d49c-4700-a73b-57227856fc32"
+            $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         } 
         It "Should contain DirectoryRoleId in parameters when passed ObjectId to it" {     
-            Mock -CommandName Get-MgDirectoryRole -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
-            $result = Get-EntraDirectoryRole -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32"
-            $params = Get-Parameters -data $result
-            $params.DirectoryRoleId | Should -Be "dc587a80-d49c-4700-a73b-57227856fc32"
+            $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $params = Get-Parameters -data $result.Parameters
+            $params.DirectoryRoleId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Get-MgDirectoryRole -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirectoryRole"
 
-            $result = Get-EntraDirectoryRole -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32"
-            $params = Get-Parameters -data $result
+            $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }     
     }
-  }
+}

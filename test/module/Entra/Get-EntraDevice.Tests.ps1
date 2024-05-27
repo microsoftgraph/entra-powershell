@@ -1,5 +1,5 @@
 BeforeAll {  
-    if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
+    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
         Import-Module Microsoft.Graph.Entra      
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
@@ -13,14 +13,14 @@ BeforeAll {
                 "ApproximateLastSignInDateTime" = $null                
                 "DeletedDateTime"               = $null
                 "DeviceCategory"                = $null
-                "DeviceId"                      = "6e9d44e6-f191-4957-bb31-c52f33817204"
+                "DeviceId"                      = "aaaaaaaa-1111-2222-3333-cccccccccccc"
                 "DeviceMetadata"                = "MetaData"
                 "DeviceOwnership"               = $null
                 "DeviceVersion"                 = 2
                 "DisplayName"                   = "Mock-Device"
                 "EnrollmentProfileName"         = $null
                 "Extensions"                    = $null
-                "Id"                            = "74825acb-c984-4b54-ab65-d38347ea5e90"
+                "Id"                            = "bbbbbbbb-1111-2222-3333-cccccccccccc"
                 "IsCompliant"                   = $False
                 "IsManaged"                     = $True
                 "MdmAppId"                      = $null
@@ -37,6 +37,7 @@ BeforeAll {
                 "TransitiveMemberOf"            = $null
                 "TrustType"                     = $null
                 "PhysicalIds"                   = @{}
+                "Parameters"                    = $args
             }
         )
     }
@@ -47,9 +48,9 @@ BeforeAll {
 Describe "Get-EntraDevice" {
     Context "Test for Get-EntraDevice" {
         It "Should return specific device" {
-            $result = Get-EntraDevice -ObjectId "74825acb-c984-4b54-ab65-d38347ea5e90"
+            $result = Get-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be @('74825acb-c984-4b54-ab65-d38347ea5e90')
+            $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
 
             Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -65,10 +66,10 @@ Describe "Get-EntraDevice" {
         It "Should fail when filter is empty" {
             { Get-EntraDevice -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
         }
-        It "Should fail when filter is empty" {
+        It "Should fail when Top is empty" {
             { Get-EntraDevice -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
-        It "Should fail when filter is invalid" {
+        It "Should fail when Top is invalid" {
             { Get-EntraDevice -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
         It "Should return all devices" {
@@ -77,7 +78,7 @@ Describe "Get-EntraDevice" {
             
             Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when All is empty" {
+        It "Should fail when All has an argument" {
             { Get-EntraDevice -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
         }           
         It "Should return specific device by searchstring" {
@@ -102,30 +103,24 @@ Describe "Get-EntraDevice" {
             Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }  
         It "Result should Contain ObjectId" {
-            $result = Get-EntraDevice -ObjectId "74825acb-c984-4b54-ab65-d38347ea5e90"
-            $result.ObjectId | should -Be "74825acb-c984-4b54-ab65-d38347ea5e90"
+            $result = Get-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }     
         It "Should contain DeviceId in parameters when passed ObjectId to it" {              
-            Mock -CommandName Get-MgDevice -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
-            $result = Get-EntraDevice -ObjectId "74825acb-c984-4b54-ab65-d38347ea5e90"
-            $params = Get-Parameters -data $result
-            $params.DeviceId | Should -Be "74825acb-c984-4b54-ab65-d38347ea5e90"
+            $result = Get-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $params = Get-Parameters -data $result.Parameters
+            $params.DeviceId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Should contain Filter in parameters when passed SearchString to it" {               
-            Mock -CommandName Get-MgDevice -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $result = Get-EntraDevice -SearchString 'Mock-Device'
-            $params = Get-Parameters -data $result
+            $params = Get-Parameters -data $result.Parameters
             $params.Filter | Should -Match "Mock-Device"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Get-MgDevice -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDevice"
 
             $result = Get-EntraDevice -SearchString 'Mock-Device'
-            $params = Get-Parameters -data $result
+            $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
     }

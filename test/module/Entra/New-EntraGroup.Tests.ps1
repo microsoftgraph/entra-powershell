@@ -9,7 +9,7 @@ BeforeAll {
         return @(
             [PSCustomObject]@{
                 "DisplayName"     = "demo"
-                "Id"              = "056b2531-005e-4f3e-be78-01a71ea30a04"
+                "Id"              = "bbbbbbbb-1111-2222-3333-cccccccccccc"
                 "MailEnabled"     = "False"
                 "Description"     = "test"
                 "MailNickname"    = "demoNickname"
@@ -42,7 +42,7 @@ Describe "New-EntraGroup" {
         }
         It "Result should Contain ObjectId" {            
             $result = New-EntraGroup -DisplayName "demo" -MailEnabled $false -SecurityEnabled $true -MailNickName "demoNickname" -Description "test"
-            $result.ObjectId | should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         } 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraGroup"

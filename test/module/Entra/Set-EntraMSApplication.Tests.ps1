@@ -10,7 +10,7 @@ BeforeAll {
 Describe "Set-EntraMSApplication"{
     Context "Test for Set-EntraMSApplication" {
         It "Should return empty object"{
-            $result = Set-EntraMSApplication -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04 -DisplayName "Mock-App"
+            $result = Set-EntraMSApplication -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "Mock-App"
             $result | Should -BeNullOrEmpty           
 
             Should -Invoke -CommandName Update-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
@@ -24,16 +24,16 @@ Describe "Set-EntraMSApplication"{
         It "Should contain ApplicationId in parameters when passed ObjectId to it" {
             Mock -CommandName Update-MgApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Set-EntraMSApplication -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04
+            $result = Set-EntraMSApplication -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
             $params = Get-Parameters -data $result
-            $params.ApplicationId | Should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
+            $params.ApplicationId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Should contain 'User-Agent' header" {
             Mock -CommandName Update-MgApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraMSApplication"
 
-            $result = Set-EntraMSApplication -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04
+            $result = Set-EntraMSApplication -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }

@@ -10,7 +10,7 @@ BeforeAll {
 Describe "Remove-EntraApplication" {
     Context "Test for Remove-EntraApplication" {
         It "Should return empty object" {
-            $result = Remove-EntraApplication -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04
+            $result = Remove-EntraApplication -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
@@ -24,16 +24,16 @@ Describe "Remove-EntraApplication" {
         It "Should contain ApplicationId in parameters when passed ObjectId to it" {
             Mock -CommandName Remove-MgApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraApplication -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04
+            $result = Remove-EntraApplication -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
             $params = Get-Parameters -data $result
-            $params.ApplicationId | Should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
+            $params.ApplicationId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Should contain 'User-Agent' header" {
             Mock -CommandName Remove-MgApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraApplication"
 
-            $result = Remove-EntraApplication -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04
+            $result = Remove-EntraApplication -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         } 

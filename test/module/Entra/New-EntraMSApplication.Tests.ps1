@@ -8,9 +8,9 @@ BeforeAll {
         # Write-Host "Mocking New-MgApplication with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
-                "AppId"                     = "5f783237-3457-45d8-93e7-a0edb1cfbfd1"
+                "AppId"                     = "aaaaaaaa-1111-2222-3333-cccccccccccc"
                 "DeletedDateTime"           = $null
-                "Id"                        = "111cc9b5-fce9-485e-9566-c68debafac5f"
+                "Id"                        = "bbbbbbbb-1111-2222-3333-cccccccccccc"
                 "DisplayName"               = "Mock-App"
                 "Info"                      = @{LogoUrl = ""; MarketingUrl = ""; PrivacyStatementUrl = ""; SupportUrl = ""; TermsOfServiceUrl = "" }
                 "IsDeviceOnlyAuthSupported" = $True
@@ -30,7 +30,7 @@ BeforeAll {
                 }
                 "PublicClient"              = @{RedirectUris = $null }
                 "RequiredResourceAccess"    = $false
-                "PublisherDomain"           = "M365x99297270.onmicrosoft.com"
+                "PublisherDomain"           = "aaaabbbbbcccc.onmicrosoft.com"
                 "SignInAudience"            = "AzureADandPersonalMicrosoftAccount"
                 "Web"                       = @{HomePageUrl = "https://localhost/demoapp"; ImplicitGrantSettings = ""; LogoutUrl = ""; }
                 "AdditionalProperties"      = @{Context = "application" }
@@ -62,7 +62,7 @@ Describe "New-EntraMSApplication" {
         }
         It "Result should Contain ObjectId" {            
             $result = New-EntraMSApplication -DisplayName "Mock-App"
-            $result.ObjectId | should -Be "111cc9b5-fce9-485e-9566-c68debafac5f"
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         } 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraMSApplication"

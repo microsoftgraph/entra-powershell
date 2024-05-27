@@ -8,14 +8,14 @@ BeforeAll {
         # Write-Host "Mocking Get-MgApplication with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
-                "AppId"                     = "5f783237-3457-45d8-93e7-a0edb1cfbfd1"
+                "AppId"                     = "aaaaaaaa-1111-2222-3333-cccccccccccc"
                 "DeletedDateTime"           = $null
-                "Id"                        = "111cc9b5-fce9-485e-9566-c68debafac5f"
+                "Id"                        = "bbbbbbbb-1111-2222-3333-cccccccccccc"
                 "DisplayName"               = "Mock-App"
                 "Info"                      = @{LogoUrl = ""; MarketingUrl = ""; PrivacyStatementUrl = ""; SupportUrl = ""; TermsOfServiceUrl = "" }
                 "IsDeviceOnlyAuthSupported" = $True
                 "IsFallbackPublicClient"    = $true
-                "KeyCredentials"            = @{CustomKeyIdentifier = @(211, 174, 247); DisplayName = ""; Key = ""; KeyId = "d903c7a3-75ea-4772-8935-5c0cf82068a7"; Type = "Symmetric"; Usage = "Sign" }
+                "KeyCredentials"            = @{CustomKeyIdentifier = @(211, 174, 247); DisplayName = ""; Key = ""; KeyId = "pppppppp-1111-2222-3333-cccccccccccc"; Type = "Symmetric"; Usage = "Sign" }
                 "OptionalClaims"            = @{AccessToken = ""; IdToken = ""; Saml2Token = "" }
                 "ParentalControlSettings"   = @{CountriesBlockedForMinors = $null; LegalAgeGroupRule = "Allow" }
                 "PasswordCredentials"       = @{}
@@ -30,7 +30,7 @@ BeforeAll {
                 }
                 "PublicClient"              = @{RedirectUris = $null }
                 "RequiredResourceAccess"    = $false
-                "PublisherDomain"           = "M365x99297270.onmicrosoft.com"
+                "PublisherDomain"           = "aaaabbbbbccccc.onmicrosoft.com"
                 "SignInAudience"            = "AzureADandPersonalMicrosoftAccount"
                 "Web"                       = @{HomePageUrl = "https://localhost/demoapp"; ImplicitGrantSettings = ""; LogoutUrl = ""; }
                 "Parameters"                = $args
@@ -44,9 +44,9 @@ BeforeAll {
 Describe "Get-EntraMSApplication" {
     Context "Test for Get-EntraMSApplication" {
         It "Should return specific application" {
-            $result = Get-EntraMSApplication -ObjectId "111cc9b5-fce9-485e-9566-c68debafac5f"
+            $result = Get-EntraMSApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be @('111cc9b5-fce9-485e-9566-c68debafac5f')
+            $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
 
             Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -62,10 +62,10 @@ Describe "Get-EntraMSApplication" {
         It "Should fail when filter is empty" {
             { Get-EntraMSApplication -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
         }
-        It "Should fail when filter is empty" {
+        It "Should fail when Top is empty" {
             { Get-EntraMSApplication -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
-        It "Should fail when filter is invalid" {
+        It "Should fail when Top is invalid" {
             { Get-EntraMSApplication -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
         It "Should return all applications" {
@@ -74,7 +74,7 @@ Describe "Get-EntraMSApplication" {
             
             Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when All is empty" {
+        It "Should fail when All has an argument" {
             { Get-EntraMSApplication -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
         }           
         It "Should return specific application by searchstring" {
@@ -99,13 +99,13 @@ Describe "Get-EntraMSApplication" {
             Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
         }  
         It "Result should Contain ObjectId" {            
-            $result = Get-EntraMSApplication -ObjectId "111cc9b5-fce9-485e-9566-c68debafac5f"
-            $result.ObjectId | should -Be "111cc9b5-fce9-485e-9566-c68debafac5f"
+            $result = Get-EntraMSApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }     
         It "Should contain ApplicationId in parameters when passed ObjectId to it" {    
-            $result = Get-EntraMSApplication -ObjectId "111cc9b5-fce9-485e-9566-c68debafac5f"
+            $result = Get-EntraMSApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
-            $params.ApplicationId | Should -Be "111cc9b5-fce9-485e-9566-c68debafac5f"
+            $params.ApplicationId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Should contain Filter in parameters when passed SearchString to it" {               
             $result = Get-EntraMSApplication -SearchString 'Mock-App'
