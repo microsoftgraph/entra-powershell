@@ -25,30 +25,30 @@ Gets information about role definitions in Microsoft Entra ID.
 ### GetQuery (Default)
 ```powershell
 Get-EntraBetaMSRoleDefinition 
-  [-All <Boolean>] 
-  [-Top <Int32>] 
-  [-Filter <String>] 
+ [-All] 
+ [-Top <Int32>] 
+ [-Filter <String>] 
  [<CommonParameters>]
 ```
 
 ### GetVague
 ```powershell
 Get-EntraBetaMSRoleDefinition 
-  [-SearchString <String>] 
-  [-All <Boolean>] 
+ [-SearchString <String>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraBetaMSRoleDefinition 
-  -Id <String> 
-  [-All <Boolean>] 
+ -Id <String> 
+ [-All] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraBetaMSRoleDefinition** cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the Id parameter. Specify the SearchString or Filter parameter to find particular role definition.
+The Get-EntraBetaMSRoleDefinition cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the Id parameter. Specify the SearchString or Filter parameter to find particular role definition.
 
 ## EXAMPLES
 
@@ -172,17 +172,17 @@ Accept wildcard characters: False
 ```
 
 ### -All
-If true, return all role definitions. If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

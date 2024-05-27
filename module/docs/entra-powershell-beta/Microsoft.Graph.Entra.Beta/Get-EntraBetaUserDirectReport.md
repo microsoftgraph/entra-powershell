@@ -13,7 +13,7 @@ Get the user's direct reports.
 ## SYNTAX
 
 ```
-Get-EntraBetaUserDirectReport -ObjectId <String> [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraBetaUserDirectReport -ObjectId <String> [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -35,18 +35,17 @@ This command gets the direct report for the specified user.
 ## PARAMETERS
 
 ### -All
-If true, return all direct reports for this user.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

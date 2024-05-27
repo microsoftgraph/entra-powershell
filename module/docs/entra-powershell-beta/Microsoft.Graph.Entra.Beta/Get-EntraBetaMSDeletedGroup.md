@@ -14,17 +14,17 @@ This cmdlet is used to retrieve the soft deleted groups in a directory.
 
 ### GetQuery (Default)
 ```
-Get-EntraBetaMSDeletedGroup [-Filter <String>] [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraBetaMSDeletedGroup [-Filter <String>] [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
 ### GetById
 ```
-Get-EntraBetaMSDeletedGroup -Id <String> [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaMSDeletedGroup -Id <String> [-All] [<CommonParameters>]
 ```
 
 ### GetVague
 ```
-Get-EntraBetaMSDeletedGroup [-All <Boolean>] [-SearchString <String>] [<CommonParameters>]
+Get-EntraBetaMSDeletedGroup [-All] [-SearchString <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -46,18 +46,17 @@ This cmdlet will retrieve all recoverable deleted groups in the directory.
 ## PARAMETERS
 
 ### -All
-If true, return all group members.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

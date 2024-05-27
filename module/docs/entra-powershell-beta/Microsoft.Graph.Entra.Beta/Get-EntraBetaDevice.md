@@ -14,17 +14,17 @@ Gets a device from Active Directory.
 
 ### GetQuery (Default)
 ```
-Get-EntraBetaDevice [-Filter <String>] [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraBetaDevice [-Filter <String>] [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
 ### GetVague
 ```
-Get-EntraBetaDevice [-SearchString <String>] [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaDevice [-SearchString <String>] [-All] [<CommonParameters>]
 ```
 
 ### GetById
 ```
-Get-EntraBetaDevice -ObjectId <String> [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaDevice -ObjectId <String> [-All] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -59,18 +59,17 @@ This command gets all available devices.
 ## PARAMETERS
 
 ### -All
-If true, return all devices.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

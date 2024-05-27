@@ -5,6 +5,7 @@ BeforeAll {
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
     
     $scriptblock = {
+        # Write-Host "Mocking Get-MgApplication with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
                 "AppId"                     = "aaaaaaaa-1111-2222-3333-cccccccccccc"
@@ -18,8 +19,18 @@ BeforeAll {
                 "OptionalClaims"            = @{AccessToken = ""; IdToken = ""; Saml2Token = "" }
                 "ParentalControlSettings"   = @{CountriesBlockedForMinors = $null; LegalAgeGroupRule = "Allow" }
                 "PasswordCredentials"       = @{}
+                "AddIns"                    = @{}
+                "Logo"                      = $null
+                "AppRoles"                  = $null
+                "GroupMembershipClaims"     = $null
+                "IdentifierUris"            = $null
+                "Oauth2RequirePostResponse" = $null
+                "Api"                       = @{AcceptMappedClaims = $null; KnownClientApplications = $null; Oauth2PermissionScopes = $null;
+                    PreAuthorizedApplications = $null; RequestedAccessTokenVersion = 2; AdditionalProperties = $null
+                }
                 "PublicClient"              = @{RedirectUris = $null }
-                "PublisherDomain"           = "aaaabbbbbcccc.onmicrosoft.com"
+                "RequiredResourceAccess"    = $false
+                "PublisherDomain"           = "aaaabbbbbccccc.onmicrosoft.com"
                 "SignInAudience"            = "AzureADandPersonalMicrosoftAccount"
                 "Web"                       = @{HomePageUrl = "https://localhost/demoapp"; ImplicitGrantSettings = ""; LogoutUrl = ""; }
                 "Parameters"                = $args
@@ -30,81 +41,81 @@ BeforeAll {
     Mock -CommandName Get-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
-Describe "Get-EntraApplication" {
-    Context "Test for Get-EntraApplication" {
+Describe "Get-EntraMSApplication" {
+    Context "Test for Get-EntraMSApplication" {
         It "Should return specific application" {
-            $result = Get-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraMSApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
 
             Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when ObjectId is invalid" {
-            { Get-EntraApplication -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+            { Get-EntraMSApplication -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
         It "Should fail when ObjectId is empty" {
-            { Get-EntraApplication -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+            { Get-EntraMSApplication -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        }
+        It "Should fail when searchstring is empty" {
+            { Get-EntraMSApplication -SearchString } | Should -Throw "Missing an argument for parameter 'SearchString'*"
+        } 
+        It "Should fail when filter is empty" {
+            { Get-EntraMSApplication -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
+        }
+        It "Should fail when Top is empty" {
+            { Get-EntraMSApplication -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+        }
+        It "Should fail when Top is invalid" {
+            { Get-EntraMSApplication -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
         It "Should return all applications" {
-            $result = Get-EntraApplication -All
-            $result | Should -Not -BeNullOrEmpty            
+            $result = Get-EntraMSApplication -All
+            $result | Should -Not -BeNullOrEmpty     
             
             Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when All has an argument" {
-            { Get-EntraApplication -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
-        }   
-        It "Should fail when searchstring is empty" {
-            { Get-EntraApplication -SearchString } | Should -Throw "Missing an argument for parameter 'SearchString'*"
-        } 
-        It "Should fail when filter is empty" {
-            { Get-EntraApplication -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
-        }
-        It "Should fail when Top is empty" {
-            { Get-EntraApplication -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
-        }
-        It "Should fail when Top is invalid" {
-            { Get-EntraApplication -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
-        }        
+            { Get-EntraMSApplication -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
+        }           
         It "Should return specific application by searchstring" {
-            $result = Get-EntraApplication -SearchString 'Mock-App'
+            $result = Get-EntraMSApplication -SearchString 'Mock-App'
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-App'
 
             Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
         } 
         It "Should return specific application by filter" {
-            $result = Get-EntraApplication -Filter "DisplayName -eq 'Mock-App'"
+            $result = Get-EntraMSApplication -Filter "DisplayName -eq 'Mock-App'"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-App'
 
             Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
         }  
         It "Should return top application" {
-            $result = @(Get-EntraApplication -Top 1)
+            $result = @(Get-EntraMSApplication -Top 1)
             $result | Should -Not -BeNullOrEmpty
             $result | Should -HaveCount 1 
 
             Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
         }  
-        It "Result should Contain ObjectId" {
-            $result = Get-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+        It "Result should Contain ObjectId" {            
+            $result = Get-EntraMSApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }     
-        It "Should contain ApplicationId in parameters when passed ObjectId to it" {              
-            $result = Get-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+        It "Should contain ApplicationId in parameters when passed ObjectId to it" {    
+            $result = Get-EntraMSApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
             $params.ApplicationId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Should contain Filter in parameters when passed SearchString to it" {               
-            $result = Get-EntraApplication -SearchString 'Mock-App'
+            $result = Get-EntraMSApplication -SearchString 'Mock-App'
             $params = Get-Parameters -data $result.Parameters
             $params.Filter | Should -Match "Mock-App"
         }
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplication"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraMSApplication"
 
-            $result = Get-EntraApplication -SearchString 'Mock-App'
+            $result = Get-EntraMSApplication -SearchString 'Mock-App'
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
