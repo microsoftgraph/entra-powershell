@@ -39,10 +39,11 @@ The Add-EntraMSServicePrincipalDelegatedPermissionClassification cmdlet creates 
 
 ### Example 1: Create Delegated Permission Classification
 ```powershell
-PS C:\> $ServicePrincipal = Get-EntraServicePrincipal -ObjectId 60368f69-1023-4652-8d16-895bb9f213a9
-PS C:\> $PermissionId = $ServicePrincipal.Oauth2PermissionScopes[0].Id
-PS C:\> $PermissionName =  $ServicePrincipal.Oauth2PermissionScopes[0].Value
-PS C:\> Add-EntraMSServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $ServicePrincipal.Id -PermissionId $PermissionId -Classification Low -PermissionName $PermissionName
+Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
+$ServicePrincipal = Get-EntraServicePrincipal -ObjectId '00000000-0000-0000-0000-000000000000'
+$PermissionId = $ServicePrincipal.Oauth2PermissionScopes[0].Id
+$PermissionName =  $ServicePrincipal.Oauth2PermissionScopes[0].Value
+Add-EntraMSServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $ServicePrincipal.Id -PermissionId $PermissionId -Classification Low -PermissionName $PermissionName
 ```
 
 ```output
@@ -51,13 +52,15 @@ Id                      Classification PermissionId                         Perm
 eszf101IRka9VZoGVVnbBgE low            205e70e5-aba6-4c52-a976-6d2d46c48043 Sites.Read.All
 ```
 
-The first command get the specified service principal using [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md) cmdlet and stores it in $ServicePrincipal.  
+The first command connects to the tenant with the right scopes to run the example.
 
-The second command gets the Id from first item in Oauth2PermissionScopes list from the retrieved service principal.  
+The second command get the specified service principal using [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md) cmdlet and stores it in $ServicePrincipal.  
 
-The third command gets the value from first item in Oauth2PermissionScopes list from the retrieved service principal.  
+The third command gets the Id from first item in Oauth2PermissionScopes list from the retrieved service principal.  
 
-This command creates a delegated permission classification for the given permission on the service principal.
+The forth command gets the value from first item in Oauth2PermissionScopes list from the retrieved service principal.  
+
+Lastly we create a delegated permission classification for the given permission on the service principal.
 
 ## PARAMETERS
 
