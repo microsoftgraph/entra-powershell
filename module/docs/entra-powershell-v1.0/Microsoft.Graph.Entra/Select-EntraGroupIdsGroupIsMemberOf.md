@@ -40,11 +40,11 @@ The Select-EntraGroupIdsGroupIsMemberOf cmdlet gets the groups that a specified 
 ### Example 1: Get the group membership of a group for a group.
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'GroupMember.Read.All'
-PS C:\> $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-PS C:\> $Groups.GroupIds = (Get-EntraGroup -Top 1).ObjectId
-PS C:\> $GroupId = (Get-EntraGroup -Top 1).ObjectId
-PS C:\> Select-EntraGroupIdsGroupIsMemberOf  -ObjectId $GroupId -GroupIdsForMembershipCheck $Groups
+Connect-Entra -Scopes 'GroupMember.Read.All'
+$Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+$Groups.GroupIds = (Get-EntraGroup -Top 1).ObjectId
+$GroupId = (Get-EntraGroup -Top 1).ObjectId
+Select-EntraGroupIdsGroupIsMemberOf  -ObjectId $GroupId -GroupIdsForMembershipCheck $Groups
 ```
 
 The first command creates a GroupIdsForMembershipCheck object, and then stores it in the $Groups variable.

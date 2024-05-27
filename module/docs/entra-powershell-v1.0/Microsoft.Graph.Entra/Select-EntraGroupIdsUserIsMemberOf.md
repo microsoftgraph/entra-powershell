@@ -18,6 +18,7 @@ schema: 2.0.0
 # Select-EntraGroupIdsUserIsMemberOf
 
 ## SYNOPSIS
+
 Selects the groups that a user is a member of.
 
 ## SYNTAX
@@ -30,17 +31,21 @@ Select-EntraGroupIdsUserIsMemberOf
 ```
 
 ## DESCRIPTION
+
 The Select-EntraGroupIdsUserIsMemberOf cmdlet selects the groups that a user is a member of in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Get the group membership of a group for a user
+
 ```powershell
-PS C:\> $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-PS C:\> $Groups.GroupIds = (Get-EntraGroup -Top 1).ObjectId
-PS C:\> $UserId = (Get-EntraUser -Top 1).ObjectId
-PS C:\> Select-EntraGroupIdsUserIsMemberOf  -ObjectId $UserId -GroupIdsForMembershipCheck $Groups
+ Connect-Entra -Scopes 'Application.Read.All'
+ $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+ $Groups.GroupIds = (Get-EntraGroup -Top 1).ObjectId
+ $UserId = (Get-EntraUser -Top 1).ObjectId
+ Select-EntraGroupIdsUserIsMemberOf  -ObjectId $UserId -GroupIdsForMembershipCheck $Groups
 ```
+
 ```output
 056b2531-005e-4f3e-be78-01a71ea30a04
 ```
@@ -56,6 +61,7 @@ The final command gets the group membership of a group for a user identified by 
 ## PARAMETERS
 
 ### -GroupIdsForMembershipCheck
+
 Specifies an array of group object IDs.
 
 ```yaml
@@ -71,6 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.
 
 ```yaml
@@ -86,6 +93,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
