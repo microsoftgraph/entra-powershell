@@ -13,7 +13,7 @@ Gets a member of an administrative unit.
 ## SYNTAX
 
 ```
-Get-EntraBetaAdministrativeUnitMember -ObjectId <String> [-All <Boolean>] [-Top <Int32>]
+Get-EntraBetaAdministrativeUnitMember -ObjectId <String> [-All] [-Top <Int32>]
  [<CommonParameters>]
 ```
 
@@ -46,18 +46,17 @@ Accept wildcard characters: False
 ```
 
 ### -All
-If true, return all administrative unit members.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -90,4 +89,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Add-EntraBetaAdministrativeUnitMember]()
 
 [Remove-EntraBetaAdministrativeUnitMember]()
-

@@ -23,9 +23,9 @@ Get directory audit logs.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraBetaAuditDirectoryLogs 
-[-All <Boolean>] 
+[-All] 
 [-Top <Int32>] 
 [-Filter <String>] 
 [<CommonParameters>]
@@ -37,11 +37,8 @@ The Get-EntraBetaAuditDirectoryLogs cmdlet gets a Microsoft Entra ID audit log.
 ## EXAMPLES
 
 ### Example 1: Get all logs
-
-This command gets all audit logs.
-
 ```powershell
- Get-EntraBetaAuditDirectoryLogs -All $true 
+ Get-EntraBetaAuditDirectoryLogs -All  
 ```
 
 ```Output
@@ -54,48 +51,45 @@ Directory_a8217b8c-0ea9-4f05-aaab-8db30605f091_JAA85_43195159           11/9/202
 Directory_a8217b8c-0ea9-4f05-aaab-8db30605f091_JAA85_43195118           11/9/2023 10:52:20 AM  Add application                                                 ApplicationManagement a821...
 Directory_aa14d505-735f-4c2d-a3e5-9f2774b15cbf_AE4VI_41199522           11/9/2023 8:28:00 AM   Update application                                              ApplicationManagement aa14...
 ```
+This command gets all audit logs.
 
 ### Example 2: Get first n logs
-
-This example returns the first N logs.
 
 ```powershell
  Get-EntraBetaAuditDirectoryLogs -Top 1
 ```
+This example returns the first N logs.
 
 ### Example 3: Get audit logs containing a given ActivityDisplayName
-
-This command shows how to get audit logs by ActivityDisplayName.
 
 ```powershell
  Get-EntraBetaAuditDirectoryLogs -Filter "ActivityDisplayName eq 'Update rollout policy of feature'" 
  Get-EntraBetaAuditDirectoryLogs -Filter "ActivityDisplayName eq 'Update rollout policy of feature'" -Top 1
 ```
+This command shows how to get audit logs by ActivityDisplayName.
 
 ### Example 4: Get all audit logs with a given result
 
-This command shows how to get audit logs by the result.
-
 ```powershell
  Get-EntraBetaAuditDirectoryLogs -Filter "result eq 'success'"
- Get-EntraBetaAuditDirectoryLogs -Filter "result eq 'failure'" -All $true
+ Get-EntraBetaAuditDirectoryLogs -Filter "result eq 'failure'" -All
 ```
+This command shows how to get audit logs by the result.
 
 ## PARAMETERS
 
 ### -All
-
-Boolean to express that return all results from the server for the specific query
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

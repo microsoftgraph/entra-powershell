@@ -14,12 +14,12 @@ Gets a directory setting.
 
 ### GetQuery (Default)
 ```
-Get-EntraBetaDirectorySetting [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraBetaDirectorySetting [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
 ### GetById
 ```
-Get-EntraBetaDirectorySetting [-All <Boolean>] -Id <String> [<CommonParameters>]
+Get-EntraBetaDirectorySetting [-All] -Id <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -37,18 +37,17 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -All
-If true, return all directory settings.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

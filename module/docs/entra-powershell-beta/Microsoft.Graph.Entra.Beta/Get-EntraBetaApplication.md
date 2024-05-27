@@ -26,7 +26,7 @@ Gets an application.
 ```powershell
 Get-EntraBetaApplication 
  [-Top <Int32>] 
- [-All <Boolean>] 
+ [-All] 
  [-Filter <String>] 
  [<CommonParameters>]
 ```
@@ -35,7 +35,7 @@ Get-EntraBetaApplication
 ```powershell
 Get-EntraBetaApplication 
  [-SearchString <String>] 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -43,7 +43,7 @@ Get-EntraBetaApplication
 ```powershell
 Get-EntraBetaApplication 
  -ObjectId <String> 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -67,7 +67,7 @@ This command gets an application for the specified ObjectId.
 
 ### Example 2: Get all applications 
 ```powershell
-PS C:\>Get- Get-EntraBetaApplication -All $true
+PS C:\>Get- Get-EntraBetaApplication -All 
 ```
 ```output
 DisplayName         Id                                   AppId                                SignInAudience                     PublisherDomain
@@ -135,18 +135,17 @@ This example demonstrates how to retrieve applications by its identifierUris fro
 ## PARAMETERS
 
 ### -All
-If true, return all applications.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -227,4 +226,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraBetaApplication](Remove-EntraBetaApplication.md)
 
 [Set-EntraBetaApplication](Set-EntraBetaApplication.md)
-

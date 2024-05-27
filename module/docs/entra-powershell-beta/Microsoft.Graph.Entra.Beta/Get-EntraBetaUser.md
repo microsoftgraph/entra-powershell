@@ -14,17 +14,17 @@ Gets a user.
 
 ### GetQuery (Default)
 ```
-Get-EntraBetaUser [-Filter <String>] [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraBetaUser [-Filter <String>] [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
 ### GetVague
 ```
-Get-EntraBetaUser [-SearchString <String>] [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaUser [-SearchString <String>] [-All] [<CommonParameters>]
 ```
 
 ### GetById
 ```
-Get-EntraBetaUser -ObjectId <String> [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaUser -ObjectId <String> [-All] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -76,18 +76,17 @@ ie Sales Manager and Sales Assistant.
 ## PARAMETERS
 
 ### -All
-If true, return all users.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

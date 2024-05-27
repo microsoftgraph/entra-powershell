@@ -14,18 +14,18 @@ schema: 2.0.0
 
 ### GetQuery (Default)
 ```
-Get-EntraBetaMSServicePrincipal [-Select <String>] [-Filter <String>] [-All <Boolean>] [-Top <Int32>]
+Get-EntraBetaMSServicePrincipal [-Select <String>] [-Filter <String>] [-All] [-Top <Int32>]
  [<CommonParameters>]
 ```
 
 ### GetById
 ```
-Get-EntraBetaMSServicePrincipal [-Select <String>] -Id <String> [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaMSServicePrincipal [-Select <String>] -Id <String> [-All] [<CommonParameters>]
 ```
 
 ### GetVague
 ```
-Get-EntraBetaMSServicePrincipal [-All <Boolean>] [-SearchString <String>] [<CommonParameters>]
+Get-EntraBetaMSServicePrincipal [-All] [-SearchString <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -43,17 +43,17 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -All
-{{ Fill All Description }}
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
