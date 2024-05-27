@@ -83,7 +83,7 @@ This example updates the specified user's AccountEnabled property.
 ### Example 3: Set all but specified users as minors with parental consent
 
 ```powershell
-PS C:\>Get-AzureADUser -All $true | 
+PS C:\>Get-EntraUser -All  | 
 Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } | 
 ForEach-Object  { Set-EntraUser -ObjectId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
 ```

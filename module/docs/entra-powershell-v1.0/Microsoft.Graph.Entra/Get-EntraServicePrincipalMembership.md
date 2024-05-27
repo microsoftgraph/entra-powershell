@@ -25,7 +25,7 @@ Get a service principal membership.
 ```powershell
 Get-EntraServicePrincipalMembership 
  -ObjectId <String>
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>]
  [<CommonParameters>]
 ```
@@ -50,7 +50,7 @@ The second command gets the memberships of a service principal identified by $Se
 ### Example 2: Retrieve all memberships of a service principal
 
 ```powershell
-PS C:\> Get-EntraServicePrincipalMembership -ObjectId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -All $true
+PS C:\> Get-EntraServicePrincipalMembership -ObjectId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -All 
 ```
 ```output
 Id                                   DeletedDateTime
@@ -76,8 +76,7 @@ This command gets two memberships of a specified service principal.
 ## PARAMETERS
 
 ### -All
-If true, return all memberships.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -86,8 +85,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -133,4 +132,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
-

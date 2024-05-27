@@ -25,7 +25,7 @@ Gets information about role definitions in Microsoft Entra ID.
 ### GetQuery (Default)
 ```powershell
 Get-EntraMSRoleDefinition 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [-Filter <String>] 
  [<CommonParameters>]
@@ -35,7 +35,7 @@ Get-EntraMSRoleDefinition
 ```powershell
 Get-EntraMSRoleDefinition 
  [-SearchString <String>] 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -43,7 +43,7 @@ Get-EntraMSRoleDefinition
 ```powershell
 Get-EntraMSRoleDefinition 
  -Id <String> 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -175,7 +175,7 @@ Accept wildcard characters: False
 ```
 
 ### -All
-If true, return all role definitions. If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -184,8 +184,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
