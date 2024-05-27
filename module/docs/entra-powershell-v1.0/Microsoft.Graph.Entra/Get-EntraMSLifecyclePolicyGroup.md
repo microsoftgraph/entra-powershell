@@ -38,14 +38,14 @@ The Get-EntraMSLifecyclePolicyGroup retrieves the lifecycle policy object to whi
 ### Example 1: Retrieve lifecycle policy object
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Directory.Read.All'
-PS C:\>Get-EntraMSLifecyclePolicyGroup -Id '056b2531-005e-4f3e-be78-01a71ea30a04'
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraMSLifecyclePolicyGroup -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 ```output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
-098e32e0-06e0-4ca2-b398-f521b6a7ddef admingroup@contoso.com      200                 All
+bbbbbbbb-1111-2222-3333-cccccccccccc admingroup@contoso.com      200                 All
 ```
 
 This example demonstrates how to retrieve lifecycle policy object by Id in Microsoft Entra ID.  

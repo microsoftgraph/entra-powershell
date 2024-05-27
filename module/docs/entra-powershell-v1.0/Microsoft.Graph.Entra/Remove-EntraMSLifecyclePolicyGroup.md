@@ -40,8 +40,8 @@ The Remove-EntraMSLifecyclePolicyGroup cmdlet removes a group from a lifecycle p
 ### Example 1: Remove a group from a lifecycle policy
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Directory.ReadWrite.All'
-PS C:\>Remove-EntraMSLifecyclePolicyGroup -Id 'b4c908b0-3595-4add-91b4-c5400b31b57b' -GroupId 'cffd97bd-6b91-4c4e-b553-6918a320211c'
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+Remove-EntraMSLifecyclePolicyGroup -Id '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5' -GroupId 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
 ```
 
 This example demonstrates how to  remove a group from a lifecycle policy in Microsoft Entra ID with specified Id and groupId.  

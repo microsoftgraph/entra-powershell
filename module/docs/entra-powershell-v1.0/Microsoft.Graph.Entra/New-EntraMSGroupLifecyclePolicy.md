@@ -40,8 +40,8 @@ Creates a new groupLifecyclePolicy in Microsoft Entra ID.
 ### Example 1: Creates a new groupLifecyclePolicy.
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Directory.ReadWrite.All'
-PS C:\>New-EntraMSGroupLifecyclePolicy -GroupLifetimeInDays 99 -ManagedGroupTypes 'Selected' -AlternateNotificationEmails 'example@contoso.com'
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+New-EntraMSGroupLifecyclePolicy -GroupLifetimeInDays 99 -ManagedGroupTypes 'Selected' -AlternateNotificationEmails 'example@contoso.com'
 ```
 
 ```output

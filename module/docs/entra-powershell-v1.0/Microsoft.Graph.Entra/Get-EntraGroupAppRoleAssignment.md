@@ -62,7 +62,7 @@ The second command gets the application role assignments of the group in $GroupI
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraGroupAppRoleAssignment -ObjectId '11111111-1111-1111-1111-111111111111' -All
+Get-EntraGroupAppRoleAssignment -ObjectId 'ffffffffff-7777-9999-7777-vvvvvvvvvvv' -All
 ```
 
 ```output
@@ -79,7 +79,7 @@ This command gets all application role assignments of the specified group.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraGroupAppRoleAssignment -ObjectId '11111111-1111-1111-1111-111111111111' -Top 2
+Get-EntraGroupAppRoleAssignment -ObjectId 'ffffffffff-7777-9999-7777-vvvvvvvvvvv' -Top 2
 ```
 
 ```output

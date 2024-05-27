@@ -39,8 +39,8 @@ The Remove-EntraMSGroupLifecyclePolicy command deletes a groupLifecyclePolicies 
 ### Example 1: Remove a groupLifecyclePolicies.
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Directory.ReadWrite.All'
-PS C:\>Remove-EntraMSGroupLifecyclePolicy -Id '13bed58e-6144-41e5-abbd-47c95964e671'
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+Remove-EntraMSGroupLifecyclePolicy -Id '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
 ```
 
 This cmdlet deletes the groupLifecyclePolicies object that has the specified ID.

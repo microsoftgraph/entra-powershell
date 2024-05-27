@@ -63,7 +63,7 @@ This example demonstrates how to retrieve group member by ID.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraGroupMember -ObjectId '00000000-0000-0000-0000-000000000000' -Top 2 
+Get-EntraGroupMember -ObjectId 'hhhhhhhh-8888-9999-8888-cccccccccccc' -Top 2 
 ```
 
 ```output
@@ -95,7 +95,7 @@ This example demonstrates how to retrieve top two groups from Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraGroupMember -ObjectId '11111111-1111-1111-1111-111111111111' -All 
+Get-EntraGroupMember -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' -All 
 ```
 
 ```output

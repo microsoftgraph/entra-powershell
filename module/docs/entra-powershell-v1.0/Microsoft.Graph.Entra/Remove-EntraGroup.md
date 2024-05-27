@@ -46,8 +46,8 @@ The following conditions apply for apps to delete role-assignable groups:
 ### Example 1: Remove a group
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Group.ReadWrite.All'
-PS C:\>Remove-EntraGroup -ObjectId '11fa5e1e-737c-40c5-835e-416ae3959606'
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Remove-EntraGroup -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq'
 ```
 
 This command is used to remove a group. The `-ObjectId` parameter specifies the ID of the group to be removed.

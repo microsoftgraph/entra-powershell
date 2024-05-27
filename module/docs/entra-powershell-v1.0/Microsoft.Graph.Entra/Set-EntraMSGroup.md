@@ -46,8 +46,8 @@ The Set-EntraMSGroup cmdlet sets the properties for an existing Microsoft Entra 
 ### Example 1: Update a group display name
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Group.ReadWrite.All'
-PS C:\>Set-EntraMSGroup -Id '2c199eed-f77f-4cf4-9270-299071598fa7' -DisplayName 'UPDATE helpdesk'
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Set-EntraMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -DisplayName 'UPDATE helpdesk'
 ```
 
 This command updates the display name of a specified group in Microsoft Entra ID.
@@ -55,8 +55,8 @@ This command updates the display name of a specified group in Microsoft Entra ID
 ### Example 2: Update a group description
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Group.ReadWrite.All'
-PS C:\>Set-EntraMSGroup -Id '2c199eed-f77f-4cf4-9270-299071598fa7' -Description 'This is my new group'
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Set-EntraMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -Description 'This is my new group'
 ```
 
 This example demonstrates how to update a group description.  
@@ -64,8 +64,8 @@ This example demonstrates how to update a group description.
 ### Example 3: Update a group mail nickname
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Group.ReadWrite.All'
-PS C:\>Set-EntraMSGroup -Id '2c199eed-f77f-4cf4-9270-299071598fa7' -MailNickName 'newnickname'
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Set-EntraMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MailNickName 'newnickname'
 ```
 
 This command updates the mail nickname of a specified group in Microsoft Entra ID.
@@ -73,8 +73,8 @@ This command updates the mail nickname of a specified group in Microsoft Entra I
 ### Example 4: Update a group security enabled
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Group.ReadWrite.All'
-PS C:\>Set-EntraMSGroup -Id '2c199eed-f77f-4cf4-9270-299071598fa7' -SecurityEnabled $true
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Set-EntraMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -SecurityEnabled $true
 ```
 
 This command updates the security enabled of a specified group in Microsoft Entra ID.
@@ -82,8 +82,8 @@ This command updates the security enabled of a specified group in Microsoft Entr
 ### Example 5: Update a group mail enabled
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Group.ReadWrite.All'
-PS C:\>Set-EntraMSGroup -Id '2c199eed-f77f-4cf4-9270-299071598fa7' -MailEnabled $false
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Set-EntraMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MailEnabled $false
 ```
 
 This example demonstrates how to update a group main enabled.  
@@ -91,7 +91,7 @@ This example demonstrates how to update a group main enabled.
 ### Example 6: Update a property for a group
 
 ```powershell
-PS C:\>Set-EntraMSGroup -Id '2c199eed-f77f-4cf4-9270-299071598fa7' -Visibility 'Private' -GroupTypes 'DynamicMembership' -IsAssignableToRole $true
+Set-EntraMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -Visibility 'Private' -GroupTypes 'DynamicMembership' -IsAssignableToRole $true
 ```
 
 This example demonstrates how to update a property for an existing Microsoft Entra ID group.  

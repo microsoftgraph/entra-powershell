@@ -41,14 +41,14 @@ The Set-EntraMSGroupLifecyclePolicy command updates a specific group Lifecycle P
 ### Example 1: Updates group lifecycle policy
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Directory.ReadWrite.All'
-PS C:\>Set-EntraMSGroupLifecyclePolicy -Id '098e32e0-06e0-4ca2-b398-f521b6a7ddef' -GroupLifetimeInDays 200 -AlternateNotificationEmails 'admingroup@contoso.com' -ManagedGroupTypes 'All'
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+Set-EntraMSGroupLifecyclePolicy -Id '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5' -GroupLifetimeInDays 200 -AlternateNotificationEmails 'admingroup@contoso.com' -ManagedGroupTypes 'All'
 ```
 
 ```output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
-098e32e0-06e0-4ca2-b398-f521b6a7ddef admingroup@contoso.com      200                 All
+1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 admingroup@contoso.com      200                 All
 ```
 
 This command is used to set the properties of a specific Microsoft Group Lifecycle Policy.

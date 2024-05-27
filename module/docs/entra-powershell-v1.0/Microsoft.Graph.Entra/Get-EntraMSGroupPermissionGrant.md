@@ -39,14 +39,14 @@ Retrieves a list of permission grants that have been consented for this group.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All' 
-Get-EntraMSGroupPermissionGrant -Id '4823e767eca44858aed244154009b764'
+Get-EntraMSGroupPermissionGrant -Id 'e8f9c0a3b1d4e5678a9b0cdef1234567'
 ```
 
 ```output
-  Id             : vsMaSY2k_E7761KhRqpx7OGFvAwvdZnJM1s7Iqkt4PU
-  ClientId       : deefce9d-be43-4b49-a9d3-851af6d2c26c
-  ClientAppId    : ba4e4a78-c352-4e59-b657-81b2b395d32b
-  ResourceAppId  : 00000003-0000-0000-c000-000000000000
+  Id             : X3m9sgE1TH0p9qfY6mXaT5KsvJze2lIg0Gm3ChvN5QY
+  ClientId       : 00001111-aaaa-2222-bbbb-3333cccc4444
+  ClientAppId    : 44445555-eeee-6666-ffff-7777aaaa8888
+  ResourceAppId  : bbbb1111-cc22-3333-44dd-555555eeeeee
   PermissionType : Application
   Permission     : Member.Read.Group
 ```

@@ -44,7 +44,7 @@ The Set-EntraGroup cmdlet updates a group in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraGroup -ObjectId '11fa5e1e-737c-40c5-835e-416ae3959606' -Description 'This is my new group'
+Set-EntraGroup -ObjectId 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -Description 'This is my new group'
 ```
 
 This example demonstrates how to update a group description.  
@@ -53,7 +53,7 @@ This example demonstrates how to update a group description.
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraGroup -ObjectId '11fa5e1e-737c-40c5-835e-416ae3959606' -DisplayName 'Parents of Conto'
+Set-EntraGroup -ObjectId 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -DisplayName 'Parents of Conto'
 ```
 
 This command updates the display name of a specified group in Microsoft Entra ID.  
@@ -62,7 +62,7 @@ This command updates the display name of a specified group in Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraGroup -ObjectId '11fa5e1e-737c-40c5-835e-416ae3959606' -MailNickName 'newnickname'
+Set-EntraGroup -ObjectId 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MailNickName 'newnickname'
 ```
 
 This command updates the mail nickname of a specified group in Microsoft Entra ID.  
@@ -71,7 +71,7 @@ This command updates the mail nickname of a specified group in Microsoft Entra I
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraGroup -ObjectId '11fa5e1e-737c-40c5-835e-416ae3959606' -SecurityEnabled $true
+Set-EntraGroup -ObjectId 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -SecurityEnabled $true
 ```
 
 This command updates the security enabled of a specified group in Microsoft Entra ID.  
@@ -80,7 +80,7 @@ This command updates the security enabled of a specified group in Microsoft Entr
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraGroup -ObjectId '11fa5e1e-737c-40c5-835e-416ae3959606' -MailEnabled $true
+Set-EntraGroup -ObjectId 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MailEnabled $true
 ```
 
 This example demonstrates how to enable a group mail.  

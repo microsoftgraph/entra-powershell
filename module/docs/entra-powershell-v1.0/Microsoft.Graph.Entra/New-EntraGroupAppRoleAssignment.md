@@ -41,17 +41,18 @@ The New-EntraGroupAppRoleAssignment cmdlet assigns a group of users to an applic
 ### Example 1: Assign a group of users to an application
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
-PS C:\>$appname = 'Box'
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+$appname = 'Box'
 $spo = Get-EntraServicePrincipal -Filter "Displayname eq '$appname'"
 $group = Get-EntraGroup -SearchString 'Contoso Team'
 New-EntraGroupAppRoleAssignment -ObjectId $group.ObjectId -PrincipalId $group.ObjectId -ResourceId $spo.ObjectId -Id $spo.Approles[1].id
 ```
 
 ```output
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime      PrincipalDisplayName PrincipalId
---------------- --                                          ---------                            ---------------      -------------------- -----------
-                xsZ3CJn8UU2YcYM1vnz8ndg-B0S9OklCltgw8SWHUTc e18f0405-fdec-4ae8-a8a0-d8edb98b061f 3/13/2024 4:41:43 AM Contoso Team         0877c6c6-fc99-4d51-9871-8335b...
+DeletedDateTime        Id                                          AppRoleId                            CreatedDateTime      PrincipalDisplayName PrincipalId
+---------------        --                                          ---------                            ---------------      -------------------- -----------
+                      xsZ3CJn8UU2YcYM1vnz8ndg-B0S9OklCltgw8SWHUTc aaaaaaaa-bbbb-cccc-1111-222222222222 3/13/2024 4:41:43 AM Contoso Team         0877c6c6-fc99-4d51-9871-8335b...
+3/13/2024 4:45:00 AM  yTz2DJp9VV3ZbYM2woz9odu-C1T9PmlBltgz8TWIVUc bbbbbbbb-cccc-dddd-2222-333333333333 3/13/2024 4:45:00 AM Finance Group        1234c6c6-fc99-4d51-9871-1234c...
 ```
 
 This example demonstrates how to assign a group of users to an application role in Microsoft Entra ID.  

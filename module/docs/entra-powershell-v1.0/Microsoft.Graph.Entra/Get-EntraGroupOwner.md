@@ -41,7 +41,7 @@ The Get-EntraGroupOwner cmdlet gets an owner of a group in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraGroupOwner -ObjectId '22222222-2222-2222-2222-222222222222'
+Get-EntraGroupOwner -ObjectId 'vvvvvvvv-7777-9999-7777-jjjjjjjjjjjj'
 ```
 
 ```output
@@ -63,7 +63,7 @@ This example demonstrates how to retrieve the owner of a specific group.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraGroupOwner -ObjectId '44444444-4444-4444-4444-444444444444' -All
+Get-EntraGroupOwner -ObjectId 'zzzzzzzz-6666-8888-9999-pppppppppppp' -All
 ```
 
 ```output
@@ -88,7 +88,7 @@ This example demonstrates how to retrieve the all owner of a specific group.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraGroupOwner -ObjectId '55555555-5555-5555-5555-555555555555' -Top 2
+Get-EntraGroupOwner -ObjectId 'vvvvvvvv-8888-9999-0000-jjjjjjjjjjjj' -Top 2
 ```
 
 ```output

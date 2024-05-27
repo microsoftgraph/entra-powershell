@@ -41,8 +41,8 @@ The Select-EntraGroupIdsContactIsMemberOf cmdlet gets groups in Microsoft Entra 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All,Group.Read.All'
 $Groups = New-Object Microsoft.Open.Entra.Model.GroupIdsForMembershipCheck
-$Groups.GroupIds = (Get-EntraGroup -ObjectId 69641f6c-41dc-4f63-9c21-cc9c8ed12931).ObjectId
-$UserID = (Get-EntraContact -ObjectId cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c).ObjectId
+$Groups.GroupIds = (Get-EntraGroup -ObjectId 'jjjjjjjj-9999-7777-7777-uuuuuuuuuuuu').ObjectId
+$UserID = (Get-EntraContact -ObjectId 'hhhhhhhh-8888-9999-8888-cccccccccccc').ObjectId
 Select-EntraGroupIdsContactIsMemberOf -ObjectId $UserID -GroupIdsForMembershipCheck $Groups
 ```
 

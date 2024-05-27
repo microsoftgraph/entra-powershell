@@ -47,7 +47,7 @@ The Select-EntraGroupIdsServicePrincipalIsMemberOf cmdlet selects the groups in 
 ```
 
 ```output
-140036f7-33f9-4f06-bdd6-39de8fe65d81
+bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq
 ```
 
 The first command creates a GroupIdsForMembershipCheck object, and then stores it in the $Groups variable.

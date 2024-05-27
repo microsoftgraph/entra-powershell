@@ -70,11 +70,11 @@ Get-EntraMSGroup
 ```output
 DisplayName             Id                                   MailNickname          Description
 -----------             --                                   ------------          -----------
-Contoso Group           00000000-0000-0000-0000-000000000000 contosogroup          Contoso Group
-Crimson Eagle           11111111-1111-1111-1111-111111111111 crimsoneagle          Crimson Eagle Group
-Bold Falcon             22222222-2222-2222-2222-222222222222 boldfalcon            Bold Falcon Group
-Azure Panda             33333333-3333-3333-3333-333333333333 azurepanda            Azure Panda
-Misty Fox               44444444-4444-4444-4444-444444444444 mistyfox              Misty Fox Group
+Contoso Group           hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq contosogroup          Contoso Group
+Crimson Eagle           pppppppp-4444-0000-8888-yyyyyyyyyyyy crimsoneagle          Crimson Eagle Group
+Bold Falcon             tttttttt-0000-3333-9999-mmmmmmmmmmmm boldfalcon            Bold Falcon Group
+Azure Panda             qqqqqqqq-5555-0000-1111-hhhhhhhhhhhh azurepanda            Azure Panda
+Misty Fox               kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn mistyfox              Misty Fox Group
 ```
 
 This example demonstrates how to retrieve all groups from Microsoft Entra ID.
@@ -83,13 +83,13 @@ This example demonstrates how to retrieve all groups from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraMSGroup -Id '22222222-2222-2222-2222-222222222222'
+Get-EntraMSGroup -Id 'tttttttt-0000-3333-9999-mmmmmmmmmmmm'
 ```
 
 ```output
 DisplayName  Id                                   MailNickname Description                                GroupTypes
 -----------  --                                   ------------ -----------                                ----------
-Bold Falcon 22222222-2222-2222-2222-222222222222 boldfalcon  Bold Falcon Group {Unified}
+Bold Falcon tttttttt-0000-3333-9999-mmmmmmmmmmmm boldfalcon  Bold Falcon Group {Unified}
 ```
 
 In this example, we'll provide the ID to retrieve a specific group.  
@@ -104,11 +104,11 @@ Get-EntraMSGroup -Top 5
 ```output
 DisplayName             Id                                   MailNickname          Description                                GroupTypes
 -----------             --                                   ------------          -----------                                ----------
-Contoso Group           00000000-0000-0000-0000-000000000000 contosogroup          Contoso Group                             {Unified}
-Crimson Eagle           11111111-1111-1111-1111-111111111111 crimsoneagle          Crimson Eagle Group                       {Unified}
-Bold Falcon             22222222-2222-2222-2222-222222222222 boldfalcon            Bold Falcon Group                         {Unified}
-Azure Panda             33333333-3333-3333-3333-333333333333 azurepanda            Azure Panda                               {}
-Misty Fox               44444444-4444-4444-4444-444444444444 mistyfox              Misty Fox Group                           {Unified}
+Contoso Group           hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq contosogroup          Contoso Group                             {Unified}
+Crimson Eagle           pppppppp-4444-0000-8888-yyyyyyyyyyyy crimsoneagle          Crimson Eagle Group                       {Unified}
+Bold Falcon             tttttttt-0000-3333-9999-mmmmmmmmmmmm boldfalcon            Bold Falcon Group                         {Unified}
+Azure Panda             qqqqqqqq-5555-0000-1111-hhhhhhhhhhhh azurepanda            Azure Panda                               {}
+Misty Fox               kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn mistyfox              Misty Fox Group                           {Unified}
 ```
 
 This example demonstrates how to retrieve top five groups from Microsoft Entra ID.
@@ -123,7 +123,7 @@ Get-EntraMSGroup -Filter "DisplayName eq 'Azure Panda'"
 ```output
 DisplayName             Id                                   MailNickname          Description                                GroupTypes
 -----------             --                                   ------------          -----------                                ----------
-Azure Panda             33333333-3333-3333-3333-333333333333 azurepanda            Azure Panda                               {}
+Azure Panda             qqqqqqqq-5555-0000-1111-hhhhhhhhhhhh azurepanda            Azure Panda                               {}
 ```
 
 This example demonstrates how to retrieve group by DisplayName.  
@@ -138,8 +138,8 @@ Get-EntraMSGroup -SearchString 'New'
 ```output
 DisplayName             Id                                   MailNickname          Description             GroupTypes
 -----------             --                                   ------------          -----------             ----------
-New Employee Onboarding 66666666-6666-6666-6666-666666666666 newemployeeonboarding New Employee Onboarding {Unified}
-new1                    77777777-7777-7777-7777-777777777777 new1                  new1                    {DynamicMembership, Unified}
+New Employee Onboarding dddddddd-3333-6666-8888-eeeeeeeeeeee newemployeeonboarding New Employee Onboarding {Unified}
+new1                    ffffffffff-7777-9999-7777-vvvvvvvvvvv new1                  new1                    {DynamicMembership, Unified}
 ```
 
 This example demonstrates how to retrieve groups using SearchString against the first characters in DisplayName or Description attributes.

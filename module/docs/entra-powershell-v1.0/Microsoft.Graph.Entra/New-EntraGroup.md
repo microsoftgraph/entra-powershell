@@ -57,7 +57,7 @@ New-EntraGroup -DisplayName 'My new group' -MailEnabled $false -SecurityEnabled 
 
 DisplayName  Id                                   MailNickname Description GroupTypes
 -----------  --                                   ------------ ----------- ----------
-My new group 866fc97b-1171-4330-b4d0-d07f2cc8117b NotSet                   {}
+My new group hhhhhhhh-8888-9999-8888-cccccccccccc NotSet                   {}
 ```
 
 This example demonstrates how to create a group.
@@ -74,7 +74,7 @@ New-EntraGroup -DisplayName 'My new group' -MailEnabled $false -SecurityEnabled 
 ```output
 DisplayName  Id                                   MailNickname Description       GroupTypes
 -----------  --                                   ------------ -----------       ----------
-My new group ab0a6502-2201-412f-9ca8-fae1558a8470 NotSet       new created group {}
+My new group hhhhhhhh-8888-9999-8888-cccccccccccc NotSet       new created group {}
 ```
 
 This example demonstrates how to create a group with Description parameter.

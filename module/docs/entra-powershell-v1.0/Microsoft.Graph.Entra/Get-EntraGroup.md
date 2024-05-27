@@ -67,9 +67,9 @@ Get-EntraGroup
 ```output
 ObjectId                             DisplayName                          Description
 --------                             -----------                          -----------
-00000000-0000-0000-0000-000000000000  Contoso Group                       Contoso Group
-11111111-1111-1111-1111-111111111111  Crimson Eagle                       Crimson Eagle Group
-22222222-2222-2222-2222-222222222222  Bold Falcon                         Bold Falcon Group
+hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq  Contoso Group                       Contoso Group
+pppppppp-4444-0000-8888-yyyyyyyyyyyy  Crimson Eagle                       Crimson Eagle Group
+tttttttt-0000-3333-9999-mmmmmmmmmmmm  Bold Falcon                         Bold Falcon Group
 ```
 
 This example demonstrates how to get all groups from Microsoft Entra ID.
@@ -78,13 +78,13 @@ This example demonstrates how to get all groups from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraGroup -ObjectId '11111111-1111-1111-1111-111111111111'
+Get-EntraGroup -ObjectId 'pppppppp-4444-0000-8888-yyyyyyyyyyyy'
 ```
 
 ```output
 DisplayName    Id                                   MailNickname        Description         GroupTypes
 -----------    --                                   ------------        -----------         ----------
-Crimson Eagle  11111111-1111-1111-1111-111111111111 crimsoneaglegroup   Crimson Eagle Group {Unified}
+Crimson Eagle  pppppppp-4444-0000-8888-yyyyyyyyyyyy crimsoneaglegroup   Crimson Eagle Group {Unified}
 ```
 
 This example demonstrates how to retrieve specific group by providing ID.  
@@ -100,11 +100,11 @@ Get-EntraGroup -Top 5
 ```output
 DisplayName             Id                                   MailNickname          Description
 -----------             --                                   ------------          -----------
-Contoso Group           00000000-0000-0000-0000-000000000000 contosogroup          Contoso Group
-Crimson Eagle           11111111-1111-1111-1111-111111111111 crimsoneagle          Crimson Eagle Group
-Bold Falcon             22222222-2222-2222-2222-222222222222 boldfalcon            Bold Falcon Group
-Azure Panda             33333333-3333-3333-3333-333333333333 azurepanda            Azure Panda
-Misty Fox               44444444-4444-4444-4444-444444444444 mistyfox              Misty Fox Group
+Contoso Group           hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq contosogroup          Contoso Group
+Crimson Eagle           pppppppp-4444-0000-8888-yyyyyyyyyyyy crimsoneagle          Crimson Eagle Group
+Bold Falcon             tttttttt-0000-3333-9999-mmmmmmmmmmmm boldfalcon            Bold Falcon Group
+Azure Panda             qqqqqqqq-5555-0000-1111-hhhhhhhhhhhh azurepanda            Azure Panda
+Misty Fox               kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn mistyfox              Misty Fox Group
 ```
 
 This example demonstrates how to get top five groups from Microsoft Entra ID.  
@@ -120,7 +120,7 @@ Get-EntraGroup -Filter "DisplayName eq 'Azure Panda'"
 ```output
 DisplayName        Id                                   MailNickname     Description        GroupTypes
 -----------        --                                   ------------     -----------        ----------
-Azure Panda        33333333-3333-3333-3333-333333333333 azurepanda       Azure Panda        {Unified}
+Azure Panda        qqqqqqqq-5555-0000-1111-hhhhhhhhhhhh azurepanda       Azure Panda        {Unified}
 ```
 
 In this example, we retrieve group by display name from Microsoft Entra ID.
@@ -136,8 +136,8 @@ Get-EntraGroup -SearchString 'New'
 ```output
 DisplayName             Id                                   MailNickname          Description             GroupTypes
 -----------             --                                   ------------          -----------             ----------
-New Sparkling Deer      66666666-6666-6666-6666-666666666666 newemployeeonboarding New Sparkling Deer Group {Unified}
-New Golden Fox          77777777-7777-7777-7777-777777777777 new1                  newgoldenfox            {DynamicMembership}
+New Sparkling Deer      bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq newemployeeonboarding New Sparkling Deer Group {Unified}
+New Golden Fox          xxxxxxxx-8888-5555-9999-bbbbbbbbbbbb new1                  newgoldenfox            {DynamicMembership}
 ```
 
 This example demonstrates how to retrieve groups that include the text new in their display names from Microsoft Entra ID.

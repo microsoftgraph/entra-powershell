@@ -47,7 +47,7 @@ The Select-EntraGroupIdsUserIsMemberOf cmdlet selects the groups that a user is 
 ```
 
 ```output
-056b2531-005e-4f3e-be78-01a71ea30a04
+bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq
 ```
 
 The first command creates a GroupIdsForMembershipCheck object, and then stores it in the $Groups variable.

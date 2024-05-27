@@ -52,15 +52,15 @@ For information about creating dynamic groups, see: [Using attributes to create 
 ### Example 1: Create a group
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
-PS C:\>Connect-Entra -Scopes 'Group.Create' #Application permission
-PS C:\>New-EntraMSGroup -DisplayName 'HelpDesk admin group2'  -MailEnabled $False -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $True
+Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Group.Create' #Application permission
+New-EntraMSGroup -DisplayName 'HelpDesk admin group2'  -MailEnabled $False -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $True
 ```
 
 ```output
 DisplayName           Id                                   MailNickname       Description GroupTypes
 -----------           --                                   ------------       ----------- ----------
-HelpDesk admin group2 68563e90-3cbb-408a-beb6-ea93f7b5b4d4 helpDeskAdminGroup             {}
+HelpDesk admin group2 bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq helpDeskAdminGroup             {}
 ```
 
 This example demonstrates how to create the new group.
@@ -68,16 +68,16 @@ This example demonstrates how to create the new group.
 ### Example 2: Create a group with Description parameter
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
-PS C:\>Connect-Entra -Scopes 'Group.Create' #Application permission
-PS C:\>New-EntraMSGroup -DisplayName 'HelpDesk admin group'  -MailEnabled $false -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $true  -Description 'Group assignable to role'
+Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Group.Create' #Application permission
+New-EntraMSGroup -DisplayName 'HelpDesk admin group'  -MailEnabled $false -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $true  -Description 'Group assignable to role'
 ```
 
 ```output
 
 DisplayName          Id                                   MailNickname       Description              GroupTypes
 -----------          --                                   ------------       -----------              ----------
-HelpDesk admin group dcbf038d-613c-498f-a695-28199246d9ee helpDeskAdminGroup Group assignable to role {}
+HelpDesk admin group zzzzzzzz-6666-8888-9999-pppppppppppp helpDeskAdminGroup Group assignable to role {}
 
 ```
 
@@ -86,15 +86,15 @@ This example demonstrates how to create the new group with description parameter
 ### Example 3: Create a group with IsAssignableToRole parameter
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
-PS C:\>Connect-Entra -Scopes 'Group.Create' #Application permission
-PS C:\>New-EntraMSGroup -DisplayName 'HelpDesk admin group2' -Description 'Group assignable to role' -MailEnabled $False -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $True -IsAssignableToRole $True 
+Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Group.Create' #Application permission
+New-EntraMSGroup -DisplayName 'HelpDesk admin group2' -Description 'Group assignable to role' -MailEnabled $False -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $True -IsAssignableToRole $True 
 ```
 
 ```output
 DisplayName           Id                                   MailNickname       Description              GroupTypes
 -----------           --                                   ------------       -----------              ----------
-HelpDesk admin group2 380f8097-ecd8-4d0b-b553-5ba1f53d16a7 helpDeskAdminGroup Group assignable to role {}
+HelpDesk admin group2 vvvvvvvv-8888-9999-0000-jjjjjjjjjjjj helpDeskAdminGroup Group assignable to role {}
 ```
 
 This example demonstrates how to create the new group with IsAssignableToRole parameter.
@@ -102,15 +102,15 @@ This example demonstrates how to create the new group with IsAssignableToRole pa
 ### Example 4: Create a group with Visibility parameter
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
-PS C:\>Connect-Entra -Scopes 'Group.Create' #Application permission
-PS C:\>New-EntraMSGroup -DisplayName 'HelpDesk admin group2' -Description 'Group assignable to role' -MailEnabled $False -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $True -Visibility 'Private'
+Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Group.Create' #Application permission
+New-EntraMSGroup -DisplayName 'HelpDesk admin group2' -Description 'Group assignable to role' -MailEnabled $False -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $True -Visibility 'Private'
 ```
 
 ```output
 DisplayName           Id                                   MailNickname       Description              GroupTypes
 -----------           --                                   ------------       -----------              ----------
-HelpDesk admin group2 380f8097-ecd8-4d0b-b553-5ba1f53d16a7 helpDeskAdminGroup Group assignable to role {}
+HelpDesk admin group2 gggggggg-0000-4444-3333-llllllllllll helpDeskAdminGroup Group assignable to role {}
 ```
 
 This example demonstrates how to create the new group with Visibility parameter.
@@ -118,15 +118,15 @@ This example demonstrates how to create the new group with Visibility parameter.
 ### Example 5: Create a group with GroupTypes parameter
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
-PS C:\>Connect-Entra -Scopes 'Group.Create' #Application permission
-PS C:\>New-EntraMSGroup -DisplayName 'HelpDesk admin group3' -Description 'group des' -MailEnabled $False -MailNickname 'helpDeskAdminGroup1' -SecurityEnabled $True -GroupTypes 'Unified'
+Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Group.Create' #Application permission
+New-EntraMSGroup -DisplayName 'HelpDesk admin group3' -Description 'group des' -MailEnabled $False -MailNickname 'helpDeskAdminGroup1' -SecurityEnabled $True -GroupTypes 'Unified'
 ```
 
 ```output
 DisplayName           Id                                   MailNickname        Description GroupTypes
 -----------           --                                   ------------        ----------- ----------
-HelpDesk admin group3 45640195-b718-48fd-b0a3-3d796f87ed20 helpDeskAdminGroup1 group des   {Unified}
+HelpDesk admin group3 xxxxxxxx-8888-5555-9999-bbbbbbbbbbbb helpDeskAdminGroup1 group des   {Unified}
 ```
 
 This example demonstrates how to create the new group with GroupTypes parameter.
