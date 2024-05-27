@@ -13,7 +13,7 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-Get-EntraBetaServiceAppRoleAssignedTo -ObjectId <String> [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraBetaServiceAppRoleAssignedTo -ObjectId <String> [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,17 +31,17 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -All
-{{Fill All Description}}
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
