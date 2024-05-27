@@ -48,9 +48,9 @@ The New-EntraGroup cmdlet creates a group in Microsoft Entra ID.
 ### Example 1: Create a group
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
-PS C:\>Connect-Entra -Scopes 'Group.Create' #Application permission
-PS C:\>New-EntraGroup -DisplayName 'My new group' -MailEnabled $false -SecurityEnabled $true -MailNickName 'NotSet'
+Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Group.Create' #Application permission
+New-EntraGroup -DisplayName 'My new group' -MailEnabled $false -SecurityEnabled $true -MailNickName 'NotSet'
 ```
 
 ```output
@@ -65,9 +65,9 @@ This example demonstrates how to create a group.
 ### Example 2: Create a group with Description parameter
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
-PS C:\>Connect-Entra -Scopes 'Group.Create' #Application permission
-PS C:\>New-EntraGroup -DisplayName 'My new group' -MailEnabled $false -SecurityEnabled $true -MailNickName 'NotSet' -Description 'New created group'
+Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Group.Create' #Application permission
+New-EntraGroup -DisplayName 'My new group' -MailEnabled $false -SecurityEnabled $true -MailNickName 'NotSet' -Description 'New created group'
 
 ```
 

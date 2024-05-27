@@ -49,14 +49,14 @@ If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 ### Example 1: Retrieve all groupLifecyclePolicies
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Directory.Read.All'
-PS C:\>Get-EntraMSGroupLifecyclePolicy
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraMSGroupLifecyclePolicy
 ```
 
 ```output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
-098e32e0-06e0-4ca2-b398-f521b6a7ddef admingroup@contoso.com      200                 All
+11111111-1111-1111-1111-111111111111 admingroup@contoso.com      200                 All
 
 ```
 
@@ -66,14 +66,14 @@ This command retrieves the group expiration settings configured for the tenant.
 ### Example 2: Retrieve properties of an groupLifecyclePolicy
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Directory.Read.All'
-PS C:\>Get-EntraMSGroupLifecyclePolicy -Id '098e32e0-06e0-4ca2-b398-f521b6a7ddef'
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraMSGroupLifecyclePolicy -Id '11111111-1111-1111-1111-111111111111'
 ```
 
 ```output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
-098e32e0-06e0-4ca2-b398-f521b6a7ddef admingroup@contoso.com      200                 All
+11111111-1111-1111-1111-111111111111 admingroup@contoso.com      200                 All
 ```
 
 This command is used to retrieve a specific Microsoft Group Lifecycle Policy. The `-Id` parameter specifies the ID of the Lifecycle Policy to be retrieved.

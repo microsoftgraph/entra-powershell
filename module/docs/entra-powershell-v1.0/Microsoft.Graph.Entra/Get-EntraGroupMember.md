@@ -18,6 +18,7 @@ schema: 2.0.0
 # Get-EntraGroupMember
 
 ## SYNOPSIS
+
 Gets a member of a group.
 
 ## SYNTAX
@@ -25,29 +26,33 @@ Gets a member of a group.
 ```powershell
 Get-EntraGroupMember 
  -ObjectId <String> 
- [-All] 
+ [-All <Boolean>] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The Get-EntraGroupMember cmdlet gets a member of a group in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Get a group member by ID
+
 ```powershell
-PS C:\>Get-EntraGroupMember -ObjectId "05b0552e-39cd-4df4-a8f5-00ade912e83d" 
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraGroupMember -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
+
 ```output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {meganb@m365x99297270.onmicrosoft.com}
+imAddresses                     : {meganb@contoso.com}
 preferredLanguage               :
-mail                            : MeganB@M365x99297270.OnMicrosoft.com
-securityIdentifier              : S-1-12-1-719509883-1118456798-2440872119-1998244260
-identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=MeganB@M365x99297270.OnMicrosoft.com}}
+mail                            : MeganB@contoso.com
+securityIdentifier              : S-1-12-1-555555555-44444444-2440872119-9999999
+identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=MeganB@contoso.com}}
 consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
 ```
@@ -55,17 +60,20 @@ onPremisesUserPrincipalName     :
 This example demonstrates how to retrieve group member by ID.  
 
 ### Example 2: Get two group member
+
 ```powershell
-PS C:\>Get-EntraGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -Top 2 
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraGroupMember -ObjectId '00000000-0000-0000-0000-000000000000' -Top 2 
 ```
+
 ```output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {admin@m365x99297270.onmicrosoft.com}
+imAddresses                     : {hakeem@mcontoso.com}
 preferredLanguage               : en
-mail                            : admin@M365x99297270.onmicrosoft.com
-securityIdentifier              : S-1-12-1-2574072234-1301806508-533216682-2892133300
+mail                            : hakeem@contoso.com
+securityIdentifier              : S-1-12-1-8888888-343434343-533216682-7676767676
 identities                      : {System.Collections.Hashtable}
 consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
@@ -73,10 +81,10 @@ onPremisesUserPrincipalName     :
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {pradeepg@m365x99297270.onmicrosoft.com}
+imAddresses                     : {binti@contoso.com}
 preferredLanguage               :
-mail                            : PradeepG@M365x99297270.OnMicrosoft.com
-securityIdentifier              : S-1-12-1-357891266-1147903342-476387998-329568156
+mail                            : binti@contoso.com
+securityIdentifier              : S-1-12-1-2222222-111111-676767678-33333333
 identities                      : {System.Collections.Hashtable}
 consentProvidedForMinor         :
 ```
@@ -84,45 +92,51 @@ consentProvidedForMinor         :
 This example demonstrates how to retrieve top two groups from Microsoft Entra ID.  
 
 ### Example 3: Get all members within a group by group ID
+
 ```powershell
-PS C:\>Get-EntraGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -All  
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraGroupMember -ObjectId '11111111-1111-1111-1111-111111111111' -All 
 ```
+
 ```output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {admin@m365x99297270.onmicrosoft.com}
+imAddresses                     : {adellV@contoso.com}
 preferredLanguage               : en
-mail                            : admin@M365x99297270.onmicrosoft.com
-securityIdentifier              : S-1-12-1-2574072234-1301806508-533216682-2892133300
+mail                            : adellV@contoso.com
+securityIdentifier              : S-1-12-1-111111-000000000-3333333333-22222222
 identities                      : {System.Collections.Hashtable}
 consentProvidedForMinor         :
 ```
 
-This example retrieves all members within a group by group ID.  
+This command is used to retrieve all members of a specific group. The `-ObjectId` parameter specifies the ID of the group whose members should be retrieved. The `-All` parameter indicates that all members of the group should be retrieved.
 
 ## PARAMETERS
 
 ### -All
-List all pages.
+
+If true, return all group members.
+If false, return the number of objects specified by the Top parameter.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: False
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -134,10 +148,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -149,6 +164,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS

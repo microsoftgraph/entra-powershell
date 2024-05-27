@@ -35,11 +35,11 @@ Retrieves a list of permission grants that have been consented for this group.
 
 ## EXAMPLES
 
-### Example 1: List existing permission grants for the group.
+### Example 1: List existing permission grants for the group
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'GroupMember.Read.All' 
-PS C:\>Get-EntraMSGroupPermissionGrant -Id '4823e767eca44858aed244154009b764'
+Connect-Entra -Scopes 'GroupMember.Read.All' 
+Get-EntraMSGroupPermissionGrant -Id '4823e767eca44858aed244154009b764'
 ```
 
 ```output
