@@ -380,19 +380,8 @@ public $($object.GetType().Name)()
         $def += @"
 
 `"@
-    # Split definition by both 'public class ' and 'public enum '
-    `$typesInDef = `$def -split 'public class |public enum ' | ForEach-Object {
-        `$typeLine = (`$_ -split '\n')[0].Trim()
-        `$typeName = `$typeLine -split '{' | Select-Object -First 1
-        `$typeName.Trim()
-    }
-
-    # Get the existing types
-    `$existingTypes = `$typesInDef | Where-Object { [System.Management.Automation.PSTypeName]'`$_' }
-
-    if (-not `$existingTypes) {
-        Add-Type -TypeDefinition `$def
-    }
+    try{ Add-Type -TypeDefinition `$def }
+    catch{}
 
 # ------------------------------------------------------------------------------
 # End of Type definitios required for commands inputs
