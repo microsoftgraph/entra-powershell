@@ -81,7 +81,7 @@ Accept wildcard characters: False
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 

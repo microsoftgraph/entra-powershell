@@ -71,7 +71,7 @@ Accept wildcard characters: False
 Specifies the object ID of a contact in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 

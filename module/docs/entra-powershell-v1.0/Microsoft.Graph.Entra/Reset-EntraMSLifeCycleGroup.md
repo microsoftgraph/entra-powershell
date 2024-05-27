@@ -36,11 +36,11 @@ When a group is renewed, it extends the group expiration by the number of days d
 
 ## EXAMPLES
 
-### Example 1: Renew a group 
+### Example 1: Renew a group
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Group.ReadWrite.All'
-PS C:\>Reset-EntraMSLifeCycleGroup -Id '056b2531-005e-4f3e-be78-01a71ea30a04'
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Reset-EntraMSLifeCycleGroup -Id 'hhhhhhhh-8888-9999-8888-cccccccccccc'
 ```
 
 This example demonstrates how to renew a specified group.  
