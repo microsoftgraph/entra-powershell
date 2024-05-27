@@ -8,7 +8,7 @@ function Get-EntraBetaApplicationProxyConnectorGroup {
     [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Id,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Boolean]] $All,
+    [switch] $All,
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Filter
     )
