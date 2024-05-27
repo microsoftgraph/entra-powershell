@@ -26,7 +26,7 @@ Gets an application.
 ```powershell
 Get-EntraApplication 
  [-Filter <String>] 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -35,7 +35,7 @@ Get-EntraApplication
 ```powershell
 Get-EntraApplication 
  [-SearchString <String>] 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -43,7 +43,7 @@ Get-EntraApplication
 ```powershell
 Get-EntraApplication 
  -ObjectId <String> 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -66,7 +66,7 @@ This command gets an application for the specified ObjectId.
 
 ### Example 2: Get all applications 
 ```powershell
-PS C:\>Get- Get-EntraApplication -All $true
+PS C:\>Get- Get-EntraApplication -All 
 ```
 ```output
 DisplayName         Id                                   AppId                                SignInAudience                     PublisherDomain
@@ -133,18 +133,17 @@ This example demonstrates how to retrieve applications by its identifierUris fro
 ## PARAMETERS
 
 ### -All
-If true, return all applications.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -210,7 +209,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

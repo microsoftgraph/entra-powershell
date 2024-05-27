@@ -26,7 +26,7 @@ Get a Microsoft Entra ID roleAssignment.
 ```powershell
 Get-EntraMSRoleAssignment 
  [-Top <Int32>] 
- [-All <Boolean>] 
+ [-All] 
  [-Filter <String>] 
  [<CommonParameters>]
 ```
@@ -35,7 +35,7 @@ Get-EntraMSRoleAssignment
 ```powershell
 Get-EntraMSRoleAssignment 
  [-SearchString <String>] 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -43,7 +43,7 @@ Get-EntraMSRoleAssignment
 ```powershell
 Get-EntraMSRoleAssignment 
  -Id <String> 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -71,7 +71,7 @@ This command gets the role assignments in Microsoft Entra ID.
 
 ### Example 2: Get role assignments using 'All' parameter
 ```powershell
-PS C:\> Get-EntraMSRoleAssignment -All $true
+PS C:\> Get-EntraMSRoleAssignment -All 
 ```
 
 ```output
@@ -149,7 +149,7 @@ Accept wildcard characters: False
 ```
 
 ### -All
-Boolean to express that return all results from the server for the specific query
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -158,8 +158,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

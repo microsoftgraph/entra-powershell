@@ -25,7 +25,7 @@ Get devices registered by a user.
 ```powershell
 Get-EntraUserRegisteredDevice
  -ObjectId <String>
- [-All <Boolean>]
+ [-All]
  [-Top <Int32>]
  [<CommonParameters>]
 ```
@@ -49,7 +49,7 @@ This command gets the devices that are registered to the specified user.
 
 ### Example 2: Get all registered devices
 ```Powershell
-PS C:\>Get-EntraUserRegisteredDevice -ObjectId  "67fa640a-b3fd-4e71-ace2-0e3eca798d9a" -All $true
+PS C:\>Get-EntraUserRegisteredDevice -ObjectId  "67fa640a-b3fd-4e71-ace2-0e3eca798d9a" -All 
 ```
 ```Output
 Id                                   DeletedDateTime
@@ -75,7 +75,7 @@ This command gets the top two devices that are registered to the specified user.
 ## PARAMETERS
 
 ### -All
-If true, return all devices for this user.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -84,8 +84,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

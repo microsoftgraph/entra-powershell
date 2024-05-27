@@ -24,7 +24,7 @@ Gets an oAuth2PermissionGrant object.
 
 ```powershell
 Get-EntraUserOAuth2PermissionGrant 
- [-All <Boolean>] 
+ [-All] 
  -ObjectId <String> 
  [-Top <Int32>] 
  [<CommonParameters>]
@@ -62,7 +62,7 @@ This Example Retrieve the OAuth2 permission grants for a user using object ID pa
 ### Example 3: Retrieve the OAuth2 permission grants for a user using All parameter.
 
 ```powershell
-PS C:\> Get-EntraUserOAuth2PermissionGrant -ObjectId 412be9d1-1460-4061-8eed-cca203fcb215 -All $true
+PS C:\> Get-EntraUserOAuth2PermissionGrant -ObjectId 412be9d1-1460-4061-8eed-cca203fcb215 -All
 ```
 ```output
 Id                                                               ClientId                             ConsentType PrincipalId                          ResourceId
@@ -76,8 +76,7 @@ This Example Retrieve the OAuth2 permission grants for a user using All paramete
 ## PARAMETERS
 
 ### -All
-If true, return all permission grants.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -86,8 +85,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -133,4 +132,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Get-EntraUser](Get-EntraUser.md)
-
