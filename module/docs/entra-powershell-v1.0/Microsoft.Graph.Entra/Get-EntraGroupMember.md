@@ -70,7 +70,7 @@ Get-EntraGroupMember -ObjectId 'hhhhhhhh-8888-9999-8888-cccccccccccc' -Top 2
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {hakeem@mcontoso.com}
+imAddresses                     : {hakeem@contoso.com}
 preferredLanguage               : en
 mail                            : hakeem@contoso.com
 securityIdentifier              : S-1-12-1-8888888-343434343-533216682-7676767676

@@ -6,7 +6,7 @@ ms.service: active-directory
 ms.topic: reference
 ms.date: 03/22/2024
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi254
+ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
@@ -40,8 +40,8 @@ The Add-EntraMSLifecyclePolicyGroup cmdlet adds a group to a lifecycle policy in
 ### Example 1: Add a group to the lifecycle policy
 
 ```powershell
-PS C:\>Connect-Entra -Scopes 'Directory.ReadWrite.All'
-PS C:\>Add-EntraMSLifecyclePolicyGroup -Id 'b4c908b0-3595-4add-91b4-c5400b31b57b' -groupId 'cffd97bd-6b91-4c4e-b553-6918a320211c'
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+Add-EntraMSLifecyclePolicyGroup -Id '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5' -groupId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq'
 ```
 
 This command adds a group to a Microsoft Lifecycle Policy. The `-Id` parameter specifies the ID of the Lifecycle Policy to which the group should be added. The `-groupId` parameter specifies the ID of the group to be added to the Lifecycle Policy.

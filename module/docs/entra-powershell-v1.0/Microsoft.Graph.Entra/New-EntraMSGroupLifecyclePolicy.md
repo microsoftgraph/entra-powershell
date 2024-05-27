@@ -37,7 +37,7 @@ Creates a new groupLifecyclePolicy in Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1: Creates a new groupLifecyclePolicy.
+### Example 1: Creates a new groupLifecyclePolicy
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
@@ -47,7 +47,7 @@ New-EntraMSGroupLifecyclePolicy -GroupLifetimeInDays 99 -ManagedGroupTypes 'Sele
 ```output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
-357ab978-332e-474d-b30c-c04709e4bd32 example@contoso.com         99                  Selected
+1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 example@contoso.com         99                  Selected
 ```
 
 This example creates a new groupLifecyclePolicy setting the group lifetime to 99 days for a selected set of Office 365 groups and sends renewal notification emails to groups that have no owners to 'example@contoso.com'.

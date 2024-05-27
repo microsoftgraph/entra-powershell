@@ -56,7 +56,7 @@ Get-EntraMSGroupLifecyclePolicy
 ```output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
-bbbbbbbb-1111-2222-3333-cccccccccccc admingroup@contoso.com      200                 All
+1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 admingroup@contoso.com      200                 All
 
 ```
 
@@ -67,13 +67,13 @@ This command retrieves the group expiration settings configured for the tenant.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraMSGroupLifecyclePolicy -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+Get-EntraMSGroupLifecyclePolicy -Id '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
 ```
 
 ```output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
-bbbbbbbb-1111-2222-3333-cccccccccccc admingroup@contoso.com      200                 All
+1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 admingroup@contoso.com      200                 All
 ```
 
 This command is used to retrieve a specific Microsoft Group Lifecycle Policy. The `-Id` parameter specifies the ID of the Lifecycle Policy to be retrieved.

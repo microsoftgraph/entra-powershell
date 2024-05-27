@@ -108,7 +108,7 @@ jobTitle                        :
 proxyAddresses                  : {SMTP:jdavid@contoso.com}
 legalAgeGroupClassification     :
 assignedPlans                   : {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
-id                              : 55555555-5555-5555-5555-555555555555
+id                              : tttttttt-0000-2222-0000-aaaaaaaaaaaa
 ```
 
 This example demonstrates how to retrieve the top two owners of a specific group.  

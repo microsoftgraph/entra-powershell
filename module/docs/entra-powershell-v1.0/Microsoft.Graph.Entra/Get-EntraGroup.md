@@ -136,8 +136,8 @@ Get-EntraGroup -SearchString 'New'
 ```output
 DisplayName             Id                                   MailNickname          Description             GroupTypes
 -----------             --                                   ------------          -----------             ----------
-New Sparkling Deer      bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq newemployeeonboarding New Sparkling Deer Group {Unified}
-New Golden Fox          xxxxxxxx-8888-5555-9999-bbbbbbbbbbbb new1                  newgoldenfox            {DynamicMembership}
+New Sparkling Deer      bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq newsparklingdeer New Sparkling Deer Group {Unified}
+New Golden Fox          xxxxxxxx-8888-5555-9999-bbbbbbbbbbbb newgoldenfox                  New Golden Fox            {DynamicMembership}
 ```
 
 This example demonstrates how to retrieve groups that include the text new in their display names from Microsoft Entra ID.
