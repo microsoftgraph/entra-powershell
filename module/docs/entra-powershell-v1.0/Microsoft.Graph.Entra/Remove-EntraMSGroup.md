@@ -38,7 +38,7 @@ The Remove-EntraMSGroup cmdlet removes a Microsoft Entra ID group.
 ### Example 1: Remove a group
 
 ```powershell
-Connect-Entra -Scopes 'Group.ReadWrite.All'
+ Connect-Entra -Scopes 'Group.ReadWrite.All'
  Remove-EntraMSGroup -Id 'tttttttt-0000-3333-9999-mmmmmmmmmmmm'
 ```
 
