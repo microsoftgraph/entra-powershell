@@ -26,7 +26,7 @@ Retrieves the list of previously deleted applications.
 ```powershell
 Get-EntraDeletedApplication 
  [-Filter <String>] 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -35,7 +35,7 @@ Get-EntraDeletedApplication
 ```powershell
 Get-EntraDeletedApplication 
  [-SearchString <String>] 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -62,7 +62,7 @@ This cmdlet retrieves the list of deleted applications.
 
 ### Example 2: Get list of deleted applications using All parameter.
 ```powershell
-PS C:\> Get-EntraDeletedApplication -All $true
+PS C:\> Get-EntraDeletedApplication -All
 ```
 
 ```output
@@ -119,8 +119,7 @@ This cmdlet retrieves deleted applications having specified display name.
 ## PARAMETERS
 
 ### -All
-If true, return all deleted applications.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -129,8 +128,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

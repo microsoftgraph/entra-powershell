@@ -25,7 +25,7 @@ Get members from applicationProxyConnectorGroup.
 ```powershell
 Get-EntraApplicationProxyConnectorGroupMember
  -Id <String> 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [-Filter <String>]
  [<CommonParameters>]
@@ -53,17 +53,17 @@ status                         active
 ## PARAMETERS
 
 ### -All
-If true, return all objects created by this user. If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

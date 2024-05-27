@@ -1,10 +1,9 @@
 ---
 title: New-EntraMSGroup.
 description: This article provides details on the New-EntraMSGroup command.
-
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/14/2024
+ms.date: 05/03/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -102,6 +101,21 @@ HelpDesk admin group2 380f8097-ecd8-4d0b-b553-5ba1f53d16a7 helpDeskAdminGroup Gr
 ```
 This example demonstrates how to create the new group with Visibility parameter.
 
+### Example 5: Create a group with GroupTypes parameter.
+
+```powershell
+PS C:\>  New-EntraMSGroup -DisplayName "HelpDesk admin group3" -Description "group des" -MailEnabled $False -MailNickname "helpDeskAdminGroup1" -SecurityEnabled $True -GroupTypes "Unified"
+```
+
+```output
+
+DisplayName           Id                                   MailNickname        Description GroupTypes
+-----------           --                                   ------------        ----------- ----------
+HelpDesk admin group3 45640195-b718-48fd-b0a3-3d796f87ed20 helpDeskAdminGroup1 group des   {Unified}
+
+```
+This example demonstrates how to create the new group with GroupTypes parameter.
+
 ## PARAMETERS
 
 ### -Description
@@ -184,8 +198,11 @@ Accept wildcard characters: False
 ```
 
 ### -GroupTypes
-Specifies that the group is a dynamic group. 
-To create a dynamic group, specify a value of DynamicMembership.
+Specifies that the group is a unified or dynamic group. 
+
+Notes: 
+
+* This parameter currently can't be used to create dynamic groups. To create a dynamic group in PowerShell, you must use the Entra module.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -213,7 +230,7 @@ Notes:
 
 * This parameter is only valid for groups that have the groupType set to "Unified."
 * If a group has this attribute set to "HiddenMembership," it can't be changed later.
-* Anyone can join a group that has this attribute set to "Public" If the attribute is set to Private or HiddenMembership, only owner(s) can add new members to the group and requests to join the group need approval of the owner(s).
+* Anyone can join a group that has this attribute set to "Public" If the attribute is set to Private or HiddenMembership, only owners can add new members to the group and requests to join the group need approval of the owners.
 
 ```yaml
 Type: String
