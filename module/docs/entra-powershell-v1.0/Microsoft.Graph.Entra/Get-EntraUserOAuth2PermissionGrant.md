@@ -2,7 +2,7 @@
 title: Get-EntraUserOAuth2PermissionGrant
 description: This article provides details on the Get-EntraUserOAuth2PermissionGrant command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/21/2024
 ms.author: eunicewaweru

@@ -2,7 +2,7 @@
 title: Get-EntraGroup.
 description: This article explains the Get-EntraGroup command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/08/2024
 ms.author: eunicewaweru
