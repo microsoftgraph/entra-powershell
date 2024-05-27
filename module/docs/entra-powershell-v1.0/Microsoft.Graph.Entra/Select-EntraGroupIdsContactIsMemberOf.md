@@ -36,10 +36,10 @@ The Select-EntraGroupIdsContactIsMemberOf cmdlet gets groups in Microsoft Entra 
 
 ### Example 1: Get groups in which a contact is a member.
 ```powershell
-PS C:\> $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-PS C:\>$Groups.GroupIds = (Get-AzureADGroup -ObjectId 69641f6c-41dc-4f63-9c21-cc9c8ed12931).ObjectId
-PS C:\>$UserID = (Get-AzureADContact -ObjectId cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c).ObjectId
-PS C:\>Select-AzureADGroupIdsContactIsMemberOf -ObjectId $UserID -GroupIdsForMembershipCheck $Groups
+PS C:\> $Groups = New-Object Microsoft.Open.Entra.Model.GroupIdsForMembershipCheck
+PS C:\>$Groups.GroupIds = (Get-EntraGroup -ObjectId 69641f6c-41dc-4f63-9c21-cc9c8ed12931).ObjectId
+PS C:\>$UserID = (Get-EntraContact -ObjectId cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c).ObjectId
+PS C:\>Select-EntraGroupIdsContactIsMemberOf -ObjectId $UserID -GroupIdsForMembershipCheck $Groups
 
 ```
 This example demonstrates how to get groups in which a contact is a member.

@@ -26,7 +26,7 @@ Gets a contract.
 ```powershell
 Get-EntraContract 
  [-Top <Int32>] 
- [-All <Boolean>] 
+ [-All] 
  [-Filter <String>] 
  [<CommonParameters>]
 ```
@@ -35,7 +35,7 @@ Get-EntraContract
 ```powershell
 Get-EntraContract 
  -ObjectId <String> 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -76,8 +76,7 @@ This command gets all contracts in the Microsoft Entra ID.
 ## PARAMETERS
 
 ### -All
-If true, return all contracts.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -86,8 +85,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

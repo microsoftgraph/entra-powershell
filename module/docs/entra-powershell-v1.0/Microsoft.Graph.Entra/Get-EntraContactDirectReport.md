@@ -26,7 +26,7 @@ Get the direct reports for a contact.
 ```powershell
 Get-EntraContactDirectReport 
  -ObjectId <String> 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -49,8 +49,7 @@ The second command gets the direct reports for $Contact.
 ## PARAMETERS
 
 ### -All
-If true, return all direct reports.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -59,8 +58,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -106,4 +105,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Get-EntraContact](Get-EntraContact.md)
-
