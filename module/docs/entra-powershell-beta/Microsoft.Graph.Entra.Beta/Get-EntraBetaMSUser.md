@@ -14,17 +14,17 @@ schema: 2.0.0
 
 ### GetQuery (Default)
 ```
-Get-EntraBetaMSUser [-Top <Int32>] [-All <Boolean>] [-Filter <String>] [-Select <String>] [<CommonParameters>]
+Get-EntraBetaMSUser [-Top <Int32>] [-All] [-Filter <String>] [-Select <String>] [<CommonParameters>]
 ```
 
 ### GetById
 ```
-Get-EntraBetaMSUser -Id <String> [-All <Boolean>] [-Select <String>] [<CommonParameters>]
+Get-EntraBetaMSUser -Id <String> [-All] [-Select <String>] [<CommonParameters>]
 ```
 
 ### GetVague
 ```
-Get-EntraBetaMSUser [-SearchString <String>] [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaMSUser [-SearchString <String>] [-All] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -42,17 +42,17 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -All
-{{ Fill All Description }}
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

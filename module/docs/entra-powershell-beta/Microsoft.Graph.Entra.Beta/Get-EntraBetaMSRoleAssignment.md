@@ -14,17 +14,17 @@ schema: 2.0.0
 
 ### GetQuery (Default)
 ```
-Get-EntraBetaMSRoleAssignment [-Filter <String>] [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraBetaMSRoleAssignment [-Filter <String>] [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
 ### GetById
 ```
-Get-EntraBetaMSRoleAssignment -Id <String> [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaMSRoleAssignment -Id <String> [-All] [<CommonParameters>]
 ```
 
 ### GetVague
 ```
-Get-EntraBetaMSRoleAssignment [-All <Boolean>] [-SearchString <String>] [<CommonParameters>]
+Get-EntraBetaMSRoleAssignment [-All] [-SearchString <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -42,17 +42,17 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -All
-{{ Fill All Description }}
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

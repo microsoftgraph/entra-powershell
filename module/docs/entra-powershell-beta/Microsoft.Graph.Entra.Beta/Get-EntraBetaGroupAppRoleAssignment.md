@@ -24,14 +24,14 @@ Gets a group application role assignment.
 
 ```powershell
 Get-EntraBetaGroupAppRoleAssignment 
-    -ObjectId <String> 
-    [-All <Boolean>] 
-    [-Top <Int32>] 
+ -ObjectId <String> 
+ [-All] 
+ [-Top <Int32>] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraBetaGroupAppRoleAssignment** cmdlet gets a group application role assignment in Microsoft Entra ID.
+The Get-EntraBetaGroupAppRoleAssignment cmdlet gets a group application role assignment in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -56,7 +56,7 @@ The second command gets the application role assignments of the group in $GroupI
 
 ### Example 2: Retrieve all application role assignments of a group
 ```powershell
-Get-EntraBetaGroupAppRoleAssignment -ObjectId b220a523-d97c-44c3-a535-b55fe1fa1163 -All $true
+Get-EntraBetaGroupAppRoleAssignment -ObjectId b220a523-d97c-44c3-a535-b55fe1fa1163 -All
 ```
 
 ```output
@@ -86,18 +86,17 @@ This command gets top two application role assignments of the specified group.
 ## PARAMETERS
 
 ### -All
-If true, return all application role assignments.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -147,4 +146,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [New-EntraBetaGroupAppRoleAssignment](New-EntraBetaGroupAppRoleAssignment.md)
 
 [Remove-EntraBetaGroupAppRoleAssignment](Remove-EntraBetaGroupAppRoleAssignment.md)
-

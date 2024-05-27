@@ -25,22 +25,22 @@ Gets an administrative unit.
 ### GetQuery (Default)
 ```powershell
 Get-EntraBetaMSAdministrativeUnit 
-    [-Top <Int32>] 
-    [-All <Boolean>] 
-    [-Filter <String>] 
+ [-Top <Int32>] 
+ [-All] 
+ [-Filter <String>] 
  [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraBetaMSAdministrativeUnit 
-    -Id <String> 
-    [-All <Boolean>] 
+ -Id <String> 
+ [-All] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraBetaMSAdministrativeUnit** cmdlet gets a Microsoft Entra ID administrative unit.
+The Get-EntraBetaMSAdministrativeUnit cmdlet gets a Microsoft Entra ID administrative unit.
 
 ## EXAMPLES
 
@@ -62,7 +62,7 @@ This command gets all the administrative units.
 
 ### Example 2: Get all administrative units using '-All' parameter
 ```powershell
-PS C:\> Get-EntraBetaMSAdministrativeUnit -All $true
+PS C:\> Get-EntraBetaMSAdministrativeUnit -All
 ```
 
 ```output
@@ -118,18 +118,17 @@ This example returns the specified top administrative units.
 ## PARAMETERS
 
 ### -All
-If true, return all administrative units.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -197,4 +196,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraBetaMSAdministrativeUnit](Remove-EntraBetaMSAdministrativeUnit.md)
 
 [Set-EntraBetaMSAdministrativeUnit](Set-EntraBetaMSAdministrativeUnit.md)
-
