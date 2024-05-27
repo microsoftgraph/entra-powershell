@@ -26,7 +26,7 @@ Gets the registered owner of a device.
 ```powershell
 Get-EntraDeviceRegisteredOwner 
  -ObjectId <String> 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -68,7 +68,7 @@ This command gets the registered owner of a device.
 
 ### Example 3: Retrieve all the registered owners of a device
 ```powershell
-PS C:\> Get-EntraDeviceRegisteredOwner -ObjectId 8542ebd1-3d49-4073-9dce-30f197c67755 -All $true
+PS C:\> Get-EntraDeviceRegisteredOwner -ObjectId 8542ebd1-3d49-4073-9dce-30f197c67755 -All 
 ```
 
 ```output
@@ -96,8 +96,7 @@ This command retrieves top one registered owner of a device.
 ## PARAMETERS
 
 ### -All
-If true, return all registered owners.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -106,8 +105,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -157,4 +156,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraDevice](Get-EntraDevice.md)
 
 [Remove-EntraDeviceRegisteredOwner](Remove-EntraDeviceRegisteredOwner.md)
-

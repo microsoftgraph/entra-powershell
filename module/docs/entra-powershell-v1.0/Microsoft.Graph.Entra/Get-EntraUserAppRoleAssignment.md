@@ -25,7 +25,7 @@ Get a user application role assignment.
 ```powershell
 Get-EntraUserAppRoleAssignment
  -ObjectId <String>
- [-All <Boolean>]
+ [-All]
  [-Top <Int32>]
  [<CommonParameters>]
 ```
@@ -56,7 +56,7 @@ The second command gets a user application role assignment for the user in $User
 
 ### Example 2: Get all application role assignments
 ```powershell
-PS C:\>  Get-EntraUserAppRoleAssignment -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -All $true
+PS C:\>  Get-EntraUserAppRoleAssignment -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -All 
 ```
 ```output
 DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName   PrincipalId                          PrincipalType ResourceDisplayName
@@ -92,8 +92,7 @@ This command gets five user application role assignment for the specified user.
 ## PARAMETERS
 
 ### -All
-If true, return all user application role assignments for this user.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -102,8 +101,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -153,4 +152,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [New-EntraUserAppRoleAssignment](New-EntraUserAppRoleAssignment.md)
 
 [Remove-EntraUserAppRoleAssignment](Remove-EntraUserAppRoleAssignment.md)
-

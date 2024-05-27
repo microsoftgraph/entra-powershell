@@ -24,7 +24,7 @@ Gets an object owned by a service principal.
 
 ```powershell
 Get-EntraServicePrincipalOwnedObject 
- [-All <Boolean>] 
+ [-All] 
  -ObjectId <String> 
  [-Top <Int32>] 
  [<CommonParameters>]
@@ -56,7 +56,7 @@ The second command gets the owned objects of a service principal identified by $
 
 ### Example 2: Retrieve all the owned objects of a service principal
 ```powershell
-PS C:\> Get-EntraServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3" -All $true
+PS C:\> Get-EntraServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3" -All 
 ```
 
 ```output
@@ -84,18 +84,17 @@ This command gets top one owned object of a service principal identified by `2d0
 ## PARAMETERS
 
 ### -All
-If true, return all objects owned by this service principal.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -141,4 +140,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
-

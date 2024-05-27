@@ -26,7 +26,7 @@ Gets a group.
 ```powershell
 Get-EntraGroup 
  [-Top <Int32>] 
- [-All <Boolean>] 
+ [-All] 
  [-Filter <String>] 
  [<CommonParameters>]
 ```
@@ -35,7 +35,7 @@ Get-EntraGroup
 ```powershell
 Get-EntraGroup 
  [-SearchString <String>] 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -43,7 +43,7 @@ Get-EntraGroup
 ```powershell
 Get-EntraGroup 
  -ObjectId <String> 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -140,8 +140,7 @@ This example demonstrates how to retrieve groups that include the text new in th
 ## PARAMETERS
 
 ### -All
-If true, return all groups.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -150,8 +149,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -232,4 +231,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraGroup](Remove-EntraGroup.md)
 
 [Set-EntraGroup](Set-EntraGroup.md)
-

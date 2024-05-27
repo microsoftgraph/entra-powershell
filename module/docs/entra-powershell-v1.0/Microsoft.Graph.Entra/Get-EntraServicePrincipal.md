@@ -26,7 +26,7 @@ Gets a service principal.
 ```powershell
 Get-EntraServicePrincipal 
  [-Top <Int32>] 
- [-All <Boolean>] 
+ [-All] 
  [-Filter <String>] 
  [<CommonParameters>]
 ```
@@ -35,7 +35,7 @@ Get-EntraServicePrincipal
 ```powershell
 Get-EntraServicePrincipal 
  [-SearchString <String>] 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -43,7 +43,7 @@ Get-EntraServicePrincipal
 ```powershell
 Get-EntraServicePrincipal 
  -ObjectId <String> 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -92,7 +92,7 @@ The second command gets the service principal identified by $ServicePrincipalId.
 
 ### Example 3: Retrieve all service principals from the directory
 ```powershell
-PS C:\> Get-EntraServicePrincipal -All $true
+PS C:\> Get-EntraServicePrincipal -All 
 ```
 
 ```output
@@ -154,8 +154,7 @@ This command gets a list of service principal, which has the specified display n
 ## PARAMETERS
 
 ### -All
-If true, return all service principal objects.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -164,8 +163,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -246,4 +245,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraServicePrincipal](Remove-EntraServicePrincipal.md)
 
 [Set-EntraServicePrincipal](Set-EntraServicePrincipal.md)
-

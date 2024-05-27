@@ -16,7 +16,7 @@ Describe "Enable-EntraDirectoryRole" {
             Should -Invoke -CommandName New-MgDirectoryRole -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when RoleTemplateId is empty" {
-            { Enable-EntraDirectoryRole -RoleTemplateId "" }
+            { Enable-EntraDirectoryRole -RoleTemplateId } | Should -Throw "Missing an argument for parameter 'RoleTemplateId'*"
         }
         It "Should contain 'User-Agent' header" {
             Mock -CommandName New-MgDirectoryRole -MockWith { $args } -ModuleName Microsoft.Graph.Entra

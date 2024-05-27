@@ -25,7 +25,7 @@ Retrieves the list of owners for an application object.
 ```powershell
 Get-EntraMSApplicationOwner 
  -ObjectId <String> 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -52,7 +52,7 @@ This command gets the owner of an application.
 
 ### Example 2: Get the owners of an application using all parameter.
 ```powershell
-PS C:\>Get-EntraMSApplicationOwner -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -All $true
+PS C:\>Get-EntraMSApplicationOwner -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -All 
 ```
 
 ```output
@@ -97,8 +97,7 @@ Accept wildcard characters: False
 ```
 
 ### -All
-If true, return all owners.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -107,8 +106,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
