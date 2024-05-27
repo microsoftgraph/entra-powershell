@@ -6,19 +6,19 @@ function Set-EntraBetaPartnerInformation {
     param (
         [Parameter( ValueFromPipelineByPropertyName = $true)]
         [System.Guid] $ObjectId,
-        [Parameter(ParameterSetName = 'SetPartnerInformation__0', ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string] $CompanyType,
-        [Parameter(ParameterSetName = 'SetPartnerInformation__0', ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string] $PartnerCommerceUrl,
-        [Parameter(ParameterSetName = 'SetPartnerInformation__0', ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string] $PartnerCompanyName,
-        [Parameter(ParameterSetName = 'SetPartnerInformation__0', ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string] $PartnerHelpUrl,
-        [Parameter(ParameterSetName = 'SetPartnerInformation__0', ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string[]] $PartnerSupportEmails,
-        [Parameter(ParameterSetName = 'SetPartnerInformation__0', ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string[]] $PartnerSupportTelephones,
-        [Parameter(ParameterSetName = 'SetPartnerInformation__0', ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = 'SetPartnerInformation', ValueFromPipelineByPropertyName = $true)]
         [string] $PartnerSupportUrl,
         [Parameter(ValueFromPipelineByPropertyName = $true)]
         [System.Guid] $TenantId
