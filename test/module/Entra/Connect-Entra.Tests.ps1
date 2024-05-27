@@ -41,7 +41,7 @@ Describe "Connect-Entra Mock"{
 }
 
 Describe "Connect-Entra ParameterSets"{
-    It 'Should have three ParameterSets' {
+    It 'Should have six ParameterSets' {
         $ConnectEntraCommand | Should -Not -BeNullOrEmpty
         $ConnectEntraCommand.ParameterSets | Should -HaveCount 6
     }
