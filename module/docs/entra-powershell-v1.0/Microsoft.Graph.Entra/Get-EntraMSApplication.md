@@ -26,7 +26,7 @@ Retrieves the list of applications within the organization.
 ```powershell
 Get-EntraMSApplication 
  [-Filter <String>] 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -35,7 +35,7 @@ Get-EntraMSApplication
 ```powershell
 Get-EntraMSApplication 
  [-SearchString <String>] 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -43,7 +43,7 @@ Get-EntraMSApplication
 ```powershell
 Get-EntraMSApplication 
  -ObjectId <String> 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -396,7 +396,7 @@ This command gets the first two applications.
 
 ### Example 6: Retrieve a list of all applications
 ```powershell
-PS C:\>Get-EntraMSApplication -All $true
+PS C:\>Get-EntraMSApplication -All
 ```
 
 ```output
@@ -577,8 +577,7 @@ Accept wildcard characters: False
 ```
 
 ### -All
-If true, return all applications.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -587,8 +586,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -658,4 +657,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraMSApplication](Remove-EntraMSApplication.md)
 
 [Set-EntraMSApplication](Set-EntraMSApplication.md)
-

@@ -25,7 +25,7 @@ Get the user's direct reports.
 ```powershell
 Get-EntraUserDirectReport 
  -ObjectId <String> 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -59,7 +59,7 @@ This command gets the direct report for the specified user.
 
 ### Example 2: Get a all direct reports
 ```powershell
-PS C:\> Get-EntraUserDirectReport -ObjectId "c300541f-2c03-49cb-b25b-72f09cb29abf" -All $true
+PS C:\> Get-EntraUserDirectReport -ObjectId "c300541f-2c03-49cb-b25b-72f09cb29abf" -All 
 ```
 ```output
 ageGroup                        :
@@ -104,8 +104,7 @@ This command gets the five direct report for the specified user.
 ## PARAMETERS
 
 ### -All
-If true, return all direct reports for this user.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -114,8 +113,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

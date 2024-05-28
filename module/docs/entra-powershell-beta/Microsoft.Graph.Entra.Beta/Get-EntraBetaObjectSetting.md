@@ -14,13 +14,13 @@ Gets an object setting.
 
 ### GetQuery (Default)
 ```
-Get-EntraBetaObjectSetting [-Top <Int32>] [-All <Boolean>] -TargetType <String> -TargetObjectId <String>
+Get-EntraBetaObjectSetting [-Top <Int32>] [-All] -TargetType <String> -TargetObjectId <String>
  [<CommonParameters>]
 ```
 
 ### GetById
 ```
-Get-EntraBetaObjectSetting -Id <String> [-All <Boolean>] -TargetType <String> -TargetObjectId <String>
+Get-EntraBetaObjectSetting -Id <String> [-All] -TargetType <String> -TargetObjectId <String>
  [<CommonParameters>]
 ```
 
@@ -39,18 +39,17 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -All
-If true, return all objects settings.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

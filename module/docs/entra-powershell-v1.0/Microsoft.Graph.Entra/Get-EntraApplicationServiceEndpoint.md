@@ -25,7 +25,7 @@ Retrieve the service endpoint of an application.
 ```powershell
 Get-EntraApplicationServiceEndpoint
  -ObjectId <String>
- [-All <Boolean>]
+ [-All]
  [-Top <Int32>]
  [<CommonParameters>]
 ```
@@ -47,7 +47,7 @@ This example demonstrates how to retrieve service endpoint of the application th
 
 ### Example 2: Get all service endpoints 
 ```powershell
-PS C:\WINDOWS\system32> Get-EntraApplicationServiceEndpoint -ObjectId 79592454-dea7-4660-9d91-f1768e5055ac -All true
+PS C:\WINDOWS\system32> Get-EntraApplicationServiceEndpoint -ObjectId 79592454-dea7-4660-9d91-f1768e5055ac -All 
 ```
 
 This example demonstrates how to retrieve all service endpoints of a specified application.
@@ -65,17 +65,16 @@ This example demonstrates how to retrieve five service endpoints of a specified 
 Return all service endpoints.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 ### -ObjectId
 Specifies the object ID of the application for which the service endpoint is retrieved.
 

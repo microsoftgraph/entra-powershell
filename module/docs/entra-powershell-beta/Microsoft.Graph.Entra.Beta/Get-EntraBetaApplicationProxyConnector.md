@@ -24,7 +24,7 @@ The Get-EntraBetaApplicationProxyConnector cmdlet a list of all connectors, or i
 ### GetQuery (Default)
 ```powershell
 Get-EntraBetaApplicationProxyConnector
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [-Filter <String>] 
  [<CommonParameters>]
@@ -34,7 +34,7 @@ Get-EntraBetaApplicationProxyConnector
 ```powershell
 Get-EntraBetaApplicationProxyConnector 
  [-SearchString <String>] 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -42,7 +42,7 @@ Get-EntraBetaApplicationProxyConnector
 ```powershell
 Get-EntraBetaApplicationProxyConnector 
  -Id <String> 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -139,18 +139,17 @@ This example demonstrates how to Retrieve information using machineName property
 ## PARAMETERS
 
 ### -All
-If true, return all users.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

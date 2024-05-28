@@ -25,7 +25,7 @@ Gets a service principal application role assignment.
 ```powershell
 Get-EntraServiceAppRoleAssignment 
  -ObjectId <String>
- [-All <Boolean>]
+ [-All]
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -54,7 +54,7 @@ The second command gets the application role assignments for the service princip
 
 ### Example 2: Retrieve all application role assignments for a service principal
 ```powershell
-PS C:\> Get-EntraServiceAppRoleAssignment -ObjectId "021510b7-e753-40aa-b668-29753295ca34" -All $true
+PS C:\> Get-EntraServiceAppRoleAssignment -ObjectId "021510b7-e753-40aa-b668-29753295ca34" -All
 ```
 ```output
 DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId
@@ -83,8 +83,7 @@ This command gets three application role assignments for specified service princ
 ## PARAMETERS
 
 ### -All
-If true, return all application role assignments.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -93,8 +92,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -144,4 +143,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [New-EntraServiceAppRoleAssignment](New-EntraServiceAppRoleAssignment.md)
 
 [Remove-EntraServiceAppRoleAssignment](Remove-EntraServiceAppRoleAssignment.md)
-

@@ -25,7 +25,7 @@ Get objects created by a service principal.
 ```powershell
 Get-EntraServicePrincipalCreatedObject 
  -ObjectId <String>
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -49,7 +49,7 @@ The second command gets the objects created by the service principal identified 
 
 ### Example 2: Retrieve the all objects created by a service principal
 ```powershell
-PS C:\> Get-EntraServicePrincipalCreatedObject -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -All $true
+PS C:\> Get-EntraServicePrincipalCreatedObject -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -All
 ```
 
 This example demonstrates how to get the all object created by a specified service principal in Microsoft Entra ID.  
@@ -64,8 +64,7 @@ This example demonstrates how to get the top two object created by a specified s
 ## PARAMETERS
 
 ### -All
-If true, return all objects created by the service principal.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -74,8 +73,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -121,4 +120,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
-

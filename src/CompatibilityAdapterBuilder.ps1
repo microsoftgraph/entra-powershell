@@ -380,7 +380,8 @@ public $($object.GetType().Name)()
         $def += @"
 
 `"@
-    Add-Type -TypeDefinition `$def
+    try{ Add-Type -TypeDefinition `$def }
+    catch{}
 
 # ------------------------------------------------------------------------------
 # End of Type definitios required for commands inputs
@@ -622,6 +623,9 @@ $OutputTransformations
             $param = $params[$paramKey]
             $paramType = $param.ParameterType.ToString()
             $paramtypeToCreate = $param.ParameterType.ToString()
+            if($param.Name -eq 'All'){
+                $paramType = "switch"
+            }
             if(($null -ne $this.TypePrefix) -and ($paramType -like "*$($this.TypePrefix)*")){
                 if($paramType -like "*List*"){
                     $paramType = "System.Collections.Generic.List``1[$($param.ParameterType.GenericTypeArguments.FullName)]"

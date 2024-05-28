@@ -24,7 +24,7 @@ Gets OAuth2PermissionGrant entities.
 
 ```powershell
 Get-EntraOAuth2PermissionGrant 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -51,7 +51,7 @@ This command gets the OAuth2 permission grants.
 
 ### Example 2: Get All the OAuth2 permission grants 
 ```powershell
-PS C:\>Get-EntraOAuth2PermissionGrant -All $true
+PS C:\>Get-EntraOAuth2PermissionGrant -All 
 ```
 ```output
 Id                                                               ClientId                             ConsentType   PrincipalId                          ResourceId
@@ -79,8 +79,7 @@ This command gets top 2 OAuth2 permission grants records.
 ## PARAMETERS
 
 ### -All
-If true, return all Oath 2 permission grants.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -89,8 +88,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -121,4 +120,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Remove-EntraOAuth2PermissionGrant](Remove-EntraOAuth2PermissionGrant.md)
-

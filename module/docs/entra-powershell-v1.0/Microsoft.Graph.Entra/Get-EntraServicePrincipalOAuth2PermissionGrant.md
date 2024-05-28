@@ -25,7 +25,7 @@ Gets an oAuth2PermissionGrant object.
 ```powershell
 Get-EntraServicePrincipalOAuth2PermissionGrant
 -ObjectId <String>
-[-All <Boolean>]
+[-All]
 [-Top <Int32>]
 [<CommonParameters>]
 ```
@@ -54,7 +54,7 @@ The second command gets the OAuth2 permission grants of a service principal iden
 
 ### Example 2: Get all OAuth2 permission grants of a service principal.
 ```powershell
-PS C:\> Get-EntraServicePrincipalOAuth2PermissionGrant -ObjectId 4773e0f6-b400-40b3-8508-340de8ee0893 -All $true
+PS C:\> Get-EntraServicePrincipalOAuth2PermissionGrant -ObjectId 4773e0f6-b400-40b3-8508-340de8ee0893 -All 
 ```
 ```output
 Id                                                               ClientId                             ConsentType   PrincipalId                          ResourceId                           Scope
@@ -85,8 +85,7 @@ This command gets two OAuth2 permission grants of a service principal for specif
 ## PARAMETERS
 
 ### -All
-If true, return all permission grants.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -95,8 +94,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

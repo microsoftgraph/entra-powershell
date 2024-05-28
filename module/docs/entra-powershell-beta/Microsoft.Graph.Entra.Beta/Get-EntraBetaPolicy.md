@@ -14,12 +14,12 @@ Gets a policy.
 
 ### GetQuery (Default)
 ```
-Get-EntraBetaPolicy [-Top <Int32>] [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaPolicy [-Top <Int32>] [-All] [<CommonParameters>]
 ```
 
 ### GetById
 ```
-Get-EntraBetaPolicy -Id <String> [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaPolicy -Id <String> [-All] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -54,17 +54,17 @@ Accept wildcard characters: False
 ```
 
 ### -All
-{{ Fill All Description }}
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -99,4 +99,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraBetaPolicy]()
 
 [Set-EntraBetaPolicy]()
-
