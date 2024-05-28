@@ -47,7 +47,7 @@ $DevId = (Get-EntraDevice -Top 1).ObjectId
 Get-EntraDeviceRegisteredOwner -ObjectId $DevId
 ```
 
-```output
+```Output
 ObjectId                             DisplayName     UserPrincipalName     UserType
 --------                             -----------    -----------------      --------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan    maria@contoso.com       Member
@@ -64,7 +64,7 @@ Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraDeviceRegisteredOwner -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
-```output
+```Output
 ObjectId                             DisplayName     UserPrincipalName     UserType
 --------                             -----------    -----------------      --------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com       Member
@@ -80,7 +80,7 @@ Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraDeviceRegisteredOwner -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -All 
 ```
 
-```output
+```Output
 ObjectId                             DisplayName     UserPrincipalName     UserType
 --------                             -----------    -----------------      --------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com       Member
@@ -96,7 +96,7 @@ Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraDeviceRegisteredOwner -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -Top 1
 ```
 
-```output
+```Output
 ObjectId                             DisplayName     UserPrincipalName     UserType
 --------                             -----------    -----------------      --------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com       Member
