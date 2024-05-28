@@ -14,12 +14,12 @@ Gets a contact from Azure Active Directory.
 
 ### GetQuery (Default)
 ```
-Get-EntraBetaContact [-Filter <String>] [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraBetaContact [-Filter <String>] [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
 ### GetById
 ```
-Get-EntraBetaContact -ObjectId <String> [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaContact -ObjectId <String> [-All] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -41,18 +41,17 @@ This command retrieves all contact objects in the directory.
 ## PARAMETERS
 
 ### -All
-If true, return all contacts.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

@@ -13,7 +13,7 @@ Get objects created by a service principal.
 ## SYNTAX
 
 ```
-Get-EntraBetaServicePrincipalCreatedObject -ObjectId <String> [-All <Boolean>] [-Top <Int32>]
+Get-EntraBetaServicePrincipalCreatedObject -ObjectId <String> [-All] [-Top <Int32>]
  [<CommonParameters>]
 ```
 
@@ -36,18 +36,30 @@ The second command gets objects created by the service principal identified by $
 ## PARAMETERS
 
 ### -All
-If true, return all objects created by the service principal.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```### -All
+List all pages.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -93,4 +105,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Get-EntraBetaServicePrincipal]()
-
