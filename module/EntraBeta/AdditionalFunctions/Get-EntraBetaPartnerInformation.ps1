@@ -97,6 +97,7 @@ function Get-EntraBetaPartnerInformation {
                 "PartnerSupportEmails"     = $response.supportEmails
                 "PartnerHelpUrl"           = $response.helpUrl
                 "PartnerCommerceUrl"       = $response.commerceUrl
+                "PartnerSupportUrl"        = $response.supportUrl
                 "ObjectID"                 = $response.partnerTenantId
             }
             $customTable 

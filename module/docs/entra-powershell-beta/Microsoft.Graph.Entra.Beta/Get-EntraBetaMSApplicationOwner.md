@@ -13,7 +13,7 @@ Retrieves the list of owners for an application object.
 ## SYNTAX
 
 ```
-Get-EntraBetaMSApplicationOwner [-ObjectId <String>] [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraBetaMSApplicationOwner [-ObjectId <String>] [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,7 +34,7 @@ This command gets the owner of an application.
 
 ### Example 1: Get the owners of an application
 ```
-PS C:\>Get-EntraBetaMSApplicationOwner -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -All $true
+PS C:\>Get-EntraBetaMSApplicationOwner -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -All
 
           ObjectId                             ObjectType
           --------                             ----------
@@ -61,18 +61,17 @@ Accept wildcard characters: False
 ```
 
 ### -All
-If true, return all owners.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

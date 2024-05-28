@@ -24,7 +24,7 @@ The Get-EntraBetaApplicationProxyConnectorGroup cmdlet retrieves a list of all c
 ### GetQuery (Default)
 ```powershell
 Get-EntraBetaApplicationProxyConnectorGroup 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [-Filter <String>]
  [<CommonParameters>]
@@ -34,7 +34,7 @@ Get-EntraBetaApplicationProxyConnectorGroup
 ```powershell
 Get-EntraBetaApplicationProxyConnectorGroup 
  [-SearchString <String>] 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -42,7 +42,7 @@ Get-EntraBetaApplicationProxyConnectorGroup
 ```powershell
 Get-EntraBetaApplicationProxyConnectorGroup
  -Id <String> 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -143,18 +143,17 @@ This command Retrieve a connector groups with String parameter.
 ## PARAMETERS
 
 ### -All
-If true, return all users.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

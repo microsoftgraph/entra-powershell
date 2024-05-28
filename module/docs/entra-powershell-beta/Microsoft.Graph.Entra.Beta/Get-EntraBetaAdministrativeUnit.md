@@ -14,12 +14,12 @@ Gets an administrative unit.
 
 ### GetQuery (Default)
 ```
-Get-EntraBetaAdministrativeUnit [-Filter <String>] [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraBetaAdministrativeUnit [-Filter <String>] [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
 ### GetById
 ```
-Get-EntraBetaAdministrativeUnit -ObjectId <String> [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaAdministrativeUnit -ObjectId <String> [-All] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -37,18 +37,17 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -All
-If true, return all administrative units.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -116,4 +115,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraBetaAdministrativeUnit]()
 
 [Set-EntraBetaAdministrativeUnit]()
-

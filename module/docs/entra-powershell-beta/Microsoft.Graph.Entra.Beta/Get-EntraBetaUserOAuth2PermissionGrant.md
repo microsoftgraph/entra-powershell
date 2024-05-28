@@ -13,7 +13,7 @@ Gets an oAuth2PermissionGrant object.
 ## SYNTAX
 
 ```
-Get-EntraBetaUserOAuth2PermissionGrant -ObjectId <String> [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraBetaUserOAuth2PermissionGrant -ObjectId <String> [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -35,21 +35,19 @@ The second command gets the OAuth2 permission grants for the user identified by 
 ## PARAMETERS
 
 ### -All
-If true, return all permission grants.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 ### -ObjectId
 Specifies the ID (as a UPN or ObjectId) of a user in Azure AD.
 
