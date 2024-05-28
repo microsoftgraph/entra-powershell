@@ -37,12 +37,12 @@ Describe "Get-EntraServicePrincipalOwnedObject" {
             { Get-EntraServicePrincipalOwnedObject -ObjectId  } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
         }
         It "Should return all Owned Objects" {
-            $result = Get-EntraServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3" -All $true
+            $result = Get-EntraServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3" -All
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Get-MgServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when All is empty" {
-            { Get-EntraServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3" -All } | Should -Throw "Missing an argument for parameter 'All'*"
+        It "Should fail when All has an argument" {
+            { Get-EntraServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3" -All $true } | Should -Throw Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
         }
         It "Should return top Owned Object" {
             $result = Get-EntraServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3" -Top 1
