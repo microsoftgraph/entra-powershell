@@ -10,7 +10,7 @@ BeforeAll {
 Describe "Remove-EntraBetaMSTrustFrameworkPolicy" {
     Context "Test for Remove-EntraBetaMSTrustFrameworkPolicy" {
         It "Should delete a trust framework policy in the directory" {
-            $result = Remove-EntraBetaMSTrustFrameworkPolicy -Id "a03b6d9e-6654-46e6-8d0a-8ed83c675ca9"
+            $result = Remove-EntraBetaMSTrustFrameworkPolicy -Id "B2C_1A_TRUSTFRAMEWORKLOCALIZATION"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgBetaTrustFrameworkPolicy -ModuleName Microsoft.Graph.Entra.Beta -Times 1
@@ -27,16 +27,16 @@ Describe "Remove-EntraBetaMSTrustFrameworkPolicy" {
         It "Should contain TrustFrameworkPolicyId in parameters when passed Id to it" {
             Mock -CommandName Remove-MgBetaTrustFrameworkPolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
-            $result = Remove-EntraBetaMSTrustFrameworkPolicy -Id "a03b6d9e-6654-46e6-8d0a-8ed83c675ca9"
+            $result = Remove-EntraBetaMSTrustFrameworkPolicy -Id "B2C_1A_TRUSTFRAMEWORKLOCALIZATION"
             $params = Get-Parameters -data $result
-            $params.TrustFrameworkPolicyId | Should -Be "a03b6d9e-6654-46e6-8d0a-8ed83c675ca9"
+            $params.TrustFrameworkPolicyId | Should -Be "B2C_1A_TRUSTFRAMEWORKLOCALIZATION"
         }
 
         It "Should contain 'User-Agent' header" {
             Mock -CommandName Remove-MgBetaTrustFrameworkPolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaMSTrustFrameworkPolicy"
-            $result = Remove-EntraBetaMSTrustFrameworkPolicy -Id "a03b6d9e-6654-46e6-8d0a-8ed83c675ca9"
+            $result = Remove-EntraBetaMSTrustFrameworkPolicy -Id "B2C_1A_TRUSTFRAMEWORKLOCALIZATION"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         } 
