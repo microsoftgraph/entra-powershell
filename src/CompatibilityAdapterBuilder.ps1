@@ -646,9 +646,7 @@ $OutputTransformations
         }
 
         if("Get" -eq $Command.Verb){
-            $propertyArray = [string[]]@()
-            $propertyType = $propertyArray.GetType().ToString()
-
+            $propertyType = "System.String[]"
             $arrayAttrib = @()
             $arrayAttrib += "Mandatory = `$false"
             $arrayAttrib += "ValueFromPipeline = `$false"
