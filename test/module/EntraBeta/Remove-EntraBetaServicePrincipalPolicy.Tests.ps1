@@ -10,11 +10,9 @@ BeforeAll {
 
 Describe "Remove-EntraBetaServicePrincipalPolicy" {
 Context "Test for Remove-EntraBetaServicePrincipalPolicy" {
-        It "Should return object" {
+        It "Should return empty object" {
             $result = Remove-EntraBetaServicePrincipalPolicy -Id "pppppppp-b5d0-aaaa-ahbg-aaaaaaaa" -PolicyId "bbbbbbbb-1111-1111-1111-bbbbbbbb"
             $result | Should -BeNullOrEmpty
-            write-host $result.uri
-            write-host $result.body
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
