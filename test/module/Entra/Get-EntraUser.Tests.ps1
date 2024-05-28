@@ -71,8 +71,6 @@ Describe "Get-EntraUser" {
             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUser"
-            $customHeaders = New-Object 'system.collections.generic.dictionary[string,string]'
-            $customHeaders["User-Agent"] = $userAgentHeaderValue
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
