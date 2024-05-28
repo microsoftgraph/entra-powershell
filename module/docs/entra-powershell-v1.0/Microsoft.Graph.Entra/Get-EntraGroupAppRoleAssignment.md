@@ -48,9 +48,9 @@ Get-EntraGroupAppRoleAssignment -ObjectId $GroupId
 ```output
 ObjectId                                    ResourceDisplayName                 PrincipalDisplayName
 --------                                    -------------------                 --------------------
-MSVrBV4APk--PqRsTuVwXyZaBcDeFgHiJkLmNoPq8I9 Microsoft Resource One             Ask HR
-MSVrBV4APk--xYzAq1W2eRtGh3B4iJkLmNpQrStUvWx Microsoft Resource Two             Ask HR
-MSVrBV4APk--ZxCvBnMqWeRtYUiOpAsDfGhJkLmN7SD Microsoft Resource Three           Ask HR
+AaBbCcDdEeFfGgHhIiJjKkLlMmNnOo1 Microsoft Resource One             Ask HR
+BbCcDdEeFfGgHhIiJjKkLlMmNnOoPp2 Microsoft Resource Two             Ask HR
+CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3 Microsoft Resource Three           Ask HR
 ```
 
 The first command gets the object ID of a group by using the [Get-EntraGroup](./Get-EntraGroup.md) cmdlet.
@@ -68,9 +68,9 @@ Get-EntraGroupAppRoleAssignment -ObjectId 'ffffffffff-7777-9999-7777-vvvvvvvvvvv
 ```output
 ObjectId                                    ResourceDisplayName                 PrincipalDisplayName
 --------                                    -------------------                 --------------------
-MSVrBV4APk--PqRsTuVwXyZaBcDeFgHiJkLmNoPq8I9 Microsoft Resource One             Ask HR
-MSVrBV4APk--xYzAq1W2eRtGh3B4iJkLmNpQrStUvWx Microsoft Resource Two             Ask HR
-MSVrBV4APk--ZxCvBnMqWeRtYUiOpAsDfGhJkLmN7SD Microsoft Resource Three           Ask HR
+AaBbCcDdEeFfGgHhIiJjKkLlMmNnOo1 Microsoft Resource One             Ask HR
+BbCcDdEeFfGgHhIiJjKkLlMmNnOoPp2 Microsoft Resource Two             Ask HR
+CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3 Microsoft Resource Three           Ask HR
 ```
 
 This command gets all application role assignments of the specified group.
@@ -85,8 +85,8 @@ Get-EntraGroupAppRoleAssignment -ObjectId 'ffffffffff-7777-9999-7777-vvvvvvvvvvv
 ```output
 ObjectId                                    ResourceDisplayName                 PrincipalDisplayName
 --------                                    -------------------                 --------------------
-MSVrBV4APk--PqRsTuVwXyZaBcDeFgHiJkLmNoPq8I9 Microsoft Resource One             Ask HR
-MSVrBV4APk--xYzAq1W2eRtGh3B4iJkLmNpQrStUvWx Microsoft Resource Two             Ask HR
+AaBbCcDdEeFfGgHhIiJjKkLlMmNnOo1 Microsoft Resource One             Ask HR
+BbCcDdEeFfGgHhIiJjKkLlMmNnOoPp2 Microsoft Resource Two             Ask HR
 ```
 
 This command gets top two application role assignments of the specified group.
