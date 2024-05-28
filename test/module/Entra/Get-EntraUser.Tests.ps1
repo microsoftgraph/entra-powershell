@@ -64,6 +64,7 @@ Describe "Get-EntraUser" {
 
             Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
         }
+
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUser"
 
@@ -77,5 +78,73 @@ Describe "Get-EntraUser" {
                 $true
             }
         }
+
+        It "Should fail when ObjectId is empty string value" {
+            { Get-EntraUser -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        }
+
+        It "Should fail when ObjectId is empty" {
+            { Get-EntraUser -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'. Specify a parameter of type 'System.String' and try again."
+        }
+
+        It "Should return all contact" {
+            $result = Get-EntraUser -All
+            $result | Should -Not -BeNullOrEmpty
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Should fail when All has an argument" {
+            { Get-EntraUser -All $true} | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
+        }
+
+        It "Should return top user" {
+            $result = Get-EntraUser -Top 1
+            $result | Should -Not -BeNullOrEmpty
+
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Should fail when top is empty" {
+            { Get-EntraUser -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+        }
+
+        It "Should fail when top is invalid" {
+            { Get-EntraUser -Top HH } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+        }
+
+        It "Should return specific user by filter" {
+            $result = Get-EntraUser -Filter "DisplayName eq 'Mock-User'"
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | should -Be 'Mock-User'
+
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Should return specific user by search string" {
+            $result = Get-EntraUser -SearchString "Mock-User"
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be 'Mock-User'
+
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+
+        }
+
+        It "Should fail when search string is empty" {
+            { Get-EntraUser -SearchString } | Should -Throw "Missing an argument for parameter 'SearchString'.*"
+        }
+
+        It "Should fail when Missing an argument for parameter Filter" {
+            { Get-EntraUser -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
+        }
+
+        # It "Should contain UserId in parameters when passed ObjectId to it" {
+        #     $result = Get-EntraUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+        #     $result | Should -Not -BeNullOrEmpty
+
+        #     Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+        #         $UserId | Should -Be $null
+        #         $true
+        #     }
+        # }
     }
 }
