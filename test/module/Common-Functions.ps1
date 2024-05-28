@@ -1,5 +1,10 @@
 $psVersion = $global:PSVersionTable.PSVersion
-$entraVersion = (Get-module Microsoft.Graph.Entra | select version).Version.ToString()
+if($null -ne (Get-Module -Name Microsoft.Graph.Entra.Beta)){
+    $entraVersion = (Get-module Microsoft.Graph.Entra.Beta | select version).Version.ToString() 
+}
+if($null -ne (Get-Module -Name Microsoft.Graph.Entra)){
+    $entraVersion = (Get-module Microsoft.Graph.Entra | select version).Version.ToString() 
+}
 
 function Get-Parameters{
     param(
