@@ -6,7 +6,7 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {    
         `$params = @{}
         `$customHeaders = New-EntraCustomHeaders -Command `$MyInvocation.MyCommand
@@ -47,5 +47,5 @@
         `$response = Invoke-GraphRequest -Headers `$customHeaders -Uri `$params.Url -Method POST -Body `$body
         `$response
     }
-"@
+'@
 }
