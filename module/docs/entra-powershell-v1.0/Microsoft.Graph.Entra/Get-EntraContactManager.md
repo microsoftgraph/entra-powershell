@@ -73,7 +73,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Get-EntraContact](Get-EntraContact.md)
 
-[Remove-EntraContactManager](Remove-EntraContactManager.md)
-
-[Set-EntraContactManager](Set-EntraContactManager.md)
-

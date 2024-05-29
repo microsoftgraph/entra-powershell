@@ -44,7 +44,7 @@ PS C:\> Add-EntraMSApplicationOwner -ObjectId $ApplicationId -RefObjectId $UserO
 The first command gets an application using [Get-EntraMSApplication](./Get-EntraMSApplication.md) cmdlet, and stores 
 the ObjectId property value in $ApplicationId variable.  
 
-The second command gets a user using [Get-EntraMSUser](./Get-EntraMSUser.md) cmdlet, and stores 
+The second command gets a user using [Get-EntraUser](./Get-EntraUser.md) cmdlet, and stores 
 the ObjectId property value in $UserObjectId variable.  
 
 This final command adds an owner in $UserObjectId to an application in $ApplicationId.
