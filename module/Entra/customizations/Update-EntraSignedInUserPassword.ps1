@@ -6,7 +6,7 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {    
         `$params = @{}
         `$customHeaders = New-EntraCustomHeaders -Command `$MyInvocation.MyCommand
