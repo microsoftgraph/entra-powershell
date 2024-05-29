@@ -137,6 +137,18 @@ Describe "Get-EntraUser" {
             { Get-EntraUser -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
         }
 
+        It "Property parameter should work" {
+            $result = Get-EntraUser -Property DisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be 'Mock-User'
+
+            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Should fail when Property is empty" {
+            { Get-EntraUser -Property } | Should -Throw "Missing an argument for parameter 'Property'.*"
+        }
+
         # It "Should contain UserId in parameters when passed ObjectId to it" {
         #     $result = Get-EntraUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
         #     $result | Should -Not -BeNullOrEmpty

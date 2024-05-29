@@ -652,10 +652,9 @@ $OutputTransformations
             $arrayAttrib += "ValueFromPipeline = `$false"
             $arrayAttrib += "ValueFromPipelineByPropertyName = `$true"
             $strAttrib = $arrayAttrib -Join ', '
-            $attributesString += "[Parameter($strAttrib)]`n"
-
+            $attributesString += "[Parameter($strAttrib)]`n    "
             $propertyParamBlock = @"
-            $attributesString [$($propertyType)] `$Property
+    $attributesString[$propertyType] `$Property
 "@
 
             $paramsList += $propertyParamBlock
