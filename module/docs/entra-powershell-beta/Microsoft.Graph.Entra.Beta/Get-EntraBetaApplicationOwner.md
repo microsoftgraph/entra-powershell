@@ -13,7 +13,7 @@ Gets the owner of an application.
 ## SYNTAX
 
 ```
-Get-EntraBetaApplicationOwner [-Top <Int32>] -ObjectId <String> [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaApplicationOwner [-Top <Int32>] -ObjectId <String> [-All] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -35,18 +35,17 @@ This command gets the owner of an application.
 ## PARAMETERS
 
 ### -All
-If true, return all owners.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

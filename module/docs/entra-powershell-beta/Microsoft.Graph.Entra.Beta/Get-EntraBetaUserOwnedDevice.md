@@ -25,14 +25,14 @@ Get registered devices owned by a user.
 
 ```powershell
 Get-EntraBetaUserOwnedDevice 
-    -ObjectId <String> 
-    [-Top <Int32>] 
-    [-All <Boolean>] 
+ -ObjectId <String> 
+ [-Top <Int32>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-EntraBetaUserOwnedDevice** cmdlet gets registered devices owned by the specified user in Microsoft Entra ID.
+The Get-EntraBetaUserOwnedDevice cmdlet gets registered devices owned by the specified user in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -52,7 +52,7 @@ This command gets the registered devices owned by the specified user.
 
 ### Example 2: Get all devices owned by a user
 ```powershell
-PS C:\>Get-EntraUserOwnedDevice -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16" -All $true
+PS C:\>Get-EntraUserOwnedDevice -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16" -All
 ```
 
 ```output
@@ -81,18 +81,17 @@ This command gets top one registered device owned by the specified user.
 ## PARAMETERS
 
 ### -All
-If true, return all objects owned by this user.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

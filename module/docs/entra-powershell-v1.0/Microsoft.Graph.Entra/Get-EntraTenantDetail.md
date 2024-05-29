@@ -24,7 +24,7 @@ Gets the details of a tenant.
 
 ```powershell
 Get-EntraTenantDetail 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -36,7 +36,7 @@ The Get-EntraTenantDetail cmdlet gets the details of a tenant in Microsoft Entra
 
 ### Example 1: Get all tenant details 
 ```powershell
-PS C:\> Get-EntraTenantDetail -All $true
+PS C:\> Get-EntraTenantDetail -All 
 ```
 ```output
 DisplayName Id                                   TenantType CountryLetterCode VerifiedDomains
@@ -63,8 +63,7 @@ This command gets five tenant details.
 ## PARAMETERS
 
 ### -All
-If true, return all tenant details.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -73,8 +72,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

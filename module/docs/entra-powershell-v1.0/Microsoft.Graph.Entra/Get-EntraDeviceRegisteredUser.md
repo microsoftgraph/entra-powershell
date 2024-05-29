@@ -25,7 +25,7 @@ Gets a registered user.
 ```powershell
 Get-EntraDeviceRegisteredUser 
  -ObjectId <String> 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -60,7 +60,7 @@ The second command gets the registered users of the device in $DevId.
 
 ### Example 2: Get all registered users of a device
 ```powershell
-PS C:\> Get-EntraDeviceRegisteredUser -ObjectId "74825acb-c984-4b54-ab65-d38347ea5e90" -All $true
+PS C:\> Get-EntraDeviceRegisteredUser -ObjectId "74825acb-c984-4b54-ab65-d38347ea5e90" -All 
 ```
 ```output
 ageGroup                        :
@@ -103,8 +103,7 @@ This command gets two registered users of the specified device.
 ## PARAMETERS
 
 ### -All
-If true, return all registered users.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -113,8 +112,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -162,4 +161,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Add-EntraDeviceRegisteredUser](Add-EntraDeviceRegisteredUser.md)
 
 [Remove-EntraDeviceRegisteredUser](Remove-EntraDeviceRegisteredUser.md)
-

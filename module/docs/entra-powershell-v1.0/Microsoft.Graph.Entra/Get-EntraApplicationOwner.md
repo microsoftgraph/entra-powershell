@@ -25,7 +25,7 @@ Gets the owner of an application.
 ```powershell
 Get-EntraApplicationOwner 
  -ObjectId <String> 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -57,7 +57,7 @@ This command gets the owners of an application.
 
 ### Example 2: Get all owners of an application
 ```powershell
-PS C:\>Get-EntraApplicationOwner -ObjectId "e3108c4d-86ff-4ceb-9429-24e85b4b8cea" -All $true
+PS C:\>Get-EntraApplicationOwner -ObjectId "e3108c4d-86ff-4ceb-9429-24e85b4b8cea" -All
 ```
 ```output
 ageGroup                        :
@@ -98,18 +98,17 @@ This command gets the two owners of a specified application.
 ## PARAMETERS
 
 ### -All
-If true, return all owners.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -157,4 +156,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Add-EntraApplicationOwner](Add-EntraApplicationOwner.md)
 
 [Remove-EntraApplicationOwner](Remove-EntraApplicationOwner.md)
-

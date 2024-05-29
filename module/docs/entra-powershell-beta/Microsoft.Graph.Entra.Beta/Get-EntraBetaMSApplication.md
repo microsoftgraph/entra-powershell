@@ -25,25 +25,25 @@ Retrieves the list of applications within the organization.
 ### GetQuery (Default)
 ```powershell
 Get-EntraBetaMSApplication 
-    [-Filter <String>] 
-    [-All <Boolean>] 
-    [-Top <Int32>] 
+ [-Filter <String>] 
+ [-All] 
+ [-Top <Int32>] 
  [<CommonParameters>]
 ```
 
 ### GetVague
 ```powershell
 Get-EntraBetaMSApplication 
-    [-SearchString <String>] 
-    [-All <Boolean>] 
+ [-SearchString <String>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
 Get-EntraBetaMSApplication 
-    -ObjectId <String> 
-    [-All <Boolean>] 
+ -ObjectId <String> 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -396,7 +396,7 @@ This command gets the first two applications.
 
 ### Example 6: Retrieve a list of all applications
 ```powershell
-PS C:\>Get-EntraBetaMSApplication -All $true
+PS C:\>Get-EntraBetaMSApplication -All
 ```
 
 ```output
@@ -577,18 +577,17 @@ Accept wildcard characters: False
 ```
 
 ### -All
-If true, return all applications.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -658,4 +657,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraMSApplication](Remove-EntraMSApplication.md)
 
 [Set-EntraMSApplication](Set-EntraMSApplication.md)
-

@@ -36,9 +36,8 @@ Permanently delete a recently deleted application object from deleted items. Aft
 
 ### Example 1: Remove deleted application object
 ```powershell
-PS C:\> $Id = Get-AzureADDeletedApplication -SearchString "newtest10" 
-PS C:\> Remove-AzureADDeletedApplication -ObjectId $Id.id
-
+PS C:\> $Id = Get-EntraDeletedApplication -SearchString "newtest10" 
+PS C:\> Remove-EntraDeletedApplication -ObjectId $Id.id
 ```
 
 This command removes recently deleted application.
@@ -78,5 +77,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraDeletedApplication](Get-EntraDeletedApplication.md)
 
 [Restore-EntraDeletedApplication](Restore-EntraDeletedApplication.md)
-
-
