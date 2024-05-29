@@ -39,7 +39,7 @@ The Remove-EntraGroupAppRoleAssignment cmdlet removes a group application role a
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Remove-AzureADGroupAppRoleAssignment -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq' -AppRoleAssignmentId 'mmmmmmmm-1111-1111-9999-gggggggggggg'
+Remove-AzureADGroupAppRoleAssignment -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq' -AppRoleAssignmentId 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
 ```
 
 This example demonstrates how to remove the specified group application role assignment.

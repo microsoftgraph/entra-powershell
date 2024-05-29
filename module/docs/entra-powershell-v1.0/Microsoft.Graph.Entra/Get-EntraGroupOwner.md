@@ -48,11 +48,11 @@ Get-EntraGroupOwner -ObjectId 'vvvvvvvv-7777-9999-7777-jjjjjjjjjjjj'
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {adellV@contoso.com}
+imAddresses                     : {HaydenL@contoso.com}
 preferredLanguage               : en
-mail                            : adellv@contoso.com
+mail                            : HaydenL@contoso.com
 securityIdentifier              : S-1-12-1-4444444-7777777-234234234-66666666666
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=adellv@contoso.com}}
+identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=HaydenL@contoso.com}}
 consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
 ```
@@ -70,9 +70,9 @@ Get-EntraGroupOwner -ObjectId 'zzzzzzzz-6666-8888-9999-pppppppppppp' -All
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {becky@contoso.com}
+imAddresses                     : {BlakeM@contoso.com}
 preferredLanguage               : en
-mail                            : becky@contoso.com
+mail                            : BlakeM@contoso.com
 securityIdentifier              : S-1-12-1-55555555-66666666-9999999-23232323
 identities                      : {System.Collections.Hashtable}
 consentProvidedForMinor         :
@@ -95,9 +95,9 @@ Get-EntraGroupOwner -ObjectId 'vvvvvvvv-8888-9999-0000-jjjjjjjjjjjj' -Top 2
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {jdavid@contoso.com}
+imAddresses                     : {QuinnA@contoso.com}
 preferredLanguage               : en
-mail                            : jdavid@contoso.com
+mail                            : QuinnA@contoso.com
 securityIdentifier              : S-1-12-1-22222222-13131313-55555555-333333333
 identities                      : {System.Collections.Hashtable}
 consentProvidedForMinor         :
@@ -105,7 +105,7 @@ onPremisesUserPrincipalName     :
 assignedLicenses                : {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
 department                      :
 jobTitle                        :
-proxyAddresses                  : {SMTP:jdavid@contoso.com}
+proxyAddresses                  : {SMTP:QuinnA@contoso.com}
 legalAgeGroupClassification     :
 assignedPlans                   : {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
 id                              : tttttttt-0000-2222-0000-aaaaaaaaaaaa

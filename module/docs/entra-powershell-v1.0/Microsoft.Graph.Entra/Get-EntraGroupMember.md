@@ -48,11 +48,11 @@ Get-EntraGroupMember -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {meganb@contoso.com}
+imAddresses                     : {averys@contoso.com}
 preferredLanguage               :
-mail                            : MeganB@contoso.com
+mail                            : averys@contoso.com
 securityIdentifier              : S-1-12-1-555555555-44444444-2440872119-9999999
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=MeganB@contoso.com}}
+identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=averys@contoso.com}}
 consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
 ```
@@ -70,9 +70,9 @@ Get-EntraGroupMember -ObjectId 'hhhhhhhh-8888-9999-8888-cccccccccccc' -Top 2
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {hakeem@contoso.com}
+imAddresses                     : {ParkerJ@contoso.com}
 preferredLanguage               : en
-mail                            : hakeem@contoso.com
+mail                            : ParkerJ@contoso.com
 securityIdentifier              : S-1-12-1-8888888-343434343-533216682-7676767676
 identities                      : {System.Collections.Hashtable}
 consentProvidedForMinor         :
@@ -81,9 +81,9 @@ onPremisesUserPrincipalName     :
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {binti@contoso.com}
+imAddresses                     : {ParkerJ@contoso.com}
 preferredLanguage               :
-mail                            : binti@contoso.com
+mail                            : ParkerJ@contoso.com
 securityIdentifier              : S-1-12-1-2222222-111111-676767678-33333333
 identities                      : {System.Collections.Hashtable}
 consentProvidedForMinor         :
@@ -102,9 +102,9 @@ Get-EntraGroupMember -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' -All
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {adellV@contoso.com}
+imAddresses                     : {SawyerM@contoso.com}
 preferredLanguage               : en
-mail                            : adellV@contoso.com
+mail                            : SawyerM@contoso.com
 securityIdentifier              : S-1-12-1-111111-000000000-3333333333-22222222
 identities                      : {System.Collections.Hashtable}
 consentProvidedForMinor         :
