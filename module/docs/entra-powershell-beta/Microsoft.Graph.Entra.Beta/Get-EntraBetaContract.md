@@ -14,12 +14,12 @@ Gets a contract.
 
 ### GetQuery (Default)
 ```
-Get-EntraBetaContract [-Filter <String>] [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraBetaContract [-Filter <String>] [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
 ### GetById
 ```
-Get-EntraBetaContract -ObjectId <String> [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaContract -ObjectId <String> [-All] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -59,18 +59,17 @@ This command gets all contracts in the directory.
 ## PARAMETERS
 
 ### -All
-If true, return all contracts.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

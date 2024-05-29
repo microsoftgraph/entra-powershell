@@ -23,28 +23,28 @@ Gets information about groups in Microsoft Entra ID.
 ## SYNTAX
 
 ### GetQuery (Default)
-```
+```powershell
 Get-EntraBetaMSGroup 
  [-Select <String>] 
  [-Filter <String>] 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
 
 ### GetById
-```
+```powershell
 Get-EntraBetaMSGroup 
  -Id <String> 
  [-Select <String>] 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
 ### GetByValue
-```
+```powershell
 Get-EntraBetaMSGroup 
- [-All <Boolean>] 
+ [-All] 
  [-SearchString <String>] 
  [<CommonParameters>]
 ```
@@ -170,7 +170,6 @@ AssignedLabels group property retrieved only by Select parameter.
 
 ### Example 7: Get DisplayName, ID, and Description property values for a group
 
-
 ```powershell
 PS C:\> Get-EntraBetaMSGroup -Id "0877c6c6-fc99-4d51-9871-8335be7cfc9d" -Select "DisplayName,Id,Description"
 ```
@@ -188,18 +187,17 @@ AssignedLabels group property retrieved only by Select parameter.
 ## PARAMETERS
 
 ### -All
-If true, return all groups.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -305,4 +303,3 @@ We recommend that you don't use this cmdlet in a production environment.
 [Set-EntraBetaMSGroup](Set-EntraBetaMSGroup.md)
 
 [#Microsoft Entra ID: Certificate based authentication for iOS and Android now in preview!](https://blogs.technet.microsoft.com/enterprisemobility/2016/07/18/azuread-certificate-based-authentication-for-ios-and-android-now-in-preview/)
-

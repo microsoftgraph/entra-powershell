@@ -26,7 +26,7 @@ Gets an administrative unit.
 ```powershell
 Get-EntraMSAdministrativeUnit 
  [-Top <Int32>] 
- [-All <Boolean>] 
+ [-All] 
  [-Filter <String>] 
  [<CommonParameters>]
 ```
@@ -35,7 +35,7 @@ Get-EntraMSAdministrativeUnit
 ```powershell
 Get-EntraMSAdministrativeUnit 
  -Id <String> 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -62,7 +62,7 @@ This command gets all the administrative units.
 
 ### Example 2: Get all administrative units using '-All' parameter
 ```powershell
-PS C:\> Get-EntraMSAdministrativeUnit -All $true
+PS C:\> Get-EntraMSAdministrativeUnit -All 
 ```
 
 ```output
@@ -118,8 +118,7 @@ This example returns the specified top administrative units.
 ## PARAMETERS
 
 ### -All
-If true, return all administrative units.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -128,8 +127,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -197,4 +196,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraMSAdministrativeUnit](Remove-EntraMSAdministrativeUnit.md)
 
 [Set-EntraMSAdministrativeUnit](Set-EntraMSAdministrativeUnit.md)
-

@@ -16,7 +16,7 @@
         $params["Method"] = "GET"
         $params["Uri"] = "$baseUri/?$properties"
 
-        if($null -ne $PSBoundParameters["Top"])
+        if($null -ne $PSBoundParameters["Top"] -and  (-not $PSBoundParameters.ContainsKey("All")))
         {
             $topCount = $PSBoundParameters["Top"]
             if ($topCount -gt 999) {
@@ -97,7 +97,7 @@
         $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         try {
             $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-            $all = $null -ne $PSBoundParameters["All"] -and $PSBoundParameters["All"]
+            $all = $All.IsPresent
             $increment = $topCount - $data.Count
             while ($response.'@odata.nextLink' -and (($all) -or ($increment -gt 0 -and -not $all))) {
                 $params["Uri"] = $response.'@odata.nextLink'

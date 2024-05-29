@@ -25,7 +25,7 @@ Gets an owner of a group.
 ```powershell
 Get-EntraGroupOwner 
  -ObjectId <String>  
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -57,7 +57,7 @@ This example demonstrates how to retrieve the owner of a specific group.
 
 ### Example 2: Gets all group owners
 ```powershell
-PS C:\>Get-EntraGroupOwner -ObjectId "c072b115-ed7b-47cb-90d3-d5019d8bfd51" -All $true
+PS C:\>Get-EntraGroupOwner -ObjectId "c072b115-ed7b-47cb-90d3-d5019d8bfd51" -All
 ```
 ```output
 ageGroup                        :
@@ -108,8 +108,7 @@ This example demonstrates how to retrieve the top two owners of a specific group
 ## PARAMETERS
 
 ### -All
-If true, return all group owners.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
 Type: Boolean
@@ -118,8 +117,8 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -167,4 +166,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Add-EntraGroupOwner](Add-EntraGroupOwner.md)
 
 [Remove-EntraGroupOwner](Remove-EntraGroupOwner.md)
-
