@@ -646,21 +646,24 @@ $OutputTransformations
         }
 
         if("Get" -eq $Command.Verb){
-            $propertyType = "System.String[]"
-            $arrayAttrib = @()
-            $arrayAttrib += "Mandatory = `$false"
-            $arrayAttrib += "ValueFromPipeline = `$false"
-            $arrayAttrib += "ValueFromPipelineByPropertyName = `$true"
-            $strAttrib = $arrayAttrib -Join ', '
-            $attributesString += "[Parameter($strAttrib)]`n    "
-            $propertyParamBlock = @"
-    $attributesString[$propertyType] `$Property
-"@
-
-            $paramsList += $propertyParamBlock
+            $paramsList += $this.GetPropertyParameterBlock()
         }
 
         return $paramsList -Join ",`n"
+    }
+
+    hidden [string] GetPropertyParameterBlock(){
+        $propertyType = "System.String[]"
+        $arrayAttrib = @()
+        $arrayAttrib += "Mandatory = `$false"
+        $arrayAttrib += "ValueFromPipeline = `$false"
+        $arrayAttrib += "ValueFromPipelineByPropertyName = `$true"
+        $strAttrib = $arrayAttrib -Join ', '
+        $attributesString += "[Parameter($strAttrib)]`n    "
+        $propertyParamBlock = @"
+    $attributesString[$propertyType] `$Property
+"@
+        return $propertyParamBlock
     }
 
     hidden [string] GetParameterAttributes($param){
