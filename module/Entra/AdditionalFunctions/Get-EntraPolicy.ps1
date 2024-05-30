@@ -1,16 +1,18 @@
-# ------------------------------------------------------------------------------
-#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
-# ------------------------------------------------------------------------------
-@{
-    SourceName = "Get-AzureADPolicy"
-    TargetName = $null
-    Parameters = $null
-    Outputs = $null
-    CustomScript = @'
+function Get-EntraPolicy {
+    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+    param (
+    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Id,
+    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.Int32]] $Top,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.Boolean]] $All
+    )
+
     PROCESS {    
         $params = @{}
-        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $baseUrl = "https://graph.microsoft.com/beta/policies/"
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $baseUrl = "https://graph.microsoft.com/v1.0/policies/"
         $endpoints = @("homeRealmDiscoveryPolicies", "claimsMappingPolicies", "tokenIssuancePolicies", "tokenLifetimePolicies", "activityBasedTimeoutPolicies", "featureRolloutPolicies", 	"defaultAppManagementPolicy", "appManagementPolicies", "authenticationFlowsPolicy",	"authenticationMethodsPolicy", "permissionGrantPolicies")
         
         $response = @()
@@ -90,7 +92,7 @@
         if ($PSBoundParameters.ContainsKey("ID")) {
             $response = $response | Where-Object { $_.id -eq $Id }
             if($Null -eq $response ) {
-                Write-Error "Get-EntraBetaPolicy : Error occurred while executing Get-Policy 
+                Write-Error "Get-EntraPolicy : Error occurred while executing Get-Policy 
                 Code: Request_BadRequest
                 Message: Invalid object identifier '$Id' ."
             }
@@ -98,7 +100,6 @@
             $response = $response | Select-Object -First $Top
         }
         
-        $response   
-    } 
-'@
+        $response  
+    }     
 }
