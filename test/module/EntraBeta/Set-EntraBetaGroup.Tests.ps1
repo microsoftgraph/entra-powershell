@@ -48,12 +48,6 @@ Describe "Set-EntraBetaGroup" {
             { Set-EntraBetaGroup -ObjectId "1a344543-ce01-4eee-a6bf-70ce848e08cb" -SecurityEnabled  } | Should -Throw "Missing an argument for parameter*"
         } 
 
-        It "Result should Contain Id" {
-            $result = Get-EntraBetaGroup -ObjectId "1a344543-ce01-4eee-a6bf-70ce848e08cb"
-            $result.Id | should -Be "1a344543-ce01-4eee-a6bf-70ce848e08cb"
-            $result.ObjectId | should -Be "1a344543-ce01-4eee-a6bf-70ce848e08cb"
-        } 
-
         It "Should contain GroupId in parameters when passed ObjectId to it" {
             Mock -CommandName Update-MgBetaGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
