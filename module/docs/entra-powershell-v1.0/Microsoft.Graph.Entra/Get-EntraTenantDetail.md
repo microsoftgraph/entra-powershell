@@ -6,7 +6,7 @@ ms.service: active-directory
 ms.topic: reference
 ms.date: 03/18/2024
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi254
+ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
@@ -39,8 +39,7 @@ The Get-EntraTenantDetail cmdlet gets the details of a tenant in Microsoft Entra
 ### Example 1: Get all tenant details 
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' #Delegated Permission
-Connect-Entra -Scopes 'Organization.Read.All' #Application Permission
+Connect-Entra -Scopes 'Organization.Read.All' 
 Get-EntraTenantDetail -All 
 ```
 
@@ -56,8 +55,7 @@ This command gets all tenant details.
 ### Example 2: Get top five tenant details 
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' #Delegated Permission
-Connect-Entra -Scopes 'Organization.Read.All' #Application Permission
+Connect-Entra -Scopes 'Organization.Read.All'
 Get-EntraTenantDetail -Top 5
 ```
 
@@ -77,7 +75,7 @@ This command gets five tenant details.
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -93,7 +91,7 @@ Accept wildcard characters: False
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 

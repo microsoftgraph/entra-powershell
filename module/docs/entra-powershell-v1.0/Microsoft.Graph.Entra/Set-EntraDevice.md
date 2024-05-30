@@ -6,7 +6,7 @@ ms.service: active-directory
 ms.topic: reference
 ms.date: 03/18/2024
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi254
+ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
@@ -26,21 +26,21 @@ Updates a device.
 ```powershell
 Set-EntraDevice
  -ObjectId <String> 
- [-DevicePhysicalIds <System.Collections.Generic.List`1[System.String]>]
+ [-DevicePhysicalIds <System.Collections.Generic.List`1[String]>]
  [-DeviceOSType <String>] 
  [-DeviceTrustType <String>] 
  [-DisplayName <String>] 
  [-DeviceMetadata <String>]
  [-ApproximateLastLogonTimeStamp <DateTime>] 
  [-AccountEnabled <Boolean>]
- [-IsManaged <Boolean>] 
+ [-IsManaged <Boolean >] 
  [-DeviceId <String>] 
  [-DeviceObjectVersion <Int32>] 
- [-IsCompliant <Boolean>]
+ [-IsCompliant <Boolean    >]
  [-DeviceOSVersion <String>]
  [-AlternativeSecurityIds <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AlternativeSecurityId]>]
  [-ProfileType <String>] 
- [-SystemLabels <System.Collections.Generic.List`1[System.String]>]
+ [-SystemLabels <System.Collections.Generic.List`1[String]>]
  [<CommonParameters>]
 ```
 
@@ -114,7 +114,7 @@ This command updates the specified properties of a specified device.
 Indicates whether the account is enabled.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean    
 Parameter Sets: (All)
 Aliases:
 
@@ -146,7 +146,7 @@ Accept wildcard characters: False
 The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Supports $filter (eq, ne, not, ge, le, and eq on null values) and $orderby.
 
 ```yaml
-Type: DateTime
+Type: System.DateTime 
 Parameter Sets: (All)
 Aliases:
 
@@ -194,7 +194,7 @@ Accept wildcard characters: False
 Specifies the object version of the device.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -290,7 +290,7 @@ Accept wildcard characters: False
 Indicates whether the device is compliant.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean    
 Parameter Sets: (All)
 Aliases:
 
@@ -306,7 +306,7 @@ Accept wildcard characters: False
 Indicates whether the device is managed.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean    
 Parameter Sets: (All)
 Aliases:
 

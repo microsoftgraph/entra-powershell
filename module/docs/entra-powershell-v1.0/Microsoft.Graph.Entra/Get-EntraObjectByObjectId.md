@@ -5,7 +5,7 @@ ms.service: active-directory
 ms.topic: reference
 ms.date: 03/18/2024
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi254
+ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
@@ -24,8 +24,8 @@ Retrieves the objects specified by the ObjectIds parameter.
 
 ```powershell
 Get-EntraObjectByObjectId 
- -ObjectIds <System.Collections.Generic.List`1[System.String]>
- [-Types <System.Collections.Generic.List`1[System.String]>]
+ -ObjectIds <System.Collections.Generic.List`1[String]>
+ [-Types <System.Collections.Generic.List`1[String]>]
  [<CommonParameters>]
 ```
 
@@ -60,6 +60,7 @@ jobTitle                        : Product Manager
 
 
 ```
+
 This example two objects are retrieved (a DeviceConfiguration object and an Application object) as specified by the value of the ObjectIds parameter.
 
 ### Example 2: Get an object by types

@@ -6,7 +6,7 @@ ms.service: active-directory
 ms.topic: reference
 ms.date: 03/01/2024
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi254
+ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml

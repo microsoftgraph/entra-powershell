@@ -6,7 +6,7 @@ ms.service: active-directory
 ms.topic: reference
 ms.date: 03/15/2024
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi254
+ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
@@ -27,7 +27,7 @@ Gets a registered user.
 Get-EntraDeviceRegisteredUser 
  -ObjectId <String> 
  [-All <Boolean>]
- [-Top <Int32>] 
+ [-Top <Int32 >] 
  [<CommonParameters>]
 ```
 
@@ -120,7 +120,7 @@ This command gets two registered users of the specified device.
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -152,7 +152,7 @@ Accept wildcard characters: False
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32 
 Parameter Sets: (All)
 Aliases:
 

@@ -6,7 +6,7 @@ ms.service: active-directory
 ms.topic: reference
 ms.date: 02/28/2024
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi254
+ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
@@ -29,7 +29,7 @@ Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraDeviceRegisteredOwner 
  -ObjectId <String> 
  [-All] 
- [-Top <Int32>] 
+ [-Top <Int32  >] 
  [<CommonParameters>]
 ```
 
@@ -111,7 +111,7 @@ This command retrieves top one registered owner of a device.
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean 
 Parameter Sets: (All)
 Aliases:
 
@@ -143,7 +143,7 @@ Accept wildcard characters: False
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32  
 Parameter Sets: (All)
 Aliases:
 
