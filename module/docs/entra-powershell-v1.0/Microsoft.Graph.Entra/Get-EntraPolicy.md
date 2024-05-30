@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraPolicy command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 05/50/2024
+ms.date: 05/30/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -157,8 +157,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[New-EntraBetaPolicy](New-EntraBetaPolicy.md)
+[New-EntraPolicy](New-EntraPolicy.md)
 
-[Remove-EntraBetaPolicy](Remove-EntraBetaPolicy.md)
+[Remove-EntraPolicy](Remove-EntraPolicy.md)
 
-[Set-EntraBetaPolicy](Set-EntraBetaPolicy.md)
+[Set-EntraPolicy](Set-EntraPolicy.md)
