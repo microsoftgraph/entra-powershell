@@ -51,8 +51,8 @@ New-EntraGroupAppRoleAssignment -ObjectId $group.ObjectId -PrincipalId $group.Ob
 ```output
 DeletedDateTime        Id                                          AppRoleId                            CreatedDateTime      PrincipalDisplayName PrincipalId
 ---------------        --                                          ---------                            ---------------      -------------------- -----------
-                      AaBbCcDdEeFfGgHhIiJjKkLlMmNnOo1 aaaaaaaa-bbbb-cccc-1111-222222222222 3/13/2024 4:41:43 AM Contoso Team         ssssssss-yyyy-hhhh-4444-999999999999
-3/13/2024 4:45:00 AM  BbCcDdEeFfGgHhIiJjKkLlMmNnOoPp2 bbbbbbbb-cccc-dddd-2222-333333333333 3/13/2024 4:45:00 AM Finance Group        aaaaaaaa-bbbb-cccc-1111-222222222222
+                      AaBbCcDdEeFfGgHhIiJjKkLlMmNnOo1 00000000-0000-0000-0000-000000000000 3/13/2024 4:41:43 AM Contoso Team         aaaaaaaa-bbbb-cccc-1111-222222222222
+3/13/2024 4:45:00 AM  BbCcDdEeFfGgHhIiJjKkLlMmNnOoPp2 00000000-0000-0000-0000-000000000000 3/13/2024 4:45:00 AM Finance Group        bbbbbbbb-cccc-dddd-2222-333333333333
 ```
 
 This example demonstrates how to assign a group of users to an application role in Microsoft Entra ID.  

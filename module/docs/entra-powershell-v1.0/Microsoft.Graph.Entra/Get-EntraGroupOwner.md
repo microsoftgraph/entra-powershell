@@ -51,7 +51,7 @@ creationType                    :
 imAddresses                     : {HaydenL@contoso.com}
 preferredLanguage               : en
 mail                            : HaydenL@contoso.com
-securityIdentifier              : S-1-12-1-4444444-7777777-234234234-66666666666
+securityIdentifier              : B-2-33-4-5555555555-6666666666-7777777-8888888888
 identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=HaydenL@contoso.com}}
 consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
@@ -73,7 +73,7 @@ creationType                    :
 imAddresses                     : {BlakeM@contoso.com}
 preferredLanguage               : en
 mail                            : BlakeM@contoso.com
-securityIdentifier              : S-1-12-1-55555555-66666666-9999999-23232323
+securityIdentifier              : E-5-66-7-8888888888-9999999999-0000000-1111111111
 identities                      : {System.Collections.Hashtable}
 consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
@@ -98,7 +98,7 @@ creationType                    :
 imAddresses                     : {QuinnA@contoso.com}
 preferredLanguage               : en
 mail                            : QuinnA@contoso.com
-securityIdentifier              : S-1-12-1-22222222-13131313-55555555-333333333
+securityIdentifier              : D-4-55-6-7777777777-8888888888-9999999-0000000000
 identities                      : {System.Collections.Hashtable}
 consentProvidedForMinor         :
 onPremisesUserPrincipalName     :

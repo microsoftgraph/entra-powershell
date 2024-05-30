@@ -47,7 +47,7 @@ New-EntraMSGroupLifecyclePolicy -GroupLifetimeInDays 99 -ManagedGroupTypes 'Sele
 ```output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
-1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 example@contoso.com         99                  Selected
+3cccccc3-4dd4-5ee5-6ff6-7aaaaaaaaaa7 example@contoso.com         99                  Selected
 ```
 
 This example creates a new groupLifecyclePolicy setting the group lifetime to 99 days for a selected set of Office 365 groups and sends renewal notification emails to groups that have no owners to 'example@contoso.com'.
