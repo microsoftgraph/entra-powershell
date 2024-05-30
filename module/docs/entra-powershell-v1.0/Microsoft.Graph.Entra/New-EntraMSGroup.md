@@ -43,9 +43,9 @@ For information about creating dynamic groups, see: [Using attributes to create 
 
 **Notes on permissions:**
 
-- To create the group with users as owners or members, the app must have at least the User.Read.All permission.
-- To create the group with other service principals as owners or members, the app must have at least the Application.Read.All permission.
-- To create the group with either users or service principals as owners or members, the app must have at least the Directory.Read.All permission.
+- To create the group with users as owners or members, the app must have at least the `User.Read.All` permission.
+- To create the group with other service principals as owners or members, the app must have at least the `Application.Read.All` permission.
+- To create the group with either users or service principals as owners or members, the app must have at least the `Directory.Read.All` permission.
 
 ## EXAMPLES
 
