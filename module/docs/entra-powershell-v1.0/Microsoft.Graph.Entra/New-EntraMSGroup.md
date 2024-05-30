@@ -39,7 +39,7 @@ New-EntraMSGroup
 
 The New-EntraMSGroup cmdlet creates a Microsoft Entra ID group.
 
-For information about creating dynamic groups, see: [Using attributes to create advanced rules](https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership).
+For information about creating dynamic groups, see: [Using attributes to create advanced rules](/entra/identity/users/groups-dynamic-membership).
 
 **Notes on permissions:**
 
