@@ -1,112 +1,54 @@
 BeforeAll {  
-    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
-        Import-Module Microsoft.Graph.Entra      
+    if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
+        Import-Module Microsoft.Graph.Entra.Beta       
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
-    
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "AppId"                     = "aaaaaaaa-1111-2222-3333-cccccccccccc"
-                "DeletedDateTime"           = $null
-                "Id"                        = "bbbbbbbb-1111-2222-3333-cccccccccccc"
-                "DisplayName"               = "Mock-App"
-                "Info"                      = @{LogoUrl = ""; MarketingUrl = ""; PrivacyStatementUrl = ""; SupportUrl = ""; TermsOfServiceUrl = "" }
-                "IsDeviceOnlyAuthSupported" = $True
-                "IsFallbackPublicClient"    = $true
-                "KeyCredentials"            = @{CustomKeyIdentifier = @(211, 174, 247); DisplayName = ""; Key = ""; KeyId = "pppppppp-1111-2222-3333-cccccccccccc"; Type = "Symmetric"; Usage = "Sign" }
-                "OptionalClaims"            = @{AccessToken = ""; IdToken = ""; Saml2Token = "" }
-                "ParentalControlSettings"   = @{CountriesBlockedForMinors = $null; LegalAgeGroupRule = "Allow" }
-                "PasswordCredentials"       = @{}
-                "PublicClient"              = @{RedirectUris = $null }
-                "PublisherDomain"           = "aaaabbbbbcccc.onmicrosoft.com"
-                "SignInAudience"            = "AzureADandPersonalMicrosoftAccount"
-                "Web"                       = @{HomePageUrl = "https://localhost/demoapp"; ImplicitGrantSettings = ""; LogoutUrl = ""; }
-                "Parameters"                = $args
-            }
+                "Configuration" = @{ AlertThreshold =500 ; SynchronizationPreventionType = "enabledForCount"}
+                "Id" = "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
+            }        
         )
-    }
-
-    Mock -CommandName Get-MgApplication -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+        }
+    Mock -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
+    
+    Mock -CommandName Update-MgBetaDirectoryOnPremiseSynchronization -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta
 }
-  
-Describe "Get-EntraApplication" {
-    Context "Test for Get-EntraApplication" {
-        It "Should return specific application" {
-            $result = Get-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
-            $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
+Describe "Set-EntraBetaDirSyncFeature" {
+    Context "Test for Set-EntraBetaDirSyncFeature" {
+        It "Should sets identity synchronization features for a tenant." {
+            $result =  Set-EntraBetaDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable $false -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -Force
+            $result | Should -BeNullOrEmpty
+            Should -Invoke -CommandName Update-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+        
+        It "Should fail when Feature is empty" {
+            {Set-EntraBetaDirSyncFeature -Feature  -Enable $false -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -Force} | Should -Throw "Missing an argument for parameter 'Feature'. Specify a parameter*"
+        }
 
-            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
+        It "Should fail when Feature is invalid" {
+            {Set-EntraBetaDirSyncFeature -Feature "" -Enable $false -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -Force} | Should -Throw "Cannot bind argument to parameter 'Feature' because it is an empty string.*"
+        } 
+
+        It "Should fail when Enable is empty" {
+            {Set-EntraBetaDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -Force } | Should -Throw "Missing an argument for parameter 'Enabled'.*"
         }
-        It "Should fail when ObjectId is invalid" {
-            { Get-EntraApplication -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+
+        It "Should fail when Enable is invalid" {
+            {Set-EntraBetaDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable "" -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -Force} | Should -Throw "Cannot process argument transformation on parameter 'Enabled'.*"
         }
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraApplication -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+
+        It "Should fail when TenantId is empty" {
+            {Set-EntraBetaDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable $false -TenantId -Force } | Should -Throw "Missing an argument for parameter 'TenantId'. Specify a parameter*"
         }
-        It "Should return all applications" {
-            $result = Get-EntraApplication -All
-            $result | Should -Not -BeNullOrEmpty            
-            
-            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
-        }
-        It "Should fail when All has an argument" {
-            { Get-EntraApplication -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
+
+        It "Should fail when TenantId is invalid" {
+            {Set-EntraBetaDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable $false -TenantId "" -Force} | Should -Throw "Cannot process argument transformation on parameter*"
         }   
-        It "Should fail when searchstring is empty" {
-            { Get-EntraApplication -SearchString } | Should -Throw "Missing an argument for parameter 'SearchString'*"
-        } 
-        It "Should fail when filter is empty" {
-            { Get-EntraApplication -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
-        }
-        It "Should fail when Top is empty" {
-            { Get-EntraApplication -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
-        }
-        It "Should fail when Top is invalid" {
-            { Get-EntraApplication -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
-        }        
-        It "Should return specific application by searchstring" {
-            $result = Get-EntraApplication -SearchString 'Mock-App'
-            $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | should -Be 'Mock-App'
 
-            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
-        } 
-        It "Should return specific application by filter" {
-            $result = Get-EntraApplication -Filter "DisplayName -eq 'Mock-App'"
-            $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | should -Be 'Mock-App'
-
-            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
-        }  
-        It "Should return top application" {
-            $result = @(Get-EntraApplication -Top 1)
-            $result | Should -Not -BeNullOrEmpty
-            $result | Should -HaveCount 1 
-
-            Should -Invoke -CommandName Get-MgApplication  -ModuleName Microsoft.Graph.Entra -Times 1
-        }  
-        It "Result should Contain ObjectId" {
-            $result = Get-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
-            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
-        }     
-        It "Should contain ApplicationId in parameters when passed ObjectId to it" {              
-            $result = Get-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
-            $params = Get-Parameters -data $result.Parameters
-            $params.ApplicationId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
-        }
-        It "Should contain Filter in parameters when passed SearchString to it" {               
-            $result = Get-EntraApplication -SearchString 'Mock-App'
-            $params = Get-Parameters -data $result.Parameters
-            $params.Filter | Should -Match "Mock-App"
-        }
-        It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplication"
-
-            $result = Get-EntraApplication -SearchString 'Mock-App'
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }
+        It "Should fail when Force parameter is passes with argument" {
+            {Set-EntraBetaDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable $false -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -Force "xy"} | Should -Throw "A positional parameter cannot be found that accepts argument*"
+        }   
     }
-}
+} 
