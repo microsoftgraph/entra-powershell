@@ -7,7 +7,7 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-              "Id"                           = "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU"
+              "Id"                           = "zTVcE8KFQ0W4bI9tvt6kz-5AOA62QHJLgnvAbh9Z0r7uQTWi6U_yTLYoEC66749-U"
               "RoleId"                       = "cccccccc-85c2-4543-b86c-cccccccccccc"
               "AdministrativeUnitId"         = "dddddddd-7902-4be2-a25b-dddddddddddd"
 
@@ -22,21 +22,21 @@ BeforeAll {
         )
     }
 
-    Mock -CommandName Get-MgBetaDirectoryAdministrativeUnitScopedRoleMember -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
+    Mock -CommandName New-MgBetaDirectoryAdministrativeUnitScopedRoleMember -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
 }
 
 Describe "Get-EntraBetaScopedRoleMembership" {
 Context "Test for Get-EntraBetaScopedRoleMembership" {
         It "Should return specific scoped role membership" {
             $RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
-            $RoleMember.ObjectId = "412be9d1-1460-4061-8eed-cca203fcb215"
-            $result = Add-EntraBetaScopedRoleMembership -ObjectId "c4fd2cd1-7902-4be2-a25b-d5cc5ff93517" -RoleObjectId "135c35cd-85c2-4543-b86c-8f6dbedea4cf" -RoleMemberInfo $RoleMember
+            $RoleMember.ObjectId = "a23541ee-4fe9-4cf2-b628-102ebaef8f7e"
+            $result = Add-EntraBetaScopedRoleMembership -ObjectId "0e3840ee-40b6-4b72-827b-c06e1f59d2be" -RoleObjectId "135c35cd-85c2-4543-b86c-8f6dbedea4cf" -RoleMemberInfo $RoleMember
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU"
+            $result.Id | Should -Be "zTVcE8KFQ0W4bI9tvt6kz-5AOA62QHJLgnvAbh9Z0r7uQTWi6U_yTLYoEC66749-U"
             $result.RoleId | Should -Be "cccccccc-85c2-4543-b86c-cccccccccccc"
             $result.AdministrativeUnitId | Should -Be "dddddddd-7902-4be2-a25b-dddddddddddd"
 
-            Should -Invoke -CommandName Get-MgBetaDirectoryAdministrativeUnitScopedRoleMember -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+            Should -Invoke -CommandName New-MgBetaDirectoryAdministrativeUnitScopedRoleMember -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when ObjectId is empty" {
             { Get-EntraBetaScopedRoleMembership -ObjectId  } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
@@ -47,43 +47,47 @@ Context "Test for Get-EntraBetaScopedRoleMembership" {
         It "Should fail when RoleObjectId is empty" {
             { Add-EntraBetaScopedRoleMembership -ObjectId "cccccccc-7902-4be2-a25b-dddddddddddd" -RoleObjectId   } | Should -Throw "Missing an argument for parameter 'RoleObjectId'*"
         }
-        # It "Should fail when RoleObjectId is invalid" {
-        #     { Add-EntraBetaScopedRoleMembership -ObjectId "cccccccc-7902-4be2-a25b-dddddddddddd" -RoleObjectId "" } | Should -Throw "Cannot bind argument to parameter 'RoleObjectId' because it is an empty string."
-        # }
         It "Should fail when AdministrativeUnitObjectId is empty" {
             { Add-EntraBetaScopedRoleMembership -ObjectId "cccccccc-7902-4be2-a25b-dddddddddddd" -AdministrativeUnitObjectId   } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitObjectId'*"
         }
-        # It "Should fail when AdministrativeUnitObjectId is invalid" {
-        #     { Add-EntraBetaScopedRoleMembership -ObjectId "cccccccc-7902-4be2-a25b-dddddddddddd" -AdministrativeUnitObjectId "" } | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitObjectId' because it is an empty string."
-        # }
         It "Should fail when RoleMemberInfo is empty" {
             { Add-EntraBetaScopedRoleMembership -ObjectId "cccccccc-7902-4be2-a25b-dddddddddddd" -RoleMemberInfo   } | Should -Throw "Missing an argument for parameter 'RoleMemberInfo'*"
         }
         It "Should fail when RoleMemberInfo is invalid" {
             { Add-EntraBetaScopedRoleMembership -ObjectId "cccccccc-7902-4be2-a25b-dddddddddddd" -RoleMemberInfo "" } | Should -Throw "Cannot process argument transformation on parameter 'RoleMemberInfo'*"
         }
-        # It "Should contain AdministrativeUnitId in parameters when passed ObjectId to it" {    
+        It "Result should contain Alias properties"{
+            $RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
+            $RoleMember.ObjectId = "a23541ee-4fe9-4cf2-b628-102ebaef8f7e"
+            $result = Add-EntraBetaScopedRoleMembership -ObjectId "0e3840ee-40b6-4b72-827b-c06e1f59d2be" -RoleObjectId "135c35cd-85c2-4543-b86c-8f6dbedea4cf" -RoleMemberInfo $RoleMember
+            $result.ObjectId | should -Be "zTVcE8KFQ0W4bI9tvt6kz-5AOA62QHJLgnvAbh9Z0r7uQTWi6U_yTLYoEC66749-U"
+            $result.RoleObjectId | should -Be "cccccccc-85c2-4543-b86c-cccccccccccc"
+            $result.AdministrativeUnitObjectId | should -Be "dddddddd-7902-4be2-a25b-dddddddddddd"
+        }
+        It "Should contain AdministrativeUnitId in parameters when passed ObjectId to it" {    
             
-        #     $result = Add-EntraBetaScopedRoleMembership -ObjectId "c4fd2cd1-7902-4be2-a25b-d5cc5ff93517"
-        #     $params = Get-Parameters -data $result.Parameters
-        #     $params.AdministrativeUnitId | Should -Be "c4fd2cd1-7902-4be2-a25b-d5cc5ff93517"
-        # }
-        # It "Should contain AdministrativeUnitId1 in parameters when passed AdministrativeUnitObjectId to it" {    
+            $result = Add-EntraBetaScopedRoleMembership -ObjectId "0e3840ee-40b6-4b72-827b-c06e1f59d2be" -RoleObjectId "135c35cd-85c2-4543-b86c-8f6dbedea4cf"
+            $params = Get-Parameters -data $result.Parameters
+            $params.AdministrativeUnitId | Should -Be "0e3840ee-40b6-4b72-827b-c06e1f59d2be"
+        }
+        It "Should contain AdministrativeUnitId1 in parameters when passed AdministrativeUnitObjectId to it" {    
             
-        #     $result = Add-EntraBetaScopedRoleMembership -ObjectId "c4fd2cd1-7902-4be2-a25b-d5cc5ff93517" -AdministrativeUnitObjectId "c4fd2cd1-7902-4be2-a25b-d5cc5ff93517"
-        #     $params = Get-Parameters -data $result.Parameters
-        #     $params.AdministrativeUnitId1 | Should -Be "c4fd2cd1-7902-4be2-a25b-d5cc5ff93517"
-        # }
-        # It "Should contain RoleId in parameters when passed RoleObjectId to it" {    
-            
-        #     $result = Add-EntraBetaScopedRoleMembership -ObjectId "c4fd2cd1-7902-4be2-a25b-d5cc5ff93517" -RoleObjectId "135c35cd-85c2-4543-b86c-8f6dbedea4cf"
-        #     $params = Get-Parameters -data $result.Parameters
-        #     $params.RoleId | Should -Be "135c35cd-85c2-4543-b86c-8f6dbedea4cf"
-        # }
-        It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaScopedRoleMembership"
+            $result = Add-EntraBetaScopedRoleMembership -ObjectId "0e3840ee-40b6-4b72-827b-c06e1f59d2be" -AdministrativeUnitObjectId "0e3840ee-40b6-4b72-827b-c06e1f59d2be" -RoleObjectId "135c35cd-85c2-4543-b86c-8f6dbedea4cf"
+            $params = Get-Parameters -data $result.Parameters
+            $params.AdministrativeUnitId1 | Should -Be "0e3840ee-40b6-4b72-827b-c06e1f59d2be"
+        }
+        It "Should contain RoleId in parameters when passed RoleObjectId to it" {    
+            $RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
+            $RoleMember.ObjectId = "a23541ee-4fe9-4cf2-b628-102ebaef8f7e"
 
-            $result = Get-EntraBetaScopedRoleMembership -ObjectId "c4fd2cd1-7902-4be2-a25b-d5cc5ff93517" -ScopedRoleMembershipId "zTVcE8KFQ0W4bI9tvt6kz9Es_cQCeeJLolvVzF_5NRdnAVb9H_8aR410OwBwq86hU"
+            $result = Add-EntraBetaScopedRoleMembership -ObjectId "0e3840ee-40b6-4b72-827b-c06e1f59d2be" -RoleObjectId "135c35cd-85c2-4543-b86c-8f6dbedea4cf" -RoleMemberInfo $RoleMember
+            $params = Get-Parameters -data $result.Parameters
+            $params.RoleId | Should -Be "135c35cd-85c2-4543-b86c-8f6dbedea4cf"
+        }
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaScopedRoleMembership"
+
+            $result = Add-EntraBetaScopedRoleMembership -ObjectId "0e3840ee-40b6-4b72-827b-c06e1f59d2be" -RoleObjectId "135c35cd-85c2-4543-b86c-8f6dbedea4cf" 
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
