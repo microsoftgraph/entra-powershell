@@ -4,7 +4,7 @@ description: This article provides details on the Invoke-EntraRequest command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 24/05/2024
+ms.date: 5/24/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
