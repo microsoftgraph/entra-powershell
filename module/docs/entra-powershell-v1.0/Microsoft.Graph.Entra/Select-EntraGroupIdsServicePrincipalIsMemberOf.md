@@ -18,6 +18,7 @@ schema: 2.0.0
 # Select-EntraGroupIdsServicePrincipalIsMemberOf
 
 ## SYNOPSIS
+
 Selects the groups in which a service principal is a member.
 
 ## SYNTAX
@@ -30,19 +31,23 @@ Select-EntraGroupIdsServicePrincipalIsMemberOf
 ```
 
 ## DESCRIPTION
+
 The Select-EntraGroupIdsServicePrincipalIsMemberOf cmdlet selects the groups in which a service principal is a member in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Get the group membership of a group for a service principal
+
 ```powershell
-PS C:\> $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-PS C:\> $Groups.GroupIds = (Get-EntraGroup -Top 1).ObjectId
-PS C:\> $SPId = (Get-EntraServicePrincipal -Top 1).ObjectId
-PS C:\> Select-EntraGroupIdsServicePrincipalIsMemberOf -ObjectId $SPId -GroupIdsForMembershipCheck $Groups
+ Connect-Entra -Scopes 'Application.Read.All'
+ $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+ $Groups.GroupIds = (Get-EntraGroup -Top 1).ObjectId
+ $SPId = (Get-EntraServicePrincipal -Top 1).ObjectId
+ Select-EntraGroupIdsServicePrincipalIsMemberOf -ObjectId $SPId -GroupIdsForMembershipCheck $Groups
 ```
+
 ```output
-140036f7-33f9-4f06-bdd6-39de8fe65d81
+bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq
 ```
 
 The first command creates a GroupIdsForMembershipCheck object, and then stores it in the $Groups variable.
@@ -56,6 +61,7 @@ The final command gets the group membership of a group for a service principal i
 ## PARAMETERS
 
 ### -GroupIdsForMembershipCheck
+
 Specifies an array of group object IDs.
 
 ```yaml
@@ -71,10 +77,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -86,6 +93,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
