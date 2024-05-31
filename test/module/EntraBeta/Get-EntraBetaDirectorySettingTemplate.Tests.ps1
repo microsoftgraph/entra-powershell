@@ -45,17 +45,23 @@ Describe "Get-EntraBetaDirectorySettingTemplate" {
             { Get-EntraBetaDirectorySettingTemplate -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
         }
 
-        # It "Should contain DirectorySettingTemplateId in parameters when passed Id to it" {
-        #     $result = Get-EntraBetaDirectorySettingTemplate -Id "08d542b9-071f-4e16-94b0-74abb372e3d9"
-        #     $params = Get-Parameters -data $result.Description
-        #     $params.DirectorySettingTemplateId | Should -Be "08d542b9-071f-4e16-94b0-74abb372e3d9"
-        # }
+        It "Should contain DirectorySettingTemplateId in parameters when passed Id to it" {
+            $result = Get-EntraBetaDirectorySettingTemplate -Id "08d542b9-071f-4e16-94b0-74abb372e3d9"
+            $result | Should -Not -BeNullOrEmpty
+            Should -Invoke -CommandName Get-MgBetaDirectorySettingTemplate -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+            $DirectorySettingTemplateId | Should -Be "08d542b9-071f-4e16-94b0-74abb372e3d9" 
+            $true
+            }
+        }
 
-        # It "Should contain 'User-Agent' header" {
-        #     $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDirectorySettingTemplate"
-        #     $result = Get-EntraBetaDirectorySettingTemplate -Id "08d542b9-071f-4e16-94b0-74abb372e3d9"
-        #     $params = Get-Parameters -data $result.Description
-        #     $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        # }    
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDirectorySettingTemplate"
+            $result = Get-EntraBetaDirectorySettingTemplate -Id "08d542b9-071f-4e16-94b0-74abb372e3d9"
+            $result | Should -Not -BeNullOrEmpty
+            Should -Invoke -CommandName Get-MgBetaDirectorySettingTemplate -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue 
+            $true
+            }
+        }    
     }
 }
