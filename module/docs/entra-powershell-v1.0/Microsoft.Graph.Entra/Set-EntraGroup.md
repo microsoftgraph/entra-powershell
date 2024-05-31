@@ -18,6 +18,7 @@ schema: 2.0.0
 # Set-EntraGroup
 
 ## SYNOPSIS
+
 Updates a specific group in Microsoft Entra ID.
 
 ## SYNTAX
@@ -34,51 +35,64 @@ Set-EntraGroup
 ```
 
 ## DESCRIPTION
+
 The Set-EntraGroup cmdlet updates a group in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Update a group description
+
 ```powershell
-PS C:\>Set-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -Description "This is my new group"
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Set-EntraGroup -ObjectId 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -Description 'This is my new group'
 ```
 
 This example demonstrates how to update a group description.  
 
 ### Example 2: Update a group display name
+
 ```powershell
-PS C:\>Set-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -DisplayName "Parents of Conto"
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Set-EntraGroup -ObjectId 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -DisplayName 'Parents of Conto'
 ```
 
 This command updates the display name of a specified group in Microsoft Entra ID.  
 
 ### Example 3: Update a group mail nickname
+
 ```powershell
-PS C:\>Set-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -MailNickName "newnickname"
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Set-EntraGroup -ObjectId 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MailNickName 'newnickname'
 ```
 
 This command updates the mail nickname of a specified group in Microsoft Entra ID.  
 
 ### Example 4: Update a group security enabled
+
 ```powershell
-PS C:\>Set-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -SecurityEnabled $true
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Set-EntraGroup -ObjectId 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -SecurityEnabled $true
 ```
+
 This command updates the security enabled of a specified group in Microsoft Entra ID.  
 
 ### Example 5: Update a group mail enabled
+
 ```powershell
-PS C:\>Set-EntraGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -MailEnabled $true
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Set-EntraGroup -ObjectId 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MailEnabled $true
 ```
 
-This example demonstrates how to update a group mail enabled.  
+This example demonstrates how to enable a group mail.  
   
 ## PARAMETERS
 
 ### -Description
+
 Specifies a description.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -90,10 +104,11 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
+
 Specifies a display name.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -105,10 +120,11 @@ Accept wildcard characters: False
 ```
 
 ### -MailEnabled
+
 Indicates whether mail is enabled.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -120,10 +136,11 @@ Accept wildcard characters: False
 ```
 
 ### -MailNickName
+
 Specifies a nickname for the mail.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -135,10 +152,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the object ID of a group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -150,10 +168,11 @@ Accept wildcard characters: False
 ```
 
 ### -SecurityEnabled
+
 Indicates whether security is enabled.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -165,6 +184,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS

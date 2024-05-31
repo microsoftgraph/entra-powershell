@@ -17,6 +17,7 @@ schema: 2.0.0
 # Remove-EntraGroupAppRoleAssignment
 
 ## SYNOPSIS
+
 Delete a group application role assignment.
 
 ## SYNTAX
@@ -29,26 +30,30 @@ Remove-EntraGroupAppRoleAssignment
 ```
 
 ## DESCRIPTION
+
 The Remove-EntraGroupAppRoleAssignment cmdlet removes a group application role assignment from Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Removes a group application role assignment
+
 ```powershell
-PS C:\> Remove-EntraGroupAppRoleAssignment -ObjectId "0877c6c6-fc99-4d51-9871-8335be7cfc9d" -AppRoleAssignmentId "xsZ3CJn8UU2YcYM1vnz8nXBBPlQgBApOqrWsVNJlsa4"
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+Remove-AzureADGroupAppRoleAssignment -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq' -AppRoleAssignmentId 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
 ```
 
-This example demonstrates how to remove the specified group application role assignment.    
-ObjectId - Specifies the object ID of a group.    
+This example demonstrates how to remove the specified group application role assignment.
+ObjectId - Specifies the object ID of a group.
 AppRoleAssignmentId - Specifies the object ID of the group application role assignment.
 
 ## PARAMETERS
 
 ### -AppRoleAssignmentId
+
 Specifies the object ID of the group application role assignment.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -58,11 +63,13 @@ Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
+
 ### -ObjectId
+
 Specifies the object ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -74,6 +81,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
