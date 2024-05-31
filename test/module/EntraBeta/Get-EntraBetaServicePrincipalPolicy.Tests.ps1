@@ -23,11 +23,8 @@ $scriptblock = {
                     "type"                         = "HomeRealmDiscoveryPolicy"
                     "isOrganizationDefault"        = $false 
                     "createdDateTime"              = "16-08-2023 08:25:02"                       
-                    
                 }
-
             )
-            "Parameters"                   = $args
         }
     }
 
@@ -55,17 +52,15 @@ Context "Test for Get-EntraBetaServicePrincipalPolicy" {
             $result = Get-EntraBetaServicePrincipalPolicy -Id "pppppppp-b5d0-aaaa-ahbg-aaaaaaaa" 
             $result."@odata.type" | should -Be "#microsoft.graph.policy"
         }
-            # Header testcase get failed
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaServicePrincipalPolicy"
-
+            
             $result = Get-EntraBetaServicePrincipalPolicy -Id "pppppppp-b5d0-aaaa-ahbg-aaaaaaaa"
-            # $A = $result.Parameters
-            # write-host $result.Parameters
-            $params = Get-Parameters -data $result.Parameters
-            # $para = $params | ConvertTo-json | ConvertFrom-json
-            # write-host $para
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $result | Should -Not -BeNullOrEmpty
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
     }
 }    
