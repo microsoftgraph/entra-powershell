@@ -145,3 +145,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+- [Get-EntraMSServicePrincipalDelegatedPermissionClassification](Get-EntraMSServicePrincipalDelegatedPermissionClassification.md)
+
+- [Remove-EntraMSServicePrincipalDelegatedPermissionClassification](Remove-EntraMSServicePrincipalDelegatedPermissionClassification.md)

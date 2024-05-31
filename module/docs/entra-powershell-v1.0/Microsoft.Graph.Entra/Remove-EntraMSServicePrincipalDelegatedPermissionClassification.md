@@ -90,3 +90,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+- [Add-EntraMSServicePrincipalDelegatedPermissionClassification](Add-EntraMSServicePrincipalDelegatedPermissionClassification.md)
+
+- [Get-EntraMSServicePrincipalDelegatedPermissionClassification](Get-EntraMSServicePrincipalDelegatedPermissionClassification.md)
