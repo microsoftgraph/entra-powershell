@@ -43,7 +43,7 @@ Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
 Add-EntraDirectoryRoleMember -ObjectId 'dddddddd-2222-3333-5555-rrrrrrrrrrrr' -RefObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
-This command adds a member to a Microsoft Entra ID role.
+This command adds a member to a directory role. The `-ObjectId` parameter specifies the ID of the role to which the member should be added, and the `-RefObjectId` parameter specifies the ID of the member to be added.
 
 ## PARAMETERS
 
