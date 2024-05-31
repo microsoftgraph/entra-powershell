@@ -63,8 +63,10 @@ Demo App   bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc
 ```
 
 This example demonstrates how to create a new service Principal in Microsoft Entra ID.  
-First command gets the application and stored in variable.  
-Second command creates a new service principal.  
+
+- First command gets the application and stored in variable.  
+- Second command creates a new service principal.
+
 The tag "-Tags {WindowsAzureActiveDirectoryIntegratedApp}" is used to have this service principal show up in the list of Integrated Applications in the Admin Portal.
 
 ### Example 2: Create a new service principal by Homepage, logoutUrl, and ReplyUrls 
@@ -83,8 +85,9 @@ Demo App   bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc
 ```
 
 This example demonstrates how to create a new service Principal in Microsoft Entra ID.  
-First command gets the application and stored in variable.  
-Second command creates a new service principal.
+
+- First command gets the application and stored in variable.  
+- Second command creates a new service principal.
 
 ### Example 3: Create a new service principal by KeyCredentials
 
@@ -111,9 +114,10 @@ Demo App  bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4
 ```
 
 This example demonstrates how to create a new service Principal in Microsoft Entra ID.  
-First command stored the key credentials in a variable.
-Second command gets the application and stored in variable.  
-Last command creates a new service principal.
+
+- First command stored the key credentials in a variable.
+- Second command gets the application and stored in variable.  
+- Last command creates a new service principal.
 
 ### Example 4: Create a new service principal by AlternativeNames, ServicePrincipalType, and ServicePrincipalName
 
@@ -131,8 +135,9 @@ Demo App   bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc
 ```
 
 This example demonstrates how to create a new service Principal in Microsoft Entra ID.  
-First command gets the application and stored in variable.  
-Second command creates a new service principal.
+
+- First command gets the application and stored in variable.  
+- Second command creates a new service principal.
 
 ## PARAMETERS
 

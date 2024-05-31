@@ -51,8 +51,7 @@ CustomKeyIdentifier DisplayName EndDateTime         Hint KeyId                  
                                 21-03-2026 12:12:13 333  aaaaaaaa-0b0b-1c1c-2d2d-333333333333 Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2 21-03-2024 14:14:14
 ```
 
-This example demonstrates how to create a password credential with StartDate for a service principal in Microsoft Entra ID.  
-This command creates a password credential for a service principal.
+This example demonstrates how to create a password credential with StartDate for a service principal in Microsoft Entra ID.
 
 ### Example 2: Create a password credential with EndtDate
 
@@ -69,7 +68,6 @@ CustomKeyIdentifier DisplayName EndDateTime         Hint KeyId                  
 ```
 
 This example demonstrates how to create a password credential with EndDate for a service principal in Microsoft Entra ID.
-This command creates a password credential for a service principal.
 
 ## PARAMETERS
 
