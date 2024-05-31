@@ -380,7 +380,8 @@ public $($object.GetType().Name)()
         $def += @"
 
 `"@
-    Add-Type -TypeDefinition `$def
+    try{ Add-Type -TypeDefinition `$def }
+    catch{}
 
 # ------------------------------------------------------------------------------
 # End of Type definitios required for commands inputs
