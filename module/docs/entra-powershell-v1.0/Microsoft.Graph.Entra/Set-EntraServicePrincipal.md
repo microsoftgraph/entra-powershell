@@ -19,7 +19,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Updates a service principal.
+This command updates a service principal.
 
 ## SYNTAX
 
@@ -56,8 +56,7 @@ Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 Set-EntraServicePrincipal -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -AccountEnabled $False
 ```
 
-This example demonstrates how to update AccountEnabled of a service principal in Microsoft Entra ID.  
-This command disables the account of the specified service principal.
+This example demonstrates how to update AccountEnabled of a service principal in Microsoft Entra ID.
 
 ### Example 2: Update AppId and Homepage of a service principal
 

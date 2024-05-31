@@ -40,10 +40,10 @@ The Remove-EntraServicePrincipal cmdlet removes a service principal in Microsoft
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-Remove-EntraServicePrincipal -ObjectId 00001111-aaaa-2222-bbbb-3333cccc4444
+Remove-EntraServicePrincipal -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444'
 ```
 
-This example demonstrates how to remove service principal in Microsoft Entra ID.
+This example demonstrates how to remove a service principal in Microsoft Entra ID.
 
 ## PARAMETERS
 

@@ -43,7 +43,7 @@ Connect-Entra -Scopes 'Application.ReadWrite.All'
 Remove-EntraServicePrincipalOwner -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -OwnerId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
-This example demonstrates how to remove entra service principal owner.
+This example demonstrates how to remove an owner from a service principal in Microsoft Entra ID.
 
 ## PARAMETERS
 
