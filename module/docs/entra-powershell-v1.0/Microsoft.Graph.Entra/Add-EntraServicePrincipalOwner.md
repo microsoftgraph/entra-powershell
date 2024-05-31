@@ -4,7 +4,7 @@ description: This article provides details on the Add-EntraServicePrincipalOwner
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/06/2024
+ms.date: 06/02/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,6 +17,7 @@ schema: 2.0.0
 # Add-EntraServicePrincipalOwner
 
 ## SYNOPSIS
+
 Adds an owner to a service principal.
 
 ## SYNTAX
@@ -29,6 +30,7 @@ Add-EntraServicePrincipalOwner
 ```
 
 ## DESCRIPTION
+
 The Add-EntraServicePrincipalOwner cmdlet adds an owner to a service principal in Microsoft Entra ID.
 
 ## EXAMPLES
@@ -36,9 +38,11 @@ The Add-EntraServicePrincipalOwner cmdlet adds an owner to a service principal i
 ### Example 1: Add a user as an owner to a service principal
 
 ```powershell
-PS C:\> $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
-PS C:\> $OwnerId = (Get-EntraUser -Top 1).ObjectId
-PS C:\> Add-EntraServicePrincipalOwner -ObjectId $ServicePrincipalId -RefObjectId -$OwnerId
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+$ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
+$OwnerId = (Get-EntraUser -Top 1).ObjectId
+Add-EntraServicePrincipalOwner -ObjectId $ServicePrincipalId -RefObjectId -$OwnerId
 ```
 
 This example demonstrates how to add an owner to a service principal.
@@ -52,10 +56,11 @@ The final command adds the user specified by $OwnerId an owner to a service prin
 ## PARAMETERS
 
 ### -ObjectId
+
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -67,10 +72,11 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
+
 Specifies the ID of the Microsoft Entra ID object to assign as owner/manager/member.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -82,6 +88,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
