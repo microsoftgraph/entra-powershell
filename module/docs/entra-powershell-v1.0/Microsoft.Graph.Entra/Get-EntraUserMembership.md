@@ -94,7 +94,7 @@ This command gets the top five memberships for the specified user.
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 

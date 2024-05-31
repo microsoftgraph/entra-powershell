@@ -96,7 +96,7 @@ This command gets the top three objects owned by the specified user.
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -106,7 +106,6 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 ### -ObjectId
 Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.
 

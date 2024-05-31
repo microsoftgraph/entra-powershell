@@ -52,7 +52,7 @@ The second command gets the direct reports for $Contact.
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 

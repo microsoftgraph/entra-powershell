@@ -26,7 +26,7 @@ Gets an owner of a group.
 ```powershell
 Get-EntraGroupOwner 
  -ObjectId <String>  
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -116,22 +116,19 @@ This example demonstrates how to retrieve the top two owners of a specific group
 ## PARAMETERS
 
 ### -All
-
-If true, return all group owners.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: System.Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 ### -ObjectId
 
 Specifies the ID of a group in Microsoft Entra ID.

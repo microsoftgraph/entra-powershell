@@ -67,7 +67,7 @@ This example demonstrates how to get the top two object created by a specified s
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 

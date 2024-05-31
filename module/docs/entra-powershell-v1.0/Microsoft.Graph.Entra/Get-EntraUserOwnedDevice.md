@@ -84,7 +84,7 @@ This command gets top one registered device owned by the specified user.
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
