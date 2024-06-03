@@ -721,6 +721,10 @@ $OutputTransformations
             
             $paramsList += $paramBlock            
         }
+
+        if("Get" -eq $Command.Verb){
+            $paramsList += $this.GetCustomParameterTransformation("Property")
+        }
             
         return $paramsList
     }
@@ -793,6 +797,17 @@ $OutputTransformations
         `$TmpValue = `$PSBoundParameters["$($Param.Name)"]
         $($Param.SpecialMapping)
         `$params["$($Param.TargetName)"] = `$Value
+    }
+
+"@
+        return $paramBlock
+    }
+
+    hidden [string] GetCustomParameterTransformation([string] $ParameterName){
+        $paramBlock = @"
+    if(`$null -ne `$PSBoundParameters["$($ParameterName)"])
+    {
+        `$params["$($ParameterName)"] = `$PSBoundParameters["$($ParameterName)"]
     }
 
 "@
