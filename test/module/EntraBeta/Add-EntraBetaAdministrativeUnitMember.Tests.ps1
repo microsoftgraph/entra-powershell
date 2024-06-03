@@ -10,7 +10,7 @@ BeforeAll {
 
 Describe "Add-EntraBetaAdministrativeUnitMember" {
 Context "Test for Add-EntraBetaAdministrativeUnitMember" {
-        It "Should return object" {
+        It "Should return empty object" {
             $result = Add-EntraBetaAdministrativeUnitMember -ObjectId "pppppppp-1111-1111-1111-aaaaaaaaaaaa" -RefObjectId "abcdabcd-529b-4ffc-bebe-bbbbbbbbbbbb"
             $result | Should -BeNullOrEmpty
 

@@ -13,49 +13,51 @@ $scriptblock = {
                     "DeletedDateTime"              = $null
                     "@odata.type"                  = "#microsoft.graph.policy"
                     "keyCredentials"               = $null
-                    "alternativeIdentifier"        = "value1"
-                    "definition"                   = @{"activityBasedTimeoutPolicies" = @{
-                                                                                            "AlternateLoginIDLookup"= $true 
-                                                                                            "IncludedUserIds"      = "UserID"
-                                                                                         }
-                                                }
-                    "displayName"                  = "Mock policy"
+                    "alternativeIdentifier"        = $null
+                    "displayName"                  = "Mock application policy"
                     "type"                         = "HomeRealmDiscoveryPolicy"
                     "isOrganizationDefault"        = $false 
-                    "createdDateTime"              = "16-08-2023 08:25:02"                       
+                    "createdDateTime"              = "16-08-2023 08:25:02"      
+                    "Parameters"                   = $args                
                 }
+            
             )
+            
         }
+
     }
 
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
 }
 
-Describe "Get-EntraBetaServicePrincipalPolicy" {
-Context "Test for Get-EntraBetaServicePrincipalPolicy" {
-        It "Should return specific service principal policy" {
-            $result = Get-EntraBetaServicePrincipalPolicy -Id "pppppppp-b5d0-aaaa-ahbg-aaaaaaaa" 
+Describe "Get-EntraBetaApplicationPolicy" {
+Context "Test for Get-EntraBetaApplicationPolicy" {
+        It "Should return specific application policy" {
+            $result = Get-EntraBetaApplicationPolicy -Id "pppppppp-b5d0-aaaa-ahbg-aaaaaaaa" 
             $result | Should -Not -BeNullOrEmpty
+            write-host $result
             $result.Id | Should -Be "bbbbbbbb-e731-4ec1-a4f6-pepepepa"
-            $result.displayName | Should -Be "Mock policy"
+            $result.displayName | Should -Be "Mock application policy"
             $result.type | Should -be "HomeRealmDiscoveryPolicy"
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when Id is empty" {
-            { Get-EntraBetaServicePrincipalPolicy -Id  } | Should -Throw "Missing an argument for parameter 'Id'*"
+            { Get-EntraBetaApplicationPolicy -Id  } | Should -Throw "Missing an argument for parameter 'Id'*"
         }
         It "Should fail when Id is invalid" {
-            { Get-EntraBetaServicePrincipalPolicy -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
+            { Get-EntraBetaApplicationPolicy -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
         }
         It "Result should Contain @odata.type" {
-            $result = Get-EntraBetaServicePrincipalPolicy -Id "pppppppp-b5d0-aaaa-ahbg-aaaaaaaa" 
+            $result = Get-EntraBetaApplicationPolicy -Id "pppppppp-b5d0-aaaa-ahbg-aaaaaaaa" 
             $result."@odata.type" | should -Be "#microsoft.graph.policy"
         }
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaServicePrincipalPolicy"
+
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaApplicationPolicy"
             
-            $result = Get-EntraBetaServicePrincipalPolicy -Id "pppppppp-b5d0-aaaa-ahbg-aaaaaaaa"
+            $result = Get-EntraBetaApplicationPolicy -Id "pppppppp-b5d0-aaaa-ahbg-aaaaaaaa"
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
