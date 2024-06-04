@@ -18,11 +18,13 @@ schema: 2.0.0
 # Get-EntraDeletedApplication
 
 ## SYNOPSIS
+
 Retrieves the list of previously deleted applications.
 
 ## SYNTAX
 
 ### GetQuery (Default)
+
 ```powershell
 Get-EntraDeletedApplication 
  [-Filter <String>] 
@@ -32,6 +34,7 @@ Get-EntraDeletedApplication
 ```
 
 ### GetByValue
+
 ```powershell
 Get-EntraDeletedApplication 
  [-SearchString <String>] 
@@ -40,78 +43,89 @@ Get-EntraDeletedApplication
 ```
 
 ## DESCRIPTION
+
 Retrieves the list of previously deleted applications.
 
 ## EXAMPLES
 
-### Example 1: Get list of deleted applications.
+### Example 1: Get list of deleted applications
+
 ```powershell
-PS C:\> Get-EntraDeletedApplication
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraDeletedApplication
 ```
 
 ```output
 DisplayName Id                                   AppId                                SignInAudience PublisherDomain
 ----------- --                                   -----                                -------------- ---------------
-TestApp1    01157307-373c-47b0-889a-3bc57033d73e 9c17362d-20b6-4572-bb6f-600e57c840e5 AzureADMyOrg   contoso.com
-TestApp2    021b7606-8ad9-4a99-a305-32c7e9d4ef42 ed463582-f4c6-401e-963c-8b1207f11ff0 AzureADMyOrg   contoso.com
-TestApp3    028f64e2-df14-4211-95ac-d97012de48e4 6bb88aa2-5525-4711-9091-0379c9119547 AzureADMyOrg   contoso.com
-TestApp4    04a4b3be-a050-4627-83e3-0cbe80be8946 e29d0e59-86f7-41db-9d72-cd007dff50ea AzureADMyOrg   contoso.com
+TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
+TestApp2    cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg   contoso.com
+TestApp3    eeeeeeee-6666-7777-8888-ffffffffffff ffffffff-7777-8888-9999-gggggggggggg AzureADMyOrg   contoso.com
+TestApp4    gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb-iiiiiiiiiiii AzureADMyOrg   contoso.com
 ```
 
 This cmdlet retrieves the list of deleted applications.  
 
-### Example 2: Get list of deleted applications using All parameter.
+### Example 2: Get list of deleted applications using All parameter
+
 ```powershell
-PS C:\> Get-EntraDeletedApplication -All
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraDeletedApplication -All
 ```
 
 ```output
 DisplayName Id                                   AppId                                SignInAudience PublisherDomain
 ----------- --                                   -----                                -------------- ---------------
-TestApp1    01157307-373c-47b0-889a-3bc57033d73e 9c17362d-20b6-4572-bb6f-600e57c840e5 AzureADMyOrg   contoso.com
-TestApp2    021b7606-8ad9-4a99-a305-32c7e9d4ef42 ed463582-f4c6-401e-963c-8b1207f11ff0 AzureADMyOrg   contoso.com
-TestApp3    028f64e2-df14-4211-95ac-d97012de48e4 6bb88aa2-5525-4711-9091-0379c9119547 AzureADMyOrg   contoso.com
-TestApp4    04a4b3be-a050-4627-83e3-0cbe80be8946 e29d0e59-86f7-41db-9d72-cd007dff50ea AzureADMyOrg   contoso.com
+TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
+TestApp2    cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg   contoso.com
+TestApp3    eeeeeeee-6666-7777-8888-ffffffffffff ffffffff-7777-8888-9999-gggggggggggg AzureADMyOrg   contoso.com
+TestApp4    gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb-iiiiiiiiiiii AzureADMyOrg   contoso.com
 ```
 
 This cmdlet retrieves the list of deleted applications using All parameter.  
 
-### Example 3: Get top two deleted applications.
+### Example 3: Get top two deleted applications
+
 ```powershell
-PS C:\> Get-EntraDeletedApplication -Top 2
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraDeletedApplication -Top 2
 ```
 
 ```output
 DisplayName Id                                   AppId                                SignInAudience PublisherDomain
 ----------- --                                   -----                                -------------- ---------------
-TestApp1    01157307-373c-47b0-889a-3bc57033d73e 9c17362d-20b6-4572-bb6f-600e57c840e5 AzureADMyOrg   contoso.com
-TestApp2    021b7606-8ad9-4a99-a305-32c7e9d4ef42 ed463582-f4c6-401e-963c-8b1207f11ff0 AzureADMyOrg   contoso.com
+TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
+TestApp2    cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg   contoso.com
 ```
 
 This cmdlet retrieves top two deleted applications.
 
-### Example 4: Get deleted applications using SearchString parameter.
+### Example 4: Get deleted applications using SearchString parameter
+
 ```powershell
-PS C:\> Get-EntraDeletedApplication -SearchString 'TestApp1'
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraDeletedApplication -SearchString 'TestApp1'
 ```
 
 ```output
 DisplayName Id                                   AppId                                SignInAudience PublisherDomain
 ----------- --                                   -----                                -------------- ---------------
-TestApp1    01157307-373c-47b0-889a-3bc57033d73e 9c17362d-20b6-4572-bb6f-600e57c840e5 AzureADMyOrg   contoso.com
+TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
 ```
 
 This cmdlet retrieves deleted applications using SearchString parameter.  
 
-### Example 5: Get deleted applications filter by display name.
+### Example 5: Get deleted applications filter by display name
+
 ```powershell
-PS C:\> Get-EntraDeletedApplication -Filter "DisplayName contains 'TestApp1'"
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraDeletedApplication -Filter "DisplayName contains 'TestApp1'"
 ```
 
 ```output
 DisplayName Id                                   AppId                                SignInAudience PublisherDomain
 ----------- --                                   -----                                -------------- ---------------
-TestApp1    01157307-373c-47b0-889a-3bc57033d73e 9c17362d-20b6-4572-bb6f-600e57c840e5 AzureADMyOrg   contoso.com
+TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
 ```
 
 This cmdlet retrieves deleted applications having specified display name.  
@@ -119,6 +133,7 @@ This cmdlet retrieves deleted applications having specified display name.
 ## PARAMETERS
 
 ### -All
+
 List all pages.
 
 ```yaml
@@ -134,10 +149,11 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
+
 Retrieve only those deleted applications that satisfy the filter.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery
 Aliases:
 
@@ -149,10 +165,11 @@ Accept wildcard characters: False
 ```
 
 ### -SearchString
+
 Retrieve only those applications that satisfy the -SearchString value.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetVague
 Aliases:
 
@@ -164,11 +181,12 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 The maximum number of applications returned by this cmdlet.
 The default value is 100.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: GetQuery
 Aliases:
 
@@ -180,16 +198,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### System.String
+
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
 ## OUTPUTS
 
 ### System.Object
+
 ## NOTES
 
 ## RELATED LINKS
