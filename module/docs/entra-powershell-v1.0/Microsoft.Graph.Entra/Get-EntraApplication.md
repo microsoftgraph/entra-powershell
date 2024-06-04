@@ -61,7 +61,7 @@ The `Get-EntraApplication` cmdlet gets a Microsoft Entra ID application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraApplication -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+Get-EntraApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 ```output
@@ -77,7 +77,7 @@ This command gets an application for the specified ObjectId.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get- Get-EntraApplication -All 
+Get-EntraApplication -All 
 ```
 
 ```output
@@ -133,7 +133,7 @@ This command gets an application by its display name.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraApplication -SearchString "My new application 2"
+Get-EntraApplication -SearchString 'My new application 2'
 ```
 
 ```output
@@ -161,7 +161,7 @@ This example demonstrates how to retrieve applications by its identifierUris fro
 List all pages.
 
 ```yaml
-Type: System.SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -250,5 +250,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## RELATED LINKS
 
 - [New-EntraApplication](New-EntraApplication.md)
+
 - [Remove-EntraApplication](Remove-EntraApplication.md)
+
 - [Set-EntraApplication](Set-EntraApplication.md)
