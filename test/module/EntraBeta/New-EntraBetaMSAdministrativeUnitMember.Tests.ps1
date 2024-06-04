@@ -110,10 +110,19 @@ Context "Test for New-EntraBetaMSAdministrativeUnitMember" {
         }
         It "Should contain @odata.type in parameters when passed OdataType to it" {
             $result = New-EntraBetaMSAdministrativeUnitMember -Id "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -OdataType "Microsoft.Graph.Group" -DisplayName  "Mock-Admin-UnitMember" -Description "NewAdministrativeUnitMember" -MailEnabled $True -MailNickname "Mock-Admin-UnitMember" -SecurityEnabled $False -GroupTypes @("Unified","DynamicMembership") -MembershipRule "(user.department -contains 'Marketing')" -MembershipRuleProcessingState "On" -IsAssignableToRole $False
-            $params = Get-Parameters -data $result.Parameters
-            $para = $params | ConvertTo-json | ConvertFrom-json
-            write-host $para.BodyParameter."@odata.type"
+            $jsonArray = $result.Parameters
 
+            $hashTable = @{}
+            for ($i = 0; $i -lt $jsonArray.Length; $i += 2) {
+                $key = $jsonArray[$i] -replace '^-', '' -replace ':$', ''
+                $value = $jsonArray[$i + 1]
+                if ($value -is [PSCustomObject]) {
+                    $value.PSObject.Properties | ForEach-Object { $_.Name = $_.Name -replace '^-', '' -replace ':$', '' }
+                }
+                $hashTable[$key] = $value
+            }
+            $OdataType = $hashTable.BodyParameter.AdditionalProperties.'@odata.type'
+            $OdataType | Should -Be "Microsoft.Graph.Group"
 
         }
         It "Should contain 'User-Agent' header" {
