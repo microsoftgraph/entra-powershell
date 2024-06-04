@@ -91,7 +91,6 @@ test adms2          iiiiiiii-aaaa-bbbb-cccc-jjjjjjjjjjjj jjjjjjjj-bbbb-cccc-dddd
 ```
 
 This example demonstrates how to get all applications from Microsoft Entra ID.  
-This command gets the all applications in Microsoft Entra ID.
 
 ### Example 3: Get top five applications
 
@@ -158,7 +157,7 @@ This example demonstrates how to retrieve applications by its identifierUris fro
 List all pages.
 
 ```yaml
-Type: System.SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -247,7 +246,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## RELATED LINKS
 
 - [New-EntraApplication](New-EntraApplication.md)
-  
+
 - [Remove-EntraApplication](Remove-EntraApplication.md)
-  
+
 - [Set-EntraApplication](Set-EntraApplication.md)
