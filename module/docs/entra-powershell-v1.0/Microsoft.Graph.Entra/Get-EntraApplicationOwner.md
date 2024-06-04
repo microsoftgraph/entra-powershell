@@ -40,7 +40,9 @@ The `Get-EntraApplicationOwner` cmdlet gets an owner of a Microsoft Entra applic
 ### Example 1: Get the owner of an application
 
 ```powershell
-Get-EntraApplicationOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Get-EntraApplicationOwner -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```output
@@ -50,19 +52,20 @@ creationType                    :
 imAddresses                     : {adelev@contoso.com}
 preferredLanguage               :
 mail                            : AdeleV@contoso.com
-securityIdentifier              : S-1-12-1-1093396945-1080104032-2731339150-364051459
+securityIdentifier              : S-1-12-1-2222222222-3333333333-4444444444-5555555555
 identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=AdeleV@contoso.com}}
 consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
 ```
 
-This example demonstrates how to get the owners of an application in Microsoft Entra ID.  
-This command gets the owners of an application.
+This example demonstrates how to get the owners of an application in Microsoft Entra ID.
 
 ### Example 2: Get all owners of an application
 
 ```powershell
-Get-EntraApplicationOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Get-EntraApplicationOwner -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
 ```
 
 ```output
@@ -78,13 +81,14 @@ consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
 ```
 
-This example demonstrates how to get the all owners of a specified application in Microsoft Entra ID.  
-This command gets the all owners of a specified application.
+This example demonstrates how to get the all owners of a specified application in Microsoft Entra ID.
 
 ### Example 3: Get top two owners of an application
 
 ```powershell
-Get-EntraApplicationOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 2
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Get-EntraApplicationOwner -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 2
 ```
 
 ```output
@@ -100,8 +104,7 @@ consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
 ```
 
-This example demonstrates how to get the all owners of a specified application in Microsoft Entra ID.  
-This command gets the two owners of a specified application.
+This example demonstrates how to get the two owners of a specified application in Microsoft Entra ID.
 
 ## PARAMETERS
 
@@ -110,7 +113,7 @@ This command gets the two owners of a specified application.
 List all pages.
 
 ```yaml
-Type: System.SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -165,6 +168,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## RELATED LINKS
 
-[Add-EntraApplicationOwner](Add-EntraApplicationOwner.md)
+- [Add-EntraApplicationOwner](Add-EntraApplicationOwner.md)
 
-[Remove-EntraApplicationOwner](Remove-EntraApplicationOwner.md)
+- [Remove-EntraApplicationOwner](Remove-EntraApplicationOwner.md)
