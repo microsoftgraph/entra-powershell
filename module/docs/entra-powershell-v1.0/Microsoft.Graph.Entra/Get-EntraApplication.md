@@ -109,7 +109,7 @@ test adms app azure gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb
 test adms2          iiiiiiii-aaaa-bbbb-cccc-jjjjjjjjjjjj jjjjjjjj-bbbb-cccc-dddd-kkkkkkkkkkkk AzureADandPersonalMicrosoftAccount contoso.com
 ```
 
-This example demonstrates how to get top five applications from Microsoft Entra ID. 
+This example demonstrates how to get top five applications from Microsoft Entra ID.
 
 ### Example 4: Get an application by display name
 
