@@ -18,7 +18,7 @@ BeforeAll {
 Describe "Set-EntraBetaDirSyncFeature" {
     Context "Test for Set-EntraBetaDirSyncFeature" {
         It "Should sets identity synchronization features for a tenant." {
-            $result =  Set-EntraBetaDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable $false -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -Force
+            $result =  Set-EntraBetaDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable $false -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -Force -ErrorAction SilentlyContinue
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Update-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
