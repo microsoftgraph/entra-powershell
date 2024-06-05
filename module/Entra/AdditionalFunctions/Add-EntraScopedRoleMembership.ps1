@@ -6,6 +6,8 @@ function Add-EntraScopedRoleMembership {
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $ObjectId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $AdministrativeUnitObjectId,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [Microsoft.Open.MSGraph.Model.MsRoleMemberInfo] $RoleMemberInfo
     )
 
@@ -50,6 +52,10 @@ function Add-EntraScopedRoleMembership {
     if($null -ne $PSBoundParameters["ErrorVariable"])
     {
         $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+    }
+    if($null -ne $PSBoundParameters["AdministrativeUnitObjectId"])
+    {
+        $params["AdministrativeUnitId1"] = $PSBoundParameters["AdministrativeUnitObjectId"]
     }
     if($null -ne $PSBoundParameters["ObjectId"])
     {
