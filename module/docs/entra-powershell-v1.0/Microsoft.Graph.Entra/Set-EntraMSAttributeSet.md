@@ -19,6 +19,7 @@ schema: 2.0.0
 # Set-EntraMSAttributeSet
 
 ## SYNOPSIS
+
 Updates an existing attribute set.
 
 ## SYNTAX
@@ -32,13 +33,14 @@ Set-AzureADMSAttributeSet
 ```
 
 ## DESCRIPTION
+
 Updates a Microsoft Entra ID attribute set object identified by ID.
 
 ## EXAMPLES
 
 ### Example 1: Update an attribute set.
 ```powershell
-Set-AzureADMSAttributeSet -Id "Engineering" -Description "Attributes for cloud engineering team"
+PS C:\>Set-AzureADMSAttributeSet -Id "Engineering" -Description "Attributes for cloud engineering team"
 ```
 
 This example Update an attribute set.
@@ -47,7 +49,7 @@ This example Update an attribute set.
 
 ### Example 2: Update an attribute set using MaxAttributesPerSet
 ```powershell
-Set-AzureADMSAttributeSet -Id "Engineering" -MaxAttributesPerSet 20
+PS C:\>Set-AzureADMSAttributeSet -Id 'Engineering' -MaxAttributesPerSet 20
 ```
 
 This example Update an attribute set using MaxAttributesPerSet
@@ -60,7 +62,7 @@ This example Update an attribute set using MaxAttributesPerSet
 Description of the attribute set.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -75,7 +77,7 @@ Accept wildcard characters: False
 Name of the attribute set.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -90,7 +92,7 @@ Accept wildcard characters: False
 Maximum number of custom security attributes that can be defined in the attribute set.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
