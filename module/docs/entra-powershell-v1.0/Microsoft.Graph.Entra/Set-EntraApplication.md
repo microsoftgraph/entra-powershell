@@ -73,7 +73,7 @@ Updates an application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Set-EntraApplication -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -DisplayName "New Name"
+Set-EntraApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DisplayName 'New Name'
 ```
 
 This command updates the display name of the specified application.  
@@ -82,7 +82,7 @@ This command updates the display name of the specified application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Set-EntraApplication -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -SamlMetadataUrl 'https://contoso.com'
+Set-EntraApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -SamlMetadataUrl 'https://contoso.com'
 ```
 
 This command updates the saml metadata url of the specified application.  
@@ -91,7 +91,7 @@ This command updates the saml metadata url of the specified application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Set-EntraApplication -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -LogoutUrl 'https://contoso.com/Security/ADFS.aspx/logout'
+Set-EntraApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -LogoutUrl 'https://contoso.com/Security/ADFS.aspx/logout'
 ```
 
 This command updates the log out url of the specified application.  
@@ -100,7 +100,7 @@ This command updates the log out url of the specified application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Set-EntraApplication -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -GroupMembershipClaims '2'
+Set-EntraApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -GroupMembershipClaims '2'
 ```
 
 This command updates the group membership claims of the specified application.  
@@ -109,7 +109,7 @@ This command updates the group membership claims of the specified application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Set-EntraApplication -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -IdentifierUris "https://demomail.contoso.com"
+Set-EntraApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -IdentifierUris 'https://demomail.contoso.com'
 ```
 
 This command updates the identifier uris of the specified application.  
@@ -701,5 +701,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## RELATED LINKS
 
 - [Get-EntraApplication](Get-EntraApplication.md)
+
 - [New-EntraApplication](New-EntraApplication.md)
+
 - [Remove-EntraApplication](Remove-EntraApplication.md)

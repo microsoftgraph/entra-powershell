@@ -72,7 +72,7 @@ The `New-EntraApplication` cmdlet creates an application in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-New-EntraApplication -DisplayName "My new application"
+New-EntraApplication -DisplayName 'My new application'
 ```
 
 ```output
@@ -88,7 +88,7 @@ This command creates an application in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-New-EntraApplication -DisplayName "My new application" -IdentifierUris "https://mynewapp.contoso.com"
+New-EntraApplication -DisplayName 'My new application' -IdentifierUris 'https://mynewapp.contoso.com'
 ```
 
 ```output
@@ -106,7 +106,7 @@ This command creates an application in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-New-EntraApplication -DisplayName "My new application" -HomePage "https://mynewapp.home.com"
+New-EntraApplication -DisplayName 'My new application' -HomePage 'https://mynewapp.home.com'
 ```
 
 ```output
@@ -124,7 +124,7 @@ This command creates an application in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-New-EntraApplication -DisplayName "My new application" -LogoutUrl "https://mynewapp.com/logout.aspx"
+New-EntraApplication -DisplayName 'My new application' -LogoutUrl 'https://mynewapp.com/logout.aspx'
 ```
 
 ```output
@@ -142,7 +142,7 @@ This command creates an application in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-New-EntraApplication -DisplayName "My new application" -IsDeviceOnlyAuthSupported $false
+New-EntraApplication -DisplayName 'My new application' -IsDeviceOnlyAuthSupported $false
 ```
 
 ```output
@@ -153,8 +153,6 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
 This example shows how to create an application having `-IsDeviceOnlyAuthSupported` parameter.
-
-This command creates an application in Microsoft Entra ID.  
 
 ## PARAMETERS
 
@@ -731,5 +729,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## RELATED LINKS
 
 - [Get-EntraApplication](Get-EntraApplication.md)
+
 - [Remove-EntraApplication](Remove-EntraApplication.md)
+
 - [Set-EntraApplication](Set-EntraApplication.md)
