@@ -38,7 +38,7 @@ Adds a new Microsoft Entra ID attribute set object.
 
 ### Example: Add a single attribute set.
 ```powershell
-New-AzureADMSAttributeSet -Id "Demo" -Description "Attributes for engineering team" -MaxAttributesPerSet 10
+New-AzureADMSAttributeSet -Id 'Demo' -Description 'Attributes for engineering team' -MaxAttributesPerSet 10
 ```
 ```output
 Name                           Value
@@ -60,7 +60,7 @@ This example adds a single attribute set.
 Description for the attribute set.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -75,7 +75,7 @@ Accept wildcard characters: False
 Name of the attribute set. Must be unique within a tenant.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -90,7 +90,7 @@ Accept wildcard characters: False
 Maximum number of custom security attributes that can be defined in the attribute set.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
