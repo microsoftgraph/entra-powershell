@@ -58,6 +58,7 @@ This cmdlet is used to set the logo for an application.
 ### Example 1: Sets the application logo for the application specified by the ObjectID parameter
 
 ```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All'
 Set-EntraApplicationLogo -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -FilePath 'D:\applogo.jpg'
 ```
 
