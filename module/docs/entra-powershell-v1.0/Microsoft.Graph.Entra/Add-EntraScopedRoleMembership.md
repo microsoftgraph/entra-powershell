@@ -18,6 +18,7 @@ schema: 2.0.0
 # Add-EntraScopedRoleMembership
 
 ## SYNOPSIS
+
 Adds a scoped role membership to an administrative unit.
 
 ## SYNTAX
@@ -32,6 +33,7 @@ Add-EntraScopedRoleMembership
 ```
 
 ## DESCRIPTION
+
 The Add-EntraScopedRoleMembership cmdlet adds a scoped role membership to an administrative unit.
 
 ## EXAMPLES
@@ -54,7 +56,7 @@ id                         : zTVcE8KFQ0W4bI9tvt6kz5G_C9Qom7tCpCzyrakzL7YfYhUwtb_
 roleId                     : dddddddd-bbbb-cccc-aaaa-aaaaaaaa
 AdministrativeUnitObjectId : aaaaaaaa-bbbb-cccc-aaaa-aaaaaaaa
 RoleObjectId               : ffffffff-bbbb-cccc-aaaa-aaaaaaaa
-ObjectId                   : zTVcE8KFQ0W4bI9tvt6kz5G_C9Qom7tCpCzyrakzL7YfYhUwtb_KQJI9hDn_fbKGU
+ObjectId                   : aaaaaaaaaaaaaaaaaaaaaa_bbbbbbbbbbbbbbbbbbbbbbbbbb_cccccccc_aaaaa
 ```
 This example adds a scoped role membership to an administrative unit.
 ## PARAMETERS
@@ -63,7 +65,7 @@ This example adds a scoped role membership to an administrative unit.
 Specifies the ID of an administrative unit.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -78,7 +80,7 @@ Accept wildcard characters: False
 Specifies the ID of an administrative unit.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -108,7 +110,7 @@ Accept wildcard characters: False
 Specifies DirectoryRole ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -130,6 +132,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraScopedRoleMembership](./Get-EntraScopedRoleMembership.md)
+[Get-EntraScopedRoleMembership](Get-EntraScopedRoleMembership.md)
 
-[Remove-EntraScopedRoleMembership](./Remove-EntraScopedRoleMembership.md)
+[Remove-EntraScopedRoleMembership](Remove-EntraScopedRoleMembership.md)
