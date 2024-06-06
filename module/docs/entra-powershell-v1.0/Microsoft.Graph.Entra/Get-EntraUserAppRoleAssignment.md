@@ -95,7 +95,7 @@ This command gets five user application role assignment for the specified user.
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -105,7 +105,6 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 ### -ObjectId
 Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.
 
