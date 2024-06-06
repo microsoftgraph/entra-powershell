@@ -2,7 +2,7 @@
 title: Get-EntraApplication.
 description: This article provides details on the Get-EntraApplication command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 06/04/2024
 ms.author: eunicewaweru

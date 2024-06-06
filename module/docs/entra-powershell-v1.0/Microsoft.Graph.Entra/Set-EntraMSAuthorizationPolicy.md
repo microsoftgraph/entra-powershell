@@ -2,7 +2,7 @@
 title: Set-EntraMSAuthorizationPolicy.
 description: This article provides details on the Set-EntraMSAuthorizationPolicy command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/21/2024
 ms.author: eunicewaweru

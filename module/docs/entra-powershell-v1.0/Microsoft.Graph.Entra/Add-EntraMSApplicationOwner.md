@@ -2,7 +2,7 @@
 title: Add-EntraMSApplicationOwner
 description: This article provides details on the Add-EntraMSApplicationOwner command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 06/04/2024
 ms.author: eunicewaweru
@@ -47,9 +47,9 @@ Add-EntraMSApplicationOwner -ObjectId $ApplicationId -RefObjectId $UserObjectId
 
 The first command gets an application using [Get-EntraMSApplication](./Get-EntraMSApplication.md) cmdlet, and stores
 the `ObjectId` property value in `$ApplicationId` variable.  
-
-The second command gets a user using [Get-EntraMSUser](./Get-EntraMSUser.md) cmdlet, and stores
-the `ObjectId` property value in `$UserObjectId` variable.  
+ 
+The second command gets a user using [Get-EntraUser](./Get-EntraUser.md) cmdlet, and stores 
+the ObjectId property value in $UserObjectId variable.  
 
 This final command adds an owner in $UserObjectId to an application in $ApplicationId.
 
