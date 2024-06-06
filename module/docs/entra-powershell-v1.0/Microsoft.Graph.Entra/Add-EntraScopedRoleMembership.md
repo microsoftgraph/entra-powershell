@@ -38,15 +38,17 @@ The Add-EntraScopedRoleMembership cmdlet adds a scoped role membership to an adm
 
 ## EXAMPLES
 
-### Example 1: Adds a scoped role membership to an administrative unit.
+### Example 1: Adds a scoped role membership to an administrative unit
+
 ```powershell
-    $User = Get-EntraUser -SearchString "The user that will be an admin on this unit"
-	$Role = Get-EntraDirectoryRole | Where-Object -Property DisplayName -EQ -Value "User Account Administrator"
-	$Unit = Get-EntraAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value "<Display name of unit"
-	$RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
-	$RoleMember.ObjectId = $User.ObjectID
-    Add-EntraScopedRoleMembership -ObjectId $unit.ObjectId -RoleObjectId $Role.ObjectId -RoleMemberInfo $RoleMember
+$User = Get-EntraUser -SearchString "The user that will be an admin on this unit"
+$Role = Get-EntraDirectoryRole | Where-Object -Property DisplayName -EQ -Value "User Account Administrator"
+$Unit = Get-EntraAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value "<Display name of unit"
+$RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
+$RoleMember.ObjectId = $User.ObjectID
+Add-EntraScopedRoleMembership -ObjectId $unit.ObjectId -RoleObjectId $Role.ObjectId -RoleMemberInfo $RoleMember
 ```
+
 ```output
 @odata.context             : https://graph.microsoft.com/v1.0/$metadata#scopedRoleMemberships/$entity
 administrativeUnitId       : aaaaaaaa-bbbb-cccc-aaaa-aaaaaaaa
@@ -58,11 +60,13 @@ AdministrativeUnitObjectId : aaaaaaaa-bbbb-cccc-aaaa-aaaaaaaa
 RoleObjectId               : ffffffff-bbbb-cccc-aaaa-aaaaaaaa
 ObjectId                   : aaaaaaaaaaaaaaaaaaaaaa_bbbbbbbbbbbbbbbbbbbbbbbbbb_cccccccc_aaaaa
 ```
+
 This example adds a scoped role membership to an administrative unit.
 
 ## PARAMETERS
 
 ### -AdministrativeUnitObjectId
+
 Specifies the ID of an administrative unit.
 
 ```yaml
@@ -78,6 +82,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of an administrative unit.
 
 ```yaml
@@ -93,10 +98,11 @@ Accept wildcard characters: False
 ```
 
 ### -RoleMemberInfo
-Specifies a RoleMemberInfo object. 
+
+Specifies a RoleMemberInfo object.
 
 ```yaml
-Type: RoleMemberInfo
+Type: System.RoleMemberInfo
 Parameter Sets: (All)
 Aliases:
 
@@ -108,6 +114,7 @@ Accept wildcard characters: False
 ```
 
 ### -RoleObjectId
+
 Specifies DirectoryRole ID.
 
 ```yaml
@@ -123,7 +130,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
