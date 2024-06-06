@@ -18,6 +18,7 @@ schema: 2.0.0
 # Add-EntraAdministrativeUnitMember
 
 ## SYNOPSIS
+
 Adds an administrative unit member.
 
 ## SYNTAX
@@ -30,13 +31,14 @@ Add-EntraAdministrativeUnitMember
 ```
 
 ## DESCRIPTION
+
 The Add-EntraAdministrativeUnitMember cmdlet adds a Microsoft Entra ID administrative unit member.
 
 ## EXAMPLES
 
 ### Example 1: Add an administrative unit member
 ```powershell
-PS C:\> Add-EntraAdministrativeUnitMember -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -ObjectId "dddddddd-1111-2222-3333-cccccccccccc"
+Add-EntraAdministrativeUnitMember -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -ObjectId "dddddddd-2222-2222-3333-cccccccccccc"
 ```
 This example demonstrated how to add administrative unit member.
 ## PARAMETERS
@@ -45,7 +47,7 @@ This example demonstrated how to add administrative unit member.
 Specifies the ID of a Microsoft Entra ID administrative unit.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -60,7 +62,7 @@ Accept wildcard characters: False
 Specifies the unique ID of the specific Microsoft Entra ID object that assign as owner/manager/member.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
