@@ -61,7 +61,7 @@ The `Get-EntraApplication` cmdlet gets a Microsoft Entra ID application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+Get-EntraApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```output
@@ -91,7 +91,6 @@ test adms2          iiiiiiii-aaaa-bbbb-cccc-jjjjjjjjjjjj jjjjjjjj-bbbb-cccc-dddd
 ```
 
 This example demonstrates how to get all applications from Microsoft Entra ID.  
-This command gets the all applications in Microsoft Entra ID.
 
 ### Example 3: Get top five applications
 
@@ -110,8 +109,7 @@ test adms app azure gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb
 test adms2          iiiiiiii-aaaa-bbbb-cccc-jjjjjjjjjjjj jjjjjjjj-bbbb-cccc-dddd-kkkkkkkkkkkk AzureADandPersonalMicrosoftAccount contoso.com
 ```
 
-This example demonstrates how to get top five applications from Microsoft Entra ID.  
-This command gets the top five applications.
+This example demonstrates how to get top five applications from Microsoft Entra ID.
 
 ### Example 4: Get an application by display name
 
@@ -126,8 +124,7 @@ DisplayName     Id                                   AppId                      
 ToGraph_443DEMO cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg   contoso.com
 ```
 
-In this example, we retrieve application by userPrincipalName from Microsoft Entra ID.
-This command gets an application by its display name.
+In this example, we retrieve application by its display name from Microsoft Entra ID.
 
 ### Example 5: Search among retrieved applications
 
@@ -142,7 +139,6 @@ DisplayName          Id                                   AppId                 
 My new application 2 kkkkkkkk-cccc-dddd-eeee-llllllllllll llllllll-dddd-eeee-ffff-mmmmmmmmmmmm AzureADandPersonalMicrosoftAccount contoso.com
 ```
 
-This example demonstrates how to retrieve applications for specific string from Microsoft Entra ID.
 This cmdlet gets all applications that match the value of SearchString against the first characters in DisplayName.
 
 ### Example 6: Retrieve an application by identifierUris

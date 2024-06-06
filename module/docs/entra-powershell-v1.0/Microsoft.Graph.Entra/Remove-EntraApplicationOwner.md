@@ -40,7 +40,7 @@ The Remove-EntraApplicationOwner cmdlet removes an owner from an application in 
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Remove-EntraApplicationOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -OwnerId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+Remove-EntraApplicationOwner -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -OwnerId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 This command removes the specified owner from the specified application.
@@ -92,4 +92,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## RELATED LINKS
 
 - [Add-EntraApplicationOwner](Add-EntraApplicationOwner.md)
+
 - [Get-EntraApplicationOwner](Get-EntraApplicationOwner.md)

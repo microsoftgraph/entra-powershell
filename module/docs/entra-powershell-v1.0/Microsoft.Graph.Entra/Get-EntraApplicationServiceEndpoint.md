@@ -43,7 +43,8 @@ Other services can use the information stored in the ServiceEndpoint entity to f
 ### Example 1: Retrieve the application service endpoint by ID
 
 ```powershell
-Get-EntraApplicationServiceEndpoint -ObjectId aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraApplicationServiceEndpoint -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 This example demonstrates how to retrieve service endpoint of the application that is specified through the Object ID parameter.
@@ -51,7 +52,8 @@ This example demonstrates how to retrieve service endpoint of the application th
 ### Example 2: Get all service endpoints
 
 ```powershell
-Get-EntraApplicationServiceEndpoint -ObjectId aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb -All 
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraApplicationServiceEndpoint -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All 
 ```
 
 This example demonstrates how to retrieve all service endpoints of a specified application.
@@ -59,7 +61,8 @@ This example demonstrates how to retrieve all service endpoints of a specified a
 ### Example 2: Get top five service endpoints
 
 ```powershell
-Get-EntraApplicationServiceEndpoint -ObjectId aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb -Top 5
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraApplicationServiceEndpoint -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 5
 ```
 
 This example demonstrates how to retrieve five service endpoints of a specified application.
@@ -71,7 +74,7 @@ This example demonstrates how to retrieve five service endpoints of a specified 
 Return all service endpoints.
 
 ```yaml
-Type: System.SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 

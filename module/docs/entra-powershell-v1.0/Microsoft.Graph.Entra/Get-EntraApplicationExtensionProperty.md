@@ -39,7 +39,7 @@ The `Get-EntraApplicationExtensionProperty` cmdlet gets application extension pr
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraApplicationExtensionProperty -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84"
+Get-EntraApplicationExtensionProperty -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```output
@@ -81,4 +81,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 - [New-EntraApplicationExtensionProperty](New-EntraApplicationExtensionProperty.md)
+
 - [Remove-EntraApplicationExtensionProperty](Remove-EntraApplicationExtensionProperty.md)

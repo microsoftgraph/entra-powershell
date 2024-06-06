@@ -45,11 +45,11 @@ $UserObjectId = (Get-EntraUser -Top 1).ObjectId
 Add-EntraApplicationOwner -ObjectId $ApplicationId -RefObjectId $UserObjectId
 ```
 
-The first command gets an application using [Get-EntraApplication](./Get-EntraApplication.md) cmdlet, and stores the ObjectId property value in $ApplicationId variable.  
+- The first command gets an application using [Get-EntraApplication](./Get-EntraApplication.md) cmdlet, and stores the ObjectId property value in $ApplicationId variable.  
 
-The second command gets a user using [Get-EntraUser](./Get-EntraUser.md) cmdlet, and stores the ObjectId property value in $UserObjectId variable.  
+- The second command gets a user using [Get-EntraUser](./Get-EntraUser.md) cmdlet, and stores the ObjectId property value in $UserObjectId variable.  
 
-This final command adds an owner in $UserObjectId to an application in $ApplicationId.
+- This final command adds an owner in $UserObjectId to an application in $ApplicationId.
 
 This command adds an owner to an application.
 
@@ -100,4 +100,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 - [Get-EntraApplicationOwner](Get-EntraApplicationOwner.md)
+
 - [Remove-EntraApplicationOwner](Remove-EntraApplicationOwner.md)

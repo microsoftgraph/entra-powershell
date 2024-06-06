@@ -39,7 +39,7 @@ The `Remove-EntraApplication` cmdlet removes the specified application from Micr
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-`Remove-EntraApplication` -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+Remove-EntraApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 This command removes the specified application.
@@ -75,5 +75,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## RELATED LINKS
 
 - [Get-EntraApplication](Get-EntraApplication.md)
+
 - [New-EntraApplication](New-EntraApplication.md)
+
 - [Set-EntraApplication](Set-EntraApplication.md)
