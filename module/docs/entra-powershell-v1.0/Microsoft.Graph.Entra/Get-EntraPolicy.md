@@ -19,6 +19,7 @@ schema: 2.0.0
 # Get-EntraPolicy
 
 ## SYNOPSIS
+
 Gets a policy.
 
 ## SYNTAX
@@ -40,13 +41,14 @@ Get-EntraPolicy
 ```
 
 ## DESCRIPTION
+
 The Get-EntraPolicy cmdlet gets a policy in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Gets all policy 
 ```powershell
-PS C:\> Get-EntraPolicy
+Get-EntraPolicy
 ```
 ```output
 Name                           Value
@@ -68,7 +70,7 @@ This exmaple return all the policy.
 
 ### Example 2: Get a policy with specific ID.
 ```powershell
-PS C:\> Get-EntraPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
+Get-EntraPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
 ```
 ```output
 Name                           Value
@@ -84,7 +86,7 @@ This example demonstrated how to receive policy with specific ID.
 
 ### Example 4: Get a top one policy 
 ```powershell
-PS C:\> Get-EntraPolicy -Top 1
+Get-EntraPolicy -Top 1
 ```
 ```output
 Name                           Value
@@ -105,7 +107,7 @@ This example Return top one policy.
 The ID of the policy you want to retrieve
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -135,7 +137,7 @@ Accept wildcard characters: False
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: GetQuery
 Aliases:
 
