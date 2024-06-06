@@ -19,6 +19,7 @@ schema: 2.0.0
 # New-EntraMSAttributeSet
 
 ## SYNOPSIS
+
 Adds a new attribute set.
 
 ## SYNTAX
@@ -32,13 +33,14 @@ New-AzureADMSAttributeSet
 ```
 
 ## DESCRIPTION
+
 Adds a new Microsoft Entra ID attribute set object.
 
 ## EXAMPLES
 
 ### Example: Add a single attribute set.
 ```powershell
-PS C:\>New-AzureADMSAttributeSet -Id 'Demo' -Description 'Attributes for engineering team' -MaxAttributesPerSet 10
+New-AzureADMSAttributeSet -Id 'Demo' -Description 'Attributes for engineering team' -MaxAttributesPerSet 10
 ```
 ```output
 Name                           Value
