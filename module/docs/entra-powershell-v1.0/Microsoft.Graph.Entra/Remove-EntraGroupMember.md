@@ -2,7 +2,7 @@
 title: Remove-EntraGroupMember.
 description: This article provides details on the Remove-EntraGroupMember command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/07/2024
 ms.author: eunicewaweru

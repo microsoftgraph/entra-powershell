@@ -2,7 +2,7 @@
 title:  Get-EntraServicePrincipalPasswordCredential.
 description: This article provides details on the  Get-EntraServicePrincipalPasswordCredential Command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 06/02/2024
 ms.author: eunicewaweru

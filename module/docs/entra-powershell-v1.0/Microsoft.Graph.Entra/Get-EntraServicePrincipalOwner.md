@@ -2,7 +2,7 @@
 title: Get-EntraServicePrincipalOwner
 description: This article provides details on the Get-EntraServicePrincipalOwner command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 06/02/2024
 ms.author: eunicewaweru
@@ -94,7 +94,6 @@ bbbbbbbb-1111-2222-3333-cccccccccccc Peter Kons     Peter@contoso.com   Member
 This command gets top two owners of a service principal.
 
 ## PARAMETERS
-
 ### -All
 
 List all pages.
@@ -110,7 +109,6 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 ### -ObjectId
 
 Specifies the ID of a service principal in Microsoft Entra ID.

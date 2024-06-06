@@ -2,7 +2,7 @@
 title: Select-EntraGroupIdsUserIsMemberOf.
 description: This article provides details on the Select-EntraGroupIdsUserIsMemberOf command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 11/10/2023
 ms.author: eunicewaweru

@@ -2,7 +2,7 @@
 title: Get-EntraOAuth2PermissionGrant.
 description: This article provides details on the Get-EntraOAuth2PermissionGrant Command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/22/2024
 ms.author: eunicewaweru
@@ -82,7 +82,7 @@ This command gets top 2 OAuth2 permission grants records.
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -92,7 +92,6 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 ### -Top
 Specifies the maximum number of records to return.
 

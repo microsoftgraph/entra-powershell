@@ -2,7 +2,7 @@
 title: New-EntraServicePrincipalPasswordCredential.
 description: This article provides details on the New-EntraServicePrincipalPasswordCredential command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 06/02/2024
 ms.author: eunicewaweru

@@ -2,7 +2,7 @@
 title: Add-EntraGroupMember.
 description: This article explains the Add-EntraGroupMember command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 11/10/2023
 ms.author: eunicewaweru

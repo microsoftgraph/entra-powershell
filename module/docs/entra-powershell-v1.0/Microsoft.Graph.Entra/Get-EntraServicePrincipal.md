@@ -2,7 +2,7 @@
 title: Get-EntraServicePrincipal
 description: This article provides details on the Get-EntraServicePrincipal command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 06/02/2024
 ms.author: eunicewaweru
@@ -166,7 +166,8 @@ This command gets a list of service principal, which has the specified display n
 List all pages.
 
 ```yaml
-Type: System.Boolean
+
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 

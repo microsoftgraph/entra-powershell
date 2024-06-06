@@ -2,7 +2,7 @@
 title: Get-EntraServicePrincipalOAuth2PermissionGrant.
 description: This article provides details on the Get-EntraServicePrincipalOAuth2PermissionGrant command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 06/02/2024
 ms.author: eunicewaweru
@@ -98,7 +98,7 @@ This command gets two OAuth2 permission grants of a service principal for specif
 List all pages.
 
 ```yaml
-Type: System.Boolean
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
