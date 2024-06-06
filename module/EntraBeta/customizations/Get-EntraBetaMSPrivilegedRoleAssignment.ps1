@@ -81,10 +81,10 @@
         $response = Invoke-GraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri
         try {    
             $call = $response.value 
-            $call.GetEnumerator() | format-table -HideTableHeaders
+            $call
         }
         catch {
-            $response.GetEnumerator() | format-table -HideTableHeaders
+            $response
         }
     } 
 '@
