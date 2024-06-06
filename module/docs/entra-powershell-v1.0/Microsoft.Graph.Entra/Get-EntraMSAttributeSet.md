@@ -18,6 +18,7 @@ schema: 2.0.0
 # Get-EntraMSAttributeSet
 
 ## SYNOPSIS
+
 Gets a list of attribute sets.
 
 ## SYNTAX
@@ -36,6 +37,7 @@ Get-EntraMSAttributeSett
 ```
 
 ## DESCRIPTION
+
 Gets a list of Microsoft Entra ID attribute sets.
 
 ## EXAMPLES
@@ -59,7 +61,7 @@ This example Get all attribute sets.
 
 ### Example 2: Get an attribute sets.
 ```powershell
-Get-EntraMSAttributeSet -Id "Engineering"
+Get-EntraMSAttributeSet -Id 'Engineering'
 ```
 ```output
 description                           id                    maxAttributesPerSet
@@ -77,7 +79,7 @@ This example gets an attribute set.
 The unique identifier of a Microsoft Entra ID set object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
