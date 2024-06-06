@@ -40,12 +40,12 @@ The Add-EntraScopedRoleMembership cmdlet adds a scoped role membership to an adm
 
 ### Example 1: Adds a scoped role membership to an administrative unit.
 ```powershell
-PS C:\>$User = Get-EntraUser -SearchString "The user that will be an admin on this unit"
+    $User = Get-EntraUser -SearchString "The user that will be an admin on this unit"
 	$Role = Get-EntraDirectoryRole | Where-Object -Property DisplayName -EQ -Value "User Account Administrator"
 	$Unit = Get-EntraAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value "<Display name of unit"
 	$RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
 	$RoleMember.ObjectId = $User.ObjectID
-PS C:\>Add-EntraScopedRoleMembership -ObjectId $unit.ObjectId -RoleObjectId $Role.ObjectId -RoleMemberInfo $RoleMember
+    Add-EntraScopedRoleMembership -ObjectId $unit.ObjectId -RoleObjectId $Role.ObjectId -RoleMemberInfo $RoleMember
 ```
 ```output
 @odata.context             : https://graph.microsoft.com/v1.0/$metadata#scopedRoleMemberships/$entity
@@ -59,6 +59,7 @@ RoleObjectId               : ffffffff-bbbb-cccc-aaaa-aaaaaaaa
 ObjectId                   : aaaaaaaaaaaaaaaaaaaaaa_bbbbbbbbbbbbbbbbbbbbbbbbbb_cccccccc_aaaaa
 ```
 This example adds a scoped role membership to an administrative unit.
+
 ## PARAMETERS
 
 ### -AdministrativeUnitObjectId
