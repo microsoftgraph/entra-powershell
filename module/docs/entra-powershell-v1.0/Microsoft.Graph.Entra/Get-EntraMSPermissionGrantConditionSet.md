@@ -19,11 +19,13 @@ schema: 2.0.0
 # Get-EntraMSPermissionGrantConditionSet
 
 ## SYNOPSIS
+
 Get a Microsoft Entra ID permission grant condition set by id.
 
 ## SYNTAX
 
 ### GetQuery (Default)
+
 ```powershell
 Get-EntraMSPermissionGrantConditionSet 
  -ConditionSetType <String> 
@@ -32,6 +34,7 @@ Get-EntraMSPermissionGrantConditionSet
 ```
 
 ### GetById
+
 ```powershell
 Get-EntraMSPermissionGrantConditionSet 
  -ConditionSetType <String> 
@@ -41,53 +44,61 @@ Get-EntraMSPermissionGrantConditionSet
 ```
 
 ## DESCRIPTION
+
 Get a Microsoft Entra ID permission grant condition set object by id.
 
 ## EXAMPLES
 
 ### Example 1: Get all permission grant condition sets that are included in the permission grant policy
+
 ```powershell
-PS C:\>Get-EntraMSPermissionGrantConditionSet -PolicyId "policy1" -ConditionSetType "includes"
+Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
+Get-EntraMSPermissionGrantConditionSet -PolicyId "policy1" -ConditionSetType "includes"
 ```
 
 ```output
 Id                                   ClientApplicationIds                   ClientApplicationPublisherIds          ClientApplicationTenantIds             ClientApplicationsFromVerifiedPublisherOnly
 --                                   --------------------                   -----------------------------          --------------------------             -------------------------------------------
-4ccf1a57-4c5e-4ba6-9175-00407743b0e2 {b548ef2c-0bf0-4164-b7f9-99413111826d} {all}                                  {d5aec55f-2d12-4442-8d2f-ccca95d4390e} True
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb {00001111-aaaa-2222-bbbb-3333cccc4444} {all}                                  {aaaabbbb-0000-cccc-1111-dddd2222eeee} True
 ```
 
 This command gets all permission grant condition sets that are included in the policy.
 
 ### Example 2: Get all permission grant condition sets that are excluded in the permission grant policy
+
 ```powershell
-PS C:\>Get-EntraMSPermissionGrantConditionSet -PolicyId "policy1" -ConditionSetType "excludes"
+Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
+Get-EntraMSPermissionGrantConditionSet -PolicyId "policy1" -ConditionSetType "excludes"
 ```
 
 ```output
 Id                                   ClientApplicationIds                   ClientApplicationPublisherIds          ClientApplicationTenantIds             ClientApplicationsFromVerifiedPublisherOnly
 --                                   --------------------                   -----------------------------          --------------------------             -------------------------------------------
-167e834e-eb78-4773-9994-9ee3a5f37304 {b548ef2c-0bf0-4164-b7f9-99413111826d} {all}                                  {d5aec55f-2d12-4442-8d2f-ccca95d4390e} True
-97120a4b-bfe7-4470-8d0b-67bde0127535 {31655662-0682-4a95-9010-f0ffb9b4cbd3} {d5aec55f-2d12-4442-8d2f-ccca95d4390e} {d5aec55f-2d12-4442-8d2f-ccca95d4390e} True
+cccccccc-2222-3333-4444-dddddddddddd {33334444-dddd-5555-eeee-6666ffff7777} {all}                                  {aaaabbbb-0000-cccc-1111-dddd2222eeee} True
+bbbbbbbb-1111-2222-3333-cccccccccccc {11112222-bbbb-3333-cccc-4444dddd5555} {all}                                  {aaaabbbb-0000-cccc-1111-dddd2222eeee} True
 ```
 
 This command gets all permission grant condition sets that are excluded in the policy.
 
 ### Example 3: Get a permission grant condition set
+
 ```powershell
-PS C:\>Get-EntraMSPermissionGrantConditionSet -PolicyId "policy1" -ConditionSetType "includes" -Id "4ccf1a57-4c5e-4ba6-9175-00407743b0e2"
+Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
+Get-EntraMSPermissionGrantConditionSet -PolicyId "policy1" -ConditionSetType "includes" -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 ```
 
 ```output
 Id                                   ClientApplicationIds                   ClientApplicationPublisherIds          ClientApplicationTenantIds             ClientApplicationsFromVerifiedPublisherOnly
 --                                   --------------------                   -----------------------------          --------------------------             -------------------------------------------
-4ccf1a57-4c5e-4ba6-9175-00407743b0e2 {b548ef2c-0bf0-4164-b7f9-99413111826d} {all}                                  {d5aec55f-2d12-4442-8d2f-ccca95d4390e} True
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb {00001111-aaaa-2222-bbbb-3333cccc4444} {all}                                  {aaaabbbb-0000-cccc-1111-dddd2222eeee} True
 ```
 
-This command gets a permission grant condition set specified by Id.
+This command gets a permission grant condition set specified by `Id`.
 
 ## PARAMETERS
 
 ### -PolicyId
+
 The unique identifier of a Microsoft Entra ID permission grant policy object.
 
 ```yaml
@@ -103,6 +114,7 @@ Accept wildcard characters: False
 ```
 
 ### -ConditionSetType
+
 The value indicates whether the condition sets are included in the policy or excluded.
 
 ```yaml
@@ -118,6 +130,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
+
 The unique identifier of a Microsoft Entra ID permission grant condition set object.
 
 ```yaml
@@ -133,16 +146,21 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### String
+
 ### String
+
 ### String
+
 ## OUTPUTS
 
 ### Microsoft.Open.MSGraph.Model.PermissionGrantConditionSet
+
 ## NOTES
 
 ## RELATED LINKS

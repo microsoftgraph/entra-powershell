@@ -18,6 +18,7 @@ schema: 2.0.0
 # Get-EntraMSApplicationExtensionProperty
 
 ## SYNOPSIS
+
 Retrieves the list of extension properties on an application object.
 
 ## SYNTAX
@@ -29,21 +30,24 @@ Get-EntraMSApplicationExtensionProperty
 ```
 
 ## DESCRIPTION
+
 Retrieves the list of extension properties on an application object.
 
 ## EXAMPLES
 
-### Example 1: Get extension properties.
+### Example 1: Get extension properties
+
 ```powershell
-PS C:\>Get-EntraMSApplicationExtensionProperty -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84"
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraMSApplicationExtensionProperty -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```output
 DeletedDateTime Id                                   AppDisplayName DataType IsSyncedFromOnPremises Name                                                     TargetObjects
 --------------- --                                   -------------- -------- ---------------------- ----                                                     -------------
-                9978e52f-1499-4a11-aead-95df460ffa0b                String   False                  extension_418f12ad979549bbaebda0102973258b_NewAttribute2 {}
-                76ff06dc-65cb-4a9b-bf66-5b8e20aa8abf                String   False                  extension_418f12ad979549bbaebda0102973258b_NewAttribute1 {}
-                b901db71-2d86-454b-b2f7-fd1dfbfceac9                String   False                  extension_418f12ad979549bbaebda0102973258b_NewAttribute  {}
+                aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb                String   False                  extension_418f12ad979549bbaebda0102973258b_NewAttribute2 {}
+                bbbbbbbb-7777-8888-9999-cccccccccccc                String   False                  extension_418f12ad979549bbaebda0102973258b_NewAttribute1 {}
+                cccccccc-8888-9999-0000-dddddddddddd                String   False                  extension_418f12ad979549bbaebda0102973258b_NewAttribute  {}
 ```
 
 This command gets the extension properties for the specified application in Microsoft Entra ID.
@@ -51,6 +55,7 @@ This command gets the extension properties for the specified application in Micr
 ## PARAMETERS
 
 ### -ObjectId
+
 The unique identifier of the object specific Microsoft Entra ID object.
 
 ```yaml
@@ -66,14 +71,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### string
+
 ## OUTPUTS
 
 ### Microsoft.Open.MSGraph.Model.GetExtensionPropertiesResponse
+
 ## NOTES
 
 ## RELATED LINKS
