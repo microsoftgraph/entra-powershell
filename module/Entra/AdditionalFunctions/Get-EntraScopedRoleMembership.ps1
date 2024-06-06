@@ -11,13 +11,14 @@ function Get-EntraScopedRoleMembership {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{ObjectId = "Id"}
-        $isList = $true
+        $isList = $false
         $baseUri = "https://graph.microsoft.com/v1.0/directory/administrativeUnits/"        
         if($null -ne $PSBoundParameters["ObjectId"])
         {
             $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]
             $uri = $baseUri + "/$($params.AdministrativeUnitId)/scopedRoleMembers"
             $params["Uri"] = $uri
+            $isList = $true
         }
         if($null -ne $PSBoundParameters["ScopedRoleMembershipId"])
         {
