@@ -8,6 +8,6 @@
     Outputs = $null
     CustomScript = @'
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-    (Get-MgApplication -Headers $customHeaders -ApplicationId `$PSBoundParameters["ObjectId"]).PasswordCredentials
+    (Get-MgApplication -Headers $customHeaders -ApplicationId $PSBoundParameters["ObjectId"]).PasswordCredentials
 '@
 }

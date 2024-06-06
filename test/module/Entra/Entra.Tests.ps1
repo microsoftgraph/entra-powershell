@@ -6,12 +6,12 @@ Import-Module Pester
 
 $psmPath = (Get-Module Microsoft.Graph.Entra).Path
 $testReportPath = join-path $psscriptroot "..\..\..\TestReport\Entra"
-$mockScriptsPath = join-path $psscriptroot "..\..\..\test\module\Entra\Mock-*.Tests.ps1"
+$mockScriptsPath = join-path $psscriptroot "..\..\..\test\module\Entra\*.Tests.ps1"
 
 $testOutputFile = "$testReportPath\TestResults.xml"
 if (!(test-path -path $testReportPath)) {new-item -path $testReportPath -itemtype directory}
 
-$mockScripts = Get-ChildItem -Path $mockScriptsPath | ForEach-Object { $_.FullName }
+$mockScripts = Get-ChildItem -Path $mockScriptsPath -Exclude "Entra.Tests.ps1" | ForEach-Object { $_.FullName }
 
 $config = New-PesterConfiguration
 $config.Run.Path = $mockScripts
