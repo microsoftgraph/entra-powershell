@@ -2,7 +2,7 @@
 title: Get-EntraEnvironment
 description: This article provides details on the Get-EntraEnvironment command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 05/07/2024
 ms.author: eunicewaweru

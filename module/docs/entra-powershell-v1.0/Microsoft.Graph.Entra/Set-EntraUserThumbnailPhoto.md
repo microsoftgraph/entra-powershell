@@ -2,7 +2,7 @@
 title: Set-EntraUserThumbnailPhoto.
 description: This article provides details on the Set-EntraUserThumbnailPhoto command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 04/08/2024
 ms.author: eunicewaweru
