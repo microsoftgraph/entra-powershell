@@ -1,10 +1,9 @@
 ---
-title: Remove-EntraAdministrativeUnitMember.
-description: This article provides details on the Remove-EntraAdministrativeUnitMember command.
-
+title: Remove-EntraApplicationPolicy.
+description: This article provides details on the Remove-EntraApplicationPolicy command.
 ms.service: active-directory
 ms.topic: reference
-ms.date: 06/05/2024
+ms.date: 06/06/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -15,40 +14,40 @@ online version:
 schema: 2.0.0
 ---
 
-# Remove-EntraAdministrativeUnitMember
+# Remove-EntraApplicationPolicy
 
 ## SYNOPSIS
 
-Removes an administrative unit member.
+Removes an application policy.
 
 ## SYNTAX
 
 ```powershell
-Remove-EntraAdministrativeUnitMember 
- -ObjectId <String> 
- -MemberId <String>
+Remove-EntraApplicationPolicy 
+ -Id <String> 
+ -PolicyId <String> 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-The Remove-EntraAdministrativeUnitMember cmdlet removes an administrative unit member in Microsoft Entra ID.
+The Remove-EntraApplicationPolicy cmdlet removes an application policy from Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1: Remove an  administrative unit member
+### Example 1: Remove an application policy
 
 ```powershell
-PS C:\> Remove-EntraAdministrativeUnitMember -ObjectId "00000000-1111-1111-1111-000000000000" -MemberId "aaaaaaaa-bbbb-aaaa-aaaa-000000000000"
+Remove-EntraApplicationPolicy -ObjectId '00000000-1111-1111-1111-000000000000' -PolicyId '44444444-1111-1111-1111-000000000000'
 ```
 
-This example removes an administrative unit member from Microsoft Entra ID.
+This command removes the specified application policy.
 
 ## PARAMETERS
 
-### -MemberId
+### -PolicyId
 
-Specifies the ID of the administrative unit member.
+Specifies the ID of the policy.
 
 ```yaml
 Type: System.String
@@ -62,9 +61,9 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -Id
 
-Specifies the ID of an administrative unit in Microsoft Entra ID.
+Specifies the ID of Policy.
 
 ```yaml
 Type: System.String
@@ -90,6 +89,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## RELATED LINKS
 
-[Add-EntraAdministrativeUnitMember](Add-EntraAdministrativeUnitMember.md)
+[Add-EntraApplicationPolicy](Add-EntraApplicationPolicy.md)
 
-[Get-EntraAdministrativeUnitMember](Get-EntraAdministrativeUnitMember.md)
+[Get-EntraADApplicationPolicy](Get-EntraADApplicationPolicy.md)

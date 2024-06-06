@@ -1,10 +1,10 @@
 ---
-title: Remove-EntraAdministrativeUnitMember.
-description: This article provides details on the Remove-EntraAdministrativeUnitMember command.
+title: Remove-EntraScopedRoleMembership.
+description: This article provides details on the Remove-EntraScopedRoleMembership command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 06/05/2024
+ms.date: 06/006/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -15,40 +15,40 @@ online version:
 schema: 2.0.0
 ---
 
-# Remove-EntraAdministrativeUnitMember
+# Remove-EntraScopedRoleMembership
 
 ## SYNOPSIS
 
-Removes an administrative unit member.
+Removes a scoped role membership.
 
 ## SYNTAX
 
 ```powershell
-Remove-EntraAdministrativeUnitMember 
+Remove-EntraScopedRoleMembership 
  -ObjectId <String> 
- -MemberId <String>
+ -ScopedRoleMembershipId <String> 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-The Remove-EntraAdministrativeUnitMember cmdlet removes an administrative unit member in Microsoft Entra ID.
+The Remove-EntraScopedRoleMembership cmdlet removes a scoped role membership from Microsoft Entra ID.
 
 ## EXAMPLES
 
-### Example 1: Remove an  administrative unit member
+### Example 1: Removes a scoped role membership
 
 ```powershell
-PS C:\> Remove-EntraAdministrativeUnitMember -ObjectId "00000000-1111-1111-1111-000000000000" -MemberId "aaaaaaaa-bbbb-aaaa-aaaa-000000000000"
+Remove-EntraScopedRoleMembership -ObjectId '00000000-1111-1111-1111-000000000000' -ScopedRoleMembershipId '44444444-1111-1111-1111-000000000000'
 ```
 
-This example removes an administrative unit member from Microsoft Entra ID.
+This example demonstrates how to Removes a scoped role membership.
 
 ## PARAMETERS
 
-### -MemberId
+### -ObjectId
 
-Specifies the ID of the administrative unit member.
+Specifies an object ID.
 
 ```yaml
 Type: System.String
@@ -62,9 +62,9 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ScopedRoleMembershipId
 
-Specifies the ID of an administrative unit in Microsoft Entra ID.
+Specifies the ID of the scoped role membership to remove.
 
 ```yaml
 Type: System.String
@@ -90,6 +90,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## RELATED LINKS
 
-[Add-EntraAdministrativeUnitMember](Add-EntraAdministrativeUnitMember.md)
+[Add-EntraScopedRoleMembership](Add-EntraScopedRoleMembership.md)
 
-[Get-EntraAdministrativeUnitMember](Get-EntraAdministrativeUnitMember.md)
+[Get-EntraScopedRoleMembership](Get-EntraScopedRoleMembership.md)
