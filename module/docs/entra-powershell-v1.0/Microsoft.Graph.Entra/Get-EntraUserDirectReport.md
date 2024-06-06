@@ -107,7 +107,7 @@ This command gets the five direct report for the specified user.
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 

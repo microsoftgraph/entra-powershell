@@ -100,7 +100,7 @@ Accept wildcard characters: False
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
