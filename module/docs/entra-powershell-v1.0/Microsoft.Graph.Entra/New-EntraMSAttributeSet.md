@@ -38,7 +38,7 @@ Adds a new Microsoft Entra ID attribute set object.
 
 ### Example: Add a single attribute set.
 ```powershell
-New-AzureADMSAttributeSet -Id 'Demo' -Description 'Attributes for engineering team' -MaxAttributesPerSet 10
+PS C:\>New-AzureADMSAttributeSet -Id 'Demo' -Description 'Attributes for engineering team' -MaxAttributesPerSet 10
 ```
 ```output
 Name                           Value
@@ -47,7 +47,6 @@ Name                           Value
 id                             Demo
 description                    Attributes for engineering team
 maxAttributesPerSet            10
-
 ```
 
 This example adds a single attribute set.
