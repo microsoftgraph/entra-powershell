@@ -11,23 +11,29 @@ function Get-EntraScopedRoleMembership {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{ObjectId = "Id"}
-        $baseUri = ""
+        $isList = $true
+        $baseUri = "https://graph.microsoft.com/v1.0/directory/administrativeUnits/"        
+        if($null -ne $PSBoundParameters["ObjectId"])
+        {
+            $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]
+            $uri = $baseUri + "/$($params.AdministrativeUnitId)/scopedRoleMembers"
+            $params["Uri"] = $uri
+        }
+        if($null -ne $PSBoundParameters["ScopedRoleMembershipId"])
+        {
+            $isList = $false
+            $params["ScopedRoleMembershipId"] = $PSBoundParameters["ScopedRoleMembershipId"]
+            $uri = $uri + "/$($params.ScopedRoleMembershipId)"
+            $params["Uri"] = $uri
+        }
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
             $params["Verbose"] = $Null
         }
-        if($null -ne $PSBoundParameters["ObjectId"])
-        {
-            $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]
-        }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
             $params["Debug"] = $Null
-        }
-        if($null -ne $PSBoundParameters["ScopedRoleMembershipId"])
-        {
-            $params["ScopedRoleMembershipId"] = $PSBoundParameters["ScopedRoleMembershipId"]
-        }
+        }        
         if($null -ne $PSBoundParameters["WarningVariable"])
         {
             $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
@@ -67,21 +73,21 @@ function Get-EntraScopedRoleMembership {
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================
-")
+        Write-Debug("=========================================================================")
         
-        $response = Get-MgBetaDirectoryAdministrativeUnitScopedRoleMember @params -Headers $customHeaders
+        $response = (Invoke-GraphRequest -Uri $uri -Headers $customHeaders -Method GET) | ConvertTo-Json -Depth 5 | ConvertFrom-Json
+        if($isList){
+            $response = $response.value
+        }
+        
         $response | ForEach-Object {
-            if ($null -ne $_) {
-                
-                $propsToConvert = @('RoleMemberInfo')
-        
-                foreach ($prop in $propsToConvert) {
-                    $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
-                    $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
-                }
+            if ($null -ne $_) {                    
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name AdministrativeUnitObjectId -Value AdministrativeUnitId
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name RoleObjectId -Value RoleId
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
             }
         }
-        $response
-    }       
-}
+        
+        $response    
+    }
+}  
