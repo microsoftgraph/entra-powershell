@@ -40,7 +40,7 @@ Updates a Microsoft Entra ID attribute set object identified by ID.
 
 ### Example 1: Update an attribute set.
 ```powershell
-PS C:\>Set-AzureADMSAttributeSet -Id 'Engineering' -Description 'Attributes for cloud engineering team'
+Set-AzureADMSAttributeSet -Id 'Engineering' -Description 'Attributes for cloud engineering team'
 ```
 
 This example Update an attribute set.
@@ -49,7 +49,7 @@ This example Update an attribute set.
 
 ### Example 2: Update an attribute set using MaxAttributesPerSet
 ```powershell
-PS C:\>Set-AzureADMSAttributeSet -Id 'Engineering' -MaxAttributesPerSet 20
+Set-AzureADMSAttributeSet -Id 'Engineering' -MaxAttributesPerSet 20
 ```
 
 This example Update an attribute set using MaxAttributesPerSet
