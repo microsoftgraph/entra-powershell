@@ -28,7 +28,7 @@ This cmdlet is used to retrieve the soft deleted groups in a directory.
 ```powershell
 Get-EntraMSDeletedGroup 
  [-Top <Int32>] 
- [-All] 
+ [-All <Boolean>] 
  [-Filter <String>] 
  [<CommonParameters>]
 ```
@@ -38,7 +38,7 @@ Get-EntraMSDeletedGroup
 ```powershell
 Get-EntraMSDeletedGroup 
  [-SearchString <String>] 
- [-All] 
+ [-All <Boolean>] 
  [<CommonParameters>]
 ```
 
@@ -47,7 +47,7 @@ Get-EntraMSDeletedGroup
 ```powershell
 Get-EntraMSDeletedGroup 
  -Id <String> 
- [-All] 
+ [-All <Boolean>] 
  [<CommonParameters>]
 ```
 
@@ -71,10 +71,17 @@ Get-EntraMSDeletedGroup
 ```output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
+<<<<<<< HEAD
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
 test22      bbbbbbbb-1111-2222-3333-cccccccccccc test22       desc2       {Unified, DynamicMembership}
 test23      cccccccc-2222-3333-4444-dddddddddddd test23       desc3       {Unified, DynamicMembership}
 test24      dddddddd-3333-4444-5555-eeeeeeeeeeee test24       desc4       {Unified, DynamicMembership}
+=======
+test21      dddddddd-2222-3333-5555-rrrrrrrrrrrr test21       desc1       {Unified, DynamicMembership}
+test22      vvvvvvvv-7777-9999-7777-jjjjjjjjjjjj test22       desc2       {Unified, DynamicMembership}
+test23      tttttttt-0000-2222-0000-aaaaaaaaaaaa test23       desc3       {Unified, DynamicMembership}
+test24      mmmmmmmm-1111-1111-9999-gggggggggggg test24       desc4       {Unified, DynamicMembership}
+>>>>>>> b0611802888003461c17f38c40e5cfae142d10f4
 ```
 
 This cmdlet retrieves all recoverable deleted groups in the directory.  
@@ -83,16 +90,27 @@ This cmdlet retrieves all recoverable deleted groups in the directory.
 
 ```powershell
 Connect-Entra -Scopes 'Group.Read.All'
+<<<<<<< HEAD
 Get-EntraMSDeletedGroup -All 
+=======
+Get-EntraMSDeletedGroup -All
+>>>>>>> b0611802888003461c17f38c40e5cfae142d10f4
 ```
 
 ```output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
+<<<<<<< HEAD
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
 test22      bbbbbbbb-1111-2222-3333-cccccccccccc test22       desc2       {Unified, DynamicMembership}
 test23      cccccccc-2222-3333-4444-dddddddddddd test23       desc3       {Unified, DynamicMembership}
 test24      dddddddd-3333-4444-5555-eeeeeeeeeeee test24       desc4       {Unified, DynamicMembership}
+=======
+test21      dddddddd-2222-3333-5555-rrrrrrrrrrrr test21       desc1       {Unified, DynamicMembership}
+test22      vvvvvvvv-7777-9999-7777-jjjjjjjjjjjj test22       desc2       {Unified, DynamicMembership}
+test23      tttttttt-0000-2222-0000-aaaaaaaaaaaa test23       desc3       {Unified, DynamicMembership}
+test24      mmmmmmmm-1111-1111-9999-gggggggggggg test24       desc4       {Unified, DynamicMembership}
+>>>>>>> b0611802888003461c17f38c40e5cfae142d10f4
 ```
 
 This cmdlet retrieves all recoverable deleted groups in the directory, using All parameter.  
@@ -107,8 +125,13 @@ Get-EntraMSDeletedGroup -Top 2
 ```output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
+<<<<<<< HEAD
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
 test22      bbbbbbbb-1111-2222-3333-cccccccccccc test22       desc2       {Unified, DynamicMembership}
+=======
+test21      dddddddd-2222-3333-5555-rrrrrrrrrrrr test21       desc1       {Unified, DynamicMembership}
+test22      vvvvvvvv-7777-9999-7777-jjjjjjjjjjjj test22       desc2       {Unified, DynamicMembership}
+>>>>>>> b0611802888003461c17f38c40e5cfae142d10f4
 ```
 
 This cmdlet retrieves top two deleted groups in the directory.  
@@ -123,10 +146,17 @@ Get-EntraMSDeletedGroup -SearchString 'test2'
 ```output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
+<<<<<<< HEAD
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
 test22      bbbbbbbb-1111-2222-3333-cccccccccccc test22       desc2       {Unified, DynamicMembership}
 test23      cccccccc-2222-3333-4444-dddddddddddd test23       desc3       {Unified, DynamicMembership}
 test24      dddddddd-3333-4444-5555-eeeeeeeeeeee test24       desc4       {Unified, DynamicMembership}
+=======
+test21      dddddddd-2222-3333-5555-rrrrrrrrrrrr test21       desc1       {Unified, DynamicMembership}
+test22      vvvvvvvv-7777-9999-7777-jjjjjjjjjjjj test22       desc2       {Unified, DynamicMembership}
+test23      tttttttt-0000-2222-0000-aaaaaaaaaaaa test23       desc3       {Unified, DynamicMembership}
+test24      mmmmmmmm-1111-1111-9999-gggggggggggg test24       desc4       {Unified, DynamicMembership}
+>>>>>>> b0611802888003461c17f38c40e5cfae142d10f4
 ```
 
 This cmdlet retrieves deleted groups in the directory, containing the specified string.  
@@ -141,7 +171,11 @@ Get-EntraMSDeletedGroup -Filter "displayname eq 'test21'"
 ```output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
+<<<<<<< HEAD
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
+=======
+test21      dddddddd-2222-3333-5555-rrrrrrrrrrrr test21       desc1       {Unified, DynamicMembership}
+>>>>>>> b0611802888003461c17f38c40e5cfae142d10f4
 ```
 
 This cmdlet retrieves deleted groups in the directory, having the specified display name.  
@@ -150,13 +184,21 @@ This cmdlet retrieves deleted groups in the directory, having the specified disp
 
 ```powershell
 Connect-Entra -Scopes 'Group.Read.All'
+<<<<<<< HEAD
 Get-EntraMSDeletedGroup -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+=======
+Get-EntraMSDeletedGroup -Id 'dddddddd-2222-3333-5555-rrrrrrrrrrrr'
+>>>>>>> b0611802888003461c17f38c40e5cfae142d10f4
 ```
 
 ```output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
+<<<<<<< HEAD
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
+=======
+test21      dddddddd-2222-3333-5555-rrrrrrrrrrrr test21       desc1       {Unified, DynamicMembership}
+>>>>>>> b0611802888003461c17f38c40e5cfae142d10f4
 ```
 
 This cmdlet retrieves the deleted group specified by `-Id`.  
@@ -165,17 +207,18 @@ This cmdlet retrieves the deleted group specified by `-Id`.
 
 ### -All
 
-List all pages.
+If true, return all group members.
+If false, return the number of objects specified by the Top parameter.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: False
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
@@ -185,7 +228,7 @@ Specifies an oData v3.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery
 Aliases:
 
@@ -201,7 +244,7 @@ Accept wildcard characters: False
 The Id of the deleted group to be retrieved.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -217,7 +260,7 @@ Accept wildcard characters: False
 Specifies a search string.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetVague
 Aliases:
 
@@ -233,7 +276,7 @@ Accept wildcard characters: False
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: GetQuery
 Aliases:
 
@@ -246,7 +289,11 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
+<<<<<<< HEAD
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+=======
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+>>>>>>> b0611802888003461c17f38c40e5cfae142d10f4
 
 ## INPUTS
 
