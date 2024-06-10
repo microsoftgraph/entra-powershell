@@ -2,7 +2,7 @@
 title: Remove-EntraApplicationProxyApplicationConnectorGroup
 description: This article provides details on the Remove-EntraApplicationProxyApplicationConnectorGroup command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/27/2024
 ms.author: eunicewaweru

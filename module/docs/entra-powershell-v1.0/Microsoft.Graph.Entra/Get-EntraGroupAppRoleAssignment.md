@@ -2,7 +2,7 @@
 title: Get-EntraGroupAppRoleAssignment
 description: This article provides details on the Get-EntraGroupAppRoleAssignment command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 02/29/2024
 ms.author: eunicewaweru
@@ -26,7 +26,7 @@ Gets a group application role assignment.
 ```powershell
 Get-EntraGroupAppRoleAssignment 
  -ObjectId <String> 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -94,19 +94,17 @@ This command gets top two application role assignments of the specified group.
 ## PARAMETERS
 
 ### -All
-
-If true, return all application role assignments.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: System.Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

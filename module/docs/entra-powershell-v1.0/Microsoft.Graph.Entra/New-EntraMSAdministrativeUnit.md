@@ -2,7 +2,7 @@
 title: New-EntraMSAdministrativeUnit
 description: This article provides details on the New-EntraMSAdministrativeUnit command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/05/2024
 ms.author: eunicewaweru

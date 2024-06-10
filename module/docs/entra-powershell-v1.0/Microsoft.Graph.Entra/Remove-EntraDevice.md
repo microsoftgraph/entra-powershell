@@ -2,7 +2,7 @@
 title: Remove-EntraDevice
 description: This article provides details on the Remove-EntraDevice command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/01/2024
 ms.author: eunicewaweru

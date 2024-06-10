@@ -2,7 +2,7 @@
 title: Get-EntraUserDirectReport.
 description: This article provides details on the Get-EntraUserDirectReport command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/19/2024
 ms.author: eunicewaweru
@@ -107,7 +107,7 @@ This command gets the five direct report for the specified user.
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 

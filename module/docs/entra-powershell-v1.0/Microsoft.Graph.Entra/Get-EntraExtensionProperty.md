@@ -2,7 +2,7 @@
 title: Get-EntraExtensionProperty.
 description: This article provides details on the Get-EntraExtensionProperty command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/28/2024
 ms.author: eunicewaweru

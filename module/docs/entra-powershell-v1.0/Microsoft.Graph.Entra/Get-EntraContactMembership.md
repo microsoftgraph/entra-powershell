@@ -2,7 +2,7 @@
 title: Get-EntraContactMembership
 description: This article provides details on the Get-EntraContactMembership command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/16/2024
 ms.author: eunicewaweru
@@ -88,7 +88,7 @@ This command gets top two memberships for specified contact.
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -98,7 +98,6 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 ### -ObjectId
 Specifies the ID of a contact in Microsoft Entra ID.
 
