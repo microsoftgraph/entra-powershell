@@ -125,7 +125,9 @@ The classification for a delegated permission.
 This parameter can take one of the following values:
 
 "Low": Specifies a classification for a permission as low impact.
+
 "Medium": Specifies a classification for a permission as medium impact.
+
 "High": Specifies a classification for a permission as high impact.
 
 ```yaml
