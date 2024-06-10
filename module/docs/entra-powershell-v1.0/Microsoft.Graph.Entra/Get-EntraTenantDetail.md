@@ -2,7 +2,7 @@
 title: Get-EntraTenantDetail.
 description: This article provides details on the Get-EntraTenantDetail command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/18/2024
 ms.author: eunicewaweru
@@ -66,7 +66,7 @@ This command gets five tenant details.
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -76,7 +76,6 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 ### -Top
 Specifies the maximum number of records to return.
 

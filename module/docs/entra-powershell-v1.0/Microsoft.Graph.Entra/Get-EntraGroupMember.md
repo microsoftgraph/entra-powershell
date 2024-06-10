@@ -2,7 +2,7 @@
 title: Get-EntraGroupMember.
 description: This article provides details on the Get-EntraGroupMember command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/06/2023
 ms.author: eunicewaweru
@@ -26,7 +26,7 @@ Gets a member of a group.
 ```powershell
 Get-EntraGroupMember 
  -ObjectId <String> 
- [-All <Boolean>] 
+ [-All] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -115,19 +115,17 @@ This command is used to retrieve all members of a specific group. The `-ObjectId
 ## PARAMETERS
 
 ### -All
-
-If true, return all group members.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: System.Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
