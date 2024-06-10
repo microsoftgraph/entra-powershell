@@ -2,7 +2,7 @@
 title: Add-EntraGroupOwner
 description: This article explains the Add-EntraGroupOwner command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/05/2024
 ms.author: eunicewaweru

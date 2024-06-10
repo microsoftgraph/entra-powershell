@@ -2,7 +2,7 @@
 title: Get-EntraServicePrincipalCreatedObject.
 description: This article provides details on the Get-EntraServicePrincipalCreatedObject command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/11/2024
 ms.author: eunicewaweru
@@ -67,7 +67,7 @@ This example demonstrates how to get the top two object created by a specified s
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 

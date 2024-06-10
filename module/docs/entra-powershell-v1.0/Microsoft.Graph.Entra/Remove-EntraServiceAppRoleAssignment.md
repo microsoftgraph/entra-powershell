@@ -2,7 +2,7 @@
 title: Remove-EntraServiceAppRoleAssignment.
 description: This article provides details on the Remove-EntraServiceAppRoleAssignment command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/19/2024
 ms.author: eunicewaweru

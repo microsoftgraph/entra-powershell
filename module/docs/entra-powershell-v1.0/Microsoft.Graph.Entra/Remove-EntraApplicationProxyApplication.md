@@ -2,7 +2,7 @@
 title: Remove-EntraApplicationProxyApplication
 description: This article provides details on the Remove-EntraApplicationProxyApplication command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/26/2024
 ms.author: eunicewaweru

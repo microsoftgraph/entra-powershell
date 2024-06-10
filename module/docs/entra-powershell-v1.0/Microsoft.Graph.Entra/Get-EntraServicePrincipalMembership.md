@@ -2,7 +2,7 @@
 title: Get-EntraServicePrincipalMembership.
 description: This article provides details on the Get-EntraServicePrincipalMembership command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/06/2024
 ms.author: eunicewaweru
@@ -79,7 +79,7 @@ This command gets two memberships of a specified service principal.
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -89,7 +89,6 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 ### -ObjectId
 Specifies the ID of a service principal in Microsoft Entra ID.
 

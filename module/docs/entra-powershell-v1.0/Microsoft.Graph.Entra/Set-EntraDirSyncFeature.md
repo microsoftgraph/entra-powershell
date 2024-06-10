@@ -2,7 +2,7 @@
 title: Set-EntraDirSyncFeature
 description: This article provides details on the Set-EntraDirSyncFeature command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/28/2024
 ms.author: eunicewaweru
@@ -147,4 +147,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraDirSyncFeatures](./Get-EntraDirSyncFeatures.md)
+[Get-EntraDirSyncFeature](./Get-EntraDirSyncFeature.md)
