@@ -32,7 +32,7 @@ Add-EntraDirectoryRoleMember
 
 ## DESCRIPTION
 
-The **Add-EntraDirectoryRoleMember** cmdlet adds a member to a Microsoft Entra ID role.
+The `Add-EntraDirectoryRoleMember` cmdlet adds a member to a Microsoft Entra ID role.
 
 ## EXAMPLES
 
@@ -40,7 +40,7 @@ The **Add-EntraDirectoryRoleMember** cmdlet adds a member to a Microsoft Entra I
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-Add-EntraDirectoryRoleMember -ObjectId 'dddddddd-2222-3333-5555-rrrrrrrrrrrr' -RefObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+Add-EntraDirectoryRoleMember -ObjectId '019ea7a2-1613-47c9-81cb-20ba35b1ae48' -RefObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 This command adds a member to a directory role. The `-ObjectId` parameter specifies the ID of the role to which the member should be added, and the `-RefObjectId` parameter specifies the ID of the member to be added.
@@ -81,7 +81,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

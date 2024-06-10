@@ -35,7 +35,7 @@ Get-EntraDeviceRegisteredOwner
 
 ## DESCRIPTION
 
-The Get-EntraDeviceRegisteredOwner cmdlet gets the registered owner of a device in Microsoft Entra ID.
+The `Get-EntraDeviceRegisteredOwner` cmdlet gets the registered owner of a device in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -53,9 +53,9 @@ ObjectId                             DisplayName     UserPrincipalName     UserT
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan    maria@contoso.com       Member
 ```
 
-The first command gets the object ID of a device by using the [Get-EntraDevice](./Get-EntraDevice.md) cmdlet, and then stores it in the $DevId variable.  
+The first command gets the object ID of a device by using the [Get-EntraDevice](./Get-EntraDevice.md) cmdlet, and then stores it in the `$DevId` variable.  
 
-The second command gets the registered owner of the device in $DevId.
+The second command gets the registered owner of the device in `$DevId`.
 
 ### Example 2: Retrieve the registered owner of a device
 
@@ -156,7 +156,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

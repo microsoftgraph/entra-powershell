@@ -33,7 +33,7 @@ Get-EntraDeviceRegisteredUser
 
 ## DESCRIPTION
 
-The Get-EntraDeviceRegisteredUser cmdlet gets a registered user for a Microsoft Entra ID device.
+The `Get-EntraDeviceRegisteredUser` cmdlet gets a registered user for a Microsoft Entra ID device.
 
 ## EXAMPLES
 
@@ -45,8 +45,7 @@ $DevId = (Get-EntraDevice -Top 1).ObjectId
 Get-EntraDeviceRegisteredUser -ObjectId $DevId
 ```
 
-
-```output
+```Output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
@@ -61,8 +60,8 @@ assignedLicenses                : {}
 ```
 
 This example demonstrates how to retrieve registered user for a specific Microsoft Entra ID device.  
-The first command gets the object ID of a device by using the Get-EntraDevice (./Get-EntraDevice.md) cmdlet, and then stores it in the $DevId variable.  
-The second command gets the registered users of the device in $DevId.
+The first command gets the object ID of a device by using the Get-EntraDevice (./Get-EntraDevice.md) cmdlet, and then stores it in the `$DevId` variable.  
+The second command gets the registered users of the device in `$DevId`.
 
 ### Example 2: Get all registered users of a device
 
@@ -71,8 +70,7 @@ Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraDeviceRegisteredUser -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All 
 ```
 
-
-```output
+```Output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
@@ -96,7 +94,7 @@ Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraDeviceRegisteredUser -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 2
 ```
 
-```output
+```Output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
@@ -165,7 +163,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
