@@ -63,7 +63,7 @@ PS C:\>New-EntraBetaApplicationPasswordCredential -ObjectId 'tttttttt-0000-2222-
 CustomKeyIdentifier                           DisplayName  EndDateTime          Hint KeyId                                SecretText                               StartDat
                                                                                                                                                                    eTime
 -------------------                           -----------  -----------          ---- -----                                ----------                               --------
-100 101 109 111 80 97 115 115 119 111 114 100 demoPassword 6/10/2026 7:43:45 AM 9tb  064b5d60-0ee6-462d-9134-b67ea4abe4b6 9tb8Q~PCW4glmyjoIMTfyXA05GIHTWIHkw0ZxaCF 6/10/...
+100 101 109 111 80 97 115 115 119 111 114 100 demoPassword 6/10/2026 7:43:45 AM 9tb  064b5d60-0ee6-462d-9134-b67ea4abe4b6 wbBNW8kCuiPjNRg9NX98W_EaU6cqG 6/10/...
 
 ```
 
