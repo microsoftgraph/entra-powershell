@@ -2,7 +2,7 @@
 title: Set-EntraUserPassword.
 description: This article provides details on the Set-EntraUserPassword command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/18/2023
 ms.author: eunicewaweru

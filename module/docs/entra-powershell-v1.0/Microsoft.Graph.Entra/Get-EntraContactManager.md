@@ -2,7 +2,7 @@
 title: Get-EntraContactManager
 description: This article provides details on the Get-EntraContactManager command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/16/2024
 ms.author: eunicewaweru
@@ -72,8 +72,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Get-EntraContact](Get-EntraContact.md)
-
-[Remove-EntraContactManager](Remove-EntraContactManager.md)
-
-[Set-EntraContactManager](Set-EntraContactManager.md)
 

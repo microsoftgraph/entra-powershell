@@ -2,7 +2,7 @@
 title: Get-EntraContract
 description: This article provides details on the Get-EntraContract command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/16/2024
 ms.author: eunicewaweru
@@ -79,7 +79,7 @@ This command gets all contracts in the Microsoft Entra ID.
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -89,7 +89,6 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 ### -Filter
 Specifies an oData v3.0 filter statement.
 This parameter controls which objects are returned.

@@ -2,7 +2,7 @@
 title: Get-EntraUser
 description: This article provides details on the Get-EntraUser command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/06/2024
 ms.author: eunicewaweru
@@ -138,7 +138,7 @@ In this example, we retrieve all users whose MailNickname starts with Ada.
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 

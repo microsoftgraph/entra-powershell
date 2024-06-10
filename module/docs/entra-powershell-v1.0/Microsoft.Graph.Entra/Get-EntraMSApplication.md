@@ -2,7 +2,7 @@
 title: Get-EntraMSApplication
 description: This article provides details on the Get-EntraMSApplication command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 02/29/2024
 ms.author: eunicewaweru
@@ -580,7 +580,7 @@ Accept wildcard characters: False
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 

@@ -2,7 +2,7 @@
 title: Get-EntraMSDeletedGroup
 description: This article provides details on the Get-EntraMSDeletedGroup command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/14/2024
 ms.author: eunicewaweru
@@ -28,7 +28,7 @@ This cmdlet is used to retrieve the soft deleted groups in a directory.
 ```powershell
 Get-EntraMSDeletedGroup 
  [-Top <Int32>] 
- [-All <Boolean>] 
+ [-All] 
  [-Filter <String>] 
  [<CommonParameters>]
 ```
@@ -38,7 +38,7 @@ Get-EntraMSDeletedGroup
 ```powershell
 Get-EntraMSDeletedGroup 
  [-SearchString <String>] 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -47,7 +47,7 @@ Get-EntraMSDeletedGroup
 ```powershell
 Get-EntraMSDeletedGroup 
  -Id <String> 
- [-All <Boolean>] 
+ [-All] 
  [<CommonParameters>]
 ```
 
@@ -164,19 +164,17 @@ This cmdlet retrieves the deleted group specified by Id.
 ## PARAMETERS
 
 ### -All
-
-If true, return all group members.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: System.Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

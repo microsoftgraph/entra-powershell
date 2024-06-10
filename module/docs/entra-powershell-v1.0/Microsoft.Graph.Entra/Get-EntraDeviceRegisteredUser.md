@@ -2,7 +2,7 @@
 title: Get-EntraDeviceRegisteredUser.
 description: This article provides details on the Get-EntraDeviceRegisteredUser command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/15/2024
 ms.author: eunicewaweru
@@ -106,7 +106,7 @@ This command gets two registered users of the specified device.
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -116,7 +116,6 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 ### -ObjectId
 Specifies an object ID of a device.
 
