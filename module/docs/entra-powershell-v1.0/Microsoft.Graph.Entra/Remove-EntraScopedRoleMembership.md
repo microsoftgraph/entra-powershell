@@ -4,7 +4,7 @@ description: This article provides details on the Remove-EntraScopedRoleMembersh
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 06/006/2024
+ms.date: 06/06/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
