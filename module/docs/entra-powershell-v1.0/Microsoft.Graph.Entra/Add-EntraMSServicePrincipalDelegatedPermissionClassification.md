@@ -46,7 +46,15 @@ Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
 $ServicePrincipal = Get-EntraServicePrincipal -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444'
 $PermissionId = $ServicePrincipal.Oauth2PermissionScopes[0].Id
 $PermissionName =  $ServicePrincipal.Oauth2PermissionScopes[0].Value
-Add-EntraMSServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $ServicePrincipal.Id -PermissionId $PermissionId -Classification Low -PermissionName $PermissionName
+
+$params = @{
+    ServicePrincipalId = $ServicePrincipal.Id
+    PermissionId = $PermissionId
+    Classification = 'Low'
+    PermissionName = $PermissionName
+}
+
+Add-EntraMSServicePrincipalDelegatedPermissionClassification @params
 ```
 
 ```output
@@ -134,7 +142,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -146,6 +154,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-- [Get-EntraMSServicePrincipalDelegatedPermissionClassification](Get-EntraMSServicePrincipalDelegatedPermissionClassification.md)
+[Get-EntraMSServicePrincipalDelegatedPermissionClassification](Get-EntraMSServicePrincipalDelegatedPermissionClassification.md)
 
-- [Remove-EntraMSServicePrincipalDelegatedPermissionClassification](Remove-EntraMSServicePrincipalDelegatedPermissionClassification.md)
+[Remove-EntraMSServicePrincipalDelegatedPermissionClassification](Remove-EntraMSServicePrincipalDelegatedPermissionClassification.md)
