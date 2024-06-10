@@ -19,6 +19,7 @@ schema: 2.0.0
 # Add-EntraMSServicePrincipalDelegatedPermissionClassification
 
 ## SYNOPSIS
+
 Add a classification for a delegated permission.
 
 ## SYNTAX
@@ -33,42 +34,45 @@ Add-EntraMSServicePrincipalDelegatedPermissionClassification
 ```
 
 ## DESCRIPTION
+
 The Add-EntraMSServicePrincipalDelegatedPermissionClassification cmdlet creates a delegated permission classification for the given permission on service principal.
 
 ## EXAMPLES
 
 ### Example 1: Create Delegated Permission Classification
+
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$ServicePrincipal = Get-EntraServicePrincipal -ObjectId '00000000-0000-0000-0000-000000000000'
+$ServicePrincipal = Get-EntraServicePrincipal -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 $PermissionId = $ServicePrincipal.Oauth2PermissionScopes[0].Id
 $PermissionName =  $ServicePrincipal.Oauth2PermissionScopes[0].Value
 Add-EntraMSServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $ServicePrincipal.Id -PermissionId $PermissionId -Classification Low -PermissionName $PermissionName
 ```
 
 ```output
-Id                      Classification PermissionId                         PermissionName
---                      -------------- ------------                         --------------
-eszf101IRka9VZoGVVnbBgE low            205e70e5-aba6-4c52-a976-6d2d46c48043 Sites.Read.All
+Id                            Classification PermissionId                         PermissionName
+--                            -------------- ------------                         --------------
+C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w low            dddddddd-9999-0000-1111-eeeeeeeeeeee Sites.Read.All
 ```
 
-The first command connects to the tenant with the right scopes to run the example.
+- The first command connects to the tenant with the right scopes to run the example.
 
-The second command get the specified service principal using [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md) cmdlet and stores it in $ServicePrincipal.  
+- The second command get the specified service principal using [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md) cmdlet and stores it in $ServicePrincipal.  
 
-The third command gets the Id from first item in Oauth2PermissionScopes list from the retrieved service principal.  
+- The third command gets the Id from first item in Oauth2PermissionScopes list from the retrieved service principal.  
 
-The forth command gets the value from first item in Oauth2PermissionScopes list from the retrieved service principal.  
+- The forth command gets the value from first item in Oauth2PermissionScopes list from the retrieved service principal.  
 
-Lastly we create a delegated permission classification for the given permission on the service principal.
+- Lastly we create a delegated permission classification for the given permission on the service principal.
 
 ## PARAMETERS
 
 ### -ServicePrincipalId
+
 The unique identifier of a service principal object in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -80,10 +84,11 @@ Accept wildcard characters: False
 ```
 
 ### -PermissionId
+
 The id for a delegated permission.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -95,10 +100,11 @@ Accept wildcard characters: False
 ```
 
 ### -PermissionName
+
 The name for a delegated permission.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -110,6 +116,7 @@ Accept wildcard characters: False
 ```
 
 ### -Classification
+
 The classification for a delegated permission.
 This parameter can take one of the following values:
 
@@ -130,7 +137,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

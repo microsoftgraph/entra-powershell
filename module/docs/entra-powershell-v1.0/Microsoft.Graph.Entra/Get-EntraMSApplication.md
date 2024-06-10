@@ -179,7 +179,7 @@ This command gets a list of applications, which have the specified display name.
 Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -211,7 +211,7 @@ Accept wildcard characters: False
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: GetQuery
 Aliases:
 
@@ -228,7 +228,7 @@ Specifies an oData v3.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery
 Aliases:
 
@@ -244,7 +244,7 @@ Accept wildcard characters: False
 Retrieve only those applications that satisfy the -SearchString value.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetVague
 Aliases:
 
@@ -260,12 +260,6 @@ Accept wildcard characters: False
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
-
-### Bool?
-
-### Int?
-
-### String
 
 ## OUTPUTS
 

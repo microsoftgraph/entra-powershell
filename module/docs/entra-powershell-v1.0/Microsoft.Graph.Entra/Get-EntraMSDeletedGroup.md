@@ -71,17 +71,10 @@ Get-EntraMSDeletedGroup
 ```output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
-<<<<<<< HEAD
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
 test22      bbbbbbbb-1111-2222-3333-cccccccccccc test22       desc2       {Unified, DynamicMembership}
 test23      cccccccc-2222-3333-4444-dddddddddddd test23       desc3       {Unified, DynamicMembership}
 test24      dddddddd-3333-4444-5555-eeeeeeeeeeee test24       desc4       {Unified, DynamicMembership}
-=======
-test21      dddddddd-2222-3333-5555-rrrrrrrrrrrr test21       desc1       {Unified, DynamicMembership}
-test22      vvvvvvvv-7777-9999-7777-jjjjjjjjjjjj test22       desc2       {Unified, DynamicMembership}
-test23      tttttttt-0000-2222-0000-aaaaaaaaaaaa test23       desc3       {Unified, DynamicMembership}
-test24      mmmmmmmm-1111-1111-9999-gggggggggggg test24       desc4       {Unified, DynamicMembership}
->>>>>>> b0611802888003461c17f38c40e5cfae142d10f4
 ```
 
 This cmdlet retrieves all recoverable deleted groups in the directory.  
@@ -90,27 +83,16 @@ This cmdlet retrieves all recoverable deleted groups in the directory.
 
 ```powershell
 Connect-Entra -Scopes 'Group.Read.All'
-<<<<<<< HEAD
 Get-EntraMSDeletedGroup -All 
-=======
-Get-EntraMSDeletedGroup -All
->>>>>>> b0611802888003461c17f38c40e5cfae142d10f4
 ```
 
 ```output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
-<<<<<<< HEAD
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
 test22      bbbbbbbb-1111-2222-3333-cccccccccccc test22       desc2       {Unified, DynamicMembership}
 test23      cccccccc-2222-3333-4444-dddddddddddd test23       desc3       {Unified, DynamicMembership}
 test24      dddddddd-3333-4444-5555-eeeeeeeeeeee test24       desc4       {Unified, DynamicMembership}
-=======
-test21      dddddddd-2222-3333-5555-rrrrrrrrrrrr test21       desc1       {Unified, DynamicMembership}
-test22      vvvvvvvv-7777-9999-7777-jjjjjjjjjjjj test22       desc2       {Unified, DynamicMembership}
-test23      tttttttt-0000-2222-0000-aaaaaaaaaaaa test23       desc3       {Unified, DynamicMembership}
-test24      mmmmmmmm-1111-1111-9999-gggggggggggg test24       desc4       {Unified, DynamicMembership}
->>>>>>> b0611802888003461c17f38c40e5cfae142d10f4
 ```
 
 This cmdlet retrieves all recoverable deleted groups in the directory, using All parameter.  
@@ -125,13 +107,8 @@ Get-EntraMSDeletedGroup -Top 2
 ```output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
-<<<<<<< HEAD
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
 test22      bbbbbbbb-1111-2222-3333-cccccccccccc test22       desc2       {Unified, DynamicMembership}
-=======
-test21      dddddddd-2222-3333-5555-rrrrrrrrrrrr test21       desc1       {Unified, DynamicMembership}
-test22      vvvvvvvv-7777-9999-7777-jjjjjjjjjjjj test22       desc2       {Unified, DynamicMembership}
->>>>>>> b0611802888003461c17f38c40e5cfae142d10f4
 ```
 
 This cmdlet retrieves top two deleted groups in the directory.  
@@ -146,17 +123,10 @@ Get-EntraMSDeletedGroup -SearchString 'test2'
 ```output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
-<<<<<<< HEAD
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
 test22      bbbbbbbb-1111-2222-3333-cccccccccccc test22       desc2       {Unified, DynamicMembership}
 test23      cccccccc-2222-3333-4444-dddddddddddd test23       desc3       {Unified, DynamicMembership}
 test24      dddddddd-3333-4444-5555-eeeeeeeeeeee test24       desc4       {Unified, DynamicMembership}
-=======
-test21      dddddddd-2222-3333-5555-rrrrrrrrrrrr test21       desc1       {Unified, DynamicMembership}
-test22      vvvvvvvv-7777-9999-7777-jjjjjjjjjjjj test22       desc2       {Unified, DynamicMembership}
-test23      tttttttt-0000-2222-0000-aaaaaaaaaaaa test23       desc3       {Unified, DynamicMembership}
-test24      mmmmmmmm-1111-1111-9999-gggggggggggg test24       desc4       {Unified, DynamicMembership}
->>>>>>> b0611802888003461c17f38c40e5cfae142d10f4
 ```
 
 This cmdlet retrieves deleted groups in the directory, containing the specified string.  
@@ -171,11 +141,7 @@ Get-EntraMSDeletedGroup -Filter "displayname eq 'test21'"
 ```output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
-<<<<<<< HEAD
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
-=======
-test21      dddddddd-2222-3333-5555-rrrrrrrrrrrr test21       desc1       {Unified, DynamicMembership}
->>>>>>> b0611802888003461c17f38c40e5cfae142d10f4
 ```
 
 This cmdlet retrieves deleted groups in the directory, having the specified display name.  
@@ -184,21 +150,13 @@ This cmdlet retrieves deleted groups in the directory, having the specified disp
 
 ```powershell
 Connect-Entra -Scopes 'Group.Read.All'
-<<<<<<< HEAD
 Get-EntraMSDeletedGroup -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-=======
-Get-EntraMSDeletedGroup -Id 'dddddddd-2222-3333-5555-rrrrrrrrrrrr'
->>>>>>> b0611802888003461c17f38c40e5cfae142d10f4
 ```
 
 ```output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
-<<<<<<< HEAD
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
-=======
-test21      dddddddd-2222-3333-5555-rrrrrrrrrrrr test21       desc1       {Unified, DynamicMembership}
->>>>>>> b0611802888003461c17f38c40e5cfae142d10f4
 ```
 
 This cmdlet retrieves the deleted group specified by `-Id`.  

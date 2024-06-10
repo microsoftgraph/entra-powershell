@@ -68,7 +68,7 @@ This command retrieves a list of all named location policies in Microsoft Entra 
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'
-Get-EntraMSNamedLocationPolicy -PolicyId 'dddddddd-3333-4444-5555-eeeeeeeeeeee''
+Get-EntraMSNamedLocationPolicy -PolicyId 'dddddddd-3333-4444-5555-eeeeeeeeeeee'
 ```
 
 ```output
@@ -86,7 +86,7 @@ This command retrieves a named location policy specified by the `-PolicyID` in M
 Specifies the ID of a named location policy in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 

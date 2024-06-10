@@ -50,7 +50,7 @@ Id                                   DeletedDateTime
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 2/2/2024 5:33:56 AM
 ```
 
-This example shows how to retrieve the deleted directory object with `Id` `85b5ff1e-0402-400c-9e3c-0f9e965325d1` from the directory
+This example shows how to retrieve the deleted directory object with `Id` `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` from the directory
 
 ## PARAMETERS
 
@@ -59,7 +59,7 @@ This example shows how to retrieve the deleted directory object with `Id` `85b5f
 The Id of the directory object to retrieve.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -75,8 +75,6 @@ Accept wildcard characters: False
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
-
-### System.String
 
 ## OUTPUTS
 

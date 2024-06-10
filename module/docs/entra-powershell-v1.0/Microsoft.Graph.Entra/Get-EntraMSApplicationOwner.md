@@ -94,7 +94,7 @@ This command gets the top two owners of an application.
 Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -126,7 +126,7 @@ Accept wildcard characters: False
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -142,12 +142,6 @@ Accept wildcard characters: False
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
-
-### Bool?
-
-### Int?
-
-### String
 
 ## OUTPUTS
 

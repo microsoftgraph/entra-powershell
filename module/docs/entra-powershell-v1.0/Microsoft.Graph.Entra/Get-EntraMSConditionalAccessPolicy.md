@@ -45,7 +45,7 @@ Conditional access policies are custom rules that define an access scenario.
 
 ## EXAMPLES
 
-### Example 1: Retrieves a list of all conditional access policies in Microsoft Entra ID.
+### Example 1: Retrieves a list of all conditional access policies in Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'
@@ -62,11 +62,11 @@ aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb 2/27/2024 6:30:48 AM             Conditiona
 
 This command retrieves a list of all conditional access policies in Microsoft Entra ID.
 
-### Example 2: Retrieves a conditional access policy in Microsoft Entra ID with given ID.
+### Example 2: Retrieves a conditional access policy in Microsoft Entra ID with given ID
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'
-Get-EntraMSConditionalAccessPolicy -PolicyId "eeeeeeee-4444-5555-6666-ffffffffffff"
+Get-EntraMSConditionalAccessPolicy -PolicyId 'eeeeeeee-4444-5555-6666-ffffffffffff'
 ```
 
 ```output
@@ -84,7 +84,7 @@ This command retrieves the conditional access policy in Microsoft Entra ID speci
 Specifies the ID of a conditional access policy in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 

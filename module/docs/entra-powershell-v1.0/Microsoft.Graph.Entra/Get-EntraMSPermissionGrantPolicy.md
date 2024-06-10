@@ -65,7 +65,7 @@ This command gets all the permission grant policies.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-Get-EntraMSPermissionGrantPolicy -Id "testtenant-sampleapp-permissions"
+Get-EntraMSPermissionGrantPolicy -Id 'testtenant-sampleapp-permissions'
 ```
 
 ```output
@@ -83,7 +83,7 @@ This command gets the specified permission grant policy.
 Specifies the unique identifier of the permission grant policy.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 

@@ -90,7 +90,7 @@ This example retrieves the properties for the specified identity provider.
 The unique identifier for an identity provider.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 

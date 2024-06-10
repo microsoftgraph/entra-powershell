@@ -68,7 +68,7 @@ This command gets all permission grant condition sets that are included in the p
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-Get-EntraMSPermissionGrantConditionSet -PolicyId "policy1" -ConditionSetType "excludes"
+Get-EntraMSPermissionGrantConditionSet -PolicyId 'policy1' -ConditionSetType 'excludes'
 ```
 
 ```output
@@ -84,7 +84,7 @@ This command gets all permission grant condition sets that are excluded in the p
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-Get-EntraMSPermissionGrantConditionSet -PolicyId "policy1" -ConditionSetType "includes" -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+Get-EntraMSPermissionGrantConditionSet -PolicyId 'policy1' -ConditionSetType 'includes' -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```output
@@ -102,7 +102,7 @@ This command gets a permission grant condition set specified by `Id`.
 The unique identifier of a Microsoft Entra ID permission grant policy object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -118,7 +118,7 @@ Accept wildcard characters: False
 The value indicates whether the condition sets are included in the policy or excluded.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -134,7 +134,7 @@ Accept wildcard characters: False
 The unique identifier of a Microsoft Entra ID permission grant condition set object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -150,12 +150,6 @@ Accept wildcard characters: False
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
-
-### String
-
-### String
-
-### String
 
 ## OUTPUTS
 
