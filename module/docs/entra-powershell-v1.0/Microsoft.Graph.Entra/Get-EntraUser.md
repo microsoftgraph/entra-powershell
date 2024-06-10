@@ -138,7 +138,7 @@ In this example, we retrieve all users whose MailNickname starts with Ada.
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: Boolean
 Parameter Sets: (All)
 Aliases:
 

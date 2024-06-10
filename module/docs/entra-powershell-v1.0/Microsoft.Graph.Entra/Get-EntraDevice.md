@@ -137,7 +137,7 @@ This command gets all devices that match the value of SearchString against the f
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: Boolean
 Parameter Sets: (All)
 Aliases:
 

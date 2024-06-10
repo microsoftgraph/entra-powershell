@@ -99,7 +99,7 @@ This command retrieves top one registered owner of a device.
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -109,6 +109,7 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
 ### -ObjectId
 Specifies the ID of an object.
 

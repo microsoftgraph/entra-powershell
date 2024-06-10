@@ -106,7 +106,7 @@ This command gets two registered users of the specified device.
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -116,6 +116,7 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
 ### -ObjectId
 Specifies an object ID of a device.
 

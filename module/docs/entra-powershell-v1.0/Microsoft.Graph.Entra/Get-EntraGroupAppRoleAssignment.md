@@ -26,7 +26,7 @@ Gets a group application role assignment.
 ```powershell
 Get-EntraGroupAppRoleAssignment 
  -ObjectId <String> 
- [-All] 
+ [-All <Boolean>] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -94,17 +94,19 @@ This command gets top two application role assignments of the specified group.
 ## PARAMETERS
 
 ### -All
-List all pages.
+
+If true, return all application role assignments.
+If false, return the number of objects specified by the Top parameter.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: False
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

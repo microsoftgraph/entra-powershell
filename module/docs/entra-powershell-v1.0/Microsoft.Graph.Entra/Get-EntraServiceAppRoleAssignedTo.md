@@ -84,7 +84,7 @@ This command gets the five app role assignments for the service principal grante
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -94,6 +94,7 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
 ### -ObjectId
 Specifies the ID of a service principal in Microsoft Entra ID.
 

@@ -78,7 +78,7 @@ This command gets the top two devices that are registered to the specified user.
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: Boolean
 Parameter Sets: (All)
 Aliases:
 

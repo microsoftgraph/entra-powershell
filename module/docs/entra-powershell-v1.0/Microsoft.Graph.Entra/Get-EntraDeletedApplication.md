@@ -122,7 +122,7 @@ This cmdlet retrieves deleted applications having specified display name.
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: Boolean
 Parameter Sets: (All)
 Aliases:
 

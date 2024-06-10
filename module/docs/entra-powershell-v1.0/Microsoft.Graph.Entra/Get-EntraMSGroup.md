@@ -28,7 +28,7 @@ Gets information about groups in Microsoft Entra ID.
 ```powershell
 Get-EntraMSGroup 
  [-Top <Int32>] 
- [-All] 
+ [-All <Boolean>] 
  [-Filter <String>] 
  [<CommonParameters>]
 ```
@@ -38,7 +38,7 @@ Get-EntraMSGroup
 ```powershell
 Get-EntraMSGroup 
  [-SearchString <String>] 
- [-All] 
+ [-All <Boolean>] 
  [<CommonParameters>]
 ```
 
@@ -47,7 +47,7 @@ Get-EntraMSGroup
 ```powershell
 Get-EntraMSGroup 
  -Id <String> 
- [-All] 
+ [-All <Boolean>] 
  [<CommonParameters>]
 ```
 
@@ -147,17 +147,19 @@ This example demonstrates how to retrieve groups using SearchString against the 
 ## PARAMETERS
 
 ### -All
-List all pages.
+
+If true, return all groups.
+If false, return the number of objects specified by the Top parameter.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: False
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

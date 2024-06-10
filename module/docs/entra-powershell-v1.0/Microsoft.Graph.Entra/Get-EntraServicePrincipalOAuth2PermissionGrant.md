@@ -88,7 +88,7 @@ This command gets two OAuth2 permission grants of a service principal for specif
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: Boolean
 Parameter Sets: (All)
 Aliases:
 

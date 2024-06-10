@@ -82,7 +82,7 @@ This command gets top 2 OAuth2 permission grants records.
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -92,6 +92,7 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
 ### -Top
 Specifies the maximum number of records to return.
 

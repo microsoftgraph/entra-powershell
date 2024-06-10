@@ -26,7 +26,7 @@ Gets a member of a group.
 ```powershell
 Get-EntraGroupMember 
  -ObjectId <String> 
- [-All] 
+ [-All <Boolean>] 
  [-Top <Int32>] 
  [<CommonParameters>]
 ```
@@ -115,17 +115,19 @@ This command is used to retrieve all members of a specific group. The `-ObjectId
 ## PARAMETERS
 
 ### -All
-List all pages.
+
+If true, return all group members.
+If false, return the number of objects specified by the Top parameter.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: False
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

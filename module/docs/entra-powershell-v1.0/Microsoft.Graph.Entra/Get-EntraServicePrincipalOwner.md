@@ -86,11 +86,12 @@ fd560167-ff1f-471a-8d74-3b0070abcea1 Adams Smith    Adams@contoso.com   Member
 This command gets top two owners of a service principal.
 
 ## PARAMETERS
+
 ### -All
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -100,6 +101,7 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
 ### -ObjectId
 Specifies the ID of a service principal in Microsoft Entra ID.
 

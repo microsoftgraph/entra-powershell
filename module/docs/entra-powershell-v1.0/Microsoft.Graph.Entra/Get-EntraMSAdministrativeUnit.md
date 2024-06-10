@@ -121,7 +121,7 @@ This example returns the specified top administrative units.
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: Boolean
 Parameter Sets: (All)
 Aliases:
 

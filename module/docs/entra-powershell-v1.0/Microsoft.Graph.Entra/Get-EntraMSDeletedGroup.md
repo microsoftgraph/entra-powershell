@@ -28,7 +28,7 @@ This cmdlet is used to retrieve the soft deleted groups in a directory.
 ```powershell
 Get-EntraMSDeletedGroup 
  [-Top <Int32>] 
- [-All] 
+ [-All <Boolean>] 
  [-Filter <String>] 
  [<CommonParameters>]
 ```
@@ -38,7 +38,7 @@ Get-EntraMSDeletedGroup
 ```powershell
 Get-EntraMSDeletedGroup 
  [-SearchString <String>] 
- [-All] 
+ [-All <Boolean>] 
  [<CommonParameters>]
 ```
 
@@ -47,7 +47,7 @@ Get-EntraMSDeletedGroup
 ```powershell
 Get-EntraMSDeletedGroup 
  -Id <String> 
- [-All] 
+ [-All <Boolean>] 
  [<CommonParameters>]
 ```
 
@@ -164,17 +164,19 @@ This cmdlet retrieves the deleted group specified by Id.
 ## PARAMETERS
 
 ### -All
-List all pages.
+
+If true, return all group members.
+If false, return the number of objects specified by the Top parameter.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: False
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

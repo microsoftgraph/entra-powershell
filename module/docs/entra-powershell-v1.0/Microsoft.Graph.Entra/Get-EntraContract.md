@@ -79,7 +79,7 @@ This command gets all contracts in the Microsoft Entra ID.
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -89,6 +89,7 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
 ### -Filter
 Specifies an oData v3.0 filter statement.
 This parameter controls which objects are returned.

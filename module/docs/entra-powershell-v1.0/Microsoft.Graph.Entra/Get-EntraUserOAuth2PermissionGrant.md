@@ -79,7 +79,7 @@ This Example Retrieve the OAuth2 permission grants for a user using All paramete
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: Boolean
 Parameter Sets: (All)
 Aliases:
 

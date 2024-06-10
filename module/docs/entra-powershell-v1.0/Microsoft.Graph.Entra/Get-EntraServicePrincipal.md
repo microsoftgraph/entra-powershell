@@ -157,7 +157,7 @@ This command gets a list of service principal, which has the specified display n
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: Boolean
 Parameter Sets: (All)
 Aliases:
 
