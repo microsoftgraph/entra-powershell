@@ -91,7 +91,13 @@ Describe "Get-EntraBetaServicePrincipalOwnedObject" {
         It "Should retrieve the owned objects of a service principal" {
             $result = Get-EntraBetaServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3"
             $result | Should -Not -BeNullOrEmpty
+            $result.AdditionalProperties | Should -Not -BeNullOrEmpty
+            $result.displayName | Should -Be "ToGraph_443democc3c"
+            $result.appDisplayName | Should -Be "ToGraph_443democc3c"
+            $result.Id | Should -Be "02939955-b5d0-436e-a8b1-35d37154f550"
             $result.appId | Should -Be "7bc6f57b-9014-45de-a73c-5a2b75454305"
+            $result.AdditionalProperties.appDisplayName | Should -Be "ToGraph_443democc3c"
+            $result.AdditionalProperties.tags | Should -Be @('WindowsAzureActiveDirectoryIntegratedApp')
 
             Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
