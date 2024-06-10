@@ -159,5 +159,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 - [Remove-EntraMSServicePrincipalDelegatedPermissionClassification](Remove-EntraMSServicePrincipalDelegatedPermissionClassification.md)
-
-- [Add-EntraMSServicePrincipalDelegatedPermissionClassification](Add-EntraMSServicePrincipalDelegatedPermissionClassification.md)

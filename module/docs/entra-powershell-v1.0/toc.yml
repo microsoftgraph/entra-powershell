@@ -22,8 +22,6 @@
     href: Microsoft.Graph.Entra/Add-EntraMSLifecyclePolicyGroup.md
   - name: Add-EntraMSScopedRoleMembership
     href: Microsoft.Graph.Entra/Add-EntraMSScopedRoleMembership.md
-  - name: Add-EntraMSServicePrincipalDelegatedPermissionClassification
-    href: Microsoft.Graph.Entra/Add-EntraMSServicePrincipalDelegatedPermissionClassification.md
   - name: Add-EntraServicePrincipalOwner
     href: Microsoft.Graph.Entra/Add-EntraServicePrincipalOwner.md
   - name: Confirm-EntraDomain
