@@ -37,9 +37,7 @@ Context "Test for Get-EntraBetaMSPrivilegedRoleAssignment" {
         It "Should return MS privileged role assignment" {
             $result = Get-EntraBetaMSPrivilegedRoleAssignment -ProviderId "MockRoles" -ResourceId "dddddddd-1111-2222-3333-aaaaaaaaaaaa" -Id "oz6hWDLGrkae4JwNQ81_Pao5bZms_ZdNqj3IH7RzYqw-1"
             $result | Should -Not -BeNullOrEmpty
-            $A = $result | ConvertTo-json 
-            write-host $A
-            # $result.Id | Should -Be "oz6hWDLGrkae4JwNQ81_Pao5bZms_ZdNqj3IH7RzYqw-1"
+            $result.Id | Should -Be "oz6hWDLGrkae4JwNQ81_Pao5bZms_ZdNqj3IH7RzYqw-1"
             $result.ResourceId | Should -Be "dddddddd-1111-2222-3333-aaaaaaaaaaaa"
             $result.roleDefinitionId | Should -be "eeeeeeee-c632-46ae-9ee0-dddddddddddd"
 
@@ -85,14 +83,13 @@ Context "Test for Get-EntraBetaMSPrivilegedRoleAssignment" {
         It "Should fail when filter is empty" {
             { Get-EntraBetaMSPrivilegedRoleAssignment -ProviderId "MockRoles" -ResourceId "dddddddd-1111-2222-3333-aaaaaaaaaaaa" -Filter  } | Should -Throw "Missing an argument for parameter 'Filter'*"
         }
-        # It "Should contain 'User-Agent' header" {
-        #     $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaMSPrivilegedRoleAssignment"
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaMSPrivilegedRoleAssignment"
 
-        #     $result = Get-EntraBetaMSPrivilegedRoleAssignment -ProviderId "MockRoles" -ResourceId "dddddddd-1111-2222-3333-aaaaaaaaaaaa"
-        #     $params = Get-Parameters -data $result.Parameters
-        #     # write-host $params
-        #     $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        # }
+            $result = Get-EntraBetaMSPrivilegedRoleAssignment -ProviderId "MockRoles" -ResourceId "dddddddd-1111-2222-3333-aaaaaaaaaaaa"
+            $params = Get-Parameters -data $result.Parameters
+            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
 
     }
 }    
