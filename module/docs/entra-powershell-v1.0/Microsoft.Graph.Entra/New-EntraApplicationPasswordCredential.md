@@ -19,6 +19,7 @@ schema: 2.0.0
 # New-EntraApplicationPasswordCredential
 
 ## SYNOPSIS
+
 Creates a password credential for an application.
 
 ## SYNTAX
@@ -26,19 +27,22 @@ Creates a password credential for an application.
 ```powershell
 New-EntraApplicationPasswordCredential 
  -ObjectId <String> 
+ [-CustomKeyIdentifier <String>]
  [-StartDate <DateTime>] 
  [-EndDate <DateTime>] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The New-EntraApplicationPasswordCredential cmdlet creates a password credential for an application in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Create a password credential
+
 ```powershell
-PS C:\>New-EntraApplicationPasswordCredential -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84"
+PS C:\>New-EntraApplicationPasswordCredential -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa'
 ```
 
 ```output
@@ -49,9 +53,26 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This command creates new password credential for specified application.
 
-### Example 2: Create a password credential using StartDate parameter
+### Example 2: Create a password credential using CustomKeyIdentifier parameter
+
 ```powershell
-PS C:\>New-EntraApplicationPasswordCredential -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -StartDate (get-date).AddYears(0)
+PS C:\>New-EntraApplicationPasswordCredential -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' -CustomKeyIdentifier 'demoPassword'
+```
+
+```output
+CustomKeyIdentifier                           DisplayName  EndDateTime          Hint KeyId                                SecretText                               StartDat
+                                                                                                                                                                   eTime
+-------------------                           -----------  -----------          ---- -----                                ----------                               --------
+100 101 109 111 80 97 115 115 119 111 114 100 demoPassword 6/10/2026 7:43:45 AM 9tb  064b5d60-0ee6-462d-9134-b67ea4abe4b6 9tb8Q~PCW4glmyjoIMTfyXA05GIHTWIHkw0ZxaCF 6/10/...
+
+```
+
+This command creates new password credential for specified application.
+
+### Example 3: Create a password credential using StartDate parameter
+
+```powershell
+PS C:\>New-EntraApplicationPasswordCredential -ObjectId '3ddd22e7-a150-4bb3-b100-e410dea1cb84' -StartDate (get-date).AddYears(0)
 ```
 
 ```output
@@ -62,9 +83,10 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This command creates new password credential for specified application.
 
-### Example 3: Create a password credential using EndDate parameter
+### Example 4: Create a password credential using EndDate parameter
+
 ```powershell
-PS C:\>New-EntraApplicationPasswordCredential -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -EndDate (get-date).AddYears(2)
+PS C:\>New-EntraApplicationPasswordCredential -ObjectId '3ddd22e7-a150-4bb3-b100-e410dea1cb84' -EndDate (get-date).AddYears(2)
 ```
 
 ```output
@@ -77,22 +99,8 @@ This command creates new password credential for specified application.
 
 ## PARAMETERS
 
-### -EndDate
-The date and time at which the password expires.
-
-```yaml
-Type: DateTime
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
 ### -ObjectId
+
 Specifies the ID of a user in Microsoft Entra ID.
 
 ```yaml
@@ -107,7 +115,24 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -CustomKeyIdentifier
+
+A unique binary identifier.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
 ### -StartDate
+
 The date and time at which the password becomes valid.
 
 ```yaml
@@ -122,7 +147,24 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -EndDate
+
+The date and time at which the password expires.
+
+```yaml
+Type: DateTime
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -136,4 +178,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraApplicationPasswordCredential](Get-EntraApplicationPasswordCredential.md)
 
 [Remove-EntraApplicationPasswordCredential](Remove-EntraApplicationPasswordCredential.md)
-
