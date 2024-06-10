@@ -82,8 +82,10 @@
         
         $response = Add-MgBetaApplicationPassword @params -Headers $customHeaders 
         $response | ForEach-Object {
-            $Value = [System.Text.Encoding]::ASCII.GetBytes($_.DisplayName)
-            Add-Member -InputObject $_ -MemberType NoteProperty -Name CustomKeyIdentifier -Value $Value -Force
+            If($_.DisplayName){
+                $Value = [System.Text.Encoding]::ASCII.GetBytes($_.DisplayName)
+                Add-Member -InputObject $_ -MemberType NoteProperty -Name CustomKeyIdentifier -Value $Value -Force
+            }
             Add-Member -InputObject $_ -MemberType AliasProperty -Name Value -Value SecretText
         }
         $response
