@@ -4,7 +4,7 @@ description: This article provides details on the Remove-EntraApplication comman
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/05/2024
+ms.date: 06/04/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,6 +18,7 @@ schema: 2.0.0
 # Remove-EntraApplication
 
 ## SYNOPSIS
+
 Delete an application by ObjectId.
 
 ## SYNTAX
@@ -29,13 +30,16 @@ Remove-EntraApplication
 ```
 
 ## DESCRIPTION
-The Remove-EntraApplication cmdlet removes the specified application from Microsoft Entra ID.
+
+The `Remove-EntraApplication` cmdlet removes the specified application from Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Remove an application
+
 ```powershell
-PS C:\>Remove-EntraApplication -ObjectId "acd10942-5747-4385-8824-4c5d5fa904f9"
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+Remove-EntraApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 This command removes the specified application.
@@ -43,10 +47,11 @@ This command removes the specified application.
 ## PARAMETERS
 
 ### -ObjectId
+
 Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -58,7 +63,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -73,4 +79,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [New-EntraApplication](New-EntraApplication.md)
 
 [Set-EntraApplication](Set-EntraApplication.md)
-
