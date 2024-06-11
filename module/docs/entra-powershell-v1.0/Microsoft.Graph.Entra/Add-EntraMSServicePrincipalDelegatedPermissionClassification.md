@@ -50,9 +50,9 @@ Add-EntraMSServicePrincipalDelegatedPermissionClassification -ServicePrincipalId
 ```
 
 ```output
-Id                            Classification PermissionId                         PermissionName
---                            -------------- ------------                         --------------
-C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w low            dddddddd-9999-0000-1111-eeeeeeeeeeee Sites.Read.All
+Id                      Classification PermissionId                         PermissionName
+--                      -------------- ------------                         --------------
+eszf101IRka9VZoGVVnbBgE low            dddddddd-9999-0000-1111-eeeeeeeeeeee Sites.Read.All
 ```
 
 - The first command connects to the tenant with the right scopes to run the example.

@@ -53,7 +53,7 @@ Get a Microsoft Entra ID permission grant condition set object by id.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-Get-EntraMSPermissionGrantConditionSet -PolicyId "policy1" -ConditionSetType "includes"
+Get-EntraMSPermissionGrantConditionSet -PolicyId 'policy1' -ConditionSetType 'includes'
 ```
 
 ```output
