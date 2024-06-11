@@ -55,11 +55,10 @@ The `Set-EntraDevice` cmdlet updates a device in Microsoft Entra ID.
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All' #Delegated Permission
 Connect-Entra -Scopes 'Device.ReadWrite.All' #Application Permission
-Set-EntraDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DisplayName "My OS/2 computer"
+Set-EntraDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DisplayName 'My OS/2 computer'
 ```
 
-This example explains how to update a display name of a specified device in Microsoft Entra ID.    
-This command updates the display name of a specified device.
+This example shows how to update a display name of a specified.
 
 ### Example 2: Update a device alternative security ID
 
@@ -72,8 +71,7 @@ $NewId.type = 2
 Set-EntraDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -AlternativeSecurityIds $NewId
 ```
 
-This example explains how to update an alternative security ID of a specified device in Microsoft Entra ID.    
-This command updates the alternative security ID of a specified device.
+This example shows how to update an alternative security ID of a specified device.
 
 ### Example 3: Update a device account enabled
 
@@ -83,8 +81,7 @@ Connect-Entra -Scopes 'Device.ReadWrite.All' #Application Permission
 Set-EntraDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -AccountEnabled $true
 ```
 
-This example explains how to update an account enabled of a specified device in Microsoft Entra ID.  
-This command updates the account enabled of a specified device.
+This example shows how to update an account enabled of a specified device.
 
 ### Example 4: Update a device OS type
 
@@ -94,19 +91,26 @@ Connect-Entra -Scopes 'Device.ReadWrite.All' #Application Permission
 Set-EntraDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DeviceOSType Windows
 ```
 
-This example explains how to update an OS type of a specified device in Microsoft Entra ID.  
-This command updates the OS type of a specified device.
+This example shows how to update an OS type of a specified device.
 
 ### Example 5: Update a device
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All' #Delegated Permission
 Connect-Entra -Scopes 'Device.ReadWrite.All' #Application Permission
-Set-EntraDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DeviceMetadata 'Testdeivce' -DeviceObjectVersion 4 -DevicePhysicalIds "[GID]:g:1234567890123456" -IsCompliant $false
+
+$params = @{
+    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    DeviceMetadata = 'Testdeivce'
+    DeviceObjectVersion = 4
+    DevicePhysicalIds = '[GID]:g:1234567890123456'
+    IsCompliant = $false
+}
+
+Set-EntraDevice @params
 ```
 
-This example explains how to update multiple properties of a specified device in Microsoft Entra ID.    
-This command updates the specified properties of a specified device.
+This example shows how to update multiple properties of a specified device.
 
 ## PARAMETERS
 
@@ -383,4 +387,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [New-EntraDevice](New-EntraDevice.md)
 
 [Remove-EntraDevice](Remove-EntraDevice.md)
-

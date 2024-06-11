@@ -39,15 +39,19 @@ The `Remove-EntraDeviceRegisteredUser` cmdlet removes a registered user from a M
 ### Example 1: Remove a registered user from a device
 
 ```Powershell
-Connect-Entra -Scopes '	Directory.AccessAsUser.All'
+Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $Device = Get-EntraDevice -Top 1
 $User = Get-EntraDeviceRegisteredUser -ObjectId $Device.ObjectId
 Remove-EntraDeviceRegisteredOwner -ObjectId $Device.ObjectId -OwnerId $Owner.ObjectId
 ```
 
-This example explains how to remove the registered user from device.  
-The first command gets a device by using the [Get-EntraDevice](./Get-EntraDevice.md) cmdlet, and then stores it in the `$Device` variable. The second command gets the registered user for the device in `$Device` by using the [Get-EntraDeviceRegisteredUser](./Get-EntraDeviceRegisteredUser.md) cmdlet.
-The command stores it in the `$User` variable. The final command removes the user in `$User` from the device in `$Device`.
+This example shows how to remove the registered user from device.  
+
+- The first command gets a device by using the [Get-EntraDevice](./Get-EntraDevice.md) cmdlet, and then stores it in the `$Device` variable.
+
+- The second command gets the registered user for the device in `$Device` by using the [Get-EntraDeviceRegisteredUser](./Get-EntraDeviceRegisteredUser.md) cmdlet.The command stores it in the `$User` variable.
+
+- The final command removes the user in `$User` from the device in `$Device`.
 
 ## PARAMETERS
 
@@ -98,6 +102,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Add-EntraDeviceRegisteredUser](Add-EntraDeviceRegisteredUser.md)
 
 [Get-EntraDeviceRegisteredUser](Get-EntraDeviceRegisteredUser.md)
-
-
-

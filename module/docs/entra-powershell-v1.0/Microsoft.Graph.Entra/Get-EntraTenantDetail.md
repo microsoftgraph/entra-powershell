@@ -36,7 +36,7 @@ The `Get-EntraTenantDetail` cmdlet gets the details of a tenant in Microsoft Ent
 
 ## EXAMPLES
 
-### Example 1: Get all tenant details 
+### Example 1: Get all tenant details
 
 ```powershell
 Connect-Entra -Scopes 'Organization.Read.All' 
@@ -49,10 +49,9 @@ DisplayName Id                                   TenantType CountryLetterCode Ve
 Contoso     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb AAD        NL                {@{Capabilities=Email, OfficeCommunicationsOnline; IsDefault=False; IsInitial=True; Name=contoso.onmicrosoft.com; Type=Mana...
 ```
 
-This example explains how to retrieve details of all tenants in Microsoft Entra ID.  
-This command gets all tenant details.
+This example shows how to retrieve all tenant details.
 
-### Example 2: Get top five tenant details 
+### Example 2: Get top five tenant details
 
 ```powershell
 Connect-Entra -Scopes 'Organization.Read.All'
@@ -65,8 +64,7 @@ DisplayName Id                                   TenantType CountryLetterCode Ve
 Contoso     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb AAD        NL                {@{Capabilities=Email, OfficeCommunicationsOnline; IsDefault=False; IsInitial=True; Name=contoso.onmicrosoft.com; Type=Mana...
 ```
 
-This example explains how to retrieve details of a top five tenants in Microsoft Entra ID.  
-This command gets five tenant details.
+This example shows how to retrieve details of a top five tenants in Microsoft Entra ID.
 
 ## PARAMETERS
 
@@ -75,7 +73,7 @@ This command gets five tenant details.
 List all pages.
 
 ```yaml
-Type: System.Boolean
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -85,6 +83,7 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
 ### -Top
 
 Specifies the maximum number of records to return.

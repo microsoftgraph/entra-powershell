@@ -63,10 +63,7 @@ ghijklmn-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 44ee44
 opqrstuv-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 55ff55ff-gg66-bb77-cc88-99dd99dd99dd Contoso User      Enabled          20            ffffffff-7777-8888-9999-gggggggggggg INFO...
 ```
 
-This example explains how to retrieve subscribed SKUs to Microsoft services.  
-
-This command gets subscribed SKUs.
-
+This example shows how to retrieve subscribed SKUs.
 
 ### Example 2: Get subscribed SKUs by ObjectId
 
@@ -82,9 +79,7 @@ Id                                                                        Accoun
 abcdefgh-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 00aa00aa-bb11-cc22-dd33-44ee44ee44ee Contoso User      Enabled          20            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb EMSP...
 ```
 
-This example explains how to retrieve specified subscribed SKUs to Microsoft services.  
-
-This command gets specified subscribed SKUs to Microsoft services.
+This example shows how to retrieve specified subscribed SKUs.
 
 ## PARAMETERS
 
