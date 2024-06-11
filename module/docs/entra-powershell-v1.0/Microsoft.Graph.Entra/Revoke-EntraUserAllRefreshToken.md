@@ -2,7 +2,7 @@
 title: Revoke-EntraUserAllRefreshToken.
 description: This article provides details on the Revoke-EntraUserAllRefreshToken command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/19/2024
 ms.author: eunicewaweru

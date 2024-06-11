@@ -2,7 +2,7 @@
 title: Get-EntraApplicationProxyApplicationConnectorGroup.
 description: This article provides details on the Get-EntraApplicationProxyApplicationConnectorGroup command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/22/2024
 ms.author: eunicewaweru

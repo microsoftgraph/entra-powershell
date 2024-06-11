@@ -2,9 +2,9 @@
 title: Add-EntraMSApplicationOwner
 description: This article provides details on the Add-EntraMSApplicationOwner command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
-ms.date: 03/06/2024
+ms.date: 06/04/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,6 +18,7 @@ schema: 2.0.0
 # Add-EntraMSApplicationOwner
 
 ## SYNOPSIS
+
 Adds an owner for an application object.
 
 ## SYNTAX
@@ -30,21 +31,24 @@ Add-EntraMSApplicationOwner
 ```
 
 ## DESCRIPTION
+
 Adds an owner for an application object.
 
 ## EXAMPLES
 
 ### Example 1: Add an owner to an application
+
 ```powershell
-PS C:\> $ApplicationId = (Get-EntraMSApplication -Top 1).ObjectId
-PS C:\> $UserObjectId = (Get-EntraMSUser -Top 1).ObjectId
-PS C:\> Add-EntraMSApplicationOwner -ObjectId $ApplicationId -RefObjectId $UserObjectId
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+$ApplicationId = (Get-EntraMSApplication -Top 1).ObjectId
+$UserObjectId = (Get-EntraMSUser -Top 1).ObjectId
+Add-EntraMSApplicationOwner -ObjectId $ApplicationId -RefObjectId $UserObjectId
 ```
 
-The first command gets an application using [Get-EntraMSApplication](./Get-EntraMSApplication.md) cmdlet, and stores 
-the ObjectId property value in $ApplicationId variable.  
-
-The second command gets a user using [Get-EntraMSUser](./Get-EntraMSUser.md) cmdlet, and stores 
+The first command gets an application using [Get-EntraMSApplication](./Get-EntraMSApplication.md) cmdlet, and stores
+the `ObjectId` property value in `$ApplicationId` variable.  
+ 
+The second command gets a user using [Get-EntraUser](./Get-EntraUser.md) cmdlet, and stores 
 the ObjectId property value in $UserObjectId variable.  
 
 This final command adds an owner in $UserObjectId to an application in $ApplicationId.
@@ -54,10 +58,11 @@ This command adds an owner to an application.
 ## PARAMETERS
 
 ### -ObjectId
+
 The unique identifier of the object specific Microsoft Entra ID object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -69,10 +74,11 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
+
 The unique identifier of the specific Microsoft Entra ID object that is assigned as owner/manager/member.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -84,11 +90,13 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### String
+
 ## OUTPUTS
 
 ## NOTES
@@ -98,4 +106,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraMSApplicationOwner](Get-EntraMSApplicationOwner.md)
 
 [Remove-EntraMSApplicationOwner](Remove-EntraMSApplicationOwner.md)
-

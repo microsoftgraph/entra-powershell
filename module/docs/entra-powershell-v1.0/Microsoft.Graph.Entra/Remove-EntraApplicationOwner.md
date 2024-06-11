@@ -2,9 +2,9 @@
 title: Remove-EntraApplicationOwner
 description: This article provides details on the Remove-EntraApplicationOwner command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
-ms.date: 03/05/2024
+ms.date: 06/04/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,6 +18,7 @@ schema: 2.0.0
 # Remove-EntraApplicationOwner
 
 ## SYNOPSIS
+
 Removes an owner from an application.
 
 ## SYNTAX
@@ -30,13 +31,16 @@ Remove-EntraApplicationOwner
 ```
 
 ## DESCRIPTION
+
 The Remove-EntraApplicationOwner cmdlet removes an owner from an application in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Remove an owner from an application
+
 ```powershell
-PS C:\>Remove-EntraApplicationOwner -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -OwnerId "c13dd34a-492b-4561-b171-40fcce2916c5"
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+Remove-EntraApplicationOwner -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -OwnerId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 This command removes the specified owner from the specified application.
@@ -44,10 +48,11 @@ This command removes the specified owner from the specified application.
 ## PARAMETERS
 
 ### -ObjectId
+
 Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -59,10 +64,11 @@ Accept wildcard characters: False
 ```
 
 ### -OwnerId
+
 Specifies the ID of the owner.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -74,7 +80,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, -`InformationVariable`, `-OutVariable`, -`OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -87,4 +94,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Add-EntraApplicationOwner](Add-EntraApplicationOwner.md)
 
 [Get-EntraApplicationOwner](Get-EntraApplicationOwner.md)
-
