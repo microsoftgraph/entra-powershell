@@ -730,6 +730,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## RELATED LINKS
 
-- [Get-EntraBetaApplication](Get-EntraBetaApplication.md)
-- [Remove-EntraBetaApplication](Remove-EntraBetaApplication.md)
-- [Set-EntraBetaApplication](Set-EntraBetaApplication.md)
+[Get-EntraBetaApplication](Get-EntraBetaApplication.md)
+
+[Remove-EntraBetaApplication](Remove-EntraBetaApplication.md)
+
+[Set-EntraBetaApplication](Set-EntraBetaApplication.md)

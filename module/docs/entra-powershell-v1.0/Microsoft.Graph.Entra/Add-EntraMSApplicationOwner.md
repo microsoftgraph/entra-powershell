@@ -103,5 +103,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## RELATED LINKS
 
-- [Get-EntraMSApplicationOwner](Get-EntraMSApplicationOwner.md)
-- [Remove-EntraMSApplicationOwner](Remove-EntraMSApplicationOwner.md)
+[Get-EntraMSApplicationOwner](Get-EntraMSApplicationOwner.md)
+
+[Remove-EntraMSApplicationOwner](Remove-EntraMSApplicationOwner.md)

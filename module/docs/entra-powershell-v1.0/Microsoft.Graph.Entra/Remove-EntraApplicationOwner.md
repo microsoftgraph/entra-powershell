@@ -91,6 +91,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## RELATED LINKS
 
-- [Add-EntraApplicationOwner](Add-EntraApplicationOwner.md)
+[Add-EntraApplicationOwner](Add-EntraApplicationOwner.md)
 
-- [Get-EntraApplicationOwner](Get-EntraApplicationOwner.md)
+[Get-EntraApplicationOwner](Get-EntraApplicationOwner.md)

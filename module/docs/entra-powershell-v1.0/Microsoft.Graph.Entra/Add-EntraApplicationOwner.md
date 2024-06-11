@@ -99,6 +99,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-- [Get-EntraApplicationOwner](Get-EntraApplicationOwner.md)
+[Get-EntraApplicationOwner](Get-EntraApplicationOwner.md)
 
-- [Remove-EntraApplicationOwner](Remove-EntraApplicationOwner.md)
+[Remove-EntraApplicationOwner](Remove-EntraApplicationOwner.md)

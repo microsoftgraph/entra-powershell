@@ -80,6 +80,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-- [New-EntraApplicationExtensionProperty](New-EntraApplicationExtensionProperty.md)
+[New-EntraApplicationExtensionProperty](New-EntraApplicationExtensionProperty.md)
 
-- [Remove-EntraApplicationExtensionProperty](Remove-EntraApplicationExtensionProperty.md)
+[Remove-EntraApplicationExtensionProperty](Remove-EntraApplicationExtensionProperty.md)

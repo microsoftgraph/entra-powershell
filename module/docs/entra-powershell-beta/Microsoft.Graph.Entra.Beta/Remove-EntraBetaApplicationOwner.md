@@ -91,5 +91,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## RELATED LINKS
 
-- [Add-EntraBetaApplicationOwner](Add-EntraBetaApplicationOwner.md)
-- [Get-EntraBetaApplicationOwner](Get-EntraBetaApplicationOwner.md)
+[Add-EntraBetaApplicationOwner](Add-EntraBetaApplicationOwner.md)
+
+[Get-EntraBetaApplicationOwner](Get-EntraBetaApplicationOwner.md)

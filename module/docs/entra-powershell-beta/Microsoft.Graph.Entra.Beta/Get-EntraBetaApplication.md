@@ -249,6 +249,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## RELATED LINKS
 
-- [New-EntraBetaApplication](New-EntraBetaApplication.md)
-- [Remove-EntraBetaApplication](Remove-EntraBetaApplication.md)
-- [Set-EntraBetaApplication](Set-EntraBetaApplication.md)
+[New-EntraBetaApplication](New-EntraBetaApplication.md)
+
+[Remove-EntraBetaApplication](Remove-EntraBetaApplication.md)
+
+[Set-EntraBetaApplication](Set-EntraBetaApplication.md)

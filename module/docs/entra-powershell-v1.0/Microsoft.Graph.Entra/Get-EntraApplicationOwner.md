@@ -168,6 +168,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## RELATED LINKS
 
-- [Add-EntraApplicationOwner](Add-EntraApplicationOwner.md)
+[Add-EntraApplicationOwner](Add-EntraApplicationOwner.md)
 
-- [Remove-EntraApplicationOwner](Remove-EntraApplicationOwner.md)
+[Remove-EntraApplicationOwner](Remove-EntraApplicationOwner.md)

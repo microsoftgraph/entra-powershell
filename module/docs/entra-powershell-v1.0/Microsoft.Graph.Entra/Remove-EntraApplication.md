@@ -74,8 +74,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## RELATED LINKS
 
-- [Get-EntraApplication](Get-EntraApplication.md)
+[Get-EntraApplication](Get-EntraApplication.md)
 
-- [New-EntraApplication](New-EntraApplication.md)
+[New-EntraApplication](New-EntraApplication.md)
 
-- [Set-EntraApplication](Set-EntraApplication.md)
+[Set-EntraApplication](Set-EntraApplication.md)
