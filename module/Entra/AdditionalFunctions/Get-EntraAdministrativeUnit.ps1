@@ -100,13 +100,29 @@ function Get-EntraAdministrativeUnit {
         $response = $response.value
     }
 
-    $response = $response | ConvertTo-Json -Depth 5 | ConvertFrom-Json
+    $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
 
-    $response | ForEach-Object {
+    try {
+        $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+        $all = $All.IsPresent
+        $increment = $topCount - $data.Count
+        while ($response.'@odata.nextLink' -and (($all) -or ($increment -gt 0 -and -not $all))) {
+            $URI = $response.'@odata.nextLink'
+            if (-not $all) {
+                $topValue = [Math]::Min($increment, 999)
+                $URI = $URI.Replace('$top=999', "`$top=$topValue")
+                $increment -= $topValue
+            }
+            $response = Invoke-GraphRequest -Uri $URI -Method $Method
+            $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+        }
+    } catch {} 
+    $data | ForEach-Object {
         if($null -ne $_) {
             Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+            Add-Member -InputObject $_ -MemberType AliasProperty -Name DeletionTimeStamp -Value deletedDateTime
         }
     }
-    $response
+    $data 
     }
 }
