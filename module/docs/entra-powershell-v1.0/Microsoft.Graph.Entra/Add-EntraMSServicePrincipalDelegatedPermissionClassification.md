@@ -52,7 +52,7 @@ Add-EntraMSServicePrincipalDelegatedPermissionClassification -ServicePrincipalId
 ```output
 Id                      Classification PermissionId                         PermissionName
 --                      -------------- ------------                         --------------
-eszf101IRka9VZoGVVnbBgE low            dddddddd-9999-0000-1111-eeeeeeeeeeee Sites.Read.All
+eszf101IRka9VZoGVVnbBgE low            205e70e5-aba6-4c52-a976-6d2d46c48043 Sites.Read.All
 ```
 
 - The first command connects to the tenant with the right scopes to run the example.
