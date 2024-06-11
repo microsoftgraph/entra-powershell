@@ -167,7 +167,7 @@ This cmdlet retrieves the deleted group specified by `-Id`.
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
