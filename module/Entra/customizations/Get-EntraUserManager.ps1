@@ -60,13 +60,22 @@
         {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
+
+        $URI = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager?`$select=*"
+
+        if($null -ne $PSBoundParameters["Property"])
+        {
+            $selectProperties = $PSBoundParameters["Property"]
+            $selectProperties = $selectProperties -Join ','
+            $properties = "`$select=$($selectProperties)"
+            $URI = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager?$properties"
+        }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
     
         try {
-            $URI = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager?`$select=*"
             $response = Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method -ErrorAction Stop
             $response = $response | ConvertTo-Json | ConvertFrom-Json
             $response | ForEach-Object {
