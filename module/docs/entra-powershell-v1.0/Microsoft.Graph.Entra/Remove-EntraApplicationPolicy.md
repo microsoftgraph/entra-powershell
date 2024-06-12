@@ -31,14 +31,15 @@ Remove-EntraApplicationPolicy
 
 ## DESCRIPTION
 
-The Remove-EntraApplicationPolicy cmdlet removes an application policy from Microsoft Entra ID.
+The Remove-EntraApplicationPolicy cmdlet removes an application policy from Microsoft Entra ID. Specify the `Id` and `PolicyId` parameter to remove an application policy.
 
 ## EXAMPLES
 
 ### Example 1: Remove an application policy
 
 ```powershell
-Remove-EntraApplicationPolicy -ObjectId '00000000-1111-1111-1111-000000000000' -PolicyId '44444444-1111-1111-1111-000000000000'
+Connect-Entra -Scopes 'User.Read.All'
+Remove-EntraApplicationPolicy -ObjectId '00000000-1111-1111-1111-000000000000' -PolicyId 'aaaaaaaa-1111-1111-1111-000000000000'
 ```
 
 This command removes the specified application policy.

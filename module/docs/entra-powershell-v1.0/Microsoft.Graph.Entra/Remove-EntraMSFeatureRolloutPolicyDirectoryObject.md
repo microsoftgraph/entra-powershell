@@ -34,7 +34,7 @@ Remove-EntraMSFeatureRolloutPolicyDirectoryObject
 
 An admin uses this cmdlet to remove groups from the cloud authentication roll-out policy.
 Users in these groups start authenticating against the global authentication policy (for example,
-federation).
+federation). Specify `Id` and `ObjectId` parameter for remove groups from the cloud authentication roll-out policy.
 
 ## EXAMPLES
 

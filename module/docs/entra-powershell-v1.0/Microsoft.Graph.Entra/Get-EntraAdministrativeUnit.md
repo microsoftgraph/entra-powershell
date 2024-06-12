@@ -43,7 +43,7 @@ Get-EntraAdministrativeUnit
 
 ## DESCRIPTION
 
-The Get-EntraAdministrativeUnit cmdlet gets a Microsoft Entra ID administrative unit.
+The Get-EntraAdministrativeUnit cmdlet gets a Microsoft Entra ID administrative unit.Specify the `ObjectId` parameter to get a administrative unit.
 
 ## EXAMPLES
 

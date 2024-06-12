@@ -31,14 +31,15 @@ Remove-EntraAdministrativeUnit
 
 ## DESCRIPTION
 
-The Remove-EntraAdministrativeUnit cmdlet removes an administrative unit from Microsoft Entra ID.
+The Remove-EntraAdministrativeUnit cmdlet removes an administrative unit from Microsoft Entra ID. Specify the `ObjectId` parameter to remove of administrative unit.
 
 ## EXAMPLES
 
 ### Example 1: Remove an  administrative unit
 
 ```powershell
-Remove-EntraAdministrativeUnit -ObjectId "00000000-1111-1111-1111-000000000000"
+Connect-Entra -Scopes 'User.Read.All'
+Remove-EntraAdministrativeUnit -ObjectId 'aaaaaaaa-1111-1111-1111-000000000000'
 ```
 
 This example removes an administrative unit from Microsoft Entra ID.

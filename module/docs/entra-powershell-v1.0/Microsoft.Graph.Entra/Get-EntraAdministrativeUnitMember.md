@@ -30,7 +30,7 @@ Get-EntraAdministrativeUnitMember
 
 ## DESCRIPTION
 
-The Get-AzureADAdministrativeUnitMember cmdlet gets a member of a Microsoft Entra ID administrative unit.
+The Get-AzureADAdministrativeUnitMember cmdlet gets a member of a Microsoft Entra ID administrative unit. Specify the `ObjectId` parameter to get a member of administrative unit.
 
 ## EXAMPLES
 

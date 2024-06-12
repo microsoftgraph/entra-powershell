@@ -31,7 +31,7 @@ Remove-EntraMSFeatureRolloutPolicy
 ## DESCRIPTION
 
 An admin will use this cmdlet to remove the cloud authentication roll-out policy and have all users where policy applied to be free of the policy.
-Users in groups that were assigned to the policy will fall back to the global authentication method (most common case will be federation).
+Users in groups that were assigned to the policy will fall back to the global authentication method (most common case will be federation). Specify `Id` parameter for remove an policy for cloud authentication roll-out.
 
 ## EXAMPLES
 

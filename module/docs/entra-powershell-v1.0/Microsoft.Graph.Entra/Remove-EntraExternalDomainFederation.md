@@ -30,13 +30,15 @@ Remove-EntraExternalDomainFederation
 
 ## DESCRIPTION
 
+This Remove-EntraExternalDomainFederation cmdlet removes an externalDomainFederation by external domain name. Specify `ExternalDomainName` parameter for remove an externalDomainFederation.
+
 ## EXAMPLES
 
 ### Example 1: Deletes an external domain federation setting for a given external domain
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Remove-EntraExternalDomainFederation -ExternalDomainName "test.com"
+Remove-EntraExternalDomainFederation -ExternalDomainName 'test.com'
 ```
 
 This command deletes an external domain federation setting.
