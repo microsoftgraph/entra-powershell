@@ -58,7 +58,7 @@
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
 
-        $URI = '/v1.0/users/'+$params["UserId"]+'/ownedObjects'
+        $URI = "/v1.0/users/$($params.UserId)/ownedObjects"
 
         if($null -ne $PSBoundParameters["Property"])
         {
