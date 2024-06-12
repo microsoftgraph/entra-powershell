@@ -101,7 +101,7 @@ Connect-Entra -Scopes 'Device.ReadWrite.All' #Application Permission
 
 $params = @{
     ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-    DeviceMetadata = 'Testdeivce'
+    DeviceMetadata = 'Testdevice'
     DeviceObjectVersion = 4
     DevicePhysicalIds = '[GID]:g:1234567890123456'
     IsCompliant = $false
