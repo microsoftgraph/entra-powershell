@@ -38,7 +38,7 @@ The Remove-EntraAdministrativeUnit cmdlet removes an administrative unit from Mi
 ### Example 1: Remove an  administrative unit
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All'
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 Remove-EntraAdministrativeUnit -ObjectId 'aaaaaaaa-1111-1111-1111-000000000000'
 ```
 

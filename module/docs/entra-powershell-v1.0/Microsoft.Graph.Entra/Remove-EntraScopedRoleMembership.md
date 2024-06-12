@@ -39,7 +39,7 @@ The Remove-EntraScopedRoleMembership cmdlet removes a scoped role membership fro
 ### Example 1: Removes a scoped role membership
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All'
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
 Remove-EntraScopedRoleMembership -ObjectId '00000000-1111-1111-1111-000000000000' -ScopedRoleMembershipId '44444444-1111-1111-1111-000000000000'
 ```
 

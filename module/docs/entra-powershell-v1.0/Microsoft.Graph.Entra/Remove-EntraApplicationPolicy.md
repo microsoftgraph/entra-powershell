@@ -38,7 +38,7 @@ The Remove-EntraApplicationPolicy cmdlet removes an application policy from Micr
 ### Example 1: Remove an application policy
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All'
+Connect-Entra -Scopes 'Policy.Read.All,Application.ReadWrite.OwnedBy, Policy.Read.All, Application.ReadWrite.All, Policy.ReadWrite.ApplicationConfiguration, Application.ReadWrite.OwnedBy, Policy.ReadWrite.ApplicationConfiguration, Application.ReadWrite.All'
 Remove-EntraApplicationPolicy -ObjectId '00000000-1111-1111-1111-000000000000' -PolicyId 'aaaaaaaa-1111-1111-1111-000000000000'
 ```
 

@@ -38,7 +38,7 @@ The Remove-EntraAdministrativeUnitMember cmdlet removes an administrative unit m
 ### Example 1: Remove an  administrative unit member
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All'
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 Remove-EntraAdministrativeUnitMember -ObjectId '00000000-1111-1111-1111-000000000000' -MemberId 'aaaaaaaa-bbbb-aaaa-aaaa-000000000000'
 ```
 
