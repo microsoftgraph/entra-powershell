@@ -22,8 +22,6 @@
     href: Microsoft.Graph.Entra/Add-EntraMSLifecyclePolicyGroup.md
   - name: Add-EntraMSScopedRoleMembership
     href: Microsoft.Graph.Entra/Add-EntraMSScopedRoleMembership.md
-  - name: Add-EntraMSServicePrincipalDelegatedPermissionClassification
-    href: Microsoft.Graph.Entra/Add-EntraMSServicePrincipalDelegatedPermissionClassification.md
   - name: Add-EntraServicePrincipalOwner
     href: Microsoft.Graph.Entra/Add-EntraServicePrincipalOwner.md
   - name: Confirm-EntraDomain
@@ -144,8 +142,6 @@
     href: Microsoft.Graph.Entra/Get-EntraMSRoleDefinition.md
   - name: Get-EntraMSScopedRoleMembership
     href: Microsoft.Graph.Entra/Get-EntraMSScopedRoleMembership.md
-  - name: Get-EntraMSServicePrincipalDelegatedPermissionClassification
-    href: Microsoft.Graph.Entra/Get-EntraMSServicePrincipalDelegatedPermissionClassification.md
   - name: Get-EntraOAuth2PermissionGrant
     href: Microsoft.Graph.Entra/Get-EntraOAuth2PermissionGrant.md
   - name: Get-EntraObjectByObjectId
@@ -338,8 +334,6 @@
     href: Microsoft.Graph.Entra/Remove-EntraMSRoleDefinition.md
   - name: Remove-EntraMSScopedRoleMembership
     href: Microsoft.Graph.Entra/Remove-EntraMSScopedRoleMembership.md
-  - name: Remove-EntraMSServicePrincipalDelegatedPermissionClassification
-    href: Microsoft.Graph.Entra/Remove-EntraMSServicePrincipalDelegatedPermissionClassification.md
   - name: Remove-EntraOAuth2PermissionGrant
     href: Microsoft.Graph.Entra/Remove-EntraOAuth2PermissionGrant.md
   - name: Remove-EntraServiceAppRoleAssignment
