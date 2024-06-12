@@ -40,7 +40,7 @@ Adds a predefined value for a Microsoft Entra ID custom security attribute defin
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-Add-EntraMScustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Id "Alpine" -IsActive $true
+Add-EntraMScustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Id 'Alpine' -IsActive $true
 ```
 
 ```output
