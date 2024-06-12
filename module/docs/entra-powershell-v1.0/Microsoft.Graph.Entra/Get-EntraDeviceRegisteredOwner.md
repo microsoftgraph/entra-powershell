@@ -53,9 +53,11 @@ ObjectId                             DisplayName     UserPrincipalName     UserT
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan    maria@contoso.com       Member
 ```
 
-The first command gets the object ID of a device by using the [Get-EntraDevice](./Get-EntraDevice.md) cmdlet, and then stores it in the `$DevId` variable.  
+This example shows how to find the registered owner of a device.
 
-The second command gets the registered owner of the device in `$DevId`.
+- The first command gets the object ID of a device by using the [Get-EntraDevice](./Get-EntraDevice.md) cmdlet, and then stores it in the `$DevId` variable.  
+
+- The second command gets the registered owner of the device in `$DevId`.
 
 ### Example 2: Retrieve the registered owner of a device
 
@@ -111,7 +113,7 @@ This command retrieves top one registered owner of a device.
 List all pages.
 
 ```yaml
-Type: System.Boolean 
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -121,6 +123,7 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
 ### -ObjectId
 
 Specifies the ID of an object.

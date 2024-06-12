@@ -45,13 +45,15 @@ $Owner = Get-EntraDeviceRegisteredOwner -ObjectId $Device.ObjectId
 Remove-EntraDeviceRegisteredOwner -ObjectId $Device.ObjectId -OwnerId $Owner.ObjectId
 ```
 
+This examples shows how to remove the owner of a device.
+
 The first command gets a device by using the [Get-EntraDevice](./Get-EntraDevice.md) cmdlet, and then stores it in the `$Device` variable.  
 
-The second command gets the registered owner for the device in `$Device` by using the [Get-EntraDeviceRegisteredOwner](./Get-EntraDeviceRegisteredOwner.md) cmdlet.  
+- The second command retrieves the registered owner of the device in `$Device` by using the [Get-EntraDeviceRegisteredOwner](./Get-EntraDeviceRegisteredOwner.md) cmdlet.  
 
-The command stores it in the `$Owner` variable.  
+- The command stores the details in the `$Owner` variable.  
 
-The final command removes the owner in `$Owner` from the device in `$Device`.
+- The final command removes the owner in `$Owner` from the device in `$Device`.
 
 ## PARAMETERS
 
@@ -104,4 +106,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Get-EntraDevice](Get-EntraDevice.md)
 
 [Get-EntraDeviceRegisteredOwner](Get-EntraDeviceRegisteredOwner.md)
-

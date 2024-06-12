@@ -24,6 +24,7 @@ Gets a directory role.
 ## SYNTAX
 
 ### GetQuery (Default)
+
 ```powershell
 Get-EntraDirectoryRole 
  [-Filter <String>] 
@@ -31,6 +32,7 @@ Get-EntraDirectoryRole
 ```
 
 ### GetById
+
 ```powershell
 Get-EntraDirectoryRole 
  -ObjectId <String> 
@@ -115,7 +117,7 @@ This command gets the directory role by display name.
 
 ### -Filter
 
-The oData v3.0 filter statement. 
+The oData v3.0 filter statement.
 Controls which objects are returned.
 
 ```yaml
@@ -159,4 +161,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## RELATED LINKS
 
 [Enable-EntraDirectoryRole](Enable-EntraDirectoryRole.md)
-

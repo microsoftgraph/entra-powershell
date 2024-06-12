@@ -35,7 +35,7 @@ Retrieves the objects specified by the ObjectIds parameter.
 
 ## EXAMPLES
 
-### Example 1: Get an object One or more object IDs.
+### Example 1: Get an object One or more object IDs
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'

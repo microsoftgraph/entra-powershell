@@ -39,7 +39,7 @@ The `Get-EntraDirectoryRoleMember` cmdlet gets the members of a directory role i
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-Get-EntraDirectoryRoleMember -ObjectId 1d73e796-aac5-4b3a-b7e7-74a3d1926a85
+Get-EntraDirectoryRoleMember -ObjectId '1d73e796-aac5-4b3a-b7e7-74a3d1926a85'
 ```
 
 ```Output
@@ -88,4 +88,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Add-EntraDirectoryRoleMember](Add-EntraDirectoryRoleMember.md)
 
 [Remove-EntraDirectoryRoleMember](Remove-EntraDirectoryRoleMember.md)
-

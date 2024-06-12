@@ -59,9 +59,11 @@ onPremisesUserPrincipalName     :
 assignedLicenses                : {}
 ```
 
-This example demonstrates how to retrieve registered user for a specific Microsoft Entra ID device.  
-The first command gets the object ID of a device by using the Get-EntraDevice (./Get-EntraDevice.md) cmdlet, and then stores it in the `$DevId` variable.  
-The second command gets the registered users of the device in `$DevId`.
+This example demonstrates how to retrieve registered user for a specific Microsoft Entra ID device.
+
+- The first command gets the object ID of a device by using the Get-EntraDevice (./Get-EntraDevice.md) cmdlet, and then stores it in the `$DevId` variable.
+
+- The second command gets the registered users of the device in `$DevId`.
 
 ### Example 2: Get all registered users of a device
 
@@ -84,14 +86,13 @@ onPremisesUserPrincipalName     :
 assignedLicenses                : {}
 ```
 
-This example demonstrates how to retrieve all registered users for a Microsoft Entra ID device.  
-This command gets the all registered users of the specified device.
+This example demonstrates how to retrieve all registered users for a specified device.
 
 ### Example 3: Get top two registered users of a device
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraDeviceRegisteredUser -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 2
+Get-EntraDeviceRegisteredUser -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 2
 ```
 
 ```Output
@@ -108,8 +109,7 @@ onPremisesUserPrincipalName     :
 assignedLicenses                : {}
 ```
 
-This example demonstrates how to retrieve top two registered users for a Microsoft Entra ID device.  
-This command gets two registered users of the specified device.
+This example demonstrates how to retrieve top two registered users for the specified device.
 
 ## PARAMETERS
 
@@ -118,7 +118,7 @@ This command gets two registered users of the specified device.
 List all pages.
 
 ```yaml
-Type: System.Boolean
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -128,6 +128,7 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
 ### -ObjectId
 
 Specifies an object ID of a device.
