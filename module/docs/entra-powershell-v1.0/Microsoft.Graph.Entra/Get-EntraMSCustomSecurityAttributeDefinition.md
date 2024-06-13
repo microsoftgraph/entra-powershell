@@ -46,6 +46,7 @@ Gets a list of Microsoft Entra ID custom security attribute definitions. Specify
 ### Example 1: Get a list of all custom security attribute definitions
 
 ```powershell
+Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttributeDefinition.ReadWrite.All'
 Get-EntraMSCustomSecurityAttributeDefinition
 ```
 
@@ -76,7 +77,8 @@ This example get all custom security attribute definitions.
 ### Example 2: Get a specific custom security attribute definitions
 
 ```powershell
-Get-EntraMSCustomSecurityAttributeDefinition -Id "Engineering_ProjectDate" 
+Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttributeDefinition.ReadWrite.All'
+Get-EntraMSCustomSecurityAttributeDefinition -Id 'Engineering_ProjectDate'
 ```
 
 ```output
