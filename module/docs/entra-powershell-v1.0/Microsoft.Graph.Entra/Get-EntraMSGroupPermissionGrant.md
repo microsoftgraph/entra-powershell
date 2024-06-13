@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraMSGroupPermissionGran
 
 ms.service: entra
 ms.topic: reference
-ms.date: 06/12/2024
+ms.date: 03/22/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -31,7 +31,7 @@ Get-EntraMSGroupPermissionGrant
 
 ## DESCRIPTION
 
-Retrieves a list of permission grants that have been consented for this group. Specify `Id` parameter to gets an list of permission grants.
+Retrieves a list of permission grants that have been consented for this group.
 
 ## EXAMPLES
 
@@ -73,7 +73,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
