@@ -33,8 +33,11 @@ Describe "Get-EntraMSCustomSecurityAttributeDefinition" {
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is invalid" {
+        It "Should fail when ObjectId is empty" {
             { Get-EntraMSCustomSecurityAttributeDefinition -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
+        }
+        It "Should fail when ObjectId is invalid" {
+            { Get-EntraMSCustomSecurityAttributeDefinition -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
         }
         It "Should contain 'User-Agent' header" {
             Get-EntraMSCustomSecurityAttributeDefinition -Id Engineering_Project | Out-Null
