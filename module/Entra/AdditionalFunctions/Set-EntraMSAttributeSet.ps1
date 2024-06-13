@@ -13,7 +13,7 @@ function Set-EntraMSAttributeSet {
     $params = @{}
     $body = @{}
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-    $params["Uri"] = "https://graph.microsoft.com/v1.0/directory/attributeSets"
+    $params["Uri"] = "https://graph.microsoft.com/v1.0/directory/attributeSets/"
     $params["Method"] = "PATCH"
     if($null -ne $PSBoundParameters["ErrorAction"])
     {

@@ -15,8 +15,11 @@ Describe "Set-EntraMSAttributeSet" {
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when Id parameter is invalid" {
+        It "Should fail when Id parameter is empty" {
             { Set-EntraMSAttributeSet -Id } | Should -Throw "Missing an argument for parameter 'Id*"
+        }
+        It "Should fail when Id parameter is invalid" {
+            { Set-EntraMSAttributeSet -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id'*"
         }
         It "Should fail when Description parameter is empty" {
             { Set-EntraMSAttributeSet -Description } | Should -Throw "Missing an argument for parameter 'Description*"
