@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraUserDirectReport
 
-## SYNOPSIS
+## Synopsis
 Get the user's direct reports.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraUserDirectReport 
@@ -30,10 +30,10 @@ Get-EntraUserDirectReport
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraUserDirectReport cmdlet gets the direct reports for a user in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a user's direct reports
 ```powershell
@@ -101,7 +101,7 @@ assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=184efa
 This example demonstrates how to retrieve top five direct reports for a user in Microsoft Entra ID.  
 This command gets the five direct report for the specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -151,10 +151,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

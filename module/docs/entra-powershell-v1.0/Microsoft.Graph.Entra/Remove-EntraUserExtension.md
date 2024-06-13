@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Remove-EntraUserExtension
 
-## SYNOPSIS
+## Synopsis
 Removes a user extension.
 
-## SYNTAX
+## Syntax
 
 ### SetMultiple
 ```powershell
@@ -38,10 +38,10 @@ Remove-EntraUserExtension
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraUserExtension cmdlet removes a user extension from Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove the "Test Extension" attribute from user: TestUser@example.com
 ```powershell
@@ -50,7 +50,7 @@ PS C:\> Remove-EntraUserExtension -ObjectId TestUser@example.com -ExtensionName 
 
 This will remove the "Test Extension" attribute from user: TestUser@example.com.
 
-## PARAMETERS
+## Parameters
 
 ### -ExtensionName
 Specifies the name of an extension.
@@ -100,13 +100,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraUserExtension](Get-EntraUserExtension.md)
 

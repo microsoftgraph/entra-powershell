@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraGroupMember
 
-## SYNOPSIS
+## Synopsis
 
 Gets a member of a group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraGroupMember 
@@ -31,11 +31,11 @@ Get-EntraGroupMember
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraGroupMember cmdlet gets a member of a group in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a group member by ID
 
@@ -112,7 +112,7 @@ consentProvidedForMinor         :
 
 This command is used to retrieve all members of a specific group. The `-ObjectId` parameter specifies the ID of the group whose members should be retrieved. The `-All` parameter indicates that all members of the group should be retrieved.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -165,13 +165,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Add-EntraGroupMember](Add-EntraGroupMember.md)
 

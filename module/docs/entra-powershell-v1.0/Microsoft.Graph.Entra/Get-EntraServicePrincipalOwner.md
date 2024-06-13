@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraServicePrincipalOwner
 
-## SYNOPSIS
+## Synopsis
 
 Get the owner of a service principal.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraServicePrincipalOwner 
@@ -31,11 +31,11 @@ Get-EntraServicePrincipalOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraServicePrincipalOwner cmdlet gets the owners of a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the owner of a service principal
 
@@ -93,7 +93,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc Peter Kons     Peter@contoso.com   Member
 
 This command gets top two owners of a service principal.
 
-## PARAMETERS
+## Parameters
 ### -All
 
 List all pages.
@@ -145,13 +145,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Add-EntraServicePrincipalOwner](Add-EntraServicePrincipalOwner.md)
 

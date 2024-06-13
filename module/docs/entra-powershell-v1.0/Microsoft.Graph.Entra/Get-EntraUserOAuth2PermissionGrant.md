@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraUserOAuth2PermissionGrant
 
-## SYNOPSIS
+## Synopsis
 Gets an oAuth2PermissionGrant object.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraUserOAuth2PermissionGrant 
@@ -30,10 +30,10 @@ Get-EntraUserOAuth2PermissionGrant
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraUserOAuth2PermissionGrant cmdlet gets an oAuth2PermissionGrant object for the specified user in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the OAuth2 permission grants for a user
 ```powershell
@@ -73,7 +73,7 @@ HXFXwKLgoUC4rwbZbCDIdffW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV c057711d-e0a2-4
 This Example Retrieve the OAuth2 permission grants for a user using All parameter.
 
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -123,12 +123,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraUser](Get-EntraUser.md)

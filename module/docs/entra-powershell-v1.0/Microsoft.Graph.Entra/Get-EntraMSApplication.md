@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraMSApplication
 
-## SYNOPSIS
+## Synopsis
 Retrieves the list of applications within the organization.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```powershell
@@ -47,11 +47,11 @@ Get-EntraMSApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Retrieves the list of applications within the organization.
 With an ObjectId argument, it can retrieve the properties of the application object associated with the ObjectId.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get an application by display name
 ```powershell
@@ -559,7 +559,7 @@ Web                       : class WebApplication {
 
 This command gets a list of applications, which have the specified display name.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the ID of an application in Microsoft Entra ID.
@@ -640,17 +640,17 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### Bool?
 ### Int?
 ### String
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.MsApplication
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [New-EntraMSApplication](New-EntraMSApplication.md)
 

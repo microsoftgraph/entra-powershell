@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # Add-EntraMSServicePrincipalDelegatedPermissionClassification
 
-## SYNOPSIS
+## Synopsis
 
 Add a classification for a delegated permission.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraMSServicePrincipalDelegatedPermissionClassification 
@@ -33,11 +33,11 @@ Add-EntraMSServicePrincipalDelegatedPermissionClassification
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Add-EntraMSServicePrincipalDelegatedPermissionClassification cmdlet creates a delegated permission classification for the given permission on service principal.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create Delegated Permission Classification
 
@@ -69,7 +69,7 @@ This command creates a delegated permission classification for the given permiss
 - The second command gets the Id from first item in Oauth2PermissionScopes list from the retrieved service principal.
 - The third command gets the value from first item in Oauth2PermissionScopes list from the retrieved service principal.  
 
-## PARAMETERS
+## Parameters
 
 ### -ServicePrincipalId
 
@@ -146,15 +146,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Online.Administration.DelegatedPermissionClassification
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraMSServicePrincipalDelegatedPermissionClassification](Get-EntraMSServicePrincipalDelegatedPermissionClassification.md)
 

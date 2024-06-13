@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Add-EntraMSApplicationOwner
 
-## SYNOPSIS
+## Synopsis
 
 Adds an owner for an application object.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraMSApplicationOwner 
@@ -30,11 +30,11 @@ Add-EntraMSApplicationOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 Adds an owner for an application object.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add an owner to an application
 
@@ -55,7 +55,7 @@ This final command adds an owner in $UserObjectId to an application in $Applicat
 
 This command adds an owner to an application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -93,15 +93,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### String
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraMSApplicationOwner](Get-EntraMSApplicationOwner.md)
 

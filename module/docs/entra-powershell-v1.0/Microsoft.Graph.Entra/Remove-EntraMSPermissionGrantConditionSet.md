@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Remove-EntraMSPermissionGrantConditionSet
 
-## SYNOPSIS
+## Synopsis
 Delete a Microsoft Entra ID permission grant condition set by ID.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraMSPermissionGrantConditionSet 
@@ -30,10 +30,10 @@ Remove-EntraMSPermissionGrantConditionSet
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Delete a Microsoft Entra ID permission grant condition set object by ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Delete a permission grant condition set from a policy
 ```Powershell
@@ -42,7 +42,7 @@ PS C:\>Remove-EntraMSPermissionGrantConditionSet -PolicyId "policy1" -ConditionS
 
 This command demonstrates how to remove the Microsoft Entra ID permission grant condition set by ID.
   
-## PARAMETERS
+## Parameters
 
 ### -PolicyId
 The unique identifier of a Microsoft Entra ID permission grant policy object.
@@ -92,16 +92,16 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### String
 ### String
 ### String
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [New-EntraMSPermissionGrantConditionSet](New-EntraMSPermissionGrantConditionSet.md)
 

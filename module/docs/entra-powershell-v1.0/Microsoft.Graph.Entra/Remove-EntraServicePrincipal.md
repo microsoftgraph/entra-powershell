@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Remove-EntraServicePrincipal
 
-## SYNOPSIS
+## Synopsis
 
 Removes a service principal.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraServicePrincipal 
@@ -29,11 +29,11 @@ Remove-EntraServicePrincipal
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Remove-EntraServicePrincipal cmdlet removes a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Removes a service principal
 
@@ -45,7 +45,7 @@ Remove-EntraServicePrincipal -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444'
 
 This example demonstrates how to remove a service principal in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -67,13 +67,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
 

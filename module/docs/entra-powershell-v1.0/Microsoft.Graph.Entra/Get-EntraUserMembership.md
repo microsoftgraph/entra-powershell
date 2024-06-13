@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraUserMembership
 
-## SYNOPSIS
+## Synopsis
 Get user memberships.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraUserMembership 
@@ -30,10 +30,10 @@ Get-EntraUserMembership
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraUserMembership cmdlet gets user memberships in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get user memberships
 ```powershell
@@ -88,7 +88,7 @@ cc3cc7a2-ba9a-4158-814c-d5ee1af66d24
 This example demonstrates how to retrieve users top five memberships in Microsoft Entra ID.      
 This command gets the top five memberships for the specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -138,10 +138,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

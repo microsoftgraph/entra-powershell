@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # Remove-EntraMSGroupLifecyclePolicy
 
-## SYNOPSIS
+## Synopsis
 
 Deletes a groupLifecyclePolicies object
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraMSGroupLifecyclePolicy 
@@ -30,11 +30,11 @@ Remove-EntraMSGroupLifecyclePolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Remove-EntraMSGroupLifecyclePolicy command deletes a groupLifecyclePolicies object in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a groupLifecyclePolicies.
 
@@ -45,7 +45,7 @@ Remove-EntraMSGroupLifecyclePolicy -Id '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
 
 This cmdlet deletes the groupLifecyclePolicies object that has the specified ID.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -67,17 +67,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraMSGroupLifecyclePolicy](Get-EntraMSGroupLifecyclePolicy.md)
 

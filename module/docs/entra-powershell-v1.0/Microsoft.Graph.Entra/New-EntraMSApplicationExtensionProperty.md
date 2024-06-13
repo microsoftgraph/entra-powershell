@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # New-EntraMSApplicationExtensionProperty
 
-## SYNOPSIS
+## Synopsis
 Creates an extension property on an application object.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraMSApplicationExtensionProperty 
@@ -31,10 +31,10 @@ New-EntraMSApplicationExtensionProperty
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Creates an extension property on an application object.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create an extension property
 ```powershell
@@ -49,7 +49,7 @@ ObjectId                             Name                                       
 
 This command creates an application extension property of the string type for the specified object.
 
-## PARAMETERS
+## Parameters
 
 ### -DataType
 Specifies the data type of the extension property.
@@ -114,16 +114,16 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### String
 ### System.Collections.Generic.List`1[System.String]
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.ExtensionProperty
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraMSApplicationExtensionProperty](Get-EntraMSApplicationExtensionProperty.md)
 

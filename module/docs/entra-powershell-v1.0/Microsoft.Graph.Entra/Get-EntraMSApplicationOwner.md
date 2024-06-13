@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraMSApplicationOwner
 
-## SYNOPSIS
+## Synopsis
 Retrieves the list of owners for an application object.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraMSApplicationOwner 
@@ -30,10 +30,10 @@ Get-EntraMSApplicationOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Retrieves the list of owners for an application object.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the owners of an application.
 ```powershell
@@ -79,7 +79,7 @@ abd3d0d8-62c9-47ea-932e-f80d413c7808
 
 This command gets top two owners of an application.  
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the ID of an application in Microsoft Entra ID.
@@ -128,17 +128,17 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### Bool?
 ### Int?
 ### String
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.GetDirectoryObjectsResponse
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Add-EntraMSApplicationOwner](Add-EntraMSApplicationOwner.md)
 

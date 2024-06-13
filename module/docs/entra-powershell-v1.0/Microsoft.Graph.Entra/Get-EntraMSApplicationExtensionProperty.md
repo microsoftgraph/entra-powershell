@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraMSApplicationExtensionProperty
 
-## SYNOPSIS
+## Synopsis
 Retrieves the list of extension properties on an application object.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraMSApplicationExtensionProperty 
@@ -28,10 +28,10 @@ Get-EntraMSApplicationExtensionProperty
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Retrieves the list of extension properties on an application object.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get extension properties.
 ```powershell
@@ -48,7 +48,7 @@ DeletedDateTime Id                                   AppDisplayName DataType IsS
 
 This command gets the extension properties for the specified application in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique identifier of the object specific Microsoft Entra ID object.
@@ -68,15 +68,15 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### string
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.GetExtensionPropertiesResponse
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [New-EntraMSApplicationExtensionProperty](New-EntraMSApplicationExtensionProperty.md)
 

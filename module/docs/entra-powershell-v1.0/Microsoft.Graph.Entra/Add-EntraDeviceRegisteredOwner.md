@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Add-EntraDeviceRegisteredOwner
 
-## SYNOPSIS
+## Synopsis
 Adds a registered owner for a device.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraDeviceRegisteredOwner 
@@ -29,10 +29,10 @@ Add-EntraDeviceRegisteredOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The **Add-EntraDeviceRegisteredOwner** cmdlet adds a registered owner for a Microsoft Entra ID device.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```powershell
@@ -51,7 +51,7 @@ This final command adds an owner in $UserObjectId to a device in $DeviceId.
 
 This command adds an owner to a device.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the object ID.
@@ -86,13 +86,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraDeviceRegisteredOwner](Get-EntraDeviceRegisteredOwner.md)
 

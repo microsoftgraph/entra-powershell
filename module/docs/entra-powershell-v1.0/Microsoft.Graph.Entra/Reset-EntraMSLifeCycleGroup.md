@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Reset-EntraMSLifeCycleGroup
 
-## SYNOPSIS
+## Synopsis
 
 Renews a group by updating the RenewedDateTime property on a group to the current DateTime.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Reset-EntraMSLifeCycleGroup 
@@ -29,12 +29,12 @@ Reset-EntraMSLifeCycleGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Reset-EntraMSLifeCycleGroup renews a group by updating the RenewedDateTime property on a group to the current DateTime.
 When a group is renewed, it extends the group expiration by the number of days defined in the policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Renew a group
 
@@ -46,7 +46,7 @@ Reset-EntraMSLifeCycleGroup -Id 'hhhhhhhh-8888-9999-8888-cccccccccccc'
 This example demonstrates how to renew a specified group.  
 The Reset-EntraMSLifeCycleGroup renews a specified group by updating the RenewedDateTime property on a group to the current DateTime.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -68,14 +68,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### None
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

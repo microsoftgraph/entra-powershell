@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraTenantDetail
 
-## SYNOPSIS
+## Synopsis
 Gets the details of a tenant.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraTenantDetail 
@@ -29,10 +29,10 @@ Get-EntraTenantDetail
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraTenantDetail cmdlet gets the details of a tenant in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all tenant details 
 ```powershell
@@ -60,7 +60,7 @@ Contoso     d5aec55f-2d12-4442-8d2f-ccca95d4390e AAD        NL                {@
 This example demonstrates how to retrieve details of a top five tenants in Microsoft Entra ID.  
 This command gets five tenant details.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -94,12 +94,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Set-EntraTenantDetail](Set-EntraTenantDetail.md)

@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Get-EntraMSPermissionGrantConditionSet
 
-## SYNOPSIS
+## Synopsis
 Get a Microsoft Entra ID permission grant condition set by id.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```powershell
@@ -40,10 +40,10 @@ Get-EntraMSPermissionGrantConditionSet
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Get a Microsoft Entra ID permission grant condition set object by id.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all permission grant condition sets that are included in the permission grant policy
 ```powershell
@@ -85,7 +85,7 @@ Id                                   ClientApplicationIds                   Clie
 
 This command gets a permission grant condition set specified by Id.
 
-## PARAMETERS
+## Parameters
 
 ### -PolicyId
 The unique identifier of a Microsoft Entra ID permission grant policy object.
@@ -135,17 +135,17 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### String
 ### String
 ### String
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.PermissionGrantConditionSet
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [New-EntraMSPermissionGrantConditionSet](New-EntraMSPermissionGrantConditionSet.md)
 

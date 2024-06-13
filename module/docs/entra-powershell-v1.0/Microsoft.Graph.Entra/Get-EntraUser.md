@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraUser
 
-## SYNOPSIS
+## Synopsis
 Gets a user.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```powershell
@@ -47,10 +47,10 @@ Get-EntraUser
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraUser cmdlet gets a user from Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get top ten users
 ```powershell
@@ -132,7 +132,7 @@ Conf Room Adams fd560167-ff1f-471a-8d74-3b0070abcea1 Adams@M365x99297270.OnMicro
 In this example, we retrieve all users whose MailNickname starts with Ada.
 
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -215,13 +215,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [New-EntraUser](New-EntraUser.md)
 

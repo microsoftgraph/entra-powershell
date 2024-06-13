@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraServiceAppRoleAssignedTo
 
-## SYNOPSIS
+## Synopsis
 Gets app role assignments for this app or service, granted to users, groups and other service principals.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraServiceAppRoleAssignedTo 
@@ -30,10 +30,10 @@ Get-EntraServiceAppRoleAssignedTo
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraServiceAppRoleAssignedTo cmdlet gets app role assignments for this app or service, granted to users, groups and other service principals.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the app role assignments.
 
@@ -78,7 +78,7 @@ DeletedDateTime Id                                          AppRoleId           
 
 This command gets the five app role assignments for the service principal granted to users, groups and other service principals.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -127,14 +127,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

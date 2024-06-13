@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # New-EntraMSRoleDefinition
 
-## SYNOPSIS
+## Synopsis
 Create a new Microsoft Entra ID roleDefinition.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraMSRoleDefinition 
@@ -34,10 +34,10 @@ New-EntraMSRoleDefinition
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Create a new Microsoft Entra ID roleDefinition object.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Creates a new role definition.
 
@@ -125,7 +125,7 @@ MyRoleDefinition b69d16e9-b3f9-4289-a87f-8f796bd9fa28 b69d16e9-b3f9-4289-a87f-8f
 
 This command creates a new role definition with Version parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 Specifies a description for the role definition.
@@ -235,14 +235,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleDefinition
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 [Get-EntraMSRoleDefinition](Get-EntraMSRoleDefinition.md)
 
 [Remove-EntraMSRoleDefinition](Remove-EntraMSRoleDefinition.md)

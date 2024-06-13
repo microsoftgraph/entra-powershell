@@ -17,20 +17,20 @@ schema: 2.0.0
 
 # Get-EntraDirectoryRoleTemplate
 
-## SYNOPSIS
+## Synopsis
 Gets directory role templates.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraDirectoryRoleTemplate 
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraDirectoryRoleTemplate cmdlet gets directory role templates in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get role templates
 ```powershell
@@ -52,15 +52,15 @@ DeletedDateTime Id                                   Description
 
 This command gets the role templates in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # Remove-EntraMSLifecyclePolicyGroup
 
-## SYNOPSIS
+## Synopsis
 
 Removes a group from a lifecycle policy.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraMSLifecyclePolicyGroup 
@@ -31,11 +31,11 @@ Remove-EntraMSLifecyclePolicyGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Remove-EntraMSLifecyclePolicyGroup cmdlet removes a group from a lifecycle policy in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a group from a lifecycle policy
 
@@ -50,7 +50,7 @@ Id - Specifies the ID of the lifecycle policy object.
 
 GroupId - Specifies the ID of a group.
 
-## PARAMETERS
+## Parameters
 
 ### -GroupId
 
@@ -88,17 +88,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraMSLifecyclePolicyGroup](Get-EntraMSLifecyclePolicyGroup.md)
 

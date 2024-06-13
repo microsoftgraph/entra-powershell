@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraMSAdministrativeUnit
 
-## SYNOPSIS
+## Synopsis
 Gets an administrative unit.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```powershell
@@ -39,10 +39,10 @@ Get-EntraMSAdministrativeUnit
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraMSAdministrativeUnit cmdlet gets a Microsoft Entra ID administrative unit.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all administrative units
 ```powershell
@@ -115,7 +115,7 @@ Id                                   OdataType Description                      
 
 This example returns the specified top administrative units.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -183,13 +183,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [New-EntraMSAdministrativeUnit](New-EntraMSAdministrativeUnit.md)
 

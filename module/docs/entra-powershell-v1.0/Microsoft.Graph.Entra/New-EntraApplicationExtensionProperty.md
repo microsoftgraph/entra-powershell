@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # New-EntraApplicationExtensionProperty
 
-## SYNOPSIS
+## Synopsis
 Creates an application extension property.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraApplicationExtensionProperty 
@@ -32,10 +32,10 @@ New-EntraApplicationExtensionProperty
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraApplicationExtensionProperty cmdlet creates an application extension property for an object in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create an extension property
 ```powershell
@@ -82,7 +82,7 @@ The second command adds an item to the list.
 
 The final command creates an application extension property with the specified target objects for the specified object.
 
-## PARAMETERS
+## Parameters
 
 ### -DataType
 Specifies the data type of the extension property.
@@ -147,13 +147,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraApplicationExtensionProperty](Get-EntraApplicationExtensionProperty.md)
 

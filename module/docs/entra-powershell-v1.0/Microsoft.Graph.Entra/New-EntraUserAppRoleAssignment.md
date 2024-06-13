@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # New-EntraUserAppRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 Assigns a user to an application role.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraUserAppRoleAssignment 
@@ -31,10 +31,10 @@ New-EntraUserAppRoleAssignment
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraUserAppRoleAssignment cmdlet assigns a user to an application role in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Assign a user to an application without roles
 ```powershell
@@ -75,7 +75,7 @@ This example demonstrates how to assign a user to an application role in Microso
 This cmdlet assigns to the specified user the application role of which the Id is specified with $spo.Approles\[1\].id.  
 For more information on how to retrieve application roles for an application, see description of the Id parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The ID of the app role to assign.
@@ -150,13 +150,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraUserAppRoleAssignment](Get-EntraUserAppRoleAssignment.md)
 

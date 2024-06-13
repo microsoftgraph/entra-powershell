@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Remove-EntraDomain
 
-## SYNOPSIS
+## Synopsis
 Removes a domain.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraDomain 
@@ -28,10 +28,10 @@ Remove-EntraDomain
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraDomain cmdlet removes a domain from Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a domain
 ```Powershell
@@ -40,7 +40,7 @@ PS C:\>Remove-EntraDomain -Name Contoso.com
 
 This command removes a domain from Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -Name
 Specifies the name of the domain to remove.
@@ -60,13 +60,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Confirm-EntraDomain](Confirm-EntraDomain.md)
 

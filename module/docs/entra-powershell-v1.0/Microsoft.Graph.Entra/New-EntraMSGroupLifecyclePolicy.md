@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # New-EntraMSGroupLifecyclePolicy
 
-## SYNOPSIS
+## Synopsis
 
 Creates a new groupLifecyclePolicy.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraMSGroupLifecyclePolicy 
@@ -31,11 +31,11 @@ New-EntraMSGroupLifecyclePolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 Creates a new groupLifecyclePolicy in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Creates a new groupLifecyclePolicy
 
@@ -52,7 +52,7 @@ Id                                   AlternateNotificationEmails GroupLifetimeIn
 
 This example creates a new groupLifecyclePolicy setting the group lifetime to 99 days for a selected set of Office 365 groups and sends renewal notification emails to groups that have no owners to 'example@contoso.com'.
 
-## PARAMETERS
+## Parameters
 
 ### -AlternateNotificationEmails
 
@@ -110,17 +110,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### None
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraMSGroupLifecyclePolicy](Get-EntraMSGroupLifecyclePolicy.md)
 

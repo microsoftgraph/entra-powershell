@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Set-EntraGroup
 
-## SYNOPSIS
+## Synopsis
 
 Updates a specific group in Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraGroup 
@@ -34,11 +34,11 @@ Set-EntraGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Set-EntraGroup cmdlet updates a group in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update a group description
 
@@ -85,7 +85,7 @@ Set-EntraGroup -ObjectId 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MailEnabled $tr
 
 This example demonstrates how to enable a group mail.  
   
-## PARAMETERS
+## Parameters
 
 ### -Description
 
@@ -187,13 +187,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraGroup](Get-EntraGroup.md)
 

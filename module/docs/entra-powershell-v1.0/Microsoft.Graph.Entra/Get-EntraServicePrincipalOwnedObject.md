@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraServicePrincipalOwnedObject
 
-## SYNOPSIS
+## Synopsis
 
 Gets an object owned by a service principal.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraServicePrincipalOwnedObject 
@@ -31,11 +31,11 @@ Get-EntraServicePrincipalOwnedObject
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraServicePrincipalOwnedObject cmdlet gets an object owned by a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the owned objects of a service principal
 
@@ -88,7 +88,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 
 This command gets top one owned object of a service principal identified by `11112222-bbbb-3333-cccc-4444dddd5555`.  
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -142,12 +142,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)

@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # New-EntraGroup
 
-## SYNOPSIS
+## Synopsis
 
 Creates a group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraGroup 
@@ -33,7 +33,7 @@ New-EntraGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The New-EntraGroup cmdlet creates a group in Microsoft Entra ID.
 
@@ -43,7 +43,7 @@ The New-EntraGroup cmdlet creates a group in Microsoft Entra ID.
 - To create the group with other service principals as owners or members, the app must have at least the `Application.Read.All` permission.
 - To create the group with either users or service principals as owners or members, the app must have at least the `Directory.Read.All` permission.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a group
 
@@ -79,7 +79,7 @@ My new group hhhhhhhh-8888-9999-8888-cccccccccccc NotSet       new created group
 
 This example demonstrates how to create a group with Description parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 
@@ -165,13 +165,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraGroup](Get-EntraGroup.md)
 

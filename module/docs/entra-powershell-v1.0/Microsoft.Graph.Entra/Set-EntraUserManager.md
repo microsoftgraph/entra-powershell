@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Set-EntraUserManager
 
-## SYNOPSIS
+## Synopsis
 Updates a user's manager.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraUserManager 
@@ -29,10 +29,10 @@ Set-EntraUserManager
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraUserManager cmdlet update the manager for a user in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update a user's manager
 ```powershell
@@ -42,7 +42,7 @@ PS C:\>Set-EntraUserManager -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16" -Re
 This example demonstrates how to update the manager for a user in Microsoft Entra ID.     
 This command update's the manager for the specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the ID (as a UserPrincipalName or ObjectId) of a user in Microsoft Entra ID.
@@ -77,13 +77,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraUserManager](Get-EntraUserManager.md)
 

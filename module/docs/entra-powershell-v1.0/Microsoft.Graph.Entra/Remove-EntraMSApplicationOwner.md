@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Remove-EntraMSApplicationOwner
 
-## SYNOPSIS
+## Synopsis
 Removes an owner from an application object.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraMSApplicationOwner 
@@ -29,10 +29,10 @@ Remove-EntraMSApplicationOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Removes an owner from an application object.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove an owner from an application
 ```Powershell
@@ -41,7 +41,7 @@ PS C:\>Remove-EntraMSApplicationOwner -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea
 
 This command removes the owner from the specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the ID of an application in Microsoft Entra ID.
@@ -76,14 +76,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### String
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Add-EntraMSApplicationOwner](Add-EntraMSApplicationOwner.md)
 

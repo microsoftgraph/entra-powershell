@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraUserManager
 
-## SYNOPSIS
+## Synopsis
 Gets the manager of a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraUserManager 
@@ -28,10 +28,10 @@ Get-EntraUserManager
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraUserManager cmdlet gets the manager of a user in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the manager of a user
 ```powershell
@@ -53,7 +53,7 @@ onPremisesUserPrincipalName     :
 This example demonstrates how to retrieve the manager of a specific user.    
 This command gets the manager of a specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique identifier of a user in Microsoft Entra ID (UserPrincipalName or ObjectId).
@@ -73,13 +73,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Remove-EntraUserManager](Remove-EntraUserManager.md)
 

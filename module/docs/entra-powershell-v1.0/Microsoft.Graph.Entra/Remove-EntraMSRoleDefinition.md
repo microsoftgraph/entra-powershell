@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Remove-EntraMSRoleDefinition
 
-## SYNOPSIS
+## Synopsis
 Delete a Microsoft Entra ID roleDefinition by ObjectId.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraMSRoleDefinition 
@@ -29,10 +29,10 @@ Remove-EntraMSRoleDefinition
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Delete a Microsoft Entra ID roleDefinition object by ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a specified role definition.
 
@@ -41,7 +41,7 @@ PS C:\> Remove-EntraMSRoleDefinition -Id 62e90894-69f5-4237-9190-012177145e10
 ```
 This example demonstrates how to remove the specified role definition from Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The unique identifier of an object in Microsoft Entra ID.
@@ -61,14 +61,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### string
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraMSRoleDefinition](Get-EntraMSRoleDefinition.md)
 

@@ -16,10 +16,10 @@ schema: 2.0.0
 
 # Get-EntraObjectByObjectId
 
-## SYNOPSIS
+## Synopsis
 Retrieves the objects specified by the ObjectIds parameter.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraObjectByObjectId 
@@ -28,10 +28,10 @@ Get-EntraObjectByObjectId
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Retrieves the objects specified by the ObjectIds parameter.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get an object One or more object IDs.
 ```powershell
@@ -80,7 +80,7 @@ jobTitle                        : Product Manager
 
 This example demonstrates how to retrieve objects for a specified object type.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectIds
 One or more object IDs, separated by commas, for which the objects are retrieved.
@@ -115,12 +115,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### None
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

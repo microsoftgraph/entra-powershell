@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Confirm-EntraDomain
 
-## SYNOPSIS
+## Synopsis
 Validate the ownership of a domain.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Confirm-EntraDomain 
@@ -29,10 +29,10 @@ Confirm-EntraDomain
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Confirm-EntraDomain cmdlet validates the ownership of a Microsoft Entra ID domain.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Confirm the domain
 ```powershell
@@ -48,7 +48,7 @@ PS C:\>Confirm-EntraDomain -Name Contoso.com -CrossCloudVerificationCode ms84324
 
 This command confirms your domain for dual federation scenarios.
 
-## PARAMETERS
+## Parameters
 
 ### -Name
 Specifies the name of the domain.
@@ -83,13 +83,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraDomain](Get-EntraDomain.md)
 

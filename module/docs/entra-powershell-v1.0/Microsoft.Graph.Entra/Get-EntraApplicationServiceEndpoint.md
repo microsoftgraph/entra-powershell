@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraApplicationServiceEndpoint
 
-## SYNOPSIS
+## Synopsis
 
 Retrieve the service endpoint of an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraApplicationServiceEndpoint
@@ -31,14 +31,14 @@ Get-EntraApplicationServiceEndpoint
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 This cmdlet retrieves the service endpoint(s) of an application.
 The service endpoint entity contains service discovery information.
 The serviceEndpoints property of the Application entity is of type ServiceEndpoint.
 Other services can use the information stored in the ServiceEndpoint entity to find this service and its addressable endpoints.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the application service endpoint by ID
 
@@ -67,7 +67,7 @@ Get-EntraApplicationServiceEndpoint -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbb
 
 This example demonstrates how to retrieve five service endpoints of a specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -122,16 +122,16 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

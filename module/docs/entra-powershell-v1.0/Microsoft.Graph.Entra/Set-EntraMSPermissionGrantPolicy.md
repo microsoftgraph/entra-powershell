@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Set-EntraMSPermissionGrantPolicy
 
-## SYNOPSIS
+## Synopsis
 Updates a permission grant policy.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraMSPermissionGrantPolicy 
@@ -31,10 +31,10 @@ Set-EntraMSPermissionGrantPolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraMSPermissionGrantPolicy command updates a Microsoft Entra ID permission grant policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update description of permission grant policy
 ```powershell
@@ -50,7 +50,7 @@ PS C:\> Set-EntraMSPermissionGrantPolicy -Id "my_permission_grant_policy_id" -Di
 
 This command updates the display name of the specified permission grant policy.
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 Specifies the description of the permission grant policy.
@@ -100,13 +100,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [New-EntraMSPermissionGrantPolicy](New-EntraMSPermissionGrantPolicy.md)
 

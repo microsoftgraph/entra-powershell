@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Restore-EntraDeletedApplication
 
-## SYNOPSIS
+## Synopsis
 Restores a previously deleted application
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Restore-EntraDeletedApplication 
@@ -29,10 +29,10 @@ Restore-EntraDeletedApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet restores a previously deleted application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Restores a previously deleted application.
 ```powershell
@@ -73,7 +73,7 @@ ObjectId                             AppId                                Displa
 
 This example shows how an application is deleted, then the deleted application is retrieved using the Get-EntraDeletedApplication cmdlet, and after the application is restored by specifying the application's Object ID in the Restore-EntraDeletedApplication cmdlet.
 
-## PARAMETERS
+## Parameters
 
 ### -IdentifierUris
 The IdentifierUris of the application that is to be restored
@@ -108,12 +108,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

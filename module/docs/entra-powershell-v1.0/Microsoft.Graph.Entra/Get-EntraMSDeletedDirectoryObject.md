@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraMSDeletedDirectoryObject
 
-## SYNOPSIS
+## Synopsis
 This cmdlet is used to retrieve a soft deleted directory object from the directory.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraMSDeletedDirectoryObject 
@@ -28,12 +28,12 @@ Get-EntraMSDeletedDirectoryObject
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet is used to retrieve a soft deleted directory object from the directory.
 Soft delete for groups is currently only implemented for Unified Groups (also known as
 Office 365 Groups).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve a deleted directory object.
 ```powershell
@@ -48,7 +48,7 @@ Id                                   DeletedDateTime
 
 This example shows how to retrieve the deleted directory object with id = 85b5ff1e-0402-400c-9e3c-0f9e965325d1 from the directory
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The Id of the directory object to retrieve.
@@ -68,12 +68,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

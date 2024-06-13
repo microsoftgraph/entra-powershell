@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraDomainServiceConfigurationRecord
 
-## SYNOPSIS
+## Synopsis
 Gets the domain's service configuration records from the serviceConfigurationRecords navigation property.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraDomainServiceConfigurationRecord 
@@ -28,11 +28,11 @@ Get-EntraDomainServiceConfigurationRecord
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Gets the domain's service configuration records from the serviceConfigurationRecords navigation property. 
 After you have successfully verifies the ownership of a domain and you have indicates what services you plan to use with the domain, you can request Microsoft Entra ID to return you a set of DNS records which you need to add to the zone file of the domain so that the services can work properly with your domain.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve domain service configuration records by name
 ```powershell
@@ -57,7 +57,7 @@ ef4f8e4c-f124-446d-8301-2586447cff67 False      enterpriseenrollment.test.mail.o
 This example shows how to retrieve the Domain service configuration records for a domain with the given name.  
 This command retrieves the domain service configuration records for a domain with the given name.
 
-## PARAMETERS
+## Parameters
 
 ### -Name
 The name of the domain for which the domain service configuration records are to be retrieved.
@@ -77,12 +77,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
