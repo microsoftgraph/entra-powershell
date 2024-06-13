@@ -38,7 +38,7 @@ The Add-EntraApplicationPolicy  cmdlet adds an Microsoft Entra ID application po
 ### Example 1: Add an application policy
 
 ```powershell
-Connect-Entra -Scopes
+Connect-Entra -Scopes 'Policy.Read.All, Application.Read.All, Policy.ReadWrite.ApplicationConfiguration, Application.Read.All, Directory.Read.All'
 Add-EntraApplicationPolicy -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RefObjectId '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
 ```
 
