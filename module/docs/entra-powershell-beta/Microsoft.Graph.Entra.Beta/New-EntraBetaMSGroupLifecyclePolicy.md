@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # New-EntraBetaMSGroupLifecyclePolicy
 
-## SYNOPSIS
+## Synopsis
 Creates a new groupLifecyclePolicy
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaMSGroupLifecyclePolicy -AlternateNotificationEmails <String> -ManagedGroupTypes <String>
  -GroupLifetimeInDays <Int32> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Creates a new groupLifecyclePolicy in Azure Active Directory
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -29,7 +29,7 @@ PS C:\> New-EntraBetaMSGroupLifecyclePolicy -GroupLifetimeInDays 99 -ManagedGrou
 
 This will create a a new groupLifecyclePolicy setting the group lifetime to 99 days for a selected set of Office 365 groups and send renewal notification emails to groups that have no owners to "example@contoso.com"
 
-## PARAMETERS
+## Parameters
 
 ### -AlternateNotificationEmails
 Notification emails for groups that have no owners will be sent to these email addresses.
@@ -83,12 +83,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### None
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

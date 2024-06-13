@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Remove-EntraBetaServicePrincipalOwner
 
-## SYNOPSIS
+## Synopsis
 Removes an owner from a service principal.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaServicePrincipalOwner -OwnerId <String> -ObjectId <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaServicePrincipalOwner cmdlet removes an owner from a service principal in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```powershell
@@ -29,7 +29,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 
 
@@ -66,13 +66,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Add-EntraBetaServicePrincipalOwner]()
 

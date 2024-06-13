@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraBetaMSRoleDefinition
 
-## SYNOPSIS
+## Synopsis
 Gets information about role definitions in Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```powershell
@@ -47,10 +47,10 @@ Get-EntraBetaMSRoleDefinition
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaMSRoleDefinition cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the Id parameter. Specify the SearchString or Filter parameter to find particular role definition.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all role definitions
 ```powershell
@@ -154,7 +154,7 @@ Version         :
 
 This command return all the role definitions containing the specified display name.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 Specifies the ID of the role definition.
@@ -234,14 +234,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### String
 ### Bool?
 ### Int?
 ### String
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleDefinition
 
-## RELATED LINKS
+## Related LINKS

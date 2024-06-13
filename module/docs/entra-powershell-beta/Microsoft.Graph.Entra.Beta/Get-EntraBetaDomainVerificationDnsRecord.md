@@ -7,21 +7,21 @@ schema: 2.0.0
 
 # Get-EntraBetaDomainVerificationDnsRecord
 
-## SYNOPSIS
+## Synopsis
 Retrieve the domain verification DNS record for a domain
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaDomainVerificationDnsRecord -Name <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Gets the domain's verification records from the verificationDnsRecords navigation property. 
 You can't use the domain with your Azure AD tenant until you have successfully verified that you own the domain.
 To verify the ownership of the domain, you need to first retrieve a set of domain verification records which you need to add to the zone file of the domain.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -35,7 +35,7 @@ aceff52c-06a5-447f-ac5f-256ad243cc5c drumkit.onmicrosoft.com Email            36
 
 This example shows how to retrieve the domain verification DNS records for the given domain name
 
-## PARAMETERS
+## Parameters
 
 ### -Name
 The domain name for which the domain verification DNS records are to be retrieved
@@ -55,12 +55,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

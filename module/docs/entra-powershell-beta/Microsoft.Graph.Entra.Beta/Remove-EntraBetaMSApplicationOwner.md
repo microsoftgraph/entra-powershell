@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Remove-EntraBetaMSApplicationOwner
 
-## SYNOPSIS
+## Synopsis
 Removes an owner from an application object.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaMSApplicationOwner -OwnerId <String> -ObjectId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Removes an owner from an application object.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove an owner from an application
 ```
@@ -28,7 +28,7 @@ PS C:\>Remove-EntraBetaMSApplicationOwner -ObjectId "3ddd22e7-a150-4bb3-b100-e41
 
 This command removes the owner from the specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the ID of an application in Azure AD.
@@ -63,14 +63,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### string
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Add-EntraBetaMSApplicationOwner]()
 

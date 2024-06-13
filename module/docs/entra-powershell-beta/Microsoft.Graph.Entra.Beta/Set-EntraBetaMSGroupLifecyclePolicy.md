@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Set-EntraBetaMSGroupLifecyclePolicy
 
-## SYNOPSIS
+## Synopsis
 Updates a specific group Lifecycle Policy in Azure Active Directory
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaMSGroupLifecyclePolicy [-AlternateNotificationEmails <String>] -Id <String>
  [-ManagedGroupTypes <String>] [-GroupLifetimeInDays <Int32>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraBetaMSGroupLifecyclePolicy command updates a specific group Lifecycle Policy in Azure Active Directory
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -29,7 +29,7 @@ PS C:\> Set-EntraBetaMSGroupLifecyclePolicy -Id "b4c908b0-3595-4add-91b4-c5400b3
 
 This command updates the specified groupLifecyclePolicy in Azure Active Directory
 
-## PARAMETERS
+## Parameters
 
 ### -AlternateNotificationEmails
 Notification emails for groups that have no owners will be sent to these email addresses.
@@ -98,12 +98,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

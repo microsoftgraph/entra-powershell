@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraBetaMSAdministrativeUnitMember
 
-## SYNOPSIS
+## Synopsis
 Gets a member of an administrative unit.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaMSAdministrativeUnitMember 
@@ -30,10 +30,10 @@ Get-EntraBetaMSAdministrativeUnitMember
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaMSAdministrativeUnitMember cmdlet gets a member of a Microsoft Entra ID administrative unit.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get an administrative unit member by ID
 ```powershell
@@ -79,7 +79,7 @@ b54e1419-0c09-4fdf-a7d6-0729afce35f8 #microsoft.graph.user
 
 This example returns top specified administrative unit members from specified administrative unit ID.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 Specifies the ID of an administrative unit in Microsoft Entra ID.
@@ -128,13 +128,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Add-EntraBetaMSAdministrativeUnitMember](Add-EntraBetaMSAdministrativeUnitMember.md)
 

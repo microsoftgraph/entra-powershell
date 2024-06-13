@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Get-EntraBetaUserThumbnailPhoto
 
-## SYNOPSIS
+## Synopsis
 Retrieve the thumbnail photo of a user
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaUserThumbnailPhoto -ObjectId <String> [-FileName <String>] [-FilePath <String>] [-View <Boolean>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Retrieve the thumbnail photo of a user
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -45,7 +45,7 @@ PropertyItems        : {11, 274, 305, 306...}
 
 This example shows how to retrieve the thumbnail photo of a user that is specified through the value of the ObejctId parameter
 
-## PARAMETERS
+## Parameters
 
 ### -FileName
 If specified, a copy of the thumbnail photo is written to the specified file name
@@ -110,14 +110,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 System.Boolean
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

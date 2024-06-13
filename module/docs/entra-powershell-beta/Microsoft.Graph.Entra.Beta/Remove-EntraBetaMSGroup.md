@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Remove-EntraBetaMSGroup
 
-## SYNOPSIS
+## Synopsis
 Removes an Azure AD group.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaMSGroup -Id <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaMSGroup cmdlet removes an Azure Active Directory (Azure AD) group.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a group
 ```
@@ -28,7 +28,7 @@ PS C:\> Remove-EntraBetaMSGroup -Id "ce0a2213-bd57-4e2f-b9fa-408582e2e260"
 
 This cmdlet removes the group that has the specified ID.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 Specifies the ID of the group that this cmdlet removes.
@@ -48,18 +48,18 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 This cmdlet is currently in Public Preview.
 While a cmdlet is in Public Preview, we may make changes to the cmdlet which could have unexpected effects.
 We recommend that you do not use this cmdlet in a production environment.
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaMSGroup]()
 

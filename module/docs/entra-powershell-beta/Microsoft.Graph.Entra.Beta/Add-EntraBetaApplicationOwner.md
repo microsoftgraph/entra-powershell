@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Add-EntraBetaApplicationOwner
 
-## SYNOPSIS
+## Synopsis
 
 Adds an owner to an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraBetaApplicationOwner 
@@ -30,11 +30,11 @@ Add-EntraBetaApplicationOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Add-EntraBetaApplicationOwner` cmdlet adds an owner to a Microsoft Entra ID application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a user as an owner to an application
 
@@ -53,7 +53,7 @@ This final command adds an owner in $UserObjectId to an application in $Applicat
 
 This command adds an owner to an application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -91,13 +91,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaApplicationOwner](Get-EntraBetaApplicationOwner.md)
 

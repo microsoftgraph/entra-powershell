@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Set-EntraBetaMSConditionalAccessPolicy
 
-## SYNOPSIS
+## Synopsis
 Updates a conditional access policy in Azure Active Directory by Id.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaMSConditionalAccessPolicy [-Id <String>] -PolicyId <String>
@@ -19,11 +19,11 @@ Set-EntraBetaMSConditionalAccessPolicy [-Id <String>] -PolicyId <String>
  [-Conditions <ConditionalAccessConditionSet>] [-DisplayName <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet allows an admin to update a conditional access policy in Azure Active Directory by Id.
 Conditional access policies are custom rules that define an access scenario.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Updates a conditional access policy in Azure AD by PolicyId.
 ```
@@ -38,7 +38,7 @@ PS C:\> Set-EntraBetaMSConditionalAccessPolicy -PolicyId 6b5e999b-0ba8-4186-a106
 
 This command updates a new conditional access policy in Azure AD.
 
-## PARAMETERS
+## Parameters
 
 ### -PolicyId
 Specifies the policy id of a conditional access policy in Azure Active Directory.
@@ -178,12 +178,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
-## RELATED LINKS
+## Notes
+## Related LINKS
 
 [Get-EntraBetaMSConditionalAccessPolicy]()
 

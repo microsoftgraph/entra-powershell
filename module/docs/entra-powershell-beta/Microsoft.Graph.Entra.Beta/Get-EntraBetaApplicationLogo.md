@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Get-EntraBetaApplicationLogo
 
-## SYNOPSIS
+## Synopsis
 Retrieve the logo of an application
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaApplicationLogo -ObjectId <String> [-FileName <String>] [-FilePath <String>] [-View <Boolean>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet retrieves the logo that is set for an application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -45,7 +45,7 @@ PropertyItems        : {274, 305, 306, 36867...}
 
 This example shows how to retrieve the application logo for an application that is specified through the Object ID parameter
 
-## PARAMETERS
+## Parameters
 
 ### -FileName
 If provided, the application logo is copied to the file who's name is provided in this parameter
@@ -110,14 +110,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 System.Boolean
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Remove-EntraBetaMSAdministrativeUnit
 
-## SYNOPSIS
+## Synopsis
 Removes an administrative unit.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaMSAdministrativeUnit -Id <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaMSAdministrativeUnit cmdlet removes an administrative unit from Azure Active Directory.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```powershell
@@ -28,7 +28,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 
 ### -Id
@@ -49,13 +49,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaMSAdministrativeUnit]()
 

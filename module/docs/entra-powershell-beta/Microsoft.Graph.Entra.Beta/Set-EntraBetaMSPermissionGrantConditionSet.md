@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Set-EntraBetaMSPermissionGrantConditionSet
 
-## SYNOPSIS
+## Synopsis
 Update an existing Azure Active Directory permission grant condition set.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaMSPermissionGrantConditionSet -Id <String>
@@ -22,10 +22,10 @@ Set-EntraBetaMSPermissionGrantConditionSet -Id <String>
  [-PermissionClassification <String>] -PolicyId <String> [-PermissionType <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Updates an Azure Active Directory permission grant condition set object identified by id.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update a permission grant condition set to includes permissions that has been classified as low.
 ```
@@ -67,7 +67,7 @@ Updates an Azure Active Directory permission grant condition set object identifi
 PS C:\>Set-EntraBetaMSPermissionGrantConditionSet -PolicyId "policy1" -ConditionSetType "includes" -Id "665a9903-0398-48ab-b4e9-7a570d468b66" -PermissionType "Delegated" -PermissionClassification "Low" -ResourceApplication "d9d40050-c784-4b56-a06d-477542a1cafc" -Permissions @("29bf4ca5-913e-427d-8a68-5890af945109") -ClientApplicationIds @("All") -ClientApplicationTenantIds @("All") -ClientApplicationPublisherIds @("All") -ClientApplicationsFromVerifiedPublisherOnly $true
 ```
 
-## PARAMETERS
+## Parameters
 
 ### -PolicyId
 The unique identifier of an Azure Active Directory permission grant policy object.
@@ -242,16 +242,16 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### string
 ### string
 ### string
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [New-EntraBetaMSPermissionGrantConditionSet]()
 

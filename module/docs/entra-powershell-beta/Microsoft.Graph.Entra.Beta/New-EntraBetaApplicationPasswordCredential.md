@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # New-EntraBetaApplicationPasswordCredential
 
-## SYNOPSIS
+## Synopsis
 Creates a password credential for an application.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaApplicationPasswordCredential [-CustomKeyIdentifier <String>] [-Value <String>]
  [-EndDate <DateTime>] -ObjectId <String> [-StartDate <DateTime>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraBetaApplicationPasswordCredential cmdlet creates a password credential for an application in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a password credential
 ```
@@ -33,7 +33,7 @@ StartDate           : 9/28/2016 3:57:10 PM
 Value               : SAMPLE_KEY_VALUE
 ```
 
-## PARAMETERS
+## Parameters
 
 ### -CustomKeyIdentifier
 @{Text=}
@@ -115,13 +115,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaApplicationPasswordCredential]()
 

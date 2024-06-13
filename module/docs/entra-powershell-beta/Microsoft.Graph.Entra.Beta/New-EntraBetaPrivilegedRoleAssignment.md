@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # New-EntraBetaPrivilegedRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 {{ Fill in the Synopsis }}
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaPrivilegedRoleAssignment [-IsElevated <Boolean>] [-Id <String>] [-ResultMessage <String>]
  [-ExpirationDateTime <DateTime>] -RoleId <String> -UserId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 {{ Fill in the Description }}
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -29,7 +29,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 ### -ExpirationDateTime
 {{ Fill ExpirationDateTime Description }}
@@ -124,12 +124,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### None
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

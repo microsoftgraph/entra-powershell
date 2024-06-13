@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Remove-EntraBetaObjectSetting
 
-## SYNOPSIS
+## Synopsis
 Deletes settings in Azure Active Directory.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaObjectSetting -Id <String> -TargetType <String> -TargetObjectId <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaObjectSetting cmdlet removes object settings in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -29,7 +29,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 
 
@@ -81,13 +81,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaObjectSetting]()
 

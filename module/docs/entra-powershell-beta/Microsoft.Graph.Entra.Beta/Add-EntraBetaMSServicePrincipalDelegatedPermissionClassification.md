@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Add-EntraBetaMSServicePrincipalDelegatedPermissionClassification
 
-## SYNOPSIS
+## Synopsis
 Add a classification for a delegated permission.
 
-## SYNTAX
+## Syntax
 
 ```
 Add-EntraBetaMSServicePrincipalDelegatedPermissionClassification -PermissionId <String>
@@ -18,10 +18,10 @@ Add-EntraBetaMSServicePrincipalDelegatedPermissionClassification -PermissionId <
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Add-EntraBetaMSServicePrincipalDelegatedPermissionClassification cmdlet creates a delegated permission classification for the given permission on service principal.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create Delegated Permission Classification
 ```
@@ -35,7 +35,7 @@ PermissionName : Sites.Read.All
 
 This command creates a delegated permission classification for the given permission on the service principal.
 
-## PARAMETERS
+## Parameters
 
 ### -ServicePrincipalId
 The unique identifier of a service principal object in Azure Active Directory.
@@ -105,10 +105,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Online.Administration.DelegatedPermissionClassification
-## NOTES
-## RELATED LINKS
+## Notes
+## Related LINKS

@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Add-EntraBetaMSScopedRoleMembership
 
-## SYNOPSIS
+## Synopsis
 Adds a scoped role membership to an administrative unit.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraBetaMSScopedRoleMembership 
@@ -31,10 +31,10 @@ Add-EntraBetaMSScopedRoleMembership
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The **Add-EntraBetaMSScopedRoleMembership** cmdlet adds a scoped role membership to an administrative unit.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Adds a scoped role membership to an administrative unit.
 ```powershell
@@ -65,7 +65,7 @@ The final command assigns the role member in $RoleMember and role in $Role to th
 
 This cmdlet returns the Scoped role membership object.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 Specifies the ID of an administrative unit.
@@ -130,13 +130,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaMSScopedRoleMembership](Get-EntraBetaMSScopedRoleMembership.md)
 

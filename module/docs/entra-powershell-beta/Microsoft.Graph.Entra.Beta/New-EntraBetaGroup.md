@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # New-EntraBetaGroup
 
-## SYNOPSIS
+## Synopsis
 Creates a group.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaGroup [-Description <String>] -MailEnabled <Boolean> -SecurityEnabled <Boolean>
  -MailNickName <String> -DisplayName <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraBetaGroup cmdlet creates a group in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a group
 ```
@@ -31,7 +31,7 @@ ObjectId                             DisplayName  Description
 11fa5e1e-737c-40c5-835e-416ae3959606 My new group
 ```
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 Specifies a description of the group.
@@ -112,13 +112,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaGroup]()
 

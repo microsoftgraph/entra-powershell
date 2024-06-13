@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Remove-EntraBetaMSNamedLocationPolicy
 
-## SYNOPSIS
+## Synopsis
 Deletes an Azure Active Directory named location policy by PolicyId.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaMSNamedLocationPolicy -PolicyId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet allows an admin to delete the Azure Active Directory named location policy.
 Named locations are custom rules that define network locations which can then be used in a Conditional Access policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Deletes a named location policy in Azure AD with given PolicyId.
 ```
@@ -29,7 +29,7 @@ PS C:\> Remove-EntraBetaMSNamedLocationPolicy -PolicyId 76fdfd4d-bd80-4c1e-8fd4-
 
 This command deletes a named location policy in Azure AD.
 
-## PARAMETERS
+## Parameters
 
 ### -PolicyId
 Specifies the ID of a named location policy in Azure Active Directory.
@@ -49,12 +49,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
-## RELATED LINKS
+## Notes
+## Related LINKS
 
 [New-EntraBetaMSNamedLocationPolicy]()
 

@@ -16,20 +16,20 @@ schema: 2.0.0
 
 # Get-EntraBetaObjectByObjectId
 
-## SYNOPSIS
+## Synopsis
 Retrieves the objects specified by the ObjectIds parameter
 
-## SYNTAX
+## Syntax
 ```powershell
 Get-EntraBetaObjectByObjectId 
  [-Types <System.Collections.Generic.List`1[System.String]>]
  -ObjectIds <System.Collections.Generic.List`1[System.String]> 
  [<CommonParameters>]
 ```
-## DESCRIPTION
+## Description
 Retrieves the objects specified by the ObjectIds parameter
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get an object One or more object IDs.
 ```powershell
@@ -54,7 +54,7 @@ b7fd7e22-eefe-4d37-97c4-9cb7ede0ab5e
 ```
 This example demonstrates how to retrieve objects for a specified object type.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectIds
 One or more object IDs's, separated by commas, for which the objects are retrieved.
@@ -89,12 +89,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### None
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
