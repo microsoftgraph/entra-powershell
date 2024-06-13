@@ -8,13 +8,13 @@ function Get-EntraMSAttributeSet {
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $params["Uri"] = "https://graph.microsoft.com/v1.0/directory/attributeSets"
+        $params["Uri"] = "https://graph.microsoft.com/v1.0/directory/attributeSets/"
         $params["Method"] = "GET"
         if ($null -ne $PSBoundParameters["WarningVariable"]) {
             $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
         }
         if ($null -ne $PSBoundParameters["Id"]) {
-            $params["Uri"] = "https://graph.microsoft.com/v1.0/directory/attributeSets/$Id"
+            $params["Uri"] += $Id
         }
         if ($null -ne $PSBoundParameters["InformationVariable"]) {
             $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
