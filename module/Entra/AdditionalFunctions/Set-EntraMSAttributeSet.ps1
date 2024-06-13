@@ -21,7 +21,7 @@ function Set-EntraMSAttributeSet {
     }
     if($null -ne $PSBoundParameters["Id"])
     {
-        $params["Uri"] = "https://graph.microsoft.com/v1.0/directory/attributeSets/$Id"
+        $params["Uri"] += $Id
     }
     if($null -ne $PSBoundParameters["PipelineVariable"])
     {
