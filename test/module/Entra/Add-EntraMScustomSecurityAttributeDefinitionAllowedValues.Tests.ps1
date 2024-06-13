@@ -28,11 +28,20 @@ Describe "Add-EntraMScustomSecurityAttributeDefinitionAllowedValues" {
         It "Should fail when CustomSecurityAttributeDefinitionId is empty" {
             { Add-EntraMScustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId } | Should -Throw "Missing an argument for parameter 'CustomSecurityAttributeDefinitionId'.*"
         }
+        It "Should fail when CustomSecurityAttributeDefinitionId is invalid" {
+            { Add-EntraMScustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId "" } | Should -Throw "Cannot bind argument to parameter 'CustomSecurityAttributeDefinitionId'*"
+        }
         It "Should fail when Id is empty" {
             { Add-EntraMScustomSecurityAttributeDefinitionAllowedValues -Id } | Should -Throw "Missing an argument for parameter 'Id'.*"
         }
+        It "Should fail when Id is invalid" {
+            { Add-EntraMScustomSecurityAttributeDefinitionAllowedValues -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id'*"
+        }
         It "Should fail when IsActive is empty" {
             { Add-EntraMScustomSecurityAttributeDefinitionAllowedValues -IsActive } | Should -Throw "Missing an argument for parameter 'IsActive'.*"
+        }
+        It "Should fail when IsActive is invalid" {
+            { Add-EntraMScustomSecurityAttributeDefinitionAllowedValues -IsActive a } | Should -Throw "Cannot process argument transformation on parameter 'IsActive'.*"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraMScustomSecurityAttributeDefinitionAllowedValues"
