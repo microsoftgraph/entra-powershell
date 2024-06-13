@@ -50,9 +50,6 @@ function Add-EntraMScustomSecurityAttributeDefinitionAllowedValues {
         if ($null -ne $PSBoundParameters["WarningAction"]) {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
-        if ($null -ne $PSBoundParameters["CustomSecurityAttributeDefinitionId"]) {
-            $params["CustomSecurityAttributeDefinitionId"] = $PSBoundParameters["CustomSecurityAttributeDefinitionId"]
-        }
         if ($null -ne $PSBoundParameters["InformationVariable"]) {
             $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
         }
