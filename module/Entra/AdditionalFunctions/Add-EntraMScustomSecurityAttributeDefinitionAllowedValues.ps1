@@ -13,7 +13,6 @@ function Add-EntraMScustomSecurityAttributeDefinitionAllowedValues {
         $params = @{}
         $body = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{}
         if ($null -ne $PSBoundParameters["ErrorAction"]) {
             $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
         }
