@@ -2,7 +2,7 @@
 title: Get-EntraMSRoleAssignment
 description: This article provides details on the Get-EntraMSRoleAssignment command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/16/2024
 ms.author: eunicewaweru
@@ -147,12 +147,11 @@ Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
-
 ### -All
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -162,7 +161,6 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 ### -Top
 The maximum number of records to return.
 

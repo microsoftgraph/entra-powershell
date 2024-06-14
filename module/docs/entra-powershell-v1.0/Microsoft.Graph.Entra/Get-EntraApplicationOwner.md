@@ -2,9 +2,9 @@
 title: Get-EntraApplicationOwner.
 description: This article provides details on the Get-EntraApplicationOwner command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
-ms.date: 03/15/2024
+ms.date: 06/04/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,6 +18,7 @@ schema: 2.0.0
 # Get-EntraApplicationOwner
 
 ## SYNOPSIS
+
 Gets the owner of an application.
 
 ## SYNTAX
@@ -31,77 +32,88 @@ Get-EntraApplicationOwner
 ```
 
 ## DESCRIPTION
-The Get-EntraApplicationOwner cmdlet gets an owner of a Microsoft Entra ID application.
+
+The `Get-EntraApplicationOwner` cmdlet gets an owner of a Microsoft Entra application.
 
 ## EXAMPLES
 
 ### Example 1: Get the owner of an application
+
 ```powershell
-PS C:\>Get-EntraApplicationOwner -ObjectId "e3108c4d-86ff-4ceb-9429-24e85b4b8cea"
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Get-EntraApplicationOwner -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
+
 ```output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {adelev@m365x99297270.onmicrosoft.com}
+imAddresses                     : {adelev@contoso.com}
 preferredLanguage               :
-mail                            : AdeleV@M365x99297270.OnMicrosoft.com
-securityIdentifier              : S-1-12-1-1093396945-1080104032-2731339150-364051459
-identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=AdeleV@M365x99297270.OnMicrosoft.com}}
+mail                            : AdeleV@contoso.com
+securityIdentifier              : S-1-12-1-2222222222-3333333333-4444444444-5555555555
+identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=AdeleV@contoso.com}}
 consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
 ```
 
-This example demonstrates how to get the owners of an application in Microsoft Entra ID.  
-This command gets the owners of an application.
+This example demonstrates how to get the owners of an application in Microsoft Entra ID.
 
 ### Example 2: Get all owners of an application
+
 ```powershell
-PS C:\>Get-EntraApplicationOwner -ObjectId "e3108c4d-86ff-4ceb-9429-24e85b4b8cea" -All
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Get-EntraApplicationOwner -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
 ```
+
 ```output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {adelev@m365x99297270.onmicrosoft.com}
+imAddresses                     : {adelev@contoso.com}
 preferredLanguage               :
-mail                            : AdeleV@M365x99297270.OnMicrosoft.com
-securityIdentifier              : S-1-12-1-1093396945-1080104032-2731339150-364051459
-identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=AdeleV@M365x99297270.OnMicrosoft.com}}
+mail                            : AdeleV@contoso.com
+securityIdentifier              : S-1-12-1-2222222222-3333333333-4444444444-5555555555
+identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=AdeleV@contoso.com}}
 consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
 ```
 
-This example demonstrates how to get the all owners of a specified application in Microsoft Entra ID.  
-This command gets the all owners of a specified application.
+This example demonstrates how to get the all owners of a specified application in Microsoft Entra ID.
 
 ### Example 3: Get top two owners of an application
+
 ```powershell
-PS C:\>Get-EntraApplicationOwner -ObjectId "e3108c4d-86ff-4ceb-9429-24e85b4b8cea" -Top 2
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Get-EntraApplicationOwner -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 2
 ```
+
 ```output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {adelev@m365x99297270.onmicrosoft.com}
+imAddresses                     : {adelev@contoso.com}
 preferredLanguage               :
-mail                            : AdeleV@M365x99297270.OnMicrosoft.com
-securityIdentifier              : S-1-12-1-1093396945-1080104032-2731339150-364051459
-identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=AdeleV@M365x99297270.OnMicrosoft.com}}
+mail                            : AdeleV@contoso.com
+securityIdentifier              : S-1-12-1-2222222222-3333333333-4444444444-5555555555
+identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=AdeleV@contoso.com}}
 consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
 ```
 
-This example demonstrates how to get the all owners of a specified application in Microsoft Entra ID.  
-This command gets the two owners of a specified application.
+This example demonstrates how to get the two owners of a specified application in Microsoft Entra ID.
 
 ## PARAMETERS
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -113,10 +125,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -128,10 +141,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -143,7 +157,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

@@ -14,12 +14,12 @@ Retrieves the list of previously deleted applications
 
 ### GetQuery (Default)
 ```
-Get-EntraBetaDeletedApplication [-Top <Int32>] [-All <Boolean>] [-Filter <String>] [<CommonParameters>]
+Get-EntraBetaDeletedApplication [-Top <Int32>] [-All] [-Filter <String>] [<CommonParameters>]
 ```
 
 ### GetVague
 ```
-Get-EntraBetaDeletedApplication [-SearchString <String>] [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaDeletedApplication [-SearchString <String>] [-All] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -57,21 +57,19 @@ This example shows how an existing application was deleted and how the G-EntraBe
 ## PARAMETERS
 
 ### -All
-If true, return all deleted applications.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 ### -Filter
 Retrieve only those deleted applications that satisfy the filter
 

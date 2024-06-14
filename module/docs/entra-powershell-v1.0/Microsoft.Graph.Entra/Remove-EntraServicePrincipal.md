@@ -2,9 +2,9 @@
 title: Remove-EntraServicePrincipal.
 description: This article provides details on the Remove-EntraServicePrincipal command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
-ms.date: 03/08/2024
+ms.date: 06/02/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,6 +18,7 @@ schema: 2.0.0
 # Remove-EntraServicePrincipal
 
 ## SYNOPSIS
+
 Removes a service principal.
 
 ## SYNTAX
@@ -29,25 +30,29 @@ Remove-EntraServicePrincipal
 ```
 
 ## DESCRIPTION
+
 The Remove-EntraServicePrincipal cmdlet removes a service principal in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Removes a service principal
+
 ```powershell
-PS C:\> Remove-EntraServicePrincipal -ObjectId 99a6f8c7-6424-4e48-b0fd-1ee92549fd8f
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Remove-EntraServicePrincipal -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444'
 ```
 
-This example demonstrates how to remove service principal in Microsoft Entra ID.
-
+This example demonstrates how to remove a service principal in Microsoft Entra ID.
 
 ## PARAMETERS
 
 ### -ObjectId
+
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -59,6 +64,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -74,4 +80,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [New-EntraServicePrincipal](New-EntraServicePrincipal.md)
 
 [Set-EntraServicePrincipal](Set-EntraServicePrincipal.md)
-

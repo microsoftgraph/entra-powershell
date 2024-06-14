@@ -2,7 +2,7 @@
 title: Get-EntraMSDeletedDirectoryObject
 description: This article provides details on the Get-EntraMSDeletedDirectoryObject command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/14/2024
 ms.author: eunicewaweru
@@ -18,6 +18,7 @@ schema: 2.0.0
 # Get-EntraMSDeletedDirectoryObject
 
 ## SYNOPSIS
+
 This cmdlet is used to retrieve a soft deleted directory object from the directory.
 
 ## SYNTAX
@@ -29,6 +30,7 @@ Get-EntraMSDeletedDirectoryObject
 ```
 
 ## DESCRIPTION
+
 This cmdlet is used to retrieve a soft deleted directory object from the directory.
 Soft delete for groups is currently only implemented for Unified Groups (also known as
 Office 365 Groups).
@@ -36,25 +38,28 @@ Office 365 Groups).
 ## EXAMPLES
 
 ### Example 1: Retrieve a deleted directory object.
+
 ```powershell
-Get-EntraMSDeletedDirectoryObject -Id 85b5ff1e-0402-400c-9e3c-0f9e965325d1
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All', 'Application.Read.All','Group.Read.All','User.Read.All'
+Get-EntraMSDeletedDirectoryObject -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```output
 Id                                   DeletedDateTime
 --                                   ---------------
-85b5ff1e-0402-400c-9e3c-0f9e965325d1 2/2/2024 5:33:56 AM
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 2/2/2024 5:33:56 AM
 ```
 
-This example shows how to retrieve the deleted directory object with id = 85b5ff1e-0402-400c-9e3c-0f9e965325d1 from the directory
+This example shows how to retrieve the deleted directory object with `Id` `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` from the directory
 
 ## PARAMETERS
 
 ### -Id
+
 The Id of the directory object to retrieve.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -66,14 +71,15 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
-### System.String
 ## OUTPUTS
 
 ### System.Object
+
 ## NOTES
 
 ## RELATED LINKS

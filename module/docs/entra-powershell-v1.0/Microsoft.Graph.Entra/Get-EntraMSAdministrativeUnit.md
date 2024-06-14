@@ -2,7 +2,7 @@
 title: Get-EntraMSAdministrativeUnit
 description: This article provides details on the Get-EntraMSAdministrativeUnit command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/05/2024
 ms.author: eunicewaweru
@@ -121,7 +121,7 @@ This example returns the specified top administrative units.
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 

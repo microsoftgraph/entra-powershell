@@ -2,7 +2,7 @@
 title: Remove-EntraDeviceRegisteredOwner
 description: This article provides details on the Remove-EntraDeviceRegisteredOwner command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 02/28/2024
 ms.author: eunicewaweru
@@ -18,6 +18,7 @@ schema: 2.0.0
 # Remove-EntraDeviceRegisteredOwner
 
 ## SYNOPSIS
+
 Removes the registered owner of a device.
 
 ## SYNTAX
@@ -30,32 +31,38 @@ Remove-EntraDeviceRegisteredOwner
 ```
 
 ## DESCRIPTION
-The Remove-EntraDeviceRegisteredOwner cmdlet removes the registered owner of a device in Microsoft Entra ID.
+
+The `Remove-EntraDeviceRegisteredOwner` cmdlet removes the registered owner of a device in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Remove an owner from a device
+
 ```powershell
-PS C:\> $Device = Get-EntraDevice -Top 1
-PS C:\> $Owner = Get-EntraDeviceRegisteredOwner -ObjectId $Device.ObjectId
-PS C:\> Remove-EntraDeviceRegisteredOwner -ObjectId $Device.ObjectId -OwnerId $Owner.ObjectId
+Connect-Entra -Scopes 'Directory.AccessAsUser.All'
+$Device = Get-EntraDevice -Top 1
+$Owner = Get-EntraDeviceRegisteredOwner -ObjectId $Device.ObjectId
+Remove-EntraDeviceRegisteredOwner -ObjectId $Device.ObjectId -OwnerId $Owner.ObjectId
 ```
 
-The first command gets a device by using the [Get-EntraDevice](./Get-EntraDevice.md) cmdlet, and then stores it in the $Device variable.  
+This examples shows how to remove the owner of a device.
 
-The second command gets the registered owner for the device in $Device by using the [Get-EntraDeviceRegisteredOwner](./Get-EntraDeviceRegisteredOwner.md) cmdlet.  
+- The first command gets a device by using the [Get-EntraDevice](./Get-EntraDevice.md) cmdlet, and then stores it in the `$Device` variable.  
 
-The command stores it in the $Owner variable.  
+- The second command retrieves the registered owner of the device in `$Device` by using the [Get-EntraDeviceRegisteredOwner](./Get-EntraDeviceRegisteredOwner.md) cmdlet.  
 
-The final command removes the owner in $Owner from the device in $Device.
+- The command stores the details in the `$Owner` variable.  
+
+- The final command removes the owner in `$Owner` from the device in `$Device`.
 
 ## PARAMETERS
 
 ### -ObjectId
+
 Specifies an object ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -67,10 +74,11 @@ Accept wildcard characters: False
 ```
 
 ### -OwnerId
+
 Specifies an owner ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -82,7 +90,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -97,4 +106,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraDevice](Get-EntraDevice.md)
 
 [Get-EntraDeviceRegisteredOwner](Get-EntraDeviceRegisteredOwner.md)
-

@@ -13,7 +13,7 @@ Gets OAuth2PermissionGrant entities.
 ## SYNTAX
 
 ```
-Get-EntraBetaOAuth2PermissionGrant [-Top <Int32>] [-All <Boolean>] [<CommonParameters>]
+Get-EntraBetaOAuth2PermissionGrant [-Top <Int32>] [-All] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -46,18 +46,17 @@ This command gets the OAuth2 permission grants.
 ## PARAMETERS
 
 ### -All
-If true, return all OAth2 permission grants.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -88,4 +87,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Remove-EntraBetaOAuth2PermissionGrant]()
-

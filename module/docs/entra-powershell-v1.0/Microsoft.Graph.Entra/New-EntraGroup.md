@@ -2,7 +2,7 @@
 title: New-EntraGroup.
 description: This article provides details on the New-EntraGroup command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/14/2024
 ms.author: eunicewaweru
@@ -18,6 +18,7 @@ schema: 2.0.0
 # New-EntraGroup
 
 ## SYNOPSIS
+
 Creates a group.
 
 ## SYNTAX
@@ -33,46 +34,59 @@ New-EntraGroup
 ```
 
 ## DESCRIPTION
+
 The New-EntraGroup cmdlet creates a group in Microsoft Entra ID.
+
+**Notes on permissions:**
+
+- To create the group with users as owners or members, the app must have at least the `User.Read.All` permission.
+- To create the group with other service principals as owners or members, the app must have at least the `Application.Read.All` permission.
+- To create the group with either users or service principals as owners or members, the app must have at least the `Directory.Read.All` permission.
 
 ## EXAMPLES
 
-### Example 1: Create a group.
+### Example 1: Create a group
 
 ```powershell
-PS C:\>New-EntraGroup -DisplayName "My new group" -MailEnabled $false -SecurityEnabled $true -MailNickName "NotSet"
+Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Group.Create' #Application permission
+New-EntraGroup -DisplayName 'My new group' -MailEnabled $false -SecurityEnabled $true -MailNickName 'NotSet'
 ```
+
 ```output
 
 DisplayName  Id                                   MailNickname Description GroupTypes
 -----------  --                                   ------------ ----------- ----------
-My new group 866fc97b-1171-4330-b4d0-d07f2cc8117b NotSet                   {}
+My new group hhhhhhhh-8888-9999-8888-cccccccccccc NotSet                   {}
 ```
+
 This example demonstrates how to create a group.
 
-### Example 2: Create a group with Description parameter.
+### Example 2: Create a group with Description parameter
 
 ```powershell
-PS C:\>New-EntraGroup -DisplayName "My new group" -MailEnabled $false -SecurityEnabled $true -MailNickName "NotSet" -Description "new created group"
+Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Group.Create' #Application permission
+New-EntraGroup -DisplayName 'My new group' -MailEnabled $false -SecurityEnabled $true -MailNickName 'NotSet' -Description 'New created group'
 
 ```
+
 ```output
 DisplayName  Id                                   MailNickname Description       GroupTypes
 -----------  --                                   ------------ -----------       ----------
-My new group ab0a6502-2201-412f-9ca8-fae1558a8470 NotSet       new created group {}
-
-
+My new group hhhhhhhh-8888-9999-8888-cccccccccccc NotSet       new created group {}
 ```
-This example demonstrates how to create a group with Description parameter.
 
+This example demonstrates how to create a group with Description parameter.
 
 ## PARAMETERS
 
 ### -Description
+
 Specifies a description of the group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -84,10 +98,11 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
+
 Specifies the display name of the group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -97,11 +112,13 @@ Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
 ### -MailEnabled
+
 Indicates whether mail is enabled.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -113,10 +130,11 @@ Accept wildcard characters: False
 ```
 
 ### -MailNickName
+
 Specifies a nickname for mail.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -128,10 +146,11 @@ Accept wildcard characters: False
 ```
 
 ### -SecurityEnabled
+
 Indicates whether the group is security-enabled.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -143,6 +162,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -158,4 +178,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraGroup](Remove-EntraGroup.md)
 
 [Set-EntraGroup](Set-EntraGroup.md)
-

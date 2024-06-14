@@ -2,7 +2,7 @@
 title: New-EntraGroupAppRoleAssignment.
 description: This article provides details on the New-EntraGroupAppRoleAssignment command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/06/2024
 ms.author: eunicewaweru
@@ -18,6 +18,7 @@ schema: 2.0.0
 # New-EntraGroupAppRoleAssignment
 
 ## SYNOPSIS
+
 Assign a group of users to an application role.
 
 ## SYNTAX
@@ -32,21 +33,26 @@ New-EntraGroupAppRoleAssignment
 ```
 
 ## DESCRIPTION
+
 The New-EntraGroupAppRoleAssignment cmdlet assigns a group of users to an application role in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Assign a group of users to an application
+
 ```powershell
-PS C:\> $appname = "Box"
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+$appname = 'Box'
 $spo = Get-EntraServicePrincipal -Filter "Displayname eq '$appname'"
-$group = Get-EntraGroup -SearchString "Contoso Team"
+$group = Get-EntraGroup -SearchString 'Contoso Team'
 New-EntraGroupAppRoleAssignment -ObjectId $group.ObjectId -PrincipalId $group.ObjectId -ResourceId $spo.ObjectId -Id $spo.Approles[1].id
 ```
+
 ```output
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime      PrincipalDisplayName PrincipalId
---------------- --                                          ---------                            ---------------      -------------------- -----------
-                xsZ3CJn8UU2YcYM1vnz8ndg-B0S9OklCltgw8SWHUTc e18f0405-fdec-4ae8-a8a0-d8edb98b061f 3/13/2024 4:41:43 AM Contoso Team         0877c6c6-fc99-4d51-9871-8335b...
+DeletedDateTime        Id                                          AppRoleId                            CreatedDateTime      PrincipalDisplayName PrincipalId
+---------------        --                                          ---------                            ---------------      -------------------- -----------
+                      AaBbCcDdEeFfGgHhIiJjKkLlMmNnOo1 00000000-0000-0000-0000-000000000000 3/13/2024 4:41:43 AM Contoso Team         aaaaaaaa-bbbb-cccc-1111-222222222222
+3/13/2024 4:45:00 AM  BbCcDdEeFfGgHhIiJjKkLlMmNnOoPp2 00000000-0000-0000-0000-000000000000 3/13/2024 4:45:00 AM Finance Group        bbbbbbbb-cccc-dddd-2222-333333333333
 ```
 
 This example demonstrates how to assign a group of users to an application role in Microsoft Entra ID.  
@@ -62,10 +68,11 @@ This example demonstrates how to assign a group of users to an application role 
 ## PARAMETERS
 
 ### -Id
+
 Specifies the ID of the app role (defined on the resource service principal) to assign.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -77,10 +84,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the unique identifier of group to which the new app role is to be assigned.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -92,10 +100,11 @@ Accept wildcard characters: False
 ```
 
 ### -PrincipalId
+
 Specifies the ID of a group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -107,11 +116,12 @@ Accept wildcard characters: False
 ```
 
 ### -ResourceId
+
 The unique identifier (ID) for the resource service principal for which the assignment is made.  
 Required on create. Supports $filter (eq only).
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -123,6 +133,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -136,6 +147,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraGroupAppRoleAssignment](Get-EntraGroupAppRoleAssignment.md)
 
 [Remove-EntraGroupAppRoleAssignment](Remove-EntraGroupAppRoleAssignment.md)
-
-[Managing applications in Microsoft Entra ID using PowerShell](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/ManageAppsAzureADPowerShell)
-

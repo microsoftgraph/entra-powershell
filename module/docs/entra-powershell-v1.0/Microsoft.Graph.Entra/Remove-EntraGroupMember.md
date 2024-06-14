@@ -2,7 +2,7 @@
 title: Remove-EntraGroupMember.
 description: This article provides details on the Remove-EntraGroupMember command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/07/2024
 ms.author: eunicewaweru
@@ -18,6 +18,7 @@ schema: 2.0.0
 # Remove-EntraGroupMember
 
 ## SYNOPSIS
+
 Removes a member from a group.
 
 ## SYNTAX
@@ -30,6 +31,7 @@ Remove-EntraGroupMember
 ```
 
 ## DESCRIPTION
+
 The Remove-EntraGroupMember cmdlet removes a member from a group in Microsoft Entra ID.
 
 ## EXAMPLES
@@ -39,23 +41,24 @@ The Remove-EntraGroupMember cmdlet removes a member from a group in Microsoft En
 This example demonstrates how to remove a member from a group in Microsoft Entra ID.
 
 ```powershell
-PS C:\>Remove-EntraGroupMember -ObjectId "62438306-7c37-4638-a72d-0ee8d9217680" -MemberId "0a1068c0-dbb6-4537-9db3-b48f3e31dd76"
+Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
+Remove-EntraGroupMember -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq' -MemberId 'zzzzzzzz-6666-8888-9999-pppppppppppp'
 ```
 
 This command removes the specified member from the specified group.  
 
-ObjectId - Specifies the object ID of a group in Microsoft Entra ID. 
+ObjectId - Specifies the object ID of a group in Microsoft Entra ID.
 
 MemberId - Specifies the ID of the member to remove.
-
 
 ## PARAMETERS
 
 ### -MemberId
+
 Specifies the ID of the member to remove.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -67,10 +70,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the object ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -82,6 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -95,4 +100,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Add-EntraGroupMember](Add-EntraGroupMember.md)
 
 [Get-EntraGroupMember](Get-EntraGroupMember.md)
-

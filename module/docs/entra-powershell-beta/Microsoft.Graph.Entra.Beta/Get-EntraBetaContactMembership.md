@@ -13,7 +13,7 @@ Get a contact membership.
 ## SYNTAX
 
 ```
-Get-EntraBetaContactMembership -ObjectId <String> [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+Get-EntraBetaContactMembership -ObjectId <String> [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -38,21 +38,19 @@ The second command gets the memberships for $Contact.
 ## PARAMETERS
 
 ### -All
-If true, return all memberships.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 ### -ObjectId
 Specifies the ID of a contact in Azure Active Directory.
 

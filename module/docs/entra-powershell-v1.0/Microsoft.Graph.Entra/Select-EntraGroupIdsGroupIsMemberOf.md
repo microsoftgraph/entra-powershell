@@ -2,7 +2,7 @@
 title: Select-EntraGroupIdsGroupIsMemberOf
 description: This article provides details on the Select-EntraGroupIdsGroupIsMemberOf command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/16/2024
 ms.author: eunicewaweru
@@ -19,6 +19,7 @@ schema: 2.0.0
 # Select-EntraGroupIdsGroupIsMemberOf
 
 ## SYNOPSIS
+
 Gets group IDs that a group is a member of.
 
 ## SYNTAX
@@ -31,6 +32,7 @@ Select-EntraGroupIdsGroupIsMemberOf
 ```
 
 ## DESCRIPTION
+
 The Select-EntraGroupIdsGroupIsMemberOf cmdlet gets the groups that a specified group is a member of in Microsoft Entra ID.
 
 ## EXAMPLES
@@ -38,10 +40,11 @@ The Select-EntraGroupIdsGroupIsMemberOf cmdlet gets the groups that a specified 
 ### Example 1: Get the group membership of a group for a group.
 
 ```powershell
-PS C:\> $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-PS C:\> $Groups.GroupIds = (Get-EntraGroup -Top 1).ObjectId
-PS C:\> $GroupId = (Get-EntraGroup -Top 1).ObjectId
-PS C:\> Select-EntraGroupIdsGroupIsMemberOf  -ObjectId $GroupId -GroupIdsForMembershipCheck $Groups
+Connect-Entra -Scopes 'GroupMember.Read.All'
+$Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+$Groups.GroupIds = (Get-EntraGroup -Top 1).ObjectId
+$GroupId = (Get-EntraGroup -Top 1).ObjectId
+Select-EntraGroupIdsGroupIsMemberOf  -ObjectId $GroupId -GroupIdsForMembershipCheck $Groups
 ```
 
 The first command creates a GroupIdsForMembershipCheck object, and then stores it in the $Groups variable.
@@ -55,6 +58,7 @@ The final command gets the group membership of a group identified by $GroupId.
 ## PARAMETERS
 
 ### -GroupIdsForMembershipCheck
+
 Specifies an array of group object IDs.
 
 ```yaml
@@ -68,11 +72,13 @@ Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
+
 ### -ObjectId
+
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -84,6 +90,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -95,4 +102,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Get-EntraGroup](Get-EntraGroup.md)
-
