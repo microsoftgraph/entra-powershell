@@ -18,17 +18,20 @@ schema: 2.0.0
 # Get-EntraSubscribedSku
 
 ## SYNOPSIS
+
 Gets subscribed SKUs to Microsoft services.
 
 ## SYNTAX
 
 ### GetQuery (Default)
+
 ```powershell
 Get-EntraSubscribedSku 
  [<CommonParameters>]
 ```
 
 ### GetById
+
 ```powershell
 Get-EntraSubscribedSku 
  -ObjectId <String> 
@@ -36,53 +39,56 @@ Get-EntraSubscribedSku
 ```
 
 ## DESCRIPTION
-The Get-EntraSubscribedSku cmdlet gets subscribed SKUs to Microsoft services.
+
+The `Get-EntraSubscribedSku` cmdlet gets subscribed SKUs to Microsoft services.
 
 ## EXAMPLES
 
 ### Example 1: Get subscribed SKUs
+
 ```powershell
-PS C:\>Get-EntraSubscribedSku
+Connect-Entra -Scopes 'Organization.Read.All'
+Get-EntraSubscribedSku
 ```
-```output
+
+```Output
 Id                                                                        AccountId                            AccountName   AppliesTo CapabilityStatus ConsumedUnits SkuId                                SkuPart
                                                                                                                                                                                                            Number
 --                                                                        ---------                            -----------   --------- ---------------- ------------- -----                                -------
-d5aec55f-2d12-4442-8d2f-ccca95d4390e_b05e124f-c7cc-45a0-a6aa-8cf78c946968 d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User      Enabled          20            b05e124f-c7cc-45a0-a6aa-8cf78c946968 EMSP...
-d5aec55f-2d12-4442-8d2f-ccca95d4390e_c7df2760-2c81-4ef7-b578-5b5392b571df d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User      Enabled          20            c7df2760-2c81-4ef7-b578-5b5392b571df ENTE...
-d5aec55f-2d12-4442-8d2f-ccca95d4390e_6fd2c87f-b296-42f0-b197-1e91e994b900 d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User      Enabled          2             6fd2c87f-b296-42f0-b197-1e91e994b900 ENTE...
-d5aec55f-2d12-4442-8d2f-ccca95d4390e_f30db892-07e9-47e9-837c-80727f46fd3d d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User      Enabled          3             f30db892-07e9-47e9-837c-80727f46fd3d FLOW...
-d5aec55f-2d12-4442-8d2f-ccca95d4390e_6a0f6da5-0b87-4190-a6ae-9bb5a2b9546a d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User      Enabled          3             6a0f6da5-0b87-4190-a6ae-9bb5a2b9546a Win1...
-d5aec55f-2d12-4442-8d2f-ccca95d4390e_184efa21-98c3-4e5d-95ab-d07053a96e67 d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User      Enabled          20            184efa21-98c3-4e5d-95ab-d07053a96e67 INFO...
+abcdefgh-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 00aa00aa-bb11-cc22-dd33-44ee44ee44ee Contoso User      Enabled          20            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb EMSP...
+ijklmnop-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 11bb11bb-cc22-dd33-ee44-55ff55ff55ff Contoso User      Enabled          20            bbbbbbbb-1111-2222-3333-cccccccccccc ENTE...
+qrstuvwx-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 22cc22cc-dd33-ee44-ff55-66aa66aa66aa Contoso User      Enabled          2             cccccccc-2222-3333-4444-dddddddddddd ENTE...
+yzabcdef-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 33dd33dd-ee44-ff55-aa66-77bb77bb77bb Contoso User      Enabled          3             dddddddd-3333-4444-5555-eeeeeeeeeeee FLOW...
+ghijklmn-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 44ee44ee-ff55-aa66-bb77-88cc88cc88cc Contoso User      Enabled          3             eeeeeeee-4444-5555-6666-ffffffffffff Win1...
+opqrstuv-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 55ff55ff-gg66-bb77-cc88-99dd99dd99dd Contoso User      Enabled          20            ffffffff-7777-8888-9999-gggggggggggg INFO...
 ```
 
-This example demonstrates how to retrieve subscribed SKUs to Microsoft services.  
-
-This command gets subscribed SKUs.
-
+This example shows how to retrieve subscribed SKUs.
 
 ### Example 2: Get subscribed SKUs by ObjectId
+
 ```powershell
-PS C:\>Get-EntraSubscribedSku -ObjectId "d5aec55f-2d12-4442-8d2f-ccca95d4390e_b05e124f-c7cc-45a0-a6aa-8cf78c946968"
+Connect-Entra -Scopes 'Organization.Read.All'
+Get-EntraSubscribedSku -ObjectId 'abcdefgh-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666'
 ```
-```output
+
+```Output
 Id                                                                        AccountId                            AccountName   AppliesTo CapabilityStatus ConsumedUnits SkuId                                SkuPart
                                                                                                                                                                                                            Number
 --                                                                        ---------                            -----------   --------- ---------------- ------------- -----                                -------
-d5aec55f-2d12-4442-8d2f-ccca95d4390e_b05e124f-c7cc-45a0-a6aa-8cf78c946968 d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User      Enabled          20            b05e124f-c7cc-45a0-a6aa-8cf78c946968 EMSP...
+abcdefgh-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 00aa00aa-bb11-cc22-dd33-44ee44ee44ee Contoso User      Enabled          20            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb EMSP...
 ```
 
-This example demonstrates how to retrieve specified subscribed SKUs to Microsoft services.  
-
-This command gets specified subscribed SKUs to Microsoft services.
+This example shows how to retrieve specified subscribed SKUs.
 
 ## PARAMETERS
 
 ### -ObjectId
+
 The object ID of the SKU (Stock Keeping Unit).
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -94,7 +100,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
