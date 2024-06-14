@@ -29,12 +29,12 @@ Connect-Entra
 [[-Scopes] <String[]>] 
 [[-ClientId] <String>] 
 [-TenantId <String>]
- [-ContextScope <ContextScope>] 
- [-Environment <String>] 
- [-UseDeviceCode] 
- [-ClientTimeout <Double>] 
- [-NoWelcome]
- [<CommonParameters>]
+[-ContextScope <ContextScope>] 
+[-Environment <String>] 
+[-UseDeviceCode] 
+[-ClientTimeout <Double>] 
+[-NoWelcome]
+[<CommonParameters>]
 ```
 
 ### AppCertificateParameterSet
@@ -113,7 +113,7 @@ You can use this authenticated account only with Microsoft Entra ID cmdlets.
 ### Example 1: Connect a session using a ApplicationId and CertificateThumbprint
 
 ```powershell
-PS C:\> Connect-Entra -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -ApplicationId "8886ad7b-1795-4542-9808-c85859d97f23" -CertificateThumbprint F8813914053FBFB5D84F1EFA9EDB3205621C1126
+Connect-Entra -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -ApplicationId "8886ad7b-1795-4542-9808-c85859d97f23" -CertificateThumbprint F8813914053FBFB5D84F1EFA9EDB3205621C1126
 ```
 
 ```output
@@ -132,7 +132,7 @@ This command Connect a session using a ApplicationId and CertificateThumbprint.
 ### Example 2: Delegated access using interactive authentication, where you provide the scopes that you require during your session
 
 ```powershell
-PS C:\> Connect-Entra -Scopes "User.Read.All", "Group.ReadWrite.All"
+Connect-Entra -Scopes "User.Read.All", "Group.ReadWrite.All"
 ```
 
 ```output
@@ -151,8 +151,8 @@ This example shows how to authenticate to Entra with scopes.
 ### Example 3: Delegated access: Using your own access token
 
 ```powershell
-PS C:\> $secureString = ConvertTo-SecureString -String $AccessToken -AsPlainText -Force
-PS C:\> Connect-Entra -AccessToken $secureString
+$secureString = ConvertTo-SecureString -String $AccessToken -AsPlainText -Force
+Connect-Entra -AccessToken $secureString
 ```
 
 ```output
@@ -171,7 +171,7 @@ This example shows how to authenticate to graph using an access token.
 ### Example 4: Connecting to an environment as a different identity
 
 ```powershell
-PS C:\> Connect-Entra -ContextScope "Process"
+Connect-Entra -ContextScope "Process"
 ```
 
 ```output
@@ -190,7 +190,7 @@ To connect as a different identity other than CurrentUser, specify the -ContextS
 ### Example 5: Connecting to an environment or cloud
 
 ```powershell
-PS C:\> Get-EntraEnvironment
+Get-EntraEnvironment
 ```
 
 ```output
@@ -211,7 +211,7 @@ When you use Connect-Entra, you can choose to target other environments. By defa
 ### Example 6: Sets the HTTP client timeout in seconds
 
 ```powershell
-PS C:\> Connect-Entra -ClientTimeout 60
+Connect-Entra -ClientTimeout 60
 ```
 
 ```output
@@ -230,7 +230,7 @@ This example Sets the HTTP client timeout in seconds.
 ### Example 7: Hides the welcome message
 
 ```powershell
-PS C:\> Connect-Entra -NoWelcome
+Connect-Entra -NoWelcome
 ```
 
 This example Hides the welcome message.
@@ -238,7 +238,7 @@ This example Hides the welcome message.
 ### Example 8: Using device code flow
 
 ```powershell
-PS C:\> Connect-Entra -UseDeviceAuthentication
+Connect-Entra -UseDeviceAuthentication
 ```
 
 ```output
@@ -250,7 +250,7 @@ This example shows how to authenticate to Entra with device.
 ### Example 9: App-only access: Using client credential with a certificate - Certificate name
 
 ```powershell
-PS C:\> Connect-Entra -ClientId "YOUR_APP_ID" -TenantId "YOUR_TENANT_ID" -CertificateName "YOUR_CERT_SUBJECT"
+Connect-Entra -ClientId "YOUR_APP_ID" -TenantId "YOUR_TENANT_ID" -CertificateName "YOUR_CERT_SUBJECT"
 ```
 
 Follow this link (https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands) for more information on how to load the certificate.
@@ -258,8 +258,8 @@ Follow this link (https://learn.microsoft.com/powershell/microsoftgraph/authenti
 ### Example 10: App-only access: Using client credential with a certificate - Certificate
 
 ```powershell
-PS C:\> $Cert = Get-ChildItem Cert:\LocalMachine\My\$CertThumbprint
-PS C:\> Connect-Entra -ClientId "YOUR_APP_ID" -TenantId "YOUR_TENANT_ID" -Certificate $Cert
+$Cert = Get-ChildItem Cert:\LocalMachine\My\$CertThumbprint
+Connect-Entra -ClientId "YOUR_APP_ID" -TenantId "YOUR_TENANT_ID" -Certificate $Cert
 ```
 
 Follow this link (https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands) for more information on how to load the certificate.
@@ -267,9 +267,9 @@ Follow this link (https://learn.microsoft.com/powershell/microsoftgraph/authenti
 ### Example 11: Using client secret credentials
 
 ```powershell
-PS C:\> $ClientSecretCredential = Get-Credential -Credential "Client_Id"
+$ClientSecretCredential = Get-Credential -Credential "Client_Id"
 # Enter client_secret in the password prompt.
-PS C:\> Connect-Entra -TenantId "Tenant_Id" -ClientSecretCredential $ClientSecretCredential
+Connect-Entra -TenantId "Tenant_Id" -ClientSecretCredential $ClientSecretCredential
 ```
 
 This authentication method is ideal for background interactions. It doesn't require a user to physically sign in.
@@ -277,7 +277,7 @@ This authentication method is ideal for background interactions. It doesn't requ
 ### Example 12: Using managed identity: System-assigned managed identity
 
 ```powershell
-PS C:\> Connect-Entra -Identity
+Connect-Entra -Identity
 ```
 
 Uses an automatically managed identity on a service instance. The identity is tied to the lifecycle of a service instance.
@@ -285,7 +285,7 @@ Uses an automatically managed identity on a service instance. The identity is ti
 ### Example 13: Using managed identity: User-assigned managed identity
 
 ```powershell
-PS C:\> Connect-Entra -Identity -ClientId "User_Assigned_Managed_identity_Client_Id"
+Connect-Entra -Identity -ClientId "User_Assigned_Managed_identity_Client_Id"
 ```
 
 Uses a user created managed identity as a standalone Azure resource.
@@ -293,7 +293,7 @@ Uses a user created managed identity as a standalone Azure resource.
 ### Example 14: Allows for authentication using environment variables
 
 ```powershell
-PS C:\> Connect-Entra -EnvironmentVariable
+Connect-Entra -EnvironmentVariable
 ```
 
 This Example allows for authentication using environment variables.
@@ -305,7 +305,7 @@ This Example allows for authentication using environment variables.
 Specifies the certificate thumbprint of a digital public key X.509 certificate of a user account that has permission to perform this action.
 
 ```yaml
-Type: String
+Type:  System.String
 Parameter Sets: AppCertificateParameterSet
 Aliases:
 
@@ -321,7 +321,7 @@ Accept wildcard characters: False
 Specifies the application ID of the service principal.
 
 ```yaml
-Type: String
+Type:  System.String
 Parameter Sets: UserParameterSet, IdentityParameterSet
 Aliases: AppId, ApplicationId
 
@@ -333,7 +333,7 @@ Accept wildcard characters: False
 ```
 
 ```yaml
-Type: String
+Type:  System.String
 Parameter Sets: AppCertificateParameterSet
 Aliases: AppId, ApplicationId
 
@@ -369,7 +369,7 @@ If you don't specify this parameter, the account is authenticated with the home 
 You must specify the TenantId parameter to authenticate as a service principal or when using Microsoft account.
 
 ```yaml
-Type: String
+Type:  System.String
 Parameter Sets: UserParameterSet, AppCertificateParameterSet, AppSecretCredentialParameterSet
 Aliases: Audience, Tenant
 
@@ -431,7 +431,7 @@ Accept wildcard characters: False
 The name of the national cloud environment to connect to. By default global cloud is used.
 
 ```yaml
-Type: String
+Type:  System.String
 Parameter Sets: (All)
 Aliases: EnvironmentName, NationalCloud
 Required: False
@@ -446,7 +446,7 @@ Accept wildcard characters: False
 Hides the welcome message.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases: 
 Required: False
@@ -461,7 +461,7 @@ Accept wildcard characters: False
 An array of delegated permissions to consent to.
 
 ```yaml
-Type: String[]
+Type:  System.String[]
 Parameter Sets: UserParameterSet
 Aliases: 
 Required: False
@@ -476,7 +476,7 @@ Accept wildcard characters: False
 Use device code authentication instead of a browser control.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: UserParameterSet
 Aliases: UseDeviceAuthentication, DeviceCode, DeviceAuth, Device
 Required: False
@@ -506,7 +506,7 @@ Accept wildcard characters: False
 The subject distinguished name of a certificate. The Certificate is retrieved from the current user's certificate store.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: AppCertificateParameterSet
 Aliases: CertificateSubject, CertificateName
 Required: False
@@ -536,7 +536,7 @@ Accept wildcard characters: False
 Allows for authentication using environment variables configured on the host machine. See https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#environment-variables
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: EnvironmentVariableParameterSet
 Aliases: 
 Required: False
@@ -551,7 +551,7 @@ Accept wildcard characters: False
 Sign-in using a Managed Identity
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: IdentityParameterSet
 Aliases: ManagedIdentity, ManagedServiceIdentity, MSI
 Required: False
@@ -578,7 +578,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
