@@ -113,13 +113,13 @@ You can use this authenticated account only with Microsoft Entra ID cmdlets.
 ### Example 1: Connect a session using a ApplicationId and CertificateThumbprint
 
 ```powershell
-Connect-Entra -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e" -ApplicationId "8886ad7b-1795-4542-9808-c85859d97f23" -CertificateThumbprint F8813914053FBFB5D84F1EFA9EDB3205621C1126
+Connect-Entra -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -ApplicationId '00001111-aaaa-2222-bbbb-3333cccc4444' -CertificateThumbprint AA11BB22CC33DD44EE55FF66AA77BB88CC99DD00
 ```
 
 ```output
 Welcome to Microsoft Graph!
 
-Connected via apponly access using 8886ad7b-1795-4542-9808-c85859d97f23
+Connected via apponly access using 00001111-aaaa-2222-bbbb-3333cccc4444
 Readme: https://aka.ms/graph/sdk/powershell
 SDK Docs: https://aka.ms/graph/sdk/powershell/docs
 API Docs: https://aka.ms/graph/docs
@@ -132,13 +132,13 @@ This command Connect a session using a ApplicationId and CertificateThumbprint.
 ### Example 2: Delegated access using interactive authentication, where you provide the scopes that you require during your session
 
 ```powershell
-Connect-Entra -Scopes "User.Read.All", "Group.ReadWrite.All"
+Connect-Entra -Scopes 'User.Read.All', 'Group.ReadWrite.All'
 ```
 
 ```output
 Welcome to Microsoft Graph!
 
-Connected via apponly access using 8886ad7b-1795-4542-9808-c85859d97f23
+Connected via apponly access using 00001111-aaaa-2222-bbbb-3333cccc4444
 Readme: https://aka.ms/graph/sdk/powershell
 SDK Docs: https://aka.ms/graph/sdk/powershell/docs
 API Docs: https://aka.ms/graph/docs
@@ -158,7 +158,7 @@ Connect-Entra -AccessToken $secureString
 ```output
 Welcome to Microsoft Graph!
 
-Connected via apponly access using 8886ad7b-1795-4542-9808-c85859d97f23
+Connected via apponly access using 00001111-aaaa-2222-bbbb-3333cccc4444
 Readme: https://aka.ms/graph/sdk/powershell
 SDK Docs: https://aka.ms/graph/sdk/powershell/docs
 API Docs: https://aka.ms/graph/docs
@@ -171,13 +171,13 @@ This example shows how to authenticate to graph using an access token.
 ### Example 4: Connecting to an environment as a different identity
 
 ```powershell
-Connect-Entra -ContextScope "Process"
+Connect-Entra -ContextScope 'Process'
 ```
 
 ```output
 Welcome to Microsoft Graph!
 
-Connected via apponly access using 8886ad7b-1795-4542-9808-c85859d97f23
+Connected via apponly access using 00001111-aaaa-2222-bbbb-3333cccc4444
 Readme: https://aka.ms/graph/sdk/powershell
 SDK Docs: https://aka.ms/graph/sdk/powershell/docs
 API Docs: https://aka.ms/graph/docs
@@ -203,7 +203,7 @@ USGovDoD https://login.microsoftonline.us  https://dod-graph.microsoft.us       
 ```
 
 ```powershell
-Connect-Entra -Environment Global
+Connect-Entra -Environment 'Global'
 ```
 
 When you use Connect-Entra, you can choose to target other environments. By default, Connect-Entra targets the global public cloud.
@@ -211,13 +211,13 @@ When you use Connect-Entra, you can choose to target other environments. By defa
 ### Example 6: Sets the HTTP client timeout in seconds
 
 ```powershell
-Connect-Entra -ClientTimeout 60
+Connect-Entra -ClientTimeout '60'
 ```
 
 ```output
 Welcome to Microsoft Graph!
 
-Connected via apponly access using 8886ad7b-1795-4542-9808-c85859d97f23
+Connected via apponly access using 00001111-aaaa-2222-bbbb-3333cccc4444
 Readme: https://aka.ms/graph/sdk/powershell
 SDK Docs: https://aka.ms/graph/sdk/powershell/docs
 API Docs: https://aka.ms/graph/docs
@@ -250,7 +250,7 @@ This example shows how to authenticate to Entra with device.
 ### Example 9: App-only access: Using client credential with a certificate - Certificate name
 
 ```powershell
-Connect-Entra -ClientId "YOUR_APP_ID" -TenantId "YOUR_TENANT_ID" -CertificateName "YOUR_CERT_SUBJECT"
+Connect-Entra -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444'  -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -CertificateName 'AA11BB22CC33DD44EE55FF66AA77BB88CC99DD00'
 ```
 
 Follow this link (https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands) for more information on how to load the certificate.
@@ -259,7 +259,7 @@ Follow this link (https://learn.microsoft.com/powershell/microsoftgraph/authenti
 
 ```powershell
 $Cert = Get-ChildItem Cert:\LocalMachine\My\$CertThumbprint
-Connect-Entra -ClientId "YOUR_APP_ID" -TenantId "YOUR_TENANT_ID" -Certificate $Cert
+Connect-Entra -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444' -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -Certificate $Cert
 ```
 
 Follow this link (https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands) for more information on how to load the certificate.
@@ -267,9 +267,9 @@ Follow this link (https://learn.microsoft.com/powershell/microsoftgraph/authenti
 ### Example 11: Using client secret credentials
 
 ```powershell
-$ClientSecretCredential = Get-Credential -Credential "Client_Id"
+$ClientSecretCredential = Get-Credential -Credential 'Client_Id'
 # Enter client_secret in the password prompt.
-Connect-Entra -TenantId "Tenant_Id" -ClientSecretCredential $ClientSecretCredential
+Connect-Entra -TenantId 'Tenant_Id' -ClientSecretCredential $ClientSecretCredential
 ```
 
 This authentication method is ideal for background interactions. It doesn't require a user to physically sign in.
@@ -285,7 +285,7 @@ Uses an automatically managed identity on a service instance. The identity is ti
 ### Example 13: Using managed identity: User-assigned managed identity
 
 ```powershell
-Connect-Entra -Identity -ClientId "User_Assigned_Managed_identity_Client_Id"
+Connect-Entra -Identity -ClientId 'User_Assigned_Managed_identity_Client_Id'
 ```
 
 Uses a user created managed identity as a standalone Azure resource.
