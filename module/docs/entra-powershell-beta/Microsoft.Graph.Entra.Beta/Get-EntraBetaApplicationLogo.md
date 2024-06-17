@@ -1,4 +1,15 @@
 ---
+title: Get-EntraBetaApplicationLogo
+description: This article provides details on the Get-EntraBetaApplicationLogo command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 06/17/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -12,35 +23,23 @@ Retrieve the logo of an application
 
 ## SYNTAX
 
-```
-Get-EntraBetaApplicationLogo -ObjectId <String> [-FileName <String>] [-FilePath <String>] [-View <Boolean>]
+```powershell
+Get-EntraBetaApplicationLogo 
+ -ObjectId <String> 
+ [-FileName <String>] 
+ [-FilePath <String>] 
+ [-View <Boolean>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This cmdlet retrieves the logo that is set for an application.
+The Get-EntraBetaApplicationLogo cmdlet retrieves the logo that is set for an application.
 
 ## EXAMPLES
 
 ### Example 1
-```
-PS C:\WINDOWS\system32> Get-EntraBetaApplicationLogo -ObjectId 79592454-dea7-4660-9d91-f1768e5055ac
-
-
-Tag                  :
-PhysicalDimension    : {Width=279, Height=390}
-Size                 : {Width=279, Height=390}
-Width                : 279
-Height               : 390
-HorizontalResolution : 96
-VerticalResolution   : 96
-Flags                : 77840
-RawFormat            : [ImageFormat: b96b3cae-0728-11d3-9d7b-0000f81ef32e]
-PixelFormat          : Format24bppRgb
-Palette              : System.Drawing.Imaging.ColorPalette
-FrameDimensionsList  : {7462dc86-6180-4c7e-8e3f-ee7333a7a483}
-PropertyIdList       : {274, 305, 306, 36867...}
-PropertyItems        : {274, 305, 306, 36867...}
+```powershell
+Get-EntraBetaApplicationLogo -ObjectId bbbbbbbb-1111-1111-1111-cccccccccccc -FilePath D:\outfile1.jpg
 ```
 
 This example shows how to retrieve the application logo for an application that is specified through the Object ID parameter
@@ -51,7 +50,7 @@ This example shows how to retrieve the application logo for an application that 
 If provided, the application logo is copied to the file who's name is provided in this parameter
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -66,7 +65,7 @@ Accept wildcard characters: False
 If provided, the application logo is copied with a random filename to the file path that is specified in this parameter
 
 ```yaml
-Type: String
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -81,7 +80,7 @@ Accept wildcard characters: False
 The ObjectID of the application for which the logo is to be retrieved
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -96,7 +95,7 @@ Accept wildcard characters: False
 If set to $true, the application's logo is displayed in a new window on the screen.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -113,7 +112,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.String
-System.Boolean
+### System.Boolean
 
 ## OUTPUTS
 
