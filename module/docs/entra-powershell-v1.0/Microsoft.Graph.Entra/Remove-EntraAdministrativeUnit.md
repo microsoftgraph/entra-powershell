@@ -39,7 +39,7 @@ The Remove-EntraAdministrativeUnit cmdlet removes an administrative unit from Mi
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-Remove-EntraAdministrativeUnit -ObjectId 'aaaaaaaa-1111-1111-1111-000000000000'
+Remove-EntraAdministrativeUnit -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 This example removes an administrative unit from Microsoft Entra ID.
