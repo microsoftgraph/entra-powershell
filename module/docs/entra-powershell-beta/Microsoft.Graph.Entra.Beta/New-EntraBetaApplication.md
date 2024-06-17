@@ -4,11 +4,11 @@ description: This article provides details on the New-EntraBetaApplication comma
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 06/04/2024
+ms.date: 17/06/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
-
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -25,46 +25,46 @@ Creates an application.
 
 ```powershell
 New-EntraBetaApplication 
-    -DisplayName <String> 
-    [-AddIns <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AddIn]>]
-    [-SignInAudience <String>] 
-    [-Oauth2AllowImplicitFlow <Boolean>]
-    [-ReplyUrls <System.Collections.Generic.List`1[System.String]>] 
-    [-WwwHomepage <String>] 
-    [-IsDisabled <Boolean>] 
-    [-AllowGuestsSignIn <Boolean>] 
-    [-PublisherDomain <String>]
-    [-OrgRestrictions <System.Collections.Generic.List`1[System.String]>] 
-    [-OptionalClaims <OptionalClaims>]
-    [-ParentalControlSettings <ParentalControlSettings>] 
-    [-Oauth2AllowUrlPathMatching <Boolean>]
-    [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]>]
-    [-IdentifierUris <System.Collections.Generic.List`1[System.String]>] 
-    [-GroupMembershipClaims <String>]
-    [-Oauth2Permissions <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.OAuth2Permission]>]
-    [-LogoutUrl <String>] 
-    [-ErrorUrl <String>] 
-    [-SamlMetadataUrl <String>] 
-    [-IsDeviceOnlyAuthSupported <Boolean>]
-    [-PreAuthorizedApplications <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PreAuthorizedApplication]>]
-    [-AvailableToOtherTenants <Boolean>]
-    [-KnownClientApplications <System.Collections.Generic.List`1[System.String]>]
-    [-AllowPassthroughUsers <Boolean>]
-    [-RequiredResourceAccess <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.RequiredResourceAccess]>]
-    [-PublicClient <Boolean>] 
-    [-RecordConsentConditions <String>] 
-    [-Oauth2RequirePostResponse <Boolean>]
-    [-AppLogoUrl <String>]
-    [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]>]
-    [-Homepage <String>] 
-    [-AppRoles <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AppRole]>]
-    [-InformationalUrls <InformationalUrl>] 
+ -DisplayName <String> 
+ [-AddIns <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AddIn]>]
+ [-SignInAudience <String>] 
+ [-Oauth2AllowImplicitFlow <Boolean>]
+ [-ReplyUrls <System.Collections.Generic.List`1[System.String]>] 
+ [-WwwHomepage <String>] 
+ [-IsDisabled <Boolean>] 
+ [-AllowGuestsSignIn <Boolean>] 
+ [-PublisherDomain <String>]
+ [-OrgRestrictions <System.Collections.Generic.List`1[System.String]>] 
+ [-OptionalClaims <OptionalClaims>]
+ [-ParentalControlSettings <ParentalControlSettings>] 
+ [-Oauth2AllowUrlPathMatching <Boolean>]
+ [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]>]
+ [-IdentifierUris <System.Collections.Generic.List`1[System.String]>] 
+ [-GroupMembershipClaims <String>]
+ [-Oauth2Permissions <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.OAuth2Permission]>]
+ [-LogoutUrl <String>] 
+ [-ErrorUrl <String>] 
+ [-SamlMetadataUrl <String>] 
+ [-IsDeviceOnlyAuthSupported <Boolean>]
+ [-PreAuthorizedApplications <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PreAuthorizedApplication]>]
+ [-AvailableToOtherTenants <Boolean>]
+ [-KnownClientApplications <System.Collections.Generic.List`1[System.String]>]
+ [-AllowPassthroughUsers <Boolean>]
+ [-RequiredResourceAccess <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.RequiredResourceAccess]>]
+ [-PublicClient <Boolean>] 
+ [-RecordConsentConditions <String>] 
+ [-Oauth2RequirePostResponse <Boolean>]
+ [-AppLogoUrl <String>]
+ [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]>]
+ [-Homepage <String>] 
+ [-AppRoles <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AppRole]>]
+ [-InformationalUrls <InformationalUrl>] 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-The `New-EntraBetaApplication` cmdlet creates an application in Microsoft Entra ID.
+The `New-EntraBetaApplication` cmdlet creates an application in Microsoft Entra ID. Specify the `DisplayName` parameter to create new application.
 
 ## EXAMPLES
 
@@ -72,7 +72,7 @@ The `New-EntraBetaApplication` cmdlet creates an application in Microsoft Entra 
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-New-EntraBetaApplication -DisplayName "My new application"
+New-EntraBetaApplication -DisplayName 'My new application'
 ```
 
 ```output
@@ -88,7 +88,7 @@ This command creates an application in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-New-EntraBetaApplication -DisplayName "My new application" -IdentifierUris "https://mynewapp.contoso.com"
+New-EntraBetaApplication -DisplayName 'My new application' -IdentifierUris 'https://mynewapp.contoso.com'
 ```
 
 ```output
@@ -106,7 +106,7 @@ This command creates an application in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-New-EntraBetaApplication -DisplayName "My new application" -HomePage "https://mynewapp.home.com"
+New-EntraBetaApplication -DisplayName 'My new application' -HomePage 'https://mynewapp.home.com'
 ```
 
 ```output
@@ -124,7 +124,7 @@ This command creates an application in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-New-EntraBetaApplication -DisplayName "My new application" -LogoutUrl "https://mynewapp.com/logout.aspx"
+New-EntraBetaApplication -DisplayName 'My new application' -LogoutUrl 'https://mynewapp.com/logout.aspx'
 ```
 
 ```output
@@ -142,7 +142,7 @@ This command creates an application in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-New-EntraBetaApplication -DisplayName "My new application" -IsDeviceOnlyAuthSupported $false
+New-EntraBetaApplication -DisplayName 'My new application' -IsDeviceOnlyAuthSupported $false
 ```
 
 ```output
@@ -227,7 +227,7 @@ Accept wildcard characters: False
 
 ### -ErrorUrl
 
-The Error URL of this application
+The Error URL of this application.
 
 ```yaml
 Type: System.String
@@ -297,7 +297,7 @@ Accept wildcard characters: False
 
 ### -KeyCredentials
 
-The collection of key credentials associated with the application
+The collection of key credentials associated with the application.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]
@@ -330,7 +330,7 @@ Accept wildcard characters: False
 
 ### -LogoutUrl
 
-The logout url for this application
+The logout url for this application.
 
 ```yaml
 Type: System.String

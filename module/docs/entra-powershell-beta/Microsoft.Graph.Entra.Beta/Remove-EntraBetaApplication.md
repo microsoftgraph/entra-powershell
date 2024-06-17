@@ -4,11 +4,11 @@ description: This article provides details on the Remove-EntraBetaApplication co
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 06/04/2024
+ms.date: 17/06/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
-
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -25,13 +25,13 @@ Delete an application by ObjectId.
 
 ```powershell
 Remove-EntraBetaApplication 
-    -ObjectId <String>
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-The `Remove-EntraBetaApplication` cmdlet removes the specified application from Microsoft Entra ID.
+The `Remove-EntraBetaApplication` cmdlet removes the specified application from Microsoft Entra ID. Specify the `ObjectId` parameter to delete a specific application.
 
 ## EXAMPLES
 

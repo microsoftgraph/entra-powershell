@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaApplication comma
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 06/03/2024
+ms.date: 17/06/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -53,7 +53,7 @@ Get-EntraBetaApplication
 
 ## DESCRIPTION
 
-The `Get-EntraBetaApplication` cmdlet gets a Microsoft Entra ID application.
+The `Get-EntraBetaApplication` cmdlet gets a Microsoft Entra ID application. Specify the `ObjectId` parameter to get a specific application.
 
 ## EXAMPLES
 
@@ -61,7 +61,7 @@ The `Get-EntraBetaApplication` cmdlet gets a Microsoft Entra ID application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaApplication -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+Get-EntraBetaApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```output
@@ -77,7 +77,7 @@ This command gets an application for the specified ObjectId.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get- Get-EntraBetaApplication -All 
+Get-EntraBetaApplication -All 
 ```
 
 ```output
@@ -133,7 +133,7 @@ This command gets an application by its display name.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaApplication -SearchString "My new application 2"
+Get-EntraBetaApplication -SearchString 'My new application 2'
 ```
 
 ```output
@@ -161,7 +161,7 @@ This example demonstrates how to retrieve applications by its identifierUris fro
 List all pages.
 
 ```yaml
-Type: System.SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
