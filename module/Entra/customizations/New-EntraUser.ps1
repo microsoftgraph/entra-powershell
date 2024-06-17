@@ -163,6 +163,16 @@
         $response | ForEach-Object {
             if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name UserState -Value ExternalUserState
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name UserStateChangedOn -Value ExternalUserStateChangeDateTime
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name Mobile -Value mobilePhone
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name DeletionTimestamp -Value DeletedDateTime
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name DirSyncEnabled -Value OnPremisesSyncEnabled
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ImmutableId -Value onPremisesImmutableId
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name LastDirSyncTime -Value OnPremisesLastSyncDateTime
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ProvisioningErrors -Value onPremisesProvisioningErrors
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value BusinessPhones
+                
                 $userData = [Microsoft.Graph.PowerShell.Models.MicrosoftGraphUser]::new()
                 $_.PSObject.Properties | ForEach-Object {
                     $userData | Add-Member -MemberType NoteProperty -Name $_.Name -Value $_.Value -Force
