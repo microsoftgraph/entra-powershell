@@ -18,6 +18,7 @@ schema: 2.0.0
 # Add-EntraDirectoryRoleMember
 
 ## SYNOPSIS
+
 Adds a member to a directory role.
 
 ## SYNTAX
@@ -30,24 +31,28 @@ Add-EntraDirectoryRoleMember
 ```
 
 ## DESCRIPTION
-The **Add-EntraDirectoryRoleMember** cmdlet adds a member to a Microsoft Entra ID role.
+
+The `Add-EntraDirectoryRoleMember` cmdlet adds a member to a Microsoft Entra ID role.
 
 ## EXAMPLES
 
 ### Example 1: Add a member to a Microsoft Entra ID role
+
 ```powershell
-PS C:\>Add-EntraDirectoryRoleMember -ObjectId 019ea7a2-1613-47c9-81cb-20ba35b1ae48 -RefObjectId c13dd34a-492b-4561-b171-40fcce2916c5
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+Add-EntraDirectoryRoleMember -ObjectId '019ea7a2-1613-47c9-81cb-20ba35b1ae48' -RefObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
-This command adds a member to a Microsoft Entra ID role.
+This command adds a member to a directory role. The `-ObjectId` parameter specifies the ID of the role to which the member should be added, and the `-RefObjectId` parameter specifies the ID of the member to be added.
 
 ## PARAMETERS
 
 ### -ObjectId
+
 Specifies the ID of a directory role in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -59,10 +64,11 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
+
 Specifies the ID of the Microsoft Entra ID object to assign as owner/manager/member.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -74,7 +80,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -87,4 +94,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraDirectoryRoleMember](Get-EntraDirectoryRoleMember.md)
 
 [Remove-EntraDirectoryRoleMember](Remove-EntraDirectoryRoleMember.md)
-
