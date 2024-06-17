@@ -18,7 +18,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Connects with an authenticated account to use Microsoft Entra ID cmdlet requests.
+Microsoft Entra PowerShell supports two types of authentication: delegated and app-only access. There are a number of cmdlets that can be used to manage the different parameters required during authentication, for example, environment, application ID, and certificate.
 
 ## SYNTAX
 
@@ -104,30 +104,17 @@ Connect-Entra
 
 ## DESCRIPTION
 
-The `Connect-Entra` cmdlet connects an authenticated account to use for Microsoft Entra ID cmdlet requests.
-
-You can use this authenticated account only with Microsoft Entra ID cmdlets.
+You must invoke Connect-Entra before any commands that access Microsoft Entra. This cmdlet gets the access token using the Microsoft Authentication Library.
 
 ## EXAMPLES
 
-### Example 1: Connect a session using a ApplicationId and CertificateThumbprint
+### Example 1: Connect a session
 
 ```powershell
-Connect-Entra -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -ApplicationId '00001111-aaaa-2222-bbbb-3333cccc4444' -CertificateThumbprint AA11BB22CC33DD44EE55FF66AA77BB88CC99DD00
+Connect-Entra
 ```
 
-```output
-Welcome to Microsoft Graph!
-
-Connected via apponly access using 00001111-aaaa-2222-bbbb-3333cccc4444
-Readme: https://aka.ms/graph/sdk/powershell
-SDK Docs: https://aka.ms/graph/sdk/powershell/docs
-API Docs: https://aka.ms/graph/docs
-
-NOTE: You can use the -NoWelcome parameter to suppress this message.
-```
-
-This command Connect a session using a ApplicationId and CertificateThumbprint.
+This example prompts the user to authenticate interactively using their Microsoft Entra credentials.
 
 ### Example 2: Delegated access using interactive authentication, where you provide the scopes that you require during your session
 
@@ -148,7 +135,27 @@ NOTE: You can use the -NoWelcome parameter to suppress this message.
 
 This example shows how to authenticate to Entra with scopes.
 
-### Example 3: Delegated access: Using your own access token
+### Example 3: Connect a session using a ApplicationId and CertificateThumbprint
+
+```powershell
+Connect-Entra -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -ApplicationId '00001111-aaaa-2222-bbbb-3333cccc4444' -CertificateThumbprint AA11BB22CC33DD44EE55FF66AA77BB88CC99DD00
+```
+
+```output
+Welcome to Microsoft Graph!
+
+Connected via apponly access using 00001111-aaaa-2222-bbbb-3333cccc4444
+Readme: https://aka.ms/graph/sdk/powershell
+SDK Docs: https://aka.ms/graph/sdk/powershell/docs
+API Docs: https://aka.ms/graph/docs
+
+NOTE: You can use the -NoWelcome parameter to suppress this message.
+```
+
+This command Connect a session using a ApplicationId and CertificateThumbprint.
+
+
+### Example 4: Delegated access: Using your own access token
 
 ```powershell
 $secureString = ConvertTo-SecureString -String $AccessToken -AsPlainText -Force
@@ -166,9 +173,9 @@ API Docs: https://aka.ms/graph/docs
 NOTE: You can use the -NoWelcome parameter to suppress this message.
 ```
 
-This example shows how to authenticate to graph using an access token.
+This example shows how to authenticate to Entra using an access token.
 
-### Example 4: Connecting to an environment as a different identity
+### Example 5: Connecting to an environment as a different identity
 
 ```powershell
 Connect-Entra -ContextScope 'Process'
@@ -187,7 +194,7 @@ NOTE: You can use the -NoWelcome parameter to suppress this message.
 
 To connect as a different identity other than CurrentUser, specify the -ContextScope parameter with the value Process.
 
-### Example 5: Connecting to an environment or cloud
+### Example 6: Connecting to an environment or cloud
 
 ```powershell
 Get-EntraEnvironment
@@ -208,10 +215,10 @@ Connect-Entra -Environment 'Global'
 
 When you use Connect-Entra, you can choose to target other environments. By default, Connect-Entra targets the global public cloud.
 
-### Example 6: Sets the HTTP client timeout in seconds
+### Example 7: Sets the HTTP client timeout in seconds
 
 ```powershell
-Connect-Entra -ClientTimeout '60'
+Connect-Entra -ClientTimeout 60
 ```
 
 ```output
@@ -227,18 +234,18 @@ NOTE: You can use the -NoWelcome parameter to suppress this message.
 
 This example Sets the HTTP client timeout in seconds.
 
-### Example 7: Hides the welcome message
+### Example 8: Hides the welcome message
 
 ```powershell
 Connect-Entra -NoWelcome
 ```
 
-This example Hides the welcome message.
+This example hides the welcome message.
 
-### Example 8: Using device code flow
+### Example 9: Using device code flow
 
 ```powershell
-Connect-Entra -UseDeviceAuthentication
+Connect-Entra -UseDeviceCode
 ```
 
 ```output
@@ -247,7 +254,7 @@ To sign in, use a web browser to open the page https://microsoft.com/devicelogin
 
 This example shows how to authenticate to Entra with device.
 
-### Example 9: App-only access: Using client credential with a certificate - Certificate name
+### Example 10: App-only access: Using client credential with a certificate - Certificate name
 
 ```powershell
 Connect-Entra -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444'  -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -CertificateName 'AA11BB22CC33DD44EE55FF66AA77BB88CC99DD00'
@@ -255,7 +262,7 @@ Connect-Entra -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444'  -TenantId 'aaaab
 
 Follow this link (https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands) for more information on how to load the certificate.
 
-### Example 10: App-only access: Using client credential with a certificate - Certificate
+### Example 11: App-only access: Using client credential with a certificate - Certificate
 
 ```powershell
 $Cert = Get-ChildItem Cert:\LocalMachine\My\$CertThumbprint
@@ -264,17 +271,17 @@ Connect-Entra -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444' -TenantId 'aaaabb
 
 Follow this link (https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands) for more information on how to load the certificate.
 
-### Example 11: Using client secret credentials
+### Example 12: Using client secret credentials
 
 ```powershell
-$ClientSecretCredential = Get-Credential -Credential 'Client_Id'
+$ClientSecretCredential = Get-Credential -Credential '00001111-aaaa-2222-bbbb-3333cccc4444'
 # Enter client_secret in the password prompt.
-Connect-Entra -TenantId 'Tenant_Id' -ClientSecretCredential $ClientSecretCredential
+Connect-Entra -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -ClientSecretCredential $ClientSecretCredential
 ```
 
 This authentication method is ideal for background interactions. It doesn't require a user to physically sign in.
 
-### Example 12: Using managed identity: System-assigned managed identity
+### Example 13: Using managed identity: System-assigned managed identity
 
 ```powershell
 Connect-Entra -Identity
@@ -282,21 +289,21 @@ Connect-Entra -Identity
 
 Uses an automatically managed identity on a service instance. The identity is tied to the lifecycle of a service instance.
 
-### Example 13: Using managed identity: User-assigned managed identity
+### Example 14: Using managed identity: User-assigned managed identity
 
 ```powershell
-Connect-Entra -Identity -ClientId 'User_Assigned_Managed_identity_Client_Id'
+Connect-Entra -Identity -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444'
 ```
 
 Uses a user created managed identity as a standalone Azure resource.
 
-### Example 14: Allows for authentication using environment variables
+### Example 15: Allows for authentication using environment variables
 
 ```powershell
 Connect-Entra -EnvironmentVariable
 ```
 
-This Example allows for authentication using environment variables.
+This example allows for authentication using environment variables.
 
 ## PARAMETERS
 
@@ -344,22 +351,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -AccessToken
-
-Specifies a Microsoft Graph access token.
-
-```yaml
-Type: SecureString
-Parameter Sets: AccessTokenParameterSet
-Aliases:
-
-Required: False
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -TenantId
 
 Specifies the ID of a tenant.
@@ -382,7 +373,7 @@ Accept wildcard characters: False
 
 ### -AccessToken
 
-Specifies a bearer token for Microsoft Graph service. Access tokens do time out and you have to handle their refresh.
+Specifies a bearer token for Microsoft Entra service. Access tokens do time out and you have to handle their refresh.
 
 ```yaml
 Type: SecureString
@@ -503,7 +494,7 @@ Accept wildcard characters: False
 
 ### -CertificateSubjectName
 
-The subject distinguished name of a certificate. The Certificate is retrieved from the current user's certificate store.
+The subject distinguished name of a certificate. The certificate is retrieved from the current user's certificate store.
 
 ```yaml
 Type: System.String
@@ -548,7 +539,7 @@ Accept wildcard characters: False
 
 ### -Identity
 
-Sign-in using a Managed Identity
+Sign-in using a managed identity
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
