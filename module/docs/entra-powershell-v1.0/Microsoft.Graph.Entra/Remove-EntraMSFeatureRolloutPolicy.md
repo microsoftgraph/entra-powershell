@@ -39,7 +39,7 @@ Users in groups that were assigned to the policy will fall back to the global au
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Remove-EntraMSFeatureRolloutPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
+Remove-EntraMSFeatureRolloutPolicy -Id '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' 
 ```
 
 This command removes the policy for cloud authentication roll-out in Microsoft Entra ID.

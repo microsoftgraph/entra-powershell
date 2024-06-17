@@ -30,7 +30,7 @@ Remove-EntraExternalDomainFederation
 
 ## DESCRIPTION
 
-This Remove-EntraExternalDomainFederation cmdlet removes an externalDomainFederation by external domain name. Specify `ExternalDomainName` parameter for remove an externalDomainFederation.
+This `Remove-EntraExternalDomainFederation` cmdlet removes an externalDomainFederation by external domain name. Specify `ExternalDomainName` parameter for remove an externalDomainFederation.
 
 ## EXAMPLES
 

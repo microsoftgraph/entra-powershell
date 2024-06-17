@@ -32,7 +32,7 @@ Remove-EntraScopedRoleMembership
 
 ## DESCRIPTION
 
-The Remove-EntraScopedRoleMembership cmdlet removes a scoped role membership from Microsoft Entra ID. Specify `ObjectId` and `ScopedRoleMembershipId` for removes a scoped role membership.
+The `Remove-EntraScopedRoleMembership` cmdlet removes a scoped role membership from Microsoft Entra ID. Specify `ObjectId` and `ScopedRoleMembershipId` for removes a scoped role membership.
 
 ## EXAMPLES
 
@@ -40,7 +40,7 @@ The Remove-EntraScopedRoleMembership cmdlet removes a scoped role membership fro
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-Remove-EntraScopedRoleMembership -ObjectId '00000000-1111-1111-1111-000000000000' -ScopedRoleMembershipId '44444444-1111-1111-1111-000000000000'
+Remove-EntraScopedRoleMembership -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -ScopedRoleMembershipId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 This example demonstrates how to Removes a scoped role membership.

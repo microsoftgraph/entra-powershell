@@ -42,7 +42,7 @@ federation). Specify `Id` and `ObjectId` parameter for remove groups from the cl
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Remove-EntraMSFeatureRolloutPolicyDirectoryObject -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -ObjectId 'aaaaaaaa-0000-1111-2222-cccccccccccc'
+Remove-EntraMSFeatureRolloutPolicyDirectoryObject -Id '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 This command removes a group from the cloud authentication roll-out policy from Microsoft Entra ID.
