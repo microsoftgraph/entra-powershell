@@ -58,9 +58,9 @@ Add-EntraMSServicePrincipalDelegatedPermissionClassification @params
 ```
 
 ```output
-Id                      Classification PermissionId                         PermissionName
---                      -------------- ------------                         --------------
-bbbb1111-cc22-3333-44dd-555555eeeeee low            eeeeeeee-4444-5555-6666-ffffffffffff Sites.Read.All
+Id                                   Classification PermissionId                         PermissionName
+--                                   -------------- ------------                         --------------
+eszf101IRka9VZoGVVnbBgE low            205e70e5-aba6-4c52-a976-6d2d46c48043 Sites.Read.All
 ```
 
 This command creates a delegated permission classification for the given permission on the service principal.
