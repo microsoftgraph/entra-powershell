@@ -154,6 +154,7 @@ NOTE: You can use the -NoWelcome parameter to suppress this message.
 
 This command Connect a session using a ApplicationId and CertificateThumbprint.
 
+Follow this link (<https://learn.microsoft.com/en-us/powershell/microsoftgraph/authentication-commands?view=graph-powershell-1.0#using-get-mgcontext>) for more information.
 
 ### Example 4: Delegated access: Using your own access token
 
@@ -192,7 +193,7 @@ API Docs: https://aka.ms/graph/docs
 NOTE: You can use the -NoWelcome parameter to suppress this message.
 ```
 
-To connect as a different identity other than CurrentUser, specify the -ContextScope parameter with the value Process.
+To connect as a different identity other than CurrentUser, specify the ContextScope parameter with the value Process.
 
 ### Example 6: Connecting to an environment or cloud
 
@@ -257,10 +258,10 @@ This example shows how to authenticate to Entra with device.
 ### Example 10: App-only access: Using client credential with a certificate - Certificate name
 
 ```powershell
-Connect-Entra -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444'  -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -CertificateName 'AA11BB22CC33DD44EE55FF66AA77BB88CC99DD00'
+Connect-Entra -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444'  -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -CertificateName 'YOUR_CERT_SUBJECT'
 ```
 
-Follow this link (https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands) for more information on how to load the certificate.
+Follow this link (<https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands>) for more information on how to load the certificate.
 
 ### Example 11: App-only access: Using client credential with a certificate - Certificate
 
@@ -269,7 +270,7 @@ $Cert = Get-ChildItem Cert:\LocalMachine\My\$CertThumbprint
 Connect-Entra -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444' -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -Certificate $Cert
 ```
 
-Follow this link (https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands) for more information on how to load the certificate.
+Follow this link (<https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands>) for more information on how to load the certificate.
 
 ### Example 12: Using client secret credentials
 
@@ -280,6 +281,8 @@ Connect-Entra -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -ClientSecretCred
 ```
 
 This authentication method is ideal for background interactions. It doesn't require a user to physically sign in.
+
+Follow this link (<https://learn.microsoft.com/en-us/powershell/microsoftgraph/authentication-commands?view=graph-powershell-1.0#using-get-mgcontext>) for more information.
 
 ### Example 13: Using managed identity: System-assigned managed identity
 
@@ -297,6 +300,8 @@ Connect-Entra -Identity -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444'
 
 Uses a user created managed identity as a standalone Azure resource.
 
+Follow this link (<https://learn.microsoft.com/en-us/powershell/microsoftgraph/authentication-commands?view=graph-powershell-1.0#using-get-mgcontext>) for more information.
+
 ### Example 15: Allows for authentication using environment variables
 
 ```powershell
@@ -304,6 +309,8 @@ Connect-Entra -EnvironmentVariable
 ```
 
 This example allows for authentication using environment variables.
+
+Follow this link (<https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#environment-variables>) For more information.
 
 ## PARAMETERS
 
@@ -524,7 +531,7 @@ Accept wildcard characters: False
 
 ### -EnvironmentVariable
 
-Allows for authentication using environment variables configured on the host machine. See https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#environment-variables
+Allows for authentication using environment variables configured on the host machine. See <https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#environment-variables>
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
