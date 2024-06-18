@@ -18,6 +18,7 @@ schema: 2.0.0
 # Get-EntraUserDirectReport
 
 ## SYNOPSIS
+
 Get the user's direct reports.
 
 ## SYNTAX
@@ -31,83 +32,94 @@ Get-EntraUserDirectReport
 ```
 
 ## DESCRIPTION
+
 The Get-EntraUserDirectReport cmdlet gets the direct reports for a user in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Get a user's direct reports
+
 ```powershell
-PS C:\> Get-EntraUserDirectReport -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16"
+Connect-Entra -Scopes 'User.Read' #Delegated Permission
+Connect-Entra -Scopes 'User.Read.All' #Application Permission
+Get-EntraUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
+
 ```output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {debrab@m365x99297270.onmicrosoft.com}
+imAddresses                     : {debrab@contoso.com}
 preferredLanguage               :
-mail                            : DebraB@M365x99297270.OnMicrosoft.com
-securityIdentifier              : S-1-12-1-2430512737-1080277439-3869513867-4132559946
-identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=DebraB@M365x99297270.OnMicrosoft.com}}
+mail                            : DebraB@contoso.com
+securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
+identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=DebraB@contoso.com}}
 consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
-assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=184efa21-98c3-4e5d-95ab-d07053a96e67}, @{disabledPlans=System.Object[]; skuId=b05e124f-c7cc-45a0-a6aa-8cf78c946968},
-                                  @{disabledPlans=System.Object[]; skuId=c7df2760-2c81-4ef7-b578-5b5392b571df}}
+assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=33334444-dddd-5555-eeee-6666ffff7777}, @{disabledPlans=System.Object[]; skuId=44445555-eeee-6666-ffff-7777aaaa8888},
+                                  @{disabledPlans=System.Object[]; skuId=55556666-ffff-7777-aaaa-8888bbbb9999}}
 ```
 
-This example demonstrates how to retrieve direct reports for a user in Microsoft Entra ID.    
-This command gets the direct report for the specified user.
+This example demonstrates how to retrieve direct reports for a user in Microsoft Entra ID.
 
-### Example 2: Get a all direct reports
+### Example 2: Get all direct reports
+
 ```powershell
-PS C:\> Get-EntraUserDirectReport -ObjectId "c300541f-2c03-49cb-b25b-72f09cb29abf" -All 
+Connect-Entra -Scopes 'User.Read' #Delegated Permission
+Connect-Entra -Scopes 'User.Read.All' #Application Permission
+Get-EntraUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All 
 ```
+
 ```output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {debrab@m365x99297270.onmicrosoft.com}
+imAddresses                     : {debrab@contoso.com}
 preferredLanguage               :
-mail                            : DebraB@M365x99297270.OnMicrosoft.com
-securityIdentifier              : S-1-12-1-2430512737-1080277439-3869513867-4132559946
-identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=DebraB@M365x99297270.OnMicrosoft.com}}
+mail                            : DebraB@contoso.com
+securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
+identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=DebraB@contoso.com}}
 consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
-assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=184efa21-98c3-4e5d-95ab-d07053a96e67}, @{disabledPlans=System.Object[]; skuId=b05e124f-c7cc-45a0-a6aa-8cf78c946968},
-                                  @{disabledPlans=System.Object[]; skuId=c7df2760-2c81-4ef7-b578-5b5392b571df}}
+assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=33334444-dddd-5555-eeee-6666ffff7777}, @{disabledPlans=System.Object[]; skuId=44445555-eeee-6666-ffff-7777aaaa8888},
+                                  @{disabledPlans=System.Object[]; skuId=55556666-ffff-7777-aaaa-8888bbbb9999}}
 ```
 
-This example demonstrates how to retrieve all direct reports for a user in Microsoft Entra ID.  
-This command gets the all direct report for the specified user.
+This example demonstrates how to retrieve all direct reports for a user in Microsoft Entra ID.
 
 ### Example 3: Get a top five direct reports
+
 ```powershell
-PS C:\> Get-EntraUserDirectReport -ObjectId "c300541f-2c03-49cb-b25b-72f09cb29abf" -Top 5
+Connect-Entra -Scopes 'User.Read' #Delegated Permission
+Connect-Entra -Scopes 'User.Read.All' #Application Permission
+Get-EntraUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 5
 ```
+
 ```output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {debrab@m365x99297270.onmicrosoft.com}
+imAddresses                     : {debrab@contoso.com}
 preferredLanguage               :
-mail                            : DebraB@M365x99297270.OnMicrosoft.com
-securityIdentifier              : S-1-12-1-2430512737-1080277439-3869513867-4132559946
-identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=DebraB@M365x99297270.OnMicrosoft.com}}
+mail                            : DebraB@contoso.com
+securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
+identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=DebraB@contoso.com}}
 consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
-assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=184efa21-98c3-4e5d-95ab-d07053a96e67}, @{disabledPlans=System.Object[]; skuId=b05e124f-c7cc-45a0-a6aa-8cf78c946968},
-                                  @{disabledPlans=System.Object[]; skuId=c7df2760-2c81-4ef7-b578-5b5392b571df}}
+assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=33334444-dddd-5555-eeee-6666ffff7777}, @{disabledPlans=System.Object[]; skuId=44445555-eeee-6666-ffff-7777aaaa8888},
+                                  @{disabledPlans=System.Object[]; skuId=55556666-ffff-7777-aaaa-8888bbbb9999}}
 ```
 
-This example demonstrates how to retrieve top five direct reports for a user in Microsoft Entra ID.  
-This command gets the five direct report for the specified user.
+This example demonstrates how to retrieve top five direct reports for a user in Microsoft Entra ID.
 
 ## PARAMETERS
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -119,10 +131,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a user in Microsoft Entra ID (UserPrincipalName or ObjectId).
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -134,10 +147,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -149,7 +163,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
