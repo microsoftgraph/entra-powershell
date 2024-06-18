@@ -37,7 +37,8 @@ The Get-EntraBetaGroupMember cmdlet gets a member of a group in Microsoft Entra 
 
 ### Example 1: Get a group member by ID
 ```Powershell
-PS C:\>Get-EntraBetaGroupMember -ObjectId "05b0552e-39cd-4df4-a8f5-00ade912e83d"
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaGroupMember -ObjectId "05b0552e-39cd-4df4-a8f5-00ade912e83d"
 ```
 ```output
 Id                                   DeletedDateTime
@@ -49,7 +50,8 @@ This example demonstrates how to retrieve group member by ID.
 
 ### Example 2: Get two group member
 ```powershell
-PS C:\>Get-EntraBetaGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -Top 2
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -Top 2
 ```
 ```output
 Id                                   DeletedDateTime
@@ -62,7 +64,8 @@ This example demonstrates how to retrieve top two groups from Microsoft Entra ID
 
 ### Example 3: Get all members within a group by group ID
 ```powershell
-PS C:\>Get-EntraBetaGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -All
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -All
 ```
 ```output
 Id                                   DeletedDateTime
@@ -83,7 +86,7 @@ This example retrieves all members within a group by group ID.
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -98,7 +101,7 @@ Accept wildcard characters: False
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -113,7 +116,7 @@ Accept wildcard characters: False
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 

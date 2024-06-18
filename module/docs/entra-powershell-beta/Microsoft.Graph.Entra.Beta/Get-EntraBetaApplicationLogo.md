@@ -65,7 +65,7 @@ Accept wildcard characters: False
 If provided, the application logo is copied with a random filename to the file path that is specified in this parameter
 
 ```yaml
-Type: System.Management.Automation.SwitchParameter
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 

@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaMSGroupLifecyclePolicy.
+description: This article provides details on the Get-EntraBetaMSGroupLifecyclePolicy command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 06/18/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,41 +18,66 @@ schema: 2.0.0
 # Get-EntraBetaMSGroupLifecyclePolicy
 
 ## SYNOPSIS
-Retrieves the properties and relationships of a groupLifecyclePolicies object in Azure Active Directory.
+Retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID.
 If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 
 ## SYNTAX
 
 ### GetQuery (Default)
-```
-Get-EntraBetaMSGroupLifecyclePolicy [<CommonParameters>]
+```powershell
+Get-EntraBetaMSGroupLifecyclePolicy 
+ [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraBetaMSGroupLifecyclePolicy -Id <String> [<CommonParameters>]
+```powershell
+Get-EntraBetaMSGroupLifecyclePolicy 
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaMSGroupLifecyclePolicy command retrieves the properties and relationships of a groupLifecyclePolicies object in Azure Active Directory.
+The Get-EntraBetaMSGroupLifecyclePolicy command retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID.
 If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 
 ## EXAMPLES
 
 ### Example 1
+```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraBetaMSGroupLifecyclePolicy
 ```
-PS C:\> Get-EntraBetaMSGroupLifecyclePolicy
+```output
+Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
+--                                   --------------------------- ------------------- -----------------
+c9a455d8-982e-4c06-86d8-8dab15f03295 example@contoso.un          99                  Selected
 ```
 
-This command retrieves the group expiration settings configured for the tenant
+This example demonstrates how to retrieve the properties and relationships of all groupLifecyclePolicies in Microsoft Entra ID.
+This command retrieves the group expiration settings configured for the tenant.
+
+### Example 2: Retrieve properties of an groupLifecyclePolicy
+
+```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraBetaMSGroupLifecyclePolicy -Id '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
+```
+
+```output
+Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
+--                                   --------------------------- ------------------- -----------------
+1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 admingroup@contoso.com      200                 All
+```
+
+This command is used to retrieve a specific Microsoft Group Lifecycle Policy. The `-Id` parameter specifies the ID of the Lifecycle Policy to be retrieved.
 
 ## PARAMETERS
 
 ### -Id
-Specifies the ID of a groupLifecyclePolicies object in Azure Active Directory
+Specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 

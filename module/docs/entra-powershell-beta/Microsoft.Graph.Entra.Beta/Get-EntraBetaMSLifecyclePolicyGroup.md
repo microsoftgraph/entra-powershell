@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaMSLifecyclePolicyGroup.
+description: This article provides details on the Get-EntraBetaMSLifecyclePolicyGroup command.
+
+ms.service: active-directory
+ms.topic: reference
+ms.date: 06/18/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -12,8 +22,10 @@ Retrieves the lifecycle policy object to which a group belongs.
 
 ## SYNTAX
 
-```
-Get-EntraBetaMSLifecyclePolicyGroup -Id <String> [<CommonParameters>]
+```powershell
+Get-EntraBetaMSLifecyclePolicyGroup 
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,19 +34,26 @@ The Get-EntraBetaMSLifecyclePolicyGroup retrieves the lifecycle policy object to
 ## EXAMPLES
 
 ### Example 1
+```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraBetaMSLifecyclePolicyGroup -Id cffd97bd-6b91-4c4e-b553-6918a320211c
 ```
-PS C:\> Get-EntraBetaMSLifecyclePolicyGroup -Id cffd97bd-6b91-4c4e-b553-6918a320211c
+```output
+Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
+--                                   --------------------------- ------------------- -----------------
+bbbbbbbb-1111-2222-3333-cccccccccccc admingroup@contoso.com      200                 All
 ```
 
+This example demonstrates how to retrieve lifecycle policy object by `Id` in Microsoft Entra ID.  
 This command retrieves the lifecycle policy object to which a group belongs.
 
 ## PARAMETERS
 
 ### -Id
-Specifies the ID of a group in Azure Active Directory
+Specifies the ID of a group in in Microsoft Entra ID. 
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 

@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaGroup command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/08/2024
+ms.date: 06/18/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -54,41 +54,45 @@ The Get-EntraBetaGroup cmdlet gets a group in Microsoft Entra ID.
 
 ### Example 1: Get all groups
 ```powershell
-PS C:\>Get-EntraBetaGroup
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaGroup
 ```
 ```output
-ObjectId                             DisplayName                          Description
---------                             -----------                          -----------
-00628948-b509-4362-aa73-380c4dbd2a44 ADSyncBrowse
-02d91535-6c02-42bc-8ede-c57189320cc0 NewGroup2
-093fc0e2-1d6e-4a1b-9bf8-effa0196f1f7 All Users
-0dc8d2b2-d907-42e8-8558-0add236a8408 ADSyncOperators
-0e6cf869-82ca-4647-b330-420b9a6f8ef7 Temporary users team (Dynamic group)
-10d81ac5-1993-434b-b74c-1dcc4fd534ea HappyThanksgiving
-1e94a453-2727-47f6-b59e-d86df3494312 European teams
-23af9bad-83c5-4f03-a4e4-363bd892fc56 South-West Sales team
-269f90d5-93dc-4c0a-8f22-bf23da4e0c3a All FTE employees
-2b559810-b5de-41a8-913f-c45a55adfc25 Exchange Trusted Subsystem           This group contains Exchange servers that run Exchange cmdlets on behalf of users via the management service.
-Its members ...
-31f1ff6c-d48c-4f8a-b2e1-abca7fd399df Intune Administrators                Intune Device Administrators
-364e009b-fbe4-4aef-b230-2e9e8f2fe636 ADSyncPasswordSet
-3d3f7196-3ec8-4076-a232-1ca30b655d1a WinRMRemoteWMIUsers__                Members of this group can access WMI resources over management protocols (such as WS-Management via the Windows Remote Man...
-3df5d8b7-8af4-4536-90d6-cde4c878e252 ADSyncOperators
-4370f0a6-78e9-44cb-b722-29cb5307fdba Exchange Servers                     This group contains all the Exchange servers. This group shouldn't be deleted.
-47a1bff5-f449-4bfc-8772-b1515c57fec5 ExchangeLegacyInterop                This group is for interoperability with Exchange 2003 servers within the same forest.
-This group should not be deleted.
+DisplayName                                       Id                                   MailNickname                                   Description
+-----------                                       --                                   ------------                                   -----------
+SimpleTestGrp                                     00a460df-1b24-41db-a2d8-4eb8cd82e4a1 NickName
+SimpleGroupc13adf68-dffb-4185-a94f-e81bda906aa5   01c9ea6e-c28e-4d3a-a5e7-e90af9300499 NickName
+testGroupInAU10                                   02af6904-3630-4074-bbcb-8e0ed04a40ce testGroupInAU10                                testGroupInAU10
+SimpleGroupaeaea4bd-30df-4e13-b318-b416ed4e9357   0590f8df-dfbf-4892-bf45-f23069d6ed71 NickName
+HelpDesk admin group                              0883fd77-0ee8-45de-a21e-f32af1623acc helpDeskAdminGroup                             Group assignable to role
+HelpDesk admin group3                             0bdddeb1-88a6-4251-aaa5-98b48271158b helpDeskAdminGroup                             group des
+SimpleTestGrp                                     0d1f23c4-1e08-4b5f-b488-e5fb10549d17 NickName
+Parents of Conto                                  0d34b8e3-67ad-4a96-aec6-1c983d2adc5b newnickname                                    updated-des
+SimpleGroupdbac3b76-c1d4-4f15-9b73-2ab33aa8eca5   0d3cd313-3597-4587-bd52-c832cc0e08ec NickName
+SimpleTestGrp3f8fabd2-0c21-4987-96e5-e22be360d844 0e96821c-b734-4a5c-bf75-de420a7a426a NickName
+newtest                                           1005a3e7-a6a1-488b-a08c-1af8b358dbab helpDeskAdminGroup                             desc test
+sg-HR                                             11fc2414-c855-44ae-893e-af43df1b0b95 sgHR                                           All HR personnel
+My new  test                                      14856ab2-a65e-4d9d-b990-7958fdbda411 TestNickName                                   addede test description
+SimpleGroup98fdfc5d-ef4f-4b38-bc35-1bb113f6f314   15e76c9c-0f61-4152-b336-efbf6243a8df NickName
+VXC                                               1746d4e5-9f99-47aa-8d51-7dcf1c2433f1 SampleVCX                                      VXC
+SimpleGroup38af3326-f13e-41e9-81df-6aa9e9e1faa4   18a86e13-181e-4b35-ac22-8cdbea8cf3d8 NickName
+My Test san                                       1a344543-ce01-4eee-a6bf-70ce848e08cb NotSet
+SimpleGroup15c765b2-95a1-4fb7-bd8f-95c3e437e69e   1a5e4e85-6dcb-4bb6-a09b-3d540fcfe5df NickName
+SimpleTestGrpbcd1865e-c8b9-4f90-8943-77607ef15590 1d7f20aa-bbcd-4822-ab28-092015b90692 NickName
+testGroupInAU12                                   1d8172f7-2552-473e-bb76-e6c9ef95609c Test2025                                       Testing Description Parameter
 ```
 
 This example demonstrates how to get all groups from Microsoft Entra ID.  
 
 ### Example 2: Get a specific group by using an ObjectId
 ```powershell
-PS C:\>Get-EntraBetaGroup -ObjectId "fc446647-e8ff-47f1-a489-cf31694c0d35"
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaGroup -ObjectId "1d7f20aa-bbcd-4822-ab28-092015b90692"
 ```
 ```output
-DisplayName Id                                   MailNickname Description GroupTypes
------------ --                                   ------------ ----------- ----------
-UPDISPLAY   fc446647-e8ff-47f1-a489-cf31694c0d35 Remoteliving Upd1        {Unified}
+DisplayName                                       Id                                   MailNickname Description GroupTypes
+-----------                                       --                                   ------------ ----------- ----------
+SimpleTestGrpbcd1865e-c8b9-4f90-8943-77607ef15590 1d7f20aa-bbcd-4822-ab28-092015b90692 NickName                 {}
 ```
 
 This example demonstrates how to retrieve specific group by providing ID.  
@@ -96,16 +100,17 @@ This command gets information for the group that has the specified ID.
 
 ### Example 3: Get top five groups 
 ```powershell
-PS C:\>Get-EntraBetaGroup -Top 5
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaGroup -Top 5
 ```
 ```output
-DisplayName             Id                                   MailNickname          Description
------------             --                                   ------------          -----------
-Ask HR                  056b2531-005e-4f3e-be78-01a71ea30a04 askhr
-Parents of Contoso      05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso      Parents of Contoso
-Contoso Team            0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam           A collaboration area for the Cont...
-HelpDesk admin group    0883fd77-0ee8-45de-a21e-f32af1623acc helpDeskAdminGroup    Group assignable to role
-New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding New Employee Onboarding
+DisplayName                                     Id                                   MailNickname       Description              GroupTypes
+-----------                                     --                                   ------------       -----------              ----------
+SimpleTestGrp                                   00a460df-1b24-41db-a2d8-4eb8cd82e4a1 NickName                                    {}
+SimpleGroupc13adf68-dffb-4185-a94f-e81bda906aa5 01c9ea6e-c28e-4d3a-a5e7-e90af9300499 NickName                                    {}
+testGroupInAU10                                 02af6904-3630-4074-bbcb-8e0ed04a40ce testGroupInAU10    testGroupInAU10          {DynamicMembership, Unified}
+SimpleGroupaeaea4bd-30df-4e13-b318-b416ed4e9357 0590f8df-dfbf-4892-bf45-f23069d6ed71 NickName                                    {}
+HelpDesk admin group                            0883fd77-0ee8-45de-a21e-f32af1623acc helpDeskAdminGroup Group assignable to role {}
 ```
 
 This example demonstrates how to get top five groups from Microsoft Entra ID.  
@@ -113,7 +118,8 @@ This command gets the five groups in Microsoft Entra ID.
 
 ### Example 4: Get a group by DisplayName
 ```powershell
-PS C:\>Get-EntraBetaGroup -Filter "DisplayName eq 'Parents of Contoso'"
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaGroup -Filter "DisplayName eq 'Parents of Contoso'"
 ```
 ```output
 DisplayName        Id                                   MailNickname     Description        GroupTypes
@@ -125,7 +131,8 @@ This command gets the specified group.
 
 ### Example 5: Get groups that contain a search string
 ```powershell
-PS C:\>Get-EntraBetaGroup -SearchString "New"
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaGroup -SearchString "New"
 ```
 ```output
 DisplayName             Id                                   MailNickname          Description             GroupTypes
@@ -142,7 +149,7 @@ This example demonstrates how to retrieve groups that include the text new in th
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -158,7 +165,7 @@ Specifies an oData v3.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery
 Aliases:
 
@@ -173,7 +180,7 @@ Accept wildcard characters: False
 The unique identifier of a group in Microsoft Entra ID. (ObjectId)
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -188,8 +195,8 @@ Accept wildcard characters: False
 Specifies a search string.
 
 ```yaml
-Type: String
-Parameter Sets: GetVague
+Type: System.String
+Parameter Sets: GetValue
 Aliases:
 
 Required: False
@@ -203,7 +210,7 @@ Accept wildcard characters: False
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: GetQuery
 Aliases:
 

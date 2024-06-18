@@ -37,6 +37,7 @@ The Get-EntraBetaGroupAppRoleAssignment cmdlet gets a group application role ass
 
 ### Example 1: Retrieve application role assignments of a group
 ```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
 $GroupId = (Get-EntraBetaGroup -Top 1).ObjectId
 Get-EntraBetaGroupAppRoleAssignment -ObjectId $GroupId
 ```
@@ -56,6 +57,7 @@ The second command gets the application role assignments of the group in $GroupI
 
 ### Example 2: Retrieve all application role assignments of a group
 ```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
 Get-EntraBetaGroupAppRoleAssignment -ObjectId b220a523-d97c-44c3-a535-b55fe1fa1163 -All
 ```
 
@@ -71,6 +73,7 @@ This command gets all application role assignments of the specified group.
 
 ### Example 3: Retrieve top two application role assignments of a group
 ```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
 Get-EntraBetaGroupAppRoleAssignment -ObjectId b220a523-d97c-44c3-a535-b55fe1fa1163 -Top 2
 ```
 
@@ -89,7 +92,7 @@ This command gets top two application role assignments of the specified group.
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -104,7 +107,7 @@ Accept wildcard characters: False
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -119,7 +122,7 @@ Accept wildcard characters: False
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 

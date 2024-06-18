@@ -37,7 +37,8 @@ The Get-EntraBetaGroupOwner cmdlet gets an owner of a group in Microsoft Entra I
 
 ### Example 1: Get a group owner by ID
 ```powershell
-PS C:\> Get-EntraBetaGroupOwner -ObjectId "ba828166-dcd3-4349-aee9-9fbbf619105d"
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaGroupOwner -ObjectId "ba828166-dcd3-4349-aee9-9fbbf619105d"
 ```
 ```output
 Id                                   DeletedDateTime
@@ -48,7 +49,8 @@ This example demonstrates how to retrieve the owner of a specific group.
 
 ### Example 2: Gets all group owners
 ```powershell
-PS C:\>Get-EntraBetaGroupOwner -ObjectId "c072b115-ed7b-47cb-90d3-d5019d8bfd51" -All
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaGroupOwner -ObjectId "c072b115-ed7b-47cb-90d3-d5019d8bfd51" -All
 ```
 ```output
 Id                                   DeletedDateTime
@@ -61,7 +63,8 @@ This example demonstrates how to retrieve the all owner of a specific group.
 
 ### Example 3: Gets two group owners
 ```powershell
-PS C:\>Get-EntraBetaGroupOwner -ObjectId "c072b115-ed7b-47cb-90d3-d5019d8bfd51" -Top 2
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaGroupOwner -ObjectId "c072b115-ed7b-47cb-90d3-d5019d8bfd51" -Top 2
 ```
 ```output
 Id                                   DeletedDateTime
@@ -77,7 +80,7 @@ This example demonstrates how to retrieve the top two owners of a specific group
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -92,7 +95,7 @@ Accept wildcard characters: False
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -107,7 +110,7 @@ Accept wildcard characters: False
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 

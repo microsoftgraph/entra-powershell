@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaMSGroup command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/06/2023
+ms.date: 06/18/2023
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -60,7 +60,8 @@ If you specify no parameters, this cmdlet gets all groups.
 ### Example 1: Get all groups
 
 ```powershell
-PS C:\> Get-EntraBetaMSGroup
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaMSGroup
 ```
 ```output
 
@@ -80,9 +81,8 @@ This command gets all groups in Microsoft Entra ID.
 ### Example 2: Get a specific group by using an ID
 
 ```powershell
-
-PS C:\> Get-EntraBetaMSGroup -Id "0877c6c6-fc99-4d51-9871-8335be7cfc9d"
-
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaMSGroup -Id "0877c6c6-fc99-4d51-9871-8335be7cfc9d"
 ```
 ```output
 
@@ -97,7 +97,8 @@ In this example, we provide the  ID to retrieve a specific group.
 ### Example 3: Get top five groups
 
 ```powershell
-PS C:\> Get-EntraBetaMSGroup -Top 5
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaMSGroup -Top 5
 ```
 ```output
 
@@ -117,7 +118,8 @@ This example demonstrates how to retrieve top five groups from Microsoft Entra I
 
 
 ```powershell
-PS C:\> Get-EntraBetaMSGroup -Filter "DisplayName eq 'Parents of Contoso'"
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaMSGroup -Filter "DisplayName eq 'Parents of Contoso'"
 ```
 ```output
 
@@ -130,8 +132,8 @@ This example retrieves group by DisplayName.
 ### Example 5: Search among retrieved groups
 
 ```powershell
-PS C:\> Get-EntraBetaMSGroup -SearchString "New"
-
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaMSGroup -SearchString "New"
 ```
 ```output
 
@@ -146,9 +148,9 @@ This example demonstrates how to retrieve groups using  SearchString against the
 
 ### Example 6: Get AssignedLabels and DisplayName property values for all groups
 
-
 ```powershell
-PS C:\> Get-EntraBetaMSGroup -Select "AssignedLabels,DisplayName"
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaMSGroup -Select "AssignedLabels,DisplayName"
 ```
 ```output
  
@@ -171,7 +173,8 @@ AssignedLabels group property retrieved only by Select parameter.
 ### Example 7: Get DisplayName, ID, and Description property values for a group
 
 ```powershell
-PS C:\> Get-EntraBetaMSGroup -Id "0877c6c6-fc99-4d51-9871-8335be7cfc9d" -Select "DisplayName,Id,Description"
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaMSGroup -Id "0877c6c6-fc99-4d51-9871-8335be7cfc9d" -Select "DisplayName,Id,Description"
 ```
 ```output
 
@@ -190,7 +193,7 @@ AssignedLabels group property retrieved only by Select parameter.
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -205,7 +208,7 @@ Accept wildcard characters: False
 Specifies a list of group properties to retrieve.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery, GetById
 Aliases:
 
@@ -220,7 +223,7 @@ Accept wildcard characters: False
 Specifies an oData v3.0 filter string to match a set of groups.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery
 Aliases:
 
@@ -235,7 +238,7 @@ Accept wildcard characters: False
 Specifies the ID of the group that this cmdlet gets.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -251,8 +254,8 @@ Specifies a search string.
 This cmdlet gets groups that have DisplayName or Description attributes that match the search string.
 
 ```yaml
-Type: String
-Parameter Sets: GetVague
+Type: System.String
+Parameter Sets: GetValue
 Aliases:
 
 Required: False
@@ -267,7 +270,7 @@ Specifies the maximum number of records that this cmdlet gets.
 The default value is 100.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: GetQuery
 Aliases:
 
