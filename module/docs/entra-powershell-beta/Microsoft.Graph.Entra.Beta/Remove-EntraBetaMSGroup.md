@@ -4,7 +4,7 @@ description: This article provides details on the Remove-EntraBetaMSGroup comman
 
 ms.service: entra
 ms.topic: reference
-ms.date: 18/06/2024
+ms.date: 06/18/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG

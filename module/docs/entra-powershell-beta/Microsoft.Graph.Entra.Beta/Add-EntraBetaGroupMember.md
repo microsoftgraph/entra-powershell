@@ -4,7 +4,7 @@ description: This article provides details on the Add-EntraBetaGroupMember comma
 
 ms.service: entra
 ms.topic: reference
-ms.date: 17/06/2024
+ms.date: 06/17/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
