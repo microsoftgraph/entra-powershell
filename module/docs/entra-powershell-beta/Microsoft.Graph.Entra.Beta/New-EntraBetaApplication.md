@@ -2,9 +2,9 @@
 title: New-EntraBetaApplication
 description: This article provides details on the New-EntraBetaApplication command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
-ms.date: 17/06/2024
+ms.date: 06/17/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
