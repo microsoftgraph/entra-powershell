@@ -2,7 +2,7 @@
 title: Get-EntraBetaGroupMember.
 description: This article provides details on the Get-EntraBetaGroupMember command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
 ms.date: 03/06/2023
 ms.author: eunicewaweru
