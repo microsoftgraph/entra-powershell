@@ -64,7 +64,7 @@ New-EntraBetaApplication
 
 ## DESCRIPTION
 
-The `New-EntraBetaApplication` cmdlet creates an application in Microsoft Entra ID. Specify the `DisplayName` parameter to create new application.
+The `New-EntraBetaApplication` cmdlet creates an application in Microsoft Entra ID. Specify the `DisplayName` parameter to create a new application.
 
 ## EXAMPLES
 
@@ -277,7 +277,7 @@ Accept wildcard characters: False
 
 ### -IdentifierUris
 
-User-defined URIs that uniquely identify a Web application within its Microsoft Entra ID tenant, or within a verified custom domain (see "Domains" tab in the Azure classic portal) if the application is multitenant.
+User-defined Uniform Resource Identifiers (URIs) that uniquely identify a Web application within its Microsoft Entra ID tenant, or within a verified custom domain (see "Domains" tab in the Azure classic portal) if the application is multitenant.
 
 The first element is populated from the Web application's "APP ID URI" field if updated via the Azure classic portal (or respective Microsoft Entra ID PowerShell cmdlet parameter).
 More URIs can be added via the application manifest; see Understanding the Microsoft Entra ID Application Manifest for details.
@@ -480,7 +480,7 @@ Accept wildcard characters: False
 
 ### -SamlMetadataUrl
 
-The URL to the SAML metadata for the application.
+The URL to the Security Assertion Markup Language (SAML) metadata for the application.
 
 ```yaml
 Type: System.String
@@ -656,7 +656,7 @@ Accept wildcard characters: False
 
 ### -PreAuthorizedApplications
 
-Sets list of pre-authorized applications.
+Sets list of preauthorized applications.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PreAuthorizedApplication]
