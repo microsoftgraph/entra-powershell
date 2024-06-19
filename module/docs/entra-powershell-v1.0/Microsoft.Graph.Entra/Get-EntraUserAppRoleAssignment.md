@@ -86,7 +86,7 @@ This example demonstrates how to retrieve all application role assignment for th
 ```powershell
 Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Directory.Read.All' #Application Permission
- Get-EntraUserAppRoleAssignment -ObjectId 'aaaaaaaa-bbbb-cccc-1111-222222222222' -Top 2
+Get-EntraUserAppRoleAssignment -ObjectId 'aaaaaaaa-bbbb-cccc-1111-222222222222' -Top 2
 ```
 
 ```output
