@@ -118,7 +118,7 @@ ObjectId                             DisplayName UserPrincipalName              
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb New user    NewUser@contoso.com     Member
 ```
 
-In this example, we retrieve user by userPrincipalName from Microsoft Entra ID.
+In this example, we retrieve user by `UserPrincipalName` from Microsoft Entra ID.
 
 ### Example 5: Get a user by MailNickname
 
