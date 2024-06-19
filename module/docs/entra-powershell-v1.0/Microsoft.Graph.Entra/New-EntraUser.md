@@ -195,7 +195,7 @@ $UserParams = @{
 New-EntraUser @UserParams
 ```
 
-```output
+```Output
 ObjectId                             DisplayName UserPrincipalName               UserType
 --------                             ----------- -----------------               --------
 eeeeeeee-4444-5555-6666-ffffffffffff Sawyer Miller    SawyerM@contoso.com             Member
