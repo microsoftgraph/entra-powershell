@@ -31,7 +31,7 @@ Revoke-EntraUserAllRefreshToken
 
 ## DESCRIPTION
 
-The Revoke-EntraUserAllRefreshToken cmdlet invalidates the refresh tokens issued to applications for a user.
+The `Revoke-EntraUserAllRefreshToken` cmdlet invalidates the refresh tokens issued to applications for a user.
 The cmdlet also invalidates tokens issued to session cookies in a browser for the user.
 The cmdlet operates by resetting the refreshTokensValidFromDateTime user property to the current date and time.
 
