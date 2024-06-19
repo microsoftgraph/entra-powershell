@@ -45,7 +45,7 @@ Get-EntraUserExtension -ObjectId $UserId
 
 This example shows how to retrieve the extension attributes for a specified user.
 
-- The first command gets the ID of a Microsoft Entra ID user by using the Get-EntraUser (./Get-EntraUser.md) cmdlet. The command stores the value in the $UserId variable.  
+- The first command gets the ID of a Microsoft Entra ID user by using the `Get-EntraUser` (./Get-EntraUser.md) cmdlet. The command stores the value in the $UserId variable.  
 
 - The second command retrieves all extension attributes that have a value assigned to them for the user identified by $UserId.
 
