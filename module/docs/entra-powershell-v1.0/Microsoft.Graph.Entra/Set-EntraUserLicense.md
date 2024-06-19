@@ -33,7 +33,7 @@ Set-EntraUserLicense
 
 ## DESCRIPTION
 
-The Set-EntraUserLicense adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
+The `Set-EntraUserLicense` adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
 For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
 
