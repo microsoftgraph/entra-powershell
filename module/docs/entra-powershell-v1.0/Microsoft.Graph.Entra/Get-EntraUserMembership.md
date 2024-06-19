@@ -44,7 +44,7 @@ Connect-Entra -Scopes 'User.Read'
 Get-EntraUserMembership -ObjectId 'dddddddd-9999-0000-1111-eeeeeeeeeeee'
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
