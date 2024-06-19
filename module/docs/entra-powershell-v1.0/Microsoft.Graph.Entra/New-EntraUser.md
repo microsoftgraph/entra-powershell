@@ -423,7 +423,7 @@ Accept wildcard characters: False
 
 ### -OtherMails
 
-A list of other email addresses for the user; for example: 'bob@contoso.com', 'Robert@fabrikam.com'.
+A list of other email addresses for the user; for example: 'bob@contoso.com', 'robert@fabrikam.com'.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
