@@ -70,7 +70,7 @@ Connect-Entra -Scopes 'Directory.Read.All'
 Get-EntraUserOAuth2PermissionGrant -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
 ```
 
-```output
+```Output
 Id                                ClientId                             ConsentType PrincipalId                          ResourceId
 --                                --------                             ----------- -----------                          ----------
 C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w    00001111-aaaa-2222-bbbb-3333cccc4444 Principal   aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1
