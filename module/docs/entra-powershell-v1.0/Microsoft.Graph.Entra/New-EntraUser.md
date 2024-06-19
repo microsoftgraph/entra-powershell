@@ -87,7 +87,7 @@ $userParams = @{
 New-EntraUser @userParams
 ```
 
-```output
+```Output
 ObjectId                             DisplayName UserPrincipalName               UserType
 --------                             ----------- -----------------               --------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Avery Iona    AveryI@contoso.com             Member
