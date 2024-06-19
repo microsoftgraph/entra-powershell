@@ -45,7 +45,7 @@ Connect-Entra -Scopes 'User.Read.All' #Application Permission
 Get-EntraUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-```output
+```Output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
