@@ -114,7 +114,7 @@ $userParams = @{
 New-EntraUser @userParams
 ```
 
-```output
+```Output
 ObjectId                             DisplayName UserPrincipalName               UserType
 --------                             ----------- -----------------               --------
 bbbbbbbb-1111-2222-3333-cccccccccccc Peyton Davis    PeytonD@contoso.com             Member
