@@ -1,4 +1,14 @@
 ---
+title: Set-EntraBetaMSGroup.
+description: This article provides details on the Set-EntraBetaMSGroup command.
+
+ms.service: entra
+ms.topic: reference
+ms.date: 06/19/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,61 +18,120 @@ schema: 2.0.0
 # Set-EntraBetaMSGroup
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+
+Sets the properties for an existing Microsoft Entra ID group.
 
 ## SYNTAX
 
-```
-Set-EntraBetaMSGroup [-GroupTypes <System.Collections.Generic.List`1[System.String]>] -Id <String>
- [-DisplayName <String>] [-Description <String>] [-IsAssignableToRole <Boolean>] [-SecurityEnabled <Boolean>]
- [-LabelId <String>] [-Visibility <String>] [-MailEnabled <Boolean>] [-MailNickname <String>]
- [-MembershipRule <String>] [-MembershipRuleProcessingState <String>] [<CommonParameters>]
+```powershell
+Set-EntraBetaMSGroup 
+ -Id <String>
+ [-GroupTypes <System.Collections.Generic.List`1[System.String]>] 
+ [-DisplayName <String>] 
+ [-Description <String>] 
+ [-IsAssignableToRole <Boolean>] 
+ [-SecurityEnabled <Boolean>]
+ [-LabelId <String>] 
+ [-Visibility <String>] 
+ [-MailEnabled <Boolean>] 
+ [-MailNickname <String>]
+ [-MembershipRule <String>] 
+ [-MembershipRuleProcessingState <String>] 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+
+The `Set-EntraBetaMSGroup` cmdlet sets the properties for an existing Microsoft Entra ID group. Specify the `Id` parameter to set the properties for an existing Microsoft Entra ID group.
 
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> Set-EntraBetaMSGroup -Id "9126185e-25df-4522-a380-7ab697a7241c" -DisplayName "Dynamic Group 01" -Description "Group created from PS" -MailEnabled $False -MailNickname "group" -SecurityEnabled $True -GroupTypes "" -MembershipRule "" -MembershipRuleProcessingState ""
+### Example 1: Update a group display name
 
-Id                            : 9126185e-25df-4522-a380-7ab697a7241c
-Description                   : Dynamic group created from PS
-OnPremisesSyncEnabled         : 
-DisplayName                   : Dynamic Group 01
-OnPremisesLastSyncDateTime    : 
-Mail                          : 
-MailEnabled                   : False 
-MailNickname                  : group 
-OnPremisesSecurityIdentifier  : 
-ProxyAddresses                : {} 
-SecurityEnabled               : True 
-GroupTypes                    : {} 
-MembershipRule                : (user.department -eq "Marketing") MembershipRuleProcessingState : Paused
+```powershell
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Set-EntraBetaMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -DisplayName 'UPDATE helpdesk'
 ```
 
-Group updated.
+This command updates the display name of a specified group in Microsoft Entra ID.
 
-### Example 2
-```
-PS C:\> Set-EntraBetaMSGroup -Id "9126185e-25df-4522-a380-7ab697a7241c" -IsAssignableToRole $true
-        Bad Request.
+### Example 2: Update a group description
+
+```powershell
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Set-EntraBetaMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -Description 'This is my new group'
 ```
 
-IsassignableToRole property cannot be set for an existing group.
+This example demonstrates how to update a group description.  
 
-### Example 3
+### Example 3: Update a group mail nickname
+
+```powershell
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Set-EntraBetaMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MailNickName 'newnickname'
 ```
-PS C:\> Set-EntraBetaMSGroup -Id "11111111-1111-1111-1111-111111111111" -LabelId "00000000-0000-0000-0000-000000000000"
+
+This command updates the mail nickname of a specified group in Microsoft Entra ID.
+
+### Example 4: Update a group security enabled
+
+```powershell
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Set-EntraBetaMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -SecurityEnabled $true
+```
+
+This command updates the security enabled of a specified group in Microsoft Entra ID.
+
+### Example 5: Update a group mail enabled
+
+```powershell
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Set-EntraBetaMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MailEnabled $false
+```
+
+This example demonstrates how to update a group main enabled.  
+
+### Example 6: Update a property for a group
+
+```powershell
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Set-EntraBetaMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -Visibility 'Private' -GroupTypes 'DynamicMembership' -IsAssignableToRole $true
+```
+
+This example demonstrates how to update a property for an existing Microsoft Entra ID group.  
+
+### Example 7: Update a group membership rule
+
+```powershell
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Set-EntraBetaMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MembershipRule '(user.UserType -contains "Member")' 
+```
+
+This example demonstrates how to update the membership rule of a specified group in Microsoft Entra ID.
+
+### Example 8: Update a group membership rule processing state
+
+```powershell
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Set-EntraBetaMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MembershipRuleProcessingState "On"
+```
+
+This example demonstrates how to update the membership rule processing state of a specified group in Microsoft Entra ID.
+
+### Example 9: Set a group label Id
+
+```powershell
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Set-EntraBetaMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -LabelId "00000000-0000-0000-0000-000000000000"
 ```
 
 The label is assigned to the group.
 
-### Example 4
-```
-PS C:\> Set-EntraBetaMSGroup -Id "11111111-1111-1111-1111-111111111111" -LabelId ""
+### Example 10: Remove a group label Id
+
+```powershell
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Set-EntraBetaMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -LabelId ""
 ```
 
 The label is removed from the group.
@@ -70,10 +139,11 @@ The label is removed from the group.
 ## PARAMETERS
 
 ### -Description
-{{Fill Description Description}}
+
+Specifies a description for the group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -85,10 +155,11 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-{{Fill DisplayName Description}}
+
+Specifies a display name for the group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -100,7 +171,9 @@ Accept wildcard characters: False
 ```
 
 ### -GroupTypes
-{{Fill GroupTypes Description}}
+
+Specifies that the group is a dynamic group. 
+To create a dynamic group, specify a value of DynamicMembership.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -115,10 +188,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+
+Specifies the object ID of a group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -130,11 +204,11 @@ Accept wildcard characters: False
 ```
 
 ### -IsAssignableToRole
-Flag indicates whether Azure Active directory group can be assigned to a role.
-This flag cannot be set for an existing group.
+
+This property can only be set at the time of group creation and can't be modified on an existing group.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -146,12 +220,13 @@ Accept wildcard characters: False
 ```
 
 ### -LabelId
+
 Specifies a comma separated list of label identifiers to assign to the group.
 
 Currently, only one label could be assigned to a group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -163,10 +238,11 @@ Accept wildcard characters: False
 ```
 
 ### -MailEnabled
-{{Fill MailEnabled Description}}
+
+Indicates whether this group is mail enabled.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -178,10 +254,11 @@ Accept wildcard characters: False
 ```
 
 ### -MailNickname
-{{Fill MailNickname Description}}
+
+Specifies a mail nickname for the group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -193,10 +270,11 @@ Accept wildcard characters: False
 ```
 
 ### -MembershipRule
-{{Fill MembershipRule Description}}
+
+The rule that determines members for this group if the group is a dynamic group (groupTypes contains DynamicMembership)
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -208,10 +286,11 @@ Accept wildcard characters: False
 ```
 
 ### -MembershipRuleProcessingState
-{{Fill MembershipRuleProcessingState Description}}
+
+Indicates whether the dynamic membership processing is on or paused. Possible values are On or Paused.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -223,10 +302,11 @@ Accept wildcard characters: False
 ```
 
 ### -SecurityEnabled
-{{Fill SecurityEnabled Description}}
+
+Indicates whether the group is security enabled.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -238,10 +318,24 @@ Accept wildcard characters: False
 ```
 
 ### -Visibility
-{{Fill Visibility Description}}
+
+Specifies the visibility of the group's content and members list.
+This parameter can take one of the following values:
+
+* "Public": Anyone can view the contents of the group.
+* "Private": Only members can view the content of the group.
+* "HiddenMembership": Only members can view the content of the group and only members, owners, Global/Company Administrator, User Administrator, and Helpdesk Administrators can view the members list of the group.
+
+If no value is provided, the default value is "Public."
+
+Notes:
+
+* This parameter is only valid for groups that have the groupType set to "Unified."
+* If a group has this attribute set to "HiddenMembership," it can't be changed later.
+* Anyone can join a group that has this attribute set to "Public." If the attribute is set to Private or HiddenMembership, only owner can add new members to the group and requests to join the group need approval of the owner.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -253,14 +347,24 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### System.String
+
 ## OUTPUTS
 
 ### System.Object
+
 ## NOTES
 
 ## RELATED LINKS
+
+
+[Get-EntraBetaMSGroup](Get-EntraBetaMSGroup.md)
+
+[New-EntraBetaMSGroup](New-EntraBetaMSGroup.md)
+
+[Remove-EntraBetaMSGroup](Remove-EntraBetaMSGroup.md)
