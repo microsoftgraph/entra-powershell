@@ -77,7 +77,7 @@ Connect-Entra -Scopes 'User.Read'
 cccccccc-2222-3333-4444-dddddddddddd -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 1
 ```
 
-```output
+```Output
 ObjectId                             DeviceId                             DisplayName
 --------                             --------                             -----------
 cccccccc-2222-3333-4444-dddddddddddd aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Device1
