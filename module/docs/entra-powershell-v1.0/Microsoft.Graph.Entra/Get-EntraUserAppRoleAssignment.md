@@ -70,7 +70,7 @@ Connect-Entra -Scopes 'Directory.Read.All' #Application Permission
 Get-EntraUserAppRoleAssignment -ObjectId 'aaaaaaaa-bbbb-cccc-1111-222222222222' -All 
 ```
 
-```output
+```Output
 DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName   PrincipalId                          PrincipalType ResourceDisplayName
 --------------- --                                          ---------                            ---------------     --------------------   -----------                          ------------- -------------------
                 0ekrQWAUYUCO7cyiA_A1bC2dE3fH4i             00001111-aaaa-2222-bbbb-3333cccc4444 31-07-2023 04:29:57 Avery Smith            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-1
