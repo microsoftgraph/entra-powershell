@@ -34,7 +34,7 @@ New-EntraUserAppRoleAssignment
 
 ## DESCRIPTION
 
-The New-EntraUserAppRoleAssignment cmdlet assigns a user to an application role in Microsoft Entra ID.
+The `New-EntraUserAppRoleAssignment` cmdlet assigns a user to an application role in Microsoft Entra ID.
 
 To grant an app role assignment to a user, you need three identifiers:
 
