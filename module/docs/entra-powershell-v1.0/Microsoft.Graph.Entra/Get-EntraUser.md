@@ -109,7 +109,7 @@ This cmdlet gets all users that match the value of SearchString against the firs
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUser -Filter "userPrincipalName eq 'NewUser@contoso.com'"
+Get-EntraUser -Filter "UserPrincipalName eq 'NewUser@contoso.com'"
 ```
 
 ```output
