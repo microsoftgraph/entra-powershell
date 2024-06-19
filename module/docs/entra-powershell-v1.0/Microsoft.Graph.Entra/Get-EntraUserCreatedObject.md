@@ -45,7 +45,7 @@ Connect-Entra -Scopes 'User.Read.All' #Application Permission
 Get-EntraUserCreatedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 bbbbbbbb-1111-2222-3333-cccccccccccc
