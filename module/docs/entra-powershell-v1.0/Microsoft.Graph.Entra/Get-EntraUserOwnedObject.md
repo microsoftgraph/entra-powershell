@@ -88,7 +88,7 @@ Connect-Entra -Scopes 'User.Read'
 Get-EntraUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 3
 ```
 
-```output
+```Output
 ObjectId                             ObjectType
 --------                             ----------
 ffffffff-5555-6666-7777-aaaaaaaaaaaa Group
