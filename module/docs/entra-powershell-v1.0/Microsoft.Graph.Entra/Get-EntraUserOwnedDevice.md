@@ -45,7 +45,7 @@ Connect-Entra -Scopes 'User.Read'
 Get-EntraUserOwnedDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-```output
+```Output
 ObjectId                             DeviceId                             DisplayName
 --------                             --------                             -----------
 cccccccc-2222-3333-4444-dddddddddddd aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Device1
