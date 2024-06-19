@@ -70,7 +70,7 @@ $user = Get-EntraUser -Filter "userPrincipalName eq '$userName'"
 New-EntraUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.ObjectId -ResourceId $spo.ObjectId -Id $spo.Approles[1].id
 ```
 
-```output
+```Output
 DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId                          PrincipalType ResourceDisplayName
 --------------- --                                          ---------                            ---------------     -------------------- -----------                          ------------- -------------------
                 A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 06/18/2024 09:47:00 Sawyer Miller        1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 User          Box
