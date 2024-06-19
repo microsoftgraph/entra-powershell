@@ -74,7 +74,7 @@ This command gets all the registered devices owned by the specified user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-cccccccc-2222-3333-4444-dddddddddddd -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 1
+Get-EntraUserOwnedDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 1
 ```
 
 ```Output
