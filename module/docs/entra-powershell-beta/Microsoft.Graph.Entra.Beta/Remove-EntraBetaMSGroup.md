@@ -37,16 +37,12 @@ The `Remove-EntraBetaMSGroup` cmdlet removes a Microsoft Entra ID group. Specify
 
 ### Example 1: Remove a group
 
-This example demonstrates how to remove the group with specified ID.
-
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 Remove-EntraBetaMSGroup -Id 'tttttttt-0000-3333-9999-mmmmmmmmmmmm'
 ```
 
-This cmdlet removes the group that has the specified ID.
-
-Id - Specifies the ID of a group.
+This example demonstrates how to remove the group with specified ID.
 
 ## PARAMETERS
 
@@ -93,4 +89,3 @@ We recommend that you don't use this cmdlet in a production environment.
 [Set-EntraBetaMSGroup](Set-EntraBetaMSGroup.md)
 
 [Using attributes to create advanced rules](https://azure.microsoft.com/en-us/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/)
-

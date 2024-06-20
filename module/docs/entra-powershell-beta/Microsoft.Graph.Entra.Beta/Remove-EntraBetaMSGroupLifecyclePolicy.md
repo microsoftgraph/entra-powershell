@@ -31,7 +31,7 @@ Remove-EntraBetaMSGroupLifecyclePolicy
 
 ## DESCRIPTION
 
-The `Remove-EntraBetaMSGroupLifecyclePolicy` command deletes a groupLifecyclePolicies object in Microsoft Entra ID.Specify `Id` parameter deletes the groupLifecyclePolicies object.
+The `Remove-EntraBetaMSGroupLifecyclePolicy` command deletes a groupLifecyclePolicies object in Microsoft Entra ID. Specify `Id` parameter deletes the groupLifecyclePolicies object.
 
 ## EXAMPLES
 
@@ -42,7 +42,7 @@ Connect-Entra -Scopes 'Directory.ReadWrite.All'
 Remove-EntraBetaMSGroupLifecyclePolicy -Id '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
 ```
 
-This cmdlet deletes the groupLifecyclePolicies object that has the specified ID.
+This example demonstrates how to delete the groupLifecyclePolicies object that has the specified ID.
 
 ## PARAMETERS
 
