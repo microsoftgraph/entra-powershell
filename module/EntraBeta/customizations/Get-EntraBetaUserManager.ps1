@@ -71,7 +71,7 @@
                     Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
                 }
             }
-            $response | ConvertTo-Json | ConvertFrom-Json
+            $response | ConvertTo-Json -Depth 5 | ConvertFrom-Json
         }
         catch {}
         }

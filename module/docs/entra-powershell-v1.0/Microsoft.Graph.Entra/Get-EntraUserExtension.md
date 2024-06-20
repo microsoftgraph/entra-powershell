@@ -18,6 +18,7 @@ schema: 2.0.0
 # Get-EntraUserExtension
 
 ## SYNOPSIS
+
 Gets a user extension.
 
 ## SYNTAX
@@ -29,27 +30,33 @@ Get-EntraUserExtension
 ```
 
 ## DESCRIPTION
+
 The Get-EntraUserExtension cmdlet gets a user extension in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Retrieve extension attributes for a user
+
 ```powershell
-PS C:\> $UserId = (Get-EntraUser -Top 1).ObjectId
-PS C:\> Get-EntraUserExtension -ObjectId $UserId
+Connect-Entra -Scopes 'User.Read'
+$UserId = (Get-EntraUser -Top 1).ObjectId
+Get-EntraUserExtension -ObjectId $UserId
 ```
 
-The first command gets the ID of a Microsoft Entra ID user by using the Get-EntraUser (./Get-EntraUser.md) cmdlet. 
-The command stores the value in the $UserId variable.  
-The second command retrieves all extension attributes that have a value assigned to them for the user identified by $UserId.
+This example shows how to retrieve the extension attributes for a specified user.
+
+- The first command gets the ID of a Microsoft Entra ID user by using the `Get-EntraUser` (./Get-EntraUser.md) cmdlet. The command stores the value in the $UserId variable.  
+
+- The second command retrieves all extension attributes that have a value assigned to them for the user identified by $UserId.
 
 ## PARAMETERS
 
 ### -ObjectId
+
 Specifies the ID of an object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -61,7 +68,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -76,4 +84,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraUserExtension](Remove-EntraUserExtension.md)
 
 [Set-EntraUserExtension](Set-EntraUserExtension.md)
-

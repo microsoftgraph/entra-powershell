@@ -18,6 +18,7 @@ schema: 2.0.0
 # Get-EntraUserCreatedObject
 
 ## SYNOPSIS
+
 Get objects created by the user.
 
 ## SYNTAX
@@ -31,42 +32,54 @@ Get-EntraUserCreatedObject
 ```
 
 ## DESCRIPTION
+
 The Get-EntraUserCreatedObject cmdlet gets objects created by a user in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Get a user-created object
+
 ```powershell
-PS C:\>Get-EntraUserCreatedObject -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215"
+Connect-Entra -Scopes 'User.Read' #Delegated Permission
+Connect-Entra -Scopes 'User.Read.All' #Application Permission
+Get-EntraUserCreatedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
-```output
+
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-c057711d-e0a2-40a1-b8af-06d96c20c875
-4773e0f6-b400-40b3-8508-340de8ee0893
-e3108c4d-86ff-4ceb-9429-24e85b4b8cea
-abd3d0d8-62c9-47ea-932e-f80d413c7808
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+eeeeeeee-4444-5555-6666-ffffffffffff
 ```
+
 This command gets an object created by the specified user.
 
 ### Example 2: Get a top one user-created object
+
 ```powershell
-PS C:\>Get-EntraUserCreatedObject -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -Top 1
+Connect-Entra -Scopes 'User.Read' #Delegated Permission
+Connect-Entra -Scopes 'User.Read.All' #Application Permission
+Get-EntraUserCreatedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 1
 ```
-```output
+
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-c057711d-e0a2-40a1-b8af-06d96c20c875
+bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
+
 This command gets top one object created by the specified user.
 
 ## PARAMETERS
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -78,10 +91,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID (as a UPN or ObjectId) of a user in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -93,10 +107,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -108,7 +123,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
