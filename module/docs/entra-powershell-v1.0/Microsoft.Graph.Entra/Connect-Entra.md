@@ -261,7 +261,11 @@ This example shows how to authenticate to Entra with device.
 Connect-Entra -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444'  -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -CertificateName 'YOUR_CERT_SUBJECT'
 ```
 
-Follow this link (<https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands>) for more information on how to load the certificate.
+You can find the certificate subject by running the command:
+
+```powershell
+Get-ChildItem Cert:\CurrentUser\My\$CertThumbprint | Select Subject
+```
 
 ### Example 11: App-only access: Using client credential with a certificate - Certificate
 
