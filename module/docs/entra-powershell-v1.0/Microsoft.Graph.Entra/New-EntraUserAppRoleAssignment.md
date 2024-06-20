@@ -53,8 +53,15 @@ Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
 $appId = (Get-EntraApplication -SearchString '<App-DisplayName>').AppId
 $user = Get-EntraUser -SearchString '<UserPrincipalName>'
 $servicePrincipal = Get-EntraServicePrincipal -Filter "appId eq '$appId'"
+
 # Create the user app role assignment
 New-EntraUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.ObjectId -ResourceId $servicePrincipal.ObjectId -Id ([Guid]::Empty)
+```
+
+```output
+DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId                          PrincipalType ResourceDisplayName
+--------------- --                                          ---------                            ---------------     -------------------- -----------                          ------------- ------------------- -
+                A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 18-06-2024 11:22:40 UserPrincipalName          aaaaaaaa-bbbb-cccc-1111-222222222222 User          App-DisplayName 
 ```
 
 This example demonstrates how to assign a user to an application role in Microsoft Entra ID.  
