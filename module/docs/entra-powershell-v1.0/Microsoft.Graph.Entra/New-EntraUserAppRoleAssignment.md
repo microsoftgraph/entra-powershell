@@ -34,23 +34,34 @@ New-EntraUserAppRoleAssignment
 
 ## DESCRIPTION
 
-The New-EntraUserAppRoleAssignment cmdlet assigns a user to an application role in Microsoft Entra ID.
+The `New-EntraUserAppRoleAssignment` cmdlet assigns a user to an application role in Microsoft Entra ID.
+
+To grant an app role assignment to a user, you need three identifiers:
+
+- PrincipalId: The id of the user to whom you are assigning the app role.
+
+- ResourceId: The id of the resource servicePrincipal that has defined the app role.
+
+- Id: The id of the appRole (defined on the resource service principal) to assign to the user.
 
 ## EXAMPLES
 
 ### Example 1: Assign a user to an application without roles
 
 ```powershell
-$appId = (Get-EntraApplication -SearchString "uzair_test").AppId
-$user = Get-EntraUser -searchstring "snehaltest3"
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+$appId = (Get-EntraApplication -SearchString '<App-DisplayName>').AppId
+$user = Get-EntraUser -SearchString '<UserPrincipalName>'
 $servicePrincipal = Get-EntraServicePrincipal -Filter "appId eq '$appId'"
+
+# Create the user app role assignment
 New-EntraUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.ObjectId -ResourceId $servicePrincipal.ObjectId -Id ([Guid]::Empty)
 ```
 
 ```output
 DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId                          PrincipalType ResourceDisplayName
 --------------- --                                          ---------                            ---------------     -------------------- -----------                          ------------- ------------------- -
-                fpynUVNFy0SENMUEI-5uXkS_zNSoJCZGuBbuAQtnVUE 00000000-0000-0000-0000-000000000000 18-06-2024 11:22:40 snehaltest3          aaaaaaaa-bbbb-cccc-1111-222222222222 User          uzair_test 
+                A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 18-06-2024 11:22:40 UserPrincipalName          aaaaaaaa-bbbb-cccc-1111-222222222222 User          App-DisplayName 
 ```
 
 This example demonstrates how to assign a user to an application role in Microsoft Entra ID.  
@@ -58,21 +69,22 @@ This example demonstrates how to assign a user to an application role in Microso
 ### Example 2: Assign a user to a specific role within an application
 
 ```powershell
-$username = "Test4@M365x99297270.onmicrosoft.com"
-$appname = "Box"
-$spo = Get-EntraServicePrincipal -Filter "Displayname eq '$appname'"
-$user = Get-EntraUser -Filter "userPrincipalName eq '$username'"
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+$userName = 'SawyerM@contoso.com'
+$appName = 'Box'
+$spo = Get-EntraServicePrincipal -Filter "DisplayName eq '$appName'"
+$user = Get-EntraUser -Filter "userPrincipalName eq '$userName'"
 New-EntraUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.ObjectId -ResourceId $spo.ObjectId -Id $spo.Approles[1].id
 ```
 
-```output
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime       PrincipalDisplayName PrincipalId
---------------- --                                          ---------                            ---------------       -------------------- -----------
-                Idn1u1K7S0OWoJWIjkT69SVIUTZVOARFnAExHJFzgRs e18f0405-fdec-4ae8-a8a0-d8edb98b061f 3/12/2024 10:09:07 AM Test One Updated     aaaaaaaa-bbbb-cccc-1111-222222222222
+```Output
+DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId                          PrincipalType ResourceDisplayName
+--------------- --                                          ---------                            ---------------     -------------------- -----------                          ------------- -------------------
+                A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 06/18/2024 09:47:00 Sawyer Miller        1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 User          Box
 ```
 
-This example demonstrates how to assign a user to an application role in Microsoft Entra ID.  
-This cmdlet assigns to the specified user the application role of which the Id is specified with $spo.Approles\[1\].id.  
+This example demonstrates how to assign a user to an application role in Microsoft Entra ID.
+
 For more information on how to retrieve application roles for an application, see description of the Id parameter.
 
 ## PARAMETERS
@@ -80,15 +92,16 @@ For more information on how to retrieve application roles for an application, se
 ### -Id
 
 The ID of the app role to assign.
+
 If application doesn't have any roles while creating new app role assignment then provide an empty guid, or the Id of the role to assign to the user.
 
 You can retrieve the application's roles by examining the application object's AppRoles property:
 
-Get-EntraApplication -SearchString "Your Application display name" | select Approles | Fl
+`Get-EntraApplication -SearchString 'Your-Application-DisplayName' | select Approles | Format-List`
 
 This cmdlet returns the list of roles that are defined in an application:
 
-AppRoles: {class AppRole {              AllowedMemberTypes: System.Collections.Generic.List1\[System.String\]              Description: \<description for this role\>              DisplayName: \<display name for this role\>              Id: 97e244a2-6ccd-4312-9de6-ecb21884c9f7              IsEnabled: True              Value: \<Value that is transmitted as a claim in a token for this role\>            }            }
+AppRoles: {GUID1, GUID2}
 
 ```yaml
 Type: System.String
@@ -121,6 +134,7 @@ Accept wildcard characters: False
 ### -PrincipalId
 
 The object ID of the principal to which the new app role is assigned.
+
 When assigning a new role to a user, provide the object ID of the user.
 
 ```yaml
