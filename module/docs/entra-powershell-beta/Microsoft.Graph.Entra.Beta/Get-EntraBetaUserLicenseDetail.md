@@ -2,13 +2,14 @@
 title: Get-EntraBetaUserLicenseDetail.
 description: This article provides details on the Get-EntraBetaUserLicenseDetail command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
-ms.date: 03/07/2024
+ms.date: 06/20/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -18,42 +19,50 @@ schema: 2.0.0
 # Get-EntraBetaUserLicenseDetail
 
 ## SYNOPSIS
+
 Retrieves license details for a user.
 
 ## SYNTAX
 
-```
+```powershell
 Get-EntraBetaUserLicenseDetail 
  -ObjectId <String> 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This cmdlet retrieves license details for a user.
+
+This cmdlet retrieves license details for a user. Specify the `ObjectId` parameter to get a specific user license Details.
 
 ## EXAMPLES
 
 ### Example 1: Retrieve user license details
+
 ```powershell
-PS C:\WINDOWS\system32> Get-EntraBetaUserLicenseDetail -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16"
-```
-```output
-ObjectId                                    ServicePlans
---------                                    ------------
-Hv-1hQIEDECePA-ellMl0cjsRfKvdY5Pth8n2BFN5fM {class ServicePlanInfo {...
-Hv-1hQIEDECePA-ellMl0QQrjQe98RFBu9S0sbNUzvQ {class ServicePlanInfo {...
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraBetaUserLicenseDetail -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-This example demonstrates how to retrieve license details for a user from Microsoft Entra ID.    
+```output
+Id                                          SkuId                                SkuPartNumber
+--                                          -----                                -------------
+X8Wu1RItQkSNL8zKldQ5DiH6ThjDmF1OlavQcFOpbmc aaaaaaaa-0b0b-1c1c-2d2d-333333333333 INFORMATION_PROTECTION_COMPLIANCE
+X8Wu1RItQkSNL8zKldQ5Dk8SXrDMx6BFpqqM94yUaWg bbbbbbbb-1c1c-2d2d-3e3e-444444444444 EMSPREMIUM
+X8Wu1RItQkSNL8zKldQ5DmAn38eBLPdOtXhbU5K1cd8 cccccccc-2d2d-3e3e-4f4f-555555555555 ENTERPRISEPREMIUM
+```
+
+This example demonstrates how to retrieve license details for a user from Microsoft Entra ID.
+
 This command retrieves the license details of the user specified through the ObjectId parameter.
 
 ## PARAMETERS
 
 ### -ObjectId
+
 The object ID of the user for which the license details are retrieved.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -65,14 +74,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### System.String
+
 ## OUTPUTS
 
 ### System.Object
+
 ## NOTES
 
 ## RELATED LINKS
