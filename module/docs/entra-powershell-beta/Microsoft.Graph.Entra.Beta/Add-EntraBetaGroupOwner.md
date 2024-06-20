@@ -38,18 +38,12 @@ The `Add-EntraBetaGroupOwner` cmdlet adds an owner to a Microsoft Entra ID group
 
 ### Example 1: Add an owner to a group
 
-This example demonstrates how to add an owner to a group.
-
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 Add-EntraBetaGroupOwner -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq' -RefObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
-This command is used to add an owner to a group. 
-
-ObjectId - parameter specifies the ID of the group to which the owner should be added. 
-
-RefObjectId - parameter specifies the ID of the owner to be added to the group.
+This example demonstrates how to add an owner to a group.
 
 ## PARAMETERS
 

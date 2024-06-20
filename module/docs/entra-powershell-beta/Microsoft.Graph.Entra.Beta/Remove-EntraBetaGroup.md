@@ -44,16 +44,12 @@ The following conditions apply for apps to delete role-assignable groups:
 
 ### Example 1: Remove a group
 
-This example demonstrates how to remove a group in Microsoft Entra ID.
-
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 Remove-EntraBetaGroup -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq'
 ```
 
-This command removes the specified group from Microsoft Entra ID.
-
-ObjectId - parameter specifies the ID of the group to be removed.
+This example demonstrates how to remove a group in Microsoft Entra ID.
 
 ## PARAMETERS
 
