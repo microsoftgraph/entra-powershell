@@ -50,7 +50,7 @@ Get-EntraBetaMSGroup
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaMSGroup cmdlet gets information about groups in Microsoft Entra ID.
+The `Get-EntraBetaMSGroup` cmdlet gets information about groups in Microsoft Entra ID.
 To get a group, specify the ID parameter. 
 Specify the SearchString or Filter parameter and find particular groups. 
 If you specify no parameters, this cmdlet gets all groups.
@@ -92,7 +92,7 @@ Contoso Team 0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam  A collaboration a
 
 ```
 
-In this example, we provide the  ID to retrieve a specific group.
+In this example, we provide the  ID to retrieve a specific group.Specify the `Id` parameter to get a specific group.
 
 ### Example 3: Get top five groups
 
@@ -282,7 +282,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

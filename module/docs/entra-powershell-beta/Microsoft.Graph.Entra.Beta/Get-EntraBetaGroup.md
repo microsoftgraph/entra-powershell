@@ -48,7 +48,7 @@ Get-EntraBetaGroup
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaGroup cmdlet gets a group in Microsoft Entra ID.
+The `Get-EntraBetaGroup` cmdlet gets a group in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -58,28 +58,14 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraBetaGroup
 ```
 ```output
+
 DisplayName                                       Id                                   MailNickname                                   Description
 -----------                                       --                                   ------------                                   -----------
 SimpleTestGrp                                     00a460df-1b24-41db-a2d8-4eb8cd82e4a1 NickName
 SimpleGroupc13adf68-dffb-4185-a94f-e81bda906aa5   01c9ea6e-c28e-4d3a-a5e7-e90af9300499 NickName
 testGroupInAU10                                   02af6904-3630-4074-bbcb-8e0ed04a40ce testGroupInAU10                                testGroupInAU10
+My new group                                      040e1190-daac-41ce-b26d-b2e79a9dd8b4 NotSet                                         New created group
 SimpleGroupaeaea4bd-30df-4e13-b318-b416ed4e9357   0590f8df-dfbf-4892-bf45-f23069d6ed71 NickName
-HelpDesk admin group                              0883fd77-0ee8-45de-a21e-f32af1623acc helpDeskAdminGroup                             Group assignable to role
-HelpDesk admin group3                             0bdddeb1-88a6-4251-aaa5-98b48271158b helpDeskAdminGroup                             group des
-SimpleTestGrp                                     0d1f23c4-1e08-4b5f-b488-e5fb10549d17 NickName
-Parents of Conto                                  0d34b8e3-67ad-4a96-aec6-1c983d2adc5b newnickname                                    updated-des
-SimpleGroupdbac3b76-c1d4-4f15-9b73-2ab33aa8eca5   0d3cd313-3597-4587-bd52-c832cc0e08ec NickName
-SimpleTestGrp3f8fabd2-0c21-4987-96e5-e22be360d844 0e96821c-b734-4a5c-bf75-de420a7a426a NickName
-newtest                                           1005a3e7-a6a1-488b-a08c-1af8b358dbab helpDeskAdminGroup                             desc test
-sg-HR                                             11fc2414-c855-44ae-893e-af43df1b0b95 sgHR                                           All HR personnel
-My new  test                                      14856ab2-a65e-4d9d-b990-7958fdbda411 TestNickName                                   addede test description
-SimpleGroup98fdfc5d-ef4f-4b38-bc35-1bb113f6f314   15e76c9c-0f61-4152-b336-efbf6243a8df NickName
-VXC                                               1746d4e5-9f99-47aa-8d51-7dcf1c2433f1 SampleVCX                                      VXC
-SimpleGroup38af3326-f13e-41e9-81df-6aa9e9e1faa4   18a86e13-181e-4b35-ac22-8cdbea8cf3d8 NickName
-My Test san                                       1a344543-ce01-4eee-a6bf-70ce848e08cb NotSet
-SimpleGroup15c765b2-95a1-4fb7-bd8f-95c3e437e69e   1a5e4e85-6dcb-4bb6-a09b-3d540fcfe5df NickName
-SimpleTestGrpbcd1865e-c8b9-4f90-8943-77607ef15590 1d7f20aa-bbcd-4822-ab28-092015b90692 NickName
-testGroupInAU12                                   1d8172f7-2552-473e-bb76-e6c9ef95609c Test2025                                       Testing Description Parameter
 ```
 
 This example demonstrates how to get all groups from Microsoft Entra ID.  
@@ -95,7 +81,7 @@ DisplayName                                       Id                            
 SimpleTestGrpbcd1865e-c8b9-4f90-8943-77607ef15590 1d7f20aa-bbcd-4822-ab28-092015b90692 NickName                 {}
 ```
 
-This example demonstrates how to retrieve specific group by providing ID.  
+This example demonstrates how to retrieve specific group by providing ID. Specify the `ObjectId` parameter to get a specific group. 
 This command gets information for the group that has the specified ID.
 
 ### Example 3: Get top five groups 
@@ -222,7 +208,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

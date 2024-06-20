@@ -32,7 +32,7 @@ Get-EntraBetaDevice
  [<CommonParameters>]
 ```
 
-### GetValue
+### GetByValue
 ```powershell
 Get-EntraBetaDevice 
  [-SearchString <String>] 
@@ -49,13 +49,14 @@ Get-EntraBetaDevice
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaDevice cmdlet gets a device from Microsoft Entra ID.
+The `Get-EntraBetaDevice` cmdlet gets a device from Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Get a device by ID
 ```powershell
-Get-EntraBetaDevice -ObjectId "bbbbbbbb-1111-1111-1111-cccccccccccc"
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraBetaDevice -ObjectId 'bbbbbbbb-1111-1111-1111-cccccccccccc'
 ```
 
 ```output
@@ -65,11 +66,12 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
                 bbbbbbbb-1111-1111-1111-cccccccccccc True
 ```
 
-This example demonstrates how to retrieve specific device by providing ID.  
+This example demonstrates how to retrieve specific device by providing ID. Specify the `ObjectId` parameter to get a specific device.
 This command gets the specified device.
 
 ### Example 2: Get all devices
 ```powershell
+Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice
 ```
 
@@ -85,6 +87,7 @@ This command gets all available devices.
 
 ### Example 3: Get top two devices
 ```powershell
+Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice -Top 2
 ```
 ```output
@@ -100,6 +103,7 @@ This command gets the two devices from Microsoft Entra ID.
 
 ### Example 4: Get a device by display name
 ```powershell
+Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice -Filter "DisplayName eq 'AkshayLodha'"
 ```
 ```output
@@ -114,6 +118,7 @@ This command gets the specified device.
 
 ### Example 5: Get a device filter by display name
 ```powershell
+Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice -Filter "startswith(DisplayName,'Aksh')"
 ```
 ```output
@@ -127,7 +132,8 @@ This example demonstrates how to retrieve all the devices whose display name sta
 
 ### Example 6: Search among retrieved devices
 ```powershell
-Get-EntraBetaDevice -SearchString "Ashwini"
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraBetaDevice -SearchString 'Ashwini'
 ```
 ```output
 DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationD
@@ -218,7 +224,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

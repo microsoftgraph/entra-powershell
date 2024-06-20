@@ -31,7 +31,7 @@ Get-EntraBetaGroupOwner
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaGroupOwner cmdlet gets an owner of a group in Microsoft Entra ID.
+The `Get-EntraBetaGroupOwner` cmdlet gets an owner of a group in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -45,7 +45,7 @@ Id                                   DeletedDateTime
 --                                   ---------------
 996d39aa-fdac-4d97-aa3d-c81fb47362ac
 ```
-This example demonstrates how to retrieve the owner of a specific group.  
+This example demonstrates how to retrieve the owner of a specific group.  Specify the `ObjectId` parameter to get a specific group owner.
 
 ### Example 2: Gets all group owners
 ```powershell
@@ -122,7 +122,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
