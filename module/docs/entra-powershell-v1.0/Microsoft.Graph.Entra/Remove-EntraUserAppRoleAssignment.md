@@ -18,6 +18,7 @@ schema: 2.0.0
 # Remove-EntraUserAppRoleAssignment
 
 ## SYNOPSIS
+
 Removes a user application role assignment.
 
 ## SYNTAX
@@ -30,24 +31,34 @@ Remove-EntraUserAppRoleAssignment
 ```
 
 ## DESCRIPTION
+
 The Remove-EntraUserAppRoleAssignment cmdlet removes a user application role assignment in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\>  Remove-EntraUserAppRoleAssignment -ObjectId bbf5d921-bb52-434b-96a0-95888e44faf5 -AppRoleAssignmentId Idn1u1K7S0OWoJWIjkT69ZuAI6_HyiZJv_bPBryomlg
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+
+$RemoveAppRoleParams = @{
+    ObjectId              = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    AppRoleAssignmentId   = 'C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w'
+}
+
+Remove-EntraUserAppRoleAssignment @RemoveAppRoleParams
 ```
 
-This example demonstrates how to Remove the user app role assignment in Microsoft Entra ID.   
+This example demonstrates how to Remove the user app role assignment in Microsoft Entra ID.
 
 ## PARAMETERS
 
 ### -AppRoleAssignmentId
+
 Specifies the ID of an application role assignment.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -59,10 +70,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID (as a User Principal Name or ObjectId) of a user in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -74,7 +86,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -87,4 +100,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraUserAppRoleAssignment](Get-EntraUserAppRoleAssignment.md)
 
 [New-EntraUserAppRoleAssignment](New-EntraUserAppRoleAssignment.md)
-

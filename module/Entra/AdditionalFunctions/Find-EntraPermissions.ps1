@@ -1,24 +1,46 @@
-# ------------------------------------------------------------------------------
-#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
-# ------------------------------------------------------------------------------
-@{
-    SourceName = "Get-AzureADUserManager"
-    TargetName = $null
-    Parameters = $null
-    outputs = $null
-    CustomScript = @'   
+function Find-EntraPermissions {
+    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+    param (
+    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $SearchString,
+    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.Boolean]] $ExactMatch,
+    [Parameter(ParameterSetName = "GetQuery", Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $PermissionType,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.Boolean]] $All,
+     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Online
+    )
+
     PROCESS {    
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $Method = "GET"
-        $keysChanged = @{ObjectId = "Id"}
+        if($null -ne $PSBoundParameters["SearchString"])
+        {
+            $params["SearchString"]=$PSBoundParameters["SearchString"]
+        }
+        if($null -ne $PSBoundParameters["ExactMatch"])
+        {
+            $params["ExactMatch"] = $PSBoundParameters["ExactMatch"]
+        }
+        
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
             $params["Verbose"] = $Null
         }
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["All"])
         {
-            $params["UserId"] = $PSBoundParameters["ObjectId"]
+            if($PSBoundParameters["All"])
+            {
+                $params["All"] = $PSBoundParameters["All"]
+            }
+        }
+        if($null -ne $PSBoundParameters["Online"])
+        {
+            if($PSBoundParameters["Online"])
+            {
+                $params["Online"] = $PSBoundParameters["Online"]
+            }
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
@@ -32,7 +54,7 @@
         {
             $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
         }
-	    if($null -ne $PSBoundParameters["InformationAction"])
+      if($null -ne $PSBoundParameters["InformationAction"])
         {
             $params["InformationAction"] = $PSBoundParameters["InformationAction"]
         }
@@ -60,23 +82,15 @@
         {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
+        if($null -ne $PSBoundParameters["Top"])
+        {
+            $params["Top"] = $PSBoundParameters["Top"]
+        }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-    
-        try {
-            $URI = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager?`$select=*"
-            $response = Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method -ErrorAction Stop
-            $response = $response | ConvertTo-Json -Depth 5 | ConvertFrom-Json
-            $response | ForEach-Object {
-                if($null -ne $_) {
-                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-                }
-            }
-            $response 
-        }
-        catch {}
-    }  
-'@
+        
+        Find-MgGraphPermission @params 
+        }        
 }

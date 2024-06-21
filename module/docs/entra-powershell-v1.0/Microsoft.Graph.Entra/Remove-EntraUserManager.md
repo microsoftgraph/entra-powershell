@@ -18,6 +18,7 @@ schema: 2.0.0
 # Remove-EntraUserManager
 
 ## SYNOPSIS
+
 Removes a user's manager.
 
 ## SYNTAX
@@ -28,27 +29,33 @@ Remove-EntraUserManager
 ```
 
 ## DESCRIPTION
+
 The Remove-EntraUserManager cmdlet removes a user's manager in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Remove the manager of a user
+
 ```powershell
-PS C:\> $User = Get-EntraUser -Top 1
-PS C:\> Remove-EntraUserManager -ObjectId $User.ObjectId
+Connect-Entra -Scopes 'User.ReadWrite.All'
+$User = Get-EntraUser -Top 1
+Remove-EntraUserManager -ObjectId $User.ObjectId
 ```
 
-The first command gets a user by using the [Get-EntraUser](./Get-EntraUser.md) cmdlet, and then stores it in the $User variable.
+This example demonstrates how to removes a user's manager.
 
-The second command removes the user in $User.
+- The first command gets a user by using the `Get-EntraUser` cmdlet, and then stores it in the $User variable.
+
+- The second command removes the user in $User.
 
 ## PARAMETERS
 
 ### -ObjectId
+
 Specifies the ID of a user (as a User Principle Name or ObjectId) in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -60,7 +67,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -73,4 +81,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraUserManager](Get-EntraUserManager.md)
 
 [Set-EntraUserManager](Set-EntraUserManager.md)
-
