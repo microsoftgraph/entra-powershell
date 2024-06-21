@@ -49,7 +49,7 @@ Get-EntraUserOwnedDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 ObjectId                             DeviceId                             DisplayName
 --------                             --------                             -----------
 bbbbbbbb-1111-2222-3333-cccccccccccc aaaa0000-bb11-2222-33cc-444444dddddd Device1
-cccccccc-2222-3333-4444-dddddddddddd bbbb1111-cc22-3333-44dd-555555eeeeee Device22
+cccccccc-2222-3333-4444-dddddddddddd bbbb1111-cc22-3333-44dd-555555eeeeee Device2
 ```
 
 This command gets the registered devices owned by the specified user.
