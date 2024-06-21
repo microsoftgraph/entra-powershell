@@ -42,7 +42,7 @@ The `Get-EntraBetaUserOwnedDevice` cmdlet gets registered devices owned by the s
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUserOwnedDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+Get-EntraBetaUserOwnedDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 ```
 
 ```output
@@ -58,7 +58,7 @@ This command gets the registered devices owned by the specified user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUserOwnedDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
+Get-EntraBetaUserOwnedDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
 ```
 
 ```output
@@ -74,7 +74,7 @@ This command gets all the registered devices owned by the specified user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUserOwnedDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 1
+Get-EntraBetaUserOwnedDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 1
 ```
 
 ```output
