@@ -1,6 +1,6 @@
 ---
-title: Remove-EntraUserManager.
-description: This article provides details on the Remove-EntraUserManager command.
+title: Remove-EntraBetaUserManager.
+description: This article provides details on the Remove-EntraBetaUserManager command.
 
 ms.service: entra
 ms.topic: reference
@@ -18,38 +18,44 @@ schema: 2.0.0
 # Remove-EntraBetaUserManager
 
 ## SYNOPSIS
+
 Removes a user's manager.
 
 ## SYNTAX
 
-```
-Remove-EntraBetaUserManager -ObjectId <String> [<CommonParameters>]
+```powershell
+Remove-EntraBetaUserManager 
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Remove-EntraBetaUserManager cmdlet removes a user's manager in Azure Active Directory (AD).
+
+The `Remove-EntraBetaUserManager` cmdlet removes a user's manager in Microsoft Entra ID. Specify the `ObjectId` parameter to remove the manager for a user in Microsoft Entra ID.
+
 
 ## EXAMPLES
 
 ### Example 1: Remove the manager of a user
-```
-PS C:\> $User = Get-EntraBetaUser -Top 1
-PS C:\> Remove-EntraBetaUserManager -ObjectId $User.ObjectId
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+$User = Get-EntraBetaUser -Top 1
+Remove-EntraBetaUserManager -ObjectId $User.ObjectId
 ```
 
-The first command gets a user by using the Get-EntraBetaUser (./Get-EntraBetaUser.md)cmdlet, and then stores it in the $User variable.
+The first command gets a user by using the [Get-EntraBetaUser](./Get-EntraBetaUser.md) cmdlet, and then stores it in the $User variable.
 
 The second command removes the user in $User.
 
 ## PARAMETERS
 
-
-
 ### -ObjectId
-Specifies the ID of a user (as a UPN or ObjectId) in Azure AD.
+
+Specifies the ID of a user (as a User Principle Name or ObjectId) in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -61,7 +67,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -71,7 +78,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraBetaUserManager]()
+[Get-EntraBetaUserManager](Get-EntraBetaUserManager.md)
 
-[Set-EntraBetaUserManager]()
-
+[Set-EntraBetaUserManager](Set-EntraBetaUserManager.md)

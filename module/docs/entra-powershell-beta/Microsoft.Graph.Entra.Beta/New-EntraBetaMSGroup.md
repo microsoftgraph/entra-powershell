@@ -35,7 +35,6 @@ New-EntraBetaMSGroup
  [-Visibility <String>] 
  [-MembershipRuleProcessingState <String>]
  [-IsAssignableToRole <Boolean>] 
- [-LabelId <String>] 
  [<CommonParameters>]
 ```
 
@@ -140,7 +139,7 @@ This example demonstrates how to create the new group with GroupTypes parameter.
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Group.Create' #Application permission
-New-EntraBetaMSGroup -DisplayName 'HelpDesk admin group2'  -MailEnabled $False -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $True  -MembershipRuleProcessingState "On"
+New-EntraBetaMSGroup -DisplayName 'HelpDesk admin group2'  -MailEnabled $False -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $True  -MembershipRuleProcessingState 'On'
 ```
 
 ```output
@@ -156,7 +155,7 @@ This example demonstrates how to create the new group with MembershipRuleProcess
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Group.Create' #Application permission
-New-EntraBetaMSGroup -DisplayName 'HelpDesk admin group2'  -MailEnabled $False -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $True -MembershipRule '(user.department -contains "Marketing")' -MembershipRuleProcessingState "On"
+New-EntraBetaMSGroup -DisplayName 'HelpDesk admin group2'  -MailEnabled $False -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $True -MembershipRule '(user.department -contains "Marketing")' -MembershipRuleProcessingState 'On'
 ```
 
 ```output
@@ -242,24 +241,6 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -LabelId
-
-Specifies a comma separated list of label identifiers to assign to the group.
-
-Currently, only one label could be assigned to a group.
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

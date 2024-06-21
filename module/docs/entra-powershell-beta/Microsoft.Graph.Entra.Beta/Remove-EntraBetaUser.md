@@ -39,7 +39,7 @@ The `Remove-EntraBetaUser` cmdlet removes a user in Microsoft Entra ID. Specify 
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Remove-EntraBetaUser -ObjectId "TestUser@example.com"
+Remove-EntraBetaUser -ObjectId 'TestUser@example.com'
 ```
 
 This command removes the specified user in Microsoft Entra ID.

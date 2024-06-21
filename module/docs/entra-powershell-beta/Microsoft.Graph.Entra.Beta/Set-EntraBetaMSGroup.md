@@ -31,7 +31,6 @@ Set-EntraBetaMSGroup
  [-Description <String>] 
  [-IsAssignableToRole <Boolean>] 
  [-SecurityEnabled <Boolean>]
- [-LabelId <String>] 
  [-Visibility <String>] 
  [-MailEnabled <Boolean>] 
  [-MailNickname <String>]
@@ -113,28 +112,10 @@ This example demonstrates how to update the membership rule of a specified group
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraBetaMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MembershipRuleProcessingState "On"
+Set-EntraBetaMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MembershipRuleProcessingState 'On'
 ```
 
 This example demonstrates how to update the membership rule processing state of a specified group in Microsoft Entra ID.
-
-### Example 9: Set a group label Id
-
-```powershell
-Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraBetaMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -LabelId "00000000-0000-0000-0000-000000000000"
-```
-
-The label is assigned to the group.
-
-### Example 10: Remove a group label Id
-
-```powershell
-Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraBetaMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -LabelId ""
-```
-
-The label is removed from the group.
 
 ## PARAMETERS
 
@@ -216,24 +197,6 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -LabelId
-
-Specifies a comma separated list of label identifiers to assign to the group.
-
-Currently, only one label could be assigned to a group.
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

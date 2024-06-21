@@ -1,4 +1,14 @@
 ---
+title: Set-EntraBetaUserManager.
+description: This article provides details on the Set-EntraBetaUserManager command.
+
+ms.service: entra
+ms.topic: reference
+ms.date: 06/21/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,33 +18,41 @@ schema: 2.0.0
 # Set-EntraBetaUserManager
 
 ## SYNOPSIS
+
 Updates a user's manager.
 
 ## SYNTAX
 
-```
-Set-EntraBetaUserManager -ObjectId <String> -RefObjectId <String> [<CommonParameters>]
+```powershell
+Set-EntraBetaUserManager 
+ -ObjectId <String> 
+ -RefObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Set-EntraBetaUserManager cmdlet update the manager for a user in Azure Active Directory (AD).
+
+The `Set-EntraBetaUserManager` cmdlet update the manager for a user in Microsoft Entra ID. Specify the `ObjectId` and `RefObjectId` parameters to update the manager for a user in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Update a user's manager
-```
-PS C:\>Set-EntraBetaUserManager -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16" -RefObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16"
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Set-EntraBetaUserManager -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc' -RefObjectId '55ff55ff-aa66-bb77-cc88-99dd99dd99dd'
 ```
 
-This command update's the manager for the specified user.
+This example demonstrates how to update the manager for the specified user.
 
 ## PARAMETERS
 
 ### -ObjectId
-Specifies the ID (as a UPN or ObjectId) of a user in Azure AD.
+
+Specifies the ID (as a User Principle Name or ObjectId) of a user in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -46,10 +64,11 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
-Specifies the ID of the Azure AD object to assign as owner/manager/member.
+
+Specifies the ID of the Microsoft Entra ID object to assign as owner/manager/member.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -61,7 +80,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -71,7 +91,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraBetaUserManager]()
+[Get-EntraBetaUserManager](Get-EntraBetaUserManager.md)
 
-[Remove-EntraBetaUserManager]()
-
+[Remove-EntraBetaUserManager](Remove-EntraBetaUserManager.md)
