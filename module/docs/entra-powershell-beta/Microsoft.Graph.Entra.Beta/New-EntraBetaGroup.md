@@ -41,7 +41,7 @@ The `New-EntraBetaGroup` cmdlet creates a group in Microsoft Entra ID.
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Group.Create' #Application permission
-New-EntraBetaGroup -DisplayName "My new group" -MailEnabled $false -SecurityEnabled $true -MailNickName "NotSet"
+New-EntraBetaGroup -DisplayName 'My new group' -MailEnabled $false -SecurityEnabled $true -MailNickName 'NotSet'
 ```
 
 ```output

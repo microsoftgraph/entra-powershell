@@ -73,7 +73,7 @@ This example demonstrates how to get all groups from Microsoft Entra ID.
 ### Example 2: Get a specific group by using an ObjectId
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroup -ObjectId "1d7f20aa-bbcd-4822-ab28-092015b90692"
+Get-EntraBetaGroup -ObjectId '1d7f20aa-bbcd-4822-ab28-092015b90692'
 ```
 ```output
 DisplayName                                       Id                                   MailNickname Description GroupTypes
@@ -118,7 +118,7 @@ This command gets the specified group.
 ### Example 5: Get groups that contain a search string
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroup -SearchString "New"
+Get-EntraBetaGroup -SearchString 'New'
 ```
 ```output
 DisplayName             Id                                   MailNickname          Description             GroupTypes

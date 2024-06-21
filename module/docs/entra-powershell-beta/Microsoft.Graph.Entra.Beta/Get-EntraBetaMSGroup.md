@@ -82,7 +82,7 @@ This command gets all groups in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaMSGroup -Id "0877c6c6-fc99-4d51-9871-8335be7cfc9d"
+Get-EntraBetaMSGroup -Id '0877c6c6-fc99-4d51-9871-8335be7cfc9d'
 ```
 ```output
 
@@ -133,7 +133,7 @@ This example retrieves group by DisplayName.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaMSGroup -SearchString "New"
+Get-EntraBetaMSGroup -SearchString 'New'
 ```
 ```output
 
@@ -150,7 +150,7 @@ This example demonstrates how to retrieve groups using  SearchString against the
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaMSGroup -Select "AssignedLabels,DisplayName"
+Get-EntraBetaMSGroup -Select 'AssignedLabels,DisplayName'
 ```
 ```output
  
@@ -174,7 +174,7 @@ AssignedLabels group property retrieved only by Select parameter.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaMSGroup -Id "0877c6c6-fc99-4d51-9871-8335be7cfc9d" -Select "DisplayName,Id,Description"
+Get-EntraBetaMSGroup -Id '0877c6c6-fc99-4d51-9871-8335be7cfc9' -Select 'DisplayName,Id,Description'
 ```
 ```output
 

@@ -40,7 +40,7 @@ The `Get-EntraBetaApplicationLogo` cmdlet retrieves the logo that is set for an 
 ### Example 1: Get a application logo for an application by ID
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaApplicationLogo -ObjectId bbbbbbbb-1111-1111-1111-cccccccccccc -FilePath D:\outfile1.jpg
+Get-EntraBetaApplicationLogo -ObjectId 'bbbbbbbb-1111-1111-1111-cccccccccccc' -FilePath 'D:\outfile1.jpg'
 ```
 
 This example shows how to retrieve the application logo for an application that is specified through the Object ID parameter. Specify the `ObjectId` parameter to get a specific application logo for an application.
