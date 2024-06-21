@@ -18,6 +18,7 @@ schema: 2.0.0
 # Set-EntraUserManager
 
 ## SYNOPSIS
+
 Updates a user's manager.
 
 ## SYNTAX
@@ -30,25 +31,28 @@ Set-EntraUserManager
 ```
 
 ## DESCRIPTION
+
 The Set-EntraUserManager cmdlet update the manager for a user in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Update a user's manager
+
 ```powershell
-PS C:\>Set-EntraUserManager -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16" -RefObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16"
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Set-EntraUserManager -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RefObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff'
 ```
 
-This example demonstrates how to update the manager for a user in Microsoft Entra ID.     
-This command update's the manager for the specified user.
+This example demonstrates how to set the manager, with ID `eeeeeeee-4444-5555-6666-ffffffffffff` for the user with the ID `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb`.
 
 ## PARAMETERS
 
 ### -ObjectId
+
 Specifies the ID (as a UserPrincipalName or ObjectId) of a user in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -60,10 +64,11 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
+
 Specifies the ID of the Microsoft Entra ID object to assign as owner/manager/member.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -75,7 +80,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -88,4 +94,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraUserManager](Get-EntraUserManager.md)
 
 [Remove-EntraUserManager](Remove-EntraUserManager.md)
-

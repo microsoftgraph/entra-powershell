@@ -19,6 +19,7 @@ schema: 2.0.0
 # Remove-EntraUser
 
 ## SYNOPSIS
+
 Removes a user.
 
 ## SYNTAX
@@ -30,13 +31,22 @@ Remove-EntraUser
 ```
 
 ## DESCRIPTION
+
 The Remove-EntraUser cmdlet removes a user in Microsoft Entra ID.
+
+The calling user must be assigned at least one of the following Microsoft Entra roles:
+
+- User Administrator
+
+- Privileged Authentication Administrator
 
 ## EXAMPLES
 
 ### Example 1: Remove a user
+
 ```powershell
-PS C:\>Remove-EntraUser -ObjectId "TestUser@example.com"
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Remove-EntraUser -ObjectId 'SawyerM@Contoso.com'
 ```
 
 This command removes the specified user in Microsoft Entra ID.
@@ -44,10 +54,11 @@ This command removes the specified user in Microsoft Entra ID.
 ## PARAMETERS
 
 ### -ObjectId
+
 Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -59,7 +70,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -74,4 +86,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [New-EntraUser](New-EntraUser.md)
 
 [Set-EntraUser](Set-EntraUser.md)
-
