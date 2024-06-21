@@ -96,9 +96,9 @@ function Get-EntraAuditSignInLogs {
         Write-Debug("=========================================================================`n")
 
         $response = Invoke-GraphRequest @params -Headers $customHeaders
-        $data = $response | ConvertTo-Json -Depth 50 | ConvertFrom-Json
+        $data = $response | ConvertTo-Json -Depth 100 | ConvertFrom-Json
         try {
-            $data = $response.value | ConvertTo-Json -Depth 50 | ConvertFrom-Json
+            $data = $response.value | ConvertTo-Json -Depth 100 | ConvertFrom-Json
             $all = $All.IsPresent
             $increment = $topCount - $data.Count
             while ($response.'@odata.nextLink' -and (($all) -or ($increment -gt 0 -and -not $all))) {
@@ -109,7 +109,7 @@ function Get-EntraAuditSignInLogs {
                     $increment -= $topValue
                 }
                 $response = Invoke-GraphRequest @params 
-                $data += $response.value | ConvertTo-Json -Depth 50 | ConvertFrom-Json
+                $data += $response.value | ConvertTo-Json -Depth 100 | ConvertFrom-Json
             }
         } catch {}        
 

@@ -13,7 +13,7 @@ BeforeAll {
                 riskLevelDuringSignIn     =     'none'
                 userPrincipalName        =      'test@m365x99297270.onmicrosoft.com'
                 resourceDisplayName       =     'Windows Azure Active SignIn'
-                riskEventTypes_v2        =      {}
+                riskEventTypes_v2        =      @{}
                 ipAddress                =      '2409:40c2:401d:1cab:9464:4580:6282:b375'
                 status                   =      @{}
                 clientAppUsed            =      'Mobile Apps and Desktop clients'
@@ -25,12 +25,12 @@ BeforeAll {
                 riskDetail             =        'none'
                 appDisplayName          =       'Azure Active SignIn PowerShell'
                 id                          =   'bbbbbbbb-1111-2222-3333-cccccccccc22'
-                appliedConditionalAccessPolicies ={'bbbbbbbb-1111-2222-3333-cccccccccc33', 'bbbbbbbb-1111-2222-3333-cccccccccc44'}
+                appliedConditionalAccessPolicies =@{}
                 deviceDetail               =    @{}
                 riskLevelAggregated         =   'none'
                 appId                       =   'bbbbbbbb-1111-2222-3333-cccccccccc55'
                 resourceId                  =   'bbbbbbbb-1111-2222-3333-cccccccccc66'
-                riskEventTypes              =   {}
+                riskEventTypes              =   @{}
                 riskState                  =    'none'
 
 
