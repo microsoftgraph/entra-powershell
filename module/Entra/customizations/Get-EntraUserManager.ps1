@@ -69,7 +69,7 @@
         $response = Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method -ErrorAction Stop
 
         try {            
-            $response = $response | ConvertTo-Json | ConvertFrom-Json
+            $response = $response | ConvertTo-Json -Depth 5 | ConvertFrom-Json
             $response | ForEach-Object {
                 if($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id

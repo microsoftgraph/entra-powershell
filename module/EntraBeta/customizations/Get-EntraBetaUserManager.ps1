@@ -65,7 +65,7 @@
         Write-Debug("=========================================================================`n")
         $response = Get-MgBetaUserManager @params -Headers $customHeaders -ErrorAction Stop
         try {      
-            $response | ConvertTo-Json | ConvertFrom-Json      
+            $response | ConvertTo-Json -Depth 5 | ConvertFrom-Json      
             $response | ForEach-Object {
                 if($null -ne $_) {
                     Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties
