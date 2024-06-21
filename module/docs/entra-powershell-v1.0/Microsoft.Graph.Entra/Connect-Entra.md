@@ -154,7 +154,7 @@ NOTE: You can use the -NoWelcome parameter to suppress this message.
 
 This command Connect a session using a ApplicationId and CertificateThumbprint.
 
-Follow this link (<https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands?view=graph-powershell-1.0&preserve-view=true#using-get-mgcontext>) for more information.
+Follow this link (<https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands?view=graph-powershell-1.0&preserve-view=true>) for more information.
 
 ### Example 4: Delegated access: Using your own access token
 
@@ -289,7 +289,7 @@ Connect-Entra -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -ClientSecretCred
 
 This authentication method is ideal for background interactions. It doesn't require a user to physically sign in.
 
-Follow this link (<https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands?view=graph-powershell-1.0&preserve-view=true#using-get-mgcontext>) for more information.
+Follow this link (<https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands?view=graph-powershell-1.0&preserve-view=true>) for more information.
 
 ### Example 13: Using managed identity: System-assigned managed identity
 
@@ -307,7 +307,7 @@ Connect-Entra -Identity -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444'
 
 Uses a user created managed identity as a standalone Azure resource.
 
-Follow this link (<https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands?view=graph-powershell-1.0&preserve-view=true#using-get-mgcontext>) for more information.
+Follow this link (<https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands?view=graph-powershell-1.0&preserve-view=true>) for more information.
 
 ### Example 15: Allows for authentication using environment variables
 
