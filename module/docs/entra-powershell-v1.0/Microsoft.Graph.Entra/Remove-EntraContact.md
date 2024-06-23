@@ -18,6 +18,7 @@ schema: 2.0.0
 # Remove-EntraContact
 
 ## SYNOPSIS
+
 Removes a contact.
 
 ## SYNTAX
@@ -29,27 +30,29 @@ Remove-EntraContact
 ```
 
 ## DESCRIPTION
+
 The Remove-EntraContact removes a contact from Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Remove a contact
+
 ```powershell
-PS C:\> $Contact = Get-EntraContact -Top 1
-PS C:\> Remove-EntraContact -ObjectId $Contact.ObjectId
+Connect-Entra -Scopes 'OrgContact.Read.All'
+$Contact = Get-EntraContact -Top 1
+Remove-EntraContact -ObjectId $Contact.ObjectId
 ```
 
-The first command gets a contact by using the [Get-EntraContact](./Get-EntraContact.md) cmdlet, and then stores it in the $Contact variable.
-
-The second command removes the contact in $Contact.
+The example shows how to remove a contact.
 
 ## PARAMETERS
 
 ### -ObjectId
+
 Specifies the object ID of a contact in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -61,7 +64,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -72,4 +76,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Get-EntraContact](Get-EntraContact.md)
-
