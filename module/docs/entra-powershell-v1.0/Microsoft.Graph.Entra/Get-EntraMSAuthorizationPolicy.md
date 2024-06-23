@@ -17,6 +17,7 @@ schema: 2.0.0
 # Get-EntraMSAuthorizationPolicy
 
 ## SYNOPSIS
+
 Gets an authorization policy, which represents a policy that can control Microsoft Entra ID authorization settings.
 
 ## SYNTAX
@@ -27,15 +28,18 @@ Get-EntraMSAuthorizationPolicy
 ```
 
 ## DESCRIPTION
-The Get-EntraMSAuthorizationPolicy cmdlet gets a Microsoft Entra ID authorization policy.
+
+The `Get-EntraMSAuthorizationPolicy` cmdlet gets a Microsoft Entra ID authorization policy.
 
 ## EXAMPLES
 
-### Example 1: Get an authorization policy by ID.
+### Example 1: Get an authorization policy by ID
 
 ```powershell
-PS C:\>Get-EntraMSAuthorizationPolicy
+Connect-Entra -Scopes 'Policy.Read.All'
+Get-EntraMSAuthorizationPolicy
 ```
+
 ```Output
 DeletedDateTime Description DisplayName            Id                  AllowEmailVerifiedUsersToJoinOrganization AllowInvitesFrom AllowUserConsentForRiskyApps AllowedToSig
                                                                                                                                                                nUpEmailBase
@@ -45,12 +49,14 @@ DeletedDateTime Description DisplayName            Id                  AllowEmai
                 test        Authorization Policies authorizationPolicy True                                      everyone                                      False
 
 ```
+
 This command gets the Microsoft Entra ID authorization policy.
 
 ## PARAMETERS
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -61,4 +67,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Set-EntraMSAuthorizationPolicy](Set-EntraMSAuthorizationPolicy.md)
-
