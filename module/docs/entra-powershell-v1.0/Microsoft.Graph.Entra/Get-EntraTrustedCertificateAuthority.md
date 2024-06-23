@@ -18,6 +18,7 @@ schema: 2.0.0
 # Get-EntraTrustedCertificateAuthority
 
 ## SYNOPSIS
+
 Gets the trusted certificate authority.
 
 ## SYNTAX
@@ -30,16 +31,19 @@ Get-EntraTrustedCertificateAuthority
 ```
 
 ## DESCRIPTION
-The Get-EntraTrustedCertificateAuthority cmdlet gets the trusted certificate authority in Microsoft Entra ID.
+
+The `Get-EntraTrustedCertificateAuthority` cmdlet gets the trusted certificate authority in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Retrieve the trusted certificate authorities that are defined in your directory
+
 ```powershell
-PS C:\> Get-EntraTrustedCertificateAuthority
+Connect-Entra -Scopes 'Organization.Read.All'
+Get-EntraTrustedCertificateAuthority
 ```
 
-```output
+```Output
 AuthorityType             : RootAuthority
 CrlDistributionPoint      : https://example.crl1
 DeltaCrlDistributionPoint :
@@ -65,11 +69,13 @@ TrustedIssuerSki          : 4BA2D7AC2A5DF47C70E19E61EDFB4E62B3BF67FD
 This command retrieves the trusted certificate authorities that are defined in your directory.
 
 ### Example 2: Retrieve the trusted certificate authorities that are defined in your directory based on TrustedIssuer
+
 ```powershell
-PS C:\> Get-EntraTrustedCertificateAuthority -TrustedIssuer "CN=example.azure.com, O=MSIT. Ltd, L=Redmond, C=US"
+Connect-Entra -Scopes 'Organization.Read.All'
+Get-EntraTrustedCertificateAuthority -TrustedIssuer 'CN=example.azure.com, O=MSIT. Ltd, L=Redmond, C=US'
 ```
 
-```output
+```Output
 AuthorityType             : RootAuthority
 CrlDistributionPoint      : https://example.crl1
 DeltaCrlDistributionPoint :
@@ -88,11 +94,13 @@ TrustedIssuerSki          : 69506400C9806497DCB48F160C31CFFEA87E544C
 This command retrieves the trusted certificate authorities that are defined in your directory based on TrustedIssuer.
 
 ### Example 3: Retrieve the trusted certificate authorities that are defined in your directory based on TrustedIssuerSki
+
 ```powershell
-PS C:\> Get-EntraTrustedCertificateAuthority -TrustedIssuerSki 4BA2D7AC2A5DF47C70E19E61EDFB4E62B3BF67FD
+Connect-Entra -Scopes 'Organization.Read.All'
+Get-EntraTrustedCertificateAuthority -TrustedIssuerSki 4BA2D7AC2A5DF47C70E19E61EDFB4E62B3BF67FD
 ```
 
-```output
+```Output
 AuthorityType             : RootAuthority
 CrlDistributionPoint      : https://example.crl
 DeltaCrlDistributionPoint :
@@ -106,10 +114,11 @@ This command retrieves the trusted certificate authorities that are defined in y
 ## PARAMETERS
 
 ### -TrustedIssuer
+
 Specifies a trusted issuer.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -121,10 +130,11 @@ Accept wildcard characters: False
 ```
 
 ### -TrustedIssuerSki
+
 Specifies a trusted issuer ski.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -136,7 +146,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -151,6 +162,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraTrustedCertificateAuthority](Remove-EntraTrustedCertificateAuthority.md)
 
 [Set-EntraTrustedCertificateAuthority](Set-EntraTrustedCertificateAuthority.md)
-
-[Online help and examples for working with certificate authority](https://azure.microsoft.com/documentation/articles/active-directory-certificate-based-authentication-ios/)
-
