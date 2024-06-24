@@ -13,9 +13,9 @@
   - name: Add-EntraGroupMember
     href: Microsoft.Graph.Entra/Identity/Others/Add-EntraGroupMember.md
   - name: Add-EntraGroupOwner
-    href: Microsoft.Graph.Entra/Identity/OthersAdd-EntraGroupOwner.md
+    href: Microsoft.Graph.Entra/Identity/Others/Add-EntraGroupOwner.md
   - name: Add-EntraMSAdministrativeUnitMember
-    href: Microsoft.Graph.Entra/Identity/Applications/Add-EntraMSAdministrativeUnitMember.md
+    href: Microsoft.Graph.Entra/Identity/Others/Add-EntraMSAdministrativeUnitMember.md
   - name: Add-EntraMSApplicationOwner
     href: Microsoft.Graph.Entra/Identity/Applications/Add-EntraMSApplicationOwner.md
   - name: Add-EntraMSLifecyclePolicyGroup
@@ -29,7 +29,7 @@
   - name: Convert-EntraFederatedUser
     href: Microsoft.Graph.Entra/Identity/Others/Convert-EntraFederatedUser.md
   - name: Enable-EntraAzureADAlias
-    href: Microsoft.Graph.Entra/Identity/Others/Identity/Others/Enable-EntraAzureADAlias.md
+    href: Microsoft.Graph.Entra/Identity/Others/Enable-EntraAzureADAlias.md
   - name: Enable-EntraDirectoryRole
     href: Microsoft.Graph.Entra/Identity/Others/Enable-EntraDirectoryRole.md
   - name: Get-EntraAccountSku
