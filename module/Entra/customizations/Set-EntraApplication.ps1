@@ -180,7 +180,7 @@
 
     if($null -ne $PSBoundParameters["PublicClient"])
     {
-        $params["PublicClient"] =  $PSBoundParameters["PublicClient"]
+        $params["IsFallbackPublicClient"] =  $PSBoundParameters["PublicClient"]
     }
     if($null -ne $PSBoundParameters["PublisherDomain"])
     {
