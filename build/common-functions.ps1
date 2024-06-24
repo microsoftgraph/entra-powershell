@@ -233,10 +233,10 @@ function Create-TOCFile {
 
 	if ($PSBoundParameters["Module"] -eq "Entra") {
 		$rootDir = "Microsoft.Graph.Entra/"
-		$outputFile=$outputFile+"/entra-powershell-v1.0/toc1.yml"
+		$outputFile=$outputFile+"/entra-powershell-v1.0/toc.yml"
 	} else {
 		$rootDir = "Microsoft.Graph.Entra.Beta/"
-		$outputFile="/entra-powershell-beta/toc1.yml"
+		$outputFile="/entra-powershell-beta/toc.yml"
 	}
     foreach ($file in $mdFiles) {
         # Generate the relative path from the root directory
