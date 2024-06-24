@@ -34,7 +34,7 @@ Confirm-EntraDomain
 
 The `Confirm-EntraDomain` cmdlet validates the ownership of a Microsoft Entra ID domain.
 
-The work or school account needs to belong to at least the `Domain Name Administrator` Microsoft Entra role.
+The work or school account needs to belong to at least the **Domain Name Administrator** Microsoft Entra role.
 
 ## EXAMPLES
 
