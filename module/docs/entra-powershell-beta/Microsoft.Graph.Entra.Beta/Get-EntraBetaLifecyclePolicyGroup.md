@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-EntraBetaMSLifecyclePolicyGroup
+# Get-EntraBetaLifecyclePolicyGroup
 
 ## SYNOPSIS
 Retrieves the lifecycle policy object to which a group belongs.
@@ -13,17 +13,17 @@ Retrieves the lifecycle policy object to which a group belongs.
 ## SYNTAX
 
 ```
-Get-EntraBetaMSLifecyclePolicyGroup -Id <String> [<CommonParameters>]
+Get-EntraBetaLifecyclePolicyGroup -Id <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaMSLifecyclePolicyGroup retrieves the lifecycle policy object to which a group belongs.
+The Get-EntraBetaLifecyclePolicyGroup retrieves the lifecycle policy object to which a group belongs.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> Get-EntraBetaMSLifecyclePolicyGroup -Id cffd97bd-6b91-4c4e-b553-6918a320211c
+PS C:\> Get-EntraBetaLifecyclePolicyGroup -Id cffd97bd-6b91-4c4e-b553-6918a320211c
 ```
 
 This command retrieves the lifecycle policy object to which a group belongs.
