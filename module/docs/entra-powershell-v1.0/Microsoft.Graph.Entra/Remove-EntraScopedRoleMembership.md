@@ -18,6 +18,7 @@ schema: 2.0.0
 # Remove-EntraScopedRoleMembership
 
 ## SYNOPSIS
+
 Removes a scoped role membership.
 
 ## SYNTAX
@@ -34,8 +35,10 @@ The Remove-EntraScopedRoleMembership cmdlet removes a scoped role membership fro
 ## EXAMPLES
 
 ### Example 1: Removes a scoped role membership
+
 ```powershell
-PS C:\> Remove-EntraScopedRoleMembership -Id "1026185e-25df-4522-a380-7ab697a7241c" -ScopedRoleMembershipId "3028185e-25df-4522-a380-7ab697a7241c"
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+Remove-EntraScopedRoleMembership -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc' -ScopedRoleMembershipId '3d3d3d3d-4444-eeee-5555-6f6f6f6f6f6f'
 ```
 
 Removes scoped membership.
@@ -43,10 +46,11 @@ Removes scoped membership.
 ## PARAMETERS
 
 ### -Id
+
 Specifies an object ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -58,10 +62,11 @@ Accept wildcard characters: False
 ```
 
 ### -ScopedRoleMembershipId
+
 Specifies the ID of the scoped role membership to remove.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -73,7 +78,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

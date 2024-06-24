@@ -18,6 +18,7 @@ schema: 2.0.0
 # Remove-EntraAdministrativeUnit
 
 ## SYNOPSIS
+
 Removes an administrative unit.
 
 ## SYNTAX
@@ -34,22 +35,22 @@ The Remove-EntraAdministrativeUnit cmdlet removes an administrative unit from Mi
 ## EXAMPLES
 
 ### Example 1: Remove an administrative unit
-```powershell
-PS C:\> Remove-EntraAdministrativeUnit -Id 76373ce0-821a-40b5-9aa2-e108e318f62e
 
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+Remove-EntraAdministrativeUnit -Id dddddddd-3333-4444-5555-eeeeeeeeeeee
 ```
 
 This example demonstrates how to remove an administrative unit with specified ID.
 
 ## PARAMETERS
 
-
-
 ### -Id
+
 Specifies the ID of an administrative unit in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -61,7 +62,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

@@ -18,6 +18,7 @@ schema: 2.0.0
 # Set-EntraAdministrativeUnit
 
 ## SYNOPSIS
+
 Updates an administrative unit.
 
 ## SYNTAX
@@ -36,15 +37,19 @@ The Set-EntraAdministrativeUnit cmdlet updates an administrative unit in Microso
 ## EXAMPLES
 
 ### Example 1: Update the display name
+
 ```powershell
-PS C:\> Set-EntraAdministrativeUnit -Id f306a126-cf2e-439d-b20f-95ce4bcb7ffa -DisplayName 'displayName updated'
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+Set-EntraAdministrativeUnit -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc' -DisplayName 'New Updated Display Name'
 ```
 
 This command updates the display name of the specified administrative unit.
 
 ### Example 2: Update the description
+
 ```powershell
-PS C:\> Set-EntraAdministrativeUnit -Id f306a126-cf2e-439d-b20f-95ce4bcb7ffa -Description 'description updated'
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+Set-EntraAdministrativeUnit -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc' -Description 'Updated Description'
 ```
 
 This command updates the description of the specified administrative unit.
@@ -52,10 +57,11 @@ This command updates the description of the specified administrative unit.
 ## PARAMETERS
 
 ### -Description
+
 Specifies a description.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -67,10 +73,11 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
+
 Specifies a display name.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -82,10 +89,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
+
 Specifies the ID of an administrative unit in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -97,7 +105,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

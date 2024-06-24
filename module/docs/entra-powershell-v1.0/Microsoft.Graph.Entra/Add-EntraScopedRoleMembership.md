@@ -41,33 +41,22 @@ The Add-EntraScopedRoleMembership cmdlet adds a scoped role membership to an adm
 ### Example 1: Add a scoped role membership to an administrative unit
 
 ```powershell
-PS C:\> $User = Get-EntraUser -SearchString "MarkWood"
-PS C:\> $Role = Get-EntraDirectoryRole | Where-Object -Property DisplayName -EQ -Value "User Administrator"
-PS C:\> $Unit = Get-EntraAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value "New MSAdmin unit"
-PS C:\> $RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRolememberinfo.RoleMemberInfo
-PS C:\> $RoleMember.Id = $User.ObjectID
-PS C:\> Add-EntraScopedRoleMembership -Id $Unit.Id -RoleId $Role.ObjectId -RoleMemberInfo $RoleMember
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+$User = Get-EntraUser -SearchString 'MarkWood'
+$Role = Get-EntraDirectoryRole -Filter "DisplayName eq 'User Administrator'"
+$Unit = Get-EntraAdministrativeUnit -Filter "DisplayName eq 'New MSAdmin unit'"
+$RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRolememberinfo.RoleMemberInfo
+$RoleMember.Id = $User.ObjectID
+Add-EntraScopedRoleMembership -Id $Unit.Id -RoleId $Role.ObjectId -RoleMemberInfo $RoleMember
 ```
 
-```output
+```Output
 AdministrativeUnitId     RoleId  
 --------------------------            ------------  
 11bb11bb-cc22-dd33-ee44-55ff55ff55ff  22cc22cc-dd33-ee44-ff55-66aa66aa66aa
 ```
 
-The first command gets a user by using the [Get-EntraUser](./Get-EntraUser.md) cmdlet, and then stores it in the $User variable.  
-
-The second command gets a directory role by using [Get-EntraDirectoryRole](./Get-EntraDirectoryRole.md) cmdlet, and then stores it in the $Role variable.  
-
-The third command gets an administrative unit by using [Get-EntraAdministrativeUnit](./Get-EntraAdministrativeUnit.md) cmdlet, and then stores it in the $Unit variable.  
-
-The fourth command creates a RoleMemberInfo type, and then stores it in the $RoleMember variable.  
-
-The fifth command set the Id property of $RoleMember to the same value as the ObjectId property of $User.  
-
-The final command assigns the role member in $RoleMember and role in $Role to the administrative unit in $Unit.  
-
-This cmdlet returns the Scope role membership object.
+The example shows how to add a user to the specified role within the specified administrative unit.
 
 ## PARAMETERS
 
