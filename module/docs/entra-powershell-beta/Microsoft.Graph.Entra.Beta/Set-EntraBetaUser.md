@@ -34,13 +34,10 @@ Set-EntraBetaUser
  [-Mobile <String>] 
  [-JobTitle <String>]
  [-ConsentProvidedForMinor <String>] 
- [-PhysicalDeliveryOfficeName <String>]
  [-OtherMails <System.Collections.Generic.List`1[System.String]>] 
  [-PasswordPolicies <String>]
- [-IsCompromised <Boolean>]
  [-SignInNames <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.SignInName]>]
  [-PreferredLanguage <String>] 
- [-UserState <String>] 
  [-ImmutableId <String>] 
  [-City <String>]
  [-AgeGroup <String>]
@@ -55,11 +52,9 @@ Set-EntraBetaUser
  [-UserType <String>]
  [-StreetAddress <String>] 
  [-CompanyName <String>] 
- [-FacsimileTelephoneNumber <String>]
  [-Surname <String>] 
  [-TelephoneNumber <String>] 
  [-CreationType <String>] 
- [-UserStateChangedOn <String>]
  [<CommonParameters>]
 ```
 
@@ -270,22 +265,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IsCompromised
-
-True if this user is compromised
-
-```yaml
-Type: System.Boolean
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -JobTitle
 
 Specifies the user's job title.
@@ -388,22 +367,6 @@ Specifies the user's password profile.
 
 ```yaml
 Type: System.PasswordProfile
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -PhysicalDeliveryOfficeName
-
-@{Text=}
-
-```yaml
-Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -590,22 +553,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FacsimileTelephoneNumber
-
-{{Fill FacsimileTelephoneNumber Description}}
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -AgeGroup
 
 Used by enterprise applications to determine the legal age group of the user. This property is read-only and calculated based on ageGroup and consentProvidedForMinor properties. Allowed values: null, minor, notAdult, and adult. Refer to the [legal age group property definitions][Learn more about age group and minor consent definitions].
@@ -641,38 +588,6 @@ Accept wildcard characters: False
 ### -ConsentProvidedForMinor
 
 Sets whether consent has to obtained for minors. Allowed values: null, granted, denied, and notRequired.
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -UserState
-
-{{ Fill UserState Description }}
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -UserStateChangedOn
-
-{{ Fill UserStateChangedOn Description }}
 
 ```yaml
 Type: System.String
