@@ -1,6 +1,6 @@
 ---
-title: Add-EntraMSAdministrativeUnitMember
-description: This article provides details on the Add-EntraMSAdministrativeUnitMember command.
+title: Add-EntraAdministrativeUnitMember
+description: This article provides details on the Add-EntraAdministrativeUnitMember command.
 
 ms.service: entra
 ms.topic: reference
@@ -16,7 +16,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Add-EntraMSAdministrativeUnitMember
+# Add-EntraAdministrativeUnitMember
 
 ## SYNOPSIS
 Adds an administrative unit member.
@@ -24,20 +24,20 @@ Adds an administrative unit member.
 ## SYNTAX
 
 ```powershell
-Add-EntraMSAdministrativeUnitMember 
+Add-EntraAdministrativeUnitMember 
  -RefObjectId <String> 
  -Id <String> 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Add-EntraMSAdministrativeUnitMember** cmdlet adds a Microsoft Entra ID administrative unit member.
+The **Add-EntraAdministrativeUnitMember** cmdlet adds a Microsoft Entra ID administrative unit member.
 
 ## EXAMPLES
 
 ### Example 1: Add user as an administrative unit member
 ```powershell
-PS C:\>Add-EntraMSAdministrativeUnitMember -Id f306a126-cf2e-439d-b20f-95ce4bcb7ffa -RefObjectId d6873b36-81d6-4c5e-bec0-9e3ca2c86846
+PS C:\>Add-EntraAdministrativeUnitMember -Id f306a126-cf2e-439d-b20f-95ce4bcb7ffa -RefObjectId d6873b36-81d6-4c5e-bec0-9e3ca2c86846
 ```
 
 This command adds a user as an administrative unit member.

@@ -14,8 +14,8 @@
     href: Microsoft.Graph.Entra/Add-EntraGroupMember.md
   - name: Add-EntraGroupOwner
     href: Microsoft.Graph.Entra/Add-EntraGroupOwner.md
-  - name: Add-EntraMSAdministrativeUnitMember
-    href: Microsoft.Graph.Entra/Add-EntraMSAdministrativeUnitMember.md
+  - name: Add-EntraAdministrativeUnitMember
+    href: Microsoft.Graph.Entra/Add-EntraAdministrativeUnitMember.md
   - name: Add-EntraMSApplicationOwner
     href: Microsoft.Graph.Entra/Add-EntraMSApplicationOwner.md
   - name: Add-EntraMSLifecyclePolicyGroup

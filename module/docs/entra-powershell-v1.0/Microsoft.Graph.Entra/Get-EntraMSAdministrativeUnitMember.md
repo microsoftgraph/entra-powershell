@@ -137,7 +137,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Add-EntraMSAdministrativeUnitMember](Add-EntraMSAdministrativeUnitMember.md)
+[Add-EntraAdministrativeUnitMember](Add-EntraAdministrativeUnitMember.md)
 
 [Remove-EntraMSAdministrativeUnitMember](Remove-EntraMSAdministrativeUnitMember.md)
 

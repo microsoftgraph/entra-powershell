@@ -932,7 +932,7 @@ $($output)
       
         if($null -ne $targetCmd){
             if($SourceCmdlet.Prefix.contains('MS')){
-                $Prefix = $NewPrefix  + 'MS'
+                $Prefix = $NewPrefix
             } else {
                 $prefix = $NewPrefix
             }
