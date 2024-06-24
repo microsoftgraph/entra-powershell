@@ -50,7 +50,7 @@ Get-EntraBetaMSGroupLifecyclePolicy
 ```output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
-c9a455d8-982e-4c06-86d8-8dab15f03295 example@contoso.un          99                  Selected
+eeeeeeee-4444-5555-6666-ffffffffffff example@contoso.un          99                  Selected
 ```
 
 This example demonstrates how to retrieve the properties and relationships of all groupLifecyclePolicies in Microsoft Entra ID.
@@ -60,13 +60,13 @@ This command retrieves the group expiration settings configured for the tenant.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaMSGroupLifecyclePolicy -Id '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
+Get-EntraBetaMSGroupLifecyclePolicy -Id 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
 ```
 
 ```output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
-1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 admingroup@contoso.com      200                 All
+ffffffff-5555-6666-7777-aaaaaaaaaaaa admingroup@contoso.com      200                 All
 ```
 
 This command is used to retrieve a specific Microsoft Group Lifecycle Policy. The Id parameter specifies the ID of the Lifecycle Policy to be retrieved.

@@ -33,7 +33,7 @@ New-EntraBetaGroup
 ```
 
 ## DESCRIPTION
-The `New-EntraBetaGroup` cmdlet creates a group in Microsoft Entra ID.
+The `New-EntraBetaGroup` cmdlet creates a group in Microsoft Entra ID. Specify the `DisplayName`, `SecurityEnabled`, `MailEnabled`, and `MailNickName` parameters to create a group.
 
 ## EXAMPLES
 
@@ -47,7 +47,7 @@ New-EntraBetaGroup -DisplayName 'My new group' -MailEnabled $false -SecurityEnab
 ```output
 DisplayName  Id                                   MailNickname Description GroupTypes
 -----------  --                                   ------------ ----------- ----------
-My new group fa484609-c1b0-4f38-a4f6-395cd2ebe18c NotSet                   {}
+My new group bbbbbbbb-1111-2222-3333-cccccccccccc NotSet                   {}
 ```
 
 ### Example 2: Create a group with Description parameter
@@ -61,7 +61,7 @@ New-EntraBetaGroup -DisplayName 'My new group' -MailEnabled $false -SecurityEnab
 ```output
 DisplayName  Id                                   MailNickname Description       GroupTypes
 -----------  --                                   ------------ -----------       ----------
-My new group hhhhhhhh-8888-9999-8888-cccccccccccc NotSet       new created group {}
+My new group bbbbbbbb-1111-2222-3333-cccccccccccc NotSet       new created group {}
 ```
 
 This example demonstrates how to create a group with Description parameter.

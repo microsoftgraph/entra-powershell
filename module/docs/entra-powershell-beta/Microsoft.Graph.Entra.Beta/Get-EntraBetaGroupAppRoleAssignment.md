@@ -58,7 +58,7 @@ The second command gets the application role assignments of the group in $GroupI
 ### Example 2: Retrieve all application role assignments of a group
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaGroupAppRoleAssignment -ObjectId b220a523-d97c-44c3-a535-b55fe1fa1163 -All
+Get-EntraBetaGroupAppRoleAssignment -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff' -All
 ```
 
 ```output
@@ -74,7 +74,7 @@ This command gets all application role assignments of the specified group.
 ### Example 3: Retrieve top two application role assignments of a group
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaGroupAppRoleAssignment -ObjectId b220a523-d97c-44c3-a535-b55fe1fa1163 -Top 2
+Get-EntraBetaGroupAppRoleAssignment -ObjectId 'cccccccc-8888-9999-0000-dddddddddddd' -Top 2
 ```
 
 ```output

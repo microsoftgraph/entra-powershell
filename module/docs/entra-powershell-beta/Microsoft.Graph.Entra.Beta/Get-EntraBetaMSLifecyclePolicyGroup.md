@@ -36,7 +36,7 @@ The `Get-EntraBetaMSLifecyclePolicyGroup` retrieves the lifecycle policy object 
 ### Example 1: Retrieve lifecycle policy object
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaMSLifecyclePolicyGroup -Id cffd97bd-6b91-4c4e-b553-6918a320211c
+Get-EntraBetaMSLifecyclePolicyGroup -Id 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
 ```
 ```output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes

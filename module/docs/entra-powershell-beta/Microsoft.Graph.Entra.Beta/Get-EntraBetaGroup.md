@@ -61,11 +61,11 @@ Get-EntraBetaGroup
 
 DisplayName                                       Id                                   MailNickname                                   Description
 -----------                                       --                                   ------------                                   -----------
-SimpleTestGrp                                     00a460df-1b24-41db-a2d8-4eb8cd82e4a1 NickName
-SimpleGroupc13adf68-dffb-4185-a94f-e81bda906aa5   01c9ea6e-c28e-4d3a-a5e7-e90af9300499 NickName
-testGroupInAU10                                   02af6904-3630-4074-bbcb-8e0ed04a40ce testGroupInAU10                                testGroupInAU10
-My new group                                      040e1190-daac-41ce-b26d-b2e79a9dd8b4 NotSet                                         New created group
-SimpleGroupaeaea4bd-30df-4e13-b318-b416ed4e9357   0590f8df-dfbf-4892-bf45-f23069d6ed71 NickName
+SimpleTestGrp                                     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb NickName
+SimpleGroupc13adf68-dffb-4185-a94f-e81bda906aa5   bbbbbbbb-1111-2222-3333-cccccccccccc NickName
+testGroupInAU10                                   cccccccc-2222-3333-4444-dddddddddddd testGroupInAU10                                testGroupInAU10
+My new group                                      dddddddd-3333-4444-5555-eeeeeeeeeeee NotSet                                         New created group
+SimpleGroupaeaea4bd-30df-4e13-b318-b416ed4e9357   eeeeeeee-4444-5555-6666-ffffffffffff NickName
 ```
 
 This example demonstrates how to get all groups from Microsoft Entra ID.  
@@ -73,12 +73,12 @@ This example demonstrates how to get all groups from Microsoft Entra ID.
 ### Example 2: Get a specific group by using an ObjectId
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroup -ObjectId '1d7f20aa-bbcd-4822-ab28-092015b90692'
+Get-EntraBetaGroup -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff'
 ```
 ```output
 DisplayName                                       Id                                   MailNickname Description GroupTypes
 -----------                                       --                                   ------------ ----------- ----------
-SimpleTestGrpbcd1865e-c8b9-4f90-8943-77607ef15590 1d7f20aa-bbcd-4822-ab28-092015b90692 NickName                 {}
+SimpleTestGrpbcd1865e-c8b9-4f90-8943-77607ef15590 eeeeeeee-4444-5555-6666-ffffffffffff NickName                 {}
 ```
 
 This example demonstrates how to retrieve specific group by providing ID. This command gets information for the group that has the specified ID.
@@ -89,13 +89,13 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraBetaGroup -Top 5
 ```
 ```output
-DisplayName                                     Id                                   MailNickname       Description              GroupTypes
------------                                     --                                   ------------       -----------              ----------
-SimpleTestGrp                                   00a460df-1b24-41db-a2d8-4eb8cd82e4a1 NickName                                    {}
-SimpleGroupc13adf68-dffb-4185-a94f-e81bda906aa5 01c9ea6e-c28e-4d3a-a5e7-e90af9300499 NickName                                    {}
-testGroupInAU10                                 02af6904-3630-4074-bbcb-8e0ed04a40ce testGroupInAU10    testGroupInAU10          {DynamicMembership, Unified}
-SimpleGroupaeaea4bd-30df-4e13-b318-b416ed4e9357 0590f8df-dfbf-4892-bf45-f23069d6ed71 NickName                                    {}
-HelpDesk admin group                            0883fd77-0ee8-45de-a21e-f32af1623acc helpDeskAdminGroup Group assignable to role {}
+DisplayName                                     Id                                   MailNickname    Description       GroupTypes
+-----------                                     --                                   ------------    -----------       ----------
+SimpleTestGrp                                   00a460df-1b24-41db-a2d8-4eb8cd82e4a1 NickName                          {}
+SimpleGroupc13adf68-dffb-4185-a94f-e81bda906aa5 01c9ea6e-c28e-4d3a-a5e7-e90af9300499 NickName                          {}
+testGroupInAU10                                 02af6904-3630-4074-bbcb-8e0ed04a40ce testGroupInAU10 testGroupInAU10   {DynamicMembership, Unified}
+My new group                                    040e1190-daac-41ce-b26d-b2e79a9dd8b4 NotSet          New created group {}
+SimpleGroupaeaea4bd-30df-4e13-b318-b416ed4e9357 0590f8df-dfbf-4892-bf45-f23069d6ed71 NickName                          {}
 ```
 
 This example demonstrates how to get top five groups from Microsoft Entra ID.  
@@ -109,7 +109,7 @@ Get-EntraBetaGroup -Filter "DisplayName eq 'Parents of Contoso'"
 ```output
 DisplayName        Id                                   MailNickname     Description        GroupTypes
 -----------        --                                   ------------     -----------        ----------
-Parents of Contoso 05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso Parents of Contoso {Unified}
+Parents of Contoso aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb parentsofcontoso Parents of Contoso {Unified}
 ```  
 In this example, we retrieve group by display name from Microsoft Entra ID.    
 This command gets the specified group.
@@ -122,8 +122,8 @@ Get-EntraBetaGroup -SearchString 'New'
 ```output
 DisplayName             Id                                   MailNickname          Description             GroupTypes
 -----------             --                                   ------------          -----------             ----------
-New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding New Employee Onboarding {Unified}
-new1                    27d134ad-466b-43dd-8856-ba9f0bc17d24 new1                  new1                    {DynamicM...
+New Employee Onboarding aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb newemployeeonboarding New Employee Onboarding {Unified}
+new1                    bbbbbbbb-7777-8888-9999-cccccccccccc new1                  new1                    {DynamicM...
 ```
 
 This example demonstrates how to retrieve groups that include the text new in their display names from Microsoft Entra ID.

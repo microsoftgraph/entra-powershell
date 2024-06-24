@@ -38,39 +38,39 @@ The `Get-EntraBetaGroupOwner` cmdlet gets an owner of a group in Microsoft Entra
 ### Example 1: Get a group owner by ID
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroupOwner -ObjectId 'ba828166-dcd3-4349-aee9-9fbbf619105d'
+Get-EntraBetaGroupOwner -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 ```output
 Id                                   DeletedDateTime
 --                                   ---------------
-996d39aa-fdac-4d97-aa3d-c81fb47362ac
+cccccccc-2222-3333-4444-dddddddddddd
 ```
 This example demonstrates how to retrieve the owner of a specific group.
 
 ### Example 2: Gets all group owners
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroupOwner -ObjectId 'c072b115-ed7b-47cb-90d3-d5019d8bfd51' -All
+Get-EntraBetaGroupOwner -ObjectId 'ffffffff-5555-6666-7777-aaaaaaaaaaaa' -All
 ```
 ```output
 Id                                   DeletedDateTime
 --                                   ---------------
-996d39aa-fdac-4d97-aa3d-c81fb47362ac
-ea53750f-e28a-4645-b174-89618edd034a
-2ae2d97b-4bde-42aa-b7c0-7c91a4c91a77
+bbbbbbbb-7777-8888-9999-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 This example demonstrates how to retrieve the all owner of a specific group.  
 
 ### Example 3: Gets two group owners
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroupOwner -ObjectId 'c072b115-ed7b-47cb-90d3-d5019d8bfd51' -Top 2
+Get-EntraBetaGroupOwner -ObjectId 'bbbbbbbb-7777-8888-9999-cccccccccccc' -Top 2
 ```
 ```output
 Id                                   DeletedDateTime
 --                                   ---------------
-996d39aa-fdac-4d97-aa3d-c81fb47362ac
-ea53750f-e28a-4645-b174-89618edd034a
+dddddddd-9999-0000-1111-eeeeeeeeeeee
+eeeeeeee-4444-5555-6666-ffffffffffff
 ```
 This example demonstrates how to retrieve the top two owners of a specific group. 
 

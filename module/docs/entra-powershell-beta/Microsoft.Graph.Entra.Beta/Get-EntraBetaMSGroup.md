@@ -67,12 +67,12 @@ Get-EntraBetaMSGroup
 
 DisplayName                         Id                                   MailNickname                     Description
 -----------                         --                                   ------------                     -----------
-Ask HR                              056b2531-005e-4f3e-be78-01a71ea30a04 askhr
-Parents of Contoso                  05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso                 Parents of Contoso
-Contoso Team                        0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam                      A collaboration area for the Contoso Team.
-HelpDesk admin group                0883fd77-0ee8-45de-a21e-f32af1623acc helpDeskAdminGroup               Group assignable to role
-New Employee Onboarding             0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding            New Employee Onboarding
-HelpDesk admin group3               0bdddeb1-88a6-4251-aaa5-98b48271158b helpDeskAdminGroup               group des
+Ask HR                              eeeeeeee-4444-5555-6666-ffffffffffff askhr
+Parents of Contoso                  ffffffff-5555-6666-7777-aaaaaaaaaaaa parentsofcontoso                 Parents of Contoso
+Contoso Team                        aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb contosoteam                      A collaboration area for the Contoso Team.
+HelpDesk admin group                bbbbbbbb-7777-8888-9999-cccccccccccc helpDeskAdminGroup               Group assignable to role
+New Employee Onboarding             cccccccc-8888-9999-0000-dddddddddddd newemployeeonboarding            New Employee Onboarding
+HelpDesk admin group3               dddddddd-9999-0000-1111-eeeeeeeeeeee helpDeskAdminGroup               group des
 
 ```
 
@@ -82,13 +82,13 @@ This command gets all groups in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaMSGroup -Id '0877c6c6-fc99-4d51-9871-8335be7cfc9d'
+Get-EntraBetaMSGroup -Id 'dddddddd-9999-0000-1111-eeeeeeeeeeee'
 ```
 ```output
 
 DisplayName  Id                                   MailNickname Description                                GroupTypes
 -----------  --                                   ------------ -----------                                ----------
-Contoso Team 0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam  A collaboration area for the Contoso Team. {Unified}
+Contoso Team dddddddd-9999-0000-1111-eeeeeeeeeeee contosoteam  A collaboration area for the Contoso Team. {Unified}
 
 ```
 
@@ -104,11 +104,11 @@ Get-EntraBetaMSGroup -Top 5
 
 DisplayName             Id                                   MailNickname          Description                                GroupTypes
 -----------             --                                   ------------          -----------                                ----------
-Ask HR                  056b2531-005e-4f3e-be78-01a71ea30a04 askhr                                                            {Unified}
-Parents of Contoso      05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso      Parents of Contoso                         {Unified}
-Contoso Team            0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam           A collaboration area for the Contoso Team. {Unified}
-HelpDesk admin group    0883fd77-0ee8-45de-a21e-f32af1623acc helpDeskAdminGroup    Group assignable to role                   {}
-New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding New Employee Onboarding                    {Unified}
+Ask HR                  dddddddd-9999-0000-1111-eeeeeeeeeeee askhr                                                            {Unified}
+Parents of Contoso      cccccccc-8888-9999-0000-dddddddddddd parentsofcontoso      Parents of Contoso                         {Unified}
+Contoso Team            ffffffff-5555-6666-7777-aaaaaaaaaaaa contosoteam           A collaboration area for the Contoso Team. {Unified}
+HelpDesk admin group    cccccccc-2222-3333-4444-dddddddddddd helpDeskAdminGroup    Group assignable to role                   {}
+New Employee Onboarding bbbbbbbb-1111-2222-3333-cccccccccccc newemployeeonboarding New Employee Onboarding                    {Unified}
 ```
 
 This example demonstrates how to retrieve top five groups from Microsoft Entra ID.
@@ -125,7 +125,7 @@ Get-EntraBetaMSGroup -Filter "DisplayName eq 'Parents of Contoso'"
 
 DisplayName        Id                                   MailNickname     Description        GroupTypes
 -----------        --                                   ------------     -----------        ----------
-Parents of Contoso 05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso Parents of Contoso {Unified}
+Parents of Contoso bbbbbbbb-1111-2222-3333-cccccccccccc parentsofcontoso Parents of Contoso {Unified}
 ```
 This example retrieves group by DisplayName.
 
@@ -139,8 +139,8 @@ Get-EntraBetaMSGroup -SearchString 'New'
 
 DisplayName             Id                                   MailNickname          Description             GroupTypes
 -----------             --                                   ------------          -----------             ----------
-New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding New Employee Onboarding {Unified}
-new1                    27d134ad-466b-43dd-8856-ba9f0bc17d24 new1                  new1                    {DynamicMembership, Unified}
+New Employee Onboarding eeeeeeee-4444-5555-6666-ffffffffffff newemployeeonboarding New Employee Onboarding {Unified}
+new1                    bbbbbbbb-1111-2222-3333-cccccccccccc new1                  new1                    {DynamicMembership, Unified}
 ```
 
 This example demonstrates how to retrieve groups using  SearchString against the first characters in DisplayName or Description attributes.
@@ -174,13 +174,13 @@ AssignedLabels group property retrieved only by Select parameter.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaMSGroup -Id '0877c6c6-fc99-4d51-9871-8335be7cfc9' -Select 'DisplayName,Id,Description'
+Get-EntraBetaMSGroup -Id 'eeeeeeee-4444-5555-6666-ffffffffffff' -Select 'DisplayName,Id,Description'
 ```
 ```output
 
 DisplayName  Id                                   MailNickname Description                                GroupTypes
 -----------  --                                   ------------ -----------                                ----------
-Contoso Team 0877c6c6-fc99-4d51-9871-8335be7cfc9d              A collaboration area for the Contoso Team.
+Contoso Team eeeeeeee-4444-5555-6666-ffffffffffff              A collaboration area for the Contoso Team.
 ```
 
 This example gets DisplayName, ID, and Description property values for a specific group.

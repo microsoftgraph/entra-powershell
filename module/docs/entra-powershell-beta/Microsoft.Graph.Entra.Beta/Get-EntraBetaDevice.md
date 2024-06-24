@@ -49,7 +49,7 @@ Get-EntraBetaDevice
 ```
 
 ## DESCRIPTION
-The `Get-EntraBetaDevice` cmdlet gets a device from Microsoft Entra ID.Specify the `ObjectId` parameter to get a specific device.
+The `Get-EntraBetaDevice` cmdlet gets a device from Microsoft Entra ID. Specify the `ObjectId` parameter to get a specific device.
 
 ## EXAMPLES
 
@@ -60,10 +60,10 @@ Get-EntraBetaDevice -ObjectId 'bbbbbbbb-1111-1111-1111-cccccccccccc'
 ```
 
 ```output
-DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationD
-                                                                                                  ateTime
---------------- --                                   -------------- ----------------------------- ---------------------
-                bbbbbbbb-1111-1111-1111-cccccccccccc True
+DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetada
+                                                                                                                                                                                   ta
+--------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             ------------
+                bbbbbbbb-1111-1111-1111-cccccccccccc True                                                                                     dddddddd-9999-0000-1111-eeeeeeeeeeee MetaData
 ```
 
 This example demonstrates how to retrieve specific device by providing ID. This command gets the specified device.
@@ -75,10 +75,11 @@ Get-EntraBetaDevice
 ```
 
 ```output
-DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationD
-                                                                                                  ateTime
---------------- --                                   -------------- ----------------------------- ---------------------
-                bbbbbbbb-1111-1111-1111-cccccccccccc True
+DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetada
+                                                                                                                                                                                   ta
+--------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             ------------
+                aaaaaaaa-1111-1111-1111-bbbbbbbbbbbb True                                                                                     aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb MetaData
+                bbbbbbbb-1111-1111-1111-cccccccccccc True                                                                                     aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb MetaData
 ```
 
 This example demonstrates how to retrieve all devices from Microsoft Entra ID.  
@@ -90,11 +91,11 @@ Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice -Top 2
 ```
 ```output
-DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationD
-                                                                                                  ateTime
---------------- --                                   -------------- ----------------------------- ---------------------
-                bbbbbbbb-1111-1111-1111-cccccccccccc True
-                aaaaaaaa-1111-1111-1111-bbbbbbbbbbbb True
+DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetada
+                                                                                                                                                                                   ta
+--------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             ------------
+                aaaaaaaa-1111-1111-1111-bbbbbbbbbbbb True                                                                                     aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb MetaData
+                bbbbbbbb-1111-1111-1111-cccccccccccc True                                                                                     aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb MetaData
 ```
 
 This example demonstrates how to retrieve top two devices from Microsoft Entra ID.  
@@ -106,10 +107,10 @@ Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice -Filter "DisplayName eq 'AkshayLodha'"
 ```
 ```output
-DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationD
-                                                                                                  ateTime
---------------- --                                   -------------- ----------------------------- ---------------------
-                bbbbbbbb-1111-1111-1111-cccccccccccc True
+DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetada
+                                                                                                                                                                                   ta
+--------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             ------------
+                bbbbbbbb-1111-1111-1111-cccccccccccc True                                                                                     dddddddd-9999-0000-1111-eeeeeeeeeeee MetaData
 ```
 
 This example demonstrates how to retrieve device by display name from Microsoft Entra ID.  
@@ -121,10 +122,10 @@ Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice -Filter "startswith(DisplayName,'Aksh')"
 ```
 ```output
-DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationD
-                                                                                                  ateTime
---------------- --                                   -------------- ----------------------------- ---------------------
-                bbbbbbbb-1111-1111-1111-cccccccccccc True
+DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetada
+                                                                                                                                                                                   ta
+--------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             ------------
+                bbbbbbbb-1111-1111-1111-cccccccccccc True                                                                                     dddddddd-9999-0000-1111-eeeeeeeeeeee MetaData
 ```
 
 This example demonstrates how to retrieve all the devices whose display name starts with Aksh from Microsoft Entra ID.  
@@ -135,10 +136,10 @@ Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice -SearchString 'Ashwini'
 ```
 ```output
-DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationD
-                                                                                                  ateTime
---------------- --                                   -------------- ----------------------------- ---------------------
-                bbbbbbbb-1111-1111-1111-cccccccccccc True
+DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetada
+                                                                                                                                                                                   ta
+--------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             ------------
+                bbbbbbbb-1111-1111-1111-cccccccccccc True                                                                                     dddddddd-9999-0000-1111-eeeeeeeeeeee MetaData
 ```
 
 This example demonstrates how to retrieve devices by search string from Microsoft Entra ID.  

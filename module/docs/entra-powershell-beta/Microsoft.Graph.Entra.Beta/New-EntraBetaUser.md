@@ -63,7 +63,7 @@ New-EntraBetaUser
 ```
 
 ## DESCRIPTION
-The `New-EntraBetaUser` cmdlet creates a user in Microsoft Entra ID.
+The `New-EntraBetaUser` cmdlet creates a user in Microsoft Entra ID. Specify the `DisplayName`,`AccountEnabled`, and `PasswordProfile` parameter to create a user.
 
 ## EXAMPLES
 
