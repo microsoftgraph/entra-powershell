@@ -43,7 +43,7 @@ The Add-EntraScopedRoleMembership cmdlet adds a scoped role membership to an adm
 ```powershell
 PS C:\> $User = Get-EntraUser -SearchString "MarkWood"
 PS C:\> $Role = Get-EntraDirectoryRole | Where-Object -Property DisplayName -EQ -Value "User Administrator"
-PS C:\> $Unit = Get-EntraMSAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value "New MSAdmin unit"
+PS C:\> $Unit = Get-EntraAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value "New MSAdmin unit"
 PS C:\> $RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRolememberinfo.RoleMemberInfo
 PS C:\> $RoleMember.Id = $User.ObjectID
 PS C:\> Add-EntraScopedRoleMembership -Id $Unit.Id -RoleId $Role.ObjectId -RoleMemberInfo $RoleMember
@@ -59,7 +59,7 @@ The first command gets a user by using the [Get-EntraUser](./Get-EntraUser.md) c
 
 The second command gets a directory role by using [Get-EntraDirectoryRole](./Get-EntraDirectoryRole.md) cmdlet, and then stores it in the $Role variable.  
 
-The third command gets an administrative unit by using [Get-EntraMSAdministrativeUnit](./Get-EntraMSAdministrativeUnit.md) cmdlet, and then stores it in the $Unit variable.  
+The third command gets an administrative unit by using [Get-EntraAdministrativeUnit](./Get-EntraAdministrativeUnit.md) cmdlet, and then stores it in the $Unit variable.  
 
 The fourth command creates a RoleMemberInfo type, and then stores it in the $RoleMember variable.  
 

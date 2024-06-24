@@ -1,6 +1,6 @@
 ---
-title: Set-EntraMSConditionalAccessPolicy
-description: This article provides details on the Set-EntraMSConditionalAccessPolicy command.
+title: Set-EntraConditionalAccessPolicy
+description: This article provides details on the Set-EntraConditionalAccessPolicy command.
 
 ms.service: entra
 ms.topic: reference
@@ -16,7 +16,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Set-EntraMSConditionalAccessPolicy
+# Set-EntraConditionalAccessPolicy
 
 ## SYNOPSIS
 Updates a conditional access policy in Microsoft Entra ID by Id.
@@ -24,7 +24,7 @@ Updates a conditional access policy in Microsoft Entra ID by Id.
 ## SYNTAX
 
 ```powershell
-Set-EntraMSConditionalAccessPolicy 
+Set-EntraConditionalAccessPolicy 
  -PolicyId <String> 
  [-Conditions <ConditionalAccessConditionSet>]
  [-GrantControls <ConditionalAccessGrantControls>] 
@@ -46,7 +46,7 @@ Conditional access policies are custom rules that define an access scenario.
 PS C:\> $cond = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
 PS C:\> $control = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls
 PS C:\> $session = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls
-PS C:\> Set-EntraMSConditionalAccessPolicy -PolicyId 6b5e999b-0ba8-4186-a106-e0296c1c4358 -DisplayName "MFA policy 1" -State "Enabled" -Conditions $cond -GrantControls $control -SessionControls $session
+PS C:\> Set-EntraConditionalAccessPolicy -PolicyId 6b5e999b-0ba8-4186-a106-e0296c1c4358 -DisplayName "MFA policy 1" -State "Enabled" -Conditions $cond -GrantControls $control -SessionControls $session
 ```
 
 The first command creates new ConditionalAccessConditionSet object.  
@@ -59,14 +59,14 @@ The final command updates a conditional access policy in Microsoft Entra ID.
 
 ### Example 2: Updates display name for a conditional access policy in Microsoft Entra ID by PolicyId.
 ```powershell
-PS C:\> Set-EntraMSConditionalAccessPolicy -PolicyId 6b5e999b-0ba8-4186-a106-e0296c1c4358 -DisplayName "MFA policy 1"
+PS C:\> Set-EntraConditionalAccessPolicy -PolicyId 6b5e999b-0ba8-4186-a106-e0296c1c4358 -DisplayName "MFA policy 1"
 ```
 
 This command updates a conditional access policy in Microsoft Entra ID.
 
 ### Example 3: Updates state for a conditional access policy in Microsoft Entra ID by PolicyId.
 ```powershell
-PS C:\> Set-EntraMSConditionalAccessPolicy -PolicyId 6b5e999b-0ba8-4186-a106-e0296c1c4358 -State "Enabled"
+PS C:\> Set-EntraConditionalAccessPolicy -PolicyId 6b5e999b-0ba8-4186-a106-e0296c1c4358 -State "Enabled"
 ```
 
 This command updates a conditional access policy in Microsoft Entra ID.
@@ -189,9 +189,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraMSConditionalAccessPolicy](Get-EntraMSConditionalAccessPolicy.md)
+[Get-EntraConditionalAccessPolicy](Get-EntraConditionalAccessPolicy.md)
 
-[New-EntraMSConditionalAccessPolicy](New-EntraMSConditionalAccessPolicy.md)
+[New-EntraConditionalAccessPolicy](New-EntraConditionalAccessPolicy.md)
 
-[Remove-EntraMSConditionalAccessPolicy](Remove-EntraMSConditionalAccessPolicy.md)
+[Remove-EntraConditionalAccessPolicy](Remove-EntraConditionalAccessPolicy.md)
 

@@ -1,6 +1,6 @@
 ---
-title: Get-EntraMSGroupPermissionGrant.
-description: This article provides details on the Get-EntraMSGroupPermissionGrant command.
+title: Get-EntraGroupPermissionGrant.
+description: This article provides details on the Get-EntraGroupPermissionGrant command.
 
 ms.service: entra
 ms.topic: reference
@@ -15,7 +15,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-EntraMSGroupPermissionGrant
+# Get-EntraGroupPermissionGrant
 
 ## SYNOPSIS
 
@@ -24,7 +24,7 @@ Retrieves a list of permission grants that have been consented for this group.
 ## SYNTAX
 
 ```powershell
-Get-EntraMSGroupPermissionGrant 
+Get-EntraGroupPermissionGrant 
  -Id <String> 
  [<CommonParameters>]
 ```
@@ -39,7 +39,7 @@ Retrieves a list of permission grants that have been consented for this group.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All' 
-Get-EntraMSGroupPermissionGrant -Id 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
+Get-EntraGroupPermissionGrant -Id 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
 ```
 
 ```output
