@@ -37,7 +37,7 @@ Get-EntraBetaMSGroupLifecyclePolicy
 ```
 
 ## DESCRIPTION
-The `Get-EntraBetaMSGroupLifecyclePolicy` command retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID.
+The `Get-EntraBetaMSGroupLifecyclePolicy` command retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID. Specify the `-Id` parameter to get the group lifecycle policy.
 If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 
 ## EXAMPLES
@@ -69,7 +69,7 @@ Id                                   AlternateNotificationEmails GroupLifetimeIn
 1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 admingroup@contoso.com      200                 All
 ```
 
-This command is used to retrieve a specific Microsoft Group Lifecycle Policy. The `-Id` parameter specifies the ID of the Lifecycle Policy to be retrieved.
+This command is used to retrieve a specific Microsoft Group Lifecycle Policy. The Id parameter specifies the ID of the Lifecycle Policy to be retrieved.
 
 ## PARAMETERS
 

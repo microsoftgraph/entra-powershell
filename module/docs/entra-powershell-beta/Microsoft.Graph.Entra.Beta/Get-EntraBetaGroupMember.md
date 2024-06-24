@@ -31,7 +31,7 @@ Get-EntraBetaGroupMember
 ```
 
 ## DESCRIPTION
-The `Get-EntraBetaGroupMember` cmdlet gets a member of a group in Microsoft Entra ID.
+The `Get-EntraBetaGroupMember` cmdlet gets a member of a group in Microsoft Entra ID. Specify the `ObjectId` parameter to get a member of a group.
 
 ## EXAMPLES
 

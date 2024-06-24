@@ -31,7 +31,7 @@ Get-EntraBetaGroupOwner
 ```
 
 ## DESCRIPTION
-The `Get-EntraBetaGroupOwner` cmdlet gets an owner of a group in Microsoft Entra ID.
+The `Get-EntraBetaGroupOwner` cmdlet gets an owner of a group in Microsoft Entra ID. Specify the `ObjectId` parameter to get a specific group owner.
 
 ## EXAMPLES
 
@@ -45,7 +45,7 @@ Id                                   DeletedDateTime
 --                                   ---------------
 996d39aa-fdac-4d97-aa3d-c81fb47362ac
 ```
-This example demonstrates how to retrieve the owner of a specific group. Specify the `ObjectId` parameter to get a specific group owner.
+This example demonstrates how to retrieve the owner of a specific group.
 
 ### Example 2: Gets all group owners
 ```powershell

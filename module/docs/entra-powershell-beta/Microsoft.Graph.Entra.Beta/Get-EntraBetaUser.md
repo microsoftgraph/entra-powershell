@@ -48,7 +48,7 @@ Get-EntraBetaUser
 ```
 
 ## DESCRIPTION
-The `Get-EntraBetaUser` cmdlet gets a user from Microsoft Entra ID.
+The `Get-EntraBetaUser` cmdlet gets a user from Microsoft Entra ID. Specify the `ObjectId` parameter to get a specific user.
 
 ## EXAMPLES
 
@@ -77,7 +77,7 @@ DisplayName Id                                   Mail                           
 Adele Vance bbbbbbbb-1111-2222-3333-cccccccccccc testUpn@tenant.com testUpn@tenant.com
 ```
 
-This command gets the specified user. Specify the `ObjectId` parameter to get a specific user.
+This command gets the specified user.
 
 ### Example 3: Search among retrieved users
 ```powershell

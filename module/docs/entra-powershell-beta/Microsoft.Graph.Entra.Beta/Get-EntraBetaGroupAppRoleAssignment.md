@@ -31,7 +31,7 @@ Get-EntraBetaGroupAppRoleAssignment
 ```
 
 ## DESCRIPTION
-The `Get-EntraBetaGroupAppRoleAssignment` cmdlet gets a group application role assignment in Microsoft Entra ID.
+The `Get-EntraBetaGroupAppRoleAssignment` cmdlet gets a group application role assignment in Microsoft Entra ID. Specify the `ObjectId` parameter to get a group application role assignment.
 
 ## EXAMPLES
 

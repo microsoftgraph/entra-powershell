@@ -49,7 +49,7 @@ Get-EntraBetaDevice
 ```
 
 ## DESCRIPTION
-The `Get-EntraBetaDevice` cmdlet gets a device from Microsoft Entra ID.
+The `Get-EntraBetaDevice` cmdlet gets a device from Microsoft Entra ID.Specify the `ObjectId` parameter to get a specific device.
 
 ## EXAMPLES
 
@@ -66,8 +66,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
                 bbbbbbbb-1111-1111-1111-cccccccccccc True
 ```
 
-This example demonstrates how to retrieve specific device by providing ID. Specify the `ObjectId` parameter to get a specific device.
-This command gets the specified device.
+This example demonstrates how to retrieve specific device by providing ID. This command gets the specified device.
 
 ### Example 2: Get all devices
 ```powershell

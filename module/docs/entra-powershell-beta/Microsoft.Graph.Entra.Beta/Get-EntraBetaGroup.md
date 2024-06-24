@@ -48,7 +48,7 @@ Get-EntraBetaGroup
 ```
 
 ## DESCRIPTION
-The `Get-EntraBetaGroup` cmdlet gets a group in Microsoft Entra ID.
+The `Get-EntraBetaGroup` cmdlet gets a group in Microsoft Entra ID. Specify the `ObjectId` parameter to get a specific group. 
 
 ## EXAMPLES
 
@@ -81,8 +81,7 @@ DisplayName                                       Id                            
 SimpleTestGrpbcd1865e-c8b9-4f90-8943-77607ef15590 1d7f20aa-bbcd-4822-ab28-092015b90692 NickName                 {}
 ```
 
-This example demonstrates how to retrieve specific group by providing ID. Specify the `ObjectId` parameter to get a specific group. 
-This command gets information for the group that has the specified ID.
+This example demonstrates how to retrieve specific group by providing ID. This command gets information for the group that has the specified ID.
 
 ### Example 3: Get top five groups 
 ```powershell
