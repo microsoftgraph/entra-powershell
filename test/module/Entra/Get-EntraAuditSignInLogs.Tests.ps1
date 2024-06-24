@@ -44,9 +44,9 @@ BeforeAll {
 Describe "Get-EntraAuditSignInLogs" {
     Context "Test for Get-EntraAuditSignInLogs" {
         It "Should return specific Audit SignIn Logs" {
-            $result = Get-EntraAuditSignInLogs -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraAuditSignInLogs -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc22"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+            $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccc22'
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }        
@@ -75,7 +75,7 @@ Describe "Get-EntraAuditSignInLogs" {
         It "Should return specific Audit SignIn Logs by filter" {
             $result = Get-EntraAuditSignInLogs -Filter "correlationId eq 'bbbbbbbb-1111-2222-3333-cccccccccc11'"
             $result | Should -Not -BeNullOrEmpty
-            $result.id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+            $result.id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccc22'
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }  
@@ -88,9 +88,9 @@ Describe "Get-EntraAuditSignInLogs" {
         }  
         
         It "Should contain ID in parameters when passed ObjectId to it" {
-            $result = Get-EntraAuditSignInLogs -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraAuditSignInLogs -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc22"
             
-            $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc22"
         }
         
         It "Should contain 'User-Agent' header" {
@@ -98,7 +98,7 @@ Describe "Get-EntraAuditSignInLogs" {
 
             Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAuditSignInLogs"
-        $result = Get-EntraAuditSignInLogs -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+        $result = Get-EntraAuditSignInLogs -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc22"
         $params = Get-Parameters -data $result
         $a= $params | ConvertTo-json | ConvertFrom-Json
         $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue 
