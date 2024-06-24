@@ -459,11 +459,7 @@ public $($object.GetType().Name)()
         $newCmdletData = @()
         $cmdletsToExport = @()
         $missingCmdletsToExport = @()
-        $cmdletsToSkip = @("Add-AzureADMSApplicationOwner", "Get-AzureADMSApplication", "Get-AzureADMSApplicationExtensionProperty", "New-AzureADMSApplication", "New-AzureADMSApplicationExtensionProperty", "Remove-AzureADMSApplication", "Remove-AzureADMSApplicationExtensionProperty", "Remove-AzureADMSApplicationOwner", "Set-AzureADMSApplication", "Set-AzureADMSApplicationLogo", "Get-AzureADMSGroup", "New-AzureADMSGroup", "Remove-AzureADMSGroup", "Set-AzureADMSGroup", "Add-AzureADMSAdministrativeUnitMember", "Add-AzureADMSScopedRoleMembership", "Get-AzureADMSScopedRoleMembership", "Remove-AzureADMSAdministrativeUnitMember", "Remove-AzureADMSScopedRoleMembership", "Add-AzureADMSApplicationOwner", "Get-AzureADMSApplication", "Get-AzureADMSApplicationExtensionProperty", "Get-AzureADMSApplicationOwner", "New-AzureADMSApplication", "New-AzureADMSApplicationExtensionProperty", "Remove-AzureADMSApplication", "Remove-AzureADMSApplicationExtensionProperty", "Remove-AzureADMSApplicationOwner", "Set-AzureADMSApplication", "Set-AzureADMSApplicationLogo", "Get-AzureADMSGroup", "New-AzureADMSGroup", "Remove-AzureADMSGroup", "Set-AzureADMSGroup", "Get-AzureADMSPrivilegedRoleAssignment", "Get-AzureADMSServicePrincipal", "Set-AzureADMSServicePrincipal", "Get-AzureADMSUser", "Set-AzureADMSUser","Get-AzureADMSApplicationOwner","Get-AzureADMSAdministrativeUnit","Get-AzureADMSAdministrativeUnitMember","New-AzureADMSAdministrativeUnit","Remove-AzureADMSAdministrativeUnit","Set-AzureADMSAdministrativeUnit")
         foreach ($cmd in $originalCmdlets.Keys){
-            if ($cmdletsToSkip -contains $cmd) {
-                continue
-            }
             $originalCmdlet = $originalCmdlets[$cmd]
             $newFunction = $this.GetNewCmdTranslation($cmd, $originalCmdlet, $targetCmdlets, $this.NewPrefix)
             if($newFunction){
