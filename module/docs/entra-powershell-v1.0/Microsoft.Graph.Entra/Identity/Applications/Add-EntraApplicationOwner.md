@@ -47,7 +47,7 @@ Add-EntraApplicationOwner -ObjectId $ApplicationId -RefObjectId $UserObjectId
 
 - The first command gets an application using [Get-EntraApplication](./Get-EntraApplication.md) cmdlet, and stores the ObjectId property value in $ApplicationId variable.  
 
-- The second command gets a user using [Get-EntraUser](./Get-EntraUser.md) cmdlet, and stores the ObjectId property value in $UserObjectId variable.  
+- The second command gets a user using [Get-EntraUser](./Others/Get-EntraUser.md) cmdlet, and stores the ObjectId property value in $UserObjectId variable.  
 
 - This final command adds an owner in $UserObjectId to an application in $ApplicationId.
 
