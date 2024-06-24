@@ -18,6 +18,7 @@ schema: 2.0.0
 # Remove-EntraTrustedCertificateAuthority
 
 ## SYNOPSIS
+
 Removes a trusted certificate authority.
 
 ## SYNTAX
@@ -29,14 +30,17 @@ Remove-EntraTrustedCertificateAuthority
 ```
 
 ## DESCRIPTION
+
 The Remove-EntraTrustedCertificateAuthority cmdlet removes a trusted certificate authority from Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Remove the trusted certificate authorities that are defined in your directory
+
 ```powershell
-PS C:\> $cer = Get-EntraTrustedCertificateAuthority #Get the CertificateAuthorityInformation object
-PS C:\> Remove-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
+Connect-Entra -Scopes 'Organization.ReadWrite.All'
+$cer = Get-EntraTrustedCertificateAuthority #Get the CertificateAuthorityInformation object
+Remove-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
 ```
 
 ```output
@@ -44,7 +48,7 @@ Name                           Value
 ----                           -----
 @odata.context                 https://graph.microsoft.com/v1.0/$metadata#certificateBasedAuthConfiguration/$entity
 certificateAuthorities         {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
-id                             29728ade-6ae4-4ee9-9103-412912537da5
+id                             0a0a0a0a-1111-bbbb-2222-3c3c3c3c3c3c
 ```
 
 This command deletes the trusted certificate authorities that are defined in your directory.
@@ -52,6 +56,7 @@ This command deletes the trusted certificate authorities that are defined in you
 ## PARAMETERS
 
 ### -CertificateAuthorityInformation
+
 Specifies a CertificateAuthorityInformation object.
 
 ```yaml
@@ -67,7 +72,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -82,4 +88,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [New-EntraTrustedCertificateAuthority](New-EntraTrustedCertificateAuthority.md)
 
 [Set-EntraTrustedCertificateAuthority](Set-EntraTrustedCertificateAuthority.md)
-

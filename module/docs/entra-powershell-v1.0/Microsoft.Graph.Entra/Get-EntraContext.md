@@ -18,11 +18,13 @@ schema: 2.0.0
 # Get-EntraContext
 
 ## SYNOPSIS
-Get-EntraContext is used to retrieve the details about your current session.
+
+`Get-EntraContext` is used to retrieve the details about your current session.
 
 ## SYNTAX
 
 ### GetQuery (Default)
+
 ```powershell
 Get-EntraContext
    [-ProgressAction <ActionPreference>]
@@ -30,23 +32,37 @@ Get-EntraContext
 ```
 
 ## DESCRIPTION
-Get-EntraContext is used to retrieve the details about your current session, which include:  - ClientID - TenantID -
-Certificate Thumbprint - Scopes consented to - AuthType: Delegated or app-only - AuthProviderType -
-CertificateName - Account - AppName - ContextScope - Certificate - PSHostVersion - ClientTimeOut.
+
+`Get-EntraContext` is used to retrieve the details about your current session, which include:  
+
+- ClientID
+- TenantID
+- Certificate Thumbprint
+- Scopes consented to
+- AuthType: Delegated or app-only
+- AuthProviderType
+- CertificateName
+- Account
+- AppName
+- ContextScope
+- Certificate
+- PSHostVersion
+- ClientTimeOut.
 
 ## EXAMPLES
 
-### Example 1: Get the current session.
+### Example 1: Get the current session
+
 ```powershell
 Get-EntraContext
-ClientId              : 615e6e7c-aa11-4402-91a1-6234967405d5
-TenantId              : 9f32a42e-6782-4b96-a4d3-e0828a292569
+ClientId              : 11112222-bbbb-3333-cccc-4444dddd5555
+TenantId              : aaaabbbb-0000-cccc-1111-dddd2222eeee
 CertificateThumbprint :
-Scopes                : {AppRoleAssignment.ReadWrite.All, Directory.AccessAsUser.All, Directory.ReadWrite.All, EntitlementManagement.ReadWrite.All...}
+Scopes                : {User.ReadWrite.All,...}
 AuthType              : Delegated
 AuthProviderType      : InteractiveAuthenticationProvider
 CertificateName       :
-Account               : admin@Contoso.com
+Account               : SawyerM@Contoso.com
 AppName               : Microsoft Graph PowerShell
 ContextScope          : CurrentUser
 Certificate           :
@@ -56,7 +72,8 @@ ClientTimeout         : 00:05:00
 
 This example demonstrates how to retrieve the details of the current session.
 
-### Example 2: Get the current session scopes.
+### Example 2: Get the current session scopes
+
 ```powershell
 Get-EntraContext | Select -ExpandProperty Scopes
 AppRoleAssignment.ReadWrite.All
@@ -74,14 +91,12 @@ User.ReadWrite.All
 
 Retrieves all scopes.
 
-
 ## PARAMETERS
 
 ### -ProgressAction
 
-
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -92,9 +107,9 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -103,4 +118,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
-
