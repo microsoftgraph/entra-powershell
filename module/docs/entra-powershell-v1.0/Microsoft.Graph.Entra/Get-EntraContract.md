@@ -44,7 +44,7 @@ Get-EntraContract
 
 ## DESCRIPTION
 
-The Get-EntraContract cmdlet gets a contract from Microsoft Entra ID.
+The `Get-EntraContract` cmdlet gets a contract information associated to a partner tenant.
 
 The contract object contains the following attributes:
 
@@ -82,6 +82,7 @@ It isn't automatically updated if the customer tenant's display name changes.
 ### Example 1: Get all contracts
 
 ```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
 Get-EntraContract
 ```
 
