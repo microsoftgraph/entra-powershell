@@ -18,6 +18,7 @@ schema: 2.0.0
 # Remove-EntraMSRoleAssignment
 
 ## SYNOPSIS
+
 Delete a Microsoft Entra ID roleAssignment.
 
 ## SYNTAX
@@ -29,13 +30,17 @@ Remove-EntraMSRoleAssignment
 ```
 
 ## DESCRIPTION
-The Remove-EntraMSRoleAssignment cmdlet removes a role assignment from Microsoft Entra ID.
+
+The `Remove-EntraMSRoleAssignment` cmdlet removes a role assignment from Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Remove a role assignment
+
 ```powershell
-PS C:\> Remove-EntraMSRoleAssignment -Id Y1vFBcN4i0e3ngdNDocmngJAWGnAbFVAnJQyBBLv1lM-1
+ Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory' #For the directory (Microsoft Entra ID) provider
+ Connect-Entra -Scopes 'EntitlementManagement.ReadWrite.All' #For the entitlement management provider
+ Remove-EntraMSRoleAssignment -Id Y1vFBcN4i0e3ngdNDocmngJAWGnAbFVAnJQyBBLv1lM-1
 ```
 
 Removes the specified role assignment from Microsoft Entra ID.
@@ -43,10 +48,11 @@ Removes the specified role assignment from Microsoft Entra ID.
 ## PARAMETERS
 
 ### -Id
+
 The unique identifier of an object in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -58,7 +64,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -67,3 +74,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[Get-EntraMSRoleAssignment](Get-EntraMSRoleAssignment.md)
+
+[New-EntraMSRoleAssignment](New-EntraMSRoleAssignment.md)
