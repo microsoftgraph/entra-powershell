@@ -19,6 +19,7 @@ schema: 2.0.0
 # Remove-EntraMSRoleDefinition
 
 ## SYNOPSIS
+
 Delete a Microsoft Entra ID roleDefinition by ObjectId.
 
 ## SYNTAX
@@ -30,24 +31,30 @@ Remove-EntraMSRoleDefinition
 ```
 
 ## DESCRIPTION
+
 Delete a Microsoft Entra ID roleDefinition object by ID.
+
+You can't delete built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
 
 ## EXAMPLES
 
-### Example 1: Remove a specified role definition.
+### Example 1: Remove a specified role definition
 
 ```powershell
-PS C:\> Remove-EntraMSRoleDefinition -Id 62e90894-69f5-4237-9190-012177145e10
+ Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+ Remove-EntraMSRoleDefinition -Id a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1
 ```
+
 This example demonstrates how to remove the specified role definition from Microsoft Entra ID.
 
 ## PARAMETERS
 
 ### -Id
+
 The unique identifier of an object in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -59,11 +66,13 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### string
+
 ## OUTPUTS
 
 ## NOTES
@@ -75,4 +84,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [New-EntraMSRoleDefinition](New-EntraMSRoleDefinition.md)
 
 [Set-EntraMSRoleDefinition](Set-EntraMSRoleDefinition.md)
-
