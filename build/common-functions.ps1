@@ -204,6 +204,67 @@ function Get-CustomizationFiles {
 	$customizationFileList
 }
 
+
+function Create-TOCFile {
+    param (
+        [string]
+        $Module = "Entra"
+    )
+
+    # Define the root directory to scan
+    $moduleDocsPath = Join-Path (Split-Path -Parent $psscriptroot) (Get-ConfigValue -Name ModuleSubdirectoryName)
+    $moduleDocsPath = Join-Path ($moduleDocsPath) (Get-ConfigValue -Name docsPath)
+    $outputFile=$moduleDocsPath
+    $moduleDocsPath = Join-Path ($moduleDocsPath) (Get-ConfigValue -Name ($Module + "Path"))
+
+    # Initialize the output content with the top-level entry and initial "Welcome" entry
+    $tocContent = @"
+- name: Overview
+  items:
+    - name: Welcome
+      href: index.md
+"@+"`n"
+
+    # Recursively get all .md files in the root directory
+    $mdFiles = Get-ChildItem -Path $moduleDocsPath -Recurse -Filter *.md
+
+    # List to hold individual toc entries
+    $tocEntries = @()
+
+	if ($PSBoundParameters["Module"] -eq "Entra") {
+		$rootDir = "Microsoft.Graph.Entra/"
+		$outputFile=$outputFile+"/entra-powershell-v1.0/toc1.yml"
+	} else {
+		$rootDir = "Microsoft.Graph.Entra.Beta/"
+		$outputFile="/entra-powershell-beta/toc1.yml"
+	}
+    foreach ($file in $mdFiles) {
+        # Generate the relative path from the root directory
+        $relativePath = $file.FullName.Substring($moduleDocsPath.Length + 1).Replace("\", "/")
+
+        # Generate the href path
+        $hrefPath = $rootDir + $relativePath
+
+        # Get the name of the file without extension
+        $name = [System.IO.Path]::GetFileNameWithoutExtension($file.Name)
+
+        # Generate the toc entry
+        $entry = "    - name: $name`n      href: $hrefPath"
+
+        # Add the entry to the list
+        $tocEntries += $entry
+    }
+
+    # Combine the top-level entry with the toc entries
+    $tocContent += ($tocEntries -join "`n")
+
+    # Output the content to the toc.yml file
+    $tocContent | Out-File -FilePath $outputFile -Encoding utf8
+
+    Write-Host "TOC generated successfully at $outputFile"
+}
+
+
 function Create-ModuleHelp {
 	param (
 		[string]
@@ -217,5 +278,7 @@ function Create-ModuleHelp {
 	$moduleDocsPath = Join-Path (Split-Path -Parent $psscriptroot) (Get-ConfigValue -Name ModuleSubdirectoryName)
 	$moduleDocsPath = Join-Path ($moduleDocsPath) (Get-ConfigValue -Name docsPath)
 	$moduleDocsPath = Join-Path ($moduleDocsPath) (Get-ConfigValue -Name ($Module + "Path"))
+	#Create the toc.yml file
+	Create-TOCFile -Module $PSBoundParameters["Module"]
 	New-ExternalHelp -Path $moduleDocsPath -OutputPath $binPath -Force
 }
