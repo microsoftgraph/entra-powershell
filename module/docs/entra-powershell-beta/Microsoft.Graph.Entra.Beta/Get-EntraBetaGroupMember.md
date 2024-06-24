@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaGroupMember comma
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/06/2023
+ms.date: 06/24/2023
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -31,14 +31,14 @@ Get-EntraBetaGroupMember
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaGroupMember cmdlet gets a member of a group in Microsoft Entra ID.
+The `Get-EntraBetaGroupMember` cmdlet gets a member of a group in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Get a group member by ID
 ```Powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroupMember -ObjectId "05b0552e-39cd-4df4-a8f5-00ade912e83d"
+Get-EntraBetaGroupMember -ObjectId '05b0552e-39cd-4df4-a8f5-00ade912e83d'
 ```
 ```output
 Id                                   DeletedDateTime
@@ -51,7 +51,7 @@ This example demonstrates how to retrieve group member by ID.
 ### Example 2: Get two group member
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -Top 2
+Get-EntraBetaGroupMember -ObjectId '0a58c57b-a9ae-49a2-824f-8e9cb86d4512' -Top 2
 ```
 ```output
 Id                                   DeletedDateTime
@@ -65,7 +65,7 @@ This example demonstrates how to retrieve top two groups from Microsoft Entra ID
 ### Example 3: Get all members within a group by group ID
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -All
+Get-EntraBetaGroupMember -ObjectId '0a58c57b-a9ae-49a2-824f-8e9cb86d4512' -All
 ```
 ```output
 Id                                   DeletedDateTime
@@ -128,7 +128,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

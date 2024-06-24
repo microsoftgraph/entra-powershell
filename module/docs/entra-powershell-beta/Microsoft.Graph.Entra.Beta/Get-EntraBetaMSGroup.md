@@ -92,7 +92,7 @@ Contoso Team 0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam  A collaboration a
 
 ```
 
-In this example, we provide the  ID to retrieve a specific group.Specify the `Id` parameter to get a specific group.
+In this example, we provide the  ID to retrieve a specific group. Specify the `Id` parameter to get a specific group.
 
 ### Example 3: Get top five groups
 
@@ -234,7 +234,7 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -Id
+### -ID
 Specifies the ID of the group that this cmdlet gets.
 
 ```yaml

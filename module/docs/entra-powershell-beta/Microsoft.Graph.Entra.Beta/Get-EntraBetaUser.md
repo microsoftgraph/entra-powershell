@@ -156,7 +156,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID (as a UPN or ObjectId) of a user in Microsoft Entra ID.
+Specifies the ID (as a user principal name (UPN) or ObjectId) of a user in Microsoft Entra ID.
 
 ```yaml
 Type: System.String

@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaGroupOwner comman
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/20/2024
+ms.date: 06/24/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -45,7 +45,7 @@ Id                                   DeletedDateTime
 --                                   ---------------
 996d39aa-fdac-4d97-aa3d-c81fb47362ac
 ```
-This example demonstrates how to retrieve the owner of a specific group.  Specify the `ObjectId` parameter to get a specific group owner.
+This example demonstrates how to retrieve the owner of a specific group. Specify the `ObjectId` parameter to get a specific group owner.
 
 ### Example 2: Gets all group owners
 ```powershell
