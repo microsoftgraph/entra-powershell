@@ -416,7 +416,6 @@ public $($object.GetType().Name)()
             ProjectUri = $($content.projectUri)
             IconUri = $($content.iconUri)
             ReleaseNotes = $($content.releaseNotes)
-            ExternalModuleDependencies = $($content.requiredModules)
             Prerelease = $null
         }
         $manisfestPath = Join-Path $this.OutputFolder "$($this.ModuleName).psd1"
