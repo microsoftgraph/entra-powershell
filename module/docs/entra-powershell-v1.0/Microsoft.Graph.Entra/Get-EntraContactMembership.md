@@ -60,6 +60,7 @@ This command gets all the memberships for specified contact.
 ### Example 2: Get all memberships of a contact
 
 ```powershell
+Connect-Entra -Scopes 'OrgContact.Read.All'
 Get-EntraContactMembership -ObjectId 'dddddddd-3333-4444-5555-eeeeeeeeeeee' -All
 ```
 
@@ -76,6 +77,7 @@ This command gets all the memberships for specified contact.
 ### Example 3: Get top two memberships of a contact
 
 ```powershell
+Connect-Entra -Scopes 'OrgContact.Read.All'
 Get-EntraContactMembership -ObjectId 'dddddddd-3333-4444-5555-eeeeeeeeeeee' -Top 2
 ```
 
