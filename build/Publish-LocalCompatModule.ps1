@@ -28,13 +28,13 @@ Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
 if ($Install) {
 	Install-Module -Name (Get-ModuleName) -Repository (Get-LocalPSRepoName) -AllowClobber
 
-	# Install-Module -Name Microsoft.Graph.DirectoryObjects -Repository (Get-LocalPSRepoName) -AllowClobber
-	# Install-Module -Name Microsoft.Graph.Users -Repository (Get-LocalPSRepoName) -AllowClobber
-	# Install-Module -Name Microsoft.Graph.Users.Actions -Repository (Get-LocalPSRepoName) -AllowClobber
-	# Install-Module -Name Microsoft.Graph.Users.Functions -Repository (Get-LocalPSRepoName) -AllowClobber
-	# Install-Module -Name Microsoft.Graph.Groups -Repository (Get-LocalPSRepoName) -AllowClobber
-	# Install-Module -Name Microsoft.Graph.Identity.DirectoryManagement -Repository (Get-LocalPSRepoName) -AllowClobber
-	# Install-Module -Name Microsoft.Graph.Identity.Governance -Repository (Get-LocalPSRepoName) -AllowClobber
-	# Install-Module -Name Microsoft.Graph.Identity.SignIns -Repository (Get-LocalPSRepoName) -AllowClobber
-	# Install-Module -Name Microsoft.Graph.Application -Repository (Get-LocalPSRepoName) -AllowClobber
+	Install-Module -Name Microsoft.Graph.DirectoryObjects -Repository (Get-LocalPSRepoName) -AllowClobber
+	Install-Module -Name Microsoft.Graph.Users -Repository (Get-LocalPSRepoName) -AllowClobber
+	Install-Module -Name Microsoft.Graph.Users.Actions -Repository (Get-LocalPSRepoName) -AllowClobber
+	Install-Module -Name Microsoft.Graph.Users.Functions -Repository (Get-LocalPSRepoName) -AllowClobber
+	Install-Module -Name Microsoft.Graph.Groups -Repository (Get-LocalPSRepoName) -AllowClobber
+	Install-Module -Name Microsoft.Graph.Identity.DirectoryManagement -Repository (Get-LocalPSRepoName) -AllowClobber
+	Install-Module -Name Microsoft.Graph.Identity.Governance -Repository (Get-LocalPSRepoName) -AllowClobber
+	Install-Module -Name Microsoft.Graph.Identity.SignIns -Repository (Get-LocalPSRepoName) -AllowClobber
+	Install-Module -Name Microsoft.Graph.Application -Repository (Get-LocalPSRepoName) -AllowClobber
 }
