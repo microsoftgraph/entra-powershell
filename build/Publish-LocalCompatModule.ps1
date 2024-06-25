@@ -13,6 +13,8 @@ param(
 $modulePath = Join-Path (Get-ModuleBasePath) (Get-ConfigValue -Name ModuleOutputSubdirectoryName)
 $modulePath = Join-Path $modulePath (Get-ModuleName)
 $moduleName = Get-ModuleName
+$moduleName = $moduleName.TrimStart("Microsoft.Graph.");
+$moduleName = $moduleName.Trim(".","");
 $settingPath = "$PSScriptRoot/../module/$ModuleName/config/ModuleSettings.json"
 $content = Get-Content -Path $settingPath | ConvertFrom-Json
 
