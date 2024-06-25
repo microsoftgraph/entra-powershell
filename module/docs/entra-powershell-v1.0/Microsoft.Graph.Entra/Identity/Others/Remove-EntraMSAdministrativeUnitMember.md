@@ -35,19 +35,26 @@ The Remove-EntraMSAdministrativeUnitMember cmdlet removes an administrative unit
 ## Examples
 
 ### Example 1: Remove an administrative unit
+
 ```powershell
-PS C:\> Remove-EntraMSAdministrativeUnitMember -Id c1c1decd-fec8-4899-9cea-5ca55a84965f -MemberId 201a21a3-201a-4101-92cb-239c00ef4a2a
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Remove-EntraMSAdministrativeUnitMember -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc' -MemberId 'eeeeeeee-4444-5555-6666-ffffffffffff'
 ```
 
-This command removes a specified member from a specified administrative unit.
+This command removes a specified member (user or group) from a specified administrative unit.
+
+- `-Id` - specifies the unique identifier (ID) of the administrative unit from which you want to remove a member. In this example, `bbbbbbbb-1111-2222-3333-cccccccccccc` represents the ID of the administrative unit.
+
+- `-MemberId` - specifies the unique identifier (Object ID) of the user or group you want to remove from the administrative unit. In this example, `eeeeeeee-4444-5555-6666-ffffffffffff` is the Object ID of the member being removed.
 
 ## Parameters
 
 ### -MemberId
+
 Specifies the ID of the administrative unit member.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -59,10 +66,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
+
 Specifies the ID of an administrative unit in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -74,7 +82,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -87,4 +96,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Add-EntraMSAdministrativeUnitMember](Add-EntraMSAdministrativeUnitMember.md)
 
 [Remove-EntraMSAdministrativeUnitMember](Remove-EntraMSAdministrativeUnitMember.md)
-

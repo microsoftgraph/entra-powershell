@@ -38,9 +38,7 @@ The `Set-EntraUserLicense` adds or removes licenses for a Microsoft online servi
 For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
 
 - Directory Writers
-
 - License Administrator
-
 - User Administrator
 
 ## Examples

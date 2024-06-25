@@ -35,8 +35,10 @@ The Remove-EntraServiceAppRoleAssignment cmdlet removes a service principal appl
 ## Examples
 
 ### Example 1: Removes a service principal application role assignment
+
 ```powershell
-PS C:\>  Remove-EntraServiceAppRoleAssignment -ObjectId cc7fcc82-ac1b-4785-af47-2ca3b7052886  -AppRoleAssignmentId u7EFjxI8P061FwF7a-d81zXC6iDJ4llOsgQr_6xUFLk
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+Remove-EntraServiceAppRoleAssignment -ObjectId '11112222-bbbb-3333-cccc-4444dddd5555'  -AppRoleAssignmentId '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6'
 ```
 
 This example demonstrates how to remove a service principal application role assignment in Microsoft Entra ID.
@@ -44,10 +46,11 @@ This example demonstrates how to remove a service principal application role ass
 ## Parameters
 
 ### -AppRoleAssignmentId
+
 Specifies the ID of the application role assignment.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -59,10 +62,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -74,7 +78,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

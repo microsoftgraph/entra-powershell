@@ -34,9 +34,10 @@ The Remove-EntraMSAdministrativeUnit cmdlet removes an administrative unit from 
 ## Examples
 
 ### Example 1: Remove an administrative unit
-```powershell
-PS C:\> Remove-EntraMSAdministrativeUnit -Id 76373ce0-821a-40b5-9aa2-e108e318f62e
 
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+Remove-EntraMSAdministrativeUnit -Id dddddddd-3333-4444-5555-eeeeeeeeeeee
 ```
 
 This example demonstrates how to remove an administrative unit with specified ID.
@@ -46,10 +47,11 @@ This example demonstrates how to remove an administrative unit with specified ID
 
 
 ### -Id
+
 Specifies the ID of an administrative unit in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -61,7 +63,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -74,4 +77,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraMSAdministrativeUnit](Get-EntraMSAdministrativeUnit.md)
 
 [Set-EntraMSAdministrativeUnit](Set-EntraMSAdministrativeUnit.md)
-

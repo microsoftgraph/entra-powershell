@@ -36,8 +36,10 @@ The **Add-EntraMSAdministrativeUnitMember** cmdlet adds a Microsoft Entra ID adm
 ## Examples
 
 ### Example 1: Add user as an administrative unit member
+
 ```powershell
-PS C:\>Add-EntraMSAdministrativeUnitMember -Id f306a126-cf2e-439d-b20f-95ce4bcb7ffa -RefObjectId d6873b36-81d6-4c5e-bec0-9e3ca2c86846
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+Add-EntraMSAdministrativeUnitMember -Id aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb -RefObjectId dddddddd-3333-4444-5555-eeeeeeeeeeee
 ```
 
 This command adds a user as an administrative unit member.
@@ -45,10 +47,11 @@ This command adds a user as an administrative unit member.
 ## Parameters
 
 ### -Id
+
 Specifies the ID of a Microsoft Entra ID administrative unit.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -60,10 +63,11 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
+
 Specifies the unique ID of the specific Microsoft Entra ID object that are as owner/manager/member.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -75,7 +79,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -88,4 +93,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraMSAdministrativeUnitMember](Get-EntraMSAdministrativeUnitMember.md)
 
 [Remove-EntraMSAdministrativeUnitMember](Remove-EntraMSAdministrativeUnitMember.md)
-

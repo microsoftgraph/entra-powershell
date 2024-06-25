@@ -35,29 +35,28 @@ The **Add-EntraDeviceRegisteredOwner** cmdlet adds a registered owner for a Micr
 ## Examples
 
 ### Example 1
+
 ```powershell
-PS C:\> $DeviceId = (Get-EntraDevice -top 1).ObjectId
-PS C:\> $UserObjectId = (Get-EntraUser -Top 1).ObjectId
-PS C:\> Add-EntraDeviceRegisteredOwner -ObjectId $DeviceId -RefObjectId $UserObjectId
+Connect-Entra -Scopes 'Device.ReadWrite.All'
+$DeviceId = (Get-EntraDevice -top 1).ObjectId
+$UserObjectId = (Get-EntraUser -Top 1).ObjectId
+Add-EntraDeviceRegisteredOwner -ObjectId $DeviceId -RefObjectId $UserObjectId
 ```
 
-The first command gets a device using [Get-EntraDevice](./Get-EntraDevice.md) cmdlet, and stores 
-the ObjectId property value in $DeviceId variable.  
+This examples shows how to add a registered owner to a device.
 
-The second command gets a user using [Get-EntraUser](./Get-EntraUser.md) cmdlet, and stores 
-the ObjectId property value in $UserObjectId variable.  
+`-ObjectId` - specifies the unique identifier (Object ID) of the device to which you want to add a registered owner. The $DeviceId variable should contain the Object ID of the device.
 
-This final command adds an owner in $UserObjectId to a device in $DeviceId.  
-
-This command adds an owner to a device.
+`-RefObjectId` - specifies the unique identifier (Object ID) of the user who will be added as a registered owner of the device. The $UserObjectId variable should contain the Object ID of the user.
 
 ## Parameters
 
 ### -ObjectId
+
 Specifies the object ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -69,10 +68,11 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
+
 Specifies the ID of the Active Directory object to add.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -84,7 +84,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -97,4 +98,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraDeviceRegisteredOwner](Get-EntraDeviceRegisteredOwner.md)
 
 [Remove-EntraDeviceRegisteredOwner](Remove-EntraDeviceRegisteredOwner.md)
-

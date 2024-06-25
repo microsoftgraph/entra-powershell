@@ -36,26 +36,28 @@ The Remove-EntraOAuth2PermissionGrant cmdlet removes an oAuth2PermissionGrant ob
 ### Example 1: Remove an OAuth2 permission grant
 
 ```powershell
-PS C:\> $SharePointSP = Get-EntraServicePrincipal | Where-Object {$_.DisplayName -eq "Microsoft.SharePoint"}
-PS C:\> $SharePointOA2AllSitesRead = Get-EntraOAuth2PermissionGrant | Where-Object {$_.ResourceId -eq $SharePointSP.ObjectId} | Where-Object {$_.Scope -eq "AllSites.Read"}
-PS C:\> Remove-EntraOAuth2PermissionGrant -ObjectId $SharePointOA2AllSitesRead.ObjectId
+ Connect-Entra -Scopes 'DelegatedPermissionGrant.ReadWrite.All'
+ $SharePointSP = Get-EntraServicePrincipal | Where-Object {$_.DisplayName -eq 'Microsoft.SharePoint'}
+ $SharePointOA2AllSitesRead = Get-EntraOAuth2PermissionGrant | Where-Object {$_.ResourceId -eq $SharePointSP.ObjectId} | Where-Object {$_.Scope -eq 'AllSites.Read'}
+ Remove-EntraOAuth2PermissionGrant -ObjectId $SharePointOA2AllSitesRead.ObjectId
 ```
 
-The first command gets a service principal that matches the specified display name by using the [Get-EntraServicePrincipal](./Get-EntraServicePrincipal.md) cmdlet. 
-The command stores the result in the $SharePointSP variable.
+This example shows how to remove an oAuth2PermissionGrant object in Microsoft Entra ID.
 
-The second command gets certain permission grants by using the [Get-EntraOAuth2PermissionGrant](./Get-EntraOAuth2PermissionGrant.md) cmdlet. 
-The command stores the result in the $SharePointOA2AllSitesRead variable.
+- The first command gets a service principal that matches the specified display name by using the [Get-EntraServicePrincipal](./Get-EntraServicePrincipal.md) cmdlet. The command stores the result in the $SharePointSP variable.
 
-The final command removes the permission grant in $SharePointOA2AllSitesRead.
+- The second command gets certain permission grants by using the [Get-EntraOAuth2PermissionGrant](./Get-EntraOAuth2PermissionGrant.md) cmdlet. The command stores the result in the $SharePointOA2AllSitesRead variable.
+
+- The final command removes the permission grant in $SharePointOA2AllSitesRead.
 
 ## Parameters
 
 ### -ObjectId
+
 Specifies the ID of an oAuth2PermissionGrant object in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -67,7 +69,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

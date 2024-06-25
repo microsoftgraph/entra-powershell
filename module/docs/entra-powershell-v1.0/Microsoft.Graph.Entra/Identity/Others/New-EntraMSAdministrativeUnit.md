@@ -35,27 +35,31 @@ The New-EntraMSAdministrativeUnit cmdlet creates an administrative unit in Micro
 ## Examples
 
 ### Example 1: Create an administrative unit
+
 ```powershell
-PS C:\> New-EntraMSAdministrativeUnit -DisplayName "TestAU"
+ Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+ New-EntraMSAdministrativeUnit -DisplayName 'TestAU'
 ```
 
-```output
+```Output
 DeletedDateTime Id                                   Description DisplayName Visibility
 --------------- --                                   ----------- ----------- ----------
-                eb7dee2b-4938-4835-b3e1-bb8207ae0814             TestAU
+                bbbbbbbb-1111-2222-3333-cccccccccccc             TestAU
 ```
 
 This command creates an administrative unit.
 
 ### Example 2: Create an administrative unit using '-Description' parameter
+
 ```powershell
-PS C:\> New-EntraMSAdministrativeUnit -DisplayName "test111" -Description "test111"
+ Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+ New-EntraMSAdministrativeUnit -DisplayName 'Pacific Administrative Unit' -Description 'Administrative Unit for Pacific region'
 ```
 
-```output
+```Output
 DeletedDateTime Id                                   Description DisplayName Visibility
 --------------- --                                   ----------- ----------- ----------
-                eb7dee2b-4938-4835-b3e1-bb8207ae0814 test111     test111
+                dddddddd-3333-4444-5555-eeeeeeeeeeee Administrative Unit for Pacific region     Pacific Administrative Unit
 ```
 
 This command creates an administrative unit.
@@ -63,10 +67,11 @@ This command creates an administrative unit.
 ## Parameters
 
 ### -Description
+
 Specifies a description for the new administrative unit.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -78,10 +83,11 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
+
 Specifies the display name of the new administrative unit.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -93,7 +99,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -108,4 +115,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraMSAdministrativeUnit](Remove-EntraMSAdministrativeUnit.md)
 
 [Set-EntraMSAdministrativeUnit](Set-EntraMSAdministrativeUnit.md)
-

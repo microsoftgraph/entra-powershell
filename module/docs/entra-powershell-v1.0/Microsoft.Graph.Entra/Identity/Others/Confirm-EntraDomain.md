@@ -35,15 +35,19 @@ The Confirm-EntraDomain cmdlet validates the ownership of a Microsoft Entra ID d
 ## Examples
 
 ### Example 1: Confirm the domain
+
 ```powershell
-PS C:\>Confirm-EntraDomain -Name Contoso.com
+Connect-Entra -Scopes 'Domain.ReadWrite.All'
+Confirm-EntraDomain -Name Contoso.com
 ```
 
 This command confirms your domain; changing the status to "Verified".
 
 ### Example 2: Confirm the domain with a cross cloud verification code
+
 ```powershell
-PS C:\>Confirm-EntraDomain -Name Contoso.com -CrossCloudVerificationCode ms84324896
+Connect-Entra -Scopes 'Domain.ReadWrite.All'
+Confirm-EntraDomain -Name Contoso.com -CrossCloudVerificationCode ms84324896
 ```
 
 This command confirms your domain for dual federation scenarios.
@@ -51,10 +55,11 @@ This command confirms your domain for dual federation scenarios.
 ## Parameters
 
 ### -Name
+
 Specifies the name of the domain.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -66,6 +71,7 @@ Accept wildcard characters: False
 ```
 
 ### -CrossCloudVerificationCode
+
 The cross-cloud domain verification code.
 
 ```yaml
@@ -81,7 +87,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

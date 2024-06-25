@@ -36,45 +36,51 @@ The Get-EntraMSAdministrativeUnitMember cmdlet gets a member of a Microsoft Entr
 ## Examples
 
 ### Example 1: Get an administrative unit member by ID
+
 ```powershell
-PS C:\> Get-EntraMSAdministrativeUnitMember -Id "ef08b536-9d0a-4f8f-bda5-8b9cd01a9159"
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraMSAdministrativeUnitMember -Id 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
 ```
 
-```output
+```Output
 Id                                   OdataType
 --                                   ---------
-b54e1419-0c09-4fdf-a7d6-0729afce35f8 #microsoft.graph.user
-4321d7f5-3457-4dd6-8117-e771a053f412 #microsoft.graph.user
-6e0a596f-982d-4b18-ba4b-a533ce775f8d #microsoft.graph.user
+bbbbbbbb-7777-8888-9999-cccccccccccc #microsoft.graph.user
+cccccccc-8888-9999-0000-dddddddddddd #microsoft.graph.user
+dddddddd-9999-0000-1111-eeeeeeeeeeee #microsoft.graph.user
 ```
 
 This example returns the list of administrative unit members from specified administrative unit ID.
 
 ### Example 2: Get all administrative unit members by ID
+
 ```powershell
-PS C:\> Get-EntraMSAdministrativeUnitMember -Id "ef08b536-9d0a-4f8f-bda5-8b9cd01a9159" -All
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraMSAdministrativeUnitMember -Id 'ffffffff-5555-6666-7777-aaaaaaaaaaaa' -All
 ```
 
-```output
+```Output
 Id                                   OdataType
 --                                   ---------
-b54e1419-0c09-4fdf-a7d6-0729afce35f8 #microsoft.graph.user
-4321d7f5-3457-4dd6-8117-e771a053f412 #microsoft.graph.user
-6e0a596f-982d-4b18-ba4b-a533ce775f8d #microsoft.graph.user
+bbbbbbbb-7777-8888-9999-cccccccccccc #microsoft.graph.user
+cccccccc-8888-9999-0000-dddddddddddd #microsoft.graph.user
+dddddddd-9999-0000-1111-eeeeeeeeeeee #microsoft.graph.user
 ```
 
 This example returns the list of administrative unit members from specified administrative unit ID.
 
 ### Example 3: Get top two administrative unit members by ID
+
 ```powershell
-PS C:\> Get-EntraMSAdministrativeUnitMember -Id "ef08b536-9d0a-4f8f-bda5-8b9cd01a9159" -Top 2
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraMSAdministrativeUnitMember -Id 'ffffffff-5555-6666-7777-aaaaaaaaaaaa' -Top 2
 ```
 
-```output
+```Output
 Id                                   OdataType
 --                                   ---------
-b54e1419-0c09-4fdf-a7d6-0729afce35f8 #microsoft.graph.user
-4321d7f5-3457-4dd6-8117-e771a053f412 #microsoft.graph.user
+bbbbbbbb-7777-8888-9999-cccccccccccc #microsoft.graph.user
+cccccccc-8888-9999-0000-dddddddddddd #microsoft.graph.user
 ```
 
 This example returns top specified administrative unit members from specified administrative unit ID.
@@ -82,10 +88,11 @@ This example returns top specified administrative unit members from specified ad
 ## Parameters
 
 ### -Id
+
 Specifies the ID of an administrative unit in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -97,10 +104,11 @@ Accept wildcard characters: False
 ```
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -112,10 +120,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -127,7 +136,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -140,4 +150,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Add-EntraMSAdministrativeUnitMember](Add-EntraMSAdministrativeUnitMember.md)
 
 [Remove-EntraMSAdministrativeUnitMember](Remove-EntraMSAdministrativeUnitMember.md)
-

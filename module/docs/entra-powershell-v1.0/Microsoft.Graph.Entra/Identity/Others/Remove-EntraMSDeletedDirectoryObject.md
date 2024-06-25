@@ -30,13 +30,20 @@ Remove-EntraMSDeletedDirectoryObject
 
 ## Description
 This cmdlet is used to permanently delete a previously deleted directory object.
+
 When a directory object is permanently deleted, it can no longer be restored.
 
 ## Examples
 
 ### Example 1: Delete a previously deleted directory object
+
 ```powershell
-Remove-EntraMSDeletedDirectoryObject -Id "aa644285-eb75-4389-885e-7233f096984c"
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Application resource type
+Connect-Entra -Scopes 'Group.ReadWrite.All' #Group resource type
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Service Principal resource type
+Connect-Entra -Scopes 'User.ReadWrite.All' #User resource type
+
+Remove-EntraMSDeletedDirectoryObject -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 This example demonstrates how to permanently delete a previously deleted directory object by Id.
@@ -44,10 +51,11 @@ This example demonstrates how to permanently delete a previously deleted directo
 ## Parameters
 
 ### -Id
+
 The Id of the directory object that is permanently deleted.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -59,7 +67,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

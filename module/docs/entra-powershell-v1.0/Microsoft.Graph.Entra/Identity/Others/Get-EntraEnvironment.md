@@ -33,46 +33,46 @@ Get-EntraEnvironment
 ### GetByName
 
 ```powershell
-PS C:\>Get-EntraEnvironment 
+Get-EntraEnvironment 
  -Name <String> 
  [<CommonParameters>]
 ```
 
 ## Description
 
-When you use Connect-Entra, you can choose to target other environments. By default, Connect-Entra targets the global public cloud.
+When you use `Connect-Entra`, you can choose to target other environments. By default, `Connect-Entra` targets the global public cloud.
 
 ## Examples
 
 ### Example 1: Get a list of public cloud environments
 
 ```powershell
-PS C:\>Get-EntraEnvironment
+Get-EntraEnvironment
 ```
 
-```output
-Name , AzureADEndpoint, GraphEndpoint, Type
----------         ------------------------------ --------------------------- ---------------
-China    https://login.chinacloudapi.cn    https://microsoftgraph.chinacloudapi.cn Built-in
+```Output
+Name     AzureADEndpoint                   GraphEndpoint                           Type
+----     ---------------                   -------------                           ----
 Global   https://login.microsoftonline.com https://graph.microsoft.com             Built-in
-USGov    https://login.microsoftonline.us  https://graph.microsoft.us              Built-in
+China    https://login.chinacloudapi.cn    https://microsoftgraph.chinacloudapi.cn Built-in
 USGovDoD https://login.microsoftonline.us  https://dod-graph.microsoft.us          Built-in
-Germany  https://login.microsoftonline.de  https://graph.microsoft.de              Built-in                                                                                      {}
+USGov    https://login.microsoftonline.us  https://graph.microsoft.us              Built-in
+Germany  https://login.microsoftonline.de  https://graph.microsoft.de              Built-in
+Canary   https://login.microsoftonline.com https://canary.graph.microsoft.com      User-defined
 ```
 
 This command retrieves a list of global public Environments.
 
-### Example 2: Get a specific environment created.
+### Example 2: Get a specific environment created
 
 ```powershell
-PS C:\>Get-EntraEnvironment -Name "Global"
+Get-EntraEnvironment -Name 'Global'
 ```
 
-```output
-Name , AzureADEndpoint, GraphEndpoint, Type
-
---------         ------------------ ------------------ --------
-Global   https://login.microsoftonline.com https://graph.microsoft.com             Built-in                                                                                  {}
+```Output
+Name   AzureADEndpoint                   GraphEndpoint               Type
+----   ---------------                   -------------               ----
+Global https://login.microsoftonline.com https://graph.microsoft.com Built-in
 ```
 
 This command retrieves an environment with the specified name.
@@ -94,7 +94,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
