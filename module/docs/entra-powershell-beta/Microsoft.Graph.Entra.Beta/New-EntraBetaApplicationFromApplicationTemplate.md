@@ -24,7 +24,7 @@ This cmdlet allows users to create application from application template
 
 ### 1. Creates an application from application template
 ```
-PS C:\> $instantiated_app = New-EntraBetaMSApplicationTemplate -Id  e8b7b394-057d-4203-a93a-1879c28ece38 -DisplayName bugzilla-copy1
+PS C:\> $instantiated_app = New-EntraBetaApplicationTemplate -Id  e8b7b394-057d-4203-a93a-1879c28ece38 -DisplayName bugzilla-copy1
 ```
 
 This command instantiates a new application based on application template referenced by the id.

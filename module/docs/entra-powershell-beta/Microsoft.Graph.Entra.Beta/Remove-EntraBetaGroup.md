@@ -18,7 +18,7 @@ Remove-EntraBetaGroup -ObjectId <String> [<CommonParameters>]
 
 ## DESCRIPTION
 The Remove-EntraBetaGroup cmdlet removes a group from Azure Active Directory (AD).
-Note that a Unified Group can be restored withing 30 days after deletion using the Restore-EntraBetaMSDeletedDirectoryObject cmdlet.
+Note that a Unified Group can be restored withing 30 days after deletion using the Restore-EntraBetaDeletedDirectoryObject cmdlet.
 Security groups cannot be restored after deletion.
 
 ## EXAMPLES
