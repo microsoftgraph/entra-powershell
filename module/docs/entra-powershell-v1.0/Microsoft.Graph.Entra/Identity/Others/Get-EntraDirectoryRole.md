@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraDirectoryRole
 
-## SYNOPSIS
+## Synopsis
 
 Gets a directory role.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -39,11 +39,11 @@ Get-EntraDirectoryRole
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraDirectoryRole` cmdlet gets a directory role from Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a directory role by ID
 
@@ -113,7 +113,7 @@ ObjectId                             DisplayName                        Descript
 
 This command gets the directory role by display name.
 
-## PARAMETERS
+## Parameters
 
 ### -Filter
 
@@ -152,12 +152,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Enable-EntraDirectoryRole](Enable-EntraDirectoryRole.md)

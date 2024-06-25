@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Add-EntraMSAdministrativeUnitMember
 
-## SYNOPSIS
+## Synopsis
 Adds an administrative unit member.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraMSAdministrativeUnitMember 
@@ -30,10 +30,10 @@ Add-EntraMSAdministrativeUnitMember
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The **Add-EntraMSAdministrativeUnitMember** cmdlet adds a Microsoft Entra ID administrative unit member.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add user as an administrative unit member
 ```powershell
@@ -42,7 +42,7 @@ PS C:\>Add-EntraMSAdministrativeUnitMember -Id f306a126-cf2e-439d-b20f-95ce4bcb7
 
 This command adds a user as an administrative unit member.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 Specifies the ID of a Microsoft Entra ID administrative unit.
@@ -77,13 +77,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraMSAdministrativeUnitMember](Get-EntraMSAdministrativeUnitMember.md)
 

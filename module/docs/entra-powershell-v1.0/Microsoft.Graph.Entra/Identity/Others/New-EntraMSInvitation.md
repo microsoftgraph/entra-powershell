@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # New-EntraMSInvitation
 
-## SYNOPSIS
+## Synopsis
 This cmdlet is used to invite a new external user to your directory.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraMSInvitation 
@@ -33,10 +33,10 @@ New-EntraMSInvitation
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet is used to invite a new external user to your directory.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Invite a new external user to your directory.
 
@@ -208,7 +208,7 @@ AdditionalProperties    : @{@odata.context=https://graph.microsoft.com/v1.0/$met
 ```
 This example demonstrates how to invite a new external user to your directory with InvitedUserType parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -InvitedUserDisplayName
 The display name of the user as it appears in your directory.
@@ -320,12 +320,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### None
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraMSConditionalAccessPolicy
 
-## SYNOPSIS
+## Synopsis
 
 Gets a Microsoft Entra ID conditional access policy.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -38,12 +38,12 @@ Get-EntraMSConditionalAccessPolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 This cmdlet allows an admin to get the Microsoft Entra ID conditional access policy.
 Conditional access policies are custom rules that define an access scenario.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieves a list of all conditional access policies in Microsoft Entra ID
 
@@ -77,7 +77,7 @@ eeeeeeee-4444-5555-6666-ffffffffffff 2/27/2024 6:23:21 AM             Conditiona
 
 This command retrieves the conditional access policy in Microsoft Entra ID specified by the `-PolicyID`.
 
-## PARAMETERS
+## Parameters
 
 ### -PolicyId
 
@@ -99,13 +99,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [New-EntraMSConditionalAccessPolicy](New-EntraMSConditionalAccessPolicy.md)
 

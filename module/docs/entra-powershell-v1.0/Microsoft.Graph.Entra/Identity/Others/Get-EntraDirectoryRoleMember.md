@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraDirectoryRoleMember
 
-## SYNOPSIS
+## Synopsis
 
 Gets members of a directory role.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraDirectoryRoleMember 
@@ -29,11 +29,11 @@ Get-EntraDirectoryRoleMember
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraDirectoryRoleMember` cmdlet gets the members of a directory role in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get members by role ID
 
@@ -55,7 +55,7 @@ identities                      : {@{signInType=userPrincipalName; issuer=contos
 
 This command demonstrates how to get the members of the specified role.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -77,13 +77,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Add-EntraDirectoryRoleMember](Add-EntraDirectoryRoleMember.md)
 

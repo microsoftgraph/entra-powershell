@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraSubscribedSku
 
-## SYNOPSIS
+## Synopsis
 
 Gets subscribed SKUs to Microsoft services.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -38,11 +38,11 @@ Get-EntraSubscribedSku
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraSubscribedSku` cmdlet gets subscribed SKUs to Microsoft services.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get subscribed SKUs
 
@@ -81,7 +81,7 @@ abcdefgh-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 00aa00
 
 This example shows how to retrieve specified subscribed SKUs.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -103,10 +103,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

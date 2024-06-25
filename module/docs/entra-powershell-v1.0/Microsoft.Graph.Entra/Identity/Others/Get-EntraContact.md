@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraContact
 
-## SYNOPSIS
+## Synopsis
 Gets a contact from Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```powershell
@@ -39,10 +39,10 @@ Get-EntraContact
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraContact cmdlet gets a contact from Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve all contact objects in the directory
 ```powershell
@@ -115,7 +115,7 @@ b052db07-e7ec-4c0e-b481-a5ba550b9ee7 contact@contoso.com  Contoso Contact
 
 This command retrieves contacts having the specified display name.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -180,12 +180,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Remove-EntraContact](Remove-EntraContact.md)

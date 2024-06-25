@@ -16,10 +16,10 @@ schema: 2.0.0
 
 # Set-EntraMSApplicationLogo
 
-## SYNOPSIS
+## Synopsis
 Sets the logo for an application object.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraMSApplicationLogo 
@@ -28,10 +28,10 @@ Set-EntraMSApplicationLogo
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Sets the logo for an application object.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Sets the logo of the application
 ```powershell
@@ -40,7 +40,7 @@ PS C:\> Set-EntraMSApplicationLogo -ObjectId 121ce3aa-64cb-44f2-99e8-deb705caedd
 
 This command updates the application logo.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique identifier of the object specific Microsoft Entra ID object
@@ -75,12 +75,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### String
 ### Byte[]
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

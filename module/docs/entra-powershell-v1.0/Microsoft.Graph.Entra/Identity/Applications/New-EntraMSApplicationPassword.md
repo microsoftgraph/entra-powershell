@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # New-EntraMSApplicationPassword
 
-## SYNOPSIS
+## Synopsis
 Adds a strong password to an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraMSApplicationPassword 
@@ -30,10 +30,10 @@ New-EntraMSApplicationPassword
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Adds a strong password to an application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a password to an application
 ```powershell
@@ -48,7 +48,7 @@ CustomKeyIdentifier DisplayName EndDateTime           Hint KeyId                
 
 This command adds a password to the specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique identifier of the object specific Microsoft Entra ID object
@@ -83,16 +83,16 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### String
 ### Microsoft.Open.MSGraph.Model.PasswordCredential
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.PasswordCredential
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Remove-EntraMSApplicationPassword](Remove-EntraMSApplicationPassword.md)
 

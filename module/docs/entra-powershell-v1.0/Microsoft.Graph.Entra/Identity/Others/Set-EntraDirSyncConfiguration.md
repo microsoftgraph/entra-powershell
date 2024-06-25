@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Set-EntraDirSyncConfiguration
 
-## SYNOPSIS
+## Synopsis
 Modifies the directory synchronization settings.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraDirSyncConfiguration 
@@ -31,10 +31,10 @@ Set-EntraDirSyncConfiguration
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraDirSyncConfiguration cmdlet modifies the directory synchronization settings.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Set directory synchronization settings
 ```powershell
@@ -50,7 +50,7 @@ PS C:\> Set-EntraDirSyncConfiguration -AccidentalDeletionThreshold 600 -TenantId
 
 This command sets directory synchronization settings by TenantId.
 
-## PARAMETERS
+## Parameters
 
 ### -AccidentalDeletionThreshold
 Specifies the accidental deletion threshold.
@@ -100,17 +100,17 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.UInt32
 
 ### System.Guid
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraDirSyncConfiguration](Get-EntraDirSyncConfiguration.md)

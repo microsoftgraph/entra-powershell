@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraMSScopedRoleMembership
 
-## SYNOPSIS
+## Synopsis
 Gets a scoped role membership from an administrative unit.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraMSScopedRoleMembership 
@@ -29,10 +29,10 @@ Get-EntraMSScopedRoleMembership
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraMSScopedRoleMembership cmdlet gets a scoped role membership from an administrative unit in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get Scoped Role Administrator
 ```powershell
@@ -61,7 +61,7 @@ AdministrativeUnitId                 Id                                         
 
 This command gets the list of scoped role membership from a specified administrative unit.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 Specifies the ID of an object.
@@ -96,13 +96,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Add-EntraMSScopedRoleMembership](Add-EntraMSScopedRoleMembership.md)
 

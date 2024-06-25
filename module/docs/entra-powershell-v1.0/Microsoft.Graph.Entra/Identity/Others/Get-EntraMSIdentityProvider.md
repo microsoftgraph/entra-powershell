@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraMSIdentityProvider
 
-## SYNOPSIS
+## Synopsis
 
 This cmdlet is used to retrieve the configured identity providers in the directory.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -38,7 +38,7 @@ Get-EntraMSIdentityProvider
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 This cmdlet is used to retrieve the identity providers that are configured in the directory.
 These identity providers can be used to allow users to sign up for or sign into applications secured by Microsoft Entra ID B2C.
@@ -48,7 +48,7 @@ For example, for an organization that has resources in Office 365 that need to b
 
 The current set of identity providers can be Microsoft, Google, Facebook, Amazon, or LinkedIn.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve all identity providers
 
@@ -83,7 +83,7 @@ Google-OAUTH Test
 
 This example retrieves the properties for the specified identity provider.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -105,14 +105,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

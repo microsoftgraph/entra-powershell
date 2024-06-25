@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Set-EntraUserPassword
 
-## SYNOPSIS
+## Synopsis
 Sets the password of a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraUserPassword 
@@ -31,10 +31,10 @@ Set-EntraUserPassword
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraUserPassword cmdlet sets the password for a user in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Set a user's password.
 
@@ -59,7 +59,7 @@ PS C:\>Set-EntraUserPassword -ObjectId  "df19e8e6-2ad7-453e-87f5-037f6529ae16" -
 
 This command sets the specified user's password with ForceChangePasswordNextLogin parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -EnforceChangePasswordPolicy
 If set to true, force the user to change their password.
@@ -124,10 +124,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

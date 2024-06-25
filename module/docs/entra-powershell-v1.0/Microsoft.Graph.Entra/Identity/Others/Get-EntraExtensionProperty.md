@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraExtensionProperty
 
-## SYNOPSIS
+## Synopsis
 Gets extension properties registered with Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraExtensionProperty 
@@ -28,11 +28,11 @@ Get-EntraExtensionProperty
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraExtensionProperty cmdlet gets a collection that contains the extension properties registered with Microsoft Entra ID through Microsoft Entra ID Connect. 
 You can get extension properties that are synced with on-premises Microsoft Entra ID that aren't synced with on-premises Microsoft Entra ID or both types.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get extension properties synced from on-premises Microsoft Entra ID
 ```powershell
@@ -48,7 +48,7 @@ b3c7b2c2-bb9a-4e30-a9fc-46adbe8c0899 extension_6e151e1a9cf44f8689a410023ac39235_
 
 This command gets extension properties that have sync from on-premises Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -IsSyncedFromOnPremises
 Specifies whether this cmdlet gets extension properties that are synced or not synced.
@@ -73,10 +73,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

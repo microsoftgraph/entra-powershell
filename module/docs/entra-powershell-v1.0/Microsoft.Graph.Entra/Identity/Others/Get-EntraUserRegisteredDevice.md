@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraUserRegisteredDevice
 
-## SYNOPSIS
+## Synopsis
 
 Get devices registered by a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraUserRegisteredDevice
@@ -31,11 +31,11 @@ Get-EntraUserRegisteredDevice
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraUserRegisteredDevice cmdlet gets devices registered by a user in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get registered devices
 
@@ -85,7 +85,7 @@ eeeeeeee-4444-5555-6666-ffffffffffff
 
 This command gets the top two devices that are registered to the specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -139,10 +139,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

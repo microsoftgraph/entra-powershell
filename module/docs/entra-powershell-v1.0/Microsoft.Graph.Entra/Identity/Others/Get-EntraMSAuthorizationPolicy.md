@@ -16,20 +16,20 @@ schema: 2.0.0
 
 # Get-EntraMSAuthorizationPolicy
 
-## SYNOPSIS
+## Synopsis
 Gets an authorization policy, which represents a policy that can control Microsoft Entra ID authorization settings.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraMSAuthorizationPolicy 
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraMSAuthorizationPolicy cmdlet gets a Microsoft Entra ID authorization policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get an authorization policy by ID.
 
@@ -47,18 +47,18 @@ DeletedDateTime Description DisplayName            Id                  AllowEmai
 ```
 This command gets the Microsoft Entra ID authorization policy.
 
-## PARAMETERS
+## Parameters
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Set-EntraMSAuthorizationPolicy](Set-EntraMSAuthorizationPolicy.md)
 

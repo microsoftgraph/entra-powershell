@@ -17,12 +17,12 @@ schema: 2.0.0
 
 # Get-EntraMSGroupLifecyclePolicy
 
-## SYNOPSIS
+## Synopsis
 
 Retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID.
 If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -39,12 +39,12 @@ Get-EntraMSGroupLifecyclePolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraMSGroupLifecyclePolicy command retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID.
 If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve all groupLifecyclePolicies
 
@@ -78,7 +78,7 @@ Id                                   AlternateNotificationEmails GroupLifetimeIn
 
 This command is used to retrieve a specific Microsoft Group Lifecycle Policy. The `-Id` parameter specifies the ID of the Lifecycle Policy to be retrieved.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -100,16 +100,16 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

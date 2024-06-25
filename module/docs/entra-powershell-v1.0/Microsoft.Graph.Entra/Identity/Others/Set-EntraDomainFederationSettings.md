@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Set-EntraDomainFederationSettings
 
-## SYNOPSIS
+## Synopsis
 Updates settings for a federated domain.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraDomainFederationSettings 
@@ -40,10 +40,10 @@ Set-EntraDomainFederationSettings
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraDomainFederationSettings cmdlet is used to update the settings of a single sign-on domain.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Set the PromptLoginBehavior
 ```powershell
@@ -58,7 +58,7 @@ This command updates the `PromptLoginBehavior` to either `TranslateToFreshPasswo
 
 Use the `Get-EntraDomainFederationSettings -DomainName <your_domain_name> | Format-List *` to get the values for `PreferredAuthenticationProtocol` and `PromptLoginBehavior` for the federated domain.
 
-## PARAMETERS
+## Parameters
 
 ### -DomainName
 The fully qualified domain name (FQDN) to update.
@@ -245,11 +245,11 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 [Get-EntraDomainFederationSettings](./Get-EntraDomainFederationSettings.md)

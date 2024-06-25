@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraServiceAppRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 Gets a service principal application role assignment.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraServiceAppRoleAssignment 
@@ -30,10 +30,10 @@ Get-EntraServiceAppRoleAssignment
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraServiceAppRoleAssignment cmdlet gets a role assignment for a service principal application in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the application role assignments for a service principal
 
@@ -80,7 +80,7 @@ DeletedDateTime Id                                          AppRoleId           
 ```
 This command gets three application role assignments for specified service principal.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -129,13 +129,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
 

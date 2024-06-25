@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Set-EntraMSPermissionGrantConditionSet
 
-## SYNOPSIS
+## Synopsis
 Update an existing Microsoft Entra ID permission grant condition set.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraMSPermissionGrantConditionSet 
@@ -39,10 +39,10 @@ Set-EntraMSPermissionGrantConditionSet
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Updates a Microsoft Entra ID permission grant condition set object identified by id.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update a permission grant condition set to includes permissions that is classified as low.
 ```powershell
@@ -58,7 +58,7 @@ PS C:\> Set-EntraMSPermissionGrantConditionSet -PolicyId "policy1" -ConditionSet
 
 This command updates sets the specified permission grant set.
 
-## PARAMETERS
+## Parameters
 
 ### -PolicyId
 The unique identifier of a Microsoft Entra ID permission grant policy object.
@@ -233,16 +233,16 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### String
 ### String
 ### String
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [New-EntraMSPermissionGrantConditionSet](New-EntraMSPermissionGrantConditionSet.md)
 

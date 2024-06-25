@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Remove-EntraMSDeletedDirectoryObject
 
-## SYNOPSIS
+## Synopsis
 This cmdlet is used to permanently delete a previously deleted directory object.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraMSDeletedDirectoryObject 
@@ -28,11 +28,11 @@ Remove-EntraMSDeletedDirectoryObject
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet is used to permanently delete a previously deleted directory object.
 When a directory object is permanently deleted, it can no longer be restored.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Delete a previously deleted directory object
 ```powershell
@@ -41,7 +41,7 @@ Remove-EntraMSDeletedDirectoryObject -Id "aa644285-eb75-4389-885e-7233f096984c"
 
 This example demonstrates how to permanently delete a previously deleted directory object by Id.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The Id of the directory object that is permanently deleted.
@@ -61,15 +61,15 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraMSDeletedDirectoryObject](Get-EntraMSDeletedDirectoryObject.md)
 

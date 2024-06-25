@@ -16,10 +16,10 @@ schema: 2.0.0
 
 # Connect-Entra
 
-## SYNOPSIS
+## Synopsis
 Connects with an authenticated account to use Microsoft Entra ID cmdlet requests.
 
-## SYNTAX
+## Syntax
 
 ### UserParameterSet (Default)
 ```powershell
@@ -95,13 +95,13 @@ Connect-Entra
 [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Connect-Entra` cmdlet connects an authenticated account to use for Microsoft Entra ID cmdlet requests.
 
 You can use this authenticated account only with Microsoft Entra ID cmdlets.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Connect a session using a ApplicationId and CertificateThumbprint
 
@@ -287,7 +287,7 @@ PS C:\> Connect-Entra -EnvironmentVariable
 
 This Example allows for authentication using environment variables.
 
-## PARAMETERS
+## Parameters
 
 ### -CertificateThumbprint
 Specifies the certificate thumbprint of a digital public key X.509 certificate of a user account that has permission to perform this action.
@@ -547,12 +547,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Disconnect-Entra](Disconnect-Entra.md)

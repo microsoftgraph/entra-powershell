@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraUserExtension
 
-## SYNOPSIS
+## Synopsis
 
 Gets a user extension.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraUserExtension 
@@ -29,11 +29,11 @@ Get-EntraUserExtension
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraUserExtension cmdlet gets a user extension in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve extension attributes for a user
 
@@ -49,7 +49,7 @@ This example shows how to retrieve the extension attributes for a specified user
 
 - The second command retrieves all extension attributes that have a value assigned to them for the user identified by $UserId.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -71,13 +71,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraUser](Get-EntraUser.md)
 

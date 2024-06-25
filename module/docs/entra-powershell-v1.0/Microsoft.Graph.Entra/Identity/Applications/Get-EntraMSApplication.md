@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraMSApplication
 
-## SYNOPSIS
+## Synopsis
 
 Retrieves the list of applications within the organization.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -51,12 +51,12 @@ Get-EntraMSApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 Retrieves the list of applications within the organization.
 With an ObjectId argument, it can retrieve the properties of the application object associated with the ObjectId.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve a list of all applications
 
@@ -172,7 +172,7 @@ Test App5                 eeeeeeee-4444-5555-6666-ffffffffffff 44445555-eeee-666
 
 This command gets a list of applications, which have the specified display name.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -259,15 +259,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.MsApplication
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [New-EntraMSApplication](New-EntraMSApplication.md)
 

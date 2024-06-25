@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Remove-EntraServiceAppRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 Removes a service principal application role assignment.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraServiceAppRoleAssignment 
@@ -29,10 +29,10 @@ Remove-EntraServiceAppRoleAssignment
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraServiceAppRoleAssignment cmdlet removes a service principal application role assignment in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Removes a service principal application role assignment
 ```powershell
@@ -41,7 +41,7 @@ PS C:\>  Remove-EntraServiceAppRoleAssignment -ObjectId cc7fcc82-ac1b-4785-af47-
 
 This example demonstrates how to remove a service principal application role assignment in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -AppRoleAssignmentId
 Specifies the ID of the application role assignment.
@@ -76,13 +76,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraServiceAppRoleAssignment](Get-EntraServiceAppRoleAssignment.md)
 

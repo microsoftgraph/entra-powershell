@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Add-EntraDirectoryRoleMember
 
-## SYNOPSIS
+## Synopsis
 
 Adds a member to a directory role.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraDirectoryRoleMember 
@@ -30,11 +30,11 @@ Add-EntraDirectoryRoleMember
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Add-EntraDirectoryRoleMember` cmdlet adds a member to a Microsoft Entra ID role.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a member to a Microsoft Entra ID role
 
@@ -45,7 +45,7 @@ Add-EntraDirectoryRoleMember -ObjectId '019ea7a2-1613-47c9-81cb-20ba35b1ae48' -R
 
 This command adds a member to a directory role. The `-ObjectId` parameter specifies the ID of the role to which the member should be added, and the `-RefObjectId` parameter specifies the ID of the member to be added.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -83,13 +83,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraDirectoryRoleMember](Get-EntraDirectoryRoleMember.md)
 

@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # New-EntraMSRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 Create a new Microsoft Entra ID roleAssignment.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraMSRoleAssignment 
@@ -30,10 +30,10 @@ New-EntraMSRoleAssignment
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraMSRoleAssignment cmdlet creates a new Microsoft Entra ID role assignment.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a new Microsoft Entra ID role assignment
 ```powershell
@@ -48,7 +48,7 @@ shjUVMBM7kebOej4Ttjgcz2U7QLKbplPg9bm-_ncY64-1 02ed943d-6eca-4f99-83d6-e6fbf9dc63
 
 This command creates a new role assignment.
 
-## PARAMETERS
+## Parameters
 
 ### -DirectoryScopeId
 Specifies the scope for the role assignment.
@@ -98,11 +98,11 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleAssignment
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

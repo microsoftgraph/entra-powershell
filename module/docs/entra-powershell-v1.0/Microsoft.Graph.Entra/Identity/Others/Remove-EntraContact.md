@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Remove-EntraContact
 
-## SYNOPSIS
+## Synopsis
 Removes a contact.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraContact 
@@ -28,10 +28,10 @@ Remove-EntraContact
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraContact removes a contact from Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a contact
 ```powershell
@@ -43,7 +43,7 @@ The first command gets a contact by using the [Get-EntraContact](./Get-EntraCont
 
 The second command removes the contact in $Contact.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the object ID of a contact in Microsoft Entra ID.
@@ -63,13 +63,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraContact](Get-EntraContact.md)
 

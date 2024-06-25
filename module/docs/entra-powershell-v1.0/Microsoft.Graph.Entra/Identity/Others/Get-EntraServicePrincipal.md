@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraServicePrincipal
 
-## SYNOPSIS
+## Synopsis
 
 Gets a service principal.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -51,11 +51,11 @@ Get-EntraServicePrincipal
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraServicePrincipal cmdlet gets a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve all service principal from the directory
 
@@ -159,7 +159,7 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 Projec
 
 This command gets a list of service principal, which has the specified display name.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -247,13 +247,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
 

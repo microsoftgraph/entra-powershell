@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Set-EntraMSGroup
 
-## SYNOPSIS
+## Synopsis
 
 Sets the properties for an existing Microsoft Entra ID group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraMSGroup 
@@ -37,11 +37,11 @@ Set-EntraMSGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Set-EntraMSGroup cmdlet sets the properties for an existing Microsoft Entra ID group.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update a group display name
 
@@ -96,7 +96,7 @@ Set-EntraMSGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -Visibility 'Private
 
 This example demonstrates how to update a property for an existing Microsoft Entra ID group.  
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 
@@ -260,17 +260,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraMSGroup](Get-EntraMSGroup.md)
 

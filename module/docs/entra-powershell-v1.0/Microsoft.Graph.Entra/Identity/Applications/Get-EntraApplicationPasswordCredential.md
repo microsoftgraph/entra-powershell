@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraApplicationPasswordCredential
 
-## SYNOPSIS
+## Synopsis
 
 Gets the password credential for an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraApplicationPasswordCredential 
@@ -29,11 +29,11 @@ Get-EntraApplicationPasswordCredential
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraApplicationPasswordCredential` cmdlet gets the password credentials for a Microsoft Entra ID application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get password credential for specified application
 
@@ -50,7 +50,7 @@ CustomKeyIdentifier  DisplayName EndDateTime           Hint KeyId               
 
 This command gets the password credential for specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -72,10 +72,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # Set-EntraUserLicense
 
-## SYNOPSIS
+## Synopsis
 
 Adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraUserLicense 
@@ -31,7 +31,7 @@ Set-EntraUserLicense
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Set-EntraUserLicense` adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
@@ -43,7 +43,7 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 
 - User Administrator
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a license to a user based on a template user
 
@@ -60,7 +60,7 @@ Set-EntraUserLicense -ObjectId $User.ObjectId -AssignedLicenses $Licenses
 
 This example demonstrates how to assign a license to a user.
 
-## PARAMETERS
+## Parameters
 
 ### -AssignedLicenses
 
@@ -98,12 +98,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraUser](Get-EntraUser.md)

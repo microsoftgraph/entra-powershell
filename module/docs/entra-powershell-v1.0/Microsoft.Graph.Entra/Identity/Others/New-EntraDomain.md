@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # New-EntraDomain
 
-## SYNOPSIS
+## Synopsis
 Creates a domain.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraDomain 
@@ -30,10 +30,10 @@ New-EntraDomain
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraDomain cmdlet creates a domain in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a new Domain
 ```powershell
@@ -74,7 +74,7 @@ testingDemo2.com Managed                               True           False     
 This example demonstrates how to create a new domain in Microsoft Entra ID.   
 This command creates a new domain and marks it as the default to be used for new user creation.
 
-## PARAMETERS
+## Parameters
 
 ### -IsDefault
 Indicates whether or not this is the default domain that is used for user creation.
@@ -125,13 +125,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Confirm-EntraDomain](Confirm-EntraDomain.md)
 

@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraDomainVerificationDnsRecord
 
-## SYNOPSIS
+## Synopsis
 Retrieve the domain verification DNS record for a domain.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraDomainVerificationDnsRecord 
@@ -28,12 +28,12 @@ Get-EntraDomainVerificationDnsRecord
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Gets the domain's verification records from the verificationDnsRecords navigation property. 
 You can't use the domain with your Microsoft Entra ID tenant until you have successfully verified that you own the domain.
 To verify the ownership of the domain, you need to first retrieve a set of domain verification records that you need to add to the zone file of the domain.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the domain verification DNS record
 ```powershell
@@ -49,7 +49,7 @@ aceff52c-06a5-447f-ac5f-256ad243cc5c False      M365x99297270.mail.onmicrosoft.c
 This example shows how to retrieve the Domain verification DNS records for a domain with the given name.  
 This command retrieves the domain verification DNS records for the given domain name.
 
-## PARAMETERS
+## Parameters
 
 ### -Name
 The domain name for which the domain verification Domain Name System (DNS) records are to be retrieved.
@@ -69,12 +69,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

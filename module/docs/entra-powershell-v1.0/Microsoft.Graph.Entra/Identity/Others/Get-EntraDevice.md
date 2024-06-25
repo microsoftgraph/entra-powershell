@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraDevice
 
-## SYNOPSIS
+## Synopsis
 Gets a device from Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```powershell
@@ -47,10 +47,10 @@ Get-EntraDevice
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraDevice cmdlet gets a device from Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a device by ID
 ```powershell
@@ -131,7 +131,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
 This example demonstrates how to retrieve devices by search string from Microsoft Entra ID.  
 This command gets all devices that match the value of SearchString against the first characters in DisplayName.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -212,13 +212,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [New-EntraDevice](New-EntraDevice.md)
 

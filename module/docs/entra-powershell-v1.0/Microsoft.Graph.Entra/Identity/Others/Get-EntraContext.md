@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraContext
 
-## SYNOPSIS
+## Synopsis
 Get-EntraContext is used to retrieve the details about your current session.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```powershell
@@ -29,12 +29,12 @@ Get-EntraContext
    [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Get-EntraContext is used to retrieve the details about your current session, which include:  - ClientID - TenantID -
 Certificate Thumbprint - Scopes consented to - AuthType: Delegated or app-only - AuthProviderType -
 CertificateName - Account - AppName - ContextScope - Certificate - PSHostVersion - ClientTimeOut.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the current session.
 ```powershell
@@ -75,7 +75,7 @@ User.ReadWrite.All
 Retrieves all scopes.
 
 
-## PARAMETERS
+## Parameters
 
 ### -ProgressAction
 
@@ -96,11 +96,11 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 

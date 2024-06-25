@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Set-EntraMSGroupLifecyclePolicy
 
-## SYNOPSIS
+## Synopsis
 
 Updates a specific group Lifecycle Policy in Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraMSGroupLifecyclePolicy 
@@ -32,11 +32,11 @@ Set-EntraMSGroupLifecyclePolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Set-EntraMSGroupLifecyclePolicy command updates a specific group Lifecycle Policy in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Updates group lifecycle policy
 
@@ -60,7 +60,7 @@ This command is used to set the properties of a specific Microsoft Group Lifecyc
 
 In this case, "All" suggests that the policy manages all types of groups.
 
-## PARAMETERS
+## Parameters
 
 ### -AlternateNotificationEmails
 
@@ -134,17 +134,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraMSGroupLifecyclePolicy](Get-EntraMSGroupLifecyclePolicy.md)
 

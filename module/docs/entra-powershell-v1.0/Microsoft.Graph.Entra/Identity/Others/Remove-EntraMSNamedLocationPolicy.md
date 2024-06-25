@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Remove-EntraMSNamedLocationPolicy
 
-## SYNOPSIS
+## Synopsis
 Deletes a Microsoft Entra ID named location policy by PolicyId.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraMSNamedLocationPolicy 
@@ -28,11 +28,11 @@ Remove-EntraMSNamedLocationPolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet allows an admin to delete the Microsoft Entra ID named location policy.
 Named locations are custom rules that define network locations, which can then be used in a Conditional Access policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Deletes a named location policy in  Microsoft Entra ID with given PolicyId.
 ```Powershell
@@ -41,7 +41,7 @@ PS C:\> Remove-EntraMSNamedLocationPolicy -PolicyId 76fdfd4d-bd80-4c1e-8fd4-6abf
 
 This command demonstrates how to delete the named location policy in  Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -PolicyId
 Specifies the ID of a named location policy in Microsoft Entra ID.
@@ -61,12 +61,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
-## RELATED LINKS
+## Notes
+## Related LINKS
 
 [New-EntraMSNamedLocationPolicy](New-EntraMSNamedLocationPolicy.md)
 

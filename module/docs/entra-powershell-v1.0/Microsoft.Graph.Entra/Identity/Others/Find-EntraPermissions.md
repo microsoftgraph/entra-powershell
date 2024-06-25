@@ -17,7 +17,7 @@ schema: 2.0.0
 
 # Find-EntraPermissions
 
-## SYNOPSIS
+## Synopsis
 
 The Microsoft Entra PowerShell SDK application requires users to have domain knowledge of both the semantics and
 syntax of Microsoft Entra API permissions used to authorize access to the API. This cmdlet helps to answer the
@@ -30,7 +30,7 @@ and scripts, including those implemented with Microsoft Entra PowerShell SDK its
 user input that refers to permissions or providing "auto-complete" user experiences to help users accurately
 supply input to commands
 
-## SYNTAX
+## Syntax
 
 
 ### Add Entra Environment Name
@@ -45,7 +45,7 @@ Find-EntraPermissions
     [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Microsoft Entra PowerShell SDK application requires users to have domain knowledge of both the semantics and
 syntax of Microsoft Entra API permissions used to authorize access to the API. This cmdlet helps to answer the
@@ -58,7 +58,7 @@ and scripts, including those implemented with Microsoft Entra PowerShell SDK its
 user input that refers to permissions or providing "auto-complete" user experiences to help users accurately
 supply input to commands
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a list of all Application permissions.
 
@@ -105,7 +105,7 @@ Name           : Application.Read.All
 Description    : Allows the app to read all applications and service principals without a signed-in user.
 ```
 
-## PARAMETERS
+## Parameters
 
 
 ### -SearchString
@@ -193,11 +193,11 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 

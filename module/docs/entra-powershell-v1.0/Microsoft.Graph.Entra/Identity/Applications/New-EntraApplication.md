@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # New-EntraApplication
 
-## SYNOPSIS
+## Synopsis
 
 Creates an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraApplication 
@@ -62,11 +62,11 @@ New-EntraApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `New-EntraApplication` cmdlet creates an application in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create an application
 
@@ -154,7 +154,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc
 
 This example shows how to create an application having `-IsDeviceOnlyAuthSupported` parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -AddIns
 
@@ -720,13 +720,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraApplication](Get-EntraApplication.md)
 

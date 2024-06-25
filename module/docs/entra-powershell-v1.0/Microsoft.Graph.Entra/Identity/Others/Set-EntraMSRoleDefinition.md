@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Set-EntraMSRoleDefinition
 
-## SYNOPSIS
+## Synopsis
 Update an existing Microsoft Entra ID roleDefinition.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraMSRoleDefinition 
@@ -35,10 +35,10 @@ Set-EntraMSRoleDefinition
 [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Updates a Microsoft Entra ID roleDefinition object identified by ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update an roleDefinition.
 
@@ -75,7 +75,7 @@ PS C:\> Set-EntraMSRoleDefinition -Id 54d418b2-4cc0-47ee-9b39-e8f84ed8e073 -Desc
 This example updates the RolePermissions, TemplateId, TemplateId, ResourceScopes  of specified role definition in Microsoft Entra ID.
 
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The unique identifier of an object in Microsoft Entra ID
@@ -199,14 +199,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### String
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraMSRoleDefinition](Get-EntraMSRoleDefinition.md)
 

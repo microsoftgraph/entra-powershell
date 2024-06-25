@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Set-EntraMSAuthorizationPolicy
 
-## SYNOPSIS
+## Synopsis
 Updates an authorization policy.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraMSAuthorizationPolicy 
@@ -34,10 +34,10 @@ Set-EntraMSAuthorizationPolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraMSAuthorizationPolicy cmdlet updates a Microsoft Entra ID authorization policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update an authorization policy
 ```powershell
@@ -59,7 +59,7 @@ This example demonstrates how to update a DefaultUserRolePermissions of authoriz
 First command stored the DefaultUserRolePermissions in a variable.  
 Second command updates the DefaultUserRolePermissions of authorization policy.
 
-## PARAMETERS
+## Parameters
 
 ### -AllowedToSignUpEmailBasedSubscriptions
 Specifies whether users can sign up for email based subscriptions.
@@ -172,14 +172,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### Microsoft.Open.MSGraph.Model.DefaultUserRolePermissions
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraMSAuthorizationPolicy](Get-EntraMSAuthorizationPolicy.md)
 

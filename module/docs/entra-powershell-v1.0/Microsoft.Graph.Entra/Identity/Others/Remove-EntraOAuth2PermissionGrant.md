@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Remove-EntraOAuth2PermissionGrant
 
-## SYNOPSIS
+## Synopsis
 Removes an oAuth2PermissionGrant.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraOAuth2PermissionGrant 
@@ -28,10 +28,10 @@ Remove-EntraOAuth2PermissionGrant
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraOAuth2PermissionGrant cmdlet removes an oAuth2PermissionGrant object in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove an OAuth2 permission grant
 
@@ -49,7 +49,7 @@ The command stores the result in the $SharePointOA2AllSitesRead variable.
 
 The final command removes the permission grant in $SharePointOA2AllSitesRead.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the ID of an oAuth2PermissionGrant object in Microsoft Entra ID.
@@ -69,13 +69,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraOAuth2PermissionGrant](Get-EntraOAuth2PermissionGrant.md)
 

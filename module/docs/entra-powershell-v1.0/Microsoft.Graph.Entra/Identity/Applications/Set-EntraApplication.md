@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Set-EntraApplication
 
-## SYNOPSIS
+## Synopsis
 
 Updates an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraApplication 
@@ -63,11 +63,11 @@ Set-EntraApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 Updates an application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update display name of an application
 
@@ -114,7 +114,7 @@ Set-EntraApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Identifie
 
 This command updates the identifier uris of the specified application.  
 
-## PARAMETERS
+## Parameters
 
 ### -AddIns
 
@@ -692,13 +692,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraApplication](Get-EntraApplication.md)
 

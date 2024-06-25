@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Get-EntraDomainFedrationSettings
 
-## SYNOPSIS
+## Synopsis
 Gets key settings for a federated domain.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraDomainFedrationSettings 
@@ -30,20 +30,20 @@ Get-EntraDomainFedrationSettings
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraDomainFederationSettings cmdlet gets key settings from Microsoft Entra ID.
 Use the [Get-EntraFederationProperty](./Get-EntraFederationProperty.md) cmdlet to get settings for both Microsoft Entra ID and the Entra ID Federation Services server.
 
-## EXAMPLES
+## Examples
 
-### EXAMPLE 1: Get federation settings for specified domain
+### Example 1: Get federation settings for specified domain
 ```powershell
 PS C:\> Get-EntraDomainFederationSettings -DomainName contoso.com
 ```
 
 This command gets federation settings for specified domain.
 
-## PARAMETERS
+## Parameters
 
 ### -DomainName
 The fully qualified domain name to retrieve.
@@ -80,9 +80,9 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Online.Administration.DomainFederationSettings
 ### This cmdlet returns the following settings:
@@ -94,6 +94,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ###         NextSigningCertificate
 ###         PassiveLogOnUri
 ###         SigningCertificate
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Remove-EntraDeviceRegisteredOwner
 
-## SYNOPSIS
+## Synopsis
 
 Removes the registered owner of a device.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraDeviceRegisteredOwner 
@@ -30,11 +30,11 @@ Remove-EntraDeviceRegisteredOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Remove-EntraDeviceRegisteredOwner` cmdlet removes the registered owner of a device in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove an owner from a device
 
@@ -55,7 +55,7 @@ This examples shows how to remove the owner of a device.
 
 - The final command removes the owner in `$Owner` from the device in `$Device`.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -93,13 +93,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Add-EntraDeviceRegisteredOwner](Add-EntraDeviceRegisteredOwner.md)
 

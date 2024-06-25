@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Remove-EntraMSApplicationExtensionProperty
 
-## SYNOPSIS
+## Synopsis
 Deletes an extension property from an application object.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraMSApplicationExtensionProperty 
@@ -29,10 +29,10 @@ Remove-EntraMSApplicationExtensionProperty
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Deletes an extension property from an application object.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove an extension property
 ```powershell
@@ -43,7 +43,7 @@ This command removes the extension property that has the specified ID from an ap
 - ObjectId:  The ObjectId of the specified Application.
 - ExtensionPropertyId: The unique ID of the extension property to remove.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the unique ID of an application in Microsoft Entra ID.
@@ -78,14 +78,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### String
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraMSApplicationExtensionProperty](Get-EntraMSApplicationExtensionProperty.md)
 

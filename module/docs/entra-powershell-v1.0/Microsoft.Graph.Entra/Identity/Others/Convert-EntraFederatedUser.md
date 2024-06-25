@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Convert-EntraFederatedUser
 
-## SYNOPSIS
+## Synopsis
 Updates a user in a domain that was recently converted from single sign-on (also known as identity federation) to standard authentication type.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Convert-EntraFederatedUser
@@ -30,19 +30,19 @@ Convert-EntraFederatedUser
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Convert-EntraFederatedUser cmdlet is used to update a user in a domain that was recently converted from single sign-on (also known as identity federation) to standard authentication type. A new password must be provided for the user.
 
-## EXAMPLES
+## Examples
 
-### EXAMPLE 1: Update a user in a domain
+### Example 1: Update a user in a domain
 ```powershell
 PS C:\> Convert-EntraFederatedUser -UserPrincipalName "pattifuller@contoso.com"
 ```
 
 This command updates a user in a domain.
 
-## PARAMETERS
+## Parameters
 
 ### -UserPrincipalName
 The Microsoft Entra ID UserID for the user to convert.
@@ -77,10 +77,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Set-EntraMSAdministrativeUnit
 
-## SYNOPSIS
+## Synopsis
 Updates an administrative unit.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraMSAdministrativeUnit 
@@ -30,10 +30,10 @@ Set-EntraMSAdministrativeUnit
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraMSAdministrativeUnit cmdlet updates an administrative unit in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update the display name
 ```powershell
@@ -49,7 +49,7 @@ PS C:\> Set-EntraMSAdministrativeUnit -Id f306a126-cf2e-439d-b20f-95ce4bcb7ffa -
 
 This command updates the description of the specified administrative unit.
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 Specifies a description.
@@ -99,13 +99,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraMSAdministrativeUnit](Get-EntraMSAdministrativeUnit.md)
 

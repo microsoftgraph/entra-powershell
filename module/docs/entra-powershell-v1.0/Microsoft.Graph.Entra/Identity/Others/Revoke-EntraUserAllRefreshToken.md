@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Revoke-EntraUserAllRefreshToken
 
-## SYNOPSIS
+## Synopsis
 
 Invalidates the refresh tokens issued to applications for a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Revoke-EntraUserAllRefreshToken 
@@ -29,13 +29,13 @@ Revoke-EntraUserAllRefreshToken
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Revoke-EntraUserAllRefreshToken` cmdlet invalidates the refresh tokens issued to applications for a user.
 The cmdlet also invalidates tokens issued to session cookies in a browser for the user.
 The cmdlet operates by resetting the refreshTokensValidFromDateTime user property to the current date and time.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Revoke refresh tokens for a user
 
@@ -46,7 +46,7 @@ Revoke-EntraUserAllRefreshToken -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 
 This example demonstrates how to revoke the tokens for the specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -68,12 +68,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Revoke-EntraSignedInUserAllRefreshToken](Revoke-EntraSignedInUserAllRefreshToken.md)

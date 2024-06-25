@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Remove-EntraMSGroup
 
-## SYNOPSIS
+## Synopsis
 
 Removes a Microsoft Entra ID group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraMSGroup 
@@ -29,11 +29,11 @@ Remove-EntraMSGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Remove-EntraMSGroup cmdlet removes a Microsoft Entra ID group.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a group
 
@@ -44,7 +44,7 @@ The Remove-EntraMSGroup cmdlet removes a Microsoft Entra ID group.
 
 This example demonstrates how to remove the group with specified ID.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -66,17 +66,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraMSGroup](Get-EntraMSGroup.md)
 

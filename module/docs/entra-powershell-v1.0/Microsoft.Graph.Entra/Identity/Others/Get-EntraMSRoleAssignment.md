@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraMSRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 Get a Microsoft Entra ID roleAssignment.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```powershell
@@ -47,10 +47,10 @@ Get-EntraMSRoleAssignment
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraMSRoleAssignment cmdlet gets information about role assignments in Microsoft Entra ID. To get a role assignment, specify the Id parameter. Specify the SearchString or Filter parameter to find a particular role assignment.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get role assignments
 ```powershell
@@ -131,7 +131,7 @@ lAPpYvVpN0KRkAEhdxReECkf15ESHNtAil5w2vuw328-1 91d71f29-1c12-40db-8a5e-70dafbb0df
 
 This command gets top two role assignments.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The unique identifier of a Microsoft Entra ID roleAssignment object.
@@ -210,14 +210,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### string
 ### bool?
 ### int?
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleAssignment
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

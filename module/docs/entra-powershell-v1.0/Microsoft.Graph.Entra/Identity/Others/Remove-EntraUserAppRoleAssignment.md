@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Remove-EntraUserAppRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 
 Removes a user application role assignment.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraUserAppRoleAssignment
@@ -30,11 +30,11 @@ Remove-EntraUserAppRoleAssignment
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Remove-EntraUserAppRoleAssignment cmdlet removes a user application role assignment in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 
@@ -51,7 +51,7 @@ Remove-EntraUserAppRoleAssignment @RemoveAppRoleParams
 
 This example demonstrates how to Remove the user app role assignment in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -AppRoleAssignmentId
 
@@ -89,13 +89,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraUserAppRoleAssignment](Get-EntraUserAppRoleAssignment.md)
 

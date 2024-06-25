@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Add-EntraMSScopedRoleMembership
 
-## SYNOPSIS
+## Synopsis
 
 Adds a scoped role membership to an administrative unit.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraMSScopedRoleMembership 
@@ -32,11 +32,11 @@ Add-EntraMSScopedRoleMembership
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Add-EntraMSScopedRoleMembership cmdlet adds a scoped role membership to an administrative unit.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a scoped role membership to an administrative unit
 
@@ -69,7 +69,7 @@ The final command assigns the role member in $RoleMember and role in $Role to th
 
 This cmdlet returns the Scope role membership object.
 
-## PARAMETERS
+## Parameters
 
 ### -AdministrativeUnitId
 
@@ -139,13 +139,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraMSScopedRoleMembership](Get-EntraMSScopedRoleMembership.md)
 

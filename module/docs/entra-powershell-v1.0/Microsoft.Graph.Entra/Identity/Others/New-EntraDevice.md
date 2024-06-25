@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # New-EntraDevice
 
-## SYNOPSIS
+## Synopsis
 Creates a device.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraDevice 
@@ -43,10 +43,10 @@ New-EntraDevice
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraDevice cmdlet creates a device in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a device
 ```powershell
@@ -61,7 +61,7 @@ ObjectId                             DeviceId                             Displa
 
 This command creates a new device.
 
-## PARAMETERS
+## Parameters
 
 ### -AccountEnabled
 Indicates whether the account is enabled.
@@ -291,13 +291,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraDevice](Get-EntraDevice.md)
 

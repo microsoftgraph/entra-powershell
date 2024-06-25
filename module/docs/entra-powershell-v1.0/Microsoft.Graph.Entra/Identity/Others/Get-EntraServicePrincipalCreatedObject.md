@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraServicePrincipalCreatedObject
 
-## SYNOPSIS
+## Synopsis
 
 Get objects created by a service principal.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraServicePrincipalCreatedObject 
@@ -31,11 +31,11 @@ Get-EntraServicePrincipalCreatedObject
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraServicePrincipalCreatedObject cmdlet gets an object created by a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the objects created by a service principal
 
@@ -69,7 +69,7 @@ Get-EntraServicePrincipalCreatedObject -ObjectId '00001111-aaaa-2222-bbbb-3333cc
 
 This example demonstrates how to get the top two object created by a specified service principal in Microsoft Entra ID.  
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -123,12 +123,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)

@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Get-EntraFederationProperty
 
-## SYNOPSIS
+## Synopsis
 Displays the properties of the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraFederationProperty 
@@ -29,10 +29,10 @@ Get-EntraFederationProperty
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraFederationProperty cmdlet gets key settings from both the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online. You can use this information to troubleshoot authentication problems caused by mismatched settings between the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Display properties for specified domain
 ```powershell
@@ -41,7 +41,7 @@ PS C:\> Get-EntraFederationProperty -DomainName contoso.com
 
 This command displays properties for specified domain.
 
-## PARAMETERS
+## Parameters
 
 ### -DomainName
 The domain name for which the properties from both the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online are displayed.
@@ -61,10 +61,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

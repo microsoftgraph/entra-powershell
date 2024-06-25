@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Set-EntraTenantDetail
 
-## SYNOPSIS
+## Synopsis
 Set contact details for a tenant.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraTenantDetail 
@@ -32,10 +32,10 @@ Set-EntraTenantDetail
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet is used to set various contact details for a tenant.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Set contact details for a tenant
 ```powershell
@@ -73,7 +73,7 @@ PS C:\WINDOWS\system32> Set-EntraTenantDetail -TechnicalNotificationMails "peter
 This example demonstrates how to set TechnicalNotificationMails detail for a tenant.
 
 
-## PARAMETERS
+## Parameters
 
 ### -MarketingNotificationEmails
 The email address that is used to send marketing notification emails.
@@ -153,14 +153,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### None
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraTenantDetail](Get-EntraTenantDetail.md)

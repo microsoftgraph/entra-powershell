@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraMSGroup
 
-## SYNOPSIS
+## Synopsis
 
 Gets information about groups in Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -51,14 +51,14 @@ Get-EntraMSGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraMSGroup cmdlet gets information about groups in Microsoft Entra ID.
 To get a group, specify the ID parameter.
 Specify the SearchString or Filter parameter and find particular groups.
 If you specify no parameters, this cmdlet gets all groups.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all groups
 
@@ -144,7 +144,7 @@ new1                    ffffffffff-7777-9999-7777-vvvvvvvvvvv new1              
 
 This example demonstrates how to retrieve groups using SearchString against the first characters in DisplayName or Description attributes.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -231,19 +231,19 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
 System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [New-EntraMSGroup](New-EntraMSGroup.md)
 
