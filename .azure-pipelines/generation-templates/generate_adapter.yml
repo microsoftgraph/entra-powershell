@@ -88,7 +88,9 @@ steps:
   displayName: 'Publish to Local Gallery Entra'
   inputs:
     targetType: inline
-    script: ./build/Publish-LocalCompatModule.ps1 -Install
+    script: |
+      ./build/Install-Dependencies.ps1 -ModuleName Entra -Verbose
+      ./build/Publish-LocalCompatModule.ps1 -Install
     pwsh: false
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Module Nuget File Entra'
@@ -159,7 +161,9 @@ steps:
   displayName: 'Publish to Local Gallery EntraBeta'
   inputs:
     targetType: inline
-    script: ./build/Publish-LocalCompatModule.ps1 -Install
+    script: |
+      ./build/Install-Dependencies.ps1 -ModuleName EntraBeta -Verbose
+      ./build/Publish-LocalCompatModule.ps1 -Install
     pwsh: false
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Module Nuget File EntraBeta'
