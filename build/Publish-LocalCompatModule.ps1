@@ -22,7 +22,7 @@ Publish-Module -Name Microsoft.Graph.Groups -RequiredVersion '2.15.0' -Repositor
 Publish-Module -Name Microsoft.Graph.Identity.DirectoryManagement -RequiredVersion '2.15.0' -Repository (Get-LocalPSRepoName)
 Publish-Module -Name Microsoft.Graph.Identity.Governance -RequiredVersion '2.15.0' -Repository (Get-LocalPSRepoName)
 Publish-Module -Name Microsoft.Graph.Identity.SignIns -RequiredVersion '2.15.0' -Repository (Get-LocalPSRepoName)
-Publish-Module -Name Microsoft.Graph.Application -RequiredVersion '2.15.0' -Repository (Get-LocalPSRepoName)
+Publish-Module -Name Microsoft.Graph.Application -RequiredVersion '2.15.0' -Repository (Get-LocalPSRepoName) -Force
 
 Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
 
