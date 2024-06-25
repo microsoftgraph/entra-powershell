@@ -22,7 +22,7 @@ Publish-Module -Name Microsoft.Graph.Groups -RequiredVersion '2.15.0' -Repositor
 Publish-Module -Name Microsoft.Graph.Identity.DirectoryManagement -RequiredVersion '2.15.0' -Repository (Get-LocalPSRepoName)
 Publish-Module -Name Microsoft.Graph.Identity.Governance -RequiredVersion '2.15.0' -Repository (Get-LocalPSRepoName)
 Publish-Module -Name Microsoft.Graph.Identity.SignIns -RequiredVersion '2.15.0' -Repository (Get-LocalPSRepoName)
-Publish-Module -Name Microsoft.Graph.Application -RequiredVersion '2.15.0' -Repository (Get-LocalPSRepoName) -Force
+Publish-Module -Name Microsoft.Graph.Applications -RequiredVersion '2.15.0' -Repository (Get-LocalPSRepoName)
 
 Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
 
@@ -37,5 +37,5 @@ if ($Install) {
 	Install-Module -Name Microsoft.Graph.Identity.DirectoryManagement -Repository (Get-LocalPSRepoName) -AllowClobber
 	Install-Module -Name Microsoft.Graph.Identity.Governance -Repository (Get-LocalPSRepoName) -AllowClobber
 	Install-Module -Name Microsoft.Graph.Identity.SignIns -Repository (Get-LocalPSRepoName) -AllowClobber
-	Install-Module -Name Microsoft.Graph.Application -Repository (Get-LocalPSRepoName) -AllowClobber
+	Install-Module -Name Microsoft.Graph.Applications -Repository (Get-LocalPSRepoName) -AllowClobber
 }
