@@ -26,7 +26,7 @@ $content = Get-Content -Path $settingPath | ConvertFrom-Json
 
 foreach ($destinationModuleName in $content.destinationModuleName){
     Write-Verbose("Publishing Module $($moduleName)")
-    Publish-Module $destinationModuleName -scope currentuser -RequiredVersion $content.destinationModuleVersion -Force -AllowClobber
+    Publish-Module -Name $destinationModuleName -scope currentuser -RequiredVersion $content.destinationModuleVersion -Force -AllowClobber
 }
 
 if($moduleName -eq 'Entra'){
