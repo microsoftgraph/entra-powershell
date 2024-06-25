@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Get-EntraBetaDevice
 
-## SYNOPSIS
+## Synopsis
 Gets a device from Active Directory.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -27,10 +27,10 @@ Get-EntraBetaDevice [-SearchString <String>] [-All] [<CommonParameters>]
 Get-EntraBetaDevice -ObjectId <String> [-All] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaDevice cmdlet gets a device from Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a device by ID
 ```
@@ -56,7 +56,7 @@ d4fe7726-5966-431c-b3b8-cddc8fdb717d 293872f6-c006-4e6a-8629-07847c5ab078 New De
 
 This command gets all available devices.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -137,13 +137,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [New-EntraBetaDevice]()
 

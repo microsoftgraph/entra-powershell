@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Remove-EntraBetaMSAdministrativeUnitMember
 
-## SYNOPSIS
+## Synopsis
 Removes an administrative unit member.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraBetaMSAdministrativeUnitMember 
@@ -29,10 +29,10 @@ Remove-EntraBetaMSAdministrativeUnitMember
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The **Remove-EntraBetaMSAdministrativeUnitMember** cmdlet removes an administrative unit member in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove an administrative unit
 ```powershell
@@ -41,7 +41,7 @@ PS C:\> Remove-EntraBetaMSAdministrativeUnitMember -Id c1c1decd-fec8-4899-9cea-5
 
 This command removes a specified member from a specified administrative unit.
 
-## PARAMETERS
+## Parameters
 
 ### -MemberId
 Specifies the ID of the administrative unit member.
@@ -76,13 +76,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Add-EntraBetaMSAdministrativeUnitMember](Add-EntraBetaMSAdministrativeUnitMember.md)
 

@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # New-EntraBetaMSPermissionGrantConditionSet
 
-## SYNOPSIS
+## Synopsis
 Create a new Azure Active Directory permission grant condition set in a given policy.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaMSPermissionGrantConditionSet [-Permissions <System.Collections.Generic.List`1[System.String]>]
@@ -21,10 +21,10 @@ New-EntraBetaMSPermissionGrantConditionSet [-Permissions <System.Collections.Gen
  [-PermissionClassification <String>] -PolicyId <String> [-PermissionType <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Create a new Azure Active Directory permission grant condition set object in an existing policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a basic permission grant condition set in an existing policy with all build in values
 ```
@@ -73,7 +73,7 @@ New-EntraBetaMSPermissionGrantConditionSet -PolicyId "test1" -ConditionSetType "
 			ClientApplicationsFromVerifiedPublisherOnly : True
 ```
 
-## PARAMETERS
+## Parameters
 
 ### -PolicyId
 The unique identifier of an Azure Active Directory permission grant policy object.
@@ -233,16 +233,16 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### string
 ### string
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.PermissionGrantConditionSet
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Set-EntraBetaMSPermissionGrantConditionSet]()
 

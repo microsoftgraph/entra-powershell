@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Reset-EntraBetaMSLifeCycleGroup
 
-## SYNOPSIS
+## Synopsis
 Renews a group by updating the RenewedDateTime property on a group to the current DateTime.
 
-## SYNTAX
+## Syntax
 
 ```
 Reset-EntraBetaMSLifeCycleGroup -GroupId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Reset-EntraBetaMSLifeCycleGroup renews a group by updating the RenewedDateTime property on a group to the current DateTime.
 When a group is renewed, the group expiration is extended by the number of days defined in the policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -29,7 +29,7 @@ PS C:\> Reset-EntraBetaMSLifeCycleGroup -groupId cffd97bd-6b91-4c4e-b553-6918a32
 
 The Reset-EntraBetaMSLifeCycleGroup renews a specified group by updating the RenewedDateTime property on a group to the current DateTime.
 
-## PARAMETERS
+## Parameters
 
 ### -GroupId
 Specifies the ID of a group in Azure Active Directory.
@@ -49,12 +49,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### None
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # New-EntraBetaServicePrincipalPasswordCredential
 
-## SYNOPSIS
+## Synopsis
 Creates a password credential for a service principal.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraBetaServicePrincipalPasswordCredential 
@@ -30,10 +30,10 @@ New-EntraBetaServicePrincipalPasswordCredential
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraBetaServicePrincipalPasswordCredential cmdlet creates a password credential for a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 
 ### Example 1: Create a password credential with StartDate
@@ -74,7 +74,7 @@ EndDate             : 21/03/2030 14:14:14
 ```
 This example demonstrates how to create a password credential with EndDate for a service principal in Microsoft Entra ID.       
 
-## PARAMETERS
+## Parameters
 
 ### -EndDate
 The date and time at which the password expires represented using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2024 is 2024-01-01T00:00:00Z.
@@ -124,10 +124,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

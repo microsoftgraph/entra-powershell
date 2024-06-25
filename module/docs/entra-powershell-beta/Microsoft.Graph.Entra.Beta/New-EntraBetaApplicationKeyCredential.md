@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # New-EntraBetaApplicationKeyCredential
 
-## SYNOPSIS
+## Synopsis
 Creates a key credential for an application.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaApplicationKeyCredential [-Usage <KeyUsage>] -ObjectId <String> [-Type <KeyType>]
  [-EndDate <DateTime>] [-Value <String>] [-StartDate <DateTime>] [-CustomKeyIdentifier <String>][<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraBetaApplicationKeyCredential cmdlet creates a key credential for an application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a new application key credential
 ```
@@ -57,7 +57,7 @@ The first seven commands create values for the application key credential and st
 
 The final command uses a certificate to add an application key credential.
 
-## PARAMETERS
+## Parameters
 
 ### -CustomKeyIdentifier
 Specifies a custom key ID.
@@ -168,13 +168,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaApplication]()
 

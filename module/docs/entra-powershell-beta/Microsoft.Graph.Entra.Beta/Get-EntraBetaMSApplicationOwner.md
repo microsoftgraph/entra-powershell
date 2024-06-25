@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaMSApplicationOwner
 
-## SYNOPSIS
+## Synopsis
 Retrieves the list of owners for an application object.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaMSApplicationOwner [-ObjectId <String>] [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Retrieves the list of owners for an application object.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the owner of an application
 ```
@@ -43,7 +43,7 @@ PS C:\>Get-EntraBetaMSApplicationOwner -ObjectId "3ddd22e7-a150-4bb3-b100-e410de
 
 This command gets the owners of an application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifes the ID of an application in Azure Active Directory.
@@ -93,17 +93,17 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### bool?
 ### int?
 ### string
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.GetDirectoryObjectsResponse
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Add-EntraBetaMSApplicationOwner]()
 

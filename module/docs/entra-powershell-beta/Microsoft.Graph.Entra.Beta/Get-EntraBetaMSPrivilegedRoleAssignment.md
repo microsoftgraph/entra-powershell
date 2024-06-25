@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Get-EntraBetaMSPrivilegedRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 Get role assignments for a specific provider and resource
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -24,10 +24,10 @@ Get-EntraBetaMSPrivilegedRoleAssignment -Id <String> -ResourceId <String> -Provi
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Get role assignments for a specific provider and resource
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -43,7 +43,7 @@ PS C:\> Get-EntraBetaMSPrivilegedRoleAssignment -ProviderId AzureResources -Reso
 
 Get a role assignment for a specific provider and resource
 
-## PARAMETERS
+## Parameters
 
 ### -Filter
 The Odata filter
@@ -123,13 +123,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 ### System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

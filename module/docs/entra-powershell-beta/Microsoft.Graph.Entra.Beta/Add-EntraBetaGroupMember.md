@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Add-EntraBetaGroupMember
 
-## SYNOPSIS
+## Synopsis
 Adds a member to a group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraBetaGroupMember 
@@ -29,10 +29,10 @@ Add-EntraBetaGroupMember
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Add-EntraBetaGroupMember cmdlet adds a member to a group.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a member to a group
 ```powershell
@@ -40,7 +40,7 @@ PS C:\> Add-EntraBetaGroupMember -ObjectId "056b2531-005e-4f3e-be78-01a71ea30a04
 ```
 This command adds a member to a group.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the ID of a group in Microsoft Entra ID.
@@ -75,13 +75,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaGroupMember](Get-EntraBetaGroupMember.md)
 

@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Get-EntraBetaMSAuthorizationPolicy
 
-## SYNOPSIS
+## Synopsis
 Gets an authorization policy.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -22,17 +22,17 @@ Get-EntraBetaMSAuthorizationPolicy [<CommonParameters>]
 Get-EntraBetaMSAuthorizationPolicy -Id <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaMSAuthorizationPolicy cmdlet gets an Azure Active Directory authorization policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get an authorization policy by ID
 ```
 PS C:\>Get-EntraBetaMSAuthorizationPolicy -Id "authorizationPolicy"
 ```
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 Specifies the unique identifier of the authorization policy.
@@ -52,13 +52,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Set-EntraBetaMSAuthorizationPolicy]()
 

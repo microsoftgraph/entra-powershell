@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraBetaServicePrincipal
 
-## SYNOPSIS
+## Synopsis
 Gets a service principal.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```powershell
@@ -47,10 +47,10 @@ Get-EntraBetaServicePrincipal
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaServicePrincipal cmdlet gets a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve all service principal from the directory
 ```powershell
@@ -151,7 +151,7 @@ ObjectId                             AppId                                Displa
 
 This command gets a list of service principal, which has the specified display name.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -232,13 +232,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)
 

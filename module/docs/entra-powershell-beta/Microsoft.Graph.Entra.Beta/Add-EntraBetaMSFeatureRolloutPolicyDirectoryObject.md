@@ -7,22 +7,22 @@ schema: 2.0.0
 
 # Add-EntraBetaMSFeatureRolloutPolicyDirectoryObject
 
-## SYNOPSIS
+## Synopsis
 Allows an admin to add a group to the cloud authentication roll-out policy in Azure AD.
 Users in this group will start authenticating to the cloud per policy.
 
-## SYNTAX
+## Syntax
 
 ```
 Add-EntraBetaMSFeatureRolloutPolicyDirectoryObject -Id <String> -RefObjectId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 An admin will use this cmdlet to add a group to the cloud authentication roll-out policy.
 Users in these groups will start authenticating against the cloud per policy (e.g.
 with Seamless Single Sign-On or not, or whether Passthrough auth or not).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Adds a group to the cloud authentication roll-out policy in Azure AD.
 ```
@@ -31,7 +31,7 @@ PS C:\> Add-EntraBetaMSFeatureRolloutPolicyDirectoryObject -Id "a03b6d9e-6654-46
 
 This command adds a group to the cloud authentication roll-out policy in Azure AD.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The unique identifier of the cloud authentication roll-out policy in Azure AD.
@@ -66,12 +66,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
-## RELATED LINKS
+## Notes
+## Related LINKS
 
 [Remove-EntraBetaMSFeatureRolloutPolicyDirectoryObject]()
 

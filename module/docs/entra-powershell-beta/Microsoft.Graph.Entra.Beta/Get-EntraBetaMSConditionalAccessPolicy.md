@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Get-EntraBetaMSConditionalAccessPolicy
 
-## SYNOPSIS
+## Synopsis
 Gets an Azure Active Directory conditional access policy.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -22,11 +22,11 @@ Get-EntraBetaMSConditionalAccessPolicy [<CommonParameters>]
 Get-EntraBetaMSConditionalAccessPolicy -PolicyId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet allows an admin to get the Azure Active Directory conditional access policy.
 Conditional access policies are custom rules that define an access scenario.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieves a list of all conditional access policies in Azure AD.
 ```
@@ -54,7 +54,7 @@ PS C:\> Get-EntraBetaMSConditionalAccessPolicy -PolicyId "6b5e999b-0ba8-4186-a10
 
 This command retrieves a conditional access policy in Azure AD.
 
-## PARAMETERS
+## Parameters
 
 ### -PolicyId
 Specifies the ID of a conditional access policy in Azure Active Directory.
@@ -74,12 +74,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
-## RELATED LINKS
+## Notes
+## Related LINKS
 
 [New-EntraBetaMSConditionalAccessPolicy]()
 

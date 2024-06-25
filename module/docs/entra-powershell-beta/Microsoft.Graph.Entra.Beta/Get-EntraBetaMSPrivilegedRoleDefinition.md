@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Get-EntraBetaMSPrivilegedRoleDefinition
 
-## SYNOPSIS
+## Synopsis
 Get role definitions
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -24,10 +24,10 @@ Get-EntraBetaMSPrivilegedRoleDefinition -ResourceId <String> -Id <String> -Provi
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Get role definitions
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -43,7 +43,7 @@ PS C:\> Get-EntraBetaMSPrivilegedRoleDefinition -ProviderId AzureResources -Reso
 
 Get a role definitions for a specific provider, resource and Id
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The id of a role definition
@@ -123,12 +123,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
