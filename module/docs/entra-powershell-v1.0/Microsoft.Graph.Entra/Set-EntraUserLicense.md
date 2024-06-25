@@ -38,9 +38,7 @@ The `Set-EntraUserLicense` adds or removes licenses for a Microsoft online servi
 For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
 
 - Directory Writers
-
 - License Administrator
-
 - User Administrator
 
 ## EXAMPLES
@@ -59,6 +57,26 @@ Set-EntraUserLicense -ObjectId $User.ObjectId -AssignedLicenses $Licenses
 ```
 
 This example demonstrates how to assign a license to a user.
+
+### Example 2: Add a license to a user by copying license from another user
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+$LicensedUser = Get-EntraUser -ObjectId dddddddd-3333-4444-5555-eeeeeeeeeeee
+$User = Get-EntraUser -ObjectId aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 
+$License1 = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense 
+$License1.SkuId = $LicensedUser.AssignedLicenses.SkuId[0] 
+$License2 = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense
+$License2.SkuId = $LicensedUser.AssignedLicenses.SkuId[1]
+$addLicensesArray = @()
+$addLicensesArray += $License1
+$addLicensesArray += $License2
+$Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
+$Licenses.AddLicenses = $addLicensesArray
+Set-EntraUserLicense -ObjectId $User.ObjectId -AssignedLicenses $Licenses
+```
+
+This example demonstrates how to assign a license to a user by copying license from another user.
 
 ## PARAMETERS
 

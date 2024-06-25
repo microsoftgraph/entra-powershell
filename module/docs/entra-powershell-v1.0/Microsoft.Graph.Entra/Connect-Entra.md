@@ -122,7 +122,7 @@ This example prompts the user to authenticate interactively using their Microsof
 Connect-Entra -Scopes 'User.Read.All', 'Group.ReadWrite.All'
 ```
 
-```output
+```Output
 Welcome to Microsoft Graph!
 
 Connected via apponly access using 00001111-aaaa-2222-bbbb-3333cccc4444
@@ -141,7 +141,7 @@ This example shows how to authenticate to Entra with scopes.
 Connect-Entra -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -ApplicationId '00001111-aaaa-2222-bbbb-3333cccc4444' -CertificateThumbprint AA11BB22CC33DD44EE55FF66AA77BB88CC99DD00
 ```
 
-```output
+```Output
 Welcome to Microsoft Graph!
 
 Connected via apponly access using 00001111-aaaa-2222-bbbb-3333cccc4444
@@ -204,7 +204,7 @@ To connect as a different identity other than CurrentUser, specify the ContextSc
 Get-EntraEnvironment
 ```
 
-```output
+```Output
 Name     AzureADEndpoint                   GraphEndpoint                           Type
 ----     ---------------                   -------------                           ----
 China    https://login.chinacloudapi.cn    https://microsoftgraph.chinacloudapi.cn Built-in
@@ -222,10 +222,10 @@ When you use Connect-Entra, you can choose to target other environments. By defa
 ### Example 7: Sets the HTTP client timeout in seconds
 
 ```powershell
-Connect-Entra -ClientTimeout 60
+ Connect-Entra -ClientTimeout 60
 ```
 
-```output
+```Output
 Welcome to Microsoft Graph!
 
 Connected via apponly access using 00001111-aaaa-2222-bbbb-3333cccc4444
@@ -252,7 +252,7 @@ This example hides the welcome message.
 Connect-Entra -UseDeviceCode
 ```
 
-```output
+```Output
 To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code N3EXHFSVW to authenticate.
 ```
 
@@ -267,7 +267,8 @@ Connect-Entra -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444'  -TenantId 'aaaab
 You can find the certificate subject by running the command:
 
 ```powershell
-Get-ChildItem Cert:\CurrentUser\My\$CertThumbprint | Select Subject
+ $Cert = Get-ChildItem Cert:\LocalMachine\My\$CertThumbprint
+ Connect-Entra -ClientId '<App-Id>' -TenantId '<Tenant-Id>' -Certificate $Cert
 ```
 
 ### Example 11: App-only access: Using client credential with a certificate - Certificate
@@ -401,7 +402,7 @@ Accept wildcard characters: False
 Sets the HTTP client timeout in seconds.
 
 ```yaml
-Type: Double
+Type: System.Double
 Parameter Sets: (All)
 Aliases: 
 Required: False
