@@ -25,8 +25,8 @@ $settingPath = "$PSScriptRoot/../module/$ModuleName/config/ModuleSettings.json"
 $content = Get-Content -Path $settingPath | ConvertFrom-Json
 
 foreach ($destinationModuleName in $content.destinationModuleName){
-    Write-Verbose("Publishing Module $($moduleName)")
-    Publish-Module -Name $destinationModuleName -scope currentuser -RequiredVersion $content.destinationModuleVersion -Force -AllowClobber
+    Write-Verbose("Publishing Module $($destinationModuleName)")
+	Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName)
 }
 
 if($moduleName -eq 'Entra'){
@@ -50,7 +50,7 @@ if ($Install) {
 	Install-Module -Name (Get-ModuleName) -Repository (Get-LocalPSRepoName) -AllowClobber
 
 	# foreach ($destinationModuleName in $content.destinationModuleName){
-	# 	Write-Verbose("Installing Module $($moduleName)")
+	# 	Write-Verbose("Installing Module $($destinationModuleName)")
 	# 	Publish-Module $destinationModuleName -scope currentuser -RequiredVersion $content.destinationModuleVersion -Force -AllowClobber
 	# }
 
