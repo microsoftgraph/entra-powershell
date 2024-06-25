@@ -14,7 +14,6 @@ $modulePath = Join-Path (Get-ModuleBasePath) (Get-ConfigValue -Name ModuleOutput
 $modulePath = Join-Path $modulePath (Get-ModuleName)
 $moduleName = Get-ModuleName
 $settingPath = "$PSScriptRoot/../module/$ModuleName/config/ModuleSettings.json"
-if ($ModuleSettingsPath) { $settingPath = $ModuleSettingsPath }
 $content = Get-Content -Path $settingPath | ConvertFrom-Json
 
 foreach ($destinationModuleName in $content.destinationModuleName){
