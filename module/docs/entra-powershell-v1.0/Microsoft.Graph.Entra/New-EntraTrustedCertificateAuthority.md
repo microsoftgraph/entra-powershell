@@ -18,6 +18,7 @@ schema: 2.0.0
 # New-EntraTrustedCertificateAuthority
 
 ## SYNOPSIS
+
 Creates a trusted certificate authority.
 
 ## SYNTAX
@@ -29,24 +30,28 @@ New-EntraTrustedCertificateAuthority
 ```
 
 ## DESCRIPTION
+
 The New-EntraTrustedCertificateAuthority cmdlet creates a trusted certificate authority in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Creates the trusted certificate authorities in your directory
+
 ```powershell
-PS C:\> $new_ca = New-Object -TypeName Microsoft.Open.AzureAD.Model.CertificateAuthorityInformation #Create CertificateAuthorityInformation object
-PS C:\> $new_ca.AuthorityType = "RootAuthority"
-PS C:\> $new_ca.CrlDistributionPoint = "https://example.crl"
-PS C:\> $new_ca.DeltaCrlDistributionPoint = "https://deltaexample.crl"
-PS C:\> $new_ca.TrustedCertificate = "Path to .cer file(including cer file name)"
-PS C:\> New-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $new_ca
+Connect-Entra -Scopes 'Organization.ReadWrite.All'
+
+$new_ca = New-Object -TypeName Microsoft.Open.AzureAD.Model.CertificateAuthorityInformation #Create CertificateAuthorityInformation object
+$new_ca.AuthorityType = "RootAuthority"
+$new_ca.CrlDistributionPoint = "https://example.crl"
+$new_ca.DeltaCrlDistributionPoint = "https://deltaexample.crl"
+$new_ca.TrustedCertificate = "Path to .cer file(including cer file name)"
+New-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $new_ca
 ```
 
-```output
+```Output
 Id                                   CertificateAuthorities
 --                                   ----------------------
-29728ade-6ae4-4ee9-9103-412912537da5 {class CertificateAuthorityInformation {...
+0a0a0a0a-1111-bbbb-2222-3c3c3c3c3c3c {class CertificateAuthorityInformation {...
 ```
 
 This command creates the trusted certificate authorities in your directory.
@@ -54,6 +59,7 @@ This command creates the trusted certificate authorities in your directory.
 ## PARAMETERS
 
 ### -CertificateAuthorityInformation
+
 Specifies a CertificateAuthorityInformation object.
 
 ```yaml
@@ -69,7 +75,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -84,4 +91,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraTrustedCertificateAuthority](Remove-EntraTrustedCertificateAuthority.md)
 
 [Set-EntraTrustedCertificateAuthority](Set-EntraTrustedCertificateAuthority.md)
-
