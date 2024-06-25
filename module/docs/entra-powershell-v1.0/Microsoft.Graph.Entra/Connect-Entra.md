@@ -154,7 +154,7 @@ NOTE: You can use the -NoWelcome parameter to suppress this message.
 
 This command Connect a session using a ApplicationId and CertificateThumbprint.
 
-Follow this link (<https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands?view=graph-powershell-1.0&preserve-view=true#using-get-mgcontext>) for more information.
+Follow this link [CertificateThumbprint][entra-context] for more information.
 
 ### Example 4: Delegated access: Using your own access token
 
@@ -176,7 +176,7 @@ NOTE: You can use the -NoWelcome parameter to suppress this message.
 
 This example shows how to authenticate to Entra using an access token.
 
-Follow this link (<https://review.learn.microsoft.com/graph/auth-v2-user?branch=main&tabs=http#3-request-an-access-token>) to see How to get access token from the token endpoint. 
+See [How to get access token from the token endpoint.][token-endpoint]
 
 
 ### Example 5: Connecting to an environment as a different identity
@@ -277,7 +277,7 @@ $Cert = Get-ChildItem Cert:\LocalMachine\My\$CertThumbprint
 Connect-Entra -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444' -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -Certificate $Cert
 ```
 
-Follow this link (<https://review.learn.microsoft.com/powershell/entra-powershell/app-only-access-auth?view=entra-powershell&branch=main#use-a-certificate>) for more information on how to load the certificate.
+Follow this link to see [Certificate][get-certificate] more information on how to load the certificate.
 
 ### Example 12: Using client secret credentials
 
@@ -289,7 +289,7 @@ Connect-Entra -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -ClientSecretCred
 
 This authentication method is ideal for background interactions. It doesn't require a user to physically sign in.
 
-Follow this link (<https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands?view=graph-powershell-1.0&preserve-view=true#using-get-mgcontext>) for more information.
+See [Get-Credential][get-credential] on how to get or create credentials.
 
 ### Example 13: Using managed identity: System-assigned managed identity
 
@@ -307,8 +307,6 @@ Connect-Entra -Identity -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444'
 
 Uses a user created managed identity as a standalone Azure resource.
 
-Follow this link (<https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands?view=graph-powershell-1.0&preserve-view=true#using-get-mgcontext>) for more information.
-
 ### Example 15: Allows for authentication using environment variables
 
 ```powershell
@@ -316,8 +314,6 @@ Connect-Entra -EnvironmentVariable
 ```
 
 This example allows for authentication using environment variables.
-
-Follow this link (<https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#environment-variables>) For more information.
 
 ## PARAMETERS
 
@@ -594,3 +590,9 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## RELATED LINKS
 
 [Disconnect-Entra](Disconnect-Entra.md)
+
+<!-- link references -->
+[entra-context]: /powershell/entra-preview/microsoft.graph.entra/get-entracontext
+[token-endpoint]: /graph/auth-v2-user#3-request-an-access-token
+[get-credential]: /powershell/module/microsoft.powershell.security/get-credential
+[get-certificate]: /powershell/entra-powershell/app-only-access-auth?view=entra-powershell&branch=main#use-a-certificate
