@@ -596,4 +596,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [entra-context]: /powershell/entra-preview/microsoft.graph.entra/get-entracontext
 [token-endpoint]: /graph/auth-v2-user#3-request-an-access-token
 [get-credential]: /powershell/module/microsoft.powershell.security/get-credential
-[get-certificate]: /powershell/entra-powershell/app-only-access-auth?view=entra-powershell&branch=main#use-a-certificate
+[get-certificate]: /powershell/entra-powershell/app-only-access-auth
