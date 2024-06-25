@@ -434,9 +434,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraApplication](Remove-EntraApplication.md)
 
 [Set-EntraApplication](Set-EntraApplication.md)
-
-[Get-EntraApplication](Get-EntraApplication.md)
-
-[Remove-EntraApplication](Remove-EntraApplication.md)
-
-[Set-EntraApplication](Set-EntraApplication.md)

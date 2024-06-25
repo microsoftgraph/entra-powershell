@@ -539,9 +539,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraBetaApplication]()
 
 [Set-EntraBetaApplication]()
-
-[Get-EntraBetaApplication]()
-
-[Remove-EntraBetaApplication]()
-
-[Set-EntraBetaApplication]()
