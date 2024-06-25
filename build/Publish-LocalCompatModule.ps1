@@ -24,13 +24,13 @@ else{
 $settingPath = "$PSScriptRoot/../module/$ModuleName/config/ModuleSettings.json"
 $content = Get-Content -Path $settingPath | ConvertFrom-Json
 
+if($moduleName -eq 'Entra'){
+	Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName)
+}
+
 foreach ($destinationModuleName in $content.destinationModuleName){
     Write-Verbose("Publishing Module $($destinationModuleName)")
 	Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName)
-}
-
-if($moduleName -eq 'Entra'){
-	Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName)
 }
 
 # Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion '2.15.0' -Repository (Get-LocalPSRepoName)
