@@ -13,6 +13,7 @@ param(
 $modulePath = Join-Path (Get-ModuleBasePath) (Get-ConfigValue -Name ModuleOutputSubdirectoryName)
 $modulePath = Join-Path $modulePath (Get-ModuleName)
 
+Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion '2.15.0' -Repository (Get-LocalPSRepoName)
 Publish-Module -Name Microsoft.Graph.DirectoryObjects -RequiredVersion '2.15.0' -Repository (Get-LocalPSRepoName)
 Publish-Module -Name Microsoft.Graph.Users -RequiredVersion '2.15.0' -Repository (Get-LocalPSRepoName)
 Publish-Module -Name Microsoft.Graph.Users.Actions -RequiredVersion '2.15.0' -Repository (Get-LocalPSRepoName)
