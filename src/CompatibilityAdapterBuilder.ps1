@@ -458,7 +458,16 @@ public $($object.GetType().Name)()
         $newCmdletData = @()
         $cmdletsToExport = @()
         $missingCmdletsToExport = @()
+        if('Microsoft.Graph.Entra' -eq $this.ModuleName){
+            $cmdletsToSkip = @("Add-AzureADMSApplicationOwner", "Get-AzureADMSApplication", "Get-AzureADMSApplicationExtensionProperty", "Get-AzureADMSApplicationOwner", "New-AzureADApplication", "New-AzureADMSApplicationExtensionProperty", "Remove-AzureADMSApplication", "Remove-AzureADMSApplicationExtensionProperty", "Remove-AzureADMSApplicationOwner", "Set-AzureADApplication", "Set-AzureADMSApplicationLogo", "Get-AzureADMSGroup", "New-AzureADGroup", "Remove-AzureADMSGroup", "Set-AzureADGroup")        
+        }
+        else{
+            $cmdletsToSkip = @("Add-AzureADMSAdministrativeUnitMember", "Add-AzureADMSScopedRoleMembership", "Get-AzureADMSAdministrativeUnit", "Get-AzureADMSAdministrativeUnitMember", "Get-AzureADMSScopedRoleMembership", "New-AzureADAdministrativeUnit", "Remove-AzureADMSAdministrativeUnit", "Remove-AzureADMSAdministrativeUnitMember", "Remove-AzureADMSScopedRoleMembership", "Set-AzureADAdministrativeUnit", "Add-AzureADMSApplicationOwner", "Get-AzureADMSApplication", "Get-AzureADMSApplicationExtensionProperty", "Get-AzureADMSApplicationOwner", "New-AzureADApplication","New-AzureADMSApplicationExtensionProperty","Remove-AzureADMSApplication","Remove-AzureADMSApplicationExtensionProperty","Remove-AzureADMSApplicationOwner","Set-AzureADApplication","Set-AzureADMSApplicationLogo","Get-AzureADMSGroup","New-AzureADGroup","Remove-AzureADMSGroup","Set-AzureADGroup","Get-AzureADMSPrivilegedRoleAssignment","Get-AzureADMSServicePrincipal","Set-AzureADMSServicePrincipal","Get-AzureADMSUser","Set-AzureADMSUser","New-AzureADMSUser","New-AzureADMSServicePrincipal")
+        }
         foreach ($cmd in $originalCmdlets.Keys){
+            if ($cmdletsToSkip -contains $cmd) {
+                continue
+            }
             $originalCmdlet = $originalCmdlets[$cmd]
             $newFunction = $this.GetNewCmdTranslation($cmd, $originalCmdlet, $targetCmdlets, $this.NewPrefix)
             if($newFunction){
@@ -965,7 +974,7 @@ $($output)
       
         if($null -ne $targetCmd){
             if($SourceCmdlet.Prefix.contains('MS')){
-                $Prefix = $NewPrefix  + 'MS'
+                $Prefix = $NewPrefix
             } else {
                 $prefix = $NewPrefix
             }

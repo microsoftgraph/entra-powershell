@@ -13,7 +13,9 @@ Updates an administrative unit.
 ## SYNTAX
 
 ```
-Set-EntraBetaAdministrativeUnit -ObjectId <String> [-Description <String>] [-DisplayName <String>]
+Set-EntraBetaAdministrativeUnit [-MembershipType <String>] -Id <String> [-MembershipRule <String>]
+ [-IsMemberManagementRestricted <Boolean>] [-Description <String>] [-MembershipRuleProcessingState <String>]
+ [-DisplayName <String>] 
  [<CommonParameters>]
 ```
 
@@ -61,9 +63,24 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -IsMemberManagementRestricted
+Indicates whether the management rights on resources in the administrative units should be restricted to ONLY the administrators scoped on the AU object.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 
-### -ObjectId
+
+### -Id
 Specifies the ID of an administrative unit in Azure AD.
 
 ```yaml
@@ -75,6 +92,51 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -MembershipRule
+{{ Fill MembershipRule Description }}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -MembershipRuleProcessingState
+{{ Fill MembershipRuleProcessingState Description }}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -MembershipType
+{{ Fill MembershipType Description }}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -94,4 +156,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [New-EntraBetaAdministrativeUnit]()
 
 [Remove-EntraBetaAdministrativeUnit]()
-
