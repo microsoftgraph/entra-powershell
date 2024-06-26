@@ -1,26 +1,26 @@
 ---
-title: Add-EntraBetaGroupMember.
-description: This article provides details on the Add-EntraBetaGroupMember command.
+Title: Add-EntraBetaGroupMember.
+Description: This article provides details on the Add-EntraBetaGroupMember command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 11/10/2023
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Add-EntraBetaGroupMember
 
-## SYNOPSIS
+## Synopsis
 Adds a member to a group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraBetaGroupMember 
@@ -29,18 +29,18 @@ Add-EntraBetaGroupMember
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Add-EntraBetaGroupMember cmdlet adds a member to a group.
+## Description
+The Add-EntraBetaGroupMember cmdlet Adds a member to a group.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a member to a group
 ```powershell
 PS C:\> Add-EntraBetaGroupMember -ObjectId "056b2531-005e-4f3e-be78-01a71ea30a04" -RefObjectId "996d39aa-fdac-4d97-aa3d-c81fb47362ac"
 ```
-This command adds a member to a group.
+This command Adds a member to a group.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the ID of a group in Microsoft Entra ID.
@@ -75,13 +75,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaGroupMember](Get-EntraBetaGroupMember.md)
 

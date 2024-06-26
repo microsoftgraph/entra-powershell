@@ -1,16 +1,16 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-help.xml
+External help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaDomainFederationSettings
 
-## SYNOPSIS
+## Synopsis
 Updates settings for a federated domain.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaDomainFederationSettings [-DomainName] <String> [[-SigningCertificate] <String>]
@@ -20,10 +20,10 @@ Set-EntraBetaDomainFederationSettings [-DomainName] <String> [[-SigningCertifica
  [[-SigningCertificateUpdateStatus] <Object>] [[-PromptLoginBehavior] <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraBetaDomainFederationSettings cmdlet is used to update the settings of a single sign-on domain.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```powershell
@@ -32,7 +32,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 ### -DomainName
 The fully qualified domain name (FQDN) to update.
@@ -143,7 +143,7 @@ Accept wildcard characters: False
 ### -FederationBrandName
 The name of the string value shown to users when signing in to Microsoft Azure Active Directory.
 We recommend that customers use something that is familiar to
-users such as "Contoso Inc."
+Users such as "Contoso Inc."
 
 ```yaml
 Type: String
@@ -220,10 +220,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

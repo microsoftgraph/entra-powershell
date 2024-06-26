@@ -1,28 +1,28 @@
 ---
-title: Get-EntraGroupLifecyclePolicy.
-description: This article provides details on the Get-EntraGroupLifecyclePolicy command.
+Title: Get-EntraGroupLifecyclePolicy.
+Description: This article provides details on the Get-EntraGroupLifecyclePolicy command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/22/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraGroupLifecyclePolicy
 
-## SYNOPSIS
+## Synopsis
 
 Retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID.
 If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -39,12 +39,12 @@ Get-EntraGroupLifecyclePolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraGroupLifecyclePolicy command retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID.
 If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve all groupLifecyclePolicies
 
@@ -78,7 +78,7 @@ Id                                   AlternateNotificationEmails GroupLifetimeIn
 
 This command is used to retrieve a specific Microsoft Group Lifecycle Policy. The `-Id` parameter specifies the ID of the Lifecycle Policy to be retrieved.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -100,16 +100,16 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

@@ -1,26 +1,26 @@
 ---
-title: Get-EntraBetaRoleDefinition
-description: This article provides details on the Get-EntraBetaRoleDefinition command.
+Title: Get-EntraBetaRoleDefinition
+Description: This article provides details on the Get-EntraBetaRoleDefinition command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 03/01/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra.Beta-help.xml
+External help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaRoleDefinition
 
-## SYNOPSIS
+## Synopsis
 Gets information about role definitions in Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```powershell
@@ -47,10 +47,10 @@ Get-EntraBetaRoleDefinition
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaRoleDefinition cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the Id parameter. Specify the SearchString or Filter parameter to find particular role definition.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all role definitions
 ```powershell
@@ -154,7 +154,7 @@ Version         :
 
 This command return all the role definitions containing the specified display name.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 Specifies the ID of the role definition.
@@ -234,14 +234,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### String
 ### Bool?
 ### Int?
 ### String
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleDefinition
 
-## RELATED LINKS
+## Related Links

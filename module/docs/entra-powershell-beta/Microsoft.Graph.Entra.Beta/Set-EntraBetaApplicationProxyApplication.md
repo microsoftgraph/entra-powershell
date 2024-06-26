@@ -1,25 +1,25 @@
 ---
-title: Set-EntraBetaApplicationProxyApplication
-description: This article provides details on the Set-EntraBetaApplicationProxyApplication command.
-ms.service: active-directory
-ms.topic: reference
-ms.date: 04/15/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Title: Set-EntraBetaApplicationProxyApplication
+Description: This article provides details on the Set-EntraBetaApplicationProxyApplication command.
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaApplicationProxyApplication
 
-## SYNOPSIS
+## Synopsis
 The Set-EntraBetaApplicationProxyApplication allows you to modify and set configurations for an application in Microsoft Entra ID configured to use ApplicationProxy.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraBetaApplicationProxyApplication 
@@ -37,10 +37,10 @@ Set-EntraBetaApplicationProxyApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraBetaApplicationProxyApplication allows you to modify and set other settings for an application in Microsoft Entra ID configured to use ApplicationProxy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update ExternalUrl, InternalUrl, ExternalAuthenticationType, and IsTranslateHostHeaderEnabled parameter.
 ```powershell
@@ -49,20 +49,20 @@ PS C:\> Set-EntraBetaApplicationProxyApplication -ObjectId 61ec5727-7d0b-40b3-bd
 ```
 ```output
 ObjectId                                 : 61ec5727-7d0b-40b3-bd4e-817076b540fa
-externalAuthenticationType               : aadPreAuthentication
-applicationServerTimeout                 : Long
-externalUrl                              : https://testp-m365x99297270.msappproxy.net/
-internalUrl                              : https://testp.com/
-isTranslateHostHeaderEnabled             : False
-isTranslateLinksInBodyEnabled            : False
-isOnPremPublishingEnabled                : True
-verifiedCustomDomainCertificatesMetadata :
-verifiedCustomDomainKeyCredential        :
-verifiedCustomDomainPasswordCredential   :
-singleSignOnSettings                     : @{singleSignOnMode=none; kerberosSignOnSettings=}
-isHttpOnlyCookieEnabled                  : False
-isSecureCookieEnabled                    : False
-isPersistentCookieEnabled                : False
+ExternalAuthenticationType               : aadPreAuthentication
+ApplicationServerTimeout                 : Long
+ExternalUrl                              : https://testp-m365x99297270.msappproxy.net/
+InternalUrl                              : https://testp.com/
+IsTranslateHostHeaderEnabled             : False
+IsTranslateLinksInBodyEnabled            : False
+IsOnPremPublishingEnabled                : True
+VerifiedCustomDomainCertificatesMetadata :
+VerifiedCustomDomainKeyCredential        :
+VerifiedCustomDomainPasswordCredential   :
+SingleSignOnSettings                     : @{singleSignOnMode=none; kerberosSignOnSettings=}
+IsHttpOnlyCookieEnabled                  : False
+IsSecureCookieEnabled                    : False
+IsPersistentCookieEnabled                : False
 ```
 
 This command Update ExternalUrl, InternalUrl, ExternalAuthenticationType, and IsTranslateHostHeaderEnabled parameter.
@@ -74,20 +74,20 @@ PS C:\> Set-EntraBetaApplicationProxyApplication -ObjectId 61ec5727-7d0b-40b3-bd
 ```
 ```output
 ObjectId                                 : 61ec5727-7d0b-40b3-bd4e-817076b540fa
-externalAuthenticationType               : aadPreAuthentication
-applicationServerTimeout                 : Long
-externalUrl                              : https://testp-m365x99297270.msappproxy.net/
-internalUrl                              : https://testp.com/
-isTranslateHostHeaderEnabled             : False
-isTranslateLinksInBodyEnabled            : False
-isOnPremPublishingEnabled                : True
-verifiedCustomDomainCertificatesMetadata :
-verifiedCustomDomainKeyCredential        :
-verifiedCustomDomainPasswordCredential   :
-singleSignOnSettings                     : @{singleSignOnMode=none; kerberosSignOnSettings=}
-isHttpOnlyCookieEnabled                  : False
-isSecureCookieEnabled                    : False
-isPersistentCookieEnabled                : False
+ExternalAuthenticationType               : aadPreAuthentication
+ApplicationServerTimeout                 : Long
+ExternalUrl                              : https://testp-m365x99297270.msappproxy.net/
+InternalUrl                              : https://testp.com/
+IsTranslateHostHeaderEnabled             : False
+IsTranslateLinksInBodyEnabled            : False
+IsOnPremPublishingEnabled                : True
+VerifiedCustomDomainCertificatesMetadata :
+VerifiedCustomDomainKeyCredential        :
+VerifiedCustomDomainPasswordCredential   :
+SingleSignOnSettings                     : @{singleSignOnMode=none; kerberosSignOnSettings=}
+IsHttpOnlyCookieEnabled                  : False
+IsSecureCookieEnabled                    : False
+IsPersistentCookieEnabled                : False
 ```
 
 This command Update IsHttpOnlyCookieEnabled, IsSecureCookieEnabled, and IsPersistentCookieEnabled  parameter.
@@ -99,25 +99,25 @@ PS C:\> Set-EntraBetaApplicationProxyApplication -ObjectId 61ec5727-7d0b-40b3-bd
 ```
 ```output
 ObjectId                                 : 61ec5727-7d0b-40b3-bd4e-817076b540fa
-externalAuthenticationType               : aadPreAuthentication
-applicationServerTimeout                 : Long
-externalUrl                              : https://testp-m365x99297270.msappproxy.net/
-internalUrl                              : https://testp.com/
-isTranslateHostHeaderEnabled             : False
-isTranslateLinksInBodyEnabled            : False
-isOnPremPublishingEnabled                : True
-verifiedCustomDomainCertificatesMetadata :
-verifiedCustomDomainKeyCredential        :
-verifiedCustomDomainPasswordCredential   :
-singleSignOnSettings                     : @{singleSignOnMode=none; kerberosSignOnSettings=}
-isHttpOnlyCookieEnabled                  : False
-isSecureCookieEnabled                    : False
-isPersistentCookieEnabled                : False
+ExternalAuthenticationType               : aadPreAuthentication
+ApplicationServerTimeout                 : Long
+ExternalUrl                              : https://testp-m365x99297270.msappproxy.net/
+InternalUrl                              : https://testp.com/
+IsTranslateHostHeaderEnabled             : False
+IsTranslateLinksInBodyEnabled            : False
+IsOnPremPublishingEnabled                : True
+VerifiedCustomDomainCertificatesMetadata :
+VerifiedCustomDomainKeyCredential        :
+VerifiedCustomDomainPasswordCredential   :
+SingleSignOnSettings                     : @{singleSignOnMode=none; kerberosSignOnSettings=}
+IsHttpOnlyCookieEnabled                  : False
+IsSecureCookieEnabled                    : False
+IsPersistentCookieEnabled                : False
 ```
 
 This command Update IsTranslateLinksInBodyEnabled, ApplicationServerTimeout, and  ConnectorGroupId parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies a unique application ID of an application in Microsoft Entra ID.
@@ -301,10 +301,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

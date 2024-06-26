@@ -1,27 +1,27 @@
 ---
-title: Test-EntraScript.
-description: This article provides details on the Test-EntraScript command.
+Title: Test-EntraScript.
+Description: This article provides details on the Test-EntraScript command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 04/08/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Test-EntraScript
 
-## SYNOPSIS
+## Synopsis
 
 Checks, whether the provided script is using Azure AD commands that are not supported by Microsoft.Graph.Entra.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Test-EntraScript 
@@ -31,13 +31,13 @@ Test-EntraScript
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 Checks, whether the provided script is using Azure AD commands that are not supported by Microsoft.Graph.Entra.
 
-## EXAMPLES
+## Examples
 
-### EXAMPLE 1
+### Example 1
 
 ```powershell
 Test-EntraScript -Path .\usercreation.ps1 -Quiet
@@ -45,7 +45,7 @@ Test-EntraScript -Path .\usercreation.ps1 -Quiet
 
 Returns whether the script `usercreation.ps1` could run under Microsoft.Graph.Entra.
 
-### EXAMPLE 2
+### Example 2
 
 ```powershell
 Get-ChildItem -Path \\contoso.com\it\code -Recurse -Filter *.ps1 | Test-EntraScript
@@ -53,7 +53,7 @@ Get-ChildItem -Path \\contoso.com\it\code -Recurse -Filter *.ps1 | Test-EntraScr
 
 Returns a list of all scripts that would not run under the Microsoft.Graph.Entra module, listing each issue with line and code.
 
-## PARAMETERS
+## Parameters
 
 ### -Path
 
@@ -76,7 +76,7 @@ Accept wildcard characters: False
 
 Code content to scan.
 Used when scanning code that has no file representation (e.g.
-straight from a repository).
+Straight from a repository).
 
 ```yaml
 Type: System.String
@@ -110,10 +110,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

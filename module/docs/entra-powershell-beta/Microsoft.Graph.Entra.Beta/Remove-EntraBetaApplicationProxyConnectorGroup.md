@@ -1,25 +1,25 @@
 ---
-title: Remove-EntraBetaApplicationProxyConnectorGroup.
-description: This article provides details on the Remove-EntraBetaApplicationProxyConnectorGroup command.
-ms.service: active-directory
-ms.topic: reference
-ms.date: 04/03/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Title: Remove-EntraBetaApplicationProxyConnectorGroup.
+Description: This article provides details on the Remove-EntraBetaApplicationProxyConnectorGroup command.
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaApplicationProxyConnectorGroup
 
-## SYNOPSIS
+## Synopsis
 The Remove-EntraBetaApplicationProxyConnectorGroup cmdlet deletes an Application Proxy Connector group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraBetaApplicationProxyConnectorGroup 
@@ -27,11 +27,11 @@ Remove-EntraBetaApplicationProxyConnectorGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaApplicationProxyConnectorGroup cmdlet deletes an Application Proxy Connector Group.
 It can only be used on an empty connector group, with no connectors assigned.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a specific Connector Group
 ```powershell
@@ -39,7 +39,7 @@ PS C:\> Get-EntraBetaApplicationProxyConnectorGroup -Id 59462d3c-a1bc-40a0-9bed-
 ```
 This command Remove a specific Connector Group.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The ID of the Connector group to delete.
@@ -60,13 +60,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 

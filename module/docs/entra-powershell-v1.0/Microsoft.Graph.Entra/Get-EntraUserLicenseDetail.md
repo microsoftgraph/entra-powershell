@@ -1,27 +1,27 @@
 ---
-title: Get-EntraUserLicenseDetail.
-description: This article provides details on the Get-EntraUserLicenseDetail command.
+Title: Get-EntraUserLicenseDetail.
+Description: This article provides details on the Get-EntraUserLicenseDetail command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/07/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraUserLicenseDetail
 
-## SYNOPSIS
+## Synopsis
 
 Retrieves license details for a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraUserLicenseDetail 
@@ -29,11 +29,11 @@ Get-EntraUserLicenseDetail
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 This cmdlet retrieves license details for a user.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve user license details
 
@@ -51,7 +51,7 @@ Hv-1hQIEDECePA-C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w {class ServicePlanInfo {...
 
 This example demonstrates how to retrieve license details for a user from Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -73,14 +73,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

@@ -1,28 +1,28 @@
 ---
-title: New-EntraDevice
-description: This article provides details on the New-EntraDevice command.
+Title: New-EntraDevice
+Description: This article provides details on the New-EntraDevice command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/22/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraDevice
 
-## SYNOPSIS
+## Synopsis
 
 Creates a device.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraDevice 
@@ -44,11 +44,11 @@ New-EntraDevice
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `New-EntraDevice` cmdlet creates a device in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a device
 
@@ -71,12 +71,12 @@ New-EntraDevice @params
 ```Output
 ObjectId                             DeviceId                             DisplayName
 --------                             --------                             -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb dddddddd-3333-4444-5555-eeeeeeeeeeee My new device
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb dddddddd-3333-4444-5555-eeeeeeeeeeee My new device
 ```
 
 This command creates a new device.
 
-## PARAMETERS
+## Parameters
 
 ### -AccountEnabled
 
@@ -322,13 +322,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraDevice](Get-EntraDevice.md)
 

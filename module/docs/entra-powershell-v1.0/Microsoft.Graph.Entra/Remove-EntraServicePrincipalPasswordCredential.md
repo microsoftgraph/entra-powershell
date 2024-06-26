@@ -1,27 +1,27 @@
 ---
-title: Get-EntraBetaAuditSignInLogs.
-description: This article provides details on the Get-EntraBetaAuditSignInLogs command.
+Title: Get-EntraBetaAuditSignInLogs.
+Description: This article provides details on the Get-EntraBetaAuditSignInLogs command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/02/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraServicePrincipalPasswordCredential
 
-## SYNOPSIS
+## Synopsis
 
 Removes a password credential from a service principal.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraServicePrincipalPasswordCredential
@@ -30,11 +30,11 @@ Remove-EntraServicePrincipalPasswordCredential
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Remove-EntraServicePrincipalPasswordCredential cmdlet removes a password credential from a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 
@@ -49,7 +49,7 @@ This command demonstrates how to remove a password credential from a service pri
 - **ObjectId**: The ObjectId of the specified Service Principal Password Credential.  
 - **KeyID**: The unique identifier of the Password Credential.  
 
-## PARAMETERS
+## Parameters
 
 ### -KeyId
 
@@ -87,13 +87,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraServicePrincipalPasswordCredential](Get-EntraServicePrincipalPasswordCredential.md)
 

@@ -1,27 +1,27 @@
 ---
-title: Get-EntraServicePrincipalDelegatedPermissionClassification
-description: This article provides details on the Get-EntraServicePrincipalDelegatedPermissionClassification command.
+Title: Get-EntraServicePrincipalDelegatedPermissionClassification
+Description: This article provides details on the Get-EntraServicePrincipalDelegatedPermissionClassification command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/02/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraServicePrincipalDelegatedPermissionClassification
 
-## SYNOPSIS
+## Synopsis
 
 Retrieve the delegated permission classification objects on a service principal.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -41,11 +41,11 @@ Get-EntraServicePrincipalDelegatedPermissionClassification
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraServicePrincipalDelegatedPermissionClassification cmdlet retrieves the delegated permission classifications from a service principal.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a list of delegated permission classifications
 
@@ -57,8 +57,8 @@ Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId '
 ```output
 Id                      Classification PermissionId                         PermissionName
 --                      -------------- ------------                         --------------
-bbbbbbbb-7777-8888-9999-cccccccccccc low            eeeeeeee-4444-5555-6666-ffffffffffff Sites.Read.All
-cccccccc-8888-9999-0000-dddddddddddd low            dddd3333-ee44-5555-66ff-777777aaaaaa profile
+Bbbbbbbb-7777-8888-9999-cccccccccccc low            eeeeeeee-4444-5555-6666-ffffffffffff Sites.Read.All
+Cccccccc-8888-9999-0000-dddddddddddd low            dddd3333-ee44-5555-66ff-777777aaaaaa profile
 ```
 
 This command retrieves all delegated permission classifications from the service principal.
@@ -73,7 +73,7 @@ Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId '
 ```output
 Id                      Classification PermissionId                         PermissionName
 --                      -------------- ------------                         --------------
-bbbbbbbb-7777-8888-9999-cccccccccccc low            eeeeeeee-4444-5555-6666-ffffffffffff Sites.Read.All
+Bbbbbbbb-7777-8888-9999-cccccccccccc low            eeeeeeee-4444-5555-6666-ffffffffffff Sites.Read.All
 ```
 
 This command retrieves the delegated permission classification by Id from the service principal.
@@ -88,12 +88,12 @@ Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId '
 ```output
 Id                      Classification PermissionId                         PermissionName
 --                      -------------- ------------                         --------------
-bbbbbbbb-7777-8888-9999-cccccccccccc low            eeeeeeee-4444-5555-6666-ffffffffffff Sites.Read.All
+Bbbbbbbb-7777-8888-9999-cccccccccccc low            eeeeeeee-4444-5555-6666-ffffffffffff Sites.Read.All
 ```
 
 This command retrieves the filtered delegated permission classifications from the service principal.
 
-## PARAMETERS
+## Parameters
 
 ### -ServicePrincipalId
 
@@ -148,15 +148,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Online.Administration.DelegatedPermissionClassification
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Remove-EntraServicePrincipalDelegatedPermissionClassification](Remove-EntraServicePrincipalDelegatedPermissionClassification.md)
 

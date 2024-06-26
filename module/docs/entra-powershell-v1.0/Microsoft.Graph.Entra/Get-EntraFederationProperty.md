@@ -1,28 +1,28 @@
 ---
-title: Get-EntraFederationProperty
-description: This article provides details on the Get-EntraFederationProperty command.
+Title: Get-EntraFederationProperty
+Description: This article provides details on the Get-EntraFederationProperty command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/28/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-help.xml
+External help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraFederationProperty
 
-## SYNOPSIS
+## Synopsis
 
 Displays the properties of the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraFederationProperty 
@@ -30,7 +30,7 @@ Get-EntraFederationProperty
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraFederationProperty` cmdlet gets key settings from both the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online.
 
@@ -45,7 +45,7 @@ For delegated scenarios, the calling user must be assigned at least one of the f
 - Hybrid Identity Administrator
 - Security Administrator
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Display properties for specified domain
 
@@ -56,7 +56,7 @@ Get-EntraFederationProperty -DomainName contoso.com
 
 This command displays properties for specified domain.
 
-## PARAMETERS
+## Parameters
 
 ### -DomainName
 
@@ -78,10 +78,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

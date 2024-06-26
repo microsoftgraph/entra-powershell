@@ -1,27 +1,27 @@
 ---
-title: New-EntraGroupLifecyclePolicy.
-description: This article provides details on the New-EntraGroupLifecyclePolicy command.
+Title: New-EntraGroupLifecyclePolicy.
+Description: This article provides details on the New-EntraGroupLifecyclePolicy command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/14/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraGroupLifecyclePolicy
 
-## SYNOPSIS
+## Synopsis
 
 Creates a new groupLifecyclePolicy.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraGroupLifecyclePolicy 
@@ -31,11 +31,11 @@ New-EntraGroupLifecyclePolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 Creates a new groupLifecyclePolicy in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Creates a new groupLifecyclePolicy
 
@@ -52,7 +52,7 @@ Id                                   AlternateNotificationEmails GroupLifetimeIn
 
 This example creates a new groupLifecyclePolicy setting the group lifetime to 99 days for a selected set of Office 365 groups and sends renewal notification emails to groups that have no owners to 'example@contoso.com'.
 
-## PARAMETERS
+## Parameters
 
 ### -AlternateNotificationEmails
 
@@ -110,17 +110,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### None
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraGroupLifecyclePolicy](Get-EntraGroupLifecyclePolicy.md)
 

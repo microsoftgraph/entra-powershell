@@ -1,27 +1,27 @@
 ---
-title: Get-EntraServicePrincipalMembership.
-description: This article provides details on the Get-EntraServicePrincipalMembership command.
+Title: Get-EntraServicePrincipalMembership.
+Description: This article provides details on the Get-EntraServicePrincipalMembership command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/02/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraServicePrincipalMembership
 
-## SYNOPSIS
+## Synopsis
 
 Get a service principal membership.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraServicePrincipalMembership 
@@ -31,11 +31,11 @@ Get-EntraServicePrincipalMembership
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraServicePrincipalMembership cmdlet gets the memberships of a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the memberships of a service principal.
 
@@ -80,7 +80,7 @@ Id                                   DeletedDateTime
 
 This command gets two memberships of a specified service principal.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -133,12 +133,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)

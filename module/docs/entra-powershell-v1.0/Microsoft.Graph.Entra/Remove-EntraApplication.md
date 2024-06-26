@@ -1,27 +1,27 @@
 ---
-title: Remove-EntraApplication
-description: This article provides details on the Remove-EntraApplication command.
+Title: Remove-EntraApplication
+Description: This article provides details on the Remove-EntraApplication command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/04/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraApplication
 
-## SYNOPSIS
+## Synopsis
 
 Delete an application by ObjectId.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraApplication 
@@ -29,11 +29,11 @@ Remove-EntraApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Remove-EntraApplication` cmdlet removes the specified application from Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove an application
 
@@ -44,7 +44,7 @@ Remove-EntraApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 
 This command removes the specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -66,13 +66,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraApplication](Get-EntraApplication.md)
 

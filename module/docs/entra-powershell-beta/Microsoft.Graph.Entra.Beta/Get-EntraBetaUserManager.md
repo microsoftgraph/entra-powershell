@@ -1,26 +1,26 @@
 ---
-title: Get-EntraBetaUserManager.
-description: This article provides details on the Get-EntraBetaUserManager command.
+Title: Get-EntraBetaUserManager.
+Description: This article provides details on the Get-EntraBetaUserManager command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 03/08/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaUserManager
 
-## SYNOPSIS
+## Synopsis
 Gets the manager of a user.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaUserManager 
@@ -28,10 +28,10 @@ Get-EntraBetaUserManager
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaUserManager cmdlet gets the manager of a user in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the manager of a user
 ```powershell
@@ -42,20 +42,20 @@ DeletedDateTime                 :
 Id                              : 26bb22db-6b8e-4adb-b761-264c869d5245
 @odata.context                  : https://graph.microsoft.com/beta/$metadata#directoryObjects/$entity
 @odata.type                     : #microsoft.graph.user
-accountEnabled                  : True
-businessPhones                  : {+1 858 555 0109}
-city                            : San Diego
-createdDateTime                 : 2023-07-07T14:18:05Z
-country                         : United States
-department                      : Sales & Marketing
-displayName                     : Miriam Graham
+AccountEnabled                  : True
+BusinessPhones                  : {+1 858 555 0109}
+City                            : San Diego
+CreatedDateTime                 : 2023-07-07T14:18:05Z
+Country                         : United States
+Department                      : Sales & Marketing
+DisplayName                     : Miriam Graham
 ```
 
 This example demonstrates how to retrieve the manager of a specific user.  
 
 This command gets the manager of a specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique identifier of a user in Microsoft Entra ID (UserPrincipalName or ObjectId)
@@ -75,13 +75,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Remove-EntraBetaUserManager](Remove-EntraBetaUserManager.md)
 

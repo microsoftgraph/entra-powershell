@@ -1,16 +1,16 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaServicePrincipalDelegatedPermissionClassification
 
-## SYNOPSIS
+## Synopsis
 Retreive the delegated permission classification objects on a service principal.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -24,10 +24,10 @@ Get-EntraBetaServicePrincipalDelegatedPermissionClassification -ServicePrincipal
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaServicePrincipalDelegatedPermissionClassification cmdlet retrieves the delegated permission classifications from a service principal.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a list of delegated permission classifications
 ```
@@ -70,7 +70,7 @@ PermissionName : Sites.Read.All
 
 This command retrieves the filtered delegated permission classifications from the service principal.
 
-## PARAMETERS
+## Parameters
 
 ### -ServicePrincipalId
 The unique identifier of a service principal object in Azure Active Directory.
@@ -121,10 +121,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Online.Administration.DelegatedPermissionClassification
-## NOTES
-## RELATED LINKS
+## Notes
+## Related Links

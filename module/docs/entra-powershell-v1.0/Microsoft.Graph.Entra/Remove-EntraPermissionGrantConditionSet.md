@@ -1,26 +1,26 @@
 ---
-title: Remove-EntraPermissionGrantConditionSet.
-description: This article provides details on the Remove-EntraPermissionGrantConditionSet command.
+Title: Remove-EntraPermissionGrantConditionSet.
+Description: This article provides details on the Remove-EntraPermissionGrantConditionSet command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/27/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraPermissionGrantConditionSet
 
-## SYNOPSIS
+## Synopsis
 Delete a Microsoft Entra ID permission grant condition set by ID.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraPermissionGrantConditionSet 
@@ -30,10 +30,10 @@ Remove-EntraPermissionGrantConditionSet
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Delete a Microsoft Entra ID permission grant condition set object by ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Delete a permission grant condition set from a policy
 ```Powershell
@@ -42,7 +42,7 @@ PS C:\>Remove-EntraPermissionGrantConditionSet -PolicyId "policy1" -ConditionSet
 
 This command demonstrates how to remove the Microsoft Entra ID permission grant condition set by ID.
   
-## PARAMETERS
+## Parameters
 
 ### -PolicyId
 The unique identifier of a Microsoft Entra ID permission grant policy object.
@@ -92,16 +92,16 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### String
 ### String
 ### String
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraPermissionGrantConditionSet](New-EntraPermissionGrantConditionSet.md)
 

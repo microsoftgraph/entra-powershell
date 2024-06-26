@@ -1,35 +1,35 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Add-EntraBetaDirectoryRoleMember
 
-## SYNOPSIS
+## Synopsis
 Adds a member to a directory role.
 
-## SYNTAX
+## Syntax
 
 ```
 Add-EntraBetaDirectoryRoleMember -ObjectId <String> -RefObjectId <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Add-EntraBetaDirectoryRoleMember cmdlet adds a member to an Azure Active Directory role.
+## Description
+The Add-EntraBetaDirectoryRoleMember cmdlet Adds a member to an Azure Active Directory role.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a member to an Active Directory role
 ```
 PS C:\>Add-EntraBetaDirectoryRoleMember -ObjectId 019ea7a2-1613-47c9-81cb-20ba35b1ae48 -RefObjectId c13dd34a-492b-4561-b171-40fcce2916c5
 ```
 
-This command adds a member to an Active Directory role.
+This command Adds a member to an Active Directory role.
 
-## PARAMETERS
+## Parameters
 
 
 
@@ -66,13 +66,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaDirectoryRoleMember]()
 

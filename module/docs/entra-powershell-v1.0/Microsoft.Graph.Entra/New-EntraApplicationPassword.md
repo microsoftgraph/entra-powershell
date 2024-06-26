@@ -1,27 +1,27 @@
 ---
-title: New-EntraApplicationPassword
-description: This article provides details on the New-EntraApplicationPassword command.
+Title: New-EntraApplicationPassword
+Description: This article provides details on the New-EntraApplicationPassword command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraApplicationPassword
 
-## SYNOPSIS
+## Synopsis
 Adds a strong password to an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraApplicationPassword 
@@ -30,10 +30,10 @@ New-EntraApplicationPassword
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Adds a strong password to an application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a password to an application
 ```powershell
@@ -46,9 +46,9 @@ CustomKeyIdentifier DisplayName EndDateTime           Hint KeyId                
                     mypassword  10/28/2021 3:57:37 PM EQ:  024c4c6e-87c3-4473-8e36-650f16bb730d EQ:A-s45?Rt9/3Bp?7]-7__IO]3AG09E 10/28/2019 3:57:37 PM
 ```
 
-This command adds a password to the specified application.
+This command Adds a password to the specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique identifier of the object specific Microsoft Entra ID object
@@ -83,16 +83,16 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### String
 ### Microsoft.Open.MSGraph.Model.PasswordCredential
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.PasswordCredential
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Remove-EntraApplicationPassword](Remove-EntraApplicationPassword.md)
 

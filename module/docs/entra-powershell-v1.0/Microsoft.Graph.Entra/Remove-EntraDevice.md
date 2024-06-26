@@ -1,27 +1,27 @@
 ---
-title: Remove-EntraDevice
-description: This article provides details on the Remove-EntraDevice command.
+Title: Remove-EntraDevice
+Description: This article provides details on the Remove-EntraDevice command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/01/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraDevice
 
-## SYNOPSIS
+## Synopsis
 
 Deletes a device.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraDevice 
@@ -29,11 +29,11 @@ Remove-EntraDevice
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Remove-EntraDevice` cmdlet removes a device from Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a device
 
@@ -45,7 +45,7 @@ Remove-EntraDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 
 This command removes the specified device.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -67,13 +67,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraDevice](Get-EntraDevice.md)
 

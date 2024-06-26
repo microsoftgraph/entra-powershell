@@ -1,26 +1,26 @@
 ---
-title: Get-EntraBetaDirectoryRole
-description: This article provides details on the Get-EntraBetaDirectoryRole command.
+Title: Get-EntraBetaDirectoryRole
+Description: This article provides details on the Get-EntraBetaDirectoryRole command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 02/29/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaDirectoryRole
 
-## SYNOPSIS
+## Synopsis
 Gets a directory role.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```powershell
@@ -36,10 +36,10 @@ Get-EntraBetaDirectoryRole
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The **Get-EntraBetaDirectoryRole** cmdlet gets a directory role from Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a directory role by ID
 ```powershell
@@ -69,8 +69,8 @@ ObjectId                             DisplayName                        Descript
 68239fa3-6b01-4396-aeb4-6af38a1b6abf Directory Readers                  Allows access to various read only tasks in the directory.
 8c6a5c45-e93e-4f2b-81be-b57ad4c43ddd Privileged Role Administrator      Privileged Role Administrator has access to perform common role management related tasks.
 8f8a1cf4-d535-4ccd-8552-7267c7ee0a88 Helpdesk Administrator             Helpdesk Administrator has access to perform common helpdesk related tasks.
-b89a48d4-7595-48d0-bb36-69fe4b220668 Device Administrators              Device Administrators
-d96eb2b3-0970-4827-8f26-6008efd86511 Security Administrator             Security Administrator allows ability to read and manage security configuration and reports.
+B89a48d4-7595-48d0-bb36-69fe4b220668 Device Administrators              Device Administrators
+D96eb2b3-0970-4827-8f26-6008efd86511 Security Administrator             Security Administrator allows ability to read and manage security configuration and reports.
 ```
 
 This command gets all the directory roles.
@@ -101,7 +101,7 @@ ObjectId                             DisplayName                        Descript
 
 This command gets the directory role by display name.
 
-## PARAMETERS
+## Parameters
 
 ### -Filter
 The oData v3.0 filter statement. 
@@ -137,13 +137,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Enable-EntraBetaDirectoryRole](Enable-EntraBetaDirectoryRole.md)
 

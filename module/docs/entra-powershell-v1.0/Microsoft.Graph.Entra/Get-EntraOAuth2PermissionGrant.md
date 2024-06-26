@@ -1,27 +1,27 @@
 ---
-title: Get-EntraOAuth2PermissionGrant.
-description: This article provides details on the Get-EntraOAuth2PermissionGrant Command.
+Title: Get-EntraOAuth2PermissionGrant.
+Description: This article provides details on the Get-EntraOAuth2PermissionGrant Command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/22/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraOAuth2PermissionGrant
 
-## SYNOPSIS
+## Synopsis
 
 Gets OAuth2PermissionGrant entities.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraOAuth2PermissionGrant 
@@ -30,11 +30,11 @@ Get-EntraOAuth2PermissionGrant
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraOAuth2PermissionGrant` cmdlet gets OAuth2PermissionGrant entities in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the OAuth2 permission grants
 
@@ -88,7 +88,7 @@ C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w           00001111-aaaa-2222-bbbb-3333cccc4444 Al
 
 This command gets top 2 OAuth2 permission grants records.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -126,12 +126,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Remove-EntraOAuth2PermissionGrant](Remove-EntraOAuth2PermissionGrant.md)

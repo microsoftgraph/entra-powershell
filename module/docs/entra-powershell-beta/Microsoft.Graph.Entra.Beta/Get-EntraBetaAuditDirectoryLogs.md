@@ -1,27 +1,27 @@
 ---
-title: Get-EntraBetaAuditDirectoryLogs.
-description: This article provides details on the Get-EntraBetaAuditDirectoryLogs command.
+Title: Get-EntraBetaAuditDirectoryLogs.
+Description: This article provides details on the Get-EntraBetaAuditDirectoryLogs command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 11/10/2023
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaAuditDirectoryLogs
 
-## SYNOPSIS
+## Synopsis
 Get directory audit logs.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaAuditDirectoryLogs 
@@ -31,10 +31,10 @@ Get-EntraBetaAuditDirectoryLogs
 [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaAuditDirectoryLogs cmdlet gets a Microsoft Entra ID audit log.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all logs
 ```powershell
@@ -76,7 +76,7 @@ This command shows how to get audit logs by ActivityDisplayName.
 ```
 This command shows how to get audit logs by the result.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -130,8 +130,8 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## RELATED LINKS
+## Related Links

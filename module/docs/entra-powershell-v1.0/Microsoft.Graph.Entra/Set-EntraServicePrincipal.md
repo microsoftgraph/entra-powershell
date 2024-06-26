@@ -1,27 +1,27 @@
 ---
-title: Set-EntraServicePrincipal.
-description: This article provides details on the Set-EntraServicePrincipal command.
+Title: Set-EntraServicePrincipal.
+Description: This article provides details on the Set-EntraServicePrincipal command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/02/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraServicePrincipal
 
-## SYNOPSIS
+## Synopsis
 
 This command updates a service principal.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraServicePrincipal
@@ -42,11 +42,11 @@ Set-EntraServicePrincipal
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Set-EntraServicePrincipal` cmdlet updates a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Disable the account of a service principal
 
@@ -150,7 +150,7 @@ This example demonstrates how to update KeyCredentials of a service principal in
 
 Use the `New-EntraServicePrincipalPasswordCredential` and `Remove-EntraServicePrincipalPasswordCredential` cmdlets to update the password or secret for a servicePrincipal.
 
-## PARAMETERS
+## Parameters
 
 ### -AccountEnabled
 
@@ -381,13 +381,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
 

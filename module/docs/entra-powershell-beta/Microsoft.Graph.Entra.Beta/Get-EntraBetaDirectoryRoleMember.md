@@ -1,26 +1,26 @@
 ---
-title: Get-EntraBetaDirectoryRoleMember
-description: This article provides details on the Get-EntraBetaDirectoryRoleMember command.
+Title: Get-EntraBetaDirectoryRoleMember
+Description: This article provides details on the Get-EntraBetaDirectoryRoleMember command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 02/29/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaDirectoryRoleMember
 
-## SYNOPSIS
+## Synopsis
 Gets members of a directory role.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaDirectoryRoleMember 
@@ -28,10 +28,10 @@ Get-EntraBetaDirectoryRoleMember
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The **Get-EntraBetaDirectoryRoleMember** cmdlet gets the members of a directory role in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get members by role ID
 ```powershell
@@ -41,16 +41,16 @@ PS C:\>Get-EntraBetaDirectoryRoleMember -ObjectId "019ea7a2-1613-47c9-81cb-20ba3
 ```output
 ObjectId                             ObjectType
 --------                             ----------
-ba6752c4-6a2e-4be5-a23d-67d8d5980796 User
-df19e8e6-2ad7-453e-87f5-037f6529ae16 User
-c13dd34a-492b-4561-b171-40fcce2916c5 User
+Ba6752c4-6a2e-4be5-a23d-67d8d5980796 User
+Df19e8e6-2ad7-453e-87f5-037f6529ae16 User
+C13dd34a-492b-4561-b171-40fcce2916c5 User
 0558a23b-438a-48aa-8e30-5042e0746f69 User
 1fbae2b2-bb4b-48f9-bb38-83e9e1ad4bff User
 ```
 
 This command gets the members of the specified role.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the ID of a directory role in Microsoft Entra ID.
@@ -70,13 +70,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraBetaDirectoryRoleMember](Add-EntraBetaDirectoryRoleMember.md)
 

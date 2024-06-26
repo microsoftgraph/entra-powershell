@@ -1,27 +1,27 @@
 ---
-title: New-EntraIdentityProvider
-description: This article provides details on the New-EntraIdentityProvider command.
+Title: New-EntraIdentityProvider
+Description: This article provides details on the New-EntraIdentityProvider command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraIdentityProvider
 
-## SYNOPSIS
+## Synopsis
 This cmdlet is used to configure a new identity provider in the directory.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraIdentityProvider 
@@ -32,7 +32,7 @@ New-EntraIdentityProvider
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet is used to configure an identity provider in the directory.
 Adding an identity provider will allow users to sign up for or sign into applications secured by Microsoft Entra ID B2C using the identity provider.
 
@@ -42,7 +42,7 @@ The Gmail user will use their Google account credentials to authenticate and acc
 
 The current set of identity providers can be Microsoft, Google, Facebook, Amazon, or LinkedIn.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add LinkedIn identity provider
 ```powershell
@@ -55,9 +55,9 @@ Id             DisplayName
 LinkedIn-OAUTH LinkedInName
 ```
 
-This example adds a LinkedIn identity provider.
+This example Adds a LinkedIn identity provider.
 
-## PARAMETERS
+## Parameters
 
 ### -ClientId
 The client ID for the application.
@@ -125,12 +125,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### None
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

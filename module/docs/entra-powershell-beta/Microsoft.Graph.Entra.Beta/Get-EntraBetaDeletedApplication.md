@@ -1,16 +1,16 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaDeletedApplication
 
-## SYNOPSIS
+## Synopsis
 Retrieves the list of previously deleted applications
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -22,10 +22,10 @@ Get-EntraBetaDeletedApplication [-Top <Int32>] [-All] [-Filter <String>] [<Commo
 Get-EntraBetaDeletedApplication [-SearchString <String>] [-All] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Retrieves the list of previously deleted applications
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -38,10 +38,10 @@ ObjectId                             AppId                                Displa
 49a8bc01-2751-450b-a2e8-b4267f609513 10d861e6-90b3-4854-a504-f656aab2a14e AzurePopulator
 79592454-dea7-4660-9d91-f1768e5055ac feabcdd1-711a-4d55-ad5e-0d0577aaaa5e analog
 9c4fb233-e88c-4a61-acc9-e8fdcb6758dd e5e29b8a-85d9-41ea-b8d1-2162bd004528 Tenant Schema Extension App
-a5fd58ca-9f1b-4184-ba7c-2595b5831e21 641e422d-29af-49c9-a24e-c0ee05ff10d5 PowerShellRunner
-c4fdf87f-f68e-4859-8bcf-36579b66005e 71715b24-8cdd-432b-a138-86e8ad179274 Woodgrove HR App
-d58d399f-56c3-409c-9efc-fdc28a6bd50e 3ad57eaf-2547-4161-81ae-fde64b5e1c0f ExtensionAttributes
-e9cfe5ad-c9eb-4cd7-87c2-2a69059aeb69 576ea3a9-3d7f-4bcc-a2b5-2d1a5088075e GraphDirectoryExtension
+A5fd58ca-9f1b-4184-ba7c-2595b5831e21 641e422d-29af-49c9-a24e-c0ee05ff10d5 PowerShellRunner
+C4fdf87f-f68e-4859-8bcf-36579b66005e 71715b24-8cdd-432b-a138-86e8ad179274 Woodgrove HR App
+D58d399f-56c3-409c-9efc-fdc28a6bd50e 3ad57eaf-2547-4161-81ae-fde64b5e1c0f ExtensionAttributes
+E9cfe5ad-c9eb-4cd7-87c2-2a69059aeb69 576ea3a9-3d7f-4bcc-a2b5-2d1a5088075e GraphDirectoryExtension
 
 
 PS C:\WINDOWS\system32> Remove-EntraBetaApplication -ObjectId 79592454-dea7-4660-9d91-f1768e5055ac
@@ -54,7 +54,7 @@ ObjectId                             AppId                                Displa
 
 This example shows how an existing application was deleted and how the G-EntraBetaDeletedApplication cmdlet retrieves the application from the list of deleted applications
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -102,7 +102,7 @@ Accept wildcard characters: False
 
 ### -Top
 The maximum number of applications returned by this cmdlet.
-the default value is 100.
+The default value is 100.
 
 ```yaml
 Type: Int32
@@ -119,14 +119,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

@@ -1,26 +1,26 @@
 ---
-title: Set-EntraTenantDetail.
-description: This article provides details on the Set-EntraTenantDetail command.
+Title: Set-EntraTenantDetail.
+Description: This article provides details on the Set-EntraTenantDetail command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/15/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraTenantDetail
 
-## SYNOPSIS
+## Synopsis
 Set contact details for a tenant.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraTenantDetail 
@@ -32,10 +32,10 @@ Set-EntraTenantDetail
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet is used to set various contact details for a tenant.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Set contact details for a tenant
 ```powershell
@@ -73,7 +73,7 @@ PS C:\WINDOWS\system32> Set-EntraTenantDetail -TechnicalNotificationMails "peter
 This example demonstrates how to set TechnicalNotificationMails detail for a tenant.
 
 
-## PARAMETERS
+## Parameters
 
 ### -MarketingNotificationEmails
 The email address that is used to send marketing notification emails.
@@ -153,14 +153,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### None
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraTenantDetail](Get-EntraTenantDetail.md)

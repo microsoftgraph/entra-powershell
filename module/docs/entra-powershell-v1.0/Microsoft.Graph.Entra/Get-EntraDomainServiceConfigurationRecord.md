@@ -1,27 +1,27 @@
 ---
-title: Get-EntraDomainServiceConfigurationRecord.
-description: This article provides details on the Get-EntraDomainServiceConfigurationRecord command.
+Title: Get-EntraDomainServiceConfigurationRecord.
+Description: This article provides details on the Get-EntraDomainServiceConfigurationRecord command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/04/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraDomainServiceConfigurationRecord
 
-## SYNOPSIS
+## Synopsis
 
 Gets the domain's service configuration records from the `serviceConfigurationRecords` navigation property.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraDomainServiceConfigurationRecord 
@@ -29,13 +29,13 @@ Get-EntraDomainServiceConfigurationRecord
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 Gets the domain's service configuration records from the `serviceConfigurationRecords` navigation property.
 
 After you have successfully verified the ownership of a domain and you have indicated what services you plan to use with the domain, you can request Microsoft Entra ID to return you a set of DNS records which you need to add to the zone file of the domain so that the services can work properly with your domain.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve domain service configuration records by name
 
@@ -47,17 +47,17 @@ Get-EntraDomainServiceConfigurationRecord -name test.mail.contoso.com
 ```Output
 Id                                   IsOptional Label                                            RecordType SupportedService           Ttl
 --                                   ---------- -----                                            ---------- ----------------           ---
-aaaa0000-bb11-2222-33cc-444444dddddd False      test.mail.contoso.com                        Mx         Email                      3600
-bbbb1111-cc22-3333-44dd-555555eeeeee False      test.mail.contoso.com                        Txt        Email                      3600
-cccc2222-dd33-4444-55ee-666666ffffff False      autodiscover.test.mail.contoso.com           CName      Email                      3600
-dddd3333-ee44-5555-66ff-777777aaaaaa False      msoid.test.mail.contoso.com                  CName      OrgIdAuthentication        3600
-eeee4444-ff55-6666-77aa-888888bbbbbb False      enterpriseregistration.test.mail.contoso.com CName      Intune                     3600
-ffff5555-aa66-7777-88bb-999999cccccc False      enterpriseenrollment.test.mail.contoso.com   CName      Intune                     3600
+Aaaa0000-bb11-2222-33cc-444444dddddd False      test.mail.contoso.com                        Mx         Email                      3600
+Bbbb1111-cc22-3333-44dd-555555eeeeee False      test.mail.contoso.com                        Txt        Email                      3600
+Cccc2222-dd33-4444-55ee-666666ffffff False      autodiscover.test.mail.contoso.com           CName      Email                      3600
+Dddd3333-ee44-5555-66ff-777777aaaaaa False      msoid.test.mail.contoso.com                  CName      OrgIdAuthentication        3600
+Eeee4444-ff55-6666-77aa-888888bbbbbb False      enterpriseregistration.test.mail.contoso.com CName      Intune                     3600
+Ffff5555-aa66-7777-88bb-999999cccccc False      enterpriseenrollment.test.mail.contoso.com   CName      Intune                     3600
 ```
 
 This example shows how to retrieve the Domain service configuration records for a domain with the given name.
 
-## PARAMETERS
+## Parameters
 
 ### -Name
 
@@ -79,14 +79,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

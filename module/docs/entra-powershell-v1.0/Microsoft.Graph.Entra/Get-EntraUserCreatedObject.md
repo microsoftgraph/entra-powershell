@@ -1,27 +1,27 @@
 ---
-title:  Get-EntraUserCreatedObject.
-description: This article provides details on the  Get-EntraUserCreatedObject Command.
+Title:  Get-EntraUserCreatedObject.
+Description: This article provides details on the  Get-EntraUserCreatedObject Command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/27/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraUserCreatedObject
 
-## SYNOPSIS
+## Synopsis
 
 Get objects created by the user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraUserCreatedObject 
@@ -31,11 +31,11 @@ Get-EntraUserCreatedObject
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraUserCreatedObject cmdlet gets objects created by a user in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a user-created object
 
@@ -48,10 +48,10 @@ Get-EntraUserCreatedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-dddddddd-3333-4444-5555-eeeeeeeeeeee
-eeeeeeee-4444-5555-6666-ffffffffffff
+Bbbbbbbb-1111-2222-3333-cccccccccccc
+Cccccccc-2222-3333-4444-dddddddddddd
+Dddddddd-3333-4444-5555-eeeeeeeeeeee
+Eeeeeeee-4444-5555-6666-ffffffffffff
 ```
 
 This command gets an object created by the specified user.
@@ -67,12 +67,12 @@ Get-EntraUserCreatedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
+Bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
 This command gets top one object created by the specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -126,10 +126,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

@@ -1,27 +1,27 @@
 ---
-title: Remove-EntraRoleAssignment
-description: This article provides details on the Remove-EntraRoleAssignment command.
+Title: Remove-EntraRoleAssignment
+Description: This article provides details on the Remove-EntraRoleAssignment command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/16/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 
 Delete a Microsoft Entra ID roleAssignment.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraRoleAssignment 
@@ -29,11 +29,11 @@ Remove-EntraRoleAssignment
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Remove-EntraRoleAssignment` cmdlet removes a role assignment from Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a role assignment
 
@@ -45,7 +45,7 @@ The `Remove-EntraRoleAssignment` cmdlet removes a role assignment from Microsoft
 
 Removes the specified role assignment from Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -67,13 +67,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraRoleAssignment](Get-EntraRoleAssignment.md)
 

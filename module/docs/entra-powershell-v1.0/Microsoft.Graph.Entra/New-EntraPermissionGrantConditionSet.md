@@ -1,27 +1,27 @@
 ---
-title: New-EntraPermissionGrantConditionSet
-description: This article provides details on the New-EntraPermissionGrantConditionSet command.
+Title: New-EntraPermissionGrantConditionSet
+Description: This article provides details on the New-EntraPermissionGrantConditionSet command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraPermissionGrantConditionSet
 
-## SYNOPSIS
+## Synopsis
 Create a new Microsoft Entra ID permission grant condition set in a given policy.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraPermissionGrantConditionSet 
@@ -38,10 +38,10 @@ New-EntraPermissionGrantConditionSet
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Create a new Microsoft Entra ID permission grant condition set object in an existing policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a basic permission grant condition set in an existing policy with all build in values
 ```powershell
@@ -52,7 +52,7 @@ PS C:\> New-EntraPermissionGrantConditionSet -PolicyId "test1" -ConditionSetType
 Id                                   ClientApplicationIds ClientApplicationPublisherIds ClientApplicationTenantIds ClientApplicationsFromVerifiedPublisherOnly PermissionClassification PermissionType Permissio
                                                                                                                                                                                                        ns
 --                                   -------------------- ----------------------------- -------------------------- ------------------------------------------- ------------------------ -------------- ---------
-cab65448-9ec4-43a5-b575-d1f4d32fefa5 {all}                {all}                         {all}                      False                                       all                      delegated      {all}
+Cab65448-9ec4-43a5-b575-d1f4d32fefa5 {all}                {all}                         {all}                      False                                       all                      delegated      {all}
 ```
 
  This command creates a basic permission grant condition set in an existing policy with all build in values.
@@ -84,7 +84,7 @@ Id                                   ClientApplicationIds                       
 
 This command creates a permission grant condition set in an existing policy that is excluded.
 
-## PARAMETERS
+## Parameters
 
 ### -PolicyId
 The unique identifier of a Microsoft Entra ID permission grant policy object.
@@ -244,16 +244,16 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### String
 ### String
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.PermissionGrantConditionSet
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Set-EntraPermissionGrantConditionSet](Set-EntraPermissionGrantConditionSet.md)
 

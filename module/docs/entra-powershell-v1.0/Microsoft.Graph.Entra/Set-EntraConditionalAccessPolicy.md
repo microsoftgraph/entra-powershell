@@ -1,27 +1,27 @@
 ---
-title: Set-EntraConditionalAccessPolicy
-description: This article provides details on the Set-EntraConditionalAccessPolicy command.
+Title: Set-EntraConditionalAccessPolicy
+Description: This article provides details on the Set-EntraConditionalAccessPolicy command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/25/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraConditionalAccessPolicy
 
-## SYNOPSIS
+## Synopsis
 Updates a conditional access policy in Microsoft Entra ID by Id.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraConditionalAccessPolicy 
@@ -35,11 +35,11 @@ Set-EntraConditionalAccessPolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet allows an admin to update a conditional access policy in Microsoft Entra ID by Id.
 Conditional access policies are custom rules that define an access scenario.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Updates a conditional access policy in Microsoft Entra ID by PolicyId.
 ```powershell
@@ -71,7 +71,7 @@ PS C:\> Set-EntraConditionalAccessPolicy -PolicyId 6b5e999b-0ba8-4186-a106-e0296
 
 This command updates a conditional access policy in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -PolicyId
 Specifies the policy id of a conditional access policy in Microsoft Entra ID.
@@ -181,13 +181,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraConditionalAccessPolicy](Get-EntraConditionalAccessPolicy.md)
 

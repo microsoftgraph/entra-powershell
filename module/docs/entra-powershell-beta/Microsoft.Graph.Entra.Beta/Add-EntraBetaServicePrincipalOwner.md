@@ -1,26 +1,26 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Add-EntraBetaServicePrincipalOwner
 
-## SYNOPSIS
+## Synopsis
 Adds an owner to a service principal.
 
-## SYNTAX
+## Syntax
 
 ```
 Add-EntraBetaServicePrincipalOwner -ObjectId <String> -RefObjectId <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Add-EntraBetaServicePrincipalOwner cmdlet adds an owner to a service principal in Azure Active Directory.
+## Description
+The Add-EntraBetaServicePrincipalOwner cmdlet Adds an owner to a service principal in Azure Active Directory.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a user as an owner to a service principal
 ```
@@ -33,9 +33,9 @@ The first command gets the object ID of a service principal by using the Get-Ent
 
 The second command gets the object ID a user by using the Get-EntraBetaUser (./Get-EntraBetaUser.md)cmdlet, and then stores it in the $OwnerId variable.
 
-The final command adds the user specified by $OwnerId an owner to a service principal specified by $ServicePrincipalId.
+The final command Adds the user specified by $OwnerId an owner to a service principal specified by $ServicePrincipalId.
 
-## PARAMETERS
+## Parameters
 
 
 
@@ -72,13 +72,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaServicePrincipal]()
 

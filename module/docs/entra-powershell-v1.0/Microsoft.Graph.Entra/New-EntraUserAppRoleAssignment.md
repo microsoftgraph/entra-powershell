@@ -1,27 +1,27 @@
 ---
-title: New-EntraUserAppRoleAssignment.
-description: This article provides details on the New-EntraUserAppRoleAssignment command.
+Title: New-EntraUserAppRoleAssignment.
+Description: This article provides details on the New-EntraUserAppRoleAssignment command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/16/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraUserAppRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 
 Assigns a user to an application role.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraUserAppRoleAssignment 
@@ -32,7 +32,7 @@ New-EntraUserAppRoleAssignment
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `New-EntraUserAppRoleAssignment` cmdlet assigns a user to an application role in Microsoft Entra ID.
 
@@ -44,7 +44,7 @@ To grant an app role assignment to a user, you need three identifiers:
 
 - Id: The id of the appRole (defined on the resource service principal) to assign to the user.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Assign a user to an application without roles
 
@@ -87,7 +87,7 @@ This example demonstrates how to assign a user to an application role in Microso
 
 For more information on how to retrieve application roles for an application, see description of the Id parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -169,13 +169,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraUserAppRoleAssignment](Get-EntraUserAppRoleAssignment.md)
 

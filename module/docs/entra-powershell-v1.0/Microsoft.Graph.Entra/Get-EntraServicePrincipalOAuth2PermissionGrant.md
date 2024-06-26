@@ -1,27 +1,27 @@
 ---
-title: Get-EntraServicePrincipalOAuth2PermissionGrant.
-description: This article provides details on the Get-EntraServicePrincipalOAuth2PermissionGrant command.
+Title: Get-EntraServicePrincipalOAuth2PermissionGrant.
+Description: This article provides details on the Get-EntraServicePrincipalOAuth2PermissionGrant command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/02/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraServicePrincipalOAuth2PermissionGrant
 
-## SYNOPSIS
+## Synopsis
 
 Gets an oAuth2PermissionGrant object.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraServicePrincipalOAuth2PermissionGrant
@@ -31,11 +31,11 @@ Get-EntraServicePrincipalOAuth2PermissionGrant
 [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraServicePrincipalOAuth2PermissionGrant cmdlet gets an oAuth2PermissionGrant object for a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the OAuth2 permission grants of a service principal.
 
@@ -66,7 +66,7 @@ Get-EntraServicePrincipalOAuth2PermissionGrant -ObjectId '00001111-aaaa-2222-bbb
 ```output
 Id                                                               ClientId                             ConsentType   PrincipalId                          ResourceId                           Scope
 --                                                               --------                             -----------   -----------                          ----------                           -----
-A1bC2dE3f...                                                      00001111-aaaa-2222-bbbb-3333cccc4444 AllPrincipals                                      A1bC2dE3f...                          openid profile U...
+A1bC2dE3f...                                                      00001111-aaaa-2222-bbbb-3333cccc4444 AllPrincipals                                      A1bC2dE3f...                          Openid profile U...
 A1bC2dE3f...                                                      00001111-aaaa-2222-bbbb-3333cccc4444 Principal      412be9d1-1460-4061-8eed-cca203fcb215 aaaaaaaa-bbbb-cccc-1111-222222222222 openid profile U...
 A1bC2dE3f...                                                      00001111-aaaa-2222-bbbb-3333cccc4444 Principal      996d39aa-fdac-4d97-aa3d-c81fb47362ac aaaaaaaa-bbbb-cccc-1111-222222222222 PrivilegedAccess...
 ```
@@ -91,7 +91,7 @@ A1bC2dE3f...                                                      00001111-aaaa-
 This example demonstrates how to get top two oAuth2PermissionGrant object for a service principal in Microsoft Entra ID.  
 This command gets two OAuth2 permission grants of a service principal for specified ObjectId.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -145,12 +145,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)

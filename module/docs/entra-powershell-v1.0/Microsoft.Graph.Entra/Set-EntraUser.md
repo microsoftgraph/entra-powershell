@@ -1,26 +1,26 @@
 ---
-title: Set-EntraUser.
-description: This article provides details on the Set-EntraUser command.
+Title: Set-EntraUser.
+Description: This article provides details on the Set-EntraUser command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/15/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraUser
 
-## SYNOPSIS
+## Synopsis
 Updates a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraUser 
@@ -57,10 +57,10 @@ Set-EntraUser
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraUser cmdlet updates a user in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update a user
 
@@ -108,7 +108,7 @@ PS C:\> Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -PasswordPr
 ```
 This example updates the specified user's PasswordProfile property.
 
-## PARAMETERS
+## Parameters
 
 ### -AccountEnabled
 Indicates whether the account is enabled.
@@ -565,13 +565,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraUser](Get-EntraUser.md)
 

@@ -1,26 +1,26 @@
 ---
-title: Get-EntraBetaGroupOwner.
-description: This article provides details on the Get-EntraBetaGroupOwner command.
+Title: Get-EntraBetaGroupOwner.
+Description: This article provides details on the Get-EntraBetaGroupOwner command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 03/20/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaGroupOwner
 
-## SYNOPSIS
+## Synopsis
 Gets an owner of a group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaGroupOwner 
@@ -30,10 +30,10 @@ Get-EntraBetaGroupOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaGroupOwner cmdlet gets an owner of a group in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a group owner by ID
 ```powershell
@@ -54,7 +54,7 @@ PS C:\>Get-EntraBetaGroupOwner -ObjectId "c072b115-ed7b-47cb-90d3-d5019d8bfd51" 
 Id                                   DeletedDateTime
 --                                   ---------------
 996d39aa-fdac-4d97-aa3d-c81fb47362ac
-ea53750f-e28a-4645-b174-89618edd034a
+Ea53750f-e28a-4645-b174-89618edd034a
 2ae2d97b-4bde-42aa-b7c0-7c91a4c91a77
 ```
 This example demonstrates how to retrieve the all owner of a specific group.  
@@ -67,11 +67,11 @@ PS C:\>Get-EntraBetaGroupOwner -ObjectId "c072b115-ed7b-47cb-90d3-d5019d8bfd51" 
 Id                                   DeletedDateTime
 --                                   ---------------
 996d39aa-fdac-4d97-aa3d-c81fb47362ac
-ea53750f-e28a-4645-b174-89618edd034a
+Ea53750f-e28a-4645-b174-89618edd034a
 ```
 This example demonstrates how to retrieve the top two owners of a specific group. 
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -121,13 +121,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraBetaGroupOwner](Add-EntraBetaGroupOwner.md)
 

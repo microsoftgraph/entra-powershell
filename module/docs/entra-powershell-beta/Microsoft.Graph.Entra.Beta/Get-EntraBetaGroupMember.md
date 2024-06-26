@@ -1,26 +1,26 @@
 ---
-title: Get-EntraBetaGroupMember.
-description: This article provides details on the Get-EntraBetaGroupMember command.
+Title: Get-EntraBetaGroupMember.
+Description: This article provides details on the Get-EntraBetaGroupMember command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 03/06/2023
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaGroupMember
 
-## SYNOPSIS
+## Synopsis
 Gets a member of a group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaGroupMember 
@@ -30,10 +30,10 @@ Get-EntraBetaGroupMember
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaGroupMember cmdlet gets a member of a group in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a group member by ID
 ```Powershell
@@ -69,7 +69,7 @@ Id                                   DeletedDateTime
 --                                   ---------------
 996d39aa-fdac-4d97-aa3d-c81fb47362ac
 1554fcc2-9d6e-446b-9e1a-651c9ccfa413
-e19c5875-9f67-4634-9af7-8e544aa76765
+E19c5875-9f67-4634-9af7-8e544aa76765
 142bffc9-e10c-4ea0-ac17-bee0ac7468fd
 2ae2d97b-4bde-42aa-b7c0-7c91a4c91a77
 4a18c37a-a83d-489d-a35c-fdad407cd734
@@ -77,7 +77,7 @@ e19c5875-9f67-4634-9af7-8e544aa76765
 
 This example retrieves all members within a group by group ID.  
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -127,13 +127,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraBetaGroupMember](Add-EntraBetaGroupMember.md)
 

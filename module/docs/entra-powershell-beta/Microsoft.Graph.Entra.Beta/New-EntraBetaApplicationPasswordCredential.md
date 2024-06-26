@@ -1,28 +1,28 @@
 ---
-title: New-EntraBetaApplicationPasswordCredential
-description: This article provides details on the Set-EntraBetaApplicationProxyConnector command.
+Title: New-EntraBetaApplicationPasswordCredential
+Description: This article provides details on the Set-EntraBetaApplicationProxyConnector command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 03/21/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaApplicationPasswordCredential
 
-## SYNOPSIS
+## Synopsis
 
 Creates a password credential for an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraBetaApplicationPasswordCredential 
@@ -33,11 +33,11 @@ New-EntraBetaApplicationPasswordCredential
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The New-EntraBetaApplicationPasswordCredential cmdlet creates a password credential for an application in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a password credential
 
@@ -97,7 +97,7 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This command creates new password credential for specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -167,11 +167,11 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaApplicationPasswordCredential](Get-EntraBetaApplicationPasswordCredential.md)
 

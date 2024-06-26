@@ -1,27 +1,27 @@
 ---
-title: Set-EntraPermissionGrantPolicy
-description: This article provides details on the Set-EntraPermissionGrantPolicy command.
+Title: Set-EntraPermissionGrantPolicy
+Description: This article provides details on the Set-EntraPermissionGrantPolicy command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/25/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraPermissionGrantPolicy
 
-## SYNOPSIS
+## Synopsis
 Updates a permission grant policy.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraPermissionGrantPolicy 
@@ -31,10 +31,10 @@ Set-EntraPermissionGrantPolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraPermissionGrantPolicy command updates a Microsoft Entra ID permission grant policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update description of permission grant policy
 ```powershell
@@ -50,7 +50,7 @@ PS C:\> Set-EntraPermissionGrantPolicy -Id "my_permission_grant_policy_id" -Disp
 
 This command updates the display name of the specified permission grant policy.
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 Specifies the description of the permission grant policy.
@@ -100,13 +100,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraPermissionGrantPolicy](New-EntraPermissionGrantPolicy.md)
 

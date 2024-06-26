@@ -1,16 +1,16 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaUser
 
-## SYNOPSIS
+## Synopsis
 Gets a user.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -27,10 +27,10 @@ Get-EntraBetaUser [-SearchString <String>] [-All] [<CommonParameters>]
 Get-EntraBetaUser -ObjectId <String> [-All] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaUser cmdlet gets a user from Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get ten users
 ```
@@ -71,9 +71,9 @@ PS C:\>Get-EntraBetaUser -Filter "startswith(Title,'Sales')"
 ```
 
 This command gets all the users whos title starts with sales.
-ie Sales Manager and Sales Assistant.
+Ie Sales Manager and Sales Assistant.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -94,7 +94,7 @@ Accept wildcard characters: False
 Specifies an oData v3.0 filter statement.
 This parameter controls which objects are returned.
 Details on querying with oData can be found here.
-https://www.odata.org/documentation/odata-version-3-0/odata-version-3-0-core-protocol/#queryingcollections
+Https://www.odata.org/documentation/odata-version-3-0/odata-version-3-0-core-protocol/#queryingcollections
 
 ```yaml
 Type: String
@@ -156,13 +156,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraBetaUser]()
 

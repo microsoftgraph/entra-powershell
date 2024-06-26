@@ -1,27 +1,27 @@
 ---
-title: New-EntraAdministrativeUnit
-description: This article provides details on the New-EntraAdministrativeUnit command.
+Title: New-EntraAdministrativeUnit
+Description: This article provides details on the New-EntraAdministrativeUnit command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/05/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraAdministrativeUnit
 
-## SYNOPSIS
+## Synopsis
 
 Creates an administrative unit.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraAdministrativeUnit 
@@ -30,10 +30,10 @@ New-EntraAdministrativeUnit
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraAdministrativeUnit cmdlet creates an administrative unit in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create an administrative unit
 
@@ -65,7 +65,7 @@ DeletedDateTime Id                                   Description DisplayName Vis
 
 This command creates an administrative unit.
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 
@@ -103,13 +103,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraAdministrativeUnit](Get-EntraAdministrativeUnit.md)
 

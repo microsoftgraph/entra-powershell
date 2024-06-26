@@ -1,27 +1,27 @@
 ---
-title: New-EntraServiceAppRoleAssignment.
-description: This article provides details on the New-EntraServiceAppRoleAssignment command.
+Title: New-EntraServiceAppRoleAssignment.
+Description: This article provides details on the New-EntraServiceAppRoleAssignment command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/16/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraServiceAppRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 
 Assigns a service principal to an application role.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraServiceAppRoleAssignment 
@@ -32,7 +32,7 @@ New-EntraServiceAppRoleAssignment
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `New-EntraServiceAppRoleAssignment` cmdlet assigns a service principal to an application role in Microsoft Entra ID.
 
@@ -47,7 +47,7 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 - Application Administrator
 - Cloud Application Administrator
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Assign an app role to another service principal
 
@@ -140,7 +140,7 @@ This example demonstrates how to assign an app role to a group in Microsoft Entr
 - `Id`: The Id of the app role (defined on the app's service principal) to assign to the user. If no app roles are defined to the resource app, you can use `00000000-0000-0000-0000-000000000000` to indicate that the app is assigned to the user.
 - `PrincipalId`: The ObjectId of the user to which you're assigning the app role.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -210,13 +210,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraServiceAppRoleAssignment](Get-EntraServiceAppRoleAssignment.md)
 

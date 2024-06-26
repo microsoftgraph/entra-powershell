@@ -1,28 +1,28 @@
 ---
-title: Add-EntraServicePrincipalDelegatedPermissionClassification
-description: This article provides details on the Add-EntraServicePrincipalDelegatedPermissionClassification command.
+Title: Add-EntraServicePrincipalDelegatedPermissionClassification
+Description: This article provides details on the Add-EntraServicePrincipalDelegatedPermissionClassification command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/02/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Add-EntraServicePrincipalDelegatedPermissionClassification
 
-## SYNOPSIS
+## Synopsis
 
 Add a classification for a delegated permission.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraServicePrincipalDelegatedPermissionClassification 
@@ -33,11 +33,11 @@ Add-EntraServicePrincipalDelegatedPermissionClassification
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Add-EntraServicePrincipalDelegatedPermissionClassification cmdlet creates a delegated permission classification for the given permission on service principal.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create Delegated Permission Classification
 
@@ -60,7 +60,7 @@ Add-EntraServicePrincipalDelegatedPermissionClassification @params
 ```output
 Id                                   Classification PermissionId                         PermissionName
 --                                   -------------- ------------                         --------------
-eszf101IRka9VZoGVVnbBgE low            205e70e5-aba6-4c52-a976-6d2d46c48043 Sites.Read.All
+Eszf101IRka9VZoGVVnbBgE low            205e70e5-aba6-4c52-a976-6d2d46c48043 Sites.Read.All
 ```
 
 This command creates a delegated permission classification for the given permission on the service principal.
@@ -69,7 +69,7 @@ This command creates a delegated permission classification for the given permiss
 - The second command gets the Id from first item in Oauth2PermissionScopes list from the retrieved service principal.
 - The third command gets the value from first item in Oauth2PermissionScopes list from the retrieved service principal.  
 
-## PARAMETERS
+## Parameters
 
 ### -ServicePrincipalId
 
@@ -146,15 +146,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Online.Administration.DelegatedPermissionClassification
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraServicePrincipalDelegatedPermissionClassification](Get-EntraServicePrincipalDelegatedPermissionClassification.md)
 

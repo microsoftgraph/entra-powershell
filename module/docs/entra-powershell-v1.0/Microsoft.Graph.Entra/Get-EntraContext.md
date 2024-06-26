@@ -1,27 +1,27 @@
 ---
-title: Get-EntraContext.
-description: This article provides details on the Get-EntraContext command.
+Title: Get-EntraContext.
+Description: This article provides details on the Get-EntraContext command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 05/09/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraContext
 
-## SYNOPSIS
+## Synopsis
 
 `Get-EntraContext` is used to retrieve the details about your current session.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -31,7 +31,7 @@ Get-EntraContext
    [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 `Get-EntraContext` is used to retrieve the details about your current session, which include:  
 
@@ -49,7 +49,7 @@ Get-EntraContext
 - PSHostVersion
 - ClientTimeOut.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the current session
 
@@ -81,9 +81,9 @@ Directory.AccessAsUser.All
 Directory.ReadWrite.All
 EntitlementManagement.ReadWrite.All
 Group.ReadWrite.All
-openid
+Openid
 Organization.Read.All
-profile
+Profile
 RoleManagement.ReadWrite.Directory
 User.Read
 User.ReadWrite.All                                                                                     
@@ -91,7 +91,7 @@ User.ReadWrite.All
 
 Retrieves all scopes.
 
-## PARAMETERS
+## Parameters
 
 ### -ProgressAction
 
@@ -111,10 +111,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

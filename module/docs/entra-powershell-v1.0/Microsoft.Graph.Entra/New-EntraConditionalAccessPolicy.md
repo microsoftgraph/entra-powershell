@@ -1,27 +1,27 @@
 ---
-title: New-EntraConditionalAccessPolicy
-description: This article provides details on the New-EntraConditionalAccessPolicy command.
+Title: New-EntraConditionalAccessPolicy
+Description: This article provides details on the New-EntraConditionalAccessPolicy command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraConditionalAccessPolicy
 
-## SYNOPSIS
+## Synopsis
 Creates a new conditional access policy in Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraConditionalAccessPolicy 
@@ -34,11 +34,11 @@ New-EntraConditionalAccessPolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet allows an admin to create new conditional access policy in Microsoft Entra ID.
 Conditional access policies are custom rules that define an access scenario.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Creates a new conditional access policy in Microsoft Entra ID that require MFA to access Exchange Online.
 ```powershell
@@ -88,7 +88,7 @@ State                   : Enabled
 
 This command creates a new conditional access policy in Microsoft Entra ID that blocks access to Exchange Online from nontrusted regions.
 
-## PARAMETERS
+## Parameters
 
 ### -DisplayName
 Specifies the display name of a conditional access policy in Microsoft Entra ID.
@@ -183,13 +183,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraConditionalAccessPolicy](Get-EntraConditionalAccessPolicy.md)
 

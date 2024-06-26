@@ -1,27 +1,27 @@
 ---
-title: New-EntraApplicationExtensionProperty
-description: This article provides details on the New-EntraApplicationExtensionProperty command.
+Title: New-EntraApplicationExtensionProperty
+Description: This article provides details on the New-EntraApplicationExtensionProperty command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/21/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraApplicationExtensionProperty
 
-## SYNOPSIS
+## Synopsis
 Creates an application extension property.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraApplicationExtensionProperty 
@@ -32,10 +32,10 @@ New-EntraApplicationExtensionProperty
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraApplicationExtensionProperty cmdlet creates an application extension property for an object in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create an extension property
 ```powershell
@@ -78,11 +78,11 @@ DeletedDateTime Id                                   AppDisplayName  DataType Is
 
 The first command initializes new generic string list collection.  
 
-The second command adds an item to the list.  
+The second command Adds an item to the list.  
 
 The final command creates an application extension property with the specified target objects for the specified object.
 
-## PARAMETERS
+## Parameters
 
 ### -DataType
 Specifies the data type of the extension property.
@@ -147,13 +147,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraApplicationExtensionProperty](Get-EntraApplicationExtensionProperty.md)
 

@@ -1,25 +1,25 @@
 ---
-title: Get-EntraBetaApplicationProxyConnectorGroup.
-description: This article provides details on the Get-EntraBetaApplicationProxyConnectorGroup.
-ms.service: active-directory
-ms.topic: reference
-ms.date: 04/15/2023
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Title: Get-EntraBetaApplicationProxyConnectorGroup.
+Description: This article provides details on the Get-EntraBetaApplicationProxyConnectorGroup.
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaApplicationProxyConnectorGroup
 
-## SYNOPSIS
+## Synopsis
 The Get-EntraBetaApplicationProxyConnectorGroup cmdlet retrieves a list of all connector groups, or if specified, details of a specific connector group.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```powershell
@@ -46,10 +46,10 @@ Get-EntraBetaApplicationProxyConnectorGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaApplicationProxyConnectorGroup cmdlet retrieves a list of all connector groups, or if specified, details of the specified connector group.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve all connector groups
 
@@ -59,17 +59,17 @@ PS C:\> Get-EntraBetaApplicationProxyConnectorGroup
 ```output
 Name                           Value
 ----                           -----
-id                             5ce15799-97a5-4e45-add2-2094c8cd3752
-region                         eur
-connectorGroupType             applicationProxy
-isDefault                      True
-name                           Default
+Id                             5ce15799-97a5-4e45-add2-2094c8cd3752
+Region                         eur
+ConnectorGroupType             applicationProxy
+IsDefault                      True
+Name                           Default
 
-id                             b69debb1-6431-4c66-92c8-547990641283
-region                         eur
-connectorGroupType             applicationProxy
-isDefault                      False
-name                           test1
+Id                             b69debb1-6431-4c66-92c8-547990641283
+Region                         eur
+ConnectorGroupType             applicationProxy
+IsDefault                      False
+Name                           test1
 ```
 
 This command Retrieve all connector groups.
@@ -81,12 +81,12 @@ PS C:\> Get-EntraBetaApplicationProxyConnectorGroup -Id 5ce15799-97a5-4e45-add2-
 ```output
 Name                           Value
 ----                           -----
-id                             5ce15799-97a5-4e45-add2-2094c8cd3752
+Id                             5ce15799-97a5-4e45-add2-2094c8cd3752
 @odata.context                 https://graph.microsoft.com/beta/$metadata#onPremisesPublishingProfiles('applicationProxy')/connectorGroups/$entity
-isDefault                      True
-name                           Default
-region                         eur
-connectorGroupType             applicationProxy
+IsDefault                      True
+Name                           Default
+Region                         eur
+ConnectorGroupType             applicationProxy
 ```
 
 This command Retrieve a specific connector group.
@@ -98,12 +98,12 @@ PS C:\> Get-EntraBetaApplicationProxyConnectorGroup -Top 1
 ```output
 Name                           Value
 ----                           -----
-id                             5ce15799-97a5-4e45-add2-2094c8cd3752
+Id                             5ce15799-97a5-4e45-add2-2094c8cd3752
 @odata.context                 https://graph.microsoft.com/beta/$metadata#onPremisesPublishingProfiles('applicationProxy')/connectorGroups/$entity
-isDefault                      True
-name                           Default
-region                         eur
-connectorGroupType             applicationProxy
+IsDefault                      True
+Name                           Default
+Region                         eur
+ConnectorGroupType             applicationProxy
 ```
 
 This command Retrieve top one connector groups.
@@ -115,11 +115,11 @@ PS C:\> Get-EntraBetaApplicationProxyConnectorGroup -Filter "name eq 'Default'"
 ```output
 Name                           Value
 ----                           -----
-id                             5ce15799-97a5-4e45-add2-2094c8cd3752
-region                         eur
-connectorGroupType             applicationProxy
-isDefault                      True
-name                           Default
+Id                             5ce15799-97a5-4e45-add2-2094c8cd3752
+Region                         eur
+ConnectorGroupType             applicationProxy
+IsDefault                      True
+Name                           Default
 ```
 
 This command Retrieve a connector groups with filter parameter.
@@ -131,16 +131,16 @@ PS C:\> Get-EntraBetaApplicationProxyConnectorGroup -SearchString "test"
 ```output
 Name                           Value
 ----                           -----
-id                             b69debb1-6431-4c66-92c8-547990641283
-region                         eur
-connectorGroupType             applicationProxy
-isDefault                      False
-name                           test1
+Id                             b69debb1-6431-4c66-92c8-547990641283
+Region                         eur
+ConnectorGroupType             applicationProxy
+IsDefault                      False
+Name                           test1
 ```
 
 This command Retrieve a connector groups with String parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -223,14 +223,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

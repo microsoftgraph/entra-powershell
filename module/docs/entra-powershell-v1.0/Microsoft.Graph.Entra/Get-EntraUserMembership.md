@@ -1,27 +1,27 @@
 ---
-title: Get-EntraUserMembership.
-description: This article provides details on the Get-EntraUserMembership command.
+Title: Get-EntraUserMembership.
+Description: This article provides details on the Get-EntraUserMembership command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/07/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraUserMembership
 
-## SYNOPSIS
+## Synopsis
 
 Get user memberships.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraUserMembership 
@@ -31,11 +31,11 @@ Get-EntraUserMembership
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraUserMembership cmdlet gets user memberships in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get user memberships
 
@@ -47,12 +47,12 @@ Get-EntraUserMembership -ObjectId 'dddddddd-9999-0000-1111-eeeeeeeeeeee'
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-eeeeeeee-4444-5555-6666-ffffffffffff
-ffffffff-5555-6666-7777-aaaaaaaaaaaa
-bbbbbbbb-7777-8888-9999-cccccccccccc
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+Bbbbbbbb-1111-2222-3333-cccccccccccc
+Cccccccc-2222-3333-4444-dddddddddddd
+Eeeeeeee-4444-5555-6666-ffffffffffff
+Ffffffff-5555-6666-7777-aaaaaaaaaaaa
+Bbbbbbbb-7777-8888-9999-cccccccccccc
 ```
 
 This example demonstrates how to retrieve user memberships in Microsoft Entra ID.
@@ -67,12 +67,12 @@ Get-EntraUserMembership -ObjectId 'dddddddd-9999-0000-1111-eeeeeeeeeeee' -All
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-eeeeeeee-4444-5555-6666-ffffffffffff
-ffffffff-5555-6666-7777-aaaaaaaaaaaa
-bbbbbbbb-7777-8888-9999-cccccccccccc
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+Bbbbbbbb-1111-2222-3333-cccccccccccc
+Cccccccc-2222-3333-4444-dddddddddddd
+Eeeeeeee-4444-5555-6666-ffffffffffff
+Ffffffff-5555-6666-7777-aaaaaaaaaaaa
+Bbbbbbbb-7777-8888-9999-cccccccccccc
 ```
 
 This example demonstrates how to retrieve users all memberships in Microsoft Entra ID.
@@ -87,16 +87,16 @@ Get-EntraUserMembership -ObjectId 'dddddddd-9999-0000-1111-eeeeeeeeeeee' -Top 5
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-eeeeeeee-4444-5555-6666-ffffffffffff
-ffffffff-5555-6666-7777-aaaaaaaaaaaa
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+Bbbbbbbb-1111-2222-3333-cccccccccccc
+Cccccccc-2222-3333-4444-dddddddddddd
+Eeeeeeee-4444-5555-6666-ffffffffffff
+Ffffffff-5555-6666-7777-aaaaaaaaaaaa
 ```
 
 This example demonstrates how to retrieve users top five memberships in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -150,10 +150,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

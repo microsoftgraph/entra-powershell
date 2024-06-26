@@ -1,26 +1,26 @@
 ---
-title: Remove-EntraNamedLocationPolicy.
-description: This article provides details on the Remove-EntraNamedLocationPolicy command.
+Title: Remove-EntraNamedLocationPolicy.
+Description: This article provides details on the Remove-EntraNamedLocationPolicy command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/27/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraNamedLocationPolicy
 
-## SYNOPSIS
+## Synopsis
 Deletes a Microsoft Entra ID named location policy by PolicyId.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraNamedLocationPolicy 
@@ -28,11 +28,11 @@ Remove-EntraNamedLocationPolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet allows an admin to delete the Microsoft Entra ID named location policy.
 Named locations are custom rules that define network locations, which can then be used in a Conditional Access policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Deletes a named location policy in  Microsoft Entra ID with given PolicyId.
 ```Powershell
@@ -41,7 +41,7 @@ PS C:\> Remove-EntraNamedLocationPolicy -PolicyId 76fdfd4d-bd80-4c1e-8fd4-6abf49
 
 This command demonstrates how to delete the named location policy in  Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -PolicyId
 Specifies the ID of a named location policy in Microsoft Entra ID.
@@ -61,12 +61,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
-## RELATED LINKS
+## Notes
+## Related Links
 
 [New-EntraNamedLocationPolicy](New-EntraNamedLocationPolicy.md)
 

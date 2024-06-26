@@ -1,26 +1,26 @@
 ---
-title: Remove-EntraApplicationPassword.
-description: This article provides details on the Remove-EntraApplicationPassword command.
+Title: Remove-EntraApplicationPassword.
+Description: This article provides details on the Remove-EntraApplicationPassword command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/25/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraApplicationPassword
 
-## SYNOPSIS
+## Synopsis
 Remove a password from an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraApplicationPassword 
@@ -29,10 +29,10 @@ Remove-EntraApplicationPassword
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Remove a password from an application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Removes a password from an application
 ```powershell
@@ -43,7 +43,7 @@ This command remove the specified password from the specified application.
 ObjectId: The ObjectId of the specified application.
 KeyID: The unique identifier of the PasswordCredential.  
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique identifier of the object specific Microsoft Entra ID object
@@ -78,14 +78,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### string
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraApplicationPassword](New-EntraApplicationPassword.md)
 

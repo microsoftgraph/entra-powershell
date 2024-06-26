@@ -1,25 +1,25 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaUserCreatedObject
 
-## SYNOPSIS
+## Synopsis
 Get objects created by the user.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaUserCreatedObject -ObjectId <String> [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaUserCreatedObject cmdlet gets objects created by a user in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a user-created object
 ```
@@ -27,15 +27,15 @@ PS C:\>Get-EntraBetaUserCreatedObject -ObjectId "df19e8e6-2ad7-453e-87f5-037f652
 
 ObjectId                             ObjectType
 --------                             ----------
-f618e073-cda3-4fc7-b8bd-5ad63f19840f ServicePrincipal
-ed70f968-38ec-48d6-ae58-decfe80bfd5f ServicePrincipal
+F618e073-cda3-4fc7-b8bd-5ad63f19840f ServicePrincipal
+Ed70f968-38ec-48d6-ae58-decfe80bfd5f ServicePrincipal
 35ab4659-f61c-4a75-98d2-ef1d04ac2095 ServicePrincipal
-d0ce9d42-c943-43a1-a0b0-b1ded8d0ce3d ServicePrincipal
+D0ce9d42-c943-43a1-a0b0-b1ded8d0ce3d ServicePrincipal
 ```
 
 This command gets an object created by the specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -85,10 +85,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

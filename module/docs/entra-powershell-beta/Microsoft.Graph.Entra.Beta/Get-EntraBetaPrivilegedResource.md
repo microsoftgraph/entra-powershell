@@ -1,27 +1,27 @@
 ---
-title: Get-EntraBetaPrivilegedResource.
-description: This article provides details on Get-EntraBetaPrivilegedResource command.
+Title: Get-EntraBetaPrivilegedResource.
+Description: This article provides details on Get-EntraBetaPrivilegedResource command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 11/22/2023
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaPrivilegedResource
 
-## SYNOPSIS
+## Synopsis
 Get Microsoft Entra ID privileged resource.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -40,10 +40,10 @@ Get-EntraBetaPrivilegedResource
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Get Microsoft Entra ID privileged resource.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all resources
 
@@ -59,10 +59,10 @@ Id                                   DisplayName                          Extern
 0d626126-a0f3-444c-a025-84c2715389b4 ToGraph_443DEMos1                    /0d626126-a0f3-444c-a025-84c2715389b4
 951691f3-d9e5-4f43-8e48-9b1624f61fe3 MOD Demo Platform UnifiedApiConsumer /951691f3-d9e5-4f43-8e48-9b1624f61fe3
 9c8f84d0-3bd6-4ec4-a753-a6990777f438 "Ahiresh"                            /administrativeUnits/9c8f84d0-3bd6-4ec4-a753-a6990777...
-c4fd2cd1-7902-4be2-a25b-d5cc5ff93517 Pradeep Gupta                        /administrativeUnits/c4fd2cd1-7902-4be2-a25b-d5cc5ff9...
-d40bbf91-9b28-42bb-a42c-f2ada9332fb6 AdminUnitName1                       /administrativeUnits/d40bbf91-9b28-42bb-a42c-f2ada933...
-d5aec55f-2d12-4442-8d2f-ccca95d4390e Contoso                              /
-eb2a1f04-5fb2-44fb-b159-b8989da9a6a8 56544new2$£3                         /eb2a1f04-5fb2-44fb-b159-b8989da9a6a8
+C4fd2cd1-7902-4be2-a25b-d5cc5ff93517 Pradeep Gupta                        /administrativeUnits/c4fd2cd1-7902-4be2-a25b-d5cc5ff9...
+D40bbf91-9b28-42bb-a42c-f2ada9332fb6 AdminUnitName1                       /administrativeUnits/d40bbf91-9b28-42bb-a42c-f2ada933...
+D5aec55f-2d12-4442-8d2f-ccca95d4390e Contoso                              /
+Eb2a1f04-5fb2-44fb-b159-b8989da9a6a8 56544new2$£3                         /eb2a1f04-5fb2-44fb-b159-b8989da9a6a8
 ```
 
 Get all resources for AzureResource provider.
@@ -93,7 +93,7 @@ PS C:\> Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Filter "DisplayNam
 ```Output
 Id                                   DisplayName    ExternalId
 --                                   -----------    ----------
-d40bbf91-9b28-42bb-a42c-f2ada9332fb6 AdminUnitName1 /administrativeUnits/d40bbf91-9b28-42bb-a42c-f2ada9...
+D40bbf91-9b28-42bb-a42c-f2ada9332fb6 AdminUnitName1 /administrativeUnits/d40bbf91-9b28-42bb-a42c-f2ada9...
 ```
 Get a resource for AzureResource provider by Filter
 
@@ -109,7 +109,7 @@ Id                                   DisplayName       ExternalId
 ```
 Get top resources for AzureResource provider.
 
-## PARAMETERS
+## Parameters
 
 ### -Filter
 The filter for Odata query
@@ -174,12 +174,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

@@ -1,27 +1,27 @@
 ---
-title: Get-EntraApplicationOwner.
-description: This article provides details on the Get-EntraApplicationOwner command.
+Title: Get-EntraApplicationOwner.
+Description: This article provides details on the Get-EntraApplicationOwner command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/04/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraApplicationOwner
 
-## SYNOPSIS
+## Synopsis
 
 Gets the owner of an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraApplicationOwner 
@@ -31,11 +31,11 @@ Get-EntraApplicationOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraApplicationOwner` cmdlet gets an owner of a Microsoft Entra application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the owner of an application
 
@@ -46,16 +46,16 @@ Get-EntraApplicationOwner -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {adelev@contoso.com}
-preferredLanguage               :
-mail                            : AdeleV@contoso.com
-securityIdentifier              : S-1-12-1-2222222222-3333333333-4444444444-5555555555
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=AdeleV@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
+AgeGroup                        :
+OnPremisesLastSyncDateTime      :
+CreationType                    :
+ImAddresses                     : {adelev@contoso.com}
+PreferredLanguage               :
+Mail                            : AdeleV@contoso.com
+SecurityIdentifier              : S-1-12-1-2222222222-3333333333-4444444444-5555555555
+Identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=AdeleV@contoso.com}}
+ConsentProvidedForMinor         :
+OnPremisesUserPrincipalName     :
 ```
 
 This example demonstrates how to get the owners of an application in Microsoft Entra ID.
@@ -69,16 +69,16 @@ Get-EntraApplicationOwner -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {adelev@contoso.com}
-preferredLanguage               :
-mail                            : AdeleV@contoso.com
-securityIdentifier              : S-1-12-1-2222222222-3333333333-4444444444-5555555555
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=AdeleV@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
+AgeGroup                        :
+OnPremisesLastSyncDateTime      :
+CreationType                    :
+ImAddresses                     : {adelev@contoso.com}
+PreferredLanguage               :
+Mail                            : AdeleV@contoso.com
+SecurityIdentifier              : S-1-12-1-2222222222-3333333333-4444444444-5555555555
+Identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=AdeleV@contoso.com}}
+ConsentProvidedForMinor         :
+OnPremisesUserPrincipalName     :
 ```
 
 This example demonstrates how to get the all owners of a specified application in Microsoft Entra ID.
@@ -92,21 +92,21 @@ Get-EntraApplicationOwner -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {adelev@contoso.com}
-preferredLanguage               :
-mail                            : AdeleV@contoso.com
-securityIdentifier              : S-1-12-1-2222222222-3333333333-4444444444-5555555555
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=AdeleV@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
+AgeGroup                        :
+OnPremisesLastSyncDateTime      :
+CreationType                    :
+ImAddresses                     : {adelev@contoso.com}
+PreferredLanguage               :
+Mail                            : AdeleV@contoso.com
+SecurityIdentifier              : S-1-12-1-2222222222-3333333333-4444444444-5555555555
+Identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=AdeleV@contoso.com}}
+ConsentProvidedForMinor         :
+OnPremisesUserPrincipalName     :
 ```
 
 This example demonstrates how to get the two owners of a specified application in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -160,13 +160,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraApplicationOwner](Add-EntraApplicationOwner.md)
 

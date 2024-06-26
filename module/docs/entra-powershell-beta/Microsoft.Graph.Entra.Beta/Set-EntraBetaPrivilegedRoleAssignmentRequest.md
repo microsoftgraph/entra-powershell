@@ -1,26 +1,26 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaPrivilegedRoleAssignmentRequest
 
-## SYNOPSIS
+## Synopsis
 Update a role assignment request
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaPrivilegedRoleAssignmentRequest -Id <String> [-Schedule <AzureADMSPrivilegedSchedule>]
  [-AssignmentState <String>] [-Decision <String>] [-Reason <String>] -ProviderId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Update a role assignment request
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -29,7 +29,7 @@ PS C:\> Set-EntraBetaPrivilegedRoleAssignmentRequest -ProviderId AzureResources 
 
 Update a role assignment request by setting to denied
 
-## PARAMETERS
+## Parameters
 
 ### -AssignmentState
 The state of assignment, and the values can be Eligible or Active.
@@ -127,12 +127,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

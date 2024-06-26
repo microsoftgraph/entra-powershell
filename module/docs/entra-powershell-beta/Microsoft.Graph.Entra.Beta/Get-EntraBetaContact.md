@@ -1,16 +1,16 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaContact
 
-## SYNOPSIS
+## Synopsis
 Gets a contact from Azure Active Directory.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -22,10 +22,10 @@ Get-EntraBetaContact [-Filter <String>] [-All] [-Top <Int32>] [<CommonParameters
 Get-EntraBetaContact -ObjectId <String> [-All] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaContact cmdlet gets a contact from Azure Active Directory.
 
-## EXAMPLES
+## Examples
 
 ### Example 1 Retrieve all contact objects in the directory
 ```
@@ -33,12 +33,12 @@ PS C:\> Get-EntraBetaContact
 
 ObjectId                             Mail                DisplayName
 --------                             ----                -----------
-b052db07-e7ec-4c0e-b481-a5ba550b9ee7 contact@contoso.com Contoso Contact
+B052db07-e7ec-4c0e-b481-a5ba550b9ee7 contact@contoso.com Contoso Contact
 ```
 
 This command retrieves all contact objects in the directory.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -104,13 +104,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Remove-EntraBetaContact]()
 

@@ -1,26 +1,26 @@
 ---
-title: Remove-EntraIdentityProvider.
-description: This article provides details on the Remove-EntraIdentityProvider command.
+Title: Remove-EntraIdentityProvider.
+Description: This article provides details on the Remove-EntraIdentityProvider command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraIdentityProvider
 
-## SYNOPSIS
+## Synopsis
 This cmdlet is used to delete an identity provider in the directory.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraIdentityProvider 
@@ -28,11 +28,11 @@ Remove-EntraIdentityProvider
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet is used to delete an identity provider that has been configured in the directory.
 The identity provider is permanently deleted.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```Powershell
@@ -41,7 +41,7 @@ PS C:\> Remove-EntraIdentityProvider -Id LinkedIn-OAUTH
 
 This command demonstrates how to remove the specified identity provider.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The unique identifier for an identity provider.
@@ -61,12 +61,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

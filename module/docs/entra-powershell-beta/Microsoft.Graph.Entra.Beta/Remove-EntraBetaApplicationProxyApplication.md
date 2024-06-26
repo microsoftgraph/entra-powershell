@@ -1,25 +1,25 @@
 ---
-title: Remove-EntraBetaApplicationProxyApplication
-description: This article provides details on the Remove-EntraBetaApplicationProxyApplication command.
-ms.service: active-directory
-ms.topic: reference
-ms.date: 04/16/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Title: Remove-EntraBetaApplicationProxyApplication
+Description: This article provides details on the Remove-EntraBetaApplicationProxyApplication command.
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaApplicationProxyApplication
 
-## SYNOPSIS
+## Synopsis
 Deletes an Application Proxy application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraBetaApplicationProxyApplication 
@@ -28,10 +28,10 @@ Remove-EntraBetaApplicationProxyApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaApplicationProxyApplication cmdlet removes Application Proxy configurations from a specific application in Microsoft Entra ID, and can delete the application completely if specified.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a Proxy Application
 ```powershell
@@ -47,7 +47,7 @@ PS C:\> Remove-EntraBetaApplicationProxyApplication -ObjectId 0d7b0f02-3f63-414d
 
 This command Remove a Proxy Application, and remove it from Microsoft Entra ID completely.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique application ID of the application.
@@ -86,11 +86,11 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 [Get-EntraBetaApplication](Get-EntraBetaApplication.md)

@@ -1,16 +1,16 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaPrivilegedRoleDefinition
 
-## SYNOPSIS
+## Synopsis
 Get role definitions
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -24,10 +24,10 @@ Get-EntraBetaPrivilegedRoleDefinition -ResourceId <String> -Id <String> -Provide
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Get role definitions
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -43,7 +43,7 @@ PS C:\> Get-EntraBetaPrivilegedRoleDefinition -ProviderId AzureResources -Resour
 
 Get a role definitions for a specific provider, resource and Id
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The id of a role definition
@@ -123,12 +123,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

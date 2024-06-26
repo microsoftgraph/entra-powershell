@@ -1,28 +1,28 @@
 ---
-title: Get-EntraDomainFedrationSettings
-description: This article provides details on the Get-EntraDomainFedrationSettings command.
+Title: Get-EntraDomainFedrationSettings
+Description: This article provides details on the Get-EntraDomainFedrationSettings command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 03/28/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-help.xml
+External help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraDomainFedrationSettings
 
-## SYNOPSIS
+## Synopsis
 
 Gets key settings for a federated domain.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraDomainFedrationSettings 
@@ -31,7 +31,7 @@ Get-EntraDomainFedrationSettings
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraDomainFederationSettings` cmdlet gets key settings from Microsoft Entra ID.
 
@@ -46,9 +46,9 @@ For delegated scenarios, the calling user must be assigned at least one of the f
 - Hybrid Identity Administrator
 - Security Administrator
 
-## EXAMPLES
+## Examples
 
-### EXAMPLE 1: Get federation settings for specified domain
+### Example 1: Get federation settings for specified domain
 
 ```powershell
  Connect-Entra -Scopes 'Domain.Read.All'
@@ -57,7 +57,7 @@ For delegated scenarios, the calling user must be assigned at least one of the f
 
 This command gets federation settings for specified domain.
 
-## PARAMETERS
+## Parameters
 
 ### -DomainName
 
@@ -97,9 +97,9 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Online.Administration.DomainFederationSettings
 
@@ -121,6 +121,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ### SigningCertificate
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

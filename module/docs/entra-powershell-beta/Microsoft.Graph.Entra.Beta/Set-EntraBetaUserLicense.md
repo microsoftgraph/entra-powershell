@@ -1,27 +1,27 @@
 ---
-title: Set-EntraBetaUserLicense
-description: This article provides details on the Set-EntraBetaUserLicense command.
+Title: Set-EntraBetaUserLicense
+Description: This article provides details on the Set-EntraBetaUserLicense command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 02/28/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaUserLicense
 
-## SYNOPSIS
+## Synopsis
 Adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraBetaUserLicense 
@@ -30,10 +30,10 @@ Set-EntraBetaUserLicense
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The **Set-EntraBetaUserLicense** adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
+## Description
+The **Set-EntraBetaUserLicense** Adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a license to a user based on a template user
 ```powershell
@@ -56,13 +56,13 @@ The fourth command set the SkuId property of $License to the same value as the S
 
 The fifth command creates an AssignedLicenses object, and stores it in the $Licenses variable.  
 
-The sixth command adds the license in $License to $Licenses.  
+The sixth command Adds the license in $License to $Licenses.  
 
 The final command assigns the licenses in $Licenses to the user in $User.  
 
 The licenses in $Licenses includes $License from the third and fourth commands.
 
-## PARAMETERS
+## Parameters
 
 ### -AssignedLicenses
 Specifies a list of licenses to assign or remove.
@@ -97,13 +97,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaUser](Get-EntraBetaUser.md)
 

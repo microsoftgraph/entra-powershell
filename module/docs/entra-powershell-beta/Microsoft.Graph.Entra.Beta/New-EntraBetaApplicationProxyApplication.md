@@ -1,25 +1,25 @@
 ---
-title: New-EntraBetaApplicationProxyApplication
-description: This article provides details on the New-EntraBetaApplicationProxyApplication command.
-ms.service: active-directory
-ms.topic: reference
-ms.date: 04/10/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Title: New-EntraBetaApplicationProxyApplication
+Description: This article provides details on the New-EntraBetaApplicationProxyApplication command.
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaApplicationProxyApplication
 
-## SYNOPSIS
+## Synopsis
 The New-EntraBetaApplicationProxyApplication cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraBetaApplicationProxyApplication 
@@ -37,12 +37,12 @@ New-EntraBetaApplicationProxyApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraBetaApplicationProxyApplication cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
 To ensure this application is usable, also make sure you assign users and configure SSO if needed.
 Without specifying a ConnectorGroupId, this application by default uses the �Default� connector group in your tenant.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Creating a new application with only the basic required settings, and the default domain for applications.
 ```powershell
@@ -51,20 +51,20 @@ PS C:\> New-EntraBetaApplicationProxyApplication -DisplayName "Finance Tracker" 
 ```
 ```output
 ObjectId                                 : 93eef5b9-e7a5-4758-a746-9cf3fd9f38dc
-externalAuthenticationType               : 
-applicationServerTimeout                 : 
-externalUrl                              : https://finance-awcycles.msappproxy.net/
-internalUrl                              : http://finance/
-isTranslateHostHeaderEnabled             : False
-isTranslateLinksInBodyEnabled            : False
-isOnPremPublishingEnabled                : True
-verifiedCustomDomainCertificatesMetadata :
-verifiedCustomDomainKeyCredential        :
-verifiedCustomDomainPasswordCredential   :
-singleSignOnSettings                     : @{singleSignOnMode=none; kerberosSignOnSettings=}
-isHttpOnlyCookieEnabled                  : False
-isSecureCookieEnabled                    : False
-isPersistentCookieEnabled                : False
+ExternalAuthenticationType               : 
+ApplicationServerTimeout                 : 
+ExternalUrl                              : https://finance-awcycles.msappproxy.net/
+InternalUrl                              : http://finance/
+IsTranslateHostHeaderEnabled             : False
+IsTranslateLinksInBodyEnabled            : False
+IsOnPremPublishingEnabled                : True
+VerifiedCustomDomainCertificatesMetadata :
+VerifiedCustomDomainKeyCredential        :
+VerifiedCustomDomainPasswordCredential   :
+SingleSignOnSettings                     : @{singleSignOnMode=none; kerberosSignOnSettings=}
+IsHttpOnlyCookieEnabled                  : False
+IsSecureCookieEnabled                    : False
+IsPersistentCookieEnabled                : False
 ```
 
 This command Creating a new application with only the basic required settings, and the default domain for applications.
@@ -75,20 +75,20 @@ PS C:\>New-EntraBetaApplicationProxyApplication -DisplayName "Finance Tracker" -
 ```
 ```output
 ObjectId                                 : 93eef5b9-e7a5-4758-a746-9cf3fd9f38dc
-externalAuthenticationType               : aadPreAuthentication
-applicationServerTimeout                 : Long
-externalUrl                              : https://testp4-m365x99297270.msappproxy.net/
-internalUrl                              : https://testp4.com/
-isTranslateHostHeaderEnabled             : False
-isTranslateLinksInBodyEnabled            : False
-isOnPremPublishingEnabled                : True
-verifiedCustomDomainCertificatesMetadata :
-verifiedCustomDomainKeyCredential        :
-verifiedCustomDomainPasswordCredential   :
-singleSignOnSettings                     : @{singleSignOnMode=none; kerberosSignOnSettings=}
-isHttpOnlyCookieEnabled                  : False
-isSecureCookieEnabled                    : False
-isPersistentCookieEnabled                : False
+ExternalAuthenticationType               : aadPreAuthentication
+ApplicationServerTimeout                 : Long
+ExternalUrl                              : https://testp4-m365x99297270.msappproxy.net/
+InternalUrl                              : https://testp4.com/
+IsTranslateHostHeaderEnabled             : False
+IsTranslateLinksInBodyEnabled            : False
+IsOnPremPublishingEnabled                : True
+VerifiedCustomDomainCertificatesMetadata :
+VerifiedCustomDomainKeyCredential        :
+VerifiedCustomDomainPasswordCredential   :
+SingleSignOnSettings                     : @{singleSignOnMode=none; kerberosSignOnSettings=}
+IsHttpOnlyCookieEnabled                  : False
+IsSecureCookieEnabled                    : False
+IsPersistentCookieEnabled                : False
 ```
 
 This command Creating a new application with ApplicationServerTimeout and ExternalAuthenticationType parameter.
@@ -100,25 +100,25 @@ PS C:\>New-EntraBetaApplicationProxyApplication -DisplayName "Finance Tracker" -
 ```
 ```output
 ObjectId                                 : 93eef5b9-e7a5-4758-a746-9cf3fd9f38dc
-externalAuthenticationType               : aadPreAuthentication
-applicationServerTimeout                 : Long
-externalUrl                              : https://testp4-m365x99297270.msappproxy.net/
-internalUrl                              : https://testp4.com/
-isTranslateHostHeaderEnabled             : False
-isTranslateLinksInBodyEnabled            : False
-isOnPremPublishingEnabled                : True
-verifiedCustomDomainCertificatesMetadata :
-verifiedCustomDomainKeyCredential        :
-verifiedCustomDomainPasswordCredential   :
-singleSignOnSettings                     : @{singleSignOnMode=none; kerberosSignOnSettings=}
-isHttpOnlyCookieEnabled                  : False
-isSecureCookieEnabled                    : False
-isPersistentCookieEnabled                : False
+ExternalAuthenticationType               : aadPreAuthentication
+ApplicationServerTimeout                 : Long
+ExternalUrl                              : https://testp4-m365x99297270.msappproxy.net/
+InternalUrl                              : https://testp4.com/
+IsTranslateHostHeaderEnabled             : False
+IsTranslateLinksInBodyEnabled            : False
+IsOnPremPublishingEnabled                : True
+VerifiedCustomDomainCertificatesMetadata :
+VerifiedCustomDomainKeyCredential        :
+VerifiedCustomDomainPasswordCredential   :
+SingleSignOnSettings                     : @{singleSignOnMode=none; kerberosSignOnSettings=}
+IsHttpOnlyCookieEnabled                  : False
+IsSecureCookieEnabled                    : False
+IsPersistentCookieEnabled                : False
 ```
 
 This command Creating a new application with IsHttpOnlyCookieEnabled, IsSecureCookieEnabled, IsTranslateLinksInBodyEnabled, and ConnectorGroupId parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -ApplicationServerTimeout
 Set this value to Long only if your application is slow to authenticate and connect.
@@ -302,14 +302,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 System.Nullable\`1\[\[Microsoft.Open.MSGraph.Model.ApplicationProxyApplicationObject+ExternalAuthenticationTypeEnum, Microsoft.Open.MS.GraphV10.Client, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null\]\] System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[Microsoft.Open.MSGraph.Model.ApplicationProxyApplicationObject+ApplicationServerTimeoutEnum, Microsoft.Open.MS.GraphV10.Client, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

@@ -1,27 +1,27 @@
 ---
-title: Set-EntraDirSyncConfiguration
-description: This article provides details on the Set-EntraDirSyncConfiguration command.
+Title: Set-EntraDirSyncConfiguration
+Description: This article provides details on the Set-EntraDirSyncConfiguration command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/28/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-help.xml
+External help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraDirSyncConfiguration
 
-## SYNOPSIS
+## Synopsis
 Modifies the directory synchronization settings.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraDirSyncConfiguration 
@@ -31,10 +31,10 @@ Set-EntraDirSyncConfiguration
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraDirSyncConfiguration cmdlet modifies the directory synchronization settings.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Set directory synchronization settings
 ```powershell
@@ -50,7 +50,7 @@ PS C:\> Set-EntraDirSyncConfiguration -AccidentalDeletionThreshold 600 -TenantId
 
 This command sets directory synchronization settings by TenantId.
 
-## PARAMETERS
+## Parameters
 
 ### -AccidentalDeletionThreshold
 Specifies the accidental deletion threshold.
@@ -100,17 +100,17 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.UInt32
 
 ### System.Guid
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraDirSyncConfiguration](Get-EntraDirSyncConfiguration.md)

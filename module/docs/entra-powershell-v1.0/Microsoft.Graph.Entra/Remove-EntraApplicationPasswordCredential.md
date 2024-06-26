@@ -1,26 +1,26 @@
 ---
-title: Remove-EntraApplicationPasswordCredential.
-description: This article provides details on the Remove-EntraApplicationPasswordCredential command.
+Title: Remove-EntraApplicationPasswordCredential.
+Description: This article provides details on the Remove-EntraApplicationPasswordCredential command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/14/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraApplicationPasswordCredential
 
-## SYNOPSIS
+## Synopsis
 Removes a password credential from an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraApplicationPasswordCredential 
@@ -29,10 +29,10 @@ Remove-EntraApplicationPasswordCredential
 [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraApplicationPasswordCredential cmdlet removes a password credential from an application in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove an application password credential
 ```
@@ -48,7 +48,7 @@ The command stores it in the $KeyId variable.
 
 The final command removes the application password credential for the application identified by $AppID.
 
-## PARAMETERS
+## Parameters
 
 ### -KeyId
 @{Text=}
@@ -83,13 +83,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraApplication](Get-EntraApplication.md)
 

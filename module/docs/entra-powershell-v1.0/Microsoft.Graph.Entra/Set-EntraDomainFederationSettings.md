@@ -1,28 +1,28 @@
 ---
-title: Set-EntraDomainFederationSettings
-description: This article provides details on the Set-EntraDomainFederationSettings command.
+Title: Set-EntraDomainFederationSettings
+Description: This article provides details on the Set-EntraDomainFederationSettings command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/28/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-help.xml
+External help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraDomainFederationSettings
 
-## SYNOPSIS
+## Synopsis
 
 Updates settings for a federated domain.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraDomainFederationSettings 
@@ -41,7 +41,7 @@ Set-EntraDomainFederationSettings
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Set-EntraDomainFederationSettings` cmdlet is used to update the settings of a single sign-on domain.
 
@@ -52,7 +52,7 @@ For delegated scenarios, the calling user must be assigned at least one of the f
 - Hybrid Identity Administrator
 - Security Administrator
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Set the PromptLoginBehavior
 
@@ -76,7 +76,7 @@ This command updates the `PromptLoginBehavior` to either `TranslateToFreshPasswo
 
 Use the `Get-EntraDomainFederationSettings -DomainName <your_domain_name> | Format-List *` to get the values for `PreferredAuthenticationProtocol` and `PromptLoginBehavior` for the federated domain.
 
-## PARAMETERS
+## Parameters
 
 ### -DomainName
 
@@ -194,7 +194,7 @@ Accept wildcard characters: False
 
 The name of the string value shown to users when signing in to Microsoft Entra ID.
 We recommend that customers use something that is familiar to
-users such as "Contoso Inc."
+Users such as "Contoso Inc."
 
 ```yaml
 Type: System.String
@@ -276,12 +276,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraDomainFederationSettings](./Get-EntraDomainFederationSettings.md)

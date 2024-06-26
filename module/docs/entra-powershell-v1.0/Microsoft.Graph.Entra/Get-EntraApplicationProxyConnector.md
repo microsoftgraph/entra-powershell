@@ -1,26 +1,26 @@
 ---
-title: Get-EntraApplicationProxyConnector.
-description: This article provides details on the Get-EntraApplicationProxyConnector Command.
+Title: Get-EntraApplicationProxyConnector.
+Description: This article provides details on the Get-EntraApplicationProxyConnector Command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/27/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraApplicationProxyConnector
 
-## SYNOPSIS
+## Synopsis
 The Get-EntraApplicationProxyConnector cmdlet a list of all connectors, or if specified, details of a specific connector.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```powershell
@@ -47,11 +47,11 @@ Get-EntraApplicationProxyConnector
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The  cmdlet retrieves the details for a given conneGet-EntraApplicationProxyConnectorctor.
 If no connectorId is specified, it retrieves all the connectors assigned to the tenant.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve connectors.
 ```powershell
@@ -77,7 +77,7 @@ Id                                   MachineName                      ExternalIp
 
 This example demonstrates how to Retrieve information for a specific connector.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -160,14 +160,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

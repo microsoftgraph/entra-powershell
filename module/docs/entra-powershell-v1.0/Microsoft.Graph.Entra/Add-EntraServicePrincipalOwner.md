@@ -1,26 +1,26 @@
 ---
-title: Add-EntraServicePrincipalOwner
-description: This article provides details on the Add-EntraServicePrincipalOwner command.
+Title: Add-EntraServicePrincipalOwner
+Description: This article provides details on the Add-EntraServicePrincipalOwner command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/02/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Add-EntraServicePrincipalOwner
 
-## SYNOPSIS
+## Synopsis
 
 Adds an owner to a service principal.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraServicePrincipalOwner 
@@ -29,11 +29,11 @@ Add-EntraServicePrincipalOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The Add-EntraServicePrincipalOwner cmdlet adds an owner to a service principal in Microsoft Entra ID.
+The Add-EntraServicePrincipalOwner cmdlet Adds an owner to a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a user as an owner to a service principal
 
@@ -49,9 +49,9 @@ This example demonstrates how to add an owner to a service principal.
 
 - The first command gets the object ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md) cmdlet, and then stores it in the $ServicePrincipalId variable.
 - The second command gets the object ID a user by using the Get-EntraUser (./Get-EntraUser.md) cmdlet, and then stores it in the $OwnerId variable.
-- The final command adds the user specified by $OwnerId an owner to a service principal specified by $ServicePrincipalId.
+- The final command Adds the user specified by $OwnerId an owner to a service principal specified by $ServicePrincipalId.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -89,13 +89,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
 

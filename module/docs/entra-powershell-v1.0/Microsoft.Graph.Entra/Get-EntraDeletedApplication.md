@@ -1,27 +1,27 @@
 ---
-title: Get-EntraDeletedApplication
-description: This article provides details on the Get-EntraDeletedApplication command.
+Title: Get-EntraDeletedApplication
+Description: This article provides details on the Get-EntraDeletedApplication command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 03/15/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraDeletedApplication
 
-## SYNOPSIS
+## Synopsis
 
 Retrieves the list of previously deleted applications.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -42,11 +42,11 @@ Get-EntraDeletedApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 Retrieves the list of previously deleted applications.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get list of deleted applications
 
@@ -130,7 +130,7 @@ TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-ccccccc
 
 This cmdlet retrieves deleted applications having specified display name.  
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -202,16 +202,16 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
