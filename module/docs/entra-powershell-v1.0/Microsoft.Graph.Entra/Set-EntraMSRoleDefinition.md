@@ -191,7 +191,7 @@ Accept wildcard characters: False
 
 ### -TemplateId
 
-Specifies template ID for the role definition. Custom template identifier that can be set when isBuiltIn is false. This identifier is typically used if one needs an identifier to be the same across different directories. Read-only when isBuiltIn is true.
+Specifies template ID for the role definition. Custom template identifier that can be set when `isBuiltIn1 is 1false`. This identifier is typically used if one needs an identifier to be the same across different directories. Read-only when `isBuiltIn` is `true`.
 
 ```yaml
 Type: System.String
