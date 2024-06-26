@@ -31,7 +31,7 @@ Get-EntraDomainNameReference
 
 ## DESCRIPTION
 
-The Get-EntraDomainNameReference cmdlet retrieves the objects that are referenced with a given domain name.
+The `Get-EntraDomainNameReference` cmdlet retrieves the objects that are referenced with a given domain name.
 
 The work or school account needs to belong to at least the Domain Name Administrator or Global Reader Microsoft Entra role.
 
