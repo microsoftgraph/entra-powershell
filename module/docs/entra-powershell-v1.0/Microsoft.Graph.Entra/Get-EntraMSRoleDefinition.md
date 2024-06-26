@@ -53,7 +53,7 @@ Get-EntraMSRoleDefinition
 
 ## DESCRIPTION
 
-The `Get-EntraMSRoleDefinition` cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the Id parameter. Specify the SearchString or Filter parameter to find particular role definition.
+The `Get-EntraMSRoleDefinition` cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the `Id` parameter. Specify the `SearchString` or `Filter` parameter to find particular role definition.
 
 ## EXAMPLES
 
