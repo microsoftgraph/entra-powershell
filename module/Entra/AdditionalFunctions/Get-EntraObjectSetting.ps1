@@ -20,13 +20,6 @@ function Get-EntraObjectSetting {
         $params["Method"] = "GET"
         $params["Uri"] = "$baseUri"+"?"
 
-        if ($null -ne $PSBoundParameters["TargetType"]) {
-            $params["TargetType"] = $PSBoundParameters["TargetType"]
-        }
-        if ($null -ne $PSBoundParameters["TargetObjectId"]) {
-            $params["TargetObjectId"] = $PSBoundParameters["TargetObjectId"]
-        }
-
         if($null -ne $PSBoundParameters["Top"] -and  (-not $PSBoundParameters.ContainsKey("All")))
         {
             $topCount = $PSBoundParameters["Top"]
