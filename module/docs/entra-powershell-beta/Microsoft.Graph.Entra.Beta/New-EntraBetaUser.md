@@ -19,6 +19,7 @@ schema: 2.0.0
 # New-EntraBetaUser
 
 ## SYNOPSIS
+
 Creates a Microsoft Entra ID user.
 
 ## SYNTAX
@@ -63,11 +64,13 @@ New-EntraBetaUser
 ```
 
 ## DESCRIPTION
+
 The `New-EntraBetaUser` cmdlet creates a user in Microsoft Entra ID. Specify the `DisplayName`,`AccountEnabled`, and `PasswordProfile` parameter to create a user.
 
 ## EXAMPLES
 
 ### Example 1: Create a user using MailNickName parameter
+
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.ReadWrite.All'
 $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
@@ -97,6 +100,7 @@ AuthorizationInfo                               : @{CertificateUserIds=System.Ob
 This command creates a new user.
 
 ### Example 2: Create a user using AgeGroup parameter
+
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.ReadWrite.All'
 $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
@@ -126,6 +130,7 @@ AuthorizationInfo                               : @{CertificateUserIds=System.Ob
 This command creates a new user.
 
 ### Example 3: Create a user using City parameter
+
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.ReadWrite.All'
 $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
@@ -155,6 +160,7 @@ AuthorizationInfo                               : @{CertificateUserIds=System.Ob
 This command creates a new user.
 
 ### Example 4: Create a user using Department parameter
+
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.ReadWrite.All'
 $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
@@ -184,6 +190,7 @@ AuthorizationInfo                               : @{CertificateUserIds=System.Ob
 This command creates a new user.
 
 ### Example 5: Create a user using Mobile parameter
+
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.ReadWrite.All'
 $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
@@ -215,6 +222,7 @@ This command creates a new user.
 ## PARAMETERS
 
 ### -AccountEnabled
+
 Indicates whether the user's account is enabled.
 
 ```yaml
@@ -230,6 +238,7 @@ Accept wildcard characters: False
 ```
 
 ### -City
+
 Specifies the user's city.
 
 ```yaml
@@ -245,6 +254,7 @@ Accept wildcard characters: False
 ```
 
 ### -Country
+
 Specifies the user's country.
 
 ```yaml
@@ -260,6 +270,7 @@ Accept wildcard characters: False
 ```
 
 ### -CreationType
+
 Indicates whether the user account is a local account for a Microsoft Entra ID B2C tenant.
 Possible values are "LocalAccount" and null.
 When user creating a local account, the property is required and you must set it to "LocalAccount".
@@ -278,6 +289,7 @@ Accept wildcard characters: False
 ```
 
 ### -Department
+
 Specifies the user's department.
 
 ```yaml
@@ -293,6 +305,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
+
 Specifies the user's display name.
 
 ```yaml
@@ -308,6 +321,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExtensionProperty
+
 Add data to custom user properties as the basic **open extensions** or the more versatile **schema extensions**.
 
 ```yaml
@@ -323,6 +337,7 @@ Accept wildcard characters: False
 ```
 
 ### -GivenName
+
 Specifies the user's given name.
 
 ```yaml
@@ -338,6 +353,7 @@ Accept wildcard characters: False
 ```
 
 ### -ImmutableId
+
 This property is used to associate an on-premises user account to their Microsoft Entra ID user object.
 This property must be specified when creating a new user account in the Graph if you're using a federated domain for the user's userPrincipalName (UPN) property.
 
@@ -356,6 +372,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsCompromised
+
 Indicates whether this user is compromised.
 
 ```yaml
@@ -371,6 +388,7 @@ Accept wildcard characters: False
 ```
 
 ### -JobTitle
+
 Specifies the user's job title.
 
 ```yaml
@@ -386,6 +404,7 @@ Accept wildcard characters: False
 ```
 
 ### -MailNickName
+
 Specifies the user's mail nickname.
 
 ```yaml
@@ -401,6 +420,7 @@ Accept wildcard characters: False
 ```
 
 ### -Mobile
+
 Specifies the user's mobile phone number.
 
 ```yaml
@@ -416,7 +436,8 @@ Accept wildcard characters: False
 ```
 
 ### -OtherMails
-A list of other email addresses for the user; for example: "bob@contoso.com", "Robert@fabrikam.com".
+
+A list of other email addresses for the user; for example: "<bob@contoso.com>", "<Robert@fabrikam.com>".
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -431,6 +452,7 @@ Accept wildcard characters: False
 ```
 
 ### -PasswordPolicies
+
 Specifies password policies for the user.
 This value is an enumeration with one possible value being "DisableStrongPassword", which allows weaker passwords than the default policy to be specified.
 "DisablePasswordExpiration" can also be specified.
@@ -449,6 +471,7 @@ Accept wildcard characters: False
 ```
 
 ### -PasswordProfile
+
 Specifies the user's password profile.
 The parameter type for this parameter is "PasswordProfile".
 In order to pass a parameter of this type, you first need to create a variable in PowerShell with that type:
@@ -480,6 +503,7 @@ Accept wildcard characters: False
 ```
 
 ### -PhysicalDeliveryOfficeName
+
 Specifies the user's physical delivery office name.
 
 ```yaml
@@ -495,6 +519,7 @@ Accept wildcard characters: False
 ```
 
 ### -PostalCode
+
 Specifies the user's postal code.
 
 ```yaml
@@ -510,6 +535,7 @@ Accept wildcard characters: False
 ```
 
 ### -PreferredLanguage
+
 Specifies the user's preferred language.
 
 ```yaml
@@ -525,6 +551,7 @@ Accept wildcard characters: False
 ```
 
 ### -ShowInAddressList
+
 If True, show this user in the address list.
 
 ```yaml
@@ -540,6 +567,7 @@ Accept wildcard characters: False
 ```
 
 ### -SignInNames
+
 Specifies the collection of sign-in names for a local account in a Microsoft Entra ID B2C tenant.
 Each sign-in name must be unique across the company/tenant.
 The property must be specified when you create a local account user; don't specify it when you create a work or school account.
@@ -557,6 +585,7 @@ Accept wildcard characters: False
 ```
 
 ### -State
+
 Specifies the user's state.
 
 ```yaml
@@ -572,6 +601,7 @@ Accept wildcard characters: False
 ```
 
 ### -StreetAddress
+
 Specifies the user's street address.
 
 ```yaml
@@ -587,6 +617,7 @@ Accept wildcard characters: False
 ```
 
 ### -Surname
+
 Specifies the user's surname.
 
 ```yaml
@@ -602,6 +633,7 @@ Accept wildcard characters: False
 ```
 
 ### -TelephoneNumber
+
 Specifies a telephone number.
 
 ```yaml
@@ -617,6 +649,7 @@ Accept wildcard characters: False
 ```
 
 ### -UsageLocation
+
 A two letter country code (ISO standard 3166).
 Required for users that are assigned licenses due to legal requirement to check for availability of services in countries.
 Examples include: "US", "JP", and "GB".
@@ -634,6 +667,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserPrincipalName
+
 The user principal name (UPN) of the user.
 The UPN is an Internet-style sign-in name for the user based on the Internet standard RFC 822.
 By convention, this UPN should map to the user's email name.
@@ -654,6 +688,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserType
+
 A string value that can be used to classify user types in your directory, such as "Member" and "Guest".
 
 ```yaml
@@ -669,6 +704,7 @@ Accept wildcard characters: False
 ```
 
 ### -FacsimileTelephoneNumber
+
 Specifies the user's telephone number.
 
 ```yaml
@@ -684,6 +720,7 @@ Accept wildcard characters: False
 ```
 
 ### -AgeGroup
+
 Specifies the user's age group.
 
 ```yaml
@@ -699,6 +736,7 @@ Accept wildcard characters: False
 ```
 
 ### -CompanyName
+
 Specifies the user's company name.
 
 ```yaml
@@ -714,6 +752,7 @@ Accept wildcard characters: False
 ```
 
 ### -ConsentProvidedForMinor
+
 Sets whether consent was obtained for minors.
 
 ```yaml
@@ -729,8 +768,9 @@ Accept wildcard characters: False
 ```
 
 ### -UserState
-For an external user invited to the tenant using the invitation API, this property represents the invited user's 
-invitation status. 
+
+For an external user invited to the tenant using the invitation API, this property represents the invited user's
+invitation status.
 
 ```yaml
 Type: System.String
@@ -745,6 +785,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserStateChangedOn
+
 Shows the timestamp for the latest change to the userState property.
 
 ```yaml
@@ -760,6 +801,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -775,4 +817,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Remove-EntraBetaUser](Remove-EntraBetaUser.md)
 
 [Set-EntraBetaUser](Set-EntraBetaUser.md)
-

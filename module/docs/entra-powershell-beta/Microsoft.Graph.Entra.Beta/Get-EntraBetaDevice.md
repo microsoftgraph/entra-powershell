@@ -19,11 +19,13 @@ schema: 2.0.0
 # Get-EntraBetaDevice
 
 ## SYNOPSIS
+
 Gets a device from Microsoft Entra ID.
 
 ## SYNTAX
 
 ### GetQuery (Default)
+
 ```powershell
 Get-EntraBetaDevice 
  [-Filter <String>] 
@@ -33,6 +35,7 @@ Get-EntraBetaDevice
 ```
 
 ### GetByValue
+
 ```powershell
 Get-EntraBetaDevice 
  [-SearchString <String>] 
@@ -41,6 +44,7 @@ Get-EntraBetaDevice
 ```
 
 ### GetById
+
 ```powershell
 Get-EntraBetaDevice 
  -ObjectId <String> 
@@ -49,11 +53,13 @@ Get-EntraBetaDevice
 ```
 
 ## DESCRIPTION
+
 The `Get-EntraBetaDevice` cmdlet gets a device from Microsoft Entra ID. Specify the `ObjectId` parameter to get a specific device.
 
 ## EXAMPLES
 
 ### Example 1: Get a device by ID
+
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice -ObjectId 'bbbbbbbb-1111-1111-1111-cccccccccccc'
@@ -69,6 +75,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
 This example demonstrates how to retrieve specific device by providing ID. This command gets the specified device.
 
 ### Example 2: Get all devices
+
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice
@@ -86,10 +93,12 @@ This example demonstrates how to retrieve all devices from Microsoft Entra ID.
 This command gets all available devices.
 
 ### Example 3: Get top two devices
+
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice -Top 2
 ```
+
 ```output
 DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetada
                                                                                                                                                                                    ta
@@ -102,10 +111,12 @@ This example demonstrates how to retrieve top two devices from Microsoft Entra I
 This command gets the two devices from Microsoft Entra ID.
 
 ### Example 4: Get a device by display name
+
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice -Filter "DisplayName eq 'AkshayLodha'"
 ```
+
 ```output
 DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetada
                                                                                                                                                                                    ta
@@ -117,10 +128,12 @@ This example demonstrates how to retrieve device by display name from Microsoft 
 This command gets the specified device.
 
 ### Example 5: Get a device filter by display name
+
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice -Filter "startswith(DisplayName,'Aksh')"
 ```
+
 ```output
 DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetada
                                                                                                                                                                                    ta
@@ -131,10 +144,12 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
 This example demonstrates how to retrieve all the devices whose display name starts with Aksh from Microsoft Entra ID.  
 
 ### Example 6: Search among retrieved devices
+
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice -SearchString 'Ashwini'
 ```
+
 ```output
 DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetada
                                                                                                                                                                                    ta
@@ -148,6 +163,7 @@ This command gets all devices that match the value of SearchString against the f
 ## PARAMETERS
 
 ### -All
+
 List all pages.
 
 ```yaml
@@ -163,6 +179,7 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
+
 Specifies the oData v3.0 filter statement.
 This parameter controls which objects are returned.
 
@@ -179,6 +196,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a device in Microsoft Entra ID.
 
 ```yaml
@@ -194,6 +212,7 @@ Accept wildcard characters: False
 ```
 
 ### -SearchString
+
 Specifies a search string.
 
 ```yaml
@@ -209,6 +228,7 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
@@ -224,6 +244,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS

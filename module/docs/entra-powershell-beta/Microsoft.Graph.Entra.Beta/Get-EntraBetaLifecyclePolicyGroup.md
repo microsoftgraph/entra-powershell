@@ -1,6 +1,6 @@
 ---
-title: Get-EntraBetaMSLifecyclePolicyGroup.
-description: This article provides details on the Get-EntraBetaMSLifecyclePolicyGroup command.
+title: Get-EntraBetaLifecyclePolicyGroup.
+description: This article provides details on the Get-EntraBetaLifecyclePolicyGroup command.
 
 ms.service: entra
 ms.topic: reference
@@ -15,29 +15,33 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-EntraBetaMSLifecyclePolicyGroup
+# Get-EntraBetaLifecyclePolicyGroup
 
 ## SYNOPSIS
+
 Retrieves the lifecycle policy object to which a group belongs.
 
 ## SYNTAX
 
 ```powershell
-Get-EntraBetaMSLifecyclePolicyGroup 
+Get-EntraBetaLifecyclePolicyGroup 
  -Id <String> 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The `Get-EntraBetaMSLifecyclePolicyGroup` retrieves the lifecycle policy object to which a group belongs. Specify the `-Id` parameter to get the lifecycle policy object to which a group belongs.
+
+The `Get-EntraBetaLifecyclePolicyGroup` retrieves the lifecycle policy object to which a group belongs. Specify the `-Id` parameter to get the lifecycle policy object to which a group belongs.
 
 ## EXAMPLES
 
 ### Example 1: Retrieve lifecycle policy object
+
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaMSLifecyclePolicyGroup -Id 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
+Get-EntraBetaLifecyclePolicyGroup -Id 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
 ```
+
 ```output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
@@ -50,7 +54,8 @@ This command retrieves the lifecycle policy object to which a group belongs.
 ## PARAMETERS
 
 ### -ID
-Specifies the ID of a group in Microsoft Entra ID. 
+
+Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -65,18 +70,21 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### System.String
+
 ## OUTPUTS
 
 ### System.Object
+
 ## NOTES
 
 ## RELATED LINKS
 
-[Add-EntraBetaMSLifecyclePolicyGroup](Add-EntraBetaMSLifecyclePolicyGroup.md)
+[Add-EntraBetaLifecyclePolicyGroup](Add-EntraBetaLifecyclePolicyGroup.md)
 
-[Remove-EntraBetaMSLifecyclePolicyGroup](Remove-EntraBetaMSLifecyclePolicyGroup.md)
+[Remove-EntraBetaLifecyclePolicyGroup](Remove-EntraBetaLifecyclePolicyGroup.md)

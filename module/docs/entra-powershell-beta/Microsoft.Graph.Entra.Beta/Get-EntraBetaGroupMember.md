@@ -18,6 +18,7 @@ schema: 2.0.0
 # Get-EntraBetaGroupMember
 
 ## SYNOPSIS
+
 Gets a member of a group.
 
 ## SYNTAX
@@ -31,15 +32,18 @@ Get-EntraBetaGroupMember
 ```
 
 ## DESCRIPTION
+
 The `Get-EntraBetaGroupMember` cmdlet gets a member of a group in Microsoft Entra ID. Specify the `ObjectId` parameter to get a member of a group.
 
 ## EXAMPLES
 
 ### Example 1: Get a group member by ID
+
 ```Powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraBetaGroupMember -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff'
 ```
+
 ```output
 Id                                   DeletedDateTime
 --                                   ---------------
@@ -49,10 +53,12 @@ bbbbbbbb-7777-8888-9999-cccccccccccc
 This example demonstrates how to retrieve group member by ID.  
 
 ### Example 2: Get two group member
+
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraBetaGroupMember -ObjectId 'bbbbbbbb-7777-8888-9999-cccccccccccc' -Top 2
 ```
+
 ```output
 Id                                   DeletedDateTime
 --                                   ---------------
@@ -63,10 +69,12 @@ dddddddd-9999-0000-1111-eeeeeeeeeeee
 This example demonstrates how to retrieve top two groups from Microsoft Entra ID.  
 
 ### Example 3: Get all members within a group by group ID
+
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraBetaGroupMember -ObjectId 'dddddddd-9999-0000-1111-eeeeeeeeeeee' -All
 ```
+
 ```output
 Id                                   DeletedDateTime
 --                                   ---------------
@@ -82,6 +90,7 @@ This example retrieves all members within a group by group ID.
 ## PARAMETERS
 
 ### -All
+
 List all pages.
 
 ```yaml
@@ -97,6 +106,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
@@ -112,6 +122,7 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
@@ -127,6 +138,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS

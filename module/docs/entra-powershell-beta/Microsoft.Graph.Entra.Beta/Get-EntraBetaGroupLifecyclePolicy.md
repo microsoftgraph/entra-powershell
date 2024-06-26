@@ -1,6 +1,6 @@
 ---
-title: Get-EntraBetaMSGroupLifecyclePolicy.
-description: This article provides details on the Get-EntraBetaMSGroupLifecyclePolicy command.
+title: Get-EntraBetaGroupLifecyclePolicy.
+description: This article provides details on the Get-EntraBetaGroupLifecyclePolicy command.
 
 ms.service: entra
 ms.topic: reference
@@ -15,37 +15,42 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-EntraBetaMSGroupLifecyclePolicy
+# Get-EntraBetaGroupLifecyclePolicy
 
 ## SYNOPSIS
+
 Retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID.
 If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 
 ## SYNTAX
 
 ### GetQuery (Default)
+
 ```powershell
-Get-EntraBetaMSGroupLifecyclePolicy 
+Get-EntraBetaGroupLifecyclePolicy 
  [<CommonParameters>]
 ```
 
 ### GetById
+
 ```powershell
-Get-EntraBetaMSGroupLifecyclePolicy 
+Get-EntraBetaGroupLifecyclePolicy 
  -Id <String> 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The `Get-EntraBetaMSGroupLifecyclePolicy` command retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID. Specify the `-Id` parameter to get the group lifecycle policy.
+
+The `Get-EntraBetaGroupLifecyclePolicy` command retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID. Specify the `-Id` parameter to get the group lifecycle policy.
 If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 
 ## EXAMPLES
 
 ### Example 1: Retrieve all groupLifecyclePolicies
+
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaMSGroupLifecyclePolicy
+Get-EntraBetaGroupLifecyclePolicy
 ```
 ```output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
@@ -60,7 +65,7 @@ This command retrieves the group expiration settings configured for the tenant.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaMSGroupLifecyclePolicy -Id 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
+Get-EntraBetaGroupLifecyclePolicy -Id 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
 ```
 
 ```output
@@ -74,6 +79,7 @@ This command is used to retrieve a specific Microsoft Group Lifecycle Policy. Th
 ## PARAMETERS
 
 ### -ID
+
 Specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID.
 
 ```yaml
@@ -89,21 +95,25 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### System.String
+
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
 ## OUTPUTS
 
 ### System.Object
+
 ## NOTES
 
 ## RELATED LINKS
-[Set-EntraBetaMSGroupLifecyclePolicy](Set-EntraBetaMSGroupLifecyclePolicy.md)
 
-[New-EntraBetaMSGroupLifecyclePolicy](New-EntraBetaMSGroupLifecyclePolicy.md)
+[Set-EntraBetaGroupLifecyclePolicy](Set-EntraBetaGroupLifecyclePolicy.md)
 
-[Remove-EntraBetaMSGroupLifecyclePolicy](Remove-EntraBetaMSGroupLifecyclePolicy.md)
+[New-EntraBetaGroupLifecyclePolicy](New-EntraBetaGroupLifecyclePolicy.md)
+
+[Remove-EntraBetaGroupLifecyclePolicy](Remove-EntraBetaGroupLifecyclePolicy.md)

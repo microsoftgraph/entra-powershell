@@ -19,6 +19,7 @@ schema: 2.0.0
 # Get-EntraBetaApplicationLogo
 
 ## SYNOPSIS
+
 Retrieve the logo of an application
 
 ## SYNTAX
@@ -33,11 +34,13 @@ Get-EntraBetaApplicationLogo
 ```
 
 ## DESCRIPTION
+
 The `Get-EntraBetaApplicationLogo` cmdlet retrieves the logo that is set for an application. Specify the `ObjectId` parameter to get a specific application logo for an application.
 
 ## EXAMPLES
 
 ### Example 1: Get an application logo for an application by ID
+
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaApplicationLogo -ObjectId 'bbbbbbbb-1111-1111-1111-cccccccccccc' -FilePath 'D:\outfile1.jpg'
@@ -48,6 +51,7 @@ This example shows how to retrieve the application logo for an application that 
 ## PARAMETERS
 
 ### -FileName
+
 If provided, the application logo is copied to the file who's name is provided in this parameter
 
 ```yaml
@@ -63,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -FilePath
+
 If provided, the application logo is copied with a random filename to the file path that is specified in this parameter
 
 ```yaml
@@ -78,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 The ObjectID of the application for which the logo is to be retrieved
 
 ```yaml
@@ -93,6 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -View
+
 If set to $true, the application's logo is displayed in a new window on the screen.
 
 ```yaml
@@ -108,17 +115,21 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### System.String
+
 ### System.Boolean
 
 ## OUTPUTS
 
 ### System.Object
+
 ## NOTES
 
 ## RELATED LINKS
+
 [Set-EntraBetaApplicationLogo](Set-EntraBetaApplicationLogo.md)

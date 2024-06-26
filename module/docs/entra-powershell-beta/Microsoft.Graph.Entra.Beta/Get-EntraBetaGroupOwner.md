@@ -18,6 +18,7 @@ schema: 2.0.0
 # Get-EntraBetaGroupOwner
 
 ## SYNOPSIS
+
 Gets an owner of a group.
 
 ## SYNTAX
@@ -31,15 +32,18 @@ Get-EntraBetaGroupOwner
 ```
 
 ## DESCRIPTION
+
 The `Get-EntraBetaGroupOwner` cmdlet gets an owner of a group in Microsoft Entra ID. Specify the `ObjectId` parameter to get a specific group owner.
 
 ## EXAMPLES
 
 ### Example 1: Get a group owner by ID
+
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraBetaGroupOwner -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
+
 ```output
 Id                                   DeletedDateTime
 --                                   ---------------
@@ -48,10 +52,12 @@ cccccccc-2222-3333-4444-dddddddddddd
 This example demonstrates how to retrieve the owner of a specific group.
 
 ### Example 2: Gets all group owners
+
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraBetaGroupOwner -ObjectId 'ffffffff-5555-6666-7777-aaaaaaaaaaaa' -All
 ```
+
 ```output
 Id                                   DeletedDateTime
 --                                   ---------------
@@ -62,21 +68,25 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 This example demonstrates how to retrieve the all owner of a specific group.  
 
 ### Example 3: Gets two group owners
+
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraBetaGroupOwner -ObjectId 'bbbbbbbb-7777-8888-9999-cccccccccccc' -Top 2
 ```
+
 ```output
 Id                                   DeletedDateTime
 --                                   ---------------
 dddddddd-9999-0000-1111-eeeeeeeeeeee
 eeeeeeee-4444-5555-6666-ffffffffffff
 ```
+
 This example demonstrates how to retrieve the top two owners of a specific group. 
 
 ## PARAMETERS
 
 ### -All
+
 List all pages.
 
 ```yaml
@@ -92,6 +102,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
@@ -107,6 +118,7 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
@@ -122,6 +134,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
