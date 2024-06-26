@@ -208,7 +208,8 @@ function Get-CustomizationFiles {
 function Create-TOCFile {
     param (
         [string]
-        $Module = "Entra"
+        $Module = "Entra",
+		
     )
 
     # Define the root directory to scan
@@ -236,7 +237,7 @@ function Create-TOCFile {
 		$outputFile=$outputFile+"/entra-powershell-v1.0/toc.yml"
 	} else {
 		$rootDir = "Microsoft.Graph.Entra.Beta/"
-		$outputFile="/entra-powershell-beta/toc.yml"
+		$outputFile=$outputFilr+"/entra-powershell-beta/toc.yml"
 	}
     foreach ($file in $mdFiles) {
         # Generate the relative path from the root directory
