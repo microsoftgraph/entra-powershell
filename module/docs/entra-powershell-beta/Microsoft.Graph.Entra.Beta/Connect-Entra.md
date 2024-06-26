@@ -147,7 +147,8 @@ Welcome to Microsoft Graph!
 
 This command Connect a session using a ApplicationId and CertificateThumbprint.
 
-Follow this link [CertificateThumbprint][get-certificate] for m ore information.
+Follow this link (</powershell/entra-powershell/app-only-access-auth>)
+for more information on how to get or create CertificateThumbprint.
 
 ### Example 4: Delegated access: Using your own access token
 
@@ -162,7 +163,8 @@ Welcome to Microsoft Graph!
 
 This example shows how to authenticate to Microsoft Entra ID using an access token.
 
-See [How to get access token from the token endpoint.][token-endpoint]
+Follow this link (</graph/auth-v2-user#3-request-an-access-token>)
+for more information on how to get or create access token.
 
 ### Example 5: Connecting to an environment as a different identity
 
@@ -176,7 +178,8 @@ Welcome to Microsoft Graph!
 
 To connect as a different identity other than CurrentUser, specify the ContextScope parameter with the value Process.
 
-Follow this link to see [Context][entra-context] for more information.
+Follow this link (</powershell/entra-preview/microsoft.graph.entra/get-entracontext>)
+for more information on how to get or create context.
 
 ### Example 6: Connecting to an environment or cloud
 
@@ -251,7 +254,8 @@ $Cert = Get-ChildItem Cert:\LocalMachine\My\$CertThumbprint
 Connect-Entra -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444' -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -Certificate $Cert
 ```
 
-Follow this link to see [Certificate][get-certificate] more information on how to load the certificate.
+Follow this link (</powershell/module/microsoft.powershell.security/get-credential>)
+for more information on how to get or create credentials.
 
 ### Example 12: Using client secret credentials
 
@@ -263,7 +267,8 @@ Connect-Entra -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -ClientSecretCred
 
 This authentication method is ideal for background interactions. It doesn't require a user to physically sign in.
 
-See [Get-Credential][get-credential] on how to get or create credentials.
+Follow this link (</powershell/module/microsoft.powershell.security/get-credential>)
+for more information on how to get or create credentials.
 
 ### Example 13: Using managed identity: System-assigned managed identity
 
@@ -564,9 +569,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## RELATED LINKS
 
 [Disconnect-Entra](Disconnect-Entra.md)
-
-<!-- link references -->
-[entra-context]: /powershell/entra-preview/microsoft.graph.entra/get-entracontext
-[token-endpoint]: /graph/auth-v2-user#3-request-an-access-token
-[get-credential]: /powershell/module/microsoft.powershell.security/get-credential
-[get-certificate]: /powershell/entra-powershell/app-only-access-auth
