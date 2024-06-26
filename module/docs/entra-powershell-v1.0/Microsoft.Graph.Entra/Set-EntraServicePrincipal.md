@@ -125,7 +125,7 @@ $params = @{
 Set-EntraServicePrincipal @params
 ```
 
-This example demonstrates how to update ServicePrincipalType and AppRoleAssignmentRequired of a service principal in Microsoft Entra ID.
+This example demonstrates how to update `ServicePrincipalType` and `AppRoleAssignmentRequired` of a service principal in Microsoft Entra ID.
 
 ### Example 6: Update KeyCredentials of a service principal
 
