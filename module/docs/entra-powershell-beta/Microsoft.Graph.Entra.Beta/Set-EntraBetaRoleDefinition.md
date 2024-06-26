@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Set-EntraBetaMSRoleDefinition
+# Set-EntraBetaRoleDefinition
 
 ## SYNOPSIS
 {{ Fill in the Synopsis }}
@@ -13,7 +13,7 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-Set-EntraBetaMSRoleDefinition [-IsEnabled <Boolean>] -Id <String>
+Set-EntraBetaRoleDefinition [-IsEnabled <Boolean>] -Id <String>
  [-InheritsPermissionsFrom <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.DirectoryRoleDefinition]>]
  [-Version <String>] [-ResourceScopes <System.Collections.Generic.List`1[System.String]>]
  [-Description <String>]
