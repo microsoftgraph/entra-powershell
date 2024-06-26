@@ -207,7 +207,7 @@ Accept wildcard characters: False
 
 ### -Version
 
-Specifies version for the role definition. Indicates version of the role definition. Read-only when isBuiltIn is true.
+Specifies version for the role definition. Indicates version of the role definition. Read-only when `isBuiltIn` is `true`.
 
 ```yaml
 Type: System.String
