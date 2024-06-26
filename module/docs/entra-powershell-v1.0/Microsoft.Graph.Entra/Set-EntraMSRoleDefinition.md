@@ -38,7 +38,7 @@ Set-EntraMSRoleDefinition
 
 ## DESCRIPTION
 
-Updates a Microsoft Entra ID roleDefinition object identified by ID. You cannot update built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
+Updates a Microsoft Entra roleDefinition object identified by ID. You cannot update built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
 
 ## EXAMPLES
 
