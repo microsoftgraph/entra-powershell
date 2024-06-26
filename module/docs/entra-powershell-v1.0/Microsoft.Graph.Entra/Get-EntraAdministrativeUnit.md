@@ -50,7 +50,7 @@ The `Get-EntraAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrativ
 ### EXAMPLE 1: Gets a list of administrative unit
 
 ```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.Read.All, AdministrativeUnit.ReadWrite.All, Directory.Read.All, Directory.ReadWrite.All ' 
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All' 
 Get-EntraAdministrativeUnit
 ```
 
@@ -73,7 +73,7 @@ This example gets a list of administrative unit.
 ### EXAMPLE 2: Gets a specific administrative unit
 
 ```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.Read.All, AdministrativeUnit.ReadWrite.All, Directory.Read.All, Directory.ReadWrite.All ' 
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All' 
 Get-EntraAdministrativeUnit  -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
@@ -96,7 +96,7 @@ This example gets an administrative unit.
 ### EXAMPLE 3: Gets top one administrative unit
 
 ```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.Read.All, AdministrativeUnit.ReadWrite.All, Directory.Read.All, Directory.ReadWrite.All ' 
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All' 
 Get-EntraAdministrativeUnit  -Top 1
 ```
 
@@ -119,7 +119,7 @@ This example gets a top one administrative unit.
 ### EXAMPLE 4: Gets an administrative unit with filter parameter
 
 ```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.Read.All, AdministrativeUnit.ReadWrite.All, Directory.Read.All, Directory.ReadWrite.All ' 
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All' 
 Get-EntraAdministrativeUnit  -Filter "displayName eq 'Updated DisplayName'"
 ```
 
