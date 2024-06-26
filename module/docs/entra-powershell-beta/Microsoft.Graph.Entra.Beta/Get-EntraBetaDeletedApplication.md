@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Get-EntraBetaDeletedApplication
 
-## SYNOPSIS
+## Synopsis
 Retrieves the list of previously deleted applications
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -22,10 +22,10 @@ Get-EntraBetaDeletedApplication [-Top <Int32>] [-All] [-Filter <String>] [<Commo
 Get-EntraBetaDeletedApplication [-SearchString <String>] [-All] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Retrieves the list of previously deleted applications
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -54,7 +54,7 @@ ObjectId                             AppId                                Displa
 
 This example shows how an existing application was deleted and how the G-EntraBetaDeletedApplication cmdlet retrieves the application from the list of deleted applications
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -119,14 +119,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # New-EntraBetaApplicationPassword
 
-## SYNOPSIS
+## Synopsis
 Adds a strong password to an application.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaApplicationPassword -ObjectId <String> -PasswordCredential <PasswordCredential>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Adds a strong password to an application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a password to an application
 ```
@@ -37,7 +37,7 @@ PS C:\>New-EntraBetaApplicationPassword -ObjectId 14a3f1ac-46a7-4d00-b1ca-0b2b84
 
 This command adds a password to the specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique identifier of the object specific Azure Active Directory object
@@ -72,16 +72,16 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### string
 ### Microsoft.Open.MSGraph.Model.PasswordCredential
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.PasswordCredential
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Remove-EntraBetaApplicationPassword]()
 

@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Get-EntraBetaApplicationTemplate
 
-## SYNOPSIS
+## Synopsis
 Retrieve a list of applicationTemplate objects
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -22,10 +22,10 @@ Get-EntraBetaApplicationTemplate [<CommonParameters>]
 Get-EntraBetaApplicationTemplate -Id <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet allows users to get a list of all the application templates or a specific application template.
 
-## EXAMPLES
+## Examples
 
 ### 1. Gets a list of application template objects
 ```
@@ -41,7 +41,7 @@ PS C:\> $template = Get-EntraBetaApplicationTemplate -Id e8b7b394-057d-4203-a93a
 
 This command gets an application template object for the given id
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The unique identifier of an application template
@@ -61,10 +61,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Online.Administration.ApplicationTemplate
-## NOTES
-## RELATED LINKS
+## Notes
+## Related Links

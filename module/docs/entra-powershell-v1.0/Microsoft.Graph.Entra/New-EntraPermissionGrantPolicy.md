@@ -4,7 +4,7 @@ description: This article provides details on the New-EntraPermissionGrantPolicy
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/26/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # New-EntraPermissionGrantPolicy
 
-## SYNOPSIS
+## Synopsis
 Creates a permission grant policy.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraPermissionGrantPolicy 
@@ -31,10 +31,10 @@ New-EntraPermissionGrantPolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraPermissionGrantPolicy cmdlet creates a Microsoft Entra ID permission grant policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a permission grant policy
 ```powershell
@@ -62,7 +62,7 @@ DeletedDateTime Description                    DisplayName                Id
 
 This command creates new permission grant policy.
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 Specifies the description for the permission grant policy.
@@ -112,13 +112,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraPermissionGrantPolicy](Get-EntraPermissionGrantPolicy.md)
 

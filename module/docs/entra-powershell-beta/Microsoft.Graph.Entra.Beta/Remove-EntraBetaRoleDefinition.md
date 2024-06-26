@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Remove-EntraBetaRoleDefinition
 
-## SYNOPSIS
+## Synopsis
 Delete a Microsoft Entra ID roleDefinition by ObjectId
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaRoleDefinition [-Id] <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Delete a Microsoft Entra ID roleDefinition object by id.
 For more info see https://go.microsoft.com/fwlink/?linkid=2097519.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```powershell
@@ -29,7 +29,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The unique identifier of an object in Microsoft Entra ID
@@ -49,13 +49,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Get-EntraBetaDeletedGroup
 
-## SYNOPSIS
+## Synopsis
 This cmdlet is used to retrieve the soft deleted groups in a directory.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -27,14 +27,14 @@ Get-EntraBetaDeletedGroup -Id <String> [-All] [<CommonParameters>]
 Get-EntraBetaDeletedGroup [-All] [-SearchString <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet is used to retrieve the soft deleted groups in a directory.
 When a group is deleted it is initially soft deleted and can be recovered during the first 30 days after deletion.
 After 30 days the group is permanently deleted and can no longer be recovered.
 Note that soft delete is currently only implemented for Unified Groups (a.k.a.
 Office 365 Groups).
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -43,7 +43,7 @@ Get-AzureAdMSDeletedGroup
 
 This cmdlet will retrieve all recoverable deleted groups in the directory.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -124,14 +124,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Remove-EntraBetaApplicationKey
 
-## SYNOPSIS
+## Synopsis
 Removes a key from an application.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaApplicationKey -ObjectId <String> [-KeyId <String>] [-Proof <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Removes a key from an application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Removes a key credential from an application
 ```
@@ -28,7 +28,7 @@ PS C:\>Remove-EntraBetaApplicationKey -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea
 
 This command removes the specificed key credential from the specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique identifier of the object specific Azure Active Directory object
@@ -78,14 +78,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### string
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraBetaApplicationKey]()
 

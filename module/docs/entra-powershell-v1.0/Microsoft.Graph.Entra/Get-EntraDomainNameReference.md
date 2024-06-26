@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraDomainNameReference c
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/16/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraDomainNameReference
 
-## SYNOPSIS
+## Synopsis
 
 This cmdlet retrieves the objects that are referenced with a given domain name.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraDomainNameReference 
@@ -29,13 +29,13 @@ Get-EntraDomainNameReference
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraDomainNameReference` cmdlet retrieves the objects that are referenced with a given domain name.
 
 The work or school account needs to belong to at least the Domain Name Administrator or Global Reader Microsoft Entra role.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the domain name reference objects for a domain
 
@@ -63,7 +63,7 @@ proxyAddresses                  : {SMTP:Hood@contoso.com}
 
 This example shows how to retrieve the domain name reference objects for a domain that is specified through the -Name parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -Name
 
@@ -85,14 +85,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

@@ -4,7 +4,7 @@ description: This article provides details on the Add-EntraAdministrativeUnitMem
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/22/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # Add-EntraAdministrativeUnitMember
 
-## SYNOPSIS
+## Synopsis
 
 Adds an administrative unit member.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraAdministrativeUnitMember 
@@ -31,10 +31,10 @@ Add-EntraAdministrativeUnitMember
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The **Add-EntraAdministrativeUnitMember** cmdlet adds a Microsoft Entra ID administrative unit member.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add user as an administrative unit member
 
@@ -50,7 +50,7 @@ This command adds a user as an administrative unit member.
 
 Administrative units can help manage permissions and access in a more granular way, especially in large organizations or in scenarios where administrative responsibilities are divided among different departments or regions.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -88,13 +88,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraAdministrativeUnitMember](Get-EntraAdministrativeUnitMember.md)
 

@@ -4,7 +4,7 @@ description: This article provides details on the New-EntraTrustedCertificateAut
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/06/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # New-EntraTrustedCertificateAuthority
 
-## SYNOPSIS
+## Synopsis
 
 Creates a trusted certificate authority.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraTrustedCertificateAuthority 
@@ -29,11 +29,11 @@ New-EntraTrustedCertificateAuthority
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The New-EntraTrustedCertificateAuthority cmdlet creates a trusted certificate authority in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Creates the trusted certificate authorities in your directory
 
@@ -56,7 +56,7 @@ Id                                   CertificateAuthorities
 
 This command creates the trusted certificate authorities in your directory.
 
-## PARAMETERS
+## Parameters
 
 ### -CertificateAuthorityInformation
 
@@ -78,13 +78,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraTrustedCertificateAuthority](Get-EntraTrustedCertificateAuthority.md)
 

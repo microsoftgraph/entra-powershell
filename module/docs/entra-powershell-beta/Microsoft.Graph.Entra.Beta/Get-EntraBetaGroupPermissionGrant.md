@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaGroupPermissionGrant
 
-## SYNOPSIS
+## Synopsis
 Retrieves a list of permission grants that have been consented for this group.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaGroupPermissionGrant -Id <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Retrieves a list of permission grants that have been consented for this group.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: List existing permission grants for the group. .
 ```
@@ -35,7 +35,7 @@ List exisiting permission grants for the group.
 		Permission     : Member.Read.Group
 ```
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The unique identifier of group.
@@ -55,12 +55,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### string
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.GetMSGroupPermissionGrantsResponse
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

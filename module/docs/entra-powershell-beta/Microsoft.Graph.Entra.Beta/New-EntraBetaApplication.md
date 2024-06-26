@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # New-EntraBetaApplication
 
-## SYNOPSIS
+## Synopsis
 Creates (registers) a new application object.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaApplication [-Api <ApiApplication>] [-OptionalClaims <OptionalClaims>] -DisplayName <String>
@@ -29,10 +29,10 @@ New-EntraBetaApplication [-Api <ApiApplication>] [-OptionalClaims <OptionalClaim
  [-SignInAudience <String>] [-InformationalUrl <InformationalUrl>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Creates (registers) a new application object.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create an application
 ```
@@ -166,7 +166,7 @@ PS C:\>New-EntraBetaApplication `
 
 This command creates an application in Azure AD.
 
-## PARAMETERS
+## Parameters
 
 ### -AddIns
 Defines custom behavior that a consuming service can use to call an app in specific contexts.
@@ -509,7 +509,7 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### Boolean
 ### Microsoft.Open.MSGraph.Model.ApiApplication
@@ -527,12 +527,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]
 ### System.Collections.Generic.List`1[System.String]
 ### System.Nullable`1[System.Boolean]
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.MsApplication
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaApplication]()
 

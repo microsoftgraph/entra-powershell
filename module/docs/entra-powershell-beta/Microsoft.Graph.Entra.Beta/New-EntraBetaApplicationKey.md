@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # New-EntraBetaApplicationKey
 
-## SYNOPSIS
+## Synopsis
 Adds a new key to an application.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaApplicationKey -ObjectId <String> -KeyCredential <KeyCredential>
  [-PasswordCredential <PasswordCredential>] -Proof <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Adds a new key to an application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a key credential to an application
 ```
@@ -29,7 +29,7 @@ PS C:\>New-EntraBetaApplicationKey -ObjectId 14a3f1ac-46a7-4d00-b1ca-0b2b84f033c
 
 This command adds a key credential the specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -KeyCredential
 The application key credential to add.
@@ -98,17 +98,17 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### string
 ### Microsoft.Open.MSGraph.Model.KeyCredential
 ### Microsoft.Open.MSGraph.Model.PasswordCredential
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.KeyCredential
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Remove-EntraBetaApplicationKey]()
 

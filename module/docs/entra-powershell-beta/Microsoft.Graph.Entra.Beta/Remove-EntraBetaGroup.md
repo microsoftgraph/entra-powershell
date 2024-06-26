@@ -7,21 +7,21 @@ schema: 2.0.0
 
 # Remove-EntraBetaGroup
 
-## SYNOPSIS
+## Synopsis
 Removes a group.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaGroup -ObjectId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaGroup cmdlet removes a group from Azure Active Directory (AD).
 Note that a Unified Group can be restored withing 30 days after deletion using the Restore-EntraBetaDeletedDirectoryObject cmdlet.
 Security groups cannot be restored after deletion.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a group
 ```
@@ -30,7 +30,7 @@ PS C:\>Remove-EntraBetaGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606"
 
 This command removes the specified group from Azure AD.
 
-## PARAMETERS
+## Parameters
 
 
 
@@ -52,13 +52,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaGroup]()
 

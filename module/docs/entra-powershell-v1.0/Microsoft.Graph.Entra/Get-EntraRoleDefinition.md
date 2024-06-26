@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraRoleDefinition comman
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/01/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraRoleDefinition
 
-## SYNOPSIS
+## Synopsis
 
 Gets information about role definitions in Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -51,11 +51,11 @@ Get-EntraRoleDefinition
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraRoleDefinition` cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the `Id` parameter. Specify the `SearchString` or `Filter` parameter to find particular role definition.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all role definitions
 
@@ -106,7 +106,7 @@ Restricted Guest User                         2af84b1e-32c8-42b7-82bc-daa8240402
 
 This command return all the role definitions containing the specified display name.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -192,12 +192,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### String
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleDefinition
 
-## RELATED LINKS
+## Related Links

@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Set-EntraBetaUser
 
-## SYNOPSIS
+## Synopsis
 Updates a user.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaUser [-PostalCode <String>] [-MailNickName <String>] [-ShowInAddressList <Boolean>]
@@ -29,10 +29,10 @@ Set-EntraBetaUser [-PostalCode <String>] [-MailNickName <String>] [-ShowInAddres
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraBetaUser cmdlet updates a user in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update a user
 ```
@@ -43,7 +43,7 @@ PS C:\> Set-EntraBetaUser -ObjectId TestUser@example.com -Displayname $user.Disp
 
 This command updates the specified user's property.
 
-## PARAMETERS
+## Parameters
 
 ### -AccountEnabled
 Indicates whether the account is enabled.
@@ -576,13 +576,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaUser]()
 

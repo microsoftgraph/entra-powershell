@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraDomainVerificationDns
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/04/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraDomainVerificationDnsRecord
 
-## SYNOPSIS
+## Synopsis
 
 Retrieve the domain verification DNS record for a domain.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraDomainVerificationDnsRecord 
@@ -29,7 +29,7 @@ Get-EntraDomainVerificationDnsRecord
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 Gets the domain's verification records from the `verificationDnsRecords` navigation property.
 
@@ -41,7 +41,7 @@ Root domains require verification. For example, contoso.com requires verificatio
 
 The work or school account needs to belong to at least the Domain Name Administrator or Global Reader Microsoft Entra role.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the domain verification DNS record
 
@@ -59,7 +59,7 @@ bbbb1111-cc22-3333-44dd-555555eeeeee False      mail.contoso.com Mx         Emai
 
 This example shows how to retrieve the Domain verification DNS records for a domain with the given name.
 
-## PARAMETERS
+## Parameters
 
 ### -Name
 
@@ -81,14 +81,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
