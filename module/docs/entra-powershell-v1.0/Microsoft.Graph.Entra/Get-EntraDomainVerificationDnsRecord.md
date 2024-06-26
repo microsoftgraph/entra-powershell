@@ -31,7 +31,7 @@ Get-EntraDomainVerificationDnsRecord
 
 ## DESCRIPTION
 
-Gets the domain's verification records from the verificationDnsRecords navigation property.
+Gets the domain's verification records from the `verificationDnsRecords` navigation property.
 
 You can't use the domain with your Microsoft Entra ID tenant until you have successfully verified that you own the domain.
 
