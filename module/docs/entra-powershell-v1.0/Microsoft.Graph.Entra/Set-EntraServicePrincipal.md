@@ -44,7 +44,7 @@ Set-EntraServicePrincipal
 
 ## DESCRIPTION
 
-The Set-EntraServicePrincipal cmdlet updates a service principal in Microsoft Entra ID.
+The `Set-EntraServicePrincipal` cmdlet updates a service principal in Microsoft Entra ID.
 
 ## EXAMPLES
 
@@ -53,27 +53,44 @@ The Set-EntraServicePrincipal cmdlet updates a service principal in Microsoft En
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-Set-EntraServicePrincipal -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -AccountEnabled $False
+$params = @{
+    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    AccountEnabled = $False
+}
+
+Set-EntraServicePrincipal @params
 ```
 
-This example demonstrates how to update AccountEnabled of a service principal in Microsoft Entra ID.
+This example demonstrates how to update `AccountEnabled` of a service principal in Microsoft Entra ID.
 
 ### Example 2: Update AppId and Homepage of a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-Set-EntraServicePrincipal -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -AppId '22223333-cccc-4444-dddd-5555eeee6666' -Homepage 'https://*.e-days.com/SSO/SAML2/SP/AssertionConsumer.aspx?metadata=e-days|ISV9.2|primary|z'
+$params = @{
+    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    AppId = '22223333-cccc-4444-dddd-5555eeee6666'
+    Homepage = 'https://*.e-days.com/SSO/SAML2/SP/AssertionConsumer.aspx?metadata=e-days|ISV9.2|primary|z'
+}
+
+Set-EntraServicePrincipal @params
 ```
 
-This example demonstrates how to update AppId and Homepage of a service principal in Microsoft Entra ID.
+This example demonstrates how to update `AppId` and Homepage of a service principal in Microsoft Entra ID.
 
 ### Example 3: Update AlternativeNames and DisplayName of a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-Set-EntraServicePrincipal -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -AlternativeNames 'Service Principal Demo' -DisplayName 'NewName'
+$params = @{
+    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    AlternativeNames = 'Service Principal Demo'
+    DisplayName = 'NewName'
+}
+
+Set-EntraServicePrincipal @params
 ```
 
 This example demonstrates how to update AlternativeNames and DisplayName of a service principal in Microsoft Entra ID.
@@ -83,7 +100,13 @@ This example demonstrates how to update AlternativeNames and DisplayName of a se
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-Set-EntraServicePrincipal -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -LogoutUrl 'https://securescore.office.com/SignOut' -ReplyUrls 'https://admin.contoso.com'
+$params = @{
+    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    LogoutUrl = 'https://securescore.office.com/SignOut'
+    ReplyUrls = 'https://admin.contoso.com'
+}
+
+Set-EntraServicePrincipal @params
 ```
 
 This example demonstrates how to update LogoutUrl and ReplyUrls of a service principal in Microsoft Entra ID.
@@ -93,10 +116,16 @@ This example demonstrates how to update LogoutUrl and ReplyUrls of a service pri
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-Set-EntraServicePrincipal -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -ServicePrincipalType 'Application' -AppRoleAssignmentRequired $True
+$params = @{
+    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    ServicePrincipalType = 'Application'
+    AppRoleAssignmentRequired = $True
+}
+
+Set-EntraServicePrincipal @params
 ```
 
-This example demonstrates how to update ServicePrincipalType and AppRoleAssignmentRequired of a service principal in Microsoft Entra ID.
+This example demonstrates how to update `ServicePrincipalType` and `AppRoleAssignmentRequired` of a service principal in Microsoft Entra ID.
 
 ### Example 6: Update KeyCredentials of a service principal
 
@@ -350,7 +379,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
