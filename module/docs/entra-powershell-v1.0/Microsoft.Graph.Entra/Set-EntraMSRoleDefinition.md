@@ -175,7 +175,7 @@ Accept wildcard characters: False
 
 ### -RolePermissions
 
-Specifies permissions for the role definition. List of permissions included in the role. Read-only when isBuiltIn is `true`.
+Specifies permissions for the role definition. List of permissions included in the role. Read-only when `isBuiltIn` is `true`.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RolePermission]
