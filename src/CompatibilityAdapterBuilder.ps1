@@ -622,6 +622,7 @@ $OutputTransformations
 
     hidden [string] GetParametersDefinitions([PSCustomObject] $Command) {
         $commonParameterNames = @("Verbose", "Debug","ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable","WhatIf","Confirm")  
+        $ignorePropertyParameter = @("Get-EntraBetaApplicationPolicy", "Get-EntraBetaApplicationSignInSummary","Get-EntraBetaMSPrivilegedRoleAssignment","Get-EntraBetaMSTrustFrameworkPolicy","Get-EntraBetaPolicy","Get-EntraBetaPolicyAppliedObject","Get-EntraBetaServicePrincipalPolicy","Get-EntraApplicationLogo","Get-EntraBetaApplicationLogo","Get-EntraApplicationKeyCredential","Get-EntraBetaApplicationKeyCredential","Get-EntraBetaServicePrincipalKeyCredential","Get-EntraBetaServicePrincipalPasswordCredential","Get-EntraServicePrincipalKeyCredential","Get-EntraServicePrincipalPasswordCredential")
         $params = $(Get-Command -Name $Command.Old).Parameters
         $paramsList = @()
         foreach ($paramKey in $Command.Parameters.Keys) {
@@ -653,7 +654,25 @@ $OutputTransformations
             $paramsList += $paramBlock
         }
 
+        if("Get" -eq $Command.Verb -and !$ignorePropertyParameter.Contains($Command.Generate)){
+            $paramsList += $this.GetPropertyParameterBlock()
+        }
+
         return $paramsList -Join ",`n"
+    }
+
+    hidden [string] GetPropertyParameterBlock(){
+        $propertyType = "System.String[]"
+        $arrayAttrib = @()
+        $arrayAttrib += "Mandatory = `$false"
+        $arrayAttrib += "ValueFromPipeline = `$false"
+        $arrayAttrib += "ValueFromPipelineByPropertyName = `$true"
+        $strAttrib = $arrayAttrib -Join ', '
+        $attributesString += "[Parameter($strAttrib)]`n    "
+        $propertyParamBlock = @"
+    $attributesString[$propertyType] `$Property
+"@
+        return $propertyParamBlock
     }
 
     hidden [string] GetParameterAttributes($param){
@@ -710,6 +729,10 @@ $OutputTransformations
             }
             
             $paramsList += $paramBlock            
+        }
+
+        if("Get" -eq $Command.Verb){
+            $paramsList += $this.GetCustomParameterTransformation("Property")
         }
             
         return $paramsList
@@ -783,6 +806,17 @@ $OutputTransformations
         `$TmpValue = `$PSBoundParameters["$($Param.Name)"]
         $($Param.SpecialMapping)
         `$params["$($Param.TargetName)"] = `$Value
+    }
+
+"@
+        return $paramBlock
+    }
+
+    hidden [string] GetCustomParameterTransformation([string] $ParameterName){
+        $paramBlock = @"
+    if(`$null -ne `$PSBoundParameters["$($ParameterName)"])
+    {
+        `$params["$($ParameterName)"] = `$PSBoundParameters["$($ParameterName)"]
     }
 
 "@
