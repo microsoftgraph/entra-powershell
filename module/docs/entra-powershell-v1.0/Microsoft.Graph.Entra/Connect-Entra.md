@@ -18,7 +18,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Microsoft Entra PowerShell supports two types of authentication: delegated and app-only access. There are a number of cmdlets that can be used to manage the different parameters required during authentication, for example, environment, application ID, and certificate.
+Microsoft Entra PowerShell supports several authentication scenarios depending on your use case such as: delegated (interactive) and app-only (noninteractive).
 
 ## SYNTAX
 
@@ -122,10 +122,10 @@ This example prompts the user to authenticate interactively using their Microsof
 Connect-Entra -Scopes 'User.Read.All', 'Group.ReadWrite.All'
 ```
 
-```output
+```Output
 Welcome to Microsoft Graph!
 
-Connected via apponly access using 00001111-aaaa-2222-bbbb-3333cccc4444
+Connected via delegated access using 00001111-aaaa-2222-bbbb-3333cccc4444
 Readme: https://aka.ms/graph/sdk/powershell
 SDK Docs: https://aka.ms/graph/sdk/powershell/docs
 API Docs: https://aka.ms/graph/docs
@@ -133,18 +133,24 @@ API Docs: https://aka.ms/graph/docs
 NOTE: You can use the -NoWelcome parameter to suppress this message.
 ```
 
-This example shows how to authenticate to Entra with scopes.
+This example shows how to authenticate to Microsoft Entra ID with scopes.
 
 ### Example 3: Connect a session using a ApplicationId and CertificateThumbprint
 
 ```powershell
-Connect-Entra -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -ApplicationId '00001111-aaaa-2222-bbbb-3333cccc4444' -CertificateThumbprint AA11BB22CC33DD44EE55FF66AA77BB88CC99DD00
+$connectParams = @{
+    TenantId = 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
+    ApplicationId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    CertificateThumbprint = 'AA11BB22CC33DD44EE55FF66AA77BB88CC99DD00'
+}
+
+Connect-Entra @connectParams
 ```
 
-```output
+```Output
 Welcome to Microsoft Graph!
 
-Connected via apponly access using 00001111-aaaa-2222-bbbb-3333cccc4444
+Connected via delegated access using 00001111-aaaa-2222-bbbb-3333cccc4444
 Readme: https://aka.ms/graph/sdk/powershell
 SDK Docs: https://aka.ms/graph/sdk/powershell/docs
 API Docs: https://aka.ms/graph/docs
@@ -163,10 +169,10 @@ $secureString = ConvertTo-SecureString -String $AccessToken -AsPlainText -Force
 Connect-Entra -AccessToken $secureString
 ```
 
-```output
+```Output
 Welcome to Microsoft Graph!
 
-Connected via apponly access using 00001111-aaaa-2222-bbbb-3333cccc4444
+Connected via delegated access using 00001111-aaaa-2222-bbbb-3333cccc4444
 Readme: https://aka.ms/graph/sdk/powershell
 SDK Docs: https://aka.ms/graph/sdk/powershell/docs
 API Docs: https://aka.ms/graph/docs
@@ -174,7 +180,7 @@ API Docs: https://aka.ms/graph/docs
 NOTE: You can use the -NoWelcome parameter to suppress this message.
 ```
 
-This example shows how to authenticate to Entra using an access token.
+This example shows how to authenticate to Microsoft Entra ID using an access token.
 
 ### Example 5: Connecting to an environment as a different identity
 
@@ -182,10 +188,10 @@ This example shows how to authenticate to Entra using an access token.
 Connect-Entra -ContextScope 'Process'
 ```
 
-```output
+```Output
 Welcome to Microsoft Graph!
 
-Connected via apponly access using 00001111-aaaa-2222-bbbb-3333cccc4444
+Connected via delegated access using 00001111-aaaa-2222-bbbb-3333cccc4444
 Readme: https://aka.ms/graph/sdk/powershell
 SDK Docs: https://aka.ms/graph/sdk/powershell/docs
 API Docs: https://aka.ms/graph/docs
@@ -201,7 +207,7 @@ To connect as a different identity other than CurrentUser, specify the ContextSc
 Get-EntraEnvironment
 ```
 
-```output
+```Output
 Name     AzureADEndpoint                   GraphEndpoint                           Type
 ----     ---------------                   -------------                           ----
 China    https://login.chinacloudapi.cn    https://microsoftgraph.chinacloudapi.cn Built-in
@@ -222,10 +228,10 @@ When you use Connect-Entra, you can choose to target other environments. By defa
 Connect-Entra -ClientTimeout 60
 ```
 
-```output
+```Output
 Welcome to Microsoft Graph!
 
-Connected via apponly access using 00001111-aaaa-2222-bbbb-3333cccc4444
+Connected via delegated access using 00001111-aaaa-2222-bbbb-3333cccc4444
 Readme: https://aka.ms/graph/sdk/powershell
 SDK Docs: https://aka.ms/graph/sdk/powershell/docs
 API Docs: https://aka.ms/graph/docs
@@ -246,14 +252,14 @@ This example hides the welcome message.
 ### Example 9: Using device code flow
 
 ```powershell
-Connect-Entra -UseDeviceCode
+Connect-Entra -UseDeviceAuthentication
 ```
 
-```output
+```Output
 To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code N3EXHFSVW to authenticate.
 ```
 
-This example shows how to authenticate to Entra with device.
+This example shows how to authenticate to Microsoft Entra ID with device.
 
 ### Example 10: App-only access: Using client credential with a certificate - Certificate name
 
@@ -295,7 +301,7 @@ Uses an automatically managed identity on a service instance. The identity is ti
 ### Example 14: Using managed identity: User-assigned managed identity
 
 ```powershell
-Connect-Entra -Identity -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444'
+Connect-Entra -Identity -ClientId 'User_Assigned_Managed_identity_Client_Id'
 ```
 
 Uses a user created managed identity as a standalone Azure resource.
