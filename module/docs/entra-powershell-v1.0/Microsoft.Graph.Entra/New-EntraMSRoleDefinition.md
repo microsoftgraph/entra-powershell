@@ -37,7 +37,7 @@ New-EntraMSRoleDefinition
 
 ## DESCRIPTION
 
-Create a new Microsoft Entra ID roleDefinition object.
+Create a new Microsoft Entra ID `roleDefinition` object.
 
 ## EXAMPLES
 
