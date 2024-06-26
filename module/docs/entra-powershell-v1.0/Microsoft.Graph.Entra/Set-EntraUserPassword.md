@@ -34,7 +34,7 @@ Set-EntraUserPassword
 
 ## DESCRIPTION
 
-The Set-EntraUserPassword cmdlet sets the password for a user in Microsoft Entra ID.
+The `Set-EntraUserPassword` cmdlet sets the password for a user in Microsoft Entra ID.
 
 Any user can update their password without belonging to any administrator role.
 
