@@ -54,7 +54,7 @@ jobs:
             displayName: Publish NuGet to preview feed
             inputs:
               command: push
-              packagesToPush: $(Build.ArtifactStagingDirectory)/**/Microsoft.Graph.*.nupkg
+              packagesToPush: $(Build.ArtifactStagingDirectory)/**/Microsoft.Graph.Entra*.nupkg
               publishVstsFeed: $(PROJECT_NAME)/$(PREVIEW_FEED_NAME)
               allowPackageConflicts: true
 
