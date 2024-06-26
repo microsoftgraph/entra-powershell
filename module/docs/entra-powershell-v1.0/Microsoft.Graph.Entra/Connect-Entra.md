@@ -176,7 +176,7 @@ Welcome to Microsoft Graph!
 
 To connect as a different identity other than CurrentUser, specify the ContextScope parameter with the value Process.
 
-Follow this link to see [Context][entra-context] more information on how to load the certificate.
+Follow this link to see [Context][entra-context] for more information.
 
 ### Example 6: Connecting to an environment or cloud
 
@@ -564,6 +564,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## RELATED LINKS
 
 [Disconnect-Entra](Disconnect-Entra.md)
+
+[entra-context]: /powershell/entra-preview/microsoft.graph.entra/get-entracontext
 
 [token-endpoint]: /graph/auth-v2-user#3-request-an-access-token
 
