@@ -35,13 +35,18 @@ Gets the domain's verification records from the `verificationDnsRecords` navigat
 
 You can't use the domain with your Microsoft Entra ID tenant until you have successfully verified that you own the domain.
 
-To verify the ownership of the domain, you need to first retrieve a set of domain verification records that you need to add to the zone file of the domain.
+To verify the ownership of the domain, you need to first retrieve a set of domain verification records that you need to add to the zone file of the domain. This can be done through the domain registrar or DNS server configuration.
+
+Root domains require verification. For example, contoso.com requires verification. If a root domain is verified, subdomains of the root domain are automatically verified. For example, subdomain.contoso.com is automatically be verified if contoso.com has been verified.
+
+The work or school account needs to belong to at least the Domain Name Administrator or Global Reader Microsoft Entra role.
 
 ## EXAMPLES
 
 ### Example 1: Retrieve the domain verification DNS record
 
 ```powershell
+Connect-Entra -Scopes 'Domain.Read.All'
 Get-EntraDomainVerificationDnsRecord -Name mail.contoso.com
 ```
 

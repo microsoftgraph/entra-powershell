@@ -68,7 +68,6 @@ The `Get-EntraMSRoleDefinition` cmdlet gets information about role definitions i
 ```Output
 DisplayName                                   Id                                   TemplateId                           Description
 -----------                                   --                                   ----------                           -----------
-Global Administrator                          62e90394-69f5-4237-9190-012177145e10 62e90394-69f5-4237-9190-012177145e10 Can manage all aspects of Microsoft Entra ID and Microsoft services that use Microsoft Entra identities.
 Guest User                                    10dae51f-b6af-4016-8d66-8c2a99b929b3 10dae51f-b6af-4016-8d66-8c2a99b929b3 Default role for guest users. Can read a limited set of directory information.
 Restricted Guest User                         2af84b1e-32c8-42b7-82bc-daa82404023b 2af84b1e-32c8-42b7-82bc-daa82404023b Restricted role for guest users. Can read a limited set of directory information.
 ```
