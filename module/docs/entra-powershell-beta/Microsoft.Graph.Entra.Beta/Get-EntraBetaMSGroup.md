@@ -2,9 +2,9 @@
 title: Get-EntraBetaMSGroup.
 description: This article provides details on the Get-EntraBetaMSGroup command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
-ms.date: 03/06/2023
+ms.date: 06/18/2023
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -50,8 +50,8 @@ Get-EntraBetaMSGroup
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaMSGroup cmdlet gets information about groups in Microsoft Entra ID.
-To get a group, specify the ID parameter. 
+The `Get-EntraBetaMSGroup` cmdlet gets information about groups in Microsoft Entra ID.
+Specify the `Id` parameter to get a specific group.
 Specify the SearchString or Filter parameter and find particular groups. 
 If you specify no parameters, this cmdlet gets all groups.
 
@@ -60,18 +60,19 @@ If you specify no parameters, this cmdlet gets all groups.
 ### Example 1: Get all groups
 
 ```powershell
-PS C:\> Get-EntraBetaMSGroup
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaMSGroup
 ```
 ```output
 
 DisplayName                         Id                                   MailNickname                     Description
 -----------                         --                                   ------------                     -----------
-Ask HR                              056b2531-005e-4f3e-be78-01a71ea30a04 askhr
-Parents of Contoso                  05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso                 Parents of Contoso
-Contoso Team                        0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam                      A collaboration area for the Contoso Team.
-HelpDesk admin group                0883fd77-0ee8-45de-a21e-f32af1623acc helpDeskAdminGroup               Group assignable to role
-New Employee Onboarding             0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding            New Employee Onboarding
-HelpDesk admin group3               0bdddeb1-88a6-4251-aaa5-98b48271158b helpDeskAdminGroup               group des
+Ask HR                              eeeeeeee-4444-5555-6666-ffffffffffff askhr
+Parents of Contoso                  ffffffff-5555-6666-7777-aaaaaaaaaaaa parentsofcontoso                 Parents of Contoso
+Contoso Team                        aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb contosoteam                      A collaboration area for the Contoso Team.
+HelpDesk admin group                bbbbbbbb-7777-8888-9999-cccccccccccc helpDeskAdminGroup               Group assignable to role
+New Employee Onboarding             cccccccc-8888-9999-0000-dddddddddddd newemployeeonboarding            New Employee Onboarding
+HelpDesk admin group3               dddddddd-9999-0000-1111-eeeeeeeeeeee helpDeskAdminGroup               group des
 
 ```
 
@@ -80,34 +81,34 @@ This command gets all groups in Microsoft Entra ID.
 ### Example 2: Get a specific group by using an ID
 
 ```powershell
-
-PS C:\> Get-EntraBetaMSGroup -Id "0877c6c6-fc99-4d51-9871-8335be7cfc9d"
-
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaMSGroup -Id 'dddddddd-9999-0000-1111-eeeeeeeeeeee'
 ```
 ```output
 
 DisplayName  Id                                   MailNickname Description                                GroupTypes
 -----------  --                                   ------------ -----------                                ----------
-Contoso Team 0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam  A collaboration area for the Contoso Team. {Unified}
+Contoso Team dddddddd-9999-0000-1111-eeeeeeeeeeee contosoteam  A collaboration area for the Contoso Team. {Unified}
 
 ```
 
-In this example, we provide the  ID to retrieve a specific group.
+In this example, we provide the ID to retrieve a specific group.
 
 ### Example 3: Get top five groups
 
 ```powershell
-PS C:\> Get-EntraBetaMSGroup -Top 5
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaMSGroup -Top 5
 ```
 ```output
 
 DisplayName             Id                                   MailNickname          Description                                GroupTypes
 -----------             --                                   ------------          -----------                                ----------
-Ask HR                  056b2531-005e-4f3e-be78-01a71ea30a04 askhr                                                            {Unified}
-Parents of Contoso      05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso      Parents of Contoso                         {Unified}
-Contoso Team            0877c6c6-fc99-4d51-9871-8335be7cfc9d contosoteam           A collaboration area for the Contoso Team. {Unified}
-HelpDesk admin group    0883fd77-0ee8-45de-a21e-f32af1623acc helpDeskAdminGroup    Group assignable to role                   {}
-New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding New Employee Onboarding                    {Unified}
+Ask HR                  dddddddd-9999-0000-1111-eeeeeeeeeeee askhr                                                            {Unified}
+Parents of Contoso      cccccccc-8888-9999-0000-dddddddddddd parentsofcontoso      Parents of Contoso                         {Unified}
+Contoso Team            ffffffff-5555-6666-7777-aaaaaaaaaaaa contosoteam           A collaboration area for the Contoso Team. {Unified}
+HelpDesk admin group    cccccccc-2222-3333-4444-dddddddddddd helpDeskAdminGroup    Group assignable to role                   {}
+New Employee Onboarding bbbbbbbb-1111-2222-3333-cccccccccccc newemployeeonboarding New Employee Onboarding                    {Unified}
 ```
 
 This example demonstrates how to retrieve top five groups from Microsoft Entra ID.
@@ -117,28 +118,29 @@ This example demonstrates how to retrieve top five groups from Microsoft Entra I
 
 
 ```powershell
-PS C:\> Get-EntraBetaMSGroup -Filter "DisplayName eq 'Parents of Contoso'"
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaMSGroup -Filter "DisplayName eq 'Parents of Contoso'"
 ```
 ```output
 
 DisplayName        Id                                   MailNickname     Description        GroupTypes
 -----------        --                                   ------------     -----------        ----------
-Parents of Contoso 05b0552e-39cd-4df4-a8f5-00ade912e83d parentsofcontoso Parents of Contoso {Unified}
+Parents of Contoso bbbbbbbb-1111-2222-3333-cccccccccccc parentsofcontoso Parents of Contoso {Unified}
 ```
 This example retrieves group by DisplayName.
 
 ### Example 5: Search among retrieved groups
 
 ```powershell
-PS C:\> Get-EntraBetaMSGroup -SearchString "New"
-
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaMSGroup -SearchString 'New'
 ```
 ```output
 
 DisplayName             Id                                   MailNickname          Description             GroupTypes
 -----------             --                                   ------------          -----------             ----------
-New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding New Employee Onboarding {Unified}
-new1                    27d134ad-466b-43dd-8856-ba9f0bc17d24 new1                  new1                    {DynamicMembership, Unified}
+New Employee Onboarding eeeeeeee-4444-5555-6666-ffffffffffff newemployeeonboarding New Employee Onboarding {Unified}
+new1                    bbbbbbbb-1111-2222-3333-cccccccccccc new1                  new1                    {DynamicMembership, Unified}
 ```
 
 This example demonstrates how to retrieve groups using  SearchString against the first characters in DisplayName or Description attributes.
@@ -146,9 +148,9 @@ This example demonstrates how to retrieve groups using  SearchString against the
 
 ### Example 6: Get AssignedLabels and DisplayName property values for all groups
 
-
 ```powershell
-PS C:\> Get-EntraBetaMSGroup -Select "AssignedLabels,DisplayName"
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaMSGroup -Select 'AssignedLabels,DisplayName'
 ```
 ```output
  
@@ -171,13 +173,14 @@ AssignedLabels group property retrieved only by Select parameter.
 ### Example 7: Get DisplayName, ID, and Description property values for a group
 
 ```powershell
-PS C:\> Get-EntraBetaMSGroup -Id "0877c6c6-fc99-4d51-9871-8335be7cfc9d" -Select "DisplayName,Id,Description"
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaMSGroup -Id 'eeeeeeee-4444-5555-6666-ffffffffffff' -Select 'DisplayName,Id,Description'
 ```
 ```output
 
 DisplayName  Id                                   MailNickname Description                                GroupTypes
 -----------  --                                   ------------ -----------                                ----------
-Contoso Team 0877c6c6-fc99-4d51-9871-8335be7cfc9d              A collaboration area for the Contoso Team.
+Contoso Team eeeeeeee-4444-5555-6666-ffffffffffff              A collaboration area for the Contoso Team.
 ```
 
 This example gets DisplayName, ID, and Description property values for a specific group.
@@ -190,7 +193,7 @@ AssignedLabels group property retrieved only by Select parameter.
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -205,7 +208,7 @@ Accept wildcard characters: False
 Specifies a list of group properties to retrieve.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery, GetById
 Aliases:
 
@@ -220,7 +223,7 @@ Accept wildcard characters: False
 Specifies an oData v3.0 filter string to match a set of groups.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery
 Aliases:
 
@@ -231,11 +234,11 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -Id
+### -ID
 Specifies the ID of the group that this cmdlet gets.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -251,8 +254,8 @@ Specifies a search string.
 This cmdlet gets groups that have DisplayName or Description attributes that match the search string.
 
 ```yaml
-Type: String
-Parameter Sets: GetVague
+Type: System.String
+Parameter Sets: GetValue
 Aliases:
 
 Required: False
@@ -267,7 +270,7 @@ Specifies the maximum number of records that this cmdlet gets.
 The default value is 100.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: GetQuery
 Aliases:
 
@@ -279,7 +282,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

@@ -2,9 +2,9 @@
 title: Get-EntraBetaGroupAppRoleAssignment
 description: This article provides details on the Get-EntraBetaGroupAppRoleAssignment command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
-ms.date: 02/29/2024
+ms.date: 06/24/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -31,12 +31,13 @@ Get-EntraBetaGroupAppRoleAssignment
 ```
 
 ## DESCRIPTION
-The Get-EntraBetaGroupAppRoleAssignment cmdlet gets a group application role assignment in Microsoft Entra ID.
+The `Get-EntraBetaGroupAppRoleAssignment` cmdlet gets a group application role assignment in Microsoft Entra ID. Specify the `ObjectId` parameter to get a group application role assignment.
 
 ## EXAMPLES
 
 ### Example 1: Retrieve application role assignments of a group
 ```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
 $GroupId = (Get-EntraBetaGroup -Top 1).ObjectId
 Get-EntraBetaGroupAppRoleAssignment -ObjectId $GroupId
 ```
@@ -56,7 +57,8 @@ The second command gets the application role assignments of the group in $GroupI
 
 ### Example 2: Retrieve all application role assignments of a group
 ```powershell
-Get-EntraBetaGroupAppRoleAssignment -ObjectId b220a523-d97c-44c3-a535-b55fe1fa1163 -All
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraBetaGroupAppRoleAssignment -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff' -All
 ```
 
 ```output
@@ -71,7 +73,8 @@ This command gets all application role assignments of the specified group.
 
 ### Example 3: Retrieve top two application role assignments of a group
 ```powershell
-Get-EntraBetaGroupAppRoleAssignment -ObjectId b220a523-d97c-44c3-a535-b55fe1fa1163 -Top 2
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraBetaGroupAppRoleAssignment -ObjectId 'cccccccc-8888-9999-0000-dddddddddddd' -Top 2
 ```
 
 ```output
@@ -89,7 +92,7 @@ This command gets top two application role assignments of the specified group.
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -104,7 +107,7 @@ Accept wildcard characters: False
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -119,7 +122,7 @@ Accept wildcard characters: False
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -131,7 +134,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

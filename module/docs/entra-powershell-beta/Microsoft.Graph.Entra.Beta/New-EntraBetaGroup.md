@@ -1,4 +1,14 @@
 ---
+title: New-EntraBetaGroup.
+description: This article provides details on the New-EntraBetaGroup command.
+
+ms.service: entra
+ms.topic: reference
+ms.date: 06/18/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -12,24 +22,50 @@ Creates a group.
 
 ## SYNTAX
 
-```
-New-EntraBetaGroup [-Description <String>] -MailEnabled <Boolean> -SecurityEnabled <Boolean>
- -MailNickName <String> -DisplayName <String> [<CommonParameters>]
+```powershell
+New-EntraBetaGroup 
+ -DisplayName <String> 
+ -SecurityEnabled <Boolean>
+ [-Description <String>] 
+ -MailEnabled <Boolean> 
+ -MailNickName <String> 
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The New-EntraBetaGroup cmdlet creates a group in Azure Active Directory (AD).
+The `New-EntraBetaGroup` cmdlet creates a group in Microsoft Entra ID. Specify the `DisplayName`, `SecurityEnabled`, `MailEnabled`, and `MailNickName` parameters to create a group.
 
 ## EXAMPLES
 
 ### Example 1: Create a group
+```powershell
+Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Group.Create' #Application permission
+New-EntraBetaGroup -DisplayName 'My new group' -MailEnabled $false -SecurityEnabled $true -MailNickName 'NotSet'
 ```
-PS C:\>New-EntraBetaGroup -DisplayName "My new group" -MailEnabled $false -SecurityEnabled $true -MailNickName "NotSet"
 
-ObjectId                             DisplayName  Description
---------                             -----------  -----------
-11fa5e1e-737c-40c5-835e-416ae3959606 My new group
+```output
+DisplayName  Id                                   MailNickname Description GroupTypes
+-----------  --                                   ------------ ----------- ----------
+My new group bbbbbbbb-1111-2222-3333-cccccccccccc NotSet                   {}
 ```
+
+### Example 2: Create a group with Description parameter
+
+```powershell
+Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Group.Create' #Application permission
+New-EntraBetaGroup -DisplayName 'My new group' -MailEnabled $false -SecurityEnabled $true -MailNickName 'NotSet' -Description 'New created group'
+```
+
+```output
+DisplayName  Id                                   MailNickname Description       GroupTypes
+-----------  --                                   ------------ -----------       ----------
+My new group bbbbbbbb-1111-2222-3333-cccccccccccc NotSet       new created group {}
+```
+
+This example demonstrates how to create a group with Description parameter.
+
 
 ## PARAMETERS
 
@@ -37,7 +73,7 @@ ObjectId                             DisplayName  Description
 Specifies a description of the group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -52,7 +88,7 @@ Accept wildcard characters: False
 Specifies the display name of the group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -68,7 +104,7 @@ Accept wildcard characters: False
 Indicates whether mail is enabled.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -83,7 +119,7 @@ Accept wildcard characters: False
 Specifies a nickname for mail.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -98,7 +134,7 @@ Accept wildcard characters: False
 Indicates whether the group is security-enabled.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -110,7 +146,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -120,9 +156,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Get-EntraBetaGroup]()
+[Get-EntraBetaGroup](Get-EntraBetaGroup.md)
 
-[Remove-EntraBetaGroup]()
+[Remove-EntraBetaGroup](Remove-EntraBetaGroup.md)
 
-[Set-EntraBetaGroup]()
-
+[Set-EntraBetaGroup](Set-EntraBetaGroup.md)
