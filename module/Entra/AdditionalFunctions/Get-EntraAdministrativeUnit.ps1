@@ -14,10 +14,9 @@ function Get-EntraAdministrativeUnit {
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-    $keysChanged = @{}
     $baseUri = "/v1.0/directory/administrativeUnits"
-    $uri = $baseUri
-    $odata = $null  
+    $properties = '$select=*'
+    $params["Uri"] = "$baseUri/?$properties"
     if($null -ne $PSBoundParameters["ErrorAction"])
     {
         $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
@@ -25,7 +24,7 @@ function Get-EntraAdministrativeUnit {
     if($null -ne $PSBoundParameters["ObjectId"])
     {
         $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]
-        $uri = "$baseUri/$($params.AdministrativeUnitId)"
+        $params["Uri"] = "$baseUri/$($params.AdministrativeUnitId)?$properties"
     }
     if($PSBoundParameters.ContainsKey("Verbose"))
     {
@@ -67,10 +66,10 @@ function Get-EntraAdministrativeUnit {
         {
             $topCount = $PSBoundParameters["Top"]
             if ($topCount -gt 999) {
-                $odata = "?`$top=999"
+                $params["Uri"] += "&`$top=999"
             }
             else{
-                $odata = "?`$top=$topCount"
+                $params["Uri"] += "&`$top=$topCount"
             }
         }
     if($null -ne $PSBoundParameters["WarningAction"])
@@ -80,22 +79,20 @@ function Get-EntraAdministrativeUnit {
     if($null -ne $PSBoundParameters["Filter"])
     {
         $params["Filter"] = $PSBoundParameters["Filter"]
-        $odata = "$odata&`$filter=$($params.Filter)"        
+        $Filter = $PSBoundParameters["Filter"]
+        $f = '$' + 'Filter'
+        $params["Uri"] += "&$f=$Filter"
     }
     if($null -ne $PSBoundParameters["InformationVariable"])
     {
         $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
 
-    if($null -ne $odata){
-        $uri = $baseUri+ $odata
-    }
-
     Write-Debug("============================ TRANSFORMATIONS ============================")
     $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
     Write-Debug("=========================================================================`n")
     
-    $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method GET)
+    $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $($params.Uri) -Method GET)
     if($response.ContainsKey('value')){
         $response = $response.value
     }
