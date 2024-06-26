@@ -19,6 +19,7 @@ schema: 2.0.0
 # Set-EntraDomainFederationSettings
 
 ## SYNOPSIS
+
 Updates settings for a federated domain.
 
 ## SYNTAX
@@ -41,30 +42,48 @@ Set-EntraDomainFederationSettings
 ```
 
 ## DESCRIPTION
-The Set-EntraDomainFederationSettings cmdlet is used to update the settings of a single sign-on domain.
+
+The `Set-EntraDomainFederationSettings` cmdlet is used to update the settings of a single sign-on domain.
+
+For delegated scenarios, the calling user must be assigned at least one of the following Microsoft Entra roles:
+
+- Domain Name Administrator
+- External Identity Provider Administrator
+- Hybrid Identity Administrator
+- Security Administrator
 
 ## EXAMPLES
 
 ### Example 1: Set the PromptLoginBehavior
+
 ```powershell
-PS C:\> Set-EntraDomainFederationSettings –DomainName "contoso.com" -PreferredAuthenticationProtocol "WsFed" -PromptLoginBehavior <TranslateToFreshPasswordAuth|NativeSupport|Disabled>
+Connect-Entra -Scopes 'Domain.ReadWrite.All'
+
+$params = @{
+    DomainName = 'contoso.com'
+    PreferredAuthenticationProtocol = 'WsFed'
+    PromptLoginBehavior = 'TranslateToFreshPasswordAuth' # Or 'NativeSupport' or 'Disabled', depending on the requirement
+}
+
+Set-EntraDomainFederationSettings @params
 ```
 
 This command updates the `PromptLoginBehavior` to either `TranslateToFreshPasswordAuth`, `NativeSupport`, or `Disabled`. These possible values are described:
 
-- **TranslateToFreshPasswordAuth**: means the default Microsoft Entra ID behavior of translating `prompt=login` to `wauth=https://schemas.microsoft.com/ws/2008/06/identity/authenticationmethod/password` and `wfresh=0`.
-- **NativeSupport**: means that the `prompt=login` parameter is sent as is to ADFS.
-- **Disabled**: means that only wfresh=0 is sent to ADFS
+- `TranslateToFreshPasswordAuth` - means the default Microsoft Entra ID behavior of translating `prompt=login` to `wauth=https://schemas.microsoft.com/ws/2008/06/identity/authenticationmethod/password` and `wfresh=0`.
+- `NativeSupport` - means that the `prompt=login` parameter is sent as is to ADFS.
+- `Disabled` - means that only wfresh=0 is sent to ADFS
 
 Use the `Get-EntraDomainFederationSettings -DomainName <your_domain_name> | Format-List *` to get the values for `PreferredAuthenticationProtocol` and `PromptLoginBehavior` for the federated domain.
 
 ## PARAMETERS
 
 ### -DomainName
+
 The fully qualified domain name (FQDN) to update.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -76,10 +95,11 @@ Accept wildcard characters: False
 ```
 
 ### -SigningCertificate
+
 The current certificate used to sign tokens passed to the Microsoft Entra ID Identity platform.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -91,10 +111,11 @@ Accept wildcard characters: False
 ```
 
 ### -NextSigningCertificate
+
 The next token signing certificate that will be used to sign tokens when the primary signing certificate expires.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -106,10 +127,11 @@ Accept wildcard characters: False
 ```
 
 ### -LogOffUri
+
 The URL clients are redirected to when they sign out of Microsoft Entra ID services.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -121,10 +143,11 @@ Accept wildcard characters: False
 ```
 
 ### -PassiveLogOnUri
+
 The URL that web-based clients are directed to when signing in to Microsoft Entra ID services.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -136,10 +159,11 @@ Accept wildcard characters: False
 ```
 
 ### -ActiveLogOnUri
+
 A URL that specifies the end point used by active clients when authenticating with domains set up for single sign-on (also known as identity federation) in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -151,10 +175,11 @@ Accept wildcard characters: False
 ```
 
 ### -IssuerUri
+
 The unique identifier of the domain in the Microsoft Entra ID Identity platform derived from the federation server.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -166,12 +191,13 @@ Accept wildcard characters: False
 ```
 
 ### -FederationBrandName
+
 The name of the string value shown to users when signing in to Microsoft Entra ID.
 We recommend that customers use something that is familiar to
 users such as "Contoso Inc."
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -183,10 +209,11 @@ Accept wildcard characters: False
 ```
 
 ### -MetadataExchangeUri
+
 The URL that specifies the metadata exchange end point used for authentication from rich client applications such as Lync Online.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -198,10 +225,11 @@ Accept wildcard characters: False
 ```
 
 ### -PreferredAuthenticationProtocol
+
 Specifies the preferred authentication protocol.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -213,10 +241,11 @@ Accept wildcard characters: False
 ```
 
 ### -SigningCertificateUpdateStatus
+
 Specifies the update status of the signing certificate.
 
 ```yaml
-Type: Object
+Type: System.Object
 Parameter Sets: (All)
 Aliases:
 
@@ -228,10 +257,11 @@ Accept wildcard characters: False
 ```
 
 ### -PromptLoginBehavior
+
 Specifies the prompt sign-in behavior.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -243,7 +273,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -252,4 +283,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
 [Get-EntraDomainFederationSettings](./Get-EntraDomainFederationSettings.md)

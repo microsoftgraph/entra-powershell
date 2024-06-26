@@ -19,6 +19,7 @@ schema: 2.0.0
 # New-EntraMSApplicationKey
 
 ## SYNOPSIS
+
 Adds a new key to an application.
 
 ## SYNTAX
@@ -33,13 +34,25 @@ New-EntraMSApplicationKey
 ```
 
 ## DESCRIPTION
+
 Adds a new key to an application.
 
 ## EXAMPLES
 
 ### Example 1: Add a key credential to an application
+
 ```powershell
-PS C:\>New-EntraMSApplicationKey -ObjectId 14a3f1ac-46a7-4d00-b1ca-0b2b84f033c2 -KeyCredential @{ key=[System.Convert]::FromBase64String("{base64cert}") } -PasswordCredential @{ displayname = "mypassword" } -Proof "{token}"
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+
+$params = @{
+    ObjectId = 'cccccccc-8888-9999-0000-dddddddddddd'
+    KeyCredential = @{ key=[System.Convert]::FromBase64String("{base64cert}") }
+    PasswordCredential = @{ DisplayName = 'mypassword' }
+    Proof = "{token}"
+}
+
+New-EntraMSApplicationKey @params
 ```
 
 This command adds a key credential the specified application.
@@ -47,6 +60,7 @@ This command adds a key credential the specified application.
 ## PARAMETERS
 
 ### -KeyCredential
+
 The application key credential to add.
 
 NOTES: keyId value should be null.
@@ -64,10 +78,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 The unique identifier of the object specific Microsoft Entra ID object
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -79,6 +94,7 @@ Accept wildcard characters: False
 ```
 
 ### -PasswordCredential
+
 The application password credential to add.
 
 NOTES: keyId value should be null.
@@ -96,10 +112,11 @@ Accept wildcard characters: False
 ```
 
 ### -Proof
+
 A signed JWT token used as a proof of possession of the existing keys.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -111,19 +128,23 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### String
+
 ### Microsoft.Open.MSGraph.Model.KeyCredential
+
 ### Microsoft.Open.MSGraph.Model.PasswordCredential
+
 ## OUTPUTS
 
 ### Microsoft.Open.MSGraph.Model.KeyCredential
+
 ## NOTES
 
 ## RELATED LINKS
 
 [Remove-EntraMSApplicationKey](Remove-EntraMSApplicationKey.md)
-
