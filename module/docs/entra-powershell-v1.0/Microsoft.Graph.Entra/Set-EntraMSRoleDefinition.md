@@ -143,7 +143,7 @@ Accept wildcard characters: False
 
 ### -IsEnabled
 
-Specifies whether the role definition is enabled. Flag indicating if the role is enabled for assignment. If false, the role is not available for assignment. Read-only when isBuiltIn is true.
+Specifies whether the role definition is enabled. Flag indicating if the role is enabled for assignment. If false, the role is not available for assignment. Read-only when `isBuiltIn` is true.
 
 ```yaml
 Type: System.Boolean
