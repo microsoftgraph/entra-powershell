@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "Get-AzureADUser"
-    TargetName = $null
-    Parameters = $null
-    outputs = $null
+    SourceName   = "Get-AzureADUser"
+    TargetName   = $null
+    Parameters   = $null
+    outputs      = $null
     CustomScript = @'
     PROCESS {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
@@ -45,59 +45,25 @@
         if($null -ne $PSBoundParameters["ObjectId"])
         {
             $UserId = $PSBoundParameters["ObjectId"]
-            $params["Uri"] = "$baseUri/$($UserId)?$properties"
+            if ([Guid]::TryParse($UserId, [ref]([Guid]::Empty))) {
+                $params["Uri"] = "$baseUri/$($UserId)?$properties"
+            } 
+            else {
+                $params["Uri"] = "$baseUri/$($UserId)"
+                try {
+                    $Id = Invoke-GraphRequest @params
+                    $params["Uri"] = "$baseUri/$($Id.Id)?$properties"
+                }
+                catch {}
+            }
         }
         if($null -ne $PSBoundParameters["Filter"])
         {
             $Filter = $PSBoundParameters["Filter"]
             $f = '$' + 'Filter'
             $params["Uri"] += "&$f=$Filter"
-        }
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $Null
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $Null
-        }        
-	    if($null -ne $PSBoundParameters["WarningVariable"])
-        {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-	    if($null -ne $PSBoundParameters["InformationAction"])
-        {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-        }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }
-       
+        }    
+	    
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
@@ -133,7 +99,17 @@
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value BusinessPhones
             }
         }
-        $data
-    }  
+        $userList = @()
+        foreach ($response in $data) {
+            $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphUser
+            $response.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name
+                $propertyValue = $_.Value
+                $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+            }
+            $userList += $userType
+        }
+        $userList 
+    } 
 '@
 }
