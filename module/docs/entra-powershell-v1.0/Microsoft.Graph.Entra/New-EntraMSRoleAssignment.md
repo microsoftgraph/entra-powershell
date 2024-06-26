@@ -33,7 +33,7 @@ New-EntraMSRoleAssignment
 
 ## DESCRIPTION
 
-The `New-EntraMSRoleAssignment` cmdlet creates a new Microsoft Entra ID role assignment.
+The `New-EntraMSRoleAssignment` cmdlet creates a new Microsoft Entra role assignment.
 
 ## EXAMPLES
 
