@@ -77,7 +77,7 @@ $params = @{
 Set-EntraServicePrincipal @params
 ```
 
-This example demonstrates how to update AppId and Homepage of a service principal in Microsoft Entra ID.
+This example demonstrates how to update `AppId` and Homepage of a service principal in Microsoft Entra ID.
 
 ### Example 3: Update AlternativeNames and DisplayName of a service principal
 
