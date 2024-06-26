@@ -18,6 +18,7 @@ schema: 2.0.0
 # Get-EntraUserLicenseDetail
 
 ## SYNOPSIS
+
 Retrieves license details for a user.
 
 ## SYNTAX
@@ -29,31 +30,35 @@ Get-EntraUserLicenseDetail
 ```
 
 ## DESCRIPTION
+
 This cmdlet retrieves license details for a user.
 
 ## EXAMPLES
 
-### Example 1: Retrieve user license details 
+### Example 1: Retrieve user license details
+
 ```powershell
-PS C:\WINDOWS\system32> Get-EntraUserLicenseDetail -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16"
+Connect-Entra -Scopes 'User.Read'
+Get-EntraUserLicenseDetail -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
+
 ```output
 ObjectId                                    ServicePlans
 --------                                    ------------
-Hv-1hQIEDECePA-ellMl0cjsRfKvdY5Pth8n2BFN5fM {class ServicePlanInfo {...
-Hv-1hQIEDECePA-ellMl0QQrjQe98RFBu9S0sbNUzvQ {class ServicePlanInfo {...
+Hv-1hQIEDECePA-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u {class ServicePlanInfo {...
+Hv-1hQIEDECePA-C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w {class ServicePlanInfo {...
 ```
 
-This example demonstrates how to retrieve license details for a user from Microsoft Entra ID.    
-This command retrieves the license details of the user specified through the ObjectId parameter.
+This example demonstrates how to retrieve license details for a user from Microsoft Entra ID.
 
 ## PARAMETERS
 
 ### -ObjectId
+
 The object ID of the user for which the license details are retrieved.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -65,14 +70,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### System.String
+
 ## OUTPUTS
 
 ### System.Object
+
 ## NOTES
 
 ## RELATED LINKS

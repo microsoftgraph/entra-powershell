@@ -65,10 +65,11 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
     
-        try {
-            $URI = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager?`$select=*"
-            $response = Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method -ErrorAction Stop
-            $response = $response | ConvertTo-Json | ConvertFrom-Json
+        $URI = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager?`$select=*"
+        $response = Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method -ErrorAction Stop
+
+        try {            
+            $response = $response | ConvertTo-Json -Depth 5 | ConvertFrom-Json
             $response | ForEach-Object {
                 if($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id

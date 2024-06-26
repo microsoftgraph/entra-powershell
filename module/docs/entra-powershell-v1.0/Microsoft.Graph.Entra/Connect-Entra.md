@@ -24,6 +24,7 @@ Microsoft Entra PowerShell supports several authentication scenarios depending o
 
 ### UserParameterSet (Default)
 
+
 ```powershell
 Connect-Entra 
 [[-Scopes] <String[]>] 
@@ -35,9 +36,16 @@ Connect-Entra
 [-ClientTimeout <Double>] 
 [-NoWelcome]
 [<CommonParameters>]
+[-ContextScope <ContextScope>] 
+[-Environment <String>] 
+[-UseDeviceCode] 
+[-ClientTimeout <Double>] 
+[-NoWelcome]
+[<CommonParameters>]
 ```
 
 ### AppCertificateParameterSet
+
 
 ```powershell
 Connect-Entra 
@@ -55,6 +63,7 @@ Connect-Entra
 
 ### IdentityParameterSet
 
+
 ```powershell
 Connect-Entra 
 [[-ClientId] <String>] 
@@ -67,6 +76,7 @@ Connect-Entra
 ```
 
 ### AppSecretCredentialParameterSet
+
 
 ```powershell
 Connect-Entra 
@@ -81,6 +91,7 @@ Connect-Entra
 
 ### AccessTokenParameterSet
 
+
 ```powershell
 Connect-Entra 
 [-AccessToken] <SecureString> 
@@ -91,6 +102,7 @@ Connect-Entra
 ```
 
 ### EnvironmentVariableParameterSet
+
 
 ```powershell
 Connect-Entra 
@@ -105,6 +117,7 @@ Connect-Entra
 ## DESCRIPTION
 
 You must invoke Connect-Entra before any commands that access Microsoft Entra. This cmdlet gets the access token using the Microsoft Authentication Library.
+You must invoke Connect-Entra before any commands that access Microsoft Entra. This cmdlet gets the access token using the Microsoft Authentication Library.
 
 ## EXAMPLES
 
@@ -117,11 +130,22 @@ Connect-Entra
 This example prompts the user to authenticate interactively using their Microsoft Entra credentials.
 
 ### Example 2: Delegated access using interactive authentication, where you provide the scopes that you require during your session
+### Example 1: Connect a session
+
+```powershell
+Connect-Entra
+```
+
+This example prompts the user to authenticate interactively using their Microsoft Entra credentials.
+
+### Example 2: Delegated access using interactive authentication, where you provide the scopes that you require during your session
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All', 'Group.ReadWrite.All'
+Connect-Entra -Scopes 'User.Read.All', 'Group.ReadWrite.All'
 ```
 
+```Output
 ```Output
 Welcome to Microsoft Graph!
 
@@ -136,6 +160,7 @@ NOTE: You can use the -NoWelcome parameter to suppress this message.
 This example shows how to authenticate to Microsoft Entra ID with scopes.
 
 ### Example 3: Connect a session using a ApplicationId and CertificateThumbprint
+### Example 3: Connect a session using a ApplicationId and CertificateThumbprint
 
 ```powershell
 $connectParams = @{
@@ -147,6 +172,7 @@ $connectParams = @{
 Connect-Entra @connectParams
 ```
 
+```Output
 ```Output
 Welcome to Microsoft Graph!
 
@@ -163,8 +189,11 @@ This command Connect a session using a ApplicationId and CertificateThumbprint.
 Follow this link (<https://learn.microsoft.com/en-us/powershell/microsoftgraph/authentication-commands?view=graph-powershell-1.0#using-get-mgcontext>) for more information.
 
 ### Example 4: Delegated access: Using your own access token
+### Example 4: Delegated access: Using your own access token
 
 ```powershell
+$secureString = ConvertTo-SecureString -String $AccessToken -AsPlainText -Force
+Connect-Entra -AccessToken $secureString
 $secureString = ConvertTo-SecureString -String $AccessToken -AsPlainText -Force
 Connect-Entra -AccessToken $secureString
 ```
@@ -183,8 +212,10 @@ NOTE: You can use the -NoWelcome parameter to suppress this message.
 This example shows how to authenticate to Microsoft Entra ID using an access token.
 
 ### Example 5: Connecting to an environment as a different identity
+### Example 5: Connecting to an environment as a different identity
 
 ```powershell
+Connect-Entra -ContextScope 'Process'
 Connect-Entra -ContextScope 'Process'
 ```
 
@@ -200,13 +231,17 @@ NOTE: You can use the -NoWelcome parameter to suppress this message.
 ```
 
 To connect as a different identity other than CurrentUser, specify the ContextScope parameter with the value Process.
+To connect as a different identity other than CurrentUser, specify the ContextScope parameter with the value Process.
 
+### Example 6: Connecting to an environment or cloud
 ### Example 6: Connecting to an environment or cloud
 
 ```powershell
 Get-EntraEnvironment
+Get-EntraEnvironment
 ```
 
+```Output
 ```Output
 Name     AzureADEndpoint                   GraphEndpoint                           Type
 ----     ---------------                   -------------                           ----
@@ -218,16 +253,19 @@ USGovDoD https://login.microsoftonline.us  https://dod-graph.microsoft.us       
 
 ```powershell
 Connect-Entra -Environment 'Global'
+Connect-Entra -Environment 'Global'
 ```
 
 When you use Connect-Entra, you can choose to target other environments. By default, Connect-Entra targets the global public cloud.
 
+### Example 7: Sets the HTTP client timeout in seconds
 ### Example 7: Sets the HTTP client timeout in seconds
 
 ```powershell
 Connect-Entra -ClientTimeout 60
 ```
 
+```Output
 ```Output
 Welcome to Microsoft Graph!
 
@@ -242,19 +280,24 @@ NOTE: You can use the -NoWelcome parameter to suppress this message.
 This example Sets the HTTP client timeout in seconds.
 
 ### Example 8: Hides the welcome message
+### Example 8: Hides the welcome message
 
 ```powershell
+Connect-Entra -NoWelcome
 Connect-Entra -NoWelcome
 ```
 
 This example hides the welcome message.
+This example hides the welcome message.
 
+### Example 9: Using device code flow
 ### Example 9: Using device code flow
 
 ```powershell
 Connect-Entra -UseDeviceAuthentication
 ```
 
+```Output
 ```Output
 To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code N3EXHFSVW to authenticate.
 ```
@@ -270,8 +313,11 @@ Connect-Entra -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444'  -TenantId 'aaaab
 Follow this link (<https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands>) for more information on how to load the certificate.
 
 ### Example 11: App-only access: Using client credential with a certificate - Certificate
+### Example 11: App-only access: Using client credential with a certificate - Certificate
 
 ```powershell
+$Cert = Get-ChildItem Cert:\LocalMachine\My\$CertThumbprint
+Connect-Entra -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444' -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -Certificate $Cert
 $Cert = Get-ChildItem Cert:\LocalMachine\My\$CertThumbprint
 Connect-Entra -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444' -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -Certificate $Cert
 ```
@@ -279,10 +325,13 @@ Connect-Entra -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444' -TenantId 'aaaabb
 Follow this link (<https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands>) for more information on how to load the certificate.
 
 ### Example 12: Using client secret credentials
+### Example 12: Using client secret credentials
 
 ```powershell
 $ClientSecretCredential = Get-Credential -Credential '00001111-aaaa-2222-bbbb-3333cccc4444'
+$ClientSecretCredential = Get-Credential -Credential '00001111-aaaa-2222-bbbb-3333cccc4444'
 # Enter client_secret in the password prompt.
+Connect-Entra -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -ClientSecretCredential $ClientSecretCredential
 Connect-Entra -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -ClientSecretCredential $ClientSecretCredential
 ```
 
@@ -294,10 +343,12 @@ Follow this link (<https://learn.microsoft.com/en-us/powershell/microsoftgraph/a
 
 ```powershell
 Connect-Entra -Identity
+Connect-Entra -Identity
 ```
 
 Uses an automatically managed identity on a service instance. The identity is tied to the lifecycle of a service instance.
 
+### Example 14: Using managed identity: User-assigned managed identity
 ### Example 14: Using managed identity: User-assigned managed identity
 
 ```powershell
@@ -312,6 +363,7 @@ Follow this link (<https://learn.microsoft.com/en-us/powershell/microsoftgraph/a
 
 ```powershell
 Connect-Entra -EnvironmentVariable
+Connect-Entra -EnvironmentVariable
 ```
 
 This example allows for authentication using environment variables.
@@ -322,9 +374,11 @@ Follow this link (<https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/iden
 
 ### -CertificateThumbprint
 
+
 Specifies the certificate thumbprint of a digital public key X.509 certificate of a user account that has permission to perform this action.
 
 ```yaml
+Type:  System.String
 Type:  System.String
 Parameter Sets: AppCertificateParameterSet
 Aliases:
@@ -336,11 +390,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+
 ### -ClientId
+
 
 Specifies the application ID of the service principal.
 
 ```yaml
+Type:  System.String
 Type:  System.String
 Parameter Sets: UserParameterSet, IdentityParameterSet
 Aliases: AppId, ApplicationId
@@ -352,7 +409,9 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+
 ```yaml
+Type:  System.String
 Type:  System.String
 Parameter Sets: AppCertificateParameterSet
 Aliases: AppId, ApplicationId
@@ -366,6 +425,7 @@ Accept wildcard characters: False
 
 ### -TenantId
 
+
 Specifies the ID of a tenant.
 
 If you don't specify this parameter, the account is authenticated with the home tenant.
@@ -373,6 +433,7 @@ If you don't specify this parameter, the account is authenticated with the home 
 You must specify the TenantId parameter to authenticate as a service principal or when using Microsoft account.
 
 ```yaml
+Type:  System.String
 Type:  System.String
 Parameter Sets: UserParameterSet, AppCertificateParameterSet, AppSecretCredentialParameterSet
 Aliases: Audience, Tenant
@@ -385,6 +446,9 @@ Accept wildcard characters: False
 ```
 
 ### -AccessToken
+
+Specifies a bearer token for Microsoft Entra service. Access tokens do time out and you have to handle their refresh.
+
 
 Specifies a bearer token for Microsoft Entra service. Access tokens do time out and you have to handle their refresh.
 
@@ -401,10 +465,11 @@ Accept wildcard characters: False
 
 ### -ClientTimeout
 
+
 Sets the HTTP client timeout in seconds.
 
 ```yaml
-Type: Double
+Type: System.Double
 Parameter Sets: (All)
 Aliases: 
 Required: False
@@ -415,6 +480,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContextScope
+
 
 Determines the scope of authentication context. This ContextScope accepts `Process` for the current process, or `CurrentUser` for all sessions started by user.
 
@@ -432,9 +498,11 @@ Accept wildcard characters: False
 
 ### -Environment
 
+
 The name of the national cloud environment to connect to. By default global cloud is used.
 
 ```yaml
+Type:  System.String
 Type:  System.String
 Parameter Sets: (All)
 Aliases: EnvironmentName, NationalCloud
@@ -447,9 +515,11 @@ Accept wildcard characters: False
 
 ### -NoWelcome
 
+
 Hides the welcome message.
 
 ```yaml
+Type: System.Management.Automation.SwitchParameter
 Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases: 
@@ -462,9 +532,11 @@ Accept wildcard characters: False
 
 ### -Scopes
 
+
 An array of delegated permissions to consent to.
 
 ```yaml
+Type:  System.String[]
 Type:  System.String[]
 Parameter Sets: UserParameterSet
 Aliases: 
@@ -477,11 +549,14 @@ Accept wildcard characters: False
 
 ### -UseDeviceCode
 
+
 Use device code authentication instead of a browser control.
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: UserParameterSet
+Aliases: UseDeviceAuthentication, DeviceCode, DeviceAuth, Device
 Aliases: UseDeviceAuthentication, DeviceCode, DeviceAuth, Device
 Required: False
 Position: Named
@@ -491,6 +566,7 @@ Accept wildcard characters: False
 ```
 
 ### -Certificate
+
 
 An X.509 certificate supplied during invocation.
 
@@ -509,7 +585,10 @@ Accept wildcard characters: False
 
 The subject distinguished name of a certificate. The certificate is retrieved from the current user's certificate store.
 
+The subject distinguished name of a certificate. The certificate is retrieved from the current user's certificate store.
+
 ```yaml
+Type: System.String
 Type: System.String
 Parameter Sets: AppCertificateParameterSet
 Aliases: CertificateSubject, CertificateName
@@ -521,6 +600,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSecretCredential
+
 
 The PSCredential object provides the application ID and client secret for service principal credentials. For more information about the PSCredential object, type Get-Help Get-Credential.
 
@@ -539,7 +619,10 @@ Accept wildcard characters: False
 
 Allows for authentication using environment variables configured on the host machine. See <https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#environment-variables>
 
+Allows for authentication using environment variables configured on the host machine. See <https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#environment-variables>
+
 ```yaml
+Type: System.Management.Automation.SwitchParameter
 Type: System.Management.Automation.SwitchParameter
 Parameter Sets: EnvironmentVariableParameterSet
 Aliases: 
@@ -554,7 +637,10 @@ Accept wildcard characters: False
 
 Sign-in using a managed identity
 
+Sign-in using a managed identity
+
 ```yaml
+Type: System.Management.Automation.SwitchParameter
 Type: System.Management.Automation.SwitchParameter
 Parameter Sets: IdentityParameterSet
 Aliases: ManagedIdentity, ManagedServiceIdentity, MSI
@@ -566,6 +652,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 
 The ProgressAction parameter takes one of the ActionPreference enumeration values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend, or Break.
 
@@ -581,6 +668,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 

@@ -18,11 +18,13 @@ schema: 2.0.0
 # Get-EntraMSAdministrativeUnit
 
 ## SYNOPSIS
+
 Gets an administrative unit.
 
 ## SYNTAX
 
 ### GetQuery (Default)
+
 ```powershell
 Get-EntraMSAdministrativeUnit 
  [-Top <Int32>] 
@@ -32,6 +34,7 @@ Get-EntraMSAdministrativeUnit
 ```
 
 ### GetById
+
 ```powershell
 Get-EntraMSAdministrativeUnit 
  -Id <String> 
@@ -40,77 +43,88 @@ Get-EntraMSAdministrativeUnit
 ```
 
 ## DESCRIPTION
-The Get-EntraMSAdministrativeUnit cmdlet gets a Microsoft Entra ID administrative unit.
+
+The `Get-EntraMSAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrative unit.
 
 ## EXAMPLES
 
 ### Example 1: Get all administrative units
+
 ```powershell
-PS C:\> Get-EntraMSAdministrativeUnit
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraMSAdministrativeUnit
 ```
 
-```output
+```Output
 Id                                   OdataType Description                                     DisplayName
 --                                   --------- -----------                                     -----------
-4bfe2ef5-9c2b-4118-9a3a-6e540c37920c           Dynamic AU testing in CORP tenant               DAU-Test
-771d3040-f17d-465e-8beb-f0615650a40a                                                           SOC Retention
-8441a019-a0cf-4ce8-9c9b-2af5a7ee672e           Container AU for restricted object control      DSR RMAU
-e2ecf941-b24e-4957-9e33-b6e6d7409b9e           Use to contain Personnel-managed project groups Personnel Projects
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
+bbbbbbbb-1111-2222-3333-cccccccccccc                                                           SOC Retention
+cccccccc-2222-3333-4444-dddddddddddd           Container AU for restricted object control      DSR RMAU
+dddddddd-3333-4444-5555-eeeeeeeeeeee           Use to contain Personnel-managed project groups Personnel Projects
 ```
 
 This command gets all the administrative units.
 
 ### Example 2: Get all administrative units using '-All' parameter
+
 ```powershell
-PS C:\> Get-EntraMSAdministrativeUnit -All 
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraMSAdministrativeUnit -All 
 ```
 
-```output
+```Output
 Id                                   OdataType Description                                     DisplayName
 --                                   --------- -----------                                     -----------
-4bfe2ef5-9c2b-4118-9a3a-6e540c37920c           Dynamic AU testing in CORP tenant               DAU-Test
-771d3040-f17d-465e-8beb-f0615650a40a                                                           SOC Retention
-8441a019-a0cf-4ce8-9c9b-2af5a7ee672e           Container AU for restricted object control      DSR RMAU
-e2ecf941-b24e-4957-9e33-b6e6d7409b9e           Use to contain Personnel-managed project groups Personnel Projects
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
+bbbbbbbb-1111-2222-3333-cccccccccccc                                                           SOC Retention
+cccccccc-2222-3333-4444-dddddddddddd           Container AU for restricted object control      DSR RMAU
+dddddddd-3333-4444-5555-eeeeeeeeeeee           Use to contain Personnel-managed project groups Personnel Projects
 ```
 
 This command gets all the administrative units.
 
 ### Example 3: Get a specific administrative unit
+
 ```powershell
-PS C:\> Get-EntraMSAdministrativeUnit -Id 4bfe2ef5-9c2b-4118-9a3a-6e540c37920c
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraMSAdministrativeUnit -Id aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
-```output
+```Output
 Id                                   OdataType Description                                     DisplayName
 --                                   --------- -----------                                     -----------
-4bfe2ef5-9c2b-4118-9a3a-6e540c37920c           Dynamic AU testing in CORP tenant               DAU-Test
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
 ```
 
 This example returns the details of the specified administrative unit.
 
 ### Example 4: Get administrative units filter by display name
+
 ```powershell
-PS C:\> Get-EntraMSAdministrativeUnit -Filter "DisplayName eq 'DAU-Test'"
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraMSAdministrativeUnit -Filter "DisplayName eq 'DAU-Test'"
 ```
 
-```output
+```Output
 Id                                   OdataType Description                                     DisplayName
 --                                   --------- -----------                                     -----------
-4bfe2ef5-9c2b-4118-9a3a-6e540c37920c           Dynamic AU testing in CORP tenant               DAU-Test
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
 ```
 
 This example list of administrative units containing display name with the specified name.
 
 ### Example 5: Get top one administrative unit
+
 ```powershell
-PS C:\> Get-EntraMSAdministrativeUnit -Top 1
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraMSAdministrativeUnit -Top 1
 ```
 
-```output
+```Output
 Id                                   OdataType Description                                     DisplayName
 --                                   --------- -----------                                     -----------
-4bfe2ef5-9c2b-4118-9a3a-6e540c37920c           Dynamic AU testing in CORP tenant               DAU-Test
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
 ```
 
 This example returns the specified top administrative units.
@@ -118,10 +132,11 @@ This example returns the specified top administrative units.
 ## PARAMETERS
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -133,13 +148,14 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
+
 Specifies an oData v3.0 filter statement.
 This parameter filters which objects are returned.
 
-For more information about oData v3.0 filter expressions, see https://msdn.microsoft.com/library/hh169248%28v=nav.90%29.aspx
+For more information about oData v3.0 filter expressions, see <https://msdn.microsoft.com/library/hh169248%28v=nav.90%29.aspx>
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery
 Aliases:
 
@@ -151,10 +167,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
+
 Specifies the ID of an administrative unit in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -166,10 +183,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: GetQuery
 Aliases:
 
@@ -181,7 +199,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
