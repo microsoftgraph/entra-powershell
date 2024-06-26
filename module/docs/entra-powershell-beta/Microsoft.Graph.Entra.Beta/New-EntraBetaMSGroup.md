@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # New-EntraBetaMSGroup
 
-## SYNOPSIS
+## Synopsis
 Creates an Azure AD group.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaMSGroup [-MembershipRule <String>] [-Description <String>] -DisplayName <String>
@@ -19,12 +19,12 @@ New-EntraBetaMSGroup [-MembershipRule <String>] [-Description <String>] -Display
  [-IsAssignableToRole <Boolean>] [-LabelId <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraBetaMSGroup cmdlet creates an Azure Active Directory (Azure AD) group.
 
 For information about creating dynamic groups, see Using attributes to create advanced rules (https://azure.microsoft.com/en-us/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a dynamic group
 ```
@@ -85,7 +85,7 @@ MailNickname                  : helpDeskAdminGroup
 SecurityEnabled               : False
 ```
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 Specifies a description for the group.
@@ -284,18 +284,18 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### None
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 This cmdlet is currently in Public Preview.
 While a cmdlet is in Public Preview, we may make changes to the cmdlet which could have unexpected effects.
 We recommend that you do not use this cmdlet in a production environment.
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaMSGroup]()
 

@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Remove-EntraBetaApplicationExtensionProperty
 
-## SYNOPSIS
+## Synopsis
 Removes an application extension property.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaApplicationExtensionProperty -ObjectId <String> -ExtensionPropertyId <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaApplicationExtensionProperty cmdlet removes an application extension property for an object in Azure Active Directory.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove an extension property
 ```
@@ -29,7 +29,7 @@ PS C:\> Remove-EntraBetaApplicationExtensionProperty -ObjectId "3ddd22e7-a150-4b
 
 This command removes the extension property that has the specified ID from an application in Azure Active Directory.
 
-## PARAMETERS
+## Parameters
 
 ### -ExtensionPropertyId
 Specifies the unique ID of the extension property to remove.
@@ -65,13 +65,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaApplicationExtensionProperty]()
 

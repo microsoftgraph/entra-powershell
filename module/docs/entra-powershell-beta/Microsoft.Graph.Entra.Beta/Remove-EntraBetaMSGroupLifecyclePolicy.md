@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Remove-EntraBetaMSGroupLifecyclePolicy
 
-## SYNOPSIS
+## Synopsis
 Deletes a groupLifecyclePolicies object
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaMSGroupLifecyclePolicy -Id <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaMSGroupLifecyclePolicy command deletes a groupLifecyclePolicies object in Azure Active Directory.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -28,7 +28,7 @@ PS C:\> Remove-EntraBetaMSGroupLifecyclePolicy -Id "13bed58e-6144-41e5-abbd-47c9
 
 This cmdlet deletes the groupLifecyclePolicies object that has the specified ID.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 Specifies the ID of the groupLifecyclePolicies object that this cmdlet removes.
@@ -48,12 +48,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

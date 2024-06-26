@@ -7,17 +7,17 @@ schema: 2.0.0
 
 # Remove-EntraBetaServicePrincipalPolicy
 
-## SYNOPSIS
+## Synopsis
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaServicePrincipalPolicy -Id <String> -PolicyId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a service principal policy
 ```
@@ -26,7 +26,7 @@ PS C:\>Remove-EntraBetaApplicationPolicy -ObjectId <object id of application> -P
 
 This command removes a service principal policy.
 
-## PARAMETERS
+## Parameters
 
 
 
@@ -63,13 +63,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Add-EntraBetaServicePrincipalPolicy]()
 

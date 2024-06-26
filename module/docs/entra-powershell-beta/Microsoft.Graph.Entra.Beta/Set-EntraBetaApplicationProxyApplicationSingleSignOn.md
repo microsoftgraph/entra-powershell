@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Set-EntraBetaApplicationProxyApplicationSingleSignOn
 
-## SYNOPSIS
+## Synopsis
 The Set-EntraBetaApplicationProxyApplicationSingleSignOn cmdlet allows you to set and modify single sign-on (SSO) settings for an application configured for Application Proxy in Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraBetaApplicationProxyApplicationSingleSignOn 
@@ -32,11 +32,11 @@ Set-EntraBetaApplicationProxyApplicationSingleSignOn
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraBetaApplicationProxyApplicationSingleSignOn cmdlet allows you to set and modify single sign-on (SSO) settings for an application configured for Application Proxy in Microsoft Entra ID.
 This is limited to setting No SSO, Kerberos Constrained Delegation (for applications using Integrated Windows Authentication), and Header-based SSO.
 
-## EXAMPLES
+## Examples
 
 ### Example 1:  Assign an application to use Kerberos Constrained Delegation, and specify required parameters.
 ```powershell
@@ -52,7 +52,7 @@ PS C:\> Set-EntraBetaApplicationProxyApplicationSingleSignOn -ObjectId 4eba5342-
 
 This example demonstrates how to Remove SSO from an application.
 
-## PARAMETERS
+## Parameters
 
 ### -KerberosDelegatedLoginIdentity
 The identity that the Connector can use on behalf of your users to authenticate.
@@ -123,14 +123,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 System.Nullable\`1\[\[Microsoft.Open.MSGraph.Model.OnPremisesPublishingSingleSignOnObject+SingleSignOnModeEnum, Microsoft.Open.MS.GraphV10.Client, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null\]\] System.Nullable\`1\[\[Microsoft.Open.MSGraph.Model.OnPremisesPublishingKerberosSignOnSettingsObject+KerberosSignOnMappingAttributeTypeEnum, Microsoft.Open.MS.GraphV10.Client, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

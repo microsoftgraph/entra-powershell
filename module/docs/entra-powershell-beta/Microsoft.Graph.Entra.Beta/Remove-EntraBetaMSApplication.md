@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Remove-EntraBetaMSApplication
 
-## SYNOPSIS
+## Synopsis
 Deletes an application object.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaMSApplication -ObjectId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Deletes an application object identified by ObjectId.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove an application
 ```
@@ -28,7 +28,7 @@ PS C:\>Remove-EntraBetaMSApplication -ObjectId "acd10942-5747-4385-8824-4c5d5fa9
 
 This command removes the specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique identifier of the object specific Azure Active Directory object
@@ -48,14 +48,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### string
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaMSApplication]()
 

@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Restore-EntraBetaDeletedApplication
 
-## SYNOPSIS
+## Synopsis
 Restores a previously deleted application
 
-## SYNTAX
+## Syntax
 
 ```
 Restore-EntraBetaDeletedApplication -ObjectId <String>
  [-IdentifierUris <System.Collections.Generic.List`1[System.String]>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet restores a previously deleted application
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -55,7 +55,7 @@ ObjectId                             AppId                                Displa
 
 This example shows how an application is deleted, then the deleted application is retrieved using the Get-EntraBetaDeletedApplication cmdlet, and subsequently the application is restored by specifying the application's Object ID in the Restore-EntraBetaDeletedApplication cmdlet
 
-## PARAMETERS
+## Parameters
 
 ### -IdentifierUris
 The IdentifierUris of the application that is to be restored
@@ -90,12 +90,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraBetaGroup
 
-## SYNOPSIS
+## Synopsis
 Gets a group.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```powershell
@@ -47,10 +47,10 @@ Get-EntraBetaGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaGroup cmdlet gets a group in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all groups
 ```powershell
@@ -136,7 +136,7 @@ new1                    27d134ad-466b-43dd-8856-ba9f0bc17d24 new1               
 
 This example demonstrates how to retrieve groups that include the text new in their display names from Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -217,13 +217,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [New-EntraBetaGroup](New-EntraBetaGroup.md)
 

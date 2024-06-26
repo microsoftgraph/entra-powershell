@@ -7,11 +7,11 @@ schema: 2.0.0
 
 # New-EntraBetaMSAdministrativeUnitMember
 
-## SYNOPSIS
+## Synopsis
 Create a new object as a member of the administrativeUnit.
 Currently only group objects are supported.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaMSAdministrativeUnitMember [-GroupTypes <System.Collections.Generic.List`1[System.String]>]
@@ -22,14 +22,14 @@ New-EntraBetaMSAdministrativeUnitMember [-GroupTypes <System.Collections.Generic
  [-MembershipRuleProcessingState <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraBetaMSAdministrativeUnitMember cmdlet creates an Azure Active Directory (Azure AD) object as a member of an administrativeUnit.
 
 Currently only Azure Active Directory groups are supporeted to be created as administrativeUnit members.
 
 For information about creating dynamic groups, see Using attributes to create advanced rules (https://azure.microsoft.com/en-us/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a dynamic group in an administrativeUnit
 ```
@@ -50,7 +50,7 @@ The processing state is On.
 This means that all users in the directory that qualify the rule are added as members to the group.
 Any users that do not qualify are removed from the group.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 Specifies the ID of an Active Directory administrative unit.
@@ -291,15 +291,15 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### None
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Add-EntraBetaMSAdministrativeUnitMember]()
 

@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Remove-EntraBetaUserManager
 
-## SYNOPSIS
+## Synopsis
 Removes a user's manager.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaUserManager -ObjectId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaUserManager cmdlet removes a user's manager in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove the manager of a user
 ```
@@ -31,7 +31,7 @@ The first command gets a user by using the Get-EntraBetaUser (./Get-EntraBetaUse
 
 The second command removes the user in $User.
 
-## PARAMETERS
+## Parameters
 
 
 
@@ -53,13 +53,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaUserManager]()
 

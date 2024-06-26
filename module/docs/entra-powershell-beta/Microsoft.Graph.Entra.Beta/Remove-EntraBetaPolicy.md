@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Remove-EntraBetaPolicy
 
-## SYNOPSIS
+## Synopsis
 Removes a policy.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaPolicy -Id <String> 
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaPolicy cmdlet removes a policy from Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a policy
 ```
@@ -29,7 +29,7 @@ PS C:\>Remove-EntraBetaPolicy -Id *<ID>*.
 
 This command removes the specified policy.
 
-## PARAMETERS
+## Parameters
 
 
 
@@ -51,13 +51,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaPolicy]()
 

@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Enable-EntraBetaDirectoryRole
 
-## SYNOPSIS
+## Synopsis
 Activates an existing directory role in Azure Active Directory.
 
-## SYNTAX
+## Syntax
 
 ```
 Enable-EntraBetaDirectoryRole [-RoleTemplateId <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Enable-EntraBetaDirectoryRole cmdlet activates an existing directory role in Azure Active Directory.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Enable a directory role
 ```
@@ -48,7 +48,7 @@ The second command displays the contents of $InviterRole.
 
 The final command enables the directory role in $InviterRole.
 
-## PARAMETERS
+## Parameters
 
 
 
@@ -70,13 +70,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaDirectoryRole]()
 

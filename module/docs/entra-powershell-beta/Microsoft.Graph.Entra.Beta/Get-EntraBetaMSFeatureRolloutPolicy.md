@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Get-EntraBetaMSFeatureRolloutPolicy
 
-## SYNOPSIS
+## Synopsis
 Gets the policy for cloud authentication roll-out in Azure Active Directory.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -27,11 +27,11 @@ Get-EntraBetaMSFeatureRolloutPolicy [-SearchString <String>] [<CommonParameters>
 Get-EntraBetaMSFeatureRolloutPolicy -Id <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet allows an admin to get the policy for cloud authentication rollout (users moving from federation to cloud auth) in Azure AD.
 This policy is in the form of one or two FeatureRolloutPolicy objects holding groups that are assigned for cloud auth (Pass-through auth or Password hash-sync) and groups that are assigned for Seamless Single Sign-On (feature on top of PTA or PHS).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieves a list of all cloud authentication roll-out in Azure AD.
 ```
@@ -78,7 +78,7 @@ PS C:\> Get-EntraBetaMSFeatureRolloutPolicy -SearchString "Default PasswordHashS
 
 This command retrieves the policy for cloud authentication roll-out policy in Azure AD.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The unique identifier of the cloud authentication roll-out policy in Azure AD.
@@ -129,13 +129,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Online.Administration.MsFeatureRolloutPolicy
-## NOTES
-## RELATED LINKS
+## Notes
+## Related LINKS
 
 [New-EntraBetaMSFeatureRolloutPolicy]()
 

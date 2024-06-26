@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraBetaMSGroup
 
-## SYNOPSIS
+## Synopsis
 Gets information about groups in Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```powershell
@@ -49,13 +49,13 @@ Get-EntraBetaMSGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaMSGroup cmdlet gets information about groups in Microsoft Entra ID.
 To get a group, specify the ID parameter. 
 Specify the SearchString or Filter parameter and find particular groups. 
 If you specify no parameters, this cmdlet gets all groups.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all groups
 
@@ -184,7 +184,7 @@ This example gets DisplayName, ID, and Description property values for a specifi
 
 AssignedLabels group property retrieved only by Select parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -281,20 +281,20 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 This cmdlet is currently in Public Preview.
 While a cmdlet is in Public Preview, we might make changes to the cmdlet, which could have unexpected effects.
 We recommend that you don't use this cmdlet in a production environment.
 
-## RELATED LINKS
+## Related LINKS
 
 [New-EntraBetaMSGroup](New-EntraBetaMSGroup.md)
 

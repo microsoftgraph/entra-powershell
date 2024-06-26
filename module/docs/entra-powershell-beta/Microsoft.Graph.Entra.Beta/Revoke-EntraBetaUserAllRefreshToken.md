@@ -7,21 +7,21 @@ schema: 2.0.0
 
 # Revoke-EntraBetaUserAllRefreshToken
 
-## SYNOPSIS
+## Synopsis
 Invalidates the refresh tokens issued to applications for a user.
 
-## SYNTAX
+## Syntax
 
 ```
 Revoke-EntraBetaUserAllRefreshToken -ObjectId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Revoke-EntraBetaUserAllRefreshToken cmdlet invalidates the refresh tokens issued to applications for a user. 
 The cmdlet also invalidates tokens issued to session cookies in a browser for the user. 
 The cmdlet operates by resetting the refreshTokensValidFromDateTime user property to the current date and time.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Revoke refresh tokens for a user
 ```
@@ -30,7 +30,7 @@ PS C:\> Revoke-EntraBetaUserAllRefreshToken -ObjectId "a1d91a49-70c6-4d1d-a80a-b
 
 This command revokes the tokens for the specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the unique ID of a user.
@@ -50,13 +50,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Revoke-EntraBetaSignedInUserAllRefreshToken]()
 

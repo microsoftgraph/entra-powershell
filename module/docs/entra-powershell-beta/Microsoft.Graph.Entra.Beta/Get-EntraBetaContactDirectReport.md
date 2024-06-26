@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaContactDirectReport
 
-## SYNOPSIS
+## Synopsis
 Get the direct reports for a contact.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaContactDirectReport -ObjectId <String> [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaContactDirectReport cmdlet gets the direct reports for a contact.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the direct reports of a contact
 ```
@@ -31,7 +31,7 @@ The first command gets a contact by using the Get-EntraBetaContact (./Get-EntraB
 
 The second command gets the direct reports for $Contact.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -81,13 +81,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaContact]()
 

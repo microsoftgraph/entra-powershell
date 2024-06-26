@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Remove-EntraBetaContact
 
-## SYNOPSIS
+## Synopsis
 Removes a contact.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaContact -ObjectId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaContact removes a contact from Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a contact
 ```
@@ -31,7 +31,7 @@ The first command gets a contact by using the Get-EntraBetaContact (./Get-EntraB
 
 The second command removes the contact in $Contact.
 
-## PARAMETERS
+## Parameters
 
 
 
@@ -53,13 +53,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaContact]()
 

@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # New-EntraBetaMSApplicationExtensionProperty
 
-## SYNOPSIS
+## Synopsis
 Creates an extension property on an application object.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaMSApplicationExtensionProperty -ObjectId <String> [-DataType <String>] [-Name <String>]
  [-TargetObjects <System.Collections.Generic.List`1[System.String]>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Creates an extension property on an application object.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create an extension property
 ```
@@ -34,7 +34,7 @@ PS C:\>New-EntraBetaMSApplicationExtensionProperty -ObjectId "3ddd22e7-a150-4bb3
 
 This command creates an application extension property of the string type for the specified object.
 
-## PARAMETERS
+## Parameters
 
 ### -DataType
 Specifies the data type of the extension property.
@@ -99,16 +99,16 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### string
 ### System.Collections.Generic.List`1[System.String]
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.ExtensionProperty
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaMSApplicationExtensionProperty]()
 

@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaApplicationPolicy
 
-## SYNOPSIS
+## Synopsis
 Gets an application policy.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaApplicationPolicy -Id <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaApplicationPolicy cmdlet gets an Azure Active Directory application policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get an application policy
 ```
@@ -28,7 +28,7 @@ PS C:\>Get-EntraBetaApplicationPolicy -Id "<object id of application>"
 
 This command gets the specified application policy.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The ID of the application for which you need to retrieve the policy
@@ -48,13 +48,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Add-EntraBetaApplicationPolicy]()
 

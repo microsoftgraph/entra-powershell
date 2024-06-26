@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Remove-EntraBetaApplicationOwner
 
-## SYNOPSIS
+## Synopsis
 
 Removes an owner from an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraBetaApplicationOwner 
@@ -30,11 +30,11 @@ Remove-EntraBetaApplicationOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Remove-EntraBetaApplicationOwner cmdlet removes an owner from an application in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove an owner from an application
 
@@ -45,7 +45,7 @@ Remove-EntraBetaApplicationOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 
 This command removes the specified owner from the specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -83,13 +83,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, -`InformationVariable`, `-OutVariable`, -`OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Add-EntraBetaApplicationOwner](Add-EntraBetaApplicationOwner.md)
 

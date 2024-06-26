@@ -16,10 +16,10 @@ schema: 2.0.0
 
 # Set-EntraBetaApplicationProxyApplication
 
-## SYNOPSIS
+## Synopsis
 The Set-EntraBetaApplicationProxyApplication allows you to modify and set configurations for an application in Microsoft Entra ID configured to use ApplicationProxy.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraBetaApplicationProxyApplication 
@@ -37,10 +37,10 @@ Set-EntraBetaApplicationProxyApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraBetaApplicationProxyApplication allows you to modify and set other settings for an application in Microsoft Entra ID configured to use ApplicationProxy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update ExternalUrl, InternalUrl, ExternalAuthenticationType, and IsTranslateHostHeaderEnabled parameter.
 ```powershell
@@ -117,7 +117,7 @@ isPersistentCookieEnabled                : False
 
 This command Update IsTranslateLinksInBodyEnabled, ApplicationServerTimeout, and  ConnectorGroupId parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies a unique application ID of an application in Microsoft Entra ID.
@@ -301,10 +301,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

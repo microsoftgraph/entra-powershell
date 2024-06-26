@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Set-EntraBetaGroup
 
-## SYNOPSIS
+## Synopsis
 Updates a specific group in Azure Active Directory
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaGroup [-Description <String>] -ObjectId <String> [-MailEnabled <Boolean>]
@@ -18,10 +18,10 @@ Set-EntraBetaGroup [-Description <String>] -ObjectId <String> [-MailEnabled <Boo
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraBetaGroup cmdlet updates a group in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update a group
 ```
@@ -30,7 +30,7 @@ PS C:\>Set-EntraBetaGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -Desc
 
 This command updates the specfied group in Azure AD.
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 Specfies a description.
@@ -127,13 +127,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaGroup]()
 

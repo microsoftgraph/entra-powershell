@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Get-EntraBetaAuditDirectoryLogs
 
-## SYNOPSIS
+## Synopsis
 Get directory audit logs.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaAuditDirectoryLogs 
@@ -31,10 +31,10 @@ Get-EntraBetaAuditDirectoryLogs
 [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaAuditDirectoryLogs cmdlet gets a Microsoft Entra ID audit log.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all logs
 ```powershell
@@ -76,7 +76,7 @@ This command shows how to get audit logs by ActivityDisplayName.
 ```
 This command shows how to get audit logs by the result.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -130,8 +130,8 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## RELATED LINKS
+## Related LINKS

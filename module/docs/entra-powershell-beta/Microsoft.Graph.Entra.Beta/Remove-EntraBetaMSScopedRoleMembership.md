@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Remove-EntraBetaMSScopedRoleMembership
 
-## SYNOPSIS
+## Synopsis
 Removes a scoped role membership.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaMSScopedRoleMembership -Id <String> -ScopedRoleMembershipId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaMSScopedRoleMembership cmdlet removes a scoped role membership from Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -28,7 +28,7 @@ Remove-EntraBetaMSScopedRoleMembership -Id "1026185e-25df-4522-a380-7ab697a7241c
 
 Removes scoped membership.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 Specifies an object ID.
@@ -63,13 +63,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Add-EntraBetaMSScopedRoleMembership]()
 

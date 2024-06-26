@@ -16,10 +16,10 @@ schema: 2.0.0
 
 # New-EntraBetaApplicationProxyConnectorGroup
 
-## SYNOPSIS
+## Synopsis
 The New-EntraBetaApplicationProxyConnectorGroup cmdlet creates a new Application Proxy Connector group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraBetaApplicationProxyConnectorGroup
@@ -27,10 +27,10 @@ New-EntraBetaApplicationProxyConnectorGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraBetaApplicationProxyConnectorGroup cmdlet creates a new Application Proxy connector group.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a new Connector Group.
 ```powershell
@@ -48,7 +48,7 @@ connectorGroupType             applicationProxy
 ```
 This Command Create a new Connector Group with the name "Backup Application Servers"
 
-## PARAMETERS
+## Parameters
 
 ### -Name
 The name of the new Connector Group.
@@ -68,12 +68,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### Microsoft.Open.MSGraph.Model.Name
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

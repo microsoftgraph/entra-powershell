@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Add-EntraBetaDeviceRegisteredOwner
 
-## SYNOPSIS
+## Synopsis
 Adds a registered owner for a device.
 
-## SYNTAX
+## Syntax
 
 ```
 Add-EntraBetaDeviceRegisteredOwner -ObjectId <String> -RefObjectId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Add-EntraBetaDeviceRegisteredOwner cmdlet adds a registerd owner for an Azure Active Directory device.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```powershell
@@ -28,7 +28,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the object ID.
@@ -63,13 +63,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaDeviceRegisteredOwner]()
 

@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Remove-EntraBetaUser
 
-## SYNOPSIS
+## Synopsis
 Removes a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraBetaUser 
@@ -29,10 +29,10 @@ Remove-EntraBetaUser
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The **Remove-EntraBetaUser** cmdlet removes a user in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a user
 ```powershell
@@ -41,7 +41,7 @@ PS C:\>Remove-EntraBetaUser -ObjectId "TestUser@example.com"
 
 This command removes the specified user in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.
@@ -61,13 +61,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaUser](Get-EntraBetaUser.md)
 

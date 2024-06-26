@@ -16,10 +16,10 @@ schema: 2.0.0
 
 # Get-EntraBetaApplicationProxyConnectorMemberOf
 
-## SYNOPSIS
+## Synopsis
 The Get-EntraBetaApplicationProxyConnectorMemberOf command gets the ConnectorGroup that the specified Connector is a member of.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaApplicationProxyConnectorMemberOf
@@ -27,11 +27,11 @@ Get-EntraBetaApplicationProxyConnectorMemberOf
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaApplicationProxyConnectorMemberOf command gets the ConnectorGroup that the specified Connector is a member of.
 If no group is assigned to the connector, by default it is in 'Default.'
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Gets ConnectorGroup With Specified Connector ID.
 
@@ -50,7 +50,7 @@ name                           test-group
 ```
 This command gets the ConnectorGroup With Specified Connector ID.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The ID of the connector. You can find ID by running Get-EntraBetaApplicationProxyConnector.
@@ -70,15 +70,15 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 [Get-EntraBetaApplicationProxyConnector](Get-EntraBetaApplicationProxyConnector.md)

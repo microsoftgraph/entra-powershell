@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Get-EntraBetaMSPrivilegedResource
 
-## SYNOPSIS
+## Synopsis
 Get Microsoft Entra ID privileged resource.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -40,10 +40,10 @@ Get-EntraBetaMSPrivilegedResource
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Get Microsoft Entra ID privileged resource.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all resources
 
@@ -109,7 +109,7 @@ Id                                   DisplayName       ExternalId
 ```
 Get top resources for AzureResource provider.
 
-## PARAMETERS
+## Parameters
 
 ### -Filter
 The filter for Odata query
@@ -174,12 +174,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

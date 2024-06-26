@@ -7,26 +7,26 @@ schema: 2.0.0
 
 # Remove-EntraBetaMSPermissionGrantPolicy
 
-## SYNOPSIS
+## Synopsis
 Removes a permission grant policy.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaMSPermissionGrantPolicy -Id <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaMSPermissionGrantPolicy cmdlet removes an Azure Active Directory permission grant policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a permission grant policy
 ```
 PS C:\> Remove-EntraBetaMSPermissionGrantPolicy -Id "my_permission_grant_policy_id"
 ```
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The unique identifier of the permission grant policy.
@@ -46,13 +46,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [New-EntraBetaMSPermissionGrantPolicy]()
 

@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Add-EntraBetaMSAdministrativeUnitMember
 
-## SYNOPSIS
+## Synopsis
 Adds an administrative unit member.
 
-## SYNTAX
+## Syntax
 
 ```
 Add-EntraBetaMSAdministrativeUnitMember -Id <String> -RefObjectId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Add-EntraBetaMSAdministrativeUnitMember cmdlet adds an Active Directory administrative unit member.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```powershell
@@ -28,7 +28,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 Specifies the ID of an Active Directory administrative unit.
@@ -63,13 +63,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaMSAdministrativeUnitMember]()
 

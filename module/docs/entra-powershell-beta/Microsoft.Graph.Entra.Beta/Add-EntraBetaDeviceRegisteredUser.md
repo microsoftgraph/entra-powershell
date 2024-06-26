@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Add-EntraBetaDeviceRegisteredUser
 
-## SYNOPSIS
+## Synopsis
 Adds a registered user for a device.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraBetaDeviceRegisteredUser 
@@ -30,10 +30,10 @@ Add-EntraBetaDeviceRegisteredUser
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The **Add-EntraBetaDeviceRegisteredUser** cmdlet adds a registered user for a Microsoft Entra ID device.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a user as a registered user
 ```powershell
@@ -50,7 +50,7 @@ The final command adds the user in $User as the registered user for the device i
 
 Both parameters use the ObjectId property of specified object.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the ID of the device.
@@ -85,13 +85,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaDevice](Get-EntraBetaDevice.md)
 

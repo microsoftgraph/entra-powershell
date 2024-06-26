@@ -7,16 +7,16 @@ schema: 2.0.0
 
 # Restore-EntraBetaMSDeletedDirectoryObject
 
-## SYNOPSIS
+## Synopsis
 This cmdlet is used to restore a previously deleted object.
 
-## SYNTAX
+## Syntax
 
 ```
 Restore-EntraBetaMSDeletedDirectoryObject -Id <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet is used to restore a previously deleted object.
 Currently, only restoring Group and Application objects is supported. 
 When a group or an application is deleted it is initially soft deleted and can be recovered during the first 30 days after deletion.
@@ -25,7 +25,7 @@ Note that only Unified Groups (a.k.a.
 Office 365 Groups) can be restored.
 Security groups cannot be restored.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -34,7 +34,7 @@ Restore-EntraBetaMSDeletedDirectoryObject -Id aa644285-eb75-4389-885e-7233f09698
 
 This example shows how to restore a deleted object with Id aa644285-eb75-4389-885e-7233f096984c
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The Id of the directory object to restore
@@ -54,12 +54,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

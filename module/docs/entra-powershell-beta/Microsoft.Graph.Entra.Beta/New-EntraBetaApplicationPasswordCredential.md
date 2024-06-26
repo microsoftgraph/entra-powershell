@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # New-EntraBetaApplicationPasswordCredential
 
-## SYNOPSIS
+## Synopsis
 
 Creates a password credential for an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraBetaApplicationPasswordCredential 
@@ -33,11 +33,11 @@ New-EntraBetaApplicationPasswordCredential
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The New-EntraBetaApplicationPasswordCredential cmdlet creates a password credential for an application in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a password credential
 
@@ -97,7 +97,7 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This command creates new password credential for specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -167,11 +167,11 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaApplicationPasswordCredential](Get-EntraBetaApplicationPasswordCredential.md)
 

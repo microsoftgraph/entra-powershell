@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaScopedRoleMembership
 
-## SYNOPSIS
+## Synopsis
 Gets a scoped role membership from an administrative unit.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaScopedRoleMembership -ObjectId <String> [-ScopedRoleMembershipId <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaScopedRoleMembership cmdlet gets a scoped role membership from an administrative unit in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1 Get Scoped Role Administrator
 ```
@@ -31,7 +31,7 @@ PS C:\>Get-EntraBetaScopedRoleMembership -ObjectId "526b7173-5a6e-49dc-88ec-b677
 PS C:\>Get-EntraBetaScopedRoleMembership -ObjectId "526b7173-5a6e-49dc-88ec-b677a9093709"
 ```
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the ID of an object.
@@ -66,13 +66,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Add-EntraBetaScopedRoleMembership]()
 

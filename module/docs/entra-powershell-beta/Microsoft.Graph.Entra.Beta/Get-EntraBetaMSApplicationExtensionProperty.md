@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaMSApplicationExtensionProperty
 
-## SYNOPSIS
+## Synopsis
 Retrieves the list of extension properties on an application object.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaMSApplicationExtensionProperty -ObjectId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Retrieves the list of extension properties on an application object.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get extension properties
 ```
@@ -32,7 +32,7 @@ PS C:\>Get-EntraBetaMSApplicationExtensionProperty -ObjectId "3ddd22e7-a150-4bb3
 
 This command gets the extension properties for the specified application in Azure Active Directory.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique identifier of the object specific Azure Active Directory object
@@ -52,15 +52,15 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### string
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.GetExtensionPropertiesResponse
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [New-EntraBetaMSApplicationExtensionProperty]()
 

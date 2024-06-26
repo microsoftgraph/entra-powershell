@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Add-EntraBetaMSLifecyclePolicyGroup
 
-## SYNOPSIS
+## Synopsis
 Adds a group to a lifecycle policy
 
-## SYNTAX
+## Syntax
 
 ```
 Add-EntraBetaMSLifecyclePolicyGroup -Id <String> -GroupId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Add-EntraBetaMSLifecyclePolicyGroup cmdlet adds a group to a lifecycle policy in Azure Active Directory
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -28,7 +28,7 @@ PS C:\>Add-EntraBetaMSLifecyclePolicyGroup -Id "b4c908b0-3595-4add-91b4-c5400b31
 
 This command adds a group to the lifecycle policy.
 
-## PARAMETERS
+## Parameters
 
 ### -GroupId
 Specifies the ID of a group in Azure Active Directory.
@@ -63,12 +63,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

@@ -16,10 +16,10 @@ schema: 2.0.0
 
 # Get-EntraBetaApplicationProxyApplication
 
-## SYNOPSIS
+## Synopsis
 The Get-EntraBetaApplicationProxyApplication cmdlet retrieves an application configured for Application Proxy in Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaApplicationProxyApplication 
@@ -27,10 +27,10 @@ Get-EntraBetaApplicationProxyApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaApplicationProxyApplication cmdlet retrieves an application configured for Application Proxy in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieves an application configured for Application Proxy
 ```powershell
@@ -44,7 +44,7 @@ https://testp-m365x99297270.msapppr...
 ```
 This command Retrieves an application configured for Application Proxy.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 This ObjectId is the unique application ID of the application.
@@ -66,12 +66,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # New-EntraBetaMSRoleDefinition
 
-## SYNOPSIS
+## Synopsis
 Create a new Azure Active Directory roleDefinition.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaMSRoleDefinition -IsEnabled <Boolean> [-Description <String>]
@@ -20,11 +20,11 @@ New-EntraBetaMSRoleDefinition -IsEnabled <Boolean> [-Description <String>]
  [-TemplateId <String>] -DisplayName <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Create a new Azure Active Directory roleDefinition object.
 For more info see https://go.microsoft.com/fwlink/?linkid=2097519.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```powershell
@@ -33,7 +33,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 {{ Fill Description Description }}
@@ -158,11 +158,11 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleDefinition
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

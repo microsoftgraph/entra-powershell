@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Remove-EntraBetaMSTrustFrameworkPolicy
 
-## SYNOPSIS
+## Synopsis
 This cmdlet is used to delete a trust framework policy (custom policy) in the directory.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaMSTrustFrameworkPolicy -Id <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet is used to delete a trust framework policy in the directory.
 The trust framework policy will be permanently deleted.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -29,7 +29,7 @@ PS C:\> Remove-EntraBetaMSTrustFrameworkPolicy -Id B2C_1A_signup_signin
 
 This example removes the specified trust framework policy.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The unique identifier for a trust framework policy.
@@ -49,12 +49,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS

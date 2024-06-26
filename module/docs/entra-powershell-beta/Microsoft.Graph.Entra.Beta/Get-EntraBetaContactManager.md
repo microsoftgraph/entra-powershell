@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaContactManager
 
-## SYNOPSIS
+## Synopsis
 Gets the manager of a contact.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaContactManager -ObjectId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaContactManager cmdlet gets the manager of a contact in Azure Active Directory.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the manager of a contact
 ```
@@ -31,7 +31,7 @@ The first command gets a contact by using the Get-EntraBetaContact (./Get-EntraB
 
 The second command gets the manager for $Contact.
 
-## PARAMETERS
+## Parameters
 
 
 ### -ObjectId
@@ -52,13 +52,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaContact]()
 

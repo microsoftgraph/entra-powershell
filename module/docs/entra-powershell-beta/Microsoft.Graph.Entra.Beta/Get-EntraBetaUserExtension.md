@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaUserExtension
 
-## SYNOPSIS
+## Synopsis
 Gets a user extension.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaUserExtension -ObjectId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaUserExtension cmdlet gets a user extension in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve extension attributes for a user
 ```
@@ -45,7 +45,7 @@ The command stores the value in the $UserId variable.
 
 The second command retrieves all extension attributes that have a value assigned to them for the user identified by $UserId.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the ID of an object.
@@ -65,13 +65,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related LINKS
 
 [Get-EntraBetaUser]()
 
