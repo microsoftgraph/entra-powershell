@@ -19,7 +19,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Gets the domain's service configuration records from the serviceConfigurationRecords navigation property.
+Gets the domain's service configuration records from the `serviceConfigurationRecords` navigation property.
 
 ## SYNTAX
 
