@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Remove-EntraBetaLifecyclePolicyGroup
 
-## SYNOPSIS
-Removes a group from a lifecycle policy
+## Synopsis
+removes a group from a lifecycle policy
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaLifecyclePolicyGroup -Id <String> -GroupId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Remove-EntraBetaLifecyclePolicyGroup cmdlet removes a group from a lifecycle policy in Azure Active Directory
+## Description
+the Remove-EntraBetaLifecyclePolicyGroup cmdlet removes a group from a lifecycle policy in Azure Active Directory
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -28,7 +28,7 @@ PS C:\> Remove-EntraBetaLifecyclePolicyGroup -Id b4c908b0-3595-4add-91b4-c5400b3
 
 This command removes a group from a lifecycle policy in Azure Active Directory
 
-## PARAMETERS
+## Parameters
 
 ### -GroupId
 Specifies the ID of a group in Azure Active Directory.
@@ -63,12 +63,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

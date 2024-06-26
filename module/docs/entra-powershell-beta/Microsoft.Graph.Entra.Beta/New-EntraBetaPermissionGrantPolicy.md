@@ -7,27 +7,27 @@ schema: 2.0.0
 
 # New-EntraBetaPermissionGrantPolicy
 
-## SYNOPSIS
-Creates a permission grant policy.
+## Synopsis
+creates a permission grant policy.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaPermissionGrantPolicy [-Description <String>] [-DisplayName <String>] [-Id <String>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The New-EntraBetaPermissionGrantPolicy cmdlet creates an Azure Active Directory permission grant policy.
+## Description
+the New-EntraBetaPermissionGrantPolicy cmdlet creates an Azure Active Directory permission grant policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a permission grant policy
 ```
 PS C:\> New-EntraBetaPermissionGrantPolicy -Id "my_new_permission_grant_policy_id"  -DisplayName "MyNewPermissionGrantPolicy" -Description "My new permission grant policy"
 ```
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 Specifies the description for the permission grant policy.
@@ -77,13 +77,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaPermissionGrantPolicy]()
 

@@ -7,27 +7,27 @@ schema: 2.0.0
 
 # Set-EntraBetaPermissionGrantPolicy
 
-## SYNOPSIS
-Updates a permission grant policy.
+## Synopsis
+updates a permission grant policy.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaPermissionGrantPolicy [-Description <String>] [-DisplayName <String>] -Id <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Set-EntraBetaPermissionGrantPolicy command updates an Azure Active Directory permission grant policy.
+## Description
+the Set-EntraBetaPermissionGrantPolicy command updates an Azure Active Directory permission grant policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
 PS C:\> Set-EntraBetaPermissionGrantPolicy -Id "my_permission_grant_policy_id" -Description "updated description" -DisplayName "update displayname"
 ```
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 Specifies the description of the permission grant policy.
@@ -77,13 +77,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraBetaPermissionGrantPolicy]()
 

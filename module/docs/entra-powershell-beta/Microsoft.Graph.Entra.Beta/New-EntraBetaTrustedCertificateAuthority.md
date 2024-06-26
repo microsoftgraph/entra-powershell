@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # New-EntraBetaTrustedCertificateAuthority
 
-## SYNOPSIS
-Creates a trusted certificate authority.
+## Synopsis
+creates a trusted certificate authority.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaTrustedCertificateAuthority -CertificateAuthorityInformation <CertificateAuthorityInformation>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The New-EntraBetaTrustedCertificateAuthority cmdlet creates a trusted certificate authority in Azure Active Directory (AD).
+## Description
+the New-EntraBetaTrustedCertificateAuthority cmdlet creates a trusted certificate authority in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Creates the trusted certificate authorities in your directory
 ```
@@ -34,7 +34,7 @@ PS C:\> $new_ca = New-Object -TypeName Microsoft.Open.AzureAD.Model.CertificateA
 
 This command creates the trusted certificate authorities in your directory.
 
-## PARAMETERS
+## Parameters
 
 ### -CertificateAuthorityInformation
 @{Text=}
@@ -56,13 +56,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaTrustedCertificateAuthority]()
 

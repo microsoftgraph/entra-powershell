@@ -4,7 +4,7 @@ description: This article provides details on the New-EntraNamedLocationPolicy c
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/26/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # New-EntraNamedLocationPolicy
 
-## SYNOPSIS
-Creates a new named location policy in Microsoft Entra ID.
+## Synopsis
+creates a new named location policy in Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraNamedLocationPolicy
@@ -35,11 +35,11 @@ New-EntraNamedLocationPolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-This cmdlet allows an admin to create new named location policy in Microsoft Entra ID.
+## Description
+this cmdlet allows an admin to create new named location policy in Microsoft Entra ID.
 Conditional access policies are custom rules that define an access scenario.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Creates a new Ip named location policy in Microsoft Entra ID.
 ```powershell
@@ -81,7 +81,7 @@ IncludeUnknownCountriesAndRegions : False
 
 This command creates a new country named location policy in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -OdataType
 Specifies the odata type of a named location policy object in Microsoft Entra ID.
@@ -191,12 +191,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
-## RELATED LINKS
+## Notes
+## Related Links
 
 [Get-EntraNamedLocationPolicy](Get-EntraNamedLocationPolicy.md)
 

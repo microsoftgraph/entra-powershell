@@ -7,18 +7,18 @@ schema: 2.0.0
 
 # Set-EntraBetaDirSyncFeature
 
-## SYNOPSIS
-Used to set identity synchronization features for a tenant.
+## Synopsis
+used to set identity synchronization features for a tenant.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaDirSyncFeature -Feature <String> -Enabled <Boolean> [-TenantId <Guid>] [-Force]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Set-EntraBetaDirSyncFeature cmdlet is used to turn identity synchronization features on or off for 
+## Description
+the Set-EntraBetaDirSyncFeature cmdlet is used to turn identity synchronization features on or off for 
 a tenant.
 Features that can be used with this cmdlet include:
 
@@ -38,9 +38,9 @@ This UPN will have the format of "\<UserName\>+\<Random Integer\>@\<Tenant Initi
     DuplicateProxyAddressResiliency (preview)- normally if an object was attempted to be provisioned with a non-unique ProxyAddress, the object would fail to be created/updated due to the uniqueness violation.
 When this feature is enabled the conflicting ProxyAddress value will be â€œquarantinedâ€ and the object will be provisioned without that specific ProxyAddress value.
 
-## EXAMPLES
+## Examples
 
-### EXAMPLE 1
+### Example 1
 ```
 --------------------------  Example 1  --------------------------
     
@@ -53,7 +53,7 @@ When this feature is enabled the conflicting ProxyAddress value will be â€œq
     Enables the SoftMatchOnUpn feature for the tenant.
 ```
 
-## PARAMETERS
+## Parameters
 
 ### -Feature
 The DirSync feature to turn on or off.
@@ -120,10 +120,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

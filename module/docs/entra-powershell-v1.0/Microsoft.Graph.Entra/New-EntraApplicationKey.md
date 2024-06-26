@@ -4,7 +4,7 @@ description: This article provides details on the New-EntraApplicationKey comman
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/21/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # New-EntraApplicationKey
 
-## SYNOPSIS
+## Synopsis
 
-Adds a new key to an application.
+adds a new key to an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraApplicationKey 
@@ -33,11 +33,11 @@ New-EntraApplicationKey
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-Adds a new key to an application.
+adds a new key to an application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a key credential to an application
 
@@ -57,7 +57,7 @@ New-EntraApplicationKey @params
 
 This command adds a key credential the specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -KeyCredential
 
@@ -131,7 +131,7 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### String
 
@@ -139,13 +139,13 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ### Microsoft.Open.MSGraph.Model.PasswordCredential
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.KeyCredential
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Remove-EntraApplicationKey](Remove-EntraApplicationKey.md)
 

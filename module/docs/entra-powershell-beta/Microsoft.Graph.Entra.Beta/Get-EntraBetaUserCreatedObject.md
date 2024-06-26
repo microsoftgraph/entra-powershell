@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaUserCreatedObject
 
-## SYNOPSIS
-Get objects created by the user.
+## Synopsis
+get objects created by the user.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaUserCreatedObject -ObjectId <String> [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraBetaUserCreatedObject cmdlet gets objects created by a user in Azure Active Directory (AD).
+## Description
+the Get-EntraBetaUserCreatedObject cmdlet gets objects created by a user in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a user-created object
 ```
@@ -35,7 +35,7 @@ d0ce9d42-c943-43a1-a0b0-b1ded8d0ce3d ServicePrincipal
 
 This command gets an object created by the specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -85,10 +85,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

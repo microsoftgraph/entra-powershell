@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraDeletedGroup command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/14/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraDeletedGroup
 
-## SYNOPSIS
+## Synopsis
 
-This cmdlet is used to retrieve the soft deleted groups in a directory.
+this cmdlet is used to retrieve the soft deleted groups in a directory.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -51,15 +51,15 @@ Get-EntraDeletedGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-This cmdlet is used to retrieve the soft deleted groups in a directory.
+this cmdlet is used to retrieve the soft deleted groups in a directory.
 When a group is deleted, it's initially soft deleted and can be recovered during the first 30 days after deletion.
 After 30 days the group is permanently deleted and can no longer be recovered.
 Soft delete is currently only implemented for Unified Groups (also known as
 Office 365 Groups).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get deleted groups in the directory
 
@@ -161,7 +161,7 @@ test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unifi
 
 This cmdlet retrieves the deleted group specified by `-Id`.  
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -247,16 +247,16 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

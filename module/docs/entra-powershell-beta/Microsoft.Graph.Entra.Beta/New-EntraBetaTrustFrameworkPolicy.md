@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # New-EntraBetaTrustFrameworkPolicy
 
-## SYNOPSIS
-This cmdlet is used to create a trust framework policy (custom policy) in the directory.
+## Synopsis
+this cmdlet is used to create a trust framework policy (custom policy) in the directory.
 
-## SYNTAX
+## Syntax
 
 ### Content (Default)
 ```
@@ -22,14 +22,14 @@ New-EntraBetaTrustFrameworkPolicy -Content <String> [-OutputFilePath <String>] [
 New-EntraBetaTrustFrameworkPolicy -InputFilePath <String> [-OutputFilePath <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
-This cmdlet is used to create a trust framework policy in the directory.
+## Description
+this cmdlet is used to create a trust framework policy in the directory.
 
 The contents of the trust framework policy to be created can be provided using a file or a command line variable.
 
 The contents of the created trust framework policy can be written to an output file or to the screen.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -69,7 +69,7 @@ The example creates a trust framework policy from the file mentioned in InputFil
 
 The contents of newly created trust framework policy are displayed on screen.
 
-## PARAMETERS
+## Parameters
 
 ### -Content
 The content of the trust framework policy to be created.
@@ -119,12 +119,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

@@ -7,21 +7,21 @@ schema: 2.0.0
 
 # New-EntraBetaRoleAssignment
 
-## SYNOPSIS
-Create a new Azure Active Directory roleAssignment.
+## Synopsis
+create a new Azure Active Directory roleAssignment.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaRoleAssignment -RoleDefinitionId <String> -DirectoryScopeId <String> -PrincipalId <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-Create a new Azure Active Directory roleAssignment object.
+## Description
+create a new Azure Active Directory roleAssignment object.
 For more info see https://go.microsoft.com/fwlink/?linkid=2097519.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```powershell
@@ -30,7 +30,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 ### -DirectoryScopeId
 {{ Fill DirectoryScopeId Description }}
@@ -80,11 +80,11 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleAssignment
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

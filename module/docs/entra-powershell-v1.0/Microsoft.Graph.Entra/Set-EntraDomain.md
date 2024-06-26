@@ -4,7 +4,7 @@ description: This article provides details on the Set-EntraDomain command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/06/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Set-EntraDomain
 
-## SYNOPSIS
+## Synopsis
 
-Updates a domain.
+updates a domain.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraDomain 
@@ -31,9 +31,9 @@ Set-EntraDomain
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The `Set-EntraDomain` cmdlet updates a domain in Microsoft Entra ID.
+the `Set-EntraDomain` cmdlet updates a domain in Microsoft Entra ID.
 
 The work or school account needs to belong to at least one of the following Microsoft Entra roles:
 
@@ -41,7 +41,7 @@ The work or school account needs to belong to at least one of the following Micr
 - Security Administrator
 - External Identity Provider Administrator
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Set the domain as the default domain for new user account creation
 
@@ -61,7 +61,7 @@ Set-EntraDomain -Name Contoso.com -SupportedServices @('Email', 'OfficeCommunica
 
 This example demonstrates how to set domain capabilities for new user account in Microsoft Entra ID.  
 
-## PARAMETERS
+## Parameters
 
 ### -IsDefault
 
@@ -116,13 +116,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Confirm-EntraDomain](Confirm-EntraDomain.md)
 

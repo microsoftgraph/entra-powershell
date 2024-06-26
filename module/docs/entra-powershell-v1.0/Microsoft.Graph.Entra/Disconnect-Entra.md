@@ -4,7 +4,7 @@ description: This article provides details on the Disconnect-Entra Command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 04/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,22 +17,22 @@ schema: 2.0.0
 
 # Disconnect-Entra
 
-## SYNOPSIS
+## Synopsis
 
-Disconnects the current session from a Microsoft Entra ID tenant.
+disconnects the current session from a Microsoft Entra ID tenant.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Disconnect-Entra
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The Disconnect-Entra cmdlet disconnects the current session from a Microsoft Entra ID tenant.
+the Disconnect-Entra cmdlet disconnects the current session from a Microsoft Entra ID tenant.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Disconnect your session from a tenant
 
@@ -60,18 +60,18 @@ Environment            : Global
 
 This command disconnects your session from a tenant.
 
-## PARAMETERS
+## Parameters
 
 ### CommonParameters
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Connect-Entra](Connect-Entra.md)

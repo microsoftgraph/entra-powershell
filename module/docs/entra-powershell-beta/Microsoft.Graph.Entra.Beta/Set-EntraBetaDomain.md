@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Set-EntraBetaDomain
 
-## SYNOPSIS
-Updates a domain.
+## Synopsis
+updates a domain.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaDomain [-IsDefault <Boolean>]
@@ -18,10 +18,10 @@ Set-EntraBetaDomain [-IsDefault <Boolean>]
  [-IsDefaultForCloudRedirections <Boolean>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Set-EntraBetaDomain cmdlet updates a domain in Azure Active Directory (AD).
+## Description
+the Set-EntraBetaDomain cmdlet updates a domain in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Set the domain as the default domain for new user account creation
 ```
@@ -44,7 +44,7 @@ PS C:\>Set-EntraBetaDomain -Name Contoso.com -IsDefaultForCloudRedirections $tru
 
 This command updates the default domain used for cloud redirections.
 
-## PARAMETERS
+## Parameters
 
 ### -IsDefault
 Indicates whether or not this is the default domain that is used for user creation.
@@ -110,13 +110,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Confirm-EntraBetaDomain]()
 

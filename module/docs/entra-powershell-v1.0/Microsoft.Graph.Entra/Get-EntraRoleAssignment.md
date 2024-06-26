@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraRoleAssignment comman
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/16/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 
-Get a Microsoft Entra ID roleAssignment.
+get a Microsoft Entra ID roleAssignment.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -51,10 +51,10 @@ Get-EntraRoleAssignment
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The `Get-EntraRoleAssignment` cmdlet gets information about role assignments in Microsoft Entra ID. To get a role assignment, specify the `Id` parameter. Specify the `SearchString` or `Filter` parameter to find a particular role assignment.
+## Description
+the `Get-EntraRoleAssignment` cmdlet gets information about role assignments in Microsoft Entra ID. To get a role assignment, specify the `Id` parameter. Specify the `SearchString` or `Filter` parameter to find a particular role assignment.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get role assignments
 
@@ -148,7 +148,7 @@ C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w           aaaaaaaa-bbbb-cccc-1111-222222222222  a
 
 This command gets top two role assignments.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -235,17 +235,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### string
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleAssignment
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraRoleAssignment](New-EntraRoleAssignment.md)
 

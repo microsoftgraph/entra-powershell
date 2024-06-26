@@ -4,7 +4,7 @@ description: This article provides details on the Set-EntraPartnerInformation co
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 05/20/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Set-EntraPartnerInformation
 
-## SYNOPSIS
-Sets company information for partners.
+## Synopsis
+sets company information for partners.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraPartnerInformation 
@@ -35,11 +35,11 @@ Set-EntraPartnerInformation
  [-TenantId <Guid>] 
  [<CommonParameters>]
 ```
-## DESCRIPTION
-The Set-EntraPartnerInformation cmdlet is used by partners to set partner-specific properties.
+## Description
+the Set-EntraPartnerInformation cmdlet is used by partners to set partner-specific properties.
 These properties can view by all tenants that the partner has access to.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update the help URL
 ```powershell
@@ -71,7 +71,7 @@ PS C:\> Set-EntraPartnerInformation -PartnerSupportTelephones "2342" -TenantId "
 ```
 This command updates the SupportTelephones for this partner.
 
-## PARAMETERS
+## Parameters
 
 ### -PartnerCommerceUrl
 Specifies the URL for the partner's commerce website.
@@ -199,11 +199,11 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 [Get-EntraPartnerInformation](Get-EntraPartnerInformation.md)

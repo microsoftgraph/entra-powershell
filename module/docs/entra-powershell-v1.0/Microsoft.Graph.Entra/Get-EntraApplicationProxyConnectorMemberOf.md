@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraApplicationProxyConne
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/27/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraApplicationProxyConnectorMemberOf.
 
-## SYNOPSIS
-The Get-EntraApplicationProxyConnectorMemberOf command gets the ConnectorGroup that the specified Connector is a member of.
+## Synopsis
+the Get-EntraApplicationProxyConnectorMemberOf command gets the ConnectorGroup that the specified Connector is a member of.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraApplicationProxyConnectorMemberOf 
@@ -28,11 +28,11 @@ Get-EntraApplicationProxyConnectorMemberOf
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraApplicationProxyConnectorMemberOf command gets the ConnectorGroup that the specified Connector is a member of.
+## Description
+the Get-EntraApplicationProxyConnectorMemberOf command gets the ConnectorGroup that the specified Connector is a member of.
 If no group is assigned to the connector, by default it is in 'Default.'
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Gets the ConnectorGroup
 
@@ -47,7 +47,7 @@ a39b9095-8dc8-4d3a-86c3-e7b5c3f0fb84 Application Servers applicationProxy       
 ```
 This example demonstrates how to retrieve the ConnectorGroup that the specified Connector is a member of.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The ID of the connector.
@@ -68,12 +68,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

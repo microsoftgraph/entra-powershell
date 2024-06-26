@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Set-EntraBetaPrivilegedRoleSetting
 
-## SYNOPSIS
-Update role setting
+## Synopsis
+update role setting
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaPrivilegedRoleSetting [-ResourceId <String>]
@@ -23,10 +23,10 @@ Set-EntraBetaPrivilegedRoleSetting [-ResourceId <String>]
  -ProviderId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
-Update role setting
+## Description
+update role setting
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -38,7 +38,7 @@ PS C:\> $setting = New-Object Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRu
 
 Update a role setting by setting the justification to be false
 
-## PARAMETERS
+## Parameters
 
 ### -AdminEligibleSettings
 The rule settings that are evaluated when an administrator tries to add an eligible role assignment.
@@ -164,12 +164,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

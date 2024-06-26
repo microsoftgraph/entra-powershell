@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # New-EntraBetaPolicy
 
-## SYNOPSIS
-Creates a policy.
+## Synopsis
+creates a policy.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaPolicy -Definition <System.Collections.Generic.List`1[System.String]> -DisplayName <String>
@@ -19,10 +19,10 @@ New-EntraBetaPolicy -Definition <System.Collections.Generic.List`1[System.String
  [-IsOrganizationDefault <Boolean>] [-AlternativeIdentifier <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The New-EntraBetaPolicy cmdlet creates a policy in Azure Active Directory (AD).
+## Description
+the New-EntraBetaPolicy cmdlet creates a policy in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a policy
 ```
@@ -31,7 +31,7 @@ PS C:\>New-EntraBetaPolicy -Definition <Array of Rules> -DisplayName <Name of Po
 
 This command creates a new policy.
 
-## PARAMETERS
+## Parameters
 
 ### -AlternativeIdentifier
 Specifies an alternative ID.
@@ -127,13 +127,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaPolicy]()
 

@@ -4,7 +4,7 @@ description: This article provides details on the Set-EntraIdentityProvider comm
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/25/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Set-EntraIdentityProvider
 
-## SYNOPSIS
-This cmdlet is used to update the properties of an existing identity provider configured in the directory.
+## Synopsis
+this cmdlet is used to update the properties of an existing identity provider configured in the directory.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraIdentityProvider 
@@ -33,11 +33,11 @@ Set-EntraIdentityProvider
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-This cmdlet can be used to update the properties of an existing identity provider.
+## Description
+this cmdlet can be used to update the properties of an existing identity provider.
 The type of the identity provider can't be modified.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update client id of an identity provider
 ```powershell
@@ -60,7 +60,7 @@ PS C:\> Set-EntraIdentityProvider -Id LinkedIn-OAUTH -Name NewName
 
 This example updates the display name for the specified identity provider.
 
-## PARAMETERS
+## Parameters
 
 ### -ClientId
 The client ID for the application.
@@ -142,12 +142,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

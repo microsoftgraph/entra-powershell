@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraNamedLocationPolicy c
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/21/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # Get-EntraNamedLocationPolicy
 
-## SYNOPSIS
+## Synopsis
 
-Gets a Microsoft Entra ID named location policy.
+gets a Microsoft Entra ID named location policy.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -39,12 +39,12 @@ Get-EntraNamedLocationPolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-This cmdlet allows an admin to get the Microsoft Entra ID named location policies.
+this cmdlet allows an admin to get the Microsoft Entra ID named location policies.
 Named locations are custom rules that define network locations, which can then be used in a Conditional Access policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieves a list of all named location policies in Microsoft Entra ID
 
@@ -79,7 +79,7 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee 3/1/2024 9:53:10 AM  NamedLocation  3/1/202
 
 This command retrieves a named location policy specified by the `-PolicyID` in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -PolicyId
 
@@ -101,13 +101,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraNamedLocationPolicy](New-EntraNamedLocationPolicy.md)
 

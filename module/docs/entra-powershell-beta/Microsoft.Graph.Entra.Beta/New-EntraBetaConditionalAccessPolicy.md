@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # New-EntraBetaConditionalAccessPolicy
 
-## SYNOPSIS
-Creates a new conditional access policy in Azure Active Directory.
+## Synopsis
+creates a new conditional access policy in Azure Active Directory.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaConditionalAccessPolicy [-Id <String>] [-SessionControls <ConditionalAccessSessionControls>]
@@ -19,11 +19,11 @@ New-EntraBetaConditionalAccessPolicy [-Id <String>] [-SessionControls <Condition
  [-DisplayName <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
-This cmdlet allows an admin to create new conditional access policy in Azure Active Directory.
+## Description
+this cmdlet allows an admin to create new conditional access policy in Azure Active Directory.
 Conditional access policies are custom rules that define an access scenario.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Creates a new conditional access policy in Azure AD that require MFA to access Exchange Online.
 ```
@@ -69,7 +69,7 @@ PS C:\> $conditions = New-Object -TypeName Microsoft.Open.MSGraph.Model.Conditio
 
 This command creates a new conditional access policy in Azure AD that blocks access to Exchange Online from non-trusted regions.
 
-## PARAMETERS
+## Parameters
 
 ### -DisplayName
 Specifies the display name of a conditional access policy in Azure Active Directory.
@@ -194,12 +194,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
-## RELATED LINKS
+## Notes
+## Related Links
 
 [Get-EntraBetaConditionalAccessPolicy]()
 

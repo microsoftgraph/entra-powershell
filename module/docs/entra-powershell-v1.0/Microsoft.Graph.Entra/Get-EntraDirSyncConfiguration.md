@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraDirSyncConfiguration 
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Get-EntraDirSyncConfiguration
 
-## SYNOPSIS
-Gets the directory synchronization settings.
+## Synopsis
+gets the directory synchronization settings.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraDirSyncConfiguration 
@@ -29,10 +29,10 @@ Get-EntraDirSyncConfiguration
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraDirSyncConfiguration cmdlet gets the directory synchronization settings.
+## Description
+the Get-EntraDirSyncConfiguration cmdlet gets the directory synchronization settings.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get directory synchronization settings
 ```powershell
@@ -60,7 +60,7 @@ AccidentalDeletionThreshold DeletionPreventionType
 
 This command gets directory synchronization settings by TenantId.
 
-## PARAMETERS
+## Parameters
 
 ### -TenantId
 The unique ID of the tenant to perform the operation on. 
@@ -82,13 +82,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Set-EntraDirSyncConfiguration](Set-EntraDirSyncConfiguration.md)

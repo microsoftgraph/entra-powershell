@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Set-EntraBetaAuthorizationPolicy
 
-## SYNOPSIS
-Updates an authorization policy.
+## Synopsis
+updates an authorization policy.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaAuthorizationPolicy -Id <String> [-DisplayName <String>]
@@ -22,17 +22,17 @@ Set-EntraBetaAuthorizationPolicy -Id <String> [-DisplayName <String>]
  [-BlockMsolPowerShell <Boolean>] [-GuestUserRoleId <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Set-EntraBetaAuthorizationPolicy cmdlet updates an Azure Active Directory authorization policy.
+## Description
+the Set-EntraBetaAuthorizationPolicy cmdlet updates an Azure Active Directory authorization policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update an authorization policy
 ```
 PS C:\>Set-EntraBetaAuthorizationPolicy -Id authorizationPolicy -DisplayName "updated displayname" -Description "updated description" -PermissionGrantPolicyIdsAssignedToDefaultUserRole @("user-default-low","application-admin") -GuestUserRoleId "10dae51f-b6af-4016-8d66-8c2a99b929b3" -EnabledPreviewFeatures @("EnableGranularConsent") -DefaultUserRolePermissions @{ AllowedToCreateApps = $false }
 ```
 
-## PARAMETERS
+## Parameters
 
 ### -AllowedToSignUpEmailBasedSubscriptions
 Specifies whether users can sign up for email based subscriptions.
@@ -205,14 +205,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### Microsoft.Open.MSGraph.Model.DefaultUserRolePermissions
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaAuthorizationPolicy]()
 

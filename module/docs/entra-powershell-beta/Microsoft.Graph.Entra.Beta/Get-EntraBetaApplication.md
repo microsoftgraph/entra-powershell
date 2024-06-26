@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaApplication comma
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 06/03/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraBetaApplication
 
-## SYNOPSIS
+## Synopsis
 
-Gets an application.
+gets an application.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -51,11 +51,11 @@ Get-EntraBetaApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The `Get-EntraBetaApplication` cmdlet gets a Microsoft Entra ID application.
+the `Get-EntraBetaApplication` cmdlet gets a Microsoft Entra ID application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get an application by ObjectId
 
@@ -154,7 +154,7 @@ Get-EntraBetaApplication -Filter "identifierUris/any(uri:uri eq 'https://wingtip
 
 This example demonstrates how to retrieve applications by its identifierUris from Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -241,13 +241,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraBetaApplication](New-EntraBetaApplication.md)
 

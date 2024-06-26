@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraDeviceRegisteredUser 
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/15/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraDeviceRegisteredUser
 
-## SYNOPSIS
+## Synopsis
 
-Gets a registered user.
+gets a registered user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraDeviceRegisteredUser 
@@ -31,11 +31,11 @@ Get-EntraDeviceRegisteredUser
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The `Get-EntraDeviceRegisteredUser` cmdlet gets a registered user for a Microsoft Entra ID device.
+the `Get-EntraDeviceRegisteredUser` cmdlet gets a registered user for a Microsoft Entra ID device.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the registered user of a device
 
@@ -111,7 +111,7 @@ assignedLicenses                : {}
 
 This example demonstrates how to retrieve top two registered users for the specified device.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -165,13 +165,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraDeviceRegisteredUser](Add-EntraDeviceRegisteredUser.md)
 

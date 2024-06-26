@@ -4,7 +4,7 @@ description: This article provides details on the New-EntraApplicationPassword c
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/26/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # New-EntraApplicationPassword
 
-## SYNOPSIS
-Adds a strong password to an application.
+## Synopsis
+adds a strong password to an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraApplicationPassword 
@@ -30,10 +30,10 @@ New-EntraApplicationPassword
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-Adds a strong password to an application.
+## Description
+adds a strong password to an application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a password to an application
 ```powershell
@@ -48,7 +48,7 @@ CustomKeyIdentifier DisplayName EndDateTime           Hint KeyId                
 
 This command adds a password to the specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique identifier of the object specific Microsoft Entra ID object
@@ -83,16 +83,16 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### String
 ### Microsoft.Open.MSGraph.Model.PasswordCredential
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.PasswordCredential
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Remove-EntraApplicationPassword](Remove-EntraApplicationPassword.md)
 

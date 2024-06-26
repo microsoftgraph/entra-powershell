@@ -4,7 +4,7 @@ description: This article provides details on the Enable-EntraAzureADAlias comma
 
 ms.service: entra
 ms.topic: reference
-ms.date: 06/04/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,21 +17,21 @@ schema: 2.0.0
 
 # Enable-EntraAzureADAlias
 
-## SYNOPSIS
+## Synopsis
 
-Enables aliases for AzureAD modules.
+enables aliases for AzureAD modules.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Enable-EntraAzureADAlias
 ```
 
-## DESCRIPTION
+## Description
 
-Enables aliases for Azure AD modules.
+enables aliases for Azure AD modules.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 
@@ -41,16 +41,16 @@ Enable-EntraAzureADAlias
 
 Enables all Azure AD prefixes for the current PowerShell session.
 
-## PARAMETERS
+## Parameters
 
-## INPUTS
+## Inputs
 
 ### None
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

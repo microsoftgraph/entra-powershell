@@ -4,7 +4,7 @@ description: This article provides details on the Remove-EntraApplicationProxyAp
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/27/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Remove-EntraApplicationProxyApplicationConnectorGroup
 
-## SYNOPSIS
-The Remove-EntraApplicationProxyApplicationConnectorGroup cmdlet sets the connector group assigned for the specified application to 'Default' and removes the current assignment.
+## Synopsis
+the Remove-EntraApplicationProxyApplicationConnectorGroup cmdlet sets the connector group assigned for the specified application to 'Default' and removes the current assignment.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraApplicationProxyApplicationConnectorGroup 
@@ -28,10 +28,10 @@ Remove-EntraApplicationProxyApplicationConnectorGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-If your application is already in the 'Default' group, you see an error because the application can't be removed from the 'Default' group unless it's being added to another group. The application must be configured for Application Proxy in Microsoft Entra ID.
+## Description
+if your application is already in the 'Default' group, you see an error because the application can't be removed from the 'Default' group unless it's being added to another group. The application must be configured for Application Proxy in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1:  Remove the Connector Group associated with an application.
 
@@ -40,7 +40,7 @@ PS C:\> Remove-EntraApplicationProxyApplicationConnectorGroup -ObjectId 59462d3c
 ```
 This example demonstrates how to remove the Connector Group associated with an application, setting the group to 'Default.'
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique application ID of the application.
@@ -61,12 +61,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 

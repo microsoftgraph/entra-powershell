@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraDeviceRegisteredOwner
 
 ms.service: entra
 ms.topic: reference
-ms.date: 02/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # Get-EntraDeviceRegisteredOwner
 
-## SYNOPSIS
+## Synopsis
 
-Gets the registered owner of a device.
+gets the registered owner of a device.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
@@ -33,11 +33,11 @@ Get-EntraDeviceRegisteredOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The `Get-EntraDeviceRegisteredOwner` cmdlet gets the registered owner of a device in Microsoft Entra ID.
+the `Get-EntraDeviceRegisteredOwner` cmdlet gets the registered owner of a device in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the registered owner of a device
 
@@ -106,7 +106,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com       Mem
 
 This command retrieves top one registered owner of a device.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -160,13 +160,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraDeviceRegisteredOwner](Add-EntraDeviceRegisteredOwner.md)
 

@@ -7,21 +7,21 @@ schema: 2.0.0
 
 # Set-EntraBetaPasswordSingleSignOnCredential
 
-## SYNOPSIS
-Sets the password SSO credentials
+## Synopsis
+sets the password SSO credentials
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaPasswordSingleSignOnCredential -ObjectId <String>
  -PasswordSSOCredential <PasswordSSOCredentials> [<CommonParameters>]
 ```
 
-## DESCRIPTION
-This cmdlet enables users to set their Password Single-sign-on credentials for an application which they are part of.
+## Description
+this cmdlet enables users to set their Password Single-sign-on credentials for an application which they are part of.
 Admin could set the group credentials as well.
 
-## EXAMPLES
+## Examples
 
 ### Set password single-sign-on credentials
 ```
@@ -35,7 +35,7 @@ PS C:\> Set-EntraBetaPasswordSingleSignOnCredential -ObjectId 9ac9883e-0ac5-4c32
 
 This command sets the password sso credentials for the given ObjectId and PasswordSSOObjectId.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique identifier of the object specific Azure Active Directory object
@@ -70,9 +70,9 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
-## RELATED LINKS
+## Notes
+## Related Links

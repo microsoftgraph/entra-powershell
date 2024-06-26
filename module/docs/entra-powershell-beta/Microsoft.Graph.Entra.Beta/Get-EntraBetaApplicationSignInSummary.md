@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaApplicationSignInSummary
 
-## SYNOPSIS
-Get signin summary by last number of days
+## Synopsis
+get signin summary by last number of days
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaApplicationSignInSummary -Days <Int32> [-Top <Int32>] [-Filter <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraBetaApplicationSignInSummary cmdlet gets sign in summaries for the last 7 or 30 days.
+## Description
+the Get-EntraBetaApplicationSignInSummary cmdlet gets sign in summaries for the last 7 or 30 days.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get sign in summary by application for the last week
 ```
@@ -35,7 +35,7 @@ PS C:\>Get-EntraBetaApplicationSignInSummary -Days 30
 
 This command gets summaries for all sign ins from the past 30 days.
 
-## PARAMETERS
+## Parameters
 
 ### -Days
 Number of past days summary will contain.
@@ -86,10 +86,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Online.Administration.GetApplicationSignInSummaryObjectsResponse
-## NOTES
-## RELATED LINKS
+## Notes
+## Related Links

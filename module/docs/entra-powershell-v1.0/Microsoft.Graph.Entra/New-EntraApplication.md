@@ -4,7 +4,7 @@ description: This article provides details on the New-EntraApplication command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/22/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # New-EntraApplication
 
-## SYNOPSIS
-Creates (registers) a new application object.
+## Synopsis
+creates (registers) a new application object.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraApplication 
@@ -47,10 +47,10 @@ New-EntraApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-Creates (registers) a new application object.
+## Description
+creates (registers) a new application object.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create an application
 ```powershell
@@ -96,7 +96,7 @@ My new application 7b31c9a5-5ee8-4bc6-8c9f-c0f572ccb494 9149506f-6ac5-40c8-80ae-
 
 This command creates an application in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -AddIns
 Defines custom behavior that a consuming service can use to call an app in specific contexts.
@@ -405,7 +405,7 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### Boolean
 ### Microsoft.Open.MSGraph.Model.ApiApplication
@@ -422,12 +422,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]
 ### System.Collections.Generic.List`1[System.String]
 ### System. Nullable`1[System.Boolean]
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.MsApplication
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraApplication](Get-EntraApplication.md)
 

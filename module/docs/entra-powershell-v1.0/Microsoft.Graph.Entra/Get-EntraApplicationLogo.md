@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraApplicationLogo comma
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/21/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Get-EntraApplicationLogo
 
-## SYNOPSIS
-Retrieve the logo of an application.
+## Synopsis
+retrieve the logo of an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraApplicationLogo 
@@ -32,10 +32,10 @@ Get-EntraApplicationLogo
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraApplicationLogo cmdlet retrieves the logo that is set for an application.
+## Description
+the Get-EntraApplicationLogo cmdlet retrieves the logo that is set for an application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```powershell
@@ -61,7 +61,7 @@ PropertyItems        : {274, 305, 306, 36867...}
 
 This example shows how to retrieve the application logo for an application that is specified through the Object ID parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -FileName
 If provided, the application logo is copied to the file who's name is provided in this parameter.
@@ -126,14 +126,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 ### System.Boolean
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

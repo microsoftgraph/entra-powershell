@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraAdministrativeUnitMem
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/04/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraAdministrativeUnitMember
 
-## SYNOPSIS
+## Synopsis
 
-Gets a member of an administrative unit.
+gets a member of an administrative unit.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraAdministrativeUnitMember
@@ -31,10 +31,10 @@ Get-EntraAdministrativeUnitMember
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraAdministrativeUnitMember cmdlet gets a member of a Microsoft Entra ID administrative unit.
+## Description
+the Get-EntraAdministrativeUnitMember cmdlet gets a member of a Microsoft Entra ID administrative unit.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get an administrative unit member by ID
 
@@ -86,7 +86,7 @@ cccccccc-8888-9999-0000-dddddddddddd #microsoft.graph.user
 
 This example returns top specified administrative unit members from specified administrative unit ID.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -140,13 +140,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraAdministrativeUnitMember](Add-EntraAdministrativeUnitMember.md)
 

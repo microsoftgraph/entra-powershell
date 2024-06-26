@@ -4,7 +4,7 @@ description: This article provides details on the Remove-EntraDeletedApplication
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/16/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Remove-EntraDeletedApplication
 
-## SYNOPSIS
+## Synopsis
 
-Permanently delete a recently deleted application object from deleted items.
+permanently delete a recently deleted application object from deleted items.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraDeletedApplication 
@@ -29,15 +29,15 @@ Remove-EntraDeletedApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-Permanently delete a recently deleted application object from deleted items. After an item is permanently deleted, it can't be restored.
+permanently delete a recently deleted application object from deleted items. After an item is permanently deleted, it can't be restored.
 
 For delegated scenarios, the calling user needs to have at least one of the following Microsoft Entra roles.
 
 - To permanently delete deleted applications or service principals: Application Administrator, Cloud Application Administrator, or Hybrid Identity Administrator.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove deleted application object
 
@@ -51,7 +51,7 @@ This command removes recently deleted application.
 
 - `ObjectId`:  The ObjectId of the deleted application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -73,17 +73,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraDeletedApplication](Get-EntraDeletedApplication.md)
 

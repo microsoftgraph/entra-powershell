@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Set-EntraBetaAdministrativeUnit
 
-## SYNOPSIS
-Updates an administrative unit.
+## Synopsis
+updates an administrative unit.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaAdministrativeUnit [-MembershipType <String>] -Id <String> [-MembershipRule <String>]
@@ -19,10 +19,10 @@ Set-EntraBetaAdministrativeUnit [-MembershipType <String>] -Id <String> [-Member
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Set-EntraBetaAdministrativeUnit cmdlet updates an administrative unit in Azure Active Directory (AD).
+## Description
+the Set-EntraBetaAdministrativeUnit cmdlet updates an administrative unit in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```powershell
@@ -31,7 +31,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 Specifies a description.
@@ -143,13 +143,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaAdministrativeUnit]()
 

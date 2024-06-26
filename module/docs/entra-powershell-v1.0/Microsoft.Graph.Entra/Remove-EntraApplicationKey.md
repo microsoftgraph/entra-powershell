@@ -4,7 +4,7 @@ description: This article provides details on the Remove-EntraApplicationKey com
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/18/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Remove-EntraApplicationKey
 
-## SYNOPSIS
-Removes a key from an application.
+## Synopsis
+removes a key from an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraApplicationKey 
@@ -30,10 +30,10 @@ Remove-EntraApplicationKey
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-Removes a key from an application.
+## Description
+removes a key from an application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Removes a key credential from an application
 ```powershell
@@ -42,7 +42,7 @@ PS C:\>Remove-EntraApplicationKey -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb8
 
 This command removes the specificed key credential from the specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique identifier of the object specific Microsoft Entra ID object
@@ -92,14 +92,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### string
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraApplicationKey](New-EntraApplicationKey.md)
 

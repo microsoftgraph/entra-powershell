@@ -3,7 +3,7 @@ title: Connect-Entra
 description: This article provides details on the Connect-Entra Command.
 ms.service: entra
 ms.topic: reference
-ms.date: 04/18/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi254
 manager: CelesteDG
@@ -16,11 +16,11 @@ schema: 2.0.0
 
 # Connect-Entra
 
-## SYNOPSIS
+## Synopsis
 
-Microsoft Entra PowerShell supports several authentication scenarios depending on your use case such as: delegated (interactive) and app-only (noninteractive).
+microsoft Entra PowerShell supports several authentication scenarios depending on your use case such as: delegated (interactive) and app-only (noninteractive).
 
-## SYNTAX
+## Syntax
 
 ### UserParameterSet (Default)
 
@@ -102,11 +102,11 @@ Connect-Entra
 [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-You must invoke Connect-Entra before any commands that access Microsoft Entra. This cmdlet gets the access token using the Microsoft Authentication Library.
+you must invoke Connect-Entra before any commands that access Microsoft Entra. This cmdlet gets the access token using the Microsoft Authentication Library.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Connect a session
 
@@ -294,7 +294,7 @@ Connect-Entra -EnvironmentVariable
 
 This example allows for authentication using environment variables.
 
-## PARAMETERS
+## Parameters
 
 ### -CertificateThumbprint
 
@@ -560,12 +560,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Disconnect-Entra](Disconnect-Entra.md)

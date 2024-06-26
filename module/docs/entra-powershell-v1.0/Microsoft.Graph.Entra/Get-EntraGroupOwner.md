@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraGroupOwner command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/08/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraGroupOwner
 
-## SYNOPSIS
+## Synopsis
 
-Gets an owner of a group.
+gets an owner of a group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraGroupOwner 
@@ -31,11 +31,11 @@ Get-EntraGroupOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The Get-EntraGroupOwner cmdlet gets an owner of a group in Microsoft Entra ID.
+the Get-EntraGroupOwner cmdlet gets an owner of a group in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a group owner by ID
 
@@ -113,7 +113,7 @@ id                              : tttttttt-0000-2222-0000-aaaaaaaaaaaa
 
 This example demonstrates how to retrieve the top two owners of a specific group.  
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -165,13 +165,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraGroupOwner](Add-EntraGroupOwner.md)
 

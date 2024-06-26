@@ -7,21 +7,21 @@ schema: 2.0.0
 
 # Set-EntraBetaIdentityProvider
 
-## SYNOPSIS
-This cmdlet is used to update the properties of an existing identity provider configured in the directory.
+## Synopsis
+this cmdlet is used to update the properties of an existing identity provider configured in the directory.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaIdentityProvider -Id <String> [-Type <String>] [-Name <String>] [-ClientId <String>]
  [-ClientSecret <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
-This cmdlet can be used to update the properties of an existing identity provider.
+## Description
+this cmdlet can be used to update the properties of an existing identity provider.
 The type of the identity provider cannot be modified.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -30,7 +30,7 @@ PS C:\> Set-EntraBetaIdentityProvider -Id LinkedIn-OAUTH -ClientId NewClientId -
 
 This example updates the client ID and client secret for the specified identity provider.
 
-## PARAMETERS
+## Parameters
 
 ### -ClientId
 The client ID for the application.
@@ -112,12 +112,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

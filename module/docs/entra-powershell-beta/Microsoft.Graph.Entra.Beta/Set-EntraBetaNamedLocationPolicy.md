@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Set-EntraBetaNamedLocationPolicy
 
-## SYNOPSIS
-Updates a named location policy in Azure Active Directory by PolicyId.
+## Synopsis
+updates a named location policy in Azure Active Directory by PolicyId.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaNamedLocationPolicy [-IncludeUnknownCountriesAndRegions <Boolean>] [-Id <String>]
@@ -20,11 +20,11 @@ Set-EntraBetaNamedLocationPolicy [-IncludeUnknownCountriesAndRegions <Boolean>] 
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-This cmdlet allows an admin to update a named location policy in Azure Active Directory by PolicyId.
+## Description
+this cmdlet allows an admin to update a named location policy in Azure Active Directory by PolicyId.
 Conditional access policies are custom rules that define an access scenario.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update an ip named location policy in Azure AD by PolicyId.
 ```
@@ -40,7 +40,7 @@ PS C:\> Set-EntraBetaNamedLocationPolicy -PolicyId 76fdfd4d-bd80-4c1e-8fd4-6abf4
 
 This command updates a country named location policy in Azure AD by PolicyId.
 
-## PARAMETERS
+## Parameters
 
 ### -PolicyId
 Specifies the ID of a named location policy in Azure Active Directory.
@@ -165,12 +165,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
-## RELATED LINKS
+## Notes
+## Related Links
 
 [Get-EntraBetaNamedLocationPolicy]()
 

@@ -4,7 +4,7 @@ description: This article provides details on the Set-EntraApplication command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/25/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Set-EntraApplication
 
-## SYNOPSIS
-Updates the properties of an application object.
+## Synopsis
+updates the properties of an application object.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraApplication 
@@ -47,10 +47,10 @@ Set-EntraApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-Updates the properties of an application object.
+## Description
+updates the properties of an application object.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update an application
 ```powershell
@@ -87,7 +87,7 @@ PS C:\> Set-EntraApplication -ObjectId fcd37fb8-449c-45af-92fc-5448c671fd30 -Tag
 
 This command updates an application in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -Api
 Specifies settings for an application that implements a web API.
@@ -387,7 +387,7 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### Boolean
 ### Microsoft.Open.MSGraph.Model.ApiApplication
@@ -404,11 +404,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]
 ### System.Collections.Generic.List`1[System.String]
 ### System.Nullable`1[System.Boolean]
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraApplication](Get-EntraApplication.md)
 

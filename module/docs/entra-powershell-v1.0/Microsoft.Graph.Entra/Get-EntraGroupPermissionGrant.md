@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraGroupPermissionGrant 
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/22/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraGroupPermissionGrant
 
-## SYNOPSIS
+## Synopsis
 
-Retrieves a list of permission grants that have been consented for this group.
+retrieves a list of permission grants that have been consented for this group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraGroupPermissionGrant 
@@ -29,11 +29,11 @@ Get-EntraGroupPermissionGrant
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-Retrieves a list of permission grants that have been consented for this group.
+retrieves a list of permission grants that have been consented for this group.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: List existing permission grants for the group
 
@@ -53,7 +53,7 @@ Get-EntraGroupPermissionGrant -Id 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
 
 This cmdlet list existing permission grants for the specified group.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -75,14 +75,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### string
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.GetMSGroupPermissionGrantsResponse
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

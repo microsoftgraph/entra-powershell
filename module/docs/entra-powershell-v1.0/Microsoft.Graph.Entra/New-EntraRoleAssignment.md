@@ -4,7 +4,7 @@ description: This article provides details on the New-EntraRoleAssignment comman
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/16/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # New-EntraRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 
-Create a new Microsoft Entra ID roleAssignment.
+create a new Microsoft Entra ID roleAssignment.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraRoleAssignment 
@@ -31,11 +31,11 @@ New-EntraRoleAssignment
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The `New-EntraRoleAssignment` cmdlet creates a new Microsoft Entra role assignment.
+the `New-EntraRoleAssignment` cmdlet creates a new Microsoft Entra role assignment.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a new Microsoft Entra ID role assignment
 
@@ -65,7 +65,7 @@ This command creates a new role assignment.
 
 - `-DirectoryScopeId` - specifies the scope of the directory over which the role assignment is effective. The '/' value typically represents the root scope, meaning the role assignment is applicable across the entire directory.
 
-## PARAMETERS
+## Parameters
 
 ### -DirectoryScopeId
 
@@ -119,15 +119,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleAssignment
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraRoleAssignment](Get-EntraRoleAssignment.md)
 

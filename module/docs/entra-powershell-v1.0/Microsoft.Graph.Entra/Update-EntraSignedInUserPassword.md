@@ -4,7 +4,7 @@ description: This article provides details on the Update-EntraSignedInUserPasswo
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/16/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Update-EntraSignedInUserPassword
 
-## SYNOPSIS
-Updates the password for the signed-in user.
+## Synopsis
+updates the password for the signed-in user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Update-EntraSignedInUserPassword 
@@ -29,10 +29,10 @@ Update-EntraSignedInUserPassword
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Update-EntraSignedInUserPassword cmdlet updates the password for the signed-in user in Microsoft Entra ID.
+## Description
+the Update-EntraSignedInUserPassword cmdlet updates the password for the signed-in user in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update a password
 
@@ -44,7 +44,7 @@ PS C:\>Update-EntraSignedInUserPassword -CurrentPassword $CurrentPassword -NewPa
 
 This command updates the password for the signed-in user.
 
-## PARAMETERS
+## Parameters
 
 ### -CurrentPassword
 Specifies the current password of the signed-in user.
@@ -81,10 +81,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

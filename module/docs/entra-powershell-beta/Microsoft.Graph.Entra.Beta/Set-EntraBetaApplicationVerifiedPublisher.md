@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Set-EntraBetaApplicationVerifiedPublisher
 
-## SYNOPSIS
-Sets the verified publisher of an application to a verified Microsoft Partner Network (MPN) identifier.
+## Synopsis
+sets the verified publisher of an application to a verified Microsoft Partner Network (MPN) identifier.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaApplicationVerifiedPublisher -SetVerifiedPublisherRequest <SetVerifiedPublisherRequest>
  -AppObjectId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
-Sets the verified publisher of an application to a verified Microsoft Partner Network (MPN) identifier.
+## Description
+sets the verified publisher of an application to a verified Microsoft Partner Network (MPN) identifier.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Set the verified publisher of an application.
 ```
@@ -30,7 +30,7 @@ $appObjId = 'ad6c71a5-e48f-4320-bb59-92642a2d8d9f'
           Set-EntraBetaApplicationVerifiedPublisher -AppObjectId $appObjId -SetVerifiedPublisherRequest $req
 ```
 
-## PARAMETERS
+## Parameters
 
 ### -AppObjectId
 The unique identifier of an Azure Active Directory Application object.
@@ -65,15 +65,15 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### string
 ### string
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Remove-EntraBetaApplicationVerifiedPublisher]()
 

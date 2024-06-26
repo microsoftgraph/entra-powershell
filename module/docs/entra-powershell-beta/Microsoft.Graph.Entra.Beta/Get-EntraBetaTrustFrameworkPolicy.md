@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Get-EntraBetaTrustFrameworkPolicy
 
-## SYNOPSIS
-This cmdlet is used to retrieve the created trust framework policies (custom policies) in the directory.
+## Synopsis
+this cmdlet is used to retrieve the created trust framework policies (custom policies) in the directory.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -22,10 +22,10 @@ Get-EntraBetaTrustFrameworkPolicy [<CommonParameters>]
 Get-EntraBetaTrustFrameworkPolicy -Id <String> [-OutputFilePath <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
-This cmdlet is used to retrieve the trust framework policies that have been created in the directory.
+## Description
+this cmdlet is used to retrieve the trust framework policies that have been created in the directory.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -41,7 +41,7 @@ PS C:\> Get-EntraBetaTrustFrameworkPolicy -Id B2C_1A_signup_signin
 
 This example retrieves the contents of the specified trust framework policy.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The unique identifier for a trust framework policy.
@@ -76,12 +76,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

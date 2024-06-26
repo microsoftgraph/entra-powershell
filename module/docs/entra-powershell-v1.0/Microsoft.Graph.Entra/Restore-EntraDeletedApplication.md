@@ -4,7 +4,7 @@ description: This article provides details on the Restore-EntraDeletedApplicatio
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/21/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Restore-EntraDeletedApplication
 
-## SYNOPSIS
+## Synopsis
 
-Restores a previously deleted application
+restores a previously deleted application
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Restore-EntraDeletedApplication 
@@ -30,9 +30,9 @@ Restore-EntraDeletedApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-This cmdlet restores a previously deleted application.
+this cmdlet restores a previously deleted application.
 
 Restoring an application doesn't restore the associated service principal automatically. You must explicitly restore the deleted service principal.
 
@@ -42,7 +42,7 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 - Cloud Application Administrator
 - Hybrid Identity Administrator
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Restores a previously deleted application
 
@@ -86,7 +86,7 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee 00001111-aaaa-2222-bbbb-3333cccc4444 analog
 
 This example shows how an application is deleted, then the deleted application is retrieved using the `Get-EntraDeletedApplication` cmdlet, and after the application is restored by specifying the application's Object ID in the `Restore-EntraDeletedApplication` cmdlet.
 
-## PARAMETERS
+## Parameters
 
 ### -IdentifierUris
 
@@ -124,14 +124,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

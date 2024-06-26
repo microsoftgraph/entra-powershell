@@ -4,7 +4,7 @@ description: This article provides details on the Enable-EntraDirectoryRole comm
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/22/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Enable-EntraDirectoryRole
 
-## SYNOPSIS
-Activates an existing directory role in Microsoft Entra ID.
+## Synopsis
+activates an existing directory role in Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Enable-EntraDirectoryRole 
@@ -29,10 +29,10 @@ Enable-EntraDirectoryRole
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Enable-EntraDirectoryRole cmdlet activates an existing directory role in Microsoft Entra ID.
+## Description
+the Enable-EntraDirectoryRole cmdlet activates an existing directory role in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Enable a directory role
 ```powershell
@@ -50,7 +50,7 @@ The first command gets an inviter role that has the display name Guest Inviter b
 
 The final command enables the directory role in $InviterRole.  
 
-## PARAMETERS
+## Parameters
 
 ### -RoleTemplateId
 The ID of the Role template to enable
@@ -70,13 +70,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraDirectoryRole](Get-EntraDirectoryRole.md)
 

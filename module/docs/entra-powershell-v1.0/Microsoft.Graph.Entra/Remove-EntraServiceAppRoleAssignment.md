@@ -4,7 +4,7 @@ description: This article provides details on the Remove-EntraServiceAppRoleAssi
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/19/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Remove-EntraServiceAppRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 
-Removes a service principal application role assignment.
+removes a service principal application role assignment.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraServiceAppRoleAssignment 
@@ -30,9 +30,9 @@ Remove-EntraServiceAppRoleAssignment
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The `Remove-EntraServiceAppRoleAssignment` cmdlet removes a service principal application role assignment in Microsoft Entra ID.
+the `Remove-EntraServiceAppRoleAssignment` cmdlet removes a service principal application role assignment in Microsoft Entra ID.
 
 App roles which are assigned to service principals are also known as application permissions. Deleting an app role assignment for a service principal is equivalent to revoking the app-only permission grant.
 
@@ -47,7 +47,7 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 - Application Administrator
 - Cloud Application Administrator
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Removes a service principal application role assignment
 
@@ -62,7 +62,7 @@ This example demonstrates how to remove a service principal application role ass
 
 - `-AppRoleAssignmentId` - specifies the unique identifier (ID) of the app role assignment that you want to remove. The value `2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6` represents the ID of the specific app role assignment to be removed.
 
-## PARAMETERS
+## Parameters
 
 ### -AppRoleAssignmentId
 
@@ -100,13 +100,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraServiceAppRoleAssignment](Get-EntraServiceAppRoleAssignment.md)
 

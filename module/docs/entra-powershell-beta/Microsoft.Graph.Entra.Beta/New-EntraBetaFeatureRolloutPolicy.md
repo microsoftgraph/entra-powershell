@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # New-EntraBetaFeatureRolloutPolicy
 
-## SYNOPSIS
-Allows an admin to create the policy for cloud authentication roll-out in Azure AD.
+## Synopsis
+allows an admin to create the policy for cloud authentication roll-out in Azure AD.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaFeatureRolloutPolicy -Feature <FeatureEnum> -IsEnabled <Boolean> [-Description <String>]
@@ -19,11 +19,11 @@ New-EntraBetaFeatureRolloutPolicy -Feature <FeatureEnum> -IsEnabled <Boolean> [-
  -DisplayName <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
-This cmdlet allows an admin to create the policy for cloud authentication roll-out (users moving from federation to cloud auth) in Azure AD.
+## Description
+this cmdlet allows an admin to create the policy for cloud authentication roll-out (users moving from federation to cloud auth) in Azure AD.
 The policy admin can identify whether the users will authenticate using password hashes in Azure AD (Password hash-sync) or Active Directory on-premises directly (Pass-through authentication).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Creates the policy for cloud authentication roll-out in Azure AD.
 ```
@@ -40,7 +40,7 @@ PS C:\> New-EntraBetaFeatureRolloutPolicy -Feature PassthroughAuthentication -Di
 
 This command creates the policy for cloud authentication roll-out in Azure AD.
 
-## PARAMETERS
+## Parameters
 
 ### -DisplayName
 Specifies the display name of the cloud authentication roll-out policy.
@@ -137,13 +137,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Online.Administration.MsFeatureRolloutPolicy
-## NOTES
-## RELATED LINKS
+## Notes
+## Related Links
 
 [Get-EntraBetaFeatureRolloutPolicy]()
 

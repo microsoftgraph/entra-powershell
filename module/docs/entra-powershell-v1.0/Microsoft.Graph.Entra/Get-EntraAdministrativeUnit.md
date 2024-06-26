@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraAdministrativeUnit co
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/05/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraAdministrativeUnit
 
-## SYNOPSIS
+## Synopsis
 
-Gets an administrative unit.
+gets an administrative unit.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -42,11 +42,11 @@ Get-EntraAdministrativeUnit
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The `Get-EntraAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrative unit.
+the `Get-EntraAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrative unit.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all administrative units
 
@@ -129,7 +129,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant
 
 This example returns the specified top administrative units.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -202,13 +202,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraAdministrativeUnit](New-EntraAdministrativeUnit.md)
 

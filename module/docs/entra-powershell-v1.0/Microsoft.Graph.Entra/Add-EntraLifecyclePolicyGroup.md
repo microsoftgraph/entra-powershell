@@ -4,7 +4,7 @@ description: This article provides details on the Add-EntraLifecyclePolicyGroup 
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/22/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # Add-EntraLifecyclePolicyGroup
 
-## SYNOPSIS
+## Synopsis
 
-Adds a group to a lifecycle policy
+adds a group to a lifecycle policy
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraLifecyclePolicyGroup 
@@ -31,11 +31,11 @@ Add-EntraLifecyclePolicyGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The Add-EntraLifecyclePolicyGroup cmdlet adds a group to a lifecycle policy in Microsoft Entra ID.
+the Add-EntraLifecyclePolicyGroup cmdlet adds a group to a lifecycle policy in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a group to the lifecycle policy
 
@@ -46,7 +46,7 @@ Add-EntraLifecyclePolicyGroup -Id '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6' -groupI
 
 This command adds a group to a Microsoft Lifecycle Policy. The `-Id` parameter specifies the ID of the Lifecycle Policy to which the group should be added. The `-groupId` parameter specifies the ID of the group to be added to the Lifecycle Policy.
 
-## PARAMETERS
+## Parameters
 
 ### -GroupId
 
@@ -84,14 +84,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

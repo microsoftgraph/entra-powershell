@@ -4,7 +4,7 @@ description: This article provides details on the Add-EntraDeviceRegisteredUser 
 
 ms.service: entra
 ms.topic: reference
-ms.date: 02/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # Add-EntraDeviceRegisteredUser
 
-## SYNOPSIS
+## Synopsis
 
-Adds a registered user for a device.
+adds a registered user for a device.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraDeviceRegisteredUser 
@@ -31,11 +31,11 @@ Add-EntraDeviceRegisteredUser
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The `Add-EntraDeviceRegisteredUser` cmdlet adds a registered user for a Microsoft Entra ID device.
+the `Add-EntraDeviceRegisteredUser` cmdlet adds a registered user for a Microsoft Entra ID device.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a user as a registered user
 
@@ -52,7 +52,7 @@ This example shows how to add a registered user to a device.
 
 - `-RefObjectId` - specifies the unique identifier (Object ID) of the user who will be added as a registered user of the device. The $User.ObjectId variable should contain the Object ID of the user.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -90,13 +90,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraDevice](Get-EntraDevice.md)
 

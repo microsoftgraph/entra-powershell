@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Set-EntraBetaObjectSetting
 
-## SYNOPSIS
-Updates object settings.
+## Synopsis
+updates object settings.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaObjectSetting -Id <String> -DirectorySetting <DirectorySetting> -TargetType <String>
@@ -18,10 +18,10 @@ Set-EntraBetaObjectSetting -Id <String> -DirectorySetting <DirectorySetting> -Ta
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Set-EntraBetaObjectSetting cmdlet updates the settings for an object in Azure Active Directory (AD).
+## Description
+the Set-EntraBetaObjectSetting cmdlet updates the settings for an object in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -30,7 +30,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 ### -DirectorySetting
 Specifies a DirectorySetting object.
@@ -97,13 +97,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaObjectSetting]()
 

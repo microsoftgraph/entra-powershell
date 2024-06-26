@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # New-EntraBetaNamedLocationPolicy
 
-## SYNOPSIS
-Creates a new named location policy in Azure Active Directory.
+## Synopsis
+creates a new named location policy in Azure Active Directory.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaNamedLocationPolicy [-IncludeUnknownCountriesAndRegions <Boolean>] [-Id <String>]
@@ -20,11 +20,11 @@ New-EntraBetaNamedLocationPolicy [-IncludeUnknownCountriesAndRegions <Boolean>] 
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-This cmdlet allows an admin to create new named location policy in Azure Active Directory.
+## Description
+this cmdlet allows an admin to create new named location policy in Azure Active Directory.
 Conditional access policies are custom rules that define an access scenario.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Creates a new Ip named location policy in Azure AD.
 ```
@@ -62,7 +62,7 @@ PS C:\> New-EntraBetaNamedLocationPolicy -OdataType "#microsoft.graph.countryNam
 
 This command creates a new country named location policy in Azure AD.
 
-## PARAMETERS
+## Parameters
 
 ### -OdataType
 Specifies the odata type of a named location policy object in Azure Active Directory.
@@ -172,12 +172,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
-## RELATED LINKS
+## Notes
+## Related Links
 
 [Get-EntraBetaNamedLocationPolicy]()
 

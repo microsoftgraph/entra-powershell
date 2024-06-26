@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Set-EntraBetaGroup
 
-## SYNOPSIS
+## Synopsis
 {{Fill in the Synopsis}}
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaGroup [-GroupTypes <System.Collections.Generic.List`1[System.String]>] -Id <String>
@@ -19,10 +19,10 @@ Set-EntraBetaGroup [-GroupTypes <System.Collections.Generic.List`1[System.String
  [-MembershipRule <String>] [-MembershipRuleProcessingState <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 {{Fill in the Description}}
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -67,7 +67,7 @@ PS C:\> Set-EntraBetaGroup -Id "11111111-1111-1111-1111-111111111111" -LabelId "
 
 The label is removed from the group.
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 {{Fill Description Description}}
@@ -255,12 +255,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

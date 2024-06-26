@@ -4,7 +4,7 @@ description: This article provides details on the Set-EntraBetaApplicationProxyA
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 04/03/2023
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Set-EntraBetaApplicationProxyApplicationConnectorGroup
 
-## SYNOPSIS
-The Set-EntraBetaApplicationProxyApplicationConnectorGroup cmdlet assigns the given connector group to a specified application.
+## Synopsis
+the Set-EntraBetaApplicationProxyApplicationConnectorGroup cmdlet assigns the given connector group to a specified application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraBetaApplicationProxyApplicationConnectorGroup 
@@ -29,11 +29,11 @@ Set-EntraBetaApplicationProxyApplicationConnectorGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Set-EntraBetaApplicationProxyApplicationConnectorGroup cmdlet sets the connector group assigned for the specified application.
+## Description
+the Set-EntraBetaApplicationProxyApplicationConnectorGroup cmdlet sets the connector group assigned for the specified application.
 The application must be configured for Application Proxy in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Set a new Connector Group for a specific application
 ```powershell
@@ -42,7 +42,7 @@ PS C:\> Set-EntraBetaApplicationProxyApplicationConnectorGroup -ObjectId 59462d3
 
 This command Set a new Connector Group for a specific application
 
-## PARAMETERS
+## Parameters
 
 ### -ConnectorGroupId
 The ID of the Connector group that should be assigned to the application.
@@ -79,12 +79,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

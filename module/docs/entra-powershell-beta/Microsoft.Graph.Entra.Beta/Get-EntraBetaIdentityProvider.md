@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Get-EntraBetaIdentityProvider
 
-## SYNOPSIS
-This cmdlet is used to retrieve the configured identity providers in the directory.
+## Synopsis
+this cmdlet is used to retrieve the configured identity providers in the directory.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -22,8 +22,8 @@ Get-EntraBetaIdentityProvider [<CommonParameters>]
 Get-EntraBetaIdentityProvider -Id <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
-This cmdlet is used to retrieve the identity providers that have been configured in the directory.
+## Description
+this cmdlet is used to retrieve the identity providers that have been configured in the directory.
 These identity providers can be used to allow users to sign up for or sign into applications secured by Azure AD B2C.
 
 Configuring an identity provider in your Azure AD tenant also enables future B2B guest scenarios.
@@ -32,7 +32,7 @@ The Gmail user will use their Google account credentials to authenticate and acc
 
 The current set of identity providers can be Microsoft, Google, Facebook, Amazon, or LinkedIn.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -48,7 +48,7 @@ PS C:\> Get-EntraBetaIdentityProvider -Id LinkedIn-OAUTH
 
 This example retrieves the properties for the identity provider specified.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The unique identifier for an identity provider.
@@ -68,12 +68,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

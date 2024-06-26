@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaUserMembership co
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/07/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraBetaUserMembership
 
-## SYNOPSIS
-Get user memberships.
+## Synopsis
+get user memberships.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaUserMembership 
@@ -30,10 +30,10 @@ Get-EntraBetaUserMembership
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraBetaUserMembership cmdlet gets user memberships in Microsoft Entra ID.
+## Description
+the Get-EntraBetaUserMembership cmdlet gets user memberships in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get user memberships
 ```powershell
@@ -94,7 +94,7 @@ This example demonstrates how to retrieve users top five memberships in Microsof
 
 This command gets the top five memberships for the specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -144,10 +144,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

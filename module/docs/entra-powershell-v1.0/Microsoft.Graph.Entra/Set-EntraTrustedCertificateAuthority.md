@@ -4,7 +4,7 @@ description: This article provides details on the Set-EntraTrustedCertificateAut
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/21/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,22 +17,22 @@ schema: 2.0.0
 
 # Set-EntraTrustedCertificateAuthority
 
-## SYNOPSIS
+## Synopsis
 
-Updates a trusted certificate authority.
+updates a trusted certificate authority.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraTrustedCertificateAuthority 
  -CertificateAuthorityInformation <CertificateAuthorityInformation>
 ```
 
-## DESCRIPTION
+## Description
 
-The Set-EntraTrustedCertificateAuthority cmdlet updates a trusted certificate authority in Microsoft Entra ID.
+the Set-EntraTrustedCertificateAuthority cmdlet updates a trusted certificate authority in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Updates the trusted certificate authorities that are defined in your directory
 
@@ -46,7 +46,7 @@ Set-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
 
 This command updates the trusted certificate authorities that are defined in your directory.
 
-## PARAMETERS
+## Parameters
 
 ### -CertificateAuthorityInformation
 
@@ -68,13 +68,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraTrustedCertificateAuthority](Get-EntraTrustedCertificateAuthority.md)
 

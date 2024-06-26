@@ -4,7 +4,7 @@ description: This article provides details on the Remove-EntraDeletedDirectoryOb
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/15/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Remove-EntraDeletedDirectoryObject
 
-## SYNOPSIS
+## Synopsis
 
-This cmdlet is used to permanently delete a previously deleted directory object.
+this cmdlet is used to permanently delete a previously deleted directory object.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraDeletedDirectoryObject 
@@ -29,13 +29,13 @@ Remove-EntraDeletedDirectoryObject
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-This cmdlet is used to permanently delete a previously deleted directory object.
+this cmdlet is used to permanently delete a previously deleted directory object.
 
 When a directory object is permanently deleted, it can no longer be restored.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Delete a previously deleted directory object
 
@@ -56,7 +56,7 @@ NOTE: For delegated scenarios, the calling user needs to have at least one of th
 - To permanently delete deleted users: `User Administrator`.
 - To permanently delete deleted groups: `Groups Administrator`.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -78,17 +78,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraDeletedDirectoryObject](Get-EntraDeletedDirectoryObject.md)
 

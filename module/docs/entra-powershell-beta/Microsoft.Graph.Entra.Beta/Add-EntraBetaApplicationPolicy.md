@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Add-EntraBetaApplicationPolicy
 
-## SYNOPSIS
-The Add-EntraBetaApplicationPolicy cmdlet is not available at this time .
+## Synopsis
+the Add-EntraBetaApplicationPolicy cmdlet is not available at this time .
 
-## SYNTAX
+## Syntax
 
 ```
 Add-EntraBetaApplicationPolicy -Id <String> -RefObjectId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Add-EntraBetaApplicationPolicy cmdlet adds an Azure Active Directory application policy.
+## Description
+the Add-EntraBetaApplicationPolicy cmdlet adds an Azure Active Directory application policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add an application policy
 ```
@@ -28,7 +28,7 @@ PS C:\>Add-EntraBetaApplicationPolicy -ObjectId <object id of application> -RefO
 
 This command adds an application policy.
 
-## PARAMETERS
+## Parameters
 
 
 ### -RefObjectId
@@ -64,13 +64,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaApplicationPolicy]()
 

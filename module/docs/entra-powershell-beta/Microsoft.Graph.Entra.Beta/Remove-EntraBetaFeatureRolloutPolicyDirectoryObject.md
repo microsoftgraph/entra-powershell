@@ -7,22 +7,22 @@ schema: 2.0.0
 
 # Remove-EntraBetaFeatureRolloutPolicyDirectoryObject
 
-## SYNOPSIS
-Allows an admin to remove a group from the cloud authentication rollout policy in Azure AD.
+## Synopsis
+allows an admin to remove a group from the cloud authentication rollout policy in Azure AD.
 Users in this group will revert back to the authenticating using the global policy (in most cases this will be federation).
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -ObjectId <String> -Id <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
-An admin will use this cmdlet to remove groups from the cloud authentication roll-out policy.
+## Description
+an admin will use this cmdlet to remove groups from the cloud authentication roll-out policy.
 Users in these groups will start authenticating against the global authentication policy (e.g.
 federation).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Removes a group from the cloud authentication roll-out policy from Azure AD.
 ```
@@ -31,7 +31,7 @@ PS C:\> Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "a03b6d9e-6654-4
 
 This command removes a group from the cloud authentication roll-out policy from Azure AD.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The unique identifier of the cloud authentication roll-out policy in Azure AD.
@@ -66,12 +66,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
-## RELATED LINKS
+## Notes
+## Related Links
 
 [Add-EntraBetaFeatureRolloutPolicyDirectoryObject]()
 

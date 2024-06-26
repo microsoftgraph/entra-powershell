@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Get-EntraBetaFederationProperty
 
-## SYNOPSIS
-For the specified domain, displays the properties of the Active Directory Federation Services 2.0 server and Microsoft Online.
+## Synopsis
+for the specified domain, displays the properties of the Active Directory Federation Services 2.0 server and Microsoft Online.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -22,12 +22,12 @@ Get-EntraBetaFederationProperty [-SupportMultipleDomain] [<CommonParameters>]
 Get-EntraBetaFederationProperty -DomainName <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraBetaFederationProperty cmdlet gets key settings from both the Active Directory Federation Services 2.0 server and Microsoft Online.
+## Description
+the Get-EntraBetaFederationProperty cmdlet gets key settings from both the Active Directory Federation Services 2.0 server and Microsoft Online.
 You can use this
 information to troubleshoot authentication problems caused by mismatched settings between the Active Directory Federation Services 2.0 server and Microsoft Online.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```powershell
@@ -36,7 +36,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 ### -DomainName
 The domain name for which the properties from both the Active Directory Federation Services 2.0 server and Microsoft Online will be displayed.
@@ -71,10 +71,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

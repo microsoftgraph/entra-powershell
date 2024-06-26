@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraAccountSku command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Get-EntraAccountSku
 
-## SYNOPSIS
-Retrieves all the SKUs for a company.
+## Synopsis
+retrieves all the SKUs for a company.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```powershell
@@ -36,12 +36,12 @@ Get-EntraAccountSku
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraAccountSku returns all the SKUs that the company owns.
+## Description
+the Get-EntraAccountSku returns all the SKUs that the company owns.
 
-## EXAMPLES
+## Examples
 
-### EXAMPLE 1: Gets a list of SKUs
+### Example 1: Gets a list of SKUs
 ```powershell
 PS C:\> Get-EntraAccountSku
 ```
@@ -56,7 +56,7 @@ Id                                            AccountId                         
 
 This command returns a list of SKUs.
 
-### EXAMPLE 2: Gets a list of SKUs by TenantId
+### Example 2: Gets a list of SKUs by TenantId
 ```powershell
 PS C:\> Get-EntraAccountSku -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
 ```
@@ -71,7 +71,7 @@ Id                                            AccountId                         
 
 This command returns a list of SKUs by TenantId.
 
-## PARAMETERS
+## Parameters
 
 ### -TenantId
 The unique ID of the tenant to perform the operation on.
@@ -94,10 +94,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

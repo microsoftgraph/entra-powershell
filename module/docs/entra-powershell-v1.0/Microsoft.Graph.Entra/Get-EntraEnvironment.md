@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraEnvironment command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 05/07/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraEnvironment
 
-## SYNOPSIS
+## Synopsis
 
-Gets global public Environments.
+gets global public Environments.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -38,11 +38,11 @@ Get-EntraEnvironment
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-When you use `Connect-Entra`, you can choose to target other environments. By default, `Connect-Entra` targets the global public cloud.
+when you use `Connect-Entra`, you can choose to target other environments. By default, `Connect-Entra` targets the global public cloud.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a list of public cloud environments
 
@@ -77,7 +77,7 @@ Global https://login.microsoftonline.com https://graph.microsoft.com Built-in
 
 This command retrieves an environment with the specified name.
 
-## PARAMETERS
+## Parameters
 
 ### -Name
 
@@ -96,12 +96,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraEnvironment](Add-EntraEnvironment.md)

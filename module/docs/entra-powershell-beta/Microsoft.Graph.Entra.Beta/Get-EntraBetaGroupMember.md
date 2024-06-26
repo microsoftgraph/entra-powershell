@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaGroupMember comma
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/06/2023
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraBetaGroupMember
 
-## SYNOPSIS
-Gets a member of a group.
+## Synopsis
+gets a member of a group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaGroupMember 
@@ -30,10 +30,10 @@ Get-EntraBetaGroupMember
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraBetaGroupMember cmdlet gets a member of a group in Microsoft Entra ID.
+## Description
+the Get-EntraBetaGroupMember cmdlet gets a member of a group in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a group member by ID
 ```Powershell
@@ -77,7 +77,7 @@ e19c5875-9f67-4634-9af7-8e544aa76765
 
 This example retrieves all members within a group by group ID.  
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -127,13 +127,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraBetaGroupMember](Add-EntraBetaGroupMember.md)
 

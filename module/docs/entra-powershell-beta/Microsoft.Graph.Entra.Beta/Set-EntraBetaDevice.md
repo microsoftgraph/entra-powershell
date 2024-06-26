@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Set-EntraBetaDevice
 
-## SYNOPSIS
-Updates a device.
+## Synopsis
+updates a device.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaDevice [-AccountEnabled <Boolean>] [-DeviceObjectVersion <Int32>]
@@ -22,10 +22,10 @@ Set-EntraBetaDevice [-AccountEnabled <Boolean>] [-DeviceObjectVersion <Int32>]
  [-DeviceMetadata <String>] [-DeviceId <String>] [-IsCompliant <Boolean>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Set-EntraBetaDevice cmdlet updates a device in Azure Active Directory (AD).
+## Description
+the Set-EntraBetaDevice cmdlet updates a device in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update a device
 ```
@@ -34,7 +34,7 @@ PS C:\>Set-EntraBetaDevice -ObjectId "99a1915d-298f-42d1-93ae-71646b85e2fa" -Dis
 
 This command updates the specified device.
 
-## PARAMETERS
+## Parameters
 
 ### -AccountEnabled
 Indicates whether the account is enabled.
@@ -279,13 +279,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaDevice]()
 

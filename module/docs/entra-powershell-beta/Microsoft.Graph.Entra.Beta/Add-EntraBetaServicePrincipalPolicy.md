@@ -7,26 +7,26 @@ schema: 2.0.0
 
 # Add-EntraBetaServicePrincipalPolicy
 
-## SYNOPSIS
-Adds a service principal policy.
+## Synopsis
+adds a service principal policy.
 
-## SYNTAX
+## Syntax
 
 ```
 Add-EntraBetaServicePrincipalPolicy -Id <String> -RefObjectId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Add-EntraBetaServicePrincipalPolicy cmdlet adds a service principal policy.
+## Description
+the Add-EntraBetaServicePrincipalPolicy cmdlet adds a service principal policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a service principal policy
 ```
 PS C:\>Add-EntraBetaServicePrincipalPolicy -Id <object id of service principal> -RefObjectId <object id of policy>
 ```
 
-## PARAMETERS
+## Parameters
 
 
 
@@ -63,13 +63,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaServicePrincipalPolicy]()
 

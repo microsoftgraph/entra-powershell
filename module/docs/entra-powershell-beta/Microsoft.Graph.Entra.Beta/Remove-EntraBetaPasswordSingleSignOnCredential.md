@@ -7,21 +7,21 @@ schema: 2.0.0
 
 # Remove-EntraBetaPasswordSingleSignOnCredential
 
-## SYNOPSIS
-Removes the password SSO credentials
+## Synopsis
+removes the password SSO credentials
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaPasswordSingleSignOnCredential -ObjectId <String> -PasswordSSOObjectId <PasswordSSOObjectId>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-This cmdlet enables users to remove their Password Single-sign-on credentials for an application which they are part of.
+## Description
+this cmdlet enables users to remove their Password Single-sign-on credentials for an application which they are part of.
 Admin could remove the group credentials as well.
 
-## EXAMPLES
+## Examples
 
 ### Remove password single-sign-on credentials
 ```
@@ -30,7 +30,7 @@ PS C:\> Remove-EntraBetaPasswordSingleSignOnCredential -ObjectId 9ac9883e-0ac5-4
 
 This command removes the password sso credentials for the given ObjectId and PasswordSSOObjectId.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique identifier of the object specific Azure Active Directory object
@@ -65,9 +65,9 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
-## RELATED LINKS
+## Notes
+## Related Links

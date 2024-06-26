@@ -4,7 +4,7 @@ description: This article provides details on the Set-EntraUserPassword command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/18/2023
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Set-EntraUserPassword
 
-## SYNOPSIS
+## Synopsis
 
-Sets the password of a user.
+sets the password of a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraUserPassword 
@@ -32,13 +32,13 @@ Set-EntraUserPassword
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The `Set-EntraUserPassword` cmdlet sets the password for a user in Microsoft Entra ID.
+the `Set-EntraUserPassword` cmdlet sets the password for a user in Microsoft Entra ID.
 
 Any user can update their password without belonging to any administrator role.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Set a user's password
 
@@ -79,7 +79,7 @@ Set-EntraUserPassword @params
 
 This command sets the specified user's password with ForceChangePasswordNextLogin parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -EnforceChangePasswordPolicy
 
@@ -149,10 +149,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

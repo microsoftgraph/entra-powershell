@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraUserManager command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/08/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraUserManager
 
-## SYNOPSIS
+## Synopsis
 
-Gets the manager of a user.
+gets the manager of a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraUserManager 
@@ -29,11 +29,11 @@ Get-EntraUserManager
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The Get-EntraUserManager cmdlet gets the manager of a user in Microsoft Entra ID.
+the Get-EntraUserManager cmdlet gets the manager of a user in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the manager of a user
 
@@ -57,7 +57,7 @@ onPremisesUserPrincipalName     :
 
 This example demonstrates how to retrieve the manager of a specific user.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -79,13 +79,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Remove-EntraUserManager](Remove-EntraUserManager.md)
 

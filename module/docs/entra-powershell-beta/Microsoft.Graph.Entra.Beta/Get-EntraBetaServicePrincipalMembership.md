@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaServicePrincipalMembership
 
-## SYNOPSIS
-Get a service principal membership.
+## Synopsis
+get a service principal membership.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaServicePrincipalMembership -ObjectId <String> [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraBetaServicePrincipalMembership cmdlet gets the memberships of a service principal in Azure Active Directory (Azure AD).
+## Description
+the Get-EntraBetaServicePrincipalMembership cmdlet gets the memberships of a service principal in Azure Active Directory (Azure AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the memberships of a service principal
 ```
@@ -32,7 +32,7 @@ The command stores the ID in the $ServicePrincipalId variable.
 
 The second command gets the memberships of a service principal identified by $ServicePrincipalId.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -82,12 +82,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaServicePrincipal]()

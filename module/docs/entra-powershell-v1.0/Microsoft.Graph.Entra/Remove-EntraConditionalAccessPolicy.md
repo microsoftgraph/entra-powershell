@@ -4,7 +4,7 @@ description: This article provides details on the Remove-EntraConditionalAccessP
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/25/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Remove-EntraConditionalAccessPolicy
 
-## SYNOPSIS
-Deletes a conditional access policy in Microsoft Entra ID by ID.
+## Synopsis
+deletes a conditional access policy in Microsoft Entra ID by ID.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraConditionalAccessPolicy 
@@ -28,11 +28,11 @@ Remove-EntraConditionalAccessPolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-This cmdlet allows an admin to delete a conditional access policy in Microsoft Entra ID by ID.
+## Description
+this cmdlet allows an admin to delete a conditional access policy in Microsoft Entra ID by ID.
 Conditional access policies are custom rules that define an access scenario.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Deletes a conditional access policy in Microsoft Entra ID by PolicyId.
 ```Powershell
@@ -41,7 +41,7 @@ PS C:\> Remove-EntraConditionalAccessPolicy -PolicyId 6b5e999b-0ba8-4186-a106-e0
 
 This command deletes a conditional access policy in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -PolicyId
 Specifies the policy ID of a conditional access policy in Microsoft Entra ID.
@@ -61,13 +61,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraConditionalAccessPolicy](Get-EntraConditionalAccessPolicy.md)
 

@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Remove-EntraBetaServiceAppRoleAssignment
 
-## SYNOPSIS
-Removes a service principal application role assignment.
+## Synopsis
+removes a service principal application role assignment.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaServiceAppRoleAssignment -ObjectId <String> -AppRoleAssignmentId <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Remove-EntraBetaServiceAppRoleAssignment cmdlet removes a service principal application role assignment in Azure Active Directory (AD).
+## Description
+the Remove-EntraBetaServiceAppRoleAssignment cmdlet removes a service principal application role assignment in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```powershell
@@ -29,7 +29,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 ### -AppRoleAssignmentId
 Specifies the ID of the application role assignment.
@@ -66,13 +66,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaServiceAppRoleAssignment]()
 

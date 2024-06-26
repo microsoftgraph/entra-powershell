@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # New-EntraBetaInvitation
 
-## SYNOPSIS
-This cmdlet is used to invite a new external user to your directory
+## Synopsis
+this cmdlet is used to invite a new external user to your directory
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaInvitation [-InvitedUser <User>] [-InvitedUserMessageInfo <InvitedUserMessageInfo>]
@@ -19,10 +19,10 @@ New-EntraBetaInvitation [-InvitedUser <User>] [-InvitedUserMessageInfo <InvitedU
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-This cmdlet is used to invite a new external user to your directory.
+## Description
+this cmdlet is used to invite a new external user to your directory.
 
-## EXAMPLES
+## Examples
 
 ### Invite a new external user to your directory
 ```
@@ -41,7 +41,7 @@ In this example we show how an admin can reset the redemption for an external us
 They need to passed the switch -ResetRedemption as true.
 Once reset, External user will have to re-redeem the invitation to continue to access the resources.
 
-## PARAMETERS
+## Parameters
 
 ### -InvitedUserDisplayName
 The display name of the user as it will appear in your directory
@@ -169,12 +169,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### None
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

@@ -4,7 +4,7 @@ description: This article provides details on the Remove-EntraDomain command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/04/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Remove-EntraDomain
 
-## SYNOPSIS
+## Synopsis
 
-Removes a domain.
+removes a domain.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraDomain 
@@ -29,9 +29,9 @@ Remove-EntraDomain
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The `Remove-EntraDomain` cmdlet removes a domain from Microsoft Entra ID.
+the `Remove-EntraDomain` cmdlet removes a domain from Microsoft Entra ID.
 
 Important:
 
@@ -40,7 +40,7 @@ Important:
 
 The work or school account needs to belong to at least the `Domain Name Administrator` Microsoft Entra role.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a domain
 
@@ -51,7 +51,7 @@ Remove-EntraDomain -Name Contoso.com
 
 This command removes a domain from Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -Name
 
@@ -73,13 +73,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Confirm-EntraDomain](Confirm-EntraDomain.md)
 

@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Get-EntraBetaTrustedCertificateAuthority
 
-## SYNOPSIS
-Gets the trusted certificate authority.
+## Synopsis
+gets the trusted certificate authority.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaTrustedCertificateAuthority [-TrustedIssuer <String>] [-TrustedIssuerSki <String>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraBetaTrustedCertificateAuthority cmdlet gets the trusted certificate authority in Azure Active Directory (AD).
+## Description
+the Get-EntraBetaTrustedCertificateAuthority cmdlet gets the trusted certificate authority in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the trusted certificate authorities that are defined in your directory
 ```
@@ -43,7 +43,7 @@ PS C:\> Get-EntraBetaTrustedCertificateAuthority -TrustedIssuerSki 4BA2D7AC2A5DF
 
 This command retrieve the trusted certificate authorities that are defined in your directory based on TrustedIssuerSki.
 
-## PARAMETERS
+## Parameters
 
 
 
@@ -80,13 +80,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraBetaTrustedCertificateAuthority]()
 

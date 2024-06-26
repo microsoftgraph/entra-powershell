@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Set-EntraBetaUserManager
 
-## SYNOPSIS
-Updates a user's manager.
+## Synopsis
+updates a user's manager.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaUserManager -ObjectId <String> -RefObjectId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Set-EntraBetaUserManager cmdlet update the manager for a user in Azure Active Directory (AD).
+## Description
+the Set-EntraBetaUserManager cmdlet update the manager for a user in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update a user's manager
 ```
@@ -28,7 +28,7 @@ PS C:\>Set-EntraBetaUserManager -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16"
 
 This command update's the manager for the specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the ID (as a UPN or ObjectId) of a user in Azure AD.
@@ -63,13 +63,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaUserManager]()
 

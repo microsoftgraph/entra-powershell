@@ -7,18 +7,18 @@ schema: 2.0.0
 
 # New-EntraBetaIdentityProvider
 
-## SYNOPSIS
-This cmdlet is used to configure a new identity provider in the directory.
+## Synopsis
+this cmdlet is used to configure a new identity provider in the directory.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaIdentityProvider -ClientId <String> -Type <String> [-Name <String>] -ClientSecret <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-This cmdlet is used to configure an identity provider in the directory.
+## Description
+this cmdlet is used to configure an identity provider in the directory.
 Adding an identity provider will allow users to sign up for or sign into applications secured by Azure AD B2C using the identity provider.
 
 Configuring an identity provider in your Azure AD tenant also enables future B2B guest scenarios.
@@ -27,7 +27,7 @@ The Gmail user will use their Google account credentials to authenticate and acc
 
 The current set of identity providers can be Microsoft, Google, Facebook, Amazon, or LinkedIn.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -36,7 +36,7 @@ PS C:\> New-EntraBetaIdentityProvider -Type LinkedIn -Name LinkedInName -ClientI
 
 This example adds a LinkedIn identity provider.
 
-## PARAMETERS
+## Parameters
 
 ### -ClientId
 The client ID for the application.
@@ -104,12 +104,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### None
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

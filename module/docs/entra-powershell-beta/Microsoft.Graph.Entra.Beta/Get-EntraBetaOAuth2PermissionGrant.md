@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaOAuth2PermissionGrant
 
-## SYNOPSIS
-Gets OAuth2PermissionGrant entities.
+## Synopsis
+gets OAuth2PermissionGrant entities.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaOAuth2PermissionGrant [-Top <Int32>] [-All] [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraBetaOAuth2PermissionGrant cmdlet gets OAuth2PermissionGrant entities in Azure Active Directory (AD).
+## Description
+the Get-EntraBetaOAuth2PermissionGrant cmdlet gets OAuth2PermissionGrant entities in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the OAuth2 permission grants
 ```
@@ -43,7 +43,7 @@ p4wNLtFXh0qcKrNjikytv0D-XnoDbmtOmpMPVcQFKs4                      7a5efe40-6e03-4
 
 This command gets the OAuth2 permission grants.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -78,12 +78,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Remove-EntraBetaOAuth2PermissionGrant]()

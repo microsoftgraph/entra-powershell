@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraUserAppRoleAssignment
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/19/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraUserAppRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 
-Get a user application role assignment.
+get a user application role assignment.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraUserAppRoleAssignment
@@ -31,11 +31,11 @@ Get-EntraUserAppRoleAssignment
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The Get-EntraUserAppRoleAssignment cmdlet gets a user application role assignment.
+the Get-EntraUserAppRoleAssignment cmdlet gets a user application role assignment.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a user application role assignment
 
@@ -98,7 +98,7 @@ DeletedDateTime Id                                          AppRoleId           
 
 This example demonstrates how to retrieve top two application role assignment for the specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -152,13 +152,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraUser](Get-EntraUser.md)
 

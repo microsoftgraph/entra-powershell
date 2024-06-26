@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Remove-EntraBetaApplicationPassword
 
-## SYNOPSIS
-Remove a password from an application.
+## Synopsis
+remove a password from an application.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaApplicationPassword -ObjectId <String> [-KeyId <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
-Remove a password from an application.
+## Description
+remove a password from an application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Removes a password from an application
 ```
@@ -28,7 +28,7 @@ PS C:\>Remove-EntraBetaApplicationPassWord -ObjectId 1f88e99f-37a3-468f-80ae-e07
 
 This command remove the specified password from the specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique identifier of the object specific Azure Active Directory object
@@ -63,14 +63,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### string
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraBetaApplicationPassword]()
 

@@ -7,27 +7,27 @@ schema: 2.0.0
 
 # Get-EntraBetaAdministrativeUnitMember
 
-## SYNOPSIS
-Gets a member of an administrative unit.
+## Synopsis
+gets a member of an administrative unit.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaAdministrativeUnitMember -ObjectId <String> [-All] [-Top <Int32>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraBetaAdministrativeUnitMember cmdlet gets a member of an Active Directory administrative unit.
+## Description
+the Get-EntraBetaAdministrativeUnitMember cmdlet gets a member of an Active Directory administrative unit.
 
-## EXAMPLES
+## Examples
 
 ### Example 1 Get an administrative unit member by ID
 ```
 PS C:\> Get-EntraBetaAdministrativeUnitMember -ObjectId "ef08b536-9d0a-4f8f-bda5-8b9cd01a9159"
 ```
 
-## PARAMETERS
+## Parameters
 
 
 ### -ObjectId
@@ -78,13 +78,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraBetaAdministrativeUnitMember]()
 

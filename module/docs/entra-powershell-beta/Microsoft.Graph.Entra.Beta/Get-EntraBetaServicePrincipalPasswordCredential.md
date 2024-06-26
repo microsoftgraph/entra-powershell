@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaServicePrincipalPasswordCredential
 
-## SYNOPSIS
-Get credentials for a service principal.
+## Synopsis
+get credentials for a service principal.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaServicePrincipalPasswordCredential -ObjectId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraBetaServicePrincipalPasswordCredential cmdlet gets the password credentials for a service principal in Azure Active Directory (AD).
+## Description
+the Get-EntraBetaServicePrincipalPasswordCredential cmdlet gets the password credentials for a service principal in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the password credential of a service principal
 ```
@@ -32,7 +32,7 @@ The command stores the ID in the $ServicePrincipalId variable.
 
 The second command gets the password credential of a service principal identified by $ServicePrincipalId.
 
-## PARAMETERS
+## Parameters
 
 
 
@@ -54,13 +54,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaServicePrincipal]()
 

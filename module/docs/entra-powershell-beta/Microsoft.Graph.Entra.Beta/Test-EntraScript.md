@@ -7,35 +7,35 @@ schema: 2.0.0
 
 # Test-EntraScript
 
-## SYNOPSIS
-Checks, whether the provided script is using AzureAD commands that are not supported by Microsoft.Graph.Entra.
+## Synopsis
+checks, whether the provided script is using AzureAD commands that are not supported by Microsoft.Graph.Entra.
 
-## SYNTAX
+## Syntax
 
 ```
 Test-EntraScript [-Path] <String[]> [[-Content] <String>] [-Quiet] [<CommonParameters>]
 ```
 
-## DESCRIPTION
-Checks, whether the provided script is using AzureAD commands that are not supported by Microsoft.Graph.Entra.
+## Description
+checks, whether the provided script is using AzureAD commands that are not supported by Microsoft.Graph.Entra.
 
-## EXAMPLES
+## Examples
 
-### EXAMPLE 1
+### Example 1
 ```
 Test-EntraScript -Path .\usercreation.ps1 -Quiet
 ```
 
 Returns whether the script "usercreation.ps1" could run under Microsoft.Graph.Entra
 
-### EXAMPLE 2
+### Example 2
 ```
 Get-ChildItem -Path \\contoso.com\it\code -Recurse -Filter *.ps1 | Test-EntraScript
 ```
 
 Returns a list of all scripts that would not run under the Microsoft.Graph.Entra module, listing each issue with line and code.
 
-## PARAMETERS
+## Parameters
 
 ### -Path
 Path to the script file(s) to scan.
@@ -88,10 +88,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
