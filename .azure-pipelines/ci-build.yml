@@ -41,7 +41,7 @@ jobs:
           - template: ./common-templates/esrp/codesign-nuget.yml
             parameters:
               FolderPath: "$(Build.ArtifactStagingDirectory)"
-              Pattern: "Microsoft.Graph*.nupkg"
+              Pattern: "Microsoft.Graph.Entra.*.nupkg"
 
           - task: PublishBuildArtifacts@1
             displayName: Publish Module Artifacts
@@ -54,7 +54,7 @@ jobs:
             displayName: Publish NuGet to preview feed
             inputs:
               command: push
-              packagesToPush: $(Build.ArtifactStagingDirectory)/**/Microsoft.Graph.Entra*.nupkg
+              packagesToPush: $(Build.ArtifactStagingDirectory)/**/Microsoft.Graph.Entra.*.nupkg
               publishVstsFeed: $(PROJECT_NAME)/$(PREVIEW_FEED_NAME)
               allowPackageConflicts: true
 

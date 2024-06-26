@@ -15,6 +15,12 @@
         $properties = '$select=*'
         $Method = "GET"
         $keysChanged = @{ObjectId = "Id"}
+        if($null -ne $PSBoundParameters["Property"])
+        {
+            $selectProperties = $PSBoundParameters["Property"]
+            $selectProperties = $selectProperties -Join ','
+            $properties = "`$select=$($selectProperties)"
+        }
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
             $params["Verbose"] = $Null
