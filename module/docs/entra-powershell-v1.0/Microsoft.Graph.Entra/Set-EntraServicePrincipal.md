@@ -44,7 +44,7 @@ Set-EntraServicePrincipal
 
 ## DESCRIPTION
 
-The Set-EntraServicePrincipal cmdlet updates a service principal in Microsoft Entra ID.
+The `Set-EntraServicePrincipal` cmdlet updates a service principal in Microsoft Entra ID.
 
 ## EXAMPLES
 
