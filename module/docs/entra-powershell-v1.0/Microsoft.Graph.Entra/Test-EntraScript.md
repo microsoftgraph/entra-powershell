@@ -19,7 +19,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Checks, whether the provided script is using AzureAD commands that are not supported by Microsoft.Graph.Entra.
+Checks, whether the provided script is using Azure AD commands that are not supported by Microsoft.Graph.Entra.
 
 ## SYNTAX
 
