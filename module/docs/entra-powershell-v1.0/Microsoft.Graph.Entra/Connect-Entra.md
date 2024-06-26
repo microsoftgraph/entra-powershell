@@ -35,12 +35,6 @@ Connect-Entra
 [-ClientTimeout <Double>] 
 [-NoWelcome]
 [<CommonParameters>]
-[-ContextScope <ContextScope>] 
-[-Environment <String>] 
-[-UseDeviceCode] 
-[-ClientTimeout <Double>] 
-[-NoWelcome]
-[<CommonParameters>]
 ```
 
 ### AppCertificateParameterSet
@@ -131,12 +125,6 @@ Connect-Entra -Scopes 'User.Read.All', 'Group.ReadWrite.All'
 ```Output
 Welcome to Microsoft Graph!
 
-Connected via delegated access using 00001111-aaaa-2222-bbbb-3333cccc4444
-Readme: https://aka.ms/graph/sdk/powershell
-SDK Docs: https://aka.ms/graph/sdk/powershell/docs
-API Docs: https://aka.ms/graph/docs
-
-NOTE: You can use the -NoWelcome parameter to suppress this message.
 ```
 
 This example shows how to authenticate to Microsoft Entra ID with scopes.
@@ -154,20 +142,12 @@ Connect-Entra @connectParams
 ```
 
 ```Output
-
 Welcome to Microsoft Graph!
-
-Connected via delegated access using 00001111-aaaa-2222-bbbb-3333cccc4444
-Readme: https://aka.ms/graph/sdk/powershell
-SDK Docs: https://aka.ms/graph/sdk/powershell/docs
-API Docs: https://aka.ms/graph/docs
-
-NOTE: You can use the -NoWelcome parameter to suppress this message.
 ```
 
 This command Connect a session using a ApplicationId and CertificateThumbprint.
 
-Follow this link (<https://learn.microsoft.com/en-us/powershell/microsoftgraph/authentication-commands?view=graph-powershell-1.0#using-get-mgcontext>) for more information.
+Follow this link [CertificateThumbprint][get-certificate] for m ore information.
 
 ### Example 4: Delegated access: Using your own access token
 
@@ -178,16 +158,11 @@ Connect-Entra -AccessToken $secureString
 
 ```Output
 Welcome to Microsoft Graph!
-
-Connected via delegated access using 00001111-aaaa-2222-bbbb-3333cccc4444
-Readme: https://aka.ms/graph/sdk/powershell
-SDK Docs: https://aka.ms/graph/sdk/powershell/docs
-API Docs: https://aka.ms/graph/docs
-
-NOTE: You can use the -NoWelcome parameter to suppress this message.
 ```
 
 This example shows how to authenticate to Microsoft Entra ID using an access token.
+
+See [How to get access token from the token endpoint.][token-endpoint]
 
 ### Example 5: Connecting to an environment as a different identity
 
@@ -197,13 +172,6 @@ Connect-Entra -ContextScope 'Process'
 
 ```Output
 Welcome to Microsoft Graph!
-
-Connected via delegated access using 00001111-aaaa-2222-bbbb-3333cccc4444
-Readme: https://aka.ms/graph/sdk/powershell
-SDK Docs: https://aka.ms/graph/sdk/powershell/docs
-API Docs: https://aka.ms/graph/docs
-
-NOTE: You can use the -NoWelcome parameter to suppress this message.
 ```
 
 To connect as a different identity other than CurrentUser, specify the ContextScope parameter with the value Process.
@@ -232,18 +200,11 @@ When you use Connect-Entra, you can choose to target other environments. By defa
 ### Example 7: Sets the HTTP client timeout in seconds
 
 ```powershell
-Connect-Entra -ClientTimeout 60
+ Connect-Entra -ClientTimeout 60
 ```
 
 ```Output
 Welcome to Microsoft Graph!
-
-Connected via delegated access using 00001111-aaaa-2222-bbbb-3333cccc4444
-Readme: https://aka.ms/graph/sdk/powershell
-SDK Docs: https://aka.ms/graph/sdk/powershell/docs
-API Docs: https://aka.ms/graph/docs
-
-NOTE: You can use the -NoWelcome parameter to suppress this message.
 ```
 
 This example Sets the HTTP client timeout in seconds.
@@ -252,7 +213,6 @@ This example Sets the HTTP client timeout in seconds.
 
 ```powershell
 Connect-Entra -NoWelcome
-
 ```
 
 This example hides the welcome message.
@@ -260,7 +220,7 @@ This example hides the welcome message.
 ### Example 9: Using device code flow
 
 ```powershell
-Connect-Entra -UseDeviceAuthentication
+Connect-Entra -UseDeviceCode
 ```
 
 ```Output
@@ -275,7 +235,12 @@ This example shows how to authenticate to Microsoft Entra ID with device.
 Connect-Entra -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444'  -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -CertificateName 'YOUR_CERT_SUBJECT'
 ```
 
-Follow this link (<https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands>) for more information on how to load the certificate.
+You can find the certificate subject by running the command:
+
+```powershell
+ $Cert = Get-ChildItem Cert:\LocalMachine\My\$CertThumbprint
+ Connect-Entra -ClientId '<App-Id>' -TenantId '<Tenant-Id>' -Certificate $Cert
+```
 
 ### Example 11: App-only access: Using client credential with a certificate - Certificate
 
@@ -284,7 +249,7 @@ $Cert = Get-ChildItem Cert:\LocalMachine\My\$CertThumbprint
 Connect-Entra -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444' -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -Certificate $Cert
 ```
 
-Follow this link (<https://learn.microsoft.com/powershell/microsoftgraph/authentication-commands>) for more information on how to load the certificate.
+Follow this link to see [Certificate][get-certificate] more information on how to load the certificate.
 
 ### Example 12: Using client secret credentials
 
@@ -296,7 +261,7 @@ Connect-Entra -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -ClientSecretCred
 
 This authentication method is ideal for background interactions. It doesn't require a user to physically sign in.
 
-Follow this link (<https://learn.microsoft.com/en-us/powershell/microsoftgraph/authentication-commands?view=graph-powershell-1.0#using-get-mgcontext>) for more information.
+See [Get-Credential][get-credential] on how to get or create credentials.
 
 ### Example 13: Using managed identity: System-assigned managed identity
 
@@ -314,8 +279,6 @@ Connect-Entra -Identity -ClientId 'User_Assigned_Managed_identity_Client_Id'
 
 Uses a user created managed identity as a standalone Azure resource.
 
-Follow this link (<https://learn.microsoft.com/en-us/powershell/microsoftgraph/authentication-commands?view=graph-powershell-1.0#using-get-mgcontext>) for more information.
-
 ### Example 15: Allows for authentication using environment variables
 
 ```powershell
@@ -323,8 +286,6 @@ Connect-Entra -EnvironmentVariable
 ```
 
 This example allows for authentication using environment variables.
-
-Follow this link (<https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#environment-variables>) For more information.
 
 ## PARAMETERS
 
@@ -364,6 +325,7 @@ Accept wildcard characters: False
 Type:  System.String
 Parameter Sets: AppCertificateParameterSet
 Aliases: AppId, ApplicationId
+
 Required: True
 Position: 1
 Default value: None
@@ -383,6 +345,7 @@ You must specify the TenantId parameter to authenticate as a service principal o
 Type:  System.String
 Parameter Sets: UserParameterSet, AppCertificateParameterSet, AppSecretCredentialParameterSet
 Aliases: Audience, Tenant
+
 Required: False
 Position: Named
 Default value: None
@@ -599,3 +562,9 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## RELATED LINKS
 
 [Disconnect-Entra](Disconnect-Entra.md)
+
+<!-- link references -->
+[entra-context]: /powershell/entra-preview/microsoft.graph.entra/get-entracontext
+[token-endpoint]: /graph/auth-v2-user#3-request-an-access-token
+[get-credential]: /powershell/module/microsoft.powershell.security/get-credential
+[get-certificate]: /powershell/entra-powershell/app-only-access-auth
