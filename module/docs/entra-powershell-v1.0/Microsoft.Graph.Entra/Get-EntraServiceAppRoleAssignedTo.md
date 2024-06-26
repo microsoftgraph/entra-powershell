@@ -1,25 +1,25 @@
 ---
-title: Get-EntraServiceAppRoleAssignedTo.
-description: This article provides details on the Get-EntraServiceAppRoleAssignedTo command.
+Title: Get-EntraServiceAppRoleAssignedTo.
+Description: This article provides details on the Get-EntraServiceAppRoleAssignedTo command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraServiceAppRoleAssignedTo
 
 ## Synopsis
 
-gets app role assignments for this app or service, granted to users, groups and other service principals.
+Gets app role assignments for this app or service, granted to users, groups and other service principals.
 
 For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
 
@@ -44,7 +44,7 @@ Get-EntraServiceAppRoleAssignedTo
 
 ## Description
 
-the `Get-EntraServiceAppRoleAssignedTo` cmdlet gets app role assignments for this app or service, granted to users, groups and other service principals.
+The `Get-EntraServiceAppRoleAssignedTo` cmdlet gets app role assignments for this app or service, granted to users, groups and other service principals.
 
 ## Examples
 

@@ -1,25 +1,25 @@
 ---
-title: Get-EntraUser
-description: This article provides details on the Get-EntraUser command.
+Title: Get-EntraUser
+Description: This article provides details on the Get-EntraUser command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraUser
 
 ## Synopsis
 
-gets a user.
+Gets a user.
 
 ## Syntax
 
@@ -53,7 +53,7 @@ Get-EntraUser
 
 ## Description
 
-the Get-EntraUser cmdlet gets a user from Microsoft Entra ID.
+The Get-EntraUser cmdlet gets a user from Microsoft Entra ID.
 
 ## Examples
 
@@ -99,8 +99,8 @@ Get-EntraUser -SearchString 'New'
 ```output
 ObjectId                             DisplayName UserPrincipalName                   UserType
 --------                             ----------- -----------------                   --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb New user    NewUser@contoso.com     Member
-dddddddd-9999-0000-1111-eeeeeeeeeeee New Test user    NewTestUser@contoso.com Member
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb New user    NewUser@contoso.com     Member
+Dddddddd-9999-0000-1111-eeeeeeeeeeee New Test user    NewTestUser@contoso.com Member
 ```
 
 This cmdlet gets all users that match the value of SearchString against the first characters in DisplayName or UserPrincipalName.
@@ -115,7 +115,7 @@ Get-EntraUser -Filter "UserPrincipalName eq 'NewUser@contoso.com'"
 ```output
 ObjectId                             DisplayName UserPrincipalName                   UserType
 --------                             ----------- -----------------                   --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb New user    NewUser@contoso.com     Member
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb New user    NewUser@contoso.com     Member
 ```
 
 In this example, we retrieve user by `UserPrincipalName` from Microsoft Entra ID.

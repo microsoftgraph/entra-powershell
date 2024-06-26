@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-help.xml
+External help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaAccountSku
 
 ## Synopsis
-retrieves all the SKUs for a company.
+Retrieves all the SKUs for a company.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ Get-EntraBetaAccountSku [-TenantId <Guid>] [<CommonParameters>]
 ```
 
 ## Description
-the Get-EntraBetaAccountSku will return all the SKUs that the company owns.
+The Get-EntraBetaAccountSku will return all the SKUs that the company owns.
 
 ## Examples
 
@@ -43,7 +43,7 @@ This command returns a list of SKUs.
 ### -TenantId
 The unique ID of the tenant to perform the operation on.
 If this is not provided then the value will default to
-the tenant of the current user.
+The tenant of the current user.
 This parameter is only applicable to partner users.
 
 ```yaml

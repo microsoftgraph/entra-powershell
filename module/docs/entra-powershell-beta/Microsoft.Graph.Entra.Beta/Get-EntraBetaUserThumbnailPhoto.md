@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaUserThumbnailPhoto
 
 ## Synopsis
-retrieve the thumbnail photo of a user
+Retrieve the thumbnail photo of a user
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Get-EntraBetaUserThumbnailPhoto -ObjectId <String> [-FileName <String>] [-FilePa
 ```
 
 ## Description
-retrieve the thumbnail photo of a user
+Retrieve the thumbnail photo of a user
 
 ## Examples
 

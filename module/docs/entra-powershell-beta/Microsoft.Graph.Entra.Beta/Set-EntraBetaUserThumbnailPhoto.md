@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaUserThumbnailPhoto
 
 ## Synopsis
-set the thumbnail photo for a user
+Set the thumbnail photo for a user
 
 ## Syntax
 
@@ -28,7 +28,7 @@ Set-EntraBetaUserThumbnailPhoto [-ObjectId <String>] -FileStream <Stream> [<Comm
 ```
 
 ## Description
-this cmdlet is used to set the thumbnail photo for a user
+This cmdlet is used to set the thumbnail photo for a user
 
 ## Examples
 

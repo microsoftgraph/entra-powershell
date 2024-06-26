@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaApplicationKeyCredential
 
 ## Synopsis
-creates a key credential for an application.
+Creates a key credential for an application.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ New-EntraBetaApplicationKeyCredential [-Usage <KeyUsage>] -ObjectId <String> [-T
 ```
 
 ## Description
-the New-EntraBetaApplicationKeyCredential cmdlet creates a key credential for an application.
+The New-EntraBetaApplicationKeyCredential cmdlet creates a key credential for an application.
 
 ## Examples
 

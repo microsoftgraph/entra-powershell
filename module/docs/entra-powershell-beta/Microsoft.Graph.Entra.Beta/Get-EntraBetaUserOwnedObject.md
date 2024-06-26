@@ -1,24 +1,24 @@
 ---
-title: Get-EntraBetaUserOwnedObject
-description: This article provides details on the Get-EntraBetaUserOwnedObject command.
+Title: Get-EntraBetaUserOwnedObject
+Description: This article provides details on the Get-EntraBetaUserOwnedObject command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaUserOwnedObject
 
 ## Synopsis
-get objects owned by a user.
+Get objects owned by a user.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Get-EntraBetaUserOwnedObject
 ```
 
 ## Description
-the Get-EntraBetaUserOwnedObject cmdlet gets objects owned by a user in Microsoft Entra ID.
+The Get-EntraBetaUserOwnedObject cmdlet gets objects owned by a user in Microsoft Entra ID.
 
 ## Examples
 
@@ -50,7 +50,7 @@ ObjectId                             ObjectType
 78045c26-218e-46fb-94b6-1a47320da153 Group
 4c0ed9b7-cca2-4bb2-a2f1-736bb263ea0b Group
 49a8bc01-2751-450b-a2e8-b4267f609513 Application
-a0dada57-89ef-4db8-9e5f-46cca3bf2398 Group
+A0dada57-89ef-4db8-9e5f-46cca3bf2398 Group
 ```
 
 This command gets objects owned by the specified user.
@@ -70,7 +70,7 @@ ObjectId                             ObjectType
 78045c26-218e-46fb-94b6-1a47320da153 Group
 4c0ed9b7-cca2-4bb2-a2f1-736bb263ea0b Group
 49a8bc01-2751-450b-a2e8-b4267f609513 Application
-a0dada57-89ef-4db8-9e5f-46cca3bf2398 Group
+A0dada57-89ef-4db8-9e5f-46cca3bf2398 Group
 ```
 
 This command gets all the objects owned by the specified user.

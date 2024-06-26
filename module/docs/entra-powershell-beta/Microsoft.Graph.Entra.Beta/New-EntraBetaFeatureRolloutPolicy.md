@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaFeatureRolloutPolicy
 
 ## Synopsis
-allows an admin to create the policy for cloud authentication roll-out in Azure AD.
+Allows an admin to create the policy for cloud authentication roll-out in Azure AD.
 
 ## Syntax
 
@@ -20,7 +20,7 @@ New-EntraBetaFeatureRolloutPolicy -Feature <FeatureEnum> -IsEnabled <Boolean> [-
 ```
 
 ## Description
-this cmdlet allows an admin to create the policy for cloud authentication roll-out (users moving from federation to cloud auth) in Azure AD.
+This cmdlet allows an admin to create the policy for cloud authentication roll-out (users moving from federation to cloud auth) in Azure AD.
 The policy admin can identify whether the users will authenticate using password hashes in Azure AD (Password hash-sync) or Active Directory on-premises directly (Pass-through authentication).
 
 ## Examples

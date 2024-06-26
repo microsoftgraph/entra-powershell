@@ -1,26 +1,26 @@
 ---
-title: New-EntraUser
-description: This article provides details on the New-EntraUser command.
+Title: New-EntraUser
+Description: This article provides details on the New-EntraUser command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraUser
 
 ## Synopsis
 
-creates a Microsoft Entra ID user.
+Creates a Microsoft Entra ID user.
 
 ## Syntax
 
@@ -65,7 +65,7 @@ New-EntraUser
 
 ## Description
 
-the New-EntraUser cmdlet creates a user in Microsoft Entra ID.
+The New-EntraUser cmdlet creates a user in Microsoft Entra ID.
 
 ## Examples
 
@@ -90,7 +90,7 @@ New-EntraUser @userParams
 ```Output
 ObjectId                             DisplayName UserPrincipalName               UserType
 --------                             ----------- -----------------               --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Avery Iona    AveryI@contoso.com             Member
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Avery Iona    AveryI@contoso.com             Member
 ```
 
 This command creates a new user.
@@ -117,7 +117,7 @@ New-EntraUser @userParams
 ```Output
 ObjectId                             DisplayName UserPrincipalName               UserType
 --------                             ----------- -----------------               --------
-bbbbbbbb-1111-2222-3333-cccccccccccc Peyton Davis    PeytonD@contoso.com             Member
+Bbbbbbbb-1111-2222-3333-cccccccccccc Peyton Davis    PeytonD@contoso.com             Member
 ```
 
 This command creates a new user.
@@ -144,7 +144,7 @@ New-EntraUser @userParams
 ```output
 ObjectId                             DisplayName UserPrincipalName               UserType
 --------                             ----------- -----------------               --------
-cccccccc-2222-3333-4444-dddddddddddd Blake Martin    BlakeM@contoso.com             Member
+Cccccccc-2222-3333-4444-dddddddddddd Blake Martin    BlakeM@contoso.com             Member
 ```
 
 This command creates a new user.
@@ -171,7 +171,7 @@ New-EntraUser @userParams
 ```Output
 ObjectId                             DisplayName UserPrincipalName               UserType
 --------                             ----------- -----------------               --------
-dddddddd-3333-4444-5555-eeeeeeeeeeee Parker Jones    ParkerJ@contoso.com             Member
+Dddddddd-3333-4444-5555-eeeeeeeeeeee Parker Jones    ParkerJ@contoso.com             Member
 ```
 
 This command creates a new user.
@@ -198,7 +198,7 @@ New-EntraUser @UserParams
 ```Output
 ObjectId                             DisplayName UserPrincipalName               UserType
 --------                             ----------- -----------------               --------
-eeeeeeee-4444-5555-6666-ffffffffffff Sawyer Miller    SawyerM@contoso.com             Member
+Eeeeeeee-4444-5555-6666-ffffffffffff Sawyer Miller    SawyerM@contoso.com             Member
 ```
 
 This command creates a new user.

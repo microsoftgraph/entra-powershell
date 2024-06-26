@@ -1,25 +1,25 @@
 ---
-title: Get-EntraApplicationExtensionProperty
-description: This article provides details on the Get-EntraApplicationExtensionProperty command.
+Title: Get-EntraApplicationExtensionProperty
+Description: This article provides details on the Get-EntraApplicationExtensionProperty command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraApplicationExtensionProperty
 
 ## Synopsis
 
-gets application extension properties.
+Gets application extension properties.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Get-EntraApplicationExtensionProperty
 
 ## Description
 
-the `Get-EntraApplicationExtensionProperty` cmdlet gets application extension properties in Microsoft Entra ID.
+The `Get-EntraApplicationExtensionProperty` cmdlet gets application extension properties in Microsoft Entra ID.
 
 ## Examples
 
@@ -45,7 +45,7 @@ Get-EntraApplicationExtensionProperty -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbb
 ```output
 ObjectId                             Name                                                    TargetObjects
 --------                             ----                                                    -------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb extension_36ee4c6c081240a2b820b22ebd02bce3_NewAttribute {}
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb extension_36ee4c6c081240a2b820b22ebd02bce3_NewAttribute {}
 ```
 
 This command gets the extension properties for the specified application in Microsoft Entra ID.

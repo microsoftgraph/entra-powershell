@@ -1,25 +1,25 @@
 ---
-title: Set-EntraDirSyncConfiguration
-description: This article provides details on the Set-EntraDirSyncConfiguration command.
+Title: Set-EntraDirSyncConfiguration
+Description: This article provides details on the Set-EntraDirSyncConfiguration command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-help.xml
+External help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraDirSyncConfiguration
 
 ## Synopsis
-modifies the directory synchronization settings.
+Modifies the directory synchronization settings.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Set-EntraDirSyncConfiguration
 ```
 
 ## Description
-the Set-EntraDirSyncConfiguration cmdlet modifies the directory synchronization settings.
+The Set-EntraDirSyncConfiguration cmdlet modifies the directory synchronization settings.
 
 ## Examples
 

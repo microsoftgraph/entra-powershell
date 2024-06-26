@@ -1,25 +1,25 @@
 ---
-title: Get-EntraContact
-description: This article provides details on the Get-EntraContact command.
+Title: Get-EntraContact
+Description: This article provides details on the Get-EntraContact command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraContact
 
 ## Synopsis
 
-gets a contact from Microsoft Entra ID.
+Gets a contact from Microsoft Entra ID.
 
 ## Syntax
 
@@ -44,7 +44,7 @@ Get-EntraContact
 
 ## Description
 
-the `Get-EntraContact` cmdlet gets a contact from Microsoft Entra ID.
+The `Get-EntraContact` cmdlet gets a contact from Microsoft Entra ID.
 
 ## Examples
 
@@ -58,9 +58,9 @@ Get-EntraContact
 ```output
 ObjectId                             Mail                 DisplayName
 --------                             ----                 -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com  Contoso Contact
-bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com Contoso Contact1
-cccccccc-2222-3333-4444-dddddddddddd contact2@contoso.com Contoso Contact2
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com  Contoso Contact
+Bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com Contoso Contact1
+Cccccccc-2222-3333-4444-dddddddddddd contact2@contoso.com Contoso Contact2
 ```
 
 This command retrieves all contact objects in the directory.  
@@ -75,7 +75,7 @@ Get-EntraContact -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```output
 ObjectId                             Mail                 DisplayName
 --------                             ----                 -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com  Contoso Contact
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com  Contoso Contact
 ```
 
 This command retrieves specified contact in the directory.  
@@ -90,9 +90,9 @@ Get-EntraContact -All
 ```output
 ObjectId                             Mail                 DisplayName
 --------                             ----                 -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com  Contoso Contact
-bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com Contoso Contact1
-cccccccc-2222-3333-4444-dddddddddddd contact2@contoso.com Contoso Contact2
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com  Contoso Contact
+Bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com Contoso Contact1
+Cccccccc-2222-3333-4444-dddddddddddd contact2@contoso.com Contoso Contact2
 ```
 
 This command retrieves all the contacts in the directory.
@@ -107,8 +107,8 @@ Get-EntraContact -Top 2
 ```output
 ObjectId                             Mail                 DisplayName
 --------                             ----                 -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com  Contoso Contact
-bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com Contoso Contact1
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com  Contoso Contact
+Bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com Contoso Contact1
 ```
 
 This command retrieves top two contacts in the directory.
@@ -123,8 +123,8 @@ Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
 ```output
 ObjectId                             Mail                 DisplayName
 --------                             ----                 -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com  Contoso Contact
-bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com Contoso Contact1
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com  Contoso Contact
+Bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com Contoso Contact1
 ```
 
 This command retrieves contacts having the specified display name.

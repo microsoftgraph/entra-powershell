@@ -1,8 +1,8 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Add-EntraBetaDeviceRegisteredOwner
@@ -17,7 +17,7 @@ Add-EntraBetaDeviceRegisteredOwner -ObjectId <String> -RefObjectId <String> [<Co
 ```
 
 ## Description
-the Add-EntraBetaDeviceRegisteredOwner cmdlet Adds a registerd owner for an Azure Active Directory device.
+The Add-EntraBetaDeviceRegisteredOwner cmdlet Adds a registerd owner for an Azure Active Directory device.
 
 ## Examples
 

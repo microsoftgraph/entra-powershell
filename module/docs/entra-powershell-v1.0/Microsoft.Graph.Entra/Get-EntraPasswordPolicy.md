@@ -1,25 +1,25 @@
 ---
-title: Get-EntraPasswordPolicy
-description: This article provides details on the Get-EntraPasswordPolicy command.
+Title: Get-EntraPasswordPolicy
+Description: This article provides details on the Get-EntraPasswordPolicy command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-help.xml
+External help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraPasswordPolicy
 
 ## Synopsis
-retrieves the current password policy for the tenant or the specified domain.
+Retrieves the current password policy for the tenant or the specified domain.
 
 ## Syntax
 
@@ -37,7 +37,7 @@ Get-EntraPasswordPolicy
 ```
 
 ## Description
-the Get-EntraPasswordPolicy cmdlet can be used to retrieve the values associated with the Password Expiry window or Password Expiry Notification window for a tenant or specified domain. 
+The Get-EntraPasswordPolicy cmdlet can be used to retrieve the values associated with the Password Expiry window or Password Expiry Notification window for a tenant or specified domain. 
 When a domain name is specified, it must be a verified domain for the company.
 
 ## Examples

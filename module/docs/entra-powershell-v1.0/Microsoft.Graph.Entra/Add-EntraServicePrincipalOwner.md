@@ -1,17 +1,17 @@
 ---
-title: Add-EntraServicePrincipalOwner
-description: This article provides details on the Add-EntraServicePrincipalOwner command.
+Title: Add-EntraServicePrincipalOwner
+Description: This article provides details on the Add-EntraServicePrincipalOwner command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Add-EntraServicePrincipalOwner
@@ -31,7 +31,7 @@ Add-EntraServicePrincipalOwner
 
 ## Description
 
-the Add-EntraServicePrincipalOwner cmdlet Adds an owner to a service principal in Microsoft Entra ID.
+The Add-EntraServicePrincipalOwner cmdlet Adds an owner to a service principal in Microsoft Entra ID.
 
 ## Examples
 

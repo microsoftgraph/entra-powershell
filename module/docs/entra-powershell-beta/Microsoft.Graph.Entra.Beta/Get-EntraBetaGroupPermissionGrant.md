@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaGroupPermissionGrant
 
 ## Synopsis
-retrieves a list of permission grants that have been consented for this group.
+Retrieves a list of permission grants that have been consented for this group.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Get-EntraBetaGroupPermissionGrant -Id <String> [<CommonParameters>]
 ```
 
 ## Description
-retrieves a list of permission grants that have been consented for this group.
+Retrieves a list of permission grants that have been consented for this group.
 
 ## Examples
 

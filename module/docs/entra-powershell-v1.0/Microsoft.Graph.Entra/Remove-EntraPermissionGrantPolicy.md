@@ -1,24 +1,24 @@
 ---
-title: Remove-EntraPermissionGrantPolicy.
-description: This article provides details on the Remove-EntraPermissionGrantPolicy command.
+Title: Remove-EntraPermissionGrantPolicy.
+Description: This article provides details on the Remove-EntraPermissionGrantPolicy command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraPermissionGrantPolicy
 
 ## Synopsis
-removes a permission grant policy.
+Removes a permission grant policy.
 
 ## Syntax
 
@@ -29,7 +29,7 @@ Remove-EntraPermissionGrantPolicy
 ```
 
 ## Description
-the Remove-EntraPermissionGrantPolicy cmdlet removes a Microsoft Entra ID permission grant policy.
+The Remove-EntraPermissionGrantPolicy cmdlet removes a Microsoft Entra ID permission grant policy.
 
 ## Examples
 

@@ -1,25 +1,25 @@
 ---
-title: Get-EntraApplicationLogo
-description: This article provides details on the Get-EntraApplicationLogo command.
+Title: Get-EntraApplicationLogo
+Description: This article provides details on the Get-EntraApplicationLogo command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraApplicationLogo
 
 ## Synopsis
-retrieve the logo of an application.
+Retrieve the logo of an application.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Get-EntraApplicationLogo
 ```
 
 ## Description
-the Get-EntraApplicationLogo cmdlet retrieves the logo that is set for an application.
+The Get-EntraApplicationLogo cmdlet retrieves the logo that is set for an application.
 
 ## Examples
 

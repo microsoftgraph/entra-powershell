@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaUserExtension
 
 ## Synopsis
-gets a user extension.
+Gets a user extension.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Get-EntraBetaUserExtension -ObjectId <String> [<CommonParameters>]
 ```
 
 ## Description
-the Get-EntraBetaUserExtension cmdlet gets a user extension in Azure Active Directory (AD).
+The Get-EntraBetaUserExtension cmdlet gets a user extension in Azure Active Directory (AD).
 
 ## Examples
 
@@ -28,16 +28,16 @@ PS C:\> Get-EntraBetaUserExtension -ObjectId $UserId
 
 Key                            Value 
 ---                            ----- 
-odata.metadata                 https://graph.windows.net/85b5ff1e-0402-400c-9e3c0f9e965325d1$metadata#directoryObjects/Microsoft.Director... 
-odata.type                     Microsoft.DirectoryServices.User
-deletionTimestamps
-signInNames                    [] 
-companyName 
-creationType 
-facsimileTelephoneNumber 
-isCompromised 
-refreshTokensValidFromDateTime 11/7/2016 10:11:09 PM 
-showInAddressList
+Odata.metadata                 https://graph.windows.net/85b5ff1e-0402-400c-9e3c0f9e965325d1$metadata#directoryObjects/Microsoft.Director... 
+Odata.type                     Microsoft.DirectoryServices.User
+DeletionTimestamps
+SignInNames                    [] 
+CompanyName 
+CreationType 
+FacsimileTelephoneNumber 
+IsCompromised 
+RefreshTokensValidFromDateTime 11/7/2016 10:11:09 PM 
+ShowInAddressList
 ```
 
 The first command gets the ID of an Azure AD user by using the Get-EntraBetaUser (./Get-EntraBetaUser.md)cmdlet. 

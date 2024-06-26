@@ -1,25 +1,25 @@
 ---
-title: New-EntraPermissionGrantPolicy
-description: This article provides details on the New-EntraPermissionGrantPolicy command.
+Title: New-EntraPermissionGrantPolicy
+Description: This article provides details on the New-EntraPermissionGrantPolicy command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraPermissionGrantPolicy
 
 ## Synopsis
-creates a permission grant policy.
+Creates a permission grant policy.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ New-EntraPermissionGrantPolicy
 ```
 
 ## Description
-the New-EntraPermissionGrantPolicy cmdlet creates a Microsoft Entra ID permission grant policy.
+The New-EntraPermissionGrantPolicy cmdlet creates a Microsoft Entra ID permission grant policy.
 
 ## Examples
 

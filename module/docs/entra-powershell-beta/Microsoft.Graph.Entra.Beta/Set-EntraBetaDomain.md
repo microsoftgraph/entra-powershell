@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaDomain
 
 ## Synopsis
-updates a domain.
+Updates a domain.
 
 ## Syntax
 
@@ -19,7 +19,7 @@ Set-EntraBetaDomain [-IsDefault <Boolean>]
 ```
 
 ## Description
-the Set-EntraBetaDomain cmdlet updates a domain in Azure Active Directory (AD).
+The Set-EntraBetaDomain cmdlet updates a domain in Azure Active Directory (AD).
 
 ## Examples
 

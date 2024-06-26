@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaApplicationOwner
 
 ## Synopsis
-gets the owner of an application.
+Gets the owner of an application.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Get-EntraBetaApplicationOwner [-Top <Int32>] -ObjectId <String> [-All] [<CommonP
 ```
 
 ## Description
-the Get-EntraBetaApplicationOwner cmdlet get an owner of an Azure Active Directory application.
+The Get-EntraBetaApplicationOwner cmdlet get an owner of an Azure Active Directory application.
 
 ## Examples
 
@@ -27,7 +27,7 @@ PS C:\>Get-EntraBetaApplicationOwner -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1
 
 ObjectId                             ObjectType
 --------                             ----------
-c13dd34a-492b-4561-b171-40fcce2916c5 User
+C13dd34a-492b-4561-b171-40fcce2916c5 User
 ```
 
 This command gets the owner of an application.

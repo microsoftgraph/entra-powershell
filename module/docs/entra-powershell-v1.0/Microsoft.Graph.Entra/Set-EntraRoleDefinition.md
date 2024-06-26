@@ -1,25 +1,25 @@
 ---
-title: Set-EntraRoleDefinition.
-description: This article provides details on the Set-EntraRoleDefinition command.
+Title: Set-EntraRoleDefinition.
+Description: This article provides details on the Set-EntraRoleDefinition command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraRoleDefinition
 
 ## Synopsis
 
-update an existing Microsoft Entra ID roleDefinition.
+Update an existing Microsoft Entra ID roleDefinition.
 
 ## Syntax
 
@@ -38,7 +38,7 @@ Set-EntraRoleDefinition
 
 ## Description
 
-updates a Microsoft Entra roleDefinition object identified by ID. You cannot update built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
+Updates a Microsoft Entra roleDefinition object identified by ID. You cannot update built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
 
 ## Examples
 

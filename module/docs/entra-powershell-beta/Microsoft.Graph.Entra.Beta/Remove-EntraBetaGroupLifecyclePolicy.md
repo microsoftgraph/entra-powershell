@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaGroupLifecyclePolicy
 
 ## Synopsis
-deletes a groupLifecyclePolicies object
+Deletes a groupLifecyclePolicies object
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaGroupLifecyclePolicy -Id <String> [<CommonParameters>]
 ```
 
 ## Description
-the Remove-EntraBetaGroupLifecyclePolicy command deletes a groupLifecyclePolicies object in Azure Active Directory.
+The Remove-EntraBetaGroupLifecyclePolicy command deletes a groupLifecyclePolicies object in Azure Active Directory.
 
 ## Examples
 

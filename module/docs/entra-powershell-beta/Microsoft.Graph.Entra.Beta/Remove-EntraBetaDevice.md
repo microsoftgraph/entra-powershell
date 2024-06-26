@@ -1,24 +1,24 @@
 ---
-title: Remove-EntraBetaDevice
-description: This article provides details on the Remove-EntraBetaDevice command.
+Title: Remove-EntraBetaDevice
+Description: This article provides details on the Remove-EntraBetaDevice command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaDevice
 
 ## Synopsis
-deletes a device.
+Deletes a device.
 
 ## Syntax
 
@@ -29,7 +29,7 @@ Remove-EntraBetaDevice
 ```
 
 ## Description
-the **Remove-EntraBetaDevice** cmdlet removes a device from Microsoft Entra ID.
+The **Remove-EntraBetaDevice** cmdlet removes a device from Microsoft Entra ID.
 
 ## Examples
 

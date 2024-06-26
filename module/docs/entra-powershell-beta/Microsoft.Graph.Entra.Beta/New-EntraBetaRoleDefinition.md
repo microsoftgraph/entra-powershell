@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaRoleDefinition
 
 ## Synopsis
-create a new Azure Active Directory roleDefinition.
+Create a new Azure Active Directory roleDefinition.
 
 ## Syntax
 
@@ -21,7 +21,7 @@ New-EntraBetaRoleDefinition -IsEnabled <Boolean> [-Description <String>]
 ```
 
 ## Description
-create a new Azure Active Directory roleDefinition object.
+Create a new Azure Active Directory roleDefinition object.
 For more info see https://go.microsoft.com/fwlink/?linkid=2097519.
 
 ## Examples

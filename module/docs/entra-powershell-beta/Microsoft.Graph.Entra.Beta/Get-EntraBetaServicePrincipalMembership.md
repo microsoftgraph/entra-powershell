@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaServicePrincipalMembership
 
 ## Synopsis
-get a service principal membership.
+Get a service principal membership.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Get-EntraBetaServicePrincipalMembership -ObjectId <String> [-All] [-Top <Int32>]
 ```
 
 ## Description
-the Get-EntraBetaServicePrincipalMembership cmdlet gets the memberships of a service principal in Azure Active Directory (Azure AD).
+The Get-EntraBetaServicePrincipalMembership cmdlet gets the memberships of a service principal in Azure Active Directory (Azure AD).
 
 ## Examples
 

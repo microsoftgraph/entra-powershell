@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaConditionalAccessPolicy
 
 ## Synopsis
-creates a new conditional access policy in Azure Active Directory.
+Creates a new conditional access policy in Azure Active Directory.
 
 ## Syntax
 
@@ -20,7 +20,7 @@ New-EntraBetaConditionalAccessPolicy [-Id <String>] [-SessionControls <Condition
 ```
 
 ## Description
-this cmdlet allows an admin to create new conditional access policy in Azure Active Directory.
+This cmdlet allows an admin to create new conditional access policy in Azure Active Directory.
 Conditional access policies are custom rules that define an access scenario.
 
 ## Examples

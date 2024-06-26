@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaIdentityProvider
 
 ## Synopsis
-this cmdlet is used to retrieve the configured identity providers in the directory.
+This cmdlet is used to retrieve the configured identity providers in the directory.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ Get-EntraBetaIdentityProvider -Id <String> [<CommonParameters>]
 ```
 
 ## Description
-this cmdlet is used to retrieve the identity providers that have been configured in the directory.
+This cmdlet is used to retrieve the identity providers that have been configured in the directory.
 These identity providers can be used to allow users to sign up for or sign into applications secured by Azure AD B2C.
 
 Configuring an identity provider in your Azure AD tenant also enables future B2B guest scenarios.

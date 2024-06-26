@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaPolicy
 
 ## Synopsis
-creates a policy.
+Creates a policy.
 
 ## Syntax
 
@@ -20,7 +20,7 @@ New-EntraBetaPolicy -Definition <System.Collections.Generic.List`1[System.String
 ```
 
 ## Description
-the New-EntraBetaPolicy cmdlet creates a policy in Azure Active Directory (AD).
+The New-EntraBetaPolicy cmdlet creates a policy in Azure Active Directory (AD).
 
 ## Examples
 

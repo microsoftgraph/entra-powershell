@@ -1,25 +1,25 @@
 ---
-title: Get-EntraPartnerInformation
-description: This article provides details on the Get-EntraPartnerInformation command.
+Title: Get-EntraPartnerInformation
+Description: This article provides details on the Get-EntraPartnerInformation command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-help.xml
+External help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraPartnerInformation
 
 ## Synopsis
-retrieves company-level information for partners.
+Retrieves company-level information for partners.
 
 ## Syntax
 
@@ -37,7 +37,7 @@ Get-EntraPartnerInformation
 ```
 
 ## Description
-the Get-EntraBetaPartnerInformation cmdlet is used to retrieve partner-specific information.
+The Get-EntraBetaPartnerInformation cmdlet is used to retrieve partner-specific information.
 This cmdlet should only be used for partner tenants.
 
 ## Examples
@@ -49,7 +49,7 @@ PS C:\> Get-EntraPartnerInformation
 
 ```output
 PartnerCompanyName       : Contoso
-companyType              :
+CompanyType              :
 PartnerSupportTelephones : {12123, +1911}
 PartnerSupportEmails     : {}
 PartnerHelpUrl           : http://www.help.contoso.com

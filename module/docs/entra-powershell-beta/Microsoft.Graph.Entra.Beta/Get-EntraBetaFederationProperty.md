@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-help.xml
+External help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaFederationProperty
 
 ## Synopsis
-for the specified domain, displays the properties of the Active Directory Federation Services 2.0 server and Microsoft Online.
+For the specified domain, displays the properties of the Active Directory Federation Services 2.0 server and Microsoft Online.
 
 ## Syntax
 
@@ -23,9 +23,9 @@ Get-EntraBetaFederationProperty -DomainName <String> [<CommonParameters>]
 ```
 
 ## Description
-the Get-EntraBetaFederationProperty cmdlet gets key settings from both the Active Directory Federation Services 2.0 server and Microsoft Online.
+The Get-EntraBetaFederationProperty cmdlet gets key settings from both the Active Directory Federation Services 2.0 server and Microsoft Online.
 You can use this
-information to troubleshoot authentication problems caused by mismatched settings between the Active Directory Federation Services 2.0 server and Microsoft Online.
+Information to troubleshoot authentication problems caused by mismatched settings between the Active Directory Federation Services 2.0 server and Microsoft Online.
 
 ## Examples
 

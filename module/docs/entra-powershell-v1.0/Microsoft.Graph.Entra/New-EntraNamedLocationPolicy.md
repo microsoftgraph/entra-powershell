@@ -1,25 +1,25 @@
 ---
-title: New-EntraNamedLocationPolicy
-description: This article provides details on the New-EntraNamedLocationPolicy command.
+Title: New-EntraNamedLocationPolicy
+Description: This article provides details on the New-EntraNamedLocationPolicy command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraNamedLocationPolicy
 
 ## Synopsis
-creates a new named location policy in Microsoft Entra ID.
+Creates a new named location policy in Microsoft Entra ID.
 
 ## Syntax
 
@@ -36,7 +36,7 @@ New-EntraNamedLocationPolicy
 ```
 
 ## Description
-this cmdlet allows an admin to create new named location policy in Microsoft Entra ID.
+This cmdlet allows an admin to create new named location policy in Microsoft Entra ID.
 Conditional access policies are custom rules that define an access scenario.
 
 ## Examples

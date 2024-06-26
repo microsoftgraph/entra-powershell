@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaNamedLocationPolicy
 
 ## Synopsis
-deletes an Azure Active Directory named location policy by PolicyId.
+Deletes an Azure Active Directory named location policy by PolicyId.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaNamedLocationPolicy -PolicyId <String> [<CommonParameters>]
 ```
 
 ## Description
-this cmdlet allows an admin to delete the Azure Active Directory named location policy.
+This cmdlet allows an admin to delete the Azure Active Directory named location policy.
 Named locations are custom rules that define network locations which can then be used in a Conditional Access policy.
 
 ## Examples

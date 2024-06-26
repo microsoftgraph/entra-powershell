@@ -1,25 +1,25 @@
 ---
-title: Get-EntraUserRegisteredDevice.
-description: This article provides details on the Get-EntraUserRegisteredDevice command.
+Title: Get-EntraUserRegisteredDevice.
+Description: This article provides details on the Get-EntraUserRegisteredDevice command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraUserRegisteredDevice
 
 ## Synopsis
 
-get devices registered by a user.
+Get devices registered by a user.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Get-EntraUserRegisteredDevice
 
 ## Description
 
-the Get-EntraUserRegisteredDevice cmdlet gets devices registered by a user in Microsoft Entra ID.
+The Get-EntraUserRegisteredDevice cmdlet gets devices registered by a user in Microsoft Entra ID.
 
 ## Examples
 
@@ -47,8 +47,8 @@ Get-EntraUserRegisteredDevice -ObjectId  'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-dddddddd-3333-4444-5555-eeeeeeeeeeee
-eeeeeeee-4444-5555-6666-ffffffffffff
+Dddddddd-3333-4444-5555-eeeeeeeeeeee
+Eeeeeeee-4444-5555-6666-ffffffffffff
 ```
 
 This command gets the devices that are registered to the specified user.
@@ -63,8 +63,8 @@ Get-EntraUserRegisteredDevice -ObjectId  'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-dddddddd-3333-4444-5555-eeeeeeeeeeee
-eeeeeeee-4444-5555-6666-ffffffffffff
+Dddddddd-3333-4444-5555-eeeeeeeeeeee
+Eeeeeeee-4444-5555-6666-ffffffffffff
 ```
 
 This command gets all the devices that are registered to the specified user.
@@ -79,8 +79,8 @@ Get-EntraUserRegisteredDevice -ObjectId  'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-dddddddd-3333-4444-5555-eeeeeeeeeeee
-eeeeeeee-4444-5555-6666-ffffffffffff
+Dddddddd-3333-4444-5555-eeeeeeeeeeee
+Eeeeeeee-4444-5555-6666-ffffffffffff
 ```
 
 This command gets the top two devices that are registered to the specified user.

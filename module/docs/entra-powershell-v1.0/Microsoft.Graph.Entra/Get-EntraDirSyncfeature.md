@@ -1,25 +1,25 @@
 ---
-title: Get-EntraDirSyncfeature
-description: This article provides details on the Get-EntraDirSyncfeature command.
+Title: Get-EntraDirSyncfeature
+Description: This article provides details on the Get-EntraDirSyncfeature command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-help.xml
+External help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraDirSyncfeature
 
 ## Synopsis
-used to check the status of identity synchronization features for a tenant.
+Used to check the status of identity synchronization features for a tenant.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Get-EntraDirSyncfeature
 ```
 
 ## Description
-the Get-EntraDirSyncfeature cmdlet is used to check the status of identity synchronization features for a tenant.
+The Get-EntraDirSyncfeature cmdlet is used to check the status of identity synchronization features for a tenant.
 Features that can be used with this cmdlet include:
 - **DeviceWriteback**
 - **DirectoryExtensions**

@@ -1,24 +1,24 @@
 ---
-title: Remove-EntraApplicationKeyCredential.
-description: This article provides details on the Remove-EntraApplicationKeyCredential command.
+Title: Remove-EntraApplicationKeyCredential.
+Description: This article provides details on the Remove-EntraApplicationKeyCredential command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraApplicationKeyCredential
 
 ## Synopsis
-removes a key credential from an application.
+Removes a key credential from an application.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ Remove-EntraApplicationKeyCredential
 ```
 
 ## Description
-the Remove-EntraApplicationKeyCredential cmdlet removes a key credential from an application.
+The Remove-EntraApplicationKeyCredential cmdlet removes a key credential from an application.
 
 ## Examples
 

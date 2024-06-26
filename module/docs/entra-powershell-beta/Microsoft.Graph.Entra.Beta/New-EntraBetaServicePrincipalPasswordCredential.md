@@ -1,24 +1,24 @@
 ---
-title: New-EntraBetaServicePrincipalPasswordCredential
-description: This article provides details on the New-EntraBetaServicePrincipalPasswordCredential command.
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Title: New-EntraBetaServicePrincipalPasswordCredential
+Description: This article provides details on the New-EntraBetaServicePrincipalPasswordCredential command.
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 
 ---
 
 # New-EntraBetaServicePrincipalPasswordCredential
 
 ## Synopsis
-creates a password credential for a service principal.
+Creates a password credential for a service principal.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ New-EntraBetaServicePrincipalPasswordCredential
 ```
 
 ## Description
-the New-EntraBetaServicePrincipalPasswordCredential cmdlet creates a password credential for a service principal in Microsoft Entra ID.
+The New-EntraBetaServicePrincipalPasswordCredential cmdlet creates a password credential for a service principal in Microsoft Entra ID.
 
 ## Examples
 
@@ -41,14 +41,14 @@ the New-EntraBetaServicePrincipalPasswordCredential cmdlet creates a password cr
 PS C:\> New-EntraBetaServicePrincipalPasswordCredential -ObjectID "000aa8f0-ccde-4b68-914b-d922971b6192" -StartDate 2024-04-21T14:14:14Z
 ```
 ```output
-endDateTime         : 17/04/2026 07:39:07
-customKeyIdentifier :
+EndDateTime         : 17/04/2026 07:39:07
+CustomKeyIdentifier :
 @odata.type         : #microsoft.graph.servicePrincipal
-displayName         :
-keyId               : dfc1703c-c3b6-4036-99b8-4b41627a15a7          : 
+DisplayName         :
+KeyId               : dfc1703c-c3b6-4036-99b8-4b41627a15a7          : 
 @odata.context      : https://graph.microsoft.com/beta/$metadata#servicePrincipals('000aa8f0-ccde-4b68-914b-d922971b6192')/addPassword
-hint                : i.W
-startDateTime       : 21/04/2024 14:14:14
+Hint                : i.W
+StartDateTime       : 21/04/2024 14:14:14
 StartDate           : 21/04/2024 14:14:14
 EndDate             : 17/04/2026 07:39:07
 ```
@@ -61,14 +61,14 @@ This example demonstrates how to create a password credential with StartDate for
 PS C:\> New-EntraBetaServicePrincipalPasswordCredential -ObjectID "021510b7-e753-40aa-b668-29753295ca34" -EndDate 2030-03-21T14:14:14Z
 ```
 ```output
-endDateTime         : 21/03/2030 14:14:14
-customKeyIdentifier :
+EndDateTime         : 21/03/2030 14:14:14
+CustomKeyIdentifier :
 @odata.type         : #microsoft.graph.servicePrincipal
-displayName         :
-keyId               : 810633b8-dbca-4af7-a4ea-8d3aa1d45588          : 
+DisplayName         :
+KeyId               : 810633b8-dbca-4af7-a4ea-8d3aa1d45588          : 
 @odata.context      : https://graph.microsoft.com/beta/$metadata#servicePrincipals('000aa8f0-ccde-4b68-914b-d922971b6192')/addPassword
-hint                : T1Q
-startDateTime       : 17/04/2024 07:41:01
+Hint                : T1Q
+StartDateTime       : 17/04/2024 07:41:01
 StartDate           : 17/04/2024 07:41:01
 EndDate             : 21/03/2030 14:14:14
 ```

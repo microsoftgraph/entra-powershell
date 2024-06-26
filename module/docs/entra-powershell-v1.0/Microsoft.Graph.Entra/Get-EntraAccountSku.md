@@ -1,25 +1,25 @@
 ---
-title: Get-EntraAccountSku
-description: This article provides details on the Get-EntraAccountSku command.
+Title: Get-EntraAccountSku
+Description: This article provides details on the Get-EntraAccountSku command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-help.xml
+External help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraAccountSku
 
 ## Synopsis
-retrieves all the SKUs for a company.
+Retrieves all the SKUs for a company.
 
 ## Syntax
 
@@ -37,7 +37,7 @@ Get-EntraAccountSku
 ```
 
 ## Description
-the Get-EntraAccountSku returns all the SKUs that the company owns.
+The Get-EntraAccountSku returns all the SKUs that the company owns.
 
 ## Examples
 
@@ -76,7 +76,7 @@ This command returns a list of SKUs by TenantId.
 ### -TenantId
 The unique ID of the tenant to perform the operation on.
 If this isn't provided then the value defaults to
-the tenant of the current user.
+The tenant of the current user.
 This parameter is only applicable to partner users.
 
 ```yaml

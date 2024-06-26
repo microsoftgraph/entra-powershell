@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaObjectSetting
 
 ## Synopsis
-deletes settings in Azure Active Directory.
+Deletes settings in Azure Active Directory.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Remove-EntraBetaObjectSetting -Id <String> -TargetType <String> -TargetObjectId 
 ```
 
 ## Description
-the Remove-EntraBetaObjectSetting cmdlet removes object settings in Azure Active Directory (AD).
+The Remove-EntraBetaObjectSetting cmdlet removes object settings in Azure Active Directory (AD).
 
 ## Examples
 

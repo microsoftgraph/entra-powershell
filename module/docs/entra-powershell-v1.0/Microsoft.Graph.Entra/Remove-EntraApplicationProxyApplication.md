@@ -1,25 +1,25 @@
 ---
-title: Remove-EntraApplicationProxyApplication
-description: This article provides details on the Remove-EntraApplicationProxyApplication command.
+Title: Remove-EntraApplicationProxyApplication
+Description: This article provides details on the Remove-EntraApplicationProxyApplication command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraApplicationProxyApplication
 
 ## Synopsis
-deletes an Application Proxy application.
+Deletes an Application Proxy application.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Remove-EntraApplicationProxyApplication
 ```
 
 ## Description
-the Remove-EntraApplicationProxyApplication cmdlet removes Application Proxy configurations from a specific application in Microsoft Entra ID, and can delete the application completely if specified.
+The Remove-EntraApplicationProxyApplication cmdlet removes Application Proxy configurations from a specific application in Microsoft Entra ID, and can delete the application completely if specified.
 
 ## Examples
 

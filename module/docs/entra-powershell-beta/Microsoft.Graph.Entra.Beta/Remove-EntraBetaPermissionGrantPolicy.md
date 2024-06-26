@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaPermissionGrantPolicy
 
 ## Synopsis
-removes a permission grant policy.
+Removes a permission grant policy.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaPermissionGrantPolicy -Id <String> [<CommonParameters>]
 ```
 
 ## Description
-the Remove-EntraBetaPermissionGrantPolicy cmdlet removes an Azure Active Directory permission grant policy.
+The Remove-EntraBetaPermissionGrantPolicy cmdlet removes an Azure Active Directory permission grant policy.
 
 ## Examples
 

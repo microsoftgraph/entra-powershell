@@ -1,23 +1,23 @@
 ---
-title: Get-EntraBetaApplicationProxyApplication.
-description: This article provides details on the Get-EntraBetaApplicationProxyApplication.
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Title: Get-EntraBetaApplicationProxyApplication.
+Description: This article provides details on the Get-EntraBetaApplicationProxyApplication.
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaApplicationProxyApplication
 
 ## Synopsis
-the Get-EntraBetaApplicationProxyApplication cmdlet retrieves an application configured for Application Proxy in Microsoft Entra ID.
+The Get-EntraBetaApplicationProxyApplication cmdlet retrieves an application configured for Application Proxy in Microsoft Entra ID.
 
 ## Syntax
 
@@ -28,7 +28,7 @@ Get-EntraBetaApplicationProxyApplication
 ```
 
 ## Description
-the Get-EntraBetaApplicationProxyApplication cmdlet retrieves an application configured for Application Proxy in Microsoft Entra ID.
+The Get-EntraBetaApplicationProxyApplication cmdlet retrieves an application configured for Application Proxy in Microsoft Entra ID.
 
 ## Examples
 
@@ -40,7 +40,7 @@ PS C:\> Get-EntraBetaApplicationProxyApplication -ObjectId 61ec5727-7d0b-40b3-bd
 AlternateUrl ApplicationServerTimeout ApplicationType ExternalAuthenticationType ExternalUrl
 ------------ ------------------------ --------------- -------------------------- -----------
              Long                     enterpriseapp   aadPreAuthentication      
-https://testp-m365x99297270.msapppr...
+Https://testp-m365x99297270.msapppr...
 ```
 This command Retrieves an application configured for Application Proxy.
 

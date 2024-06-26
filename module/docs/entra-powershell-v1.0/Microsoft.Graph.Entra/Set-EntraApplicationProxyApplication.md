@@ -1,25 +1,25 @@
 ---
-title: Set-EntraApplicationProxyApplication
-description: This article provides details on the Set-EntraApplicationProxyApplication command.
+Title: Set-EntraApplicationProxyApplication
+Description: This article provides details on the Set-EntraApplicationProxyApplication command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraApplicationProxyApplication
 
 ## Synopsis
-the Set-EntraApplicationProxyApplication allows you to modify and set configurations for an application in Microsoft Entra ID configured to use ApplicationProxy.
+The Set-EntraApplicationProxyApplication allows you to modify and set configurations for an application in Microsoft Entra ID configured to use ApplicationProxy.
 
 ## Syntax
 
@@ -40,7 +40,7 @@ Set-EntraApplicationProxyApplication
 ```
 
 ## Description
-the Set-EntraApplicationProxyApplication allows you to modify and set more settings for an application in Microsoft Entra ID configured to use ApplicationProxy.
+The Set-EntraApplicationProxyApplication allows you to modify and set more settings for an application in Microsoft Entra ID configured to use ApplicationProxy.
 
 ## Examples
 

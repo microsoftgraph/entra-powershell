@@ -1,25 +1,25 @@
 ---
-title: Get-EntraAdministrativeUnitMember
-description: This article provides details on the Get-EntraAdministrativeUnitMember command.
+Title: Get-EntraAdministrativeUnitMember
+Description: This article provides details on the Get-EntraAdministrativeUnitMember command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraAdministrativeUnitMember
 
 ## Synopsis
 
-gets a member of an administrative unit.
+Gets a member of an administrative unit.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Get-EntraAdministrativeUnitMember
 ```
 
 ## Description
-the Get-EntraAdministrativeUnitMember cmdlet gets a member of a Microsoft Entra ID administrative unit.
+The Get-EntraAdministrativeUnitMember cmdlet gets a member of a Microsoft Entra ID administrative unit.
 
 ## Examples
 
@@ -46,9 +46,9 @@ Get-EntraAdministrativeUnitMember -Id 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
 ```Output
 Id                                   OdataType
 --                                   ---------
-bbbbbbbb-7777-8888-9999-cccccccccccc #microsoft.graph.user
-cccccccc-8888-9999-0000-dddddddddddd #microsoft.graph.user
-dddddddd-9999-0000-1111-eeeeeeeeeeee #microsoft.graph.user
+Bbbbbbbb-7777-8888-9999-cccccccccccc #microsoft.graph.user
+Cccccccc-8888-9999-0000-dddddddddddd #microsoft.graph.user
+Dddddddd-9999-0000-1111-eeeeeeeeeeee #microsoft.graph.user
 ```
 
 This example returns the list of administrative unit members from specified administrative unit ID.
@@ -63,9 +63,9 @@ Get-EntraAdministrativeUnitMember -Id 'ffffffff-5555-6666-7777-aaaaaaaaaaaa' -Al
 ```Output
 Id                                   OdataType
 --                                   ---------
-bbbbbbbb-7777-8888-9999-cccccccccccc #microsoft.graph.user
-cccccccc-8888-9999-0000-dddddddddddd #microsoft.graph.user
-dddddddd-9999-0000-1111-eeeeeeeeeeee #microsoft.graph.user
+Bbbbbbbb-7777-8888-9999-cccccccccccc #microsoft.graph.user
+Cccccccc-8888-9999-0000-dddddddddddd #microsoft.graph.user
+Dddddddd-9999-0000-1111-eeeeeeeeeeee #microsoft.graph.user
 ```
 
 This example returns the list of administrative unit members from specified administrative unit ID.
@@ -80,8 +80,8 @@ Get-EntraAdministrativeUnitMember -Id 'ffffffff-5555-6666-7777-aaaaaaaaaaaa' -To
 ```Output
 Id                                   OdataType
 --                                   ---------
-bbbbbbbb-7777-8888-9999-cccccccccccc #microsoft.graph.user
-cccccccc-8888-9999-0000-dddddddddddd #microsoft.graph.user
+Bbbbbbbb-7777-8888-9999-cccccccccccc #microsoft.graph.user
+Cccccccc-8888-9999-0000-dddddddddddd #microsoft.graph.user
 ```
 
 This example returns top specified administrative unit members from specified administrative unit ID.

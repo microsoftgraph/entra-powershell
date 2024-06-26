@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaAdministrativeUnitMember
 
 ## Synopsis
-create a new object as a member of the administrativeUnit.
+Create a new object as a member of the administrativeUnit.
 Currently only group objects are supported.
 
 ## Syntax
@@ -23,7 +23,7 @@ New-EntraBetaAdministrativeUnitMember [-GroupTypes <System.Collections.Generic.L
 ```
 
 ## Description
-the New-EntraBetaAdministrativeUnitMember cmdlet creates an Azure Active Directory (Azure AD) object as a member of an administrativeUnit.
+The New-EntraBetaAdministrativeUnitMember cmdlet creates an Azure Active Directory (Azure AD) object as a member of an administrativeUnit.
 
 Currently only Azure Active Directory groups are supporeted to be created as administrativeUnit members.
 

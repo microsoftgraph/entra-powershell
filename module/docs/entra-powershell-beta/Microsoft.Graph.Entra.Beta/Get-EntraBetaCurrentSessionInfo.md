@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaCurrentSessionInfo
 
 ## Synopsis
-this cmdlet will return the current session state
+This cmdlet will return the current session state
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Get-EntraBetaCurrentSessionInfo [<CommonParameters>]
 ```
 
 ## Description
-this cmdlet will return the current session state
+This cmdlet will return the current session state
 
 ## Examples
 

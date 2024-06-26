@@ -1,24 +1,24 @@
 ---
-title: Set-EntraTenantDetail.
-description: This article provides details on the Set-EntraTenantDetail command.
+Title: Set-EntraTenantDetail.
+Description: This article provides details on the Set-EntraTenantDetail command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraTenantDetail
 
 ## Synopsis
-set contact details for a tenant.
+Set contact details for a tenant.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Set-EntraTenantDetail
 ```
 
 ## Description
-this cmdlet is used to set various contact details for a tenant.
+This cmdlet is used to set various contact details for a tenant.
 
 ## Examples
 

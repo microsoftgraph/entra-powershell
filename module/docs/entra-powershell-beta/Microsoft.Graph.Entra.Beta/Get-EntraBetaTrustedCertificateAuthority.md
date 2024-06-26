@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaTrustedCertificateAuthority
 
 ## Synopsis
-gets the trusted certificate authority.
+Gets the trusted certificate authority.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Get-EntraBetaTrustedCertificateAuthority [-TrustedIssuer <String>] [-TrustedIssu
 ```
 
 ## Description
-the Get-EntraBetaTrustedCertificateAuthority cmdlet gets the trusted certificate authority in Azure Active Directory (AD).
+The Get-EntraBetaTrustedCertificateAuthority cmdlet gets the trusted certificate authority in Azure Active Directory (AD).
 
 ## Examples
 

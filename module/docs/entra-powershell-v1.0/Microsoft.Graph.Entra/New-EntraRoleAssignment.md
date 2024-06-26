@@ -1,25 +1,25 @@
 ---
-title: New-EntraRoleAssignment
-description: This article provides details on the New-EntraRoleAssignment command.
+Title: New-EntraRoleAssignment
+Description: This article provides details on the New-EntraRoleAssignment command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraRoleAssignment
 
 ## Synopsis
 
-create a new Microsoft Entra ID roleAssignment.
+Create a new Microsoft Entra ID roleAssignment.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ New-EntraRoleAssignment
 
 ## Description
 
-the `New-EntraRoleAssignment` cmdlet creates a new Microsoft Entra role assignment.
+The `New-EntraRoleAssignment` cmdlet creates a new Microsoft Entra role assignment.
 
 ## Examples
 

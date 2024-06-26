@@ -1,8 +1,8 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Add-EntraBetaAdministrativeUnitMember
@@ -18,7 +18,7 @@ Add-EntraBetaAdministrativeUnitMember -RefObjectId <String> -ObjectId <String>
 ```
 
 ## Description
-the Add-EntraBetaAdministrativeUnitMember cmdlet Adds an Active Directory administrative unit member.
+The Add-EntraBetaAdministrativeUnitMember cmdlet Adds an Active Directory administrative unit member.
 
 ## Examples
 

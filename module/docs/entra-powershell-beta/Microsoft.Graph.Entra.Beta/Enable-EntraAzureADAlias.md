@@ -1,8 +1,8 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-help.xml
+External help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Enable-EntraAzureADAlias

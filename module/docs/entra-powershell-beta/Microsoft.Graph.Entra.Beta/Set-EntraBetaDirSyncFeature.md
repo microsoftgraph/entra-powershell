@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-help.xml
+External help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaDirSyncFeature
 
 ## Synopsis
-used to set identity synchronization features for a tenant.
+Used to set identity synchronization features for a tenant.
 
 ## Syntax
 
@@ -18,8 +18,8 @@ Set-EntraBetaDirSyncFeature -Feature <String> -Enabled <Boolean> [-TenantId <Gui
 ```
 
 ## Description
-the Set-EntraBetaDirSyncFeature cmdlet is used to turn identity synchronization features on or off for 
-a tenant.
+The Set-EntraBetaDirSyncFeature cmdlet is used to turn identity synchronization features on or off for 
+A tenant.
 Features that can be used with this cmdlet include:
 
     SynchronizeUpnForManagedUsers- allows for the synchronization of UserPrincipalName updates from on-premises for managed (non-federated) users that have been assigned a license.

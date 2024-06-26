@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaFeatureRolloutPolicy
 
 ## Synopsis
-gets the policy for cloud authentication roll-out in Azure Active Directory.
+Gets the policy for cloud authentication roll-out in Azure Active Directory.
 
 ## Syntax
 
@@ -28,7 +28,7 @@ Get-EntraBetaFeatureRolloutPolicy -Id <String> [<CommonParameters>]
 ```
 
 ## Description
-this cmdlet allows an admin to get the policy for cloud authentication rollout (users moving from federation to cloud auth) in Azure AD.
+This cmdlet allows an admin to get the policy for cloud authentication rollout (users moving from federation to cloud auth) in Azure AD.
 This policy is in the form of one or two FeatureRolloutPolicy objects holding groups that are assigned for cloud auth (Pass-through auth or Password hash-sync) and groups that are assigned for Seamless Single Sign-On (feature on top of PTA or PHS).
 
 ## Examples

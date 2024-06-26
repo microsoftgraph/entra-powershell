@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaDirectorySetting
 
 ## Synopsis
-gets a directory setting.
+Gets a directory setting.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ Get-EntraBetaDirectorySetting [-All] -Id <String> [<CommonParameters>]
 ```
 
 ## Description
-the Get-EntraBetaDirectorySetting cmdlet gets a directory setting from Azure Active Directory (AD).
+The Get-EntraBetaDirectorySetting cmdlet gets a directory setting from Azure Active Directory (AD).
 
 ## Examples
 

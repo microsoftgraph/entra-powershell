@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaDeviceRegisteredUser
 
 ## Synopsis
-removes a registered user from a device.
+Removes a registered user from a device.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaDeviceRegisteredUser -ObjectId <String> -UserId <String> [<Commo
 ```
 
 ## Description
-the Remove-EntraBetaDeviceRegisteredUser cmdlet removes a registered user from an Azure Active Directory device.
+The Remove-EntraBetaDeviceRegisteredUser cmdlet removes a registered user from an Azure Active Directory device.
 
 ## Examples
 

@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaPrivilegedRoleSetting
 
 ## Synopsis
-get role settings
+Get role settings
 
 ## Syntax
 
@@ -24,7 +24,7 @@ Get-EntraBetaPrivilegedRoleSetting -Id <String> -ProviderId <String> [<CommonPar
 ```
 
 ## Description
-get role settings
+Get role settings
 
 ## Examples
 

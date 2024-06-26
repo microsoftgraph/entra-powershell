@@ -1,25 +1,25 @@
 ---
-title: New-EntraRoleDefinition
-description: This article provides details on the New-EntraRoleDefinition command.
+Title: New-EntraRoleDefinition
+Description: This article provides details on the New-EntraRoleDefinition command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraRoleDefinition
 
 ## Synopsis
 
-create a new Microsoft Entra ID roleDefinition.
+Create a new Microsoft Entra ID roleDefinition.
 
 ## Syntax
 
@@ -37,7 +37,7 @@ New-EntraRoleDefinition
 
 ## Description
 
-create a new Microsoft Entra ID `roleDefinition` object.
+Create a new Microsoft Entra ID `roleDefinition` object.
 
 ## Examples
 

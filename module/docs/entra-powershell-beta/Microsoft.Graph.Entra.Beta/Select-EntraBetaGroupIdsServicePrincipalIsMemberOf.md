@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Select-EntraBetaGroupIdsServicePrincipalIsMemberOf
 
 ## Synopsis
-selects the groups in which a service principal is a member.
+Selects the groups in which a service principal is a member.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Select-EntraBetaGroupIdsServicePrincipalIsMemberOf -ObjectId <String>
 ```
 
 ## Description
-the Select-EntraBetaGroupIdsServicePrincipalIsMemberOf cmdlet selects the groups in which a service principal is a member in Azure Active Directory (AD).
+The Select-EntraBetaGroupIdsServicePrincipalIsMemberOf cmdlet selects the groups in which a service principal is a member in Azure Active Directory (AD).
 
 ## Examples
 
@@ -31,7 +31,7 @@ PS C:\> Select-EntraBetaGroupIdsServicePrincipalIsMemberOf -ObjectId $SPId -Grou
 
 OdataMetadata                                                                                   Value
 -------------                                                                                   -----
-https://graph.windows.net/85b5ff1e-0402-400c-9e3c-0f9e965325d1/$metadata#Collection(Edm.String) {093fc0e2-1d6e-4a1b-9bf8-effa0196f1f7}
+Https://graph.windows.net/85b5ff1e-0402-400c-9e3c-0f9e965325d1/$metadata#Collection(Edm.String) {093fc0e2-1d6e-4a1b-9bf8-effa0196f1f7}
 ```
 
 The first command creates a GroupIdsForMembershipCheck object, and then stores it in the $Groups variable.

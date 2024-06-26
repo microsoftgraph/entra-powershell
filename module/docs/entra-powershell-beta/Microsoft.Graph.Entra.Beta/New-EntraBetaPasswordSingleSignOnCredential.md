@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaPasswordSingleSignOnCredential
 
 ## Synopsis
-creates the password SSO credentials
+Creates the password SSO credentials
 
 ## Syntax
 
@@ -18,7 +18,7 @@ New-EntraBetaPasswordSingleSignOnCredential -ObjectId <String>
 ```
 
 ## Description
-this cmdlet enables users to create their Password Single-sign-on credentials for an application which they are part of.
+This cmdlet enables users to create their Password Single-sign-on credentials for an application which they are part of.
 Admin could create the group credentials as well.
 
 ## Examples

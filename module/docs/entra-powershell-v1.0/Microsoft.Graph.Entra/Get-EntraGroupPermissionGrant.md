@@ -1,25 +1,25 @@
 ---
-title: Get-EntraGroupPermissionGrant.
-description: This article provides details on the Get-EntraGroupPermissionGrant command.
+Title: Get-EntraGroupPermissionGrant.
+Description: This article provides details on the Get-EntraGroupPermissionGrant command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraGroupPermissionGrant
 
 ## Synopsis
 
-retrieves a list of permission grants that have been consented for this group.
+Retrieves a list of permission grants that have been consented for this group.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Get-EntraGroupPermissionGrant
 
 ## Description
 
-retrieves a list of permission grants that have been consented for this group.
+Retrieves a list of permission grants that have been consented for this group.
 
 ## Examples
 

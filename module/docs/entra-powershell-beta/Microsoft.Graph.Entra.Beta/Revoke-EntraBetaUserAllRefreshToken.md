@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Revoke-EntraBetaUserAllRefreshToken
 
 ## Synopsis
-invalidates the refresh tokens issued to applications for a user.
+Invalidates the refresh tokens issued to applications for a user.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Revoke-EntraBetaUserAllRefreshToken -ObjectId <String> [<CommonParameters>]
 ```
 
 ## Description
-the Revoke-EntraBetaUserAllRefreshToken cmdlet invalidates the refresh tokens issued to applications for a user. 
+The Revoke-EntraBetaUserAllRefreshToken cmdlet invalidates the refresh tokens issued to applications for a user. 
 The cmdlet also invalidates tokens issued to session cookies in a browser for the user. 
 The cmdlet operates by resetting the refreshTokensValidFromDateTime user property to the current date and time.
 

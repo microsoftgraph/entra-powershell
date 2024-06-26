@@ -1,25 +1,25 @@
 ---
-title: Get-EntraIdentityProvider
-description: This article provides details on the Get-EntraIdentityProvider command.
+Title: Get-EntraIdentityProvider
+Description: This article provides details on the Get-EntraIdentityProvider command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraIdentityProvider
 
 ## Synopsis
 
-this cmdlet is used to retrieve the configured identity providers in the directory.
+This cmdlet is used to retrieve the configured identity providers in the directory.
 
 ## Syntax
 
@@ -40,7 +40,7 @@ Get-EntraIdentityProvider
 
 ## Description
 
-this cmdlet is used to retrieve the identity providers that are configured in the directory.
+This cmdlet is used to retrieve the identity providers that are configured in the directory.
 These identity providers can be used to allow users to sign up for or sign into applications secured by Microsoft Entra ID B2C.
 
 Configuring an identity provider in your Microsoft Entra ID tenant also enables future B2B guest scenarios.

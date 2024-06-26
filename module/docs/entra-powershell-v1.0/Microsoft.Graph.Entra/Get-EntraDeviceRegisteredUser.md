@@ -1,25 +1,25 @@
 ---
-title: Get-EntraDeviceRegisteredUser.
-description: This article provides details on the Get-EntraDeviceRegisteredUser command.
+Title: Get-EntraDeviceRegisteredUser.
+Description: This article provides details on the Get-EntraDeviceRegisteredUser command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraDeviceRegisteredUser
 
 ## Synopsis
 
-gets a registered user.
+Gets a registered user.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Get-EntraDeviceRegisteredUser
 
 ## Description
 
-the `Get-EntraDeviceRegisteredUser` cmdlet gets a registered user for a Microsoft Entra ID device.
+The `Get-EntraDeviceRegisteredUser` cmdlet gets a registered user for a Microsoft Entra ID device.
 
 ## Examples
 
@@ -46,17 +46,17 @@ Get-EntraDeviceRegisteredUser -ObjectId $DevId
 ```
 
 ```Output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {}
-preferredLanguage               :
-mail                            : admin@contoso.onmicrosoft.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {}
+AgeGroup                        :
+OnPremisesLastSyncDateTime      :
+CreationType                    :
+ImAddresses                     : {}
+PreferredLanguage               :
+Mail                            : admin@contoso.onmicrosoft.com
+SecurityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
+Identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
+ConsentProvidedForMinor         :
+OnPremisesUserPrincipalName     :
+AssignedLicenses                : {}
 ```
 
 This example demonstrates how to retrieve registered user for a specific Microsoft Entra ID device.
@@ -73,17 +73,17 @@ Get-EntraDeviceRegisteredUser -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -
 ```
 
 ```Output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {}
-preferredLanguage               :
-mail                            : admin@contoso.onmicrosoft.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {}
+AgeGroup                        :
+OnPremisesLastSyncDateTime      :
+CreationType                    :
+ImAddresses                     : {}
+PreferredLanguage               :
+Mail                            : admin@contoso.onmicrosoft.com
+SecurityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
+Identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
+ConsentProvidedForMinor         :
+OnPremisesUserPrincipalName     :
+AssignedLicenses                : {}
 ```
 
 This example demonstrates how to retrieve all registered users for a specified device.
@@ -96,17 +96,17 @@ Get-EntraDeviceRegisteredUser -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -
 ```
 
 ```Output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {}
-preferredLanguage               :
-mail                            : admin@contoso.onmicrosoft.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {}
+AgeGroup                        :
+OnPremisesLastSyncDateTime      :
+CreationType                    :
+ImAddresses                     : {}
+PreferredLanguage               :
+Mail                            : admin@contoso.onmicrosoft.com
+SecurityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
+Identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
+ConsentProvidedForMinor         :
+OnPremisesUserPrincipalName     :
+AssignedLicenses                : {}
 ```
 
 This example demonstrates how to retrieve top two registered users for the specified device.

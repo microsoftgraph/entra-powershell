@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaServicePrincipalDelegatedPermissionClassification
 
 ## Synopsis
-retreive the delegated permission classification objects on a service principal.
+Retreive the delegated permission classification objects on a service principal.
 
 ## Syntax
 
@@ -25,7 +25,7 @@ Get-EntraBetaServicePrincipalDelegatedPermissionClassification -ServicePrincipal
 ```
 
 ## Description
-the Get-EntraBetaServicePrincipalDelegatedPermissionClassification cmdlet retrieves the delegated permission classifications from a service principal.
+The Get-EntraBetaServicePrincipalDelegatedPermissionClassification cmdlet retrieves the delegated permission classifications from a service principal.
 
 ## Examples
 

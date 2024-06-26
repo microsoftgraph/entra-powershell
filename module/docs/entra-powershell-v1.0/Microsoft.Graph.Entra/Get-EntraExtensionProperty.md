@@ -1,25 +1,25 @@
 ---
-title: Get-EntraExtensionProperty.
-description: This article provides details on the Get-EntraExtensionProperty command.
+Title: Get-EntraExtensionProperty.
+Description: This article provides details on the Get-EntraExtensionProperty command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraExtensionProperty
 
 ## Synopsis
 
-gets extension properties registered with Microsoft Entra ID.
+Gets extension properties registered with Microsoft Entra ID.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Get-EntraExtensionProperty
 
 ## Description
 
-the Get-EntraExtensionProperty cmdlet gets a collection that contains the extension properties registered with Microsoft Entra ID through Microsoft Entra ID Connect.
+The Get-EntraExtensionProperty cmdlet gets a collection that contains the extension properties registered with Microsoft Entra ID through Microsoft Entra ID Connect.
 
 You can get extension properties that are synced with on-premises Microsoft Entra ID that aren't synced with on-premises Microsoft Entra ID or both types.
 

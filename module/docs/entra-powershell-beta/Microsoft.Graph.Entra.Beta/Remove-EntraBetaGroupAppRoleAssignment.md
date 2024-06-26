@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaGroupAppRoleAssignment
 
 ## Synopsis
-delete a group application role assignment.
+Delete a group application role assignment.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Remove-EntraBetaGroupAppRoleAssignment -ObjectId <String> -AppRoleAssignmentId <
 ```
 
 ## Description
-the Remove-EntraBetaGroupAppRoleAssignment cmdlet removes a group application role assignment from Azure Active Directory (AD).
+The Remove-EntraBetaGroupAppRoleAssignment cmdlet removes a group application role assignment from Azure Active Directory (AD).
 
 ## Examples
 

@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaDirectorySetting
 
 ## Synopsis
-deletes a directory setting in Azure Active Directory.
+Deletes a directory setting in Azure Active Directory.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaDirectorySetting -Id <String> [<CommonParameters>]
 ```
 
 ## Description
-the Remove-EntraBetaDirectorySetting cmdlet removes a directory setting from Azure Active Directory (AD).
+The Remove-EntraBetaDirectorySetting cmdlet removes a directory setting from Azure Active Directory (AD).
 
 ## Examples
 

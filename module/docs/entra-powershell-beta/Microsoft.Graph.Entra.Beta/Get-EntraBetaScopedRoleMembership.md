@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaScopedRoleMembership
 
 ## Synopsis
-gets a scoped role membership from an administrative unit.
+Gets a scoped role membership from an administrative unit.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Get-EntraBetaScopedRoleMembership -ObjectId <String> [-ScopedRoleMembershipId <S
 ```
 
 ## Description
-the Get-EntraBetaScopedRoleMembership cmdlet gets a scoped role membership from an administrative unit in Azure Active Directory (AD).
+The Get-EntraBetaScopedRoleMembership cmdlet gets a scoped role membership from an administrative unit in Azure Active Directory (AD).
 
 ## Examples
 

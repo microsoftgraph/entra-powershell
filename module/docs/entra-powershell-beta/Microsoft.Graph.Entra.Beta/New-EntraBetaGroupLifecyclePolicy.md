@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaGroupLifecyclePolicy
 
 ## Synopsis
-creates a new groupLifecyclePolicy
+Creates a new groupLifecyclePolicy
 
 ## Syntax
 
@@ -18,7 +18,7 @@ New-EntraBetaGroupLifecyclePolicy -AlternateNotificationEmails <String> -Managed
 ```
 
 ## Description
-creates a new groupLifecyclePolicy in Azure Active Directory
+Creates a new groupLifecyclePolicy in Azure Active Directory
 
 ## Examples
 

@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaApplicationKeyCredential
 
 ## Synopsis
-removes a key credential from an application.
+Removes a key credential from an application.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaApplicationKeyCredential -ObjectId <String> -KeyId <String>[<Com
 ```
 
 ## Description
-the Remove-EntraBetaApplicationKeyCredential cmdlet removes a key credential from an application.
+The Remove-EntraBetaApplicationKeyCredential cmdlet removes a key credential from an application.
 
 ## Examples
 

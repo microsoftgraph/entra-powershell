@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaContactMembership
 
 ## Synopsis
-get a contact membership.
+Get a contact membership.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Get-EntraBetaContactMembership -ObjectId <String> [-All] [-Top <Int32>] [<Common
 ```
 
 ## Description
-the Get-EntraBetaContactMembership cmdlet gets a contact membership in Azure Active Directory.
+The Get-EntraBetaContactMembership cmdlet gets a contact membership in Azure Active Directory.
 
 ## Examples
 

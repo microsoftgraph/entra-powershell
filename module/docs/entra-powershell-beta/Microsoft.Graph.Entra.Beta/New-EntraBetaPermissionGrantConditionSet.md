@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaPermissionGrantConditionSet
 
 ## Synopsis
-create a new Azure Active Directory permission grant condition set in a given policy.
+Create a new Azure Active Directory permission grant condition set in a given policy.
 
 ## Syntax
 
@@ -22,7 +22,7 @@ New-EntraBetaPermissionGrantConditionSet [-Permissions <System.Collections.Gener
 ```
 
 ## Description
-create a new Azure Active Directory permission grant condition set object in an existing policy.
+Create a new Azure Active Directory permission grant condition set object in an existing policy.
 
 ## Examples
 

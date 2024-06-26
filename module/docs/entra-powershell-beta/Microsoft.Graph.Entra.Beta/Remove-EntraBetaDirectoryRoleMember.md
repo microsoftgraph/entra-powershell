@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaDirectoryRoleMember
 
 ## Synopsis
-removes a member of a directory role.
+Removes a member of a directory role.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Remove-EntraBetaDirectoryRoleMember -ObjectId <String> -MemberId <String>
 ```
 
 ## Description
-the Remove-EntraBetaDirectoryRoleMember cmdlet removes a member from a directory role in Azure Active Directory (AD).
+The Remove-EntraBetaDirectoryRoleMember cmdlet removes a member from a directory role in Azure Active Directory (AD).
 
 ## Examples
 

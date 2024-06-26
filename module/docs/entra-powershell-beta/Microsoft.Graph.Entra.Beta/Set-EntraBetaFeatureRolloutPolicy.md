@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaFeatureRolloutPolicy
 
 ## Synopsis
-allows an admin to modify the policy for cloud authentication roll-out in Azure AD.
+Allows an admin to modify the policy for cloud authentication roll-out in Azure AD.
 
 ## Syntax
 
@@ -20,7 +20,7 @@ Set-EntraBetaFeatureRolloutPolicy [-Feature <FeatureEnum>] [-IsEnabled <Boolean>
 ```
 
 ## Description
-an admin will use this cmdlet to modify the cloud authentication roll-out policy including whether the method for cloud authentication is Pass-through Authentication or not (Password hash-sync) and whether Seamless SSO is enabled.
+An admin will use this cmdlet to modify the cloud authentication roll-out policy including whether the method for cloud authentication is Pass-through Authentication or not (Password hash-sync) and whether Seamless SSO is enabled.
 Users in groups assigned to the policy will start authenticating via the new authentication method and via Seamless SSO if specified.
 
 ## Examples

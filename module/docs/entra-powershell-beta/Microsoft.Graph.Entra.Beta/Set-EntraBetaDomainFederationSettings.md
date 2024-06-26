@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-help.xml
+External help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaDomainFederationSettings
 
 ## Synopsis
-updates settings for a federated domain.
+Updates settings for a federated domain.
 
 ## Syntax
 
@@ -21,7 +21,7 @@ Set-EntraBetaDomainFederationSettings [-DomainName] <String> [[-SigningCertifica
 ```
 
 ## Description
-the Set-EntraBetaDomainFederationSettings cmdlet is used to update the settings of a single sign-on domain.
+The Set-EntraBetaDomainFederationSettings cmdlet is used to update the settings of a single sign-on domain.
 
 ## Examples
 
@@ -143,7 +143,7 @@ Accept wildcard characters: False
 ### -FederationBrandName
 The name of the string value shown to users when signing in to Microsoft Azure Active Directory.
 We recommend that customers use something that is familiar to
-users such as "Contoso Inc."
+Users such as "Contoso Inc."
 
 ```yaml
 Type: String

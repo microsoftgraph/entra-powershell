@@ -1,25 +1,25 @@
 ---
-title: Get-EntraDirSyncConfiguration
-description: This article provides details on the Get-EntraDirSyncConfiguration command.
+Title: Get-EntraDirSyncConfiguration
+Description: This article provides details on the Get-EntraDirSyncConfiguration command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-help.xml
+External help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraDirSyncConfiguration
 
 ## Synopsis
-gets the directory synchronization settings.
+Gets the directory synchronization settings.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ Get-EntraDirSyncConfiguration
 ```
 
 ## Description
-the Get-EntraDirSyncConfiguration cmdlet gets the directory synchronization settings.
+The Get-EntraDirSyncConfiguration cmdlet gets the directory synchronization settings.
 
 ## Examples
 

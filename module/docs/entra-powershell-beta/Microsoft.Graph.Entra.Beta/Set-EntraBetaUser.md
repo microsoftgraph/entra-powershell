@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaUser
 
 ## Synopsis
-updates a user.
+Updates a user.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ Set-EntraBetaUser [-PostalCode <String>] [-MailNickName <String>] [-ShowInAddres
 ```
 
 ## Description
-the Set-EntraBetaUser cmdlet updates a user in Azure Active Directory (AD).
+The Set-EntraBetaUser cmdlet updates a user in Azure Active Directory (AD).
 
 ## Examples
 

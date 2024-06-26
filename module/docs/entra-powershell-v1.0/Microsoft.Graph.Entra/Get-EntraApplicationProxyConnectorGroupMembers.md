@@ -1,25 +1,25 @@
 ---
-title: Get-EntraApplicationProxyConnectorGroupMembers
-description: This article provides details on the Get-EntraApplicationProxyConnectorGroupMembers command.
+Title: Get-EntraApplicationProxyConnectorGroupMembers
+Description: This article provides details on the Get-EntraApplicationProxyConnectorGroupMembers command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraApplicationProxyConnectorGroupMembers
 
 ## Synopsis
-the Get-EntraApplicationProxyConnectorGroupMembers get all the Application Proxy connectors associated with the given connector group. 
+The Get-EntraApplicationProxyConnectorGroupMembers get all the Application Proxy connectors associated with the given connector group. 
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Get-EntraApplicationProxyConnectorGroupMembers
 ```
 
 ## Description
-the Get-EntraApplicationProxyConnectorGroupMembers gets all the Application Proxy connectors associated with the given connector group. 
+The Get-EntraApplicationProxyConnectorGroupMembers gets all the Application Proxy connectors associated with the given connector group. 
 
 ## Examples
 
@@ -45,7 +45,7 @@ PS C:\> Get-EntraApplicationProxyConnectorGroupMembers -Id ba07e273-6b9e-4567-af
 Id                                   MachineName     ExternalIp   Status
 --                                   -----------     ----------   ------
 969eddd2-ad11-47ca-92ba-4442b9901edf vm-test-010 13.93.84.164 active
-ea4a4b91-aace-4e8b-b81a-b2f6429a477e test-vm-conn1 52.18.9.115 active
+Ea4a4b91-aace-4e8b-b81a-b2f6429a477e test-vm-conn1 52.18.9.115 active
 ```
 
 The output of this command, showing all the connectors in the group.

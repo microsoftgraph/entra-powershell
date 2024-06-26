@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaDirectorySettingTemplate
 
 ## Synopsis
-gets a directory setting template.
+Gets a directory setting template.
 
 ## Syntax
 
@@ -24,7 +24,7 @@ Get-EntraBetaDirectorySettingTemplate -Id <String> [<CommonParameters>]
 ```
 
 ## Description
-the Get-EntraBetaDirectorySettingTemplate cmdlet gets a directory setting template from Azure Active Directory (AD).
+The Get-EntraBetaDirectorySettingTemplate cmdlet gets a directory setting template from Azure Active Directory (AD).
 
 ## Examples
 

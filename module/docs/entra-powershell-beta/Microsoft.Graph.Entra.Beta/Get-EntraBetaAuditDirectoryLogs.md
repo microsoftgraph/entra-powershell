@@ -1,25 +1,25 @@
 ---
-title: Get-EntraBetaAuditDirectoryLogs.
-description: This article provides details on the Get-EntraBetaAuditDirectoryLogs command.
+Title: Get-EntraBetaAuditDirectoryLogs.
+Description: This article provides details on the Get-EntraBetaAuditDirectoryLogs command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaAuditDirectoryLogs
 
 ## Synopsis
-get directory audit logs.
+Get directory audit logs.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Get-EntraBetaAuditDirectoryLogs
 ```
 
 ## Description
-the Get-EntraBetaAuditDirectoryLogs cmdlet gets a Microsoft Entra ID audit log.
+The Get-EntraBetaAuditDirectoryLogs cmdlet gets a Microsoft Entra ID audit log.
 
 ## Examples
 

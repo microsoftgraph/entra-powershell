@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaGroupOwner
 
 ## Synopsis
-removes an owner from a group.
+Removes an owner from a group.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaGroupOwner -OwnerId <String> -ObjectId <String> [<CommonParamete
 ```
 
 ## Description
-the Remove-EntraBetaGroupOwner cmdlet removes an owner from a group in Azure Active Directory (AD).
+The Remove-EntraBetaGroupOwner cmdlet removes an owner from a group in Azure Active Directory (AD).
 
 ## Examples
 

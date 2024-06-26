@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Reset-EntraBetaLifeCycleGroup
 
 ## Synopsis
-renews a group by updating the RenewedDateTime property on a group to the current DateTime.
+Renews a group by updating the RenewedDateTime property on a group to the current DateTime.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Reset-EntraBetaLifeCycleGroup -GroupId <String> [<CommonParameters>]
 ```
 
 ## Description
-the Reset-EntraBetaLifeCycleGroup renews a group by updating the RenewedDateTime property on a group to the current DateTime.
+The Reset-EntraBetaLifeCycleGroup renews a group by updating the RenewedDateTime property on a group to the current DateTime.
 When a group is renewed, the group expiration is extended by the number of days defined in the policy.
 
 ## Examples

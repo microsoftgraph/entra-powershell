@@ -1,25 +1,25 @@
 ---
-title: New-EntraIdentityProvider
-description: This article provides details on the New-EntraIdentityProvider command.
+Title: New-EntraIdentityProvider
+Description: This article provides details on the New-EntraIdentityProvider command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraIdentityProvider
 
 ## Synopsis
-this cmdlet is used to configure a new identity provider in the directory.
+This cmdlet is used to configure a new identity provider in the directory.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ New-EntraIdentityProvider
 ```
 
 ## Description
-this cmdlet is used to configure an identity provider in the directory.
+This cmdlet is used to configure an identity provider in the directory.
 Adding an identity provider will allow users to sign up for or sign into applications secured by Microsoft Entra ID B2C using the identity provider.
 
 Configuring an identity provider in your Microsoft Entra ID tenant also enables future B2B guest scenarios.

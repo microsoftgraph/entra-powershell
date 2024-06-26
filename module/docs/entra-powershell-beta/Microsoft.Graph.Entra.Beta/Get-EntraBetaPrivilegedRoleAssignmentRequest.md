@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaPrivilegedRoleAssignmentRequest
 
 ## Synopsis
-get role assignment request for a specific resource
+Get role assignment request for a specific resource
 
 ## Syntax
 
@@ -24,7 +24,7 @@ Get-EntraBetaPrivilegedRoleAssignmentRequest -Id <String> -ProviderId <String> [
 ```
 
 ## Description
-get role assignment request for a specific resource
+Get role assignment request for a specific resource
 
 ## Examples
 

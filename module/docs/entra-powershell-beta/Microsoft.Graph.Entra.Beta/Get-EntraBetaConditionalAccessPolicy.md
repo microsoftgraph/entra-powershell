@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaConditionalAccessPolicy
 
 ## Synopsis
-gets an Azure Active Directory conditional access policy.
+Gets an Azure Active Directory conditional access policy.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ Get-EntraBetaConditionalAccessPolicy -PolicyId <String> [<CommonParameters>]
 ```
 
 ## Description
-this cmdlet allows an admin to get the Azure Active Directory conditional access policy.
+This cmdlet allows an admin to get the Azure Active Directory conditional access policy.
 Conditional access policies are custom rules that define an access scenario.
 
 ## Examples

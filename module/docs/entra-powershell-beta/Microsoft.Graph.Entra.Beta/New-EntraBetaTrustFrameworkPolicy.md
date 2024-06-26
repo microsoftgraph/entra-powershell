@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaTrustFrameworkPolicy
 
 ## Synopsis
-this cmdlet is used to create a trust framework policy (custom policy) in the directory.
+This cmdlet is used to create a trust framework policy (custom policy) in the directory.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ New-EntraBetaTrustFrameworkPolicy -InputFilePath <String> [-OutputFilePath <Stri
 ```
 
 ## Description
-this cmdlet is used to create a trust framework policy in the directory.
+This cmdlet is used to create a trust framework policy in the directory.
 
 The contents of the trust framework policy to be created can be provided using a file or a command line variable.
 

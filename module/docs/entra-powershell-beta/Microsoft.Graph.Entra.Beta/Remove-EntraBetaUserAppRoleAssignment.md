@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaUserAppRoleAssignment
 
 ## Synopsis
-removes a user application role assignment.
+Removes a user application role assignment.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Remove-EntraBetaUserAppRoleAssignment -ObjectId <String> -AppRoleAssignmentId <S
 ```
 
 ## Description
-the Remove-EntraBetaUserAppRoleAssignment cmdlet removes a user application role assignment in Azure Active Directory (AD).
+The Remove-EntraBetaUserAppRoleAssignment cmdlet removes a user application role assignment in Azure Active Directory (AD).
 
 ## Examples
 

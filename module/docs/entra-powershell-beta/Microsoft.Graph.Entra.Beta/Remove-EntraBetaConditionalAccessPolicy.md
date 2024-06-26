@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaConditionalAccessPolicy
 
 ## Synopsis
-deletes a conditional access policy in Azure Active Directory by Id.
+Deletes a conditional access policy in Azure Active Directory by Id.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaConditionalAccessPolicy -PolicyId <String> [<CommonParameters>]
 ```
 
 ## Description
-this cmdlet allows an admin to delete a conditional access policy in Azure Active Directory by Id.
+This cmdlet allows an admin to delete a conditional access policy in Azure Active Directory by Id.
 Conditional access policies are custom rules that define an access scenario.
 
 ## Examples

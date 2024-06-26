@@ -1,25 +1,25 @@
 ---
-title: Get-EntraUserOwnedObject
-description: This article provides details on the Get-EntraUserOwnedObject command.
+Title: Get-EntraUserOwnedObject
+Description: This article provides details on the Get-EntraUserOwnedObject command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraUserOwnedObject
 
 ## Synopsis
 
-get objects owned by a user.
+Get objects owned by a user.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Get-EntraUserOwnedObject
 
 ## Description
 
-the Get-EntraUserOwnedObject cmdlet gets objects owned by a user in Microsoft Entra ID.
+The Get-EntraUserOwnedObject cmdlet gets objects owned by a user in Microsoft Entra ID.
 
 ## Examples
 
@@ -47,14 +47,14 @@ Get-EntraUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```Output
 ObjectId                             ObjectType
 --------                             ----------
-bbbbbbbb-1111-2222-3333-cccccccccccc Group
-cccccccc-2222-3333-4444-dddddddddddd Group
-dddddddd-3333-4444-5555-eeeeeeeeeeee Group
-eeeeeeee-4444-5555-6666-ffffffffffff Group
-ffffffff-5555-6666-7777-aaaaaaaaaaaa Group
-aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb Group
-bbbbbbbb-7777-8888-9999-cccccccccccc Application
-cccccccc-8888-9999-0000-dddddddddddd Group
+Bbbbbbbb-1111-2222-3333-cccccccccccc Group
+Cccccccc-2222-3333-4444-dddddddddddd Group
+Dddddddd-3333-4444-5555-eeeeeeeeeeee Group
+Eeeeeeee-4444-5555-6666-ffffffffffff Group
+Ffffffff-5555-6666-7777-aaaaaaaaaaaa Group
+Aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb Group
+Bbbbbbbb-7777-8888-9999-cccccccccccc Application
+Cccccccc-8888-9999-0000-dddddddddddd Group
 ```
 
 This command gets objects owned by the specified user.
@@ -69,14 +69,14 @@ Get-EntraUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
 ```Output
 ObjectId                             ObjectType
 --------                             ----------
-bbbbbbbb-1111-2222-3333-cccccccccccc Group
-cccccccc-2222-3333-4444-dddddddddddd Group
-dddddddd-3333-4444-5555-eeeeeeeeeeee Group
-eeeeeeee-4444-5555-6666-ffffffffffff Group
-ffffffff-5555-6666-7777-aaaaaaaaaaaa Group
-aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb Group
-bbbbbbbb-7777-8888-9999-cccccccccccc Application
-cccccccc-8888-9999-0000-dddddddddddd Group
+Bbbbbbbb-1111-2222-3333-cccccccccccc Group
+Cccccccc-2222-3333-4444-dddddddddddd Group
+Dddddddd-3333-4444-5555-eeeeeeeeeeee Group
+Eeeeeeee-4444-5555-6666-ffffffffffff Group
+Ffffffff-5555-6666-7777-aaaaaaaaaaaa Group
+Aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb Group
+Bbbbbbbb-7777-8888-9999-cccccccccccc Application
+Cccccccc-8888-9999-0000-dddddddddddd Group
 ```
 
 This command gets all the objects owned by the specified user.
@@ -91,9 +91,9 @@ Get-EntraUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 3
 ```Output
 ObjectId                             ObjectType
 --------                             ----------
-ffffffff-5555-6666-7777-aaaaaaaaaaaa Group
-aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb Group
-bbbbbbbb-7777-8888-9999-cccccccccccc Application
+Ffffffff-5555-6666-7777-aaaaaaaaaaaa Group
+Aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb Group
+Bbbbbbbb-7777-8888-9999-cccccccccccc Application
 ```
 
 This command gets the top three objects owned by the specified user.

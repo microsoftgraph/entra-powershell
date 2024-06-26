@@ -1,8 +1,8 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Add-EntraBetaDirectoryRoleMember
@@ -18,7 +18,7 @@ Add-EntraBetaDirectoryRoleMember -ObjectId <String> -RefObjectId <String>
 ```
 
 ## Description
-the Add-EntraBetaDirectoryRoleMember cmdlet Adds a member to an Azure Active Directory role.
+The Add-EntraBetaDirectoryRoleMember cmdlet Adds a member to an Azure Active Directory role.
 
 ## Examples
 

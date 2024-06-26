@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaUserDirectReport
 
 ## Synopsis
-get the user's direct reports.
+Get the user's direct reports.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Get-EntraBetaUserDirectReport -ObjectId <String> [-All] [-Top <Int32>] [<CommonP
 ```
 
 ## Description
-the Get-EntraBetaUserDirectReport cmdlet gets the direct reports for a user in Azure Active Directory (AD).
+The Get-EntraBetaUserDirectReport cmdlet gets the direct reports for a user in Azure Active Directory (AD).
 
 ## Examples
 

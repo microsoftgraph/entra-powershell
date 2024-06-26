@@ -1,24 +1,24 @@
 ---
-title: Set-EntraUser.
-description: This article provides details on the Set-EntraUser command.
+Title: Set-EntraUser.
+Description: This article provides details on the Set-EntraUser command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraUser
 
 ## Synopsis
-updates a user.
+Updates a user.
 
 ## Syntax
 
@@ -58,7 +58,7 @@ Set-EntraUser
 ```
 
 ## Description
-the Set-EntraUser cmdlet updates a user in Microsoft Entra ID.
+The Set-EntraUser cmdlet updates a user in Microsoft Entra ID.
 
 ## Examples
 

@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaFeatureRolloutPolicy
 
 ## Synopsis
-allows an admin to remove the policy for cloud authentication roll-out in Azure AD.
+Allows an admin to remove the policy for cloud authentication roll-out in Azure AD.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaFeatureRolloutPolicy -Id <String> [<CommonParameters>]
 ```
 
 ## Description
-an admin will use this cmdlet to remove the cloud authentication roll-out policy and have all users where policy applied to be free of the policy.
+An admin will use this cmdlet to remove the cloud authentication roll-out policy and have all users where policy applied to be free of the policy.
 Users in groups that were assigned to the policy will fall back to the global authentication method (most common case will be federation).
 
 ## Examples

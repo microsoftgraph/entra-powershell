@@ -1,26 +1,26 @@
 ---
-title: Get-EntraDeviceRegisteredOwner
-description: This article provides details on the Get-EntraDeviceRegisteredOwner command.
+Title: Get-EntraDeviceRegisteredOwner
+Description: This article provides details on the Get-EntraDeviceRegisteredOwner command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraDeviceRegisteredOwner
 
 ## Synopsis
 
-gets the registered owner of a device.
+Gets the registered owner of a device.
 
 ## Syntax
 
@@ -35,7 +35,7 @@ Get-EntraDeviceRegisteredOwner
 
 ## Description
 
-the `Get-EntraDeviceRegisteredOwner` cmdlet gets the registered owner of a device in Microsoft Entra ID.
+The `Get-EntraDeviceRegisteredOwner` cmdlet gets the registered owner of a device in Microsoft Entra ID.
 
 ## Examples
 
@@ -50,7 +50,7 @@ Get-EntraDeviceRegisteredOwner -ObjectId $DevId
 ```Output
 ObjectId                             DisplayName     UserPrincipalName     UserType
 --------                             -----------    -----------------      --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan    maria@contoso.com       Member
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan    maria@contoso.com       Member
 ```
 
 This example shows how to find the registered owner of a device.
@@ -69,8 +69,8 @@ Get-EntraDeviceRegisteredOwner -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
 ```Output
 ObjectId                             DisplayName     UserPrincipalName     UserType
 --------                             -----------    -----------------      --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com       Member
-cccccccc-2222-3333-4444-dddddddddddd Parker McLean   parker@contoso.com      Member
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com       Member
+Cccccccc-2222-3333-4444-dddddddddddd Parker McLean   parker@contoso.com      Member
 ```
 
 This command gets the registered owner of a device.
@@ -85,8 +85,8 @@ Get-EntraDeviceRegisteredOwner -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -A
 ```Output
 ObjectId                             DisplayName     UserPrincipalName     UserType
 --------                             -----------    -----------------      --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com       Member
-cccccccc-2222-3333-4444-dddddddddddd Parker McLean   parker@contoso.com      Member
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com       Member
+Cccccccc-2222-3333-4444-dddddddddddd Parker McLean   parker@contoso.com      Member
 ```
 
 This command retrieves all the registered owners of a device.
@@ -101,7 +101,7 @@ Get-EntraDeviceRegisteredOwner -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -T
 ```Output
 ObjectId                             DisplayName     UserPrincipalName     UserType
 --------                             -----------    -----------------      --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com       Member
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com       Member
 ```
 
 This command retrieves top one registered owner of a device.

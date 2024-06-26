@@ -1,26 +1,26 @@
 ---
-title: Get-EntraPermissionGrantConditionSet
-description: This article provides details on the Get-EntraPermissionGrantConditionSet command.
+Title: Get-EntraPermissionGrantConditionSet
+Description: This article provides details on the Get-EntraPermissionGrantConditionSet command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraPermissionGrantConditionSet
 
 ## Synopsis
 
-get a Microsoft Entra ID permission grant condition set by id.
+Get a Microsoft Entra ID permission grant condition set by id.
 
 ## Syntax
 
@@ -45,7 +45,7 @@ Get-EntraPermissionGrantConditionSet
 
 ## Description
 
-get a Microsoft Entra ID permission grant condition set object by id.
+Get a Microsoft Entra ID permission grant condition set object by id.
 
 ## Examples
 
@@ -59,7 +59,7 @@ Get-EntraPermissionGrantConditionSet -PolicyId 'policy1' -ConditionSetType 'incl
 ```output
 Id                                   ClientApplicationIds                   ClientApplicationPublisherIds          ClientApplicationTenantIds             ClientApplicationsFromVerifiedPublisherOnly
 --                                   --------------------                   -----------------------------          --------------------------             -------------------------------------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb {00001111-aaaa-2222-bbbb-3333cccc4444} {all}                                  {aaaabbbb-0000-cccc-1111-dddd2222eeee} True
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb {00001111-aaaa-2222-bbbb-3333cccc4444} {all}                                  {aaaabbbb-0000-cccc-1111-dddd2222eeee} True
 ```
 
 This command gets all permission grant condition sets that are included in the policy.
@@ -74,8 +74,8 @@ Get-EntraPermissionGrantConditionSet -PolicyId 'policy1' -ConditionSetType 'excl
 ```output
 Id                                   ClientApplicationIds                   ClientApplicationPublisherIds          ClientApplicationTenantIds             ClientApplicationsFromVerifiedPublisherOnly
 --                                   --------------------                   -----------------------------          --------------------------             -------------------------------------------
-cccccccc-2222-3333-4444-dddddddddddd {33334444-dddd-5555-eeee-6666ffff7777} {all}                                  {aaaabbbb-0000-cccc-1111-dddd2222eeee} True
-bbbbbbbb-1111-2222-3333-cccccccccccc {11112222-bbbb-3333-cccc-4444dddd5555} {all}                                  {aaaabbbb-0000-cccc-1111-dddd2222eeee} True
+Cccccccc-2222-3333-4444-dddddddddddd {33334444-dddd-5555-eeee-6666ffff7777} {all}                                  {aaaabbbb-0000-cccc-1111-dddd2222eeee} True
+Bbbbbbbb-1111-2222-3333-cccccccccccc {11112222-bbbb-3333-cccc-4444dddd5555} {all}                                  {aaaabbbb-0000-cccc-1111-dddd2222eeee} True
 ```
 
 This command gets all permission grant condition sets that are excluded in the policy.
@@ -90,7 +90,7 @@ Get-EntraPermissionGrantConditionSet -PolicyId 'policy1' -ConditionSetType 'incl
 ```output
 Id                                   ClientApplicationIds                   ClientApplicationPublisherIds          ClientApplicationTenantIds             ClientApplicationsFromVerifiedPublisherOnly
 --                                   --------------------                   -----------------------------          --------------------------             -------------------------------------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb {00001111-aaaa-2222-bbbb-3333cccc4444} {all}                                  {aaaabbbb-0000-cccc-1111-dddd2222eeee} True
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb {00001111-aaaa-2222-bbbb-3333cccc4444} {all}                                  {aaaabbbb-0000-cccc-1111-dddd2222eeee} True
 ```
 
 This command gets a permission grant condition set specified by `Id`.

@@ -1,24 +1,24 @@
 ---
-title: Get-EntraApplicationKeyCredential
-description: This article provides details on the Get-EntraApplicationKeyCredential command.
+Title: Get-EntraApplicationKeyCredential
+Description: This article provides details on the Get-EntraApplicationKeyCredential command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraApplicationKeyCredential
 
 ## Synopsis
-gets the key credentials for an application.
+Gets the key credentials for an application.
 
 ## Syntax
 
@@ -29,7 +29,7 @@ Get-EntraApplicationKeyCredential
 ```
 
 ## Description
-the Get-EntraApplicationKeyCredential cmdlet gets the key credentials for an application.
+The Get-EntraApplicationKeyCredential cmdlet gets the key credentials for an application.
 
 ## Examples
 

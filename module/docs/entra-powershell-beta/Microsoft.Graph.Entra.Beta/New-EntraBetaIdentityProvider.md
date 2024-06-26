@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaIdentityProvider
 
 ## Synopsis
-this cmdlet is used to configure a new identity provider in the directory.
+This cmdlet is used to configure a new identity provider in the directory.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ New-EntraBetaIdentityProvider -ClientId <String> -Type <String> [-Name <String>]
 ```
 
 ## Description
-this cmdlet is used to configure an identity provider in the directory.
+This cmdlet is used to configure an identity provider in the directory.
 Adding an identity provider will allow users to sign up for or sign into applications secured by Azure AD B2C using the identity provider.
 
 Configuring an identity provider in your Azure AD tenant also enables future B2B guest scenarios.

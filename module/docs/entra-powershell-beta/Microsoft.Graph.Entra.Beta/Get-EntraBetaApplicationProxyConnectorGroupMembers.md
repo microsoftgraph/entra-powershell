@@ -1,23 +1,23 @@
 ---
-title: Get-EntraBetaApplicationProxyConnectorGroupMembers
-description: This article provides details on the Get-EntraBetaApplicationProxyConnectorGroupMembers.
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Title: Get-EntraBetaApplicationProxyConnectorGroupMembers
+Description: This article provides details on the Get-EntraBetaApplicationProxyConnectorGroupMembers.
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaApplicationProxyConnectorGroupMembers
 
 ## Synopsis
-the Get-EntraBetaApplicationProxyConnectorGroupMembers get all the Application Proxy connectors associated with the given connector group. 
+The Get-EntraBetaApplicationProxyConnectorGroupMembers get all the Application Proxy connectors associated with the given connector group. 
 
 ## Syntax
 
@@ -30,7 +30,7 @@ Get-EntraBetaApplicationProxyConnectorGroupMembers
 ```
 
 ## Description
-the Get-EntraBetaApplicationProxyConnectorGroupMembers get all the Application Proxy connectors associated with the given connector group. 
+The Get-EntraBetaApplicationProxyConnectorGroupMembers get all the Application Proxy connectors associated with the given connector group. 
 
 ## Examples
 
@@ -41,11 +41,11 @@ PS C:\> Get-EntraBetaApplicationProxyConnectorGroupMembers -Id 87ffe1e2-6313-4a2
 ```output
 Name                           Value
 ----                           -----
-id                             147bd8b4-2134-4454-8f2a-1da81cf27917
-externalIp                     3.7.211.5
-machineName                    PERE-VARSHAM-FULLSTAK
-version                        1.5.3437.0
-status                         active
+Id                             147bd8b4-2134-4454-8f2a-1da81cf27917
+ExternalIp                     3.7.211.5
+MachineName                    PERE-VARSHAM-FULLSTAK
+Version                        1.5.3437.0
+Status                         active
 
 ```
 The output of this command, showing all the connectors in the group.
@@ -57,11 +57,11 @@ PS C:\>Get-EntraBetaApplicationProxyConnectorGroupMembers -Id 87ffe1e2-6313-4a22
 ```output
 Name                           Value
 ----                           -----
-id                             147bd8b4-2134-4454-8f2a-1da81cf27917
-externalIp                     3.7.211.5
-machineName                    PERE-VARSHAM-FULLSTAK
-version                        1.5.3437.0
-status                         active
+Id                             147bd8b4-2134-4454-8f2a-1da81cf27917
+ExternalIp                     3.7.211.5
+MachineName                    PERE-VARSHAM-FULLSTAK
+Version                        1.5.3437.0
+Status                         active
 
 ```
 The output of this command, showing top one connector in the group.
@@ -73,11 +73,11 @@ PS C:\> Get-EntraBetaApplicationProxyConnectorGroupMembers -Id 87ffe1e2-6313-4a2
 ```output
 Name                           Value
 ----                           -----
-id                             147bd8b4-2134-4454-8f2a-1da81cf27917
-externalIp                     3.7.211.5
-machineName                    PERE-VARSHAM-FULLSTAK
-version                        1.5.3437.0
-status                         active
+Id                             147bd8b4-2134-4454-8f2a-1da81cf27917
+ExternalIp                     3.7.211.5
+MachineName                    PERE-VARSHAM-FULLSTAK
+Version                        1.5.3437.0
+Status                         active
 
 ```
 The output of this command, showing all the connectors in the group with filter parameter.

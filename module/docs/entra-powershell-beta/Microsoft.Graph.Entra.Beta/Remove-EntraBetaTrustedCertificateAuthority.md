@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaTrustedCertificateAuthority
 
 ## Synopsis
-removes a trusted certificate authority.
+Removes a trusted certificate authority.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Remove-EntraBetaTrustedCertificateAuthority -CertificateAuthorityInformation <Ce
 ```
 
 ## Description
-the Remove-EntraBetaTrustedCertificateAuthority cmdlet removes a trusted certificate authority from Azure Active Directory (AD).
+The Remove-EntraBetaTrustedCertificateAuthority cmdlet removes a trusted certificate authority from Azure Active Directory (AD).
 
 ## Examples
 

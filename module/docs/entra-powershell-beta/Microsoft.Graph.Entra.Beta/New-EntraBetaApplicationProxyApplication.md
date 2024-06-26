@@ -1,23 +1,23 @@
 ---
-title: New-EntraBetaApplicationProxyApplication
-description: This article provides details on the New-EntraBetaApplicationProxyApplication command.
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Title: New-EntraBetaApplicationProxyApplication
+Description: This article provides details on the New-EntraBetaApplicationProxyApplication command.
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaApplicationProxyApplication
 
 ## Synopsis
-the New-EntraBetaApplicationProxyApplication cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
+The New-EntraBetaApplicationProxyApplication cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
 
 ## Syntax
 
@@ -38,7 +38,7 @@ New-EntraBetaApplicationProxyApplication
 ```
 
 ## Description
-the New-EntraBetaApplicationProxyApplication cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
+The New-EntraBetaApplicationProxyApplication cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
 To ensure this application is usable, also make sure you assign users and configure SSO if needed.
 Without specifying a ConnectorGroupId, this application by default uses the �Default� connector group in your tenant.
 
@@ -51,20 +51,20 @@ PS C:\> New-EntraBetaApplicationProxyApplication -DisplayName "Finance Tracker" 
 ```
 ```output
 ObjectId                                 : 93eef5b9-e7a5-4758-a746-9cf3fd9f38dc
-externalAuthenticationType               : 
-applicationServerTimeout                 : 
-externalUrl                              : https://finance-awcycles.msappproxy.net/
-internalUrl                              : http://finance/
-isTranslateHostHeaderEnabled             : False
-isTranslateLinksInBodyEnabled            : False
-isOnPremPublishingEnabled                : True
-verifiedCustomDomainCertificatesMetadata :
-verifiedCustomDomainKeyCredential        :
-verifiedCustomDomainPasswordCredential   :
-singleSignOnSettings                     : @{singleSignOnMode=none; kerberosSignOnSettings=}
-isHttpOnlyCookieEnabled                  : False
-isSecureCookieEnabled                    : False
-isPersistentCookieEnabled                : False
+ExternalAuthenticationType               : 
+ApplicationServerTimeout                 : 
+ExternalUrl                              : https://finance-awcycles.msappproxy.net/
+InternalUrl                              : http://finance/
+IsTranslateHostHeaderEnabled             : False
+IsTranslateLinksInBodyEnabled            : False
+IsOnPremPublishingEnabled                : True
+VerifiedCustomDomainCertificatesMetadata :
+VerifiedCustomDomainKeyCredential        :
+VerifiedCustomDomainPasswordCredential   :
+SingleSignOnSettings                     : @{singleSignOnMode=none; kerberosSignOnSettings=}
+IsHttpOnlyCookieEnabled                  : False
+IsSecureCookieEnabled                    : False
+IsPersistentCookieEnabled                : False
 ```
 
 This command Creating a new application with only the basic required settings, and the default domain for applications.
@@ -75,20 +75,20 @@ PS C:\>New-EntraBetaApplicationProxyApplication -DisplayName "Finance Tracker" -
 ```
 ```output
 ObjectId                                 : 93eef5b9-e7a5-4758-a746-9cf3fd9f38dc
-externalAuthenticationType               : aadPreAuthentication
-applicationServerTimeout                 : Long
-externalUrl                              : https://testp4-m365x99297270.msappproxy.net/
-internalUrl                              : https://testp4.com/
-isTranslateHostHeaderEnabled             : False
-isTranslateLinksInBodyEnabled            : False
-isOnPremPublishingEnabled                : True
-verifiedCustomDomainCertificatesMetadata :
-verifiedCustomDomainKeyCredential        :
-verifiedCustomDomainPasswordCredential   :
-singleSignOnSettings                     : @{singleSignOnMode=none; kerberosSignOnSettings=}
-isHttpOnlyCookieEnabled                  : False
-isSecureCookieEnabled                    : False
-isPersistentCookieEnabled                : False
+ExternalAuthenticationType               : aadPreAuthentication
+ApplicationServerTimeout                 : Long
+ExternalUrl                              : https://testp4-m365x99297270.msappproxy.net/
+InternalUrl                              : https://testp4.com/
+IsTranslateHostHeaderEnabled             : False
+IsTranslateLinksInBodyEnabled            : False
+IsOnPremPublishingEnabled                : True
+VerifiedCustomDomainCertificatesMetadata :
+VerifiedCustomDomainKeyCredential        :
+VerifiedCustomDomainPasswordCredential   :
+SingleSignOnSettings                     : @{singleSignOnMode=none; kerberosSignOnSettings=}
+IsHttpOnlyCookieEnabled                  : False
+IsSecureCookieEnabled                    : False
+IsPersistentCookieEnabled                : False
 ```
 
 This command Creating a new application with ApplicationServerTimeout and ExternalAuthenticationType parameter.
@@ -100,20 +100,20 @@ PS C:\>New-EntraBetaApplicationProxyApplication -DisplayName "Finance Tracker" -
 ```
 ```output
 ObjectId                                 : 93eef5b9-e7a5-4758-a746-9cf3fd9f38dc
-externalAuthenticationType               : aadPreAuthentication
-applicationServerTimeout                 : Long
-externalUrl                              : https://testp4-m365x99297270.msappproxy.net/
-internalUrl                              : https://testp4.com/
-isTranslateHostHeaderEnabled             : False
-isTranslateLinksInBodyEnabled            : False
-isOnPremPublishingEnabled                : True
-verifiedCustomDomainCertificatesMetadata :
-verifiedCustomDomainKeyCredential        :
-verifiedCustomDomainPasswordCredential   :
-singleSignOnSettings                     : @{singleSignOnMode=none; kerberosSignOnSettings=}
-isHttpOnlyCookieEnabled                  : False
-isSecureCookieEnabled                    : False
-isPersistentCookieEnabled                : False
+ExternalAuthenticationType               : aadPreAuthentication
+ApplicationServerTimeout                 : Long
+ExternalUrl                              : https://testp4-m365x99297270.msappproxy.net/
+InternalUrl                              : https://testp4.com/
+IsTranslateHostHeaderEnabled             : False
+IsTranslateLinksInBodyEnabled            : False
+IsOnPremPublishingEnabled                : True
+VerifiedCustomDomainCertificatesMetadata :
+VerifiedCustomDomainKeyCredential        :
+VerifiedCustomDomainPasswordCredential   :
+SingleSignOnSettings                     : @{singleSignOnMode=none; kerberosSignOnSettings=}
+IsHttpOnlyCookieEnabled                  : False
+IsSecureCookieEnabled                    : False
+IsPersistentCookieEnabled                : False
 ```
 
 This command Creating a new application with IsHttpOnlyCookieEnabled, IsSecureCookieEnabled, IsTranslateLinksInBodyEnabled, and ConnectorGroupId parameter.

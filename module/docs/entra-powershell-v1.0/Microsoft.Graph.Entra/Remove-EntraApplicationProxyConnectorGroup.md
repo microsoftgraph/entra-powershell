@@ -1,24 +1,24 @@
 ---
-title: Remove-EntraApplicationProxyConnectorGroup.
-description: This article provides details on the Remove-EntraApplicationProxyConnectorGroup Command.
+Title: Remove-EntraApplicationProxyConnectorGroup.
+Description: This article provides details on the Remove-EntraApplicationProxyConnectorGroup Command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraApplicationProxyConnectorGroup
 
 ## Synopsis
-the Remove-EntraApplicationProxyConnectorGroup cmdlet deletes an Application Proxy Connector group.
+The Remove-EntraApplicationProxyConnectorGroup cmdlet deletes an Application Proxy Connector group.
 
 ## Syntax
 
@@ -29,7 +29,7 @@ the Remove-EntraApplicationProxyConnectorGroup cmdlet deletes an Application Pro
 ```
 
 ## Description
-the Remove-EntraApplicationProxyConnectorGroup cmdlet deletes an Application Proxy Connector Group.
+The Remove-EntraApplicationProxyConnectorGroup cmdlet deletes an Application Proxy Connector Group.
 It can only be used on an empty connector group, with no connectors assigned.
 
 ## Examples

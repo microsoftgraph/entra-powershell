@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaTenantDetail
 
 ## Synopsis
-set contact details for a tenant
+Set contact details for a tenant
 
 ## Syntax
 
@@ -22,7 +22,7 @@ Set-EntraBetaTenantDetail [-MarketingNotificationEmails <System.Collections.Gene
 ```
 
 ## Description
-this cmdlet is used to set various contact details for a tenant.
+This cmdlet is used to set various contact details for a tenant.
 
 ## Examples
 

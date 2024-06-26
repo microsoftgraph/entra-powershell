@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaPermissionGrantConditionSet
 
 ## Synopsis
-get an Azure Active Directory permission grant condition set by id.
+Get an Azure Active Directory permission grant condition set by id.
 
 ## Syntax
 
@@ -24,7 +24,7 @@ Get-EntraBetaPermissionGrantConditionSet -Id <String> -ConditionSetType <String>
 ```
 
 ## Description
-get an Azure Active Directory permission grant condition set object by id.
+Get an Azure Active Directory permission grant condition set object by id.
 
 ## Examples
 

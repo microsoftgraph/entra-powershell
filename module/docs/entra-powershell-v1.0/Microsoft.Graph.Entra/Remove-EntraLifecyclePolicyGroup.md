@@ -1,26 +1,26 @@
 ---
-title: Remove-EntraLifecyclePolicyGroup
-description: This article provides details on the Remove-EntraLifecyclePolicyGroup command.
+Title: Remove-EntraLifecyclePolicyGroup
+Description: This article provides details on the Remove-EntraLifecyclePolicyGroup command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraLifecyclePolicyGroup
 
 ## Synopsis
 
-removes a group from a lifecycle policy.
+Removes a group from a lifecycle policy.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Remove-EntraLifecyclePolicyGroup
 
 ## Description
 
-the Remove-EntraLifecyclePolicyGroup cmdlet removes a group from a lifecycle policy in Microsoft Entra ID.
+The Remove-EntraLifecyclePolicyGroup cmdlet removes a group from a lifecycle policy in Microsoft Entra ID.
 
 ## Examples
 

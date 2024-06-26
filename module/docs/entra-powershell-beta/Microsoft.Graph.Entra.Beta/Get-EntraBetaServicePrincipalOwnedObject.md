@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaServicePrincipalOwnedObject
 
 ## Synopsis
-gets an object owned by a service principal.
+Gets an object owned by a service principal.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Get-EntraBetaServicePrincipalOwnedObject -ObjectId <String> [-All] [-Top <Int32>
 ```
 
 ## Description
-the Get-EntraBetaServicePrincipalOwnedObject cmdlet gets an object that is owned by a service principal in Azure Active Directory (Azure AD).
+The Get-EntraBetaServicePrincipalOwnedObject cmdlet gets an object that is owned by a service principal in Azure Active Directory (Azure AD).
 
 ## Examples
 

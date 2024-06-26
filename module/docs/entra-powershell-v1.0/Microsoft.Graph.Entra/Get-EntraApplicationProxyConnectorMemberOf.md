@@ -1,24 +1,24 @@
 ---
-title: Get-EntraApplicationProxyConnectorMemberOf.
-description: This article provides details on the Get-EntraApplicationProxyConnectorMemberOf Command.
+Title: Get-EntraApplicationProxyConnectorMemberOf.
+Description: This article provides details on the Get-EntraApplicationProxyConnectorMemberOf Command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraApplicationProxyConnectorMemberOf.
 
 ## Synopsis
-the Get-EntraApplicationProxyConnectorMemberOf command gets the ConnectorGroup that the specified Connector is a member of.
+The Get-EntraApplicationProxyConnectorMemberOf command gets the ConnectorGroup that the specified Connector is a member of.
 
 ## Syntax
 
@@ -29,7 +29,7 @@ Get-EntraApplicationProxyConnectorMemberOf
 ```
 
 ## Description
-the Get-EntraApplicationProxyConnectorMemberOf command gets the ConnectorGroup that the specified Connector is a member of.
+The Get-EntraApplicationProxyConnectorMemberOf command gets the ConnectorGroup that the specified Connector is a member of.
 If no group is assigned to the connector, by default it is in 'Default.'
 
 ## Examples
@@ -43,7 +43,7 @@ PS C:\> Get-EntraApplicationProxyConnectorMemberOf -Id 4c8b06e7-9751-41d5-8e5e-4
 
 Id                                   Name                ConnectorGroupType IsDefault
 --                                   ----                ------------------ ---------
-a39b9095-8dc8-4d3a-86c3-e7b5c3f0fb84 Application Servers applicationProxy       False
+A39b9095-8dc8-4d3a-86c3-e7b5c3f0fb84 Application Servers applicationProxy       False
 ```
 This example demonstrates how to retrieve the ConnectorGroup that the specified Connector is a member of.
 

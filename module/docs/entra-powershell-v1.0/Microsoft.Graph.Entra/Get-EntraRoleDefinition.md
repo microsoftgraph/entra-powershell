@@ -1,25 +1,25 @@
 ---
-title: Get-EntraRoleDefinition
-description: This article provides details on the Get-EntraRoleDefinition command.
+Title: Get-EntraRoleDefinition
+Description: This article provides details on the Get-EntraRoleDefinition command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraRoleDefinition
 
 ## Synopsis
 
-gets information about role definitions in Microsoft Entra ID.
+Gets information about role definitions in Microsoft Entra ID.
 
 ## Syntax
 
@@ -53,7 +53,7 @@ Get-EntraRoleDefinition
 
 ## Description
 
-the `Get-EntraRoleDefinition` cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the `Id` parameter. Specify the `SearchString` or `Filter` parameter to find particular role definition.
+The `Get-EntraRoleDefinition` cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the `Id` parameter. Specify the `SearchString` or `Filter` parameter to find particular role definition.
 
 ## Examples
 

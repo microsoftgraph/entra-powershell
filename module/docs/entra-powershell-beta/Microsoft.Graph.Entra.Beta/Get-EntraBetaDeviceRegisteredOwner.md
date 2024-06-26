@@ -1,25 +1,25 @@
 ---
-title: Get-EntraBetaDeviceRegisteredOwner
-description: This article provides details on the Get-EntraBetaDeviceRegisteredOwner command.
+Title: Get-EntraBetaDeviceRegisteredOwner
+Description: This article provides details on the Get-EntraBetaDeviceRegisteredOwner command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaDeviceRegisteredOwner
 
 ## Synopsis
-gets the registered owner of a device.
+Gets the registered owner of a device.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Get-EntraBetaDeviceRegisteredOwner
 ```
 
 ## Description
-the Get-EntraBetaDeviceRegisteredOwner cmdlet gets the registered owner of a device in Microsoft Entra ID.
+The Get-EntraBetaDeviceRegisteredOwner cmdlet gets the registered owner of a device in Microsoft Entra ID.
 
 ## Examples
 
@@ -61,7 +61,7 @@ PS C:\> Get-EntraBetaDeviceRegisteredOwner -ObjectId 8542ebd1-3d49-4073-9dce-30f
 ObjectId                             DisplayName     UserPrincipalName     UserType
 --------                             -----------    -----------------      --------
 412be9d1-1460-4061-8eed-cca203fcb215 Mary kom       mary@contoso.com       Member
-fd560167-ff1f-471a-8d74-3b0070abcea1 Peter Adams    peter@contoso.com      Member
+Fd560167-ff1f-471a-8d74-3b0070abcea1 Peter Adams    peter@contoso.com      Member
 ```
 
 This command gets the registered owner of a device.
@@ -75,7 +75,7 @@ PS C:\> Get-EntraBetaDeviceRegisteredOwner -ObjectId 8542ebd1-3d49-4073-9dce-30f
 ObjectId                             DisplayName     UserPrincipalName     UserType
 --------                             -----------    -----------------      --------
 412be9d1-1460-4061-8eed-cca203fcb215 Mary kom       mary@contoso.com       Member
-fd560167-ff1f-471a-8d74-3b0070abcea1 Peter Adams    peter@contoso.com      Member
+Fd560167-ff1f-471a-8d74-3b0070abcea1 Peter Adams    peter@contoso.com      Member
 ```
 
 This command retrieves all the registered owners of a device.

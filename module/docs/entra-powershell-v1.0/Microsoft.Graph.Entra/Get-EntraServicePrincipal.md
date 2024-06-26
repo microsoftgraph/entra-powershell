@@ -1,25 +1,25 @@
 ---
-title: Get-EntraServicePrincipal
-description: This article provides details on the Get-EntraServicePrincipal command.
+Title: Get-EntraServicePrincipal
+Description: This article provides details on the Get-EntraServicePrincipal command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraServicePrincipal
 
 ## Synopsis
 
-gets a service principal.
+Gets a service principal.
 
 ## Syntax
 
@@ -53,7 +53,7 @@ Get-EntraServicePrincipal
 
 ## Description
 
-the Get-EntraServicePrincipal cmdlet gets a service principal in Microsoft Entra ID.
+The Get-EntraServicePrincipal cmdlet gets a service principal in Microsoft Entra ID.
 
 ## Examples
 
@@ -67,9 +67,9 @@ Get-EntraServicePrincipal
 ```output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
-bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 Demo App
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 22223333-cccc-4444-dddd-5555eeee6666 Demo Two App
-dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
+Bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 Demo App
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 22223333-cccc-4444-dddd-5555eeee6666 Demo Two App
+Dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
 ```
 
 This command retrieves all service principal from the directory.
@@ -85,7 +85,7 @@ Get-EntraServicePrincipal $ServicePrincipalId
 ```output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
-bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 Demo App
+Bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 Demo App
 ```
 
 The first command gets the ID of a service principal by using the [Get-EntraServicePrincipal](./Get-EntraServicePrincipal.md) cmdlet.  
@@ -104,10 +104,10 @@ Get-EntraServicePrincipal -All
 ```output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
-bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 Demo App
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 22223333-cccc-4444-dddd-5555eeee6666 Demo Two App
-dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
-ffffffff-5555-6666-7777-aaaaaaaaaaaa 44445555-eeee-6666-ffff-7777aaaa8888 Reports App
+Bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 Demo App
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 22223333-cccc-4444-dddd-5555eeee6666 Demo Two App
+Dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
+Ffffffff-5555-6666-7777-aaaaaaaaaaaa 44445555-eeee-6666-ffff-7777aaaa8888 Reports App
 ```
 
 This command retrieves all service principals from the directory.
@@ -122,9 +122,9 @@ Get-EntraServicePrincipal -Top 3
 ```output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
-bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 Demo App
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 22223333-cccc-4444-dddd-5555eeee6666 Demo Two App
-dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
+Bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 Demo App
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 22223333-cccc-4444-dddd-5555eeee6666 Demo Two App
+Dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
 ```
 
 This command retrieves top three service principals from the directory.
@@ -139,7 +139,7 @@ Get-EntraServicePrincipal -Filter "DisplayName eq 'ProjectWorkManagement'"
 ```output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
-dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
+Dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
 ```
 
 This command gets a service principal by its display name.
@@ -154,7 +154,7 @@ Get-EntraServicePrincipal -SearchString "ProjectWorkManagement"
 ```output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
-dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
+Dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
 ```
 
 This command gets a list of service principal, which has the specified display name.

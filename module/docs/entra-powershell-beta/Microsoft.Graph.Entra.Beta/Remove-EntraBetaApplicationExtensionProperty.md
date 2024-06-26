@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaApplicationExtensionProperty
 
 ## Synopsis
-removes an application extension property.
+Removes an application extension property.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Remove-EntraBetaApplicationExtensionProperty -ObjectId <String> -ExtensionProper
 ```
 
 ## Description
-the Remove-EntraBetaApplicationExtensionProperty cmdlet removes an application extension property for an object in Azure Active Directory.
+The Remove-EntraBetaApplicationExtensionProperty cmdlet removes an application extension property for an object in Azure Active Directory.
 
 ## Examples
 

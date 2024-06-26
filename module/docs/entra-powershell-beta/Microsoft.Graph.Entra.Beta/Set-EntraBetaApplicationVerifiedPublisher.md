@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaApplicationVerifiedPublisher
 
 ## Synopsis
-sets the verified publisher of an application to a verified Microsoft Partner Network (MPN) identifier.
+Sets the verified publisher of an application to a verified Microsoft Partner Network (MPN) identifier.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Set-EntraBetaApplicationVerifiedPublisher -SetVerifiedPublisherRequest <SetVerif
 ```
 
 ## Description
-sets the verified publisher of an application to a verified Microsoft Partner Network (MPN) identifier.
+Sets the verified publisher of an application to a verified Microsoft Partner Network (MPN) identifier.
 
 ## Examples
 

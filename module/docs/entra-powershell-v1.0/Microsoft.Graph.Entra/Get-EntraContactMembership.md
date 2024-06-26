@@ -1,25 +1,25 @@
 ---
-title: Get-EntraContactMembership
-description: This article provides details on the Get-EntraContactMembership command.
+Title: Get-EntraContactMembership
+Description: This article provides details on the Get-EntraContactMembership command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraContactMembership
 
 ## Synopsis
 
-get a contact membership.
+Get a contact membership.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Get-EntraContactMembership
 
 ## Description
 
-the `Get-EntraContactMembership` cmdlet gets a contact membership in Microsoft Entra ID.
+The `Get-EntraContactMembership` cmdlet gets a contact membership in Microsoft Entra ID.
 
 This command is useful to administrators who need to understand which groups, roles, or administrative units a particular contact belongs to. This can be important for troubleshooting access issues, auditing memberships, and ensuring that contact memberships are correctly configured.
 
@@ -50,9 +50,9 @@ Get-EntraContactMembership -ObjectId $Contact.ObjectId
 ```output
 Id                                   DeletedDateTime
 --                                   ---------------
-ffffffff-5555-6666-7777-aaaaaaaaaaaa
-aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb
-bbbbbbbb-7777-8888-9999-cccccccccccc
+Ffffffff-5555-6666-7777-aaaaaaaaaaaa
+Aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb
+Bbbbbbbb-7777-8888-9999-cccccccccccc
 ```
 
 This command gets all the memberships for specified contact.
@@ -67,9 +67,9 @@ Get-EntraContactMembership -ObjectId 'dddddddd-3333-4444-5555-eeeeeeeeeeee' -All
 ```output
 Id                                   DeletedDateTime
 --                                   ---------------
-ffffffff-5555-6666-7777-aaaaaaaaaaaa
-aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb
-bbbbbbbb-7777-8888-9999-cccccccccccc
+Ffffffff-5555-6666-7777-aaaaaaaaaaaa
+Aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb
+Bbbbbbbb-7777-8888-9999-cccccccccccc
 ```
 
 This command gets all the memberships for specified contact.
@@ -84,8 +84,8 @@ Get-EntraContactMembership -ObjectId 'dddddddd-3333-4444-5555-eeeeeeeeeeee' -Top
 ```output
 Id                                   DeletedDateTime
 --                                   ---------------
-ffffffff-5555-6666-7777-aaaaaaaaaaaa
-aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb
+Ffffffff-5555-6666-7777-aaaaaaaaaaaa
+Aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb
 ```
 
 This command gets top two memberships for specified contact.

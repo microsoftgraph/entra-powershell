@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaLifecyclePolicyGroup
 
 ## Synopsis
-removes a group from a lifecycle policy
+Removes a group from a lifecycle policy
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaLifecyclePolicyGroup -Id <String> -GroupId <String> [<CommonPara
 ```
 
 ## Description
-the Remove-EntraBetaLifecyclePolicyGroup cmdlet removes a group from a lifecycle policy in Azure Active Directory
+The Remove-EntraBetaLifecyclePolicyGroup cmdlet removes a group from a lifecycle policy in Azure Active Directory
 
 ## Examples
 

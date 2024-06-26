@@ -1,24 +1,24 @@
 ---
-title: Remove-EntraApplicationKey.
-description: This article provides details on the Remove-EntraApplicationKey command.
+Title: Remove-EntraApplicationKey.
+Description: This article provides details on the Remove-EntraApplicationKey command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraApplicationKey
 
 ## Synopsis
-removes a key from an application.
+Removes a key from an application.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Remove-EntraApplicationKey
 ```
 
 ## Description
-removes a key from an application.
+Removes a key from an application.
 
 ## Examples
 

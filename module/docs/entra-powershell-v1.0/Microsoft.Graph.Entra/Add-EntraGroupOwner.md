@@ -1,18 +1,18 @@
 ---
-title: Add-EntraGroupOwner
-description: This article explains the Add-EntraGroupOwner command.
+Title: Add-EntraGroupOwner
+Description: This article explains the Add-EntraGroupOwner command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Add-EntraGroupOwner
@@ -32,7 +32,7 @@ Add-EntraGroupOwner
 
 ## Description
 
-the Add-EntraGroupOwner cmdlet Adds an owner to a Microsoft Entra ID group.
+The Add-EntraGroupOwner cmdlet Adds an owner to a Microsoft Entra ID group.
 
 ## Examples
 

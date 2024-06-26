@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaPasswordSingleSignOnCredential
 
 ## Synopsis
-removes the password SSO credentials
+Removes the password SSO credentials
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Remove-EntraBetaPasswordSingleSignOnCredential -ObjectId <String> -PasswordSSOOb
 ```
 
 ## Description
-this cmdlet enables users to remove their Password Single-sign-on credentials for an application which they are part of.
+This cmdlet enables users to remove their Password Single-sign-on credentials for an application which they are part of.
 Admin could remove the group credentials as well.
 
 ## Examples

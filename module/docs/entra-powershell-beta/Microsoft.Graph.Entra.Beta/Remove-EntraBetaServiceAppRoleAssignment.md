@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaServiceAppRoleAssignment
 
 ## Synopsis
-removes a service principal application role assignment.
+Removes a service principal application role assignment.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Remove-EntraBetaServiceAppRoleAssignment -ObjectId <String> -AppRoleAssignmentId
 ```
 
 ## Description
-the Remove-EntraBetaServiceAppRoleAssignment cmdlet removes a service principal application role assignment in Azure Active Directory (AD).
+The Remove-EntraBetaServiceAppRoleAssignment cmdlet removes a service principal application role assignment in Azure Active Directory (AD).
 
 ## Examples
 

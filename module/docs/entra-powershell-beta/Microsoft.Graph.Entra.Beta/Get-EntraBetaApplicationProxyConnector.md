@@ -1,23 +1,23 @@
 ---
-title: Get-EntraBetaApplicationProxyConnector
-description: This article provides details on the Get-EntraBetaApplicationProxyConnector command.
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Title: Get-EntraBetaApplicationProxyConnector
+Description: This article provides details on the Get-EntraBetaApplicationProxyConnector command.
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaApplicationProxyConnector
 
 ## Synopsis
-the Get-EntraBetaApplicationProxyConnector cmdlet a list of all connectors, or if specified, details of a specific connector.
+The Get-EntraBetaApplicationProxyConnector cmdlet a list of all connectors, or if specified, details of a specific connector.
 
 ## Syntax
 
@@ -47,7 +47,7 @@ Get-EntraBetaApplicationProxyConnector
 ```
 
 ## Description
-the Get-EntraBetaApplicationProxyConnector cmdlet retrieves the details for a given connector.
+The Get-EntraBetaApplicationProxyConnector cmdlet retrieves the details for a given connector.
 If no connectorId is specified, it retrieves all the connectors assigned to the tenant.
 
 ## Examples
@@ -59,11 +59,11 @@ PS C:\> Get-EntraBetaApplicationProxyConnector
 ```output
 Name                           Value
 ----                           -----
-id                             147bd8b4-2134-4454-8f2a-1da81cf27917
-externalIp                     18.140.241.94
-machineName                    PERE-VARSHAM-FULLSTAK
-version                        1.5.3437.0
-status                         active
+Id                             147bd8b4-2134-4454-8f2a-1da81cf27917
+ExternalIp                     18.140.241.94
+MachineName                    PERE-VARSHAM-FULLSTAK
+Version                        1.5.3437.0
+Status                         active
 ```
 
 This command Retrieve all connectors.
@@ -75,12 +75,12 @@ PS C:\> Get-EntraBetaApplicationProxyConnector -Id 147bd8b4-2134-4454-8f2a-1da81
 ```output
 Name                           Value
 ----                           -----
-id                             147bd8b4-2134-4454-8f2a-1da81cf27917
+Id                             147bd8b4-2134-4454-8f2a-1da81cf27917
 @odata.context                 https://graph.microsoft.com/beta/$metadata#onPrem...
-externalIp                     18.140.241.94
-version                        0.0
-machineName                    PERE-VARSHAM-FULLSTAK
-status                         active
+ExternalIp                     18.140.241.94
+Version                        0.0
+MachineName                    PERE-VARSHAM-FULLSTAK
+Status                         active
 ```
 
 This example demonstrates how to Retrieve information for a specific connector.
@@ -93,11 +93,11 @@ PS C:\> Get-EntraBetaApplicationProxyConnector -Top 1
 ```output
 Name                           Value
 ----                           -----
-id                             147bd8b4-2134-4454-8f2a-1da81cf27917
-externalIp                     18.140.241.94
-machineName                    PERE-VARSHAM-FULLSTAK
-version                        1.5.3437.0
-status                         active
+Id                             147bd8b4-2134-4454-8f2a-1da81cf27917
+ExternalIp                     18.140.241.94
+MachineName                    PERE-VARSHAM-FULLSTAK
+Version                        1.5.3437.0
+Status                         active
 ```
 
 This example demonstrates how to Retrieve information for a top one connector.
@@ -110,11 +110,11 @@ PS C:\> Get-EntraBetaApplicationProxyConnector -SearchString "PERE-VARSHAM-FULLS
 ```output
 Name                           Value
 ----                           -----
-id                             147bd8b4-2134-4454-8f2a-1da81cf27917
-externalIp                     18.140.241.94
-machineName                    PERE-VARSHAM-FULLSTAK
-version                        1.5.3437.0
-status                         active
+Id                             147bd8b4-2134-4454-8f2a-1da81cf27917
+ExternalIp                     18.140.241.94
+MachineName                    PERE-VARSHAM-FULLSTAK
+Version                        1.5.3437.0
+Status                         active
 ```
 
 This example demonstrates how to Retrieve information using SearchString.
@@ -127,11 +127,11 @@ PS C:\> Get-EntraBetaApplicationProxyConnector -Filter "machineName eq 'PERE-VAR
 ```output
 Name                           Value
 ----                           -----
-id                             147bd8b4-2134-4454-8f2a-1da81cf27917
-externalIp                     18.140.241.94
-machineName                    PERE-VARSHAM-FULLSTAK
-version                        1.5.3437.0
-status                         active
+Id                             147bd8b4-2134-4454-8f2a-1da81cf27917
+ExternalIp                     18.140.241.94
+MachineName                    PERE-VARSHAM-FULLSTAK
+Version                        1.5.3437.0
+Status                         active
 ```
 
 This example demonstrates how to Retrieve information using machineName property.

@@ -1,25 +1,25 @@
 ---
-title: Get-EntraContactDirectReport
-description: This article provides details on the Get-EntraContactDirectReport command.
+Title: Get-EntraContactDirectReport
+Description: This article provides details on the Get-EntraContactDirectReport command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraContactDirectReport
 
 ## Synopsis
-get the direct reports for a contact.
+Get the direct reports for a contact.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Get-EntraContactDirectReport
 ```
 
 ## Description
-the Get-EntraContactDirectReport cmdlet gets the direct reports for a contact.
+The Get-EntraContactDirectReport cmdlet gets the direct reports for a contact.
 
 ## Examples
 

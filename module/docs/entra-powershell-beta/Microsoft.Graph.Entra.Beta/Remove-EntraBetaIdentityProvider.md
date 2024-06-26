@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaIdentityProvider
 
 ## Synopsis
-this cmdlet is used to delete an identity provider in the directory.
+This cmdlet is used to delete an identity provider in the directory.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaIdentityProvider -Id <String> [<CommonParameters>]
 ```
 
 ## Description
-this cmdlet is used to delete an identity provider that has been configured in the directory.
+This cmdlet is used to delete an identity provider that has been configured in the directory.
 The identity provider will be permanently deleted.
 
 ## Examples

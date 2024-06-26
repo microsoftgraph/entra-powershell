@@ -1,25 +1,25 @@
 ---
-title: Get-EntraServicePrincipalOwner
-description: This article provides details on the Get-EntraServicePrincipalOwner command.
+Title: Get-EntraServicePrincipalOwner
+Description: This article provides details on the Get-EntraServicePrincipalOwner command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraServicePrincipalOwner
 
 ## Synopsis
 
-get the owner of a service principal.
+Get the owner of a service principal.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Get-EntraServicePrincipalOwner
 
 ## Description
 
-the Get-EntraServicePrincipalOwner cmdlet gets the owners of a service principal in Microsoft Entra ID.
+The Get-EntraServicePrincipalOwner cmdlet gets the owners of a service principal in Microsoft Entra ID.
 
 ## Examples
 
@@ -48,9 +48,9 @@ Get-EntraServicePrincipalOwner -ObjectId $ServicePrincipalId
 ```output
 ObjectId                             DisplayName    UserPrincipalName   UserType
 --------                             -----------    -----------------   --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adams Smith    Adams@contoso.com   Member
-bbbbbbbb-1111-2222-3333-cccccccccccc Peter Kons     Peter@contoso.com   Member
-cccccccc-2222-3333-4444-dddddddddddd Mary Kom       Mary@contoso.com    Member
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adams Smith    Adams@contoso.com   Member
+Bbbbbbbb-1111-2222-3333-cccccccccccc Peter Kons     Peter@contoso.com   Member
+Cccccccc-2222-3333-4444-dddddddddddd Mary Kom       Mary@contoso.com    Member
 ```
 
 The first command gets the ID of a service principal by using the [Get-EntraServicePrincipal](./Get-EntraServicePrincipal.md) cmdlet. 
@@ -69,9 +69,9 @@ Get-EntraServicePrincipalOwner -ObjectId $ServicePrincipalId -All
 ```output
 ObjectId                             DisplayName    UserPrincipalName   UserType
 --------                             -----------    -----------------   --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adams Smith    Adams@contoso.com   Member
-bbbbbbbb-1111-2222-3333-cccccccccccc Peter Kons     Peter@contoso.com   Member
-cccccccc-2222-3333-4444-dddddddddddd Mary Kom       Mary@contoso.com    Member
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adams Smith    Adams@contoso.com   Member
+Bbbbbbbb-1111-2222-3333-cccccccccccc Peter Kons     Peter@contoso.com   Member
+Cccccccc-2222-3333-4444-dddddddddddd Mary Kom       Mary@contoso.com    Member
 ```
 
 This command gets all the owners of a service principal.
@@ -87,8 +87,8 @@ Get-EntraServicePrincipalOwner -ObjectId $ServicePrincipalId -Top 2
 ```output
 ObjectId                             DisplayName    UserPrincipalName   UserType
 --------                             -----------    -----------------   --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adams Smith    Adams@contoso.com   Member
-bbbbbbbb-1111-2222-3333-cccccccccccc Peter Kons     Peter@contoso.com   Member
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adams Smith    Adams@contoso.com   Member
+Bbbbbbbb-1111-2222-3333-cccccccccccc Peter Kons     Peter@contoso.com   Member
 ```
 
 This command gets top two owners of a service principal.

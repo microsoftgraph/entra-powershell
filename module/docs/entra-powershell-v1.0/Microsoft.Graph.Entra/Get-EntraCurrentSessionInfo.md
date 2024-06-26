@@ -1,25 +1,25 @@
 ---
-title: Get-EntraCurrentSessionInfo
-description: This article provides details on the Get-EntraCurrentSessionInfo command.
+Title: Get-EntraCurrentSessionInfo
+Description: This article provides details on the Get-EntraCurrentSessionInfo command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraCurrentSessionInfo
 
 ## Synopsis
-this cmdlet returns the current session state.
+This cmdlet returns the current session state.
 
 ## Syntax
 
@@ -29,7 +29,7 @@ Get-EntraCurrentSessionInfo
 ```
 
 ## Description
-the Get-EntraCurrentSessionInfo cmdlet returns the current session state.
+The Get-EntraCurrentSessionInfo cmdlet returns the current session state.
 
 ## Examples
 

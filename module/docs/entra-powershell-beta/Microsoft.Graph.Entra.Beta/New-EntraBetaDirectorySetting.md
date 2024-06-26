@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaDirectorySetting
 
 ## Synopsis
-creates a directory settings object.
+Creates a directory settings object.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ New-EntraBetaDirectorySetting -DirectorySetting <DirectorySetting> [<CommonParam
 ```
 
 ## Description
-the New-EntraBetaDirectorySetting cmdlet creates a directory settings object in Azure Active Directory (AD).
+The New-EntraBetaDirectorySetting cmdlet creates a directory settings object in Azure Active Directory (AD).
 
 ## Examples
 

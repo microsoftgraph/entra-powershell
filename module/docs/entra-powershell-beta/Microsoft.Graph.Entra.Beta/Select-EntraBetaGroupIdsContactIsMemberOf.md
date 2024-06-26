@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Select-EntraBetaGroupIdsContactIsMemberOf
 
 ## Synopsis
-get groups in which a contact is a member.
+Get groups in which a contact is a member.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Select-EntraBetaGroupIdsContactIsMemberOf -ObjectId <String>
 ```
 
 ## Description
-the Select-EntraBetaGroupIdsContactIsMemberOf cmdlet gets groups in Azure Active Directory (AD) in which a contact is a member.
+The Select-EntraBetaGroupIdsContactIsMemberOf cmdlet gets groups in Azure Active Directory (AD) in which a contact is a member.
 
 ## Examples
 

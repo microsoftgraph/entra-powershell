@@ -1,25 +1,25 @@
 ---
-title: Get-EntraConditionalAccessPolicy
-description: This article provides details on the Get-EntraConditionalAccessPolicy command.
+Title: Get-EntraConditionalAccessPolicy
+Description: This article provides details on the Get-EntraConditionalAccessPolicy command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraConditionalAccessPolicy
 
 ## Synopsis
 
-gets a Microsoft Entra ID conditional access policy.
+Gets a Microsoft Entra ID conditional access policy.
 
 ## Syntax
 
@@ -40,7 +40,7 @@ Get-EntraConditionalAccessPolicy
 
 ## Description
 
-this cmdlet allows an admin to get the Microsoft Entra ID conditional access policy.
+This cmdlet allows an admin to get the Microsoft Entra ID conditional access policy.
 Conditional access policies are custom rules that define an access scenario.
 
 ## Examples
@@ -55,9 +55,9 @@ Get-EntraConditionalAccessPolicy
 ```output
 Id                                   CreatedDateTime      Description DisplayName                ModifiedDateTime     State    TemplateId
 --                                   ---------------      ----------- -----------                ----------------     -----    ----------
-eeeeeeee-4444-5555-6666-ffffffffffff 2/27/2024 6:23:21 AM             ConditionalAccessPolicy    2/29/2024 2:41:17 PM disabled
-ffffffff-5555-6666-7777-aaaaaaaaaaaa 2/27/2024 6:26:00 AM             ConditionalAccessPolicy    2/29/2024 2:41:34 PM disabled
-aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb 2/27/2024 6:30:48 AM             ConditionalAccessPolicy    2/29/2024 2:43:53 PM disabled
+Eeeeeeee-4444-5555-6666-ffffffffffff 2/27/2024 6:23:21 AM             ConditionalAccessPolicy    2/29/2024 2:41:17 PM disabled
+Ffffffff-5555-6666-7777-aaaaaaaaaaaa 2/27/2024 6:26:00 AM             ConditionalAccessPolicy    2/29/2024 2:41:34 PM disabled
+Aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb 2/27/2024 6:30:48 AM             ConditionalAccessPolicy    2/29/2024 2:43:53 PM disabled
 ```
 
 This command retrieves a list of all conditional access policies in Microsoft Entra ID.
@@ -72,7 +72,7 @@ Get-EntraConditionalAccessPolicy -PolicyId 'eeeeeeee-4444-5555-6666-ffffffffffff
 ```output
 Id                                   CreatedDateTime      Description DisplayName                ModifiedDateTime     State    TemplateId
 --                                   ---------------      ----------- -----------                ----------------     -----    ----------
-eeeeeeee-4444-5555-6666-ffffffffffff 2/27/2024 6:23:21 AM             ConditionalAccessPolicy    2/29/2024 2:41:17 PM disabled
+Eeeeeeee-4444-5555-6666-ffffffffffff 2/27/2024 6:23:21 AM             ConditionalAccessPolicy    2/29/2024 2:41:17 PM disabled
 ```
 
 This command retrieves the conditional access policy in Microsoft Entra ID specified by the `-PolicyID`.

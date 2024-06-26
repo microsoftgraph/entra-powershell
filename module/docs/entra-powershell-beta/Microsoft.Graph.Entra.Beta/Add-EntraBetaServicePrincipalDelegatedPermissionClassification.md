@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Add-EntraBetaServicePrincipalDelegatedPermissionClassification
 
 ## Synopsis
-add a classification for a delegated permission.
+Add a classification for a delegated permission.
 
 ## Syntax
 
@@ -19,7 +19,7 @@ Add-EntraBetaServicePrincipalDelegatedPermissionClassification -PermissionId <St
 ```
 
 ## Description
-the Add-EntraBetaServicePrincipalDelegatedPermissionClassification cmdlet creates a delegated permission classification for the given permission on service principal.
+The Add-EntraBetaServicePrincipalDelegatedPermissionClassification cmdlet creates a delegated permission classification for the given permission on service principal.
 
 ## Examples
 

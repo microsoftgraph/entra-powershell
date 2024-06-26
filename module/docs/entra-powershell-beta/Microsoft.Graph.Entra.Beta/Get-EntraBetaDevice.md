@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaDevice
 
 ## Synopsis
-gets a device from Active Directory.
+Gets a device from Active Directory.
 
 ## Syntax
 
@@ -28,7 +28,7 @@ Get-EntraBetaDevice -ObjectId <String> [-All] [<CommonParameters>]
 ```
 
 ## Description
-the Get-EntraBetaDevice cmdlet gets a device from Azure Active Directory (AD).
+The Get-EntraBetaDevice cmdlet gets a device from Azure Active Directory (AD).
 
 ## Examples
 
@@ -51,7 +51,7 @@ ObjectId                             DeviceId                             Displa
 --------                             --------                             -----------
 3cb87a8f-0a41-4ca8-8910-e56cc00114a3 48445467-033c-42ca-8e38-8d181db1d49c bastias_WindowsPhone_5/1/2016_12:53 PM
 62aae804-8b1a-4ab7-8fda-5068aed1a1f7 3cb87a8f-0a41-4ca8-8910-e56cc00114a3 New Device
-d4fe7726-5966-431c-b3b8-cddc8fdb717d 293872f6-c006-4e6a-8629-07847c5ab078 New Device
+D4fe7726-5966-431c-b3b8-cddc8fdb717d 293872f6-c006-4e6a-8629-07847c5ab078 New Device
 ```
 
 This command gets all available devices.

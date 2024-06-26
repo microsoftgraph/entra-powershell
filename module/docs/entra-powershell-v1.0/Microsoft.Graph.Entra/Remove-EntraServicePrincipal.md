@@ -1,25 +1,25 @@
 ---
-title: Remove-EntraServicePrincipal.
-description: This article provides details on the Remove-EntraServicePrincipal command.
+Title: Remove-EntraServicePrincipal.
+Description: This article provides details on the Remove-EntraServicePrincipal command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraServicePrincipal
 
 ## Synopsis
 
-removes a service principal.
+Removes a service principal.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Remove-EntraServicePrincipal
 
 ## Description
 
-the Remove-EntraServicePrincipal cmdlet removes a service principal in Microsoft Entra ID.
+The Remove-EntraServicePrincipal cmdlet removes a service principal in Microsoft Entra ID.
 
 ## Examples
 

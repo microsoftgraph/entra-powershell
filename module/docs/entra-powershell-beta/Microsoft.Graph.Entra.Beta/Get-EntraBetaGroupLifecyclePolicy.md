@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaGroupLifecyclePolicy
 
 ## Synopsis
-retrieves the properties and relationships of a groupLifecyclePolicies object in Azure Active Directory.
+Retrieves the properties and relationships of a groupLifecyclePolicies object in Azure Active Directory.
 If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 
 ## Syntax
@@ -24,7 +24,7 @@ Get-EntraBetaGroupLifecyclePolicy -Id <String> [<CommonParameters>]
 ```
 
 ## Description
-the Get-EntraBetaGroupLifecyclePolicy command retrieves the properties and relationships of a groupLifecyclePolicies object in Azure Active Directory.
+The Get-EntraBetaGroupLifecyclePolicy command retrieves the properties and relationships of a groupLifecyclePolicies object in Azure Active Directory.
 If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 
 ## Examples

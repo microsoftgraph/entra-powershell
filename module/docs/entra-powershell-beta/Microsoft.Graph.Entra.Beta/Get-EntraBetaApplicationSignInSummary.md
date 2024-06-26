@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaApplicationSignInSummary
 
 ## Synopsis
-get signin summary by last number of days
+Get signin summary by last number of days
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Get-EntraBetaApplicationSignInSummary -Days <Int32> [-Top <Int32>] [-Filter <Str
 ```
 
 ## Description
-the Get-EntraBetaApplicationSignInSummary cmdlet gets sign in summaries for the last 7 or 30 days.
+The Get-EntraBetaApplicationSignInSummary cmdlet gets sign in summaries for the last 7 or 30 days.
 
 ## Examples
 

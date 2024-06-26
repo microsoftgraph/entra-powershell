@@ -1,25 +1,25 @@
 ---
-title: Get-EntraDomainVerificationDnsRecord.
-description: This article provides details on the Get-EntraDomainVerificationDnsRecord command.
+Title: Get-EntraDomainVerificationDnsRecord.
+Description: This article provides details on the Get-EntraDomainVerificationDnsRecord command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraDomainVerificationDnsRecord
 
 ## Synopsis
 
-retrieve the domain verification DNS record for a domain.
+Retrieve the domain verification DNS record for a domain.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Get-EntraDomainVerificationDnsRecord
 
 ## Description
 
-gets the domain's verification records from the `verificationDnsRecords` navigation property.
+Gets the domain's verification records from the `verificationDnsRecords` navigation property.
 
 You can't use the domain with your Microsoft Entra ID tenant until you have successfully verified that you own the domain.
 
@@ -53,8 +53,8 @@ Get-EntraDomainVerificationDnsRecord -Name mail.contoso.com
 ```Output
 Id                                   IsOptional Label                              RecordType SupportedService Ttl
 --                                   ---------- -----                              ---------- ---------------- ---
-aaaa0000-bb11-2222-33cc-444444dddddd False      mail.contoso.com Txt        Email            3600
-bbbb1111-cc22-3333-44dd-555555eeeeee False      mail.contoso.com Mx         Email            3600
+Aaaa0000-bb11-2222-33cc-444444dddddd False      mail.contoso.com Txt        Email            3600
+Bbbb1111-cc22-3333-44dd-555555eeeeee False      mail.contoso.com Mx         Email            3600
 ```
 
 This example shows how to retrieve the Domain verification DNS records for a domain with the given name.

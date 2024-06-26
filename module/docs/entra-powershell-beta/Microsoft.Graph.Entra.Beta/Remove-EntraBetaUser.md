@@ -1,25 +1,25 @@
 ---
-title: Remove-EntraBetaUser
-description: This article provides details on the Remove-EntraBetaUser command.
+Title: Remove-EntraBetaUser
+Description: This article provides details on the Remove-EntraBetaUser command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaUser
 
 ## Synopsis
-removes a user.
+Removes a user.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ Remove-EntraBetaUser
 ```
 
 ## Description
-the **Remove-EntraBetaUser** cmdlet removes a user in Microsoft Entra ID.
+The **Remove-EntraBetaUser** cmdlet removes a user in Microsoft Entra ID.
 
 ## Examples
 

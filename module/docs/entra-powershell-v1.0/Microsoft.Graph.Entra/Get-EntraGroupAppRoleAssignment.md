@@ -1,25 +1,25 @@
 ---
-title: Get-EntraGroupAppRoleAssignment
-description: This article provides details on the Get-EntraGroupAppRoleAssignment command.
+Title: Get-EntraGroupAppRoleAssignment
+Description: This article provides details on the Get-EntraGroupAppRoleAssignment command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraGroupAppRoleAssignment
 
 ## Synopsis
 
-gets a group application role assignment.
+Gets a group application role assignment.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Get-EntraGroupAppRoleAssignment
 
 ## Description
 
-the Get-EntraGroupAppRoleAssignment cmdlet gets a group application role assignment in Microsoft Entra ID.
+The Get-EntraGroupAppRoleAssignment cmdlet gets a group application role assignment in Microsoft Entra ID.
 
 ## Examples
 

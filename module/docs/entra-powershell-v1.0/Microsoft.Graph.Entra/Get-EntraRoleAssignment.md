@@ -1,25 +1,25 @@
 ---
-title: Get-EntraRoleAssignment
-description: This article provides details on the Get-EntraRoleAssignment command.
+Title: Get-EntraRoleAssignment
+Description: This article provides details on the Get-EntraRoleAssignment command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraRoleAssignment
 
 ## Synopsis
 
-get a Microsoft Entra ID roleAssignment.
+Get a Microsoft Entra ID roleAssignment.
 
 ## Syntax
 
@@ -52,7 +52,7 @@ Get-EntraRoleAssignment
 ```
 
 ## Description
-the `Get-EntraRoleAssignment` cmdlet gets information about role assignments in Microsoft Entra ID. To get a role assignment, specify the `Id` parameter. Specify the `SearchString` or `Filter` parameter to find a particular role assignment.
+The `Get-EntraRoleAssignment` cmdlet gets information about role assignments in Microsoft Entra ID. To get a role assignment, specify the `Id` parameter. Specify the `SearchString` or `Filter` parameter to find a particular role assignment.
 
 ## Examples
 

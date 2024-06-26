@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Add-EntraBetaApplicationPolicy
 
 ## Synopsis
-the Add-EntraBetaApplicationPolicy cmdlet is not available at this time .
+The Add-EntraBetaApplicationPolicy cmdlet is not available at this time .
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Add-EntraBetaApplicationPolicy -Id <String> -RefObjectId <String> [<CommonParame
 ```
 
 ## Description
-the Add-EntraBetaApplicationPolicy cmdlet Adds an Azure Active Directory application policy.
+The Add-EntraBetaApplicationPolicy cmdlet Adds an Azure Active Directory application policy.
 
 ## Examples
 

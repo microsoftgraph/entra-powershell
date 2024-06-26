@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaPermissionGrantPolicy
 
 ## Synopsis
-updates a permission grant policy.
+Updates a permission grant policy.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Set-EntraBetaPermissionGrantPolicy [-Description <String>] [-DisplayName <String
 ```
 
 ## Description
-the Set-EntraBetaPermissionGrantPolicy command updates an Azure Active Directory permission grant policy.
+The Set-EntraBetaPermissionGrantPolicy command updates an Azure Active Directory permission grant policy.
 
 ## Examples
 

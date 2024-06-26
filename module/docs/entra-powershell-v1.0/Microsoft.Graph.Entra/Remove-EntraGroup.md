@@ -1,24 +1,24 @@
 ---
-title: Remove-EntraGroup
-description: This article provides details on the Remove-EntraGroup command.
+Title: Remove-EntraGroup
+Description: This article provides details on the Remove-EntraGroup command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraGroup
 
 ## Synopsis
 
-removes a group.
+Removes a group.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ Remove-EntraGroup
 
 ## Description
 
-the Remove-EntraGroup cmdlet removes a group from Microsoft Entra ID.
+The Remove-EntraGroup cmdlet removes a group from Microsoft Entra ID.
 Note that a Unified Group can be restored withing 30 days after deletion using the Restore-EntraDeletedDirectoryObject cmdlet.
 Security groups can't be restored after deletion.
 

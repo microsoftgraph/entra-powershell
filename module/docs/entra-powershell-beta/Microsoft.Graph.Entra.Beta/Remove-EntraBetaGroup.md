@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaGroup
 
 ## Synopsis
-removes a group.
+Removes a group.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaGroup -ObjectId <String> [<CommonParameters>]
 ```
 
 ## Description
-the Remove-EntraBetaGroup cmdlet removes a group from Azure Active Directory (AD).
+The Remove-EntraBetaGroup cmdlet removes a group from Azure Active Directory (AD).
 Note that a Unified Group can be restored withing 30 days after deletion using the Restore-EntraBetaDeletedDirectoryObject cmdlet.
 Security groups cannot be restored after deletion.
 

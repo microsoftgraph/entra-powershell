@@ -1,25 +1,25 @@
 ---
-title: Get-EntraOAuth2PermissionGrant.
-description: This article provides details on the Get-EntraOAuth2PermissionGrant Command.
+Title: Get-EntraOAuth2PermissionGrant.
+Description: This article provides details on the Get-EntraOAuth2PermissionGrant Command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraOAuth2PermissionGrant
 
 ## Synopsis
 
-gets OAuth2PermissionGrant entities.
+Gets OAuth2PermissionGrant entities.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Get-EntraOAuth2PermissionGrant
 
 ## Description
 
-the `Get-EntraOAuth2PermissionGrant` cmdlet gets OAuth2PermissionGrant entities in Microsoft Entra ID.
+The `Get-EntraOAuth2PermissionGrant` cmdlet gets OAuth2PermissionGrant entities in Microsoft Entra ID.
 
 ## Examples
 

@@ -1,23 +1,23 @@
 ---
-title: Remove-EntraBetaPermissionGrantConditionSet
-description: This article provides details on the Remove-EntraBetaPermissionGrantConditionSet command.
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Title: Remove-EntraBetaPermissionGrantConditionSet
+Description: This article provides details on the Remove-EntraBetaPermissionGrantConditionSet command.
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaPermissionGrantConditionSet
 
 ## Synopsis
-delete a Microsoft Entra ID permission grant condition set by ID.
+Delete a Microsoft Entra ID permission grant condition set by ID.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ Remove-EntraBetaPermissionGrantConditionSet
 ```
 
 ## Description
-delete a Microsoft Entra ID permission grant condition set object by ID.
+Delete a Microsoft Entra ID permission grant condition set object by ID.
 
 ## Examples
 

@@ -1,24 +1,24 @@
 ---
-title: Get-EntraBetaRoleDefinition
-description: This article provides details on the Get-EntraBetaRoleDefinition command.
+Title: Get-EntraBetaRoleDefinition
+Description: This article provides details on the Get-EntraBetaRoleDefinition command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra.Beta-help.xml
+External help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaRoleDefinition
 
 ## Synopsis
-gets information about role definitions in Microsoft Entra ID.
+Gets information about role definitions in Microsoft Entra ID.
 
 ## Syntax
 
@@ -48,7 +48,7 @@ Get-EntraBetaRoleDefinition
 ```
 
 ## Description
-the Get-EntraBetaRoleDefinition cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the Id parameter. Specify the SearchString or Filter parameter to find particular role definition.
+The Get-EntraBetaRoleDefinition cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the Id parameter. Specify the SearchString or Filter parameter to find particular role definition.
 
 ## Examples
 

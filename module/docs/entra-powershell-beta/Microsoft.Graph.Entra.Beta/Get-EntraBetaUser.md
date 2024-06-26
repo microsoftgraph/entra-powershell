@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaUser
 
 ## Synopsis
-gets a user.
+Gets a user.
 
 ## Syntax
 
@@ -28,7 +28,7 @@ Get-EntraBetaUser -ObjectId <String> [-All] [<CommonParameters>]
 ```
 
 ## Description
-the Get-EntraBetaUser cmdlet gets a user from Azure Active Directory (AD).
+The Get-EntraBetaUser cmdlet gets a user from Azure Active Directory (AD).
 
 ## Examples
 
@@ -71,7 +71,7 @@ PS C:\>Get-EntraBetaUser -Filter "startswith(Title,'Sales')"
 ```
 
 This command gets all the users whos title starts with sales.
-ie Sales Manager and Sales Assistant.
+Ie Sales Manager and Sales Assistant.
 
 ## Parameters
 
@@ -94,7 +94,7 @@ Accept wildcard characters: False
 Specifies an oData v3.0 filter statement.
 This parameter controls which objects are returned.
 Details on querying with oData can be found here.
-https://www.odata.org/documentation/odata-version-3-0/odata-version-3-0-core-protocol/#queryingcollections
+Https://www.odata.org/documentation/odata-version-3-0/odata-version-3-0-core-protocol/#queryingcollections
 
 ```yaml
 Type: String

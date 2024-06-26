@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaDeletedDirectoryObject
 
 ## Synopsis
-this cmdlet is used to permanently delete a previously deleted directory object
+This cmdlet is used to permanently delete a previously deleted directory object
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaDeletedDirectoryObject -Id <String> [<CommonParameters>]
 ```
 
 ## Description
-this cmdlet is used to permanently delete a previously deleted directory object.
+This cmdlet is used to permanently delete a previously deleted directory object.
 When a directory object is permanently deleted it can no longer be restored.
 
 ## Examples

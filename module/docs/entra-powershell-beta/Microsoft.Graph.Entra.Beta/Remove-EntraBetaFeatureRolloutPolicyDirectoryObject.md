@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaFeatureRolloutPolicyDirectoryObject
 
 ## Synopsis
-allows an admin to remove a group from the cloud authentication rollout policy in Azure AD.
+Allows an admin to remove a group from the cloud authentication rollout policy in Azure AD.
 Users in this group will revert back to the authenticating using the global policy (in most cases this will be federation).
 
 ## Syntax
@@ -18,9 +18,9 @@ Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -ObjectId <String> -Id <Stri
 ```
 
 ## Description
-an admin will use this cmdlet to remove groups from the cloud authentication roll-out policy.
+An admin will use this cmdlet to remove groups from the cloud authentication roll-out policy.
 Users in these groups will start authenticating against the global authentication policy (e.g.
-federation).
+Federation).
 
 ## Examples
 

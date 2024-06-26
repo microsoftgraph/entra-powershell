@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaServicePrincipalOAuth2PermissionGrant
 
 ## Synopsis
-gets an oAuth2PermissionGrant object.
+Gets an oAuth2PermissionGrant object.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ObjectId <String> [-All] [-T
 ```
 
 ## Description
-the Get-EntraBetaServicePrincipalOAuth2PermissionGrant cmdlet gets an oAuth2PermissionGrant object for a service principal in Azure Active Directory (AD).
+The Get-EntraBetaServicePrincipalOAuth2PermissionGrant cmdlet gets an oAuth2PermissionGrant object for a service principal in Azure Active Directory (AD).
 
 ## Examples
 

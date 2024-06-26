@@ -1,25 +1,25 @@
 ---
-title: New-EntraServicePrincipalKeyCredential.
-description: This article provides details on the New-EntraServicePrincipalKeyCredential command.
+Title: New-EntraServicePrincipalKeyCredential.
+Description: This article provides details on the New-EntraServicePrincipalKeyCredential command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraServicePrincipalKeyCredential
 
 ## Synopsis
 
-creates a password credential for a service principal.
+Creates a password credential for a service principal.
 
 ## Syntax
 
@@ -37,7 +37,7 @@ New-EntraServicePrincipalKeyCredential
 
 ## Description
 
-the New-EntraServicePrincipalKeyCredential cmdlet creates a key credential for a service principal in Microsoft Entra ID.
+The New-EntraServicePrincipalKeyCredential cmdlet creates a key credential for a service principal in Microsoft Entra ID.
 
 ## Examples
 

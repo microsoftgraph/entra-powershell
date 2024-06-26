@@ -1,25 +1,25 @@
 ---
-title:  Get-EntraUserCreatedObject.
-description: This article provides details on the  Get-EntraUserCreatedObject Command.
+Title:  Get-EntraUserCreatedObject.
+Description: This article provides details on the  Get-EntraUserCreatedObject Command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraUserCreatedObject
 
 ## Synopsis
 
-get objects created by the user.
+Get objects created by the user.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Get-EntraUserCreatedObject
 
 ## Description
 
-the Get-EntraUserCreatedObject cmdlet gets objects created by a user in Microsoft Entra ID.
+The Get-EntraUserCreatedObject cmdlet gets objects created by a user in Microsoft Entra ID.
 
 ## Examples
 
@@ -48,10 +48,10 @@ Get-EntraUserCreatedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-dddddddd-3333-4444-5555-eeeeeeeeeeee
-eeeeeeee-4444-5555-6666-ffffffffffff
+Bbbbbbbb-1111-2222-3333-cccccccccccc
+Cccccccc-2222-3333-4444-dddddddddddd
+Dddddddd-3333-4444-5555-eeeeeeeeeeee
+Eeeeeeee-4444-5555-6666-ffffffffffff
 ```
 
 This command gets an object created by the specified user.
@@ -67,7 +67,7 @@ Get-EntraUserCreatedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
+Bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
 This command gets top one object created by the specified user.

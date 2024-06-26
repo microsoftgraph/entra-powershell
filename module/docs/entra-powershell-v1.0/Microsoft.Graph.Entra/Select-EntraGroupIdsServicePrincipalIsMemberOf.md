@@ -1,25 +1,25 @@
 ---
-title: Select-EntraGroupIdsServicePrincipalIsMemberOf.
-description: This article provides details on the Select-EntraGroupIdsServicePrincipalIsMemberOf command.
+Title: Select-EntraGroupIdsServicePrincipalIsMemberOf.
+Description: This article provides details on the Select-EntraGroupIdsServicePrincipalIsMemberOf command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Select-EntraGroupIdsServicePrincipalIsMemberOf
 
 ## Synopsis
 
-selects the groups in which a service principal is a member.
+Selects the groups in which a service principal is a member.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Select-EntraGroupIdsServicePrincipalIsMemberOf
 
 ## Description
 
-the Select-EntraGroupIdsServicePrincipalIsMemberOf cmdlet selects the groups in which a service principal is a member in Microsoft Entra ID.
+The Select-EntraGroupIdsServicePrincipalIsMemberOf cmdlet selects the groups in which a service principal is a member in Microsoft Entra ID.
 
 ## Examples
 
@@ -47,7 +47,7 @@ the Select-EntraGroupIdsServicePrincipalIsMemberOf cmdlet selects the groups in 
 ```
 
 ```output
-bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq
+Bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq
 ```
 
 The first command creates a GroupIdsForMembershipCheck object, and then stores it in the $Groups variable.

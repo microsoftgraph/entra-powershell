@@ -1,25 +1,25 @@
 ---
-title: Get-EntraBetaAuditSignInLogs.
-description: This article provides details on the Get-EntraBetaAuditSignInLogs command.
+Title: Get-EntraBetaAuditSignInLogs.
+Description: This article provides details on the Get-EntraBetaAuditSignInLogs command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaAuditSignInLogs
 
 ## Synopsis
-get audit logs of sign-ins.
+Get audit logs of sign-ins.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Get-EntraBetaAuditSignInLogs
 ```
 
 ## Description
-the Get-EntraBetaAuditSignInLogs cmdlet gets the Microsoft Entra ID sign-in log.
+The Get-EntraBetaAuditSignInLogs cmdlet gets the Microsoft Entra ID sign-in log.
 
 ## Examples
 
@@ -51,8 +51,8 @@ Id                                   AppDisplayName                     AppId   
 --                                   --------------                     -----                                ------------------------ ------------------------- ---------------------- -----
 1e332421-99c9-4ba7-bf52-bda3c9a3b400 Azure Active Directory PowerShell  1b730954-1685-4b74-9bfd-dac224a7b894                          {}                        ropc                   si...
 9d78ea64-fa2e-48ca-a19d-d049693c5b00 Azure Portal                       c44b4083-3bb0-49c1-b47d-974e53cbdf3c                          {}                        none                   si...
-b88f8107-f8b8-494a-bd7e-3ceddc3b8400 Azure Active Directory PowerShell  1b730954-1685-4b74-9bfd-dac224a7b894                          {}                        ropc                   si...
-e05ec15b-8698-4633-81ff-983f233b8500 Azure Active Directory PowerShell  1b730954-1685-4b74-9bfd-dac224a7b894                          {}                        none
+B88f8107-f8b8-494a-bd7e-3ceddc3b8400 Azure Active Directory PowerShell  1b730954-1685-4b74-9bfd-dac224a7b894                          {}                        ropc                   si...
+E05ec15b-8698-4633-81ff-983f233b8500 Azure Active Directory PowerShell  1b730954-1685-4b74-9bfd-dac224a7b894                          {}                        none
 ```
 This command gets all sign-in logs.
 

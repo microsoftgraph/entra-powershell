@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-help.xml
+External help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Test-EntraScript
 
 ## Synopsis
-checks, whether the provided script is using AzureAD commands that are not supported by Microsoft.Graph.Entra.
+Checks, whether the provided script is using AzureAD commands that are not supported by Microsoft.Graph.Entra.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Test-EntraScript [-Path] <String[]> [[-Content] <String>] [-Quiet] [<CommonParam
 ```
 
 ## Description
-checks, whether the provided script is using AzureAD commands that are not supported by Microsoft.Graph.Entra.
+Checks, whether the provided script is using AzureAD commands that are not supported by Microsoft.Graph.Entra.
 
 ## Examples
 
@@ -56,7 +56,7 @@ Accept wildcard characters: False
 ### -Content
 Code content to scan.
 Used when scanning code that has no file representation (e.g.
-straight from a repository).
+Straight from a repository).
 
 ```yaml
 Type: String

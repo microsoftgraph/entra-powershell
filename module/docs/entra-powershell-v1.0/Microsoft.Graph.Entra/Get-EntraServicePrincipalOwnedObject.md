@@ -1,25 +1,25 @@
 ---
-title:  Get-EntraServicePrincipalOwnedObject.
-description: This article provides details on the  Get-EntraServicePrincipalOwnedObject Command.
+Title:  Get-EntraServicePrincipalOwnedObject.
+Description: This article provides details on the  Get-EntraServicePrincipalOwnedObject Command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraServicePrincipalOwnedObject
 
 ## Synopsis
 
-gets an object owned by a service principal.
+Gets an object owned by a service principal.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Get-EntraServicePrincipalOwnedObject
 
 ## Description
 
-the Get-EntraServicePrincipalOwnedObject cmdlet gets an object owned by a service principal in Microsoft Entra ID.
+The Get-EntraServicePrincipalOwnedObject cmdlet gets an object owned by a service principal in Microsoft Entra ID.
 
 ## Examples
 
@@ -48,8 +48,8 @@ Get-EntraServicePrincipalOwnedObject -ObjectId $ServicePrincipalId
 ```output
 Id                                   DeletedDateTime
 --                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-bbbbbbbb-1111-2222-3333-cccccccccccc
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+Bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
 The first command gets the ID of a service principal by using the [Get-EntraServicePrincipal](./Get-EntraServicePrincipal.md) cmdlet. 
@@ -67,8 +67,8 @@ Get-EntraServicePrincipalOwnedObject -ObjectId '11112222-bbbb-3333-cccc-4444dddd
 ```output
 Id                                   DeletedDateTime
 --                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-bbbbbbbb-1111-2222-3333-cccccccccccc
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+Bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
 This command gets the owned objects of a service principal identified by `11112222-bbbb-3333-cccc-4444dddd5555`.  
@@ -83,7 +83,7 @@ Get-EntraServicePrincipalOwnedObject -ObjectId '11112222-bbbb-3333-cccc-4444dddd
 ```output
 Id                                   DeletedDateTime
 --                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
+Bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
 This command gets top one owned object of a service principal identified by `11112222-bbbb-3333-cccc-4444dddd5555`.  

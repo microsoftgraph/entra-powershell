@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaDevice
 
 ## Synopsis
-updates a device.
+Updates a device.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ Set-EntraBetaDevice [-AccountEnabled <Boolean>] [-DeviceObjectVersion <Int32>]
 ```
 
 ## Description
-the Set-EntraBetaDevice cmdlet updates a device in Azure Active Directory (AD).
+The Set-EntraBetaDevice cmdlet updates a device in Azure Active Directory (AD).
 
 ## Examples
 

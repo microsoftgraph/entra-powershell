@@ -1,23 +1,23 @@
 ---
-title: Remove-EntraBetaDeletedApplication
-description: This article provides details on the Remove-EntraBetaDeletedApplication command.
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Title: Remove-EntraBetaDeletedApplication
+Description: This article provides details on the Remove-EntraBetaDeletedApplication command.
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaDeletedApplication
 
 ## Synopsis
-permanently delete a recently deleted application object from deleted items.
+Permanently delete a recently deleted application object from deleted items.
 
 ## Syntax
 
@@ -28,7 +28,7 @@ Remove-EntraBetaDeletedApplication
 ```
 
 ## Description
-permanently delete a recently deleted application object from deleted items. After an item is permanently deleted, it can't be restored.
+Permanently delete a recently deleted application object from deleted items. After an item is permanently deleted, it can't be restored.
 ## Examples
 
 ### Example 1: Remove deleted application object

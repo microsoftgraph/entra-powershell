@@ -1,25 +1,25 @@
 ---
-title: Get-EntraGroupMember.
-description: This article provides details on the Get-EntraGroupMember command.
+Title: Get-EntraGroupMember.
+Description: This article provides details on the Get-EntraGroupMember command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraGroupMember
 
 ## Synopsis
 
-gets a member of a group.
+Gets a member of a group.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Get-EntraGroupMember
 
 ## Description
 
-the Get-EntraGroupMember cmdlet gets a member of a group in Microsoft Entra ID.
+The Get-EntraGroupMember cmdlet gets a member of a group in Microsoft Entra ID.
 
 ## Examples
 
@@ -45,16 +45,16 @@ Get-EntraGroupMember -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {averys@contoso.com}
-preferredLanguage               :
-mail                            : averys@contoso.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=averys@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
+AgeGroup                        :
+OnPremisesLastSyncDateTime      :
+CreationType                    :
+ImAddresses                     : {averys@contoso.com}
+PreferredLanguage               :
+Mail                            : averys@contoso.com
+SecurityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
+Identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=averys@contoso.com}}
+ConsentProvidedForMinor         :
+OnPremisesUserPrincipalName     :
 ```
 
 This example demonstrates how to retrieve group member by ID.  
@@ -67,26 +67,26 @@ Get-EntraGroupMember -ObjectId 'hhhhhhhh-8888-9999-8888-cccccccccccc' -Top 2
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {ParkerJ@contoso.com}
-preferredLanguage               : en
-mail                            : ParkerJ@contoso.com
-securityIdentifier              : B-2-33-4-5555555555-6666666666-7777777-8888888888
-identities                      : {System.Collections.Hashtable}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
+AgeGroup                        :
+OnPremisesLastSyncDateTime      :
+CreationType                    :
+ImAddresses                     : {ParkerJ@contoso.com}
+PreferredLanguage               : en
+Mail                            : ParkerJ@contoso.com
+SecurityIdentifier              : B-2-33-4-5555555555-6666666666-7777777-8888888888
+Identities                      : {System.Collections.Hashtable}
+ConsentProvidedForMinor         :
+OnPremisesUserPrincipalName     :
 
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {ParkerJ@contoso.com}
-preferredLanguage               :
-mail                            : ParkerJ@contoso.com
-securityIdentifier              : C-3-44-5-6666666666-7777777777-8888888-9999999999
-identities                      : {System.Collections.Hashtable}
-consentProvidedForMinor         :
+AgeGroup                        :
+OnPremisesLastSyncDateTime      :
+CreationType                    :
+ImAddresses                     : {ParkerJ@contoso.com}
+PreferredLanguage               :
+Mail                            : ParkerJ@contoso.com
+SecurityIdentifier              : C-3-44-5-6666666666-7777777777-8888888-9999999999
+Identities                      : {System.Collections.Hashtable}
+ConsentProvidedForMinor         :
 ```
 
 This example demonstrates how to retrieve top two groups from Microsoft Entra ID.  
@@ -99,15 +99,15 @@ Get-EntraGroupMember -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' -All
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {SawyerM@contoso.com}
-preferredLanguage               : en
-mail                            : SawyerM@contoso.com
-securityIdentifier              : D-4-55-6-7777777777-8888888888-9999999-0000000000
-identities                      : {System.Collections.Hashtable}
-consentProvidedForMinor         :
+AgeGroup                        :
+OnPremisesLastSyncDateTime      :
+CreationType                    :
+ImAddresses                     : {SawyerM@contoso.com}
+PreferredLanguage               : en
+Mail                            : SawyerM@contoso.com
+SecurityIdentifier              : D-4-55-6-7777777777-8888888888-9999999-0000000000
+Identities                      : {System.Collections.Hashtable}
+ConsentProvidedForMinor         :
 ```
 
 This command is used to retrieve all members of a specific group. The `-ObjectId` parameter specifies the ID of the group whose members should be retrieved. The `-All` parameter indicates that all members of the group should be retrieved.

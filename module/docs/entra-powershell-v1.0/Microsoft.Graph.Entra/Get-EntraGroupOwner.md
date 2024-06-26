@@ -1,25 +1,25 @@
 ---
-title: Get-EntraGroupOwner.
-description: This article provides details on the Get-EntraGroupOwner command.
+Title: Get-EntraGroupOwner.
+Description: This article provides details on the Get-EntraGroupOwner command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraGroupOwner
 
 ## Synopsis
 
-gets an owner of a group.
+Gets an owner of a group.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Get-EntraGroupOwner
 
 ## Description
 
-the Get-EntraGroupOwner cmdlet gets an owner of a group in Microsoft Entra ID.
+The Get-EntraGroupOwner cmdlet gets an owner of a group in Microsoft Entra ID.
 
 ## Examples
 
@@ -45,16 +45,16 @@ Get-EntraGroupOwner -ObjectId 'vvvvvvvv-7777-9999-7777-jjjjjjjjjjjj'
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {HaydenL@contoso.com}
-preferredLanguage               : en
-mail                            : HaydenL@contoso.com
-securityIdentifier              : B-2-33-4-5555555555-6666666666-7777777-8888888888
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=HaydenL@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
+AgeGroup                        :
+OnPremisesLastSyncDateTime      :
+CreationType                    :
+ImAddresses                     : {HaydenL@contoso.com}
+PreferredLanguage               : en
+Mail                            : HaydenL@contoso.com
+SecurityIdentifier              : B-2-33-4-5555555555-6666666666-7777777-8888888888
+Identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=HaydenL@contoso.com}}
+ConsentProvidedForMinor         :
+OnPremisesUserPrincipalName     :
 ```
 
 This example demonstrates how to retrieve the owner of a specific group.  
@@ -67,19 +67,19 @@ Get-EntraGroupOwner -ObjectId 'zzzzzzzz-6666-8888-9999-pppppppppppp' -All
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {BlakeM@contoso.com}
-preferredLanguage               : en
-mail                            : BlakeM@contoso.com
-securityIdentifier              : E-5-66-7-8888888888-9999999999-0000000-1111111111
-identities                      : {System.Collections.Hashtable}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
-department                      :
-jobTitle                        :
+AgeGroup                        :
+OnPremisesLastSyncDateTime      :
+CreationType                    :
+ImAddresses                     : {BlakeM@contoso.com}
+PreferredLanguage               : en
+Mail                            : BlakeM@contoso.com
+SecurityIdentifier              : E-5-66-7-8888888888-9999999999-0000000-1111111111
+Identities                      : {System.Collections.Hashtable}
+ConsentProvidedForMinor         :
+OnPremisesUserPrincipalName     :
+AssignedLicenses                : {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
+Department                      :
+JobTitle                        :
 ```
 
 This example demonstrates how to retrieve the all owner of a specific group.  
@@ -92,23 +92,23 @@ Get-EntraGroupOwner -ObjectId 'vvvvvvvv-8888-9999-0000-jjjjjjjjjjjj' -Top 2
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {QuinnA@contoso.com}
-preferredLanguage               : en
-mail                            : QuinnA@contoso.com
-securityIdentifier              : D-4-55-6-7777777777-8888888888-9999999-0000000000
-identities                      : {System.Collections.Hashtable}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
-department                      :
-jobTitle                        :
-proxyAddresses                  : {SMTP:QuinnA@contoso.com}
-legalAgeGroupClassification     :
-assignedPlans                   : {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
-id                              : tttttttt-0000-2222-0000-aaaaaaaaaaaa
+AgeGroup                        :
+OnPremisesLastSyncDateTime      :
+CreationType                    :
+ImAddresses                     : {QuinnA@contoso.com}
+PreferredLanguage               : en
+Mail                            : QuinnA@contoso.com
+SecurityIdentifier              : D-4-55-6-7777777777-8888888888-9999999-0000000000
+Identities                      : {System.Collections.Hashtable}
+ConsentProvidedForMinor         :
+OnPremisesUserPrincipalName     :
+AssignedLicenses                : {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
+Department                      :
+JobTitle                        :
+ProxyAddresses                  : {SMTP:QuinnA@contoso.com}
+LegalAgeGroupClassification     :
+AssignedPlans                   : {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
+Id                              : tttttttt-0000-2222-0000-aaaaaaaaaaaa
 ```
 
 This example demonstrates how to retrieve the top two owners of a specific group.  

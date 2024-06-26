@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaServicePrincipal
 
 ## Synopsis
-creates a service principal.
+Creates a service principal.
 
 ## Syntax
 
@@ -40,7 +40,7 @@ The tag "-Tags {WindowsAzureActiveDirectoryIntegratedApp}" is used to have this 
 ## Parameters
 
 ### -AccountEnabled
-true if the service principal account is enabled; otherwise, false.
+True if the service principal account is enabled; otherwise, false.
 
 ```yaml
 Type: String

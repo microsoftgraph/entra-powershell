@@ -1,25 +1,25 @@
 ---
-title: Get-EntraDevice.
-description: This article provides details on the Get-EntraDevice command.
+Title: Get-EntraDevice.
+Description: This article provides details on the Get-EntraDevice command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraDevice
 
 ## Synopsis
 
-gets a device from Microsoft Entra ID.
+Gets a device from Microsoft Entra ID.
 
 ## Syntax
 
@@ -53,7 +53,7 @@ Get-EntraDevice
 
 ## Description
 
-the Get-EntraDevice cmdlet gets a device from Microsoft Entra ID.
+The Get-EntraDevice cmdlet gets a device from Microsoft Entra ID.
 
 ## Examples
 

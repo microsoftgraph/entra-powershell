@@ -1,25 +1,25 @@
 ---
-title: Disconnect-Entra.
-description: This article provides details on the Disconnect-Entra Command.
+Title: Disconnect-Entra.
+Description: This article provides details on the Disconnect-Entra Command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Disconnect-Entra
 
 ## Synopsis
 
-disconnects the current session from a Microsoft Entra ID tenant.
+Disconnects the current session from a Microsoft Entra ID tenant.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ Disconnect-Entra
 
 ## Description
 
-the Disconnect-Entra cmdlet disconnects the current session from a Microsoft Entra ID tenant.
+The Disconnect-Entra cmdlet disconnects the current session from a Microsoft Entra ID tenant.
 
 ## Examples
 

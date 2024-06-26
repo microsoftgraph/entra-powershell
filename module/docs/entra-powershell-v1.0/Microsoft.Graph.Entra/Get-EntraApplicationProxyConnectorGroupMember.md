@@ -1,24 +1,24 @@
 ---
-title: Get-EntraApplicationProxyConnectorGroupMember.
-description: This article provides details on the Get-EntraApplicationProxyConnectorGroupMember. Command.
+Title: Get-EntraApplicationProxyConnectorGroupMember.
+Description: This article provides details on the Get-EntraApplicationProxyConnectorGroupMember. Command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraApplicationProxyConnectorGroupMember.
 
 ## Synopsis
-get members from applicationProxyConnectorGroup.
+Get members from applicationProxyConnectorGroup.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Get-EntraApplicationProxyConnectorGroupMember
 ```
 
 ## Description
-get members from applicationProxyConnectorGroup.
+Get members from applicationProxyConnectorGroup.
 
 ## Examples
 
@@ -43,11 +43,11 @@ PS C:\> Get-EntraApplicationProxyConnectorGroupMember -Id 87ffe1e2-6313-4a22-93e
 ```output
 Name                           Value
 ----                           -----
-id                             147bd8b4-2134-4454-8f2a-1da81cf27917
-externalIp                     3.7.211.5
-machineName                    PERE-VARSHAM-FULLSTAK
-version                        1.5.3437.0
-status                         active
+Id                             147bd8b4-2134-4454-8f2a-1da81cf27917
+ExternalIp                     3.7.211.5
+MachineName                    PERE-VARSHAM-FULLSTAK
+Version                        1.5.3437.0
+Status                         active
 ```
 
 ## Parameters

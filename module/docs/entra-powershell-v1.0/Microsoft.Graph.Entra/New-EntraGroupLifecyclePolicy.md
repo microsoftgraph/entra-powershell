@@ -1,25 +1,25 @@
 ---
-title: New-EntraGroupLifecyclePolicy.
-description: This article provides details on the New-EntraGroupLifecyclePolicy command.
+Title: New-EntraGroupLifecyclePolicy.
+Description: This article provides details on the New-EntraGroupLifecyclePolicy command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraGroupLifecyclePolicy
 
 ## Synopsis
 
-creates a new groupLifecyclePolicy.
+Creates a new groupLifecyclePolicy.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ New-EntraGroupLifecyclePolicy
 
 ## Description
 
-creates a new groupLifecyclePolicy in Microsoft Entra ID.
+Creates a new groupLifecyclePolicy in Microsoft Entra ID.
 
 ## Examples
 

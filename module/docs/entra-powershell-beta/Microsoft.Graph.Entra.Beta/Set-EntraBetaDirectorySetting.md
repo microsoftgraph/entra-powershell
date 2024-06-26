@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaDirectorySetting
 
 ## Synopsis
-updates a directory setting in Azure Active Directory.
+Updates a directory setting in Azure Active Directory.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Set-EntraBetaDirectorySetting -DirectorySetting <DirectorySetting> -Id <String>
 ```
 
 ## Description
-the Set-EntraBetaDirectorySetting cmdlet updates a directory setting in Azure Active Directory (AD).
+The Set-EntraBetaDirectorySetting cmdlet updates a directory setting in Azure Active Directory (AD).
 
 ## Examples
 

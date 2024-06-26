@@ -1,24 +1,24 @@
 ---
-title: Remove-EntraGroupAppRoleAssignment
-description: This article provides details on the Remove-EntraGroupAppRoleAssignment command.
+Title: Remove-EntraGroupAppRoleAssignment
+Description: This article provides details on the Remove-EntraGroupAppRoleAssignment command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraGroupAppRoleAssignment
 
 ## Synopsis
 
-delete a group application role assignment.
+Delete a group application role assignment.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Remove-EntraGroupAppRoleAssignment
 
 ## Description
 
-the Remove-EntraGroupAppRoleAssignment cmdlet removes a group application role assignment from Microsoft Entra ID.
+The Remove-EntraGroupAppRoleAssignment cmdlet removes a group application role assignment from Microsoft Entra ID.
 
 ## Examples
 

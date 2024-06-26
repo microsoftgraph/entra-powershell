@@ -1,26 +1,26 @@
 ---
-title: Remove-EntraRoleDefinition
-description: This article provides details on the Remove-EntraRoleDefinition command.
+Title: Remove-EntraRoleDefinition
+Description: This article provides details on the Remove-EntraRoleDefinition command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraRoleDefinition
 
 ## Synopsis
 
-delete a Microsoft Entra ID roleDefinition by ObjectId.
+Delete a Microsoft Entra ID roleDefinition by ObjectId.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Remove-EntraRoleDefinition
 
 ## Description
 
-delete a Microsoft Entra ID roleDefinition object by ID.
+Delete a Microsoft Entra ID roleDefinition object by ID.
 
 You can't delete built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
 

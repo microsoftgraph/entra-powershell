@@ -1,25 +1,25 @@
 ---
-title: Select-EntraGroupIdsUserIsMemberOf.
-description: This article provides details on the Select-EntraGroupIdsUserIsMemberOf command.
+Title: Select-EntraGroupIdsUserIsMemberOf.
+Description: This article provides details on the Select-EntraGroupIdsUserIsMemberOf command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Select-EntraGroupIdsUserIsMemberOf
 
 ## Synopsis
 
-selects the groups that a user is a member of.
+Selects the groups that a user is a member of.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Select-EntraGroupIdsUserIsMemberOf
 
 ## Description
 
-the Select-EntraGroupIdsUserIsMemberOf cmdlet selects the groups that a user is a member of in Microsoft Entra ID.
+The Select-EntraGroupIdsUserIsMemberOf cmdlet selects the groups that a user is a member of in Microsoft Entra ID.
 
 ## Examples
 
@@ -47,7 +47,7 @@ the Select-EntraGroupIdsUserIsMemberOf cmdlet selects the groups that a user is 
 ```
 
 ```output
-bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq
+Bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq
 ```
 
 The first command creates a GroupIdsForMembershipCheck object, and then stores it in the $Groups variable.

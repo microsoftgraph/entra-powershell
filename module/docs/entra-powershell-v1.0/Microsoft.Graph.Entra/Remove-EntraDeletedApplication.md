@@ -1,25 +1,25 @@
 ---
-title: Remove-EntraDeletedApplication.
-description: This article provides details on the Remove-EntraDeletedApplication command.
+Title: Remove-EntraDeletedApplication.
+Description: This article provides details on the Remove-EntraDeletedApplication command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraDeletedApplication
 
 ## Synopsis
 
-permanently delete a recently deleted application object from deleted items.
+Permanently delete a recently deleted application object from deleted items.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Remove-EntraDeletedApplication
 
 ## Description
 
-permanently delete a recently deleted application object from deleted items. After an item is permanently deleted, it can't be restored.
+Permanently delete a recently deleted application object from deleted items. After an item is permanently deleted, it can't be restored.
 
 For delegated scenarios, the calling user needs to have at least one of the following Microsoft Entra roles.
 

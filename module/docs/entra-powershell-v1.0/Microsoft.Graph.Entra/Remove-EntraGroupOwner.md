@@ -1,24 +1,24 @@
 ---
-title: Remove-EntraGroupOwner
-description: This article provides details on the Remove-EntraGroupOwner command.
+Title: Remove-EntraGroupOwner
+Description: This article provides details on the Remove-EntraGroupOwner command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraGroupOwner
 
 ## Synopsis
 
-removes an owner from a group.
+Removes an owner from a group.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Remove-EntraGroupOwner
 
 ## Description
 
-the Remove-EntraGroupOwner cmdlet removes an owner from a group in Microsoft Entra ID.
+The Remove-EntraGroupOwner cmdlet removes an owner from a group in Microsoft Entra ID.
 
 ## Examples
 

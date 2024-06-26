@@ -1,25 +1,25 @@
 ---
-title: Convert-EntraFederatedUser
-description: This article provides details on the Convert-EntraFederatedUser command.
+Title: Convert-EntraFederatedUser
+Description: This article provides details on the Convert-EntraFederatedUser command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-help.xml
+External help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Convert-EntraFederatedUser
 
 ## Synopsis
-updates a user in a domain that was recently converted from single sign-on (also known as identity federation) to standard authentication type.
+Updates a user in a domain that was recently converted from single sign-on (also known as identity federation) to standard authentication type.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Convert-EntraFederatedUser
 ```
 
 ## Description
-the Convert-EntraFederatedUser cmdlet is used to update a user in a domain that was recently converted from single sign-on (also known as identity federation) to standard authentication type. A new password must be provided for the user.
+The Convert-EntraFederatedUser cmdlet is used to update a user in a domain that was recently converted from single sign-on (also known as identity federation) to standard authentication type. A new password must be provided for the user.
 
 ## Examples
 

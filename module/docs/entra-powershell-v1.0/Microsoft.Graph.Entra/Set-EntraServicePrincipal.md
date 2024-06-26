@@ -1,25 +1,25 @@
 ---
-title: Set-EntraServicePrincipal.
-description: This article provides details on the Set-EntraServicePrincipal command.
+Title: Set-EntraServicePrincipal.
+Description: This article provides details on the Set-EntraServicePrincipal command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraServicePrincipal
 
 ## Synopsis
 
-this command updates a service principal.
+This command updates a service principal.
 
 ## Syntax
 
@@ -44,7 +44,7 @@ Set-EntraServicePrincipal
 
 ## Description
 
-the `Set-EntraServicePrincipal` cmdlet updates a service principal in Microsoft Entra ID.
+The `Set-EntraServicePrincipal` cmdlet updates a service principal in Microsoft Entra ID.
 
 ## Examples
 

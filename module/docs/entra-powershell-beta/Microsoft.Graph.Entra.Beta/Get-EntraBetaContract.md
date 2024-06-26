@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaContract
 
 ## Synopsis
-gets a contract.
+Gets a contract.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ Get-EntraBetaContract -ObjectId <String> [-All] [<CommonParameters>]
 ```
 
 ## Description
-the Get-EntraBetaContract cmdlet gets a contract from Azure Active Directory.
+The Get-EntraBetaContract cmdlet gets a contract from Azure Active Directory.
 This cmdlet returns a contract object for each contract that is selected by the request.
 The contract object contains the following attributes:
 

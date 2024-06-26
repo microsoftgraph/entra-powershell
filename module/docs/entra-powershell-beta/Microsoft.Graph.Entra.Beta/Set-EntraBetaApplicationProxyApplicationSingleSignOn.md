@@ -1,25 +1,25 @@
 ---
-title: Set-EntraBetaApplicationProxyApplicationSingleSignOn
+Title: Set-EntraBetaApplicationProxyApplicationSingleSignOn
 
-description: This article provides details on the Set-EntraBetaApplicationProxyApplicationSingleSignOn command.
+Description: This article provides details on the Set-EntraBetaApplicationProxyApplicationSingleSignOn command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaApplicationProxyApplicationSingleSignOn
 
 ## Synopsis
-the Set-EntraBetaApplicationProxyApplicationSingleSignOn cmdlet allows you to set and modify single sign-on (SSO) settings for an application configured for Application Proxy in Microsoft Entra ID.
+The Set-EntraBetaApplicationProxyApplicationSingleSignOn cmdlet allows you to set and modify single sign-on (SSO) settings for an application configured for Application Proxy in Microsoft Entra ID.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Set-EntraBetaApplicationProxyApplicationSingleSignOn
 ```
 
 ## Description
-the Set-EntraBetaApplicationProxyApplicationSingleSignOn cmdlet allows you to set and modify single sign-on (SSO) settings for an application configured for Application Proxy in Microsoft Entra ID.
+The Set-EntraBetaApplicationProxyApplicationSingleSignOn cmdlet allows you to set and modify single sign-on (SSO) settings for an application configured for Application Proxy in Microsoft Entra ID.
 This is limited to setting No SSO, Kerberos Constrained Delegation (for applications using Integrated Windows Authentication), and Header-based SSO.
 
 ## Examples

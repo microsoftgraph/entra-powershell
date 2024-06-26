@@ -1,25 +1,25 @@
 ---
-title: Get-EntraDeletedDirectoryObject
-description: This article provides details on the Get-EntraDeletedDirectoryObject command.
+Title: Get-EntraDeletedDirectoryObject
+Description: This article provides details on the Get-EntraDeletedDirectoryObject command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraDeletedDirectoryObject
 
 ## Synopsis
 
-this cmdlet is used to retrieve a soft deleted directory object from the directory.
+This cmdlet is used to retrieve a soft deleted directory object from the directory.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Get-EntraDeletedDirectoryObject
 
 ## Description
 
-this cmdlet is used to retrieve a soft deleted directory object from the directory.
+This cmdlet is used to retrieve a soft deleted directory object from the directory.
 Soft delete for groups is currently only implemented for Unified Groups (also known as
 Office 365 Groups).
 
@@ -47,7 +47,7 @@ Get-EntraDeletedDirectoryObject -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```output
 Id                                   DeletedDateTime
 --                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 2/2/2024 5:33:56 AM
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 2/2/2024 5:33:56 AM
 ```
 
 This example shows how to retrieve the deleted directory object with `Id` `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` from the directory

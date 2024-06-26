@@ -1,25 +1,25 @@
 ---
-title: Get-EntraLifecyclePolicyGroup.
-description: This article provides details on the Get-EntraLifecyclePolicyGroup command.
+Title: Get-EntraLifecyclePolicyGroup.
+Description: This article provides details on the Get-EntraLifecyclePolicyGroup command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraLifecyclePolicyGroup
 
 ## Synopsis
 
-retrieves the lifecycle policy object to which a group belongs.
+Retrieves the lifecycle policy object to which a group belongs.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Get-EntraLifecyclePolicyGroup
 
 ## Description
 
-the Get-EntraLifecyclePolicyGroup retrieves the lifecycle policy object to which a group belongs.
+The Get-EntraLifecyclePolicyGroup retrieves the lifecycle policy object to which a group belongs.
 
 ## Examples
 
@@ -45,7 +45,7 @@ Get-EntraLifecyclePolicyGroup -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
-bbbbbbbb-1111-2222-3333-cccccccccccc admingroup@contoso.com      200                 All
+Bbbbbbbb-1111-2222-3333-cccccccccccc admingroup@contoso.com      200                 All
 ```
 
 This example demonstrates how to retrieve lifecycle policy object by Id in Microsoft Entra ID.  

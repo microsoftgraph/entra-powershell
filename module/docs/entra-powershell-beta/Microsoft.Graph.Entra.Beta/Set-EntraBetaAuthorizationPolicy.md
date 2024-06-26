@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaAuthorizationPolicy
 
 ## Synopsis
-updates an authorization policy.
+Updates an authorization policy.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ Set-EntraBetaAuthorizationPolicy -Id <String> [-DisplayName <String>]
 ```
 
 ## Description
-the Set-EntraBetaAuthorizationPolicy cmdlet updates an Azure Active Directory authorization policy.
+The Set-EntraBetaAuthorizationPolicy cmdlet updates an Azure Active Directory authorization policy.
 
 ## Examples
 

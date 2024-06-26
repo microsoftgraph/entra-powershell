@@ -1,25 +1,25 @@
 ---
-title: Set-EntraDirSyncFeature
-description: This article provides details on the Set-EntraDirSyncFeature command.
+Title: Set-EntraDirSyncFeature
+Description: This article provides details on the Set-EntraDirSyncFeature command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-help.xml
+External help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraDirSyncFeature
 
 ## Synopsis
-used to set identity synchronization features for a tenant.
+Used to set identity synchronization features for a tenant.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Set-EntraDirSyncFeature
 ```
 
 ## Description
-the Set-EntraDirSyncFeature cmdlet sets identity synchronization features for a tenant.  
+The Set-EntraDirSyncFeature cmdlet sets identity synchronization features for a tenant.  
 
 You can use the following synchronization features with this cmdlet:  
 - **EnableSoftMatchOnUpn**: Soft match is the process used to link an object being synced from on-premises for the first time with one that already exists in the cloud. When this feature is enabled, soft match is attempted using the standard logic, based on the primary SMTP address. If a match isn't found based on primary SMTP, then a match is attempted based on UserPrincipalName. Once this feature is enabled, it can't be disabled.

@@ -1,26 +1,26 @@
 ---
-title: Get-EntraFederationProperty
-description: This article provides details on the Get-EntraFederationProperty command.
+Title: Get-EntraFederationProperty
+Description: This article provides details on the Get-EntraFederationProperty command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-help.xml
+External help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraFederationProperty
 
 ## Synopsis
 
-displays the properties of the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online.
+Displays the properties of the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Get-EntraFederationProperty
 
 ## Description
 
-the `Get-EntraFederationProperty` cmdlet gets key settings from both the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online.
+The `Get-EntraFederationProperty` cmdlet gets key settings from both the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online.
 
 You can use this information to troubleshoot authentication problems caused by mismatched settings between the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online.
 

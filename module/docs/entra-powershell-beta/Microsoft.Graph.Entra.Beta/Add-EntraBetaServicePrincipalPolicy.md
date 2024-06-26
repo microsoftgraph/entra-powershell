@@ -1,8 +1,8 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Add-EntraBetaServicePrincipalPolicy
@@ -17,7 +17,7 @@ Add-EntraBetaServicePrincipalPolicy -Id <String> -RefObjectId <String> [<CommonP
 ```
 
 ## Description
-the Add-EntraBetaServicePrincipalPolicy cmdlet Adds a service principal policy.
+The Add-EntraBetaServicePrincipalPolicy cmdlet Adds a service principal policy.
 
 ## Examples
 

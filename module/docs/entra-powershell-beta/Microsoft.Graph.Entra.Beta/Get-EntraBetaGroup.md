@@ -1,24 +1,24 @@
 ---
-title: Get-EntraBetaGroup.
-description: This article provides details on the Get-EntraBetaGroup command.
+Title: Get-EntraBetaGroup.
+Description: This article provides details on the Get-EntraBetaGroup command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaGroup
 
 ## Synopsis
-gets a group.
+Gets a group.
 
 ## Syntax
 
@@ -48,7 +48,7 @@ Get-EntraBetaGroup
 ```
 
 ## Description
-the Get-EntraBetaGroup cmdlet gets a group in Microsoft Entra ID.
+The Get-EntraBetaGroup cmdlet gets a group in Microsoft Entra ID.
 
 ## Examples
 
@@ -131,7 +131,7 @@ PS C:\>Get-EntraBetaGroup -SearchString "New"
 DisplayName             Id                                   MailNickname          Description             GroupTypes
 -----------             --                                   ------------          -----------             ----------
 New Employee Onboarding 0a58c57b-a9ae-49a2-824f-8e9cb86d4512 newemployeeonboarding New Employee Onboarding {Unified}
-new1                    27d134ad-466b-43dd-8856-ba9f0bc17d24 new1                  new1                    {DynamicM...
+New1                    27d134ad-466b-43dd-8856-ba9f0bc17d24 new1                  new1                    {DynamicM...
 ```
 
 This example demonstrates how to retrieve groups that include the text new in their display names from Microsoft Entra ID.

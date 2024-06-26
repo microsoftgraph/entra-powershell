@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaContactManager
 
 ## Synopsis
-gets the manager of a contact.
+Gets the manager of a contact.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Get-EntraBetaContactManager -ObjectId <String> [<CommonParameters>]
 ```
 
 ## Description
-the Get-EntraBetaContactManager cmdlet gets the manager of a contact in Azure Active Directory.
+The Get-EntraBetaContactManager cmdlet gets the manager of a contact in Azure Active Directory.
 
 ## Examples
 

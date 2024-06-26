@@ -1,25 +1,25 @@
 ---
-title: Remove-EntraUserManager.
-description: This article provides details on the Remove-EntraUserManager command.
+Title: Remove-EntraUserManager.
+Description: This article provides details on the Remove-EntraUserManager command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraUserManager
 
 ## Synopsis
 
-removes a user's manager.
+Removes a user's manager.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ Remove-EntraUserManager
 
 ## Description
 
-the Remove-EntraUserManager cmdlet removes a user's manager in Microsoft Entra ID.
+The Remove-EntraUserManager cmdlet removes a user's manager in Microsoft Entra ID.
 
 ## Examples
 

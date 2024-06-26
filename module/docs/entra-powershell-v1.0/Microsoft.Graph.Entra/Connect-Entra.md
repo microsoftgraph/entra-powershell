@@ -1,24 +1,24 @@
 ---
-title: Connect-Entra
-description: This article provides details on the Connect-Entra Command.
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi254
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Title: Connect-Entra
+Description: This article provides details on the Connect-Entra Command.
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi254
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Connect-Entra
 
 ## Synopsis
 
-microsoft Entra PowerShell supports several authentication scenarios depending on your use case such as: delegated (interactive) and app-only (noninteractive).
+Microsoft Entra PowerShell supports several authentication scenarios depending on your use case such as: delegated (interactive) and app-only (noninteractive).
 
 ## Syntax
 
@@ -104,7 +104,7 @@ Connect-Entra
 
 ## Description
 
-you must invoke Connect-Entra before any commands that access Microsoft Entra. This cmdlet gets the access token using the Microsoft Authentication Library.
+You must invoke Connect-Entra before any commands that access Microsoft Entra. This cmdlet gets the access token using the Microsoft Authentication Library.
 
 ## Examples
 
@@ -148,7 +148,7 @@ Welcome to Microsoft Graph!
 This command Connect a session using a ApplicationId and CertificateThumbprint.
 
 Follow this link (<https://review.learn.microsoft.com/powershell/entra-powershell/app-only-access-auth>)
-for more information on how to get or create CertificateThumbprint.
+For more information on how to get or create CertificateThumbprint.
 
 ### Example 4: Delegated access: Using your own access token
 
@@ -164,7 +164,7 @@ Welcome to Microsoft Graph!
 This example shows how to authenticate to Microsoft Entra ID using an access token.
 
 Follow this link (<https://review.learn.microsoft.com/graph/auth-v2-user#3-request-an-access-token>)
-for more information on how to get or create access token.
+For more information on how to get or create access token.
 
 ### Example 5: Connecting to an environment as a different identity
 
@@ -179,7 +179,7 @@ Welcome to Microsoft Graph!
 To connect as a different identity other than CurrentUser, specify the ContextScope parameter with the value Process.
 
 Follow this link (<https://review.learn.microsoft.com/powershell/entra-preview/microsoft.graph.entra/get-entracontext>)
-for more information on how to get or create context.
+For more information on how to get or create context.
 
 ### Example 6: Connecting to an environment or cloud
 
@@ -255,7 +255,7 @@ Connect-Entra -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444' -TenantId 'aaaabb
 ```
 
 Follow this link (<https://review.learn.microsoft.com/powershell/module/microsoft.powershell.security/get-credential>)
-for more information on how to get or create credentials.
+For more information on how to get or create credentials.
 
 ### Example 12: Using client secret credentials
 
@@ -268,7 +268,7 @@ Connect-Entra -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -ClientSecretCred
 This authentication method is ideal for background interactions. It doesn't require a user to physically sign in.
 
 Follow this link (<https://review.learn.microsoft.com/powershell/module/microsoft.powershell.security/get-credential>)
-for more information on how to get or create credentials.
+For more information on how to get or create credentials.
 
 ### Example 13: Using managed identity: System-assigned managed identity
 

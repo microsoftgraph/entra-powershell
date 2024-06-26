@@ -1,23 +1,23 @@
 ---
-title: Get-EntraBetaApplicationProxyApplicationConnectorGroup
-description: This article provides details on the Get-EntraBetaApplicationProxyApplicationConnectorGroup.
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Title: Get-EntraBetaApplicationProxyApplicationConnectorGroup
+Description: This article provides details on the Get-EntraBetaApplicationProxyApplicationConnectorGroup.
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaApplicationProxyApplicationConnectorGroup
 
 ## Synopsis
-the Get-EntraBetaApplicationProxyApplicationConnectorGroup cmdlet retrieves the connector group assigned for a specific application.
+The Get-EntraBetaApplicationProxyApplicationConnectorGroup cmdlet retrieves the connector group assigned for a specific application.
 
 ## Syntax
 
@@ -28,7 +28,7 @@ Get-EntraBetaApplicationProxyApplicationConnectorGroup
 ```
 
 ## Description
-the Get-EntraBetaApplicationProxyApplicationConnectorGroup cmdlet retrieves the connector group assigned for the specified application.
+The Get-EntraBetaApplicationProxyApplicationConnectorGroup cmdlet retrieves the connector group assigned for the specified application.
 The application must be configured for Application Proxy in Microsoft Entra ID.
 
 ## Examples

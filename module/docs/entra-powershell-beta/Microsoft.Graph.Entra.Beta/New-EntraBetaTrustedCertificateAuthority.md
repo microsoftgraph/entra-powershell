@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaTrustedCertificateAuthority
 
 ## Synopsis
-creates a trusted certificate authority.
+Creates a trusted certificate authority.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ New-EntraBetaTrustedCertificateAuthority -CertificateAuthorityInformation <Certi
 ```
 
 ## Description
-the New-EntraBetaTrustedCertificateAuthority cmdlet creates a trusted certificate authority in Azure Active Directory (AD).
+The New-EntraBetaTrustedCertificateAuthority cmdlet creates a trusted certificate authority in Azure Active Directory (AD).
 
 ## Examples
 

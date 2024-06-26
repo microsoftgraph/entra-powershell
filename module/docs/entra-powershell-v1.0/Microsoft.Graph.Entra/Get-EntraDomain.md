@@ -1,25 +1,25 @@
 ---
-title: Get-EntraDomain
-description: This article provides details on the Get-EntraDomain command.
+Title: Get-EntraDomain
+Description: This article provides details on the Get-EntraDomain command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraDomain
 
 ## Synopsis
 
-gets a domain.
+Gets a domain.
 
 ## Syntax
 
@@ -40,7 +40,7 @@ Get-EntraDomain
 
 ## Description
 
-the `Get-EntraDomain` cmdlet gets a domain in Microsoft Entra ID.
+The `Get-EntraDomain` cmdlet gets a domain in Microsoft Entra ID.
 
 ## Examples
 
@@ -55,8 +55,8 @@ Get-EntraDomain
 Id         AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified Manufacturer Model PasswordNotificationWindowInDays PasswordValidityPeriodInDays SupportedServices
 --         ------------------ ------------------ -------------- --------- --------- ------ ---------- ------------ ----- -------------------------------- ---------------------------- -----------------
 TEST22.com Managed                               True           False     False     False  False                                                                                       {}
-test26.com Managed                               True           False     False     False  False                                                                                       {}
-test25.com Managed                               True           False     False     False  False                                                                                       {}
+Test26.com Managed                               True           False     False     False  False                                                                                       {}
+Test25.com Managed                               True           False     False     False  False                                                                                       {}
 ```
 
 This command retrieves a list of domains.

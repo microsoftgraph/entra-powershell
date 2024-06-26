@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaApplicationSignInDetailedSummary
 
 ## Synopsis
-get detailed sign in summaries
+Get detailed sign in summaries
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Get-EntraBetaApplicationSignInDetailedSummary [-Top <Int32>] [-Filter <String>] 
 ```
 
 ## Description
-the Get-EntraBetaApplicationSignInDetailedSummary cmdlet gets Azure Active Directory sign ins, grouped by application, date, and sign in status.
+The Get-EntraBetaApplicationSignInDetailedSummary cmdlet gets Azure Active Directory sign ins, grouped by application, date, and sign in status.
 
 ## Examples
 

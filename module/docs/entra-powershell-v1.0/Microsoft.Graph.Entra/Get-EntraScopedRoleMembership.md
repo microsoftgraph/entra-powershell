@@ -1,25 +1,25 @@
 ---
-title: Get-EntraScopedRoleMembership
-description: This article provides details on the Get-EntraScopedRoleMembership command.
+Title: Get-EntraScopedRoleMembership
+Description: This article provides details on the Get-EntraScopedRoleMembership command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraScopedRoleMembership
 
 ## Synopsis
 
-gets a scoped role membership from an administrative unit.
+Gets a scoped role membership from an administrative unit.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Get-EntraScopedRoleMembership
 ```
 
 ## Description
-the Get-EntraScopedRoleMembership cmdlet gets a scoped role membership from an administrative unit in Microsoft Entra ID.
+The Get-EntraScopedRoleMembership cmdlet gets a scoped role membership from an administrative unit in Microsoft Entra ID.
 
 ## Examples
 
@@ -45,7 +45,7 @@ Get-EntraScopedRoleMembership -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc' -Scoped
 ```Output
 AdministrativeUnitId                 Id                                                                RoleId
 --------------------                 --                                                                ------
-bbbbbbbb-1111-2222-3333-cccccccccccc 1b1b1b1b-2222-cccc-3333-4d4d4d4d4d4d 356b7173-5a6e-49dc-88ec-b...
+Bbbbbbbb-1111-2222-3333-cccccccccccc 1b1b1b1b-2222-cccc-3333-4d4d4d4d4d4d 356b7173-5a6e-49dc-88ec-b...
 ```
 
 This command gets the scoped role membership from a specified administrative unit with specified scoped role membership ID.
@@ -60,8 +60,8 @@ Get-EntraScopedRoleMembership -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```Output
 AdministrativeUnitId                 Id                                                                RoleId
 --------------------                 --                                                                ------
-bbbbbbbb-1111-2222-3333-cccccccccccc 1b1b1b1b-2222-cccc-3333-4d4d4d4d4d4d 8a20c604-291f-4cc3-b6d0-2...
-bbbbbbbb-1111-2222-3333-cccccccccccc 3d3d3d3d-4444-eeee-5555-6f6f6f6f6f6f 8a20c604-291f-4cc3-b6d0-2...
+Bbbbbbbb-1111-2222-3333-cccccccccccc 1b1b1b1b-2222-cccc-3333-4d4d4d4d4d4d 8a20c604-291f-4cc3-b6d0-2...
+Bbbbbbbb-1111-2222-3333-cccccccccccc 3d3d3d3d-4444-eeee-5555-6f6f6f6f6f6f 8a20c604-291f-4cc3-b6d0-2...
 ```
 
 This command gets the list of scoped role membership from a specified administrative unit.

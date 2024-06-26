@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaApplicationVerifiedPublisher
 
 ## Synopsis
-removes the verified publisher from an application.
+Removes the verified publisher from an application.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaApplicationVerifiedPublisher -AppObjectId <String> [<CommonParam
 ```
 
 ## Description
-removes the verified publisher from an application.
+Removes the verified publisher from an application.
 
 ## Examples
 

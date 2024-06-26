@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaOAuth2PermissionGrant
 
 ## Synopsis
-removes an oAuth2PermissionGrant.
+Removes an oAuth2PermissionGrant.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaOAuth2PermissionGrant -ObjectId <String> [<CommonParameters>]
 ```
 
 ## Description
-the Remove-EntraBetaOAuth2PermissionGrant cmdlet removes an oAuth2PermissionGrant object in Azure Active Directory (AD).
+The Remove-EntraBetaOAuth2PermissionGrant cmdlet removes an oAuth2PermissionGrant object in Azure Active Directory (AD).
 
 ## Examples
 

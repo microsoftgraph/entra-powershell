@@ -1,26 +1,26 @@
 ---
-title: Get-EntraDomainFedrationSettings
-description: This article provides details on the Get-EntraDomainFedrationSettings command.
+Title: Get-EntraDomainFedrationSettings
+Description: This article provides details on the Get-EntraDomainFedrationSettings command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-help.xml
+External help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraDomainFedrationSettings
 
 ## Synopsis
 
-gets key settings for a federated domain.
+Gets key settings for a federated domain.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Get-EntraDomainFedrationSettings
 
 ## Description
 
-the `Get-EntraDomainFederationSettings` cmdlet gets key settings from Microsoft Entra ID.
+The `Get-EntraDomainFederationSettings` cmdlet gets key settings from Microsoft Entra ID.
 
 Use the [Get-EntraFederationProperty](./Get-EntraFederationProperty.md) cmdlet to get settings for both Microsoft Entra ID and the Entra ID Federation Services server.
 

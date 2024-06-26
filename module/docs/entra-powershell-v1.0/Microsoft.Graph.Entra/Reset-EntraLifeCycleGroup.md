@@ -1,25 +1,25 @@
 ---
-title: Reset-EntraLifeCycleGroup.
-description: This article provides details on the Reset-EntraLifeCycleGroup command.
+Title: Reset-EntraLifeCycleGroup.
+Description: This article provides details on the Reset-EntraLifeCycleGroup command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Reset-EntraLifeCycleGroup
 
 ## Synopsis
 
-renews a group by updating the RenewedDateTime property on a group to the current DateTime.
+Renews a group by updating the RenewedDateTime property on a group to the current DateTime.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Reset-EntraLifeCycleGroup
 
 ## Description
 
-the Reset-EntraLifeCycleGroup renews a group by updating the RenewedDateTime property on a group to the current DateTime.
+The Reset-EntraLifeCycleGroup renews a group by updating the RenewedDateTime property on a group to the current DateTime.
 When a group is renewed, it extends the group expiration by the number of days defined in the policy.
 
 ## Examples

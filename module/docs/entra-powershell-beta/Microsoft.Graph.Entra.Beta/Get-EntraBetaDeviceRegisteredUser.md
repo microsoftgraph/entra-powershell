@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaDeviceRegisteredUser
 
 ## Synopsis
-gets a registered user.
+Gets a registered user.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Get-EntraBetaDeviceRegisteredUser -ObjectId <String> [-All] [-Top <Int32>] [<Com
 ```
 
 ## Description
-the Get-EntraBetaDeviceRegisteredUser cmdlet gets a registered user for an Azure Active Directory device.
+The Get-EntraBetaDeviceRegisteredUser cmdlet gets a registered user for an Azure Active Directory device.
 
 ## Examples
 

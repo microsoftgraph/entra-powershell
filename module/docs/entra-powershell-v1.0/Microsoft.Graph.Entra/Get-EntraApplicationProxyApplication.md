@@ -1,25 +1,25 @@
 ---
-title: Get-EntraApplicationProxyApplication
-description: This article provides details on the Get-EntraApplicationProxyApplication command.
+Title: Get-EntraApplicationProxyApplication
+Description: This article provides details on the Get-EntraApplicationProxyApplication command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraApplicationProxyApplication
 
 ## Synopsis
-the Get-EntraApplicationProxyApplication cmdlet retrieves an application configured for Application Proxy in Microsoft Entra ID.
+The Get-EntraApplicationProxyApplication cmdlet retrieves an application configured for Application Proxy in Microsoft Entra ID.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ Get-EntraApplicationProxyApplication
 ```
 
 ## Description
-the Get-EntraApplicationProxyApplication cmdlet retrieves an application configured for Application Proxy in Microsoft Entra ID.
+The Get-EntraApplicationProxyApplication cmdlet retrieves an application configured for Application Proxy in Microsoft Entra ID.
 
 ## Examples
 

@@ -1,24 +1,24 @@
 ---
-title: Remove-EntraApplicationVerifiedPublisher.
-description: This article provides details on the Remove-EntraApplicationVerifiedPublisher command.
+Title: Remove-EntraApplicationVerifiedPublisher.
+Description: This article provides details on the Remove-EntraApplicationVerifiedPublisher command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraApplicationVerifiedPublisher
 
 ## Synopsis
-removes the verified publisher from an application.
+Removes the verified publisher from an application.
 
 ## Syntax
 
@@ -29,7 +29,7 @@ Remove-EntraApplicationVerifiedPublisher
 ```
 
 ## Description
-removes the verified publisher from an application.
+Removes the verified publisher from an application.
 
 ## Examples
 

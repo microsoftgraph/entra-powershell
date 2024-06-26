@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-help.xml
+External help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaDomainFederationSettings
 
 ## Synopsis
-retrieves settings for a federated domain.
+Retrieves settings for a federated domain.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Get-EntraBetaDomainFederationSettings [-DomainName] <String> [[-TenantId] <Guid>
 ```
 
 ## Description
-the Get-EntraBetaDomainFederationSettings cmdlet gets key settings from Microsoft Azure Active Directory.
+The Get-EntraBetaDomainFederationSettings cmdlet gets key settings from Microsoft Azure Active Directory.
 Use the Get-EntraFederationProperty cmdlet to get settings for both Microsoft Azure Active Directory and the Active Directory Federation Services server.
 
 ## Examples

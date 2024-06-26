@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaDomain
 
 ## Synopsis
-gets a domain.
+Gets a domain.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ Get-EntraBetaDomain -Name <String> [<CommonParameters>]
 ```
 
 ## Description
-the Get-EntraBetaDomain cmdlet gets a domain in Azure Active Directory (AD).
+The Get-EntraBetaDomain cmdlet gets a domain in Azure Active Directory (AD).
 
 ## Examples
 

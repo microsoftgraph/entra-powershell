@@ -1,25 +1,25 @@
 ---
-title: Get-EntraContract
-description: This article provides details on the Get-EntraContract command.
+Title: Get-EntraContract
+Description: This article provides details on the Get-EntraContract command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraContract
 
 ## Synopsis
 
-gets a contract.
+Gets a contract.
 
 ## Syntax
 
@@ -44,7 +44,7 @@ Get-EntraContract
 
 ## Description
 
-the `Get-EntraContract` cmdlet gets a contract information associated to a partner tenant.
+The `Get-EntraContract` cmdlet gets a contract information associated to a partner tenant.
 
 The contract object contains the following attributes:
 

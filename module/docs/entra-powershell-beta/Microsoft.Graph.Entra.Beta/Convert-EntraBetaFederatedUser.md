@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-help.xml
+External help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Convert-EntraBetaFederatedUser
 
 ## Synopsis
-updates a user in a domain that was recently converted from single sign-on (also known as identity federation) to standard authentication type.
+Updates a user in a domain that was recently converted from single sign-on (also known as identity federation) to standard authentication type.
 
 ## Syntax
 
@@ -18,8 +18,8 @@ Convert-EntraBetaFederatedUser [-UserPrincipalName] <String> [[-NewPassword] <St
 ```
 
 ## Description
-the Convert-EntraBetaFederatedUser cmdlet is used to update a user in a domain that was recently converted from single sign-on (also known as identity federation) to
-standard authentication type. 
+The Convert-EntraBetaFederatedUser cmdlet is used to update a user in a domain that was recently converted from single sign-on (also known as identity federation) to
+Standard authentication type. 
 A new password must be provided for the user.
 
 ## Examples
@@ -65,7 +65,7 @@ Accept wildcard characters: False
 The unique ID of the tenant to perform the operation on. 
 If this is not provided then it will default to the tenant of the current user. 
 This parameter is only
-applicable to partner users.
+Applicable to partner users.
 
 ```yaml
 Type: Guid

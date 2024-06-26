@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Update-EntraBetaSignedInUserPassword
 
 ## Synopsis
-updates the password for the signed-in user.
+Updates the password for the signed-in user.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Update-EntraBetaSignedInUserPassword -CurrentPassword <SecureString> -NewPasswor
 ```
 
 ## Description
-the Update-EntraBetaSignedInUserPassword cmdlet updates the password for the signed-in user in Azure Active Directory (AD).
+The Update-EntraBetaSignedInUserPassword cmdlet updates the password for the signed-in user in Azure Active Directory (AD).
 
 ## Examples
 

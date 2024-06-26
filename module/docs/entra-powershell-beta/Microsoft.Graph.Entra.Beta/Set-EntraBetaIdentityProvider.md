@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaIdentityProvider
 
 ## Synopsis
-this cmdlet is used to update the properties of an existing identity provider configured in the directory.
+This cmdlet is used to update the properties of an existing identity provider configured in the directory.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Set-EntraBetaIdentityProvider -Id <String> [-Type <String>] [-Name <String>] [-C
 ```
 
 ## Description
-this cmdlet can be used to update the properties of an existing identity provider.
+This cmdlet can be used to update the properties of an existing identity provider.
 The type of the identity provider cannot be modified.
 
 ## Examples

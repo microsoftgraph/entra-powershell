@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaTrustFrameworkPolicy
 
 ## Synopsis
-this cmdlet is used to delete a trust framework policy (custom policy) in the directory.
+This cmdlet is used to delete a trust framework policy (custom policy) in the directory.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaTrustFrameworkPolicy -Id <String> [<CommonParameters>]
 ```
 
 ## Description
-this cmdlet is used to delete a trust framework policy in the directory.
+This cmdlet is used to delete a trust framework policy in the directory.
 The trust framework policy will be permanently deleted.
 
 ## Examples

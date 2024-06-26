@@ -1,25 +1,25 @@
 ---
-title: Get-EntraAdministrativeUnit
-description: This article provides details on the Get-EntraAdministrativeUnit command.
+Title: Get-EntraAdministrativeUnit
+Description: This article provides details on the Get-EntraAdministrativeUnit command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraAdministrativeUnit
 
 ## Synopsis
 
-gets an administrative unit.
+Gets an administrative unit.
 
 ## Syntax
 
@@ -44,7 +44,7 @@ Get-EntraAdministrativeUnit
 
 ## Description
 
-the `Get-EntraAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrative unit.
+The `Get-EntraAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrative unit.
 
 ## Examples
 
@@ -58,10 +58,10 @@ Get-EntraAdministrativeUnit
 ```Output
 Id                                   OdataType Description                                     DisplayName
 --                                   --------- -----------                                     -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
-bbbbbbbb-1111-2222-3333-cccccccccccc                                                           SOC Retention
-cccccccc-2222-3333-4444-dddddddddddd           Container AU for restricted object control      DSR RMAU
-dddddddd-3333-4444-5555-eeeeeeeeeeee           Use to contain Personnel-managed project groups Personnel Projects
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
+Bbbbbbbb-1111-2222-3333-cccccccccccc                                                           SOC Retention
+Cccccccc-2222-3333-4444-dddddddddddd           Container AU for restricted object control      DSR RMAU
+Dddddddd-3333-4444-5555-eeeeeeeeeeee           Use to contain Personnel-managed project groups Personnel Projects
 ```
 
 This command gets all the administrative units.
@@ -76,10 +76,10 @@ Get-EntraAdministrativeUnit -All
 ```Output
 Id                                   OdataType Description                                     DisplayName
 --                                   --------- -----------                                     -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
-bbbbbbbb-1111-2222-3333-cccccccccccc                                                           SOC Retention
-cccccccc-2222-3333-4444-dddddddddddd           Container AU for restricted object control      DSR RMAU
-dddddddd-3333-4444-5555-eeeeeeeeeeee           Use to contain Personnel-managed project groups Personnel Projects
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
+Bbbbbbbb-1111-2222-3333-cccccccccccc                                                           SOC Retention
+Cccccccc-2222-3333-4444-dddddddddddd           Container AU for restricted object control      DSR RMAU
+Dddddddd-3333-4444-5555-eeeeeeeeeeee           Use to contain Personnel-managed project groups Personnel Projects
 ```
 
 This command gets all the administrative units.
@@ -94,7 +94,7 @@ Get-EntraAdministrativeUnit -Id aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```Output
 Id                                   OdataType Description                                     DisplayName
 --                                   --------- -----------                                     -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
 ```
 
 This example returns the details of the specified administrative unit.
@@ -109,7 +109,7 @@ Get-EntraAdministrativeUnit -Filter "DisplayName eq 'DAU-Test'"
 ```Output
 Id                                   OdataType Description                                     DisplayName
 --                                   --------- -----------                                     -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
 ```
 
 This example list of administrative units containing display name with the specified name.
@@ -124,7 +124,7 @@ Get-EntraAdministrativeUnit -Top 1
 ```Output
 Id                                   OdataType Description                                     DisplayName
 --                                   --------- -----------                                     -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
+Aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
 ```
 
 This example returns the specified top administrative units.

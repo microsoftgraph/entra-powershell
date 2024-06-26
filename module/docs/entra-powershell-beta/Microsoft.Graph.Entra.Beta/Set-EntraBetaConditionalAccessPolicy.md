@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaConditionalAccessPolicy
 
 ## Synopsis
-updates a conditional access policy in Azure Active Directory by Id.
+Updates a conditional access policy in Azure Active Directory by Id.
 
 ## Syntax
 
@@ -20,7 +20,7 @@ Set-EntraBetaConditionalAccessPolicy [-Id <String>] -PolicyId <String>
 ```
 
 ## Description
-this cmdlet allows an admin to update a conditional access policy in Azure Active Directory by Id.
+This cmdlet allows an admin to update a conditional access policy in Azure Active Directory by Id.
 Conditional access policies are custom rules that define an access scenario.
 
 ## Examples

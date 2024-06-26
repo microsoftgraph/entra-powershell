@@ -1,25 +1,25 @@
 ---
-title: Get-EntraUserDirectReport.
-description: This article provides details on the Get-EntraUserDirectReport command.
+Title: Get-EntraUserDirectReport.
+Description: This article provides details on the Get-EntraUserDirectReport command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraUserDirectReport
 
 ## Synopsis
 
-get the user's direct reports.
+Get the user's direct reports.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Get-EntraUserDirectReport
 
 ## Description
 
-the Get-EntraUserDirectReport cmdlet gets the direct reports for a user in Microsoft Entra ID.
+The Get-EntraUserDirectReport cmdlet gets the direct reports for a user in Microsoft Entra ID.
 
 ## Examples
 
@@ -46,17 +46,17 @@ Get-EntraUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {debrab@contoso.com}
-preferredLanguage               :
-mail                            : DebraB@contoso.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=DebraB@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=33334444-dddd-5555-eeee-6666ffff7777}, @{disabledPlans=System.Object[]; skuId=44445555-eeee-6666-ffff-7777aaaa8888},
+AgeGroup                        :
+OnPremisesLastSyncDateTime      :
+CreationType                    :
+ImAddresses                     : {debrab@contoso.com}
+PreferredLanguage               :
+Mail                            : DebraB@contoso.com
+SecurityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
+Identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=DebraB@contoso.com}}
+ConsentProvidedForMinor         :
+OnPremisesUserPrincipalName     :
+AssignedLicenses                : {@{disabledPlans=System.Object[]; skuId=33334444-dddd-5555-eeee-6666ffff7777}, @{disabledPlans=System.Object[]; skuId=44445555-eeee-6666-ffff-7777aaaa8888},
                                   @{disabledPlans=System.Object[]; skuId=55556666-ffff-7777-aaaa-8888bbbb9999}}
 ```
 
@@ -71,17 +71,17 @@ Get-EntraUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {debrab@contoso.com}
-preferredLanguage               :
-mail                            : DebraB@contoso.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=DebraB@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=33334444-dddd-5555-eeee-6666ffff7777}, @{disabledPlans=System.Object[]; skuId=44445555-eeee-6666-ffff-7777aaaa8888},
+AgeGroup                        :
+OnPremisesLastSyncDateTime      :
+CreationType                    :
+ImAddresses                     : {debrab@contoso.com}
+PreferredLanguage               :
+Mail                            : DebraB@contoso.com
+SecurityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
+Identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=DebraB@contoso.com}}
+ConsentProvidedForMinor         :
+OnPremisesUserPrincipalName     :
+AssignedLicenses                : {@{disabledPlans=System.Object[]; skuId=33334444-dddd-5555-eeee-6666ffff7777}, @{disabledPlans=System.Object[]; skuId=44445555-eeee-6666-ffff-7777aaaa8888},
                                   @{disabledPlans=System.Object[]; skuId=55556666-ffff-7777-aaaa-8888bbbb9999}}
 ```
 
@@ -96,17 +96,17 @@ Get-EntraUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {debrab@contoso.com}
-preferredLanguage               :
-mail                            : DebraB@contoso.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=DebraB@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=33334444-dddd-5555-eeee-6666ffff7777}, @{disabledPlans=System.Object[]; skuId=44445555-eeee-6666-ffff-7777aaaa8888},
+AgeGroup                        :
+OnPremisesLastSyncDateTime      :
+CreationType                    :
+ImAddresses                     : {debrab@contoso.com}
+PreferredLanguage               :
+Mail                            : DebraB@contoso.com
+SecurityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
+Identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=DebraB@contoso.com}}
+ConsentProvidedForMinor         :
+OnPremisesUserPrincipalName     :
+AssignedLicenses                : {@{disabledPlans=System.Object[]; skuId=33334444-dddd-5555-eeee-6666ffff7777}, @{disabledPlans=System.Object[]; skuId=44445555-eeee-6666-ffff-7777aaaa8888},
                                   @{disabledPlans=System.Object[]; skuId=55556666-ffff-7777-aaaa-8888bbbb9999}}
 ```
 

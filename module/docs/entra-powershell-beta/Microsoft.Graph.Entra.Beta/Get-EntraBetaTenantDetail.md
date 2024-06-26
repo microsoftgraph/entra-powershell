@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaTenantDetail
 
 ## Synopsis
-gets the details of a tenant.
+Gets the details of a tenant.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Get-EntraBetaTenantDetail [-Top <Int32>] [-All] [<CommonParameters>]
 ```
 
 ## Description
-the Get-EntraBetaTenantDetail cmdlet gets the details of a tenant in Azure Active Directory (AD).
+The Get-EntraBetaTenantDetail cmdlet gets the details of a tenant in Azure Active Directory (AD).
 
 ## Examples
 

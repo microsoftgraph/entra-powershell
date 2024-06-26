@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaDevice
 
 ## Synopsis
-creates a device.
+Creates a device.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ New-EntraBetaDevice -AccountEnabled <Boolean>
 ```
 
 ## Description
-the New-EntraBetaDevice cmdlet creates a device in Azure Active Directory (AD).
+The New-EntraBetaDevice cmdlet creates a device in Azure Active Directory (AD).
 
 ## Examples
 
@@ -206,7 +206,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsCompliant
-true if the device complies with Mobile Device Management (MDM) policies; otherwise, false.
+True if the device complies with Mobile Device Management (MDM) policies; otherwise, false.
 
 ```yaml
 Type: Boolean
@@ -221,7 +221,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsManaged
-true if the device is managed by a Mobile Device Management (MDM) app such as Intune; otherwise, false
+True if the device is managed by a Mobile Device Management (MDM) app such as Intune; otherwise, false
 
 ```yaml
 Type: Boolean

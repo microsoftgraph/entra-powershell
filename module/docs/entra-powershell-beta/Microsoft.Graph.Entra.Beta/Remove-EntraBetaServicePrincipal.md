@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaServicePrincipal
 
 ## Synopsis
-removes a service principal.
+Removes a service principal.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaServicePrincipal -ObjectId <String> [<CommonParameters>]
 ```
 
 ## Description
-the Remove-EntraBetaServicePrincipal cmdlet removes a service principal in Azure Active Directory (AD).
+The Remove-EntraBetaServicePrincipal cmdlet removes a service principal in Azure Active Directory (AD).
 
 ## Examples
 

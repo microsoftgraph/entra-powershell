@@ -1,25 +1,25 @@
 ---
-title: Set-EntraBetaPartnerInformation
-description: This article provides details on the Set-EntraBetaPartnerInformation command.
+Title: Set-EntraBetaPartnerInformation
+Description: This article provides details on the Set-EntraBetaPartnerInformation command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra.Beta-help.xml
+External help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaPartnerInformation
 
 ## Synopsis
-sets company information for partners.
+Sets company information for partners.
 
 ## Syntax
 
@@ -36,7 +36,7 @@ Set-EntraBetaPartnerInformation
  [<CommonParameters>]
 ```
 ## Description
-the Set-EntraBetaPartnerInformation cmdlet is used by partners to set partner-specific properties.
+The Set-EntraBetaPartnerInformation cmdlet is used by partners to set partner-specific properties.
 These properties can view by all tenants that the partner has access to.
 
 ## Examples

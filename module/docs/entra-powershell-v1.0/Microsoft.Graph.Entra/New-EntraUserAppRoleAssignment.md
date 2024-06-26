@@ -1,25 +1,25 @@
 ---
-title: New-EntraUserAppRoleAssignment.
-description: This article provides details on the New-EntraUserAppRoleAssignment command.
+Title: New-EntraUserAppRoleAssignment.
+Description: This article provides details on the New-EntraUserAppRoleAssignment command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraUserAppRoleAssignment
 
 ## Synopsis
 
-assigns a user to an application role.
+Assigns a user to an application role.
 
 ## Syntax
 
@@ -34,7 +34,7 @@ New-EntraUserAppRoleAssignment
 
 ## Description
 
-the `New-EntraUserAppRoleAssignment` cmdlet assigns a user to an application role in Microsoft Entra ID.
+The `New-EntraUserAppRoleAssignment` cmdlet assigns a user to an application role in Microsoft Entra ID.
 
 To grant an app role assignment to a user, you need three identifiers:
 

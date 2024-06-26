@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaServiceAppRoleAssignment
 
 ## Synopsis
-assigns a service principal to an application role.
+Assigns a service principal to an application role.
 
 ## Syntax
 
@@ -19,7 +19,7 @@ New-EntraBetaServiceAppRoleAssignment -ResourceId <String> -Id <String> -ObjectI
 ```
 
 ## Description
-the New-EntraBetaServiceAppRoleAssignment cmdlet assigns a service principal to an application role in Azure Active Directory (AD).
+The New-EntraBetaServiceAppRoleAssignment cmdlet assigns a service principal to an application role in Azure Active Directory (AD).
 
 ## Examples
 

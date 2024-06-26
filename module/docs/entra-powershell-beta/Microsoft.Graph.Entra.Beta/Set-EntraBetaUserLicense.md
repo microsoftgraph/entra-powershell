@@ -1,19 +1,19 @@
 ---
-title: Set-EntraBetaUserLicense
-description: This article provides details on the Set-EntraBetaUserLicense command.
+Title: Set-EntraBetaUserLicense
+Description: This article provides details on the Set-EntraBetaUserLicense command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaUserLicense
@@ -31,7 +31,7 @@ Set-EntraBetaUserLicense
 ```
 
 ## Description
-the **Set-EntraBetaUserLicense** Adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
+The **Set-EntraBetaUserLicense** Adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
 ## Examples
 

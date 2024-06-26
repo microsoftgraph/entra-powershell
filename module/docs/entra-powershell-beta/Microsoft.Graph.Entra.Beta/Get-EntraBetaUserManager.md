@@ -1,24 +1,24 @@
 ---
-title: Get-EntraBetaUserManager.
-description: This article provides details on the Get-EntraBetaUserManager command.
+Title: Get-EntraBetaUserManager.
+Description: This article provides details on the Get-EntraBetaUserManager command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaUserManager
 
 ## Synopsis
-gets the manager of a user.
+Gets the manager of a user.
 
 ## Syntax
 
@@ -29,7 +29,7 @@ Get-EntraBetaUserManager
 ```
 
 ## Description
-the Get-EntraBetaUserManager cmdlet gets the manager of a user in Microsoft Entra ID.
+The Get-EntraBetaUserManager cmdlet gets the manager of a user in Microsoft Entra ID.
 
 ## Examples
 
@@ -42,13 +42,13 @@ DeletedDateTime                 :
 Id                              : 26bb22db-6b8e-4adb-b761-264c869d5245
 @odata.context                  : https://graph.microsoft.com/beta/$metadata#directoryObjects/$entity
 @odata.type                     : #microsoft.graph.user
-accountEnabled                  : True
-businessPhones                  : {+1 858 555 0109}
-city                            : San Diego
-createdDateTime                 : 2023-07-07T14:18:05Z
-country                         : United States
-department                      : Sales & Marketing
-displayName                     : Miriam Graham
+AccountEnabled                  : True
+BusinessPhones                  : {+1 858 555 0109}
+City                            : San Diego
+CreatedDateTime                 : 2023-07-07T14:18:05Z
+Country                         : United States
+Department                      : Sales & Marketing
+DisplayName                     : Miriam Graham
 ```
 
 This example demonstrates how to retrieve the manager of a specific user.  

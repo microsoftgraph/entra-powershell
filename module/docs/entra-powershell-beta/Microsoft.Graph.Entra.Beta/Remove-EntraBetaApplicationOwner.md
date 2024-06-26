@@ -1,25 +1,25 @@
 ---
-title: Remove-EntraBetaApplicationOwner
-description: This article provides details on the Remove-EntraBetaApplicationOwner command.
+Title: Remove-EntraBetaApplicationOwner
+Description: This article provides details on the Remove-EntraBetaApplicationOwner command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaApplicationOwner
 
 ## Synopsis
 
-removes an owner from an application.
+Removes an owner from an application.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Remove-EntraBetaApplicationOwner
 
 ## Description
 
-the Remove-EntraBetaApplicationOwner cmdlet removes an owner from an application in Microsoft Entra ID.
+The Remove-EntraBetaApplicationOwner cmdlet removes an owner from an application in Microsoft Entra ID.
 
 ## Examples
 

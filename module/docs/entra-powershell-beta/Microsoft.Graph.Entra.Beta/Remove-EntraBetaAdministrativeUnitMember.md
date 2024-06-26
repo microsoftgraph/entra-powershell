@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaAdministrativeUnitMember
 
 ## Synopsis
-removes an administrative unit member.
+Removes an administrative unit member.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaAdministrativeUnitMember -ObjectId <String> -MemberId <String> [
 ```
 
 ## Description
-the Remove-EntraBetaAdministrativeUnitMember cmdlet removes an administrative unit member in Azure Active Directory (AD).
+The Remove-EntraBetaAdministrativeUnitMember cmdlet removes an administrative unit member in Azure Active Directory (AD).
 
 ## Examples
 

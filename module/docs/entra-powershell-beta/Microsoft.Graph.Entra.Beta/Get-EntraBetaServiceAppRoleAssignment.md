@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaServiceAppRoleAssignment
 
 ## Synopsis
-gets a service principal application role assignment.
+Gets a service principal application role assignment.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Get-EntraBetaServiceAppRoleAssignment -ObjectId <String> [-All] [-Top <Int32>] [
 ```
 
 ## Description
-the Get-EntraBetaServiceAppRoleAssignment cmdlet gets a role assignment for a service principal application in Azure Active Directory (AD).
+The Get-EntraBetaServiceAppRoleAssignment cmdlet gets a role assignment for a service principal application in Azure Active Directory (AD).
 
 ## Examples
 

@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaAdministrativeUnit
 
 ## Synopsis
-gets an administrative unit.
+Gets an administrative unit.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ Get-EntraBetaAdministrativeUnit -ObjectId <String> [-All] [<CommonParameters>]
 ```
 
 ## Description
-the Get-EntraBetaAdministrativeUnit cmdlet gets an Azure Active Directory administrative unit.
+The Get-EntraBetaAdministrativeUnit cmdlet gets an Azure Active Directory administrative unit.
 
 ## Examples
 

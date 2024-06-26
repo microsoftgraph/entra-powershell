@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaUserExtension
 
 ## Synopsis
-sets a user extension.
+Sets a user extension.
 
 ## Syntax
 
@@ -26,7 +26,7 @@ Set-EntraBetaUserExtension -ObjectId <String>
 ```
 
 ## Description
-the Set-EntraBetaUserExtension cmdlet sets a user extension in Azure Active Directory (Azure AD).
+The Set-EntraBetaUserExtension cmdlet sets a user extension in Azure Active Directory (Azure AD).
 
 ## Examples
 

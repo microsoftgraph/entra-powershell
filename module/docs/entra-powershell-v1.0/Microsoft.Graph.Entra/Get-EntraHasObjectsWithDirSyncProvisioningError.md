@@ -1,25 +1,25 @@
 ---
-title: Get-EntraHasObjectsWithDirSyncProvisioningError
-description: This article provides details on the Get-EntraHasObjectsWithDirSyncProvisioningError command.
+Title: Get-EntraHasObjectsWithDirSyncProvisioningError
+Description: This article provides details on the Get-EntraHasObjectsWithDirSyncProvisioningError command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-help.xml
+External help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraHasObjectsWithDirSyncProvisioningError
 
 ## Synopsis
-returns whether Microsoft Entra ID has objects with DirSync provisioning error.
+Returns whether Microsoft Entra ID has objects with DirSync provisioning error.
 
 ## Syntax
 
@@ -30,8 +30,8 @@ Get-EntraHasObjectsWithDirSyncProvisioningError
 ```
 
 ## Description
-the Get-EntraHasObjectsWithDirSyncProvisioningError returns whether Microsoft Entra ID has objects 
-with DirSync provisioning error.
+The Get-EntraHasObjectsWithDirSyncProvisioningError returns whether Microsoft Entra ID has objects 
+With DirSync provisioning error.
 
 ## Examples
 

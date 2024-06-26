@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaRoleAssignment
 
 ## Synopsis
-create a new Azure Active Directory roleAssignment.
+Create a new Azure Active Directory roleAssignment.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ New-EntraBetaRoleAssignment -RoleDefinitionId <String> -DirectoryScopeId <String
 ```
 
 ## Description
-create a new Azure Active Directory roleAssignment object.
+Create a new Azure Active Directory roleAssignment object.
 For more info see https://go.microsoft.com/fwlink/?linkid=2097519.
 
 ## Examples

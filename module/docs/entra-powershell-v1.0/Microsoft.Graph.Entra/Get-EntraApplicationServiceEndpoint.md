@@ -1,25 +1,25 @@
 ---
-title: Get-EntraApplicationServiceEndpoint.
-description: This article provides details on the Get-EntraApplicationServiceEndpoint command.
+Title: Get-EntraApplicationServiceEndpoint.
+Description: This article provides details on the Get-EntraApplicationServiceEndpoint command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraApplicationServiceEndpoint
 
 ## Synopsis
 
-retrieve the service endpoint of an application.
+Retrieve the service endpoint of an application.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Get-EntraApplicationServiceEndpoint
 
 ## Description
 
-this cmdlet retrieves the service endpoint(s) of an application.
+This cmdlet retrieves the service endpoint(s) of an application.
 The service endpoint entity contains service discovery information.
 The serviceEndpoints property of the Application entity is of type ServiceEndpoint.
 Other services can use the information stored in the ServiceEndpoint entity to find this service and its addressable endpoints.

@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-help.xml
+External help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaRoleDefinition
 
 ## Synopsis
-delete a Microsoft Entra ID roleDefinition by ObjectId
+Delete a Microsoft Entra ID roleDefinition by ObjectId
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaRoleDefinition [-Id] <String> [<CommonParameters>]
 ```
 
 ## Description
-delete a Microsoft Entra ID roleDefinition object by id.
+Delete a Microsoft Entra ID roleDefinition object by id.
 For more info see https://go.microsoft.com/fwlink/?linkid=2097519.
 
 ## Examples

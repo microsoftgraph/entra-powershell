@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaDomain
 
 ## Synopsis
-creates a domain.
+Creates a domain.
 
 ## Syntax
 
@@ -19,7 +19,7 @@ New-EntraBetaDomain [-IsDefault <Boolean>]
 ```
 
 ## Description
-the New-EntraBetaDomain cmdlet creates a domain in Azure Active Directory (AD).
+The New-EntraBetaDomain cmdlet creates a domain in Azure Active Directory (AD).
 
 ## Examples
 

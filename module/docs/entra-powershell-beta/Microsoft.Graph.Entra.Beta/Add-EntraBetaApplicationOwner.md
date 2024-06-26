@@ -1,18 +1,18 @@
 ---
-title: Add-EntraBetaApplicationOwner
-description: This article provides details on the Add-EntraBetaApplicationOwner command.
+Title: Add-EntraBetaApplicationOwner
+Description: This article provides details on the Add-EntraBetaApplicationOwner command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Add-EntraBetaApplicationOwner
@@ -32,7 +32,7 @@ Add-EntraBetaApplicationOwner
 
 ## Description
 
-the `Add-EntraBetaApplicationOwner` cmdlet Adds an owner to a Microsoft Entra ID application.
+The `Add-EntraBetaApplicationOwner` cmdlet Adds an owner to a Microsoft Entra ID application.
 
 ## Examples
 

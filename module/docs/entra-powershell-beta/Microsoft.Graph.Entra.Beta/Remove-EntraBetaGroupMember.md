@@ -1,24 +1,24 @@
 ---
-title: Remove-EntraBetaGroupMember.
-description: This article provides details on the Remove-EntraBetaGroupMember command.
+Title: Remove-EntraBetaGroupMember.
+Description: This article provides details on the Remove-EntraBetaGroupMember command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaGroupMember
 
 ## Synopsis
-removes a member from a group.
+Removes a member from a group.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ Remove-EntraBetaGroupMember
 ```
 
 ## Description
-the Remove-EntraBetaGroupMember cmdlet removes a member from a group in Microsoft Entra ID.
+The Remove-EntraBetaGroupMember cmdlet removes a member from a group in Microsoft Entra ID.
 
 ## Examples
 

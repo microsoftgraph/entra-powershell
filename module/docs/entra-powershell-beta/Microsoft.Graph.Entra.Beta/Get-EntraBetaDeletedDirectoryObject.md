@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaDeletedDirectoryObject
 
 ## Synopsis
-this cmdlet is used to retrieve a soft deleted directory object from the directory
+This cmdlet is used to retrieve a soft deleted directory object from the directory
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Get-EntraBetaDeletedDirectoryObject -Id <String> [<CommonParameters>]
 ```
 
 ## Description
-this cmdlet is used to retrieve a soft deleted directory object from the directory.
+This cmdlet is used to retrieve a soft deleted directory object from the directory.
 Note that soft delete for groups is currently only implemented for Unified Groups (a.k.a.
 Office 365 Groups).
 

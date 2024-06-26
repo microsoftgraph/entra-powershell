@@ -1,24 +1,24 @@
 ---
-title: Remove-EntraApplicationProxyApplicationConnectorGroup
-description: This article provides details on the Remove-EntraApplicationProxyApplicationConnectorGroup command.
+Title: Remove-EntraApplicationProxyApplicationConnectorGroup
+Description: This article provides details on the Remove-EntraApplicationProxyApplicationConnectorGroup command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraApplicationProxyApplicationConnectorGroup
 
 ## Synopsis
-the Remove-EntraApplicationProxyApplicationConnectorGroup cmdlet sets the connector group assigned for the specified application to 'Default' and removes the current assignment.
+The Remove-EntraApplicationProxyApplicationConnectorGroup cmdlet sets the connector group assigned for the specified application to 'Default' and removes the current assignment.
 
 ## Syntax
 
@@ -29,7 +29,7 @@ Remove-EntraApplicationProxyApplicationConnectorGroup
 ```
 
 ## Description
-if your application is already in the 'Default' group, you see an error because the application can't be removed from the 'Default' group unless it's being added to another group. The application must be configured for Application Proxy in Microsoft Entra ID.
+If your application is already in the 'Default' group, you see an error because the application can't be removed from the 'Default' group unless it's being added to another group. The application must be configured for Application Proxy in Microsoft Entra ID.
 
 ## Examples
 

@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaContactDirectReport
 
 ## Synopsis
-get the direct reports for a contact.
+Get the direct reports for a contact.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Get-EntraBetaContactDirectReport -ObjectId <String> [-All] [-Top <Int32>] [<Comm
 ```
 
 ## Description
-the Get-EntraBetaContactDirectReport cmdlet gets the direct reports for a contact.
+The Get-EntraBetaContactDirectReport cmdlet gets the direct reports for a contact.
 
 ## Examples
 

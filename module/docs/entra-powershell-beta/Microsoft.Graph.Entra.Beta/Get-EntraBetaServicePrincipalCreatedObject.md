@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaServicePrincipalCreatedObject
 
 ## Synopsis
-get objects created by a service principal.
+Get objects created by a service principal.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Get-EntraBetaServicePrincipalCreatedObject -ObjectId <String> [-All] [-Top <Int3
 ```
 
 ## Description
-the Get-EntraBetaServicePrincipalCreatedObject cmdlet gets an object created by a service principal in Azure Active Directory (AD).
+The Get-EntraBetaServicePrincipalCreatedObject cmdlet gets an object created by a service principal in Azure Active Directory (AD).
 
 ## Examples
 

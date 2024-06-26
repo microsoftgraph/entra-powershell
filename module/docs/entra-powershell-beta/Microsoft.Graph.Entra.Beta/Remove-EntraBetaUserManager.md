@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaUserManager
 
 ## Synopsis
-removes a user's manager.
+Removes a user's manager.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaUserManager -ObjectId <String> [<CommonParameters>]
 ```
 
 ## Description
-the Remove-EntraBetaUserManager cmdlet removes a user's manager in Azure Active Directory (AD).
+The Remove-EntraBetaUserManager cmdlet removes a user's manager in Azure Active Directory (AD).
 
 ## Examples
 

@@ -1,25 +1,25 @@
 ---
-title: Get-EntraPermissionGrantPolicy
-description: This article provides details on the Get-EntraPermissionGrantPolicy command.
+Title: Get-EntraPermissionGrantPolicy
+Description: This article provides details on the Get-EntraPermissionGrantPolicy command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraPermissionGrantPolicy
 
 ## Synopsis
 
-gets a permission grant policy.
+Gets a permission grant policy.
 
 ## Syntax
 
@@ -40,7 +40,7 @@ Get-EntraPermissionGrantPolicy
 
 ## Description
 
-the `Get-EntraPermissionGrantPolicy` cmdlet gets a Microsoft Entra ID permission grant policy.
+The `Get-EntraPermissionGrantPolicy` cmdlet gets a Microsoft Entra ID permission grant policy.
 
 ## Examples
 

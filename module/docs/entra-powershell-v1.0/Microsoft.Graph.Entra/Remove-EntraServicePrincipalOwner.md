@@ -1,25 +1,25 @@
 ---
-title: Remove-EntraServicePrincipalOwner.
-description: This article provides details on the Remove-EntraServicePrincipalOwner command.
+Title: Remove-EntraServicePrincipalOwner.
+Description: This article provides details on the Remove-EntraServicePrincipalOwner command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraServicePrincipalOwner
 
 ## Synopsis
 
-removes an owner from a service principal.
+Removes an owner from a service principal.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Remove-EntraServicePrincipalOwner
 
 ## Description
 
-the Remove-EntraServicePrincipalOwner cmdlet removes an owner from a service principal in Microsoft Entra ID.
+The Remove-EntraServicePrincipalOwner cmdlet removes an owner from a service principal in Microsoft Entra ID.
 
 ## Examples
 

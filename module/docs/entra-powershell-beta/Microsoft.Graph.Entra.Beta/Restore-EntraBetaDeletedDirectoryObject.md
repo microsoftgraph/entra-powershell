@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Restore-EntraBetaDeletedDirectoryObject
 
 ## Synopsis
-this cmdlet is used to restore a previously deleted object.
+This cmdlet is used to restore a previously deleted object.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Restore-EntraBetaDeletedDirectoryObject -Id <String> [<CommonParameters>]
 ```
 
 ## Description
-this cmdlet is used to restore a previously deleted object.
+This cmdlet is used to restore a previously deleted object.
 Currently, only restoring Group and Application objects is supported. 
 When a group or an application is deleted it is initially soft deleted and can be recovered during the first 30 days after deletion.
 After 30 days the deleted object is permanently deleted and can no longer be recovered.

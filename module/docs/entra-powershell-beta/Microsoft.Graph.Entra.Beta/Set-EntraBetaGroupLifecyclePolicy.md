@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaGroupLifecyclePolicy
 
 ## Synopsis
-updates a specific group Lifecycle Policy in Azure Active Directory
+Updates a specific group Lifecycle Policy in Azure Active Directory
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Set-EntraBetaGroupLifecyclePolicy [-AlternateNotificationEmails <String>] -Id <S
 ```
 
 ## Description
-the Set-EntraBetaGroupLifecyclePolicy command updates a specific group Lifecycle Policy in Azure Active Directory
+The Set-EntraBetaGroupLifecyclePolicy command updates a specific group Lifecycle Policy in Azure Active Directory
 
 ## Examples
 

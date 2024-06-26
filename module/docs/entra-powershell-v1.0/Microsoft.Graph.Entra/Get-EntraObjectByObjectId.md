@@ -1,24 +1,24 @@
 ---
-title: Get-EntraObjectByObjectId.
-description: This article provides details on the Get-EntraObjectByObjectId command.
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Title: Get-EntraObjectByObjectId.
+Description: This article provides details on the Get-EntraObjectByObjectId command.
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraObjectByObjectId
 
 ## Synopsis
 
-retrieves the objects specified by the ObjectIds parameter.
+Retrieves the objects specified by the ObjectIds parameter.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Get-EntraObjectByObjectId
 
 ## Description
 
-retrieves the objects specified by the ObjectIds parameter.
+Retrieves the objects specified by the ObjectIds parameter.
 
 ## Examples
 
@@ -43,20 +43,20 @@ Get-EntraObjectByObjectId  -ObjectIds aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb , bbb
 ```
 
 ```Output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {admin@contoso.onmicrosoft.com}
-preferredLanguage               :
-mail                            : admin@contoso.onmicrosoft.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=cccccccc-2222-3333-4444-dddddddddddd}, @{disabledPlans=System.Object[];
+AgeGroup                        :
+OnPremisesLastSyncDateTime      :
+CreationType                    :
+ImAddresses                     : {admin@contoso.onmicrosoft.com}
+PreferredLanguage               :
+Mail                            : admin@contoso.onmicrosoft.com
+SecurityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
+Identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
+ConsentProvidedForMinor         :
+OnPremisesUserPrincipalName     :
+AssignedLicenses                : {@{disabledPlans=System.Object[]; skuId=cccccccc-2222-3333-4444-dddddddddddd}, @{disabledPlans=System.Object[];
                                   skuId=dddddddd-3333-4444-5555-eeeeeeeeeeee}, @{disabledPlans=System.Object[]; skuId=eeeeeeee-4444-5555-6666-ffffffffffff}}
-department                      : Engineering
-jobTitle                        : Product Manager
+Department                      : Engineering
+JobTitle                        : Product Manager
 
 
 ```
@@ -71,20 +71,20 @@ Get-EntraObjectByObjectId -ObjectIds aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb -Types
 ```
 
 ```Output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {admin@contoso.onmicrosoft.com}
-preferredLanguage               :
-mail                            : admin@contoso.onmicrosoft.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=cccccccc-2222-3333-4444-dddddddddddd}, @{disabledPlans=System.Object[];
+AgeGroup                        :
+OnPremisesLastSyncDateTime      :
+CreationType                    :
+ImAddresses                     : {admin@contoso.onmicrosoft.com}
+PreferredLanguage               :
+Mail                            : admin@contoso.onmicrosoft.com
+SecurityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
+Identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
+ConsentProvidedForMinor         :
+OnPremisesUserPrincipalName     :
+AssignedLicenses                : {@{disabledPlans=System.Object[]; skuId=cccccccc-2222-3333-4444-dddddddddddd}, @{disabledPlans=System.Object[];
                                   skuId=dddddddd-3333-4444-5555-eeeeeeeeeeee}, @{disabledPlans=System.Object[]; skuId=eeeeeeee-4444-5555-6666-ffffffffffff}}
-department                      : Engineering
-jobTitle                        : Product Manager
+Department                      : Engineering
+JobTitle                        : Product Manager
 ```
 
 This example demonstrates how to retrieve objects for a specified object type.

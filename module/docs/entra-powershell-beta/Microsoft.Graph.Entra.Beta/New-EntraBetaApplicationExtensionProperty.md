@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaApplicationExtensionProperty
 
 ## Synopsis
-creates an application extension property.
+Creates an application extension property.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ New-EntraBetaApplicationExtensionProperty -ObjectId <String> [-DataType <String>
 ```
 
 ## Description
-the New-EntraBetaApplicationExtensionProperty cmdlet creates an application extension property for an object in Azure Active Directory.
+The New-EntraBetaApplicationExtensionProperty cmdlet creates an application extension property for an object in Azure Active Directory.
 
 ## Examples
 

@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaApplicationPasswordCredential
 
 ## Synopsis
-removes a password credential from an application.
+Removes a password credential from an application.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Remove-EntraBetaApplicationPasswordCredential -ObjectId <String> -KeyId <String>
 ```
 
 ## Description
-the Remove-EntraBetaApplicationPasswordCredential cmdlet removes a password credential from an application in Azure Active Directory (AD).
+The Remove-EntraBetaApplicationPasswordCredential cmdlet removes a password credential from an application in Azure Active Directory (AD).
 
 ## Examples
 

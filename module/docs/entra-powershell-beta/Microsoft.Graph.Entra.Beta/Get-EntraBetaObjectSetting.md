@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaObjectSetting
 
 ## Synopsis
-gets an object setting.
+Gets an object setting.
 
 ## Syntax
 
@@ -25,7 +25,7 @@ Get-EntraBetaObjectSetting -Id <String> [-All] -TargetType <String> -TargetObjec
 ```
 
 ## Description
-the Get-EntraBetaObjectSetting cmdlet gets an object setting from Azure Active Directory (AD).
+The Get-EntraBetaObjectSetting cmdlet gets an object setting from Azure Active Directory (AD).
 
 ## Examples
 

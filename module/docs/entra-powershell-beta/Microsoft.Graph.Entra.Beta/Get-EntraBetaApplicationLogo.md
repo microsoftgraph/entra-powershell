@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaApplicationLogo
 
 ## Synopsis
-retrieve the logo of an application
+Retrieve the logo of an application
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Get-EntraBetaApplicationLogo -ObjectId <String> [-FileName <String>] [-FilePath 
 ```
 
 ## Description
-this cmdlet retrieves the logo that is set for an application.
+This cmdlet retrieves the logo that is set for an application.
 
 ## Examples
 

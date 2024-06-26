@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaGroupAppRoleAssignment
 
 ## Synopsis
-assign a group of users to an application role.
+Assign a group of users to an application role.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ New-EntraBetaGroupAppRoleAssignment -ResourceId <String> -Id <String> -ObjectId 
 ```
 
 ## Description
-the New-EntraBetaGroupAppRoleAssignment cmdlet assigns a group of users to an application role in Azure Active Directory (AD).
+The New-EntraBetaGroupAppRoleAssignment cmdlet assigns a group of users to an application role in Azure Active Directory (AD).
 
 ## Examples
 

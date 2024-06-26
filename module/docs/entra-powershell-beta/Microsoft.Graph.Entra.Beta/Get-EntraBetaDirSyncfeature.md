@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-help.xml
+External help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaDirSyncfeature
 
 ## Synopsis
-used to check the status of identity synchronization features for a tenant.
+Used to check the status of identity synchronization features for a tenant.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Get-EntraBetaDirSyncfeature [-TenantId <Guid>] [-Feature <String>] [<CommonParam
 ```
 
 ## Description
-the Get-EntraBetaDirSyncfeature cmdlet is used to check the status of identity synchronization features for a tenant.
+The Get-EntraBetaDirSyncfeature cmdlet is used to check the status of identity synchronization features for a tenant.
 Features that can be used with this cmdlet include:
 
     DeviceWriteback
@@ -48,7 +48,7 @@ Returns a list of all possible DirSync features and whether they are enabled (Tr
 ### Example 2
 ```
 Get-EntraBetaDirSyncfeature -Feature PasswordSync
-s
+S
 Description
 ```
 

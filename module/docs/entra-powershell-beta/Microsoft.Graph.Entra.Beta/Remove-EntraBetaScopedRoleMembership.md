@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaScopedRoleMembership
 
 ## Synopsis
-removes a scoped role membership.
+Removes a scoped role membership.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaScopedRoleMembership -ObjectId <String> -ScopedRoleMembershipId 
 ```
 
 ## Description
-the Remove-EntraBetaScopedRoleMembership cmdlet removes a scoped role membership from Azure Active Directory (AD).
+The Remove-EntraBetaScopedRoleMembership cmdlet removes a scoped role membership from Azure Active Directory (AD).
 
 ## Examples
 

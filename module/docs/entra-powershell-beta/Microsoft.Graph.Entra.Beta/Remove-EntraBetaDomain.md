@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaDomain
 
 ## Synopsis
-removes a domain.
+Removes a domain.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Remove-EntraBetaDomain -Name <String> [<CommonParameters>]
 ```
 
 ## Description
-the Remove-EntraBetaDomain cmdlet removes a domain from Azure Active Directory (AD).
+The Remove-EntraBetaDomain cmdlet removes a domain from Azure Active Directory (AD).
 
 ## Examples
 

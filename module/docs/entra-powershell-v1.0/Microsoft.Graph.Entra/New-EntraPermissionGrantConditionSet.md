@@ -1,25 +1,25 @@
 ---
-title: New-EntraPermissionGrantConditionSet
-description: This article provides details on the New-EntraPermissionGrantConditionSet command.
+Title: New-EntraPermissionGrantConditionSet
+Description: This article provides details on the New-EntraPermissionGrantConditionSet command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraPermissionGrantConditionSet
 
 ## Synopsis
-create a new Microsoft Entra ID permission grant condition set in a given policy.
+Create a new Microsoft Entra ID permission grant condition set in a given policy.
 
 ## Syntax
 
@@ -39,7 +39,7 @@ New-EntraPermissionGrantConditionSet
 ```
 
 ## Description
-create a new Microsoft Entra ID permission grant condition set object in an existing policy.
+Create a new Microsoft Entra ID permission grant condition set object in an existing policy.
 
 ## Examples
 
@@ -52,7 +52,7 @@ PS C:\> New-EntraPermissionGrantConditionSet -PolicyId "test1" -ConditionSetType
 Id                                   ClientApplicationIds ClientApplicationPublisherIds ClientApplicationTenantIds ClientApplicationsFromVerifiedPublisherOnly PermissionClassification PermissionType Permissio
                                                                                                                                                                                                        ns
 --                                   -------------------- ----------------------------- -------------------------- ------------------------------------------- ------------------------ -------------- ---------
-cab65448-9ec4-43a5-b575-d1f4d32fefa5 {all}                {all}                         {all}                      False                                       all                      delegated      {all}
+Cab65448-9ec4-43a5-b575-d1f4d32fefa5 {all}                {all}                         {all}                      False                                       all                      delegated      {all}
 ```
 
  This command creates a basic permission grant condition set in an existing policy with all build in values.

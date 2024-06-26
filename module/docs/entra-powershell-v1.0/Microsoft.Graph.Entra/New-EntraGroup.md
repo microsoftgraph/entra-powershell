@@ -1,24 +1,24 @@
 ---
-title: New-EntraGroup.
-description: This article provides details on the New-EntraGroup command.
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Title: New-EntraGroup.
+Description: This article provides details on the New-EntraGroup command.
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraGroup
 
 ## Synopsis
 
-creates a Microsoft Entra ID group.
+Creates a Microsoft Entra ID group.
 
 ## Syntax
 
@@ -37,7 +37,7 @@ New-EntraGroup
 
 ## Description
 
-the New-EntraGroup cmdlet creates a Microsoft Entra ID group.
+The New-EntraGroup cmdlet creates a Microsoft Entra ID group.
 
 For information about creating dynamic groups, see: [Using attributes to create advanced rules](/entra/identity/users/groups-dynamic-membership).
 
@@ -296,7 +296,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Notes
 
-this cmdlet is currently in Public Preview.
+This cmdlet is currently in Public Preview.
 While a cmdlet is in Public Preview, we might make changes to the cmdlet, which could have unexpected effects.
 We recommend that you don't use this cmdlet in a production environment.
 

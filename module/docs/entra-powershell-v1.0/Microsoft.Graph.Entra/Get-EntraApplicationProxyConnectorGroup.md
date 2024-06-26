@@ -1,25 +1,25 @@
 ---
-title: Get-EntraApplicationProxyConnectorGroup
-description: This article provides details on the Get-EntraApplicationProxyConnectorGroup command.
+Title: Get-EntraApplicationProxyConnectorGroup
+Description: This article provides details on the Get-EntraApplicationProxyConnectorGroup command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraApplicationProxyConnectorGroup
 
 ## Synopsis
-the Get-EntraApplicationProxyConnectorGroup cmdlet retrieves a list of all connector groups, or if specified, details of a specific connector group.
+The Get-EntraApplicationProxyConnectorGroup cmdlet retrieves a list of all connector groups, or if specified, details of a specific connector group.
 
 ## Syntax
 
@@ -49,7 +49,7 @@ Get-EntraApplicationProxyConnectorGroup
 ```
 
 ## Description
-the Get-EntraApplicationProxyConnectorGroup cmdlet retrieves a list of all connector groups, or if specified, details of the specified connector group.
+The Get-EntraApplicationProxyConnectorGroup cmdlet retrieves a list of all connector groups, or if specified, details of the specified connector group.
 
 ## Examples
 
@@ -63,7 +63,7 @@ Id                                   Name                ConnectorGroupType IsDe
 --                                   ----                ------------------ ---------
 1a0bc41a-8663-4da3-934c-214640663a33 Default             applicationProxy        True
 68348ab6-4cc5-4c8c-a0f0-7a43db2f4ff6 Guest Applications  applicationProxy       False
-a39b9095-8dc8-4d3a-86c3-e7b5c3f0fb84 Application Servers applicationProxy       False
+A39b9095-8dc8-4d3a-86c3-e7b5c3f0fb84 Application Servers applicationProxy       False
 ```
 
 This command retrieves all connector groups.
@@ -76,7 +76,7 @@ PS C:\> Get-EntraApplicationProxyConnectorGroup -Id a39b9095-8dc8-4d3a-86c3-e7b5
 ```output
 Id                                   Name                ConnectorGroupType IsDefault
 --                                   ----                ------------------ ---------
-a39b9095-8dc8-4d3a-86c3-e7b5c3f0fb84 Application Servers applicationProxy       False
+A39b9095-8dc8-4d3a-86c3-e7b5c3f0fb84 Application Servers applicationProxy       False
 ```
 
 This command retrieves a specific connector group.

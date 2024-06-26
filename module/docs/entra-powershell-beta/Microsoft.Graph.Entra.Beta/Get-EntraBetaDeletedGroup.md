@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaDeletedGroup
 
 ## Synopsis
-this cmdlet is used to retrieve the soft deleted groups in a directory.
+This cmdlet is used to retrieve the soft deleted groups in a directory.
 
 ## Syntax
 
@@ -28,7 +28,7 @@ Get-EntraBetaDeletedGroup [-All] [-SearchString <String>] [<CommonParameters>]
 ```
 
 ## Description
-this cmdlet is used to retrieve the soft deleted groups in a directory.
+This cmdlet is used to retrieve the soft deleted groups in a directory.
 When a group is deleted it is initially soft deleted and can be recovered during the first 30 days after deletion.
 After 30 days the group is permanently deleted and can no longer be recovered.
 Note that soft delete is currently only implemented for Unified Groups (a.k.a.

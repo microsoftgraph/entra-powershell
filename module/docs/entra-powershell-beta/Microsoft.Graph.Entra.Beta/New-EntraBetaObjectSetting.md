@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaObjectSetting
 
 ## Synopsis
-creates a settings object.
+Creates a settings object.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ New-EntraBetaObjectSetting -DirectorySetting <DirectorySetting> -TargetType <Str
 ```
 
 ## Description
-the New-EntraBetaObjectSetting cmdlet creates a settings object in Azure Active Directory (AD).
+The New-EntraBetaObjectSetting cmdlet creates a settings object in Azure Active Directory (AD).
 
 ## Examples
 

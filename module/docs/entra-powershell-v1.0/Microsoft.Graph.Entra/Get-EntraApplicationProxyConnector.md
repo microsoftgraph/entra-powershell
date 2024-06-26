@@ -1,24 +1,24 @@
 ---
-title: Get-EntraApplicationProxyConnector.
-description: This article provides details on the Get-EntraApplicationProxyConnector Command.
+Title: Get-EntraApplicationProxyConnector.
+Description: This article provides details on the Get-EntraApplicationProxyConnector Command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraApplicationProxyConnector
 
 ## Synopsis
-the Get-EntraApplicationProxyConnector cmdlet a list of all connectors, or if specified, details of a specific connector.
+The Get-EntraApplicationProxyConnector cmdlet a list of all connectors, or if specified, details of a specific connector.
 
 ## Syntax
 
@@ -48,7 +48,7 @@ Get-EntraApplicationProxyConnector
 ```
 
 ## Description
-the  cmdlet retrieves the details for a given conneGet-EntraApplicationProxyConnectorctor.
+The  cmdlet retrieves the details for a given conneGet-EntraApplicationProxyConnectorctor.
 If no connectorId is specified, it retrieves all the connectors assigned to the tenant.
 
 ## Examples

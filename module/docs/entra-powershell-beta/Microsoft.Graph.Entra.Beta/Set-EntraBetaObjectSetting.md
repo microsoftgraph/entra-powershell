@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaObjectSetting
 
 ## Synopsis
-updates object settings.
+Updates object settings.
 
 ## Syntax
 
@@ -19,7 +19,7 @@ Set-EntraBetaObjectSetting -Id <String> -DirectorySetting <DirectorySetting> -Ta
 ```
 
 ## Description
-the Set-EntraBetaObjectSetting cmdlet updates the settings for an object in Azure Active Directory (AD).
+The Set-EntraBetaObjectSetting cmdlet updates the settings for an object in Azure Active Directory (AD).
 
 ## Examples
 

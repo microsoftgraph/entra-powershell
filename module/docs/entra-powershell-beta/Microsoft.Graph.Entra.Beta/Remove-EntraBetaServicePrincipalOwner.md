@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaServicePrincipalOwner
 
 ## Synopsis
-removes an owner from a service principal.
+Removes an owner from a service principal.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Remove-EntraBetaServicePrincipalOwner -OwnerId <String> -ObjectId <String>
 ```
 
 ## Description
-the Remove-EntraBetaServicePrincipalOwner cmdlet removes an owner from a service principal in Azure Active Directory (AD).
+The Remove-EntraBetaServicePrincipalOwner cmdlet removes an owner from a service principal in Azure Active Directory (AD).
 
 ## Examples
 

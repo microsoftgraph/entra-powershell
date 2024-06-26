@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaApplicationFromApplicationTemplate
 
 ## Synopsis
-instantiates an application
+Instantiates an application
 
 ## Syntax
 
@@ -18,7 +18,7 @@ New-EntraBetaApplicationFromApplicationTemplate -Id <String> -DisplayName <Appli
 ```
 
 ## Description
-this cmdlet allows users to create application from application template
+This cmdlet allows users to create application from application template
 
 ## Examples
 

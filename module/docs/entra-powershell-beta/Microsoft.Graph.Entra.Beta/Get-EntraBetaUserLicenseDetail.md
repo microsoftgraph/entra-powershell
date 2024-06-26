@@ -1,24 +1,24 @@
 ---
-title: Get-EntraBetaUserLicenseDetail.
-description: This article provides details on the Get-EntraBetaUserLicenseDetail command.
+Title: Get-EntraBetaUserLicenseDetail.
+Description: This article provides details on the Get-EntraBetaUserLicenseDetail command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaUserLicenseDetail
 
 ## Synopsis
-retrieves license details for a user.
+Retrieves license details for a user.
 
 ## Syntax
 
@@ -29,7 +29,7 @@ Get-EntraBetaUserLicenseDetail
 ```
 
 ## Description
-this cmdlet retrieves license details for a user.
+This cmdlet retrieves license details for a user.
 
 ## Examples
 

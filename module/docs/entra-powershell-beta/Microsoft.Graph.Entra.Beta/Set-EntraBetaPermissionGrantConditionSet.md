@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaPermissionGrantConditionSet
 
 ## Synopsis
-update an existing Azure Active Directory permission grant condition set.
+Update an existing Azure Active Directory permission grant condition set.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ Set-EntraBetaPermissionGrantConditionSet -Id <String>
 ```
 
 ## Description
-updates an Azure Active Directory permission grant condition set object identified by id.
+Updates an Azure Active Directory permission grant condition set object identified by id.
 
 ## Examples
 

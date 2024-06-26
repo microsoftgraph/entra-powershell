@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaAuthorizationPolicy
 
 ## Synopsis
-gets an authorization policy.
+Gets an authorization policy.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ Get-EntraBetaAuthorizationPolicy -Id <String> [<CommonParameters>]
 ```
 
 ## Description
-the Get-EntraBetaAuthorizationPolicy cmdlet gets an Azure Active Directory authorization policy.
+The Get-EntraBetaAuthorizationPolicy cmdlet gets an Azure Active Directory authorization policy.
 
 ## Examples
 

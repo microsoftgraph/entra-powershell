@@ -1,25 +1,25 @@
 ---
-title: Get-EntraSubscribedSku.
-description: This article provides details on the Get-EntraSubscribedSku command.
+Title: Get-EntraSubscribedSku.
+Description: This article provides details on the Get-EntraSubscribedSku command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraSubscribedSku
 
 ## Synopsis
 
-gets subscribed SKUs to Microsoft services.
+Gets subscribed SKUs to Microsoft services.
 
 ## Syntax
 
@@ -40,7 +40,7 @@ Get-EntraSubscribedSku
 
 ## Description
 
-the `Get-EntraSubscribedSku` cmdlet gets subscribed SKUs to Microsoft services.
+The `Get-EntraSubscribedSku` cmdlet gets subscribed SKUs to Microsoft services.
 
 ## Examples
 
@@ -55,12 +55,12 @@ Get-EntraSubscribedSku
 Id                                                                        AccountId                            AccountName   AppliesTo CapabilityStatus ConsumedUnits SkuId                                SkuPart
                                                                                                                                                                                                            Number
 --                                                                        ---------                            -----------   --------- ---------------- ------------- -----                                -------
-abcdefgh-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 00aa00aa-bb11-cc22-dd33-44ee44ee44ee Contoso User      Enabled          20            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb EMSP...
-ijklmnop-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 11bb11bb-cc22-dd33-ee44-55ff55ff55ff Contoso User      Enabled          20            bbbbbbbb-1111-2222-3333-cccccccccccc ENTE...
-qrstuvwx-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 22cc22cc-dd33-ee44-ff55-66aa66aa66aa Contoso User      Enabled          2             cccccccc-2222-3333-4444-dddddddddddd ENTE...
-yzabcdef-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 33dd33dd-ee44-ff55-aa66-77bb77bb77bb Contoso User      Enabled          3             dddddddd-3333-4444-5555-eeeeeeeeeeee FLOW...
-ghijklmn-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 44ee44ee-ff55-aa66-bb77-88cc88cc88cc Contoso User      Enabled          3             eeeeeeee-4444-5555-6666-ffffffffffff Win1...
-opqrstuv-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 55ff55ff-gg66-bb77-cc88-99dd99dd99dd Contoso User      Enabled          20            ffffffff-7777-8888-9999-gggggggggggg INFO...
+Abcdefgh-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 00aa00aa-bb11-cc22-dd33-44ee44ee44ee Contoso User      Enabled          20            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb EMSP...
+Ijklmnop-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 11bb11bb-cc22-dd33-ee44-55ff55ff55ff Contoso User      Enabled          20            bbbbbbbb-1111-2222-3333-cccccccccccc ENTE...
+Qrstuvwx-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 22cc22cc-dd33-ee44-ff55-66aa66aa66aa Contoso User      Enabled          2             cccccccc-2222-3333-4444-dddddddddddd ENTE...
+Yzabcdef-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 33dd33dd-ee44-ff55-aa66-77bb77bb77bb Contoso User      Enabled          3             dddddddd-3333-4444-5555-eeeeeeeeeeee FLOW...
+Ghijklmn-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 44ee44ee-ff55-aa66-bb77-88cc88cc88cc Contoso User      Enabled          3             eeeeeeee-4444-5555-6666-ffffffffffff Win1...
+Opqrstuv-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 55ff55ff-gg66-bb77-cc88-99dd99dd99dd Contoso User      Enabled          20            ffffffff-7777-8888-9999-gggggggggggg INFO...
 ```
 
 This example shows how to retrieve subscribed SKUs.
@@ -76,7 +76,7 @@ Get-EntraSubscribedSku -ObjectId 'abcdefgh-1111-2222-bbbb-cccc33333333_dddddddd-
 Id                                                                        AccountId                            AccountName   AppliesTo CapabilityStatus ConsumedUnits SkuId                                SkuPart
                                                                                                                                                                                                            Number
 --                                                                        ---------                            -----------   --------- ---------------- ------------- -----                                -------
-abcdefgh-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 00aa00aa-bb11-cc22-dd33-44ee44ee44ee Contoso User      Enabled          20            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb EMSP...
+Abcdefgh-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 00aa00aa-bb11-cc22-dd33-44ee44ee44ee Contoso User      Enabled          20            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb EMSP...
 ```
 
 This example shows how to retrieve specified subscribed SKUs.

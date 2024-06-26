@@ -1,25 +1,25 @@
 ---
-title: New-EntraBetaUser
-description: This article provides details on the New-EntraBetaUser command.
+Title: New-EntraBetaUser
+Description: This article provides details on the New-EntraBetaUser command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaUser
 
 ## Synopsis
-creates a Microsoft Entra ID user.
+Creates a Microsoft Entra ID user.
 
 ## Syntax
 
@@ -63,7 +63,7 @@ New-EntraBetaUser
 ```
 
 ## Description
-the **New-EntraBetaUser** cmdlet creates a user in Microsoft Entra ID.
+The **New-EntraBetaUser** cmdlet creates a user in Microsoft Entra ID.
 
 ## Examples
 
@@ -660,7 +660,7 @@ Accept wildcard characters: False
 
 ### -UserState
 For an external user invited to the tenant using the invitation API, this property represents the invited user's 
-invitation status. 
+Invitation status. 
 
 ```yaml
 Type: String

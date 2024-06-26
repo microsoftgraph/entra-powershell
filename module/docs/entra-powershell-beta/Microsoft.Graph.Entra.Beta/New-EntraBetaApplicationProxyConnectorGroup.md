@@ -1,23 +1,23 @@
 ---
-title: New-EntraBetaApplicationProxyConnectorGroup
-description: This article provides details on the New-EntraBetaApplicationProxyConnectorGroupcommand.
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Title: New-EntraBetaApplicationProxyConnectorGroup
+Description: This article provides details on the New-EntraBetaApplicationProxyConnectorGroupcommand.
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaApplicationProxyConnectorGroup
 
 ## Synopsis
-the New-EntraBetaApplicationProxyConnectorGroup cmdlet creates a new Application Proxy Connector group.
+The New-EntraBetaApplicationProxyConnectorGroup cmdlet creates a new Application Proxy Connector group.
 
 ## Syntax
 
@@ -28,7 +28,7 @@ New-EntraBetaApplicationProxyConnectorGroup
 ```
 
 ## Description
-the New-EntraBetaApplicationProxyConnectorGroup cmdlet creates a new Application Proxy connector group.
+The New-EntraBetaApplicationProxyConnectorGroup cmdlet creates a new Application Proxy connector group.
 
 ## Examples
 
@@ -39,12 +39,12 @@ PS C:\> New-EntraBetaApplicationProxyConnectorGroup -Name "Backup Application Se
 ```output
 Name                           Value
 ----                           -----
-id                             55311d30-74d7-4cad-a7d7-f8d76e110345
+Id                             55311d30-74d7-4cad-a7d7-f8d76e110345
 @odata.context                 https://graph.microsoft.com/beta/$metadata#onPremisesPublishingProfiles('applicationProxy')/connectorGroups/$entity
-isDefault                      False
-name                           Backup Application Servers
-region                         eur
-connectorGroupType             applicationProxy
+IsDefault                      False
+Name                           Backup Application Servers
+Region                         eur
+ConnectorGroupType             applicationProxy
 ```
 This Command Create a new Connector Group with the name "Backup Application Servers"
 

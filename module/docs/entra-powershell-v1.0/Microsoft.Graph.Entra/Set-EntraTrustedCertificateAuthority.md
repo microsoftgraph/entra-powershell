@@ -1,25 +1,25 @@
 ---
-title: Set-EntraTrustedCertificateAuthority
-description: This article provides details on the Set-EntraTrustedCertificateAuthority command.
+Title: Set-EntraTrustedCertificateAuthority
+Description: This article provides details on the Set-EntraTrustedCertificateAuthority command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraTrustedCertificateAuthority
 
 ## Synopsis
 
-updates a trusted certificate authority.
+Updates a trusted certificate authority.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ Set-EntraTrustedCertificateAuthority
 
 ## Description
 
-the Set-EntraTrustedCertificateAuthority cmdlet updates a trusted certificate authority in Microsoft Entra ID.
+The Set-EntraTrustedCertificateAuthority cmdlet updates a trusted certificate authority in Microsoft Entra ID.
 
 ## Examples
 

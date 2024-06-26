@@ -1,25 +1,25 @@
 ---
-title: Remove-EntraOAuth2PermissionGrant 
-description: This article provides details on the Remove-EntraOAuth2PermissionGrant command.
+Title: Remove-EntraOAuth2PermissionGrant 
+Description: This article provides details on the Remove-EntraOAuth2PermissionGrant command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraOAuth2PermissionGrant
 
 ## Synopsis
 
-removes an oAuth2PermissionGrant.
+Removes an oAuth2PermissionGrant.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Remove-EntraOAuth2PermissionGrant
 
 ## Description
 
-the `Remove-EntraOAuth2PermissionGrant` cmdlet removes an oAuth2PermissionGrant object in Microsoft Entra ID.
+The `Remove-EntraOAuth2PermissionGrant` cmdlet removes an oAuth2PermissionGrant object in Microsoft Entra ID.
 
 When a delegated permission grant is deleted, the access it granted is revoked. Existing access tokens will continue to be valid for their lifetime, but new access tokens will not be granted for the delegated permissions identified in the deleted oAuth2PermissionGrant.
 

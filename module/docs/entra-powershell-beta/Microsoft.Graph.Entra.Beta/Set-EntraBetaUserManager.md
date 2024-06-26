@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaUserManager
 
 ## Synopsis
-updates a user's manager.
+Updates a user's manager.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Set-EntraBetaUserManager -ObjectId <String> -RefObjectId <String> [<CommonParame
 ```
 
 ## Description
-the Set-EntraBetaUserManager cmdlet update the manager for a user in Azure Active Directory (AD).
+The Set-EntraBetaUserManager cmdlet update the manager for a user in Azure Active Directory (AD).
 
 ## Examples
 

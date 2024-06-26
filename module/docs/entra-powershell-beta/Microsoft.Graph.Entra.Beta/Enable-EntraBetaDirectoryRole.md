@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Enable-EntraBetaDirectoryRole
 
 ## Synopsis
-activates an existing directory role in Azure Active Directory.
+Activates an existing directory role in Azure Active Directory.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Enable-EntraBetaDirectoryRole [-RoleTemplateId <String>] [<CommonParameters>]
 ```
 
 ## Description
-the Enable-EntraBetaDirectoryRole cmdlet activates an existing directory role in Azure Active Directory.
+The Enable-EntraBetaDirectoryRole cmdlet activates an existing directory role in Azure Active Directory.
 
 ## Examples
 

@@ -1,25 +1,25 @@
 ---
-title: Remove-EntraDeviceRegisteredOwner
-description: This article provides details on the Remove-EntraDeviceRegisteredOwner command.
+Title: Remove-EntraDeviceRegisteredOwner
+Description: This article provides details on the Remove-EntraDeviceRegisteredOwner command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraDeviceRegisteredOwner
 
 ## Synopsis
 
-removes the registered owner of a device.
+Removes the registered owner of a device.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Remove-EntraDeviceRegisteredOwner
 
 ## Description
 
-the `Remove-EntraDeviceRegisteredOwner` cmdlet removes the registered owner of a device in Microsoft Entra ID.
+The `Remove-EntraDeviceRegisteredOwner` cmdlet removes the registered owner of a device in Microsoft Entra ID.
 
 ## Examples
 

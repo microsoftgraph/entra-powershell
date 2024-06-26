@@ -1,24 +1,24 @@
 ---
-title: Remove-EntraApplicationExtensionProperty.
-description: This article provides details on the Remove-EntraApplicationExtensionProperty command.
+Title: Remove-EntraApplicationExtensionProperty.
+Description: This article provides details on the Remove-EntraApplicationExtensionProperty command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraApplicationExtensionProperty
 
 ## Synopsis
-removes an application extension property.
+Removes an application extension property.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ Remove-EntraApplicationExtensionProperty
 ```
 
 ## Description
-the Remove-EntraApplicationExtensionProperty cmdlet removes an application extension property for an object in Microsoft Entra ID.
+The Remove-EntraApplicationExtensionProperty cmdlet removes an application extension property for an object in Microsoft Entra ID.
 
 ## Examples
 

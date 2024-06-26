@@ -1,24 +1,24 @@
 ---
-title: Get-EntraBetaUserMembership.
-description: This article provides details on the Get-EntraBetaUserMembership command.
+Title: Get-EntraBetaUserMembership.
+Description: This article provides details on the Get-EntraBetaUserMembership command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaUserMembership
 
 ## Synopsis
-get user memberships.
+Get user memberships.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Get-EntraBetaUserMembership
 ```
 
 ## Description
-the Get-EntraBetaUserMembership cmdlet gets user memberships in Microsoft Entra ID.
+The Get-EntraBetaUserMembership cmdlet gets user memberships in Microsoft Entra ID.
 
 ## Examples
 
@@ -45,10 +45,10 @@ Id                                   DeletedDateTime
 --                                   ---------------
 056b2531-005e-4f3e-be78-01a71ea30a04
 3da073b9-e731-4ec1-a4f6-6e02865a8c8a
-cc3cc7a2-ba9a-4158-814c-d5ee1af66d24
+Cc3cc7a2-ba9a-4158-814c-d5ee1af66d24
 2788a657-62c9-4546-9d4d-2ddee8a8bc9b
 0bdddeb1-88a6-4251-aaa5-98b48271158b
-eeee7782-696d-4be3-ace0-e20c1df6693e
+Eeee7782-696d-4be3-ace0-e20c1df6693e
 ```
 
 This example demonstrates how to retrieve user memberships in Microsoft Entra ID.  
@@ -65,10 +65,10 @@ Id                                   DeletedDateTime
 --                                   ---------------
 056b2531-005e-4f3e-be78-01a71ea30a04
 3da073b9-e731-4ec1-a4f6-6e02865a8c8a
-cc3cc7a2-ba9a-4158-814c-d5ee1af66d24
+Cc3cc7a2-ba9a-4158-814c-d5ee1af66d24
 2788a657-62c9-4546-9d4d-2ddee8a8bc9b
 0bdddeb1-88a6-4251-aaa5-98b48271158b
-eeee7782-696d-4be3-ace0-e20c1df6693e
+Eeee7782-696d-4be3-ace0-e20c1df6693e
 ```
 
 This example demonstrates how to retrieve users all memberships in Microsoft Entra ID.  
@@ -85,7 +85,7 @@ Id                                   DeletedDateTime
 --                                   ---------------
 056b2531-005e-4f3e-be78-01a71ea30a04
 3da073b9-e731-4ec1-a4f6-6e02865a8c8a
-cc3cc7a2-ba9a-4158-814c-d5ee1af66d24
+Cc3cc7a2-ba9a-4158-814c-d5ee1af66d24
 2788a657-62c9-4546-9d4d-2ddee8a8bc9b
 0bdddeb1-88a6-4251-aaa5-98b48271158b
 ```

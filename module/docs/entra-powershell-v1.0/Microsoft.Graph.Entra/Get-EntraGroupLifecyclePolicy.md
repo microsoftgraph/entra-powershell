@@ -1,25 +1,25 @@
 ---
-title: Get-EntraGroupLifecyclePolicy.
-description: This article provides details on the Get-EntraGroupLifecyclePolicy command.
+Title: Get-EntraGroupLifecyclePolicy.
+Description: This article provides details on the Get-EntraGroupLifecyclePolicy command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraGroupLifecyclePolicy
 
 ## Synopsis
 
-retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID.
+Retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID.
 If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 
 ## Syntax
@@ -41,7 +41,7 @@ Get-EntraGroupLifecyclePolicy
 
 ## Description
 
-the Get-EntraGroupLifecyclePolicy command retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID.
+The Get-EntraGroupLifecyclePolicy command retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID.
 If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 
 ## Examples

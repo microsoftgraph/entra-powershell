@@ -1,25 +1,25 @@
 ---
-title: Get-EntraDirectoryRoleMember.
-description: This article provides details on the Get-EntraDirectoryRoleMember command.
+Title: Get-EntraDirectoryRoleMember.
+Description: This article provides details on the Get-EntraDirectoryRoleMember command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraDirectoryRoleMember
 
 ## Synopsis
 
-gets members of a directory role.
+Gets members of a directory role.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Get-EntraDirectoryRoleMember
 
 ## Description
 
-the `Get-EntraDirectoryRoleMember` cmdlet gets the members of a directory role in Microsoft Entra ID.
+The `Get-EntraDirectoryRoleMember` cmdlet gets the members of a directory role in Microsoft Entra ID.
 
 ## Examples
 
@@ -43,14 +43,14 @@ Get-EntraDirectoryRoleMember -ObjectId '1d73e796-aac5-4b3a-b7e7-74a3d1926a85'
 ```
 
 ```Output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {admin@contoso.onmicrosoft.com}
-preferredLanguage               : en
-mail                            : admin@contoso.onmicrosoft.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
+AgeGroup                        :
+OnPremisesLastSyncDateTime      :
+CreationType                    :
+ImAddresses                     : {admin@contoso.onmicrosoft.com}
+PreferredLanguage               : en
+Mail                            : admin@contoso.onmicrosoft.com
+SecurityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
+Identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
 ```
 
 This command demonstrates how to get the members of the specified role.

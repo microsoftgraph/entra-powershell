@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaServicePrincipal
 
 ## Synopsis
-updates a service principal.
+Updates a service principal.
 
 ## Syntax
 
@@ -26,7 +26,7 @@ Set-EntraBetaServicePrincipal [-AccountEnabled <String>]
 ```
 
 ## Description
-the Set-EntraBetaServicePrincipal cmdlet updates a service principal in Azure Active Directory (Azure AD).
+The Set-EntraBetaServicePrincipal cmdlet updates a service principal in Azure Active Directory (Azure AD).
 
 ## Examples
 

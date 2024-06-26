@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaGroup
 
 ## Synopsis
-creates an Azure AD group.
+Creates an Azure AD group.
 
 ## Syntax
 
@@ -20,7 +20,7 @@ New-EntraBetaGroup [-MembershipRule <String>] [-Description <String>] -DisplayNa
 ```
 
 ## Description
-the New-EntraBetaGroup cmdlet creates an Azure Active Directory (Azure AD) group.
+The New-EntraBetaGroup cmdlet creates an Azure Active Directory (Azure AD) group.
 
 For information about creating dynamic groups, see Using attributes to create advanced rules (https://azure.microsoft.com/en-us/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/).
 
@@ -291,7 +291,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.Object
 ## Notes
-this cmdlet is currently in Public Preview.
+This cmdlet is currently in Public Preview.
 While a cmdlet is in Public Preview, we may make changes to the cmdlet which could have unexpected effects.
 We recommend that you do not use this cmdlet in a production environment.
 

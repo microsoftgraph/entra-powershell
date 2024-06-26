@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-help.xml
+External help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaPartnerInformation
 
 ## Synopsis
-retrieves company-level information for partners.
+Retrieves company-level information for partners.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ Get-EntraBetaPartnerInformation [-TenantId <Guid>] [<CommonParameters>]
 ```
 
 ## Description
-the Get-EntraBetaPartnerInformation cmdlet is used to retrieve partner-specific information.
+The Get-EntraBetaPartnerInformation cmdlet is used to retrieve partner-specific information.
 This cmdlet should only be used for partner tenants.
 
 ## Examples

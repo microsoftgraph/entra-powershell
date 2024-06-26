@@ -1,25 +1,25 @@
 ---
-title: New-EntraApplicationProxyApplication
-description: This article provides details on the New-EntraApplicationProxyApplication command.
+Title: New-EntraApplicationProxyApplication
+Description: This article provides details on the New-EntraApplicationProxyApplication command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraApplicationProxyApplication
 
 ## Synopsis
-the New-EntraApplicationProxyApplication cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
+The New-EntraApplicationProxyApplication cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
 
 ## Syntax
 
@@ -40,7 +40,7 @@ New-EntraApplicationProxyApplication
 ```
 
 ## Description
-the New-EntraApplicationProxyApplication cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
+The New-EntraApplicationProxyApplication cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
 To ensure this application is usable, also make sure you assign users and configure SSO if needed.
 Without specifying a ConnectorGroupId, this application by default uses the Default connector group in your tenant.
 

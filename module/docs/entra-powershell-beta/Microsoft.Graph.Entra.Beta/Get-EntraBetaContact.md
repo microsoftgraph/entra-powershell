@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaContact
 
 ## Synopsis
-gets a contact from Azure Active Directory.
+Gets a contact from Azure Active Directory.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ Get-EntraBetaContact -ObjectId <String> [-All] [<CommonParameters>]
 ```
 
 ## Description
-the Get-EntraBetaContact cmdlet gets a contact from Azure Active Directory.
+The Get-EntraBetaContact cmdlet gets a contact from Azure Active Directory.
 
 ## Examples
 
@@ -33,7 +33,7 @@ PS C:\> Get-EntraBetaContact
 
 ObjectId                             Mail                DisplayName
 --------                             ----                -----------
-b052db07-e7ec-4c0e-b481-a5ba550b9ee7 contact@contoso.com Contoso Contact
+B052db07-e7ec-4c0e-b481-a5ba550b9ee7 contact@contoso.com Contoso Contact
 ```
 
 This command retrieves all contact objects in the directory.

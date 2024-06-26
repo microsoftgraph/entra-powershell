@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaApplication
 
 ## Synopsis
-updates the properties of an application object.
+Updates the properties of an application object.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ Set-EntraBetaApplication [-Api <ApiApplication>] [-OptionalClaims <OptionalClaim
 ```
 
 ## Description
-updates the properties of an application object.
+Updates the properties of an application object.
 
 ## Examples
 
@@ -300,7 +300,7 @@ Accept wildcard characters: False
 ### -PreAuthorizedApplications
 Lists applications and requested permissions for implicit consent.
 Requires an admin to have provided consent to the application.
-preAuthorizedApplications do not require the user to consent to the requested permissions.
+PreAuthorizedApplications do not require the user to consent to the requested permissions.
 Permissions listed in preAuthorizedApplications do not require user consent.
 However, any additional requested permissions not listed in preAuthorizedApplications require user consent.
 

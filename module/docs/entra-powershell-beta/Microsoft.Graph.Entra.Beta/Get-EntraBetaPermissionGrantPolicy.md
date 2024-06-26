@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaPermissionGrantPolicy
 
 ## Synopsis
-gets a permission grant policy.
+Gets a permission grant policy.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ Get-EntraBetaPermissionGrantPolicy -Id <String> [<CommonParameters>]
 ```
 
 ## Description
-the Get-EntraBetaPermissionGrantPolicy cmdlet gets an Azure Active Directory permission grant policy.
+The Get-EntraBetaPermissionGrantPolicy cmdlet gets an Azure Active Directory permission grant policy.
 
 ## Examples
 

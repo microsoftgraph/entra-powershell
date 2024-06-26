@@ -1,8 +1,8 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Add-EntraBetaScopedRoleMembership
@@ -18,7 +18,7 @@ Add-EntraBetaScopedRoleMembership -ObjectId <String> [-RoleMemberInfo <RoleMembe
 ```
 
 ## Description
-the Add-EntraBetaScopedRoleMembership cmdlet Adds a scoped role membership to an administrative unit.
+The Add-EntraBetaScopedRoleMembership cmdlet Adds a scoped role membership to an administrative unit.
 
 ## Examples
 

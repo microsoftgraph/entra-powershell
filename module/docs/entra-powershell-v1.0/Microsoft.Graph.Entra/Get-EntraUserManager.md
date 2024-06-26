@@ -1,25 +1,25 @@
 ---
-title: Get-EntraUserManager.
-description: This article provides details on the Get-EntraUserManager command.
+Title: Get-EntraUserManager.
+Description: This article provides details on the Get-EntraUserManager command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraUserManager
 
 ## Synopsis
 
-gets the manager of a user.
+Gets the manager of a user.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Get-EntraUserManager
 
 ## Description
 
-the Get-EntraUserManager cmdlet gets the manager of a user in Microsoft Entra ID.
+The Get-EntraUserManager cmdlet gets the manager of a user in Microsoft Entra ID.
 
 ## Examples
 
@@ -43,16 +43,16 @@ Get-EntraUserManager -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff'
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {miriamg@contoso.com}
-preferredLanguage               :
-mail                            : MiriamG@contoso.com
-securityIdentifier              : B-2-33-4-5555555555-6666666666-7777777-8888888888
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=MiriamG@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
+AgeGroup                        :
+OnPremisesLastSyncDateTime      :
+CreationType                    :
+ImAddresses                     : {miriamg@contoso.com}
+PreferredLanguage               :
+Mail                            : MiriamG@contoso.com
+SecurityIdentifier              : B-2-33-4-5555555555-6666666666-7777777-8888888888
+Identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=MiriamG@contoso.com}}
+ConsentProvidedForMinor         :
+OnPremisesUserPrincipalName     :
 ```
 
 This example demonstrates how to retrieve the manager of a specific user.

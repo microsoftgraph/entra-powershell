@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaServicePrincipalPasswordCredential
 
 ## Synopsis
-get credentials for a service principal.
+Get credentials for a service principal.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Get-EntraBetaServicePrincipalPasswordCredential -ObjectId <String> [<CommonParam
 ```
 
 ## Description
-the Get-EntraBetaServicePrincipalPasswordCredential cmdlet gets the password credentials for a service principal in Azure Active Directory (AD).
+The Get-EntraBetaServicePrincipalPasswordCredential cmdlet gets the password credentials for a service principal in Azure Active Directory (AD).
 
 ## Examples
 

@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaApplicationTemplate
 
 ## Synopsis
-retrieve a list of applicationTemplate objects
+Retrieve a list of applicationTemplate objects
 
 ## Syntax
 
@@ -23,7 +23,7 @@ Get-EntraBetaApplicationTemplate -Id <String> [<CommonParameters>]
 ```
 
 ## Description
-this cmdlet allows users to get a list of all the application templates or a specific application template.
+This cmdlet allows users to get a list of all the application templates or a specific application template.
 
 ## Examples
 

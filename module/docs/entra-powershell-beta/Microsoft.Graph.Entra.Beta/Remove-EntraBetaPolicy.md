@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaPolicy
 
 ## Synopsis
-removes a policy.
+Removes a policy.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Remove-EntraBetaPolicy -Id <String>
 ```
 
 ## Description
-the Remove-EntraBetaPolicy cmdlet removes a policy from Azure Active Directory (AD).
+The Remove-EntraBetaPolicy cmdlet removes a policy from Azure Active Directory (AD).
 
 ## Examples
 

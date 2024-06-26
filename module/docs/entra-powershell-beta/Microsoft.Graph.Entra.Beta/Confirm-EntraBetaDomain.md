@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Confirm-EntraBetaDomain
 
 ## Synopsis
-validate the ownership of a domain.
+Validate the ownership of a domain.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Confirm-EntraBetaDomain [-CrossCloudVerificationCode <CrossCloudVerificationCode
 ```
 
 ## Description
-the Confirm-EntraBetaDomain cmdlet validates the ownership of an Azure Active Directory domain.
+The Confirm-EntraBetaDomain cmdlet validates the ownership of an Azure Active Directory domain.
 
 ## Examples
 

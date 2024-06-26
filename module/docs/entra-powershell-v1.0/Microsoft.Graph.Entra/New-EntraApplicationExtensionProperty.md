@@ -1,25 +1,25 @@
 ---
-title: New-EntraApplicationExtensionProperty
-description: This article provides details on the New-EntraApplicationExtensionProperty command.
+Title: New-EntraApplicationExtensionProperty
+Description: This article provides details on the New-EntraApplicationExtensionProperty command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraApplicationExtensionProperty
 
 ## Synopsis
-creates an application extension property.
+Creates an application extension property.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ New-EntraApplicationExtensionProperty
 ```
 
 ## Description
-the New-EntraApplicationExtensionProperty cmdlet creates an application extension property for an object in Microsoft Entra ID.
+The New-EntraApplicationExtensionProperty cmdlet creates an application extension property for an object in Microsoft Entra ID.
 
 ## Examples
 

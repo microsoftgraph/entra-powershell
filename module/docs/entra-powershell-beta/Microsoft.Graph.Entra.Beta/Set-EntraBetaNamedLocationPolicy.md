@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaNamedLocationPolicy
 
 ## Synopsis
-updates a named location policy in Azure Active Directory by PolicyId.
+Updates a named location policy in Azure Active Directory by PolicyId.
 
 ## Syntax
 
@@ -21,7 +21,7 @@ Set-EntraBetaNamedLocationPolicy [-IncludeUnknownCountriesAndRegions <Boolean>] 
 ```
 
 ## Description
-this cmdlet allows an admin to update a named location policy in Azure Active Directory by PolicyId.
+This cmdlet allows an admin to update a named location policy in Azure Active Directory by PolicyId.
 Conditional access policies are custom rules that define an access scenario.
 
 ## Examples

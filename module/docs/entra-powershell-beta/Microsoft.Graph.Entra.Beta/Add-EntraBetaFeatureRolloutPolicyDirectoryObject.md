@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Add-EntraBetaFeatureRolloutPolicyDirectoryObject
 
 ## Synopsis
-allows an admin to add a group to the cloud authentication roll-out policy in Azure AD.
+Allows an admin to add a group to the cloud authentication roll-out policy in Azure AD.
 Users in this group will start authenticating to the cloud per policy.
 
 ## Syntax
@@ -18,9 +18,9 @@ Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id <String> -RefObjectId <Stri
 ```
 
 ## Description
-an admin will use this cmdlet to add a group to the cloud authentication roll-out policy.
+An admin will use this cmdlet to add a group to the cloud authentication roll-out policy.
 Users in these groups will start authenticating against the cloud per policy (e.g.
-with Seamless Single Sign-On or not, or whether Passthrough auth or not).
+With Seamless Single Sign-On or not, or whether Passthrough auth or not).
 
 ## Examples
 

@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaLifecyclePolicyGroup
 
 ## Synopsis
-retrieves the lifecycle policy object to which a group belongs.
+Retrieves the lifecycle policy object to which a group belongs.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Get-EntraBetaLifecyclePolicyGroup -Id <String> [<CommonParameters>]
 ```
 
 ## Description
-the Get-EntraBetaLifecyclePolicyGroup retrieves the lifecycle policy object to which a group belongs.
+The Get-EntraBetaLifecyclePolicyGroup retrieves the lifecycle policy object to which a group belongs.
 
 ## Examples
 

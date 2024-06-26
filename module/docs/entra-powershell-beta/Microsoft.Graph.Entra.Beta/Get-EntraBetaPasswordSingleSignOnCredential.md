@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaPasswordSingleSignOnCredential
 
 ## Synopsis
-gets the password SSO credentials
+Gets the password SSO credentials
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Get-EntraBetaPasswordSingleSignOnCredential -ObjectId <String> -PasswordSSOObjec
 ```
 
 ## Description
-this cmdlet enables users to read their Password Single-sign-on credentials for an application which they are part of.
+This cmdlet enables users to read their Password Single-sign-on credentials for an application which they are part of.
 Admin could read the group credentials as well.
 Note that the password field will be hidden for security purpose.
 

@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaAdministrativeUnitMember
 
 ## Synopsis
-gets a member of an administrative unit.
+Gets a member of an administrative unit.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Get-EntraBetaAdministrativeUnitMember -ObjectId <String> [-All] [-Top <Int32>]
 ```
 
 ## Description
-the Get-EntraBetaAdministrativeUnitMember cmdlet gets a member of an Active Directory administrative unit.
+The Get-EntraBetaAdministrativeUnitMember cmdlet gets a member of an Active Directory administrative unit.
 
 ## Examples
 

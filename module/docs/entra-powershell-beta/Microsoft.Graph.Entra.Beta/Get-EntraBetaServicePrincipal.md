@@ -1,24 +1,24 @@
 ---
-title: Get-EntraBetaServicePrincipal
-description: This article provides details on the Get-EntraBetaServicePrincipal command.
+Title: Get-EntraBetaServicePrincipal
+Description: This article provides details on the Get-EntraBetaServicePrincipal command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaServicePrincipal
 
 ## Synopsis
-gets a service principal.
+Gets a service principal.
 
 ## Syntax
 
@@ -48,7 +48,7 @@ Get-EntraBetaServicePrincipal
 ```
 
 ## Description
-the Get-EntraBetaServicePrincipal cmdlet gets a service principal in Microsoft Entra ID.
+The Get-EntraBetaServicePrincipal cmdlet gets a service principal in Microsoft Entra ID.
 
 ## Examples
 

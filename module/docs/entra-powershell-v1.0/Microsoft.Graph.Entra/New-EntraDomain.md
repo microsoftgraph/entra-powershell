@@ -1,25 +1,25 @@
 ---
-title: New-EntraDomain.
-description: This article provides details on the New-EntraDomain command.
+Title: New-EntraDomain.
+Description: This article provides details on the New-EntraDomain command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraDomain
 
 ## Synopsis
 
-creates a domain.
+Creates a domain.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ New-EntraDomain
 
 ## Description
 
-the `New-EntraDomain` cmdlet creates a domain in Microsoft Entra ID.
+The `New-EntraDomain` cmdlet creates a domain in Microsoft Entra ID.
 
 The work or school account needs to belong to at least the Domain Name Administrator role.
 
@@ -49,7 +49,7 @@ New-EntraDomain -Name testingDemo.com
 ```Output
 Id              AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified Manufacturer Model PasswordNotificationWindowInDays PasswordValidityPeriodInDays SupportedServices
 --              ------------------ ------------------ -------------- --------- --------- ------ ---------- ------------ ----- -------------------------------- ---------------------------- -----------------
-testingDemo.com Managed                               True           False     False     False  False                                                                                       {}
+TestingDemo.com Managed                               True           False     False     False  False                                                                                       {}
 ```
 
 This example demonstrates how to create a new domain in Microsoft Entra ID.
@@ -64,7 +64,7 @@ New-EntraDomain -Name testingDemo1.com -SupportedServices @('Email', 'OfficeComm
 ```Output
 Id               AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified Manufacturer Model PasswordNotificationWindowInDays PasswordValidityPeriodInDays SupportedServices
 --               ------------------ ------------------ -------------- --------- --------- ------ ---------- ------------ ----- -------------------------------- ---------------------------- -----------------
-testingDemo1.com Managed                               True           False     False     False  False                                                                                       {}
+TestingDemo1.com Managed                               True           False     False     False  False                                                                                       {}
 ```
 
 This example demonstrates how to create a new domain with the specified services in Microsoft Entra ID. 
@@ -79,7 +79,7 @@ New-EntraDomain -Name testingDemo2.com -IsDefault $True
 ```Output
 Id               AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified Manufacturer Model PasswordNotificationWindowInDays PasswordValidityPeriodInDays SupportedServices
 --               ------------------ ------------------ -------------- --------- --------- ------ ---------- ------------ ----- -------------------------------- ---------------------------- -----------------
-testingDemo2.com Managed                               True           False     False     False  False                                                                                       {}
+TestingDemo2.com Managed                               True           False     False     False  False                                                                                       {}
 ```
 
 This example demonstrates how to create a new domain in Microsoft Entra ID and marks it as the default to be used for new user creation.

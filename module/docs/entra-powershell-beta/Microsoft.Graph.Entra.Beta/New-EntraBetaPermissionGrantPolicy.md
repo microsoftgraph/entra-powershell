@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # New-EntraBetaPermissionGrantPolicy
 
 ## Synopsis
-creates a permission grant policy.
+Creates a permission grant policy.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ New-EntraBetaPermissionGrantPolicy [-Description <String>] [-DisplayName <String
 ```
 
 ## Description
-the New-EntraBetaPermissionGrantPolicy cmdlet creates an Azure Active Directory permission grant policy.
+The New-EntraBetaPermissionGrantPolicy cmdlet creates an Azure Active Directory permission grant policy.
 
 ## Examples
 

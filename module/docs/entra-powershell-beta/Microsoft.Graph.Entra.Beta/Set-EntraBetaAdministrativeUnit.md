@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraBetaAdministrativeUnit
 
 ## Synopsis
-updates an administrative unit.
+Updates an administrative unit.
 
 ## Syntax
 
@@ -20,7 +20,7 @@ Set-EntraBetaAdministrativeUnit [-MembershipType <String>] -Id <String> [-Member
 ```
 
 ## Description
-the Set-EntraBetaAdministrativeUnit cmdlet updates an administrative unit in Azure Active Directory (AD).
+The Set-EntraBetaAdministrativeUnit cmdlet updates an administrative unit in Azure Active Directory (AD).
 
 ## Examples
 

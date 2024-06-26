@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaUserExtension
 
 ## Synopsis
-removes a user extension.
+Removes a user extension.
 
 ## Syntax
 
@@ -24,7 +24,7 @@ Remove-EntraBetaUserExtension -ObjectId <String> -ExtensionName <String> [<Commo
 ```
 
 ## Description
-the Remove-EntraBetaUserExtension cmdlet removes a user extension from Azure Active Directory (AD).
+The Remove-EntraBetaUserExtension cmdlet removes a user extension from Azure Active Directory (AD).
 
 ## Examples
 

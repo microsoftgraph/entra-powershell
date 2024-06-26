@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraBetaServicePrincipalDelegatedPermissionClassification
 
 ## Synopsis
-remove delegated permission classification.
+Remove delegated permission classification.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Remove-EntraBetaServicePrincipalDelegatedPermissionClassification -ServicePrinci
 ```
 
 ## Description
-the Remove-EntraBetaServicePrincipalDelegatedPermissionClassification cmdlet deletes the given delegated permission classification by Id from service principal.
+The Remove-EntraBetaServicePrincipalDelegatedPermissionClassification cmdlet deletes the given delegated permission classification by Id from service principal.
 
 ## Examples
 

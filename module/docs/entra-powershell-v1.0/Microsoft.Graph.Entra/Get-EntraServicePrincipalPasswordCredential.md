@@ -1,25 +1,25 @@
 ---
-title:  Get-EntraServicePrincipalPasswordCredential.
-description: This article provides details on the  Get-EntraServicePrincipalPasswordCredential Command.
+Title:  Get-EntraServicePrincipalPasswordCredential.
+Description: This article provides details on the  Get-EntraServicePrincipalPasswordCredential Command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraServicePrincipalPasswordCredential
 
 ## Synopsis
 
-get credentials for a service principal.
+Get credentials for a service principal.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Get-EntraServicePrincipalPasswordCredential
 
 ## Description
 
-the Get-EntraServicePrincipalPasswordCredential cmdlet gets the password credentials for a service principal in Microsoft Entra ID.
+The Get-EntraServicePrincipalPasswordCredential cmdlet gets the password credentials for a service principal in Microsoft Entra ID.
 
 ## Examples
 

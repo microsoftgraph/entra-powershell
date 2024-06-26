@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaPolicy
 
 ## Synopsis
-gets a policy.
+Gets a policy.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ Get-EntraBetaPolicy -Id <String> [-All] [<CommonParameters>]
 ```
 
 ## Description
-the Get-EntraBetaPolicy cmdlet gets a policy in Azure Active Directory (AD).
+The Get-EntraBetaPolicy cmdlet gets a policy in Azure Active Directory (AD).
 
 ## Examples
 

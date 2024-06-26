@@ -1,25 +1,25 @@
 ---
-title: Remove-EntraTrustedCertificateAuthority
-description: This article provides details on the Remove-EntraTrustedCertificateAuthority command.
+Title: Remove-EntraTrustedCertificateAuthority
+Description: This article provides details on the Remove-EntraTrustedCertificateAuthority command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Remove-EntraTrustedCertificateAuthority
 
 ## Synopsis
 
-removes a trusted certificate authority.
+Removes a trusted certificate authority.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Remove-EntraTrustedCertificateAuthority
 
 ## Description
 
-the Remove-EntraTrustedCertificateAuthority cmdlet removes a trusted certificate authority from Microsoft Entra ID.
+The Remove-EntraTrustedCertificateAuthority cmdlet removes a trusted certificate authority from Microsoft Entra ID.
 
 ## Examples
 
@@ -47,8 +47,8 @@ Remove-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
 Name                           Value
 ----                           -----
 @odata.context                 https://graph.microsoft.com/v1.0/$metadata#certificateBasedAuthConfiguration/$entity
-certificateAuthorities         {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
-id                             0a0a0a0a-1111-bbbb-2222-3c3c3c3c3c3c
+CertificateAuthorities         {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
+Id                             0a0a0a0a-1111-bbbb-2222-3c3c3c3c3c3c
 ```
 
 This command deletes the trusted certificate authorities that are defined in your directory.

@@ -1,8 +1,8 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Add-EntraBetaLifecyclePolicyGroup
@@ -17,7 +17,7 @@ Add-EntraBetaLifecyclePolicyGroup -Id <String> -GroupId <String> [<CommonParamet
 ```
 
 ## Description
-the Add-EntraBetaLifecyclePolicyGroup cmdlet Adds a group to a lifecycle policy in Azure Active Directory
+The Add-EntraBetaLifecyclePolicyGroup cmdlet Adds a group to a lifecycle policy in Azure Active Directory
 
 ## Examples
 

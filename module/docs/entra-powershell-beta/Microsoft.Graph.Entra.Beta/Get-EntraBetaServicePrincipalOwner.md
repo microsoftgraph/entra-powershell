@@ -1,24 +1,24 @@
 ---
-title: Get-EntraBetaServicePrincipalOwner
-description: This article provides details on the Get-EntraBetaServicePrincipalOwner command.
+Title: Get-EntraBetaServicePrincipalOwner
+Description: This article provides details on the Get-EntraBetaServicePrincipalOwner command.
 
-ms.service: active-directory
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
+Ms.service: active-directory
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
 
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaServicePrincipalOwner
 
 ## Synopsis
-get the owner of a service principal.
+Get the owner of a service principal.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Get-EntraBetaServicePrincipalOwner
 ```
 
 ## Description
-the Get-EntraBetaServicePrincipalOwner cmdlet gets the owners of a service principal in Microsoft Entra ID.
+The Get-EntraBetaServicePrincipalOwner cmdlet gets the owners of a service principal in Microsoft Entra ID.
 
 ## Examples
 
@@ -44,9 +44,9 @@ PS C:\> Get-EntraBetaServicePrincipalOwner -ObjectId $ServicePrincipalId
 ```output
 ObjectId                             DisplayName    UserPrincipalName   UserType
 --------                             -----------    -----------------   --------
-fd560167-ff1f-471a-8d74-3b0070abcea1 Adams Smith    Adams@contoso.com   Member
+Fd560167-ff1f-471a-8d74-3b0070abcea1 Adams Smith    Adams@contoso.com   Member
 15b958d9-af43-40be-8e91-bcd5676556f7 Peter Kons     Peter@contoso.com   Member
-b7753478-6cec-4965-96cc-560c5fb6fcd4 Mary Kom       Mary@contoso.com    Member
+B7753478-6cec-4965-96cc-560c5fb6fcd4 Mary Kom       Mary@contoso.com    Member
 ```
 
 The first command gets the ID of a service principal by using the [Get-EntraBetaServicePrincipal](./Get-EntraBetaServicePrincipal.md) cmdlet. 
@@ -63,9 +63,9 @@ PS C:\> Get-EntraBetaServicePrincipalOwner -ObjectId $ServicePrincipalId -All
 ```output
 ObjectId                             DisplayName    UserPrincipalName   UserType
 --------                             -----------    -----------------   --------
-fd560167-ff1f-471a-8d74-3b0070abcea1 Adams Smith    Adams@contoso.com   Member
+Fd560167-ff1f-471a-8d74-3b0070abcea1 Adams Smith    Adams@contoso.com   Member
 15b958d9-af43-40be-8e91-bcd5676556f7 Peter Kons     Peter@contoso.com   Member
-b7753478-6cec-4965-96cc-560c5fb6fcd4 Mary Kom       Mary@contoso.com    Member
+B7753478-6cec-4965-96cc-560c5fb6fcd4 Mary Kom       Mary@contoso.com    Member
 ```
 
 This command gets all the owners of a service principal.
@@ -79,7 +79,7 @@ PS C:\> Get-EntraBetaServicePrincipalOwner -ObjectId $ServicePrincipalId -Top 2
 ```output
 ObjectId                             DisplayName    UserPrincipalName   UserType
 --------                             -----------    -----------------   --------
-fd560167-ff1f-471a-8d74-3b0070abcea1 Adams Smith    Adams@contoso.com   Member
+Fd560167-ff1f-471a-8d74-3b0070abcea1 Adams Smith    Adams@contoso.com   Member
 15b958d9-af43-40be-8e91-bcd5676556f7 Peter Kons     Peter@contoso.com   Member
 ```
 

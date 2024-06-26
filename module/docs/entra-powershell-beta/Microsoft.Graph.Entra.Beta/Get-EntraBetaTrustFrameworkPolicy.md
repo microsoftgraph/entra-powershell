@@ -1,14 +1,14 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
+External help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Get-EntraBetaTrustFrameworkPolicy
 
 ## Synopsis
-this cmdlet is used to retrieve the created trust framework policies (custom policies) in the directory.
+This cmdlet is used to retrieve the created trust framework policies (custom policies) in the directory.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ Get-EntraBetaTrustFrameworkPolicy -Id <String> [-OutputFilePath <String>] [<Comm
 ```
 
 ## Description
-this cmdlet is used to retrieve the trust framework policies that have been created in the directory.
+This cmdlet is used to retrieve the trust framework policies that have been created in the directory.
 
 ## Examples
 

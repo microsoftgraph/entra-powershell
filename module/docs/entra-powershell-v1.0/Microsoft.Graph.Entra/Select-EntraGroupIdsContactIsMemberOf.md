@@ -1,25 +1,25 @@
 ---
-title: Select-EntraGroupIdsContactIsMemberOf
-description: This article provides details on the Select-EntraGroupIdsContactIsMemberOf command.
+Title: Select-EntraGroupIdsContactIsMemberOf
+Description: This article provides details on the Select-EntraGroupIdsContactIsMemberOf command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Select-EntraGroupIdsContactIsMemberOf
 
 ## Synopsis
 
-get groups in which a contact is a member.
+Get groups in which a contact is a member.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Select-EntraGroupIdsContactIsMemberOf
 
 ## Description
 
-the Select-EntraGroupIdsContactIsMemberOf cmdlet gets groups in Microsoft Entra ID in which a contact is a member.
+The Select-EntraGroupIdsContactIsMemberOf cmdlet gets groups in Microsoft Entra ID in which a contact is a member.
 
 ## Examples
 

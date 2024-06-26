@@ -1,25 +1,25 @@
 ---
-title: Enable-EntraDirectoryRole
-description: This article provides details on the Enable-EntraDirectoryRole command.
+Title: Enable-EntraDirectoryRole
+Description: This article provides details on the Enable-EntraDirectoryRole command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Enable-EntraDirectoryRole
 
 ## Synopsis
-activates an existing directory role in Microsoft Entra ID.
+Activates an existing directory role in Microsoft Entra ID.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ Enable-EntraDirectoryRole
 ```
 
 ## Description
-the Enable-EntraDirectoryRole cmdlet activates an existing directory role in Microsoft Entra ID.
+The Enable-EntraDirectoryRole cmdlet activates an existing directory role in Microsoft Entra ID.
 
 ## Examples
 

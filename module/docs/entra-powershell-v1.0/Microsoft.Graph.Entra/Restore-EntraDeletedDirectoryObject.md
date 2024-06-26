@@ -1,25 +1,25 @@
 ---
-title: Restore-EntraDeletedDirectoryObject
-description: This article provides details on the Restore-EntraDeletedDirectoryObject command.
+Title: Restore-EntraDeletedDirectoryObject
+Description: This article provides details on the Restore-EntraDeletedDirectoryObject command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Restore-EntraDeletedDirectoryObject
 
 ## Synopsis
-this cmdlet is used to restore a previously deleted object.
+This cmdlet is used to restore a previously deleted object.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ Restore-EntraDeletedDirectoryObject
 ```
 
 ## Description
-this cmdlet is used to restore a previously deleted object.
+This cmdlet is used to restore a previously deleted object.
 Currently, only restoring Group and Application objects is supported. 
 When a group or an application is deleted, it's initially soft deleted and can be recovered during the first 30 days after deletion.
 After 30 days the deleted object is permanently deleted and can no longer be recovered.
@@ -48,7 +48,7 @@ Restore-EntraDeletedDirectoryObject -Id aa644285-eb75-4389-885e-7233f096984c
 ```output
 Id                                   DeletedDateTime
 --                                   ---------------
-aa644285-eb75-4389-885e-7233f096984c
+Aa644285-eb75-4389-885e-7233f096984c
 ```
 
 This example shows how to restore a deleted object with Id aa644285-eb75-4389-885e-7233f096984c.

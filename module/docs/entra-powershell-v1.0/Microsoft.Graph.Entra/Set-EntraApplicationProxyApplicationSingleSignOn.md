@@ -1,25 +1,25 @@
 ---
-title: Set-EntraApplicationProxyApplicationSingleSignOn
-description: This article provides details on the Set-EntraApplicationProxyApplicationSingleSignOn command.
+Title: Set-EntraApplicationProxyApplicationSingleSignOn
+Description: This article provides details on the Set-EntraApplicationProxyApplicationSingleSignOn command.
 
-ms.service: entra
-ms.topic: reference
-ms.date: 06/26/2024
-ms.author: eunicewaweru
-ms.reviewer: stevemutungi
-manager: CelesteDG
-author: msewaweru
+Ms.service: entra
+Ms.topic: reference
+Ms.date: 06/26/2024
+Ms.author: eunicewaweru
+Ms.reviewer: stevemutungi
+Manager: CelesteDG
+Author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
+External help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
-schema: 2.0.0
+Online version:
+Schema: 2.0.0
 ---
 
 # Set-EntraApplicationProxyApplicationSingleSignOn
 
 ## Synopsis
-the Set-EntraApplicationProxyApplicationSingleSignOn cmdlet allows you to set and modify single sign-on (SSO) settings for an application configured for Application Proxy in Microsoft Entra ID.
+The Set-EntraApplicationProxyApplicationSingleSignOn cmdlet allows you to set and modify single sign-on (SSO) settings for an application configured for Application Proxy in Microsoft Entra ID.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Set-EntraApplicationProxyApplicationSingleSignOn
 ```
 
 ## Description
-the Set-EntraApplicationProxyApplicationSingleSignOn cmdlet allows you to set and modify single sign-on (SSO) settings for an application configured for Application Proxy in Microsoft Entra ID.
+The Set-EntraApplicationProxyApplicationSingleSignOn cmdlet allows you to set and modify single sign-on (SSO) settings for an application configured for Application Proxy in Microsoft Entra ID.
 This is limited to setting No SSO, Kerberos Constrained Delegation (for applications using Integrated Windows Authentication), and Header-based SSO.
 
 ## Examples
