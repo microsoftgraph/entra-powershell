@@ -1,10 +1,10 @@
 ---
-title: Remove-EntraBetaMSGroupLifecyclePolicy
-description: This article provides details on the Remove-EntraBetaMSGroupLifecyclePolicy command.
+title: Remove-EntraBetaGroupLifecyclePolicy
+description: This article provides details on the Remove-EntraBetaGroupLifecyclePolicy command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 06/18/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -15,7 +15,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Remove-EntraBetaMSGroupLifecyclePolicy
+# Remove-EntraBetaGroupLifecyclePolicy
 
 ## SYNOPSIS
 
@@ -24,14 +24,14 @@ Deletes a groupLifecyclePolicies object
 ## SYNTAX
 
 ```powershell
-Remove-EntraBetaMSGroupLifecyclePolicy 
+Remove-EntraBetaGroupLifecyclePolicy 
  -Id <String> 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-The `Remove-EntraBetaMSGroupLifecyclePolicy` command deletes a groupLifecyclePolicies object in Microsoft Entra ID. Specify `Id` parameter deletes the groupLifecyclePolicies object.
+The `Remove-EntraBetaGroupLifecyclePolicy` command deletes a groupLifecyclePolicies object in Microsoft Entra ID. Specify `Id` parameter deletes the groupLifecyclePolicies object.
 
 ## EXAMPLES
 
@@ -39,7 +39,7 @@ The `Remove-EntraBetaMSGroupLifecyclePolicy` command deletes a groupLifecyclePol
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Remove-EntraBetaMSGroupLifecyclePolicy -Id '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
+Remove-EntraBetaGroupLifecyclePolicy -Id '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
 ```
 
 This example demonstrates how to delete the groupLifecyclePolicies object that has the specified ID.
@@ -78,8 +78,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## RELATED LINKS
 
-[Get-EntraBetaMSGroupLifecyclePolicy](Get-EntraBetaMSGroupLifecyclePolicy.md)
+[Get-EntraBetaGroupLifecyclePolicy](Get-EntraBetaGroupLifecyclePolicy.md)
 
-[New-EntraBetaMSGroupLifecyclePolicy](New-EntraBetaMSGroupLifecyclePolicy.md)
+[New-EntraBetaGroupLifecyclePolicy](New-EntraBetaGroupLifecyclePolicy.md)
 
-[Set-EntraBetaMSGroupLifecyclePolicy](Set-EntraBetaMSGroupLifecyclePolicy.md)
+[Set-EntraBetaGroupLifecyclePolicy](Set-EntraBetaGroupLifecyclePolicy.md)
