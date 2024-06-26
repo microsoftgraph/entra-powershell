@@ -40,7 +40,7 @@ Get-EntraDomain
 
 ## DESCRIPTION
 
-The Get-EntraDomain cmdlet gets a domain in Microsoft Entra ID.
+The `Get-EntraDomain` cmdlet gets a domain in Microsoft Entra ID.
 
 ## EXAMPLES
 
