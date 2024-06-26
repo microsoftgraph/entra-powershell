@@ -18,6 +18,7 @@ schema: 2.0.0
 # Set-EntraRoleDefinition
 
 ## SYNOPSIS
+
 Update an existing Microsoft Entra ID roleDefinition.
 
 ## SYNTAX
@@ -36,52 +37,68 @@ Set-EntraRoleDefinition
 ```
 
 ## DESCRIPTION
-Updates a Microsoft Entra ID roleDefinition object identified by ID.
+
+Updates a Microsoft Entra roleDefinition object identified by ID. You cannot update built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
 
 ## EXAMPLES
 
-### Example 1: Update an roleDefinition.
+### Example 1: Update an roleDefinition
 
 ```powershell
-PS C:\> Set-EntraRoleDefinition -ID c466024e-f789-4409-a897-d220916814b1 -DisplayName 'UpdatedDisplayName'
+ Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+ Set-EntraRoleDefinition -ID a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 -DisplayName 'UpdatedDisplayName'
 ```
 
 This example updates the specified role definition in Microsoft Entra ID.
 
-### Example 2: Update an roleDefinition with Description.
+### Example 2: Update an roleDefinition with Description
 
 ```powershell
-PS C:\> Set-EntraRoleDefinition -Id 4dd5aa9c-cf4d-4895-a993-740d342802b9 -Description "MYROLEUPDATE1S"
+ Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+ Set-EntraRoleDefinition -Id a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 -Description 'MYROLEUPDATE1S'
 ```
 
 This example updates the Description of specified role definition in Microsoft Entra ID.
 
-### Example 3: Update an roleDefinition with IsEnabled.
+### Example 3: Update an roleDefinition with IsEnabled
 
 ```powershell
-PS C:\> Set-EntraRoleDefinition -Id 4dd5aa9c-cf4d-4895-a993-740d342802b9 -IsEnabled $true
+ Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+ Set-EntraRoleDefinition -Id a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 -IsEnabled $true
 ```
 
 This example updates the IsEnabled of specified role definition in Microsoft Entra ID.
 
-### Example 4: Update an roleDefinition.
+### Example 4: Update an roleDefinition
 
 ```powershell
-PS C:\> $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
-PS C:\> $RolePermissions.AllowedResourceActions = @("microsoft.directory/applications/standard/read")
-PS C:\> Set-EntraRoleDefinition -Id 54d418b2-4cc0-47ee-9b39-e8f84ed8e073 -Description "Update" -DisplayName "Update" -ResourceScopes "/" -IsEnabled $false -RolePermissions $RolePermissions -TemplateId 54d418b2-4cc0-47ee-9b39-e8f84ed8e073 -TemplateId  2
+ Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+ $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
+ $RolePermissions.AllowedResourceActions = @("microsoft.directory/applications/standard/read")
+ $params = @{
+    Id = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
+    Description = 'Update'
+    DisplayName = 'Update'
+    ResourceScopes = '/'
+    IsEnabled = $false
+    RolePermissions = $RolePermissions
+    TemplateId = '54d418b2-4cc0-47ee-9b39-e8f84ed8e073'
+    Version = 2
+ }
+
+ Set-EntraRoleDefinition @params
 ```
 
 This example updates the RolePermissions, TemplateId, TemplateId, ResourceScopes  of specified role definition in Microsoft Entra ID.
 
-
 ## PARAMETERS
 
 ### -Id
+
 The unique identifier of an object in Microsoft Entra ID
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -93,10 +110,11 @@ Accept wildcard characters: False
 ```
 
 ### -Description
+
 Specifies a description for the role definition.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -108,9 +126,11 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
+
 Specifies a display name for the role definition.
+
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -122,10 +142,11 @@ Accept wildcard characters: False
 ```
 
 ### -IsEnabled
-Specifies whether the role definition is enabled.
+
+Specifies whether the role definition is enabled. Flag indicating if the role is enabled for assignment. If false, the role is not available for assignment. Read-only when `isBuiltIn` is true.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -137,6 +158,7 @@ Accept wildcard characters: False
 ```
 
 ### -ResourceScopes
+
 Specifies the resource scopes for the role definition.
 
 ```yaml
@@ -152,7 +174,8 @@ Accept wildcard characters: False
 ```
 
 ### -RolePermissions
-Specifies permissions for the role definition.
+
+Specifies permissions for the role definition. List of permissions included in the role. Read-only when `isBuiltIn` is `true`.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RolePermission]
@@ -167,10 +190,11 @@ Accept wildcard characters: False
 ```
 
 ### -TemplateId
-Specifies template ID for the role definition.
+
+Specifies template ID for the role definition. Custom template identifier that can be set when `isBuiltIn1 is 1false`. This identifier is typically used if one needs an identifier to be the same across different directories. Read-only when `isBuiltIn` is `true`.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -182,10 +206,11 @@ Accept wildcard characters: False
 ```
 
 ### -Version
-Specifies version for the role definition.
+
+Specifies version for the role definition. Indicates version of the role definition. Read-only when `isBuiltIn` is `true`.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -197,11 +222,13 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### String
+
 ## OUTPUTS
 
 ## NOTES
@@ -211,5 +238,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraRoleDefinition](Get-EntraRoleDefinition.md)
 
 [New-EntraRoleDefinition](New-EntraRoleDefinition.md)
-
-

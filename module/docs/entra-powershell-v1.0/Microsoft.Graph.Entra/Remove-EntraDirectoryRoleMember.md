@@ -18,6 +18,7 @@ schema: 2.0.0
 # Remove-EntraDirectoryRoleMember
 
 ## SYNOPSIS
+
 Removes a member of a directory role.
 
 ## SYNTAX
@@ -30,24 +31,37 @@ Remove-EntraDirectoryRoleMember
 ```
 
 ## DESCRIPTION
-The Remove-EntraDirectoryRoleMember cmdlet removes a member from a directory role in Microsoft Entra ID.
+
+The `Remove-EntraDirectoryRoleMember` cmdlet removes a member from a directory role in Microsoft Entra ID.
 
 ## EXAMPLES
 
 ### Example 1: Remove a member from a directory role
+
 ```powershell
-PS C:\>Remove-EntraDirectoryRoleMember -ObjectId "019ea7a2-1613-47c9-81cb-20ba35b1ae48" -MemberId "c13dd34a-492b-4561-b171-40fcce2916c5"
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+$params = @{
+    ObjectId = 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
+    MemberId = '11bb11bb-cc22-dd33-ee44-55ff55ff55ff'
+}
+
+Remove-EntraDirectoryRoleMember @params
 ```
 
 This command removes the specified member from the specified role.
 
+- `-ObjectId` - specifies the unique identifier (ObjectId) of the directory role from which the member will be removed.
+
+- `-MemberId` - specifies the unique identifier (MemberId) of the member (user, group, or service principal) that is to be removed from the specified directory role.
+
 ## PARAMETERS
 
 ### -MemberId
+
 Specifies the object ID of a role member.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -59,10 +73,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the object ID of a directory role in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -74,7 +89,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -87,4 +103,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Add-EntraDirectoryRoleMember](Add-EntraDirectoryRoleMember.md)
 
 [Get-EntraDirectoryRoleMember](Get-EntraDirectoryRoleMember.md)
-
