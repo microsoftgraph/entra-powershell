@@ -4,7 +4,7 @@ description: This article provides details on the Remove-EntraAdministrativeUnit
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/05/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Remove-EntraAdministrativeUnitMember
 
-## SYNOPSIS
+## Synopsis
 
 Removes an administrative unit member.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraAdministrativeUnitMember 
@@ -30,10 +30,10 @@ Remove-EntraAdministrativeUnitMember
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraAdministrativeUnitMember cmdlet removes an administrative unit member in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove an administrative unit
 
@@ -48,7 +48,7 @@ This command removes a specified member (user or group) from a specified adminis
 
 - `-MemberId` - specifies the unique identifier (Object ID) of the user or group you want to remove from the administrative unit. In this example, `eeeeeeee-4444-5555-6666-ffffffffffff` is the Object ID of the member being removed.
 
-## PARAMETERS
+## Parameters
 
 ### -MemberId
 
@@ -86,13 +86,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraAdministrativeUnitMember](Add-EntraAdministrativeUnitMember.md)
 

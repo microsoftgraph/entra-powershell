@@ -3,7 +3,7 @@ title: New-EntraGroup.
 description: This article provides details on the New-EntraGroup command.
 ms.service: entra
 ms.topic: reference
-ms.date: 05/03/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -16,11 +16,11 @@ schema: 2.0.0
 
 # New-EntraGroup
 
-## SYNOPSIS
+## Synopsis
 
 Creates a Microsoft Entra ID group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraGroup 
@@ -35,7 +35,7 @@ New-EntraGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The New-EntraGroup cmdlet creates a Microsoft Entra ID group.
 
@@ -47,7 +47,7 @@ For information about creating dynamic groups, see: [Using attributes to create 
 - To create the group with other service principals as owners or members, the app must have at least the `Application.Read.All` permission.
 - To create the group with either users or service principals as owners or members, the app must have at least the `Directory.Read.All` permission.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a group
 
@@ -131,7 +131,7 @@ HelpDesk admin group3 xxxxxxxx-8888-5555-9999-bbbbbbbbbbbb helpDeskAdminGroup1 g
 
 This example demonstrates how to create the new group with GroupTypes parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 
@@ -286,21 +286,21 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### None
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
 This cmdlet is currently in Public Preview.
 While a cmdlet is in Public Preview, we might make changes to the cmdlet, which could have unexpected effects.
 We recommend that you don't use this cmdlet in a production environment.
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraGroup](Get-EntraGroup.md)
 

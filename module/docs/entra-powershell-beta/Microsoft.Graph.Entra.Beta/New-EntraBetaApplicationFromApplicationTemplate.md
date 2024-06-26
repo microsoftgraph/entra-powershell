@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # New-EntraBetaApplicationFromApplicationTemplate
 
-## SYNOPSIS
+## Synopsis
 Instantiates an application
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaApplicationFromApplicationTemplate -Id <String> -DisplayName <ApplicationTemplateDisplayName>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet allows users to create application from application template
 
-## EXAMPLES
+## Examples
 
 ### 1. Creates an application from application template
 ```
@@ -29,7 +29,7 @@ PS C:\> $instantiated_app = New-EntraBetaApplicationTemplate -Id  e8b7b394-057d-
 
 This command instantiates a new application based on application template referenced by the id.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The unique identifier of an object in Azure Active Directory
@@ -64,10 +64,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Online.Administration.ApplicationTemplateCopy
-## NOTES
-## RELATED LINKS
+## Notes
+## Related Links

@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Set-EntraBetaApplication
 
-## SYNOPSIS
+## Synopsis
 Updates the properties of an application object.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaApplication [-Api <ApiApplication>] [-OptionalClaims <OptionalClaims>] [-DisplayName <String>]
@@ -29,10 +29,10 @@ Set-EntraBetaApplication [-Api <ApiApplication>] [-OptionalClaims <OptionalClaim
  [-SignInAudience <String>] [-InformationalUrl <InformationalUrl>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Updates the properties of an application object.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update an application
 ```
@@ -62,7 +62,7 @@ PS C:\>Set-EntraBetaApplication -ObjectId fcd37fb8-449c-45af-92fc-5448c671fd30 `
 
 This command updates the specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -AddIns
 Defines custom behavior that a consuming service can use to call an app in specific contexts.
@@ -415,7 +415,7 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### Boolean
 ### Microsoft.Open.MSGraph.Model.ApiApplication
@@ -433,11 +433,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RequiredResourceAccess]
 ### System.Collections.Generic.List`1[System.String]
 ### System.Nullable`1[System.Boolean]
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaApplication]()
 

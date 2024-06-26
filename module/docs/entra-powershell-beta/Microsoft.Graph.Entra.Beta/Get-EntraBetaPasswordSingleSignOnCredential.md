@@ -7,22 +7,22 @@ schema: 2.0.0
 
 # Get-EntraBetaPasswordSingleSignOnCredential
 
-## SYNOPSIS
+## Synopsis
 Gets the password SSO credentials
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaPasswordSingleSignOnCredential -ObjectId <String> -PasswordSSOObjectId <PasswordSSOObjectId>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet enables users to read their Password Single-sign-on credentials for an application which they are part of.
 Admin could read the group credentials as well.
 Note that the password field will be hidden for security purpose.
 
-## EXAMPLES
+## Examples
 
 ### Get password single-sign-on credentials
 ```
@@ -31,7 +31,7 @@ PS C:\> $get_creds_output = Get-EntraBetaPasswordSingleSignOnCredential -ObjectI
 
 This command gets the password sso credentials for the given ObjectId and PasswordSSOObjectId.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique identifier of the object specific Azure Active Directory object
@@ -66,10 +66,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Online.Administration.PasswordSSOCredentials
-## NOTES
-## RELATED LINKS
+## Notes
+## Related Links

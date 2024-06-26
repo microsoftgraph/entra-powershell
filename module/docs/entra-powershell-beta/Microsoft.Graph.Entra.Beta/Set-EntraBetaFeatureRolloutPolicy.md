@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Set-EntraBetaFeatureRolloutPolicy
 
-## SYNOPSIS
+## Synopsis
 Allows an admin to modify the policy for cloud authentication roll-out in Azure AD.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaFeatureRolloutPolicy [-Feature <FeatureEnum>] [-IsEnabled <Boolean>] -Id <String>
@@ -19,11 +19,11 @@ Set-EntraBetaFeatureRolloutPolicy [-Feature <FeatureEnum>] [-IsEnabled <Boolean>
  [-Description <String>] [-DisplayName <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 An admin will use this cmdlet to modify the cloud authentication roll-out policy including whether the method for cloud authentication is Pass-through Authentication or not (Password hash-sync) and whether Seamless SSO is enabled.
 Users in groups assigned to the policy will start authenticating via the new authentication method and via Seamless SSO if specified.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Updates the policy for cloud authentication roll-out in Azure AD.
 ```
@@ -32,7 +32,7 @@ PS C:\> Set-EntraBetaFeatureRolloutPolicy -Id "a03b6d9e-6654-46e6-8d0a-8ed83c675
 
 This command updates the policy for cloud authentication roll-out in Azure AD.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The unique identifier of the cloud authentication roll-out policy in Azure AD.
@@ -144,12 +144,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
-## RELATED LINKS
+## Notes
+## Related Links
 
 [New-EntraBetaFeatureRolloutPolicy]()
 

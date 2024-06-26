@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Select-EntraBetaGroupIdsContactIsMemberOf
 
-## SYNOPSIS
+## Synopsis
 Get groups in which a contact is a member.
 
-## SYNTAX
+## Syntax
 
 ```
 Select-EntraBetaGroupIdsContactIsMemberOf -ObjectId <String>
  -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Select-EntraBetaGroupIdsContactIsMemberOf cmdlet gets groups in Azure Active Directory (AD) in which a contact is a member.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```powershell
@@ -29,7 +29,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 ### -GroupIdsForMembershipCheck
 Specifies an array of group object IDs.
@@ -64,10 +64,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

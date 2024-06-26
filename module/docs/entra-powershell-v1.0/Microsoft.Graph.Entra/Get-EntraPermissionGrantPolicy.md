@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraPermissionGrantPolicy
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/14/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraPermissionGrantPolicy
 
-## SYNOPSIS
+## Synopsis
 
 Gets a permission grant policy.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -38,11 +38,11 @@ Get-EntraPermissionGrantPolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraPermissionGrantPolicy` cmdlet gets a Microsoft Entra ID permission grant policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all permission grant policies.
 
@@ -76,7 +76,7 @@ DeletedDateTime Description                               DisplayName           
 
 This command gets the specified permission grant policy.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -98,13 +98,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraPermissionGrantPolicy](New-EntraPermissionGrantPolicy.md)
 

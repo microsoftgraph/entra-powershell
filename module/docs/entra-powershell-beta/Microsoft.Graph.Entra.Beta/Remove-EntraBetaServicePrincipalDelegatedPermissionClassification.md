@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Remove-EntraBetaServicePrincipalDelegatedPermissionClassification
 
-## SYNOPSIS
+## Synopsis
 Remove delegated permission classification.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaServicePrincipalDelegatedPermissionClassification -ServicePrincipalId <String> -Id <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaServicePrincipalDelegatedPermissionClassification cmdlet deletes the given delegated permission classification by Id from service principal.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a delegated permission classifications
 ```
@@ -29,7 +29,7 @@ PS C:\> Remove-EntraBetaServicePrincipalDelegatedPermissionClassification -Servi
 
 This command delete the delegated permission classification by Id from the service principal.
 
-## PARAMETERS
+## Parameters
 
 ### -ServicePrincipalId
 The unique identifier of a service principal object in Azure Active Directory.
@@ -64,9 +64,9 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
-## RELATED LINKS
+## Notes
+## Related Links

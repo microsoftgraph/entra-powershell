@@ -4,7 +4,7 @@ description: This article provides details on the Set-EntraNamedLocationPolicy c
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/25/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Set-EntraNamedLocationPolicy
 
-## SYNOPSIS
+## Synopsis
 Updates a named location policy in Microsoft Entra ID by PolicyId.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraNamedLocationPolicy 
@@ -36,11 +36,11 @@ Set-EntraNamedLocationPolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet allows an admin to update a named location policy in Microsoft Entra ID by PolicyId.
 Conditional access policies are custom rules that define an access scenario.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update an ip named location policy in Microsoft Entra ID by PolicyId.
 ```powershell
@@ -63,7 +63,7 @@ PS C:\> Set-EntraNamedLocationPolicy -PolicyId 07a1f48d-0cbb-4c2c-8ea2-1ea00e3eb
 
 This command updates display name of named location policy in Microsoft Entra ID by PolicyId.
 
-## PARAMETERS
+## Parameters
 
 ### -PolicyId
 Specifies the ID of a named location policy in Microsoft Entra ID.
@@ -188,13 +188,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraNamedLocationPolicy](Get-EntraNamedLocationPolicy.md)
 

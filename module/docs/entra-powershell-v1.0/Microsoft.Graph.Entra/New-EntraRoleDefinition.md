@@ -4,7 +4,7 @@ description: This article provides details on the New-EntraRoleDefinition comman
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/16/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # New-EntraRoleDefinition
 
-## SYNOPSIS
+## Synopsis
 
 Create a new Microsoft Entra ID roleDefinition.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraRoleDefinition 
@@ -35,11 +35,11 @@ New-EntraRoleDefinition
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 Create a new Microsoft Entra ID `roleDefinition` object.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Creates a new role definition
 
@@ -168,7 +168,7 @@ MyRoleDefinition a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 b69d16e9-b3f9-4289-a87f-8f
 
 This command creates a new role definition with Version parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 
@@ -286,15 +286,15 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleDefinition
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraMSRoleDefinition](Get-EntraMSRoleDefinition.md)
 

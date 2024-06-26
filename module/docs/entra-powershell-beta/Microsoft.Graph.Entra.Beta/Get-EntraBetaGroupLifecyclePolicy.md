@@ -7,11 +7,11 @@ schema: 2.0.0
 
 # Get-EntraBetaGroupLifecyclePolicy
 
-## SYNOPSIS
+## Synopsis
 Retrieves the properties and relationships of a groupLifecyclePolicies object in Azure Active Directory.
 If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -23,11 +23,11 @@ Get-EntraBetaGroupLifecyclePolicy [<CommonParameters>]
 Get-EntraBetaGroupLifecyclePolicy -Id <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaGroupLifecyclePolicy command retrieves the properties and relationships of a groupLifecyclePolicies object in Azure Active Directory.
 If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -36,7 +36,7 @@ PS C:\> Get-EntraBetaGroupLifecyclePolicy
 
 This command retrieves the group expiration settings configured for the tenant
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 Specifies the ID of a groupLifecyclePolicies object in Azure Active Directory
@@ -56,14 +56,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

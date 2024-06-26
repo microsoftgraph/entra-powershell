@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaLifecyclePolicyGroup
 
-## SYNOPSIS
+## Synopsis
 Retrieves the lifecycle policy object to which a group belongs.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaLifecyclePolicyGroup -Id <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaLifecyclePolicyGroup retrieves the lifecycle policy object to which a group belongs.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -28,7 +28,7 @@ PS C:\> Get-EntraBetaLifecyclePolicyGroup -Id cffd97bd-6b91-4c4e-b553-6918a32021
 
 This command retrieves the lifecycle policy object to which a group belongs.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 Specifies the ID of a group in Azure Active Directory
@@ -48,12 +48,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

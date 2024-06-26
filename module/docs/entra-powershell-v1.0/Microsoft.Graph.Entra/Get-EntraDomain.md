@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraDomain command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/16/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraDomain
 
-## SYNOPSIS
+## Synopsis
 
 Gets a domain.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -38,11 +38,11 @@ Get-EntraDomain
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraDomain` cmdlet gets a domain in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a list of Domains that are created
 
@@ -76,7 +76,7 @@ TEST22.com Managed                               True           False     False 
 
 This command retrieves a domain with the specified name.
 
-## PARAMETERS
+## Parameters
 
 ### -Name
 
@@ -98,13 +98,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Confirm-EntraDomain](Confirm-EntraDomain.md)
 
