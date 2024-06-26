@@ -61,7 +61,7 @@ $params = @{
 Set-EntraServicePrincipal @params
 ```
 
-This example demonstrates how to update AccountEnabled of a service principal in Microsoft Entra ID.
+This example demonstrates how to update `AccountEnabled` of a service principal in Microsoft Entra ID.
 
 ### Example 2: Update AppId and Homepage of a service principal
 
