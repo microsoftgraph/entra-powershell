@@ -237,7 +237,7 @@ function Create-TOCFile {
 		$outputFile=$outputFile+"/entra-powershell-v1.0/toc.yml"
 	} else {
 		$rootDir = "Microsoft.Graph.Entra.Beta/"
-		$outputFile=$outputFilr+"/entra-powershell-beta/toc.yml"
+		$outputFile=$outputFile+"/entra-powershell-beta/toc.yml"
 	}
     foreach ($file in $mdFiles) {
         # Generate the relative path from the root directory
