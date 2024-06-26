@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-EntraBetaDeviceRegisteredOwner
 
 ## Synopsis
-adds a registered owner for a device.
+Adds a registered owner for a device.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Add-EntraBetaDeviceRegisteredOwner -ObjectId <String> -RefObjectId <String> [<Co
 ```
 
 ## Description
-the Add-EntraBetaDeviceRegisteredOwner cmdlet adds a registerd owner for an Azure Active Directory device.
+the Add-EntraBetaDeviceRegisteredOwner cmdlet Adds a registerd owner for an Azure Active Directory device.
 
 ## Examples
 

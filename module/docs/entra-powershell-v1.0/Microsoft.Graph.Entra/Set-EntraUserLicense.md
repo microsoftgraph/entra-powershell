@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
+Adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Set-EntraUserLicense
 
 ## Description
 
-the `Set-EntraUserLicense` adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
+the `Set-EntraUserLicense` Adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
 For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
 

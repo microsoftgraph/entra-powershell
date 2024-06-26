@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-EntraBetaServicePrincipalPolicy
 
 ## Synopsis
-adds a service principal policy.
+Adds a service principal policy.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Add-EntraBetaServicePrincipalPolicy -Id <String> -RefObjectId <String> [<CommonP
 ```
 
 ## Description
-the Add-EntraBetaServicePrincipalPolicy cmdlet adds a service principal policy.
+the Add-EntraBetaServicePrincipalPolicy cmdlet Adds a service principal policy.
 
 ## Examples
 

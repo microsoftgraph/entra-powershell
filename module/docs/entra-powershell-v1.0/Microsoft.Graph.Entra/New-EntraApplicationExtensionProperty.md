@@ -78,7 +78,7 @@ DeletedDateTime Id                                   AppDisplayName  DataType Is
 
 The first command initializes new generic string list collection.  
 
-The second command adds an item to the list.  
+The second command Adds an item to the list.  
 
 The final command creates an application extension property with the specified target objects for the specified object.
 

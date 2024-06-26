@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-EntraBetaApplicationPassword
 
 ## Synopsis
-adds a strong password to an application.
+Adds a strong password to an application.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ New-EntraBetaApplicationPassword -ObjectId <String> -PasswordCredential <Passwor
 ```
 
 ## Description
-adds a strong password to an application.
+Adds a strong password to an application.
 
 ## Examples
 
@@ -35,7 +35,7 @@ PS C:\>New-EntraBetaApplicationPassword -ObjectId 14a3f1ac-46a7-4d00-b1ca-0b2b84
           Hint                : EQ:
 ```
 
-This command adds a password to the specified application.
+This command Adds a password to the specified application.
 
 ## Parameters
 

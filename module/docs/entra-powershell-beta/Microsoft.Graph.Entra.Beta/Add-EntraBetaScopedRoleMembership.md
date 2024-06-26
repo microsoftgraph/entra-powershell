@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-EntraBetaScopedRoleMembership
 
 ## Synopsis
-adds a scoped role membership to an administrative unit.
+Adds a scoped role membership to an administrative unit.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Add-EntraBetaScopedRoleMembership -ObjectId <String> [-RoleMemberInfo <RoleMembe
 ```
 
 ## Description
-the Add-EntraBetaScopedRoleMembership cmdlet adds a scoped role membership to an administrative unit.
+the Add-EntraBetaScopedRoleMembership cmdlet Adds a scoped role membership to an administrative unit.
 
 ## Examples
 

@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-adds a group to a lifecycle policy
+Adds a group to a lifecycle policy
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Add-EntraLifecyclePolicyGroup
 
 ## Description
 
-the Add-EntraLifecyclePolicyGroup cmdlet adds a group to a lifecycle policy in Microsoft Entra ID.
+the Add-EntraLifecyclePolicyGroup cmdlet Adds a group to a lifecycle policy in Microsoft Entra ID.
 
 ## Examples
 
@@ -44,7 +44,7 @@ Connect-Entra -Scopes 'Directory.ReadWrite.All'
 Add-EntraLifecyclePolicyGroup -Id '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6' -groupId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq'
 ```
 
-This command adds a group to a Microsoft Lifecycle Policy. The `-Id` parameter specifies the ID of the Lifecycle Policy to which the group should be added. The `-groupId` parameter specifies the ID of the group to be added to the Lifecycle Policy.
+This command Adds a group to a Microsoft Lifecycle Policy. The `-Id` parameter specifies the ID of the Lifecycle Policy to which the group should be added. The `-groupId` parameter specifies the ID of the group to be added to the Lifecycle Policy.
 
 ## Parameters
 

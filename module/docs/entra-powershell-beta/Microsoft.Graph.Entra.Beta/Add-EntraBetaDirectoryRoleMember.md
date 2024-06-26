@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-EntraBetaDirectoryRoleMember
 
 ## Synopsis
-adds a member to a directory role.
+Adds a member to a directory role.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Add-EntraBetaDirectoryRoleMember -ObjectId <String> -RefObjectId <String>
 ```
 
 ## Description
-the Add-EntraBetaDirectoryRoleMember cmdlet adds a member to an Azure Active Directory role.
+the Add-EntraBetaDirectoryRoleMember cmdlet Adds a member to an Azure Active Directory role.
 
 ## Examples
 
@@ -27,7 +27,7 @@ the Add-EntraBetaDirectoryRoleMember cmdlet adds a member to an Azure Active Dir
 PS C:\>Add-EntraBetaDirectoryRoleMember -ObjectId 019ea7a2-1613-47c9-81cb-20ba35b1ae48 -RefObjectId c13dd34a-492b-4561-b171-40fcce2916c5
 ```
 
-This command adds a member to an Active Directory role.
+This command Adds a member to an Active Directory role.
 
 ## Parameters
 

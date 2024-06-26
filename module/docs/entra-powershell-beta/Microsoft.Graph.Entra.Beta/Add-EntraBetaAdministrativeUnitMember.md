@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-EntraBetaAdministrativeUnitMember
 
 ## Synopsis
-adds an administrative unit member.
+Adds an administrative unit member.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Add-EntraBetaAdministrativeUnitMember -RefObjectId <String> -ObjectId <String>
 ```
 
 ## Description
-the Add-EntraBetaAdministrativeUnitMember cmdlet adds an Active Directory administrative unit member.
+the Add-EntraBetaAdministrativeUnitMember cmdlet Adds an Active Directory administrative unit member.
 
 ## Examples
 

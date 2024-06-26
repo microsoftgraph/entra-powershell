@@ -18,7 +18,7 @@ schema: 2.0.0
 # Add-EntraBetaGroupMember
 
 ## Synopsis
-adds a member to a group.
+Adds a member to a group.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ Add-EntraBetaGroupMember
 ```
 
 ## Description
-the Add-EntraBetaGroupMember cmdlet adds a member to a group.
+the Add-EntraBetaGroupMember cmdlet Adds a member to a group.
 
 ## Examples
 
@@ -38,7 +38,7 @@ the Add-EntraBetaGroupMember cmdlet adds a member to a group.
 ```powershell
 PS C:\> Add-EntraBetaGroupMember -ObjectId "056b2531-005e-4f3e-be78-01a71ea30a04" -RefObjectId "996d39aa-fdac-4d97-aa3d-c81fb47362ac"
 ```
-This command adds a member to a group.
+This command Adds a member to a group.
 
 ## Parameters
 

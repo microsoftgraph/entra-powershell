@@ -19,7 +19,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-adds a member to a directory role.
+Adds a member to a directory role.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Add-EntraDirectoryRoleMember
 
 ## Description
 
-the `Add-EntraDirectoryRoleMember` cmdlet adds a member to a Microsoft Entra ID role.
+the `Add-EntraDirectoryRoleMember` cmdlet Adds a member to a Microsoft Entra ID role.
 
 ## Examples
 
@@ -43,7 +43,7 @@ Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
 Add-EntraDirectoryRoleMember -ObjectId '019ea7a2-1613-47c9-81cb-20ba35b1ae48' -RefObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
-This command adds a member to a directory role. The `-ObjectId` parameter specifies the ID of the role to which the member should be added, and the `-RefObjectId` parameter specifies the ID of the member to be added.
+This command Adds a member to a directory role. The `-ObjectId` parameter specifies the ID of the role to which the member should be added, and the `-RefObjectId` parameter specifies the ID of the member to be added.
 
 ## Parameters
 

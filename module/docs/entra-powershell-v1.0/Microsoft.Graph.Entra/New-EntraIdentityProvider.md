@@ -55,7 +55,7 @@ Id             DisplayName
 LinkedIn-OAUTH LinkedInName
 ```
 
-This example adds a LinkedIn identity provider.
+This example Adds a LinkedIn identity provider.
 
 ## Parameters
 

@@ -19,7 +19,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-adds an owner to an application.
+Adds an owner to an application.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Add-EntraApplicationOwner
 
 ## Description
 
-the `Add-EntraApplicationOwner` cmdlet adds an owner to a Microsoft Entra ID application.
+the `Add-EntraApplicationOwner` cmdlet Adds an owner to a Microsoft Entra ID application.
 
 ## Examples
 
@@ -49,9 +49,9 @@ Add-EntraApplicationOwner -ObjectId $ApplicationId -RefObjectId $UserObjectId
 
 - The second command gets a user using [Get-EntraUser](./Get-EntraUser.md) cmdlet, and stores the ObjectId property value in $UserObjectId variable.  
 
-- This final command adds an owner in $UserObjectId to an application in $ApplicationId.
+- This final command Adds an owner in $UserObjectId to an application in $ApplicationId.
 
-This command adds an owner to an application.
+This command Adds an owner to an application.
 
 ## Parameters
 

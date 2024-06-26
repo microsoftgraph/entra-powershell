@@ -19,7 +19,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-adds a registered owner for a device.
+Adds a registered owner for a device.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Add-EntraDeviceRegisteredOwner
 
 ## Description
 
-the `Add-EntraDeviceRegisteredOwner` cmdlet adds a registered owner for a Microsoft Entra ID device.
+the `Add-EntraDeviceRegisteredOwner` cmdlet Adds a registered owner for a Microsoft Entra ID device.
 
 ## Examples
 

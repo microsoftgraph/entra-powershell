@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-EntraBetaApplicationKey
 
 ## Synopsis
-adds a new key to an application.
+Adds a new key to an application.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ New-EntraBetaApplicationKey -ObjectId <String> -KeyCredential <KeyCredential>
 ```
 
 ## Description
-adds a new key to an application.
+Adds a new key to an application.
 
 ## Examples
 
@@ -27,7 +27,7 @@ adds a new key to an application.
 PS C:\>New-EntraBetaApplicationKey -ObjectId 14a3f1ac-46a7-4d00-b1ca-0b2b84f033c2 -KeyCredential @{ key=[System.Convert]::FromBase64String("{base64cert}") } -PasswordCredential @{ displayname = "mypassword" } -Proof "{token}"
 ```
 
-This command adds a key credential the specified application.
+This command Adds a key credential the specified application.
 
 ## Parameters
 

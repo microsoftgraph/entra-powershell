@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-adds a new key to an application.
+Adds a new key to an application.
 
 ## Syntax
 
@@ -35,7 +35,7 @@ New-EntraApplicationKey
 
 ## Description
 
-adds a new key to an application.
+Adds a new key to an application.
 
 ## Examples
 
@@ -55,7 +55,7 @@ $params = @{
 New-EntraApplicationKey @params
 ```
 
-This command adds a key credential the specified application.
+This command Adds a key credential the specified application.
 
 ## Parameters
 

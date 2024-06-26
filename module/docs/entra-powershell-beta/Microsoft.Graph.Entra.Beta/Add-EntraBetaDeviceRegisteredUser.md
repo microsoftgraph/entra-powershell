@@ -19,7 +19,7 @@ schema: 2.0.0
 # Add-EntraBetaDeviceRegisteredUser
 
 ## Synopsis
-adds a registered user for a device.
+Adds a registered user for a device.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Add-EntraBetaDeviceRegisteredUser
 ```
 
 ## Description
-the **Add-EntraBetaDeviceRegisteredUser** cmdlet adds a registered user for a Microsoft Entra ID device.
+the **Add-EntraBetaDeviceRegisteredUser** cmdlet Adds a registered user for a Microsoft Entra ID device.
 
 ## Examples
 
@@ -46,7 +46,7 @@ The first command gets a user by using the [Get-EntraBetaUser](./Get-EntraBetaUs
 
 The second command gets a device by using the [Get-EntraBetaDevice](./Get-EntraBetaDevice.md) cmdlet, and then stores it in the $Device variable.  
 
-The final command adds the user in $User as the registered user for the device in $Device. 
+The final command Adds the user in $User as the registered user for the device in $Device. 
 
 Both parameters use the ObjectId property of specified object.
 

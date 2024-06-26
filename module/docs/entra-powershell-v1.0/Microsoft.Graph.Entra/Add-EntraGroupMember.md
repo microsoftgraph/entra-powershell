@@ -19,7 +19,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-adds a member to a group.
+Adds a member to a group.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Add-EntraGroupMember
 
 ## Description
 
-the Add-EntraGroupMember cmdlet adds a member to a group.
+the Add-EntraGroupMember cmdlet Adds a member to a group.
 
 ## Examples
 

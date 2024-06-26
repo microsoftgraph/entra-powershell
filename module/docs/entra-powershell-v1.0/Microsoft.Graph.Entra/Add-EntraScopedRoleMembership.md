@@ -19,7 +19,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-adds a scoped role membership to an administrative unit.
+Adds a scoped role membership to an administrative unit.
 
 ## Syntax
 
@@ -34,7 +34,7 @@ Add-EntraScopedRoleMembership
 
 ## Description
 
-the Add-EntraScopedRoleMembership cmdlet adds a scoped role membership to an administrative unit.
+the Add-EntraScopedRoleMembership cmdlet Adds a scoped role membership to an administrative unit.
 
 ## Examples
 

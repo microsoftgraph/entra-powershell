@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-adds an administrative unit member.
+Adds an administrative unit member.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Add-EntraAdministrativeUnitMember
 ```
 
 ## Description
-the **Add-EntraAdministrativeUnitMember** cmdlet adds a Microsoft Entra ID administrative unit member.
+the **Add-EntraAdministrativeUnitMember** cmdlet Adds a Microsoft Entra ID administrative unit member.
 
 ## Examples
 
@@ -42,7 +42,7 @@ the **Add-EntraAdministrativeUnitMember** cmdlet adds a Microsoft Entra ID admin
 PS C:\>Add-EntraAdministrativeUnitMember -Id f306a126-cf2e-439d-b20f-95ce4bcb7ffa -RefObjectId d6873b36-81d6-4c5e-bec0-9e3ca2c86846
 ```
 
-This command adds a user as an administrative unit member.
+This command Adds a user as an administrative unit member.
 
 `-Id` - specifies the unique identifier (ID) of the administrative unit to which you want to add a member. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the administrative unit.
 

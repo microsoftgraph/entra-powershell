@@ -18,7 +18,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-adds an owner to a service principal.
+Adds an owner to a service principal.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Add-EntraServicePrincipalOwner
 
 ## Description
 
-the Add-EntraServicePrincipalOwner cmdlet adds an owner to a service principal in Microsoft Entra ID.
+the Add-EntraServicePrincipalOwner cmdlet Adds an owner to a service principal in Microsoft Entra ID.
 
 ## Examples
 
@@ -49,7 +49,7 @@ This example demonstrates how to add an owner to a service principal.
 
 - The first command gets the object ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md) cmdlet, and then stores it in the $ServicePrincipalId variable.
 - The second command gets the object ID a user by using the Get-EntraUser (./Get-EntraUser.md) cmdlet, and then stores it in the $OwnerId variable.
-- The final command adds the user specified by $OwnerId an owner to a service principal specified by $ServicePrincipalId.
+- The final command Adds the user specified by $OwnerId an owner to a service principal specified by $ServicePrincipalId.
 
 ## Parameters
 

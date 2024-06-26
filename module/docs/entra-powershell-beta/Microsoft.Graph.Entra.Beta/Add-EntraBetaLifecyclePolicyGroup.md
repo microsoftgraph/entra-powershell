@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-EntraBetaLifecyclePolicyGroup
 
 ## Synopsis
-adds a group to a lifecycle policy
+Adds a group to a lifecycle policy
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Add-EntraBetaLifecyclePolicyGroup -Id <String> -GroupId <String> [<CommonParamet
 ```
 
 ## Description
-the Add-EntraBetaLifecyclePolicyGroup cmdlet adds a group to a lifecycle policy in Azure Active Directory
+the Add-EntraBetaLifecyclePolicyGroup cmdlet Adds a group to a lifecycle policy in Azure Active Directory
 
 ## Examples
 
@@ -26,7 +26,7 @@ the Add-EntraBetaLifecyclePolicyGroup cmdlet adds a group to a lifecycle policy 
 PS C:\>Add-EntraBetaLifecyclePolicyGroup -Id "b4c908b0-3595-4add-91b4-c5400b31b57b" -groupId "cffd97bd-6b91-4c4e-b553-6918a320211c"
 ```
 
-This command adds a group to the lifecycle policy.
+This command Adds a group to the lifecycle policy.
 
 ## Parameters
 

@@ -34,7 +34,7 @@ The current set of identity providers can be Microsoft, Google, Facebook, Amazon
 PS C:\> New-EntraBetaIdentityProvider -Type LinkedIn -Name LinkedInName -ClientId LinkedInAppClientId -ClientSecret LinkedInAppClientSecret
 ```
 
-This example adds a LinkedIn identity provider.
+This example Adds a LinkedIn identity provider.
 
 ## Parameters
 

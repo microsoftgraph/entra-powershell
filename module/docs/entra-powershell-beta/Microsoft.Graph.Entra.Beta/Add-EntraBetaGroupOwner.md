@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-EntraBetaGroupOwner
 
 ## Synopsis
-adds an owner to a group.
+Adds an owner to a group.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ Add-EntraBetaGroupOwner -ObjectId <String> -RefObjectId <String> [<CommonParamet
 ```
 
 ## Description
-the Add-EntraBetaGroupOwner cmdlet adds an owner to an Azure Active Directory group.
+the Add-EntraBetaGroupOwner cmdlet Adds an owner to an Azure Active Directory group.
 
 ## Examples
 
@@ -26,7 +26,7 @@ the Add-EntraBetaGroupOwner cmdlet adds an owner to an Azure Active Directory gr
 PS C:\>Add-EntraBetaGroupOwner -ObjectId "62438306-7c37-4638-a72d-0ee8d9217680" -RefObjectId "0a1068c0-dbb6-4537-9db3-b48f3e31dd76"
 ```
 
-This command adds an owner to a group.
+This command Adds an owner to a group.
 
 ## Parameters
 

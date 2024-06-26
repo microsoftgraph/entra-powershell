@@ -19,7 +19,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-adds Microsoft Entra environment to the settings file.
+Adds Microsoft Entra environment to the settings file.
 
 ## Syntax
 
@@ -39,7 +39,7 @@ Add-EntraEnvironment
 
 ## Description
 
-adds Microsoft Entra environment to the settings file.
+Adds Microsoft Entra environment to the settings file.
 
 ## Examples
 

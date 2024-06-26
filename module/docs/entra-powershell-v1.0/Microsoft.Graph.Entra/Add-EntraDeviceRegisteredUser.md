@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-adds a registered user for a device.
+Adds a registered user for a device.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Add-EntraDeviceRegisteredUser
 
 ## Description
 
-the `Add-EntraDeviceRegisteredUser` cmdlet adds a registered user for a Microsoft Entra ID device.
+the `Add-EntraDeviceRegisteredUser` cmdlet Adds a registered user for a Microsoft Entra ID device.
 
 ## Examples
 

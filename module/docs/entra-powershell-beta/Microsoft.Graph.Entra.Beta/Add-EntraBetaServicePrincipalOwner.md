@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-EntraBetaServicePrincipalOwner
 
 ## Synopsis
-adds an owner to a service principal.
+Adds an owner to a service principal.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ Add-EntraBetaServicePrincipalOwner -ObjectId <String> -RefObjectId <String>
 ```
 
 ## Description
-the Add-EntraBetaServicePrincipalOwner cmdlet adds an owner to a service principal in Azure Active Directory.
+the Add-EntraBetaServicePrincipalOwner cmdlet Adds an owner to a service principal in Azure Active Directory.
 
 ## Examples
 
@@ -33,7 +33,7 @@ The first command gets the object ID of a service principal by using the Get-Ent
 
 The second command gets the object ID a user by using the Get-EntraBetaUser (./Get-EntraBetaUser.md)cmdlet, and then stores it in the $OwnerId variable.
 
-The final command adds the user specified by $OwnerId an owner to a service principal specified by $ServicePrincipalId.
+The final command Adds the user specified by $OwnerId an owner to a service principal specified by $ServicePrincipalId.
 
 ## Parameters
 

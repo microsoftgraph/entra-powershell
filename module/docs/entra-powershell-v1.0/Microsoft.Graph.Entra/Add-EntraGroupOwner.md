@@ -19,7 +19,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-adds an owner to a group.
+Adds an owner to a group.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Add-EntraGroupOwner
 
 ## Description
 
-the Add-EntraGroupOwner cmdlet adds an owner to a Microsoft Entra ID group.
+the Add-EntraGroupOwner cmdlet Adds an owner to a Microsoft Entra ID group.
 
 ## Examples
 

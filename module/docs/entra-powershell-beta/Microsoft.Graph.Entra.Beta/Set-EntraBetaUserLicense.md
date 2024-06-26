@@ -19,7 +19,7 @@ schema: 2.0.0
 # Set-EntraBetaUserLicense
 
 ## Synopsis
-adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
+Adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Set-EntraBetaUserLicense
 ```
 
 ## Description
-the **Set-EntraBetaUserLicense** adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
+the **Set-EntraBetaUserLicense** Adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
 ## Examples
 
@@ -56,7 +56,7 @@ The fourth command set the SkuId property of $License to the same value as the S
 
 The fifth command creates an AssignedLicenses object, and stores it in the $Licenses variable.  
 
-The sixth command adds the license in $License to $Licenses.  
+The sixth command Adds the license in $License to $Licenses.  
 
 The final command assigns the licenses in $Licenses to the user in $User.  
 

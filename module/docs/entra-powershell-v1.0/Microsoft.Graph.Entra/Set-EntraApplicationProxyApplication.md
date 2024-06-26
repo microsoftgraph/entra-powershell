@@ -63,7 +63,7 @@ VerifiedCustomDomainPasswordCredential   :
 SingleSignOnSettings                     :
 ```
 
-This command adds the link translation feature to an application.
+This command Adds the link translation feature to an application.
 
 ## Parameters
 

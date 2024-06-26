@@ -19,7 +19,7 @@ schema: 2.0.0
 # New-EntraApplicationPassword
 
 ## Synopsis
-adds a strong password to an application.
+Adds a strong password to an application.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ New-EntraApplicationPassword
 ```
 
 ## Description
-adds a strong password to an application.
+Adds a strong password to an application.
 
 ## Examples
 
@@ -46,7 +46,7 @@ CustomKeyIdentifier DisplayName EndDateTime           Hint KeyId                
                     mypassword  10/28/2021 3:57:37 PM EQ:  024c4c6e-87c3-4473-8e36-650f16bb730d EQ:A-s45?Rt9/3Bp?7]-7__IO]3AG09E 10/28/2019 3:57:37 PM
 ```
 
-This command adds a password to the specified application.
+This command Adds a password to the specified application.
 
 ## Parameters
 

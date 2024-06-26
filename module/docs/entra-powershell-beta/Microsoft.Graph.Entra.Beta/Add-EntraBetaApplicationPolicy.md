@@ -17,7 +17,7 @@ Add-EntraBetaApplicationPolicy -Id <String> -RefObjectId <String> [<CommonParame
 ```
 
 ## Description
-the Add-EntraBetaApplicationPolicy cmdlet adds an Azure Active Directory application policy.
+the Add-EntraBetaApplicationPolicy cmdlet Adds an Azure Active Directory application policy.
 
 ## Examples
 
@@ -26,7 +26,7 @@ the Add-EntraBetaApplicationPolicy cmdlet adds an Azure Active Directory applica
 PS C:\>Add-EntraBetaApplicationPolicy -ObjectId <object id of application> -RefObjectId <object id of policy>
 ```
 
-This command adds an application policy.
+This command Adds an application policy.
 
 ## Parameters
 
