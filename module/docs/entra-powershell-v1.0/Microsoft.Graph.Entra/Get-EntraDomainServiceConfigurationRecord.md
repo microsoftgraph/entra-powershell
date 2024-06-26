@@ -33,7 +33,7 @@ Get-EntraDomainServiceConfigurationRecord
 
 Gets the domain's service configuration records from the `serviceConfigurationRecords` navigation property.
 
-After you have successfully verifies the ownership of a domain and you have indicates what services you plan to use with the domain, you can request Microsoft Entra ID to return you a set of DNS records which you need to add to the zone file of the domain so that the services can work properly with your domain.
+After you have successfully verified the ownership of a domain and you have indicated what services you plan to use with the domain, you can request Microsoft Entra ID to return you a set of DNS records which you need to add to the zone file of the domain so that the services can work properly with your domain.
 
 ## EXAMPLES
 
