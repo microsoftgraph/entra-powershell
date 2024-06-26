@@ -176,6 +176,8 @@ Welcome to Microsoft Graph!
 
 To connect as a different identity other than CurrentUser, specify the ContextScope parameter with the value Process.
 
+Follow this link to see [Context][entra-context] for more information.
+
 ### Example 6: Connecting to an environment or cloud
 
 ```powershell
@@ -235,12 +237,12 @@ This example shows how to authenticate to Microsoft Entra ID with device.
 Connect-Entra -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444'  -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee' -CertificateName 'YOUR_CERT_SUBJECT'
 ```
 
-You can find the certificate subject by running the command:
-
 ```powershell
  $Cert = Get-ChildItem Cert:\LocalMachine\My\$CertThumbprint
  Connect-Entra -ClientId '<App-Id>' -TenantId '<Tenant-Id>' -Certificate $Cert
 ```
+
+You can find the certificate subject by running the above command.
 
 ### Example 11: App-only access: Using client credential with a certificate - Certificate
 
