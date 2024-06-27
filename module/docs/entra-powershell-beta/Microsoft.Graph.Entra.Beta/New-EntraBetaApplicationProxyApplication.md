@@ -3,7 +3,7 @@ title: New-EntraBetaApplicationProxyApplication
 description: This article provides details on the New-EntraBetaApplicationProxyApplication command.
 ms.service: active-directory
 ms.topic: reference
-ms.date: 04/10/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -16,10 +16,10 @@ schema: 2.0.0
 
 # New-EntraBetaApplicationProxyApplication
 
-## SYNOPSIS
+## Synopsis
 The New-EntraBetaApplicationProxyApplication cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraBetaApplicationProxyApplication 
@@ -37,12 +37,12 @@ New-EntraBetaApplicationProxyApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraBetaApplicationProxyApplication cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
 To ensure this application is usable, also make sure you assign users and configure SSO if needed.
 Without specifying a ConnectorGroupId, this application by default uses the �Default� connector group in your tenant.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Creating a new application with only the basic required settings, and the default domain for applications.
 ```powershell
@@ -118,7 +118,7 @@ isPersistentCookieEnabled                : False
 
 This command Creating a new application with IsHttpOnlyCookieEnabled, IsSecureCookieEnabled, IsTranslateLinksInBodyEnabled, and ConnectorGroupId parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -ApplicationServerTimeout
 Set this value to Long only if your application is slow to authenticate and connect.
@@ -302,14 +302,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 System.Nullable\`1\[\[Microsoft.Open.MSGraph.Model.ApplicationProxyApplicationObject+ExternalAuthenticationTypeEnum, Microsoft.Open.MS.GraphV10.Client, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null\]\] System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[Microsoft.Open.MSGraph.Model.ApplicationProxyApplicationObject+ApplicationServerTimeoutEnum, Microsoft.Open.MS.GraphV10.Client, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

@@ -4,7 +4,7 @@ description: This article provides details on the Add-EntraDeviceRegisteredUser 
 
 ms.service: entra
 ms.topic: reference
-ms.date: 02/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,11 @@ schema: 2.0.0
 
 # Add-EntraDeviceRegisteredUser
 
-## SYNOPSIS
+## Synopsis
+
 Adds a registered user for a device.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraDeviceRegisteredUser 
@@ -30,33 +31,35 @@ Add-EntraDeviceRegisteredUser
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The **Add-EntraDeviceRegisteredUser** cmdlet adds a registered user for a Microsoft Entra ID device.
+## Description
 
-## EXAMPLES
+The `Add-EntraDeviceRegisteredUser` cmdlet adds a registered user for a Microsoft Entra ID device.
+
+## Examples
 
 ### Example 1: Add a user as a registered user
+
 ```powershell
-PS C:\> $User = Get-EntraUser -Top 1
-PS C:\> $Device = Get-EntraDevice -Top 1
-PS C:\> Add-EntraDeviceRegisteredUser -ObjectId $Device.ObjectId -RefObjectId $User.ObjectId
+Connect-Entra -Scopes 'Device.ReadWrite.All'
+$User = Get-EntraUser -Top 1
+$Device = Get-EntraDevice -Top 1
+Add-EntraDeviceRegisteredUser -ObjectId $Device.ObjectId -RefObjectId $User.ObjectId
 ```
 
-The first command gets a user by using the [Get-EntraUser](./Get-EntraUser.md) cmdlet, and then stores it in the $User variable.  
+This example shows how to add a registered user to a device.
 
-The second command gets a device by using the [Get-EntraDevice](./Get-EntraDevice.md) cmdlet, and then stores it in the $Device variable.  
+- `-ObjectId` - specifies the unique identifier (Object ID) of the device to which you want to add a registered user. The $Device.ObjectId variable should contain the Object ID of the device.
 
-The final command adds the user in $User as the registered user for the device in $Device.  
+- `-RefObjectId` - specifies the unique identifier (Object ID) of the user who will be added as a registered user of the device. The $User.ObjectId variable should contain the Object ID of the user.
 
-Both parameters use the ObjectId property of specified object.
-
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
+
 Specifies the ID of the device.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -68,10 +71,11 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
+
 Specifies the ID of the user.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -83,15 +87,16 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Get-EntraDevice](Get-EntraDevice.md)
 
@@ -100,4 +105,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraUser](Get-EntraUser.md)
 
 [Remove-EntraDeviceRegisteredUser](Remove-EntraDeviceRegisteredUser.md)
-

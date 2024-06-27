@@ -7,22 +7,22 @@ schema: 2.0.0
 
 # Get-EntraBetaDomainFederationSettings
 
-## SYNOPSIS
+## Synopsis
 Retrieves settings for a federated domain.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaDomainFederationSettings [-DomainName] <String> [[-TenantId] <Guid>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaDomainFederationSettings cmdlet gets key settings from Microsoft Azure Active Directory.
 Use the Get-EntraFederationProperty cmdlet to get settings for both Microsoft Azure Active Directory and the Active Directory Federation Services server.
 
-## EXAMPLES
+## Examples
 
-### EXAMPLE 1
+### Example 1
 ```
 Get-EntraBetaDomainFederationSettings -DomainName contoso.com
     
@@ -34,7 +34,7 @@ Get-EntraBetaDomainFederationSettings -DomainName contoso.com
     Returns the federation settings for contoso.com.
 ```
 
-## PARAMETERS
+## Parameters
 
 ### -DomainName
 The fully qualified domain name to retrieve.
@@ -71,9 +71,9 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Online.Administration.DomainFederationSettings
 ### This cmdlet returns the following settings:
@@ -85,6 +85,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ###         NextSigningCertificate
 ###         PassiveLogOnUri
 ###         SigningCertificate
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

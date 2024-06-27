@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Set-EntraBetaDirectorySetting
 
-## SYNOPSIS
+## Synopsis
 Updates a directory setting in Azure Active Directory.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaDirectorySetting -DirectorySetting <DirectorySetting> -Id <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraBetaDirectorySetting cmdlet updates a directory setting in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -29,7 +29,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 ### -DirectorySetting
 Specifies the directory settings.
@@ -66,13 +66,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaDirectorySetting]()
 

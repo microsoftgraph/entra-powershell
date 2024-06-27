@@ -4,7 +4,7 @@ description: This article provides details on the Test-EntraScript command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 04/08/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,11 @@ schema: 2.0.0
 
 # Test-EntraScript
 
-## SYNOPSIS
-Checks, whether the provided script is using AzureAD commands that are not supported by Microsoft.Graph.Entra.
+## Synopsis
 
-## SYNTAX
+Checks, whether the provided script is using Azure AD commands that are not supported by Microsoft.Graph.Entra.
+
+## Syntax
 
 ```powershell
 Test-EntraScript 
@@ -30,28 +31,32 @@ Test-EntraScript
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-Checks, whether the provided script is using AzureAD commands that are not supported by Microsoft.Graph.Entra.
+## Description
 
-## EXAMPLES
+Checks, whether the provided script is using Azure AD commands that are not supported by Microsoft.Graph.Entra.
 
-### EXAMPLE 1
+## Examples
+
+### Example 1
+
 ```powershell
 Test-EntraScript -Path .\usercreation.ps1 -Quiet
 ```
 
-Returns whether the script "usercreation.ps1" could run under Microsoft.Graph.Entra
+Returns whether the script `usercreation.ps1` could run under Microsoft.Graph.Entra.
 
-### EXAMPLE 2
+### Example 2
+
 ```powershell
 Get-ChildItem -Path \\contoso.com\it\code -Recurse -Filter *.ps1 | Test-EntraScript
 ```
 
 Returns a list of all scripts that would not run under the Microsoft.Graph.Entra module, listing each issue with line and code.
 
-## PARAMETERS
+## Parameters
 
 ### -Path
+
 Path to the script file(s) to scan.
 Or name of the content, when also specifying -Content
 
@@ -68,12 +73,13 @@ Accept wildcard characters: False
 ```
 
 ### -Content
+
 Code content to scan.
 Used when scanning code that has no file representation (e.g.
 straight from a repository).
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -85,10 +91,11 @@ Accept wildcard characters: False
 ```
 
 ### -Quiet
+
 Only return $true or $false, based on whether the script could run under Microsoft.Graph.Entra ($true) or not ($false)
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -100,12 +107,13 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links

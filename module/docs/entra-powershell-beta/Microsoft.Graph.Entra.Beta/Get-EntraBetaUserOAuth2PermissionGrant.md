@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaUserOAuth2PermissionGrant
 
-## SYNOPSIS
+## Synopsis
 Gets an oAuth2PermissionGrant object.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaUserOAuth2PermissionGrant -ObjectId <String> [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaUserOAuth2PermissionGrant cmdlet gets an oAuth2PermissionGrant object for the specified user in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the OAuth2 permission grants for a user
 ```
@@ -32,7 +32,7 @@ The command stores the value in the $UserId variable.
 
 The second command gets the OAuth2 permission grants for the user identified by $UserId.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -81,13 +81,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaUser]()
 

@@ -12,6 +12,14 @@
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $body = @{}
         $keysChanged = @{ObjectIds = "Ids"}
+        $URI = 'https://graph.microsoft.com/v1.0/directoryObjects/microsoft.graph.getByIds?$select=*'
+        if($null -ne $PSBoundParameters["Property"])
+        {
+            $selectProperties = $PSBoundParameters["Property"]
+            $selectProperties = $selectProperties -Join ','
+            $properties = "`$select=$($selectProperties)"
+            $URI = "https://graph.microsoft.com/v1.0/directoryObjects/microsoft.graph.getByIds?$properties"
+        }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
             $params["Debug"] = $Null
@@ -69,7 +77,7 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Invoke-GraphRequest -Uri 'https://graph.microsoft.com/v1.0/directoryObjects/microsoft.graph.getByIds?$select=*' -Method POST -Body $body -Headers $customHeaders
+        $response = Invoke-GraphRequest -Uri $URI  -Method POST -Body $body -Headers $customHeaders
         $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
     }    
 '@
