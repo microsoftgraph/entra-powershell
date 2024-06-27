@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaUserLicenseDetail
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/07/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraBetaUserLicenseDetail
 
-## SYNOPSIS
+## Synopsis
 Retrieves license details for a user.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaUserLicenseDetail 
@@ -28,10 +28,10 @@ Get-EntraBetaUserLicenseDetail
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet retrieves license details for a user.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve user license details
 ```powershell
@@ -47,7 +47,7 @@ Hv-1hQIEDECePA-ellMl0QQrjQe98RFBu9S0sbNUzvQ {class ServicePlanInfo {...
 This example demonstrates how to retrieve license details for a user from Microsoft Entra ID.    
 This command retrieves the license details of the user specified through the ObjectId parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The object ID of the user for which the license details are retrieved.
@@ -67,12 +67,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

@@ -4,7 +4,7 @@ description: This article provides details on the Remove-EntraDeviceRegisteredUs
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/22/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Remove-EntraDeviceRegisteredUser
 
-## SYNOPSIS
+## Synopsis
 
 Removes a registered user from a device.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraDeviceRegisteredUser 
@@ -30,11 +30,11 @@ Remove-EntraDeviceRegisteredUser
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Remove-EntraDeviceRegisteredUser` cmdlet removes a registered user from a Microsoft Entra ID device.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a registered user from a device
 
@@ -53,7 +53,7 @@ This example shows how to remove the registered user from device.
 
 - The final command removes the user in `$User` from the device in `$Device`.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -91,13 +91,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraDeviceRegisteredUser](Add-EntraDeviceRegisteredUser.md)
 

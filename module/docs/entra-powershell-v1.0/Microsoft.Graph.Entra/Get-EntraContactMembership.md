@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraContactMembership com
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/16/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraContactMembership
 
-## SYNOPSIS
+## Synopsis
 
 Get a contact membership.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraContactMembership 
@@ -31,13 +31,13 @@ Get-EntraContactMembership
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraContactMembership` cmdlet gets a contact membership in Microsoft Entra ID.
 
 This command is useful to administrators who need to understand which groups, roles, or administrative units a particular contact belongs to. This can be important for troubleshooting access issues, auditing memberships, and ensuring that contact memberships are correctly configured.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the memberships of a contact
 
@@ -90,7 +90,7 @@ aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb
 
 This command gets top two memberships for specified contact.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -144,12 +144,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraContact](Get-EntraContact.md)

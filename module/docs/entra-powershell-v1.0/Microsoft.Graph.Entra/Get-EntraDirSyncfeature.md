@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraDirSyncfeature comman
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Get-EntraDirSyncfeature
 
-## SYNOPSIS
+## Synopsis
 Used to check the status of identity synchronization features for a tenant.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraDirSyncfeature 
@@ -30,7 +30,7 @@ Get-EntraDirSyncfeature
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraDirSyncfeature cmdlet is used to check the status of identity synchronization features for a tenant.
 Features that can be used with this cmdlet include:
 - **DeviceWriteback**
@@ -45,7 +45,7 @@ Features that can be used with this cmdlet include:
 
 The cmdlet can also be run without any feature being specified, in which case it returns a list of all features and whether they're enabled or disabled.
 
-## EXAMPLES
+## Examples
 
 ### EXAMPLE 1: Return a list of all possible DirSync features and whether they're enabled (True) or disabled (False)
 ```powershell
@@ -75,7 +75,7 @@ Enabled DirSyncFeature
 
 This command returns whether PasswordSync is enabled for the tenant (True) or disabled (False).
 
-## PARAMETERS
+## Parameters
 
 ### -TenantId
 The unique ID of the tenant to perform the operation on.
@@ -112,12 +112,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Set-EntraDirSyncFeature](./Set-EntraDirSyncFeature.md)
