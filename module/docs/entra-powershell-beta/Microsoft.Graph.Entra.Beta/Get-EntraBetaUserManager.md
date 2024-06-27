@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # Get-EntraBetaUserManager
 
-## SYNOPSIS
+## Synopsis
 
 Gets the manager of a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaUserManager 
@@ -30,11 +30,11 @@ Get-EntraBetaUserManager
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraBetaUserManager` cmdlet gets the manager of a user in Microsoft Entra ID. Specify `ObjectId` parameter to get specific user manager.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the manager of a user
 
@@ -43,7 +43,7 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraBetaUserManager -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-```output
+```Output
 DeletedDateTime                 :
 Id                              : 00aa00aa-bb11-cc22-dd33-44ee44ee44ee
 @odata.context                  : https://graph.microsoft.com/beta/$metadata#directoryObjects/$entity
@@ -61,7 +61,7 @@ This example demonstrates how to retrieve the manager of a specific user.
 
 This command gets the manager of a specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -83,13 +83,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Remove-EntraBetaUserManager](Remove-EntraBetaUserManager.md)
 

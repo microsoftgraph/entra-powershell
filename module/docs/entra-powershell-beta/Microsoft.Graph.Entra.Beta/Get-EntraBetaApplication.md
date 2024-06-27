@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraBetaApplication
 
-## SYNOPSIS
+## Synopsis
 
 Gets an application.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -51,11 +51,11 @@ Get-EntraBetaApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraBetaApplication` cmdlet gets a Microsoft Entra ID application. Specify the `ObjectId` parameter to get a specific application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get an application by ObjectId
 
@@ -64,7 +64,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-```output
+```Output
 DisplayName         Id                                   AppId                                SignInAudience PublisherDomain
 -----------         --                                   -----                                -------------- ---------------
 ToGraph_443democc3c aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
@@ -80,7 +80,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaApplication -All 
 ```
 
-```output
+```Output
 DisplayName         Id                                   AppId                                SignInAudience                     PublisherDomain
 -----------         --                                   -----                                --------------                     ---------------
 test app            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADandPersonalMicrosoftAccount contoso.com
@@ -100,7 +100,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaApplication -Top 5
 ```
 
-```output
+```Output
 DisplayName         Id                                   AppId                                SignInAudience                     PublisherDomain
 -----------         --                                   -----                                --------------                     ---------------
 test app            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADandPersonalMicrosoftAccount contoso.com
@@ -120,7 +120,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaApplication -Filter "DisplayName eq 'ToGraph_443DEMO'"
 ```
 
-```output
+```Output
 DisplayName     Id                                   AppId                                SignInAudience PublisherDomain
 -----------     --                                   -----                                -------------- ---------------
 ToGraph_443DEMO cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg   contoso.com
@@ -136,7 +136,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaApplication -SearchString 'My new application 2'
 ```
 
-```output
+```Output
 DisplayName          Id                                   AppId                                SignInAudience                     PublisherDomain
 -----------          --                                   -----                                --------------                     ---------------
 My new application 2 kkkkkkkk-cccc-dddd-eeee-llllllllllll llllllll-dddd-eeee-ffff-mmmmmmmmmmmm AzureADandPersonalMicrosoftAccount contoso.com
@@ -154,7 +154,7 @@ Get-EntraBetaApplication -Filter "identifierUris/any(uri:uri eq 'https://wingtip
 
 This example demonstrates how to retrieve applications by its identifierUris from Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -241,13 +241,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraBetaApplication](New-EntraBetaApplication.md)
 

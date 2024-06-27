@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Remove-EntraBetaApplication
 
-## SYNOPSIS
+## Synopsis
 
 Delete an application by ObjectId.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraBetaApplication 
@@ -29,11 +29,11 @@ Remove-EntraBetaApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Remove-EntraBetaApplication` cmdlet removes the specified application from Microsoft Entra ID. Specify the `ObjectId` parameter to delete a specific application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove an application
 
@@ -44,7 +44,7 @@ Remove-EntraBetaApplication -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 
 This command removes the specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -66,13 +66,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaApplication](Get-EntraBetaApplication.md)
 

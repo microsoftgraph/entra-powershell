@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # Get-EntraBetaUserLicenseDetail
 
-## SYNOPSIS
+## Synopsis
 
 Retrieves license details for a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaUserLicenseDetail 
@@ -30,11 +30,11 @@ Get-EntraBetaUserLicenseDetail
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 This cmdlet retrieves license details for a user. Specify the `ObjectId` parameter to get a specific user license Details.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve user license details
 
@@ -43,7 +43,7 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraBetaUserLicenseDetail -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-```output
+```Output
 Id                                          SkuId                                SkuPartNumber
 --                                          -----                                -------------
 X8Wu1RItQkSNL8zKldQ5DiH6ThjDmF1OlavQcFOpbmc aaaaaaaa-0b0b-1c1c-2d2d-333333333333 INFORMATION_PROTECTION_COMPLIANCE
@@ -55,7 +55,7 @@ This example demonstrates how to retrieve license details for a user from Micros
 
 This command retrieves the license details of the user specified through the ObjectId parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -77,14 +77,14 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

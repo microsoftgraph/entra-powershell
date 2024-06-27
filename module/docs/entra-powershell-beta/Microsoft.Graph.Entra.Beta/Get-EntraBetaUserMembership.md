@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # Get-EntraBetaUserMembership
 
-## SYNOPSIS
+## Synopsis
 
 Get user memberships.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaUserMembership 
@@ -32,11 +32,11 @@ Get-EntraBetaUserMembership
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraBetaUserMembership` cmdlet gets user memberships in Microsoft Entra ID. Specify `ObjectId` parameter to get specific user membership.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get user memberships
 
@@ -45,7 +45,7 @@ Connect-Entra -Scopes 'User.Read'
 Get-EntraBetaUserMembership  -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 00aa00aa-bb11-cc22-dd33-44ee44ee44ee
@@ -67,7 +67,7 @@ Connect-Entra -Scopes 'User.Read'
 Get-EntraBetaUserMembership  -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 00aa00aa-bb11-cc22-dd33-44ee44ee44ee
@@ -89,7 +89,7 @@ Connect-Entra -Scopes 'User.Read'
 Get-EntraBetaUserMembership  -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 3
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 00aa00aa-bb11-cc22-dd33-44ee44ee44ee
@@ -101,7 +101,7 @@ This example demonstrates how to retrieve users top three memberships in Microso
 
 This command gets the top five memberships for the specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -155,10 +155,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related links

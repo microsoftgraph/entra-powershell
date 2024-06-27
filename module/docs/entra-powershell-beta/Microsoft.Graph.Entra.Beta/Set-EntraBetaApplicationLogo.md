@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # Set-EntraBetaApplicationLogo
 
-## SYNOPSIS
+## Synopsis
 
 Sets the logo for an Application
 
-## SYNTAX
+## Syntax
 
 ### File (Default)
 
@@ -49,11 +49,11 @@ Set-EntraBetaApplicationLogo
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 This cmdlet is used to set the logo for an application. Specify the `ObjectId` and `FilePath` parameters to set a specific application logo.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Sets the application logo for the application specified by the ObjectID parameter
 
@@ -63,7 +63,7 @@ Set-EntraBetaApplicationLogo -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -F
 
 This cmdlet sets the application logo for the application specified by the `-ObjectId` parameter to the image specified with the `-FilePath` parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -FilePath
 
@@ -101,18 +101,18 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
 System.IO.Stream System.Byte\[\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related links
 
 [Get-EntraBetaApplicationLogo](Get-EntraBetaApplicationLogo.md)

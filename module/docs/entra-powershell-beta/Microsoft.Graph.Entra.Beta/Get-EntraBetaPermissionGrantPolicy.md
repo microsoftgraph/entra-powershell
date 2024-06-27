@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # Get-EntraBetaPermissionGrantPolicy
 
-## SYNOPSIS
+## Synopsis
 
 Gets a permission grant policy.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -39,11 +39,11 @@ Get-EntraBetaPermissionGrantPolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraBetaPermissionGrantPolicy` cmdlet gets an Microsoft Entra ID permission grant policy. Specify the `Id` parameter to get a permission grant policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all permission grant policies
 
@@ -61,7 +61,7 @@ Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
 Get-EntraMSPermissionGrantPolicy -Id 'testtenant-sampleapp-permissions'
 ```
 
-```output
+```Output
 DeletedDateTime Description                               DisplayName            Id
 --------------- -----------                               -----------            --
                 Permissions for sample app in test tenant Sample app permissions testtenant-sampleapp-permissions
@@ -69,7 +69,7 @@ DeletedDateTime Description                               DisplayName           
 
 This command gets the specified permission grant policy.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -91,13 +91,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related links
 
 [New-EntraBetaPermissionGrantPolicy](New-EntraBetaPermissionGrantPolicy.md)
 

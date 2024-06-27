@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # New-EntraBetaApplication
 
-## SYNOPSIS
+## Synopsis
 
 Creates (registers) a new application object.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraBetaApplication 
@@ -50,11 +50,11 @@ New-EntraBetaApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 Creates (registers) a new application object. Specify the `DisplayName` parameter to create a new application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create an application
 
@@ -63,7 +63,7 @@ Connect-Entra -Scopes 'Application.ReadWrite.All'
 New-EntraBetaApplication -DisplayName 'My new application'
 ```
 
-```output
+```Output
 DisplayName        Id                                   AppId                                SignInAudience PublisherDomain
 -----------        --                                   -----                                -------------- ---------------
 My new application aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   M365x99297270.mail.onmicrosoft.com
@@ -78,7 +78,7 @@ Connect-Entra -Scopes 'Application.ReadWrite.All'
 New-EntraBetaApplication -DisplayName 'My new application' -IdentifierUris 'https://mynewapp.contoso.com'
 ```
 
-```output
+```Output
 DisplayName        Id                                   AppId                                SignInAudience PublisherDomain
 -----------        --                                   -----                                -------------- ---------------
 My new application aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   M365x99297270.mail.onmicrosoft.com
@@ -94,7 +94,7 @@ $api = @{ RequestedAccessTokenVersion = 2 }
 New-EntraBetaApplication -DisplayName 'My new application' -Api $api
 ```
 
-```output
+```Output
 DisplayName        Id                                   AppId                                SignInAudience PublisherDomain
 -----------        --                                   -----                                -------------- ---------------
 My new application aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   M365x99297270.mail.onmicrosoft.com
@@ -118,7 +118,7 @@ $approle.IsEnabled = $true
 New-EntraBetaApplication -DisplayName 'My new application' -AppRoles $approle
 ```
 
-```output
+```Output
 DisplayName        Id                                   AppId                                SignInAudience PublisherDomain
 -----------        --                                   -----                                -------------- ---------------
 My new application aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   M365x99297270.mail.onmicrosoft.com
@@ -134,7 +134,7 @@ $optionalClaims = @{ IdToken = [PSCustomObject]@{ Name = "claimName"; Source = "
 New-EntraBetaApplication -DisplayName 'My new application' -OptionalClaims $optionalClaims
 ```
 
-```output
+```Output
 DisplayName        Id                                   AppId                                SignInAudience PublisherDomain
 -----------        --                                   -----                                -------------- ---------------
 My new application aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   M365x99297270.mail.onmicrosoft.com
@@ -142,13 +142,13 @@ My new application aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-
 
 This command creates an application in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -AddIns
 
 Defines custom behavior that a consuming service can use to call an app in specific contexts.
-For example, applications that can render file streams might set the addIns property for its "FileHandler" functionality.
-This lets services like Office 365 call the application in the context of a document the user is working on.
+For example, applications that can render file streams may set the addIns property for its "FileHandler" functionality.
+This will let services like Office 365 call the application in the context of a document the user is working on.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]
@@ -168,23 +168,6 @@ Specifies settings for an application that implements a web API.
 
 ```yaml
 Type: System.ApiApplication
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -AppRoles
-
-The collection of application roles that an application might declare.
-These roles can be assigned to users, groups, or service principals.
-
-```yaml
-Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]
 Parameter Sets: (All)
 Aliases:
 
@@ -229,7 +212,7 @@ Accept wildcard characters: False
 
 ### -IdentifierUris
 
-User-defined URIs that uniquely identify a Web application within its Microsoft Entra ID tenant, or within a verified custom domain (see "Domains" tab in the Azure classic portal) if the application is multitenant.
+User-defined URI(s) that uniquely identify a Web application within its Microsoft Entra ID tenant, or within a verified custom domain (see "Domains" tab in the Azure classic portal) if the application is multi-tenant.
 
 The first element is populated from the Web application's "APP ID URI" field if updated via the Azure classic portal (or respective Microsoft Entra ID PowerShell cmdlet parameter).
 Extra URIs can be added via the application manifest; see Understanding the Microsoft Entra ID Application Manifest for details.
@@ -348,22 +331,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ParentalControlSettings
-
-Specifies parental control settings for an application.
-
-```yaml
-Type: System.ParentalControlSettings
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -PasswordCredentials
 
 The collection of password credentials associated with the application.
@@ -406,7 +373,7 @@ Specifies whether this application is a public client (such as an installed appl
 Default is false.
 
 ```yaml
-Type: PublicClientApplication
+Type: System.PublicClientApplication
 Parameter Sets: (All)
 Aliases:
 
@@ -504,7 +471,7 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### Boolean
 
@@ -538,13 +505,13 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ### System.Nullable`one[System.Boolean]
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Open.MSGraph.Model.MsApplication
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related links
 
 [Get-EntraBetaApplication](Get-EntraBetaApplication.md)
 

@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Set-EntraBetaApplication
 
-## SYNOPSIS
+## Synopsis
 
 Updates the properties of an application object.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraBetaApplication 
@@ -50,11 +50,11 @@ Set-EntraBetaApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 Updates the properties of an application object. Specify the `ObjectId` parameter to update a specific application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update an application
 
@@ -101,7 +101,7 @@ Set-EntraBetaApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Tags 
 
 This command updates an application in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -AddIns
 
@@ -110,6 +110,7 @@ For example, applications that can render file streams might set the addIns prop
 This lets services like Office 365 call the application in the context of a document the user is working on.
 
 ```yaml
+Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AddIn]
 Parameter Sets: (All)
 Aliases:
@@ -143,6 +144,7 @@ The collection of application roles that an application might declare.
 These roles can be assigned to users, groups, or service principals.
 
 ```yaml
+Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]
 Parameter Sets: (All)
 Aliases:
@@ -261,6 +263,7 @@ Specifies key credentials.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]
+Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]
 Parameter Sets: (All)
 Aliases:
 
@@ -341,6 +344,7 @@ Specifies password credentials.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]
+Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]
 Parameter Sets: (All)
 Aliases:
 
@@ -360,6 +364,7 @@ Permissions listed in preAuthorizedApplications don't require user consent.
 However, any additional requested permissions not listed in preAuthorizedApplications require user consent.
 
 ```yaml
+Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PreAuthorizedApplication]
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PreAuthorizedApplication]
 Parameter Sets: (All)
 Aliases:
@@ -475,7 +480,7 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### Boolean
 
@@ -509,11 +514,11 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ### System.Nullable`1[System.Boolean]
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related links
 
 [Get-EntraBetaApplication](Get-EntraBetaApplication.md)
 

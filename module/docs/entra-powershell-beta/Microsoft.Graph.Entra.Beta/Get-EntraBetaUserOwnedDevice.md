@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # Get-EntraBetaUserOwnedDevice
 
-## SYNOPSIS
+## Synopsis
 
 Get registered devices owned by a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaUserOwnedDevice 
@@ -32,11 +32,11 @@ Get-EntraBetaUserOwnedDevice
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraBetaUserOwnedDevice` cmdlet gets registered devices owned by the specified user in Microsoft Entra ID. Specify the `ObjectId` parameter to get a specific user owned devices.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get devices owned by a user
 
@@ -45,7 +45,7 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraBetaUserOwnedDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 ```
 
-```output
+```Output
 ObjectId                             DeviceId                             DisplayName
 --------                             --------                             -----------
 bbbbbbbb-1111-2222-3333-cccccccccccc aaaa0000-bb11-2222-33cc-444444dddddd Device1
@@ -61,7 +61,7 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraBetaUserOwnedDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
 ```
 
-```output
+```Output
 ObjectId                             DeviceId                             DisplayName
 --------                             --------                             -----------
 bbbbbbbb-1111-2222-3333-cccccccccccc aaaa0000-bb11-2222-33cc-444444dddddd Device1
@@ -77,7 +77,7 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraBetaUserOwnedDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 1
 ```
 
-```output
+```Output
 ObjectId                             DeviceId                             DisplayName
 --------                             --------                             -----------
 bbbbbbbb-1111-2222-3333-cccccccccccc aaaa0000-bb11-2222-33cc-444444dddddd Device1
@@ -139,10 +139,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related links
