@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaMSPermissionGrantPolicy
+title: Get-EntraBetaPermissionGrantPolicy
 description: This article provides details on the Get-EntraMSBetaPermissionGrantPolicy command.
 
 ms.service: entra
@@ -16,7 +16,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-EntraBetaMSPermissionGrantPolicy
+# Get-EntraBetaPermissionGrantPolicy
 
 ## SYNOPSIS
 
@@ -27,21 +27,21 @@ Gets a permission grant policy.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraBetaMSPermissionGrantPolicy 
+Get-EntraBetaPermissionGrantPolicy 
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraBetaMSPermissionGrantPolicy 
+Get-EntraBetaPermissionGrantPolicy 
  -Id <String> 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-The `Get-EntraBetaMSPermissionGrantPolicy` cmdlet gets an Microsoft Entra ID permission grant policy. Specify the `Id` parameter to get a permission grant policy.
+The `Get-EntraBetaPermissionGrantPolicy` cmdlet gets an Microsoft Entra ID permission grant policy. Specify the `Id` parameter to get a permission grant policy.
 
 ## EXAMPLES
 
@@ -49,7 +49,7 @@ The `Get-EntraBetaMSPermissionGrantPolicy` cmdlet gets an Microsoft Entra ID per
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-Get-EntraBetaMSPermissionGrantPolicy
+Get-EntraBetaPermissionGrantPolicy
 ```
 
 This command gets all the permission grant policies.
@@ -99,8 +99,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## RELATED LINKS
 
-[New-EntraBetaMSPermissionGrantPolicy](New-EntraBetaMSPermissionGrantPolicy.md)
+[New-EntraBetaPermissionGrantPolicy](New-EntraBetaPermissionGrantPolicy.md)
 
-[Set-EntraBetaMSPermissionGrantPolicy](Set-EntraBetaMSPermissionGrantPolicy.md)
+[Set-EntraBetaPermissionGrantPolicy](Set-EntraBetaPermissionGrantPolicy.md)
 
-[Remove-EntraBetaMSPermissionGrantPolicy](Remove-EntraBetaMSPermissionGrantPolicy.md)
+[Remove-EntraBetaPermissionGrantPolicy](Remove-EntraBetaPermissionGrantPolicy.md)
