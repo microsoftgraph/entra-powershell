@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaAuditSignInLogs c
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 11/10/2023
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Get-EntraBetaAuditSignInLogs
 
-## SYNOPSIS
+## Synopsis
 Get audit logs of sign-ins.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaAuditSignInLogs 
@@ -31,10 +31,10 @@ Get-EntraBetaAuditSignInLogs
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaAuditSignInLogs cmdlet gets the Microsoft Entra ID sign-in log.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all logs
 
@@ -85,7 +85,7 @@ These commands show how to get sign-in logs by ActivityDisplayName.
 ```
 These commands show how to get sign-in logs by the result.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -139,8 +139,8 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## RELATED LINKS
+## Related Links

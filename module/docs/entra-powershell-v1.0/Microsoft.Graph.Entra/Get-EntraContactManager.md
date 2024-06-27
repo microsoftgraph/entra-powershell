@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraContactManager comman
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/16/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraContactManager
 
-## SYNOPSIS
+## Synopsis
 
 Gets the manager of a contact.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraContactManager 
@@ -29,11 +29,11 @@ Get-EntraContactManager
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraContactManager` cmdlet gets the manager of a contact in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the manager of a contact
 
@@ -45,7 +45,7 @@ Get-EntraContactManager -ObjectId $Contact.ObjectId
 
 The example demonstrates how to retrieve the manager of a contact.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -67,12 +67,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraContact](Get-EntraContact.md)

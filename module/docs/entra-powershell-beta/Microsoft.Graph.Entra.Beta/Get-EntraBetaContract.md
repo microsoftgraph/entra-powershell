@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Get-EntraBetaContract
 
-## SYNOPSIS
+## Synopsis
 Gets a contract.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -22,7 +22,7 @@ Get-EntraBetaContract [-Filter <String>] [-All] [-Top <Int32>] [<CommonParameter
 Get-EntraBetaContract -ObjectId <String> [-All] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaContract cmdlet gets a contract from Azure Active Directory.
 This cmdlet returns a contract object for each contract that is selected by the request.
 The contract object contains the following attributes:
@@ -47,7 +47,7 @@ It is not automatically updated if the customer tenant's display name changes.
 The value is always "Contract". 
 + ObjectId - The unique identifier for the partnership.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all contracts in the directory
 ```
@@ -56,7 +56,7 @@ Get-EntraBetaContract
 
 This command gets all contracts in the directory.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -122,10 +122,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
 ## RELATED LINKS

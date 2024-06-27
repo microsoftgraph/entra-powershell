@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaSubscribedSku com
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/08/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraBetaSubscribedSku
 
-## SYNOPSIS
+## Synopsis
 Gets subscribed SKUs to Microsoft services.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -35,10 +35,10 @@ Get-EntraBetaSubscribedSku
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaSubscribedSku cmdlet gets subscribed SKUs to Microsoft services.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get subscribed SKUs
 ```powershell
@@ -76,7 +76,7 @@ This example demonstrates how to retrieve specified subscribed SKUs to Microsoft
 
 This command gets specified subscribed SKUs to Microsoft services.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The object ID of the SKU (Stock Keeping Unit).
@@ -96,10 +96,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

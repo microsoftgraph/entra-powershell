@@ -1,14 +1,15 @@
 ---
 title: Get-EntraAdministrativeUnit
 description: This article provides details on the Get-EntraAdministrativeUnit command.
+
 ms.service: entra
 ms.topic: reference
-ms.date: 06/11/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
-author: msewaweru
-external help file: Microsoft.Graph.Entra-help.xml
+
+external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:
 schema: 2.0.0
@@ -16,18 +17,18 @@ schema: 2.0.0
 
 # Get-EntraAdministrativeUnit
 
-## SYNOPSIS
+## Synopsis
 
 Gets an administrative unit.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
 ```powershell
 Get-EntraAdministrativeUnit 
- [-All] 
  [-Top <Int32>] 
+ [-All] 
  [-Filter <String>] 
  [<CommonParameters>]
 ```
@@ -36,110 +37,99 @@ Get-EntraAdministrativeUnit
 
 ```powershell
 Get-EntraAdministrativeUnit 
- -ObjectId <String> 
+ -Id <String> 
  [-All] 
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The `Get-EntraAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrative unit. Specify the `ObjectId` parameter to get an administrative unit.
+The `Get-EntraAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrative unit.
 
-## EXAMPLES
+## Examples
 
-### EXAMPLE 1: Gets a list of administrative unit
+### Example 1: Get all administrative units
 
 ```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.Read.All' 
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
 Get-EntraAdministrativeUnit
 ```
 
 ```Output
-description                   : Updated Description
-membershipRule                :
-membershipRuleProcessingState :
-id                            : CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3
-deletedDateTime               :
-visibility                    :
-displayName                   : Updated DisplayName
-membershipType                :
-ObjectId                      : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-DeletionTimeStamp             :
-
+Id                                   OdataType Description                                     DisplayName
+--                                   --------- -----------                                     -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
+bbbbbbbb-1111-2222-3333-cccccccccccc                                                           SOC Retention
+cccccccc-2222-3333-4444-dddddddddddd           Container AU for restricted object control      DSR RMAU
+dddddddd-3333-4444-5555-eeeeeeeeeeee           Use to contain Personnel-managed project groups Personnel Projects
 ```
 
-This example gets a list of administrative unit.
+This command gets all the administrative units.
 
-### EXAMPLE 2: Gets a specific administrative unit
+### Example 2: Get all administrative units using '-All' parameter
 
 ```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.Read.All' 
-Get-EntraAdministrativeUnit  -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraAdministrativeUnit -All 
 ```
 
 ```Output
-description                   : Updated Description
-membershipRule                :
-membershipRuleProcessingState :
-id                            : CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3
-deletedDateTime               :
-visibility                    :
-displayName                   : Updated DisplayName
-membershipType                :
-ObjectId                      : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-DeletionTimeStamp             :
-
+Id                                   OdataType Description                                     DisplayName
+--                                   --------- -----------                                     -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
+bbbbbbbb-1111-2222-3333-cccccccccccc                                                           SOC Retention
+cccccccc-2222-3333-4444-dddddddddddd           Container AU for restricted object control      DSR RMAU
+dddddddd-3333-4444-5555-eeeeeeeeeeee           Use to contain Personnel-managed project groups Personnel Projects
 ```
 
-This example gets an administrative unit.
+This command gets all the administrative units.
 
-### EXAMPLE 3: Gets top one administrative unit
+### Example 3: Get a specific administrative unit
 
 ```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.Read.All' 
-Get-EntraAdministrativeUnit  -Top 1
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraAdministrativeUnit -Id aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 ```Output
-description                   : Updated Description
-membershipRule                :
-membershipRuleProcessingState :
-id                            : CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3
-deletedDateTime               :
-visibility                    :
-displayName                   : Updated DisplayName
-membershipType                :
-ObjectId                      : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-DeletionTimeStamp             :
-
+Id                                   OdataType Description                                     DisplayName
+--                                   --------- -----------                                     -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
 ```
 
-This example gets a top one administrative unit.
+This example returns the details of the specified administrative unit.
 
-### EXAMPLE 4: Gets an administrative unit with filter parameter
+### Example 4: Get administrative units filter by display name
 
 ```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.Read.All' 
-Get-EntraAdministrativeUnit  -Filter "displayName eq 'Updated DisplayName'"
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraAdministrativeUnit -Filter "DisplayName eq 'DAU-Test'"
 ```
 
 ```Output
-description                   : Updated Description
-membershipRule                :
-membershipRuleProcessingState :
-id                            : CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3
-deletedDateTime               :
-visibility                    :
-displayName                   : Updated DisplayName
-membershipType                :
-ObjectId                      : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-DeletionTimeStamp             :
-
+Id                                   OdataType Description                                     DisplayName
+--                                   --------- -----------                                     -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
 ```
 
-This example gets an administrative unit with filter parameter.
+This example list of administrative units containing display name with the specified name.
 
-## PARAMETERS
+### Example 5: Get top one administrative unit
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraAdministrativeUnit -Top 1
+```
+
+```Output
+Id                                   OdataType Description                                     DisplayName
+--                                   --------- -----------                                     -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
+```
+
+This example returns the specified top administrative units.
+
+## Parameters
 
 ### -All
 
@@ -159,7 +149,10 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Filter items by property values
+Specifies an oData v3.0 filter statement.
+This parameter filters which objects are returned.
+
+For more information about oData v3.0 filter expressions, see <https://msdn.microsoft.com/library/hh169248%28v=nav.90%29.aspx>
 
 ```yaml
 Type: System.String
@@ -173,7 +166,7 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -Id
 
 Specifies the ID of an administrative unit in Microsoft Entra ID.
 
@@ -209,13 +202,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraAdministrativeUnit](New-EntraAdministrativeUnit.md)
 
