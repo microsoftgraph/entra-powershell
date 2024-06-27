@@ -21,7 +21,7 @@ schema: 2.0.0
 
 Adds an owner to a group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraBetaGroupOwner 
@@ -34,7 +34,7 @@ Add-EntraBetaGroupOwner
 
 The `Add-EntraBetaGroupOwner` cmdlet adds an owner to a Microsoft Entra ID group. Specify the `ObjectId` and `RefObjectId` parameters to add an owner to a group.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add an owner to a group
 
@@ -83,13 +83,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaGroupOwner](Get-EntraBetaGroupOwner.md)
 

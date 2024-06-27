@@ -5,6 +5,7 @@ description: This article provides details on the Remove-EntraBetaApplication co
 ms.service: entra
 ms.topic: reference
 ms.date: 06/26/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +18,11 @@ schema: 2.0.0
 
 # Remove-EntraBetaApplication
 
-## SYNOPSIS
+## Synopsis
 
 Deletes an application object.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraBetaApplication 
@@ -29,11 +30,11 @@ Remove-EntraBetaApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Remove-EntraBetaApplication` cmdlet deletes an application object identified by ObjectId. Specify the `ObjectId` parameter to delete an application object.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove an application
 
@@ -44,7 +45,7 @@ Remove-EntraBetaApplication -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq'
 
 This example demonstrates how to delete an application object.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -70,11 +71,11 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaApplication](Get-EntraBetaApplication.md)
 

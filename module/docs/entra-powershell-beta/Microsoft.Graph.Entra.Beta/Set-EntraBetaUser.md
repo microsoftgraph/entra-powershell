@@ -21,7 +21,7 @@ schema: 2.0.0
 
 Updates a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraBetaUser 
@@ -62,7 +62,7 @@ Set-EntraBetaUser
 
 The `Set-EntraBetaUser` cmdlet updates a user in Microsoft Entra ID. Specify the `ObjectId` parameter to update a user in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update a user
 

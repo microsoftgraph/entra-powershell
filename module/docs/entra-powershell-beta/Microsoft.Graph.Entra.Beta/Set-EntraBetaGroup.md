@@ -21,7 +21,7 @@ schema: 2.0.0
 
 Sets the properties for an existing Microsoft Entra ID group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraBetaGroup 
@@ -117,7 +117,7 @@ Set-EntraBetaGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MembershipRulePro
 
 This example demonstrates how to update the membership rule processing state of a specified group in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 
@@ -258,8 +258,10 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
+Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -321,7 +323,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ### System.Object
 
-## NOTES
+### System.Object
+## Notes
 
 ## RELATED LINKS
 

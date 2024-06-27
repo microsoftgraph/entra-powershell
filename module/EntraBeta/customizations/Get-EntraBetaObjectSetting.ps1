@@ -10,6 +10,7 @@
     PROCESS {  
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        $propertiesQuery = '$select=*'
         if ($null -ne $PSBoundParameters["TargetType"]) {
             $params["TargetType"] = $PSBoundParameters["TargetType"]
         }
@@ -67,18 +68,24 @@
         {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
+        if($null -ne $PSBoundParameters["Property"])
+        {
+            $selectProperties = $PSBoundParameters["Property"]
+            $selectProperties = $selectProperties -Join ','
+            $propertiesQuery = "`$select=$($selectProperties)"
+        }
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         $Method = "GET"
-        $URI = 'https://graph.microsoft.com/beta/{0}/{1}/settings/' -f $TargetType,$TargetObjectId
+        $URI = 'https://graph.microsoft.com/beta/{0}/{1}/settings?{2}' -f $TargetType,$TargetObjectId,$propertiesQuery
         if($null -ne $PSBoundParameters["ID"]){
-            $URI = 'https://graph.microsoft.com/beta/{0}/{1}/settings/{2}' -f $TargetType,$TargetObjectId,$ID
+            $URI = 'https://graph.microsoft.com/beta/{0}/{1}/settings/{2}?{3}' -f $TargetType,$TargetObjectId,$ID,$propertiesQuery
             $response = (Invoke-GraphRequest -Uri $uri -Method $Method) | ConvertTo-Json | ConvertFrom-Json
              return $response
         }
         elseif($null -ne $params["Top"]){
-            $URI = 'https://graph.microsoft.com/beta/{0}/{1}/settings/{2}' -f $TargetType,$TargetObjectId,$params["Top"]
+            $URI = 'https://graph.microsoft.com/beta/{0}/{1}/settings/{2}&{3}' -f $TargetType,$TargetObjectId,$params["Top"],$propertiesQuery
         }
         $rawresponse = (Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method $Method).Value
         $response = $rawresponse | ConvertTo-Json -Depth 3 | ConvertFrom-Json

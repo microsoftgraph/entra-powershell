@@ -21,6 +21,10 @@
     {
         $params["ApplicationId"] = $PSBoundParameters["ObjectId"]
     }
+    if($null -ne $PSBoundParameters["Property"])
+    {
+        $params["Property"] = $PSBoundParameters["Property"]
+    }
     if($null -ne $PSBoundParameters["Filter"])
     {
         $TmpValue = $PSBoundParameters["Filter"]

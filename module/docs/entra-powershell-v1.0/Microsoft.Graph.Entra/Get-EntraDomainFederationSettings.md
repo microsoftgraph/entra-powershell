@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraDomainFedrationSettin
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 03/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # Get-EntraDomainFedrationSettings
 
-## SYNOPSIS
+## Synopsis
 
 Gets key settings for a federated domain.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraDomainFedrationSettings 
@@ -31,7 +31,7 @@ Get-EntraDomainFedrationSettings
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraDomainFederationSettings` cmdlet gets key settings from Microsoft Entra ID.
 
@@ -46,7 +46,7 @@ For delegated scenarios, the calling user must be assigned at least one of the f
 - Hybrid Identity Administrator
 - Security Administrator
 
-## EXAMPLES
+## Examples
 
 ### EXAMPLE 1: Get federation settings for specified domain
 
@@ -57,7 +57,7 @@ For delegated scenarios, the calling user must be assigned at least one of the f
 
 This command gets federation settings for specified domain.
 
-## PARAMETERS
+## Parameters
 
 ### -DomainName
 
@@ -97,9 +97,9 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Online.Administration.DomainFederationSettings
 
@@ -121,6 +121,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ### SigningCertificate
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

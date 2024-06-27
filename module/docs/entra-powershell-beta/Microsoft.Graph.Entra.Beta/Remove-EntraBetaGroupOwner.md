@@ -21,7 +21,7 @@ schema: 2.0.0
 
 Removes an owner from a group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraBetaGroupOwner 
@@ -34,7 +34,7 @@ Remove-EntraBetaGroupOwner
 
 The `Remove-EntraBetaGroupOwner` cmdlet removes an owner from a group in Microsoft Entra ID. Specify the `ObjectId` and `OwnerId` parameters to remove an owner from a group.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove an owner
 

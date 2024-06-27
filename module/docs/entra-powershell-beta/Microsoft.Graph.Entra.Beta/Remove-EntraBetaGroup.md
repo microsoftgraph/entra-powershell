@@ -21,7 +21,7 @@ schema: 2.0.0
 
 Removes a group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraBetaGroup 
@@ -40,7 +40,7 @@ The following conditions apply for apps to delete role-assignable groups:
 - For delegated scenarios, the app must be assigned the `RoleManagement.ReadWrite.Directory` delegated permission, and the calling user must be the creator of the group or be assigned at least the Privileged Role Administrator Microsoft Entra role.
 - For app-only scenarios, the calling app must be the owner of the group or be assigned the `RoleManagement.ReadWrite.Directory` application permission or be assigned at least the Privileged Role Administrator Microsoft Entra role.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a group
 
@@ -73,13 +73,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaGroup](Get-EntraBetaGroup.md)
 

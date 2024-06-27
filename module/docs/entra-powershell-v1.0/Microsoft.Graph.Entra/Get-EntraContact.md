@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraContact command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/06/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraContact
 
-## SYNOPSIS
+## Synopsis
 
 Gets a contact from Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -42,11 +42,11 @@ Get-EntraContact
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraContact` cmdlet gets a contact from Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve all contact objects in the directory
 
@@ -129,7 +129,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com Contoso Contact1
 
 This command retrieves contacts having the specified display name.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -200,12 +200,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Remove-EntraContact](Remove-EntraContact.md)

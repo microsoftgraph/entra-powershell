@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraUserOwnedObject comma
 
 ms.service: entra
 ms.topic: reference
-ms.date: 02/29/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraUserOwnedObject
 
-## SYNOPSIS
+## Synopsis
 
 Get objects owned by a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraUserOwnedObject 
@@ -31,11 +31,11 @@ Get-EntraUserOwnedObject
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraUserOwnedObject cmdlet gets objects owned by a user in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get objects owned by a user
 
@@ -98,7 +98,7 @@ bbbbbbbb-7777-8888-9999-cccccccccccc Application
 
 This command gets the top three objects owned by the specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -152,10 +152,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

@@ -4,7 +4,7 @@ description: This article provides details on the New-EntraBetaUser command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 02/27/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # New-EntraBetaUser
 
-## SYNOPSIS
+## Synopsis
 Creates a Microsoft Entra ID user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraBetaUser 
@@ -62,10 +62,10 @@ New-EntraBetaUser
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The **New-EntraBetaUser** cmdlet creates a user in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a user using MailNickName parameter
 ```powershell
@@ -142,7 +142,7 @@ ObjectId                             DisplayName UserPrincipalName              
 
 This command creates a new user.
 
-## PARAMETERS
+## Parameters
 
 ### -AccountEnabled
 Indicates whether the user's account is enabled.
@@ -692,13 +692,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaUser](Get-EntraBetaUser.md)
 

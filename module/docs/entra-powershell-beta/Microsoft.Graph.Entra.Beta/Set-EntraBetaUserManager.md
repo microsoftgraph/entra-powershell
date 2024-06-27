@@ -21,7 +21,7 @@ schema: 2.0.0
 
 Updates a user's manager.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraBetaUserManager 
@@ -34,7 +34,7 @@ Set-EntraBetaUserManager
 
 The `Set-EntraBetaUserManager` cmdlet update the manager for a user in Microsoft Entra ID. Specify the `ObjectId` and `RefObjectId` parameters to update the manager for a user in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update a user's manager
 
@@ -45,7 +45,7 @@ Set-EntraBetaUserManager -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc' -RefOb
 
 This example demonstrates how to update the manager for the specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 

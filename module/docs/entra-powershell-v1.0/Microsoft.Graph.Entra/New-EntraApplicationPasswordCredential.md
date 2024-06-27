@@ -4,7 +4,7 @@ description: This article provides details on the New-EntraApplicationPasswordCr
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/21/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # New-EntraApplicationPasswordCredential
 
-## SYNOPSIS
+## Synopsis
 
 Creates a password credential for an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraApplicationPasswordCredential 
@@ -33,15 +33,17 @@ New-EntraApplicationPasswordCredential
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The New-EntraApplicationPasswordCredential cmdlet creates a password credential for an application in Microsoft Entra ID.
+The `New-EntraApplicationPasswordCredential` cmdlet creates a password credential for an application in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a password credential
 
 ```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 New-EntraApplicationPasswordCredential -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa'
 ```
 
@@ -56,6 +58,8 @@ This command creates new password credential for specified application.
 ### Example 2: Create a password credential using CustomKeyIdentifier parameter
 
 ```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 New-EntraApplicationPasswordCredential -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' -CustomKeyIdentifier 'demoPassword'
 ```
 
@@ -70,7 +74,9 @@ This command creates new password credential for specified application.
 ### Example 3: Create a password credential using StartDate parameter
 
 ```powershell
-New-EntraApplicationPasswordCredential -ObjectId '3ddd22e7-a150-4bb3-b100-e410dea1cb84' -StartDate (get-date).AddYears(0)
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+New-EntraApplicationPasswordCredential -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' -StartDate (get-date).AddYears(0)
 ```
 
 ```output
@@ -84,7 +90,14 @@ This command creates new password credential for specified application.
 ### Example 4: Create a password credential using EndDate parameter
 
 ```powershell
-New-EntraApplicationPasswordCredential -ObjectId '3ddd22e7-a150-4bb3-b100-e410dea1cb84' -EndDate (get-date).AddYears(2)
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+$params = @{
+    ObjectId = 'tttttttt-0000-2222-0000-aaaaaaaaaaaa'
+    EndDate = (Get-Date).AddYears(2)
+}
+
+New-EntraApplicationPasswordCredential @params
 ```
 
 ```output
@@ -95,7 +108,7 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This command creates new password credential for specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -165,13 +178,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraApplicationPasswordCredential](Get-EntraApplicationPasswordCredential.md)
 

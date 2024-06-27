@@ -21,7 +21,7 @@ schema: 2.0.0
 
 Removes a user's manager.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraBetaUserManager 
@@ -34,7 +34,7 @@ Remove-EntraBetaUserManager
 The `Remove-EntraBetaUserManager` cmdlet removes a user's manager in Microsoft Entra ID. Specify the `ObjectId` parameter to remove the manager for a user in Microsoft Entra ID.
 
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove the manager of a user
 

@@ -21,7 +21,7 @@ schema: 2.0.0
 
 Creates a Microsoft Entra ID  group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraBetaGroup
@@ -50,7 +50,7 @@ For information about creating dynamic groups, see: [Using attributes to create 
 - To create the group with other service principals as owners or members, the app must have at least the `Application.Read.All` permission.
 - To create the group with either users or service principals as owners or members, the app must have at least the `Directory.Read.All` permission.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a group
 
@@ -174,7 +174,7 @@ The processing state is On.
 Which means that all users in the directory that qualify the rule are added as members to the group.
 Any users that don't qualify are removed from the group.
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 

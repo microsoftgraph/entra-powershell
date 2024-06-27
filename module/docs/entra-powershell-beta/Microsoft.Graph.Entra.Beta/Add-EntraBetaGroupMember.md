@@ -21,7 +21,7 @@ schema: 2.0.0
 
 Add a member to a group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraBetaGroupMember 
@@ -34,7 +34,7 @@ Add-EntraBetaGroupMember
 
 The `Add-EntraBetaGroupMember` cmdlet adds a member to a group. Specify the `ObjectId` and `RefObjectId` parameters to add a member to a group.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a member to a group
 
@@ -45,7 +45,7 @@ Add-EntraBetaGroupMember -ObjectId 'dddddddd-2222-3333-5555-rrrrrrrrrrrr' -RefOb
 
 This example demonstrates how to add a member to a group.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -83,13 +83,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaGroupMember](Get-EntraBetaGroupMember.md)
 
