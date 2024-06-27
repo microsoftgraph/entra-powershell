@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Remove-EntraBetaUserExtension
 
-## SYNOPSIS
+## Synopsis
 Removes a user extension.
 
-## SYNTAX
+## Syntax
 
 ### SetMultiple
 ```
@@ -23,10 +23,10 @@ Remove-EntraBetaUserExtension -ObjectId <String>
 Remove-EntraBetaUserExtension -ObjectId <String> -ExtensionName <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaUserExtension cmdlet removes a user extension from Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```powershell
@@ -35,7 +35,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 ### -ExtensionName
 Specifies the name of an extension.
@@ -85,13 +85,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaUserExtension]()
 

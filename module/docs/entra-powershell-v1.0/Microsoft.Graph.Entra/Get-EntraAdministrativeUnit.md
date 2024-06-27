@@ -1,6 +1,7 @@
 ---
 title: Get-EntraAdministrativeUnit
 description: This article provides details on the Get-EntraAdministrativeUnit command.
+<<<<<<< HEAD
 ms.service: entra
 ms.topic: reference
 ms.date: 06/11/2024
@@ -9,6 +10,17 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-help.xml
+=======
+
+ms.service: entra
+ms.topic: reference
+ms.date: 06/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
+external help file: Microsoft.Graph.Entra-Help.xml
+>>>>>>> dc9d8ea1658f58c862053028f1dccb73525bd2c0
 Module Name: Microsoft.Graph.Entra
 online version:
 schema: 2.0.0
@@ -16,18 +28,31 @@ schema: 2.0.0
 
 # Get-EntraAdministrativeUnit
 
+<<<<<<< HEAD
 ## SYNOPSIS
 
 Gets an administrative unit.
 
 ## SYNTAX
+=======
+## Synopsis
+
+Gets an administrative unit.
+
+## Syntax
+>>>>>>> dc9d8ea1658f58c862053028f1dccb73525bd2c0
 
 ### GetQuery (Default)
 
 ```powershell
 Get-EntraAdministrativeUnit 
+<<<<<<< HEAD
  [-All] 
  [-Top <Int32>] 
+=======
+ [-Top <Int32>] 
+ [-All] 
+>>>>>>> dc9d8ea1658f58c862053028f1dccb73525bd2c0
  [-Filter <String>] 
  [<CommonParameters>]
 ```
@@ -36,11 +61,16 @@ Get-EntraAdministrativeUnit
 
 ```powershell
 Get-EntraAdministrativeUnit 
+<<<<<<< HEAD
  -ObjectId <String> 
+=======
+ -Id <String> 
+>>>>>>> dc9d8ea1658f58c862053028f1dccb73525bd2c0
  [-All] 
  [<CommonParameters>]
 ```
 
+<<<<<<< HEAD
 ## DESCRIPTION
 
 The `Get-EntraAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrative unit.Specify the `ObjectId` parameter to get a administrative unit.
@@ -48,6 +78,96 @@ The `Get-EntraAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrativ
 ## EXAMPLES
 
 ## PARAMETERS
+=======
+## Description
+
+The `Get-EntraAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrative unit.
+
+## Examples
+
+### Example 1: Get all administrative units
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraAdministrativeUnit
+```
+
+```Output
+Id                                   OdataType Description                                     DisplayName
+--                                   --------- -----------                                     -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
+bbbbbbbb-1111-2222-3333-cccccccccccc                                                           SOC Retention
+cccccccc-2222-3333-4444-dddddddddddd           Container AU for restricted object control      DSR RMAU
+dddddddd-3333-4444-5555-eeeeeeeeeeee           Use to contain Personnel-managed project groups Personnel Projects
+```
+
+This command gets all the administrative units.
+
+### Example 2: Get all administrative units using '-All' parameter
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraAdministrativeUnit -All 
+```
+
+```Output
+Id                                   OdataType Description                                     DisplayName
+--                                   --------- -----------                                     -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
+bbbbbbbb-1111-2222-3333-cccccccccccc                                                           SOC Retention
+cccccccc-2222-3333-4444-dddddddddddd           Container AU for restricted object control      DSR RMAU
+dddddddd-3333-4444-5555-eeeeeeeeeeee           Use to contain Personnel-managed project groups Personnel Projects
+```
+
+This command gets all the administrative units.
+
+### Example 3: Get a specific administrative unit
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraAdministrativeUnit -Id aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+```
+
+```Output
+Id                                   OdataType Description                                     DisplayName
+--                                   --------- -----------                                     -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
+```
+
+This example returns the details of the specified administrative unit.
+
+### Example 4: Get administrative units filter by display name
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraAdministrativeUnit -Filter "DisplayName eq 'DAU-Test'"
+```
+
+```Output
+Id                                   OdataType Description                                     DisplayName
+--                                   --------- -----------                                     -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
+```
+
+This example list of administrative units containing display name with the specified name.
+
+### Example 5: Get top one administrative unit
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraAdministrativeUnit -Top 1
+```
+
+```Output
+Id                                   OdataType Description                                     DisplayName
+--                                   --------- -----------                                     -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
+```
+
+This example returns the specified top administrative units.
+
+## Parameters
+>>>>>>> dc9d8ea1658f58c862053028f1dccb73525bd2c0
 
 ### -All
 
@@ -67,9 +187,16 @@ Accept wildcard characters: False
 
 ### -Filter
 
+<<<<<<< HEAD
 Specifies an oData v3.0 filter statement. This parameter filters which objects are returned.
 
 For more information about oData v3.0 filter expressions, see <https://msdn.microsoft.com/en-us/library/hh169248%28v=nav.90%29.aspx>
+=======
+Specifies an oData v3.0 filter statement.
+This parameter filters which objects are returned.
+
+For more information about oData v3.0 filter expressions, see <https://msdn.microsoft.com/library/hh169248%28v=nav.90%29.aspx>
+>>>>>>> dc9d8ea1658f58c862053028f1dccb73525bd2c0
 
 ```yaml
 Type: System.String
@@ -83,7 +210,11 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+<<<<<<< HEAD
 ### -ObjectId
+=======
+### -Id
+>>>>>>> dc9d8ea1658f58c862053028f1dccb73525bd2c0
 
 Specifies the ID of an administrative unit in Microsoft Entra ID.
 
@@ -119,6 +250,7 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
+<<<<<<< HEAD
 ## INPUTS
 
 ## OUTPUTS
@@ -126,6 +258,15 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## NOTES
 
 ## RELATED LINKS
+=======
+## Inputs
+
+## Outputs
+
+## Notes
+
+## Related Links
+>>>>>>> dc9d8ea1658f58c862053028f1dccb73525bd2c0
 
 [New-EntraAdministrativeUnit](New-EntraAdministrativeUnit.md)
 

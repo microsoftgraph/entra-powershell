@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraUserOAuth2PermissionG
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/21/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,11 @@ schema: 2.0.0
 
 # Get-EntraUserOAuth2PermissionGrant
 
-## SYNOPSIS
+## Synopsis
+
 Gets an oAuth2PermissionGrant object.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraUserOAuth2PermissionGrant 
@@ -30,56 +31,62 @@ Get-EntraUserOAuth2PermissionGrant
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
+
 The Get-EntraUserOAuth2PermissionGrant cmdlet gets an oAuth2PermissionGrant object for the specified user in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the OAuth2 permission grants for a user
-```powershell
-PS C:\> $UserId = (Get-EntraUser -Top 1).ObjectId
-PS C:\> Get-EntraUserOAuth2PermissionGrant -ObjectId $UserId
-```
-
-The first command gets the ID of a Microsoft Entra ID user by using the Get-EntraUser (./Get-EntraUser.md) cmdlet. 
-The command stores the value in the $UserId variable.
-
-The second command gets the OAuth2 permission grants for the user identified by $UserId.
-
-### Example 2: Retrieve the OAuth2 permission grants for a user using object ID parameter.
 
 ```powershell
-PS C:\> Get-EntraUserOAuth2PermissionGrant -ObjectId 412be9d1-1460-4061-8eed-cca203fcb215
+ Connect-Entra -Scopes 'Directory.Read.All'
+ $UserId = (Get-EntraUser -Top 1).ObjectId
+ Get-EntraUserOAuth2PermissionGrant -ObjectId $UserId
 ```
-```output
-Id                                                               ClientId                             ConsentType PrincipalId                          ResourceId
---                                                               --------                             ----------- -----------                          ----------
-HXFXwKLgoUC4rwbZbCDIdffW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV c057711d-e0a2-40a1-b8af-06d96c20c875 Principal   412be9d1-1460-4061-8eed-cca203fcb215 7af1d6f7-755a-480...
-9uBzRwC0s0CFCDQN6O4Ik_fW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 4773e0f6-b400-40b3-8508-340de8ee0893 Principal   412be9d1-1460-4061-8eed-cca203fcb215 7af1d6f7-755a-480...
-```
-This Example Retrieve the OAuth2 permission grants for a user using object ID parameter.
 
-### Example 3: Retrieve the OAuth2 permission grants for a user using All parameter.
+The example demonstrates how to retrieve the OAuth2 permission grants for the user.
+
+### Example 2: Retrieve the OAuth2 permission grants for a user using object ID parameter
 
 ```powershell
-PS C:\> Get-EntraUserOAuth2PermissionGrant -ObjectId 412be9d1-1460-4061-8eed-cca203fcb215 -All
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraUserOAuth2PermissionGrant -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
-```output
-Id                                                               ClientId                             ConsentType PrincipalId                          ResourceId
---                                                               --------                             ----------- -----------                          ----------
-HXFXwKLgoUC4rwbZbCDIdffW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV c057711d-e0a2-40a1-b8af-06d96c20c875 Principal   412be9d1-1460-4061-8eed-cca203fcb215 7af1d6f7-755a-480...
-9uBzRwC0s0CFCDQN6O4Ik_fW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 4773e0f6-b400-40b3-8508-340de8ee0893 Principal   412be9d1-1460-4061-8eed-cca203fcb215 7af1d6f7-755a-480...
+
+```Output
+Id                                ClientId                             ConsentType PrincipalId                          ResourceId
+--                                --------                             ----------- -----------                          ----------
+C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w    00001111-aaaa-2222-bbbb-3333cccc4444 Principal   aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1
+E3fH4iJ5kL6mN7oP8qR9sT0uV1wX2y    11112222-bbbb-3333-cccc-4444dddd5555 Principal   aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1
 ```
+
+This example retrieve the OAuth2 permission grants for a user using object ID parameter.
+
+### Example 3: Retrieve the OAuth2 permission grants for a user using All parameter
+
+```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraUserOAuth2PermissionGrant -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
+```
+
+```Output
+Id                                ClientId                             ConsentType PrincipalId                          ResourceId
+--                                --------                             ----------- -----------                          ----------
+C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w    00001111-aaaa-2222-bbbb-3333cccc4444 Principal   aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1
+E3fH4iJ5kL6mN7oP8qR9sT0uV1wX2y    11112222-bbbb-3333-cccc-4444dddd5555 Principal   aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1
+```
+
 This Example Retrieve the OAuth2 permission grants for a user using All parameter.
 
-
-## PARAMETERS
+## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -91,10 +98,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID (as a UPN or ObjectId) of a user in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -106,10 +114,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -121,14 +130,15 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Get-EntraUser](Get-EntraUser.md)
