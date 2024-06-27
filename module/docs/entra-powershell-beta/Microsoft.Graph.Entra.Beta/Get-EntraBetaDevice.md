@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # Get-EntraBetaDevice
 
-## SYNOPSIS
+## Synopsis
 
 Gets a device from Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -52,11 +52,11 @@ Get-EntraBetaDevice
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraBetaDevice` cmdlet gets a device from Microsoft Entra ID. Specify the `ObjectId` parameter to get a specific device.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a device by ID
 
@@ -65,7 +65,7 @@ Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice -ObjectId 'bbbbbbbb-1111-1111-1111-cccccccccccc'
 ```
 
-```output
+```Output
 DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetada
                                                                                                                                                                                    ta
 --------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             ------------
@@ -81,7 +81,7 @@ Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice
 ```
 
-```output
+```Output
 DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetada
                                                                                                                                                                                    ta
 --------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             ------------
@@ -99,7 +99,7 @@ Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice -Top 2
 ```
 
-```output
+```Output
 DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetada
                                                                                                                                                                                    ta
 --------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             ------------
@@ -117,7 +117,7 @@ Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice -Filter "DisplayName eq 'AkshayLodha'"
 ```
 
-```output
+```Output
 DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetada
                                                                                                                                                                                    ta
 --------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             ------------
@@ -134,7 +134,7 @@ Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice -Filter "startswith(DisplayName,'Aksh')"
 ```
 
-```output
+```Output
 DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetada
                                                                                                                                                                                    ta
 --------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             ------------
@@ -150,7 +150,7 @@ Connect-Entra -Scopes 'Device.Read.All'
 Get-EntraBetaDevice -SearchString 'Ashwini'
 ```
 
-```output
+```Output
 DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetada
                                                                                                                                                                                    ta
 --------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             ------------
@@ -247,13 +247,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related links
 
 [New-EntraBetaDevice](New-EntraBetaDevice.md)
 

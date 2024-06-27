@@ -17,7 +17,7 @@ schema: 2.0.0
 
 # Get-EntraBetaUser
 
-## SYNOPSIS
+## Synopsis
 
 Gets a user.
 
@@ -51,11 +51,11 @@ Get-EntraBetaUser
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraBetaUser` cmdlet gets a user from Microsoft Entra ID. Specify the `ObjectId` parameter to get a specific user.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get two users
 
@@ -64,7 +64,7 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraBetaUser -Top 2
 ```
 
-```output
+```Output
 DisplayName     Id                                   Mail                                 UserPrincipalName
 -----------     --                                   ----                                 -----------------
 Conf Room Adams aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adams@M365x99297270.OnMicrosoft.com  Adams@M365x99297270.OnMicrosoft.com
@@ -80,7 +80,7 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraBetaUser -ObjectId 'testUpn@tenant.com'
 ```
 
-```output
+```Output
 DisplayName Id                                   Mail                                 UserPrincipalName
 ----------- --                                   ----                                 -----------------
 Adele Vance bbbbbbbb-1111-2222-3333-cccccccccccc testUpn@tenant.com testUpn@tenant.com
@@ -95,7 +95,7 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraBetaUser -SearchString 'New'
 ```
 
-```output
+```Output
 DisplayName        Id                                   Mail UserPrincipalName
 -----------        --                                   ---- -----------------
 New User88         bbbbbbbb-1111-2222-3333-cccccccccccc      demo99@tenant.com
@@ -111,7 +111,7 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraBetaUser -Filter "userPrincipalName eq 'jondoe@contoso.com'"
 ```
 
-```output
+```Output
 DisplayName Id                                   Mail UserPrincipalName
 ----------- --                                   ---- -----------------
 New User    cccccccc-2222-3333-4444-dddddddddddd      jondoe@contoso.com
@@ -126,7 +126,7 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraBetaUser -Filter "startswith(DisplayName,'New')"
 ```
 
-```output
+```Output
 DisplayName Id                                   Mail UserPrincipalName
 ----------- --                                   ---- -----------------
 New User    cccccccc-2222-3333-4444-dddddddddddd      NewUser@contoso.com
@@ -135,7 +135,7 @@ New User88  dddddddd-3333-4444-5555-eeeeeeeeeeee      demo99@contoso.com
 
 This command gets all the users whose displayName starts with new.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -224,13 +224,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related links
 
 [New-EntraBetaUser](New-EntraBetaUser.md)
 

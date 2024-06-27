@@ -18,7 +18,7 @@ schema: 2.0.0
 
 # New-EntraBetaUser
 
-## SYNOPSIS
+## Synopsis
 
 Creates a Microsoft Entra ID user.
 
@@ -63,7 +63,7 @@ New-EntraBetaUser
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `New-EntraBetaUser` cmdlet creates a user in Microsoft Entra ID. Specify the `DisplayName`,`AccountEnabled`, and `PasswordProfile` parameter to create a user.
 
@@ -78,7 +78,7 @@ $PasswordProfile.Password = '<Password>'
 New-EntraBetaUser -DisplayName 'New User' -PasswordProfile $PasswordProfile -UserPrincipalName 'NewUser@contoso.com' -AccountEnabled $true -MailNickName 'Newuser'
 ```
 
-```output
+```Output
 AboutMe                                         :
 AccountEnabled                                  : True
 Activities                                      :
@@ -108,7 +108,7 @@ $PasswordProfile.Password = '<Password>'
 New-EntraBetaUser -DisplayName 'New User' -PasswordProfile $PasswordProfile -UserPrincipalName 'NewUser@contoso.com' -AccountEnabled $true -MailNickName 'Newuser' -AgeGroup 'adult'
 ```
 
-```output
+```Output
 AboutMe                                         :
 AccountEnabled                                  : True
 Activities                                      :
@@ -138,7 +138,7 @@ $PasswordProfile.Password = '<Password>'
 New-EntraBetaUser -DisplayName 'New User' -PasswordProfile $PasswordProfile -UserPrincipalName 'NewUser@contoso.com' -AccountEnabled $true -MailNickName 'Newuser' -City 'New York'
 ```
 
-```output
+```Output
 AboutMe                                         :
 AccountEnabled                                  : True
 Activities                                      :
@@ -168,7 +168,7 @@ $PasswordProfile.Password = '<Password>'
 New-EntraBetaUser -DisplayName 'New User' -PasswordProfile $PasswordProfile -UserPrincipalName 'NewUser@contoso.com' -AccountEnabled $true -MailNickName 'Newuser' -Department 'IT'
 ```
 
-```output
+```Output
 AboutMe                                         :
 AccountEnabled                                  : True
 Activities                                      :
@@ -198,7 +198,7 @@ $PasswordProfile.Password = '<Password>'
 New-EntraBetaUser -DisplayName 'New User' -PasswordProfile $PasswordProfile -UserPrincipalName 'NewUser@contoso.com' -AccountEnabled $true -MailNickName 'Newuser' -Mobile '02883655253'
 ```
 
-```output
+```Output
 AboutMe                                         :
 AccountEnabled                                  : True
 Activities                                      :

@@ -17,7 +17,7 @@ schema: 2.0.0
 
 # Get-EntraBetaGroup
 
-## SYNOPSIS
+## Synopsis
 
 Gets a group.
 
@@ -51,7 +51,7 @@ Get-EntraBetaGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraBetaGroup` cmdlet gets a group in Microsoft Entra ID. Specify the `ObjectId` parameter to get a specific group.
 
@@ -64,7 +64,7 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraBetaGroup
 ```
 
-```output
+```Output
 
 DisplayName                                       Id                                   MailNickname                                   Description
 -----------                                       --                                   ------------                                   -----------
@@ -84,7 +84,7 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraBetaGroup -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff'
 ```
 
-```output
+```Output
 DisplayName                                       Id                                   MailNickname Description GroupTypes
 -----------                                       --                                   ------------ ----------- ----------
 SimpleTestGrpbcd1865e-c8b9-4f90-8943-77607ef15590 eeeeeeee-4444-5555-6666-ffffffffffff NickName                 {}
@@ -99,7 +99,7 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraBetaGroup -Top 5
 ```
 
-```output
+```Output
 DisplayName                                     Id                                   MailNickname    Description       GroupTypes
 -----------                                     --                                   ------------    -----------       ----------
 SimpleTestGrp                                   aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb NickName                          {}
@@ -119,7 +119,7 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraBetaGroup -Filter "DisplayName eq 'Parents of Contoso'"
 ```
 
-```output
+```Output
 DisplayName        Id                                   MailNickname     Description        GroupTypes
 -----------        --                                   ------------     -----------        ----------
 Parents of Contoso aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb parentsofcontoso Parents of Contoso {Unified}
@@ -135,7 +135,7 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraBetaGroup -SearchString 'New'
 ```
 
-```output
+```Output
 DisplayName             Id                                   MailNickname          Description             GroupTypes
 -----------             --                                   ------------          -----------             ----------
 New Employee Onboarding aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb newemployeeonboarding New Employee Onboarding {Unified}

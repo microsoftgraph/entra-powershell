@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraBetaLifecyclePolicyGroup
 
-## SYNOPSIS
+## Synopsis
 
 Retrieves the lifecycle policy object to which a group belongs.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaLifecyclePolicyGroup 
@@ -29,11 +29,11 @@ Get-EntraBetaLifecyclePolicyGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraBetaLifecyclePolicyGroup` retrieves the lifecycle policy object to which a group belongs. Specify the `-Id` parameter to get the lifecycle policy object to which a group belongs.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve lifecycle policy object
 
@@ -42,7 +42,7 @@ Connect-Entra -Scopes 'Directory.Read.All'
 Get-EntraBetaLifecyclePolicyGroup -Id 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
 ```
 
-```output
+```Output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
 bbbbbbbb-1111-2222-3333-cccccccccccc admingroup@contoso.com      200                 All
@@ -51,7 +51,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc admingroup@contoso.com      200            
 This example demonstrates how to retrieve lifecycle policy object by Id in Microsoft Entra ID.  
 This command retrieves the lifecycle policy object to which a group belongs.
 
-## PARAMETERS
+## Parameters
 
 ### -ID
 
@@ -73,17 +73,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related links
 
 [Add-EntraBetaLifecyclePolicyGroup](Add-EntraBetaLifecyclePolicyGroup.md)
 

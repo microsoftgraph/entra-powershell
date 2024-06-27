@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # Get-EntraBetaApplicationLogo
 
-## SYNOPSIS
+## Synopsis
 
 Retrieve the logo of an application
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaApplicationLogo 
@@ -33,7 +33,7 @@ Get-EntraBetaApplicationLogo
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraBetaApplicationLogo` cmdlet retrieves the logo that is set for an application. Specify the `ObjectId` parameter to get a specific application logo for an application.
 
@@ -48,7 +48,7 @@ Get-EntraBetaApplicationLogo -ObjectId 'bbbbbbbb-1111-1111-1111-cccccccccccc' -F
 
 This example shows how to retrieve the application logo for an application that is specified through the Object ID parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -FileName
 
@@ -118,18 +118,18 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
 ### System.Boolean
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related links
 
 [Set-EntraBetaApplicationLogo](Set-EntraBetaApplicationLogo.md)

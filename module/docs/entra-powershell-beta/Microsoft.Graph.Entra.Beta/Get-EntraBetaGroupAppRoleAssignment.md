@@ -17,7 +17,7 @@ schema: 2.0.0
 
 # Get-EntraBetaGroupAppRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 
 Gets a group application role assignment.
 
@@ -31,7 +31,7 @@ Get-EntraBetaGroupAppRoleAssignment
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraBetaGroupAppRoleAssignment` cmdlet gets a group application role assignment in Microsoft Entra ID. Specify the `ObjectId` parameter to get a group application role assignment.
 
@@ -45,7 +45,7 @@ $GroupId = (Get-EntraBetaGroup -Top 1).ObjectId
 Get-EntraBetaGroupAppRoleAssignment -ObjectId $GroupId
 ```
 
-```output
+```Output
 ObjectId                                    ResourceDisplayName                 PrincipalDisplayName
 --------                                    -------------------                 --------------------
 MSVrBV4APk--eAGnHqMKBLflsQG3rU1EmDFKvgra41I Microsoft Device Management Checkin Ask HR
@@ -65,7 +65,7 @@ Connect-Entra -Scopes 'Directory.Read.All'
 Get-EntraBetaGroupAppRoleAssignment -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff' -All
 ```
 
-```output
+```Output
 ObjectId                                    ResourceDisplayName                 PrincipalDisplayName
 --------                                    -------------------                 --------------------
 MSVrBV4APk--eAGnHqMKBLflsQG3rU1EmDFKvgra41I Microsoft Device Management Checkin Ask HR
@@ -82,7 +82,7 @@ Connect-Entra -Scopes 'Directory.Read.All'
 Get-EntraBetaGroupAppRoleAssignment -ObjectId 'cccccccc-8888-9999-0000-dddddddddddd' -Top 2
 ```
 
-```output
+```Output
 ObjectId                                    ResourceDisplayName                 PrincipalDisplayName
 --------                                    -------------------                 --------------------
 MSVrBV4APk--eAGnHqMKBLflsQG3rU1EmDFKvgra41I Microsoft Device Management Checkin Ask HR

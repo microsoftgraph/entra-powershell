@@ -17,12 +17,11 @@ schema: 2.0.0
 
 # Get-EntraBetaGroupMember
 
-## SYNOPSIS
+## Synopsis
 
 Gets a member of a group.
 
-## SYNTAX
-
+## Syntax
 ```powershell
 Get-EntraBetaGroupMember 
  -ObjectId <String> 
@@ -31,11 +30,11 @@ Get-EntraBetaGroupMember
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraBetaGroupMember` cmdlet gets a member of a group in Microsoft Entra ID. Specify the `ObjectId` parameter to get a member of a group.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a group member by ID
 
@@ -44,7 +43,7 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraBetaGroupMember -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff'
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 bbbbbbbb-7777-8888-9999-cccccccccccc
@@ -59,7 +58,7 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraBetaGroupMember -ObjectId 'bbbbbbbb-7777-8888-9999-cccccccccccc' -Top 2
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 cccccccc-8888-9999-0000-dddddddddddd
@@ -75,7 +74,7 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraBetaGroupMember -ObjectId 'dddddddd-9999-0000-1111-eeeeeeeeeeee' -All
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 dddddddd-3333-4444-5555-eeeeeeeeeeee
@@ -87,7 +86,7 @@ cccccccc-8888-9999-0000-dddddddddddd
 
 This example retrieves all members within a group by group ID.  
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -141,13 +140,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related links
 
 [Add-EntraBetaGroupMember](Add-EntraBetaGroupMember.md)
 

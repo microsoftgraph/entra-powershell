@@ -17,12 +17,12 @@ schema: 2.0.0
 
 # Get-EntraBetaGroupLifecyclePolicy
 
-## SYNOPSIS
+## Synopsis
 
 Retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID.
 If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -39,12 +39,12 @@ Get-EntraBetaGroupLifecyclePolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraBetaGroupLifecyclePolicy` command retrieves the properties and relationships of a groupLifecyclePolicies object in Microsoft Entra ID. Specify the `-Id` parameter to get the group lifecycle policy.
 If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve all groupLifecyclePolicies
 
@@ -52,7 +52,8 @@ If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 Connect-Entra -Scopes 'Directory.Read.All'
 Get-EntraBetaGroupLifecyclePolicy
 ```
-```output
+
+```Output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
 eeeeeeee-4444-5555-6666-ffffffffffff example@contoso.un          99                  Selected
@@ -68,7 +69,7 @@ Connect-Entra -Scopes 'Directory.Read.All'
 Get-EntraBetaGroupLifecyclePolicy -Id 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
 ```
 
-```output
+```Output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
 ffffffff-5555-6666-7777-aaaaaaaaaaaa admingroup@contoso.com      200                 All
@@ -76,7 +77,7 @@ ffffffff-5555-6666-7777-aaaaaaaaaaaa admingroup@contoso.com      200            
 
 This command is used to retrieve a specific Microsoft Group Lifecycle Policy. The Id parameter specifies the ID of the Lifecycle Policy to be retrieved.
 
-## PARAMETERS
+## Parameters
 
 ### -ID
 
@@ -98,19 +99,19 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related links
 
 [Set-EntraBetaGroupLifecyclePolicy](Set-EntraBetaGroupLifecyclePolicy.md)
 
