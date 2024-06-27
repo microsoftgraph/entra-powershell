@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraContract command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/16/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraContract
 
-## SYNOPSIS
+## Synopsis
 
 Gets a contract.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -42,7 +42,7 @@ Get-EntraContract
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraContract` cmdlet gets a contract information associated to a partner tenant.
 
@@ -77,7 +77,7 @@ It isn't automatically updated if the customer tenant's display name changes.
 
 - `ObjectId` - the unique identifier for the partnership.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all contracts
 
@@ -88,7 +88,7 @@ Get-EntraContract
 
 This command gets all contracts in the Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -159,10 +159,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

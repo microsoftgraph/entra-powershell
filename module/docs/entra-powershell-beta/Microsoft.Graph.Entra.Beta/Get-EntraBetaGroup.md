@@ -21,7 +21,7 @@ schema: 2.0.0
 
 Gets a group.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -55,7 +55,7 @@ Get-EntraBetaGroup
 
 The `Get-EntraBetaGroup` cmdlet gets a group in Microsoft Entra ID. Specify the `ObjectId` parameter to get a specific group.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all groups
 
@@ -144,7 +144,7 @@ new1                    bbbbbbbb-7777-8888-9999-cccccccccccc new1               
 
 This example demonstrates how to retrieve groups that include the text new in their display names from Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -231,13 +231,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraBetaGroup](New-EntraBetaGroup.md)
 

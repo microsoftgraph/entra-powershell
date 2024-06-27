@@ -4,7 +4,7 @@ description: This article provides details on the Add-EntraServicePrincipalOwner
 
 ms.service: entra
 ms.topic: reference
-ms.date: 06/02/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -16,11 +16,11 @@ schema: 2.0.0
 
 # Add-EntraServicePrincipalOwner
 
-## SYNOPSIS
+## Synopsis
 
 Adds an owner to a service principal.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraServicePrincipalOwner 
@@ -29,11 +29,11 @@ Add-EntraServicePrincipalOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Add-EntraServicePrincipalOwner cmdlet adds an owner to a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a user as an owner to a service principal
 
@@ -51,7 +51,7 @@ This example demonstrates how to add an owner to a service principal.
 - The second command gets the object ID a user by using the Get-EntraUser (./Get-EntraUser.md) cmdlet, and then stores it in the $OwnerId variable.
 - The final command adds the user specified by $OwnerId an owner to a service principal specified by $ServicePrincipalId.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -89,13 +89,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
 

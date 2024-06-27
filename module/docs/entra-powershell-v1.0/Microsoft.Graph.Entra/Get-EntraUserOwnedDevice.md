@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraUserOwnedDevice comma
 
 ms.service: entra
 ms.topic: reference
-ms.date: 02/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # Get-EntraUserOwnedDevice
 
-## SYNOPSIS
+## Synopsis
 
 Get registered devices owned by a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraUserOwnedDevice 
@@ -32,11 +32,11 @@ Get-EntraUserOwnedDevice
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraUserOwnedDevice cmdlet gets registered devices owned by the specified user in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get devices owned by a user
 
@@ -85,7 +85,7 @@ cccccccc-2222-3333-4444-dddddddddddd aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Device
 
 This command gets top one registered device owned by the specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -139,10 +139,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

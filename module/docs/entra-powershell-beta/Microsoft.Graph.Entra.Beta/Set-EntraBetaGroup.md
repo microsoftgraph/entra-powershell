@@ -7,33 +7,70 @@ schema: 2.0.0
 
 # Set-EntraBetaGroup
 
-## SYNOPSIS
-Updates a specific group in Azure Active Directory
+## Synopsis
+{{Fill in the Synopsis}}
 
-## SYNTAX
+## Syntax
 
 ```
-Set-EntraBetaGroup [-Description <String>] -ObjectId <String> [-MailEnabled <Boolean>]
- [-SecurityEnabled <Boolean>] [-MailNickName <String>] [-DisplayName <String>]
- [<CommonParameters>]
+Set-EntraBetaGroup [-GroupTypes <System.Collections.Generic.List`1[System.String]>] -Id <String>
+ [-DisplayName <String>] [-Description <String>] [-IsAssignableToRole <Boolean>] [-SecurityEnabled <Boolean>]
+ [-LabelId <String>] [-Visibility <String>] [-MailEnabled <Boolean>] [-MailNickname <String>]
+ [-MembershipRule <String>] [-MembershipRuleProcessingState <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Set-EntraBetaGroup cmdlet updates a group in Azure Active Directory (AD).
+## Description
+{{Fill in the Description}}
 
-## EXAMPLES
+## Examples
 
-### Example 1: Update a group
+### Example 1
 ```
-PS C:\>Set-EntraBetaGroup -ObjectId "11fa5e1e-737c-40c5-835e-416ae3959606" -Description "This is my new group"
+PS C:\> Set-EntraBetaGroup -Id "9126185e-25df-4522-a380-7ab697a7241c" -DisplayName "Dynamic Group 01" -Description "Group created from PS" -MailEnabled $False -MailNickname "group" -SecurityEnabled $True -GroupTypes "" -MembershipRule "" -MembershipRuleProcessingState ""
+
+Id                            : 9126185e-25df-4522-a380-7ab697a7241c
+Description                   : Dynamic group created from PS
+OnPremisesSyncEnabled         : 
+DisplayName                   : Dynamic Group 01
+OnPremisesLastSyncDateTime    : 
+Mail                          : 
+MailEnabled                   : False 
+MailNickname                  : group 
+OnPremisesSecurityIdentifier  : 
+ProxyAddresses                : {} 
+SecurityEnabled               : True 
+GroupTypes                    : {} 
+MembershipRule                : (user.department -eq "Marketing") MembershipRuleProcessingState : Paused
 ```
 
-This command updates the specfied group in Azure AD.
+Group updated.
 
-## PARAMETERS
+### Example 2
+```
+PS C:\> Set-EntraBetaGroup -Id "9126185e-25df-4522-a380-7ab697a7241c" -IsAssignableToRole $true
+        Bad Request.
+```
+
+IsassignableToRole property cannot be set for an existing group.
+
+### Example 3
+```
+PS C:\> Set-EntraBetaGroup -Id "11111111-1111-1111-1111-111111111111" -LabelId "00000000-0000-0000-0000-000000000000"
+```
+
+The label is assigned to the group.
+
+### Example 4
+```
+PS C:\> Set-EntraBetaGroup -Id "11111111-1111-1111-1111-111111111111" -LabelId ""
+```
+
+The label is removed from the group.
+
+## Parameters
 
 ### -Description
-Specfies a description.
+{{Fill Description Description}}
 
 ```yaml
 Type: String
@@ -48,7 +85,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-Specifies a display name.
+{{Fill DisplayName Description}}
 
 ```yaml
 Type: String
@@ -62,13 +99,11 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-
-
-### -MailEnabled
-Indicates whether mail is enabled.
+### -GroupTypes
+{{Fill GroupTypes Description}}
 
 ```yaml
-Type: Boolean
+Type: System.Collections.Generic.List`1[System.String]
 Parameter Sets: (All)
 Aliases:
 
@@ -79,23 +114,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -MailNickName
-Specifies a nickname for the mail.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ObjectId
-Specifies the object ID of a group.
+### -Id
+{{Fill Id Description}}
 
 ```yaml
 Type: String
@@ -109,8 +129,9 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -SecurityEnabled
-Indicates whether security is enabled.
+### -IsAssignableToRole
+Flag indicates whether Azure Active directory group can be assigned to a role.
+This flag cannot be set for an existing group.
 
 ```yaml
 Type: Boolean
@@ -124,20 +145,122 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -LabelId
+Specifies a comma separated list of label identifiers to assign to the group.
+
+Currently, only one label could be assigned to a group.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -MailEnabled
+{{Fill MailEnabled Description}}
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -MailNickname
+{{Fill MailNickname Description}}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -MembershipRule
+{{Fill MembershipRule Description}}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -MembershipRuleProcessingState
+{{Fill MembershipRuleProcessingState Description}}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SecurityEnabled
+{{Fill SecurityEnabled Description}}
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Visibility
+{{Fill Visibility Description}}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+### System.String
+## Outputs
 
-## NOTES
+### System.Object
+## Notes
 
 ## RELATED LINKS
-
-[Get-EntraBetaGroup]()
-
-[New-EntraBetaGroup]()
-
-[Remove-EntraBetaGroup]()
-

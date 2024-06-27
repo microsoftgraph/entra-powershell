@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraTrustedCertificateAut
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/06/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraTrustedCertificateAuthority
 
-## SYNOPSIS
+## Synopsis
 
 Gets the trusted certificate authority.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraTrustedCertificateAuthority 
@@ -30,11 +30,11 @@ Get-EntraTrustedCertificateAuthority
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraTrustedCertificateAuthority` cmdlet gets the trusted certificate authority in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the trusted certificate authorities that are defined in your directory
 
@@ -111,7 +111,7 @@ TrustedIssuerSki          : 4BA2D7AC2A5DF47C70E19E61EDFB4E62B3BF67FD
 
 This command retrieves the trusted certificate authorities that are defined in your directory based on TrustedIssuerSki.
 
-## PARAMETERS
+## Parameters
 
 ### -TrustedIssuer
 
@@ -149,13 +149,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraTrustedCertificateAuthority](New-EntraTrustedCertificateAuthority.md)
 

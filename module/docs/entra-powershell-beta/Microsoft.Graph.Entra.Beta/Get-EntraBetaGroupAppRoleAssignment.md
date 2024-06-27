@@ -21,7 +21,7 @@ schema: 2.0.0
 
 Gets a group application role assignment.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaGroupAppRoleAssignment 
@@ -35,7 +35,7 @@ Get-EntraBetaGroupAppRoleAssignment
 
 The `Get-EntraBetaGroupAppRoleAssignment` cmdlet gets a group application role assignment in Microsoft Entra ID. Specify the `ObjectId` parameter to get a group application role assignment.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve application role assignments of a group
 
@@ -91,7 +91,7 @@ MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 
 
 This command gets top two application role assignments of the specified group.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -145,13 +145,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaGroup](Get-EntraBetaGroup.md)
 

@@ -21,7 +21,7 @@ schema: 2.0.0
 
 Gets a user.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 

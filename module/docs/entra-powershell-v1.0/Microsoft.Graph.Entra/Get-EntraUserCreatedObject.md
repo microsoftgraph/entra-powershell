@@ -4,7 +4,7 @@ description: This article provides details on the  Get-EntraUserCreatedObject Co
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/27/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraUserCreatedObject
 
-## SYNOPSIS
+## Synopsis
 
 Get objects created by the user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraUserCreatedObject 
@@ -31,11 +31,11 @@ Get-EntraUserCreatedObject
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraUserCreatedObject cmdlet gets objects created by a user in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a user-created object
 
@@ -72,7 +72,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 
 This command gets top one object created by the specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -126,10 +126,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
