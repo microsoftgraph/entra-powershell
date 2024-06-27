@@ -37,7 +37,7 @@ Get-EntraBetaApplicationLogo
 
 The `Get-EntraBetaApplicationLogo` cmdlet retrieves the logo that is set for an application. Specify the `ObjectId` parameter to get a specific application logo for an application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get an application logo for an application by ID
 
