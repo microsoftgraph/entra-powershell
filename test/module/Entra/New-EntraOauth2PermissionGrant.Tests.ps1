@@ -31,16 +31,24 @@ Describe "New-EntraOauth2PermissionGrant" {
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when parameters are invalid" {
-            { New-EntraOauth2PermissionGrant -DisplayName "" -MailEnabled "" -SecurityEnabled "" -MailNickName  "" -Description "" } | Should -Throw "Cannot bind argument to parameter*"
+        It "Should fail when ClientId is invalid" {
+            { New-EntraOauth2PermissionGrant -ClientId "" } | Should -Throw "Cannot bind argument to parameter 'ClientId'*"
         }
-        It "Should fail when parameters are empty" {
-            { New-EntraOauth2PermissionGrant -DisplayName -MailEnabled -SecurityEnabled -MailNickName -Description } | Should -Throw "Missing an argument for parameter*"
+        It "Should fail when ClientId is empty" {
+            { New-EntraOauth2PermissionGrant -ClientId } | Should -Throw "Missing an argument for parameter 'ClientId'.*"
         }
-        It "Result should Contain ObjectId" {            
-            $result = New-EntraOauth2PermissionGrant -DisplayName "demo" -MailEnabled $false -SecurityEnabled $true -MailNickName "demoNickname" -Description "test"
-            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
-        } 
+        It "Should fail when ConsentType is invalid" {
+            { New-EntraOauth2PermissionGrant -ConsentType "" } | Should -Throw "Cannot bind argument to parameter 'ConsentType'*"
+        }
+        It "Should fail when ConsentType is empty" {
+            { New-EntraOauth2PermissionGrant -ConsentType } | Should -Throw "Missing an argument for parameter 'ConsentType'.*"
+        }
+        It "Should fail when ResourceId is invalid" {
+            { New-EntraOauth2PermissionGrant -ResourceId "" } | Should -Throw "Cannot bind argument to parameter 'ResourceId'*"
+        }
+        It "Should fail when ResourceId is empty" {
+            { New-EntraOauth2PermissionGrant -ResourceId } | Should -Throw "Missing an argument for parameter 'ResourceId'.*"
+        }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraOauth2PermissionGrant"
 

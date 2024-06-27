@@ -63,7 +63,7 @@ function New-EntraBetaOauth2PermissionGrant {
             $response = $response | ConvertTo-Json | ConvertFrom-Json
             $response | ForEach-Object {
                 if ($null -ne $_) {
-                    $userData = [Microsoft.Graph.PowerShell.Models.MicrosoftGraphOAuth2PermissionGrant]::new()
+                    $userData = [Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphOAuth2PermissionGrant]::new()
                     $_.PSObject.Properties | ForEach-Object {
                         $userData | Add-Member -MemberType NoteProperty -Name $_.Name -Value $_.Value -Force
                     }
