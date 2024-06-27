@@ -48,7 +48,7 @@ and would like to update to the latest version, run the following command in a P
 Update-Module -Name Microsoft.Graph.Entra -AllowPrerelease
 ```
 
-`Update-Module` installs the new version side-by-side with previous versions. It does not uninstall
+`Update-Module` installs the new version side-by-side with previous versions. It doesn't uninstall
 the previous versions.
 
 For more information on installing Microsoft Entra PowerShell, see the
@@ -139,7 +139,7 @@ You can use the `Test-EntraScript` command to test compatibility of an AzureAD P
 Test-EntraScript -Script .\export-apps-with-expiring-secrets.ps1
 ```
 
-If the script is compatible, you will not see any output, although you can use `$?` to display that True was returned. If the script isn't compatible, a warning with details of the issues is displayed. Example:
+If the script is compatible, you won't see any output, although you can use `$?` to display that True was returned. If the script isn't compatible, a warning with details of the issues is displayed. Example:
 
 ```powershell
 Test-EntraScript -Script .\export-apps-with-expiring-secrets.ps1
@@ -170,7 +170,7 @@ Fill out the issue template with the appropriate information. We value your feed
 
 For details on contributing to this repository, see the [contributing guide](CONTRIBUTING.md)
 
-## Telemetry
+## Data Collection
 
 Microsoft Entra PowerShell collects telemetry data by default. We collection information about the `Microsoft Entra PowerShell version` and the `cmdlet` executed. Microsoft aggregates collected data to identify patterns of usage to identify common issues and to improve the experience of Microsoft Entra PowerShell. Microsoft Entra PowerShell doesn't collect any private or personal data. For example, the usage data helps identify issues such as cmdlets with low success and helps prioritize our work.
 

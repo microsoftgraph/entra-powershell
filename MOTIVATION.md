@@ -13,11 +13,11 @@ author: msewaweru
 
 # Introduction
 
-We created the Microsoft Entra PowerShell module to simplify complex tasks, enhance usability, and boost productivity. Our motivation also comes from the collaborative nature of the PowerShell community. We believe that your contributions can help others, creating a shared ecosystem of knowledge and growth. We invite you to join us in this innovative journey.
+We created the Microsoft Entra PowerShell module to simplify complex tasks, enhance usability, and boost productivity. Our motivation also comes from the collaborative nature of the PowerShell community. We believe that your contributions can help others, creating a shared ecosystem of knowledge and growth. We invite you to join us in the innovative journey.
 
 ## Microsoft Graph PowerShell ❤️ Microsoft Entra PowerShell
 
-Microsoft Entra PowerShell is a part of our increased investment in Microsoft Graph PowerShell SDK. It brings high-quality and scenario-optimized Entra resource management to the Microsoft Graph PowerShell SDK. Still, it keeps all the benefits of Microsoft Graph PowerShell SDK for authorization, connection management, error handling, and (low-level) API coverage. As Microsoft Entra PowerShell builds on the Microsoft Graph PowerShell SDK, it is completely interoperable.
+Microsoft Entra PowerShell is a part of our increased investment in Microsoft Graph PowerShell SDK. It brings high-quality and scenario-optimized Entra resource management to the Microsoft Graph PowerShell SDK. Still, it keeps all the benefits of Microsoft Graph PowerShell SDK for authorization, connection management, error handling, and (low-level) API coverage. As Microsoft Entra PowerShell builds on the Microsoft Graph PowerShell SDK, it's interoperable.
 
 ## Benefits of Microsoft Entra PowerShell
 
@@ -43,7 +43,7 @@ Here's a guide outlining the two modules. They target different levels of usabil
 
 ### Putting you in the driver's seat
 
-With this repository being public, you can examine the Microsoft Entra PowerShell commands to view any custom logic, the underlying Microsoft Graph SDK, or APIs. This gives you the flexibility to customize the commands further if needed. We highly encourage you and the community to provide feedback on scenarios and use cases to help us improve the Microsoft Entra module. For example, you can suggest new parameter sets, new commands, documentation improvements, or new logic to assist others on a larger scale.
+With the repository being public, you can examine the Microsoft Entra PowerShell commands to view any custom logic, the underlying Microsoft Graph SDK, or APIs. It gives you the flexibility to customize the commands further if needed. We highly encourage you and the community to provide feedback on scenarios and use cases to help us improve the Microsoft Entra module. For example, you can suggest new parameter sets, new commands, documentation improvements, or new logic to assist others on a larger scale.
 
 ### Accelerating migration from legacy modules
 
