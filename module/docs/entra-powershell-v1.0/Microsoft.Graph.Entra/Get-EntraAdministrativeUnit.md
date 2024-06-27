@@ -37,8 +37,7 @@ Get-EntraAdministrativeUnit
 
 ```powershell
 Get-EntraAdministrativeUnit 
- -Id <String> 
- [-All] 
+ -Id <String>
  [<CommonParameters>]
 ```
 
