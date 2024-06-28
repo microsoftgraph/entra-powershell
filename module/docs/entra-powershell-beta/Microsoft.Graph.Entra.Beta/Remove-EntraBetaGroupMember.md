@@ -17,7 +17,7 @@ schema: 2.0.0
 
 # Remove-EntraBetaGroupMember
 
-## SYNOPSIS
+## Synopsis
 
 Removes a member from a group.
 
@@ -30,7 +30,8 @@ Remove-EntraBetaGroupMember
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
+
 The `Remove-EntraBetaGroupMember` cmdlet removes a member from a group in Microsoft Entra ID. Specify the `ObjectId` and `MemberId` parameters to remove a member from a group.
 
 ## Examples
@@ -44,7 +45,7 @@ Remove-EntraBetaGroupMember -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq' -Me
 
 This example demonstrates how to remove a member from a group in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -MemberId
 
@@ -93,4 +94,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Add-EntraBetaGroupMember](Add-EntraBetaGroupMember.md)
 
 [Get-EntraBetaGroupMember](Get-EntraBetaGroupMember.md)
-

@@ -17,7 +17,7 @@ schema: 2.0.0
 
 # Remove-EntraBetaUserManager
 
-## SYNOPSIS
+## Synopsis
 
 Removes a user's manager.
 
@@ -29,10 +29,9 @@ Remove-EntraBetaUserManager
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Remove-EntraBetaUserManager` cmdlet removes a user's manager in Microsoft Entra ID. Specify the `ObjectId` parameter to remove the manager for a user in Microsoft Entra ID.
-
 
 ## Examples
 
@@ -48,7 +47,7 @@ The first command gets a user by using the [Get-EntraBetaUser](./Get-EntraBetaUs
 
 The second command removes the user in $User.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -70,13 +69,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related links
 
 [Get-EntraBetaUserManager](Get-EntraBetaUserManager.md)
 

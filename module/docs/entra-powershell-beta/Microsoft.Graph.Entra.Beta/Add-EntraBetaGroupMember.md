@@ -17,7 +17,7 @@ schema: 2.0.0
 
 # Add-EntraBetaGroupMember
 
-## SYNOPSIS
+## Synopsis
 
 Add a member to a group.
 
@@ -30,7 +30,7 @@ Add-EntraBetaGroupMember
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Add-EntraBetaGroupMember` cmdlet adds a member to a group. Specify the `ObjectId` and `RefObjectId` parameters to add a member to a group.
 

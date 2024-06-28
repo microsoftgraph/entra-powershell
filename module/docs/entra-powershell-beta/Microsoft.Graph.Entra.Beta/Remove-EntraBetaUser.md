@@ -17,7 +17,7 @@ schema: 2.0.0
 
 # Remove-EntraBetaUser
 
-## SYNOPSIS
+## Synopsis
 
 Removes a user.
 
@@ -29,7 +29,7 @@ Remove-EntraBetaUser
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Remove-EntraBetaUser` cmdlet removes a user in Microsoft Entra ID. Specify the `ObjectId` parameter to remove the specified user in Microsoft Entra ID.
 
@@ -79,4 +79,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [New-EntraBetaUser](New-EntraBetaUser.md)
 
 [Set-EntraBetaUser](Set-EntraBetaUser.md)
-

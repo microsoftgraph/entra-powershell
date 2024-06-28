@@ -17,7 +17,7 @@ schema: 2.0.0
 
 # New-EntraBetaGroup
 
-## SYNOPSIS
+## Synopsis
 
 Creates a Microsoft Entra ID  group.
 
@@ -38,7 +38,7 @@ New-EntraBetaGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `New-EntraBetaGroup` cmdlet creates a Microsoft Entra ID group. Specify the `DisplayName`, `MailNickname`, `MailEnabled` and `SecurityEnabled` parameters for creating a Microsoft Entra ID group.
 
@@ -60,7 +60,7 @@ Connect-Entra -Scopes 'Group.Create' #Application permission
 New-EntraBetaGroup -DisplayName 'HelpDesk admin group2' -MailEnabled $False -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $True
 ```
 
-```output
+```Output
 DisplayName           Id                                   MailNickname       Description GroupTypes
 -----------           --                                   ------------       ----------- ----------
 HelpDesk admin group2 bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq helpDeskAdminGroup             {}
@@ -76,7 +76,7 @@ Connect-Entra -Scopes 'Group.Create' #Application permission
 New-EntraBetaGroup -DisplayName 'HelpDesk admin group' -MailEnabled $false -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $true  -Description 'Group assignable to role'
 ```
 
-```output
+```Output
 
 DisplayName          Id                                   MailNickname       Description              GroupTypes
 -----------          --                                   ------------       -----------              ----------
@@ -94,7 +94,7 @@ Connect-Entra -Scopes 'Group.Create' #Application permission
 New-EntraBetaGroup -DisplayName 'HelpDesk admin group2' -Description 'Group assignable to role' -MailEnabled $False -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $True -IsAssignableToRole $True 
 ```
 
-```output
+```Output
 DisplayName           Id                                   MailNickname       Description              GroupTypes
 -----------           --                                   ------------       -----------              ----------
 HelpDesk admin group2 vvvvvvvv-8888-9999-0000-jjjjjjjjjjjj helpDeskAdminGroup Group assignable to role {}
@@ -110,7 +110,7 @@ Connect-Entra -Scopes 'Group.Create' #Application Permission
 New-EntraBetaGroup -DisplayName 'HelpDesk admin group2' -Description 'Group assignable to role' -MailEnabled $False -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $True -Visibility 'Private'
 ```
 
-```output
+```Output
 DisplayName           Id                                   MailNickname       Description              GroupTypes
 -----------           --                                   ------------       -----------              ----------
 HelpDesk admin group2 gggggggg-0000-4444-3333-llllllllllll helpDeskAdminGroup Group assignable to role {}
@@ -126,7 +126,7 @@ Connect-Entra -Scopes 'Group.Create' #Application permission
 New-EntraBetaGroup -DisplayName 'HelpDesk admin group3' -Description 'group des' -MailEnabled $False -MailNickname 'helpDeskAdminGroup1' -SecurityEnabled $True -GroupTypes 'Unified'
 ```
 
-```output
+```Output
 DisplayName           Id                                   MailNickname        Description GroupTypes
 -----------           --                                   ------------        ----------- ----------
 HelpDesk admin group3 xxxxxxxx-8888-5555-9999-bbbbbbbbbbbb helpDeskAdminGroup1 group des   {Unified}
@@ -142,7 +142,7 @@ Connect-Entra -Scopes 'Group.Create' #Application permission
 New-EntraBetaGroup -DisplayName 'HelpDesk admin group2'  -MailEnabled $False -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $True  -MembershipRuleProcessingState 'On'
 ```
 
-```output
+```Output
 DisplayName           Id                                   MailNickname       Description GroupTypes
 -----------           --                                   ------------       ----------- ----------
 HelpDesk admin group2 xxxxxxxx-8888-5555-9999-bbbbbbbbbbbb helpDeskAdminGroup             {}
@@ -158,7 +158,7 @@ Connect-Entra -Scopes 'Group.Create' #Application permission
 New-EntraBetaGroup -DisplayName 'HelpDesk admin group2'  -MailEnabled $False -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $True -MembershipRule '(user.department -contains "Marketing")' -MembershipRuleProcessingState 'On'
 ```
 
-```output
+```Output
 DisplayName           Id                                   MailNickname       Description GroupTypes
 -----------           --                                   ------------       ----------- ----------
 HelpDesk admin group2 xxxxxxxx-8888-5555-9999-bbbbbbbbbbbb helpDeskAdminGroup             {}
@@ -210,9 +210,9 @@ Accept wildcard characters: False
 
 ### -GroupTypes
 
-Specifies that the group is a unified or dynamic group. 
+Specifies that the group is a unified or dynamic group.
 
-Notes: 
+Notes:
 
 - This parameter currently can't be used to create dynamic groups. To create a dynamic group in PowerShell, you must use the Entra module.
 
@@ -369,21 +369,21 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### None
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
 This cmdlet is currently in Public Preview.
 While a cmdlet is in Public Preview, we may make changes to the cmdlet, which could have unexpected effects.
 We recommend that you don't use this cmdlet in a production environment.
 
-## RELATED LINKS
+## Related links
 
 [Get-EntraBetaGroup](Get-EntraBetaGroup.md)
 

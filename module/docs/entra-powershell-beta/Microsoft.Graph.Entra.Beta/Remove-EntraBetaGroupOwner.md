@@ -17,7 +17,7 @@ schema: 2.0.0
 
 # Remove-EntraBetaGroupOwner
 
-## SYNOPSIS
+## Synopsis
 
 Removes an owner from a group.
 
@@ -30,7 +30,7 @@ Remove-EntraBetaGroupOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Remove-EntraBetaGroupOwner` cmdlet removes an owner from a group in Microsoft Entra ID. Specify the `ObjectId` and `OwnerId` parameters to remove an owner from a group.
 
@@ -45,7 +45,7 @@ Remove-EntraBetaGroupOwner -ObjectId 'qqqqqqqq-5555-0000-1111-hhhhhhhhhhhh' -Own
 
 This example demonstrates how to remove an owner from a group in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -83,13 +83,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related links
 
 [Add-EntraBetaGroupOwner](Add-EntraBetaGroupOwner.md)
 

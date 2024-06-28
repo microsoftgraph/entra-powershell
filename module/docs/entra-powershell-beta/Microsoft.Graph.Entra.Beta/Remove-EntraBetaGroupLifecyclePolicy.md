@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Remove-EntraBetaGroupLifecyclePolicy
 
-## SYNOPSIS
+## Synopsis
 
 Deletes a groupLifecyclePolicies object
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraBetaGroupLifecyclePolicy 
@@ -29,11 +29,11 @@ Remove-EntraBetaGroupLifecyclePolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Remove-EntraBetaGroupLifecyclePolicy` command deletes a groupLifecyclePolicies object in Microsoft Entra ID. Specify `Id` parameter deletes the groupLifecyclePolicies object.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a groupLifecyclePolicies.
 
@@ -66,17 +66,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related links
 
 [Get-EntraBetaGroupLifecyclePolicy](Get-EntraBetaGroupLifecyclePolicy.md)
 

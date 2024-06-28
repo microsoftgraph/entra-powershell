@@ -17,7 +17,7 @@ schema: 2.0.0
 
 # Set-EntraBetaUser
 
-## SYNOPSIS
+## Synopsis
 
 Updates a user.
 
@@ -58,7 +58,7 @@ Set-EntraBetaUser
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Set-EntraBetaUser` cmdlet updates a user in Microsoft Entra ID. Specify the `ObjectId` parameter to update a user in Microsoft Entra ID.
 
@@ -116,7 +116,7 @@ Set-EntraBetaUser -ObjectId 'aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb' -PasswordProf
 
 This example updates the specified user's PasswordProfile parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -AccountEnabled
 
@@ -605,13 +605,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related links
 
 [Get-EntraBetaUser](Get-EntraBetaUser.md)
 

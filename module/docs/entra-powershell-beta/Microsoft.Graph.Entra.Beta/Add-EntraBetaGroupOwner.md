@@ -17,7 +17,7 @@ schema: 2.0.0
 
 # Add-EntraBetaGroupOwner
 
-## SYNOPSIS
+## Synopsis
 
 Adds an owner to a group.
 
@@ -30,7 +30,7 @@ Add-EntraBetaGroupOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Add-EntraBetaGroupOwner` cmdlet adds an owner to a Microsoft Entra ID group. Specify the `ObjectId` and `RefObjectId` parameters to add an owner to a group.
 
@@ -45,7 +45,7 @@ Add-EntraBetaGroupOwner -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq' -RefObj
 
 This example demonstrates how to add an owner to a group.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -94,4 +94,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Get-EntraBetaGroupOwner](Get-EntraBetaGroupOwner.md)
 
 [Remove-EntraBetaGroupOwner](Remove-EntraBetaGroupOwner.md)
-
