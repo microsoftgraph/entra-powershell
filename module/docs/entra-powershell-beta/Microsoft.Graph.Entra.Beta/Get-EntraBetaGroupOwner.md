@@ -85,7 +85,7 @@ eeeeeeee-4444-5555-6666-ffffffffffff
 
 This example demonstrates how to retrieve the top two owners of a specific group. 
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -145,7 +145,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related links
+## Related Links
 
 [Add-EntraBetaGroupOwner](Add-EntraBetaGroupOwner.md)
 

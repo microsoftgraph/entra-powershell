@@ -160,7 +160,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
 This example demonstrates how to retrieve devices by search string from Microsoft Entra ID.  
 This command gets all devices that match the value of SearchString against the first characters in DisplayName.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -253,7 +253,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related links
+## Related Links
 
 [New-EntraBetaDevice](New-EntraBetaDevice.md)
 

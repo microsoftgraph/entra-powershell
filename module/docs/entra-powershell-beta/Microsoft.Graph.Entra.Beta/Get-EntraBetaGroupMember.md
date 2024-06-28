@@ -22,6 +22,7 @@ schema: 2.0.0
 Gets a member of a group.
 
 ## Syntax
+
 ```powershell
 Get-EntraBetaGroupMember 
  -ObjectId <String> 
@@ -146,7 +147,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related links
+## Related Links
 
 [Add-EntraBetaGroupMember](Add-EntraBetaGroupMember.md)
 
