@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraApplicationOwner comm
 
 ms.service: entra
 ms.topic: reference
-ms.date: 06/04/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraApplicationOwner
 
-## SYNOPSIS
+## Synopsis
 
 Gets the owner of an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraApplicationOwner 
@@ -31,11 +31,11 @@ Get-EntraApplicationOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraApplicationOwner` cmdlet gets an owner of a Microsoft Entra application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the owner of an application
 
@@ -106,7 +106,7 @@ onPremisesUserPrincipalName     :
 
 This example demonstrates how to get the two owners of a specified application in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -160,13 +160,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraApplicationOwner](Add-EntraApplicationOwner.md)
 

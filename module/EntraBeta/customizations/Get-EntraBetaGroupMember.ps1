@@ -70,7 +70,11 @@
         if($null -ne $PSBoundParameters["WarningAction"])
         {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }       
+        }
+        if($null -ne $PSBoundParameters["Property"])
+        {
+            $params["Property"] = $PSBoundParameters["Property"]
+        }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug

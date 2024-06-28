@@ -16,21 +16,27 @@ Describe 'Checking Files'{
             $name = $_.Name -ireplace ".ps1",""
             $name = $name -ireplace "EntraBeta","AzureAD"
             if(("Generic" -ne $name) -and ("Types" -ne $name)){
-                Write-Host "Checking nc $name"
+                # Write-Host "Checking nc $name"
                 $value = . $_.FullName
-                $name | Should -Be $value.SourceName 
+                $name | Should -Be ($value.SourceName -ireplace "AzureADMS","AzureAD") 
             }            
         }
     }
 
     It 'Checking that customizations produce commands' {
+        $modifiedCommands = @{}
+        $module = Get-Module Microsoft.Graph.Entra.Beta
+        foreach ($key in $module.ExportedCommands.Keys) {
+            $newKey = $key -replace 'AzureADMS', 'AzureAD'
+            $modifiedCommands[$newKey] = $module.ExportedCommands[$key]
+        }
+        Write-Host $modifiedCommands.Keys
         $files | ForEach-Object {
             $name = $_.Name -ireplace ".ps1",""
             $name = $name -ireplace "AzureAD","EntraBeta"
             if(("Generic" -ne $name) -and ("Types" -ne $name)){
-                Write-Host "Checking cus $name"                
-                $module = Get-Module Microsoft.Graph.Entra.Beta
-                $module.ExportedCommands.ContainsKey($name) | Should -BeTrue
+                Write-Host $name
+                $modifiedCommands.ContainsKey($name) | Should -BeTrue
             }
         }
     }

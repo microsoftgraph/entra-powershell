@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Remove-EntraBetaApplicationPolicy
 
-## SYNOPSIS
+## Synopsis
 Removes an application policy.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaApplicationPolicy -Id <String> -PolicyId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaApplicationPolicy cmdlet removes an application policy from Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove an application policy
 ```
@@ -28,7 +28,7 @@ PS C:\>Remove-EntraBetaApplicationPolicy -ObjectId <object id of application> -P
 
 This command removes the specified application policy.
 
-## PARAMETERS
+## Parameters
 
 
 
@@ -65,13 +65,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraBetaApplicationPolicy]()
 
