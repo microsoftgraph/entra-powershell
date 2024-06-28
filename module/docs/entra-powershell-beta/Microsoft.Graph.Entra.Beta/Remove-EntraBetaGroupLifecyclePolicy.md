@@ -35,7 +35,7 @@ The `Remove-EntraBetaGroupLifecyclePolicy` command deletes a groupLifecyclePolic
 
 ## Examples
 
-### Example 1: Remove a groupLifecyclePolicies.
+### Example 1: Remove a groupLifecyclePolicies
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
@@ -44,7 +44,7 @@ Remove-EntraBetaGroupLifecyclePolicy -Id '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
 
 This example demonstrates how to delete the groupLifecyclePolicies object that has the specified ID.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
