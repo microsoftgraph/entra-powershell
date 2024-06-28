@@ -113,6 +113,6 @@ System.IO.Stream System.Byte\[\]
 
 ## Notes
 
-## Related links
+## Related Links
 
 [Get-EntraBetaApplicationLogo](Get-EntraBetaApplicationLogo.md)

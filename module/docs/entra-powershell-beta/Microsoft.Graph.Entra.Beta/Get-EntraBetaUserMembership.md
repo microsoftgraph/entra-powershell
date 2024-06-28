@@ -42,7 +42,7 @@ The `Get-EntraBetaUserMembership` cmdlet gets user memberships in Microsoft Entr
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserMembership  -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+Get-EntraBetaUserMembership  -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -64,7 +64,7 @@ This command gets the memberships for the specified user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserMembership  -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
+Get-EntraBetaUserMembership  -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
 ```
 
 ```Output
@@ -86,7 +86,7 @@ This command gets the all memberships for the specified user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserMembership  -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 3
+Get-EntraBetaUserMembership  -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 3
 ```
 
 ```Output
@@ -161,4 +161,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-## Related links
+## Related Links
