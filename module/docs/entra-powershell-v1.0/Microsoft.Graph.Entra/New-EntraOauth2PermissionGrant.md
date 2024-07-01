@@ -42,6 +42,7 @@ The `New-EntraOauth2PermissionGrant` cmdlet Create a delegated permission grant 
 ### Example 1: To grant authorization to impersonate all users
 
 ```powershell
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
 New-EntraOauth2PermissionGrant -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444' -ConsentType 'AllPrincipals' -ResourceId 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1' -Scope 'DelegatedPermissionGrant.ReadWrite.All'
 ```
 
@@ -57,6 +58,7 @@ This command Grant authorization to impersonate all users.
 ### Example 2: To grant authorization to impersonate a specific user
 
 ```powershell
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
 New-EntraOauth2PermissionGrant -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444' -ConsentType 'Principal' -PrincipalId 'aaaaaaaa-bbbb-cccc-1111-222222222222' -ResourceId 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1' -Scope 'DelegatedPermissionGrant.ReadWrite.All' 
 ```
 
