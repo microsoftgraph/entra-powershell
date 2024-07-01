@@ -24,11 +24,7 @@ syntax of Microsoft Entra API permissions used to authorize access to the API. T
 following questions:  - How do I find the values to supply to the permission-related parameters of commands like
 New-EntraApplication and other application and consent related commands? - What permissions are applicable to a
 certain domain, for example, application, directory? To use Microsoft Entra PowerShell SDK to access Microsoft
-Entra ID, users must sign in to a Microsoft Entra ID application using the Connect-Entra command. Use the
-Find-EntraCommand to find which permissions to use for a specific cmdlet or API.-  Currently PowerShell commands
-and scripts, including those implemented with Microsoft Entra PowerShell SDK itself, have no way of validating
-user input that refers to permissions or providing "auto-complete" user experiences to help users accurately
-supply input to commands
+Entra ID, users must sign in to a Microsoft Entra ID application using the Connect-Entra command. 
 
 ## Syntax
 
@@ -52,11 +48,7 @@ syntax of Microsoft Entra API permissions used to authorize access to the API. T
 following questions:  - How do I find the values to supply to the permission-related parameters of commands like
 New-EntraApplication and other application and consent related commands? - What permissions are applicable to a
 certain domain, for example, application, directory? To use Microsoft Entra PowerShell SDK to access Microsoft
-Entra ID, users must sign in to a Microsoft Entra ID application using the Connect-Entra command. Use the
-Find-EntraCommand to find which permissions to use for a specific cmdlet or API.-  Currently PowerShell commands
-and scripts, including those implemented with Microsoft Entra PowerShell SDK itself, have no way of validating
-user input that refers to permissions or providing "auto-complete" user experiences to help users accurately
-supply input to commands
+Entra ID, users must sign in to a Microsoft Entra ID application using the Connect-Entra command. 
 
 ## Examples
 
