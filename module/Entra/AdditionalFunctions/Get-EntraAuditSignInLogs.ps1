@@ -113,19 +113,6 @@ function Get-EntraAuditSignInLogs {
             }
         } catch {}        
 
-        # $logList = @()
-        # foreach ($response in $data) {
-        #     $logType = New-Object Microsoft.Open.MSGraph.Model.MicrosoftGraphSignIn
-        #     $response.PSObject.Properties | ForEach-Object {
-        #         $propertyName = $_.Name
-        #         $propertyValue = $_.Value
-        #         $logType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force                
-        #     }
-        #     $logList += $logType
-        # }
-        # $logList
-
-        $data
-        
+       $data
     }      
 }
