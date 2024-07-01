@@ -1,4 +1,15 @@
 ---
+title: Remove-EntraBetaServicePrincipalPolicy.
+description: This article provides details on the Remove-EntraBetaServicePrincipalPolicy command.
+
+ms.service: entra
+ms.topic: reference
+ms.date: 07/01/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -9,32 +20,40 @@ schema: 2.0.0
 
 ## Synopsis
 
+Delete a servicePrincipal policy.
+
 ## Syntax
 
-```
-Remove-EntraBetaServicePrincipalPolicy -Id <String> -PolicyId <String> [<CommonParameters>]
+```powershell
+Remove-EntraBetaServicePrincipalPolicy 
+ -Id <String> 
+ -PolicyId <String> 
+ [<CommonParameters>]
 ```
 
 ## Description
 
+Delete a servicePrincipal policy. Specify the `Id` and `PolicyId` parameter to remove a specific servicePrincipal policy.
+
 ## Examples
 
 ### Example 1: Remove a service principal policy
-```
-PS C:\>Remove-EntraBetaApplicationPolicy -ObjectId <object id of application> -PolicyId <object id of policy>
+
+```powershell
+Connect-Entra -Scopes Policy.Read.All, Application.ReadWrite.All
+Remove-EntraBetaServicePrincipalPolicy -Id 'bbbbbbbb-1111-1111-1111-cccccccccccc' -PolicyId 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
 ```
 
-This command removes a service principal policy.
+This command removes a specific servicePrincipal policy in Microsoft Entra ID.
 
 ## Parameters
 
-
-
 ### -PolicyId
+
 Specifies the object ID of a policy.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -46,10 +65,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+
+Specifies the object Id of the Service Principal.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -61,7 +81,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -71,7 +92,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Add-EntraBetaServicePrincipalPolicy]()
+[Add-EntraBetaServicePrincipalPolicy](Add-EntraBetaServicePrincipalPolicy.md)
 
-[Get-EntraBetaServicePrincipalPolicy]()
-
+[Get-EntraBetaServicePrincipalPolicy](Get-EntraBetaServicePrincipalPolicy.md)

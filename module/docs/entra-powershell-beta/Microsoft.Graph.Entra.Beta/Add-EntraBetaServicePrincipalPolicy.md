@@ -1,4 +1,15 @@
 ---
+title: Add-EntraBetaServicePrincipalPolicy.
+description: This article provides details on the Add-EntraBetaServicePrincipalPolicy command.
+
+ms.service: entra
+ms.topic: reference
+ms.date: 07/01/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,33 +19,41 @@ schema: 2.0.0
 # Add-EntraBetaServicePrincipalPolicy
 
 ## Synopsis
-Adds a service principal policy.
+
+Adds a servicePrincipal policy.
 
 ## Syntax
 
-```
-Add-EntraBetaServicePrincipalPolicy -Id <String> -RefObjectId <String> [<CommonParameters>]
+```powershell
+Add-EntraBetaServicePrincipalPolicy 
+ -Id <String> 
+ -RefObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## Description
-The Add-EntraBetaServicePrincipalPolicy cmdlet adds a service principal policy.
+
+The `Add-EntraBetaServicePrincipalPolicy` cmdlet adds a service principal policy. Specify the `Id` and `PolicyId` parameter to add a specific servicePrincipal policy.
 
 ## Examples
 
 ### Example 1: Add a service principal policy
+
+```powershell
+Connect-Entra -Scopes Policy.Read.All, Application.ReadWrite.All
+Add-EntraBetaServicePrincipalPolicy -Id 'bbbbbbbb-1111-1111-1111-cccccccccccc' -RefObjectId 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
 ```
-PS C:\>Add-EntraBetaServicePrincipalPolicy -Id <object id of service principal> -RefObjectId <object id of policy>
-```
+
+This example demonstrates how to add a policy to a service principal in Microsoft Entra ID.
 
 ## Parameters
 
-
-
 ### -RefObjectId
+
 Specifies the object Id of the policy.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -46,10 +65,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
+
 The ID of the Service Principal for which you need to set the policy
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -61,7 +81,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -71,7 +92,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaServicePrincipalPolicy]()
+[Get-EntraBetaServicePrincipalPolicy](Get-EntraBetaServicePrincipalPolicy.md)
 
-[Remove-EntraBetaServicePrincipalPolicy]()
-
+[Remove-EntraBetaServicePrincipalPolicy](Remove-EntraBetaServicePrincipalPolicy.md)
