@@ -8,10 +8,10 @@ function Remove-EntraPolicy {
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $array = ("activityBasedTimeoutPolicies",	"defaultAppManagementPolicy",	"appManagementPolicies",	"authenticationFlowsPolicy",	"authenticationMethodsPolicy",	"claimsMappingPolicies",	"featureRolloutPolicies",	"homeRealmDiscoveryPolicies",	"permissionGrantPolicies",	"tokenIssuancePolicies",	"tokenLifetimePolicies")
+        $policyTypes = "activityBasedTimeoutPolicies", "defaultAppManagementPolicy", "appManagementPolicies", "authenticationFlowsPolicy", "authenticationMethodsPolicy", "claimsMappingPolicies", "featureRolloutPolicies", "homeRealmDiscoveryPolicies", "permissionGrantPolicies", "tokenIssuancePolicies", "tokenLifetimePolicies"
     
-        foreach ($a in $array) {
-            $uri = "https://graph.microsoft.com/v1.0/policies/" + $a + "/" + $id
+        foreach ($policyType in $policyTypes) {
+            $uri = "https://graph.microsoft.com/v1.0/policies/" + $policyType + "/" + $id
             try {
                 $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method GET
                 break
@@ -20,14 +20,14 @@ function Remove-EntraPolicy {
         }
         $policy = ($response.'@odata.context') -match 'policies/([^/]+)/\$entity'
     
-        $type = $Matches[1]
+        $policyType = $Matches[1]
 
         Write-Debug("============================ Matches ============================")
 
         Write-Debug($Matches[1])
 
-        if (($null -ne $PSBoundParameters["id"]) -and ($null -ne $type )) {
-            $URI = "https://graph.microsoft.com/v1.0/policies/" + $type + "/" + $id
+        if (($null -ne $PSBoundParameters["id"]) -and ($null -ne $policyType )) {
+            $URI = "https://graph.microsoft.com/v1.0/policies/" + $policyType + "/" + $id
         }
         $Method = "DELETE"
         if ($PSBoundParameters.ContainsKey("Debug")) {
