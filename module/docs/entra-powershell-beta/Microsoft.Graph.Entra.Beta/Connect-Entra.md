@@ -235,7 +235,7 @@ Uses an automatically managed identity on a service instance. The identity is ti
 ### Example 10: App-only access: Using managed identity: User-assigned managed identity
 
 ```powershell
-Connect-Entra -Identity -ClientId 'User_Assigned_Managed_identity_Client_Id'
+Connect-Entra -Identity -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444'
 ```
 
 Uses a user created managed identity as a standalone Azure resource.
