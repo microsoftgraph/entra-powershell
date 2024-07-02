@@ -42,7 +42,7 @@ New-EntraBetaGroup
 
 The `New-EntraBetaGroup` cmdlet creates a Microsoft Entra ID group. Specify the `DisplayName`, `MailNickname`, `MailEnabled` and `SecurityEnabled` parameters for creating a Microsoft Entra ID group.
 
-For information about creating dynamic groups, see: [Using attributes to create advanced rules](https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership).
+For information about creating dynamic groups, see: [Using attributes to create advanced rules](https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership).
 
 **Notes on permissions:**
 
@@ -283,7 +283,7 @@ Accept wildcard characters: False
 
 Specifies the membership rule for a dynamic group.
 
-For more information about the rules that you can use for dynamic groups, see Using attributes to create advanced rules (https://azure.microsoft.com/en-us/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/).
+For more information about the rules that you can use for dynamic groups, see Using attributes to create advanced rules (https://azure.microsoft.com/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/).
 
 ```yaml
 Type: System.String
@@ -391,4 +391,4 @@ We recommend that you don't use this cmdlet in a production environment.
 
 [Set-EntraBetaGroup](Set-EntraBetaGroup.md)
 
-[Using attributes to create advanced rules](https://azure.microsoft.com/en-us/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/)
+[Using attributes to create advanced rules](https://azure.microsoft.com/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/)
