@@ -123,7 +123,7 @@ Accept wildcard characters: False
 
 ### -DisplayName
 
-String of the policy name
+String of the policy name.
 
 ```yaml
 Type: System.String
@@ -139,7 +139,7 @@ Accept wildcard characters: False
 
 ### -IsOrganizationDefault
 
-True if this policy is the organizational default
+True if this policy is the organizational default.
 
 ```yaml
 Type: System.Boolean

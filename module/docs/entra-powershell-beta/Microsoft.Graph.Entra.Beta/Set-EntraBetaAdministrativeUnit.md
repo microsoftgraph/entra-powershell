@@ -41,7 +41,7 @@ The `Set-EntraBetaAdministrativeUnit` cmdlet updates an administrative unit in M
 
 ## Examples
 
-### Example 1: Update DisplayNAme
+### Example 1: Update DisplayName
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
