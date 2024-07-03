@@ -1,15 +1,15 @@
 function New-EntraOauth2PermissionGrant {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $ClientId,
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters",Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [System.String] $ConsentType,
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+        [Parameter()]
         [System.String] $PrincipalId,
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters",Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [System.String] $ResourceId,
-        [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+        [Parameter()]
         [System.String] $Scope
     )
 
