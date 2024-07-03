@@ -159,7 +159,7 @@ Accept wildcard characters: False
 Specifies an oData v3.0 filter statement.
 This parameter filters which objects are returned.
 
-For more information about oData v3.0 filter expressions, see https://msdn.microsoft.com/en-us/library/hh169248%28v=nav.90%29.aspx
+For more information about oData v3.0 filter expressions, see https://msdn.microsoft.com/library/hh169248%28v=nav.90%29.aspx
 
 ```yaml
 Type: System.String
