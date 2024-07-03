@@ -32,7 +32,7 @@ Get-EntraBetaUserManager
 
 ## Description
 
-The `Get-EntraBetaUserManager` cmdlet gets the manager of a user in Microsoft Entra ID. Specify `ObjectId` parameter to get specific user manager.
+The `Get-EntraBetaUserManager` cmdlet gets the manager of a user in Microsoft Entra ID.
 
 ## Examples
 
@@ -57,9 +57,7 @@ department                      : Sales & Marketing
 displayName                     : Miriam Graham
 ```
 
-This example demonstrates how to retrieve the manager of a specific user.  
-
-This command gets the manager of a specified user.
+This example demonstrates how to retrieve the manager of a specific user.
 
 ## Parameters
 

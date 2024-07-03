@@ -34,7 +34,7 @@ Get-EntraBetaUserMembership
 
 ## Description
 
-The `Get-EntraBetaUserMembership` cmdlet gets user memberships in Microsoft Entra ID. Specify `ObjectId` parameter to get specific user membership.
+The `Get-EntraBetaUserMembership` cmdlet gets user memberships in Microsoft Entra ID.
 
 ## Examples
 
@@ -56,9 +56,7 @@ Id                                   DeletedDateTime
 55ff55ff-aa66-bb77-cc88-99dd99dd99dd
 ```
 
-This example demonstrates how to retrieve user memberships in Microsoft Entra ID.  
-
-This command gets the memberships for the specified user.
+This example demonstrates how to retrieve user memberships in Microsoft Entra ID.
 
 ### Example 2: Get All memberships
 
@@ -78,9 +76,7 @@ Id                                   DeletedDateTime
 55ff55ff-aa66-bb77-cc88-99dd99dd99dd
 ```
 
-This example demonstrates how to retrieve users all memberships in Microsoft Entra ID.  
-
-This command gets the all memberships for the specified user.
+This example demonstrates how to retrieve users all memberships in Microsoft Entra ID.
 
 ### Example 3: Get top three memberships
 
@@ -97,9 +93,7 @@ Id                                   DeletedDateTime
 22cc22cc-dd33-ee44-ff55-66aa66aa66aa
 ```
 
-This example demonstrates how to retrieve users top three memberships in Microsoft Entra ID.  
-
-This command gets the top five memberships for the specified user.
+This example demonstrates how to retrieve users top three memberships in Microsoft Entra ID.
 
 ## Parameters
 

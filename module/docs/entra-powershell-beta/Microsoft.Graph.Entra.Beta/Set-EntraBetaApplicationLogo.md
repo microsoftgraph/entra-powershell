@@ -51,7 +51,7 @@ Set-EntraBetaApplicationLogo
 
 ## Description
 
-This cmdlet is used to set the logo for an application. Specify the `ObjectId` and `FilePath` parameters to set a specific application logo.
+This cmdlet is used to set the logo for an application.
 
 ## Examples
 

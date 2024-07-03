@@ -31,7 +31,7 @@ Remove-EntraBetaApplication
 
 ## Description
 
-The `Remove-EntraBetaApplication` cmdlet removes the specified application from Microsoft Entra ID. Specify the `ObjectId` parameter to delete a specific application.
+The `Remove-EntraBetaApplication` cmdlet removes the specified application from Microsoft Entra ID.
 
 ## Examples
 

@@ -32,7 +32,7 @@ Get-EntraBetaUserLicenseDetail
 
 ## Description
 
-This cmdlet retrieves license details for a user. Specify the `ObjectId` parameter to get a specific user license Details.
+This cmdlet retrieves license details for a user.
 
 ## Examples
 
@@ -52,8 +52,6 @@ X8Wu1RItQkSNL8zKldQ5DmAn38eBLPdOtXhbU5K1cd8 cccccccc-2d2d-3e3e-4f4f-555555555555
 ```
 
 This example demonstrates how to retrieve license details for a user from Microsoft Entra ID.
-
-This command retrieves the license details of the user specified through the ObjectId parameter.
 
 ## Parameters
 

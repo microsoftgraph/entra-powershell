@@ -41,7 +41,7 @@ Get-EntraBetaPermissionGrantPolicy
 
 ## Description
 
-The `Get-EntraBetaPermissionGrantPolicy` cmdlet gets an Microsoft Entra ID permission grant policy. Specify the `Id` parameter to get a permission grant policy.
+The `Get-EntraBetaPermissionGrantPolicy` cmdlet gets an Microsoft Entra ID permission grant policy.
 
 ## Examples
 

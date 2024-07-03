@@ -52,7 +52,7 @@ Set-EntraBetaApplication
 
 ## Description
 
-Updates the properties of an application object. Specify the `ObjectId` parameter to update a specific application.
+Updates the properties of an application object.
 
 ## Examples
 
@@ -107,6 +107,7 @@ This command updates an application in Microsoft Entra ID.
 
 Defines custom behavior that a consuming service can use to call an app in specific contexts.
 For example, applications that can render file streams might set the addIns property for its "FileHandler" functionality.
+
 This lets services like Office 365 call the application in the context of a document the user is working on.
 
 ```yaml
@@ -141,10 +142,10 @@ Accept wildcard characters: False
 ### -AppRoles
 
 The collection of application roles that an application might declare.
+
 These roles can be assigned to users, groups, or service principals.
 
 ```yaml
-Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]
 Parameter Sets: (All)
 Aliases:
@@ -207,6 +208,7 @@ Accept wildcard characters: False
 ### -InformationalUrl
 
 Basic profile information of the application such as app's marketing, support, terms of service and privacy statement URLs.
+
 The terms of service and privacy statement are surfaced to users through the user consent experience.
 
 ```yaml
@@ -240,9 +242,10 @@ Accept wildcard characters: False
 ### -IsFallbackPublicClient
 
 Specifies the fallback application type as public client, such as an installed application running on a mobile device.
+
 The default value is false that means the fallback application type is confidential client such as web app.
-There are certain scenarios where Microsoft Entra ID can't determine the client application type (for example,
-ROPC flow where it's configured without specifying a redirect URI).
+
+There are certain scenarios where Microsoft Entra ID can't determine the client application type (for example, ROPC flow where it's configured without specifying a redirect URI).
 In those cases Microsoft Entra ID interprets the application type based on the value of this property.
 
 ```yaml
@@ -262,7 +265,6 @@ Accept wildcard characters: False
 Specifies key credentials.
 
 ```yaml
-Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]
 Parameter Sets: (All)
 Aliases:
@@ -344,7 +346,6 @@ Specifies password credentials.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]
-Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]
 Parameter Sets: (All)
 Aliases:
 
@@ -359,8 +360,10 @@ Accept wildcard characters: False
 
 Lists applications and requested permissions for implicit consent.
 Requires an admin to have provided consent to the application.
+
 preAuthorizedApplications don't require the user to consent to the requested permissions.
 Permissions listed in preAuthorizedApplications don't require user consent.
+
 However, any additional requested permissions not listed in preAuthorizedApplications require user consent.
 
 ```yaml
@@ -378,8 +381,7 @@ Accept wildcard characters: False
 
 ### -PublicClient
 
-Specifies whether this application is a public client (such as an installed application running on a mobile device).
-Default is false.
+Specifies whether this application is a public client (such as an installed application running on a mobile device). Default is `false`.
 
 ```yaml
 Type: System.PublicClientApplication
@@ -396,6 +398,7 @@ Accept wildcard characters: False
 ### -RequiredResourceAccess
 
 Specifies resources that this application requires access to and the set of OAuth permission scopes and application roles that it needs under each of those resources.
+
 This pre-configuration of required resource access drives the consent experience.
 
 ```yaml
@@ -446,6 +449,7 @@ Accept wildcard characters: False
 
 Specifies the keyId of a public key from the keyCredentials collection.
 When configured, Microsoft Entra ID encrypts all the tokens it emits by using the key this property points to.
+
 The application code that receives the encrypted token must use the matching private key to decrypt the token before it can be used for the signed-in user.
 
 ```yaml

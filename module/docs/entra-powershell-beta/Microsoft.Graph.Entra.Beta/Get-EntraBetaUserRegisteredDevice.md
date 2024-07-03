@@ -34,7 +34,7 @@ Get-EntraBetaUserRegisteredDevice
 
 ## Description
 
-The `Get-EntraBetaUserRegisteredDevice` cmdlet gets devices registered by a user in Microsoft Entra ID. Specify the `ObjectId` parameter to get a specific user registered devices.
+The `Get-EntraBetaUserRegisteredDevice` cmdlet gets devices registered by a user in Microsoft Entra ID.
 
 ## Examples
 

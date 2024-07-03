@@ -66,7 +66,7 @@ New-EntraBetaApplication -DisplayName 'My new application'
 ```Output
 DisplayName        Id                                   AppId                                SignInAudience PublisherDomain
 -----------        --                                   -----                                -------------- ---------------
-My new application aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   M365x99297270.mail.onmicrosoft.com
+My new application aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   domain.mail.contoso.com
 ```
 
 This command creates an application in Microsoft Entra ID.
@@ -81,7 +81,7 @@ New-EntraBetaApplication -DisplayName 'My new application' -IdentifierUris 'http
 ```Output
 DisplayName        Id                                   AppId                                SignInAudience PublisherDomain
 -----------        --                                   -----                                -------------- ---------------
-My new application aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   M365x99297270.mail.onmicrosoft.com
+My new application aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   domain.mail.contoso.com
 ```
 
 This command creates an application in Microsoft Entra ID.
@@ -97,7 +97,7 @@ New-EntraBetaApplication -DisplayName 'My new application' -Api $api
 ```Output
 DisplayName        Id                                   AppId                                SignInAudience PublisherDomain
 -----------        --                                   -----                                -------------- ---------------
-My new application aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   M365x99297270.mail.onmicrosoft.com
+My new application aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   domain.mail.contoso.com
 ```
 
 This command creates an application in Microsoft Entra ID.
@@ -121,7 +121,7 @@ New-EntraBetaApplication -DisplayName 'My new application' -AppRoles $approle
 ```Output
 DisplayName        Id                                   AppId                                SignInAudience PublisherDomain
 -----------        --                                   -----                                -------------- ---------------
-My new application aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   M365x99297270.mail.onmicrosoft.com
+My new application aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   domain.mail.contoso.com
 ```
 
 This command creates an application in Microsoft Entra ID.
@@ -137,7 +137,7 @@ New-EntraBetaApplication -DisplayName 'My new application' -OptionalClaims $opti
 ```Output
 DisplayName        Id                                   AppId                                SignInAudience PublisherDomain
 -----------        --                                   -----                                -------------- ---------------
-My new application aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   M365x99297270.mail.onmicrosoft.com
+My new application aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg   domain.mail.contoso.com
 ```
 
 This command creates an application in Microsoft Entra ID.
@@ -148,6 +148,7 @@ This command creates an application in Microsoft Entra ID.
 
 Defines custom behavior that a consuming service can use to call an app in specific contexts.
 For example, applications that can render file streams may set the addIns property for its "FileHandler" functionality.
+
 This will let services like Office 365 call the application in the context of a document the user is working on.
 
 ```yaml
@@ -216,6 +217,7 @@ User-defined URI(s) that uniquely identify a Web application within its Microsof
 
 The first element is populated from the Web application's "APP ID URI" field if updated via the Azure classic portal (or respective Microsoft Entra ID PowerShell cmdlet parameter).
 Extra URIs can be added via the application manifest; see Understanding the Microsoft Entra ID Application Manifest for details.
+
 This collection is also used to populate the Web application's servicePrincipalNames collection.
 
 ```yaml
@@ -233,6 +235,7 @@ Accept wildcard characters: False
 ### -InformationalUrl
 
 Basic profile information of the application such as app's marketing, support, terms of service and privacy statement URLs.
+
 The terms of service and privacy statement are surfaced to users through the user consent experience.
 
 ```yaml
@@ -266,9 +269,11 @@ Accept wildcard characters: False
 ### -IsFallbackPublicClient
 
 Specifies the fallback application type as public client, such as an installed application running on a mobile device.
+
 The default value is false that means the fallback application type is confidential client such as web app.
-There are certain scenarios where Microsoft Entra ID can't determine the client application type (for example,
-ROPC flow where it's configured without specifying a redirect URI).
+
+There are certain scenarios where Microsoft Entra ID can't determine the client application type (for example, ROPC flow where it's configured without specifying a redirect URI).
+
 In those cases Microsoft Entra ID interprets the application type based on the value of this property.
 
 ```yaml
@@ -351,8 +356,10 @@ Accept wildcard characters: False
 
 Lists applications and requested permissions for implicit consent.
 Requires an admin to have provided consent to the application.
+
 preAuthorizedApplications don't require the user to consent to the requested permissions.
 Permissions listed in preAuthorizedApplications don't require user consent.
+
 However, any additional requested permissions not listed in preAuthorizedApplications require user consent.
 
 ```yaml
@@ -387,6 +394,7 @@ Accept wildcard characters: False
 ### -RequiredResourceAccess
 
 Specifies resources that this application requires access to and the set of OAuth permission scopes and application roles that it needs under each of those resources.
+
 This pre-configuration of required resource access drives the consent experience.
 
 ```yaml
@@ -437,6 +445,7 @@ Accept wildcard characters: False
 
 Specifies the keyId of a public key from the keyCredentials collection.
 When configured, Microsoft Entra ID encrypts all the tokens it emits by using the key this property points to.
+
 The application code that receives the encrypted token must use the matching private key to decrypt the token before it can be used for the signed-in user.
 
 ```yaml

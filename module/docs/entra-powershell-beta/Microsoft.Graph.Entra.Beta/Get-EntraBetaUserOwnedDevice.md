@@ -34,7 +34,7 @@ Get-EntraBetaUserOwnedDevice
 
 ## Description
 
-The `Get-EntraBetaUserOwnedDevice` cmdlet gets registered devices owned by the specified user in Microsoft Entra ID. Specify the `ObjectId` parameter to get a specific user owned devices.
+The `Get-EntraBetaUserOwnedDevice` cmdlet gets registered devices owned by the specified user in Microsoft Entra ID.
 
 ## Examples
 
