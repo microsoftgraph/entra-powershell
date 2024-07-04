@@ -94,4 +94,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Add-EntraBetaFeatureRolloutPolicyDirectoryObject](Add-EntraBetaFeatureRolloutPolicyDirectoryObjectmnd)
+[Add-EntraBetaFeatureRolloutPolicyDirectoryObject](Add-EntraBetaFeatureRolloutPolicyDirectoryObject.md)
