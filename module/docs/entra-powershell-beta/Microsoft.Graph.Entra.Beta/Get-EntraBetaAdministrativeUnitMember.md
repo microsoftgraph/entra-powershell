@@ -1,10 +1,10 @@
 ---
-title: Add-EntraBetaAdministrativeUnitMember.
-description: This article provides details on the Add-EntraBetaAdministrativeUnitMember command.
+title: Get-EntraBetaAdministrativeUnitMember.
+description: This article provides details on the Get-EntraBetaAdministrativeUnitMember command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 07/03/2024
+ms.date: 07/04/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -156,5 +156,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Related Links
 
 [Add-EntraBetaAdministrativeUnitMember](Add-EntraBetaAdministrativeUnitMember.md)
+
+[New-EntraBetaAdministrativeUnitMember](New-EntraBetaAdministrativeUnitMember.md)
 
 [Remove-EntraBetaAdministrativeUnitMember](Remove-EntraBetaAdministrativeUnitMember.md)

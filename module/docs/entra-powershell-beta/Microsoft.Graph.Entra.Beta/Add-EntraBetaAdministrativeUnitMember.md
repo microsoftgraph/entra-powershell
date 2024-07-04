@@ -4,7 +4,7 @@ description: This article provides details on the Add-EntraBetaAdministrativeUni
 
 ms.service: entra
 ms.topic: reference
-ms.date: 07/03/2024
+ms.date: 07/04/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -66,7 +66,7 @@ Accept wildcard characters: False
 
 ### -RefObjectId
 
-Specifies the unique ID of the specific Microsoft Entra ID object that will be assigned as owner/manager/member.
+Specifies the unique ID of the specific Microsoft Entra ID object that is assigned as owner/manager/member.
 
 ```yaml
 Type: System.String
@@ -93,5 +93,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Related Links
 
 [Get-EntraBetaAdministrativeUnitMember](Get-EntraBetaAdministrativeUnitMember.md)
+
+[New-EntraBetaAdministrativeUnitMember](New-EntraBetaAdministrativeUnitMember.md)
 
 [Remove-EntraBetaAdministrativeUnitMember](Remove-EntraBetaAdministrativeUnitMember.md)
