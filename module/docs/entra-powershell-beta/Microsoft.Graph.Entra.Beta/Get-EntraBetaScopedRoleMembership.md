@@ -1,4 +1,15 @@
 ---
+title: Get-EntraBetaScopedRoleMembership.
+description: This article provides details on the Get-EntraBetaScopedRoleMembership command.
+
+ms.service: entra
+ms.topic: reference
+ms.date: 07/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,36 +19,62 @@ schema: 2.0.0
 # Get-EntraBetaScopedRoleMembership
 
 ## Synopsis
+
 Gets a scoped role membership from an administrative unit.
 
 ## Syntax
 
-```
-Get-EntraBetaScopedRoleMembership -ObjectId <String> [-ScopedRoleMembershipId <String>] [<CommonParameters>]
+```powershell
+Get-EntraBetaScopedRoleMembership 
+ -ObjectId <String> 
+ [-ScopedRoleMembershipId <String>] 
+ [<CommonParameters>]
 ```
 
 ## Description
-The Get-EntraBetaScopedRoleMembership cmdlet gets a scoped role membership from an administrative unit in Azure Active Directory (AD).
+
+The `Get-EntraBetaScopedRoleMembership` cmdlet gets a scoped role membership from an administrative unit in Microsoft Entra ID. Specify `ObjectId` parameter to retrieve a scoped role membership.
 
 ## Examples
 
-### Example 1 Get Scoped Role Administrator
-```
-PS C:\>Get-EntraBetaScopedRoleMembership -ObjectId "526b7173-5a6e-49dc-88ec-b677a9093709" -ScopedRoleMembershipId "356b7173-5a6e-49dc-88ec-b677a9093709"
+### Example 1: Get Scoped Role Administrator
+
+```powershell
+Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+Get-EntraBetaScopedRoleMembership -ObjectId 'aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc' -ScopedRoleMembershipId 'dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc'
 ```
 
-### Example 2 List scoped administrators for AU.
+```Output
+Id                                                                AdministrativeUnitId                 RoleId
+--                                                                --------------------                 ------
+dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
-PS C:\>Get-EntraBetaScopedRoleMembership -ObjectId "526b7173-5a6e-49dc-88ec-b677a9093709"
+
+This example gets scoped role administrator.
+
+### Example 2: List scoped administrators for administrative unit by ObjectId
+
+```powershell
+Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+Get-EntraBetaScopedRoleMembership -ObjectId 'aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc'
 ```
+
+```Output
+Id                                                                AdministrativeUnitId                 RoleId
+--                                                                --------------------                 ------
+dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bbbbbbbb-1111-2222-3333-cccccccccccc
+```
+
+This example list scoped administrators with objectId.
 
 ## Parameters
 
 ### -ObjectId
+
 Specifies the ID of an object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -49,10 +86,11 @@ Accept wildcard characters: False
 ```
 
 ### -ScopedRoleMembershipId
+
 Specifies the ID of a scoped role membership.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -64,7 +102,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -74,7 +113,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Add-EntraBetaScopedRoleMembership]()
+[Add-EntraBetaScopedRoleMembership](Add-EntraBetaScopedRoleMembership.md)
 
-[Remove-EntraBetaScopedRoleMembership]()
-
+[Remove-EntraBetaScopedRoleMembership](Remove-EntraBetaScopedRoleMembership.md)
