@@ -1,4 +1,15 @@
 ---
+title:  Add-EntraBetaFeatureRolloutPolicyDirectoryObject.
+description: This article provides details on the  Add-EntraBetaFeatureRolloutPolicyDirectoryObject command.
+
+ms.service: entra
+ms.topic: reference
+ms.date: 07/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,36 +19,43 @@ schema: 2.0.0
 # Add-EntraBetaFeatureRolloutPolicyDirectoryObject
 
 ## Synopsis
-Allows an admin to add a group to the cloud authentication roll-out policy in Azure AD.
-Users in this group will start authenticating to the cloud per policy.
+
+Allows an admin to add a group to the cloud authentication roll-out policy in Microsoft Entra ID.
+Users in this group start authenticating to the cloud per policy.
 
 ## Syntax
 
-```
-Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id <String> -RefObjectId <String> [<CommonParameters>]
+```powershell
+Add-EntraBetaFeatureRolloutPolicyDirectoryObject 
+ -Id <String> 
+ -RefObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## Description
-An admin will use this cmdlet to add a group to the cloud authentication roll-out policy.
-Users in these groups will start authenticating against the cloud per policy (e.g.
-with Seamless Single Sign-On or not, or whether Passthrough auth or not).
+
+An admin uses `Add-EntraBetaFeatureRolloutPolicyDirectoryObject` cmdlet to add a group to the cloud authentication roll-out policy.
+Users in these groups start authenticating against the cloud per policy (for example,
+with Seamless single sign-on or not, or whether Passthrough auth or not). Specify `Id` and `RefObjectId` parameter to add a group to the cloud authentication roll-out policy.
 
 ## Examples
 
-### Example 1: Adds a group to the cloud authentication roll-out policy in Azure AD.
-```
-PS C:\> Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "a03b6d9e-6654-46e6-8d0a-8ed83c675ca9" -RefObjectId "0a1068c0-dbb6-4537-9db3-b48f3e31dd76"
+### Example 1: Adds a group to the cloud authentication roll-out policy in Microsoft Entra ID
+
+```powershell
+Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' -RefObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-This command adds a group to the cloud authentication roll-out policy in Azure AD.
+This command adds a group to the cloud authentication roll-out policy in Microsoft Entra ID.
 
 ## Parameters
 
-### -Id
-The unique identifier of the cloud authentication roll-out policy in Azure AD.
+### -ID
+
+The unique identifier of the cloud authentication roll-out policy in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -49,10 +67,11 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
-The unique identifier of the specific Azure AD object that will be assigned to the cloud authentication roll-out policy in Azure AD.
+
+The unique identifier of the specific Microsoft Entra ID object that assigned to the cloud authentication roll-out policy in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -64,14 +83,15 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ## Outputs
 
 ## Notes
+
 ## Related Links
 
-[Remove-EntraBetaFeatureRolloutPolicyDirectoryObject]()
-
+[Remove-EntraBetaFeatureRolloutPolicyDirectoryObject](Remove-EntraBetaFeatureRolloutPolicyDirectoryObject.md)
