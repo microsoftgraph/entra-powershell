@@ -21,7 +21,8 @@ function Set-EntraPolicy {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         
-        $policyTypes = "activityBasedTimeoutPolicies", "defaultAppManagementPolicy", "appManagementPolicies", "authenticationFlowsPolicy", "authenticationMethodsPolicy",	"claimsMappingPolicies", "featureRolloutPolicies", "homeRealmDiscoveryPolicies", "permissionGrantPolicies",	"tokenIssuancePolicies", "tokenLifetimePolicies"
+        $policyTypes = "activityBasedTimeoutPolicies", "defaultAppManagementPolicy", "appManagementPolicies", "authenticationFlowsPolicy", "authenticationMethodsPolicy", "claimsMappingPolicies", "featureRolloutPolicies", "homeRealmDiscoveryPolicies", "permissionGrantPolicies", "tokenIssuancePolicies", "tokenLifetimePolicies"
+        
         if ($null -ne $PSBoundParameters["type"]) {
             $toPolicytype = $type
         }
@@ -30,8 +31,8 @@ function Set-EntraPolicy {
          }
         
          if($null -eq $toPolicytype) {
-            foreach ($policyType in $policyTypes) {
-                $uri = "https://graph.microsoft.com/v1.0/policies/" + $policyTypes + "/" + $id
+            foreach ($type in $policyTypes) {
+                $uri = "https://graph.microsoft.com/v1.0/policies/" + $type + "/" + $id
                 try {
                     $response = Invoke-GraphRequest -Uri $uri -Method GET
                     break
