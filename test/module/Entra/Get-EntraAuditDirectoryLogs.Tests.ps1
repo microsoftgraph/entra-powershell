@@ -39,14 +39,14 @@ BeforeAll {
 Describe "Get-EntraAuditDirectoryLogs" {
     Context "Test for Get-EntraAuditDirectoryLogs" {
         It "Should return specific Audit Directory Logs" {
-            $result = Get-EntraAuditDirectoryLogs -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraAuditDirectoryLogs -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }        
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraAuditDirectoryLogs -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when Id is empty" {
+            { Get-EntraAuditDirectoryLogs -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
         }       
         It "Should fail when filter is empty" {
             { Get-EntraAuditDirectoryLogs -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
@@ -82,8 +82,8 @@ Describe "Get-EntraAuditDirectoryLogs" {
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }  
         
-        It "Should contain ID in parameters when passed ObjectId to it" {
-            $result = Get-EntraAuditDirectoryLogs -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+        It "Should contain ID in parameters when passed Id to it" {
+            $result = Get-EntraAuditDirectoryLogs -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
             
             $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
@@ -93,7 +93,7 @@ Describe "Get-EntraAuditDirectoryLogs" {
 
             Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAuditDirectoryLogs"
-        $result = Get-EntraAuditDirectoryLogs -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+        $result = Get-EntraAuditDirectoryLogs -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
         $params = Get-Parameters -data $result
         $a= $params | ConvertTo-json | ConvertFrom-Json
         $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue 

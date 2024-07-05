@@ -3,10 +3,10 @@ function Get-EntraAuditDirectoryLogs {
     param (
       
     [Parameter(ParameterSetName = "GetById", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId,
+    [System.String] $Id,
 
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Int32]] $Top,
+    [System.Int32] $Top,
 
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [switch] $All,
@@ -35,15 +35,15 @@ function Get-EntraAuditDirectoryLogs {
             }
         }
         
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["Id"])
         {
-            $UserId = $PSBoundParameters["ObjectId"]
-            $params["Uri"] = "$baseUri/$($UserId)"
+            $LogId = $PSBoundParameters["Id"]
+            $params["Uri"] = "$baseUri/$($LogId)"
         }
         if($null -ne $PSBoundParameters["Filter"])
         {
             $Filter = $PSBoundParameters["Filter"]
-            $f = '$' + 'Filter'
+            $f = '$Filter'
             $params["Uri"] += "&$f=$Filter"
         }
         if($PSBoundParameters.ContainsKey("Verbose"))
