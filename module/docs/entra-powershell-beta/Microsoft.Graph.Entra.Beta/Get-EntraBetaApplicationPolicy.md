@@ -1,6 +1,6 @@
 ---
-title: Add-EntraBetaApplicationPolicy.
-description: This article provides details on the Add-EntraBetaApplicationPolicy command.
+title: Get-EntraBetaApplicationPolicy.
+description: This article provides details on the Get-EntraBetaApplicationPolicy command.
 
 ms.service: entra
 ms.topic: reference
