@@ -1,4 +1,15 @@
 ---
+title: Remove-EntraBetaApplicationPolicy.
+description: This article provides details on the Remove-EntraBetaApplicationPolicy command.
+
+ms.service: entra
+ms.topic: reference
+ms.date: 07/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,35 +19,41 @@ schema: 2.0.0
 # Remove-EntraBetaApplicationPolicy
 
 ## Synopsis
+
 Removes an application policy.
 
 ## Syntax
 
-```
-Remove-EntraBetaApplicationPolicy -Id <String> -PolicyId <String> [<CommonParameters>]
+```powershell
+Remove-EntraBetaApplicationPolicy 
+ -Id <String> 
+ -PolicyId <String> 
+[<CommonParameters>]
 ```
 
 ## Description
-The Remove-EntraBetaApplicationPolicy cmdlet removes an application policy from Azure Active Directory (AD).
+
+The `Remove-EntraBetaApplicationPolicy` cmdlet removes an application policy from Microsoft Entra ID. Specify `Id`and `PolicyId` parameters to remove an specific application policy.
 
 ## Examples
 
 ### Example 1: Remove an application policy
-```
-PS C:\>Remove-EntraBetaApplicationPolicy -ObjectId <object id of application> -PolicyId <object id of policy>
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+Remove-EntraBetaApplicationPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -PolicyId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 This command removes the specified application policy.
 
 ## Parameters
 
-
-
 ### -PolicyId
+
 Specifies the ID of the policy.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -48,10 +65,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{Fill Id Description}}
+
+The ID of the application for which you need to retrieve the policy.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -63,7 +81,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -73,7 +92,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Add-EntraBetaApplicationPolicy]()
+[Add-EntraBetaApplicationPolicy](Add-EntraBetaApplicationPolicy.md)
 
-[Get-EntraBetaApplicationPolicy]()
-
+[Get-EntraBetaApplicationPolicy](Get-EntraBetaApplicationPolicy.md)

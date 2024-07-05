@@ -40,7 +40,7 @@ The `Add-EntraBetaApplicationPolicy` cmdlet adds a Microsoft Entra ID applicatio
 ### Example 1: Add an application policy
 
 ```powershell
-
+Connect-Entra -Scopes 'Application.ReadWrite.All, Policy.ReadWrite.ApplicationConfiguration'
 Add-EntraBetaApplicationPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RefObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
