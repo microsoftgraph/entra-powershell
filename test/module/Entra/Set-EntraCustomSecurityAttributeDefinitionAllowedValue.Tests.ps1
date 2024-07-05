@@ -7,7 +7,7 @@ BeforeAll {
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
 
-Describe "Test for Set-EntraMSCustomSecurityAttributeDefinitionAllowedValue" {
+Describe "Test for Set-EntraCustomSecurityAttributeDefinitionAllowedValue" {
 
     It "Should return empty object" {
         $result = Set-EntraMSCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId "Engineering_Project" -Id "Alpine" -IsActive $true
