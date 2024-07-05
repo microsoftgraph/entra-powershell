@@ -1,17 +1,17 @@
 function New-EntraPolicy {
-    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    [CmdletBinding(DefaultParameterSetName = 'NewPolicy')]
     param (
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "NewPolicy", Mandatory = $true)]
     [System.Collections.Generic.List`1[System.String]] $Definition,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "NewPolicy", Mandatory = $true)]
     [System.String] $DisplayName,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [Parameter(ParameterSetName = "NewPolicy", Mandatory = $true)]
     [System.String] $Type,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "NewPolicy")]
     [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]] $KeyCredentials,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "NewPolicy")]
     [System.Nullable`1[System.Boolean]] $IsOrganizationDefault,
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [Parameter(ParameterSetName = "NewPolicy")]
     [System.String] $AlternativeIdentifier
     )
 
