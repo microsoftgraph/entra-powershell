@@ -18,6 +18,7 @@ schema: 2.0.0
 # Get-EntraUserThumbnailPhoto
 
 ## Synopsis
+
 Retrieve the thumbnail photo of a user.
 
 ## Syntax
@@ -32,24 +33,35 @@ Get-EntraUserThumbnailPhoto
 ```
 
 ## Description
+
 Retrieve the thumbnail photo of a user.
 
 ## Examples
 
 ### Example 1: Retrieve thumbnail photo by Id
+
 ```powershell
-PS C:\WINDOWS\system32> Get-EntraUserThumbnailPhoto -ObjectId df19e8e6-2ad7-453e-87f5-037f6529ae16
+Connect-Entra -Scopes 'User.Read' #Delegated Permission
+Connect-Entra -Scopes 'User.Read.All' #Application Permission
+Get-EntraUserThumbnailPhoto -ObjectId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
 ```
 
-This example demonstrates how to retrieve the thumbnail photo of a user that is specified through the value of the ObejctId parameter.
+```Output
+Id      Height Width
+--      ------ -----
+default 292    278
+```
+
+This example demonstrates how to retrieve the thumbnail photo of a specified user.
 
 ## Parameters
 
 ### -FileName
+
 If specified, a copy of the thumbnail photo is written to the specified file name.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -61,10 +73,11 @@ Accept wildcard characters: False
 ```
 
 ### -FilePath
+
 If specified, a copy of the thumbnail photo is written to the specified file path with a random name.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -76,10 +89,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 The object ID of the user for which the thumbnail photo is retrieved.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -91,10 +105,11 @@ Accept wildcard characters: False
 ```
 
 ### -View
+
 If true, view the photo on the screen in a new window.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -106,16 +121,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### System.String
+
 System.Boolean
 
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
