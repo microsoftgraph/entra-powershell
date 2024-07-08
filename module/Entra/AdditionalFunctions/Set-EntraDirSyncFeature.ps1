@@ -14,7 +14,7 @@ function Set-EntraDirSyncFeature {
             $params = @{}
             $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
             if ($PSBoundParameters.ContainsKey("Verbose")) {
-                $Verbose = $Null
+                $Verbose = $PSBoundParameters["Verbose"]
             }
             if ($null -ne $PSBoundParameters["Feature"]) {
                 $Feature = $PSBoundParameters["Feature"] + "Enabled"
