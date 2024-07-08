@@ -1,15 +1,15 @@
 function New-EntraOauth2PermissionGrant {
-    [CmdletBinding(DefaultParameterSetName = 'NewOauth2PermissionGrant')]
+    [CmdletBinding(DefaultParameterSetName = 'CreateExpanded')]
     param (
-        [Parameter(ParameterSetName = "NewOauth2PermissionGrant",Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(ParameterSetName = "CreateExpanded",Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $ClientId,
-        [Parameter(ParameterSetName = "NewOauth2PermissionGrant",Mandatory = $true)]
+        [Parameter(ParameterSetName = "CreateExpanded",Mandatory = $true)]
         [System.String] $ConsentType,
-        [Parameter(ParameterSetName = "NewOauth2PermissionGrant")]
+        [Parameter(ParameterSetName = "CreateExpanded")]
         [System.String] $PrincipalId,
-        [Parameter(ParameterSetName = "NewOauth2PermissionGrant",Mandatory = $true)]
+        [Parameter(ParameterSetName = "CreateExpanded",Mandatory = $true)]
         [System.String] $ResourceId,
-        [Parameter(ParameterSetName = "NewOauth2PermissionGrant")]
+        [Parameter(ParameterSetName = "CreateExpanded")]
         [System.String] $Scope
     )
 

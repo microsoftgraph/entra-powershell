@@ -80,7 +80,7 @@ The object ID (not appId) of the client service principal for the application, w
 
 ```yaml
 Type: System.String
-Parameter Sets: (All)
+Parameter Sets: CreateExpanded
 Aliases:
 Required: False
 Position: Named
@@ -95,7 +95,7 @@ Indicates if the client application is authorized to impersonate all users or on
 
 ```yaml
 Type: System.String
-Parameter Sets: (All)
+Parameter Sets: CreateExpanded
 Aliases:
 Required: False
 Position: Named
@@ -110,7 +110,7 @@ The ID of the resource service principal to which access is authorized. This ide
 
 ```yaml
 Type: System.String
-Parameter Sets: (All)
+Parameter Sets: CreateExpanded
 Aliases:
 Required: False
 Position: Named
@@ -125,8 +125,8 @@ The ID of the user on behalf of whom the client is authorized to access the reso
 
 ```yaml
 Type: System.String
-Parameter Sets: 
-Aliases: (All)
+Parameter Sets: CreateExpanded
+Aliases:
 Required: False
 Position: Named
 Default value: None
@@ -140,7 +140,7 @@ A space-separated list of the claim values for delegated permissions, which shou
 
 ```yaml
 Type: System.String
-Parameter Sets: (All)
+Parameter Sets: CreateExpanded
 Aliases:
 Required: False
 Position: Named
@@ -155,7 +155,7 @@ Currently, the start time value is ignored, but a value is required when creatin
 
 ```yaml
 Type: DateTime
-Parameter Sets: (All)
+Parameter Sets: CreateExpanded
 Aliases:
 Required: False
 Position: Named
@@ -170,8 +170,8 @@ Currently, the end time value is ignored, but a value is required when creating 
 
 ```yaml
 Type: DateTime
-Parameter Sets: 
-Aliases: (All)
+Parameter Sets: CreateExpanded 
+Aliases:
 Required: False
 Position: Named
 Default value: None
