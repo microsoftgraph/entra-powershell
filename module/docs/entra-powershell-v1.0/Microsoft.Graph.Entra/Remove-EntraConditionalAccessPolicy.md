@@ -18,6 +18,7 @@ schema: 2.0.0
 # Remove-EntraConditionalAccessPolicy
 
 ## Synopsis
+
 Deletes a conditional access policy in Microsoft Entra ID by ID.
 
 ## Syntax
@@ -29,14 +30,18 @@ Remove-EntraConditionalAccessPolicy
 ```
 
 ## Description
+
 This cmdlet allows an admin to delete a conditional access policy in Microsoft Entra ID by ID.
+
 Conditional access policies are custom rules that define an access scenario.
 
 ## Examples
 
-### Example 1: Deletes a conditional access policy in Microsoft Entra ID by PolicyId.
+### Example 1: Deletes a conditional access policy in Microsoft Entra ID by PolicyId
+
 ```Powershell
-PS C:\> Remove-EntraConditionalAccessPolicy -PolicyId 6b5e999b-0ba8-4186-a106-e0296c1c4358
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+Remove-EntraConditionalAccessPolicy -PolicyId '3cccccc3-4dd4-5ee5-6ff6-7aaaaaaaaaa7'
 ```
 
 This command deletes a conditional access policy in Microsoft Entra ID.
@@ -44,10 +49,11 @@ This command deletes a conditional access policy in Microsoft Entra ID.
 ## Parameters
 
 ### -PolicyId
+
 Specifies the policy ID of a conditional access policy in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -59,7 +65,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -74,4 +81,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [New-EntraConditionalAccessPolicy](New-EntraConditionalAccessPolicy.md)
 
 [Set-EntraConditionalAccessPolicy](Set-EntraConditionalAccessPolicy.md)
-

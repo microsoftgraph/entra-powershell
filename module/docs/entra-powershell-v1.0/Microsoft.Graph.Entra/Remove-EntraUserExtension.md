@@ -18,11 +18,13 @@ schema: 2.0.0
 # Remove-EntraUserExtension
 
 ## Synopsis
+
 Removes a user extension.
 
 ## Syntax
 
 ### SetMultiple
+
 ```powershell
 Remove-EntraUserExtension 
  -ObjectId <String> 
@@ -31,6 +33,7 @@ Remove-EntraUserExtension
 ```
 
 ### SetSingle
+
 ```powershell
 Remove-EntraUserExtension 
  -ObjectId <String> 
@@ -39,24 +42,32 @@ Remove-EntraUserExtension
 ```
 
 ## Description
-The Remove-EntraUserExtension cmdlet removes a user extension from Microsoft Entra ID.
+
+The `Remove-EntraUserExtension` cmdlet removes a user extension from Microsoft Entra ID.
 
 ## Examples
 
-### Example 1: Remove the "Test Extension" attribute from user: TestUser@example.com
+### Example 1: Remove the "Test Extension" attribute from user: <TestUser@example.com>
+
 ```powershell
-PS C:\> Remove-EntraUserExtension -ObjectId TestUser@example.com -ExtensionName "Test Extension"
+$params = @{
+    ObjectId = 'TestUser@example.com'
+    ExtensionName = 'Test Extension'
+}
+
+Remove-EntraUserExtension @params
 ```
 
-This will remove the "Test Extension" attribute from user: TestUser@example.com.
+This will remove the "Test Extension" attribute from user: <TestUser@example.com>.
 
 ## Parameters
 
 ### -ExtensionName
+
 Specifies the name of an extension.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: SetSingle
 Aliases:
 
@@ -68,6 +79,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExtensionNames
+
 Specifies an array of extension names.
 
 ```yaml
@@ -83,10 +95,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies an object ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -98,7 +111,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -111,4 +125,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraUserExtension](Get-EntraUserExtension.md)
 
 [Set-EntraUserExtension](Set-EntraUserExtension.md)
-

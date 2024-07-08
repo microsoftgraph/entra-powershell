@@ -18,6 +18,7 @@ schema: 2.0.0
 # Remove-EntraApplicationKeyCredential
 
 ## Synopsis
+
 Removes a key credential from an application.
 
 ## Syntax
@@ -30,25 +31,34 @@ Remove-EntraApplicationKeyCredential
 ```
 
 ## Description
-The Remove-EntraApplicationKeyCredential cmdlet removes a key credential from an application.
+
+The `Remove-EntraApplicationKeyCredential` cmdlet removes a key credential from an application.
 
 ## Examples
 
 ### Example 1: Remove a key credential
-```
-PS C:\> Remove-EntraApplicationKeyCredential -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -KeyId "6aa971c6-3040-45df-87ed-581c8c09ff2b"
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+$params = @{
+    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    KeyId = 'cccccccc-2d2d-3e3e-4f4f-555555555555'
+}
+
+Remove-EntraApplicationKeyCredential @params
 ```
 
 This command removes the specified key credential from the specified application.
 
 ## Parameters
 
-
 ### -KeyId
-Specifies a custom key ID.
+
+Specifies a custom key ID. The unique identifier for the password.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -60,10 +70,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies a unique ID of an application in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -75,7 +86,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

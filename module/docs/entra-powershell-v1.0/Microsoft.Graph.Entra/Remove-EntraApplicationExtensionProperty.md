@@ -18,6 +18,7 @@ schema: 2.0.0
 # Remove-EntraApplicationExtensionProperty
 
 ## Synopsis
+
 Removes an application extension property.
 
 ## Syntax
@@ -30,13 +31,22 @@ Remove-EntraApplicationExtensionProperty
 ```
 
 ## Description
-The Remove-EntraApplicationExtensionProperty cmdlet removes an application extension property for an object in Microsoft Entra ID.
+
+The `Remove-EntraApplicationExtensionProperty` cmdlet removes an application extension property for an object in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Remove an application extension property
-```
-PS C:\> Remove-EntraApplicationExtensionProperty -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -ExtensionPropertyId "344ed560-f8e7-410e-ab9f-c79df5c36"
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+$params = @{
+    ObjectId = '22223333-cccc-4444-dddd-5555eeee6666'
+    ExtensionPropertyId = 'cccc2222-dd33-4444-55ee-666666ffffff'
+}
+
+Remove-EntraApplicationExtensionProperty @params
 ```
 
 This command removes the extension property that has the specified ID from an application in Microsoft Entra ID.
@@ -44,10 +54,11 @@ This command removes the extension property that has the specified ID from an ap
 ## Parameters
 
 ### -ExtensionPropertyId
+
 Specifies the unique ID of the extension property to remove.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -58,12 +69,12 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-
 ### -ObjectId
+
 Specifies the unique ID of an application in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -75,7 +86,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -88,4 +100,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraApplicationExtensionProperty](Get-EntraApplicationExtensionProperty.md)
 
 [New-EntraApplicationExtensionProperty](New-EntraApplicationExtensionProperty.md)
-

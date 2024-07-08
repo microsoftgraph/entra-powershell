@@ -19,6 +19,7 @@ schema: 2.0.0
 # Restore-EntraDeletedDirectoryObject
 
 ## Synopsis
+
 This cmdlet is used to restore a previously deleted object.
 
 ## Syntax
@@ -30,36 +31,55 @@ Restore-EntraDeletedDirectoryObject
 ```
 
 ## Description
-This cmdlet is used to restore a previously deleted object.
-Currently, only restoring Group and Application objects is supported. 
-When a group or an application is deleted, it's initially soft deleted and can be recovered during the first 30 days after deletion.
-After 30 days the deleted object is permanently deleted and can no longer be recovered.
-Only Unified Groups (also known as
-Office 365 Groups) can be restored.
-Security groups can't be restored.
+
+This cmdlet is used to restore previously deleted objects, such as application, group, service principal, administrative unit, or user objects.
+
+When a group or application is deleted, it is initially soft deleted and can be recovered within the first 30 days. After 30 days, the deleted object is permanently deleted and cannot be recovered.
+
+**Notes:**
+
+- Only Unified Groups (also known as Office 365 Groups) can be restored; Security groups cannot be restored.
+- Restoring an application does not automatically restore its associated service principal. You must explicitly use this cmdlet to restore the deleted service principal.
+
+For delegated scenarios, the calling user needs to have at least one of the following Microsoft Entra roles:
+
+- **To restore deleted applications or service principals:** Application Administrator, Cloud Application Administrator, or Hybrid Identity Administrator.
+- **To restore deleted users:** User Administrator.
+  - However, to restore users with privileged administrator roles:
+    - In delegated scenarios, the app must be assigned the `Directory.AccessAsUser.All` delegated permission, and the calling user must also be assigned a higher privileged administrator role.
+    - In app-only scenarios, in addition to being granted the `User.ReadWrite.All` application permission, the app must be assigned a higher privileged administrator role.
+- **To restore deleted groups:** Groups Administrator.
+  - However, to restore role-assignable groups, the calling user must be assigned the Privileged Role Administrator role.
 
 ## Examples
 
 ### Example 1: Restore a deleted object with ID
+
 ```powershell
-Restore-EntraDeletedDirectoryObject -Id aa644285-eb75-4389-885e-7233f096984c
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All' #administrativeUnit resource
+Connect-Entra -Scopes 'Application.ReadWrite.All' #application resource
+Connect-Entra -Scopes 'Group.ReadWrite.All' #group resource
+Connect-Entra -Scopes 'Application.ReadWrite.All' #servicePrincipal resource
+Connect-Entra -Scopes 'User.ReadWrite.All' #user resource
+Restore-EntraDeletedDirectoryObject -Id 'dddddddd-3333-4444-5555-eeeeeeeeeeee'
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-aa644285-eb75-4389-885e-7233f096984c
+dddddddd-3333-4444-5555-eeeeeeeeeeee
 ```
 
-This example shows how to restore a deleted object with Id aa644285-eb75-4389-885e-7233f096984c.
+This example shows how to restore a deleted object.
 
 ## Parameters
 
 ### -Id
+
 The Id of the directory object to restore
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -71,14 +91,27 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### System.String
+
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
+
+[Remove-EntraDeletedApplication](Remove-EntraDeletedApplication.md)
+
+[Restore-EntraDeletedApplication](Restore-EntraDeletedApplication.md)
+
+[Remove-EntraDeletedDirectoryObject](Remove-EntraDeletedDirectoryObject.md)
+
+[Get-EntraDeletedApplication](Get-EntraDeletedApplication.md)
+
+[Get-EntraDeletedDirectoryObject](Get-EntraDeletedDirectoryObject.md)
