@@ -84,7 +84,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-- See additional details - <https://learn.microsoft.com/graph/api/directoryrole-post-directoryroles>
+- For additional details see [Activate directoryRole](/graph/api/directoryrole-post-directoryroles).
 
 ## Related Links
 
