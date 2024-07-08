@@ -1,4 +1,4 @@
-function Add-EntraMScustomSecurityAttributeDefinitionAllowedValues {
+function Add-EntracustomSecurityAttributeDefinitionAllowedValues {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
         [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
