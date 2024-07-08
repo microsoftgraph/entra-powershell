@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaDeviceRegisteredUser
 
-## SYNOPSIS
+## Synopsis
 Gets a registered user.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaDeviceRegisteredUser -ObjectId <String> [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaDeviceRegisteredUser cmdlet gets a registered user for an Azure Active Directory device.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the registered users of a device
 ```
@@ -30,7 +30,7 @@ PS C:\> Get-EntraBetaDeviceRegisteredUser -ObjectId $DevId
 The first command gets the object ID of a device by using the Get-EntraBetaDevice (./Get-EntraBetaDevice.md)cmdlet, and then stores it in the $DevId variable.
 The second command gets the registered users of the device in $DevId.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -80,13 +80,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraBetaDeviceRegisteredUser]()
 

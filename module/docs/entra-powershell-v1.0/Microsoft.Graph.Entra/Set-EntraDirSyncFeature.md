@@ -4,7 +4,7 @@ description: This article provides details on the Set-EntraDirSyncFeature comman
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Set-EntraDirSyncFeature
 
-## SYNOPSIS
+## Synopsis
 Used to set identity synchronization features for a tenant.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraDirSyncFeature 
@@ -32,7 +32,7 @@ Set-EntraDirSyncFeature
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraDirSyncFeature cmdlet sets identity synchronization features for a tenant.  
 
 You can use the following synchronization features with this cmdlet:  
@@ -49,7 +49,7 @@ You can use the following synchronization features with this cmdlet:
 Enabling some of these features, such as EnableSoftMatchOnUpn and SynchronizationUpnForManagedUsers, is a permanent operation.
 You can't disable these features once they're enabled.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Enable a feature for the tenant
 ```powershell
@@ -72,7 +72,7 @@ PS C:\> Set-EntraDirSyncFeature -Feature BlockCloudObjectTakeoverThroughHardMatc
 
 This command enables the BlockCloudObjectTakeoverThroughHardMatch feature for the tenant - effectively blocking the Hard Match object takeover.
 
-## PARAMETERS
+## Parameters
 
 ### -Feature
 The DirSync feature to turn on or off.
@@ -139,12 +139,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraDirSyncFeature](./Get-EntraDirSyncFeature.md)

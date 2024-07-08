@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Add-EntraBetaScopedRoleMembership
 
-## SYNOPSIS
+## Synopsis
 Adds a scoped role membership to an administrative unit.
 
-## SYNTAX
+## Syntax
 
 ```
 Add-EntraBetaScopedRoleMembership -ObjectId <String> [-RoleMemberInfo <RoleMemberInfo>]
  [-AdministrativeUnitObjectId <String>] [-RoleObjectId <String>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Add-EntraBetaScopedRoleMembership cmdlet adds a scoped role membership to an administrative unit.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -36,7 +36,7 @@ This cmdlet returns the Scope role membership object:
 
 AdministrativeUnitObjectId           RoleObjectId 	--------------------------           ------------ 	c9ab56cc-e349-4237-856e-cab03157a91e 526b7173-5a6e-49dc-88ec-b677a9093709
 
-## PARAMETERS
+## Parameters
 
 ### -AdministrativeUnitObjectId
 Specifies the ID of an admininstrative unit.
@@ -101,13 +101,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaScopedRoleMembership]()
 

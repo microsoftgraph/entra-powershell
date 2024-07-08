@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraDomain command.
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/16/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,35 +17,41 @@ schema: 2.0.0
 
 # Get-EntraDomain
 
-## SYNOPSIS
+## Synopsis
+
 Gets a domain.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
+
 ```powershell
 Get-EntraDomain 
  [<CommonParameters>]
 ```
 
 ### GetById
+
 ```powershell
 Get-EntraDomain 
  -Name <String> 
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraDomain cmdlet gets a domain in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Get-EntraDomain` cmdlet gets a domain in Microsoft Entra ID.
 
-### Example 1: Get a list of Domains that are created.
+## Examples
+
+### Example 1: Get a list of Domains that are created
+
 ```powershell
-PS C:\>Get-EntraDomain
+Connect-Entra -Scopes 'Domain.Read.All'
+Get-EntraDomain
 ```
 
-```output
+```Output
 Id         AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified Manufacturer Model PasswordNotificationWindowInDays PasswordValidityPeriodInDays SupportedServices
 --         ------------------ ------------------ -------------- --------- --------- ------ ---------- ------------ ----- -------------------------------- ---------------------------- -----------------
 TEST22.com Managed                               True           False     False     False  False                                                                                       {}
@@ -55,12 +61,14 @@ test25.com Managed                               True           False     False 
 
 This command retrieves a list of domains.
 
-### Example 2: Get a specific Domain.
+### Example 2: Get a specific Domain
+
 ```powershell
-PS C:\>Get-EntraDomain -Name TEST22.com
+Connect-Entra -Scopes 'Domain.Read.All'
+Get-EntraDomain -Name TEST22.com
 ```
 
-```output
+```Output
 Id         AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified Manufacturer Model PasswordNotificationWindowInDays PasswordValidityPeriodInDays SupportedServices
 --         ------------------ ------------------ -------------- --------- --------- ------ ---------- ------------ ----- -------------------------------- ---------------------------- -----------------
 TEST22.com Managed                               True           False     False     False  False                                                                                       {}
@@ -68,13 +76,14 @@ TEST22.com Managed                               True           False     False 
 
 This command retrieves a domain with the specified name.
 
-## PARAMETERS
+## Parameters
 
 ### -Name
+
 Specifies the name of a domain.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -86,15 +95,16 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Confirm-EntraDomain](Confirm-EntraDomain.md)
 
@@ -103,4 +113,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraDomain](Remove-EntraDomain.md)
 
 [Set-EntraDomain](Set-EntraDomain.md)
-
