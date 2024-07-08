@@ -1,4 +1,4 @@
-function Get-EntraMSCustomSecurityAttributeDefinition {
+function Get-EntraCustomSecurityAttributeDefinition {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]

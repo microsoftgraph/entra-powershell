@@ -1,6 +1,6 @@
 ---
-title: Get-EntraMSCustomSecurityAttributeDefinition .
-description: This article provides details on the Get-EntraMSCustomSecurityAttributeDefinition command.
+title: Get-EntraCustomSecurityAttributeDefinition .
+description: This article provides details on the Get-EntraCustomSecurityAttributeDefinition command.
 ms.service: entra
 ms.topic: reference
 ms.date: 06/13/2024
@@ -14,7 +14,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-EntraMSCustomSecurityAttributeDefinition
+# Get-EntraCustomSecurityAttributeDefinition
 
 ## SYNOPSIS
 
@@ -25,14 +25,14 @@ Gets a list of custom security attribute definitions.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraMSCustomSecurityAttributeDefinition 
+Get-EntraCustomSecurityAttributeDefinition 
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraMSCustomSecurityAttributeDefinition 
+Get-EntraCustomSecurityAttributeDefinition 
  -Id <String> 
  [<CommonParameters>]
 ```
@@ -47,7 +47,7 @@ Gets a list of Microsoft Entra ID custom security attribute definitions. Specify
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttributeDefinition.ReadWrite.All'
-Get-EntraMSCustomSecurityAttributeDefinition
+Get-EntraCustomSecurityAttributeDefinition
 ```
 
 ```output
@@ -78,7 +78,7 @@ This example get all custom security attribute definitions.
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttributeDefinition.ReadWrite.All'
-Get-EntraMSCustomSecurityAttributeDefinition -Id 'Engineering_ProjectDate'
+Get-EntraCustomSecurityAttributeDefinition -Id 'Engineering_ProjectDate'
 ```
 
 ```output
