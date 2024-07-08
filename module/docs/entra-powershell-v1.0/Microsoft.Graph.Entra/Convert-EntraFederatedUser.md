@@ -98,6 +98,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-- See more details : <https://learn.microsoft.com/graph/api/authenticationmethod-resetpassword>
+- For more information, see [resetPassword](/graph/api/authenticationmethod-resetpassword).
 
 ## Related Links
