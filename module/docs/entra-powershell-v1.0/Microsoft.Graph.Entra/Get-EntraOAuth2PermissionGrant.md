@@ -2,9 +2,9 @@
 title: Get-EntraOAuth2PermissionGrant.
 description: This article provides details on the Get-EntraOAuth2PermissionGrant Command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
-ms.date: 03/22/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,11 @@ schema: 2.0.0
 
 # Get-EntraOAuth2PermissionGrant
 
-## SYNOPSIS
+## Synopsis
+
 Gets OAuth2PermissionGrant entities.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraOAuth2PermissionGrant 
@@ -29,60 +30,72 @@ Get-EntraOAuth2PermissionGrant
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraOAuth2PermissionGrant cmdlet gets OAuth2PermissionGrant entities in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Get-EntraOAuth2PermissionGrant` cmdlet gets OAuth2PermissionGrant entities in Microsoft Entra ID.
+
+## Examples
 
 ### Example 1: Get the OAuth2 permission grants
+
 ```powershell
-PS C:\> Get-EntraOAuth2PermissionGrant
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraOAuth2PermissionGrant
 ```
-```output
-Id                                                               ClientId                             ConsentType   PrincipalId                          ResourceId
---                                                               --------                             -----------   -----------                          ----------
-p9u1ll7Iq0-Gh9M3EERXhffW8XpadQNIoHik9aQxrVE                      96b5dba7-c85e-4fab-8687-d33710445785 AllPrincipals                                      7af1d6f7-755a-4...
-85EWleXZQ0-OSJsWJPYf48h9YfkUIuVJtj20MxKD_F4                      951691f3-d9e5-4f43-8e48-9b1624f61fe3 AllPrincipals                                      f9617dc8-2214-4...
-85EWleXZQ0-OSJsWJPYf4_fW8XpadQNIoHik9aQxrVE                      951691f3-d9e5-4f43-8e48-9b1624f61fe3 AllPrincipals                                      7af1d6f7-755a-4...
-85EWleXZQ0-OSJsWJPYf4wRcLIEmmNBKqrY2qSflLnU                      951691f3-d9e5-4f43-8e48-9b1624f61fe3 AllPrincipals                                      812c5c04-9826-4...
-85EWleXZQ0-OSJsWJPYf4zQov6XUsHVJkQd5wk-LuuM                      951691f3-d9e5-4f43-8e48-9b1624f61fe3 AllPrincipals                                      a5bf2834-b0d4-4...
+
+```Output
+Id                                       ClientId                             ConsentType   PrincipalId                           ResourceId                            Scope
+--                                       --------                             -----------   -----------                           ----------                            -----
+A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u           00001111-aaaa-2222-bbbb-3333cccc4444 AllPrincipals                                     a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  User.ReadBasic.All
+C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w           00001111-aaaa-2222-bbbb-3333cccc4444 AllPrincipals                                     b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2  User.Read
+E3fH4iJ5kL6mN7oP8qR9sT0uV1wX2y           22223333-cccc-4444-dddd-5555eeee6666 Principal        aaaaaaaa-bbbb-cccc-1111-222222222222  c2c2c2c2-dddd-eeee-ffff-a3a3a3a3a3a3  User.Read
+H4iJ5kL6mN7oP8qR9sT0uV1wX2yZ3a           22223333-cccc-4444-dddd-5555eeee6666 Principal        aaaaaaaa-bbbb-cccc-1111-222222222222  d3d3d3d3-eeee-ffff-aaaa-b4b4b4b4b4b4  ActivityFeed.Read ServiceHealth.Read
 ```
+
 This command gets the OAuth2 permission grants.
 
-### Example 2: Get All the OAuth2 permission grants 
+### Example 2: Get All the OAuth2 permission grants
+
 ```powershell
-PS C:\>Get-EntraOAuth2PermissionGrant -All 
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraOAuth2PermissionGrant -All 
 ```
-```output
-Id                                                               ClientId                             ConsentType   PrincipalId                          ResourceId
---                                                               --------                             -----------   -----------                          ----------
-p9u1ll7Iq0-Gh9M3EERXhffW8XpadQNIoHik9aQxrVE                      96b5dba7-c85e-4fab-8687-d33710445785 AllPrincipals                                      7af1d6f7-755a-4...
-85EWleXZQ0-OSJsWJPYf48h9YfkUIuVJtj20MxKD_F4                      951691f3-d9e5-4f43-8e48-9b1624f61fe3 AllPrincipals                                      f9617dc8-2214-4...
-85EWleXZQ0-OSJsWJPYf4_fW8XpadQNIoHik9aQxrVE                      951691f3-d9e5-4f43-8e48-9b1624f61fe3 AllPrincipals                                      7af1d6f7-755a-4...
-85EWleXZQ0-OSJsWJPYf4wRcLIEmmNBKqrY2qSflLnU                      951691f3-d9e5-4f43-8e48-9b1624f61fe3 AllPrincipals                                      812c5c04-9826-4...
-85EWleXZQ0-OSJsWJPYf4zQov6XUsHVJkQd5wk-LuuM                      951691f3-d9e5-4f43-8e48-9b1624f61fe3 AllPrincipals                                      a5bf2834-b0d4-4...
+
+```Output
+Id                                       ClientId                             ConsentType   PrincipalId                           ResourceId                            Scope
+--                                       --------                             -----------   -----------                           ----------                            -----
+A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u           00001111-aaaa-2222-bbbb-3333cccc4444 AllPrincipals                                     a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  User.ReadBasic.All
+C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w           00001111-aaaa-2222-bbbb-3333cccc4444 AllPrincipals                                     b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2  User.Read
+E3fH4iJ5kL6mN7oP8qR9sT0uV1wX2y           22223333-cccc-4444-dddd-5555eeee6666 Principal        aaaaaaaa-bbbb-cccc-1111-222222222222  c2c2c2c2-dddd-eeee-ffff-a3a3a3a3a3a3  User.Read
+H4iJ5kL6mN7oP8qR9sT0uV1wX2yZ3a           22223333-cccc-4444-dddd-5555eeee6666 Principal        aaaaaaaa-bbbb-cccc-1111-222222222222  d3d3d3d3-eeee-ffff-aaaa-b4b4b4b4b4b4  ActivityFeed.Read ServiceHealth.Read
 ```
+
 This command gets all the OAuth2 permission grants.
 
-### Example 3: Get top 2 OAuth2 permission grants record.
+### Example 3: Get top 2 OAuth2 permission grants record
+
 ```powershell
-PS C:\> Get-EntraOAuth2PermissionGrant -Top 1
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraOAuth2PermissionGrant -Top 1
 ```
+
 ```output
-Id                                          ClientId                             ConsentType   PrincipalId ResourceId                           Scope
---                                          --------                             -----------   ----------- ----------                           -----
-p9u1ll7Iq0-Gh9M3EERXhffW8XpadQNIoHik9aQxrVE 96b5dba7-c85e-4fab-8687-d33710445785 AllPrincipals             7af1d6f7-755a-4803-a078-a4f5a431ad51 Policy.Read.All Policy.R...
-85EWleXZQ0-OSJsWJPYf48h9YfkUIuVJtj20MxKD_F4 951691f3-d9e5-4f43-8e48-9b1624f61fe3 AllPrincipals             f9617dc8-2214-49e5-b63d-b4331283fc5e User.Read Group.ReadWrit...
+Id                                       ClientId                             ConsentType   PrincipalId                           ResourceId                            Scope
+--                                       --------                             -----------   -----------                           ----------                            -----
+A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u           00001111-aaaa-2222-bbbb-3333cccc4444 AllPrincipals                                     a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  User.ReadBasic.All
+C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w           00001111-aaaa-2222-bbbb-3333cccc4444 AllPrincipals                                     b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2  User.Read
 ```
+
 This command gets top 2 OAuth2 permission grants records.
 
-## PARAMETERS
+## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -94,10 +107,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -109,14 +123,15 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Remove-EntraOAuth2PermissionGrant](Remove-EntraOAuth2PermissionGrant.md)

@@ -2,9 +2,9 @@
 title: New-EntraApplicationKeyCredential
 description: This article provides details on the New-EntraApplicationKeyCredential command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
-ms.date: 03/21/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # New-EntraApplicationKeyCredential
 
-## SYNOPSIS
+## Synopsis
 Creates a key credential for an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraApplicationKeyCredential 
@@ -35,10 +35,10 @@ New-EntraApplicationKeyCredential
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraApplicationKeyCredential cmdlet creates a key credential for an application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a new application key credential
 ```powershell
@@ -77,7 +77,7 @@ The first seven commands create values for the application key credential and st
 
 The final command uses a certificate to add an application key credential.
 
-## PARAMETERS
+## Parameters
 
 ### -CustomKeyIdentifier
 Specifies a custom key ID.
@@ -187,13 +187,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraApplication](Get-EntraApplication.md)
 

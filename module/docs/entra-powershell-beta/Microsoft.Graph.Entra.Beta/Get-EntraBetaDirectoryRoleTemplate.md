@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Get-EntraBetaDirectoryRoleTemplate
 
-## SYNOPSIS
+## Synopsis
 Gets directory role templates.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaDirectoryRoleTemplate 
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaDirectoryRoleTemplate cmdlet gets directory role templates in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get role templates
 ```
@@ -65,17 +65,17 @@ a9ea8996-122f-4c74-9520-8edcd192826c Power BI Service Administrator          Ful
 
 This command gets the role templates in Azure AD.
 
-## PARAMETERS
+## Parameters
 
 
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
