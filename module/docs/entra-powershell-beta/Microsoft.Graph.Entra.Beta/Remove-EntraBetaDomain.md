@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Remove-EntraBetaDomain
 
-## SYNOPSIS
+## Synopsis
 Removes a domain.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaDomain -Name <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaDomain cmdlet removes a domain from Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a domain
 ```
@@ -28,7 +28,7 @@ PS C:\>Remove-EntraBetaDomain -Name Contoso.com
 
 This command removes a domain.
 
-## PARAMETERS
+## Parameters
 
 ### -Name
 Specifies the name of the domain to remove.
@@ -48,13 +48,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Confirm-EntraBetaDomain]()
 

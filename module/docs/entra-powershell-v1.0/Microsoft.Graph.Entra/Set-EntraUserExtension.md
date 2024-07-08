@@ -2,9 +2,9 @@
 title: Set-EntraUserExtension.
 description: This article provides details on the Set-EntraUserExtension command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
-ms.date: 03/18/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Set-EntraUserExtension
 
-## SYNOPSIS
+## Synopsis
 Sets a user extension.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraUserExtension
@@ -28,10 +28,10 @@ Set-EntraUserExtension
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraUserExtension cmdlet sets a user extension in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Set the value of an extension attribute for a user
 ```powershell
@@ -43,7 +43,7 @@ The first command gets a user by using the [Get-EntraUser](./Get-EntraUser.md) c
 
 The second command  sets the value of the extension attribute for a specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the ID of an object.
@@ -63,13 +63,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraUser](Get-EntraUser.md)
 

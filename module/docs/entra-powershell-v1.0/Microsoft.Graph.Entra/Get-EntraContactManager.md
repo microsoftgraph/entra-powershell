@@ -2,9 +2,9 @@
 title: Get-EntraContactManager
 description: This article provides details on the Get-EntraContactManager command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
-ms.date: 03/16/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,11 @@ schema: 2.0.0
 
 # Get-EntraContactManager
 
-## SYNOPSIS
+## Synopsis
+
 Gets the manager of a contact.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraContactManager 
@@ -28,28 +29,30 @@ Get-EntraContactManager
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraContactManager cmdlet gets the manager of a contact in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Get-EntraContactManager` cmdlet gets the manager of a contact in Microsoft Entra ID.
+
+## Examples
 
 ### Example 1: Get the manager of a contact
+
 ```powershell
-PS C:\> $Contact = Get-EntraContact -Top 1
-PS C:\> Get-EntraContactManager -ObjectId $Contact.ObjectId
+Connect-Entra -Scopes 'OrgContact.Read.All'
+$Contact = Get-EntraContact -Top 1
+Get-EntraContactManager -ObjectId $Contact.ObjectId
 ```
 
-The first command gets a contact by using the [Get-EntraContact](./Get-EntraContact.md) cmdlet, and then stores it in the $Contact variable.  
+The example demonstrates how to retrieve the manager of a contact.
 
-The second command gets the manager for $Contact.
-
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
+
 Specifies the ID of a contact in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -61,19 +64,15 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Get-EntraContact](Get-EntraContact.md)
-
-[Remove-EntraContactManager](Remove-EntraContactManager.md)
-
-[Set-EntraContactManager](Set-EntraContactManager.md)
-

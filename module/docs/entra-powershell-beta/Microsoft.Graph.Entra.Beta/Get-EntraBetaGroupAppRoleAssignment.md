@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaGroupAppRoleAssig
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 02/29/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraBetaGroupAppRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 Gets a group application role assignment.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaGroupAppRoleAssignment 
@@ -30,10 +30,10 @@ Get-EntraBetaGroupAppRoleAssignment
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaGroupAppRoleAssignment cmdlet gets a group application role assignment in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve application role assignments of a group
 ```powershell
@@ -83,7 +83,7 @@ MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 
 
 This command gets top two application role assignments of the specified group.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -133,13 +133,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaGroup](Get-EntraBetaGroup.md)
 
