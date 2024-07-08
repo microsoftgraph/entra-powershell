@@ -1,6 +1,6 @@
 ---
-title: Set-EntraMSAttributeSet
-description: This article provides details on the Set-EntraMSAttributeSet command.
+title: Set-EntraAttributeSet
+description: This article provides details on the Set-EntraAttributeSet command.
 
 ms.service: active-directory
 ms.topic: reference
@@ -16,7 +16,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Set-EntraMSAttributeSet
+# Set-EntraAttributeSet
 
 ## SYNOPSIS
 

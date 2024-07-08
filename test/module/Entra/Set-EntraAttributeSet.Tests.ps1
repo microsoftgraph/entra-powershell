@@ -7,33 +7,33 @@ BeforeAll {
     Mock -CommandName Invoke-GraphRequest -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
   
-Describe "Set-EntraMSAttributeSet" {
-    Context "Test for Set-EntraMSAttributeSet" {
+Describe "Set-EntraAttributeSet" {
+    Context "Test for Set-EntraAttributeSet" {
         It "Should return created AttributeSet" {
-            $result = Set-EntraMSAttributeSet -Id "NewCustomAttributeSet" -Description "CustomAttributeSet" -MaxAttributesPerSet 125 
+            $result = Set-EntraAttributeSet -Id "NewCustomAttributeSet" -Description "CustomAttributeSet" -MaxAttributesPerSet 125 
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Id parameter is empty" {
-            { Set-EntraMSAttributeSet -Id } | Should -Throw "Missing an argument for parameter 'Id*"
+            { Set-EntraAttributeSet -Id } | Should -Throw "Missing an argument for parameter 'Id*"
         }
         It "Should fail when Id parameter is invalid" {
-            { Set-EntraMSAttributeSet -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id'*"
+            { Set-EntraAttributeSet -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id'*"
         }
         It "Should fail when Description parameter is empty" {
-            { Set-EntraMSAttributeSet -Description } | Should -Throw "Missing an argument for parameter 'Description*"
+            { Set-EntraAttributeSet -Description } | Should -Throw "Missing an argument for parameter 'Description*"
         }
         It "Should fail when MaxAttributesPerSet parameter is empty" {
-            { Set-EntraMSAttributeSet -MaxAttributesPerSet } | Should -Throw "Missing an argument for parameter 'MaxAttributesPerSet*"
+            { Set-EntraAttributeSet -MaxAttributesPerSet } | Should -Throw "Missing an argument for parameter 'MaxAttributesPerSet*"
         }
         It "Should fail when MaxAttributesPerSet parameter is invalid" {
-            { Set-EntraMSAttributeSet -MaxAttributesPerSet "a"} | Should -Throw "Cannot process argument transformation on parameter 'MaxAttributesPerSet'.*"
+            { Set-EntraAttributeSet -MaxAttributesPerSet "a"} | Should -Throw "Cannot process argument transformation on parameter 'MaxAttributesPerSet'.*"
         }
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraMSAttributeSet"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraAttributeSet"
 
-            Set-EntraMSAttributeSet -Id "NewCustomAttributeSet" -Description "CustomAttributeSet" -MaxAttributesPerSet 125 | Out-Null
+            Set-EntraAttributeSet -Id "NewCustomAttributeSet" -Description "CustomAttributeSet" -MaxAttributesPerSet 125 | Out-Null
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
