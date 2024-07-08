@@ -55,7 +55,7 @@ New-EntraApplicationExtensionProperty @params
 ```Output
 DeletedDateTime Id                                   AppDisplayName  DataType IsSyncedFromOnPremises Name                                                    TargetObjects
 --------------- --                                   --------------  -------- ---------------------- ----                                                    -------------
-                11112222-bbbb-3333-cccc-4444dddd5555 My new test App String   False                  extension_11112222-bbbb-3333-cccc-4444dddd5555_NewAttribute {}
+                11112222-bbbb-3333-cccc-4444dddd5555 My new test app String   False                  extension_11112222-bbbb-3333-cccc-4444dddd5555_NewAttribute {}
 ```
 
 This command creates an application extension property of the string type for the specified object.
