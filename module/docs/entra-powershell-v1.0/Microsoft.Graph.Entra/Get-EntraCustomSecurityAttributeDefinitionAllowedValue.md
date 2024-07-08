@@ -1,6 +1,6 @@
 ---
-title: Get-EntraMSCustomSecurityAttributeDefinitionAllowedValue.
-description: This article provides details on the Get-EntraMSCustomSecurityAttributeDefinitionAllowedValue command.
+title: Get-EntraCustomSecurityAttributeDefinitionAllowedValue.
+description: This article provides details on the Get-EntraCustomSecurityAttributeDefinitionAllowedValue command.
 ms.service: entra
 ms.topic: reference
 ms.date: 06/14/2024
@@ -14,7 +14,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-EntraMSCustomSecurityAttributeDefinitionAllowedValue
+# Get-EntraCustomSecurityAttributeDefinitionAllowedValue
 
 ## SYNOPSIS
 
@@ -25,7 +25,7 @@ Gets the predefined value for a custom security attribute definition.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraMSCustomSecurityAttributeDefinitionAllowedValue 
+Get-EntraCustomSecurityAttributeDefinitionAllowedValue 
  -CustomSecurityAttributeDefinitionId <String>
  [-Filter <String>] 
  [<CommonParameters>]
@@ -34,7 +34,7 @@ Get-EntraMSCustomSecurityAttributeDefinitionAllowedValue
 ### GetById
 
 ```powershell
-Get-EntraMSCustomSecurityAttributeDefinitionAllowedValue 
+Get-EntraCustomSecurityAttributeDefinitionAllowedValue 
  -CustomSecurityAttributeDefinitionId <String>
  -Id <String> 
  [<CommonParameters>]
@@ -50,7 +50,7 @@ Gets the predefined value for a Microsoft Entra ID custom security attribute def
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttributeDefinition.ReadWrite.All'
-Get-EntraMSCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId 'Engineering_Project'
+Get-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId 'Engineering_Project'
 ```
 
 ```output
@@ -68,7 +68,7 @@ This example Get all predefined values.
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttributeDefinition.ReadWrite.All'
-Get-EntraMSCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Id 'Alpine'
+Get-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Id 'Alpine'
 ```
 
 ```output
@@ -87,7 +87,7 @@ This example Get a predefined value.
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttributeDefinition.ReadWrite.All'
-Get-EntraMSCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Filter "id eq 'Apline'"
+Get-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Filter "id eq 'Apline'"
 ```
 
 ```output
