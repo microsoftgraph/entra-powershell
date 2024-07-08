@@ -98,6 +98,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-- See more details - <https://learn.microsoft.com/graph/api/user-changepassword>
+- For more details see [changePassword](/graph/api/user-changepassword).
 
 ## RELATED LINKS
