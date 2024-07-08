@@ -68,7 +68,7 @@ This example shows how to retrieve the application logo for an application that 
 
 ### -FileName
 
-If provided, the application logo is copied to the file who's name is provided in this parameter.
+If provided, the application logo is saved to the file using the specified file name.
 
 ```yaml
 Type: System.String
@@ -84,7 +84,7 @@ Accept wildcard characters: False
 
 ### -FilePath
 
-If provided, the application logo is copied with a random filename to the file path that is specified in this parameter.
+If provided, the application logo is saved to the specified file path using a random file name.
 
 ```yaml
 Type: System.String
@@ -116,7 +116,7 @@ Accept wildcard characters: False
 
 ### -View
 
-If set to $true, the application's logo is displayed in a new window on the screen.
+If set to $true, displays the application logo in a new window.
 
 ```yaml
 Type: System.Boolean
