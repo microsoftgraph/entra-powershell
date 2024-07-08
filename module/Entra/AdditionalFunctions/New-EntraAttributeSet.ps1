@@ -1,4 +1,4 @@
-function New-EntraMSAttributeSet {
+function New-EntraAttributeSet {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]

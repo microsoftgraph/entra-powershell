@@ -1,6 +1,6 @@
 ---
-title: New-EntraMSAttributeSet
-description: This article provides details on the New-EntraMSAttributeSet command.
+title: New-EntraAttributeSet
+description: This article provides details on the New-EntraAttributeSet command.
 
 ms.service: active-directory
 ms.topic: reference
@@ -16,7 +16,7 @@ online version:
 schema: 2.0.0
 ---
 
-# New-EntraMSAttributeSet
+# New-EntraAttributeSet
 
 ## SYNOPSIS
 
