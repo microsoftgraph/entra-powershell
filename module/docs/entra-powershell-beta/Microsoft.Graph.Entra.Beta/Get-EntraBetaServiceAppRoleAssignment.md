@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaServiceAppRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 Gets a service principal application role assignment.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaServiceAppRoleAssignment -ObjectId <String> [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaServiceAppRoleAssignment cmdlet gets a role assignment for a service principal application in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the application role assignments for a service principal
 ```
@@ -32,7 +32,7 @@ The command stores the ID in the $ServicePrincipalId variable.
 
 The second command gets the application role assignments for the service principal in identified by $ServicePrincipalId.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -82,13 +82,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaServicePrincipal]()
 

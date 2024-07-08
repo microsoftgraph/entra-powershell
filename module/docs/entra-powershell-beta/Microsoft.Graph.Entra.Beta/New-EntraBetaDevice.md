@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # New-EntraBetaDevice
 
-## SYNOPSIS
+## Synopsis
 Creates a device.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaDevice -AccountEnabled <Boolean>
@@ -22,10 +22,10 @@ New-EntraBetaDevice -AccountEnabled <Boolean>
  [-DeviceMetadata <String>] -DeviceId <String> [-IsCompliant <Boolean>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraBetaDevice cmdlet creates a device in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a device
 ```
@@ -38,7 +38,7 @@ ObjectId                             DeviceId                             Displa
 
 This command creates a new device.
 
-## PARAMETERS
+## Parameters
 
 ### -AccountEnabled
 Indicates whether the account is enabled.
@@ -268,13 +268,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaDevice]()
 
