@@ -17,32 +17,32 @@ BeforeAll {
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
-Describe "Get-EntraMSAttributeSet" {
-    Context "Test for Get-EntraMSAttributeSet" {
+Describe "Get-EntraAttributeSet" {
+    Context "Test for Get-EntraAttributeSet" {
         It "Should return AttributeSets with any parameter" {
-            $result = Get-EntraMSAttributeSet -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraAttributeSet -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 
             Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should return specific AttributeSet" {
-            $result = Get-EntraMSAttributeSet -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraAttributeSet -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 
             Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Id is invalid" {
-            { Get-EntraMSAttributeSet -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
+            { Get-EntraAttributeSet -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
         }
         It "Should fail when Id is empty" {
-            { Get-EntraMSAttributeSet -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
+            { Get-EntraAttributeSet -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
         }
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraMSAttributeSet"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAttributeSet"
 
-            Get-EntraMSAttributeSet -Id "bbbbbbbb-1111-2222-3333-cccccccccccc" | Out-Null
+            Get-EntraAttributeSet -Id "bbbbbbbb-1111-2222-3333-cccccccccccc" | Out-Null
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

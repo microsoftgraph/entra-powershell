@@ -1,6 +1,6 @@
 ---
-title: Get-EntraMSAttributeSet
-description: This article provides details on the Get-EntraMSAttributeSet command.
+title: Get-EntraAttributeSet
+description: This article provides details on the Get-EntraAttributeSet command.
 
 ms.service: active-directory
 ms.topic: reference
@@ -15,7 +15,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-EntraMSAttributeSet
+# Get-EntraAttributeSet
 
 ## SYNOPSIS
 
@@ -25,13 +25,13 @@ Gets a list of attribute sets.
 
 ### GetQuery (Default)
 ```powershell
-Get-EntraMSAttributeSet
+Get-EntraAttributeSet
  [<CommonParameters>]
 ```
 
 ### GetById
 ```powershell
-Get-EntraMSAttributeSett 
+Get-EntraAttributeSett 
  -Id <String> 
  [<CommonParameters>]
 ```
@@ -44,7 +44,7 @@ Gets a list of Microsoft Entra ID attribute sets.
 
 ### Example 1: Get an all attribute sets.
 ```powershell
-Get-EntraMSAttributeSet
+Get-EntraAttributeSet
 ```
 ```output
 description                           id                    maxAttributesPerSet
@@ -61,7 +61,7 @@ This example Get all attribute sets.
 
 ### Example 2: Get an attribute sets.
 ```powershell
-Get-EntraMSAttributeSet -Id 'Engineering'
+Get-EntraAttributeSet -Id 'Engineering'
 ```
 ```output
 description                           id                    maxAttributesPerSet
