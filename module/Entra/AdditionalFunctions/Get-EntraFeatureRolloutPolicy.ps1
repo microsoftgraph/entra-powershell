@@ -28,13 +28,13 @@ function Get-EntraFeatureRolloutPolicy {
             $FilterValue = $PSBoundParameters["SearchString"]
             $filter="displayName eq '$FilterValue' or startswith(displayName,'$FilterValue')"
             $f = '$' + 'Filter'
-            $params["Uri"] += "?$f=$filter&"
+            $params["Uri"] += "?$f=$filter"
         }
         if($null -ne $PSBoundParameters["Filter"])
         {
             $Filter = $PSBoundParameters["Filter"]
             $f = '$' + 'Filter'
-            $params["Uri"] += "?$f=$Filter&"
+            $params["Uri"] += "?$f=$Filter"
         } 
 	    
         Write-Debug("============================ TRANSFORMATIONS ============================")
