@@ -57,14 +57,23 @@
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
 
+        $URI = "/beta/users/$($params.UserId)/ownedObjects"
+
+        if($null -ne $PSBoundParameters["Property"])
+        {
+            $selectProperties = $PSBoundParameters["Property"]
+            $selectProperties = $selectProperties -Join ','
+            $properties = "`$select=$($selectProperties)"
+            $URI = "/beta/users/$($params.UserId)/ownedObjects?$properties"
+        }
+
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
         $Method = "GET"
-        $URI = '/beta/users/'+$params["UserId"]+'/ownedObjects'
 
-        $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method $Method).value;
+        $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).value;
         
         $Top = $null
         if ($null -ne $PSBoundParameters["Top"]) {

@@ -4,7 +4,7 @@ description: This article provides details on the Remove-EntraApplicationProxyCo
 
 ms.service: entra
 ms.topic: reference
-ms.date: 03/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Remove-EntraApplicationProxyConnectorGroup
 
-## SYNOPSIS
+## Synopsis
 The Remove-EntraApplicationProxyConnectorGroup cmdlet deletes an Application Proxy Connector group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
  Remove-EntraApplicationProxyConnectorGroup 
@@ -28,11 +28,11 @@ The Remove-EntraApplicationProxyConnectorGroup cmdlet deletes an Application Pro
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraApplicationProxyConnectorGroup cmdlet deletes an Application Proxy Connector Group.
 It can only be used on an empty connector group, with no connectors assigned.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a specific Connector Group
 ```powershell
@@ -41,7 +41,7 @@ PS C:\> Remove-EntraApplicationProxyConnectorGroup -Id 59462d3c-a1bc-40a0-9bed-b
 
 This example demonstrates how to Remove a specific Connector Group.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The ID of the Connector group to delete.
@@ -62,12 +62,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

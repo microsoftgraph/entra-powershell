@@ -7,29 +7,29 @@ schema: 2.0.0
 
 # Convert-EntraBetaFederatedUser
 
-## SYNOPSIS
+## Synopsis
 Updates a user in a domain that was recently converted from single sign-on (also known as identity federation) to standard authentication type.
 
-## SYNTAX
+## Syntax
 
 ```
 Convert-EntraBetaFederatedUser [-UserPrincipalName] <String> [[-NewPassword] <String>] [[-TenantId] <Guid>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Convert-EntraBetaFederatedUser cmdlet is used to update a user in a domain that was recently converted from single sign-on (also known as identity federation) to
 standard authentication type. 
 A new password must be provided for the user.
 
-## EXAMPLES
+## Examples
 
-### EXAMPLE 1
+### Example 1
 ```
 Convert-EntraBetaFederatedUser -UserPrincipalName "pattifuller@contoso.com"
 ```
 
-## PARAMETERS
+## Parameters
 
 ### -UserPrincipalName
 The Microsoft Azure Active Directory UserID for the user to convert.
@@ -82,10 +82,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

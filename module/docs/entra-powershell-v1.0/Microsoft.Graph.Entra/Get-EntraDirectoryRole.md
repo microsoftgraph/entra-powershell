@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraDirectoryRole command
 
 ms.service: entra
 ms.topic: reference
-ms.date: 02/29/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,12 +17,14 @@ schema: 2.0.0
 
 # Get-EntraDirectoryRole
 
-## SYNOPSIS
+## Synopsis
+
 Gets a directory role.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
+
 ```powershell
 Get-EntraDirectoryRole 
  [-Filter <String>] 
@@ -30,23 +32,27 @@ Get-EntraDirectoryRole
 ```
 
 ### GetById
+
 ```powershell
 Get-EntraDirectoryRole 
  -ObjectId <String> 
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The **Get-EntraDirectoryRole** cmdlet gets a directory role from Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Get-EntraDirectoryRole` cmdlet gets a directory role from Microsoft Entra ID.
+
+## Examples
 
 ### Example 1: Get a directory role by ID
+
 ```powershell
-PS C:\>Get-EntraDirectoryRole -ObjectId "019ea7a2-1613-47c9-81cb-20ba35b1ae48"
+Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+Get-EntraDirectoryRole -ObjectId '019ea7a2-1613-47c9-81cb-20ba35b1ae48'
 ```
 
-```output
+```Output
 ObjectId                             DisplayName                        Description
 --------                             -----------                        -----------
 019ea7a2-1613-47c9-81cb-20ba35b1ae48 Company Administrator              Company Administrator role has full access to perform any operation in the company scope.
@@ -55,11 +61,13 @@ ObjectId                             DisplayName                        Descript
 This command gets the specified directory role.
 
 ### Example 2: Get all directory roles
+
 ```powershell
-PS C:\>Get-EntraDirectoryRole
+Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+Get-EntraDirectoryRole
 ```
 
-```output
+```Output
 ObjectId                             DisplayName                        Description
 --------                             -----------                        -----------
 019ea7a2-1613-47c9-81cb-20ba35b1ae48 Company Administrator              Company Administrator role has full access to perform any operation in the company scope.
@@ -76,11 +84,13 @@ d96eb2b3-0970-4827-8f26-6008efd86511 Security Administrator             Security
 This command gets all the directory roles.
 
 ### Example 3: Get a directory role filter by ObjectId
+
 ```powershell
-PS C:\>Get-EntraDirectoryRole -Filter "ObjectId eq '019ea7a2-1613-47c9-81cb-20ba35b1ae48'"
+Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+Get-EntraDirectoryRole -Filter "ObjectId eq '019ea7a2-1613-47c9-81cb-20ba35b1ae48'"
 ```
 
-```output
+```Output
 ObjectId                             DisplayName                        Description
 --------                             -----------                        -----------
 019ea7a2-1613-47c9-81cb-20ba35b1ae48 Company Administrator              Company Administrator role has full access to perform any operation in the company scope.
@@ -89,11 +99,13 @@ ObjectId                             DisplayName                        Descript
 This command gets the directory role by ObjectId.
 
 ### Example 4: Get a directory role filter by displayName
+
 ```powershell
-PS C:\>Get-EntraDirectoryRole -Filter "displayName eq 'Company Administrator'"
+Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+Get-EntraDirectoryRole -Filter "displayName eq 'Company Administrator'"
 ```
 
-```output
+```Output
 ObjectId                             DisplayName                        Description
 --------                             -----------                        -----------
 019ea7a2-1613-47c9-81cb-20ba35b1ae48 Company Administrator              Company Administrator role has full access to perform any operation in the company scope.
@@ -101,14 +113,15 @@ ObjectId                             DisplayName                        Descript
 
 This command gets the directory role by display name.
 
-## PARAMETERS
+## Parameters
 
 ### -Filter
-The oData v3.0 filter statement. 
+
+The oData v3.0 filter statement.
 Controls which objects are returned.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery
 Aliases:
 
@@ -120,10 +133,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a directory role in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -135,15 +149,15 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Enable-EntraDirectoryRole](Enable-EntraDirectoryRole.md)
-
