@@ -1,20 +1,24 @@
 BeforeAll{
+    if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
+        Import-Module Microsoft.Graph.Entra    
+    }
+    Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
     $response = @{
         "@odata.context"   =  'https://graph.microsoft.com/v1.0/$metadata#microsoft.graph.applicationServicePrincipal'
         "servicePrincipal" =  @{
                                  "oauth2PermissionScopes" = $null
                                  "servicePrincipalType" = "Application"
-                                 "displayName" = "teesttt1"
+                                 "displayName" = "test app"
                                  "passwordCredentials" = $null
                                  "deletedDateTime" = $null
                                  "alternativeNames" = $null
                                  "homepage" = "https://*.e-days.com/SSO/SAML2/SP/AssertionConsumer.aspx?metadata=e-days|ISV9.2|primary|z"
-                                 "applicationTemplateId" = "2b80826f-df72-4e85-8808-117254f20c24"
+                                 "applicationTemplateId" = "aaaaaaaa-1111-1111-1111-cccccccccccc"
                                  "appRoleAssignmentRequired" = $true
                                  "servicePrincipalNames" = $null
                                  "keyCredentials" = $null
-                                 "appOwnerOrganizationId" = "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
+                                 "appOwnerOrganizationId" = "aaaaaaaa-1111-2222-1111-cccccccccccc"
                                  "loginUrl" = $null
                                  "verifiedPublisher" = @{
                                                            "verifiedPublisherId" = $null
@@ -26,8 +30,8 @@ BeforeAll{
                                  "appRoles" = $null
                                  "tokenEncryptionKeyId" = $null
                                  "samlSingleSignOnSettings" = $null
-                                 "appDisplayName" = "teesttt1"
-                                 "id" = "8495716b-6923-4a2e-9d6c-ed2281b289ae"
+                                 "appDisplayName" = "test app"
+                                 "id" = "aaaaaaaa-1111-3333-1111-cccccccccccc"
                                  "tags" = $null
                                  "addIns" = $null
                                  "accountEnabled" = $true
@@ -40,7 +44,7 @@ BeforeAll{
                                               "logoUrl" = $null
                                               "supportUrl" = $null
                                           }
-                                 "appId" = "36ff55d1-4705-4a9e-9b5a-88bc08de40a5"
+                                 "appId" = "aaaaaaaa-1111-4444-1111-cccccccccccc"
                                  "preferredTokenSigningKeyThumbprint" = $null
                                 }
         "application" =  @{
@@ -65,8 +69,8 @@ BeforeAll{
                             "createdDateTime" = $null
                             "keyCredentials" = $null
                             "identifierUris" = $null
-                            "displayName" = "teesttt1"
-                            "applicationTemplateId" = "2b80826f-df72-4e85-8808-117254f20c24"
+                            "displayName" = "test app"
+                            "applicationTemplateId" = "aaaaaaaa-1111-1111-1111-cccccccccccc"
                             "samlMetadataUrl" = $null
                             "addIns" = $null
                             "publicClient" = @{
@@ -82,7 +86,7 @@ BeforeAll{
                                         "redirectUris" = "https://*.signin.e-days.co.uk/* https://*.signin.e-days.com/* https://*.e-days.com/SSO/SAML2/SP/AssertionConsumer.aspx"
                                         "logoutUrl" = $null
                                     }
-                            "id" = "c20f5b07-ad61-456e-b478-280c78f0a7e9"
+                            "id" = "aaaaaaaa-2222-1111-1111-cccccccccccc"
                             "tags" = $null
                             "isFallbackPublicClient" = $false
                             "api" = @{
@@ -95,7 +99,33 @@ BeforeAll{
                             "appRoles" = $null
                             "description" = $null
                             "signInAudience" = "AzureADMyOrg"
-                            "appId" = "36ff55d1-4705-4a9e-9b5a-88bc08de40a5"
+                            "appId" = "aaaaaaaa-3333-1111-1111-cccccccccccc"
                         }
+    }
+
+    Mock -CommandName Invoke-MgGraphRequest -MockWith { $response } -ModuleName Microsoft.Graph.Entra
+}
+Describe "New-EntraApplicationFromApplicationTemplateFromApplicationTemplate tests"{
+    It "Should return created Application with service principal"{
+        $result = New-EntraApplicationFromApplicationTemplate -Id "aaaaaaaa-1111-1111-1111-cccccccccccc" -DisplayName "test app"
+        $result | Should -Not -BeNullOrEmpty
+        $result.application.applicationTemplateId | Should -Be "aaaaaaaa-1111-1111-1111-cccccccccccc"
+        $result.servicePrincipal.applicationTemplateId | Should -Be "aaaaaaaa-1111-1111-1111-cccccccccccc"
+        Should -Invoke -CommandName Invoke-MgGraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+    }
+    It "Should fail when Id is empty" {
+        { New-EntraApplicationFromApplicationTemplate -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id'*"
+    }
+    It "Should fail when Id is null" {
+        { New-EntraApplicationFromApplicationTemplate -Id  } | Should -Throw "Missing an argument for parameter 'Id'.*"
+    }
+    It "Should fail when DisplayName is empty" {
+        { New-EntraApplicationFromApplicationTemplate -DisplayName "" } | Should -Throw "Cannot bind argument to parameter 'DisplayName'*"
+    }
+    It "Should fail when DisplayName is null" {
+        { New-EntraApplicationFromApplicationTemplate -DisplayName  } | Should -Throw "Missing an argument for parameter 'DisplayName'.*"
+    }
+    It "Should fail when invalid parameter is passed" {
+        { New-EntraApplicationFromApplicationTemplate -xyz } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
     }
 }
