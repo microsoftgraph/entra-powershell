@@ -170,7 +170,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-- See additional details - <https://learn.microsoft.com/graph/api/onpremisesdirectorysynchronization-update>
+- For additional details see [Update onPremisesDirectorySynchronization](/graph/api/onpremisesdirectorysynchronization-update).
 - See feature list - <https://learn.microsoft.com/graph/api/resources/onpremisesdirectorysynchronizationfeature>
 
 ## Related Links
