@@ -191,7 +191,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-- See more details - <https://learn.microsoft.com/graph/api/organization-update>
+- For more details see [Update organization](/graph/api/organization-update).
 
 ## Related Links
 
