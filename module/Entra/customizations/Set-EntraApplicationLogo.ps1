@@ -15,7 +15,7 @@
             $Method = "PUT"
             if($PSBoundParameters.ContainsKey("Verbose"))
             {
-                $params["Verbose"] = $Null
+                $params["Verbose"] = $PSBoundParameters["Verbose"]
             }
             if($null -ne $PSBoundParameters["ObjectId"])
             {

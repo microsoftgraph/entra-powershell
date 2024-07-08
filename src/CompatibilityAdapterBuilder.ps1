@@ -804,7 +804,7 @@ $OutputTransformations
         $paramBlock = @"
     if(`$PSBoundParameters.ContainsKey("$($Name)"))
     {
-        `$params["$($Name)"] = `$Null
+        `$params["$($Name)"] = `$PSBoundParameters["$($Name)"]
     }
 
 "@
