@@ -2,9 +2,9 @@
 title: Get-EntraGroup.
 description: This article explains the Get-EntraGroup command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
-ms.date: 03/08/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,18 +17,18 @@ schema: 2.0.0
 
 # Get-EntraGroup
 
-## SYNOPSIS
+## Synopsis
 
 Gets a group.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
 ```powershell
 Get-EntraGroup
  [-Top <Int32>]
- [-All <Boolean>]
+ [-All]
  [-Filter <String>]
  [<CommonParameters>]
 ```
@@ -38,7 +38,7 @@ Get-EntraGroup
 ```powershell
 Get-EntraGroup
  [-SearchString <String>]
- [-All <Boolean>]
+ [-All]
  [<CommonParameters>]
 ```
 
@@ -47,15 +47,15 @@ Get-EntraGroup
 ```powershell
 Get-EntraGroup
  -ObjectId <String>
- [-All <Boolean>]
+ [-All]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraGroup cmdlet gets a group in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all groups
 
@@ -142,25 +142,22 @@ New Golden Fox          xxxxxxxx-8888-5555-9999-bbbbbbbbbbbb newgoldenfox       
 
 This example demonstrates how to retrieve groups that include the text new in their display names from Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -All
-
-If true, return all groups.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: System.Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 ### -Filter
 
 Specifies an oData v3.0 filter statement.
@@ -230,13 +227,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraGroup](New-EntraGroup.md)
 

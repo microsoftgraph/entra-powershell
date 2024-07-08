@@ -2,9 +2,9 @@
 title: Get-EntraUserThumbnailPhoto.
 description: This article provides details on the Get-EntraUserThumbnailPhoto command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
-ms.date: 03/15/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraUserThumbnailPhoto
 
-## SYNOPSIS
+## Synopsis
 Retrieve the thumbnail photo of a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraUserThumbnailPhoto 
@@ -31,10 +31,10 @@ Get-EntraUserThumbnailPhoto
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Retrieve the thumbnail photo of a user.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve thumbnail photo by Id
 ```powershell
@@ -43,7 +43,7 @@ PS C:\WINDOWS\system32> Get-EntraUserThumbnailPhoto -ObjectId df19e8e6-2ad7-453e
 
 This example demonstrates how to retrieve the thumbnail photo of a user that is specified through the value of the ObejctId parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -FileName
 If specified, a copy of the thumbnail photo is written to the specified file name.
@@ -108,16 +108,16 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 System.Boolean
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Set-EntraUserThumbnailPhoto](Set-EntraUserThumbnailPhoto.md)

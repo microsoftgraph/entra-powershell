@@ -2,9 +2,9 @@
 title: Get-EntraDomainNameReference
 description: This article provides details on the Get-EntraDomainNameReference command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
-ms.date: 03/16/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,11 @@ schema: 2.0.0
 
 # Get-EntraDomainNameReference
 
-## SYNOPSIS
+## Synopsis
+
 This cmdlet retrieves the objects that are referenced with a given domain name.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraDomainNameReference 
@@ -28,42 +29,48 @@ Get-EntraDomainNameReference
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraDomainNameReference cmdlet retrieves the objects that are referenced with a given domain name.
+## Description
 
-## EXAMPLES
+The `Get-EntraDomainNameReference` cmdlet retrieves the objects that are referenced with a given domain name.
+
+The work or school account needs to belong to at least the Domain Name Administrator or Global Reader Microsoft Entra role.
+
+## Examples
 
 ### Example 1: Retrieve the domain name reference objects for a domain
+
 ```powershell
-PS C:\> Get-EntraDomainNameReference -Name M365x99297270.onmicrosoft.com
+ Connect-Entra -Scopes 'Domain.Read.All'
+ Get-EntraDomainNameReference -Name contoso.com
 ```
 
-```output
+```Output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
 imAddresses                     : {}
 preferredLanguage               :
-mail                            : Hood@M365x99297270.OnMicrosoft.com
-securityIdentifier              : S-1-12-1-2465307174-1183218137-1495780736-693310342
-identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=Hood@M365x99297270.OnMicrosoft.com}}
+mail                            : Hood@contoso.com
+securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
+identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=Hood@contoso.com}}
 consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
 assignedLicenses                : {}
 department                      :
 jobTitle                        :
-proxyAddresses                  : {SMTP:Hood@M365x99297270.OnMicrosoft.com}
+proxyAddresses                  : {SMTP:Hood@contoso.com}
 ```
 
 This example shows how to retrieve the domain name reference objects for a domain that is specified through the -Name parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -Name
+
 The name of the domain name for which the referenced objects are retrieved.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -75,14 +82,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
 
 ### System.String
-## OUTPUTS
+
+## Outputs
 
 ### System.Object
-## NOTES
 
-## RELATED LINKS
+## Notes
+
+## Related Links

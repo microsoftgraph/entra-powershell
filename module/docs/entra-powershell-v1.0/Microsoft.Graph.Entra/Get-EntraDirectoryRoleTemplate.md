@@ -2,9 +2,9 @@
 title: Get-EntraDirectoryRoleTemplate
 description: This article provides details on the Get-EntraDirectoryRoleTemplate command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
-ms.date: 03/16/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,24 +17,28 @@ schema: 2.0.0
 
 # Get-EntraDirectoryRoleTemplate
 
-## SYNOPSIS
+## Synopsis
+
 Gets directory role templates.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraDirectoryRoleTemplate 
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraDirectoryRoleTemplate cmdlet gets directory role templates in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Get-EntraDirectoryRoleTemplate` cmdlet gets directory role templates in Microsoft Entra ID.
+
+## Examples
 
 ### Example 1: Get role templates
+
 ```powershell
-PS C:\>Get-EntraDirectoryRoleTemplate
+Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+Get-EntraDirectoryRoleTemplate
 ```
 
 ```output
@@ -52,15 +56,16 @@ DeletedDateTime Id                                   Description
 
 This command gets the role templates in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links

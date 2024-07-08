@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Get-EntraBetaServicePrincipalCreatedObject
 
-## SYNOPSIS
+## Synopsis
 Get objects created by a service principal.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaServicePrincipalCreatedObject -ObjectId <String> [-All] [-Top <Int32>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaServicePrincipalCreatedObject cmdlet gets an object created by a service principal in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the objects that were created by a service principal
 ```
@@ -33,7 +33,7 @@ The command stores the ID in the $ServicePrincipalId variable.
 
 The second command gets objects created by the service principal identified by $ServicePrincipalId.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -96,12 +96,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaServicePrincipal]()

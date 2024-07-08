@@ -2,9 +2,9 @@
 title: Add-EntraGroupMember.
 description: This article explains the Add-EntraGroupMember command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
-ms.date: 11/10/2023
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Add-EntraGroupMember
 
-## SYNOPSIS
+## Synopsis
 
 Adds a member to a group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraGroupMember 
@@ -30,11 +30,11 @@ Add-EntraGroupMember
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Add-EntraGroupMember cmdlet adds a member to a group.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a member to a group
 
@@ -45,7 +45,7 @@ Add-EntraGroupMember -ObjectId 'dddddddd-2222-3333-5555-rrrrrrrrrrrr' -RefObject
 
 This command is used to add a member to a group. The `-ObjectId` parameter specifies the ID of the group to which the member should be added. The `-RefObjectId` parameter specifies the ID of the member to be added to the group.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -83,13 +83,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraGroupMember](Get-EntraGroupMember.md)
 
