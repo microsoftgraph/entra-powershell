@@ -226,7 +226,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-- See more information - <https://learn.microsoft.com/graph/api/conditionalaccessroot-post-namedlocations>
+- For more information, see [Create namedLocation](/graph/api/conditionalaccessroot-post-namedlocations).
 
 ## Related Links
 
