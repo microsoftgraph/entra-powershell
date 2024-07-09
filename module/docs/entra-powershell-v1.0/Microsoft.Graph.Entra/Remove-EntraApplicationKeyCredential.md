@@ -34,6 +34,8 @@ Remove-EntraApplicationKeyCredential
 
 The `Remove-EntraApplicationKeyCredential` cmdlet removes a key credential from an application.
 
+An application can use this command along with `New-EntraApplicationKeyCredential` to automate the rolling of its expiring keys.
+
 ## Examples
 
 ### Example 1: Remove a key credential
@@ -42,8 +44,8 @@ The `Remove-EntraApplicationKeyCredential` cmdlet removes a key credential from 
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 $params = @{
-    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
-    KeyId = 'cccccccc-2d2d-3e3e-4f4f-555555555555'
+    ObjectId = '33334444-dddd-5555-eeee-6666ffff7777'
+    KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
 }
 
 Remove-EntraApplicationKeyCredential @params
