@@ -621,7 +621,7 @@ $OutputTransformations
     }
 
     hidden [string] GetParametersDefinitions([PSCustomObject] $Command) {
-        $commonParameterNames = @("Verbose", "Debug","ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable","WhatIf","Confirm")  
+        $commonParameterNames = @("ProgressAction","Verbose", "Debug","ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable","WhatIf","Confirm")  
         $ignorePropertyParameter = @("Get-EntraBetaApplicationPolicy", "Get-EntraBetaApplicationSignInSummary","Get-EntraBetaMSPrivilegedRoleAssignment","Get-EntraBetaMSTrustFrameworkPolicy","Get-EntraBetaPolicy","Get-EntraBetaPolicyAppliedObject","Get-EntraBetaServicePrincipalPolicy","Get-EntraApplicationLogo","Get-EntraBetaApplicationLogo","Get-EntraApplicationKeyCredential","Get-EntraBetaApplicationKeyCredential","Get-EntraBetaServicePrincipalKeyCredential","Get-EntraBetaServicePrincipalPasswordCredential","Get-EntraServicePrincipalKeyCredential","Get-EntraServicePrincipalPasswordCredential")
         $params = $(Get-Command -Name $Command.Old).Parameters
         $paramsList = @()
@@ -680,18 +680,36 @@ $OutputTransformations
 
         foreach($attrib in $param.Attributes){
             $arrayAttrib = @()
-            if($attrib.ParameterSetName -ne "__AllParameterSets"){
-                $arrayAttrib += "ParameterSetName = `"$($attrib.ParameterSetName)`""
+            
+            try {
+                if($attrib.ParameterSetName -ne "__AllParameterSets"){
+                    $arrayAttrib += "ParameterSetName = `"$($attrib.ParameterSetName)`""
+                }
             }
-            if($attrib.Mandatory){
-                $arrayAttrib += "Mandatory = `$true"
+            catch {}                
+            
+           try {
+                if($attrib.Mandatory){
+                    $arrayAttrib += "Mandatory = `$true"
+                }
+           }
+           catch {}
+                
+           
+           try {
+                if($attrib.ValueFromPipeline){
+                    $arrayAttrib += "ValueFromPipeline = `$true"
+                }
+           }
+           catch {}
+                
+            try {
+                if($attrib.ValueFromPipelineByPropertyName){
+                    $arrayAttrib += "ValueFromPipelineByPropertyName = `$true"
+                }
             }
-            if($attrib.ValueFromPipeline){
-                $arrayAttrib += "ValueFromPipeline = `$true"
-            }
-            if($attrib.ValueFromPipelineByPropertyName){
-                $arrayAttrib += "ValueFromPipelineByPropertyName = `$true"
-            }
+            catch {}
+           
             $strAttrib = $arrayAttrib -Join ', '
 
             if($strAttrib.Length -gt 0){
