@@ -1,4 +1,15 @@
 ---
+title: Remove-EntraBetaPasswordSingleSignOnCredential.
+description: This article provides details on the Remove-EntraBetaPasswordSingleSignOnCredential command.
+
+ms.service: entra
+ms.topic: reference
+ms.date: 07/09/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,35 +19,42 @@ schema: 2.0.0
 # Remove-EntraBetaPasswordSingleSignOnCredential
 
 ## Synopsis
-Removes the password SSO credentials
+
+Removes the password Single-Sign-On (SSO) credentials.
 
 ## Syntax
 
-```
-Remove-EntraBetaPasswordSingleSignOnCredential -ObjectId <String> -PasswordSSOObjectId <PasswordSSOObjectId>
+```powershell
+Remove-EntraBetaPasswordSingleSignOnCredential 
+ -ObjectId <String> 
+ -PasswordSSOObjectId <PasswordSSOObjectId>
  [<CommonParameters>]
 ```
 
 ## Description
-This cmdlet enables users to remove their Password Single-sign-on credentials for an application which they are part of.
+
+This cmdlet enables users to remove their Password Single-Sign-On credentials for an application that they're part of. Specify `ObjectId` and `PasswordSSOCredential` parameters to remove specific SSO credentials.
 Admin could remove the group credentials as well.
 
 ## Examples
 
-### Remove password single-sign-on credentials
-```
-PS C:\> Remove-EntraBetaPasswordSingleSignOnCredential -ObjectId 9ac9883e-0ac5-4c32-8737-4267f56a28cc -PasswordSSOObjectId a4210a97-5e26-4cfe-88f1-118ed4886f27
+### Example 1: Remove password single-sign-on credentials
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All and Directory.Read.All, Directory.ReadWrite.All'
+Remove-EntraBetaPasswordSingleSignOnCredential -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -PasswordSSOCredential 'bbbbbbbb-1111-2222-3333-cccccccccccc' 
 ```
 
-This command removes the password sso credentials for the given ObjectId and PasswordSSOObjectId.
+This command removes the password SSO credentials for the given ObjectId and PasswordSSOObjectId.
 
 ## Parameters
 
 ### -ObjectId
-The unique identifier of the object specific Azure Active Directory object
+
+The unique identifier of the object specific Microsoft Entra ID object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -48,10 +66,11 @@ Accept wildcard characters: False
 ```
 
 ### -PasswordSSOObjectId
-User or group id
+
+User or group ID.
 
 ```yaml
-Type: PasswordSSOObjectId
+Type: System.PasswordSSOObjectId
 Parameter Sets: (All)
 Aliases:
 
@@ -63,11 +82,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ## Outputs
 
 ## Notes
+
 ## Related Links
+
+[New-EntraBetaPasswordSingleSignOnCredential](New-EntraBetaPasswordSingleSignOnCredential.md)
+
+[Set-EntraBetaPasswordSingleSignOnCredential](Set-EntraBetaPasswordSingleSignOnCredential.md)
+
+[Get-EntraBetaPasswordSingleSignOnCredential](Get-EntraBetaPasswordSingleSignOnCredential.md)
