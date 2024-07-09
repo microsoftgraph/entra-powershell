@@ -99,6 +99,6 @@ System.IO.Stream System.Byte\[\]
 
 ### System.Object
 ## Notes
-The file size is limited to 500kb in the api, for upload.
+File uploads must be smaller than 500KB.
 
 ## Related Links
