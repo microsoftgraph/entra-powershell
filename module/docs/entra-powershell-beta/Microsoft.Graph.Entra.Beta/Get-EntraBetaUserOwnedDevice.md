@@ -85,7 +85,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc aaaa0000-bb11-2222-33cc-444444dddddd Device
 
 This command gets top one registered device owned by the specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
