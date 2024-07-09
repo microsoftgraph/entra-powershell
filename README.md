@@ -26,8 +26,8 @@ The following table contains a list of the Microsoft Entra PowerShell modules.
 
 Description       | Module Name  | PowerShell Gallery Link
 ----------------- | ------------ | -----------------------
-v1.0 Module  | `Microsoft.Graph.Entra`         | [Gallery](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra)
-Beta Module | `Microsoft.Graph.Entra.Beta`     | [Gallery](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra.Beta)
+v1.0 Module  | `Microsoft.Graph.Entra`         | ![Gallery](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra)
+Beta Module | `Microsoft.Graph.Entra.Beta`     | ![Gallery](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra.Beta)
 
 ## Learn more
 
