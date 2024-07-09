@@ -35,15 +35,22 @@ New-EntraOauth2PermissionGrant
 
 ## Description
 
-The `New-EntraOauth2PermissionGrant` cmdlet Create a delegated permission grant using an oAuth2PermissionGrant object. This grant authorizes a client service principal to access a resource service principal on behalf of a signed-in user, with access limited to the granted delegated permissions.
+The `New-EntraOauth2PermissionGrant` cmdlet creates a delegated permission grant using an oAuth2PermissionGrant object. This grant authorizes a client service principal to access a resource service principal on behalf of a signed-in user, with access limited to the specified delegated permissions.
 
 ## Examples
 
 ### Example 1: To grant authorization to impersonate all users
 
 ```powershell
-Connect-Entra -Scopes 'Directory.ReadWrite.All'
-New-EntraOauth2PermissionGrant -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444' -ConsentType 'AllPrincipals' -ResourceId 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1' -Scope 'DelegatedPermissionGrant.ReadWrite.All'
+Connect-Entra -Scopes 'DelegatedPermissionGrant.ReadWrite.All'
+$params = @{
+    ClientId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    ConsentType = 'Principal'
+    PrincipalId = 'aaaaaaaa-bbbb-cccc-1111-222222222222'
+    ResourceId = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
+    Scope = 'DelegatedPermissionGrant.ReadWrite.All'
+}
+New-EntraOauth2PermissionGrant @params
 ```
 
 ```Output
@@ -58,8 +65,14 @@ This command Grant authorization to impersonate all users.
 ### Example 2: To grant authorization to impersonate a specific user
 
 ```powershell
-Connect-Entra -Scopes 'Directory.ReadWrite.All'
-New-EntraOauth2PermissionGrant -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444' -ConsentType 'Principal' -PrincipalId 'aaaaaaaa-bbbb-cccc-1111-222222222222' -ResourceId 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1' -Scope 'DelegatedPermissionGrant.ReadWrite.All' 
+Connect-Entra -Scopes 'DelegatedPermissionGrant.ReadWrite.All'
+$params = @{
+    ClientId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    ConsentType = 'AllPrincipals'
+    ResourceId = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
+    Scope = 'DelegatedPermissionGrant.ReadWrite.All'
+}
+New-EntraOauth2PermissionGrant @params
 ```
 
 ```Output
@@ -89,7 +102,11 @@ Accept wildcard characters: False
 
 ### -ConsentType
 
-Indicates if the client application is authorized to impersonate all users or only a specific user. "AllPrincipals" indicates authorization to impersonate all users, while "Principal" indicates authorization to impersonate a specific user. Consent on behalf of all users can be granted by an administrator. In some cases, non admin users are authorized to consent on behalf of themselves for certain delegated permissions. This is required and supports $filter (eq only).
+Indicates whether the client application is authorized to impersonate all users or only a specific user.
+
+- `AllPrincipals`: Authorizes the application to impersonate all users.
+- `Principal`: Authorizes the application to impersonate a specific user.
+An administrator can grant consent on behalf of all users. In some cases, non-admin users are authorized to consent on behalf of themselves for certain delegated permissions. This parameter is required and supports the $filter query (eq only).
 
 ```yaml
 Type: System.String
