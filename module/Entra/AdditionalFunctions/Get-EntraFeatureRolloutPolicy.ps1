@@ -14,7 +14,7 @@ function Get-EntraFeatureRolloutPolicy {
     PROCESS {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
-        $baseUri = 'https://graph.microsoft.com/beta/policies/featureRolloutPolicies/'
+        $baseUri = 'https://graph.microsoft.com/v1.0/policies/featureRolloutPolicies/'
         $params["Method"] = "GET"
         $params["Uri"] = "$baseUri"
         
