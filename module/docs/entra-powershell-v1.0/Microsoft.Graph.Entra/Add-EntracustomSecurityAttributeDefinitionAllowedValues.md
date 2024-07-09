@@ -1,6 +1,6 @@
 ---
-title: Add-EntracustomSecurityAttributeDefinitionAllowedValues.
-description: This article provides details on the Add-EntracustomSecurityAttributeDefinitionAllowedValues command.
+title: Add-EntraCustomSecurityAttributeDefinitionAllowedValues.
+description: This article provides details on the Add-EntraCustomSecurityAttributeDefinitionAllowedValues command.
 ms.service: entra
 ms.topic: reference
 ms.date: 06/12/2024
@@ -14,7 +14,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Add-EntracustomSecurityAttributeDefinitionAllowedValues
+# Add-EntraCustomSecurityAttributeDefinitionAllowedValues
 
 ## SYNOPSIS
 
@@ -23,7 +23,7 @@ Adds a predefined value for a custom security attribute definition.
 ## SYNTAX
 
 ```powershell
-Add-EntracustomSecurityAttributeDefinitionAllowedValues 
+Add-EntraCustomSecurityAttributeDefinitionAllowedValues 
  -CustomSecurityAttributeDefinitionId <String>
  -Id <String> 
  -IsActive <Boolean> 
@@ -40,7 +40,7 @@ Adds a predefined value for a Microsoft Entra ID custom security attribute defin
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-Add-EntracustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Id 'Alpine' -IsActive $true
+Add-EntraCustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Id 'Alpine' -IsActive $true
 ```
 
 ```output

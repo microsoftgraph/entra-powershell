@@ -15,10 +15,10 @@ BeforeAll {
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
-Describe "Add-EntracustomSecurityAttributeDefinitionAllowedValues" {
-    Context "Test for Add-EntracustomSecurityAttributeDefinitionAllowedValues" {
+Describe "Add-EntraCustomSecurityAttributeDefinitionAllowedValues" {
+    Context "Test for Add-EntraCustomSecurityAttributeDefinitionAllowedValues" {
         It "Should add specific Allowed Values" {
-            $result = Add-EntracustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Id 'Apline' -IsActive $true
+            $result = Add-EntraCustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Id 'Apline' -IsActive $true
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be "Apline"
             $result.IsActive | should -Be $true
@@ -26,27 +26,27 @@ Describe "Add-EntracustomSecurityAttributeDefinitionAllowedValues" {
             Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when CustomSecurityAttributeDefinitionId is empty" {
-            { Add-EntracustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId } | Should -Throw "Missing an argument for parameter 'CustomSecurityAttributeDefinitionId'.*"
+            { Add-EntraCustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId } | Should -Throw "Missing an argument for parameter 'CustomSecurityAttributeDefinitionId'.*"
         }
         It "Should fail when CustomSecurityAttributeDefinitionId is invalid" {
-            { Add-EntracustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId "" } | Should -Throw "Cannot bind argument to parameter 'CustomSecurityAttributeDefinitionId'*"
+            { Add-EntraCustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId "" } | Should -Throw "Cannot bind argument to parameter 'CustomSecurityAttributeDefinitionId'*"
         }
         It "Should fail when Id is empty" {
-            { Add-EntracustomSecurityAttributeDefinitionAllowedValues -Id } | Should -Throw "Missing an argument for parameter 'Id'.*"
+            { Add-EntraCustomSecurityAttributeDefinitionAllowedValues -Id } | Should -Throw "Missing an argument for parameter 'Id'.*"
         }
         It "Should fail when Id is invalid" {
-            { Add-EntracustomSecurityAttributeDefinitionAllowedValues -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id'*"
+            { Add-EntraCustomSecurityAttributeDefinitionAllowedValues -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id'*"
         }
         It "Should fail when IsActive is empty" {
-            { Add-EntracustomSecurityAttributeDefinitionAllowedValues -IsActive } | Should -Throw "Missing an argument for parameter 'IsActive'.*"
+            { Add-EntraCustomSecurityAttributeDefinitionAllowedValues -IsActive } | Should -Throw "Missing an argument for parameter 'IsActive'.*"
         }
         It "Should fail when IsActive is invalid" {
-            { Add-EntracustomSecurityAttributeDefinitionAllowedValues -IsActive a } | Should -Throw "Cannot process argument transformation on parameter 'IsActive'.*"
+            { Add-EntraCustomSecurityAttributeDefinitionAllowedValues -IsActive a } | Should -Throw "Cannot process argument transformation on parameter 'IsActive'.*"
         }
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntracustomSecurityAttributeDefinitionAllowedValues"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraCustomSecurityAttributeDefinitionAllowedValues"
 
-            Add-EntracustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Id 'Apline' -IsActive $true | Out-Null
+            Add-EntraCustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Id 'Apline' -IsActive $true | Out-Null
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
