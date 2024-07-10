@@ -19,19 +19,9 @@ schema: 2.0.0
 
 ## Synopsis
 
-The Microsoft Entra PowerShell SDK application requires users to have domain knowledge of both the semantics and
-syntax of Microsoft Entra API permissions used to authorize access to the API. This cmdlet helps to answer the
-following questions:  - How do I find the values to supply to the permission-related parameters of commands like
-New-EntraApplication and other application and consent related commands? - What permissions are applicable to a
-certain domain, for example, application, directory? To use Microsoft Entra PowerShell SDK to access Microsoft
-Entra ID, users must sign in to a Microsoft Entra ID application using the Connect-Entra command. Use the
-Find-EntraCommand to find which permissions to use for a specific cmdlet or API.-  Currently PowerShell commands
-and scripts, including those implemented with Microsoft Entra PowerShell SDK itself, have no way of validating
-user input that refers to permissions or providing "auto-complete" user experiences to help users accurately
-supply input to commands
+Helps users determine the necessary permissions for resources and identify the appropriate permissions required for various commands.
 
 ## Syntax
-
 
 ### Add Entra Environment Name
 
@@ -47,45 +37,40 @@ Find-EntraPermission
 
 ## Description
 
-The Microsoft Entra PowerShell SDK application requires users to have domain knowledge of both the semantics and
-syntax of Microsoft Entra API permissions used to authorize access to the API. This cmdlet helps to answer the
-following questions:  - How do I find the values to supply to the permission-related parameters of commands like
-New-EntraApplication and other application and consent related commands? - What permissions are applicable to a
-certain domain, for example, application, directory? To use Microsoft Entra PowerShell SDK to access Microsoft
-Entra ID, users must sign in to a Microsoft Entra ID application using the Connect-Entra command. Use the
-Find-EntraCommand to find which permissions to use for a specific cmdlet or API.-  Currently PowerShell commands
-and scripts, including those implemented with Microsoft Entra PowerShell SDK itself, have no way of validating
-user input that refers to permissions or providing "auto-complete" user experiences to help users accurately
-supply input to commands
+The `Find-EntraPermission` cmdlet helps users determine the necessary permissions for resources and identify the appropriate permissions required for various commands.
 
 ## Examples
 
-### Example 1: Get a list of all Application permissions.
+### Example 1: Get a list of all Application permissions
 
 ```powershell
-PS C:\> Find-EntraPermission application
+Find-EntraPermission application
+```
+
+```Output
 PermissionType: Delegated
 
 Id                                   Consent Name                                      Description
 --                                   ------- ----                                      -----------
 c79f8feb-a9db-4090-85f9-90d820caa0eb Admin   Application.Read.All                      Allows the app to read applications and service principals on behalf of the signed-in user.
 bdfbf15f-ee85-4955-8675-146e8e5296b5 Admin   Application.ReadWrite.All                 Allows the app to create, read, update and delete applications and service principals on behalf of the signed-in user. Does not allow management of consent grants.
-b27add92-efb2-4f16-84f5-8108ba77985c Admin   Policy.ReadWrite.ApplicationConfiguration Allows the app to read and write your organization's application configuration policies on behalf of the signed-in user.  This includes policies such as activityBasedTimeoutPolicy, claimsMappingPolicy, homeRealmDiscoveryPolicy,  tokenIssuancePolicy and tokenLifetimePolicy.
 
-
-   PermissionType: Application
+PermissionType: Application
 
 Id                                   Consent Name                                      Description
 --                                   ------- ----                                      -----------
 9a5d68dd-52b0-4cc2-bd40-abcf44ac3a30 Admin   Application.Read.All                      Allows the app to read all applications and service principals without a signed-in user.
 1bfefb4e-e0b5-418b-a88f-73c46d2cc8e9 Admin   Application.ReadWrite.All                 Allows the app to create, read, update and delete applications and service principals without a signed-in user.  Does not allow management of consent grants.
-18a4783c-866b-4cc7-a460-3d5e5662c884 Admin   Application.ReadWrite.OwnedBy             Allows the app to create other applications, and fully manage those applications (read, update, update application secrets and delete), without a signed-in user.  It cannot update any apps that it is not an owner of.
-be74164b-cff1-491c-8741-e671cb536e13 Admin   Policy.ReadWrite.ApplicationConfiguration Allows the app to read and write your organization's application configuration policies, without a signed-in user.  This includes policies such as activityBasedTimeoutPolicy, claimsMappingPolicy, homeRealmDiscoveryPolicy, tokenIssuancePolicy  and tokenLifetimePolicy.                                                                                   {}
+18a4783c-866b-4cc7-a460-3d5e5662c884 Admin   Application.ReadWrite.OwnedBy             Allows the app to create other applications, and fully manage those applications (read, update, update application secrets and delete), without a signed-in user...
 ```
 
-###Example 2. Get a list of permissions for the Read permissions of the Application domain.
+### Example 2. Get a list of permissions for the Read permissions
+
 ```powershell
-PS C:\>Find-EntraPermission application.Read | Format-List
+Find-EntraPermission application.Read | Format-List
+```
+
+```Output
 Id             : c79f8feb-a9db-4090-85f9-90d820caa0eb
 PermissionType : Delegated
 Consent        : Admin
@@ -105,8 +90,45 @@ Name           : Application.Read.All
 Description    : Allows the app to read all applications and service principals without a signed-in user.
 ```
 
-## Parameters
+### Example 3. Search for permissions with exact match
 
+```powershell
+Find-EntraPermission -SearchString 'User.Read.All' -ExactMatch
+```
+
+```Output
+   PermissionType: Delegated
+
+Id                                   Consent Name          Description
+--                                   ------- ----          -----------
+a154be20-db9c-4678-8ab7-66f6cc099a59 Admin   User.Read.All Allows the app to read the full set of profile properties, reports, and ma…
+
+   PermissionType: Application
+
+Id                                   Consent Name          Description
+--                                   ------- ----          -----------
+df021288-bdef-4463-88db-98f22de89214 Admin   User.Read.All Allows the app to read user profiles without a signed in user.
+```
+
+This example demonstrates how to search for permissions that exactly match a specified permission name.
+
+### Example 4. Get all permissions of the specified type
+
+```powershell
+Find-EntraPermission -PermissionType 'Delegated'
+```
+
+```Output
+Id                                   Consent Name                                                    Description
+--                                   ------- ----                                                    -----------
+ebfcd32b-babb-40f4-a14b-42706e83bd28 Admin   AccessReview.Read.All                                   Allows the app to read access re…
+e4aa47b9-9a69-4109-82ed-36ec70d85ff1 Admin   AccessReview.ReadWrite.All                              Allows the app to read, update, …
+5af8c3f5-baca-439a-97b0-ea58a435e269 Admin   AccessReview.ReadWrite.Membership                       Allows the app to read,
+```
+
+This examples shows how to get all permissions of a specified type e.g. `Delegated` or `Application` permissions.
+
+## Parameters
 
 ### -SearchString
 
@@ -114,7 +136,7 @@ Specifies the filter for the permissions e.g. domain and scope.
 
 ```yaml
 
-Type: String
+Type: System.String
 Required: True
 Position: 1
 Default value: None
@@ -128,20 +150,21 @@ Sets if the cmdlet will return all parameters.
 
 ```yaml
 
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
 ### -ExactMatch
 
 Sets if Search String should be an exact match.
 
 ```yaml
 
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Required: False
 Position: Named
 Default value: False
@@ -153,7 +176,7 @@ Accept wildcard characters: False
 
 ```yaml
 
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Required: False
 Position: Named
 Default value: False
@@ -163,11 +186,11 @@ Accept wildcard characters: False
 
 ### -PermissionType
 
-Specifies the type of Permission
+Specifies the type of Permission e.g. Delegated or Application.
 
 ```yaml
 
-Type: String
+Type: System.String
 Required: False
 Position: Named
 Default value: None
@@ -180,7 +203,7 @@ Accept wildcard characters: False
 Specifics the progra option.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Aliases: progra
 Required: False
 Position: Named
@@ -191,7 +214,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -200,4 +223,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## Notes
 
 ## Related Links
-
