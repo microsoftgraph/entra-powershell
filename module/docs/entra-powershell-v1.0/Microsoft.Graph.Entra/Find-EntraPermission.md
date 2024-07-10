@@ -1,6 +1,6 @@
 ---
-title: Find-EntraPermissions
-description: This article provides details on the Find-EntraPermissions command.
+title: Find-EntraPermission
+description: This article provides details on the Find-EntraPermission command.
 
 ms.service: active-directory
 ms.topic: reference
@@ -15,20 +15,16 @@ online version:
 schema: 2.0.0
 ---
 
-# Find-EntraPermissions
+# Find-EntraPermission
 
 ## Synopsis
 
-The Microsoft Entra PowerShell SDK application requires users to have domain knowledge of both the semantics and
+The Microsoft Entra PowerShell application requires users to have domain knowledge of both the semantics and
 syntax of Microsoft Entra API permissions used to authorize access to the API. This cmdlet helps to answer the
 following questions:  - How do I find the values to supply to the permission-related parameters of commands like
 New-EntraApplication and other application and consent related commands? - What permissions are applicable to a
 certain domain, for example, application, directory? To use Microsoft Entra PowerShell SDK to access Microsoft
-Entra ID, users must sign in to a Microsoft Entra ID application using the Connect-Entra command. Use the
-Find-EntraCommand to find which permissions to use for a specific cmdlet or API.-  Currently PowerShell commands
-and scripts, including those implemented with Microsoft Entra PowerShell SDK itself, have no way of validating
-user input that refers to permissions or providing "auto-complete" user experiences to help users accurately
-supply input to commands
+Entra ID, users must sign in to a Microsoft Entra ID application using the Connect-Entra command. 
 
 ## Syntax
 
@@ -36,7 +32,7 @@ supply input to commands
 ### Add Entra Environment Name
 
 ```powershell
-Find-EntraPermissions 
+Find-EntraPermission
     [-SearchString] <String>
     [-ExactMatch]
     [-PermissionType <String>]
@@ -47,23 +43,19 @@ Find-EntraPermissions
 
 ## Description
 
-The Microsoft Entra PowerShell SDK application requires users to have domain knowledge of both the semantics and
+The Microsoft Entra PowerShell requires users to have domain knowledge of both the semantics and
 syntax of Microsoft Entra API permissions used to authorize access to the API. This cmdlet helps to answer the
 following questions:  - How do I find the values to supply to the permission-related parameters of commands like
 New-EntraApplication and other application and consent related commands? - What permissions are applicable to a
 certain domain, for example, application, directory? To use Microsoft Entra PowerShell SDK to access Microsoft
-Entra ID, users must sign in to a Microsoft Entra ID application using the Connect-Entra command. Use the
-Find-EntraCommand to find which permissions to use for a specific cmdlet or API.-  Currently PowerShell commands
-and scripts, including those implemented with Microsoft Entra PowerShell SDK itself, have no way of validating
-user input that refers to permissions or providing "auto-complete" user experiences to help users accurately
-supply input to commands
+Entra ID, users must sign in to a Microsoft Entra ID application using the Connect-Entra command. 
 
 ## Examples
 
 ### Example 1: Get a list of all Application permissions.
 
 ```powershell
-PS C:\> Find-EntraPermissions application
+PS C:\> Find-EntraPermission application
 PermissionType: Delegated
 
 Id                                   Consent Name                                      Description
@@ -85,7 +77,7 @@ be74164b-cff1-491c-8741-e671cb536e13 Admin   Policy.ReadWrite.ApplicationConfigu
 
 ###Example 2. Get a list of permissions for the Read permissions of the Application domain.
 ```powershell
-PS C:\>Find-EntraPermissions application.Read | Format-List
+PS C:\>Find-EntraPermission application.Read | Format-List
 Id             : c79f8feb-a9db-4090-85f9-90d820caa0eb
 PermissionType : Delegated
 Consent        : Admin
