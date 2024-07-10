@@ -33,7 +33,7 @@ Set-EntraBetaApplicationLogo
  [<CommonParameters>]
 ```
 
-### ByteArray
+### Stream
 
 ```powershell
 Set-EntraBetaApplicationLogo 
@@ -41,7 +41,7 @@ Set-EntraBetaApplicationLogo
  [<CommonParameters>]
 ```
 
-### Stream
+### ByteArray
 
 ```powershell
 Set-EntraBetaApplicationLogo 
@@ -58,6 +58,7 @@ This cmdlet is used to set the logo for an application.
 ### Example 1: Sets the application logo for the application specified by the ObjectID parameter
 
 ```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All'
 Set-EntraBetaApplicationLogo -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -FilePath 'D:\applogo.jpg'
 ```
 
@@ -83,7 +84,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-The ObjectId of the Application for which the logo is set.
+The ObjectID of the Application for which the logo is set.
 
 ```yaml
 Type: System.String
@@ -112,6 +113,7 @@ System.IO.Stream System.Byte\[\]
 ### System.Object
 
 ## Notes
+File uploads must be smaller than 500KB.
 
 ## Related Links
 
