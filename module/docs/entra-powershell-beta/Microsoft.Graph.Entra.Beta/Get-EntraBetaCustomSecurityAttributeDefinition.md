@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraCustomSecurityAttribu
 
 ms.service: entra
 ms.topic: reference
-ms.date: 07/09/2024
+ms.date: 07/10/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -80,7 +80,7 @@ Id                      AttributeSet Description            IsCollection IsSearc
 Engineering_ProjectDate Engineering  Target completion date False        True         ProjectDate Available String False
 ```
 
-Get a specific custom security attribute definition.
+ This example get a specific custom security attribute definition.
 
 ## Parameters
 
