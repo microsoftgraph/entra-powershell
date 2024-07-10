@@ -72,12 +72,6 @@
         Write-Debug("=========================================================================`n")
         
         $response = Get-MgContext @params
-        $response | ForEach-Object {
-            if($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-    
-            }
-        }
         $response
     }
 '@
