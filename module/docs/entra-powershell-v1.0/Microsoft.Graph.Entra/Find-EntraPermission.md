@@ -1,6 +1,6 @@
 ---
-title: Find-EntraPermissions
-description: This article provides details on the Find-EntraPermissions command.
+title: Find-EntraPermission
+description: This article provides details on the Find-EntraPermission command.
 
 ms.service: active-directory
 ms.topic: reference
@@ -15,7 +15,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Find-EntraPermissions
+# Find-EntraPermission
 
 ## Synopsis
 
@@ -36,7 +36,7 @@ supply input to commands
 ### Add Entra Environment Name
 
 ```powershell
-Find-EntraPermissions 
+Find-EntraPermission 
     [-SearchString] <String>
     [-ExactMatch]
     [-PermissionType <String>]
@@ -63,7 +63,7 @@ supply input to commands
 ### Example 1: Get a list of all Application permissions.
 
 ```powershell
-PS C:\> Find-EntraPermissions application
+PS C:\> Find-EntraPermission application
 PermissionType: Delegated
 
 Id                                   Consent Name                                      Description
@@ -85,7 +85,7 @@ be74164b-cff1-491c-8741-e671cb536e13 Admin   Policy.ReadWrite.ApplicationConfigu
 
 ###Example 2. Get a list of permissions for the Read permissions of the Application domain.
 ```powershell
-PS C:\>Find-EntraPermissions application.Read | Format-List
+PS C:\>Find-EntraPermission application.Read | Format-List
 Id             : c79f8feb-a9db-4090-85f9-90d820caa0eb
 PermissionType : Delegated
 Consent        : Admin
