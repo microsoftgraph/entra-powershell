@@ -1,6 +1,6 @@
 ---
-title: New-EntraApplication
-description: This article provides details on the New-EntraApplication command.
+title: New-EntraApplicationFromApplicationTemplate.
+description: This article provides details on the New-EntraApplicationFromApplicationTemplate command.
 
 ms.service: entra
 ms.topic: reference
