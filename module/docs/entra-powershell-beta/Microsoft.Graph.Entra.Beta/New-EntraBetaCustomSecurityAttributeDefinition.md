@@ -1,4 +1,15 @@
 ---
+title: New-EntraCustomSecurityAttributeDefinition.
+description: This article provides details on the New-EntraCustomSecurityAttributeDefinition command.
+
+ms.service: entra
+ms.topic: reference
+ms.date: 07/09/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,35 +19,53 @@ schema: 2.0.0
 # New-EntraBetaCustomSecurityAttributeDefinition
 
 ## Synopsis
-{{ Fill in the Synopsis }}
+
+Create a new customSecurityAttributeDefinition object.
 
 ## Syntax
 
-```
-New-EntraBetaCustomSecurityAttributeDefinition -IsSearchable <Boolean> [-Description <String>]
- -IsCollection <Boolean> -AttributeSet <String> -Type <String> -Name <String> -Status <String>
- -UsePreDefinedValuesOnly <Boolean> [<CommonParameters>]
+```powershell
+New-EntraBetaCustomSecurityAttributeDefinition 
+ -IsSearchable <Boolean> 
+ -IsCollection <Boolean> 
+ -AttributeSet <String> 
+ -Type <String> 
+ -Name <String> 
+ -Status <String>
+ -UsePreDefinedValuesOnly <Boolean> 
+ [-Description <String>]
+ [<CommonParameters>]
 ```
 
 ## Description
-{{ Fill in the Description }}
+
+Create a new customSecurityAttributeDefinition object. Specify `IsSearchable`, `IsCollection`, `AttributeSet`, `Type`, `Name`, `Status`and `UsePreDefinedValuesOnly` parameters to creates a new custom security attribute definitions.
 
 ## Examples
 
-### Example 1
+### Example 1: Add a custom security attribute
+
 ```powershell
-PS C:\> {{ Add example code here }}
+Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttributeDefinition.ReadWrite.All'
+New-EntraBetaCustomSecurityAttributeDefinition -Name 'ProjectTest' -Description 'Target completion' -Type 'String' -Status 'Available' -AttributeSet 'Test' -IsCollection $False -IsSearchable $True -UsePreDefinedValuesOnly $False 
 ```
 
-{{ Add example description here }}
+```Output
+Id               AttributeSet Description       IsCollection IsSearchable Name        Status    Type   UsePreDefinedValuesOnly
+--               ------------ -----------       ------------ ------------ ----        ------    ----   -----------------------
+Test_ProjectTest Test         Target completion False        True         ProjectTest Available String False
+```
+
+This example adds a custom security attribute
 
 ## Parameters
 
 ### -AttributeSet
-{{ Fill AttributeSet Description }}
+
+Name of the attribute set. Case insensitive.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -48,10 +77,11 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{ Fill Description Description }}
+
+Description of the custom security attribute. Can be up to 128 characters long and include Unicode characters. Can be changed later.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -63,10 +93,11 @@ Accept wildcard characters: False
 ```
 
 ### -IsCollection
-{{ Fill IsCollection Description }}
+
+Indicates whether multiple values can be assigned to the custom security attribute. Cannot be changed later. If type is set to Boolean, isCollection cannot be set to true.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -78,10 +109,11 @@ Accept wildcard characters: False
 ```
 
 ### -IsSearchable
-{{ Fill IsSearchable Description }}
+
+Indicates whether custom security attribute values are indexed for searching on objects that are assigned attribute values. Cannot be changed later.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -93,10 +125,11 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+
+Name of the custom security attribute. Must be unique within an attribute set. Can be up to 32 characters long and include Unicode characters. Cannot contain spaces or special characters. Cannot be changed later. Case insensitive.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -108,10 +141,11 @@ Accept wildcard characters: False
 ```
 
 ### -Status
-{{ Fill Status Description }}
+
+Specifies whether the custom security attribute is active or deactivated. Acceptable values are: Available and Deprecated. Can be changed later.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -123,10 +157,11 @@ Accept wildcard characters: False
 ```
 
 ### -Type
-{{ Fill Type Description }}
+
+Data type for the custom security attribute values. Supported types are: Boolean, Integer, and String. Cannot be changed later.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -138,10 +173,11 @@ Accept wildcard characters: False
 ```
 
 ### -UsePreDefinedValuesOnly
-{{ Fill UsePreDefinedValuesOnly Description }}
+
+Indicates whether only predefined values can be assigned to the custom security attribute. If set to false, free-form values are allowed. Can later be changed from true to false, but cannot be changed from false to true. If type is set to Boolean, usePreDefinedValuesOnly cannot be set to true.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -153,7 +189,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -162,6 +199,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
+
+[Set-EntraBetaCustomSecurityAttributeDefinition](Set-EntraBetaCustomSecurityAttributeDefinition.md)
+
+[Get-EntraBetaCustomSecurityAttributeDefinition](Get-EntraBetaCustomSecurityAttributeDefinition.md)
