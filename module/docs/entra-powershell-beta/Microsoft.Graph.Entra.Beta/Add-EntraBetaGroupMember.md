@@ -34,6 +34,10 @@ Add-EntraBetaGroupMember
 
 The `Add-EntraBetaGroupMember` cmdlet adds a member to a group. Specify the `ObjectId` and `RefObjectId` parameters to add a member to a group.
 
+`-ObjectId` - specifies the unique identifier (Object ID) of the group to which you want to add a member.
+
+`-RefObjectId` - specifies the unique identifier (Object ID) of the member to be added to the group.
+
 ## Examples
 
 ### Example 1: Add a member to a group

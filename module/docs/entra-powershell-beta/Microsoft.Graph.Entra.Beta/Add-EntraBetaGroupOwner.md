@@ -34,6 +34,10 @@ Add-EntraBetaGroupOwner
 
 The `Add-EntraBetaGroupOwner` cmdlet adds an owner to a Microsoft Entra ID group. Specify the `ObjectId` and `RefObjectId` parameters to add an owner to a group.
 
+`-ObjectId` - specifies the unique identifier (Object ID) of the group to which you want to add an owner.
+
+`-RefObjectId` - specifies the unique identifier (Object ID) of the owner to be added to the group.
+
 ## Examples
 
 ### Example 1: Add an owner to a group
