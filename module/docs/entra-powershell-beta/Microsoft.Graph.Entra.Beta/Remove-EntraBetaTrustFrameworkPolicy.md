@@ -39,6 +39,7 @@ This `Remove-EntraBetaTrustFrameworkPolicy` cmdlet is used to delete a trust fra
 ### Example 1: Removes the specified trust framework policy
 
 ```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.TrustFramework'
 Remove-EntraBetaTrustFrameworkPolicy -Id B2C_1A_signup_signin
 ```
 
@@ -77,3 +78,9 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[Get-EntraBetaTrustFrameworkPolicy](Get-EntraBetaTrustFrameworkPolicy.md)
+
+[New-EntraBetaTrustFrameworkPolicy](New-EntraBetaTrustFrameworkPolicy.md)
+
+[Set-EntraBetaTrustFrameworkPolicy](Set-EntraBetaTrustFrameworkPolicy.md)

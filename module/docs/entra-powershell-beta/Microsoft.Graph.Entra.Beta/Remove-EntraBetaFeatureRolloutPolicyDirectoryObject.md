@@ -43,7 +43,12 @@ federation). Specify `ObjectId` and `Id` parameter to remove groups from the clo
 ### Example 1: Removes a group from the cloud authentication roll-out policy from Microsoft Entra ID
 
 ```powershell
-Remove-EntraBetaFeatureRolloutPolicyDirectoryObject -Id '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+$params = @{
+    Id = '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
+    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+}
+Remove-EntraBetaFeatureRolloutPolicyDirectoryObject @params
 ```
 
 This command removes a group from the cloud authentication roll-out policy from Microsoft Entra ID.

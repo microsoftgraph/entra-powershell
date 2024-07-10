@@ -43,7 +43,12 @@ with Seamless single sign-on or not, or whether Passthrough auth or not). Specif
 ### Example 1: Adds a group to the cloud authentication roll-out policy in Microsoft Entra ID
 
 ```powershell
-Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' -RefObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+$params = @{
+    Id = '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
+    RefObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+}
+Add-EntraBetaFeatureRolloutPolicyDirectoryObject @params
 ```
 
 This command adds a group to the cloud authentication roll-out policy in Microsoft Entra ID.
