@@ -26,11 +26,8 @@ Creates an administrative unit.
 ```powershell
 New-EntraBetaAdministrativeUnit 
  -DisplayName <String>
- [-MembershipType <String>] 
  [-Description <String>] 
- [-MembershipRule <String>] 
  [-IsMemberManagementRestricted <Boolean>] 
- [-MembershipRuleProcessingState <String>]
  [<CommonParameters>]
 ```
 
@@ -124,63 +121,6 @@ If no value is specified, it defaults to false.
 
 ```yaml
 Type: System.Boolean
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -MembershipRule
-
-Specifies the membership rule for a dynamic administrative unit.
-For more information about the rules that you can use for dynamic administrative units and dynamic groups, see [Using attributes to create advanced rules](https://azure.microsoft.com/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/).
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -MembershipRuleProcessingState
-
-Specifies the rule processing state. The acceptable values for this parameter are:
-
-- "On". Process the group rule.
-- "Paused". Stop processing the group rule.
-Changing the value of the processing state doesn't change the members list of the administrative unit.
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -MembershipType
-
-Specifies whether the membership of this administrative unit is controlled dynamically or by manual assignment.
-The acceptable values for this parameter are:
-
-- Assigned
-- Dynamic
-
-```yaml
-Type: System.String
 Parameter Sets: (All)
 Aliases:
 
