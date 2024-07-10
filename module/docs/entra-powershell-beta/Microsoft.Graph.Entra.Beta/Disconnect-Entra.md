@@ -1,6 +1,6 @@
 ---
-title: Get-EntraCurrentSessionInfo
-description: This article provides details on the Get-EntraCurrentSessionInfo command.
+title: Disconnect-Entra.
+description: This article provides details on the Disconnect-Entra Command.
 
 ms.service: entra
 ms.topic: reference
@@ -9,49 +9,47 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
-
-external help file: Microsoft.Graph.Entra-Help.xml
-Module Name: Microsoft.Graph.Entra
+external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Module Name: Microsoft.Graph.Entra.Beta
 online version:
 schema: 2.0.0
 ---
 
-# Get-EntraCurrentSessionInfo
+# Disconnect-Entra
 
 ## Synopsis
 
-This cmdlet returns the current session state.
+Disconnects the current session from a Microsoft Entra ID tenant.
 
 ## Syntax
 
 ```powershell
-Get-EntraCurrentSessionInfo 
+Disconnect-Entra
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Get-EntraCurrentSessionInfo` cmdlet returns the current session state.
+The Disconnect-Entra cmdlet disconnects the current session from a Microsoft Entra ID tenant.
 
 ## Examples
 
-### Example 1: Get current session info
+### Example 1: Disconnect your session from a tenant
 
 ```powershell
-Get-EntraCurrentSessionInfo
+ Disconnect-Entra
 ```
 
 ```output
-ObjectId               :
 ClientId               : 00001111-aaaa-2222-bbbb-3333cccc4444
 TenantId               : bbbbcccc-1111-dddd-2222-eeee3333ffff
-Scopes                 : {User.Read.All, Policy.Read.IdentityProtection, Group.Read.All...}
+Scopes                 : {Agreement.ReadWrite.All, CustomSecAttributeDefinition.ReadWrite.All, TeamMember.Read.All...}
 AuthType               : AppOnly
 TokenCredentialType    : ClientCertificate
 CertificateThumbprint  : AA11BB22CC33DD44EE55FF66AA77BB88CC99DD00
 CertificateSubjectName :
 Account                :
-AppName                : My Entra App
+AppName                : MG_graph_auth
 ContextScope           : Process
 Certificate            :
 PSHostVersion          : 5.1.22621.2506
@@ -60,7 +58,7 @@ ClientSecret           :
 Environment            : Global
 ```
 
-This command gets the current session info.
+This command disconnects your session from a tenant.
 
 ## Parameters
 
@@ -70,14 +68,10 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Inputs
 
-### None
-
 ## Outputs
-
-### System.Object
 
 ## Notes
 
 ## Related Links
 
-[Get-EntraContext](Get-EntraContext.md)
+[Connect-Entra](Connect-Entra.md)
