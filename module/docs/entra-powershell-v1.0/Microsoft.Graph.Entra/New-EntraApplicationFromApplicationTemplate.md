@@ -40,6 +40,7 @@ This `New-EntraApplicationFromApplicationTemplate` cmdlet allows users to create
 ### Example 1: Creates an application from application template
 
 ```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All'
 $instantiated_app = New-EntraApplicationTemplate -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DisplayName 'bugzilla-copy1'
 ```
 
