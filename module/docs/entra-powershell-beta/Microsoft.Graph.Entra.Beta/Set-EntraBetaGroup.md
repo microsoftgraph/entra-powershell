@@ -81,7 +81,12 @@ This command updates the mail nickname of a specified group in Microsoft Entra I
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraBetaGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -SecurityEnabled $true
+$params = @{
+    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    SecurityEnabled = $true
+}
+
+Set-EntraBetaGroup @params
 ```
 
 This command updates the security enabled of a specified group in Microsoft Entra ID.
