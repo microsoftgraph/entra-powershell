@@ -99,7 +99,14 @@ This example demonstrates how to update a group main enabled.
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraBetaGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -Visibility 'Private' -GroupTypes 'DynamicMembership' -IsAssignableToRole $true
+$params = @{
+    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    Visibility = 'Private'
+    GroupTypes = 'DynamicMembership'
+    IsAssignableToRole = $true
+}
+
+Set-EntraBetaGroup @params
 ```
 
 This example demonstrates how to update a property for an existing Microsoft Entra ID group.  
