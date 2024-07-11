@@ -1,7 +1,7 @@
 ---
 title: Set-EntraBetaApplicationLogo
 description: This article provides details on the Set-EntraBetaApplicationLogo command.
-ms.service: active-directory
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
