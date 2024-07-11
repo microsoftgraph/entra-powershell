@@ -73,7 +73,15 @@ This example demonstrates how to create the new group.
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Group.Create' #Application permission
-New-EntraBetaGroup -DisplayName 'HelpDesk admin group' -MailEnabled $false -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $true  -Description 'Group assignable to role'
+$params = @{
+    DisplayName = 'HelpDesk admin group'
+    MailEnabled = $false
+    MailNickname = 'helpDeskAdminGroup'
+    SecurityEnabled = $true
+    Description = 'Group assignable to role'
+}
+
+New-EntraBetaGroup @params
 ```
 
 ```Output
