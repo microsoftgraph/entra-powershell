@@ -69,10 +69,10 @@ Get-EntraBetaGroup
 DisplayName                                       Id                                   MailNickname                                   Description
 -----------                                       --                                   ------------                                   -----------
 SimpleTestGrp                                     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb NickName
-SimpleGroupc13adf68-dffb-4185-a94f-e81bda906aa5   bbbbbbbb-1111-2222-3333-cccccccccccc NickName
+SimpleGroup                                       bbbbbbbb-1111-2222-3333-cccccccccccc NickName
 testGroupInAU10                                   cccccccc-2222-3333-4444-dddddddddddd testGroupInAU10                                testGroupInAU10
 My new group                                      dddddddd-3333-4444-5555-eeeeeeeeeeee NotSet                                         New created group
-SimpleGroupaeaea4bd-30df-4e13-b318-b416ed4e9357   eeeeeeee-4444-5555-6666-ffffffffffff NickName
+SimpleGroup                                       eeeeeeee-4444-5555-6666-ffffffffffff NickName
 ```
 
 This example demonstrates how to get all groups from Microsoft Entra ID.  
@@ -87,7 +87,7 @@ Get-EntraBetaGroup -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff'
 ```Output
 DisplayName                                       Id                                   MailNickname Description GroupTypes
 -----------                                       --                                   ------------ ----------- ----------
-SimpleTestGrpbcd1865e-c8b9-4f90-8943-77607ef15590 eeeeeeee-4444-5555-6666-ffffffffffff NickName                 {}
+SimpleTestGrp                   eeeeeeee-4444-5555-6666-ffffffffffff NickName                 {}
 ```
 
 This example demonstrates how to retrieve specific group by providing ID. This command gets information for the group that has the specified ID.
@@ -103,10 +103,10 @@ Get-EntraBetaGroup -Top 5
 DisplayName                                     Id                                   MailNickname    Description       GroupTypes
 -----------                                     --                                   ------------    -----------       ----------
 SimpleTestGrp                                   aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb NickName                          {}
-SimpleGroupc13adf68-dffb-4185-a94f-e81bda906aa5 bbbbbbbb-1111-2222-3333-cccccccccccc NickName                          {}
+SimpleGroup                                     bbbbbbbb-1111-2222-3333-cccccccccccc NickName                          {}
 testGroupInAU10                                 cccccccc-2222-3333-4444-dddddddddddd testGroupInAU10 testGroupInAU10   {DynamicMembership, Unified}
 My new group                                    dddddddd-3333-4444-5555-eeeeeeeeeeee NotSet          New created group {}
-SimpleGroupaeaea4bd-30df-4e13-b318-b416ed4e9357 eeeeeeee-4444-5555-6666-ffffffffffff NickName                          {}
+SimpleGroup                                     eeeeeeee-4444-5555-6666-ffffffffffff NickName                          {}
 ```
 
 This example demonstrates how to get top five groups from Microsoft Entra ID.  
