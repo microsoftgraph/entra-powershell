@@ -2,7 +2,6 @@
 title: Get-EntraBetaUserManager.
 description: This article provides details on the Get-EntraBetaUserManager command.
 
-ms.service: entra
 ms.topic: reference
 ms.date: 06/20/2024
 ms.author: eunicewaweru
