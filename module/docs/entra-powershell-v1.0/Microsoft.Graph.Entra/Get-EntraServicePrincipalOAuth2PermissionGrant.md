@@ -2,7 +2,7 @@
 title: Get-EntraServicePrincipalOAuth2PermissionGrant.
 description: This article provides details on the Get-EntraServicePrincipalOAuth2PermissionGrant command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru

@@ -2,7 +2,7 @@
 title: Get-EntraServiceAppRoleAssignedTo.
 description: This article provides details on the Get-EntraServiceAppRoleAssignedTo command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru

@@ -2,7 +2,7 @@
 title: Get-EntraHasObjectsWithDirSyncProvisioningError
 description: This article provides details on the Get-EntraHasObjectsWithDirSyncProvisioningError command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
