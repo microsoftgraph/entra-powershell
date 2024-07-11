@@ -356,7 +356,7 @@ Accept wildcard characters: False
 This property is used to associate an on-premises user account to their Microsoft Entra ID user object.
 This property must be specified when creating a new user account in the Graph if you're using a federated domain for the user's userPrincipalName (UPN) property.
 
-Important: The $ and _ characters can't be used to when specifying this property.
+Important: The $ and _ characters can't be used when specifying this property.
 
 ```yaml
 Type: System.String
