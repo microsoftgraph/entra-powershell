@@ -40,7 +40,12 @@ The `Set-EntraBetaUserManager` cmdlet update the manager for a user in Microsoft
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Set-EntraBetaUserManager -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc' -RefObjectId '55ff55ff-aa66-bb77-cc88-99dd99dd99dd'
+$params = @{
+    ObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    RefObjectId = '55ff55ff-aa66-bb77-cc88-99dd99dd99dd'
+}
+
+Set-EntraBetaUserManager @params
 ```
 
 This example demonstrates how to update the manager for the specified user.
