@@ -4,7 +4,6 @@ function Get-EntraContext{
 
     PROCESS {    
         $params = @{}
-        $keysChanged = @{}
         if($null -ne $PSBoundParameters["ErrorAction"])
         {
             $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
