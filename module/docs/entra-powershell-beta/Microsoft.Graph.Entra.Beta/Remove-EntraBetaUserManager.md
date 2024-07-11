@@ -43,9 +43,9 @@ $User = Get-EntraBetaUser -Top 1
 Remove-EntraBetaUserManager -ObjectId $User.ObjectId
 ```
 
-The first command gets a user by using the [Get-EntraBetaUser](./Get-EntraBetaUser.md) cmdlet, and then stores it in the $User variable.
+This example shows how to remove a user's manager.
 
-The second command removes the user in $User.
+You can use `Get-EntraUser` command to get the user's details.
 
 ## Parameters
 
