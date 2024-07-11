@@ -450,4 +450,4 @@ We recommend that you don't use this cmdlet in a production environment.
 
 [Set-EntraBetaGroup](Set-EntraBetaGroup.md)
 
-[Using attributes to create advanced rules](https://azure.microsoft.com/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/)
+[Using attributes to create advanced rules](https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership)
