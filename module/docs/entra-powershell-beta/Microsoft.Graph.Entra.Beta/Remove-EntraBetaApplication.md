@@ -2,7 +2,6 @@
 title: Remove-EntraBetaApplication.
 description: This article provides details on the Remove-EntraBetaApplication command.
 
-ms.service: entra
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
