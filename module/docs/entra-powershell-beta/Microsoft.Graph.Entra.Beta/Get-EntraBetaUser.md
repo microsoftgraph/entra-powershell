@@ -133,7 +133,7 @@ New User    cccccccc-2222-3333-4444-dddddddddddd      NewUser@contoso.com
 New User88  dddddddd-3333-4444-5555-eeeeeeeeeeee      demo99@contoso.com
 ```
 
-This command gets all the users whose displayName starts with new.
+This command gets all the users whose displayName starts with the word `New`.
 
 ## Parameters
 
