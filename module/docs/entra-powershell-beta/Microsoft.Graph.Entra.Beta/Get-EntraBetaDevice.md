@@ -146,7 +146,7 @@ This example demonstrates how to retrieve all the devices whose display name sta
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraBetaDevice -SearchString 'Ashwini'
+Get-EntraBetaDevice -SearchString 'DESKTOP'
 ```
 
 ```Output
