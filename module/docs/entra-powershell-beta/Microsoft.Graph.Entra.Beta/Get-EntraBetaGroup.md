@@ -124,8 +124,7 @@ DisplayName        Id                                   MailNickname     Descrip
 Parents of Contoso aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb parentsofcontoso Parents of Contoso {Unified}
 ```  
 
-In this example, we retrieve group by display name from Microsoft Entra ID.
-This command gets the specified group.
+In this example, we retrieve group using the Display Name.
 
 ### Example 5: Get groups that contain a search string
 
