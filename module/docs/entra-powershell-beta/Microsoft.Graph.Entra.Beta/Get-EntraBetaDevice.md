@@ -72,7 +72,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
                 bbbbbbbb-1111-1111-1111-cccccccccccc True                                                                                     dddddddd-9999-0000-1111-eeeeeeeeeeee MetaData
 ```
 
-This example demonstrates how to retrieve specific device by providing ID. This command gets the specified device.
+This example shows how to retrieve a device using its ID.
 
 ### Example 2: Get all devices
 
