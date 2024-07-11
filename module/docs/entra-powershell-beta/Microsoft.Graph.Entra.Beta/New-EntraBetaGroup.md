@@ -147,7 +147,16 @@ This example demonstrates how to create the new group with Visibility parameter.
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Group.Create' #Application permission
-New-EntraBetaGroup -DisplayName 'HelpDesk admin group3' -Description 'group des' -MailEnabled $False -MailNickname 'helpDeskAdminGroup1' -SecurityEnabled $True -GroupTypes 'Unified'
+$params = @{
+    DisplayName = 'HelpDesk admin group3'
+    Description = 'group des'
+    MailEnabled = $False
+    MailNickname = 'helpDeskAdminGroup1'
+    SecurityEnabled = $True
+    GroupTypes = 'Unified'
+}
+
+New-EntraBetaGroup @params
 ```
 
 ```Output
