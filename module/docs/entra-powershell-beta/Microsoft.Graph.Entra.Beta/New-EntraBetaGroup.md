@@ -131,7 +131,16 @@ This example demonstrates how to create the new group with IsAssignableToRole pa
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Group.Create' #Application Permission
-New-EntraBetaGroup -DisplayName 'HelpDesk admin group2' -Description 'Group assignable to role' -MailEnabled $False -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $True -Visibility 'Private'
+$params = @{
+    DisplayName = 'HelpDesk admin group2'
+    Description = 'Group assignable to role'
+    MailEnabled = $False
+    MailNickname = 'helpDeskAdminGroup'
+    SecurityEnabled = $True
+    Visibility = 'Private'
+}
+
+New-EntraBetaGroup @params
 ```
 
 ```Output
