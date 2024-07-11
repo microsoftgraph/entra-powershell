@@ -49,7 +49,12 @@ The `Set-EntraBetaGroup` cmdlet sets the properties for an existing Microsoft En
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraBetaGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -DisplayName 'UPDATE helpdesk'
+$params = @{
+    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    DisplayName = 'UPDATE helpdesk'
+}
+
+Set-EntraBetaGroup @params
 ```
 
 This command updates the display name of a specified group in Microsoft Entra ID.
