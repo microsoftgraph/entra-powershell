@@ -13,7 +13,7 @@ function Set-EntraDirSyncConfiguration {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         if ($PSBoundParameters.ContainsKey("Verbose")) {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if ($null -ne $PSBoundParameters["AccidentalDeletionThreshold"]) {
             $AccidentalDeletionThreshold = $PSBoundParameters["AccidentalDeletionThreshold"]
@@ -22,7 +22,7 @@ function Set-EntraDirSyncConfiguration {
             $TenantId = $PSBoundParameters["TenantId"]
         }
         if ($PSBoundParameters.ContainsKey("Debug")) {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if($null -ne $PSBoundParameters["WarningVariable"])
         {
