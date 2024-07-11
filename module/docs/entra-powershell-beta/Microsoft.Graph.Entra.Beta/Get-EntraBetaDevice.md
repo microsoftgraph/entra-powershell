@@ -113,7 +113,7 @@ This command gets the two devices from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
-Get-EntraBetaDevice -Filter "DisplayName eq 'AkshayLodha'"
+Get-EntraBetaDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
 ```
 
 ```Output
