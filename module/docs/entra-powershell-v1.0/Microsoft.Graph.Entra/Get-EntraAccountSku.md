@@ -19,17 +19,20 @@ schema: 2.0.0
 # Get-EntraAccountSku
 
 ## Synopsis
+
 Retrieves all the SKUs for a company.
 
 ## Syntax
 
 ### GetQuery (Default)
+
 ```powershell
 Get-EntraAccountSku 
  [<CommonParameters>]
 ```
 
 ### GetById
+
 ```powershell
 Get-EntraAccountSku 
  [-TenantId <Guid>] 
@@ -37,47 +40,54 @@ Get-EntraAccountSku
 ```
 
 ## Description
-The Get-EntraAccountSku returns all the SKUs that the company owns.
+
+The `Get-EntraAccountSku` retrieves the list of commercial subscriptions acquired by an organization.
+
+To map license names as displayed in the Microsoft Entra admin center or the Microsoft 365 admin center to their Microsoft Graph skuId and skuPartNumber properties, refer to the provided mapping information.
 
 ## Examples
 
 ### EXAMPLE 1: Gets a list of SKUs
+
 ```powershell
-PS C:\> Get-EntraAccountSku
+Connect-Entra -Scopes 'Organization.Read.All'
+Get-EntraAccountSku
 ```
 
-```output
+```Output
 Id                                            AccountId                            AccountName   AppliesTo
 --                                            ---------                            -----------   -------
-95d4390e_b05e124f-c7cc-45a0-a6aa-8cf78c946968 d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User
-95d4390e_c7df2760-2c81-4ef7-b578-5b5392b571df d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User
-95d4390e_6fd2c87f-b296-42f0-b197-1e91e994b900 d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User
+eeeeeeee-4444-5555-6666-ffffffffffff aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso User
+ffffffff-5555-6666-7777-aaaaaaaaaaaa aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso User
+dddddddd-3333-4444-5555-eeeeeeeeeeee aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso User
 ```
 
 This command returns a list of SKUs.
 
 ### EXAMPLE 2: Gets a list of SKUs by TenantId
+
 ```powershell
-PS C:\> Get-EntraAccountSku -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
+Connect-Entra -Scopes 'Organization.Read.All'
+Get-EntraAccountSku -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
 ```
 
-```output
+```Output
 Id                                            AccountId                            AccountName   AppliesTo
 --                                            ---------                            -----------   -------
-95d4390e_b05e124f-c7cc-45a0-a6aa-8cf78c946968 d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User
-95d4390e_c7df2760-2c81-4ef7-b578-5b5392b571df d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User
-95d4390e_6fd2c87f-b296-42f0-b197-1e91e994b900 d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User
+eeeeeeee-4444-5555-6666-ffffffffffff aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso User
+ffffffff-5555-6666-7777-aaaaaaaaaaaa aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso User
+dddddddd-3333-4444-5555-eeeeeeeeeeee aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso User
 ```
 
-This command returns a list of SKUs by TenantId.
+This command returns a list of SKUs for a tenant.
 
 ## Parameters
 
 ### -TenantId
+
 The unique ID of the tenant to perform the operation on.
 If this isn't provided then the value defaults to
 the tenant of the current user.
-This parameter is only applicable to partner users.
 
 ```yaml
 Type: Guid
@@ -92,7 +102,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

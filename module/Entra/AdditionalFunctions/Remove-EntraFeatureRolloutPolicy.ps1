@@ -1,0 +1,22 @@
+function Remove-EntraFeatureRolloutPolicy {
+    [CmdletBinding(DefaultParameterSetName = '')]
+    param (
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Id
+    )
+
+    PROCESS {    
+        $params = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $params = @{}
+        $params["Uri"] = "https://graph.microsoft.com/v1.0/policies/featureRolloutPolicies/$Id"
+        $params["Method"] = "DELETE"
+
+        Write-Debug("============================ TRANSFORMATIONS ============================")
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================`n")
+
+        $response = Invoke-GraphRequest @params -Headers $customHeaders | ConvertTo-Json | ConvertFrom-Json
+        $response 
+    }
+}
