@@ -2,7 +2,7 @@
 title: New-EntraBetaOauth2PermissionGrant
 description: This article provides details on the New-EntraBetaOauth2PermissionGrant command.
 
-ms.service: active-directory
+
 ms.topic: reference
 ms.date: 06/28/2024
 ms.author: eunicewaweru

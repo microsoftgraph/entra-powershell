@@ -28,7 +28,7 @@ function Get-EntraBetaApplicationProxyConnectorGroupMembers {
         }
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($PSBoundParameters.ContainsKey("All"))
         {
@@ -36,7 +36,7 @@ function Get-EntraBetaApplicationProxyConnectorGroupMembers {
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if($PSBoundParameters.ContainsKey("top"))
         {
