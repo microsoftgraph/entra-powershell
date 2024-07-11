@@ -108,8 +108,7 @@ My new group                                    dddddddd-3333-4444-5555-eeeeeeee
 SimpleGroup                                     eeeeeeee-4444-5555-6666-ffffffffffff NickName                          {}
 ```
 
-This example demonstrates how to get top five groups from Microsoft Entra ID.  
-This command gets the five groups in Microsoft Entra ID.
+This example demonstrates how to get top five groups.
 
 ### Example 4: Get a group by DisplayName
 
