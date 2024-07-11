@@ -72,7 +72,12 @@ This example demonstrates how to update a group description.
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraBetaGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MailNickName 'newnickname'
+$params = @{
+    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    MailNickName = 'newnickname'
+}
+
+Set-EntraBetaGroup @params
 ```
 
 This command updates the mail nickname of a specified group in Microsoft Entra ID.
