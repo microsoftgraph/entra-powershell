@@ -203,7 +203,16 @@ This command creates a new user.
 Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.ReadWrite.All'
 $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
 $PasswordProfile.Password = '<Password>'
-New-EntraBetaUser -DisplayName 'New User' -PasswordProfile $PasswordProfile -UserPrincipalName 'NewUser@contoso.com' -AccountEnabled $true -MailNickName 'Newuser' -Mobile '02883655253'
+$params = @{
+    DisplayName = 'New User'
+    PasswordProfile = $PasswordProfile
+    UserPrincipalName = 'NewUser@contoso.com'
+    AccountEnabled = $true
+    MailNickName = 'Newuser'
+    Mobile = '02883655253'
+}
+
+New-EntraBetaUser @params
 ```
 
 ```Output
