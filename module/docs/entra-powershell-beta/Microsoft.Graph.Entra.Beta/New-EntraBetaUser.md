@@ -2,7 +2,7 @@
 title: New-EntraBetaUser
 description: This article provides details on the New-EntraBetaUser command.
 
-ms.service: active-directory
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
