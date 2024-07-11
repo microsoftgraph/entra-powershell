@@ -106,7 +106,16 @@ This example demonstrates how to create the new group with description parameter
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Group.Create' #Application permission
-New-EntraBetaGroup -DisplayName 'HelpDesk admin group2' -Description 'Group assignable to role' -MailEnabled $False -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $True -IsAssignableToRole $True 
+$params = @{
+    DisplayName = 'HelpDesk admin group2'
+    Description = 'Group assignable to role'
+    MailEnabled = $False
+    MailNickname = 'helpDeskAdminGroup'
+    SecurityEnabled = $True
+    IsAssignableToRole = $True
+}
+
+New-EntraBetaGroup @params
 ```
 
 ```Output
