@@ -124,8 +124,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
                 bbbbbbbb-1111-1111-1111-cccccccccccc True                                                                                     dddddddd-9999-0000-1111-eeeeeeeeeeee MetaData
 ```
 
-This example demonstrates how to retrieve device by display name from Microsoft Entra ID.  
-This command gets the specified device.
+This example demonstrates how to retrieve device using the display name.
 
 ### Example 5: Get a device filter by display name
 
