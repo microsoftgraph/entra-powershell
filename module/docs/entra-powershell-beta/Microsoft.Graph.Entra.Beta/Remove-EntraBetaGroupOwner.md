@@ -40,7 +40,12 @@ The `Remove-EntraBetaGroupOwner` cmdlet removes an owner from a group in Microso
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Remove-EntraBetaGroupOwner -ObjectId 'qqqqqqqq-5555-0000-1111-hhhhhhhhhhhh' -OwnerId 'xxxxxxxx-8888-5555-9999-bbbbbbbbbbbb'
+$params = @{
+    ObjectId = 'qqqqqqqq-5555-0000-1111-hhhhhhhhhhhh'
+    OwnerId = 'xxxxxxxx-8888-5555-9999-bbbbbbbbbbbb'
+}
+
+Remove-EntraBetaGroupOwner @params
 ```
 
 This example demonstrates how to remove an owner from a group in Microsoft Entra ID.
