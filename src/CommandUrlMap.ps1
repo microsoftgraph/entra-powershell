@@ -3,13 +3,16 @@
 # ------------------------------------------------------------------------------
 Set-StrictMode -Version 5
 
-class MappedCmdCollection {
-    [string] $Name = $null
-    [string[]] $CommandsList = $null
-    [string[]] $MissingCommandsList = $null
-    [CommandTranslation[]] $Commands  = $null
+class CommandUrlMap {
+    [string] $Command = $null
+    [string] $URL = $null   
+    [string] $Method = $null
 
-    MappedCmdCollection([string] $Name){
-        $this.Name = $Name
+    CommandUrlMap($Command, $URL, $Method){
+        $this.Command = $Command
+        $this.URL = $URL
+        $this.Method = $Method
     }
+
 }
+

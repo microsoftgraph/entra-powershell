@@ -2,6 +2,28 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 Set-StrictMode -Version 5
+class CommandUrlMap {
+    [string] $Command = $null
+    [string] $URL = $null   
+    [string] $Method = $null
+    [DataMap[]] $Parameters = @()
+
+
+    CommandUrlMap($Command, $URL, $Method, [DataMap[]]$Parameters){
+        $this.Command = $Command
+        $this.URL = $URL
+        $this.Method = $Method
+        $this.Parameters = $Parameters
+    }
+
+}
+
+class ParameterMap {
+    [string] $SourceName = $null
+    [string] $TargetName = $null   
+    [string] $ConversionType = $null
+    [string] $SpecialMapping = $null  
+}
 
 class CompatibilityAdapterBuilder {
     [string] $SourceModuleName
@@ -24,12 +46,16 @@ class CompatibilityAdapterBuilder {
     hidden [hashtable] $HelperCmdletsToExport = @{}
     hidden [string] $BasePath = $null
     hidden [string] $LoadMessage
+    hidden [CommandUrlMap[]] $ModuleUrlsMapping = @()
+
 
     # Constructor that changes the output folder, load all the Required Modules and creates the output folder.
     CompatibilityAdapterBuilder() {  
         $this.BasePath = (join-path $PSScriptRoot '../module/Entra/')    
         $this.HelpFolder = (join-path $this.BasePath './help')
         $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
+        $this.ConfigureURL((join-path $this.BasePath "/config/ModuleURLs.json"))
+
     }
 
     CompatibilityAdapterBuilder([string] $Module){        
@@ -37,6 +63,8 @@ class CompatibilityAdapterBuilder {
         $this.BasePath = (join-path $this.BasePath $Module)
         $this.HelpFolder = (join-path $this.BasePath './help')
         $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
+        $this.ConfigureURL((join-path $this.BasePath "/config/ModuleURLs.json"))
+
     }
 
     CompatibilityAdapterBuilder([bool] $notRunningUT = $false){
@@ -45,7 +73,38 @@ class CompatibilityAdapterBuilder {
             $this.BasePath = (join-path $PSScriptRoot '../module/Entra/')    
             $this.HelpFolder = (join-path $this.BasePath './help')
             $this.Configure((join-path $this.BasePath "/config/ModuleSettings.json"))
+            $this.ConfigureURL((join-path $this.BasePath "/config/ModuleURLs.json"))
+
         }                
+    }
+
+    ConfigureURL([string] $ModuleURLsPath){
+
+        # Read the JSON file content
+        $jsonContent = Get-Content -Path $ModuleURLsPath -Raw
+        
+        # Convert JSON content to PowerShell objects
+        $commandList = ConvertFrom-Json -InputObject $jsonContent
+        
+        # Convert to list of Command objects        
+        foreach ($cmd in $commandList.commands) {  
+            
+            $paramArray = @()
+        
+            foreach ($param in $cmd.Parameters) {
+                # $paramObj = [DataMap]::new()
+                # $paramObj.Name = $param.SourceName
+                # $paramObj.TargetName = $param.TargetName
+                # $paramObj.ConversionType = $param.ConversionType
+                # $paramObj.SpecialMapping = $param.SpecialMapping
+                # $paramArray += $paramObj
+                
+                $paramArray += [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping))
+            }
+            
+            $this.ModuleUrlsMapping += [CommandUrlMap]::New($cmd.Command, $cmd.URL, $cmd.Method, $paramArray)
+        }
+        
     }
 
     hidden Configure([string] $ModuleSettingsPath){
@@ -455,6 +514,7 @@ public $($object.GetType().Name)()
         $this.ModuleMap = [MappedCmdCollection]::new($this.ModuleName)
         $originalCmdlets = $this.GetModuleCommands($this.SourceModuleName, $this.SourceModulePrefixs, $true)
         $targetCmdlets = $this.GetModuleCommands($this.DestinationModuleName, $this.DestinationPrefixs, $true)
+
         $newCmdletData = @()
         $cmdletsToExport = @()
         $missingCmdletsToExport = @()
@@ -483,7 +543,7 @@ public $($object.GetType().Name)()
         foreach($function in $this.HelperCmdletsToExport.GetEnumerator()){
             $cmdletsToExport += $function.Key
         }
-      
+        
         $this.ModuleMap.CommandsList = $cmdletsToExport
         $this.ModuleMap.MissingCommandsList = $missingCmdletsToExport
         $this.ModuleMap.Commands = $this.NewModuleMap($newCmdletData)
@@ -549,8 +609,14 @@ Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList 
 
     hidden [CommandTranslation[]] NewModuleMap([PSCustomObject[]] $Commands) {
         [CommandTranslation[]] $translations = @()
+        
         foreach($Command in $Commands){
-            if('' -eq $command.New){
+            Write-Host("old $($Command.Old)")  
+            if($this.ModuleUrlsMapping | Where-Object { $_.Command -eq $Command.Old }) {
+                $URLMapping = $this.ModuleUrlsMapping | Where-Object { $_.command -eq $Command.Old }
+                $translations += $this.NewFunctionURLMap($Command, $URLMapping)
+            }
+            elseif('' -eq $command.New){
                 $translations += $this.NewCustomFunctionMap($Command)
             }
             else {
@@ -580,6 +646,58 @@ $($Command.CustomScript)
         return [CommandTranslation]::New($Command.Generate,$Command.Old,$codeBlock)
     }
 
+    hidden [CommandTranslation] NewFunctionURLMap([PSCustomObject] $Command, [CommandUrlMap] $URLMapping ){
+        Write-Host "Creating new function for $($Command.Generate) with graph URL"
+        $parameterDefinitions = $this.GetParametersDefinitions($Command)
+        $ParamterTransformations = $this.GetParametersTransformationsFromUrlMapping($Command,$URLMapping)
+        #$ParamterTransformations = $this.GetParametersTransformations($Command)
+        $OutputTransformations = $this.GetOutputTransformations($Command)
+        $keyId = $this.GetKeyIdPair($Command)
+        $customHeadersCommandName = "New-EntraCustomHeaders"
+        $URLCommand = $this.GetURLCommand($URLMapping)
+
+
+        if($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta')
+        {
+            $customHeadersCommandName = "New-EntraBetaCustomHeaders"
+        }
+
+        $function = @"
+function $($Command.Generate) {
+    [CmdletBinding($($Command.DefaultParameterSet))]
+    param (
+$parameterDefinitions
+    )
+
+    PROCESS {    
+    `$params = @{}
+    `$customHeaders = $customHeadersCommandName -Command `$MyInvocation.MyCommand
+    $($keyId)
+$ParamterTransformations
+    Write-Debug("============================ TRANSFORMATIONS ============================")
+    `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
+    Write-Debug("=========================================================================``n")
+    
+    `$response = $($URLCommand) -Headers `$customHeaders
+$OutputTransformations
+    `$response
+    }
+}
+
+"@
+        $codeBlock = [Scriptblock]::Create($function)
+        return [CommandTranslation]::New($Command.Generate,$Command.Old,$codeBlock)
+    }
+
+    hidden [string] GetURLCommand([CommandUrlMap] $URLMapping){
+        switch ($URLMapping.Method) {
+            "POST" { return " Invoke-GraphRequest -Uri $($URLMapping.URL) -Method  $($URLMapping.Method) -body `$params"}            
+        }
+
+        return ""
+    }
+
+    
     hidden [CommandTranslation] NewFunctionMap([PSCustomObject] $Command){
         Write-Host "Creating new function for $($Command.Generate)"
         $parameterDefinitions = $this.GetParametersDefinitions($Command)
@@ -718,6 +836,92 @@ $OutputTransformations
         }
 
         return $attributesString
+    }
+
+    hidden [string] GetParametersTransformationsFromUrlMapping([PSCustomObject] $Command,[CommandUrlMap] $URLMapping) {
+        $paramsList = ""
+        $URLMapping = $this.ModuleUrlsMapping | Where-Object { $_.command -eq $Command.Old }
+
+        foreach ($paramKey in $Command.Parameters.Keys) {        
+            $param = $Command.Parameters[$paramKey]
+            $paramBlock = ""
+            if($URLMapping.Parameters.Count -gt 0)
+            {
+                # Find the matching parameter in the URLMapping.Parameters array
+                $matchingParam = $URLMapping.Parameters | Where-Object { $_.Name -eq $param.Name }
+                
+                Write-Host("matching param $($matchingParam)")
+                
+                if($matchingParam)
+                {
+                    if([TransformationTypes]::Name -eq $matchingParam.ConversionType){
+                        $paramBlock = $this.GetParameterTransformationName($matchingParam.Name, $matchingParam.TargetName)
+                    }
+                    elseif([TransformationTypes]::Bool2Switch -eq $matchingParam.ConversionType){
+                        $paramBlock = $this.GetParameterTransformationBoolean2Switch($matchingParam.Name, $matchingParam.TargetName)
+                    }
+                    elseif([TransformationTypes]::SystemSwitch -eq $param.ConversionType){
+                        $paramBlock = $this.GetParameterTransformationSystemSwitch($matchingParam.Name)
+                    }
+                    elseif([TransformationTypes]::ScriptBlock -eq $matchingParam.ConversionType){
+                        $paramBlock = $this.GetParameterCustom($matchingParam)
+                    }
+                    elseif([TransformationTypes]::Remove -eq $matchingParam.ConversionType){
+                        $paramBlock = $this.GetParameterException($matchingParam)
+                    }
+                }
+                else{
+                    if([TransformationTypes]::None -eq $param.ConversionType){
+                        $paramBlock = $this.GetParameterTransformationName($param.Name, $param.Name)
+                    }
+                    elseif([TransformationTypes]::Name -eq $param.ConversionType){
+                        $paramBlock = $this.GetParameterTransformationName($param.Name, $param.TargetName)
+                    }
+                    elseif([TransformationTypes]::Bool2Switch -eq $param.ConversionType){
+                        $paramBlock = $this.GetParameterTransformationBoolean2Switch($param.Name, $param.TargetName)
+                    }
+                    elseif([TransformationTypes]::SystemSwitch -eq $param.ConversionType){
+                        $paramBlock = $this.GetParameterTransformationSystemSwitch($param.Name)
+                    }
+                    elseif([TransformationTypes]::ScriptBlock -eq $param.ConversionType){
+                        $paramBlock = $this.GetParameterCustom($param)
+                    }
+                    elseif([TransformationTypes]::Remove -eq $param.ConversionType){
+                        $paramBlock = $this.GetParameterException($param)
+                    }
+                }
+
+            }else {
+                
+                if([TransformationTypes]::None -eq $param.ConversionType){
+                    $paramBlock = $this.GetParameterTransformationName($param.Name, $param.Name)
+                }
+                elseif([TransformationTypes]::Name -eq $param.ConversionType){
+                    $paramBlock = $this.GetParameterTransformationName($param.Name, $param.TargetName)
+                }
+                elseif([TransformationTypes]::Bool2Switch -eq $param.ConversionType){
+                    $paramBlock = $this.GetParameterTransformationBoolean2Switch($param.Name, $param.TargetName)
+                }
+                elseif([TransformationTypes]::SystemSwitch -eq $param.ConversionType){
+                    $paramBlock = $this.GetParameterTransformationSystemSwitch($param.Name)
+                }
+                elseif([TransformationTypes]::ScriptBlock -eq $param.ConversionType){
+                    $paramBlock = $this.GetParameterCustom($param)
+                }
+                elseif([TransformationTypes]::Remove -eq $param.ConversionType){
+                    $paramBlock = $this.GetParameterException($param)
+                }
+                
+            }
+            
+            $paramsList += $paramBlock            
+        }
+
+        if("Get" -eq $Command.Verb){
+            $paramsList += $this.GetCustomParameterTransformation("Property")
+        }
+            
+        return $paramsList
     }
 
     hidden [string] GetParametersTransformations([PSCustomObject] $Command) {

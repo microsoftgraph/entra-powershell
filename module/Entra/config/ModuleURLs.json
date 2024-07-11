@@ -1,0 +1,24 @@
+{
+      "commands" : [
+                    { "Command" :"New-AzureADDomain", "URl" :"https://graph.microsoft.com/v1.0/domains", "Method" : "POST", "Parameters" : [
+                            {
+                                "SourceName" : "Name",
+                                "TargetName" : "Id",
+                                "ConversionType" : "Name",
+                                "SpecialMapping" : null
+                            }
+                        ]
+                    },
+
+                    { "Command" :"Test", "URl" :"https://graph.microsoft.com/v1.0/applications", "Method" : "POST", "Parameters" : [
+                            {
+                                "SourceName" : "ObjectId",
+                                "TargetName" : "ApplicationId",
+                                "ConversionType" : "Name",
+                                "SpecialMapping" : null
+                            }
+                        ]
+                    }
+          
+                ]
+  }
