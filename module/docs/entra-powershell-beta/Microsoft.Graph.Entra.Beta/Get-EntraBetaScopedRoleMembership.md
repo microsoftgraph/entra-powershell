@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Gets a scoped role membership from an administrative unit.
+List Microsoft Entra role assignments with administrative unit scope.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Get-EntraBetaScopedRoleMembership
 
 ## Description
 
-The `Get-EntraBetaScopedRoleMembership` cmdlet gets a scoped role membership from an administrative unit in Microsoft Entra ID. Specify `ObjectId` parameter to retrieve a scoped role membership.
+The `Get-EntraBetaScopedRoleMembership` cmdlet lists Microsoft Entra role assignments with an administrative unit scope. Use the `ObjectId` parameter to retrieve a specific scoped role membership.
 
 ## Examples
 

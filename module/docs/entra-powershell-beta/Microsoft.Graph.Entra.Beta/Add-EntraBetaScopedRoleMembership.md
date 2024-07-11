@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Adds a scoped role membership to an administrative unit.
+Assign a Microsoft Entra role with an administrative unit scope.
 
 ## Syntax
 
@@ -36,6 +36,8 @@ Add-EntraBetaScopedRoleMembership
 ## Description
 
 The `Add-EntraBetaScopedRoleMembership` cmdlet adds a scoped role membership to an administrative unit. Specify `ObjectId` parameter to add a scoped role membership.
+
+For delegated scenarios, the calling user needs at least the Privileged Role Administrator Microsoft Entra role.
 
 ## Examples
 
