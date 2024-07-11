@@ -52,7 +52,7 @@ This example shows how to retrieve the application logo for an application that 
 
 ### -FileName
 
-If provided, the application logo is copied to the file who's name is provided in this parameter
+If provided, the application logo is saved to the file using the specified file name.
 
 ```yaml
 Type: System.String
