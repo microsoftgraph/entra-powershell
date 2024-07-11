@@ -115,7 +115,12 @@ This example demonstrates how to update a property for an existing Microsoft Ent
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraBetaGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MembershipRule '(user.UserType -contains "Member")' 
+$params = @{
+    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    MembershipRule = '(user.UserType -contains "Member")'
+}
+
+Set-EntraBetaGroup @params
 ```
 
 This example demonstrates how to update the membership rule of a specified group in Microsoft Entra ID.
