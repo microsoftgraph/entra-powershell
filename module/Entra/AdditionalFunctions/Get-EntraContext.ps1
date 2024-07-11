@@ -27,11 +27,11 @@ function Get-EntraContext{
         }
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if($null -ne $PSBoundParameters["Confirm"])
         {
