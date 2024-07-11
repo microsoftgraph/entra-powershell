@@ -2,7 +2,7 @@
 title: Get-EntraDomain
 description: This article provides details on the Get-EntraDomain command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru

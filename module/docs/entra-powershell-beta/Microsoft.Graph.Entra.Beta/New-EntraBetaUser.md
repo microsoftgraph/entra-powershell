@@ -2,7 +2,6 @@
 title: New-EntraBetaUser
 description: This article provides details on the New-EntraBetaUser command.
 
-ms.service: entra
 ms.topic: reference
 ms.date: 06/21/2024
 ms.author: eunicewaweru

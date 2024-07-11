@@ -2,7 +2,6 @@
 title: Get-EntraBetaGroupAppRoleAssignment
 description: This article provides details on the Get-EntraBetaGroupAppRoleAssignment command.
 
-ms.service: entra
 ms.topic: reference
 ms.date: 06/24/2024
 ms.author: eunicewaweru

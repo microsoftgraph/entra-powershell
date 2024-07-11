@@ -2,7 +2,7 @@
 title: Get-EntraGroupOwner.
 description: This article provides details on the Get-EntraGroupOwner command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
