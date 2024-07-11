@@ -49,7 +49,12 @@ The `Set-EntraBetaGroup` cmdlet sets the properties for an existing Microsoft En
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraBetaGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -DisplayName 'UPDATE helpdesk'
+$params = @{
+    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    DisplayName = 'UPDATE helpdesk'
+}
+
+Set-EntraBetaGroup @params
 ```
 
 This command updates the display name of a specified group in Microsoft Entra ID.
@@ -94,7 +99,14 @@ This example demonstrates how to update a group main enabled.
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraBetaGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -Visibility 'Private' -GroupTypes 'DynamicMembership' -IsAssignableToRole $true
+$params = @{
+    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    Visibility = 'Private'
+    GroupTypes = 'DynamicMembership'
+    IsAssignableToRole = $true
+}
+
+Set-EntraBetaGroup @params
 ```
 
 This example demonstrates how to update a property for an existing Microsoft Entra ID group.  
@@ -103,7 +115,12 @@ This example demonstrates how to update a property for an existing Microsoft Ent
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraBetaGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MembershipRule '(user.UserType -contains "Member")' 
+$params = @{
+    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    MembershipRule = '(user.UserType -contains "Member")'
+}
+
+Set-EntraBetaGroup @params
 ```
 
 This example demonstrates how to update the membership rule of a specified group in Microsoft Entra ID.
