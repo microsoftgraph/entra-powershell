@@ -40,8 +40,12 @@ The `Add-EntraBetaServicePrincipalPolicy` cmdlet adds a service principal policy
 ### Example 1: Add a service principal policy
 
 ```powershell
-Connect-Entra -Scopes Policy.Read.All, Application.ReadWrite.All
-Add-EntraBetaServicePrincipalPolicy -Id 'bbbbbbbb-1111-1111-1111-cccccccccccc' -RefObjectId 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
+Connect-Entra -Scopes 'Policy.Read.All, Application.ReadWrite.All'
+$params = @{
+    Id = 'bbbbbbbb-1111-1111-1111-cccccccccccc'
+    RefObjectId = 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
+}
+Add-EntraBetaServicePrincipalPolicy @params
 ```
 
 This example demonstrates how to add a policy to a service principal in Microsoft Entra ID.

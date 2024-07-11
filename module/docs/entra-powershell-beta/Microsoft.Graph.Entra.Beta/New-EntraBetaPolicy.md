@@ -44,8 +44,13 @@ The `New-EntraBetaPolicy` cmdlet creates a policy in Microsoft Entra ID. Specify
 ### Example 1: Create a new policy
 
 ```powershell
-Connect-Entra -Scopes 'Policy.Read.ApplicationConfiguration, Policy.ReadWrite.ApplicationConfiguration'
-New-EntraBetaPolicy -Definition @('{"HomeRealmDiscoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}') -DisplayName 'NewPolicy' -Type 'HomeRealmDiscoveryPolicy'
+Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
+$params = @{
+    Definition = @('{"HomeRealmDiscoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')
+    DisplayName = 'NewPolicy'
+    Type = 'HomeRealmDiscoveryPolicy'
+}
+New-EntraBetaPolicy @params
 ```
 
 ```Output
@@ -59,8 +64,14 @@ This command creates a new policy in Microsoft Entra ID.
 ### Example 2: Create a new policy by 'IsOrganizationDefault' parameter
 
 ```powershell
-Connect-Entra -Scopes 'Policy.Read.ApplicationConfiguration, Policy.ReadWrite.ApplicationConfiguration'
-New-EntraBetaPolicy -Definition @('{"HomeRealmDiscoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}') -DisplayName 'NewPolicy' -Type 'HomeRealmDiscoveryPolicy' -IsOrganizationDefault $false
+Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
+$params = @{
+    Definition = @('{"HomeRealmDiscoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')
+    DisplayName = 'NewPolicy'
+    Type = 'HomeRealmDiscoveryPolicy'
+    IsOrganizationDefault = $false
+}
+New-EntraBetaPolicy @params
 ```
 
 ```Output
@@ -74,8 +85,15 @@ This command creates a new policy using 'IsOrganizationDefault' parameter in Mic
 ### Example 3: Create a new policy by 'AlternativeIdentifier' parameter
 
 ```powershell
-Connect-Entra -Scopes 'Policy.Read.ApplicationConfiguration, Policy.ReadWrite.ApplicationConfiguration'
-New-EntraBetaPolicy -Definition @('{"ClaimsMappingPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}') -DisplayName 'NewPolicy' -Type 'ClaimsMappingPolicies' -AlternativeIdentifier "cccccccc-2222-3333-4444-dddddddddddd" -IsOrganizationDefault $false
+Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
+$params = @{
+    Definition = @('{"ClaimsMappingPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')
+    DisplayName = 'NewPolicy'
+    Type = 'ClaimsMappingPolicies'
+    AlternativeIdentifier = "cccccccc-2222-3333-4444-dddddddddddd"
+    IsOrganizationDefault = $false
+}
+New-EntraBetaPolicy @params
 
 ```
 

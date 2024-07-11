@@ -42,7 +42,11 @@ The `Set-EntraBetaAdministrativeUnit` cmdlet updates an administrative unit in M
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-Set-EntraBetaAdministrativeUnit -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DisplayName 'UpdatedAU' 
+$params = @{
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    DisplayName = 'UpdatedAU'
+}
+Set-EntraBetaAdministrativeUnit @params
 ```
 
 This Command update DisplayName of specific administrative unit.
@@ -51,19 +55,27 @@ This Command update DisplayName of specific administrative unit.
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-Set-EntraBetaAdministrativeUnit -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Description 'Updated AU Description'
+$params = @{
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    Description = 'Updated AU Description'
+}
+Set-EntraBetaAdministrativeUnit @params
 ```
 
-This Command update Description of specific administrative unit.
+This example shows how to update the description of a specific administrative unit.
 
 ### Example 3: Update IsMemberManagementRestricted
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-Set-EntraBetaAdministrativeUnit -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -IsMemberManagementRestricted $true 
+$params = @{
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    IsMemberManagementRestricted = $true
+}
+Set-EntraBetaAdministrativeUnit @params
 ```
 
-This Command update IsMemberManagementRestricted of specific administrative unit.
+This example shows how to update the `IsMemberManagementRestricted` setting for a specific administrative unit.
 
 ## Parameters
 

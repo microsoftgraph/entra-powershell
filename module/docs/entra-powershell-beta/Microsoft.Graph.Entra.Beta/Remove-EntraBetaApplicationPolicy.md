@@ -41,7 +41,11 @@ The `Remove-EntraBetaApplicationPolicy` cmdlet removes an application policy fro
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Remove-EntraBetaApplicationPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -PolicyId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+$params = @{
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    PolicyId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+}
+Remove-EntraBetaApplicationPolicy @params
 ```
 
 This command removes the specified application policy.

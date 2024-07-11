@@ -41,7 +41,11 @@ Delete a servicePrincipal policy. Specify the `Id` and `PolicyId` parameter to r
 
 ```powershell
 Connect-Entra -Scopes Policy.Read.All, Application.ReadWrite.All
-Remove-EntraBetaServicePrincipalPolicy -Id 'bbbbbbbb-1111-1111-1111-cccccccccccc' -PolicyId 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
+$params = @{
+    Id = 'bbbbbbbb-1111-1111-1111-cccccccccccc'
+    PolicyId = 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
+}
+Remove-EntraBetaServicePrincipalPolicy @params
 ```
 
 This command removes a specific servicePrincipal policy in Microsoft Entra ID.

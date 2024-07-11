@@ -43,12 +43,17 @@ The `Add-EntraBetaScopedRoleMembership` cmdlet adds a scoped role membership to 
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$User = Get-EntraBetaUser -SearchString "Conf Room Adams"
-$Role = Get-EntraBetaDirectoryRole | Where-Object -Property DisplayName -EQ -Value "User Administrator"
-$Unit = Get-EntraBetaAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value "NewUnit"
+$User = Get-EntraBetaUser -SearchString 'Conf Room Adams'
+$Role = Get-EntraBetaDirectoryRole | Where-Object -Property DisplayName -EQ -Value 'User Administrator'
+$Unit = Get-EntraBetaAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value 'NewUnit'
 $RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
 $RoleMember.ObjectId = $User.ObjectID
-Add-EntraBetaScopedRoleMembership -ObjectId $unit.ObjectId -RoleObjectId $Role.ObjectId -RoleMemberInfo $RoleMember
+$params = @{
+    ObjectId = $unit.ObjectId
+    RoleObjectId = $Role.ObjectId
+    RoleMemberInfo = $RoleMember
+}
+Add-EntraBetaScopedRoleMembership @params
 ```
 
 ```Output

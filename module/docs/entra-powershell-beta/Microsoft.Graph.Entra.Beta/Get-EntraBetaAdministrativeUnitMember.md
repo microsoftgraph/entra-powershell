@@ -42,7 +42,7 @@ The `Get-EntraBetaAdministrativeUnitMember` cmdlet gets a member of a Microsoft 
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-Get-EntraBetaAdministrativeUnitMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+Get-EntraBetaAdministrativeUnitMember -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -61,7 +61,7 @@ This example returns the list of administrative unit members from specified admi
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-Get-EntraBetaAdministrativeUnitMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+Get-EntraBetaAdministrativeUnitMember -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -80,7 +80,7 @@ This example returns the list of all administrative unit members from specified 
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-Get-EntraBetaAdministrativeUnitMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 3
+Get-EntraBetaAdministrativeUnitMember -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 3
 ```
 
 ```Output

@@ -41,10 +41,14 @@ The `Add-EntraBetaApplicationPolicy` cmdlet adds a Microsoft Entra ID applicatio
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All, Policy.ReadWrite.ApplicationConfiguration'
-Add-EntraBetaApplicationPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RefObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+$params = @{
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    RefObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+}
+Add-EntraBetaApplicationPolicy @params
 ```
 
-This command adds an application policy.
+This example demonstrates how to add an application policy.
 
 ## Parameters
 

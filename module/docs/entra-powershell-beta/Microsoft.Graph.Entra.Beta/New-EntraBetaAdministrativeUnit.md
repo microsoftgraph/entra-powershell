@@ -56,7 +56,11 @@ This command creates an administrative unit.
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-New-EntraBetaAdministrativeUnit -DisplayName 'test111' -Description 'New AdminiatrativeUnit'
+$params = @{
+    DisplayName = 'test111'
+    Description = 'New AdministrativeUnit'
+}
+New-EntraBetaAdministrativeUnit @params
 ```
 
 ```Output
@@ -69,7 +73,11 @@ DeletedDateTime Id                                   Description DisplayName IsM
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-New-EntraBetaAdministrativeUnit -DisplayName 'NewUnit' -IsMemberManagementRestricted $true
+$params = @{
+    DisplayName = 'NewUnit'
+    IsMemberManagementRestricted = $true
+}
+New-EntraBetaAdministrativeUnit @params
 ```
 
 ```Output

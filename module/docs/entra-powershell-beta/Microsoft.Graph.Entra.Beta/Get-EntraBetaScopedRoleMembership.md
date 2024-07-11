@@ -41,7 +41,11 @@ The `Get-EntraBetaScopedRoleMembership` cmdlet gets a scoped role membership fro
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-Get-EntraBetaScopedRoleMembership -ObjectId 'aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc' -ScopedRoleMembershipId 'dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc'
+$params = @{
+    ObjectId = 'aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc'
+    ScopedRoleMembershipId = 'dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc'
+}
+Get-EntraBetaScopedRoleMembership @params
 ```
 
 ```Output

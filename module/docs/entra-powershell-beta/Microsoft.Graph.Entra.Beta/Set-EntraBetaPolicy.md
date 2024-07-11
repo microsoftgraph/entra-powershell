@@ -45,8 +45,12 @@ The `Set-EntraBetaPolicy` cmdlet sets a policy in Microsoft Entra ID. Specify `I
 ### Example 1: Update a policy display name
 
 ```powershell
-Connect-Entra -Scopes 'Policy.Read.ApplicationConfiguration, Policy.ReadWrite.ApplicationConfiguration'
-Set-EntraBetaPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DisplayName 'NewUpdated'  
+Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
+$params = @{
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    DisplayName = 'NewUpdated'
+}
+Set-EntraBetaPolicy @params 
 ```
 
 This command updates display name of the specified policy in Microsoft Entra ID.
@@ -54,8 +58,12 @@ This command updates display name of the specified policy in Microsoft Entra ID.
 ### Example 2: Update a policy definition
 
 ```powershell
-Connect-Entra -Scopes 'Policy.Read.ApplicationConfiguration, Policy.ReadWrite.ApplicationConfiguration'
-Set-EntraBetaPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Definition @('{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')
+Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
+$params = @{
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    Definition = @('{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')
+}
+Set-EntraBetaPolicy @params
 ```
 
 This command updates definition of the specified policy in Microsoft Entra ID.
@@ -63,8 +71,12 @@ This command updates definition of the specified policy in Microsoft Entra ID.
 ### Example 3: Update a policy organization default
 
 ```powershell
-Connect-Entra -Scopes 'Policy.Read.ApplicationConfiguration, Policy.ReadWrite.ApplicationConfiguration'
-Set-EntraBetaPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -IsOrganizationDefault $false
+Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
+$params = @{
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    IsOrganizationDefault = $false
+}
+Set-EntraBetaPolicy @params
 ```
 
 This command updates organization default of the specified policy in Microsoft Entra ID.
@@ -72,20 +84,28 @@ This command updates organization default of the specified policy in Microsoft E
 ### Example 4: Update policy type
 
 ```powershell
-Connect-Entra -Scopes 'Policy.Read.ApplicationConfiguration, Policy.ReadWrite.ApplicationConfiguration'
-Set-EntraBetaPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Type homeRealmDiscoveryPolicies
+Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
+$params = @{
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    Type = 'homeRealmDiscoveryPolicies'
+}
+Set-EntraBetaPolicy @params
 ```
 
-This command updates type of the specified policy in Microsoft Entra ID.
+This example demonstrates how to update the `type` property of a specified policy in Microsoft Entra ID.
 
 ### Example 5: Update policy alternative Identifier
 
 ```powershell
-Connect-Entra -Scopes 'Policy.Read.ApplicationConfiguration, Policy.ReadWrite.ApplicationConfiguration'
-Set-EntraBetaPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -AlternativeIdentifier 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
+$params = @{
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    AlternativeIdentifier = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+}
+Set-EntraBetaPolicy @params
 ```
 
-This command updates type of the specified policy in Microsoft Entra ID.
+This example demonstrates how to update the `AlternativeIdentifier` property of a specified policy in Microsoft Entra ID.
 
 ## Parameters
 

@@ -57,8 +57,23 @@ For information about creating dynamic groups, see Using attributes to create ad
 ### Example 1: Create a dynamic group in an administrative unit
 
 ```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All, Directory.Read.All, Directory.ReadWrite.All, Group.ReadWrite.All'
-New-EntraBetaAdministrativeUnitMember -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc' -OdataType 'Microsoft.Graph.Group' -DisplayName  'NewAUMember' -Description 'createdUnitMembe' -MailEnabled $True -MailNickname 'new' -SecurityEnabled $False -GroupTypes @('Unified','DynamicMembership') -MembershipRule "(user.department -contains 'Marketing')" -MembershipRuleProcessingState 'On' -IsAssignableToRole $false -Visibility 'Public' -ProxyAddresses {'SMTP:Ahiresh@M365x99297270.onmicrosoft.com'}
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$params = @{
+    Id = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    OdataType = 'Microsoft.Graph.Group'
+    DisplayName = 'NewAUMember'
+    Description = 'createdUnitMember'
+    MailEnabled = $True
+    MailNickname = 'new'
+    SecurityEnabled = $False
+    GroupTypes = @('Unified', 'DynamicMembership')
+    MembershipRule = "(user.department -contains 'Marketing')"
+    MembershipRuleProcessingState = 'On'
+    IsAssignableToRole = $false
+    Visibility = 'Public'
+    ProxyAddresses = @('SMTP:Ahiresh@M365x99297270.onmicrosoft.com')
+}
+New-EntraBetaAdministrativeUnitMember @params
 ```
 
 ```Output
@@ -216,7 +231,7 @@ Accept wildcard characters: False
 
 Specifies the membership rule for a dynamic group.
 
-For more information about the rules that you can use for dynamic groups, see Using attributes to create advanced rules (<https://azure.microsoft.com/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/>).
+For more information about the rules that you can use for dynamic groups, see Using attributes to create advanced rules (https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership).
 
 ```yaml
 Type: System.String
@@ -283,7 +298,7 @@ Accept wildcard characters: False
 
 ### -AssignedLabels
 
-This parameter allows the assignment of sensitivity labels to groups. For more information on how sensitivity labels can be assigned to groups, refer to [Assign sensitivity labels](https://azure.microsoft.com/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/)
+This parameter allows the assignment of sensitivity labels to groups. For more information on how sensitivity labels can be assigned to groups, refer to [Assign sensitivity labels](https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership)
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AssignedLabel]

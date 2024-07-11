@@ -39,7 +39,7 @@ The `Get-EntraBetaServicePrincipalPolicy` cmdlet gets the policy of a service pr
 ### Example 1: Get a policy
 
 ```powershell
-Connect-Entra -Scopes Policy.Read.All, Application.ReadWrite.All
+Connect-Entra -Scopes 'Policy.Read.All, Application.ReadWrite.All'
 Get-EntraBetaServicePrincipalPolicy -Id 'bbbbbbbb-1111-1111-1111-cccccccccccc'
 ```
 
@@ -58,7 +58,7 @@ createdDateTime        : 21-08-2023 10:33:27
 odata.type             : #microsoft.graph.policy
 ```
 
-This command gets the policy for the specified service principal in Microsoft Entra ID.
+This command retrieves the policy for a specified service principal in Microsoft Entra ID.
 
 ## Parameters
 

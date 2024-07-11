@@ -35,16 +35,22 @@ Add-EntraBetaAdministrativeUnitMember
 
 The `Add-EntraBetaAdministrativeUnitMember` cmdlet adds a Microsoft Entra ID administrative unit member. Specify `RefObjectId` and `ObjectId` parameters to add an administrative unit member.
 
+To add a user, group, or device to an administrative unit, the calling principal must be assigned at least the Privileged Role Administrator Microsoft Entra role.
+
 ## Examples
 
 ### Example 1: Add an administrative unit member
 
 ```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All, Directory.Read.All, Directory.ReadWrite.All'
-Add-EntraAdministrativeUnitMember -RefObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc' -ObjectId 'dddddddd-2222-2222-3333-cccccccccccc'
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$params = @{
+    RefObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    ObjectId = 'dddddddd-2222-2222-3333-cccccccccccc'
+}
+Add-EntraAdministrativeUnitMember @params
 ```
 
-This example demonstrated how to add administrative unit member.
+This example shows how to add an administrative unit member.
 
 ## Parameters
 
