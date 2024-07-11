@@ -63,7 +63,12 @@ This command updates the display name of a specified group in Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraBetaGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -Description 'This is my new group'
+$params = @{
+    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    Description = 'This is my new group'
+}
+
+Set-EntraBetaGroup @params
 ```
 
 This example demonstrates how to update a group description.  
