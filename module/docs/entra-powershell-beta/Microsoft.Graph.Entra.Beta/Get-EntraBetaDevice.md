@@ -140,7 +140,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
                 bbbbbbbb-1111-1111-1111-cccccccccccc True                                                                                     dddddddd-9999-0000-1111-eeeeeeeeeeee MetaData
 ```
 
-This example demonstrates how to retrieve all the devices whose display name starts with Aksh from Microsoft Entra ID.  
+This example demonstrates how to retrieve all the devices whose display name starts with the word `Desktop`.
 
 ### Example 6: Search among retrieved devices
 
