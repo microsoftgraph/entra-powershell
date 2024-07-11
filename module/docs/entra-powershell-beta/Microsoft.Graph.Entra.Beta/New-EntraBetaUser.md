@@ -74,7 +74,15 @@ The `New-EntraBetaUser` cmdlet creates a user in Microsoft Entra ID. Specify the
 Connect-Entra -Scopes 'User.ReadWrite.All', 'Directory.ReadWrite.All'
 $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
 $PasswordProfile.Password = '<Password>'
-New-EntraBetaUser -DisplayName 'New User' -PasswordProfile $PasswordProfile -UserPrincipalName 'NewUser@contoso.com' -AccountEnabled $true -MailNickName 'Newuser'
+$params = @{
+    DisplayName = 'New User'
+    PasswordProfile = $PasswordProfile
+    UserPrincipalName = 'NewUser@contoso.com'
+    AccountEnabled = $true
+    MailNickName = 'Newuser'
+}
+
+New-EntraBetaUser @params
 ```
 
 ```Output
