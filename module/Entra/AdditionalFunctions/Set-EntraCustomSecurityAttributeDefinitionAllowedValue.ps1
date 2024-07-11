@@ -1,8 +1,8 @@
-function Set-EntraMSCustomSecurityAttributeDefinitionAllowedValue {
+function Set-EntraCustomSecurityAttributeDefinitionAllowedValue {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $AllowedValueId,
+    [System.String] $Id,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Nullable`1[System.Boolean]] $IsActive,
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -15,7 +15,7 @@ function Set-EntraMSCustomSecurityAttributeDefinitionAllowedValue {
     $body = @{}
     
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-    $Uri = "https://graph.microsoft.com/v1.0/directory/customSecurityAttributeDefinitions/$CustomSecurityAttributeDefinitionId/allowedValues/$AllowedValueId"
+    $Uri = "https://graph.microsoft.com/v1.0/directory/customSecurityAttributeDefinitions/$CustomSecurityAttributeDefinitionId/allowedValues/$Id"
     $Method = "PATCH"
     $keysChanged = @{}
     if($null -ne $PSBoundParameters["ErrorAction"])
@@ -26,9 +26,9 @@ function Set-EntraMSCustomSecurityAttributeDefinitionAllowedValue {
     {
         $params["CustomSecurityAttributeDefinitionId"] = $PSBoundParameters["CustomSecurityAttributeDefinitionId"]
     }
-    if($null -ne $PSBoundParameters["AllowedValueId"])
+    if($null -ne $PSBoundParameters["Id"])
     {
-        $params["AllowedValueId"] = $PSBoundParameters["AllowedValueId"]
+        $params["Id"] = $PSBoundParameters["Id"]
     }
     if($null -ne $PSBoundParameters["IsActive"])
     {
