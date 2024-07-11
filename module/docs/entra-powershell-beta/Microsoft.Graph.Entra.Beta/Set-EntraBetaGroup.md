@@ -95,7 +95,12 @@ This command updates the security enabled of a specified group in Microsoft Entr
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraBetaGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MailEnabled $false
+$params = @{
+    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    MailEnabled = $false
+}
+
+Set-EntraBetaGroup @params
 ```
 
 This example demonstrates how to update a group main enabled.  
