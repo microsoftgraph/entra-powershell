@@ -181,7 +181,15 @@ This example demonstrates how to create the new group with GroupTypes parameter.
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Group.Create' #Application permission
-New-EntraBetaGroup -DisplayName 'HelpDesk admin group2'  -MailEnabled $False -MailNickname 'helpDeskAdminGroup' -SecurityEnabled $True  -MembershipRuleProcessingState 'On'
+$params = @{
+    DisplayName = 'HelpDesk admin group2'
+    MailEnabled = $False
+    MailNickname = 'helpDeskAdminGroup'
+    SecurityEnabled = $True
+    MembershipRuleProcessingState = 'On'
+}
+
+New-EntraBetaGroup @params
 ```
 
 ```Output
