@@ -4,13 +4,13 @@ function Find-EntraPermission {
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Position = 1)]
     [System.String] $SearchString,
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Boolean]] $ExactMatch,
+    [switch] $ExactMatch,
     [Parameter(ParameterSetName = "GetQuery", Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $PermissionType,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Boolean]] $All,
-     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Online
+    [switch] $All,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [switch] $Online
     )
 
     PROCESS {    
@@ -18,6 +18,10 @@ function Find-EntraPermission {
         if($null -ne $PSBoundParameters["SearchString"])
         {
             $params["SearchString"]=$PSBoundParameters["SearchString"]
+        }
+        if($null -ne $PSBoundParameters["PermissionType"])
+        {
+            $params["PermissionType"]=$PSBoundParameters["PermissionType"]
         }
         if($null -ne $PSBoundParameters["ExactMatch"])
         {
