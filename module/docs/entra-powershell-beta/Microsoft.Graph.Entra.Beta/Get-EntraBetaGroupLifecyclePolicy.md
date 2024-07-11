@@ -60,7 +60,6 @@ eeeeeeee-4444-5555-6666-ffffffffffff example@contoso.un          99             
 ```
 
 This example demonstrates how to retrieve the properties and relationships of all groupLifecyclePolicies in Microsoft Entra ID.
-This command retrieves the group expiration settings configured for the tenant.
 
 ### Example 2: Retrieve properties of an groupLifecyclePolicy
 
