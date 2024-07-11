@@ -219,7 +219,7 @@ Accept wildcard characters: False
 
 ### -ExtensionProperty
 
-Add data to custom user properties as the basic open extensions or the more versatile schema extensions. See [more about extensions][Learn more about extensions].
+Add data to custom user properties as the basic open extensions or the more versatile schema extensions. 
 
 ```yaml
 Type: System.Collections.Generic.Dictionary`2[System.String,System.String]
