@@ -1,4 +1,15 @@
 ---
+title: Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues.
+description: This article provides details on the Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues command.
+
+ms.service: entra
+ms.topic: reference
+ms.date: 07/12/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,34 +19,59 @@ schema: 2.0.0
 # Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues
 
 ## Synopsis
-{{ Fill in the Synopsis }}
+
+Adds a predefined value for a custom security attribute definition.
 
 ## Syntax
 
-```
-Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues -IsActive <Boolean>
- -CustomSecurityAttributeDefinitionId <String> -Id <String> [<CommonParameters>]
+```powershell
+Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues 
+ -IsActive <Boolean>
+ -CustomSecurityAttributeDefinitionId <String> 
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## Description
-{{ Fill in the Description }}
+
+Adds a predefined value for a Microsoft Entra ID custom security attribute definition.
 
 ## Examples
 
-### Example 1
+### Example 1: Add a predefined value for a Microsoft Entra ID custom security attribute definition
+
 ```powershell
-PS C:\> {{ Add example code here }}
+Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
+$params = @{
+    CustomSecurityAttributeDefinitionId = 'Engineering_Project'
+    Id = 'Alpine'
+    IsActive = $true
+}
+Add-EntraCustomSecurityAttributeDefinitionAllowedValues $params
 ```
 
-{{ Add example description here }}
+```Output
+Name                           Value
+----                           -----
+@odata.context                 https://graph.microsoft.com/v1.0/$metadata#directory/customSecurityAttributeDefinitions('Engineering_Project')/allowedValues/$entity
+id                             Alpine
+isActive                       True
+```
+
+This example Add a predefined value:
+
+- Attribute set: `Engineering`
+- Attribute: `Project`
+- Predefined value: `Alpine`
 
 ## Parameters
 
 ### -CustomSecurityAttributeDefinitionId
-{{ Fill CustomSecurityAttributeDefinitionId Description }}
+
+The unique identifier for a custom security attribute definition in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: Sysetm.String
 Parameter Sets: (All)
 Aliases:
 
@@ -47,10 +83,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+
+The unique identifier of an object in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -62,10 +99,11 @@ Accept wildcard characters: False
 ```
 
 ### -IsActive
-{{ Fill IsActive Description }}
+
+Indicates whether the predefined value is active or deactivated. If set to false, this predefined value can't be assigned to any another supported directory objects.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -77,7 +115,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -86,6 +125,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
+
+[Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue](Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue.md)
+
+[Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue](Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue.md)

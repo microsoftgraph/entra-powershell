@@ -1,4 +1,15 @@
 ---
+title: Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue.
+description: This article provides details on the Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue command.
+
+ms.service: entra
+ms.topic: reference
+ms.date: 07/12/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,41 +19,107 @@ schema: 2.0.0
 # Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
 
 ## Synopsis
-{{ Fill in the Synopsis }}
+
+Gets the predefined value for a custom security attribute definition.
 
 ## Syntax
 
 ### GetQuery (Default)
-```
-Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue [-Filter <String>]
- -CustomSecurityAttributeDefinitionId <String> [<CommonParameters>]
+
+```powershell
+Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue 
+ -CustomSecurityAttributeDefinitionId <String> 
+ [-Filter <String>]
+ [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId <String>
- -Id <String> [<CommonParameters>]
+
+```powershell
+Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue 
+ -CustomSecurityAttributeDefinitionId <String>
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## Description
-{{ Fill in the Description }}
+
+Gets the predefined value for a Microsoft Entra ID custom security attribute definition. Specify `CustomSecurityAttributeDefinitionId` parameter to retrieve the predefined value custom security attribute definition.
 
 ## Examples
 
-### Example 1
+### Example 1: Get all predefined values
+
 ```powershell
-PS C:\> {{ Add example code here }}
+Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
+Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId 'Engineering_Project'
 ```
 
-{{ Add example description here }}
+```output
+id      isActive
+--      --------
+Apline      True
+```
+
+This example Get all predefined values.
+
+- Attribute set: `Engineering`
+- Attribute: `Project`
+
+### Example 2: Get predefined value with ID parameter
+
+```powershell
+Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
+$params = @{
+    CustomSecurityAttributeDefinitionId = 'Engineering_Project'
+    Id = 'Alpine'
+}
+Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue $params
+```
+
+```output
+id      isActive
+--      --------
+Apline      True
+```
+
+This example Get a predefined value.
+
+- Attribute set: `Engineering`
+- Attribute: `Project`
+- Predefined value: `Alpine`
+
+### Example 3: Get predefined value with Filter parameter
+
+```powershell
+Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
+$params = @{
+    CustomSecurityAttributeDefinitionId = 'Engineering_Project'
+    Filter = "id eq 'Apline'"
+}
+Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue $params
+```
+
+```output
+id      isActive
+--      --------
+Apline      True
+```
+
+This example Get a predefined value with Filter.
+
+- Attribute set: `Engineering`
+- Attribute: `Project`
+- Predefined value: `Alpine`
 
 ## Parameters
 
 ### -CustomSecurityAttributeDefinitionId
-{{ Fill CustomSecurityAttributeDefinitionId Description }}
+
+The unique identifier of customSecurityAttributeDefinition.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -54,10 +131,11 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-{{ Fill Filter Description }}
+
+Filter items by property values.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery
 Aliases:
 
@@ -69,10 +147,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+
+The unique identifier of a predefined value in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -84,7 +163,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -93,6 +173,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
+
+[Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues](Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues.md)
+
+[Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue](Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue.md)
