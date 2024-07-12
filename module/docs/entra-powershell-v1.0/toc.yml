@@ -78,7 +78,7 @@
     href: Microsoft.Graph.Entra/Get-EntraDirSyncfeature.md
   - name: Get-EntraDomain
     href: Microsoft.Graph.Entra/Get-EntraDomain.md
-  - name: Get-EntraDomainFedrationSettings
+  - name: Get-EntraDomainFederationSettings
     href: Microsoft.Graph.Entra/Get-EntraDomainFederationSettings.md
   - name: Get-EntraDomainNameReference
     href: Microsoft.Graph.Entra/Get-EntraDomainNameReference.md
