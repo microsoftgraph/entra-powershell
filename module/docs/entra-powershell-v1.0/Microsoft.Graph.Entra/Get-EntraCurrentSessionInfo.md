@@ -25,7 +25,8 @@ This cmdlet returns the current session state.
 ## Syntax
 
 ```powershell
-Get-EntraCurrentSessionInfo 
+Get-EntraCurrentSessionInfo
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -63,6 +64,22 @@ Environment            : Global
 This command gets the current session info.
 
 ## Parameters
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### CommonParameters
 
