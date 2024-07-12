@@ -57,7 +57,7 @@ aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb 01-07-2024 00:00:00     Azure Portal       
 bbbbbbbb-7777-8888-9999-cccccccccccc 28-06-2024 00:00:00     Azure Portal                       77776666-aaaa-9999-bbbb-0000cccc1111 9
 ```
 
-This command gets all sign ins to Microsoft Entra ID Portal.
+This example returns all sign ins to Microsoft Entra ID Portal.
 
 ### Example 2: Get sign in detailed summary by application and date
 
@@ -79,7 +79,7 @@ aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb 17-06-2024 00:00:00     Azure Portal   6666
 bbbbbbbb-7777-8888-9999-cccccccccccc 18-06-2024 00:00:00     Azure Portal   77776666-aaaa-9999-bbbb-0000cccc1111 6
 ```
 
-This command gets all sign ins to Microsoft Entra ID Portal for the month of June.
+This example returns all sign ins to Microsoft Entra ID Portal for the month of June.
 
 ### Example 3: Get top five sign ins
 
@@ -98,7 +98,7 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee 20-06-2024 00:00:00     Azure Portal   3333
 eeeeeeee-4444-5555-6666-ffffffffffff 20-06-2024 00:00:00     Azure Portal   44445555-eeee-6666-ffff-7777aaaa8888 1
 ```
 
-This command gets top five sign ins to Microsoft Entra ID portal.
+This example returns top five sign ins to Microsoft Entra ID portal.
 
 ## Parameters
 

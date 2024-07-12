@@ -34,7 +34,7 @@ Set-EntraBetaAttributeSet
 
 ## Description
 
-Updates a Microsoft Entra ID attribute set object identified by ID. Specify `Id` parameter to update a attribute set.
+Updates a Microsoft Entra ID attribute set object identified by ID. Specify `Id` parameter to update an attribute set.
 
 ## Examples
 
@@ -42,19 +42,27 @@ Updates a Microsoft Entra ID attribute set object identified by ID. Specify `Id`
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-Set-EntraBetaAttributeSet -Id 'Testing' -Description 'Attributes for engineering team' 
+$params = @{
+    Id = 'Testing' 
+    Description = 'Attributes for engineering team'
+}
+Set-EntraBetaAttributeSet $params
 ```
 
-This example Update an attribute set.
+This example update an attribute set.
 
 ### Example 2: Update an attribute set using MaxAttributesPerSet
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-Set-EntraBetaAttributeSet -Id 'Testing' -MaxAttributesPerSet 10
+$params = @{
+    Id = 'Testing' 
+    MaxAttributesPerSet = 10
+}
+Set-EntraBetaAttributeSet $params
 ```
 
-This example Update an attribute set using MaxAttributesPerSet.
+This example update an attribute set using MaxAttributesPerSet.
 
 ## Parameters
 

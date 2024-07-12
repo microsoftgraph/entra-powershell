@@ -42,10 +42,14 @@ Admin could remove the group credentials as well.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All and Directory.Read.All, Directory.ReadWrite.All'
-Remove-EntraBetaPasswordSingleSignOnCredential -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -PasswordSSOCredential 'bbbbbbbb-1111-2222-3333-cccccccccccc' 
+$params = @{
+    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
+    PasswordSSOCredential = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+}
+Remove-EntraBetaPasswordSingleSignOnCredential $params
 ```
 
-This command removes the password SSO credentials for the given ObjectId and PasswordSSOObjectId.
+This example removes the password SSO credentials for the given ObjectId and PasswordSSOObjectId.
 
 ## Parameters
 

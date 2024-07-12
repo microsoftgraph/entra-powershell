@@ -35,7 +35,7 @@ Set-EntraBetaCustomSecurityAttributeDefinition
 
 ## Description
 
-Update the properties of a customSecurityAttributeDefinition object. Specify `Id` parameter to update a custom security attribute definitions.
+Update the properties of a customSecurityAttributeDefinition object. Specify `Id` parameter to update a custom security attribute definition.
 
 ## Examples
 
@@ -43,7 +43,13 @@ Update the properties of a customSecurityAttributeDefinition object. Specify `Id
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttributeDefinition.ReadWrite.All'
-Set-EntraBetaCustomSecurityAttributeDefinition -Id 'Test_ProjectTest' -Description 'Target completion' -Status 'Available' -UsePreDefinedValuesOnly $False 
+$params = @{
+    Id = 'Test_ProjectTest' 
+    Description = 'Target completion' 
+    Status = 'Available' 
+    UsePreDefinedValuesOnly = $False 
+}
+Set-EntraBetaCustomSecurityAttributeDefinition $params
 ```
 
 This example update a custom security attribute.
@@ -68,7 +74,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-The unique identifier of an Microsoft Entra ID custom security attribute definition object.
+The unique identifier of a Microsoft Entra ID custom security attribute definition object.
 
 ```yaml
 Type: System.String
@@ -100,7 +106,7 @@ Accept wildcard characters: False
 
 ### -UsePreDefinedValuesOnly
 
-Indicates whether only predefined values can be assigned to the custom security attribute. If set to false, free-form values are allowed. Can later be changed from true to false, but cannot be changed from false to true. If type is set to Boolean, usePreDefinedValuesOnly cannot be set to true.
+Indicates whether only predefined values can be assigned to the custom security attribute. If set to false, free-form values are allowed. Can later be changed from true to false, but can't be changed from false to true. If type is set to Boolean, usePreDefinedValuesOnly can't be set to true.
 
 ```yaml
 Type: System.Boolean

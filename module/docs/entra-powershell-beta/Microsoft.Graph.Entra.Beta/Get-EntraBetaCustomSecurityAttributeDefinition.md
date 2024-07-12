@@ -41,7 +41,7 @@ Get-EntraBetaCustomSecurityAttributeDefinition
 
 ## Description
 
-Gets a list of Microsoft Entra ID custom security attribute definitions. Specify `Id` parameter to gets a list of custom security attribute definitions.
+Gets a list of Microsoft Entra ID custom security attribute definitions. Specify `Id` parameter to get a list of custom security attribute definitions.
 
 ## Examples
 
@@ -65,9 +65,9 @@ Test5_ProjectDate                       Test5                 Target completion 
 DEMO7_ProjectDate                       DEMO7                 Target completion date              False        True         ProjectDate                      Available  String  False
 ```
 
-This example get all custom security attribute definitions.
+This example returns all custom security attribute definitions.
 
-### Example 2: Get a specific custom security attribute definitions
+### Example 2: Get a specific custom security attribute definition
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttributeDefinition.ReadWrite.All'
@@ -80,13 +80,13 @@ Id                      AttributeSet Description            IsCollection IsSearc
 Engineering_ProjectDate Engineering  Target completion date False        True         ProjectDate Available String False
 ```
 
- This example get a specific custom security attribute definition.
+ This example returns a specific custom security attribute definition.
 
 ## Parameters
 
 ### -Id
 
-The unique identifier of an Microsoft Entra ID custom security attribute definition object.
+The unique identifier of a Microsoft Entra ID custom security attribute definition object.
 
 ```yaml
 Type: System.String

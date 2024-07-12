@@ -43,7 +43,11 @@ Note that the password field is hidden for security purpose.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All and Directory.Read.All, Directory.ReadWrite.All'
-$get_creds_output = Get-EntraBetaPasswordSingleSignOnCredential -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -PasswordSSOObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+$params = @{
+    RefObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    ObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+}
+Get-EntraBetaPasswordSingleSignOnCredential $params
 ```
 
 ```Output
@@ -52,7 +56,7 @@ Id
 cccccccc-2222-3333-4444-dddddddddddd
 ```
 
-This command gets the password SSO credentials for the given ObjectId and PasswordSSOObjectId.
+This example returns a password SSO credential for the given ObjectId and PasswordSSOObjectId.
 
 ## Parameters
 

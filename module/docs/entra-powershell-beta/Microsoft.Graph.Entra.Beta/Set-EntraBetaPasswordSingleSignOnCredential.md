@@ -47,11 +47,14 @@ $credentials.Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 $creds1 = [Microsoft.Open.MSGraph.Model.PasswordSSOCredential]@{FieldId="param_emailOrUserName"; Value="foobar@ms.com"; Type="text"}
 $creds2 = [Microsoft.Open.MSGraph.Model.PasswordSSOCredential]@{FieldId="param_password"; Value="my-secret"; Type="password"}
 $credentials.Credentials = @($creds1, $creds2)
-
-Set-EntraBetaPasswordSingleSignOnCredential -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc' -PasswordSSOCredential $credentials
+$params = @{
+    RefObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    PasswordSSOCredential = $credentials
+}
+Set-EntraBetaPasswordSingleSignOnCredential $params
 ```
 
-This command sets the password SSO credentials for the given ObjectId and PasswordSSOObjectId.
+This example demonstrates how to set the password SSO credentials for the given ObjectId and PasswordSSOObjectId.
 
 ## Parameters
 

@@ -42,7 +42,12 @@ Adds a new Microsoft Entra ID attribute set object.
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-New-EntraBetaAttributeSet -Id 'Testing' -Description 'Attributes for engineering team' -MaxAttributesPerSet 10
+$params = @{
+    Id = 'Testing'
+    Description = 'Attributes for engineering team'
+    MaxAttributesPerSet = 10
+}
+New-EntraBetaAttributeSet $params
 ```
 
 ```Output
@@ -51,7 +56,7 @@ Id      Description                     MaxAttributesPerSet
 Testing Attributes for engineering team 10
 ```
 
-This example adds a single attribute set.
+This example demonstrates hoe to add a single attribute set.
 
 ## Parameters
 

@@ -53,7 +53,7 @@ failedSignInCount     : 0
 successPercentage     : 100
 ```
 
-This command gets a summary of all sign ins to Graph Explorer for the last 7 days.
+This example returns a summary of all sign ins to Graph Explorer for the last 7 days.
 
 ### Example 2: Get sign in summaries for the last month
 
@@ -88,7 +88,7 @@ failedSignInCount     : 0
 successPercentage     : 100
 ```
 
-This command gets summaries for all sign ins from the past 30 days.
+This example returns summaries for all sign ins from the past 30 days.
 
 ### Example 3: Get top two sign in summaries for the last month
 
@@ -111,7 +111,7 @@ failedSignInCount     : 6
 successPercentage     : 88.46
 ```
 
-This command gets top two summaries sign ins from the past 30 days.
+This example returns top two summaries sign ins from the past 30 days.
 
 ## Parameters
 

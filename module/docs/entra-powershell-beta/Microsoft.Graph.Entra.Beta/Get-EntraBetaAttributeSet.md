@@ -65,7 +65,7 @@ DEMO7                 Description to test the demo6         24
 demo3                 Demo3's Description                   33
 ```
 
-This example Get all attribute sets.
+This example returns all attribute sets.
 
 ### Example 2: Get an attribute sets
 
@@ -80,7 +80,7 @@ Id      Description                     MaxAttributesPerSet
 Testing Attributes for engineering team 10
 ```
 
-This example gets an attribute set by Id.
+This example demonstrates how to retrieve an attribute set by Id.
 
 ## Parameters
 

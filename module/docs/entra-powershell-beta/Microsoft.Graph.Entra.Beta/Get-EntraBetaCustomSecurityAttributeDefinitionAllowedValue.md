@@ -83,7 +83,7 @@ id      isActive
 Apline      True
 ```
 
-This example Get a predefined value.
+This example retrieves a specific predefined value.
 
 - Attribute set: `Engineering`
 - Attribute: `Project`
@@ -106,7 +106,7 @@ id      isActive
 Apline      True
 ```
 
-This example Get a predefined value with Filter.
+This example retrieves a predefined value containing Id with the specified value.
 
 - Attribute set: `Engineering`
 - Attribute: `Project`

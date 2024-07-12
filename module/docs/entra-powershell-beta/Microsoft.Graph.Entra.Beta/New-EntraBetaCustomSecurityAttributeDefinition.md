@@ -39,7 +39,7 @@ New-EntraBetaCustomSecurityAttributeDefinition
 
 ## Description
 
-Create a new customSecurityAttributeDefinition object. Specify `IsSearchable`, `IsCollection`, `AttributeSet`, `Type`, `Name`, `Status`and `UsePreDefinedValuesOnly` parameters to creates a new custom security attribute definitions.
+Create a new customSecurityAttributeDefinition object. Specify `IsSearchable`, `IsCollection`, `AttributeSet`, `Type`, `Name`, `Status` and `UsePreDefinedValuesOnly` parameters for create a new custom security attribute definition.
 
 ## Examples
 
@@ -47,7 +47,17 @@ Create a new customSecurityAttributeDefinition object. Specify `IsSearchable`, `
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttributeDefinition.ReadWrite.All'
-New-EntraBetaCustomSecurityAttributeDefinition -Name 'ProjectTest' -Description 'Target completion' -Type 'String' -Status 'Available' -AttributeSet 'Test' -IsCollection $False -IsSearchable $True -UsePreDefinedValuesOnly $False 
+$params = @{
+    Name = 'ProjectTest' 
+    Description = 'Target completion' 
+    Type = 'String' 
+    Status = 'Available' 
+    AttributeSet = 'Test' 
+    IsCollection = $False 
+    IsSearchable = $True 
+    UsePreDefinedValuesOnly = $False
+}
+New-EntraBetaCustomSecurityAttributeDefinition  $params
 ```
 
 ```Output
@@ -56,7 +66,7 @@ Id               AttributeSet Description       IsCollection IsSearchable Name  
 Test_ProjectTest Test         Target completion False        True         ProjectTest Available String False
 ```
 
-This example adds a custom security attribute.
+This example demonstrates how to add a custom security attribute.
 
 ## Parameters
 
@@ -94,7 +104,7 @@ Accept wildcard characters: False
 
 ### -IsCollection
 
-Indicates whether multiple values can be assigned to the custom security attribute. Cannot be changed later. If type is set to Boolean, isCollection cannot be set to true.
+Indicates whether multiple values can be assigned to the custom security attribute. Can't be changed later. If type is set to Boolean, isCollection can't be set to true.
 
 ```yaml
 Type: System.Boolean
@@ -110,7 +120,7 @@ Accept wildcard characters: False
 
 ### -IsSearchable
 
-Indicates whether custom security attribute values are indexed for searching on objects that are assigned attribute values. Cannot be changed later.
+Indicates whether custom security attribute values are indexed for searching on objects that are assigned attribute values. Can't be changed later.
 
 ```yaml
 Type: System.Boolean
@@ -126,7 +136,7 @@ Accept wildcard characters: False
 
 ### -Name
 
-Name of the custom security attribute. Must be unique within an attribute set. Can be up to 32 characters long and include Unicode characters. Cannot contain spaces or special characters. Cannot be changed later. Case insensitive.
+Name of the custom security attribute. Must be unique within an attribute set. Can be up to 32 characters long and include Unicode characters. Can't contain spaces or special characters. Can't be changed later. Case insensitive.
 
 ```yaml
 Type: System.String
@@ -158,7 +168,7 @@ Accept wildcard characters: False
 
 ### -Type
 
-Data type for the custom security attribute values. Supported types are: Boolean, Integer, and String. Cannot be changed later.
+Data type for the custom security attribute values. Supported types are: Boolean, Integer, and String. Can't be changed later.
 
 ```yaml
 Type: System.String
@@ -174,7 +184,7 @@ Accept wildcard characters: False
 
 ### -UsePreDefinedValuesOnly
 
-Indicates whether only predefined values can be assigned to the custom security attribute. If set to false, free-form values are allowed. Can later be changed from true to false, but cannot be changed from false to true. If type is set to Boolean, usePreDefinedValuesOnly cannot be set to true.
+Indicates whether only predefined values can be assigned to the custom security attribute. If set to false, free-form values are allowed. Can later be changed from true to false, but can't be changed from false to true. If type is set to Boolean, usePreDefinedValuesOnly can't be set to true.
 
 ```yaml
 Type: System.Boolean
