@@ -160,7 +160,7 @@ To sign in, use a web browser to open the page https://microsoft.com/devicelogin
 
 This example shows how to interactively authenticate to Microsoft Entra ID using device code flow.
 
-For more information about Device Code flow, see <https://learn.microsoft.com/entra/identity-platform/v2-oauth2-device-code>.
+For more information, see [Device Code flow](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-device-code).
 
 ### Example 5: App-only access: Using client credential with a Certificate thumbprint
 
