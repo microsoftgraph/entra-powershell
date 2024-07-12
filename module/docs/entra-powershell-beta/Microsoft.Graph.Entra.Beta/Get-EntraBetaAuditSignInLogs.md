@@ -19,6 +19,7 @@ schema: 2.0.0
 # Get-EntraBetaAuditSignInLogs
 
 ## Synopsis
+
 Get audit logs of sign-ins.
 
 ## Syntax
@@ -32,66 +33,69 @@ Get-EntraBetaAuditSignInLogs
 ```
 
 ## Description
-The Get-EntraBetaAuditSignInLogs cmdlet gets the Microsoft Entra ID sign-in log.
+
+The `Get-EntraBetaAuditSignInLogs` cmdlet gets the Microsoft Entra ID sign-in log.
 
 ## Examples
 
 ### Example 1: Get all logs
 
 ```powershell
- Get-EntraBetaAuditSignInLogs -All  
+Connect-Entra -Scopes 'AuditLog.Read.All and Directory.Read.All'
+Get-EntraBetaAuditSignInLogs -All  
 ```
 
 ```Output
-Id                                   AppDisplayName                     AppId                                AppTokenProtectionStatus AuthenticationMethodsUsed AuthenticationProtocol Authe
-                                                                                                                                                                                       ntica
-                                                                                                                                                                                       tionR
-                                                                                                                                                                                       equir
-                                                                                                                                                                                       ement
---                                   --------------                     -----                                ------------------------ ------------------------- ---------------------- -----
-1e332421-99c9-4ba7-bf52-bda3c9a3b400 Azure Active Directory PowerShell  1b730954-1685-4b74-9bfd-dac224a7b894                          {}                        ropc                   si...
-9d78ea64-fa2e-48ca-a19d-d049693c5b00 Azure Portal                       c44b4083-3bb0-49c1-b47d-974e53cbdf3c                          {}                        none                   si...
-b88f8107-f8b8-494a-bd7e-3ceddc3b8400 Azure Active Directory PowerShell  1b730954-1685-4b74-9bfd-dac224a7b894                          {}                        ropc                   si...
-e05ec15b-8698-4633-81ff-983f233b8500 Azure Active Directory PowerShell  1b730954-1685-4b74-9bfd-dac224a7b894                          {}                        none
+Id                                   AppDisplayName                                                 AppId                                AppTokenProtectionStatus AuthenticationMethodsUsed AuthenticationProtocol
+--                                   --------------                                                 -----                                ------------------------ ------------------------- ----------------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Azure Active Directory PowerShell  00001111-aaaa-2222-bbbb-3333cccc4444                                                  ropc                   si...
+bbbbbbbb-1111-2222-3333-cccccccccccc Azure Portal                       11112222-bbbb-3333-cccc-4444dddd5555                                                  none                   si...
+cccccccc-2222-3333-4444-dddddddddddd Azure Active Directory PowerShell  22223333-cccc-4444-dddd-5555eeee6666                                                 ropc                   si...
+dddddddd-3333-4444-5555-eeeeeeeeeeee Azure Active Directory PowerShell  33334444-dddd-5555-eeee-6666ffff7777                                                  none
 ```
-This command gets all sign-in logs.
 
-### Example 2: Get the first n logs
+This command gets all audit logs of sign-ins.
+
+### Example 2: Get the first two logs
 
 ```powershell
- Get-EntraBetaAuditSignInLogs -Top 1
+Connect-Entra -Scopes 'AuditLog.Read.All and Directory.Read.All'
+Get-EntraBetaAuditSignInLogs -Top 2
 ```
-```output
-Id                                   AppDisplayName                     AppId                                AppTokenProtectionStatus AuthenticationMethodsUsed Authenticat
-                                                                                                                                                                ionProtocol
---                                   --------------                     -----                                ------------------------ ------------------------- -----------
-903c0263-3ddb-409c-a248-07edf1967200 Microsoft Graph Command Line Tools 14d82eec-204b-4c2f-b7e8-296a70dab67e                          {}                        none
+
+```Output
+Id                                   AppDisplayName                                                 AppId                                AppTokenProtectionStatus AuthenticationMethodsUsed AuthenticationProtocol
+--                                   --------------                                                 -----                                ------------------------ ------------------------- ----------------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Azure Active Directory PowerShell  00001111-aaaa-2222-bbbb-3333cccc4444                                                  ropc                   si...
+bbbbbbbb-1111-2222-3333-cccccccccccc Azure Portal                       11112222-bbbb-3333-cccc-4444dddd5555                        {}                        none
 ```
-This example returns the first n logs.
 
-### Example 3: Get audit logs containing a given ActivityDisplayName
+This example returns the first two audit logs of sign-ins.
 
-```powershell
- Get-EntraBetaAuditSignInLogs -Filter "ActivityDisplayName eq 'Add owner to application'"
- Get-EntraBetaAuditSignInLogs -Filter "ActivityDisplayName eq 'Add owner to application'" -Top 1
-```
-These commands show how to get sign-in logs by ActivityDisplayName.
-
-### Example 4: Get all sign-in logs with a given result
+### Example 3: Get audit logs containing a given AppDisplayName
 
 ```powershell
- Get-EntraBetaAuditSignInLogs -Filter "result eq 'success'"
- Get-EntraBetaAuditSignInLogs -Filter "result eq 'failure'" -Top 1
+Connect-Entra -Scopes 'AuditLog.Read.All and Directory.Read.All'
+Get-EntraBetaAuditSignInLogs -Filter "AppDisplayName eq 'Graph Explorer'" 
+Get-EntraBetaAuditSignInLogs -Filter "AppDisplayName eq 'Graph Explorer'" -Top 1
 ```
-These commands show how to get sign-in logs by the result.
+
+```Output
+Id                                   AppDisplayName                                                 AppId                                AppTokenProtectionStatus AuthenticationMethodsUsed AuthenticationProtocol
+--                                   --------------                                                 -----                                ------------------------ ------------------------- ----------------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Graph Explorer PowerShell  00001111-aaaa-2222-bbbb-3333cccc4444   
+```
+
+This example demonstrates how to retrieve sign-in logs by AppDisplayName.
 
 ## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -107,7 +111,7 @@ Accept wildcard characters: False
 The maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -124,7 +128,7 @@ The oData v3.0 filter statement.
 Controls which objects are returned.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -137,7 +141,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
