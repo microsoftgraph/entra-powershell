@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaApplication
+title: Remove-EntraBetaApplication.
 description: This article provides details on the Remove-EntraBetaApplication command.
 
 ms.topic: reference
@@ -18,7 +18,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Delete an application by ObjectId.
+Deletes an application object.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ Remove-EntraBetaApplication
 
 ## Description
 
-The `Remove-EntraBetaApplication` cmdlet removes the specified application from Microsoft Entra ID.
+The `Remove-EntraBetaApplication` cmdlet deletes an application object identified by ObjectId. Specify the `ObjectId` parameter to delete an application object.
 
 ## Examples
 
@@ -41,13 +41,13 @@ Connect-Entra -Scopes 'Application.ReadWrite.All'
 Remove-EntraBetaApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-This command removes the specified application.
+This example demonstrates how to delete an application object.
 
 ## Parameters
 
 ### -ObjectId
 
-Specifies the ID of an application in Microsoft Entra ID.
+The unique identifier of the object specific Microsoft Entra ID object.
 
 ```yaml
 Type: System.String
@@ -66,6 +66,8 @@ Accept wildcard characters: False
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
+
+### System.String
 
 ## Outputs
 
