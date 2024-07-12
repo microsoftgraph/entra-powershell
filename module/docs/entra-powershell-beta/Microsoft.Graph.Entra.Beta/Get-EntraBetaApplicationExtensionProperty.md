@@ -2,7 +2,7 @@
 title: Get-EntraBetaApplicationExtensionProperty
 description: This article provides details on the Get-EntraBetaApplicationExtensionProperty command.
 
-ms.service: active-directory
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru

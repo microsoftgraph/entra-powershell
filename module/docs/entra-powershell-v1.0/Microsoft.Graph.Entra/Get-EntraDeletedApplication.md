@@ -2,7 +2,7 @@
 title: Get-EntraDeletedApplication
 description: This article provides details on the Get-EntraDeletedApplication command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -26,19 +26,21 @@ Retrieves the list of previously deleted applications.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraDeletedApplication 
- [-Filter <String>] 
- [-All] 
- [-Top <Int32>] 
+Get-EntraDeletedApplication
+ [-Filter <String>]
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetByValue
 
 ```powershell
-Get-EntraDeletedApplication 
- [-SearchString <String>] 
- [-All] 
+Get-EntraDeletedApplication
+ [-SearchString <String>]
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -195,6 +197,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
