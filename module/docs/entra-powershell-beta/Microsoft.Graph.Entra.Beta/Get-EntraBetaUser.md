@@ -60,7 +60,7 @@ The `Get-EntraBetaUser` cmdlet gets a user from Microsoft Entra ID. Specify the 
 ### Example 1: Get two users
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All'
+Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
 Get-EntraBetaUser -Top 2
 ```
 
@@ -76,7 +76,7 @@ This command gets two users.
 ### Example 2: Get a user by ID
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All'
+Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
 Get-EntraBetaUser -ObjectId 'testUpn@tenant.com'
 ```
 
@@ -91,7 +91,7 @@ This command gets the specified user.
 ### Example 3: Search among retrieved users
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All'
+Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
 Get-EntraBetaUser -SearchString 'New'
 ```
 
@@ -107,7 +107,7 @@ This cmdlet gets all users that match the value of SearchString against the firs
 ### Example 4: Get a user by userPrincipalName
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All'
+Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
 Get-EntraBetaUser -Filter "userPrincipalName eq 'jondoe@contoso.com'"
 ```
 
@@ -122,7 +122,7 @@ This command gets the specified user.
 ### Example 5: Get a user by userPrincipalName
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All'
+Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
 Get-EntraBetaUser -Filter "startswith(DisplayName,'New')"
 ```
 
