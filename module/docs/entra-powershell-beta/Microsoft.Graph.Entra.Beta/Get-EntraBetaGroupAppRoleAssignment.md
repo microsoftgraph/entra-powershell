@@ -2,7 +2,7 @@
 title: Get-EntraBetaGroupAppRoleAssignment
 description: This article provides details on the Get-EntraBetaGroupAppRoleAssignment command.
 
-ms.service: active-directory
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru

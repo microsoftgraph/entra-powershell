@@ -2,7 +2,7 @@
 title: Disconnect-Entra.
 description: This article provides details on the Disconnect-Entra Command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
