@@ -26,18 +26,20 @@ Retrieve the delegated permission classification objects on a service principal.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraServicePrincipalDelegatedPermissionClassification 
- -ServicePrincipalId <String> 
+Get-EntraServicePrincipalDelegatedPermissionClassification
+ -ServicePrincipalId <String>
  [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraServicePrincipalDelegatedPermissionClassification 
- -ServicePrincipalId <String> 
+Get-EntraServicePrincipalDelegatedPermissionClassification
+ -ServicePrincipalId <String>
  -Id <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -141,6 +143,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

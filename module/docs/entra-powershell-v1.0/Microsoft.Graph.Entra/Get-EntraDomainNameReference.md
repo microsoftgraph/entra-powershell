@@ -24,8 +24,9 @@ This cmdlet retrieves the objects that are referenced with a given domain name.
 ## Syntax
 
 ```powershell
-Get-EntraDomainNameReference 
- -Name <String> 
+Get-EntraDomainNameReference
+ -Name <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -78,6 +79,22 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
