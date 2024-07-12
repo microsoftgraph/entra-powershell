@@ -2,7 +2,7 @@
 title: Add-EntraBetaApplicationPolicy.
 description: This article provides details on the Add-EntraBetaApplicationPolicy command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 07/06/2024
 ms.author: eunicewaweru

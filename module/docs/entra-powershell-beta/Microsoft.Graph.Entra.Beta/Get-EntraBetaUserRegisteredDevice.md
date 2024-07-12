@@ -2,7 +2,7 @@
 title: Get-EntraBetaUserRegisteredDevice
 description: This article provides details on the Get-EntraBetaUserRegisteredDevice command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/20/2024
 ms.author: eunicewaweru

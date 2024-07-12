@@ -2,7 +2,7 @@
 title: Add-EntraBetaGroupOwner.
 description: This article provides details on the Add-EntraBetaGroupOwner command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/17/2024
 ms.author: eunicewaweru

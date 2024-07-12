@@ -2,7 +2,7 @@
 title: Add-EntraBetaAdministrativeUnitMember.
 description: This article provides details on the Add-EntraBetaAdministrativeUnitMember command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 07/04/2024
 ms.author: eunicewaweru

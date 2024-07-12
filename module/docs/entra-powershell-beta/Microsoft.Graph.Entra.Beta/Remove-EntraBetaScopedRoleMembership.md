@@ -2,7 +2,7 @@
 title: Remove-EntraBetaScopedRoleMembership.
 description: This article provides details on the Remove-EntraBetaScopedRoleMembership command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 07/06/2024
 ms.author: eunicewaweru

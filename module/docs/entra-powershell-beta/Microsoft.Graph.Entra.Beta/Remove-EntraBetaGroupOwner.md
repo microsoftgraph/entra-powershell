@@ -2,7 +2,7 @@
 title: Remove-EntraBetaGroupOwner.
 description: This article provides details on the Remove-EntraBetaGroupOwner command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/18/2024
 ms.author: eunicewaweru

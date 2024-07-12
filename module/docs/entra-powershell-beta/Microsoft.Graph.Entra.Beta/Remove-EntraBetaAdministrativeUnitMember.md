@@ -2,7 +2,7 @@
 title: Remove-EntraBetaAdministrativeUnitMember.
 description: This article provides details on the Remove-EntraBetaAdministrativeUnitMember command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 07/04/2024
 ms.author: eunicewaweru

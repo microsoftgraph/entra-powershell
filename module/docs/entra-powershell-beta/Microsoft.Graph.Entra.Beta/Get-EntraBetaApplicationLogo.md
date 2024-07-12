@@ -2,7 +2,7 @@
 title: Get-EntraBetaApplicationLogo
 description: This article provides details on the Get-EntraBetaApplicationLogo command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/17/2024
 ms.author: eunicewaweru
