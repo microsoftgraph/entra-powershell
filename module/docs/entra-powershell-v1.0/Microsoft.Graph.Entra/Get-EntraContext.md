@@ -21,12 +21,6 @@ schema: 2.0.0
 
 `Get-EntraContext` is used to retrieve the details about your current session.
 
-## Aliases
-
-The following are aliases for `Get-EntraContext`:
-
-- `Get-EntraCurrentSessionInfo`
-
 ## Syntax
 
 ### GetQuery (Default)
@@ -122,7 +116,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Outputs
 
 ## Notes
-
-Please note that `Get-EntraCurrentSessionInfo` is now an alias for `Get-EntraContext` and can be used interchangeably.
 
 ## Related Links
