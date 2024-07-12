@@ -52,9 +52,6 @@ MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 
 MSVrBV4APk--eAGnHqMKBDtEqPRvu8xLqWHDSXUhoTE M365 License Manager                Ask HR
 ```
 
-The first command gets the object ID of a group by using the [Get-EntraBetaGroup](./Get-EntraBetaGroup.md) cmdlet.
-The command stores the ID in the $GroupId variable.
-
 This example retrieves the application role assignments of the group.
 
 ### Example 2: Retrieve all application role assignments of a group
