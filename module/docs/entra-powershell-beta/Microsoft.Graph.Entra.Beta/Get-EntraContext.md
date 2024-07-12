@@ -4,13 +4,13 @@ description: This article provides details on the Get-EntraContext command.
 
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/12/2024
 ms.author: eunicewaweru
-ms.reviewer: stevemutungi
+ms.reviewer: stevemutung
 manager: CelesteDG
 author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
-Module Name: Microsoft.Graph.Entra
+external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Module Name: Microsoft.Graph.Entra.Beta
 online version:
 schema: 2.0.0
 ---
@@ -20,6 +20,7 @@ schema: 2.0.0
 ## Synopsis
 
 `Get-EntraContext` is used to retrieve the details about your current session.
+
 
 ## Syntax
 
@@ -118,5 +119,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Outputs
 
 ## Notes
+
+Please note that `Get-EntraCurrentSessionInfo` is now an alias for `Get-EntraContext` and can be used interchangeably.
 
 ## Related Links
