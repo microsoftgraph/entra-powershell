@@ -18,11 +18,9 @@ schema: 2.0.0
 
 ## Synopsis
 
-Connect to Microsoft Entra ID with an authenticated account.
+Connects with an authenticated account to use Microsoft Entra PowerShell cmdlet requests.
 
-## Aliases
-
-`Connect-Entra` is an alias for `Connect-MgGraph`.
+This module supports several authentication scenarios depending on your use case such as: delegated (interactive) and app-only (noninteractive).
 
 ## Syntax
 
@@ -108,9 +106,7 @@ Connect-Entra
 
 ## Description
 
-The `Connect-Entra` cmdlet connects to Microsoft Entra ID with an authenticated account.
-
-Several authentication scenarios are supported based on your use case, such as delegated (interactive) and app-only (non-interactive).
+The `Connect-Entra` cmdlet connects to Microsoft Entra ID with an authenticated account for use with cmdlets from the Microsoft Entra PowerShell module.
 
 ## Examples
 
@@ -120,7 +116,7 @@ Several authentication scenarios are supported based on your use case, such as d
 Connect-Entra
 ```
 
-This example shows how to connect your current PowerShell session to a Microsoft Entra ID tenant using credentials.
+This command connects the current PowerShell session to a Microsoft Entra ID tenant using credentials.
 
 ### Example 2: Delegated access: Connect a PowerShell session to a tenant with required scopes
 
@@ -146,9 +142,9 @@ Connect-Entra -AccessToken $secureString
 Welcome to Microsoft Graph!
 ```
 
-This example shows how to interactively authenticate to Microsoft Entra ID using an access token.
+This example shows how to authenticate to Microsoft Entra ID using an access token.
 
-For more information on how to get or create access token, see <https://learn.microsoft.com/graph/auth-v2-user#3-request-an-access-token>.
+For more information on how to get or create access token, see [Request an access token](https://learn.microsoft.com/graph/auth-v2-user#3-request-an-access-token).
 
 ### Example 4: Delegated access: Using device code flow
 
@@ -160,9 +156,9 @@ Connect-Entra -UseDeviceCode
 To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code A1B2CDEFGH to authenticate.
 ```
 
-This example shows how to interactively authenticate to Microsoft Entra ID using device code flow.
+This example shows how to authenticate to Microsoft Entra ID with device.
 
-For more information about Device Code flow, see <https://learn.microsoft.com/entra/identity-platform/v2-oauth2-device-code>.
+For more information, see [Device Code flow](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-device-code).
 
 ### Example 5: App-only access: Using client credential with a Certificate thumbprint
 
@@ -180,9 +176,9 @@ Connect-Entra @connectParams
 Welcome to Microsoft Graph!
 ```
 
-This example shows how to authenticate using an ApplicationId and CertificateThumbprint.
+This command Connect a session using a ApplicationId and CertificateThumbprint.
 
-For more information on how to get or create CertificateThumbprint, see <https://learn.microsoft.com/powershell/entra-powershell/app-only-access-auth>.
+For more information on how to get or create CertificateThumbprint, see [Authenticate with app-only access](https://learn.microsoft.com/powershell/entra-powershell/app-only-access-auth).
 
 ### Example 6: App-only access: Using client credential with a certificate name
 
