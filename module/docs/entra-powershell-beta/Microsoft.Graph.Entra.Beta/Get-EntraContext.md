@@ -21,12 +21,6 @@ schema: 2.0.0
 
 `Get-EntraContext` is used to retrieve the details about your current session.
 
-## Aliases
-
-The following are aliases for `Get-EntraContext`:
-
-- `Get-EntraCurrentSessionInfo`
-
 ## Syntax
 
 ### GetQuery (Default)
@@ -54,6 +48,8 @@ Get-EntraContext
 - Certificate
 - PSHostVersion
 - ClientTimeOut.
+
+`Get-EntraCurrentSessionInfo` is an alias for `Get-EntraContext`.
 
 ## Examples
 
