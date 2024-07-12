@@ -3,7 +3,7 @@ title: Remove-EntraBetaApplication.
 description: This article provides details on the Remove-EntraBetaApplication command.
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 06/17/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -24,7 +24,7 @@ Deletes an application object.
 
 ```powershell
 Remove-EntraBetaApplication 
- -ObjectId <String> 
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 
@@ -38,7 +38,7 @@ The `Remove-EntraBetaApplication` cmdlet deletes an application object identifie
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Remove-EntraBetaApplication -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq'
+Remove-EntraBetaApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 This example demonstrates how to delete an application object.
