@@ -8,7 +8,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi254
 manager: CelesteDG
 author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
+external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
 schema: 2.0.0
