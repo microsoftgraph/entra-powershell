@@ -2,7 +2,7 @@
 title: Get-EntraCurrentSessionInfo
 description: This article provides details on the Get-EntraCurrentSessionInfo command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -19,6 +19,7 @@ schema: 2.0.0
 # Get-EntraCurrentSessionInfo
 
 ## Synopsis
+
 This cmdlet returns the current session state.
 
 ## Syntax
@@ -29,26 +30,28 @@ Get-EntraCurrentSessionInfo
 ```
 
 ## Description
-The Get-EntraCurrentSessionInfo cmdlet returns the current session state.
+
+The `Get-EntraCurrentSessionInfo` cmdlet returns the current session state.
 
 ## Examples
 
 ### Example 1: Get current session info
+
 ```powershell
-PS C:\> Get-EntraCurrentSessionInfo
+Get-EntraCurrentSessionInfo
 ```
 
 ```output
 ObjectId               :
-ClientId               : 8886ad7b-1795-4542-9808-c85859d97f23
-TenantId               : d5aec55f-2d12-4442-8d2f-ccca95d4390e
-Scopes                 : {Agreement.ReadWrite.All, Policy.ReadWrite.IdentityProtection, CustomSecAttributeDefinition.ReadWrite.All, TeamMember.Read.All...}
+ClientId               : 00001111-aaaa-2222-bbbb-3333cccc4444
+TenantId               : bbbbcccc-1111-dddd-2222-eeee3333ffff
+Scopes                 : {User.Read.All, Policy.Read.IdentityProtection, Group.Read.All...}
 AuthType               : AppOnly
 TokenCredentialType    : ClientCertificate
-CertificateThumbprint  : 706EFE2C52F3CD36755AF6A959F4EA439677BCAD
+CertificateThumbprint  : AA11BB22CC33DD44EE55FF66AA77BB88CC99DD00
 CertificateSubjectName :
 Account                :
-AppName                : MG_graph_auth
+AppName                : My Entra App
 ContextScope           : Process
 Certificate            :
 PSHostVersion          : 5.1.22621.2506
@@ -62,14 +65,19 @@ This command gets the current session info.
 ## Parameters
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### None
+
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
+
+[Get-EntraContext](Get-EntraContext.md)

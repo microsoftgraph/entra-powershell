@@ -32,11 +32,11 @@
         }
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if($null -ne $PSBoundParameters["Confirm"])
         {
@@ -72,12 +72,6 @@
         Write-Debug("=========================================================================`n")
         
         $response = Get-MgContext @params
-        $response | ForEach-Object {
-            if($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-    
-            }
-        }
         $response
     }
 '@
