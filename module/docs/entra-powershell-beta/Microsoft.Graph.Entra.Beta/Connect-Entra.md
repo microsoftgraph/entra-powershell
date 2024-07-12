@@ -20,10 +20,6 @@ schema: 2.0.0
 
 Connect to Microsoft Entra ID with an authenticated account.
 
-## Aliases
-
-`Connect-Entra` is an alias for `Connect-MgGraph`.
-
 ## Syntax
 
 ### UserParameterSet (Default)
@@ -111,6 +107,8 @@ Connect-Entra
 The `Connect-Entra` cmdlet connects to Microsoft Entra ID with an authenticated account.
 
 Several authentication scenarios are supported based on your use case, such as delegated (interactive) and app-only (non-interactive).
+
+`Connect-Entra` is an alias for `Connect-MgGraph`.
 
 ## Examples
 
