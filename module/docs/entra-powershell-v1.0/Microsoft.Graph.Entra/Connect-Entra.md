@@ -146,7 +146,7 @@ Welcome to Microsoft Graph!
 
 This example shows how to interactively authenticate to Microsoft Entra ID using an access token.
 
-For more information on how to get or create access token, see <https://learn.microsoft.com/graph/auth-v2-user#3-request-an-access-token>.
+For more information on how to get or create access token, see [Request an access token](https://learn.microsoft.com/graph/auth-v2-user#3-request-an-access-token).
 
 ### Example 4: Delegated access: Using device code flow
 
