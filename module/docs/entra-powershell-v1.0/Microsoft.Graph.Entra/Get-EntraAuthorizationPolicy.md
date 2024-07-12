@@ -23,7 +23,8 @@ Gets an authorization policy, which represents a policy that can control Microso
 ## Syntax
 
 ```powershell
-Get-EntraAuthorizationPolicy 
+Get-EntraAuthorizationPolicy
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -52,6 +53,22 @@ DeletedDateTime Description DisplayName            Id                  AllowEmai
 This command gets the Microsoft Entra ID authorization policy.
 
 ## Parameters
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### CommonParameters
 
