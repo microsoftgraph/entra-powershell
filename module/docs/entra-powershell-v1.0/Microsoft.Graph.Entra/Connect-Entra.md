@@ -180,7 +180,7 @@ Welcome to Microsoft Graph!
 
 This example shows how to authenticate using an ApplicationId and CertificateThumbprint.
 
-For more information on how to get or create CertificateThumbprint, see <https://learn.microsoft.com/powershell/entra-powershell/app-only-access-auth>.
+For more information on how to get or create CertificateThumbprint, see [Authenticate with app-only access](https://learn.microsoft.com/powershell/entra-powershell/app-only-access-auth).
 
 ### Example 6: App-only access: Using client credential with a certificate name
 
