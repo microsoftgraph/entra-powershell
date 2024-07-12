@@ -20,6 +20,10 @@ schema: 2.0.0
 
 Connect to Microsoft Entra ID with an authenticated account.
 
+## Aliases
+
+`Connect-Entra` is an alias for `Connect-MgGraph`.
+
 ## Syntax
 
 ### UserParameterSet (Default)
