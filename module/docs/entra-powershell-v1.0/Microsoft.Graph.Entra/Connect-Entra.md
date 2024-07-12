@@ -146,7 +146,7 @@ Welcome to Microsoft Graph!
 
 This example shows how to interactively authenticate to Microsoft Entra ID using an access token.
 
-For more information on how to get or create access token, see <https://learn.microsoft.com/graph/auth-v2-user#3-request-an-access-token>.
+For more information on how to get or create access token, see [Request an access token](https://learn.microsoft.com/graph/auth-v2-user#3-request-an-access-token).
 
 ### Example 4: Delegated access: Using device code flow
 
@@ -160,7 +160,7 @@ To sign in, use a web browser to open the page https://microsoft.com/devicelogin
 
 This example shows how to interactively authenticate to Microsoft Entra ID using device code flow.
 
-For more information about Device Code flow, see <https://learn.microsoft.com/entra/identity-platform/v2-oauth2-device-code>.
+For more information, see [Device Code flow](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-device-code).
 
 ### Example 5: App-only access: Using client credential with a Certificate thumbprint
 
@@ -180,7 +180,7 @@ Welcome to Microsoft Graph!
 
 This example shows how to authenticate using an ApplicationId and CertificateThumbprint.
 
-For more information on how to get or create CertificateThumbprint, see <https://learn.microsoft.com/powershell/entra-powershell/app-only-access-auth>.
+For more information on how to get or create CertificateThumbprint, see [Authenticate with app-only access](https://learn.microsoft.com/powershell/entra-powershell/app-only-access-auth).
 
 ### Example 6: App-only access: Using client credential with a certificate name
 
