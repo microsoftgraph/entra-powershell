@@ -37,6 +37,7 @@ Users in groups that were assigned to the policy falls back to the global authen
 ### Example 1: Removes the policy for cloud authentication roll-out in Microsoft Entra ID
 
 ```powershell
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
 Remove-EntraFeatureRolloutPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
