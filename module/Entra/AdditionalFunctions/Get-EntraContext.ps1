@@ -1,8 +1,12 @@
-function Get-EntraContext{
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
+function Get-EntraContext {
     [CmdletBinding(DefaultParameterSetName = '')]
     param ()
 
-    PROCESS {    
+    PROCESS {
         $params = @{}
         if($null -ne $PSBoundParameters["ErrorAction"])
         {
