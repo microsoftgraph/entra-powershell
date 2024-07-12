@@ -2,7 +2,7 @@
 title: Get-EntraBetaFeatureRolloutPolicy.
 description: This article provides details on the Get-EntraBetaFeatureRolloutPolicy command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 07/04/2024
 ms.author: eunicewaweru

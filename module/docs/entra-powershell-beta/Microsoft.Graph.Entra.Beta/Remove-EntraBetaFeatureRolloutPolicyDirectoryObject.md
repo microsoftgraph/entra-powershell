@@ -2,7 +2,7 @@
 title: Remove-EntraBetaFeatureRolloutPolicyDirectoryObject.
 description: This article provides details on the Remove-EntraBetaFeatureRolloutPolicyDirectoryObject command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 07/04/2024
 ms.author: eunicewaweru

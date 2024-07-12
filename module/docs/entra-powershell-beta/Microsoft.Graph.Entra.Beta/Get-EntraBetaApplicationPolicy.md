@@ -2,7 +2,7 @@
 title: Get-EntraBetaApplicationPolicy.
 description: This article provides details on the Get-EntraBetaApplicationPolicy command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 07/05/2024
 ms.author: eunicewaweru

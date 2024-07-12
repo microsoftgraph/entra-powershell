@@ -2,7 +2,7 @@
 title: Get-EntraBetaScopedRoleMembership.
 description: This article provides details on the Get-EntraBetaScopedRoleMembership command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 07/05/2024
 ms.author: eunicewaweru

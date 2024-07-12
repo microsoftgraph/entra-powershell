@@ -2,7 +2,7 @@
 title: Get-EntraBetaPermissionGrantPolicy
 description: This article provides details on the Get-EntraMSBetaPermissionGrantPolicy command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/20/2024
 ms.author: eunicewaweru

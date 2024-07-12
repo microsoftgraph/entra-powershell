@@ -2,7 +2,7 @@
 title: New-EntraBetaPolicy.
 description: This article provides details on the New-EntraBetaPolicy command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 07/03/2024
 ms.author: eunicewaweru

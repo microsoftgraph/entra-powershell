@@ -2,7 +2,7 @@
 title:  Add-EntraBetaFeatureRolloutPolicyDirectoryObject.
 description: This article provides details on the  Add-EntraBetaFeatureRolloutPolicyDirectoryObject command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 07/05/2024
 ms.author: eunicewaweru

@@ -2,7 +2,7 @@
 title: Get-EntraBetaLifecyclePolicyGroup.
 description: This article provides details on the Get-EntraBetaLifecyclePolicyGroup command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/18/2024
 ms.author: eunicewaweru

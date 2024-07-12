@@ -2,7 +2,7 @@
 title: Get-EntraBetaAdministrativeUnit.
 description: This article provides details on the Get-EntraBetaAdministrativeUnit command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 07/02/2024
 ms.author: eunicewaweru
