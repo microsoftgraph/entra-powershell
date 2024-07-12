@@ -1,4 +1,15 @@
 ---
+title: Get-EntraBetaApplicationPolicy.
+description: This article provides details on the Get-EntraBetaApplicationPolicy command.
+
+ms.service: entra
+ms.topic: reference
+ms.date: 07/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,22 +19,43 @@ schema: 2.0.0
 # Get-EntraBetaApplicationPolicy
 
 ## Synopsis
+
 Gets an application policy.
 
 ## Syntax
 
-```
-Get-EntraBetaApplicationPolicy -Id <String> [<CommonParameters>]
+```powershell
+Get-EntraBetaApplicationPolicy 
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## Description
-The Get-EntraBetaApplicationPolicy cmdlet gets an Azure Active Directory application policy.
+
+The `Get-EntraBetaApplicationPolicy` cmdlet gets an Microsoft Entra ID application policy. Specify `Id` parameter to retrieve an application policy.
 
 ## Examples
 
 ### Example 1: Get an application policy
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+Get-EntraBetaApplicationPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
-PS C:\>Get-EntraBetaApplicationPolicy -Id "<object id of application>"
+
+```Output
+deletedDateTime        :
+isManagementRestricted :
+@odata.type            : #microsoft.graph.policy
+alternativeIdentifier  :
+definition             : {"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}
+keyCredentials         :
+id                     : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+displayName            : NewUpdated
+type                   : HomeRealmDiscoveryPolicy
+isOrganizationDefault  : False
+createdDateTime        : 17-10-2023 05:21:56
+odata.type             : #
 ```
 
 This command gets the specified application policy.
@@ -31,10 +63,11 @@ This command gets the specified application policy.
 ## Parameters
 
 ### -Id
-The ID of the application for which you need to retrieve the policy
+
+The ID of the application for which you need to retrieve the policy.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -46,7 +79,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -56,7 +90,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Add-EntraBetaApplicationPolicy]()
+[Add-EntraBetaApplicationPolicy](Add-EntraBetaApplicationPolicy.md)
 
-[Remove-EntraBetaApplicationPolicy]()
-
+[Remove-EntraBetaApplicationPolicy](Remove-EntraBetaApplicationPolicy.md)
