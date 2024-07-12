@@ -82,8 +82,6 @@
     href: Microsoft.Graph.Entra.Beta/Get-EntraBetaContactMembership.md
   - name: Get-EntraBetaContract
     href: Microsoft.Graph.Entra.Beta/Get-EntraBetaContract.md
-  - name: Get-EntraBetaCurrentSessionInfo
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaCurrentSessionInfo.md
   - name: Get-EntraBetaDeletedApplication
     href: Microsoft.Graph.Entra.Beta/Get-EntraBetaDeletedApplication.md
   - name: Get-EntraBetaDevice
