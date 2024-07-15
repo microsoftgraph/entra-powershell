@@ -4,11 +4,12 @@ description: This article provides details on the Set-EntraBetaApplicationProxyA
 
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/15/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -18,7 +19,8 @@ schema: 2.0.0
 # Set-EntraBetaApplicationProxyApplicationConnectorGroup
 
 ## Synopsis
-The Set-EntraBetaApplicationProxyApplicationConnectorGroup cmdlet assigns the given connector group to a specified application.
+
+The `Set-EntraBetaApplicationProxyApplicationConnectorGroup` cmdlet assigns the given connector group to a specified application.
 
 ## Syntax
 
@@ -30,26 +32,35 @@ Set-EntraBetaApplicationProxyApplicationConnectorGroup
 ```
 
 ## Description
-The Set-EntraBetaApplicationProxyApplicationConnectorGroup cmdlet sets the connector group assigned for the specified application.
+
+The `Set-EntraBetaApplicationProxyApplicationConnectorGroup` cmdlet sets the connector group assigned for the specified application. Specify `ObjectId` and `ConnectorGroupId` parameter to assign the given connector group to a specified application.
+
 The application must be configured for Application Proxy in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Set a new Connector Group for a specific application
+
 ```powershell
-PS C:\> Set-EntraBetaApplicationProxyApplicationConnectorGroup -ObjectId 59462d3c-a1bc-40a0-9bed-be799357ebce -ConnectorGroupId a39b9095-8dc8-4d3a-86c3-e7b5c3f0fb84
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+$params = @{
+    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
+    ConnectorGroupId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+}
+Set-EntraBetaApplicationProxyApplicationConnectorGroup @params
 ```
 
-This command Set a new Connector Group for a specific application
+This example set a new Connector Group for a specific application
 
 ## Parameters
 
 ### -ConnectorGroupId
+
 The ID of the Connector group that should be assigned to the application.
-You can find the Connector Group ID by using the Get-EntraBetaApplicationProxyConnectorGroup command.
+You can find the Connector Group ID by using the `Get-EntraBetaApplicationProxyConnectorGroup` command.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -61,11 +72,12 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 The unique application ID for the application the Connector group assigns to.
-The application ID can be found using the Get-EntraBetaApplication command.
+The application ID can be found using the `Get-EntraBetaApplication` command.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -77,14 +89,21 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### System.String
+
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
+
+[Get-EntraBetaApplicationProxyApplicationConnectorGroup](Get-EntraBetaApplicationProxyApplicationConnectorGroup.md)
+
+[Remove-EntraBetaApplicationProxyApplicationConnectorGroup](Remove-EntraBetaApplicationProxyApplicationConnectorGroup.md)
