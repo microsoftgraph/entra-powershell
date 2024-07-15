@@ -2,7 +2,7 @@
 title: Get-EntraDomain
 description: This article provides details on the Get-EntraDomain command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -26,15 +26,17 @@ Gets a domain.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraDomain 
+Get-EntraDomain
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraDomain 
- -Name <String> 
+Get-EntraDomain
+ -Name <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -91,6 +93,22 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
