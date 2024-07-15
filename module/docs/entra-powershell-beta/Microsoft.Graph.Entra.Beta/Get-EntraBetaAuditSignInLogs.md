@@ -2,13 +2,9 @@
 title: Get-EntraBetaAuditSignInLogs.
 description: This article provides details on the Get-EntraBetaAuditSignInLogs command.
 
-<<<<<<< HEAD
 ms.service: entra
-=======
-
->>>>>>> 4c61b666e9efcaa357aed3956a6341daf5bcfce4
 ms.topic: reference
-ms.date: 07/12/2024
+ms.date: 07/15/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -58,7 +54,7 @@ cccccccc-2222-3333-4444-dddddddddddd Azure Active Directory PowerShell  22223333
 dddddddd-3333-4444-5555-eeeeeeeeeeee Azure Active Directory PowerShell  33334444-dddd-5555-eeee-6666ffff7777                                                  none
 ```
 
-This command gets all audit logs of sign-ins.
+This example returns all audit logs of sign-ins.
 
 ### Example 2: Get the first two logs
 
