@@ -38,6 +38,7 @@ The `Get-EntraAuditSignInLogs` cmdlet gets the Microsoft Entra ID sign-in log.
 ### Example 1: Get all logs
 
 ```powershell
+ Connect-Entra -Scopes 'AuditLog.Read.All and Directory.Read.All'
  Get-EntraAuditSignInLogs -All  
 ```
 
@@ -80,6 +81,7 @@ This command gets all sign-in logs.
 ### Example 2: Get the first n logs
 
 ```powershell
+ Connect-Entra -Scopes 'AuditLog.Read.All and Directory.Read.All'
  Get-EntraAuditSignInLogs -Top 1
 ```
 
@@ -122,6 +124,7 @@ This example returns the first n logs.
 ### Example 3: Get audit logs containing a given ActivityDisplayName
 
 ```powershell
+ Connect-Entra -Scopes 'AuditLog.Read.All and Directory.Read.All'
  Get-EntraAuditSignInLogs -Filter "ActivityDisplayName eq 'Add owner to application'"
  Get-EntraAuditSignInLogs -Filter "ActivityDisplayName eq 'Add owner to application'" -Top 1
 ```
@@ -131,6 +134,7 @@ These commands show how to get sign-in logs by ActivityDisplayName.
 ### Example 4: Get all sign-in logs with a given result
 
 ```powershell
+ Connect-Entra -Scopes 'AuditLog.Read.All and Directory.Read.All'
  Get-EntraAuditSignInLogs -Filter "result eq 'success'"
  Get-EntraAuditSignInLogs -Filter "result eq 'failure'" -Top 1
 ```
