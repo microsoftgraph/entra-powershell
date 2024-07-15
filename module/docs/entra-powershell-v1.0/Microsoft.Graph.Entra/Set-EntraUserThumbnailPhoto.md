@@ -2,7 +2,7 @@
 title: Set-EntraUserThumbnailPhoto.
 description: This article provides details on the Set-EntraUserThumbnailPhoto command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -18,11 +18,13 @@ schema: 2.0.0
 # Set-EntraUserThumbnailPhoto
 
 ## Synopsis
+
 Set the thumbnail photo for a user.
 
 ## Syntax
 
 ### File (Default)
+
 ```powershell
 Set-EntraUserThumbnailPhoto 
  [-ObjectId <String>] 
@@ -31,6 +33,7 @@ Set-EntraUserThumbnailPhoto
 ```
 
 ### Stream
+
 ```powershell
 Set-EntraUserThumbnailPhoto 
  -FileStream <Stream> 
@@ -39,6 +42,7 @@ Set-EntraUserThumbnailPhoto
 ```
 
 ### ByteArray
+
 ```powershell
 Set-EntraUserThumbnailPhoto 
  [-ObjectId <String>] 
@@ -47,14 +51,24 @@ Set-EntraUserThumbnailPhoto
 ```
 
 ## Description
+
 This cmdlet is used to set the thumbnail photo for a user.
+
+Updating any user's photo in the organization requires the User.ReadWrite.All permission. Updating only the signed-in user's photo requires the User.ReadWrite permission.
 
 ## Examples
 
-### Example 1: Sets the thumbnail photo.
+### Example 1: Sets the thumbnail photo
 
 ```powershell
-PS C:\WINDOWS\system32> Set-EntraUserThumbnailPhoto -ObjectId ba6752c4-6a2e-4be5-a23d-67d8d5980796 -FilePath D:\UserThumbnailPhoto.jpg
+Connect-Entra -Scopes 'User.ReadWrite' #Delegated Permission
+Connect-Entra -Scopes 'User.ReadWrite.All' #Application Permission
+$params = @{
+    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    FilePath = 'D:\UserThumbnailPhoto.jpg'
+}
+
+Set-EntraUserThumbnailPhoto @params
 ```
 
 This example sets the thumbnail photo of the user specified with the ObjectId parameter to the image specified with the FilePath parameter.
@@ -62,10 +76,11 @@ This example sets the thumbnail photo of the user specified with the ObjectId pa
 ## Parameters
 
 ### -FilePath
+
 The file path of the image to be uploaded as the user thumbnail photo.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: File
 Aliases:
 
@@ -77,10 +92,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 The Object ID of the user for which the user thumbnail photo is set.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -92,16 +108,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### System.String
+
 System.IO.Stream System.Byte\[\]
 
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
