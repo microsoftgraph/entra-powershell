@@ -54,7 +54,6 @@ function Get-EntraAttributeSet {
         $response = Invoke-GraphRequest @params -Headers $customHeaders | ConvertTo-Json | ConvertFrom-Json
         try {    
             $response = $response.value 
-            $response
         }
         catch {}
         $userList = @()
