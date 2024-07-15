@@ -49,7 +49,7 @@ $params = @{
     Status = 'Available' 
     UsePreDefinedValuesOnly = $False 
 }
-Set-EntraBetaCustomSecurityAttributeDefinition $params
+Set-EntraBetaCustomSecurityAttributeDefinition @params
 ```
 
 This example update a custom security attribute.

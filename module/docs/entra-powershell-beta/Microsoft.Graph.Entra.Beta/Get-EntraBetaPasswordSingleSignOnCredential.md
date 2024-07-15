@@ -47,7 +47,7 @@ $params = @{
     RefObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     ObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 }
-Get-EntraBetaPasswordSingleSignOnCredential $params
+Get-EntraBetaPasswordSingleSignOnCredential @params
 ```
 
 ```Output

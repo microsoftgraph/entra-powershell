@@ -47,7 +47,7 @@ $params = @{
     Description = 'Attributes for engineering team'
     MaxAttributesPerSet = 10
 }
-New-EntraBetaAttributeSet $params
+New-EntraBetaAttributeSet @params
 ```
 
 ```Output

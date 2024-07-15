@@ -47,7 +47,7 @@ $params = @{
     Id = 'Alpine'
     IsActive = $true
 }
-Add-EntraCustomSecurityAttributeDefinitionAllowedValues $params
+Add-EntraCustomSecurityAttributeDefinitionAllowedValues @params
 ```
 
 ```Output

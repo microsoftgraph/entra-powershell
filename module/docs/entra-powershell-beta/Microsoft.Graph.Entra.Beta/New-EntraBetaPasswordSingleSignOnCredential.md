@@ -51,7 +51,7 @@ $params = @{
     RefObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
     PasswordSSOCredential = $credentials
 }
-New-EntraBetaPasswordSingleSignOnCredential $params
+New-EntraBetaPasswordSingleSignOnCredential @params
 ```
 
 ```Output

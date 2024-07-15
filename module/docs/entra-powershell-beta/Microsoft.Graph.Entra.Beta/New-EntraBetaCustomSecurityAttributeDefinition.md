@@ -57,7 +57,7 @@ $params = @{
     IsSearchable = $True 
     UsePreDefinedValuesOnly = $False
 }
-New-EntraBetaCustomSecurityAttributeDefinition  $params
+New-EntraBetaCustomSecurityAttributeDefinition  @params
 ```
 
 ```Output

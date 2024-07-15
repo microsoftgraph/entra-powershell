@@ -51,7 +51,7 @@ $params = @{
     RefObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
     PasswordSSOCredential = $credentials
 }
-Set-EntraBetaPasswordSingleSignOnCredential $params
+Set-EntraBetaPasswordSingleSignOnCredential @params
 ```
 
 This example demonstrates how to set the password SSO credentials for the given ObjectId and PasswordSSOObjectId.

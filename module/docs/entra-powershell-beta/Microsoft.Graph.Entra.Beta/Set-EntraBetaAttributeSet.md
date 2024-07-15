@@ -46,7 +46,7 @@ $params = @{
     Id = 'Testing' 
     Description = 'Attributes for engineering team'
 }
-Set-EntraBetaAttributeSet $params
+Set-EntraBetaAttributeSet @params
 ```
 
 This example update an attribute set.
@@ -59,7 +59,7 @@ $params = @{
     Id = 'Testing' 
     MaxAttributesPerSet = 10
 }
-Set-EntraBetaAttributeSet $params
+Set-EntraBetaAttributeSet @params
 ```
 
 This example update an attribute set using MaxAttributesPerSet.

@@ -74,7 +74,7 @@ $params = @{
     CustomSecurityAttributeDefinitionId = 'Engineering_Project'
     Id = 'Alpine'
 }
-Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue $params
+Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue @params
 ```
 
 ```output
@@ -97,7 +97,7 @@ $params = @{
     CustomSecurityAttributeDefinitionId = 'Engineering_Project'
     Filter = "id eq 'Apline'"
 }
-Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue $params
+Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue @params
 ```
 
 ```output
