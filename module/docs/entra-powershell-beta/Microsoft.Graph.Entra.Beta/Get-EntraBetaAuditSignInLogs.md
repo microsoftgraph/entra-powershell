@@ -2,7 +2,11 @@
 title: Get-EntraBetaAuditSignInLogs.
 description: This article provides details on the Get-EntraBetaAuditSignInLogs command.
 
+<<<<<<< HEAD
 ms.service: entra
+=======
+
+>>>>>>> 4c61b666e9efcaa357aed3956a6341daf5bcfce4
 ms.topic: reference
 ms.date: 07/12/2024
 ms.author: eunicewaweru

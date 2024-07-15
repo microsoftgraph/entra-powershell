@@ -1,6 +1,6 @@
 ---
-title: Set-EntraBetaAttributeSet.
-description: This article provides details on the Set-EntraBetaAttributeSet command.
+title: Get-EntraBetaAttributeSet.
+description: This article provides details on the Get-EntraBetaAttributeSet command.
 
 ms.service: entra
 ms.topic: reference

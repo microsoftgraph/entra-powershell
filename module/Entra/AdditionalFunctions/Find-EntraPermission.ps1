@@ -1,16 +1,16 @@
-function Find-EntraPermissions {
+function Find-EntraPermission {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
-    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Position = 1)]
     [System.String] $SearchString,
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Boolean]] $ExactMatch,
+    [switch] $ExactMatch,
     [Parameter(ParameterSetName = "GetQuery", Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $PermissionType,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Boolean]] $All,
-     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Online
+    [switch] $All,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [switch] $Online
     )
 
     PROCESS {    
@@ -19,6 +19,10 @@ function Find-EntraPermissions {
         {
             $params["SearchString"]=$PSBoundParameters["SearchString"]
         }
+        if($null -ne $PSBoundParameters["PermissionType"])
+        {
+            $params["PermissionType"]=$PSBoundParameters["PermissionType"]
+        }
         if($null -ne $PSBoundParameters["ExactMatch"])
         {
             $params["ExactMatch"] = $PSBoundParameters["ExactMatch"]
@@ -26,7 +30,7 @@ function Find-EntraPermissions {
         
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($null -ne $PSBoundParameters["All"])
         {
@@ -44,7 +48,7 @@ function Find-EntraPermissions {
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if($null -ne $PSBoundParameters["WarningVariable"])
         {
