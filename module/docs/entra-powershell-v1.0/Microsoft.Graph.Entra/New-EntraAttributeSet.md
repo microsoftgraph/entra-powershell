@@ -43,12 +43,9 @@ Adds a new Microsoft Entra ID attribute set object.
 New-AzureADMSAttributeSet -Id 'Demo' -Description 'Attributes for engineering team' -MaxAttributesPerSet 10
 ```
 ```output
-Name                           Value
-----                           -----
-@odata.context                 https://graph.microsoft.com/v1.0/$metadata#directory/attributeSets/$entity
-id                             Demo
-description                    Attributes for engineering team
-maxAttributesPerSet            10
+Id                     Description        MaxAttributesPerSet
+--                     -----------        -------------------
+NewCustomAttributeSet2 CustomAttributeSet 125
 ```
 
 This example adds a single attribute set.
