@@ -56,8 +56,17 @@ function Get-EntraAttributeSet {
             $response = $response.value 
             $response
         }
-        catch {
-            $response
+        catch {}
+        $userList = @()
+        foreach ($data in $response) {
+            $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphAttributeSet
+            $data.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                $propertyValue = $_.Value
+                $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+            }
+            $userList += $userType
         }
+        $userList 
     }
 }

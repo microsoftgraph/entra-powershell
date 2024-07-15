@@ -47,15 +47,15 @@ Gets a list of Microsoft Entra ID attribute sets.
 Get-EntraAttributeSet
 ```
 ```output
-description                           id                    maxAttributesPerSet
------------                           --                    -------------------
-Attributes for cloud engineering team engineering                            25
-Attributes for test2  team            Test2                                  25
-NEW Demo Description                  demo                                   25
-TEST THE DEMO                         demo2
-                                      DEMO5
-Description to test the demo6         DEMO6
-Description to test the demo6         DEMO7                                  24
+Id                    Description                           MaxAttributesPerSet
+--                    -----------                           -------------------
+engineering           Attributes for cloud engineering team 25
+Test2                 Attributes for test2  team            25
+demo                  NEW Demo Description                  25
+demo2                 TEST THE DEMO
+DEMO5
+DEMO6                 Description to test the demo6
+DEMO7                 Description to test the demo6         24
 ```
 This example Get all attribute sets.
 
@@ -64,9 +64,9 @@ This example Get all attribute sets.
 Get-EntraAttributeSet -Id 'Engineering'
 ```
 ```output
-description                           id                    maxAttributesPerSet
------------                           --                    -------------------
-Attributes for cloud engineering team Engineering                            25
+Id          Description                           MaxAttributesPerSet
+--          -----------                           -------------------
+engineering Attributes for cloud engineering team 25
 ```
 
 This example gets an attribute set.

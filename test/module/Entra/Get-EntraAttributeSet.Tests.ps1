@@ -6,7 +6,7 @@ BeforeAll {
     
     $scriptblock = {
         return @(
-            [PSCustomObject]@{
+            [Microsoft.Graph.PowerShell.Models.MicrosoftGraphAttributeSet]@{
                 "Description"     = "NewCustomAttributeSet"
                 "Id"              = "bbbbbbbb-1111-2222-3333-cccccccccccc"
                 "MaxAttributesPerSet"     = "125"
