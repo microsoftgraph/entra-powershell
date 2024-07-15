@@ -28,6 +28,7 @@ Get-EntraApplicationServiceEndpoint
  -ObjectId <String>
  [-All]
  [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -115,6 +116,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
