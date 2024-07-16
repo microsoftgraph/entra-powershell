@@ -1,6 +1,6 @@
 ---
 title: New-EntraBetaApplicationPasswordCredential
-description: This article provides details on the Set-EntraBetaApplicationProxyConnector command.
+description: This article provides details on the New-EntraBetaApplicationPasswordCredential command.
 
 
 ms.topic: reference

@@ -2,7 +2,8 @@
 title: Get-EntraBetaApplicationProxyApplication.
 description: This article provides details on the Get-EntraBetaApplicationProxyApplication.
 
-ms.topic: entra
+ms.service: entra
+ms.topic: reference
 ms.date: 07/15/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi

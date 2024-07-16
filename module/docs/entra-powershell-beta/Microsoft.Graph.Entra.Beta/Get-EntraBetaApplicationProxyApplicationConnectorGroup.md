@@ -2,7 +2,8 @@
 title: Get-EntraBetaApplicationProxyApplicationConnectorGroup.
 description: This article provides details on the Get-EntraBetaApplicationProxyApplicationConnectorGroup.
 
-ms.topic: entra
+ms.service: entra
+ms.topic: reference
 ms.date: 07/15/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
