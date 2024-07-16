@@ -110,9 +110,19 @@ function New-EntraCustomSecurityAttributeDefinition {
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
     
-    
-            $response = Invoke-GraphRequest -Uri $Uri -Method $Method -Body $body -Headers $customHeaders
-            $response
-    
+            $type= [Microsoft.Graph.PowerShell.Models.MicrosoftGraphCustomSecurityAttributeDefinition]
+            $response = Invoke-GraphRequest -Uri $Uri -Method $Method -Body $body -Headers $customHeaders | ConvertTo-Json -Depth 20 | ConvertFrom-Json
+            $targetList = @()
+            foreach ($item in $response) {
+                $targetObject = [Activator]::CreateInstance($type)
+                foreach ($property in $item.PSObject.Properties) {
+                    if ($targetObject.PSObject.Properties[$property.Name]) {
+                        $targetObject.PSObject.Properties[$property.Name].Value = $property.Value
+                    }
+                }
+                $targetList += $targetObject
+            }
+            
+            $targetList
         }
     }
