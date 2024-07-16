@@ -3,8 +3,8 @@ title: Set-EntraBetaApplicationProxyApplicationConnectorGroup.
 description: This article provides details on the Set-EntraBetaApplicationProxyApplicationConnectorGroup command.
 
 
-ms.topic: reference
-ms.date: 07/15/2024
+ms.topic: entra
+ms.date: 07/16/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
