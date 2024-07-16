@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Remove-EntraBetaDeviceRegisteredUser
 
-## SYNOPSIS
+## Synopsis
 Removes a registered user from a device.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaDeviceRegisteredUser -ObjectId <String> -UserId <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaDeviceRegisteredUser cmdlet removes a registered user from an Azure Active Directory device.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a registered user from a device
 ```
@@ -35,7 +35,7 @@ The command stores it in the $User variable.
 
 The final command removes the user in $User from the device in $Device.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the ID of an object.
@@ -70,13 +70,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraBetaDeviceRegisteredUser]()
 

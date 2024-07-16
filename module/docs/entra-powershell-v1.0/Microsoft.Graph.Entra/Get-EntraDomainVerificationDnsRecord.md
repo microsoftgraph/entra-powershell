@@ -2,9 +2,9 @@
 title: Get-EntraDomainVerificationDnsRecord.
 description: This article provides details on the Get-EntraDomainVerificationDnsRecord command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/04/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,45 +17,57 @@ schema: 2.0.0
 
 # Get-EntraDomainVerificationDnsRecord
 
-## SYNOPSIS
+## Synopsis
+
 Retrieve the domain verification DNS record for a domain.
 
-## SYNTAX
+## Syntax
 
 ```powershell
-Get-EntraDomainVerificationDnsRecord 
- -Name <String> 
+Get-EntraDomainVerificationDnsRecord
+ -Name <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-Gets the domain's verification records from the verificationDnsRecords navigation property. 
-You can't use the domain with your Microsoft Entra ID tenant until you have successfully verified that you own the domain.
-To verify the ownership of the domain, you need to first retrieve a set of domain verification records that you need to add to the zone file of the domain.
+## Description
 
-## EXAMPLES
+Gets the domain's verification records from the `verificationDnsRecords` navigation property.
+
+You can't use the domain with your Microsoft Entra ID tenant until you have successfully verified that you own the domain.
+
+To verify the ownership of the domain, you need to first retrieve a set of domain verification records that you need to add to the zone file of the domain. This can be done through the domain registrar or DNS server configuration.
+
+Root domains require verification. For example, contoso.com requires verification. If a root domain is verified, subdomains of the root domain are automatically verified. For example, subdomain.contoso.com is automatically be verified if contoso.com has been verified.
+
+The work or school account needs to belong to at least the Domain Name Administrator or Global Reader Microsoft Entra role.
+
+## Examples
 
 ### Example 1: Retrieve the domain verification DNS record
+
 ```powershell
-PS C:\WINDOWS\system32> Get-EntraDomainVerificationDnsRecord -Name M365x99297270.mail.onmicrosoft.com
+Connect-Entra -Scopes 'Domain.Read.All'
+Get-EntraDomainVerificationDnsRecord -Name mail.contoso.com
 ```
-```output
+
+```Output
 Id                                   IsOptional Label                              RecordType SupportedService Ttl
 --                                   ---------- -----                              ---------- ---------------- ---
-aceff52c-06a5-447f-ac5f-256ad243cc5c False      M365x99297270.mail.onmicrosoft.com Txt        Email            3600
-5fbde38c-0865-497f-82b1-126f596bcee9 False      M365x99297270.mail.onmicrosoft.com Mx         Email            3600
+aaaa0000-bb11-2222-33cc-444444dddddd False      mail.contoso.com Txt        Email            3600
+bbbb1111-cc22-3333-44dd-555555eeeeee False      mail.contoso.com Mx         Email            3600
 ```
 
-This example shows how to retrieve the Domain verification DNS records for a domain with the given name.  
-This command retrieves the domain verification DNS records for the given domain name.
+This example shows how to retrieve the Domain verification DNS records for a domain with the given name.
 
-## PARAMETERS
+## Parameters
 
 ### -Name
+
 The domain name for which the domain verification Domain Name System (DNS) records are to be retrieved.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -66,15 +78,34 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+### -Property
 
-## INPUTS
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
 
 ### System.String
-## OUTPUTS
+
+## Outputs
 
 ### System.Object
-## NOTES
 
-## RELATED LINKS
+## Notes
+
+## Related Links

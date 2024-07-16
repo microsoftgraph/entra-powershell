@@ -2,9 +2,9 @@
 title: Get-EntraApplicationKeyCredential
 description: This article provides details on the Get-EntraApplicationKeyCredential command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/04/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,11 @@ schema: 2.0.0
 
 # Get-EntraApplicationKeyCredential
 
-## SYNOPSIS
+## Synopsis
+
 Gets the key credentials for an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraApplicationKeyCredential 
@@ -28,43 +29,35 @@ Get-EntraApplicationKeyCredential
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraApplicationKeyCredential cmdlet gets the key credentials for an application.
+## Description
 
-## EXAMPLES
+The `Get-EntraApplicationKeyCredential` cmdlet retrieves the key credentials for an application.
+
+## Examples
 
 ### Example 1: Get key credentials
+
 ```powershell
-PS C:\> Get-EntraApplicationKeyCredential -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84"
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraApplicationKeyCredential -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444'
 ```
 
-```output
-CustomKeyIdentifier : {116, 101, 115, 116}
-EndDate             : 10/23/2024 11:36:56 AM
-KeyId               : 52ab6cca-bc59-4f06-8450-75a3d2b8e53b
-StartDate           : 11/22/2023 11:35:16 AM
-Type                : Symmetric
-Usage               : Sign
-Value               :
-
-CustomKeyIdentifier : {84, 101, 115, 116}
-EndDate             : 10/23/2024 9:46:49 AM
-KeyId               : 2e5143ee-9912-40c1-8c6a-a84f8124a6af
-StartDate           : 10/23/2023 9:46:48 AM
-Type                : Symmetric
-Usage               : Sign
-Value               :
+```Output
+CustomKeyIdentifier DisplayName     EndDateTime           Key KeyId                                StartDateTime         Type               Usage
+------------------- -----------     -----------           --- -----                                -------------         ----               -----
+{116, 101, 115, 116…} MyApp Cert 6/27/2024 11:49:17 AM     bbbbbbbb-1c1c-2d2d-3e3e-444444444444 6/27/2023 11:29:17 AM AsymmetricX509Cert Verify
 ```
 
 This command gets the key credentials for the specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
+
 Specifies a unique ID of an application in Microsoft Entra ID for which to get key credentials.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -76,17 +69,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [New-EntraApplicationKeyCredential](New-EntraApplicationKeyCredential.md)
 
 [Remove-EntraApplicationKeyCredential](Remove-EntraApplicationKeyCredential.md)
-

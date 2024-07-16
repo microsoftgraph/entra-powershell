@@ -2,9 +2,9 @@
 title: New-EntraDomain.
 description: This article provides details on the New-EntraDomain command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/06/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,11 @@ schema: 2.0.0
 
 # New-EntraDomain
 
-## SYNOPSIS
+## Synopsis
+
 Creates a domain.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraDomain 
@@ -30,58 +31,69 @@ New-EntraDomain
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The New-EntraDomain cmdlet creates a domain in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `New-EntraDomain` cmdlet creates a domain in Microsoft Entra ID.
+
+The work or school account needs to belong to at least the Domain Name Administrator role.
+
+## Examples
 
 ### Example 1: Create a new Domain
+
 ```powershell
-PS C:\>New-EntraDomain -Name testingDemo.com
+Connect-Entra -Scopes 'Domain.ReadWrite.All'
+New-EntraDomain -Name testingDemo.com
 ```
-```output
+
+```Output
 Id              AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified Manufacturer Model PasswordNotificationWindowInDays PasswordValidityPeriodInDays SupportedServices
 --              ------------------ ------------------ -------------- --------- --------- ------ ---------- ------------ ----- -------------------------------- ---------------------------- -----------------
 testingDemo.com Managed                               True           False     False     False  False                                                                                       {}
 ```
 
-This example demonstrates how to create a new domain in Microsoft Entra ID.   
-This command creates a new domain.
+This example demonstrates how to create a new domain in Microsoft Entra ID.
 
 ### Example 2: Create a new Domain with a list of domain capabilities
+
 ```powershell
-PS C:\>New-EntraDomain -Name testingDemo1.com -SupportedServices @("Email", "OfficeCommunicationsOnline")
+Connect-Entra -Scopes 'Domain.ReadWrite.All'
+New-EntraDomain -Name testingDemo1.com -SupportedServices @('Email', 'OfficeCommunicationsOnline')
 ```
-```output
+
+```Output
 Id               AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified Manufacturer Model PasswordNotificationWindowInDays PasswordValidityPeriodInDays SupportedServices
 --               ------------------ ------------------ -------------- --------- --------- ------ ---------- ------------ ----- -------------------------------- ---------------------------- -----------------
 testingDemo1.com Managed                               True           False     False     False  False                                                                                       {}
 ```
 
-This example demonstrates how to create a new domain with the specified services in Microsoft Entra ID.  
-This command creates a new domain with the specified services for this domain.
+This example demonstrates how to create a new domain with the specified services in Microsoft Entra ID. 
 
 ### Example 3: Create a new Domain and make if the default new user creation
+
 ```powershell
-PS C:\>New-EntraDomain -Name testingDemo2.com -IsDefault $True
+Connect-Entra -Scopes 'Domain.ReadWrite.All'
+New-EntraDomain -Name testingDemo2.com -IsDefault $True
 ```
-```output
+
+```Output
 Id               AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified Manufacturer Model PasswordNotificationWindowInDays PasswordValidityPeriodInDays SupportedServices
 --               ------------------ ------------------ -------------- --------- --------- ------ ---------- ------------ ----- -------------------------------- ---------------------------- -----------------
 testingDemo2.com Managed                               True           False     False     False  False                                                                                       {}
 ```
 
-This example demonstrates how to create a new domain in Microsoft Entra ID.   
-This command creates a new domain and marks it as the default to be used for new user creation.
+This example demonstrates how to create a new domain in Microsoft Entra ID and marks it as the default to be used for new user creation.
 
-## PARAMETERS
+## Parameters
 
 ### -IsDefault
+
 Indicates whether or not this is the default domain that is used for user creation.
+
 There's only one default domain per company.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -93,10 +105,11 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 The fully qualified name of the domain.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -108,6 +121,7 @@ Accept wildcard characters: False
 ```
 
 ### -SupportedServices
+
 The capabilities assigned to the domain.
 
 ```yaml
@@ -123,15 +137,16 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Confirm-EntraDomain](Confirm-EntraDomain.md)
 
@@ -140,4 +155,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraDomain](Remove-EntraDomain.md)
 
 [Set-EntraDomain](Set-EntraDomain.md)
-

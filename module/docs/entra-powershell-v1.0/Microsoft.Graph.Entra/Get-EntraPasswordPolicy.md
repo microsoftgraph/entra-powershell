@@ -2,9 +2,9 @@
 title: Get-EntraPasswordPolicy
 description: This article provides details on the Get-EntraPasswordPolicy command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Get-EntraPasswordPolicy
 
-## SYNOPSIS
+## Synopsis
 Retrieves the current password policy for the tenant or the specified domain.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```powershell
@@ -36,11 +36,11 @@ Get-EntraPasswordPolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraPasswordPolicy cmdlet can be used to retrieve the values associated with the Password Expiry window or Password Expiry Notification window for a tenant or specified domain. 
 When a domain name is specified, it must be a verified domain for the company.
 
-## EXAMPLES
+## Examples
 
 ### EXAMPLE 1: Get password policy for a specified domain
 ```powershell
@@ -55,7 +55,7 @@ NotificationDays ValidityPeriod
 
 Returns the password policy for the domain contoso.com.
 
-## PARAMETERS
+## Parameters
 
 ### -DomainName
 The fully qualified name of the domain to be retrieved.
@@ -75,10 +75,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

@@ -1,9 +1,9 @@
 ---
 title: Remove-EntraBetaApplicationProxyApplicationConnectorGroup
 description: This article provides details on the Remove-EntraBetaApplicationProxyApplicationConnectorGroup command.
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 04/03/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -16,10 +16,10 @@ schema: 2.0.0
 
 # Remove-EntraBetaApplicationProxyApplicationConnectorGroup
 
-## SYNOPSIS
+## Synopsis
 The Remove-EntraBetaApplicationProxyApplicationConnectorGroupcmdlet sets the connector group assigned for the specified application to 'Default' and removes the current assignment.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraBetaApplicationProxyApplicationConnectorGroup
@@ -27,11 +27,11 @@ Remove-EntraBetaApplicationProxyApplicationConnectorGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 If your application is already in the 'Default' group, you see an error because the application can't be removed from the 'Default' group unless it's being added to another group.
 The application must be configured for Application Proxy in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove the Connector Group associated with an application, setting the group to 'Default'
 
@@ -41,7 +41,7 @@ PS C:\> Remove-EntraBetaApplicationProxyApplicationConnectorGroup -ObjectId 5946
 
 This command Remove the Connector Group associated with an application, setting the group to 'Default.'
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique application ID of the application.
@@ -63,12 +63,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
