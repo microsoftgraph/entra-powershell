@@ -2,7 +2,8 @@
 title: New-EntraBetaApplicationProxyConnectorGroup
 description: This article provides details on the New-EntraBetaApplicationProxyConnectorGroupcommand.
 
-ms.topic: entra
+ms.service: entra
+ms.topic: reference
 ms.date: 07/16/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
@@ -53,7 +54,7 @@ region                         eur
 connectorGroupType             applicationProxy
 ```
 
-This example create a new Connector Group with the name "Backup Application Servers"
+This example creates a new Connector Group with the name "Backup Application Servers"
 
 ## Parameters
 

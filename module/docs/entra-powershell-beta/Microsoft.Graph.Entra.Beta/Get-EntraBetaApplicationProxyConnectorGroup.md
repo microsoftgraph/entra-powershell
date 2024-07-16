@@ -2,6 +2,7 @@
 title: Get-EntraBetaApplicationProxyConnectorGroup.
 description: This article provides details on the Get-EntraBetaApplicationProxyConnectorGroup.
 
+ms.service: entra
 ms.topic: reference
 ms.date: 07/16/2024
 ms.author: eunicewaweru
@@ -53,7 +54,7 @@ Get-EntraBetaApplicationProxyConnectorGroup
 
 ## Description
 
-The `Get-EntraBetaApplicationProxyConnectorGroup` cmdlet retrieves a list of all connector groups, or if specified, details of the specified connector group. Specify `Id` parameter to retrieve connector groups.
+The `Get-EntraBetaApplicationProxyConnectorGroup` cmdlet retrieves a list of all connector groups, or if specified, details of the specified connector group. Specify `Id` parameter for retrieve connector groups.
 
 ## Examples
 
@@ -80,7 +81,7 @@ isDefault                      False
 name                           test1
 ```
 
-This example retrieve all connector groups.
+This example retrieves all connector groups.
 
 ### Example 2: Retrieve a specific connector group
 
@@ -100,7 +101,7 @@ region                         eur
 connectorGroupType             applicationProxy
 ```
 
-This example retrieve a specific connector group.
+This example retrieves a specific connector group.
 
 ### Example 3: Retrieve Top one connector groups
 
@@ -119,7 +120,7 @@ region                         eur
 connectorGroupType             applicationProxy
 ```
 
-This example retrieve top one connector groups.
+This example retrieves top one connector groups.
 
 ### Example 4: Retrieve a connector groups with filter parameter
 
@@ -138,7 +139,7 @@ isDefault                      True
 name                           Default
 ```
 
-This example retrieve a connector groups with filter parameter.
+This example retrieves a connector groups with filter parameter.
 
 ### Example 5:Retrieve a connector groups with String parameter
 
@@ -157,7 +158,7 @@ isDefault                      False
 name                           test1
 ```
 
-This example retrieve a connector groups with String parameter.
+This example retrieves a connector groups with String parameter.
 
 ## Parameters
 
