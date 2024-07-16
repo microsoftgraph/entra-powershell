@@ -16,10 +16,10 @@
                 $Method = "DELETE"
             
                 if ($PSBoundParameters.ContainsKey("Debug")) {
-                    $params["Debug"] = $Null
+                    $params["Debug"] = $PSBoundParameters["Debug"]
                 }
                 if ($PSBoundParameters.ContainsKey("Verbose")) {
-                    $params["Verbose"] = $Null
+                    $params["Verbose"] = $PSBoundParameters["Verbose"]
                 }
                 if($null -ne $PSBoundParameters["WarningVariable"])
                 {

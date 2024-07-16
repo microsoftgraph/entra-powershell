@@ -2,7 +2,7 @@
 title: Remove-EntraDeletedApplication.
 description: This article provides details on the Remove-EntraDeletedApplication command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru

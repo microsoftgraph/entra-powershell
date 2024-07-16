@@ -2,7 +2,7 @@
 title: Get-EntraOAuth2PermissionGrant.
 description: This article provides details on the Get-EntraOAuth2PermissionGrant Command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -24,9 +24,10 @@ Gets OAuth2PermissionGrant entities.
 ## Syntax
 
 ```powershell
-Get-EntraOAuth2PermissionGrant 
- [-All] 
- [-Top <Int32>] 
+Get-EntraOAuth2PermissionGrant
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -119,6 +120,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
