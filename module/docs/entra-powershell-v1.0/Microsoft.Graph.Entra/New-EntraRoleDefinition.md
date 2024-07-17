@@ -296,7 +296,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Get-EntraMSRoleDefinition](Get-EntraMSRoleDefinition.md)
+[Get-EntraRoleDefinition](Get-EntraRoleDefinition.md)
 
 [Remove-EntraRoleDefinition](Remove-EntraRoleDefinition.md)
 
