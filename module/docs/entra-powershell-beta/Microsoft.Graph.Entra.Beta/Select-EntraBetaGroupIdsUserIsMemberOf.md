@@ -2,7 +2,7 @@
 title: Select-EntraBetaGroupIdsUserIsMemberOf.
 description: This article provides details on the Select-EntraBetaGroupIdsUserIsMemberOf command.
 
-ms.service: active-directory
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
