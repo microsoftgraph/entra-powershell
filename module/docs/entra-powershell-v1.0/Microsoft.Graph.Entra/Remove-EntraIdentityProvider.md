@@ -2,7 +2,7 @@
 title: Remove-EntraIdentityProvider.
 description: This article provides details on the Remove-EntraIdentityProvider command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
