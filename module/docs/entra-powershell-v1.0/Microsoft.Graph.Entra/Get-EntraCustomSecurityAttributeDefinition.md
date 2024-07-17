@@ -116,6 +116,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## RELATED LINKS
 
-[New-EntraMSCustomSecurityAttributeDefinition](New-EntraMSCustomSecurityAttributeDefinition.md)
+[New-EntraCustomSecurityAttributeDefinition](New-EntraCustomSecurityAttributeDefinition.md)
 
-[Set-EntraMSCustomSecurityAttributeDefinition](Set-EntraMSCustomSecurityAttributeDefinition.md)
+[Set-EntraCustomSecurityAttributeDefinition](Set-EntraCustomSecurityAttributeDefinition.md)
