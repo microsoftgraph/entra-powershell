@@ -63,7 +63,7 @@ function Set-EntraBetaDirSyncFeature {
                 $Enabled = $PSBoundParameters["Enabled"]
             }
             if ($PSBoundParameters.ContainsKey("Debug")) {
-                $params["Debug"] = $Null
+                $params["Debug"] = $PSBoundParameters["Debug"]
             }
             if($null -ne $PSBoundParameters["WarningVariable"])
             {

@@ -1,8 +1,8 @@
 ---
-title: Get-EntraDomainFedrationSettings
-description: This article provides details on the Get-EntraDomainFedrationSettings command.
+title: Get-EntraDomainFederationSettings
+description: This article provides details on the Get-EntraDomainFederationSettings command.
 
-ms.service: active-directory
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -16,7 +16,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-EntraDomainFedrationSettings
+# Get-EntraDomainFederationSettings
 
 ## Synopsis
 
@@ -25,7 +25,7 @@ Gets key settings for a federated domain.
 ## Syntax
 
 ```powershell
-Get-EntraDomainFedrationSettings 
+Get-EntraDomainFederationSettings 
  -DomainName <String>
  [-TenantId <Guid>]
  [<CommonParameters>]
