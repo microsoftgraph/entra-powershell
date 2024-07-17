@@ -45,11 +45,9 @@ Add-EntraCustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttribute
 
 ```output
 
-Name                           Value
-----                           -----
-@odata.context                 https://graph.microsoft.com/v1.0/$metadata#directory/customSecurityAttributeDefinitions('Engineering_Project')/allowedValues/$entity
-id                             Alpine
-isActive                       True
+Id   IsActive
+--   --------
+Alpine True
 ```
 
 This example Add a predefined value:
