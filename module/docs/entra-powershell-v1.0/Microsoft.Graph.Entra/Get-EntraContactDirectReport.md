@@ -2,7 +2,7 @@
 title: Get-EntraContactDirectReport
 description: This article provides details on the Get-EntraContactDirectReport command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -19,40 +19,46 @@ schema: 2.0.0
 # Get-EntraContactDirectReport
 
 ## Synopsis
+
 Get the direct reports for a contact.
 
 ## Syntax
 
 ```powershell
-Get-EntraContactDirectReport 
- -ObjectId <String> 
- [-All] 
- [-Top <Int32>] 
+Get-EntraContactDirectReport
+ -ObjectId <String>
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
-The Get-EntraContactDirectReport cmdlet gets the direct reports for a contact.
+
+The `Get-EntraContactDirectReport` cmdlet gets the direct reports for an organizational contact.
 
 ## Examples
 
 ### Example 1: Get the direct reports of a contact
+
 ```powershell
-PS C:\> $Contact = Get-EntraContact -Top 1
-PS C:\> Get-EntraContactDirectReport -ObjectId $Contact.ObjectId
+Connect-Entra -Scopes 'OrgContact.Read.All'
+$Contact = Get-EntraContact -Top 1
+Get-EntraContactDirectReport -ObjectId $Contact.ObjectId
 ```
 
-The first command gets a contact by using the [Get-EntraContact](./Get-EntraContact.md) cmdlet, and then stores it in the $Contact variable.  
+This example shows how to retrieve direct reports for an organizational contact.
 
-The second command gets the direct reports for $Contact.
+You can use `Get-EntraContact` cmdlet to retrieve an organizational contact.
 
 ## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -64,10 +70,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a contact in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -79,10 +86,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -93,8 +101,25 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
