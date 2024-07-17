@@ -54,9 +54,9 @@ Get-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeD
 ```
 
 ```output
-id      isActive
---      --------
-Apline      True
+Id    IsActive
+--    --------
+Apline True
 ```
 
 This example Get all predefined values.
