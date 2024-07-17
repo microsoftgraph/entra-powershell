@@ -20,13 +20,20 @@ function Get-EntraCustomSecurityAttributeDefinition {
         Write-Debug("=========================================================================`n")
     
         $response = (Invoke-GraphRequest -Uri $Uri -Method $Method -Headers $customHeaders) | ConvertTo-Json | ConvertFrom-Json
-        try {
-            $response = $response.value
-            $response
+        try {    
+            $response = $response.value 
         }
-        catch {
-            $response
+        catch {}
+        $userList = @()
+        foreach ($data in $response) {
+            $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphCustomSecurityAttributeDefinition
+            $data.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name
+                $propertyValue = $_.Value
+                $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+            }
+            $userList += $userType
         }
-        
+        $userList        
     }
 }

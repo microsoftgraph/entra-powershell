@@ -51,25 +51,15 @@ Get-EntraCustomSecurityAttributeDefinition
 ```
 
 ```output
-attributeSet            : Engineering
-usePreDefinedValuesOnly : False
-isCollection            : False
-status                  : Available
-isSearchable            : True
-name                    : Demo010101
-id                      : Engineering_Demo010101
-description             : data1
-type                    : String
-
-attributeSet            : Engineering
-usePreDefinedValuesOnly : True
-isCollection            : True
-status                  : Available
-isSearchable            : True
-name                    : test23
-id                      : Engineering_test23
-description             :
-type                    : String
+Id                                      AttributeSet          Description                         IsCollection IsSearchable Name                             Status     Typ
+                                                                                                                                                                        e
+--                                      ------------          -----------                         ------------ ------------ ----                             ------     ---
+engineering_newvalue                    engineering           new value for command test          True         True         newvalue                         Available  Str
+Engineering_ProjectDate                 Engineering           Target completion date              False        True         ProjectDate                      Available  Str
+Test_Date                               Test                  Target completion date              False        True         Date                             Available  Str
+Test_ProjectDate                        Test                  Target completion date              False        True         ProjectDate                      Available  Str
+test2_ProjectDate                       test2                 Description Value                   False        True         ProjectDate                      Deprecated Str
+Testeng1_ProjectDate                    Testeng1              Target completion date              False        True         ProjectDate                      Available  Str
 ```
 
 This example get all custom security attribute definitions.
@@ -78,20 +68,13 @@ This example get all custom security attribute definitions.
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttributeDefinition.ReadWrite.All'
-Get-EntraCustomSecurityAttributeDefinition -Id 'Engineering_ProjectDate'
+Get-EntraCustomSecurityAttributeDefinition -Id 'Engineering_Project'
 ```
 
 ```output
-attributeSet            : Demo12
-usePreDefinedValuesOnly : False
-isCollection            : False
-status                  : Available
-isSearchable            : True
-@odata.context          : https://graph.microsoft.com/v1.0/$metadata#directory/customSecurityAttributeDefinitions/$entity
-name                    : ProjectDatevaluevaluevalue12
-id                      : Demo12_ProjectDatevaluevaluevalue12
-description             : update2
-type                    : String
+Id                  AttributeSet Description IsCollection IsSearchable Name    Status     Type   UsePreDefinedValuesOnly
+--                  ------------ ----------- ------------ ------------ ----    ------     ----   -----------------------
+Engineering_Project Engineering  new update1 True         True         Project Deprecated String False
 ```
 
 Get a custom security attribute definition.
