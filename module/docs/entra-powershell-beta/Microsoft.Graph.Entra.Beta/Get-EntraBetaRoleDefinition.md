@@ -202,7 +202,7 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-Specifies an oData v3.0 filter string to match a set of role definitions.
+Specifies an OData V4.0 filter string to match a set of role definitions.
 
 ```yaml
 Type: String
