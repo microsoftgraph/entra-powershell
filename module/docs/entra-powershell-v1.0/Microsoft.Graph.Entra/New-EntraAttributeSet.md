@@ -98,7 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### -MaxAttributesPerSet
-Maximum number of custom security attributes that can be defined in the attribute set.
+Maximum number of custom security attributes for this set. Default is null. If not specified, up to 500 active attributes per tenant can be added. This can be changed later. Optional.
 
 ```yaml
 Type: System.Int32
