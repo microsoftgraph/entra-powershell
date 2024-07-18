@@ -46,7 +46,14 @@ By default, Global Administrator and other administrator roles can't read, defin
 
 ### Example: Add a single attribute set.
 ```powershell
-New-AzureADMSAttributeSet -Id 'NewCustomAttributeSet' -Description 'Attributes for engineering team' -MaxAttributesPerSet 10
+Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
+$params = @{
+    Id = 'NewCustomAttributeSet'
+    Description = 'Attributes for engineering team'
+    MaxAttributesPerSet = 10
+}
+
+New-EntraAttributeSet @params
 ```
 ```Output
 Id                     Description                    MaxAttributesPerSet
