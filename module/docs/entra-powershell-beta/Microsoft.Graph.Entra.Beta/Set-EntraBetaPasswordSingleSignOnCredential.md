@@ -48,13 +48,16 @@ $creds1 = [Microsoft.Open.MSGraph.Model.PasswordSSOCredential]@{FieldId="param_e
 $creds2 = [Microsoft.Open.MSGraph.Model.PasswordSSOCredential]@{FieldId="param_password"; Value="my-secret"; Type="password"}
 $credentials.Credentials = @($creds1, $creds2)
 $params = @{
-    RefObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    ObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
     PasswordSSOCredential = $credentials
 }
 Set-EntraBetaPasswordSingleSignOnCredential @params
 ```
 
 This example demonstrates how to set the password SSO credentials for the given ObjectId and PasswordSSOObjectId.
+
+- `PasswordSSOObjectId` parameter specifies the User or Group ID.
+- `ObjectId` parameter specifies the ID of Microsoft Entra ID Object.
 
 ## Parameters
 

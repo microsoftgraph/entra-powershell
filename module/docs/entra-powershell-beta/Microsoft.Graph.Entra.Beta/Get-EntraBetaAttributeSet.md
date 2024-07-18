@@ -82,6 +82,8 @@ Testing Attributes for engineering team 10
 
 This example demonstrates how to retrieve an attribute set by Id.
 
+- `Id` parameter specifies the Id of a Microsoft Entra ID object.
+
 ## Parameters
 
 ### -Id

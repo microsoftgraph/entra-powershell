@@ -68,6 +68,15 @@ Test_ProjectTest Test         Target completion False        True         Projec
 
 This example demonstrates how to add a custom security attribute.
 
+- `Name` parameter specifies the name of the custom security attribute.
+- `Description` parameter specifies the description for the attribute set.
+- `Type` parameter specifies the data type for the custom security attribute values.
+- `Status` parameter specifies the custom security attribute is active or deactivated.
+- `AttributeSet` parameter specifies the name of attribute set.
+- `IsCollection` parameter specifies the allows multiple values can be assigned to the custom security attribute.
+- `IsSearchable` parameter specifies the custom security attribute values are indexed for searching on objects.
+- `UsePreDefinedValuesOnly` parameter specifies the only predefined values can be assigned to the custom security attribute.
+
 ## Parameters
 
 ### -AttributeSet

@@ -54,6 +54,11 @@ Set-EntraBetaCustomSecurityAttributeDefinition @params
 
 This example update a custom security attribute.
 
+- `Id` parameter specifies the custom security attribute definition object ID.
+- `Description` parameter specifies the description for the attribute set.
+- `Status` parameter specifies the custom security attribute is active or deactivated.
+- `UsePreDefinedValuesOnly` parameter specifies the only predefined values can be assigned to the custom security attribute.
+
 ## Parameters
 
 ### -Description

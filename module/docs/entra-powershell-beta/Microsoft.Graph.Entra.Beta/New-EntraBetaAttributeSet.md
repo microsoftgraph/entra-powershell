@@ -58,6 +58,10 @@ Testing Attributes for engineering team 10
 
 This example demonstrates hoe to add a single attribute set.
 
+- `Id` parameter specifies the name of the attribute set.
+- `Description` parameter specifies the description for the attribute set.
+- `MaxAttributesPerSet` parameter specifies the maximum number of custom security attributes.
+
 ## Parameters
 
 ### -Description

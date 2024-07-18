@@ -82,6 +82,8 @@ Engineering_ProjectDate Engineering  Target completion date False        True   
 
  This example returns a specific custom security attribute definition.
 
+- `Id` parameter specifies the custom security attribute definition object ID.
+
 ## Parameters
 
 ### -Id

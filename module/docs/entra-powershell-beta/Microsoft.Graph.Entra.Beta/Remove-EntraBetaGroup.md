@@ -51,6 +51,8 @@ Remove-EntraBetaGroup -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq'
 
 This example demonstrates how to remove a group in Microsoft Entra ID.
 
+- `ObjectId` parameter specifies the group ID .
+
 ## Parameters
 
 ### -ObjectId

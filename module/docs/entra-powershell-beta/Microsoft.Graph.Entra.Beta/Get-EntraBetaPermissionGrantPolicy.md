@@ -58,7 +58,7 @@ This command gets all the permission grant policies.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-Get-EntraPermissionGrantPolicy -Id 'testtenant-sampleapp-permissions'
+Get-EntraBetaPermissionGrantPolicy -Id 'testtenant-sampleapp-permissions'
 ```
 
 ```Output
@@ -68,6 +68,8 @@ DeletedDateTime Description                               DisplayName           
 ```
 
 This command gets the specified permission grant policy.
+
+- `Id` parameter specifies the permission grant policy ID.
 
 ## Parameters
 

@@ -58,11 +58,11 @@ id                             Alpine
 isActive                       True
 ```
 
-This example Add a predefined value:
+This example Add a predefined value for a custom security attributr definition.
 
-- Attribute set: `Engineering`
-- Attribute: `Project`
-- Predefined value: `Alpine`
+- `CustomSecurityAttributeDefinitionId` parameter specifies the custom security attribute definition ID.
+- `Id` parameter specifies the ID of Microsoft Entra ID Object.
+- `IsActive` parameter specifies the predefined value is active or deactivated.
 
 ## Parameters
 

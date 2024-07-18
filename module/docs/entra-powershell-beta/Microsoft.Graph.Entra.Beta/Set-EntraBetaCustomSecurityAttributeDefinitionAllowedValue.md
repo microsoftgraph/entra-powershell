@@ -52,6 +52,10 @@ Set-EntraCustomSecurityAttributeDefinitionAllowedValue @params
 
 This example update a custom security attribute definition predefined value.
 
+- `CustomSecurityAttributeDefinitionId` parameter specifies the custom security attribute definition ID.
+- `Id` parameter specifies the ID of Microsoft Entra ID Object.
+- `IsActive` parameter specifies the predefined value is active or deactivated.
+
 ## Parameters
 
 ### -CustomSecurityAttributeDefinitionId

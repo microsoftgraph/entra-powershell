@@ -44,8 +44,8 @@ Note that the password field is hidden for security purpose.
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All and Directory.Read.All, Directory.ReadWrite.All'
 $params = @{
-    RefObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-    ObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    PasswordSSOObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 }
 Get-EntraBetaPasswordSingleSignOnCredential @params
 ```
@@ -57,6 +57,9 @@ cccccccc-2222-3333-4444-dddddddddddd
 ```
 
 This example returns a password SSO credential for the given ObjectId and PasswordSSOObjectId.
+
+- `PasswordSSOObjectId` parameter specifies the User or Group ID.
+- `ObjectId` parameter specifies the ID of Microsoft Entra ID Object.
 
 ## Parameters
 

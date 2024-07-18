@@ -85,9 +85,8 @@ Apline      True
 
 This example retrieves a specific predefined value.
 
-- Attribute set: `Engineering`
-- Attribute: `Project`
-- Predefined value: `Alpine`
+- `CustomSecurityAttributeDefinitionId` parameter specifies the custom security attribute definition ID.
+- `Id` parameter specifies the ID of Microsoft Entra ID Object.
 
 ### Example 3: Get predefined value with Filter parameter
 
@@ -108,9 +107,7 @@ Apline      True
 
 This example retrieves a predefined value containing Id with the specified value.
 
-- Attribute set: `Engineering`
-- Attribute: `Project`
-- Predefined value: `Alpine`
+- `CustomSecurityAttributeDefinitionId` parameter specifies the custom security attribute definition ID.
 
 ## Parameters
 

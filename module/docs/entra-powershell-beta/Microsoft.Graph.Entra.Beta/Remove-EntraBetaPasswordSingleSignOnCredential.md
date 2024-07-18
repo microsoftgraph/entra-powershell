@@ -51,6 +51,9 @@ Remove-EntraBetaPasswordSingleSignOnCredential @params
 
 This example removes the password SSO credentials for the given ObjectId and PasswordSSOObjectId.
 
+- `PasswordSSOObjectId` parameter specifies the User or Group ID.
+- `ObjectId` parameter specifies the ID of Microsoft Entra ID Object.
+
 ## Parameters
 
 ### -ObjectId
