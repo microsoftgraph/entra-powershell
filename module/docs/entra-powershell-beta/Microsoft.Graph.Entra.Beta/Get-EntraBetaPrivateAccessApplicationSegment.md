@@ -17,16 +17,16 @@ schema: 2.0.0
 # Get-EntraBetaPrivateAccessApplicationSegment
 
 ## Synopsis
-The Get-EntraBetaPrivateAccessApplicationSegment cmdlet a list of all application segments associated to a Private Access application, or if specified, details of a specific application segment.
+The Get-EntraBetaPrivateAccessApplicationSegment cmdlet retrieves a list of all application segments associated to a Private Access application, or if specified, details of a specific application segment.
 
 ## Description
-The Get-EntraBetaPrivateAccessApplicationSegment cmdlet a list of all application segments associated to a Private Access application, or if specified, details of a specific application segment.
+The Get-EntraBetaPrivateAccessApplicationSegment cmdlet retrieves a list of all application segments associated to a Private Access application, or if specified, details of a specific application segment.
 
 ## Examples
 
 ### Example 1: Retrieve all application segments associated to an application
 ```powershell
-PS C:\> Get-EntraBetaPrivateAccessApplicationSegment -Objectid b97db9dd-85c7-4365-ac05-bd824728ab83
+PS C:\> Get-EntraBetaPrivateAccessApplicationSegment -ObjectId b97db9dd-85c7-4365-ac05-bd824728ab83
 ```
 ```output
 destinationHost : 10.1.1.20
@@ -63,7 +63,7 @@ This example demonstrates how to retrieve information for a specific application
 
 ## Parameters
 
-### -Objectid
+### -ObjectId
 The object id of a Private Access application object.
 
 ```yaml
