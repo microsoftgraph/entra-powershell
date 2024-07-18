@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaPrivateAccessAppl
 
 ms.topic: reference
 ms.date: 06/26/2024
-ms.author: andres-canello
+ms.author: andresc
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: andres-canello
