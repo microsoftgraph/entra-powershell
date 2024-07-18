@@ -48,7 +48,7 @@ By default, Global Administrator and other administrator roles can't read, defin
 ```powershell
 New-AzureADMSAttributeSet -Id 'NewCustomAttributeSet' -Description 'Attributes for engineering team' -MaxAttributesPerSet 10
 ```
-```output
+```Output
 Id                     Description                    MaxAttributesPerSet
 --                     -----------                    -------------------
 NewCustomAttributeSet Attributes for engineering team 10
