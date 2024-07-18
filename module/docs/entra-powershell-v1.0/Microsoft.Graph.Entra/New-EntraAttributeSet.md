@@ -61,7 +61,7 @@ This example adds a single attribute set.
 ## PARAMETERS
 
 ### -Description
-Description for the attribute set.
+Description of the attribute set, up to 128 Unicode characters. This can be changed later.
 
 ```yaml
 Type: System.String
