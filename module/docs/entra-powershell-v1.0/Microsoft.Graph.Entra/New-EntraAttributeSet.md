@@ -36,6 +36,12 @@ New-AzureADMSAttributeSet
 
 Adds a new Microsoft Entra ID attribute set object.
 
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with a supported role permission.
+
+Only the Attribute Definition Administrator role is supported for this operation. Ensure the user is assigned this role.
+
+By default, Global Administrator and other administrator roles can't read, define, or assign custom security attributes.
+
 ## EXAMPLES
 
 ### Example: Add a single attribute set.
