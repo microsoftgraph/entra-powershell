@@ -54,7 +54,9 @@ region                         eur
 connectorGroupType             applicationProxy
 ```
 
-This example creates a new Connector Group with the name "Backup Application Servers"
+This example creates a new Connector Group using specified name.
+
+- `Name` parameter specifies the new connector group name.
 
 ## Parameters
 

@@ -81,6 +81,10 @@ isPersistentCookieEnabled                : False
 
 This example creating a new application with only the basic required settings, and the default domain for applications.
 
+- `DisplayName` parameter specifies the display name of new application.
+- `ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
+- `InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
+
 ### Example 2: Creating a new application with ApplicationServerTimeout and ExternalAuthenticationType parameter
 
 ```powershell
@@ -114,6 +118,12 @@ isPersistentCookieEnabled                : False
 ```
 
 This example creating a new application with `ApplicationServerTimeout` and `ExternalAuthenticationType` parameter.
+
+- `DisplayName` parameter specifies the display name of new application.
+- `ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
+- `InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
+- `ApplicationServerTimeout` parameter specifies the application server timeout to set.
+- `ExternalAuthenticationType` parameter specifies the external authentication type.
 
 ### Example 3: Creating a new application with IsHttpOnlyCookieEnabled, IsSecureCookieEnabled, IsTranslateLinksInBodyEnabled and ConnectorGroupId parameter
 
@@ -151,6 +161,15 @@ isPersistentCookieEnabled                : False
 ```
 
 This example creating a new application with `IsHttpOnlyCookieEnabled`, `IsSecureCookieEnabled`, `IsTranslateLinksInBodyEnabled`, and `ConnectorGroupId` parameter.
+
+- `DisplayName` parameter specifies the display name of new application.
+- `ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
+- `InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
+- `ConnectorGroupId` parameter specifies the Connector group ID that assigned to this application.
+- `IsHttpOnlyCookieEnabled` parameter specifies the application proxy to include the HTTPOnly flag in HTTP response headers.
+- `IsSecureCookieEnabled` parameter specifies the application proxy to include the Secure flag in HTTP response headers.
+- `IsPersistentCookieEnabled` parameter specifies application proxy to set its access cookies to not expire when the web browser is closed.
+- `IsTranslateLinksInBodyEnabled` parameter specifies the translates urls in body.
 
 ## Parameters
 

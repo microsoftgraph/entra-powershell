@@ -52,6 +52,8 @@ bbbbbbbb-1111-2222-3333-cccccccccccc test-group applicationProxy       False
 
 This example retrieves the connector group assigned for the specified application.
 
+- `ObjectId` parameter specifies the application ID.
+
 ## Parameters
 
 ### -ObjectId

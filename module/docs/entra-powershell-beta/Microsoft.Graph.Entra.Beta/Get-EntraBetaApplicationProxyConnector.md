@@ -98,6 +98,8 @@ status                         active
 
 This example demonstrates how to Retrieve information for a specific connector.
 
+- `Id` parameter specifies the connector ID.
+
 ### Example 3: Retrieve information for a top one connector
 
 ```powershell

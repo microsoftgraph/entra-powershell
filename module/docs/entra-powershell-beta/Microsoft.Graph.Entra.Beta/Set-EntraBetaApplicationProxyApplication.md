@@ -80,6 +80,12 @@ isPersistentCookieEnabled                : False
 
 This example update `ExternalUrl`, `InternalUrl`, `ExternalAuthenticationType`, and `IsTranslateHostHeaderEnabled` parameter.
 
+- `ObjectId` parameter specifies the application ID.
+- `ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
+- `InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
+- `ExternalAuthenticationType` parameter specifies the external authentication type.
+- `IsTranslateHostHeaderEnabled` parameter specifies the translates urls in headers.
+
 ### Example 2: Update IsHttpOnlyCookieEnabled, IsSecureCookieEnabled, and IsPersistentCookieEnabled  parameter
 
 ```powershell
@@ -117,6 +123,15 @@ isPersistentCookieEnabled                : False
 
 This example update `IsHttpOnlyCookieEnabled`, `IsSecureCookieEnabled`, and `IsPersistentCookieEnabled` parameter.
 
+- `ObjectId` parameter specifies the application ID.
+- `ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
+- `InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
+- `ExternalAuthenticationType` parameter specifies the external authentication type.
+- `IsHttpOnlyCookieEnabled` parameter specifies the application proxy to include the HTTPOnly flag in HTTP response headers.
+- `IsSecureCookieEnabled` parameter specifies the application proxy to include the Secure flag in HTTP response headers.
+- `IsTranslateHostHeaderEnabled` parameter specifies the translates urls in headers.
+- `IsPersistentCookieEnabled` parameter specifies application proxy to set its access cookies to not expire when the web browser is closed.
+
 ### Example 3: Update IsTranslateLinksInBodyEnabled, ApplicationServerTimeout, and  ConnectorGroupId parameter
 
 ```powershell
@@ -153,12 +168,20 @@ isPersistentCookieEnabled                : False
 
 This example update `IsTranslateLinksInBodyEnabled`, `ApplicationServerTimeout`, and  `ConnectorGroupId` parameter.
 
+- `ObjectId` parameter specifies the application ID.
+- `ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
+- `InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
+- `ConnectorGroupId` parameter specifies the Connector group ID that assigned to this application.
+- `ApplicationServerTimeout` parameter specifies the application server timeout to set.
+- `ExternalAuthenticationType` parameter specifies the external authentication type.
+- `IsTranslateHostHeaderEnabled` parameter specifies the translates urls in headers.
+
 ## Parameters
 
 ### -ObjectId
 
 Specifies a unique application ID of an application in Microsoft Entra ID.
-This objectid can be found using the Get-EntraBetaApplication command.
+This objectid can be found using the `Get-EntraBetaApplication` command.
 
 ```yaml
 Type: System.String

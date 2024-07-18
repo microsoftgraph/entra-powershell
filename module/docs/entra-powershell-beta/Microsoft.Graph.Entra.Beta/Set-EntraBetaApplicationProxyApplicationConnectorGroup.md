@@ -50,7 +50,10 @@ $params = @{
 Set-EntraBetaApplicationProxyApplicationConnectorGroup @params
 ```
 
-This example set a new Connector Group for a specific application
+This example set a new Connector Group for a specific application.
+
+- `ObjectId` parameter specifies the application ID.
+- `ConnectorGroupId` parameter specifies the connector group ID that assign to the application.
 
 ## Parameters
 

@@ -50,6 +50,9 @@ Set-EntraBetaApplicationProxyConnector @params
 
 This example demonstrates how to move a Connector to a different Connector Group.
 
+- `Id` parameter specifies the connector ID.
+- `ConnectorGroupId` parameter specifies the application proxy connector group ID.
+
 ## Parameters
 
 ### -Id

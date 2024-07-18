@@ -46,6 +46,8 @@ Remove-EntraBetaApplicationProxyApplicationConnectorGroup -ObjectId 'aaaaaaaa-00
 
 This example removes the Connector Group associated with an application, setting the group to 'Default.'
 
+- `ObjectId` parameter specifies the application ID.
+
 ## Parameters
 
 ### -ObjectId

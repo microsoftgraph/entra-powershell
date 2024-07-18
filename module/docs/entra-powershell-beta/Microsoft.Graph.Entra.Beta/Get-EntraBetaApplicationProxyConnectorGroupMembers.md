@@ -57,7 +57,7 @@ status                         active
 
 This example retrieves all the connectors in the group.
 
-- `-Id` parameter specifies the connector ID.
+- `Id` parameter specifies the connector group ID.
 
 ### Example 2: Gets top one connector in the group
 
@@ -79,7 +79,7 @@ status                         active
 
 This example retrieves top one connector in the group.
 
-- `-Id` parameter specifies the connector ID.
+- `Id` parameter specifies the connector group ID.
 
 ### Example 3: Gets the connectors in the group with filter parameter
 
@@ -101,7 +101,7 @@ status                         active
 
 This example retrieves a connector in the group using machineName property.
 
-- `-Id` parameter specifies the connector ID.
+- `Id` parameter specifies the connector group ID.
 
 ## Parameters
 

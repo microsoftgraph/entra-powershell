@@ -51,6 +51,8 @@ https://testp-m365x99297270.msapppr...
 
 This example retrieves an application configured for Application Proxy.
 
+- `ObjectId` parameter specifies the application ID.
+
 ## Parameters
 
 ### -ObjectId

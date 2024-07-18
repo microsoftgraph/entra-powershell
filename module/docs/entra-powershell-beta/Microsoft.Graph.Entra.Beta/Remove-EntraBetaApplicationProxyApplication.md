@@ -46,6 +46,8 @@ Remove-EntraBetaApplicationProxyApplication -ObjectId 'aaaaaaaa-0000-1111-2222-b
 
 This example removes a Proxy Application.
 
+- `ObjectId` parameter specifies the application ID.
+
 ### Example 2: Remove a Proxy Application, and remove it from Microsoft Entra ID completely
 
 ```powershell
@@ -54,6 +56,9 @@ Remove-EntraBetaApplicationProxyApplication -ObjectId 'aaaaaaaa-0000-1111-2222-b
 ```
 
 This example removes a Proxy Application, and removes it from Microsoft Entra ID completely.
+
+- `ObjectId` parameter specifies the application ID.  
+- `RemoveADApplication` parameter specifies the user confirmation to delete application completely.
 
 ## Parameters
 

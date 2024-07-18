@@ -56,6 +56,11 @@ Set-EntraBetaApplicationProxyApplicationSingleSignOn @params
 
 This example assigns an application to use Kerberos Constrained Delegation, and specify required parameters.
 
+- `ObjectId` parameter specifies the application ID.
+- `SingleSignOnMode` parameter specifies the type of SSO.
+- `KerberosInternalApplicationServicePrincipalName` parameter specifies the internal application ServicePrincipalName of the application server.
+- `KerberosDelegatedLoginIdentity` parameter specifies the Connector group ID that assigned to this application.
+
 ### Example 2: Remove SSO from an application
 
 ```powershell
@@ -68,6 +73,9 @@ Set-EntraBetaApplicationProxyApplicationSingleSignOn @params
 ```
 
 This example demonstrates how to remove SSO from an application.
+
+- `ObjectId` parameter specifies the application ID.
+- `SingleSignOnMode` parameter specifies the type of SSO.
 
 ## Parameters
 

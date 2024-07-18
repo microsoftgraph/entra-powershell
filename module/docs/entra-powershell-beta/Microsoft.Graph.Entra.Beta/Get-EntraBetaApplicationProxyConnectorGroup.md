@@ -103,6 +103,8 @@ connectorGroupType             applicationProxy
 
 This example retrieves a specific connector group.
 
+- `Id` parameter specifies the connector group ID.
+
 ### Example 3: Retrieve Top one connector groups
 
 ```powershell
