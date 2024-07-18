@@ -1,4 +1,13 @@
 ---
+title: Get-EntraBetaContact
+description: This article provides details on the Get-EntraBetaContact command.
+
+ms.topic: reference
+ms.date: 07/18/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
