@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraAttributeSet command.
 
 ms.service: active-directory
 ms.topic: reference
-ms.date: 06/03/2024
+ms.date: 07/20/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
