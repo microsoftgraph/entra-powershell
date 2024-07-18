@@ -46,18 +46,14 @@ The `Get-EntraAuditDirectoryLogs` cmdlet gets a Microsoft Entra ID audit log.
 ```
 
 ```Output
-correlationId       : aaaa0000-bb11-2222-33cc-444444dddddd
-additionalDetails   : {}
-initiatedBy         : @{user=; app=}
-loggedByService     : Self-service Group Management
-activityDisplayName : GroupsODataV4_GetgroupLifecyclePolicies
-category            : GroupManagement
-resultReason        : OK
-id                  : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-activityDateTime    : 28/06/2024 19:11:10
-operationType       : Update
-result              : success
-targetResources     : {@{type=N/A; id=aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb; userPrincipalName=; displayName=; groupType=; modifiedProperties=System.Object[]}}
+Id                                                                                                     ActivityDateTime      ActivityDisplayName                     Catego
+                                                                                                                                                                     ry
+--                                                                                                     ----------------      -------------------                     ------
+Azure MFA_e5d6e53f-34bf-45b9-bc66-2becea08d0ee_d5aec55f-2d12-4442-8d2f-ccca95d4390e_133657790254965500 7/18/2024 12:23:45 PM DeleteDataFromCosmosDb                  Dir...
+Azure MFA_e5d6e53f-34bf-45b9-bc66-2becea08d0ee_d5aec55f-2d12-4442-8d2f-ccca95d4390e_133657790253042760 7/18/2024 12:23:45 PM DeleteDataFromBackend                   Dir...
+SSGM_ace6349b-5e96-41b3-83e4-70d05689c87d_WG3SE_192442720                                              7/18/2024 12:23:09 PM GroupsODataV4_GetgroupLifecyclePolicies Gro...
+Azure MFA_dc153e85-965a-46a5-9c16-b8a98e080887_d5aec55f-2d12-4442-8d2f-ccca95d4390e_133657789856593960 7/18/2024 12:23:05 PM DeleteDataFromCosmosDb                  Dir...
+Azure MFA_f540e94d-66e1-488e-af7f-941d5cedd815_d5aec55f-2d12-4442-8d2f-ccca95d4390e_133657789856583690 7/18/2024 12:23:05 PM DeleteDataFromCosmosDb                  Dir...
 ```
 
 This command gets all audit logs.
@@ -70,18 +66,13 @@ This command gets all audit logs.
 ```
 
 ```Output
-correlationId       : aaaa0000-bb11-2222-33cc-444444dddddd
-additionalDetails   : {}
-initiatedBy         : @{user=; app=}
-loggedByService     : Self-service Group Management
-activityDisplayName : GroupsODataV4_GetgroupLifecyclePolicies
-category            : GroupManagement
-resultReason        : OK
-id                  : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-activityDateTime    : 28/06/2024 19:11:10
-operationType       : Update
-result              : success
-targetResources     : {@{type=N/A; id=aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb; userPrincipalName=; displayName=; groupType=; modifiedProperties=System.Object[]}}
+Id                                                                                                     ActivityDateTime      ActivityDisplayName    Category            Cor
+                                                                                                                                                                        rel
+                                                                                                                                                                        ati
+                                                                                                                                                                        onI
+                                                                                                                                                                        d
+--                                                                                                     ----------------      -------------------    --------            ---
+Azure MFA_e5d6e53f-34bf-45b9-bc66-2becea08d0ee_d5aec55f-2d12-4442-8d2f-ccca95d4390e_133657790254965500 7/18/2024 12:23:45 PM DeleteDataFromCosmosDb DirectoryManagement e5d
 ```
 
 This example returns the first N logs.
@@ -94,18 +85,9 @@ This example returns the first N logs.
 ```
 
 ```Output
-correlationId       : aaaa0000-bb11-2222-33cc-444444dddddd
-additionalDetails   : {}
-initiatedBy         : @{user=; app=}
-loggedByService     : Self-service Group Management
-activityDisplayName : Update rollout policy of feature
-category            : GroupManagement
-resultReason        : OK
-id                  : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-activityDateTime    : 28/06/2024 19:11:10
-operationType       : Update
-result              : success
-targetResources     : {@{type=N/A; id=aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb; userPrincipalName=; displayName=; groupType=; modifiedProperties=System.Object[]}}
+Id                                                                   ActivityDateTime     ActivityDisplayName              Category       CorrelationId
+--                                                                   ----------------     -------------------              --------       -------------
+Application Proxy_2bb80bd5-7fd2-497d-84d6-da34c4529a8a_HTNSK_7223096 7/16/2024 5:13:49 AM Update rollout policy of feature Authentication 2bb80bd5-7fd2-497d-84d6-da34c4...
 ```
 
 This command shows how to get audit logs by ActivityDisplayName.
