@@ -2,7 +2,7 @@
 title: Select-EntraGroupIdsContactIsMemberOf
 description: This article provides details on the Select-EntraGroupIdsContactIsMemberOf command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru

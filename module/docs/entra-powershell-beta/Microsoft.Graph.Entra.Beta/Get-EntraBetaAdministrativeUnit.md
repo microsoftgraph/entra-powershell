@@ -1,4 +1,15 @@
 ---
+title: Get-EntraBetaAdministrativeUnit.
+description: This article provides details on the Get-EntraBetaAdministrativeUnit command.
+
+
+ms.topic: reference
+ms.date: 07/02/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,39 +19,131 @@ schema: 2.0.0
 # Get-EntraBetaAdministrativeUnit
 
 ## Synopsis
+
 Gets an administrative unit.
 
 ## Syntax
 
 ### GetQuery (Default)
-```
-Get-EntraBetaAdministrativeUnit [-Filter <String>] [-All] [-Top <Int32>] [<CommonParameters>]
+
+```powershell
+Get-EntraBetaAdministrativeUnit 
+ [-Filter <String>] 
+ [-All] 
+ [-Top <Int32>] 
+ [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraBetaAdministrativeUnit -ObjectId <String> [-All] [<CommonParameters>]
+
+```powershell
+Get-EntraBetaAdministrativeUnit 
+ -ObjectId <String> 
+ [-All] 
+ [<CommonParameters>]
 ```
 
 ## Description
-The Get-EntraBetaAdministrativeUnit cmdlet gets an Azure Active Directory administrative unit.
+
+The `Get-EntraBetaAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrative unit. Specify `ObjectId` parameter to get a specific administrative unit.
 
 ## Examples
 
-### Example 1
+### Example 1: Get all administrative units
+
 ```powershell
-PS C:\> {{ Add example code here }}
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraBetaAdministrativeUnit
 ```
 
-{{ Add example description here }}
+```Output
+DeletedDateTime Id                                   Description          DisplayName         IsMemberManagementRestricted Visibility
+--------------- --                                   -----------          -----------         ---------------------------- ----------
+                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Updated Description  Updated DisplayName
+                bbbbbbbb-1111-2222-3333-cccccccccccc test111              test111
+                cccccccc-2222-3333-4444-dddddddddddd                      TestAU
+                dddddddd-3333-4444-5555-eeeeeeeeeeee                      test_130624_09
+                eeeeeeee-4444-5555-6666-ffffffffffff test111              test111
+                ffffffff-5555-6666-7777-aaaaaaaaaaaa                      test66
+                aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb test111              test111             True
+```
+
+This command gets all the administrative units.
+
+### Example 2: Get all administrative units using '-All' parameter
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraBetaAdministrativeUnit -All 
+```
+
+```Output
+DeletedDateTime Id                                   Description          DisplayName         IsMemberManagementRestricted Visibility
+--------------- --                                   -----------          -----------         ---------------------------- ----------
+                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Updated Description  Updated DisplayName
+                bbbbbbbb-1111-2222-3333-cccccccccccc test111              test111
+                cccccccc-2222-3333-4444-dddddddddddd                      TestAU
+                dddddddd-3333-4444-5555-eeeeeeeeeeee                      test_130624_09
+                eeeeeeee-4444-5555-6666-ffffffffffff test111              test111
+                ffffffff-5555-6666-7777-aaaaaaaaaaaa                      test66
+                aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb test111              test111             True
+```
+
+This command gets all the administrative units.
+
+### Example 3: Get a specific administrative unit
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraBetaAdministrativeUnit -Id aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+```
+
+```Output
+DeletedDateTime Id                                   Description          DisplayName         IsMemberManagementRestricted Visibility
+--------------- --                                   -----------          -----------         ---------------------------- ----------
+                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Updated Description  Updated DisplayName
+```
+
+This example returns the details of the specified administrative unit.
+
+### Example 4: Get administrative units filter by display name
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq 'Updated DisplayName'"
+```
+
+```Output
+DeletedDateTime Id                                   Description          DisplayName         IsMemberManagementRestricted Visibility
+--------------- --                                   -----------          -----------         ---------------------------- ----------
+                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Updated Description  Updated DisplayName
+```
+
+This example list of administrative units containing display name with the specified name.
+
+### Example 5: Get top one administrative unit
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+Get-EntraBetaAdministrativeUnit -Top 1
+```
+
+```Output
+DeletedDateTime Id                                   Description          DisplayName         IsMemberManagementRestricted Visibility
+--------------- --                                   -----------          -----------         ---------------------------- ----------
+                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Updated Description  Updated DisplayName
+```
+
+This example returns the specified top administrative units.
 
 ## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -52,13 +155,14 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
+
 Specifies an oData v3.0 filter statement.
 This parameter filters which objects are returned.
 
-For more information about oData v3.0 filter expressions, see https://msdn.microsoft.com/en-us/library/hh169248%28v=nav.90%29.aspx
+For more information about oData v3.0 filter expressions, see https://msdn.microsoft.com/library/hh169248%28v=nav.90%29.aspx
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery
 Aliases:
 
@@ -70,10 +174,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of an administrative unit in Azure Active Directory.
+
+Specifies the ID of an administrative unit in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -85,10 +190,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: GetQuery
 Aliases:
 
@@ -100,7 +206,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -110,8 +217,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[New-EntraBetaAdministrativeUnit]()
+[New-EntraBetaAdministrativeUnit](New-EntraBetaAdministrativeUnit.md)
 
-[Remove-EntraBetaAdministrativeUnit]()
+[Remove-EntraBetaAdministrativeUnit](Remove-EntraBetaAdministrativeUnit.md)
 
-[Set-EntraBetaAdministrativeUnit]()
+[Set-EntraBetaAdministrativeUnit](Set-EntraBetaAdministrativeUnit.md)

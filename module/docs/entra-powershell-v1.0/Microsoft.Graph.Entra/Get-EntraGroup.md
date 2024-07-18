@@ -2,7 +2,7 @@
 title: Get-EntraGroup.
 description: This article explains the Get-EntraGroup command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -30,6 +30,7 @@ Get-EntraGroup
  [-Top <Int32>]
  [-All]
  [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -39,6 +40,7 @@ Get-EntraGroup
 Get-EntraGroup
  [-SearchString <String>]
  [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -48,6 +50,7 @@ Get-EntraGroup
 Get-EntraGroup
  -ObjectId <String>
  [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -220,6 +223,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
