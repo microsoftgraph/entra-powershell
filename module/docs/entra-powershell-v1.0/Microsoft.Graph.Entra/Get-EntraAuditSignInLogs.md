@@ -43,37 +43,13 @@ The `Get-EntraAuditSignInLogs` cmdlet gets the Microsoft Entra ID sign-in log.
 ```
 
 ```Output
-appliedConditionalAccessPolicies : {@{id=aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb; enforcedSessionControls=System.Object[]; displayName=Multifactor authentication for
-                                   Microsoft partners and vendors; enforcedGrantControls=System.Object[]; result=success}, @{id=aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb;
-                                   enforcedSessionControls=System.Object[]; displayName=Office 365 App Control; enforcedGrantControls=System.Object[]; result=notEnabled},
-                                   @{id=aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb; enforcedSessionControls=System.Object[]; displayName=testpolicy;
-                                   enforcedGrantControls=System.Object[]; result=notEnabled}, @{id=aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb;
-                                   enforcedSessionControls=System.Object[]; displayName=test; enforcedGrantControls=System.Object[]; result=notEnabled}...}
-isInteractive                    : True
-location                         : @{state=Maharashtra; geoCoordinates=; city=Nashik; countryOrRegion=IN}
-conditionalAccessStatus          : success
-resourceDisplayName              : Windows Azure Service Management API
-userPrincipalName                : Test.mail.onmicrosoft.com
-riskLevelAggregated              : none
-appId                            : 00000000-0000-0000-0000-000000000000
-deviceDetail                     : @{browser=Edge 126.0.0; operatingSystem=Windows10; displayName=; isManaged=False; trustType=; isCompliant=False; deviceId=}
-riskDetail                       : none
-riskState                        : none
-status                           : @{errorCode=50055; additionalDetails=The user's password is expired, and therefore their login or session was ended. They will be
-                                   offered the opportunity to reset it, or may ask an admin to reset it via
-                                   https://learn.microsoft.com/entra/fundamentals/users-reset-password-azure-portal; failureReason=The password is expired.}
-ipAddress                        : 223.233.80.208
-userId                           : 00aa00aa-bb11-cc22-dd33-44ee44ee44ee
-id                               : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-resourceId                       : a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1
-appDisplayName                   : Azure Portal
-clientAppUsed                    : Browser
-correlationId                    : aaaa0000-bb11-2222-33cc-444444dddddd
-riskEventTypes_v2                : {}
-riskEventTypes                   : {}
-createdDateTime                  : 02/07/2024 04:18:26
-riskLevelDuringSignIn            : none
-userDisplayName                  : Test User
+Id                                   AppDisplayName                AppId                                ClientAppUsed ConditionalAccessStatus CorrelationId
+--                                   --------------                -----                                ------------- ----------------------- -------------
+ddabc319-f108-475f-be78-3b0196da4000 Azure Portal                  c44b4083-3bb0-49c1-b47d-974e53cbdf3c Browser       success                 171e740a-b9fc-4b7d-835d-3f...
+e6453dac-5c93-4119-b6d0-d367081f3d00 Graph Explorer                de8bc8b5-d9f9-48b1-a8ad-b748da725064 Browser       success                 0190c57f-a06e-7127-9f96-ef...
+7edf6d63-dc58-4da9-aaaf-c45f47d91400 Microsoft Account Controls V2 7eadcef8-456d-4611-9480-4fff72b8b9e2 Browser       success                 6159aef9-9453-4bab-b2a3-8c...
+4d883fb6-da26-421b-8e31-e4d5b3201200 Microsoft Account Controls V2 7eadcef8-456d-4611-9480-4fff72b8b9e2 Browser       success                 f90c34e8-d47e-4e08-8e28-7b...
+b0ddfa4e-7885-4cef-aaa0-364df8091300 Microsoft Account Controls V2 7eadcef8-456d-4611-9480-4fff72b8b9e2 Browser       success                 9e4ad99f-82ef-47b0-91b0-d0...
 ```
 
 This command gets all sign-in logs.
@@ -86,37 +62,11 @@ This command gets all sign-in logs.
 ```
 
 ```Output
-appliedConditionalAccessPolicies : {@{id=aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb; enforcedSessionControls=System.Object[]; displayName=Multifactor authentication for
-                                   Microsoft partners and vendors; enforcedGrantControls=System.Object[]; result=success}, @{id=aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb;
-                                   enforcedSessionControls=System.Object[]; displayName=Office 365 App Control; enforcedGrantControls=System.Object[]; result=notEnabled},
-                                   @{id=aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb; enforcedSessionControls=System.Object[]; displayName=testpolicy;
-                                   enforcedGrantControls=System.Object[]; result=notEnabled}, @{id=aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb;
-                                   enforcedSessionControls=System.Object[]; displayName=test; enforcedGrantControls=System.Object[]; result=notEnabled}...}
-isInteractive                    : True
-location                         : @{state=Maharashtra; geoCoordinates=; city=Nashik; countryOrRegion=IN}
-conditionalAccessStatus          : success
-resourceDisplayName              : Windows Azure Service Management API
-userPrincipalName                : Test.mail.onmicrosoft.com
-riskLevelAggregated              : none
-appId                            : 00000000-0000-0000-0000-000000000000
-deviceDetail                     : @{browser=Edge 126.0.0; operatingSystem=Windows10; displayName=; isManaged=False; trustType=; isCompliant=False; deviceId=}
-riskDetail                       : none
-riskState                        : none
-status                           : @{errorCode=50055; additionalDetails=The user's password is expired, and therefore their login or session was ended. They will be
-                                   offered the opportunity to reset it, or may ask an admin to reset it via
-                                   https://learn.microsoft.com/entra/fundamentals/users-reset-password-azure-portal; failureReason=The password is expired.}
-ipAddress                        : 223.233.80.208
-userId                           : 00aa00aa-bb11-cc22-dd33-44ee44ee44ee
-id                               : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-resourceId                       : a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1
-appDisplayName                   : Azure Portal
-clientAppUsed                    : Browser
-correlationId                    : aaaa0000-bb11-2222-33cc-444444dddddd
-riskEventTypes_v2                : {}
-riskEventTypes                   : {}
-createdDateTime                  : 02/07/2024 04:18:26
-riskLevelDuringSignIn            : none
-userDisplayName                  : Test User
+Id                                   AppDisplayName AppId                                ClientAppUsed ConditionalAccessStatus CorrelationId                        Created
+                                                                                                                                                                    DateTim
+                                                                                                                                                                    e
+--                                   -------------- -----                                ------------- ----------------------- -------------                        -------
+ddabc319-f108-475f-be78-3b0196da4000 Azure Portal   c44b4083-3bb0-49c1-b47d-974e53cbdf3c Browser       success                 171e740a-b9fc-4b7d-835d-3f0224f31745 7/18...
 ```
 
 This example returns the first n logs.

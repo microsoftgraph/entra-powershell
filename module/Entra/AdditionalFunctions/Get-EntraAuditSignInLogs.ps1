@@ -113,6 +113,16 @@ function Get-EntraAuditSignInLogs {
             }
         } catch {}        
 
-       $data
+        $userList = @()
+        foreach ($response in $data) {
+            $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphSignIn
+            $response.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name
+                $propertyValue = $_.Value
+                $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+            }
+            $userList += $userType
+        }
+        $userList 
     }      
 }
