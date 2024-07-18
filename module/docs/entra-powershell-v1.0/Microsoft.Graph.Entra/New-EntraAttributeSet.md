@@ -38,13 +38,14 @@ Adds a new Microsoft Entra ID attribute set object.
 
 In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with a supported role permission.
 
-Only the Attribute Definition Administrator role is supported for this operation. Ensure the user is assigned this role.
+Note: Only the Attribute Definition Administrator role is supported for this operation. Ensure the user is assigned this role.
 
 By default, Global Administrator and other administrator roles can't read, define, or assign custom security attributes.
 
 ## EXAMPLES
 
-### Example: Add a single attribute set.
+### Example: Add a single attribute set
+
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
 $params = @{
@@ -55,6 +56,7 @@ $params = @{
 
 New-EntraAttributeSet @params
 ```
+
 ```Output
 Id                     Description                    MaxAttributesPerSet
 --                     -----------                    -------------------
@@ -68,6 +70,7 @@ This example adds a single attribute set.
 ## PARAMETERS
 
 ### -Description
+
 Description of the attribute set, up to 128 Unicode characters. This can be changed later.
 
 ```yaml
@@ -83,6 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
+
 Name of the attribute set. Unique identifier for the attribute set within a tenant, up to 32 Unicode characters. It cannot contain spaces or special characters, is case sensitive, and cannot be changed later. Required.
 
 ```yaml
@@ -98,6 +102,7 @@ Accept wildcard characters: False
 ```
 
 ### -MaxAttributesPerSet
+
 Maximum number of custom security attributes for this set. Default is null. If not specified, up to 500 active attributes per tenant can be added. This can be changed later. Optional.
 
 ```yaml
@@ -113,6 +118,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -122,6 +128,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## OUTPUTS
 
 ### System.Object
+
 ## NOTES
 
 ## RELATED LINKS
