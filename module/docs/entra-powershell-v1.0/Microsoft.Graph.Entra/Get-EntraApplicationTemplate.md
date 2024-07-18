@@ -60,17 +60,9 @@ Get-EntraApplicationTemplate -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
-@odata.context             : https://graph.microsoft.com/v1.0/$metadata#applicationTemplates/$entity
-id                         : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-supportedProvisioningTypes : {}
-displayName                : Gender Fitness
-categories                 : {humanResources, productivity, tools}
-supportedSingleSignOnModes : {oidc, external}
-logoUrl                    : https://galleryapplogos1.azureedge.net/app-logo/genderfitness_CC0EFC79_215.png
-homePageUrl                : https://genderfitness.com/
-description                : Gender Fitness proactively tracks the gender balance and inclusivity of your business meetings, creating better outcomes and greater
-                             innovation for you
-publisher                  : Gender Fitness PTY LTD
+Id                                   Categories                                       Description DisplayName         HomePageUrl                           LogoUrl
+--                                   ----------                                       ----------- -----------         -----------                           -------
+00000007-0000-0000-c000-000000000000 {crm, productivity, collaboration, businessMgmt}             Dynamics CRM Online http://www.microsoft.com/dynamics/crm https://az4950…
 ```
 
 This command gets an application template object for the given ID

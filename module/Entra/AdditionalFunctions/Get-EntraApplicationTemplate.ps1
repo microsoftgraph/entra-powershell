@@ -66,6 +66,16 @@ function Get-EntraApplicationTemplate {
         }
         
         $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json        
-        $data
+        $userList = @()
+        foreach ($res in $data) {
+            $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphApplicationTemplate
+            $res.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                $propertyValue = $_.Value
+                $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+            }
+            $userList += $userType
+        }
+        $userList 
     }    
 }
