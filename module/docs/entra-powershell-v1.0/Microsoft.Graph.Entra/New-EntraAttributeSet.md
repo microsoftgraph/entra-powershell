@@ -83,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Name of the attribute set. Must be unique within a tenant.
+Name of the attribute set. Unique identifier for the attribute set within a tenant, up to 32 Unicode characters. It cannot contain spaces or special characters, is case sensitive, and cannot be changed later. Required.
 
 ```yaml
 Type: System.String
