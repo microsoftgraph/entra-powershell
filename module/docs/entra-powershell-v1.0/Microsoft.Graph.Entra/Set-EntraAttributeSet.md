@@ -2,7 +2,6 @@
 title: Set-EntraAttributeSet
 description: This article provides details on the Set-EntraAttributeSet command.
 
-ms.service: entra
 ms.topic: reference
 ms.date: 07/19/2024
 ms.author: eunicewaweru
