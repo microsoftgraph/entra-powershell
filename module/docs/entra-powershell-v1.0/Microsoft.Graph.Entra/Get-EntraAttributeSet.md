@@ -79,7 +79,7 @@ Get-EntraAttributeSet -Id 'Engineering'
 ```Output
 Id          Description                           MaxAttributesPerSet
 --          -----------                           -------------------
-engineering Attributes for cloud engineering team 25
+Engineering  Attributes for cloud engineering team  25
 ```
 
 This example gets an attribute set.
