@@ -57,6 +57,7 @@ This policy is in the form of one or two FeatureRolloutPolicy objects holding gr
 ### Example 1: Retrieves a list of all cloud authentication roll-out in Microsoft Entra ID
 
 ```powershell
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
 Get-EntraFeatureRolloutPolicy
 ```
 
@@ -72,6 +73,7 @@ This command retrieves a list of all cloud authentication roll-out policies in M
 ### Example 2: Retrieves cloud authentication roll-out in Microsoft Entra ID with given ID
 
 ```powershell
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
 Get-EntraFeatureRolloutPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb '
 ```
 
@@ -88,6 +90,7 @@ This command retrieves the policy for cloud authentication roll-out policy in Mi
 ### Example 3: Retrieves cloud authentication roll-out in Microsoft Entra ID with given Search String
 
 ```powershell
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
 Get-EntraFeatureRolloutPolicy -SearchString 'Feature-Rollout-Policy'
 ```
 
@@ -102,6 +105,7 @@ This command retrieves the policy for cloud authentication roll-out policy in Mi
 ### Example 4: Retrieves cloud authentication roll-out in Microsoft Entra ID with given Filter parameter
 
 ```powershell
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
 Get-EntraFeatureRolloutPolicy -Filter "Description eq 'Feature-Rollout-Policy'"
 ```
 
