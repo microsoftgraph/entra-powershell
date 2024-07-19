@@ -34,7 +34,7 @@ Set-EntraAttributeSet
 
 ## DESCRIPTION
 
-This `Set-EntraAttributeSet` cmdlet Update a Microsoft Entra ID attribute set object identified by ID. Specify `Id` parameter to Update a Microsoft Entra ID attribute set object.
+The `Set-EntraAttributeSet` cmdlet update a Microsoft Entra ID attribute set object identified by ID. Specify `Id` parameter to Update a Microsoft Entra ID attribute set object.
 
 ## EXAMPLES
 
