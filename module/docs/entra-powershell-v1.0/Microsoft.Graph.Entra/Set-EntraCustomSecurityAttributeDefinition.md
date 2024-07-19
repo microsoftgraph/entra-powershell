@@ -2,7 +2,6 @@
 title: Set-EntraCustomSecurityAttributeDefinition
 description: This article provides details on the Set-EntraCustomSecurityAttributeDefinition command.
 
-ms.service: entra
 ms.topic: reference
 ms.date: 07/11/2024
 ms.author: eunicewaweru
@@ -35,36 +34,57 @@ Set-EntraCustomSecurityAttributeDefinition
 
 ## Description
 
-This `Set-EntraCustomSecurityAttributeDefinition` Updates a Microsoft Entra ID custom security attribute definition object identified by ID. Specify `Id` parameter to update a custom security attribute definition.
+The `Set-EntraCustomSecurityAttributeDefinition` cmdlet updates a Microsoft Entra ID custom security attribute definition object identified by ID. Specify `Id` parameter to update a custom security attribute definition.
 
 ## Examples
 
-### Example 1: Update a custom security attribute definition object identified by ID
+### Example 1: Update a Description
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-Set-EntraCustomSecurityAttributeDefinition -Id 'Engineering_Project'  -Description 'Add-description'
+$params = @{
+    Id = 'Engineering_ProjectDate'
+    Description = 'Add-description'
+}
+Set-EntraCustomSecurityAttributeDefinition @params
 ```
 
-This cmdlet update the description of custom security attribute definition object.
+This example update a custom security attribute definition.
+
+- Attribute set: `Engineering`
+- Attribute: `ProjectDate`
 
 ### Example 2: Update a custom security attribute definition object identified by ID
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-Set-EntraCustomSecurityAttributeDefinition -Id 'Engineering_Project'  -Description 'Add-description' -Status  "Available"
+$params = @{
+    Id = 'Engineering_ProjectDate'
+    Status = 'Deprecated'
+}
+Set-EntraCustomSecurityAttributeDefinition @params
 ```
 
-This cmdlet update the  custom security attribute definition object.
+This cmdlet deactivates a custom security attribute definition.
 
-### Example 3: Update a custom security attribute definition object identified by ID
+- Attribute set: `Engineering`
+- Attribute: `Project`
+
+### Example 3: Update a UsePreDefinedValuesOnly of custom security attribute definition object identified by ID
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-Set-EntraCustomSecurityAttributeDefinition -Id 'Engineering_Project' -Description 'Add-description' -Status  "Available" -UsePreDefinedValuesOnly $false
+$params = @{
+    Id = 'Engineering_ProjectDate'
+    UsePreDefinedValuesOnly = $false
+}
+Set-EntraCustomSecurityAttributeDefinition @params
 ```
 
-This cmdlet update the  custom security attribute definition object.
+This cmdlet update a custom security attribute definition.
+
+- Attribute set: `Engineering`
+- Attribute: `ProjectDate`
 
 ## Parameters
 
@@ -147,3 +167,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[Get-EntraCustomSecurityAttributeDefinition](Get-EntraCustomSecurityAttributeDefinition.md)
+[New-EntraCustomSecurityAttributeDefinition](New-EntraCustomSecurityAttributeDefinition.md)
