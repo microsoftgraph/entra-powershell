@@ -2,9 +2,9 @@
 title: Get-EntraAttributeSet
 description: This article provides details on the Get-EntraAttributeSet command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
-ms.date: 07/20/2024
+ms.date: 07/19/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -33,14 +33,14 @@ Get-EntraAttributeSet
 ### GetById
 
 ```powershell
-Get-EntraAttributeSett 
+Get-EntraAttributeSet
  -Id <String> 
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-Gets a list of Microsoft Entra ID attribute sets.
+This `Get-EntraAttributeSet` Gets a list of Microsoft Entra ID attribute sets.
 
 In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The supported roles for this operation are:
 
@@ -126,3 +126,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## RELATED LINKS
 
 [New-EntraAttributeSet](New-EntraAttributeSet.md)
+
+[Set-EntraAttributeSet](Set-EntraAttributeSet.md)
