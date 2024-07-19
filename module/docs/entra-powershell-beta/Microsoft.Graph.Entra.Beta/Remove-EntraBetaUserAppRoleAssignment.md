@@ -1,8 +1,7 @@
 ---
-title: Remove-EntraUserAppRoleAssignment.
-description: This article provides details on the Remove-EntraUserAppRoleAssignment command.
+title: Remove-EntraBetaUserAppRoleAssignment.
+description: This article provides details on the Remove-EntraBetaUserAppRoleAssignment command.
 
-ms.service: entra
 ms.topic: reference
 ms.date: 07/17/2024
 ms.author: eunicewaweru

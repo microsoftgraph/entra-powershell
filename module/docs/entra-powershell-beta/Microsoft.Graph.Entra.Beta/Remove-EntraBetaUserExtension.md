@@ -2,7 +2,6 @@
 title: Remove-EntraBetaUserExtension
 description: This article provides details on the Remove-EntraBetaUserExtension command.
 
-ms.service: entra
 ms.topic: reference
 ms.date: 07/17/2024
 ms.author: eunicewaweru
