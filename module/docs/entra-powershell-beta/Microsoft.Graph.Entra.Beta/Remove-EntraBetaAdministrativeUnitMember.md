@@ -1,4 +1,15 @@
 ---
+title: Remove-EntraBetaAdministrativeUnitMember.
+description: This article provides details on the Remove-EntraBetaAdministrativeUnitMember command.
+
+
+ms.topic: reference
+ms.date: 07/04/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru 
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,34 +19,45 @@ schema: 2.0.0
 # Remove-EntraBetaAdministrativeUnitMember
 
 ## Synopsis
+
 Removes an administrative unit member.
 
 ## Syntax
 
-```
-Remove-EntraBetaAdministrativeUnitMember -ObjectId <String> -MemberId <String> [<CommonParameters>]
+```powershell
+Remove-EntraBetaAdministrativeUnitMember 
+ -ObjectId <String> 
+ -MemberId <String> 
+ [<CommonParameters>]
 ```
 
 ## Description
-The Remove-EntraBetaAdministrativeUnitMember cmdlet removes an administrative unit member in Azure Active Directory (AD).
+
+The `Remove-EntraBetaAdministrativeUnitMember` cmdlet removes an administrative unit member in Microsoft Entra ID. Specify `ObjectId` and `MemberId` to remove an administrative unit member.
 
 ## Examples
 
-### Example 1
+### Example 1: Remove an administrative unit member
+
 ```powershell
-PS C:\> {{ Add example code here }}
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+$params = @{
+    ObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    MemberId = 'eeeeeeee-4444-5555-6666-ffffffffffff'
+}
+Remove-EntraBetaAdministrativeUnitMember @params
 ```
 
-{{ Add example description here }}
+This command removes a specified member (user or group) from a specified administrative unit.
 
 ## Parameters
 
-
 ### -MemberId
+
 Specifies the ID of the administrative unit member.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -47,10 +69,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of an administrative unit in Azure AD.
+
+Specifies the ID of an administrative unit in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -62,7 +85,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -72,7 +96,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Add-EntraBetaAdministrativeUnitMember]()
+[Add-EntraBetaAdministrativeUnitMember](Add-EntraBetaAdministrativeUnitMember.md)
 
-[Remove-EntraBetaAdministrativeUnitMember]()
+[Get-EntraBetaAdministrativeUnitMember](Get-EntraBetaAdministrativeUnitMember.md)
 
+[New-EntraBetaAdministrativeUnitMember](New-EntraBetaAdministrativeUnitMember.md)
