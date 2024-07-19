@@ -26,28 +26,31 @@ Gets a user.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraUser 
- [-Filter <String>] 
- [-All] 
- [-Top <Int32>] 
+Get-EntraUser
+ [-Filter <String>]
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetByValue
 
 ```powershell
-Get-EntraUser 
- [-SearchString <String>] 
- [-All] 
+Get-EntraUser
+ [-SearchString <String>]
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraUser 
- -ObjectId <String> 
- [-All] 
+Get-EntraUser
+ -ObjectId <String>
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -60,7 +63,7 @@ The Get-EntraUser cmdlet gets a user from Microsoft Entra ID.
 ### Example 1: Get top three users
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All'
+Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
 Get-EntraUser -Top 3
 ```
 
@@ -77,7 +80,7 @@ This example demonstrates how to get top three users from Microsoft Entra ID.
 ### Example 2: Get a user by ID
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All'
+Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
 Get-EntraUser -ObjectId 'cccccccc-2222-3333-4444-dddddddddddd'
 ```
 
@@ -92,7 +95,7 @@ This example demonstrates how to retrieve specific user by providing ID.
 ### Example 3: Search among retrieved users
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All'
+Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
 Get-EntraUser -SearchString 'New'
 ```
 
@@ -108,7 +111,7 @@ This cmdlet gets all users that match the value of SearchString against the firs
 ### Example 4: Get a user by userPrincipalName
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All'
+Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
 Get-EntraUser -Filter "UserPrincipalName eq 'NewUser@contoso.com'"
 ```
 
@@ -123,7 +126,7 @@ In this example, we retrieve user by `UserPrincipalName` from Microsoft Entra ID
 ### Example 5: Get a user by MailNickname
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All'
+Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
 Get-EntraUser -Filter "startswith(MailNickname,'Ada')"
 ```
 
@@ -217,6 +220,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
