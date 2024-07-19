@@ -2,9 +2,9 @@
 title: Get-EntraPolicy
 description: This article provides details on the Get-EntraPolicy command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
-ms.date: 05/30/2024
+ms.date: 07/19/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -25,6 +25,7 @@ Gets a policy.
 ## SYNTAX
 
 ### GetQuery (Default)
+
 ```powershell
 Get-EntraPolicy 
  [-Top <Int32>] 
@@ -33,6 +34,7 @@ Get-EntraPolicy
 ```
 
 ### GetById
+
 ```powershell
 Get-EntraPolicy 
  -Id <String> 
@@ -42,15 +44,18 @@ Get-EntraPolicy
 
 ## DESCRIPTION
 
-The Get-EntraPolicy cmdlet gets a policy in Microsoft Entra ID.
+The `Get-EntraPolicy` cmdlet gets a policy in Microsoft Entra ID. Specify `Id` parameter to get a policy.
 
 ## EXAMPLES
 
-### Example 1: Gets all policy 
+### Example 1: Gets all policy
+
 ```powershell
+Connect-Entra -Scopes 'Policy.Read.All'
 Get-EntraPolicy
 ```
-```output
+
+```Output
 Name                           Value
 ----                           -----
 deletedDateTime
@@ -61,49 +66,60 @@ isOrganizationDefault          False
 Type                           HomeRealmDiscoveryPolicy
 deletedDateTime
 id                             bbbbbbbb-1111-2222-3333-cccccccccccc
-displayName                    ss44$false%%%
+displayName                    MyPolicy
 definition                     {{"HomeRealmDisccccoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}
 isOrganizationDefault          False
 Type                           HomeRealmDiscoveryPolicy
 ```
-This exmaple return all the policy.
 
-### Example 2: Get a policy with specific ID.
+This example shows how to return all policies.
+
+### Example 2: Get a policy with specific ID
+
 ```powershell
-Get-EntraPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
+Connect-Entra -Scopes 'Policy.Read.All'
+Get-EntraPolicy -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
-```output
+
+```Output
 Name                           Value
 ----                           -----
 deletedDateTime
 id                             bbbbbbbb-1111-2222-3333-cccccccccccc
-displayName                    New update
+displayName                    MyPolicy
 definition                     {{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}
 isOrganizationDefault          False
 Type                           HomeRealmDiscoveryPolicy
 ```
+
 This example demonstrated how to receive policy with specific ID.
 
-### Example 4: Get a top one policy 
+- `Id`parameter specifies the policy ID.
+
+### Example 3: Get a top one policy
+
 ```powershell
+Connect-Entra -Scopes 'Policy.Read.All'
 Get-EntraPolicy -Top 1
 ```
-```output
+
+```Output
 Name                           Value
 ----                           -----
 deletedDateTime
 id                             bbbbbbbb-1111-2222-3333-cccccccccccc
-displayName                    New update
+displayName                    MyPolicy
 definition                     {{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}
 isOrganizationDefault          False
 Type                           HomeRealmDiscoveryPolicy
 ```
-This example Return top one policy.
 
+This example Return top one policy.
 
 ## PARAMETERS
 
 ### -Id
+
 The ID of the policy you want to retrieve
 
 ```yaml
@@ -119,10 +135,11 @@ Accept wildcard characters: False
 ```
 
 ### -All
-List all pages.
+
+List all policies.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -134,6 +151,7 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
@@ -149,7 +167,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
