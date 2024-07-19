@@ -2,7 +2,6 @@
 title: Get-EntraBetaApplicationSignInDetailedSummary.
 description: This article provides details on the Get-EntraBetaApplicationSignInDetailedSummary command.
 
-ms.service: entra
 ms.topic: reference
 ms.date: 07/08/2024
 ms.author: eunicewaweru

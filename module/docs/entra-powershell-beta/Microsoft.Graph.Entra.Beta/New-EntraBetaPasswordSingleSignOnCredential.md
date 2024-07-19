@@ -2,7 +2,6 @@
 title: New-EntraBetaPasswordSingleSignOnCredential.
 description: This article provides details on the New-EntraBetaPasswordSingleSignOnCredential command.
 
-ms.service: entra
 ms.topic: reference
 ms.date: 07/08/2024
 ms.author: eunicewaweru

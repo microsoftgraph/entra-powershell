@@ -1,8 +1,7 @@
 ---
-title: Set-EntraCustomSecurityAttributeDefinition.
-description: This article provides details on the Set-EntraCustomSecurityAttributeDefinition command.
+title: Set-EntraBetaCustomSecurityAttributeDefinition.
+description: This article provides details on the Set-EntraBetaCustomSecurityAttributeDefinition command.
 
-ms.service: entra
 ms.topic: reference
 ms.date: 07/10/2024
 ms.author: eunicewaweru

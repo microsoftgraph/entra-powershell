@@ -2,7 +2,6 @@
 title: Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues.
 description: This article provides details on the Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues command.
 
-ms.service: entra
 ms.topic: reference
 ms.date: 07/12/2024
 ms.author: eunicewaweru
