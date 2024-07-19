@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaServiceAppRoleAssignedTo
 
-## SYNOPSIS
+## Synopsis
 {{Fill in the Synopsis}}
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaServiceAppRoleAssignedTo -ObjectId <String> [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 {{Fill in the Description}}
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -28,7 +28,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -78,14 +78,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

@@ -2,9 +2,9 @@
 title: Get-EntraApplicationLogo
 description: This article provides details on the Get-EntraApplicationLogo command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/21/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,11 @@ schema: 2.0.0
 
 # Get-EntraApplicationLogo
 
-## SYNOPSIS
+## Synopsis
+
 Retrieve the logo of an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraApplicationLogo 
@@ -32,14 +33,16 @@ Get-EntraApplicationLogo
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
+
 The Get-EntraApplicationLogo cmdlet retrieves the logo that is set for an application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
+
 ```powershell
-PS C:\WINDOWS\system32> Get-EntraApplicationLogo -ObjectId 79592454-dea7-4660-9d91-f1768e5055ac
+Get-EntraApplicationLogo -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444'
 ```
 
 ```output
@@ -61,13 +64,14 @@ PropertyItems        : {274, 305, 306, 36867...}
 
 This example shows how to retrieve the application logo for an application that is specified through the Object ID parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -FileName
-If provided, the application logo is copied to the file who's name is provided in this parameter.
+
+If provided, the application logo is saved to the file using the specified file name.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -79,10 +83,11 @@ Accept wildcard characters: False
 ```
 
 ### -FilePath
-If provided, the application logo is copied with a random filename to the file path that is specified in this parameter.
+
+If provided, the application logo is saved to the specified file path using a random file name.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -94,10 +99,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 The ObjectID of the application for which the logo is to be retrieved.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -109,10 +115,11 @@ Accept wildcard characters: False
 ```
 
 ### -View
-If set to $true, the application's logo is displayed in a new window on the screen.
+
+If set to $true, displays the application logo in a new window.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -124,16 +131,21 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
 
 ### System.String
+
 ### System.Boolean
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
 
-## RELATED LINKS
+## Notes
+
+## Related Links
+
+[Set-EntraApplicationLogo](Set-EntraApplicationLogo.md)
