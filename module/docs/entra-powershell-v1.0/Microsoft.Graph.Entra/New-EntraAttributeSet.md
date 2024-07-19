@@ -33,7 +33,7 @@ New-EntraAttributeSet
 
 ## DESCRIPTION
 
-The `New-EntraAttributeSet` cmdlet adds a new Microsoft Entra ID attribute set object.
+The `New-EntraAttributeSet` cmdlet creates a new attribute set object in Microsoft Entra ID.
 
 In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with a supported role permission.
 
@@ -64,7 +64,7 @@ NewCustomAttributeSet Attributes for engineering team 10
 
 This example adds a single attribute set.
 
-- Attribute set: `Demo`
+- Attribute set: `NewCustomAttributeSet`
 
 ## PARAMETERS
 
