@@ -94,7 +94,7 @@ Type                           HomeRealmDiscoveryPolicy
 
 This example demonstrated how to receive policy with specific ID.
 
-- `Id`parameter specifies the policy ID.
+- `Id` parameter specifies the policy ID.
 
 ### Example 3: Get a top one policy
 
