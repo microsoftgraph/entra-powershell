@@ -2,7 +2,6 @@
 title: Get-EntraPolicy
 description: This article provides details on the Get-EntraPolicy command.
 
-ms.service: entra
 ms.topic: reference
 ms.date: 07/19/2024
 ms.author: eunicewaweru
@@ -94,7 +93,7 @@ Type                           HomeRealmDiscoveryPolicy
 
 This example demonstrated how to receive policy with specific ID.
 
-- `Id` parameter specifies the policy ID.
+- `Id` parameter specifies the unique policy ID, which you want to receive. In this example, `bbbbbbbb-1111-2222-3333-cccccccccccc` represents the ID of the policy.
 
 ### Example 3: Get a top one policy
 
