@@ -39,7 +39,11 @@ The `Remove-EntraAdministrativeUnitMember` cmdlet removes an administrative unit
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-Remove-EntraAdministrativeUnitMember -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc' -MemberId 'eeeeeeee-4444-5555-6666-ffffffffffff'
+$params = @{
+    ObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    MemberId = 'eeeeeeee-4444-5555-6666-ffffffffffff'
+}
+Remove-EntraAdministrativeUnitMember @params
 ```
 
 This command removes a specified member (user or group) from a specified administrative unit.
