@@ -1,0 +1,128 @@
+---
+title: New-EntraPermissionGrantPolicy
+description: This article provides details on the New-EntraPermissionGrantPolicy command.
+
+
+ms.topic: reference
+ms.date: 06/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
+external help file: Microsoft.Graph.Entra-Help.xml
+Module Name: Microsoft.Graph.Entra
+online version:
+schema: 2.0.0
+---
+
+# New-EntraPermissionGrantPolicy
+
+## Synopsis
+Creates a permission grant policy.
+
+## Syntax
+
+```powershell
+New-EntraPermissionGrantPolicy 
+ -Id <String>
+ [-DisplayName <String>] 
+ [-Description <String>] 
+ [<CommonParameters>]
+```
+
+## Description
+The New-EntraPermissionGrantPolicy cmdlet creates a Microsoft Entra ID permission grant policy.
+
+## Examples
+
+### Example 1: Create a permission grant policy
+```powershell
+PS C:\> New-EntraPermissionGrantPolicy -Id "my_new_permission_grant_policy_id"
+```
+
+```output
+DeletedDateTime Description DisplayName Id
+--------------- ----------- ----------- --
+                                        my_new_permission_grant_policy_id
+```
+
+This command creates new permission grant policy.
+
+### Example 1: Create a permission grant policy with display name and description parameters
+```powershell
+PS C:\> New-EntraPermissionGrantPolicy -Id "my_new_permission_grant_policy_id"  -DisplayName "MyNewPermissionGrantPolicy" -Description "My new permission grant policy"
+```
+
+```output
+DeletedDateTime Description                    DisplayName                Id
+--------------- -----------                    -----------                --
+                My new permission grant policy MyNewPermissionGrantPolicy my_new_permission_grant_policy_id
+```
+
+This command creates new permission grant policy.
+
+## Parameters
+
+### -Description
+Specifies the description for the permission grant policy.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DisplayName
+Specifies the display name for the permission grant policy.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Id
+Specifies the unique identifier of the permission grant policy.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
+
+## Outputs
+
+## Notes
+
+## Related Links
+
+[Get-EntraPermissionGrantPolicy](Get-EntraPermissionGrantPolicy.md)
+
+[Set-EntraPermissionGrantPolicy](Set-EntraPermissionGrantPolicy.md)
+
+[Remove-EntraPermissionGrantPolicy](Remove-EntraPermissionGrantPolicy.md)
+

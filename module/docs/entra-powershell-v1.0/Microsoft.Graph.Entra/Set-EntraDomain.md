@@ -2,9 +2,9 @@
 title: Set-EntraDomain.
 description: This article provides details on the Set-EntraDomain command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/06/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,11 @@ schema: 2.0.0
 
 # Set-EntraDomain
 
-## SYNOPSIS
+## Synopsis
+
 Updates a domain.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraDomain 
@@ -30,15 +31,23 @@ Set-EntraDomain
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Set-EntraDomain cmdlet updates a domain in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Set-EntraDomain` cmdlet updates a domain in Microsoft Entra ID.
+
+The work or school account needs to belong to at least one of the following Microsoft Entra roles:
+
+- Domain Name Administrator
+- Security Administrator
+- External Identity Provider Administrator
+
+## Examples
 
 ### Example 1: Set the domain as the default domain for new user account creation
 
 ```powershell
-PS C:\>Set-EntraDomain -Name Contoso.com -IsDefault $true
+Connect-Entra -Scopes 'Domain.ReadWrite.All'
+Set-EntraDomain -Name Contoso.com -IsDefault $true
 ```
 
 This example demonstrates how to set default domain for new user account in Microsoft Entra ID.  
@@ -46,19 +55,21 @@ This example demonstrates how to set default domain for new user account in Micr
 ### Example 2: Set the list of domain capabilities
 
 ```powershell
-PS C:\>Set-EntraDomain -Name Contoso.com -SupportedServices @("Email", "OfficeCommunicationsOnline")
+Connect-Entra -Scopes 'Domain.ReadWrite.All'
+Set-EntraDomain -Name Contoso.com -SupportedServices @('Email', 'OfficeCommunicationsOnline')
 ```
 
 This example demonstrates how to set domain capabilities for new user account in Microsoft Entra ID.  
 
-## PARAMETERS
+## Parameters
 
 ### -IsDefault
+
 Indicates whether or not this is the default domain used for user creation.
 There's only one default domain per company.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -70,10 +81,11 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 The fully qualified name of the domain.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -85,6 +97,7 @@ Accept wildcard characters: False
 ```
 
 ### -SupportedServices
+
 The capabilities assigned to the domain.
 
 ```yaml
@@ -100,15 +113,16 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Confirm-EntraDomain](Confirm-EntraDomain.md)
 
@@ -117,4 +131,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [New-EntraDomain](New-EntraDomain.md)
 
 [Remove-EntraDomain](Remove-EntraDomain.md)
-

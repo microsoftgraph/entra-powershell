@@ -2,9 +2,9 @@
 title: Set-EntraApplicationLogo
 description: This article provides details on the Set-EntraApplicationLogo command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 06/04/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # Set-EntraApplicationLogo
 
-## SYNOPSIS
+## Synopsis
 
 Sets the logo for an Application
 
-## SYNTAX
+## Syntax
 
 ### File (Default)
 
@@ -49,22 +49,27 @@ Set-EntraApplicationLogo
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 This cmdlet is used to set the logo for an application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Sets the application logo for the application specified by the ObjectID parameter
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Set-EntraApplicationLogo -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -FilePath 'D:\applogo.jpg'
+$params = @{
+    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    FilePath = 'D:\applogo.jpg'
+}
+
+Set-EntraApplicationLogo @params
 ```
 
 This cmdlet sets the application logo for the application specified by the ObjectID parameter to the image specified with the Filepath parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -FilePath
 
@@ -102,16 +107,16 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
 System.IO.Stream System.Byte\[\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

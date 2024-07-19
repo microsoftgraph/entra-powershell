@@ -7,10 +7,10 @@ schema: 2.0.0
 
 # Get-EntraBetaPrivilegedRole
 
-## SYNOPSIS
+## Synopsis
 {{ Fill in the Synopsis }}
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -22,10 +22,10 @@ Get-EntraBetaPrivilegedRole [-Filter <String>] [<CommonParameters>]
 Get-EntraBetaPrivilegedRole -Id <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 {{ Fill in the Description }}
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```powershell
@@ -34,7 +34,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 ### -Filter
 {{ Fill Filter Description }}
@@ -69,13 +69,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

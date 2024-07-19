@@ -1,10 +1,16 @@
 # Prerequisites
 
-The main prerequisite for this module is having the right version of Microsoft Graph PowerShell SDK. For this release, the module requires version 2.0.0 or higher.
+To use this module, you must have the appropriate version of the [Microsoft Graph PowerShell SDK](https://learn.microsoft.com/powershell/microsoftgraph/installation). Specifically, this release requires version 2.15.0 or higher.
 
-Microsoft Graph PowerShell SDK has its own [Prerequesites](https://learn.microsoft.com/powershell/microsoftgraph/installation#prerequisites).
+## PowerShell Gallery Installation
 
-This module does not require the full SDK, only these modules:
+When installing the module from the PowerShell Gallery, all necessary dependencies are installed automatically.
+
+## Required Modules for Local Building
+
+This module does not require the entire Microsoft Graph PowerShell SDK, only the following specific modules:
+
+### v1.0 modules
 
 - Microsoft.Graph.DirectoryObjects
 - Microsoft.Graph.Users
@@ -16,31 +22,14 @@ This module does not require the full SDK, only these modules:
 - Microsoft.Graph.Identity.SignIns
 - Microsoft.Graph.Applications
 
+### Beta
+
+- Microsoft.Graph.Beta.Applications
 - Microsoft.Graph.Beta.Users
 - Microsoft.Graph.Beta.Users.Actions
 - Microsoft.Graph.Beta.Users.Functions
 - Microsoft.Graph.Beta.Groups
-- Microsoft.Graph.Beta.Applications
-
-## Installing a preview version on PS 5.1
-
-For Windows PowerShell users, you must update your tools to allow the prerelease version.
-
-```
-Install-Module -Name PackageManagement -Repository PSGallery -Force
-Install-Module -Name PowerShellGet -Repository PSGallery -Force
-```
-
-## Known problems
-
-If you are getting this error:
-
-```
-Install-Module: The 'Install-Module' command was found in the module 'PowerShellGet', but the module could not be load
-ed. For more information, run 'Import-Module PowerShellGet'.
-
-```
-
-Users may need to change the execution policy `Set-ExecutionPolicy Unrestricted`. 
-
-You can get more information regarding execution policy [here](https://learn.microsoft.com/powershell/module/microsoft.powershell.security/set-executionpolicy)
+- Microsoft.Graph.Beta.Identity.DirectoryManagement
+- Microsoft.Graph.Beta.Identity.Governance
+- Microsoft.Graph.Beta.Identity.SignIns
+- Microsoft.Graph.Beta.Reports

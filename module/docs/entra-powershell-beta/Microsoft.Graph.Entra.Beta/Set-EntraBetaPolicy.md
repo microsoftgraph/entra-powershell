@@ -1,4 +1,15 @@
 ---
+title: Set-EntraBetaPolicy.
+description: This article provides details on the Set-EntraBetaPolicy command.
+
+
+ms.topic: reference
+ms.date: 07/02/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -7,37 +18,103 @@ schema: 2.0.0
 
 # Set-EntraBetaPolicy
 
-## SYNOPSIS
+## Synopsis
+
 Updates a policy.
 
-## SYNTAX
+## Syntax
 
-```
-Set-EntraBetaPolicy [-AlternativeIdentifier <String>] -Id <String>
- [-Definition <System.Collections.Generic.List`1[System.String]>] [-DisplayName <String>] [-Type <String>]
+```powershell
+Set-EntraBetaPolicy 
+ -Id <String>
+ [-AlternativeIdentifier <String>] 
+ [-Definition <System.Collections.Generic.List`1[System.String]>] 
+ [-DisplayName <String>] 
+ [-Type <String>]
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]>]
- [-IsOrganizationDefault <Boolean>] [<CommonParameters>]
+ [-IsOrganizationDefault <Boolean>] 
+ [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Set-EntraBetaPolicy cmdlet sets a policy in Azure Active Directory (AD).
+## Description
 
-## EXAMPLES
+The `Set-EntraBetaPolicy` cmdlet sets a policy in Microsoft Entra ID. Specify `Id` parameter to updates specific policy.
 
-### Example 1: Update a policy
+## Examples
+
+### Example 1: Update a policy display name
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
+$params = @{
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    DisplayName = 'NewUpdated'
+}
+Set-EntraBetaPolicy @params 
 ```
-PS C:\>Set-EntraBetaPolicy -ObjectId <object id of policy> -DisplayName <string>
+
+This command updates display name of the specified policy in Microsoft Entra ID.
+
+### Example 2: Update a policy definition
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
+$params = @{
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    Definition = @('{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')
+}
+Set-EntraBetaPolicy @params
 ```
 
-This command updates the specified policy in Azure AD.
+This command updates definition of the specified policy in Microsoft Entra ID.
 
-## PARAMETERS
+### Example 3: Update a policy organization default
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
+$params = @{
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    IsOrganizationDefault = $false
+}
+Set-EntraBetaPolicy @params
+```
+
+This command updates organization default of the specified policy in Microsoft Entra ID.
+
+### Example 4: Update policy type
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
+$params = @{
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    Type = 'homeRealmDiscoveryPolicies'
+}
+Set-EntraBetaPolicy @params
+```
+
+This example demonstrates how to update the `type` property of a specified policy in Microsoft Entra ID.
+
+### Example 5: Update policy alternative Identifier
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
+$params = @{
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    AlternativeIdentifier = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+}
+Set-EntraBetaPolicy @params
+```
+
+This example demonstrates how to update the `AlternativeIdentifier` property of a specified policy in Microsoft Entra ID.
+
+## Parameters
 
 ### -AlternativeIdentifier
+
 Specifies an alternative ID for the policy.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -49,8 +126,9 @@ Accept wildcard characters: False
 ```
 
 ### -Definition
-Specifies the array of stringfied JSON that contains all the rules of the policy.
-For example -Definition @("{"TokenLifetimePolicy":{"Version":1,"MaxInactiveTime":"20:00:00"}}") .
+
+Specifies the array of stringified JSON that contains all the rules of the policy.
+For example -Definition @("{"TokenLifetimePolicy":{"Version":1,"MaxInactiveTime":"20:00:00"}}").
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -65,10 +143,11 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
+
 Specifies the display name.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -80,10 +159,11 @@ Accept wildcard characters: False
 ```
 
 ### -IsOrganizationDefault
-True if this policy is the organisational default
+
+True if this policy is the organizational default.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -95,6 +175,7 @@ Accept wildcard characters: False
 ```
 
 ### -KeyCredentials
+
 Specifies the key credentials.
 
 ```yaml
@@ -110,11 +191,12 @@ Accept wildcard characters: False
 ```
 
 ### -Type
+
 Specifies the type of policy.
 For token lifetimes, use "TokenLifetimePolicy".
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -126,10 +208,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-The Id pf the policy for which you want to set values.
+
+The Id of the policy for which you want to set values.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -141,19 +224,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
 
-[Get-EntraBetaPolicy]()
+## Related Links
 
-[New-EntraBetaPolicy]()
+[Get-EntraBetaPolicy](Get-EntraBetaPolicy.md)
 
-[Remove-EntraBetaPolicy]()
+[New-EntraBetaPolicy](New-EntraBetaPolicy.md)
 
+[Remove-EntraBetaPolicy](Remove-EntraBetaPolicy.md)

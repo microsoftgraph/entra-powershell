@@ -2,9 +2,9 @@
 title: Get-EntraServicePrincipalOAuth2PermissionGrant.
 description: This article provides details on the Get-EntraServicePrincipalOAuth2PermissionGrant command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 06/02/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,25 +17,26 @@ schema: 2.0.0
 
 # Get-EntraServicePrincipalOAuth2PermissionGrant
 
-## SYNOPSIS
+## Synopsis
 
 Gets an oAuth2PermissionGrant object.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraServicePrincipalOAuth2PermissionGrant
 -ObjectId <String>
 [-All]
 [-Top <Int32>]
+[-Property <String[]>]
 [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraServicePrincipalOAuth2PermissionGrant cmdlet gets an oAuth2PermissionGrant object for a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the OAuth2 permission grants of a service principal.
 
@@ -91,7 +92,7 @@ A1bC2dE3f...                                                      00001111-aaaa-
 This example demonstrates how to get top two oAuth2PermissionGrant object for a service principal in Microsoft Entra ID.  
 This command gets two OAuth2 permission grants of a service principal for specified ObjectId.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -141,16 +142,32 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)

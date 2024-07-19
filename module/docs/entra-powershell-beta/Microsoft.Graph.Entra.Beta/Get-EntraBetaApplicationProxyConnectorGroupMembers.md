@@ -1,9 +1,9 @@
 ---
 title: Get-EntraBetaApplicationProxyConnectorGroupMembers
 description: This article provides details on the Get-EntraBetaApplicationProxyConnectorGroupMembers.
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 04/15/2023
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -16,10 +16,10 @@ schema: 2.0.0
 
 # Get-EntraBetaApplicationProxyConnectorGroupMembers
 
-## SYNOPSIS
+## Synopsis
 The Get-EntraBetaApplicationProxyConnectorGroupMembers get all the Application Proxy connectors associated with the given connector group. 
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaApplicationProxyConnectorGroupMembers
@@ -29,10 +29,10 @@ Get-EntraBetaApplicationProxyConnectorGroupMembers
  [-Filter <String>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaApplicationProxyConnectorGroupMembers get all the Application Proxy connectors associated with the given connector group. 
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Gets all the connectors in the group.
 ```powershell
@@ -82,7 +82,7 @@ status                         active
 ```
 The output of this command, showing all the connectors in the group with filter parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -144,17 +144,17 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-## INPUTS
+## Inputs
 
 ### System.String
 System. Nullable`1[[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
 System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
 
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
 ## RELATED LINKS

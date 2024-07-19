@@ -2,9 +2,9 @@
 title: Remove-EntraGroupAppRoleAssignment
 description: This article provides details on the Remove-EntraGroupAppRoleAssignment command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/06/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -16,11 +16,11 @@ schema: 2.0.0
 
 # Remove-EntraGroupAppRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 
 Delete a group application role assignment.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraGroupAppRoleAssignment 
@@ -29,11 +29,11 @@ Remove-EntraGroupAppRoleAssignment
 [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Remove-EntraGroupAppRoleAssignment cmdlet removes a group application role assignment from Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Removes a group application role assignment
 
@@ -46,7 +46,7 @@ This example demonstrates how to remove the specified group application role ass
 ObjectId - Specifies the object ID of a group.
 AppRoleAssignmentId - Specifies the object ID of the group application role assignment.
 
-## PARAMETERS
+## Parameters
 
 ### -AppRoleAssignmentId
 
@@ -84,13 +84,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraGroupAppRoleAssignment](Get-EntraGroupAppRoleAssignment.md)
 
