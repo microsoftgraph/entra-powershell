@@ -2,7 +2,7 @@
 title: New-EntraGroupAppRoleAssignment.
 description: This article provides details on the New-EntraGroupAppRoleAssignment command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru

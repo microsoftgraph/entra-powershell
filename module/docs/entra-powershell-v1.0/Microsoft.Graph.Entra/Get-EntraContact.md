@@ -2,7 +2,7 @@
 title: Get-EntraContact
 description: This article provides details on the Get-EntraContact command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -26,19 +26,21 @@ Gets a contact from Microsoft Entra ID.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraContact 
- [-Filter <String>] 
- [-All] 
- [-Top <Int32>] 
+Get-EntraContact
+ [-Filter <String>]
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraContact 
- -ObjectId <String> 
- [-All] 
+Get-EntraContact
+ -ObjectId <String>
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -193,6 +195,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

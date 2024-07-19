@@ -2,7 +2,11 @@
 title: Remove-EntraScopedRoleMembership.
 description: This article provides details on the Remove-EntraScopedRoleMembership command.
 
+<<<<<<< HEAD
 ms.service: active-directory
+=======
+
+>>>>>>> c0ab64e29dd87ffc3f0e378434425e5b4a399eaa
 ms.topic: reference
 ms.date: 06/06/2024
 ms.author: eunicewaweru
