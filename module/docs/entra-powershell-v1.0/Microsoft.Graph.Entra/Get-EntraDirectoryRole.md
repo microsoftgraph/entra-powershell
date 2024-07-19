@@ -119,7 +119,7 @@ This command gets the directory role by display name.
 
 ### -Filter
 
-The OData V4.0 filter statement.
+The OData v4.0 filter statement.
 Controls which objects are returned.
 
 ```yaml

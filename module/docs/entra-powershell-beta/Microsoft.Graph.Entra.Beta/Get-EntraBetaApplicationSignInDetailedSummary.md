@@ -8,6 +8,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -62,7 +63,7 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-The OData V4.0 filter statement. 
+The OData v4.0 filter statement. 
 Controls which objects are returned.
 
 ```yaml

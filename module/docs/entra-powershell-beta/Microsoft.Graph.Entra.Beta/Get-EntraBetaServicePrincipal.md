@@ -169,7 +169,7 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-Specifies an OData V4.0 filter statement.
+Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
