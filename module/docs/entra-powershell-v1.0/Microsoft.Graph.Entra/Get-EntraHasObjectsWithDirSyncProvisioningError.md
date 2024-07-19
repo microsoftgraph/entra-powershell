@@ -2,9 +2,9 @@
 title: Get-EntraHasObjectsWithDirSyncProvisioningError
 description: This article provides details on the Get-EntraHasObjectsWithDirSyncProvisioningError command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,10 @@ schema: 2.0.0
 
 # Get-EntraHasObjectsWithDirSyncProvisioningError
 
-## SYNOPSIS
+## Synopsis
 Returns whether Microsoft Entra ID has objects with DirSync provisioning error.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraHasObjectsWithDirSyncProvisioningError 
@@ -29,11 +29,11 @@ Get-EntraHasObjectsWithDirSyncProvisioningError
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraHasObjectsWithDirSyncProvisioningError returns whether Microsoft Entra ID has objects 
 with DirSync provisioning error.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Return whether Microsoft Entra ID has objects with DirSync provisioning error
 ```powershell
@@ -46,7 +46,7 @@ False
 
 This command returns whether Microsoft Entra ID has objects with DirSync provisioning error.
 
-## PARAMETERS
+## Parameters
 
 ### -TenantId
 The unique ID of the tenant to perform the operation on.
@@ -68,11 +68,11 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System. Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

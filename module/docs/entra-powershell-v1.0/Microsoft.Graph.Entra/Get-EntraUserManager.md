@@ -2,9 +2,9 @@
 title: Get-EntraUserManager.
 description: This article provides details on the Get-EntraUserManager command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/08/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,49 +17,55 @@ schema: 2.0.0
 
 # Get-EntraUserManager
 
-## SYNOPSIS
+## Synopsis
+
 Gets the manager of a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
-Get-EntraUserManager 
- -ObjectId <String> 
+Get-EntraUserManager
+ -ObjectId <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
+
 The Get-EntraUserManager cmdlet gets the manager of a user in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the manager of a user
+
 ```powershell
-PS C:\>Get-EntraUserManager -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215"
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraUserManager -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff'
 ```
+
 ```output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {miriamg@m365x99297270.onmicrosoft.com}
+imAddresses                     : {miriamg@contoso.com}
 preferredLanguage               :
-mail                            : MiriamG@M365x99297270.OnMicrosoft.com
-securityIdentifier              : S-1-12-1-649798363-1255893902-1277583799-1163042182
-identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=MiriamG@M365x99297270.OnMicrosoft.com}}
+mail                            : MiriamG@contoso.com
+securityIdentifier              : B-2-33-4-5555555555-6666666666-7777777-8888888888
+identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=MiriamG@contoso.com}}
 consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
 ```
 
-This example demonstrates how to retrieve the manager of a specific user.    
-This command gets the manager of a specified user.
+This example demonstrates how to retrieve the manager of a specific user.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
+
 The unique identifier of a user in Microsoft Entra ID (UserPrincipalName or ObjectId).
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -70,18 +76,34 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Remove-EntraUserManager](Remove-EntraUserManager.md)
 
 [Set-EntraUserManager](Set-EntraUserManager.md)
-

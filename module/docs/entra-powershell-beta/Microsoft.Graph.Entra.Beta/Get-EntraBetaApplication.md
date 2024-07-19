@@ -2,9 +2,8 @@
 title: Get-EntraBetaApplication.
 description: This article provides details on the Get-EntraBetaApplication command.
 
-ms.service: active-directory
 ms.topic: reference
-ms.date: 06/03/2024
+ms.date: 06/17/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +16,11 @@ schema: 2.0.0
 
 # Get-EntraBetaApplication
 
-## SYNOPSIS
+## Synopsis
 
 Gets an application.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -51,36 +50,35 @@ Get-EntraBetaApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraBetaApplication` cmdlet gets a Microsoft Entra ID application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get an application by ObjectId
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaApplication -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+Get-EntraBetaApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-```output
+```Output
 DisplayName         Id                                   AppId                                SignInAudience PublisherDomain
 -----------         --                                   -----                                -------------- ---------------
 ToGraph_443democc3c aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
 ```
 
-This example demonstrates how to retrieve specific application by providing ID.  
-This command gets an application for the specified ObjectId.
+This example demonstrates how to retrieve specific application by providing ID. 
 
 ### Example 2: Get all applications
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get- Get-EntraBetaApplication -All 
+Get-EntraBetaApplication -All 
 ```
 
-```output
+```Output
 DisplayName         Id                                   AppId                                SignInAudience                     PublisherDomain
 -----------         --                                   -----                                --------------                     ---------------
 test app            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADandPersonalMicrosoftAccount contoso.com
@@ -90,8 +88,7 @@ test adms app azure gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb
 test adms2          iiiiiiii-aaaa-bbbb-cccc-jjjjjjjjjjjj jjjjjjjj-bbbb-cccc-dddd-kkkkkkkkkkkk AzureADandPersonalMicrosoftAccount contoso.com
 ```
 
-This example demonstrates how to get all applications from Microsoft Entra ID.  
-This command gets the all applications in Microsoft Entra ID.
+This example demonstrates how to get all applications from Microsoft Entra ID.
 
 ### Example 3: Get five applications
 
@@ -100,7 +97,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaApplication -Top 5
 ```
 
-```output
+```Output
 DisplayName         Id                                   AppId                                SignInAudience                     PublisherDomain
 -----------         --                                   -----                                --------------                     ---------------
 test app            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADandPersonalMicrosoftAccount contoso.com
@@ -110,8 +107,7 @@ test adms app azure gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb
 test adms2          iiiiiiii-aaaa-bbbb-cccc-jjjjjjjjjjjj jjjjjjjj-bbbb-cccc-dddd-kkkkkkkkkkkk AzureADandPersonalMicrosoftAccount contoso.com
 ```
 
-This example demonstrates how to get top five applications from Microsoft Entra ID.  
-This command gets the top five applications.
+This example demonstrates how to get top five applications from Microsoft Entra ID.
 
 ### Example 4: Get an application by display name
 
@@ -120,30 +116,28 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaApplication -Filter "DisplayName eq 'ToGraph_443DEMO'"
 ```
 
-```output
+```Output
 DisplayName     Id                                   AppId                                SignInAudience PublisherDomain
 -----------     --                                   -----                                -------------- ---------------
 ToGraph_443DEMO cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg   contoso.com
 ```
 
-In this example, we retrieve application by userPrincipalName from Microsoft Entra ID.  
-This command gets an application by its display name.
+In this example, we retrieve application by userPrincipalName from Microsoft Entra ID. 
 
 ### Example 5: Search among retrieved applications
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaApplication -SearchString "My new application 2"
+Get-EntraBetaApplication -SearchString 'My new application 2'
 ```
 
-```output
+```Output
 DisplayName          Id                                   AppId                                SignInAudience                     PublisherDomain
 -----------          --                                   -----                                --------------                     ---------------
 My new application 2 kkkkkkkk-cccc-dddd-eeee-llllllllllll llllllll-dddd-eeee-ffff-mmmmmmmmmmmm AzureADandPersonalMicrosoftAccount contoso.com
 ```
 
-This example demonstrates how to retrieve applications for specific string from Microsoft Entra ID.  
-This cmdlet gets all applications that match the value of SearchString against the first characters in DisplayName.
+This example demonstrates how to retrieve applications for specific string from Microsoft Entra ID. 
 
 ### Example 6: Retrieve an application by identifierUris
 
@@ -154,14 +148,14 @@ Get-EntraBetaApplication -Filter "identifierUris/any(uri:uri eq 'https://wingtip
 
 This example demonstrates how to retrieve applications by its identifierUris from Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
 List all pages.
 
 ```yaml
-Type: System.SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -241,13 +235,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraBetaApplication](New-EntraBetaApplication.md)
 

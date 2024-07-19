@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Remove-EntraBetaDirectoryRoleMember
 
-## SYNOPSIS
+## Synopsis
 Removes a member of a directory role.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaDirectoryRoleMember -ObjectId <String> -MemberId <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaDirectoryRoleMember cmdlet removes a member from a directory role in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a member from a directory role
 ```
@@ -29,7 +29,7 @@ PS C:\>Remove-EntraBetaDirectoryRoleMember -ObjectId "019ea7a2-1613-47c9-81cb-20
 
 This command removes the specified member from the specified role.
 
-## PARAMETERS
+## Parameters
 
 
 
@@ -66,13 +66,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraBetaDirectoryRoleMember]()
 

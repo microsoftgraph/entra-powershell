@@ -2,9 +2,9 @@
 title:  Get-EntraServicePrincipalOwnedObject.
 description: This article provides details on the  Get-EntraServicePrincipalOwnedObject Command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 06/02/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,25 +17,26 @@ schema: 2.0.0
 
 # Get-EntraServicePrincipalOwnedObject
 
-## SYNOPSIS
+## Synopsis
 
 Gets an object owned by a service principal.
 
-## SYNTAX
+## Syntax
 
 ```powershell
-Get-EntraServicePrincipalOwnedObject 
- [-All] 
- -ObjectId <String> 
- [-Top <Int32>] 
+Get-EntraServicePrincipalOwnedObject
+ [-All]
+ -ObjectId <String>
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraServicePrincipalOwnedObject cmdlet gets an object owned by a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the owned objects of a service principal
 
@@ -88,7 +89,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 
 This command gets top one owned object of a service principal identified by `11112222-bbbb-3333-cccc-4444dddd5555`.  
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -138,16 +139,32 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)

@@ -2,9 +2,9 @@
 title:  Get-EntraServicePrincipalKeyCredential.
 description: This article provides details on the  Get-EntraServicePrincipalKeyCredential Command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 06/02/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Get-EntraServicePrincipalKeyCredential
 
-## SYNOPSIS
+## Synopsis
 
 Get key credentials for a service principal.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraServicePrincipalKeyCredential 
@@ -29,11 +29,11 @@ Get-EntraServicePrincipalKeyCredential
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Get-EntraServicePrincipalKeyCredential cmdlet gets the key credentials for a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the key credential of a service principal
 
@@ -54,7 +54,7 @@ The command stores the ID in the $ServicePrincipalId variable.
 
 The second command gets the key credential for the service principal identified by $ServicePrincipalId.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -76,13 +76,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
 

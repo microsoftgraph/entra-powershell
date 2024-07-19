@@ -2,9 +2,9 @@
 title: Enable-EntraDirectoryRole
 description: This article provides details on the Enable-EntraDirectoryRole command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/22/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,11 @@ schema: 2.0.0
 
 # Enable-EntraDirectoryRole
 
-## SYNOPSIS
+## Synopsis
+
 Activates an existing directory role in Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Enable-EntraDirectoryRole 
@@ -29,34 +30,40 @@ Enable-EntraDirectoryRole
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Enable-EntraDirectoryRole cmdlet activates an existing directory role in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Enable-EntraDirectoryRole` cmdlet activates an existing directory role in Microsoft Entra ID.
+
+The Company Administrators and the default user directory roles (User, Guest User, and Restricted Guest User) are activated by default. To access and assign members to other directory roles, you must first activate them using their corresponding directory role template ID.
+
+## Examples
 
 ### Example 1: Enable a directory role
+
 ```powershell
-PS C:\> $InviterRole = Get-EntraDirectoryRoleTemplate | Where-Object {$_.DisplayName -eq "Guest Inviter"}
-PS C:\> Enable-EntraDirectoryRole -RoleTemplateId $InviterRole.ObjectId
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+$InviterRole = Get-EntraDirectoryRoleTemplate | Where-Object {$_.DisplayName -eq 'Guest Inviter'}
+Enable-EntraDirectoryRole -RoleTemplateId $InviterRole.ObjectId
 ```
 
-```output
+```Output
 DeletedDateTime Id                                   Description                                      DisplayName   RoleTemplateId
 --------------- --                                   -----------                                      -----------   --------------
                 b5baa59b-86ab-4053-ac3a-0396116d1924 Guest Inviter has access to invite guest users.  Guest Inviter 92ed04bf-c94a-4b82-9729-b799a7a4c178
 ```
 
-The first command gets an inviter role that has the display name Guest Inviter by using the [Get-EntraDirectoryRoleTemplate](./Get-EntraDirectoryRoleTemplate.md) cmdlet and stores Guest Inviter in the $InviterRole variable.  
+The example shows how to enable the directory role.
 
-The final command enables the directory role in $InviterRole.  
+You can use `Get-EntraDirectoryRoleTemplate` to fetch a specific directory role to activate.
 
-## PARAMETERS
+## Parameters
 
 ### -RoleTemplateId
-The ID of the Role template to enable
+
+The ID of the directoryRoleTemplate that the role is based on.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -68,17 +75,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+- For additional details see [Activate directoryRole](/graph/api/directoryrole-post-directoryroles).
+
+## Related Links
 
 [Get-EntraDirectoryRole](Get-EntraDirectoryRole.md)
 
 [Get-EntraDirectoryRoleTemplate](Get-EntraDirectoryRoleTemplate.md)
-

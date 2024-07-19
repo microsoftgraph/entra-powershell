@@ -2,9 +2,9 @@
 title: Get-EntraDirSyncfeature
 description: This article provides details on the Get-EntraDirSyncfeature command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,11 @@ schema: 2.0.0
 
 # Get-EntraDirSyncfeature
 
-## SYNOPSIS
+## Synopsis
+
 Used to check the status of identity synchronization features for a tenant.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraDirSyncfeature 
@@ -30,9 +31,12 @@ Get-EntraDirSyncfeature
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraDirSyncfeature cmdlet is used to check the status of identity synchronization features for a tenant.
+## Description
+
+The `Get-EntraDirSyncfeature` cmdlet checks the status of identity synchronization features for a tenant.
+
 Features that can be used with this cmdlet include:
+
 - **DeviceWriteback**
 - **DirectoryExtensions**
 - **DuplicateProxyAddressResiliency**
@@ -43,31 +47,51 @@ Features that can be used with this cmdlet include:
 - **UnifiedGroupWriteback**
 - **UserWriteback**
 
-The cmdlet can also be run without any feature being specified, in which case it returns a list of all features and whether they're enabled or disabled.
+The cmdlet can be run without specifying any features, in which case it returns a list of all features and their enabled or disabled status.
 
-## EXAMPLES
+## Examples
 
 ### EXAMPLE 1: Return a list of all possible DirSync features and whether they're enabled (True) or disabled (False)
+
 ```powershell
-PS C:\> Get-EntraDirSyncfeature
+Connect-Entra -Scopes 'OnPremDirectorySynchronization.Read.All'
+Get-EntraDirSyncfeature
 ```
 
-```output
+```Output
 Enabled DirSyncFeature
 ------- --------------
   False BlockCloudObjectTakeoverThroughHardMatch
   False BlockSoftMatch
   False BypassDirSyncOverrides
+  False CloudPasswordPolicyForPasswordSyncedUsers
+  False ConcurrentCredentialUpdate
+   True ConcurrentOrgIdProvisioning
+  False DeviceWriteback
+  False DirectoryExtensions
+  False FopeConflictResolution
+  False GroupWriteBack
+  False PasswordSync
+  False PasswordWriteback
+   True QuarantineUponProxyAddressesConflict
+   True QuarantineUponUpnConflict
+   True SoftMatchOnUpn
+   True SynchronizeUpnForManagedUsers
+  False UnifiedGroupWriteback
+  False UserForcePasswordChangeOnLogon
+  False UserWriteback
 ```
 
 This command returns a list of all possible DirSync features and whether they're enabled (True) or disabled (False).
 
 ### EXAMPLE 2: Return whether PasswordSync is enabled for the tenant (True) or disabled (False)
+
 ```powershell
-PS C:\> Get-EntraDirSyncfeature -Feature PasswordSync
+Connect-Entra -Scopes 'OnPremDirectorySynchronization.Read.All'
+Get-EntraDirSyncfeature -Feature PasswordSync
 ```
 
-```output
+```Output
 Enabled DirSyncFeature
 ------- --------------
   False PasswordSync
@@ -75,9 +99,10 @@ Enabled DirSyncFeature
 
 This command returns whether PasswordSync is enabled for the tenant (True) or disabled (False).
 
-## PARAMETERS
+## Parameters
 
 ### -TenantId
+
 The unique ID of the tenant to perform the operation on.
 If this isn't provided then the value defaults to the tenant of the current user.
 This parameter is only applicable to partner users.
@@ -95,10 +120,11 @@ Accept wildcard characters: False
 ```
 
 ### -Feature
+
 The DirSync feature to get the status of.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -110,14 +136,15 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Set-EntraDirSyncFeature](./Set-EntraDirSyncFeature.md)

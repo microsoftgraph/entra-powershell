@@ -2,9 +2,9 @@
 title: Set-EntraDevice.
 description: This article provides details on the Set-EntraDevice command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/18/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # Set-EntraDevice
 
-## SYNOPSIS
+## Synopsis
 
 Updates a device.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraDevice
@@ -44,11 +44,11 @@ Set-EntraDevice
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Set-EntraDevice` cmdlet updates a device in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update a device display name
 
@@ -112,7 +112,7 @@ Set-EntraDevice @params
 
 This example shows how to update multiple properties of a specified device.
 
-## PARAMETERS
+## Parameters
 
 ### -AccountEnabled
 
@@ -374,13 +374,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraDevice](Get-EntraDevice.md)
 

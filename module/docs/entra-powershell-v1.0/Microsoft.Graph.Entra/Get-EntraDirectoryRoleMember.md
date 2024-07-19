@@ -2,9 +2,9 @@
 title: Get-EntraDirectoryRoleMember.
 description: This article provides details on the Get-EntraDirectoryRoleMember command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/20/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,23 +17,24 @@ schema: 2.0.0
 
 # Get-EntraDirectoryRoleMember
 
-## SYNOPSIS
+## Synopsis
 
 Gets members of a directory role.
 
-## SYNTAX
+## Syntax
 
 ```powershell
-Get-EntraDirectoryRoleMember 
- -ObjectId <String> 
+Get-EntraDirectoryRoleMember
+ -ObjectId <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraDirectoryRoleMember` cmdlet gets the members of a directory role in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get members by role ID
 
@@ -55,7 +56,7 @@ identities                      : {@{signInType=userPrincipalName; issuer=contos
 
 This command demonstrates how to get the members of the specified role.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -73,17 +74,33 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraDirectoryRoleMember](Add-EntraDirectoryRoleMember.md)
 

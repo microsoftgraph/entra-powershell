@@ -2,9 +2,9 @@
 title: Get-EntraDirectoryRole
 description: This article provides details on the Get-EntraDirectoryRole command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 02/29/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,33 +17,35 @@ schema: 2.0.0
 
 # Get-EntraDirectoryRole
 
-## SYNOPSIS
+## Synopsis
 
 Gets a directory role.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraDirectoryRole 
- [-Filter <String>] 
+Get-EntraDirectoryRole
+ [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraDirectoryRole 
- -ObjectId <String> 
+Get-EntraDirectoryRole
+ -ObjectId <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraDirectoryRole` cmdlet gets a directory role from Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a directory role by ID
 
@@ -113,7 +115,7 @@ ObjectId                             DisplayName                        Descript
 
 This command gets the directory role by display name.
 
-## PARAMETERS
+## Parameters
 
 ### -Filter
 
@@ -148,16 +150,32 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Enable-EntraDirectoryRole](Enable-EntraDirectoryRole.md)
