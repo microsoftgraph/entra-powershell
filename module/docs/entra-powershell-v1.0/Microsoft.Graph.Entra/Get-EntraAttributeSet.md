@@ -40,7 +40,7 @@ Get-EntraAttributeSet
 
 ## DESCRIPTION
 
-This `Get-EntraAttributeSet` Gets a list of Microsoft Entra ID attribute sets.
+The `Get-EntraAttributeSet` cmdlet gets a list of Microsoft Entra ID attribute sets.
 
 In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with the necessary permissions. The supported roles for this operation are:
 
