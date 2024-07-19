@@ -13,7 +13,7 @@
         $keysChanged = @{ObjectId = "Id"}
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($null -ne $PSBoundParameters["ObjectId"])
         {
@@ -21,7 +21,7 @@
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if($null -ne $PSBoundParameters["WarningVariable"])
         {
@@ -59,19 +59,24 @@
         {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
+        if($null -ne $PSBoundParameters["Property"])
+        {
+            $params["Property"] = $PSBoundParameters["Property"]
+        }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        try {
-            $response = Get-MgBetaUserManager @params -Headers $customHeaders -ErrorAction Stop
+        $response = Get-MgBetaUserManager @params -Headers $customHeaders -ErrorAction Stop
+        try {      
+            $response | ConvertTo-Json -Depth 5 | ConvertFrom-Json      
             $response | ForEach-Object {
                 if($null -ne $_) {
                     Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties
                     Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
                 }
-            }
-            $response | ConvertTo-Json | ConvertFrom-Json
+            }  
+            $response          
         }
         catch {}
         }

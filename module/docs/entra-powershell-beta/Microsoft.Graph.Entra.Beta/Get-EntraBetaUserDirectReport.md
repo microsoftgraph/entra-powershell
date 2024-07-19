@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaUserDirectReport
 
-## SYNOPSIS
+## Synopsis
 Get the user's direct reports.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaUserDirectReport -ObjectId <String> [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaUserDirectReport cmdlet gets the direct reports for a user in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a user's direct reports
 ```
@@ -32,7 +32,7 @@ ObjectId                             ObjectType
 
 This command gets the direct report for the specified user.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -82,10 +82,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

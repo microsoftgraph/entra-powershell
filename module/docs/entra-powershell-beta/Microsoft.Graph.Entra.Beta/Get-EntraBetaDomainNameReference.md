@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaDomainNameReference
 
-## SYNOPSIS
+## Synopsis
 This cmdlet retrieves the objects that are referenced by a given domain name
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaDomainNameReference -Name <String> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet retrieves the objects that are referenced by a given domain name
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -28,7 +28,7 @@ PS C:\WINDOWS\system32> Get-EntraBetaDomainNameReference -Name drumkit.onmicroso
 
 This example shows how to retrieve the domain name reference objects for a domain that is specified through the -Name parameter
 
-## PARAMETERS
+## Parameters
 
 ### -Name
 The name of the domain name for which the referenced objects are retrieved
@@ -48,12 +48,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

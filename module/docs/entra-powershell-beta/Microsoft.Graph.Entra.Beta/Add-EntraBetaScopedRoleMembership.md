@@ -1,4 +1,15 @@
 ---
+title: Add-EntraBetaScopedRoleMembership.
+description: This article provides details on the Add-EntraBetaScopedRoleMembership command.
+
+
+ms.topic: reference
+ms.date: 07/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -7,42 +18,62 @@ schema: 2.0.0
 
 # Add-EntraBetaScopedRoleMembership
 
-## SYNOPSIS
-Adds a scoped role membership to an administrative unit.
+## Synopsis
 
-## SYNTAX
+Assign a Microsoft Entra role with an administrative unit scope.
 
-```
-Add-EntraBetaScopedRoleMembership -ObjectId <String> [-RoleMemberInfo <RoleMemberInfo>]
- [-AdministrativeUnitObjectId <String>] [-RoleObjectId <String>] [<CommonParameters>]
-```
+## Syntax
 
-## DESCRIPTION
-The Add-EntraBetaScopedRoleMembership cmdlet adds a scoped role membership to an administrative unit.
-
-## EXAMPLES
-
-### Example 1
-```
-$User = Get-EntraBetaUser -SearchString "The user that will be an admin on this unit"
-	$Role = Get-EntraBetaDirectoryRole | Where-Object -Property DisplayName -EQ -Value "User Account Administrator"
-	$Unit = Get-EntraBetaAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value "<The display name of the unit"
-	$RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
-	$RoleMember.ObjectId = $User.ObjectID
-	Add-EntraBetaScopedRoleMembership -ObjectId $unit.ObjectId -RoleObjectId $Role.ObjectId -RoleMemberInfo $RoleMember
+```powershell
+Add-EntraBetaScopedRoleMembership 
+ -ObjectId <String> 
+ [-RoleMemberInfo <RoleMemberInfo>]
+ [-AdministrativeUnitObjectId <String>] 
+ [-RoleObjectId <String>] 
+ [<CommonParameters>]
 ```
 
-This cmdlet returns the Scope role membership object:
+## Description
 
-AdministrativeUnitObjectId           RoleObjectId 	--------------------------           ------------ 	c9ab56cc-e349-4237-856e-cab03157a91e 526b7173-5a6e-49dc-88ec-b677a9093709
+The `Add-EntraBetaScopedRoleMembership` cmdlet adds a scoped role membership to an administrative unit. Specify `ObjectId` parameter to add a scoped role membership.
 
-## PARAMETERS
+For delegated scenarios, the calling user needs at least the Privileged Role Administrator Microsoft Entra role.
+
+## Examples
+
+### Example 1: Adds a scoped role membership to an administrative unit
+
+```powershell
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+$User = Get-EntraBetaUser -SearchString 'Conf Room Adams'
+$Role = Get-EntraBetaDirectoryRole | Where-Object -Property DisplayName -EQ -Value 'User Administrator'
+$Unit = Get-EntraBetaAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value 'NewUnit'
+$RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
+$RoleMember.ObjectId = $User.ObjectID
+$params = @{
+    ObjectId = $unit.ObjectId
+    RoleObjectId = $Role.ObjectId
+    RoleMemberInfo = $RoleMember
+}
+Add-EntraBetaScopedRoleMembership @params
+```
+
+```Output
+Id                                                                AdministrativeUnitId                 RoleId
+--                                                                --------------------                 ------
+dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bbbbbbbb-1111-2222-3333-cccccccccccc
+```
+
+This example adds a scoped role membership to an administrative unit.
+
+## Parameters
 
 ### -AdministrativeUnitObjectId
+
 Specifies the ID of an admininstrative unit.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -54,10 +85,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-@{Text=}
+
+Specifies the ID of an administrative unit.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -69,10 +101,11 @@ Accept wildcard characters: False
 ```
 
 ### -RoleMemberInfo
+
 Specifies a RoleMemberInfo object.
 
 ```yaml
-Type: RoleMemberInfo
+Type: System.RoleMemberInfo
 Parameter Sets: (All)
 Aliases:
 
@@ -84,10 +117,11 @@ Accept wildcard characters: False
 ```
 
 ### -RoleObjectId
-@{Text=}
+
+Specifies DirectoryRole ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -99,17 +133,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
 
-[Get-EntraBetaScopedRoleMembership]()
+## Related Links
 
-[Remove-EntraBetaScopedRoleMembership]()
+[Get-EntraBetaScopedRoleMembership](Get-EntraBetaScopedRoleMembership.md)
 
+[Remove-EntraBetaScopedRoleMembership](Remove-EntraBetaScopedRoleMembership.md)

@@ -2,9 +2,9 @@
 title: Get-EntraBetaServicePrincipalOwner
 description: This article provides details on the Get-EntraBetaServicePrincipalOwner command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/01/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,10 +17,10 @@ schema: 2.0.0
 
 # Get-EntraBetaServicePrincipalOwner
 
-## SYNOPSIS
+## Synopsis
 Get the owner of a service principal.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraBetaServicePrincipalOwner 
@@ -30,10 +30,10 @@ Get-EntraBetaServicePrincipalOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaServicePrincipalOwner cmdlet gets the owners of a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the owner of a service principal
 ```powershell
@@ -85,7 +85,7 @@ fd560167-ff1f-471a-8d74-3b0070abcea1 Adams Smith    Adams@contoso.com   Member
 
 This command gets top two owners of a service principal.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -135,13 +135,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraBetaServicePrincipalOwner](Add-EntraBetaServicePrincipalOwner.md)
 

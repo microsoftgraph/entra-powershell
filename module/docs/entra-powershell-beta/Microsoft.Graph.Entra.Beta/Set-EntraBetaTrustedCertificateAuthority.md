@@ -7,20 +7,20 @@ schema: 2.0.0
 
 # Set-EntraBetaTrustedCertificateAuthority
 
-## SYNOPSIS
+## Synopsis
 Updates a trusted certificate authority.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaTrustedCertificateAuthority -CertificateAuthorityInformation <CertificateAuthorityInformation>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraBetaTrustedCertificateAuthority cmdlet updates a trusted certificate authority in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Updates the trusted certificate authorities that are defined in your directory
 ```
@@ -31,7 +31,7 @@ PS C:\> $cer = Set-EntraBetaTrustedCertificateAuthority #Get the CertificateAuth
 
 This command updates the trusted certificate authorities that are defined in your directory.
 
-## PARAMETERS
+## Parameters
 
 ### -CertificateAuthorityInformation
 Specifies a CertificateAuthorityInformation object.
@@ -51,13 +51,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaTrustedCertificateAuthority]()
 
