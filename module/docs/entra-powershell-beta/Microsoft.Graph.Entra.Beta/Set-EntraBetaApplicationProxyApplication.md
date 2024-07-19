@@ -2,7 +2,6 @@
 title: Set-EntraBetaApplicationProxyApplication
 description: This article provides details on the Set-EntraBetaApplicationProxyApplication command.
 
-ms.service: entra
 ms.topic: reference
 ms.date: 07/15/2024
 ms.author: eunicewaweru

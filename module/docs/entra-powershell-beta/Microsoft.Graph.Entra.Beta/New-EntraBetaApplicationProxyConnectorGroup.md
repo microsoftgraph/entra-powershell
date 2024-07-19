@@ -2,7 +2,6 @@
 title: New-EntraBetaApplicationProxyConnectorGroup
 description: This article provides details on the New-EntraBetaApplicationProxyConnectorGroupcommand.
 
-ms.service: entra
 ms.topic: reference
 ms.date: 07/16/2024
 ms.author: eunicewaweru

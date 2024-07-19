@@ -2,7 +2,6 @@
 title: Remove-EntraBetaApplicationProxyApplicationConnectorGroup
 description: This article provides details on the Remove-EntraBetaApplicationProxyApplicationConnectorGroup command.
 
-ms.service: entra
 ms.topic: reference
 ms.date: 07/15/2024
 ms.author: eunicewaweru

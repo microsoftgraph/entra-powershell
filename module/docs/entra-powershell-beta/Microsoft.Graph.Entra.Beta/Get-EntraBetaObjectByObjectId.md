@@ -2,7 +2,6 @@
 title: Get-EntraBetaObjectByObjectId
 description: This article provides details on the Get-EntraBetaObjectByObjectId.
 
-ms.service: entra
 ms.topic: reference
 ms.date: 07/17/2024
 ms.author: eunicewaweru
