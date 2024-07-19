@@ -514,6 +514,7 @@ function Get-EntraUnsupportedCommand {
             #Adding direct aliases for Connect-Entra and Disconnect-Entra
             $aliases += "   Set-Alias -Name Connect-AzureAD -Value Connect-Entra -Scope Global -Force`n"
             $aliases += "   Set-Alias -Name Disconnect-AzureAD -Value Disconnect-Entra -Scope Global -Force`n"
+            $aliases += "   Set-Alias -Name Get-EntraCurrentSessionInfo -Value Get-EntraContext -Scope Global -Force`n"
     $aliasFunction = @"
 function Enable-EntraAzureADAlias {
 $($aliases)}
@@ -804,7 +805,7 @@ $OutputTransformations
         $paramBlock = @"
     if(`$PSBoundParameters.ContainsKey("$($Name)"))
     {
-        `$params["$($Name)"] = `$Null
+        `$params["$($Name)"] = `$PSBoundParameters["$($Name)"]
     }
 
 "@
