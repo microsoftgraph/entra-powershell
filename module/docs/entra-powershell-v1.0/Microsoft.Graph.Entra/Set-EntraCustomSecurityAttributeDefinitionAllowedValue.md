@@ -2,7 +2,6 @@
 title: Set-EntraCustomSecurityAttributeDefinitionAllowedValue
 description: This article provides details on the Set-EntraCustomSecurityAttributeDefinitionAllowedValue command.
 
-ms.service: entra
 ms.topic: reference
 ms.date: 07/11/2024
 ms.author: eunicewaweru
@@ -33,7 +32,7 @@ Set-EntraCustomSecurityAttributeDefinitionAllowedValue
 
 ## Description
 
-This `Set-EntraCustomSecurityAttributeDefinitionAllowedValue` cmdlet Update a Microsoft Entra ID custom security attribute definition predefined value object identified by ID. Specify `CustomSecurityAttributeDefinitionId` and `Id` parameter to update a Microsoft Entra ID custom security attribute definition predefined value.
+The `Set-EntraCustomSecurityAttributeDefinitionAllowedValue` cmdlet update a Microsoft Entra ID custom security attribute definition predefined value object identified by ID. Specify `CustomSecurityAttributeDefinitionId` and `Id` parameter to update a Microsoft Entra ID custom security attribute definition predefined value.
 
 ## Examples
 
@@ -41,10 +40,19 @@ This `Set-EntraCustomSecurityAttributeDefinitionAllowedValue` cmdlet Update a Mi
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-Set-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId 'Engineering_Projectt' -Id 'Alpine' -IsActive $true
+$params = @{
+    CustomSecurityAttributeDefinitionId = 'Engineering_Project'
+    Id = 'Alpine'
+    IsActive = $false
+}
+Set-EntraCustomSecurityAttributeDefinitionAllowedValue @params
 ```
 
-This example Update  custom security attribute definition predefined value
+This example deactivates a predefined value.
+
+- Attribute set: `Engineering`
+- Attribute: `Project`
+- Predefined value: `Alpine`
 
 ## Parameters
 
@@ -111,3 +119,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[Get-EntraCustomSecurityAttributeDefinitionAllowedValue](Get-EntraCustomSecurityAttributeDefinitionAllowedValue.md)
+
+[Add-EntraCustomSecurityAttributeDefinitionAllowedValue](Add-EntraCustomSecurityAttributeDefinitionAllowedValue.md)
