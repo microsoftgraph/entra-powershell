@@ -2,9 +2,8 @@
 title: Remove-EntraAdministrativeUnit.
 description: This article provides details on the Remove-EntraAdministrativeUnit command.
 
-ms.service: active-directory
 ms.topic: reference
-ms.date: 06/05/2024
+ms.date: 07/19/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -43,6 +42,8 @@ Remove-EntraAdministrativeUnit -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 This example removes an administrative unit from Microsoft Entra ID.
+
+`-ObjectId` - specifies the unique identifier (ID) of the administrative unit, which you want to remove. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the administrative unit.
 
 ## PARAMETERS
 
