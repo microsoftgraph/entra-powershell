@@ -2,10 +2,6 @@
 title: Remove-EntraAdministrativeUnit.
 description: This article provides details on the Remove-EntraAdministrativeUnit command.
 
-<<<<<<< HEAD
-=======
-
->>>>>>> c0ab64e29dd87ffc3f0e378434425e5b4a399eaa
 ms.topic: reference
 ms.date: 07/19/2024
 ms.author: eunicewaweru
