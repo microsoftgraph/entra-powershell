@@ -2,7 +2,7 @@
 title: Get-EntraUserThumbnailPhoto.
 description: This article provides details on the Get-EntraUserThumbnailPhoto command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru

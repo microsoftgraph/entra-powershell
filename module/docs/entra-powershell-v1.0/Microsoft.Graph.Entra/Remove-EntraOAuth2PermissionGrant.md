@@ -2,7 +2,7 @@
 title: Remove-EntraOAuth2PermissionGrant 
 description: This article provides details on the Remove-EntraOAuth2PermissionGrant command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru

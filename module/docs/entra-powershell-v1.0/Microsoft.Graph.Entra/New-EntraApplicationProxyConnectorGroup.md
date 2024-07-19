@@ -2,7 +2,7 @@
 title: New-EntraApplicationProxyConnectorGroup.
 description: This article provides details on the New-EntraApplicationProxyConnectorGroup Command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
