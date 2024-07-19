@@ -60,15 +60,11 @@ Get-EntraAttributeSet
 ```
 
 ```Output
-Id                    Description                           MaxAttributesPerSet
---                    -----------                           -------------------
-engineering           Attributes for cloud engineering team 25
-Test2                 Attributes for test2  team            25
-demo                  NEW Demo Description                  25
-demo2                 TEST THE DEMO
-DEMO5
-DEMO6                 Description to test the demo6
-DEMO7                 Description to test the demo6         24
+Id          Description                            MaxAttributesPerSet
+--          -----------                            -------------------
+Engineering Attributes for cloud engineering team  25
+HR          Attributes for HR team                 15
+Hackathon   Hackathon attribute set                20
 ```
 
 This example Get all attribute sets.
