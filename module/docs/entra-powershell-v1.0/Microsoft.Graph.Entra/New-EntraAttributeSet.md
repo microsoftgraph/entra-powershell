@@ -2,9 +2,9 @@
 title: New-EntraAttributeSet
 description: This article provides details on the New-EntraAttributeSet command.
 
-ms.service: active-directory
+ms.service: entra
 ms.topic: reference
-ms.date: 07/20/2024
+ms.date: 07/19/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -25,7 +25,7 @@ Adds a new attribute set.
 ## SYNTAX
 
 ```powershell
-New-AzureADMSAttributeSet 
+New-EntraAttributeSet 
  [-Id <String>] 
  [-Description <String>] 
  [-MaxAttributesPerSet <Int32>]
@@ -34,7 +34,7 @@ New-AzureADMSAttributeSet
 
 ## DESCRIPTION
 
-Adds a new Microsoft Entra ID attribute set object.
+This `New-EntraAttributeSet` cmdlet Adds a new Microsoft Entra ID attribute set object.
 
 In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with a supported role permission.
 
@@ -87,7 +87,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-Name of the attribute set. Unique identifier for the attribute set within a tenant, up to 32 Unicode characters. It cannot contain spaces or special characters, is case sensitive, and cannot be changed later. Required.
+Name of the attribute set. Unique identifier for the attribute set within a tenant, up to 32 Unicode characters. It can't contain spaces or special characters, is case sensitive, and can't be changed later. Required.
 
 ```yaml
 Type: System.String
@@ -132,3 +132,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## NOTES
 
 ## RELATED LINKS
+
+[Get-EntraAttributeSet](Get-EntraAttributeSet.md)
+
+[Set-EntraAttributeSet](Set-EntraAttributeSet.md)
