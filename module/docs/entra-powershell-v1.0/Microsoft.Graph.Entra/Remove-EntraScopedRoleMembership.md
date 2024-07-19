@@ -48,6 +48,7 @@ Remove-EntraScopedRoleMembership @params
 This cmdlet removes a specific scoped role membership from Microsoft Entra ID.
 
 - `ObjectId` - specifies the object (ID) which you want to remove. In this example, `aaaaaaaa-2222-bbbb-aaaa-cccccccccccc` represents the ID of the Administrative Unit.
+
 - `-ScopedRoleMembershipId` - specifies the unique identifier (ID) of the scoped role membership, which you want to remove. In this example, `aaaaaaaa-bbbb-1111-aaaa-ddddddddddd` represent the ID of the ScopedRoleMembership.
 
 ## PARAMETERS
