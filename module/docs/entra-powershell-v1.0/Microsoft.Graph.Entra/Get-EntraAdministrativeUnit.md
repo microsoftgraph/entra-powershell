@@ -2,7 +2,7 @@
 title: Get-EntraAdministrativeUnit
 description: This article provides details on the Get-EntraAdministrativeUnit command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -27,9 +27,10 @@ Gets an administrative unit.
 
 ```powershell
 Get-EntraAdministrativeUnit 
- [-Top <Int32>] 
- [-All] 
- [-Filter <String>] 
+ [-Top <Int32>]
+ [-All]
+ [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -38,7 +39,8 @@ Get-EntraAdministrativeUnit
 ```powershell
 Get-EntraAdministrativeUnit 
  -Id <String> 
- [-All] 
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -195,6 +197,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

@@ -2,7 +2,7 @@
 title: New-EntraApplicationPasswordCredential
 description: This article provides details on the New-EntraApplicationPasswordCredential command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -60,7 +60,12 @@ This command creates new password credential for specified application.
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-New-EntraApplicationPasswordCredential -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' -CustomKeyIdentifier 'demoPassword'
+$params = @{
+    ObjectId = 'tttttttt-0000-2222-0000-aaaaaaaaaaaa'
+    CustomKeyIdentifier = 'demoPassword'
+}
+
+New-EntraApplicationPasswordCredential @params
 ```
 
 ```output
@@ -76,7 +81,12 @@ This command creates new password credential for specified application.
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-New-EntraApplicationPasswordCredential -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' -StartDate (get-date).AddYears(0)
+$params = @{
+    ObjectId = 'tttttttt-0000-2222-0000-aaaaaaaaaaaa'
+    StartDate = (Get-Date).AddYears(0)
+}
+
+New-EntraApplicationPasswordCredential @params
 ```
 
 ```output
