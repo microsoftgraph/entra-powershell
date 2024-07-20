@@ -176,7 +176,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies the oData v3.0 filter statement.
+Specifies the OData v4.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
