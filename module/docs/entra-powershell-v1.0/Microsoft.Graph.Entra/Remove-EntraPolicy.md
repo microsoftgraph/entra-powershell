@@ -44,11 +44,13 @@ Remove-EntraPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 
 This command removes the specified policy from Microsoft Entra ID.
 
+- `-Id` - specifies the ID of the policy you want to remove. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the Policy.
+
 ## Parameters
 
 ### -Id
 
-The Id of the policy you want to remove.
+The ID of the policy you want to remove.
 
 ```yaml
 Type: System.String
