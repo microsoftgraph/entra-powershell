@@ -111,7 +111,7 @@ Accept wildcard characters: False
 
 ### -Types
 
-Specifies the type of objects that the cmdlet returns. If not specified, the default is directoryObject, which includes all resource types defined in the directory. You can specify any object derived from directoryObject in the collection, such as user, group, and device objects.
+Specifies the type of objects that the cmdlet returns. If not specified, the default is directoryObject, which includes all resource types defined in the directory. You can specify any object derived from directoryObject in the collection, such as User, Group, and Device objects.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
