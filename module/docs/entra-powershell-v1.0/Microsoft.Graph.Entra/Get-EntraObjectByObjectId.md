@@ -95,7 +95,7 @@ This example demonstrates how to retrieve objects for a specified object type.
 
 ### -ObjectIds
 
-One or more object IDs, separated by commas, for which the objects are retrieved.
+One or more object IDs's, separated by commas, for which the objects are retrieved. The IDs are GUIDs, represented as strings. You can specify up to 1000 IDs.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -111,7 +111,7 @@ Accept wildcard characters: False
 
 ### -Types
 
-Specifies the type of objects that the cmdlet returns.
+Specifies the type of objects that the cmdlet returns. If not specified, the default is directoryObject, which includes all resource types defined in the directory. You can specify any object derived from directoryObject in the collection, such as user, group, and device objects.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
