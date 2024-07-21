@@ -104,7 +104,7 @@ This command gets the directory role by display name.
 ## Parameters
 
 ### -Filter
-The oData v3.0 filter statement. 
+The OData v4.0 filter statement. 
 Controls which objects are returned.
 
 ```yaml
