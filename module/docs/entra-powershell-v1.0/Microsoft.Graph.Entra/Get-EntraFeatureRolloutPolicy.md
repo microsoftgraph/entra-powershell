@@ -2,9 +2,8 @@
 title: Get-EntraFeatureRolloutPolicy
 description: This article provides details on the Get-EntraFeatureRolloutPolicy command.
 
-ms.service: entra
 ms.topic: reference
-ms.date: 07/09/2024
+ms.date: 07/22/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -49,7 +48,7 @@ Get-EntraFeatureRolloutPolicy
 
 ## Description
 
-This `Get-EntraFeatureRolloutPolicy` cmdlet allows an admin to get the policy for cloud authentication rollout (users moving from federation to cloud auth) in Microsoft Entra ID.
+The `Get-EntraFeatureRolloutPolicy` cmdlet allows an admin to get the policy for cloud authentication rollout (users moving from federation to cloud auth) in Microsoft Entra ID.
 This policy is in the form of one or two FeatureRolloutPolicy objects holding groups that are assigned for cloud auth (Pass-through auth or Password hash-sync) and groups that are assigned for Seamless single sign-on (feature on top of PTA or PHS).
 
 ## Examples
@@ -74,7 +73,7 @@ This command retrieves a list of all cloud authentication roll-out policies in M
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraFeatureRolloutPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb '
+Get-EntraFeatureRolloutPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -85,7 +84,9 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Feature-Rollout-Policy change      emailAs
 
 ```
 
-This command retrieves the policy for cloud authentication roll-out policy in Microsoft Entra ID.
+This example retrieves the policy for cloud authentication roll-out policy in Microsoft Entra ID.
+
+- `-Id` - Specify The unique identifier of the cloud authentication roll-out policy in Microsoft Entra ID.
 
 ### Example 3: Retrieves cloud authentication roll-out in Microsoft Entra ID with given Search String
 
