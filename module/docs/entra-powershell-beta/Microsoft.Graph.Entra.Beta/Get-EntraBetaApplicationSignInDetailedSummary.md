@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaApplicationSignInDetailedSummary
+description: This article provides details on the Get-EntraBetaApplicationSignInDetailedSummary command.
+
+ms.topic: reference
+ms.date: 07/18/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -53,7 +63,7 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-The oData v3.0 filter statement. 
+The OData v4.0 filter statement. 
 Controls which objects are returned.
 
 ```yaml
