@@ -3,7 +3,7 @@ title: Remove-EntraFeatureRolloutPolicyDirectoryObject.
 description: This article provides details on the Remove-EntraFeatureRolloutPolicyDirectoryObject command.
 
 ms.topic: reference
-ms.date: 07/15/2024
+ms.date: 07/22/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -33,7 +33,7 @@ Remove-EntraFeatureRolloutPolicyDirectoryObject
 
 ## Description
 
-An admin uses `Remove-EntraFeatureRolloutPolicyDirectoryObjec` cmdlet to remove groups from the cloud authentication roll-out policy.
+An admin uses the `Remove-EntraFeatureRolloutPolicyDirectoryObjec` cmdlet to remove groups from the cloud authentication roll-out policy.
 Users in these groups start authenticating against the global authentication policy (for example,
 federation). Specify `ObjectId` and `Id` parameter to remove groups from the cloud authentication roll-out policy.
 
@@ -50,7 +50,11 @@ $params = @{
 Remove-EntraFeatureRolloutPolicyDirectoryObject @params
 ```
 
-This command removes a group from the cloud authentication roll-out policy from Microsoft Entra ID.
+This example removes a group from the cloud authentication roll-out policy from Microsoft Entra ID.
+
+- `-Id` - Specifies the ID of the cloud authentication roll-out policy.
+
+- `-ObjectId` - Specifies the ID of the specific Microsoft Entra ID object that assigned to the cloud authentication roll-out policy in Microsoft Entra ID.
 
 ## Parameters
 
