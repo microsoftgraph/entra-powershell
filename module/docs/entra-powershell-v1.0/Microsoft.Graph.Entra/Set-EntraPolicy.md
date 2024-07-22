@@ -3,7 +3,7 @@ title: Set-EntraPolicy.
 description: This article provides details on the Set-EntraPolicy command.
 
 ms.topic: reference
-ms.date: 07/16/2024
+ms.date: 07/22/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -29,7 +29,6 @@ Set-EntraPolicy
  [-Definition <System.Collections.Generic.List`1[System.String]>] 
  [-DisplayName <String>] 
  [-Type <String>]
- [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]>]
  [-IsOrganizationDefault <Boolean>] 
  [<CommonParameters>]
 ```
@@ -53,6 +52,10 @@ Set-EntraPolicy @params
 
 This command updates display name of the specified policy in Microsoft Entra ID.
 
+- `-Id` - Specifies the ID of the policy for which you want to set values. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the policy.
+
+- `DisplayName` - Specifies the display name.
+
 ### Example 2: Update a policy definition
 
 ```powershell
@@ -65,6 +68,11 @@ Set-EntraPolicy @params
 ```
 
 This command updates definition of the specified policy in Microsoft Entra ID.
+
+- `-Id` - Specifies the ID of the policy for which you want to set values. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the policy.
+
+- `Definition` - Specifies the array of stringified JSON that contains all the rules of the policy.
+In this example, `@('{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')` represents definition of the activityBasedTimeoutPolicies.
 
 ### Example 3: Update a policy organization default
 
@@ -79,6 +87,8 @@ Set-EntraPolicy @params
 
 This command updates organization default of the specified policy in Microsoft Entra ID.
 
+- `-Id` - Specifies the ID of the policy for which you want to set values. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the policy.
+
 ### Example 4: Update policy type
 
 ```powershell
@@ -91,6 +101,11 @@ Set-EntraPolicy @params
 ```
 
 This example demonstrates how to update the `type` property of a specified policy in Microsoft Entra ID.
+
+- `-Id` - Specifies the ID of the policy for which you want to set values. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the policy.
+
+- `-Type` - Specifies the type of policy. In this example, `homeRealmDiscoveryPolicies`
+ represents the type of policy.
 
 ## Parameters
 
@@ -143,26 +158,10 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -KeyCredentials
-
-Specifies the key credentials.
-
-```yaml
-Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Type
 
 Specifies the type of policy.
-For token lifetimes, use "TokenLifetimePolicy".
+For token lifetimes, use "TokenLifetimePolicy."
 
 ```yaml
 Type: System.String
@@ -178,7 +177,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-The Id of the policy for which you want to set values.
+The ID of the policy for which you want to set values.
 
 ```yaml
 Type: System.String
