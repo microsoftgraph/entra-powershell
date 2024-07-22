@@ -49,6 +49,8 @@ Get-EntraContext
 - PSHostVersion
 - ClientTimeOut.
 
+`Get-EntraCurrentSessionInfo` is an alias for `Get-EntraContext`.
+
 ## Examples
 
 ### Example 1: Get the current session

@@ -68,7 +68,7 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-Specifies an oData v3.0 filter statement. This parameter controls which objects are returned.
+Specifies an OData v4.0 filter statement. This parameter controls which objects are returned.
 
 ```yaml
 Type: String
