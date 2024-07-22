@@ -26,28 +26,31 @@ Get a Microsoft Entra ID roleAssignment.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraRoleAssignment 
- [-Top <Int32>] 
- [-All] 
- [-Filter <String>] 
+Get-EntraRoleAssignment
+ [-Top <Int32>]
+ [-All]
+ [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetValue
 
 ```powershell
-Get-EntraRoleAssignment 
- [-SearchString <String>] 
- [-All] 
+Get-EntraRoleAssignment
+ [-SearchString <String>]
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraRoleAssignment 
- -Id <String> 
- [-All] 
+Get-EntraRoleAssignment
+ -Id <String>
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -200,7 +203,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-The oData v3.0 filter statement.
+The OData v4.0 filter statement.
 Controls which objects are returned.
 
 ```yaml
@@ -228,6 +231,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

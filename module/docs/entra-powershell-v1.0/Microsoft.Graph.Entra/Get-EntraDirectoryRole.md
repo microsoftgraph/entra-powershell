@@ -26,16 +26,18 @@ Gets a directory role.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraDirectoryRole 
- [-Filter <String>] 
+Get-EntraDirectoryRole
+ [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraDirectoryRole 
- -ObjectId <String> 
+Get-EntraDirectoryRole
+ -ObjectId <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -117,7 +119,7 @@ This command gets the directory role by display name.
 
 ### -Filter
 
-The oData v3.0 filter statement.
+The OData v4.0 filter statement.
 Controls which objects are returned.
 
 ```yaml
@@ -145,6 +147,22 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
