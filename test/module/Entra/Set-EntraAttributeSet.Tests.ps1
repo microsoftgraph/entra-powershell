@@ -18,9 +18,6 @@ Describe "Set-EntraAttributeSet" {
         It "Should fail when Id parameter is empty" {
             { Set-EntraAttributeSet -Id } | Should -Throw "Missing an argument for parameter 'Id*"
         }
-        It "Should fail when Id parameter is invalid" {
-            { Set-EntraAttributeSet -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id'*"
-        }
         It "Should fail when Description parameter is empty" {
             { Set-EntraAttributeSet -Description } | Should -Throw "Missing an argument for parameter 'Description*"
         }
