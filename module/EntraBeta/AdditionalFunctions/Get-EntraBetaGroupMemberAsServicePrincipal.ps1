@@ -1,4 +1,4 @@
-function Get-EntraGroupMemberAsServicePrincipal {
+function Get-EntraBetaGroupMemberAsServicePrincipal {
     [CmdletBinding(DefaultParameterSetName = 'List', PositionalBinding = $false)]
     param(
         [Parameter(ParameterSetName = 'Get', Mandatory = $true)]
@@ -25,10 +25,10 @@ function Get-EntraGroupMemberAsServicePrincipal {
     )
     
     PROCESS {
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
         $topCount = $null
-        $baseUri = "https://graph.microsoft.com/v1.0/groups/$GroupId/members/microsoft.graph.servicePrincipal?"
+        $baseUri = "https://graph.microsoft.com/beta/groups/$GroupId/members/microsoft.graph.servicePrincipal?"
         $params["Method"] = "GET"
         $params["Uri"] = "$baseUri"
         
@@ -60,7 +60,7 @@ function Get-EntraGroupMemberAsServicePrincipal {
         }
         if($null -ne $PSBoundParameters["DirectoryObjectId"])
         {
-            $params["Uri"] = "https://graph.microsoft.com/v1.0/groups/$GroupId/members/$DirectoryObjectId/microsoft.graph.servicePrincipal"
+            $params["Uri"] = "https://graph.microsoft.com/beta/groups/$GroupId/members/$DirectoryObjectId/microsoft.graph.servicePrincipal"
         }
         if($null -ne $PSBoundParameters["Filter"])
         {
