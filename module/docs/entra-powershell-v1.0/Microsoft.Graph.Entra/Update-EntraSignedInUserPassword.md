@@ -2,9 +2,8 @@
 title: Update-EntraSignedInUserPassword.
 description: This article provides details on the Update-EntraSignedInUserPassword command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/22/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -52,7 +51,11 @@ $params = @{
 Update-EntraSignedInUserPassword @params
 ```
 
-This command updates the password for the signed-in user.
+This example updates the password for the signed-in user.
+
+- `-CurrentPassword` - Specifies the current password of the signed-in user.
+
+- `-NewPassword` -  Specifies the new password for the signed-in user.
 
 ## Parameters
 
