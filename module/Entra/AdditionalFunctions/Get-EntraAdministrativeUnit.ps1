@@ -120,6 +120,17 @@ function Get-EntraAdministrativeUnit {
             Add-Member -InputObject $_ -MemberType AliasProperty -Name DeletionTimeStamp -Value deletedDateTime
         }
     }
-    $data 
+    
+    $aulist = @()
+    foreach($item in $data){
+        $auType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphAdministrativeUnit
+        $item.PSObject.Properties | ForEach-Object {
+            $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+            $propertyValue = $_.Value
+            $auType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+        }
+        $aulist += $auType
+    }
+    $aulist
     }
 }
