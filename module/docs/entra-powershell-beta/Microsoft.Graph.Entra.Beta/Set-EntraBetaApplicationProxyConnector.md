@@ -49,15 +49,15 @@ Set-EntraBetaApplicationProxyConnector @params
 
 This example demonstrates how to move a Connector to a different Connector Group.
 
-- `Id` parameter specifies the connector ID.
-- `ConnectorGroupId` parameter specifies the application proxy connector group ID.
+- `-Id` parameter specifies the connector ID.
+- `-ConnectorGroupId` parameter specifies the application proxy connector group ID.
 
 ## Parameters
 
 ### -Id
 
 The ID of the Connector being moved.
-You can find this value using the `Get-EntraBetaApplicationProxyConnector` command.
+Use the `Get-EntraBetaApplicationProxyConnectorGroup` command to find the Connector Group ID.
 
 ```yaml
 Type: System.String
@@ -74,7 +74,7 @@ Accept wildcard characters: False
 ### -ConnectorGroupId
 
 The unique identifer of the target application proxy connector group in Microsoft Entra ID.
-You can find this value using the `Get-EntraBetaApplicationProxyConnectorGroup` command.
+Find this value using the `Get-EntraBetaApplicationProxyConnectorGroup` command.
 
 ```yaml
 Type: System.String

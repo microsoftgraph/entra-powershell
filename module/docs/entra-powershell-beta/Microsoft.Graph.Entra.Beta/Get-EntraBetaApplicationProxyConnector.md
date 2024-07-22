@@ -70,7 +70,7 @@ Name                           Value
 ----                           -----
 id                             aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 externalIp                     18.140.241.94
-machineName                    PERE-VARSHAM-FULLSTAK
+machineName                    AppProxy Machine
 version                        1.5.3437.0
 status                         active
 ```
@@ -91,7 +91,7 @@ id                             aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 @odata.context                 https://graph.microsoft.com/beta/$metadata#onPrem...
 externalIp                     18.140.241.94
 version                        0.0
-machineName                    PERE-VARSHAM-FULLSTAK
+machineName                    AppProxy Machine
 status                         active
 ```
 
@@ -111,7 +111,7 @@ Name                           Value
 ----                           -----
 id                             aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 externalIp                     18.140.241.94
-machineName                    PERE-VARSHAM-FULLSTAK
+machineName                    AppProxy Machine
 version                        1.5.3437.0
 status                         active
 ```
@@ -122,7 +122,7 @@ This example demonstrates how to Retrieve information for a top one connector.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraBetaApplicationProxyConnector -SearchString "PERE-VARSHAM-FULLSTAK"
+Get-EntraBetaApplicationProxyConnector -SearchString 'Entra PowerShell AppProxy Connector'
 ```
 
 ```Output
@@ -130,7 +130,7 @@ Name                           Value
 ----                           -----
 id                             aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 externalIp                     18.140.241.94
-machineName                    PERE-VARSHAM-FULLSTAK
+machineName                    Entra PowerShell AppProxy Connector
 version                        1.5.3437.0
 status                         active
 ```
@@ -141,7 +141,7 @@ This example demonstrates how to Retrieve information using SearchString.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraBetaApplicationProxyConnector -Filter "machineName eq 'PERE-VARSHAM-FULLSTAK'"
+Get-EntraBetaApplicationProxyConnector -Filter "machineName eq 'AppProxy Machine'"
 ```
 
 ```Output
@@ -149,7 +149,7 @@ Name                           Value
 ----                           -----
 id                             aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 externalIp                     18.140.241.94
-machineName                    PERE-VARSHAM-FULLSTAK
+machineName                    AppProxy Machine
 version                        1.5.3437.0
 status                         active
 ```

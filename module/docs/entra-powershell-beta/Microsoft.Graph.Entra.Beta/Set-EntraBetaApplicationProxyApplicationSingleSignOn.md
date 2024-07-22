@@ -55,10 +55,10 @@ Set-EntraBetaApplicationProxyApplicationSingleSignOn @params
 
 This example assigns an application to use Kerberos Constrained Delegation, and specify required parameters.
 
-- `ObjectId` parameter specifies the application ID.
-- `SingleSignOnMode` parameter specifies the type of SSO.
-- `KerberosInternalApplicationServicePrincipalName` parameter specifies the internal application ServicePrincipalName of the application server.
-- `KerberosDelegatedLoginIdentity` parameter specifies the Connector group ID that assigned to this application.
+- `-ObjectId` parameter specifies the application ID.
+- `-SingleSignOnMode` parameter specifies the type of SSO.
+- `-KerberosInternalApplicationServicePrincipalName` parameter specifies the internal application ServicePrincipalName of the application server.
+- `-KerberosDelegatedLoginIdentity` parameter specifies the Connector group ID that assigned to this application.
 
 ### Example 2: Remove SSO from an application
 
@@ -73,8 +73,8 @@ Set-EntraBetaApplicationProxyApplicationSingleSignOn @params
 
 This example demonstrates how to remove SSO from an application.
 
-- `ObjectId` parameter specifies the application ID.
-- `SingleSignOnMode` parameter specifies the type of SSO.
+- `-ObjectId` parameter specifies the application ID.
+- `-SingleSignOnMode` parameter specifies the type of SSO.
 
 ## Parameters
 
@@ -83,7 +83,7 @@ This example demonstrates how to remove SSO from an application.
 The identity that the Connector can use on behalf of your users to authenticate.
 
 ```yaml
-Type: System.KerberosSignOnMappingAttributeTypeEnum
+Type: KerberosSignOnMappingAttributeTypeEnum
 Parameter Sets: (All)
 Aliases:
 Accepted values: UserPrincipalName, OnPremisesUserPrincipalName, UserPrincipalUsername, OnPremisesUserPrincipalUsername, OnPremisesSAMAccountName
@@ -136,7 +136,7 @@ Choose the type of SSO you would like the application to use.
 Only three SSO settings are supported in PowerShell, for more options, please use the Microsoft Portal.
 
 ```yaml
-Type: System.SingleSignOnModeEnum
+Type: SingleSignOnModeEnum
 Parameter Sets: (All)
 Aliases:
 Accepted values: None, OnPremisesKerberos, HeaderBased

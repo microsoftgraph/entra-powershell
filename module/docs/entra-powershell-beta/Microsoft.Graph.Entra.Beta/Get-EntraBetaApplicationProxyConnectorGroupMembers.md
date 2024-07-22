@@ -84,7 +84,11 @@ This example retrieves top one connector in the group.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraBetaApplicationProxyConnectorGroupMembers -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Filter "machineName eq 'PERE-VARSHAM-FULLSTAK'"
+$params = @{
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    Filter = "machineName eq 'AppProxy Machine'"
+}
+Get-EntraBetaApplicationProxyConnectorGroupMembers @params
 ```
 
 ```Output
@@ -92,7 +96,7 @@ Name                           Value
 ----                           -----
 id                             bbbbbbbb-1111-2222-3333-cccccccccccc
 externalIp                     3.7.211.5
-machineName                    PERE-VARSHAM-FULLSTAK
+machineName                    AppProxy Machine
 version                        1.5.3437.0
 status                         active
 

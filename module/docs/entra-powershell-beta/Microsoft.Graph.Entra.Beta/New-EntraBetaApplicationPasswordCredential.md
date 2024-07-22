@@ -34,7 +34,7 @@ New-EntraBetaApplicationPasswordCredential
 
 ## Description
 
-The New-EntraBetaApplicationPasswordCredential cmdlet creates a password credential for an application in Microsoft Entra ID.
+The `New-EntraBetaApplicationPasswordCredential` cmdlet creates a password credential for an application in Microsoft Entra ID.
 
 ## Examples
 

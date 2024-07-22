@@ -39,7 +39,7 @@ The `New-EntraBetaApplicationProxyConnectorGroup` cmdlet creates a new Applicati
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-New-EntraBetaApplicationProxyConnectorGroup -Name "Backup Application Servers"
+New-EntraBetaApplicationProxyConnectorGroup -Name 'Backup Application Servers'
 ```
 
 ```Output
@@ -55,7 +55,7 @@ connectorGroupType             applicationProxy
 
 This example creates a new Connector Group using specified name.
 
-- `Name` parameter specifies the new connector group name.
+- `-Name` parameter specifies the new connector group name.
 
 ## Parameters
 

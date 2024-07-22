@@ -59,7 +59,7 @@ This example set a new Connector Group for a specific application.
 ### -ConnectorGroupId
 
 The ID of the Connector group that should be assigned to the application.
-You can find the Connector Group ID by using the `Get-EntraBetaApplicationProxyConnectorGroup` command.
+Use the `Get-EntraBetaApplicationProxyConnectorGroup` command to find the Connector Group ID.
 
 ```yaml
 Type: System.String

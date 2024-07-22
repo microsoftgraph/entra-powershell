@@ -48,8 +48,8 @@ Select-EntraBetaGroupIdsContactIsMemberOf -ObjectId $UserID -GroupIdsForMembersh
 
 This example demonstrates how to get groups in which a contact is a member.
 
-- `ObjectId` parameter specifies the contact Object ID.
-- `GroupIdsForMembershipCheck` parameter specifies the group Object ID.
+- `-ObjectId` parameter specifies the contact Object ID.
+- `-GroupIdsForMembershipCheck` parameter specifies the group Object ID.
 
 ## Parameters
 
@@ -58,7 +58,7 @@ This example demonstrates how to get groups in which a contact is a member.
 Specifies an array of group object IDs.
 
 ```yaml
-Type: System.GroupIdsForMembershipCheck
+Type: GroupIdsForMembershipCheck
 Parameter Sets: (All)
 Aliases:
 

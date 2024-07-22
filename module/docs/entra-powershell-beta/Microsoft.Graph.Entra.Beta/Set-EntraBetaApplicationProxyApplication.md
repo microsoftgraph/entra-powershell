@@ -79,11 +79,11 @@ isPersistentCookieEnabled                : False
 
 This example update `ExternalUrl`, `InternalUrl`, `ExternalAuthenticationType`, and `IsTranslateHostHeaderEnabled` parameter.
 
-- `ObjectId` parameter specifies the application ID.
-- `ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
-- `InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
-- `ExternalAuthenticationType` parameter specifies the external authentication type.
-- `IsTranslateHostHeaderEnabled` parameter specifies the translates urls in headers.
+- `-ObjectId` parameter specifies the application ID.
+- `-ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
+- `-InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
+- `-ExternalAuthenticationType` parameter specifies the external authentication type.
+- `-IsTranslateHostHeaderEnabled` parameter specifies the translates urls in headers.
 
 ### Example 2: Update IsHttpOnlyCookieEnabled, IsSecureCookieEnabled, and IsPersistentCookieEnabled  parameter
 
@@ -106,7 +106,7 @@ Set-EntraBetaApplicationProxyApplication @params
 ObjectId                                 : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 externalAuthenticationType               : aadPreAuthentication
 applicationServerTimeout                 : Long
-externalUrl                              : https://testp-m365x99297270.msappproxy.net/
+externalUrl                              : https://testp-contoso.msappproxy.net/
 internalUrl                              : https://testp.com/
 isTranslateHostHeaderEnabled             : False
 isTranslateLinksInBodyEnabled            : False
@@ -122,14 +122,14 @@ isPersistentCookieEnabled                : False
 
 This example update `IsHttpOnlyCookieEnabled`, `IsSecureCookieEnabled`, and `IsPersistentCookieEnabled` parameter.
 
-- `ObjectId` parameter specifies the application ID.
-- `ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
-- `InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
-- `ExternalAuthenticationType` parameter specifies the external authentication type.
-- `IsHttpOnlyCookieEnabled` parameter specifies the application proxy to include the HTTPOnly flag in HTTP response headers.
-- `IsSecureCookieEnabled` parameter specifies the application proxy to include the Secure flag in HTTP response headers.
-- `IsTranslateHostHeaderEnabled` parameter specifies the translates urls in headers.
-- `IsPersistentCookieEnabled` parameter specifies application proxy to set its access cookies to not expire when the web browser is closed.
+- `-ObjectId` parameter specifies the application ID.
+- `-ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
+- `-InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
+- `-ExternalAuthenticationType` parameter specifies the external authentication type.
+- `-IsHttpOnlyCookieEnabled` parameter specifies the application proxy to include the HTTPOnly flag in HTTP response headers.
+- `-IsSecureCookieEnabled` parameter specifies the application proxy to include the Secure flag in HTTP response headers.
+- `-IsTranslateHostHeaderEnabled` parameter specifies the translates urls in headers.
+- `-IsPersistentCookieEnabled` parameter specifies application proxy to set its access cookies to not expire when the web browser is closed.
 
 ### Example 3: Update IsTranslateLinksInBodyEnabled, ApplicationServerTimeout, and  ConnectorGroupId parameter
 
@@ -151,7 +151,7 @@ Set-EntraBetaApplicationProxyApplication @params
 ObjectId                                 : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 externalAuthenticationType               : aadPreAuthentication
 applicationServerTimeout                 : Long
-externalUrl                              : https://testp-m365x99297270.msappproxy.net/
+externalUrl                              : https://testp-contoso.msappproxy.net/
 internalUrl                              : https://testp.com/
 isTranslateHostHeaderEnabled             : False
 isTranslateLinksInBodyEnabled            : False
@@ -167,13 +167,13 @@ isPersistentCookieEnabled                : False
 
 This example update `IsTranslateLinksInBodyEnabled`, `ApplicationServerTimeout`, and  `ConnectorGroupId` parameter.
 
-- `ObjectId` parameter specifies the application ID.
-- `ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
-- `InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
-- `ConnectorGroupId` parameter specifies the Connector group ID that assigned to this application.
-- `ApplicationServerTimeout` parameter specifies the application server timeout to set.
-- `ExternalAuthenticationType` parameter specifies the external authentication type.
-- `IsTranslateHostHeaderEnabled` parameter specifies the translates urls in headers.
+- `-ObjectId` parameter specifies the application ID.
+- `-ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
+- `-InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
+- `-ConnectorGroupId` parameter specifies the Connector group ID that assigned to this application.
+- `-ApplicationServerTimeout` parameter specifies the application server timeout to set.
+- `-ExternalAuthenticationType` parameter specifies the external authentication type.
+- `-IsTranslateHostHeaderEnabled` parameter specifies the translates urls in headers.
 
 ## Parameters
 
@@ -238,7 +238,7 @@ Pass through: Users don't have to authenticate against Microsoft Entra ID to acc
 You can still set up authentication requirements on the backend.
 
 ```yaml
-Type: System.ExternalAuthenticationTypeEnum
+Type: ExternalAuthenticationTypeEnum
 Parameter Sets: (All)
 Aliases:
 
@@ -289,7 +289,7 @@ Specifies the backend server timeout type.
 Set this value to Long only if your application is slow to authenticate and connect.
 
 ```yaml
-Type: System.ApplicationServerTimeoutEnum
+Type: ApplicationServerTimeoutEnum
 Parameter Sets: (All)
 Aliases:
 

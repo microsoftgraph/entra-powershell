@@ -40,13 +40,17 @@ The `Remove-EntraBetaDirectoryRoleMember` cmdlet removes a member from a directo
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-Remove-EntraBetaDirectoryRoleMember -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -MemberId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+$params = @{
+    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    MemberId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+}
+Remove-EntraBetaDirectoryRoleMember @params
 ```
 
 This example removes the specified member from the specified role.
 
-- `ObjectId` parameter specifies the object ID of the directory role.
-- `MemberId` parameter specifies the object ID of the role member to removed.
+- `-ObjectId` parameter specifies the object ID of the directory role.
+- `-MemberId` parameter specifies the object ID of the role member to removed.
 
 ## Parameters
 

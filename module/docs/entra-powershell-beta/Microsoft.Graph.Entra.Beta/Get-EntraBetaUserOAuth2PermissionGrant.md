@@ -36,6 +36,18 @@ Get-EntraBetaUserOAuth2PermissionGrant
 
 The `Get-EntraBetaUserOAuth2PermissionGrant` cmdlet gets an oAuth2PermissionGrant object for the specified user in Microsoft Entra ID. Specify `ObjectId` parameter to retrieve an oAuth2PermissionGrant object.
 
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with a supported role permission. The following least privileged roles are supported for this operation.
+
+- Application Administrator
+- Application Developer
+- Cloud Application Administrator
+- Directory Writers
+- Privileged Role Administrator
+- User Administrator
+- Directory Readers
+- Global Reader
+- Guest Inviter
+
 ## Examples
 
 ### Example 1: Retrieve the OAuth2 permission grants for a user
@@ -53,12 +65,7 @@ HXFXwKLgoUC4rwbZbCDIdffW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 00001111-aaaa-2
 9uBzRwC0s0CFCDQN6O4Ik_fW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 11112222-bbbb-3333-cccc-4444dddd5555 Principal   13-01-2024 08:0...
 ```
 
-This example retrieves the OAuth2 permission grants for a user using object ID parameter.
-
-The first command gets the ID of a Microsoft Entra ID user by using the Get-EntraBetaUser (./Get-EntraBetaUser.md) cmdlet.
-The command stores the value in the $UserId variable.
-
-The second command gets the OAuth2 permission grants for the user identified by $UserId.
+This example retrieves the OAuth2 permission grants for a user using the ObjectId parameter. Use the `Get-EntraBetaUser` cmdlet to obtain the `ObjectId` value.
 
 ### Example 2: Retrieve the OAuth2 permission grants for a user using object ID parameter
 
@@ -76,7 +83,7 @@ HXFXwKLgoUC4rwbZbCDIdffW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 00001111-aaaa-2
 
 This example retrieves the OAuth2 permission grants for a user using object ID parameter.
 
-- `ObjectId` parameter specifies the user ID.
+- `-ObjectId` parameter specifies the user ID.
 
 ### Example 3: Retrieve the OAuth2 permission grants for a user using All parameter
 
@@ -94,7 +101,7 @@ HXFXwKLgoUC4rwbZbCDIdffW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 00001111-aaaa-2
 
 This example retrieves the OAuth2 permission grants for a user using All parameter.
 
-- `ObjectId` parameter specifies the user ID.
+- `-ObjectId` parameter specifies the user ID.
 
 ### Example 4: Retrieve top one OAuth2 permission grant
 
@@ -111,7 +118,7 @@ HXFXwKLgoUC4rwbZbCDIdffW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 00001111-aaaa-2
 
 This Example Retrieve top one the OAuth2 permission grant in Microsoft Entra ID.
 
-- `ObjectId` parameter specifies the user ID.
+- `-ObjectId` parameter specifies the user ID.
 
 ## Parameters
 

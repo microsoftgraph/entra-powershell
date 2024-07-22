@@ -146,7 +146,7 @@ This example retrieves a connector groups with filter parameter.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraBetaApplicationProxyConnectorGroup -SearchString "test"
+Get-EntraBetaApplicationProxyConnectorGroup -SearchString 'Test'
 ```
 
 ```Output

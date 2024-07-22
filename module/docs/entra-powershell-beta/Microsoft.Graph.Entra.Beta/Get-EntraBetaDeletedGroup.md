@@ -86,7 +86,7 @@ Connect-Entra -Scopes 'Group.Read.All'
 Get-EntraBetaDeletedGroup -All 
 ```
 
-```output
+```Output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
@@ -104,7 +104,7 @@ Connect-Entra -Scopes 'Group.Read.All'
 Get-EntraBetaDeletedGroup -Top 2
 ```
 
-```output
+```Output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
@@ -120,7 +120,7 @@ Connect-Entra -Scopes 'Group.Read.All'
 Get-EntraBetaDeletedGroup -SearchString 'test2'
 ```
 
-```output
+```Output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
@@ -135,10 +135,10 @@ This cmdlet retrieves deleted groups in the directory, containing the specified 
 
 ```powershell
 Connect-Entra -Scopes 'Group.Read.All'
-Get-EntraBetaDeletedGroup -Filter "displayname eq 'test21'"
+Get-EntraBetaDeletedGroup -Filter "displayName eq 'test21'"
 ```
 
-```output
+```Output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
@@ -153,7 +153,7 @@ Connect-Entra -Scopes 'Group.Read.All'
 Get-EntraBetaDeletedGroup -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-```output
+```Output
 DisplayName Id                                   MailNickname Description GroupTypes
 ----------- --                                   ------------ ----------- ----------
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
@@ -161,7 +161,7 @@ test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unifi
 
 This cmdlet retrieves the deleted group specified by Id.
 
-- `Id` parameter specifies the deleted group ID.
+- `-Id` parameter specifies the deleted group ID.
 
 ## Parameters
 

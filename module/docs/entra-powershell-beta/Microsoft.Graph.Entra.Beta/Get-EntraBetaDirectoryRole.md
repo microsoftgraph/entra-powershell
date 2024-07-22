@@ -50,18 +50,18 @@ The `Get-EntraBetaDirectoryRole` cmdlet gets a directory role from Microsoft Ent
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-Get-EntraBetaDirectoryRole -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+Get-EntraBetaDirectoryRole -ObjectId '56644e28-bf8b-4dad-8595-24448ffa3cb8'
 ```
 
 ```Output
 DeletedDateTime Id                                   Description
 --------------- --                                   -----------
-                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Perform all migration functionality to migrate content to Microsoft 365 usin...
+                56644e28-bf8b-4dad-8595-24448ffa3cb8 Perform all migration functionality to migrate content to Microsoft 365 usin...
 ```
 
 This command gets the specified directory role.
 
-- `ObjectId` parameter specifies the ID of a directory role in Microsoft Entra ID.
+- `-ObjectId` parameter specifies the ID of a directory role in Microsoft Entra ID.
 
 ### Example 2: Get all directory roles
 
@@ -85,30 +85,30 @@ This command gets all the directory roles.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-Get-EntraBetaDirectoryRole -Filter "ObjectId eq 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'"
+Get-EntraBetaDirectoryRole -Filter "ObjectId eq '56644e28-bf8b-4dad-8595-24448ffa3cb8'"
 ```
 
 ```Output
 DeletedDateTime Id                                   Description
 --------------- --                                   -----------
-                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Perform all migration functionality to migrate content to Microsoft 365 usin...
+                56644e28-bf8b-4dad-8595-24448ffa3cb8 Perform all migration functionality to migrate content to Microsoft 365 usin...
 ```
 
 This command gets the directory role by ObjectId.
 
-- `ObjectId` parameter specifies the ID of a directory role in Microsoft Entra ID.
+- `-ObjectId` parameter specifies the ID of a directory role in Microsoft Entra ID.
 
 ### Example 4: Get a directory role filter by displayName
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-Get-EntraBetaDirectoryRole -Filter "displayName eq 'Company Administrator'"
+Get-EntraBetaDirectoryRole -Filter "displayName eq 'Helpdesk Administrator'"
 ```
 
 ```Output
 DeletedDateTime Id                                   Description
 --------------- --                                   -----------
-                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Perform all migration functionality to migrate content to Microsoft 365 usin...
+                56644e28-bf8b-4dad-8595-24448ffa3cb8 Perform all migration functionality to migrate content to Microsoft 365 usin...
 ```
 
 This command gets the directory role by display name.

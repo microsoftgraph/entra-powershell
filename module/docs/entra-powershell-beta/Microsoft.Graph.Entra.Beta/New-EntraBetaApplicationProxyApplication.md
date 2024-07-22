@@ -19,7 +19,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-The New-EntraBetaApplicationProxyApplication cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
+The `New-EntraBetaApplicationProxyApplication` cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
 
 ## Syntax
 
@@ -43,7 +43,7 @@ New-EntraBetaApplicationProxyApplication
 
 The `New-EntraBetaApplicationProxyApplication` cmdlet creates a new application configured for Application Proxy in Microsoft Entra ID.
 To ensure this application is usable, also make sure you assign users and configure SSO if needed.
-Without specifying a ConnectorGroupId, this application by default uses the �Default� connector group in your tenant.
+Without specifying a ConnectorGroupId, this application by default uses the `Default` connector group in your tenant.
 
 ## Examples
 
@@ -80,9 +80,9 @@ isPersistentCookieEnabled                : False
 
 This example creating a new application with only the basic required settings, and the default domain for applications.
 
-- `DisplayName` parameter specifies the display name of new application.
-- `ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
-- `InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
+- `-DisplayName` parameter specifies the display name of new application.
+- `-ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
+- `-InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
 
 ### Example 2: Creating a new application with ApplicationServerTimeout and ExternalAuthenticationType parameter
 
@@ -118,11 +118,11 @@ isPersistentCookieEnabled                : False
 
 This example creating a new application with `ApplicationServerTimeout` and `ExternalAuthenticationType` parameter.
 
-- `DisplayName` parameter specifies the display name of new application.
-- `ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
-- `InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
-- `ApplicationServerTimeout` parameter specifies the application server timeout to set.
-- `ExternalAuthenticationType` parameter specifies the external authentication type.
+- `-DisplayName` parameter specifies the display name of new application.
+- `-ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
+- `-InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
+- `-ApplicationServerTimeout` parameter specifies the application server timeout to set.
+- `-ExternalAuthenticationType` parameter specifies the external authentication type.
 
 ### Example 3: Creating a new application with IsHttpOnlyCookieEnabled, IsSecureCookieEnabled, IsTranslateLinksInBodyEnabled and ConnectorGroupId parameter
 
@@ -161,14 +161,14 @@ isPersistentCookieEnabled                : False
 
 This example creating a new application with `IsHttpOnlyCookieEnabled`, `IsSecureCookieEnabled`, `IsTranslateLinksInBodyEnabled`, and `ConnectorGroupId` parameter.
 
-- `DisplayName` parameter specifies the display name of new application.
-- `ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
-- `InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
-- `ConnectorGroupId` parameter specifies the Connector group ID that assigned to this application.
-- `IsHttpOnlyCookieEnabled` parameter specifies the application proxy to include the HTTPOnly flag in HTTP response headers.
-- `IsSecureCookieEnabled` parameter specifies the application proxy to include the Secure flag in HTTP response headers.
-- `IsPersistentCookieEnabled` parameter specifies application proxy to set its access cookies to not expire when the web browser is closed.
-- `IsTranslateLinksInBodyEnabled` parameter specifies the translates urls in body.
+- `-DisplayName` parameter specifies the display name of new application.
+- `-ExternalUrl` parameter specifies the URL that use to access the application from outside user private network.
+- `-InternalUrl` parameter specifies the URL that use to access the application from inside user private network.
+- `-ConnectorGroupId` parameter specifies the Connector group ID that assigned to this application.
+- `-IsHttpOnlyCookieEnabled` parameter specifies the application proxy to include the HTTPOnly flag in HTTP response headers.
+- `-IsSecureCookieEnabled` parameter specifies the application proxy to include the Secure flag in HTTP response headers.
+- `-IsPersistentCookieEnabled` parameter specifies application proxy to set its access cookies to not expire when the web browser is closed.
+- `-IsTranslateLinksInBodyEnabled` parameter specifies the translates urls in body.
 
 ## Parameters
 
@@ -177,7 +177,7 @@ This example creating a new application with `IsHttpOnlyCookieEnabled`, `IsSecur
 Set this value to Long only if your application is slow to authenticate and connect.
 
 ```yaml
-Type: System.ApplicationServerTimeoutEnum
+Type: ApplicationServerTimeoutEnum
 Parameter Sets: (All)
 Aliases:
 Accepted values: Default, Long
@@ -233,7 +233,7 @@ Pass through: Users don't have to authenticate against Microsoft Entra ID to acc
 You can still set up authentication requirements on the backend.
 
 ```yaml
-Type: System.ExternalAuthenticationTypeEnum
+Type: ExternalAuthenticationTypeEnum
 Parameter Sets: (All)
 Aliases:
 Accepted values: AadPreAuthentication, Passthru

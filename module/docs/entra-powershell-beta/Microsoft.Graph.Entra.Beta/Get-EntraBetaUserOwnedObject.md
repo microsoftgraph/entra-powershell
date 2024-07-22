@@ -43,7 +43,7 @@ Specify `ObjectId` parameter to retrieve objects owned by a user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserOwnedObject -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+Get-EntraBetaUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -58,7 +58,7 @@ deletedDateTime                   :
 web                               : @{homePageUrl=https://localhost/demoapp; implicitGrantSettings=; redirectUriSettings=System.Object[]; redirectUris=System.Object[];
                                     logoutUrl=}
 groupMembershipClaims             :
-publisherDomain                   : M365x99297270.onmicrosoft.com
+publisherDomain                   : contoso.com
 @odata.type                       : #microsoft.graph.application
 identifierUris                    : {}
 servicePrincipalLockConfiguration :
@@ -73,13 +73,13 @@ appRoles                          : {@{allowedMemberTypes=Application; value=sam
 
 This example retrieves objects owned by the specified user.
 
-- `ObjectId` parameter specifies the user ID.
+- `-ObjectId` parameter specifies the user ID.
 
 ### Example 2: Get all objects owned by a user
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserOwnedObject -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
+Get-EntraBetaUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
 ```
 
 ```Output
@@ -94,7 +94,7 @@ deletedDateTime                   :
 web                               : @{homePageUrl=https://localhost/demoapp; implicitGrantSettings=; redirectUriSettings=System.Object[]; redirectUris=System.Object[];
                                     logoutUrl=}
 groupMembershipClaims             :
-publisherDomain                   : M365x99297270.onmicrosoft.com
+publisherDomain                   : contoso.com
 @odata.type                       : #microsoft.graph.application
 identifierUris                    : {}
 servicePrincipalLockConfiguration :
@@ -109,13 +109,13 @@ appRoles                          : {@{allowedMemberTypes=Application; value=sam
 
 This example retrieves all the objects owned by the specified user.
 
-- `ObjectId` parameter specifies the user ID.
+- `-ObjectId` parameter specifies the user ID.
 
 ### Example 3: Get top three objects owned by a user
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserOwnedObject -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 3
+Get-EntraBetaUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 3
 ```
 
 ```Output
@@ -130,7 +130,7 @@ deletedDateTime                   :
 web                               : @{homePageUrl=https://localhost/demoapp; implicitGrantSettings=; redirectUriSettings=System.Object[]; redirectUris=System.Object[];
                                     logoutUrl=}
 groupMembershipClaims             :
-publisherDomain                   : M365x99297270.onmicrosoft.com
+publisherDomain                   : contoso.com
 @odata.type                       : #microsoft.graph.application
 identifierUris                    : {}
 servicePrincipalLockConfiguration :
@@ -145,7 +145,7 @@ appRoles                          : {@{allowedMemberTypes=Application; value=sam
 
 This example retrieves the top three objects owned by the specified user.
 
-- `ObjectId` parameter specifies the user ID.
+- `-ObjectId` parameter specifies the user ID.
 
 ## Parameters
 

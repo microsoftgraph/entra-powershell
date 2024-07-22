@@ -44,14 +44,11 @@ Get-EntraBetaDirectoryRoleTemplate
 ```Output
 DeletedDateTime Id                                   Description
 --------------- --                                   -----------
-                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Can manage all aspects of Microsoft Entra ID and Microsoft services that use Microsoft Entra identities.
-                bbbbbbbb-1111-2222-3333-cccccccccccc Default role for guest users. Can read a limited set of directory information.
-                cccccccc-2222-3333-4444-dddddddddddd Default role for guest users with restricted access. Can read a limited set of directory information.
-                dddddddd-3333-4444-5555-eeeeeeeeeeee Can invite guest users independent of the 'members can invite guests' setting.
-                eeeeeeee-4444-5555-6666-ffffffffffff Can manage all aspects of users and groups, including resetting passwords for limited admins.
-                ffffffff-5555-6666-7777-aaaaaaaaaaaa Can reset passwords for non-administrators and Helpdesk Administrators.
-                aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb Can read service health information and manage support tickets.
-                bbbbbbbb-7777-8888-9999-cccccccccccc Can perform common billing related tasks like updating payment information.
+                62e90394-69f5-4237-9190-012177145e10 Can manage all aspects of Microsoft Entra ID and Microsoft services that use Microsoft Entra identities.
+                10dae51f-b6af-4016-8d66-8c2a99b929b3 Default role for guest users. Can read a limited set of directory information.
+                2af84b1e-32c8-42b7-82bc-daa82404023b Default role for guest users with restricted access. Can read a limited set of directory information.
+                95e79109-95c0-4d8e-aee3-d01accf2d47b Can invite guest users independent of the 'members can invite guests' setting.
+                fe930be7-5e62-47db-91af-98c3a49a38b1 Can manage all aspects of users and groups, including resetting passwords for limited admins.
 ```
 
 This example retrieves the role templates in Microsoft Entra ID.

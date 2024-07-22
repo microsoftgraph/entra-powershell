@@ -32,7 +32,7 @@ Get-EntraBetaDirectoryRoleMember
 
 ## Description
 
-The `Get-EntraBetaDirectoryRoleMember` cmdlet gets the members of a directory role in Microsoft Entra ID. Specify `ObjectId` to get members of directory role.
+The `Get-EntraBetaDirectoryRoleMember` cmdlet retrieves the members of a directory role in Microsoft Entra ID. To obtain the members of a specific directory role, specify the `ObjectId`. Use the `Get-EntraBetaDirectoryRole` cmdlet to get the `ObjectId` value.
 
 ## Examples
 
@@ -40,7 +40,7 @@ The `Get-EntraBetaDirectoryRoleMember` cmdlet gets the members of a directory ro
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-Get-EntraBetaDirectoryRoleMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+Get-EntraBetaDirectoryRoleMember -ObjectId '1708c380-4b8a-4977-a46e-6031676f6b41'
 ```
 
 ```Output
@@ -51,7 +51,7 @@ bbbbbbbb-7777-8888-9999-cccccccccccc
 
 This example retrieves the members of the specified role.
 
-- `ObjectId` parameter specifies directory role ID.
+- `-ObjectId` parameter specifies directory role ID.
 
 ## Parameters
 
