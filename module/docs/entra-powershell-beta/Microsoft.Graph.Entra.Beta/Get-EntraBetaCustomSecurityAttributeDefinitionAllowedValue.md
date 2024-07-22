@@ -54,16 +54,15 @@ Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
 Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId 'Engineering_Project'
 ```
 
-```output
+```Output
 id      isActive
 --      --------
 Apline      True
 ```
 
-This example Get all predefined values.
+This example retrieves an all predefined values.
 
-- Attribute set: `Engineering`
-- Attribute: `Project`
+- `-CustomSecurityAttributeDefinitionId` parameter specifies the custom security attribute definition ID.
 
 ### Example 2: Get predefined value with ID parameter
 
@@ -76,7 +75,7 @@ $params = @{
 Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue @params
 ```
 
-```output
+```Output
 id      isActive
 --      --------
 Apline      True
@@ -84,8 +83,8 @@ Apline      True
 
 This example retrieves a specific predefined value.
 
-- `CustomSecurityAttributeDefinitionId` parameter specifies the custom security attribute definition ID.
-- `Id` parameter specifies the ID of Microsoft Entra ID Object.
+- `-CustomSecurityAttributeDefinitionId` parameter specifies the custom security attribute definition ID.
+- `-Id` parameter specifies the ID of Microsoft Entra ID Object.
 
 ### Example 3: Get predefined value with Filter parameter
 
@@ -98,7 +97,7 @@ $params = @{
 Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue @params
 ```
 
-```output
+```Output
 id      isActive
 --      --------
 Apline      True
@@ -106,7 +105,7 @@ Apline      True
 
 This example retrieves a predefined value containing Id with the specified value.
 
-- `CustomSecurityAttributeDefinitionId` parameter specifies the custom security attribute definition ID.
+- `-CustomSecurityAttributeDefinitionId` parameter specifies the custom security attribute definition ID.
 
 ## Parameters
 

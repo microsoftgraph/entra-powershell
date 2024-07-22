@@ -52,7 +52,9 @@ failedSignInCount     : 0
 successPercentage     : 100
 ```
 
-This example returns a summary of all sign ins to Graph Explorer for the last 7 days.
+This example returns a summary of all sign ins to Graph Explorer for the last seven days.
+
+- `-Days` parameter specifies the number of past days summary contains. Valid values are only 7 and 30.
 
 ### Example 2: Get sign in summaries for the last month
 
@@ -89,6 +91,8 @@ successPercentage     : 100
 
 This example returns summaries for all sign ins from the past 30 days.
 
+- `-Days` parameter specifies the number of past days summary contains. Valid values are only 7 and 30.
+
 ### Example 3: Get top two sign in summaries for the last month
 
 ```powershell
@@ -111,6 +115,8 @@ successPercentage     : 88.46
 ```
 
 This example returns top two summaries sign ins from the past 30 days.
+
+- `-Days` parameter specifies the number of past days summary contains. Valid values are only 7 and 30.
 
 ## Parameters
 
