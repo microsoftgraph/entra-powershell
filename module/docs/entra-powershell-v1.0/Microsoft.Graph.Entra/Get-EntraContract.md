@@ -2,7 +2,7 @@
 title: Get-EntraContract
 description: This article provides details on the Get-EntraContract command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -26,19 +26,21 @@ Gets a contract.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraContract 
- [-Top <Int32>] 
- [-All] 
- [-Filter <String>] 
+Get-EntraContract
+ [-Top <Int32>]
+ [-All]
+ [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraContract 
- -ObjectId <String> 
- [-All] 
+Get-EntraContract
+ -ObjectId <String>
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -108,7 +110,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies an oData v3.0 filter statement.
+Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
@@ -152,6 +154,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

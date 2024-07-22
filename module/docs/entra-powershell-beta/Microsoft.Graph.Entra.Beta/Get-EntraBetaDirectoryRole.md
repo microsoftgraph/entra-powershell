@@ -2,7 +2,7 @@
 title: Get-EntraBetaDirectoryRole
 description: This article provides details on the Get-EntraBetaDirectoryRole command.
 
-ms.service: active-directory
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -104,7 +104,7 @@ This command gets the directory role by display name.
 ## Parameters
 
 ### -Filter
-The oData v3.0 filter statement. 
+The OData v4.0 filter statement. 
 Controls which objects are returned.
 
 ```yaml

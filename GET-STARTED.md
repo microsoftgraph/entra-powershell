@@ -2,7 +2,7 @@
 title: Microsoft Entra PowerShell installation and usage guide.
 description: Microsoft Entra PowerShell installation and usage guide.
 
-ms.service: active-directory
+
 ms.topic: reference
 ms.date: 04/05/2024
 ms.author: eunicewaweru

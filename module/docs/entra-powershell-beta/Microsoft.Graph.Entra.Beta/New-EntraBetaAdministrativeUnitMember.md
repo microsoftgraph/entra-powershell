@@ -1,4 +1,15 @@
 ---
+title: New-EntraBetaAdministrativeUnitMember.
+description: This article provides details on the New-EntraBetaAdministrativeUnitMember command.
+
+
+ms.topic: reference
+ms.date: 07/04/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,55 +19,87 @@ schema: 2.0.0
 # New-EntraBetaAdministrativeUnitMember
 
 ## Synopsis
-Create a new object as a member of the administrativeUnit.
+
+Create a new object as a member of the administrative unit.
 Currently only group objects are supported.
 
 ## Syntax
 
-```
-New-EntraBetaAdministrativeUnitMember [-GroupTypes <System.Collections.Generic.List`1[System.String]>]
- -Id <String> [-AssignedLabels <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AssignedLabel]>]
- [-OdataType <String>] [-Description <String>] -SecurityEnabled <Boolean> [-IsAssignableToRole <Boolean>]
- [-ProxyAddresses <System.Collections.Generic.List`1[System.String]>] -DisplayName <String>
- [-Visibility <String>] -MailEnabled <Boolean> -MailNickname <String> [-MembershipRule <String>]
- [-MembershipRuleProcessingState <String>] [<CommonParameters>]
+```powershell
+New-EntraBetaAdministrativeUnitMember 
+ -Id <String>
+ [-GroupTypes <System.Collections.Generic.List`1[System.String]>]
+ [-AssignedLabels <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AssignedLabel]>]
+ [-OdataType <String>] 
+ [-Description <String>] 
+ -SecurityEnabled <Boolean> 
+ [-IsAssignableToRole <Boolean>]
+ [-ProxyAddresses <System.Collections.Generic.List`1[System.String]>] 
+ -DisplayName <String>
+ [-Visibility <String>] 
+ -MailEnabled <Boolean> 
+ -MailNickname <String> 
+ [-MembershipRule <String>]
+ [-MembershipRuleProcessingState <String>] 
+ [<CommonParameters>]
 ```
 
 ## Description
-The New-EntraBetaAdministrativeUnitMember cmdlet creates an Azure Active Directory (Azure AD) object as a member of an administrativeUnit.
 
-Currently only Azure Active Directory groups are supporeted to be created as administrativeUnit members.
+The `New-EntraBetaAdministrativeUnitMember` cmdlet creates a Microsoft Entra ID object as a member of an administrative unit. Specify `Id`, `DisplayName`, `MailNickname`, `SecurityEnabled` and `MailEnabled` parameters for create a new administrative unit member.
 
-For information about creating dynamic groups, see Using attributes to create advanced rules (https://azure.microsoft.com/en-us/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/).
+Currently only Microsoft Entra ID groups are supported to create administrative unit members.
+
+For information about creating dynamic groups, see Using attributes to create advanced rules (<https://azure.microsoft.com/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/>).
 
 ## Examples
 
-### Example 1: Create a dynamic group in an administrativeUnit
-```
-PS C:\> New-EntraBetaAdministrativeUnitMember -Id "5c99c435-43de-42a3-a420-a5c90b7ccc5a" -OdataType "Microsoft.Graph.Group" -DisplayName  "testGroupInAU10" -Description "testGroupInAU10" -MailEnabled $True -MailNickname "testGroupInAU10" -SecurityEnabled $False -GroupTypes @("Unified","DynamicMembership") -MembershipRule "(user.department -contains 'Marketing')" -MembershipRuleProcessingState "On"
+### Example 1: Create a dynamic group in an administrative unit
 
-Id                                   DisplayName     Description
---                                   -----------     -----------
-89df76f0-b37a-4f41-8cd5-c5800ca89bd2 testGroupInAU10 testGroupInAU10
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$params = @{
+    Id = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    OdataType = 'Microsoft.Graph.Group'
+    DisplayName = 'NewAUMember'
+    Description = 'createdUnitMember'
+    MailEnabled = $True
+    MailNickname = 'new'
+    SecurityEnabled = $False
+    GroupTypes = @('Unified', 'DynamicMembership')
+    MembershipRule = "(user.department -contains 'Marketing')"
+    MembershipRuleProcessingState = 'On'
+    IsAssignableToRole = $false
+    Visibility = 'Public'
+    ProxyAddresses = @('SMTP:Ahiresh@M365x99297270.onmicrosoft.com')
+}
+New-EntraBetaAdministrativeUnitMember @params
 ```
 
-This command creates a new dynamic group in an administrativeUnit with the following rule:
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+dddddddd-2222-2222-3333-cccccccccccc
+```
+
+This command creates a new dynamic group in an administrative unit with the following rule:
 
 \`user.department -contains "Marketing"\`
 
 The double quotation marks are replaced with single quotation marks.
 
-The processing state is On. 
-This means that all users in the directory that qualify the rule are added as members to the group.
-Any users that do not qualify are removed from the group.
+The processing state is On.
+It means that all users in the directory that qualify the rule are added as members to the group.
+Any users that don't qualify are removed from the group.
 
 ## Parameters
 
 ### -Id
-Specifies the ID of an Active Directory administrative unit.
+
+Specifies the ID of a Microsoft Entra ID administrative unit.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -68,10 +111,11 @@ Accept wildcard characters: False
 ```
 
 ### -OdataType
-Specifies the odata type of the object to create in the administrativeUnit.
+
+Specifies the odata type of the object to create in the administrative unit.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -83,10 +127,11 @@ Accept wildcard characters: False
 ```
 
 ### -Description
+
 Specifies a description for the group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -98,10 +143,11 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
+
 Specifies a display name for the group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -113,12 +159,13 @@ Accept wildcard characters: False
 ```
 
 ### -MailEnabled
+
 Specifies whether this group is mail enabled.
 
-Currently, you cannot create mail enabled groups in Azure AD.
+Currently, you can't create mail enabled groups in Microsoft Entra ID.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -130,11 +177,12 @@ Accept wildcard characters: False
 ```
 
 ### -MailNickname
+
 Specifies a mail nickname for the group.
-If MailEnabled is $False you must still specify a mail nickname.
+If MailEnabled is $False, you must still specify a mail nickname.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -146,11 +194,12 @@ Accept wildcard characters: False
 ```
 
 ### -SecurityEnabled
+
 Specifies whether the group is security enabled.
 For security groups, this value must be $True.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -162,7 +211,8 @@ Accept wildcard characters: False
 ```
 
 ### -GroupTypes
-Specifies that the group is a dynamic group. 
+
+Specifies that the group is a dynamic group.
 To create a dynamic group, specify a value of DynamicMembership.
 
 ```yaml
@@ -178,12 +228,13 @@ Accept wildcard characters: False
 ```
 
 ### -MembershipRule
+
 Specifies the membership rule for a dynamic group.
 
-For more information about the rules that you can use for dynamic groups, see Using attributes to create advanced rules (https://azure.microsoft.com/en-us/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/).
+For more information about the rules that you can use for dynamic groups, see Using attributes to create advanced rules (https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership).
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -195,16 +246,17 @@ Accept wildcard characters: False
 ```
 
 ### -MembershipRuleProcessingState
+
 Specifies the rule processing state.
 The acceptable values for this parameter are:
 
 * "On". Process the group rule.
 * "Paused". Stop processing the group rule.
 
-Changing the value of the processing state does not change the members list of the group.
+Changing the value of the processing state doesn't change the members list of the group.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -216,6 +268,7 @@ Accept wildcard characters: False
 ```
 
 ### -Visibility
+
 This parameter determines the visibility of the group's content and members list.
 This parameter can take one of the following values:
 
@@ -228,11 +281,11 @@ If no value is provided, the default value will be "Public".
 Notes:
 
 * This parameter is only valid for groups that have the groupType set to "Unified".
-* If a group has this attribute set to "HiddenMembership" it cannot be changed later.
+* If a group has this attribute set to "HiddenMembership", it can't be changed later.
 * Anyone can join a group that has this attribute set to "Public". If the attribute is set to Private or HiddenMembership, only owner(s) can add new members to the group and requests to join the group need approval of the owner(s).
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -244,7 +297,8 @@ Accept wildcard characters: False
 ```
 
 ### -AssignedLabels
-{{ Fill AssignedLabels Description }}
+
+This parameter allows the assignment of sensitivity labels to groups. For more information on how sensitivity labels can be assigned to groups, refer to [Assign sensitivity labels](https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership)
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AssignedLabel]
@@ -259,10 +313,11 @@ Accept wildcard characters: False
 ```
 
 ### -IsAssignableToRole
-{{ Fill IsAssignableToRole Description }}
+
+Flag indicates whether group can be assigned to a role. This property can only be set at the time of group creation and can't be modified on an existing group.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -274,7 +329,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProxyAddresses
-{{ Fill ProxyAddresses Description }}
+
+Sets the proxyAddresses attribute.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -289,21 +345,23 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### None
+
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
 
-[Add-EntraBetaAdministrativeUnitMember]()
+[Add-EntraBetaAdministrativeUnitMember](Add-EntraBetaAdministrativeUnitMember.md)
 
-[Get-EntraBetaAdministrativeUnitMember]()
+[Get-EntraBetaAdministrativeUnitMember](Get-EntraBetaAdministrativeUnitMember.md)
 
-[Remove-EntraBetaAdministrativeUnitMember]()
-
+[Remove-EntraBetaAdministrativeUnitMember](Remove-EntraBetaAdministrativeUnitMember.md)

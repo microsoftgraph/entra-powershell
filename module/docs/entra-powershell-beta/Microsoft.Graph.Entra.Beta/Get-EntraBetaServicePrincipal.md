@@ -2,7 +2,7 @@
 title: Get-EntraBetaServicePrincipal
 description: This article provides details on the Get-EntraBetaServicePrincipal command.
 
-ms.service: active-directory
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -169,7 +169,7 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-Specifies an oData v3.0 filter statement.
+Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
