@@ -83,7 +83,7 @@ This example Get a predefined value.
 - `-CustomSecurityAttributeDefinitionId` Specify The unique identifier of a custom security attribute definition.
 - Attribute set: `Engineering`
 - Attribute: `Project`
-- Predefined value: `Alpine`
+- `-Id` Specify the unique identifier of a predefined value.
 
 ### Example 3: Get predefined value with Filter parameter
 
@@ -103,7 +103,7 @@ This example Get a predefined value with Filter.
 - `-CustomSecurityAttributeDefinitionId` Specify The unique identifier of a custom security attribute definition.
 - Attribute set: `Engineering`
 - Attribute: `Project`
-- Predefined value: `Alpine`
+- `-Id` Specify the unique identifier of a predefined value.
 
 ## PARAMETERS
 
