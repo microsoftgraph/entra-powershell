@@ -1,9 +1,9 @@
 ---
-title: Get-EntraCustomSecurityAttributeDefinition .
+title: Get-EntraCustomSecurityAttributeDefinition.
 description: This article provides details on the Get-EntraCustomSecurityAttributeDefinition command.
-ms.service: entra
+
 ms.topic: reference
-ms.date: 06/13/2024
+ms.date: 07/23/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -39,7 +39,7 @@ Get-EntraCustomSecurityAttributeDefinition
 
 ## DESCRIPTION
 
-Gets a list of Microsoft Entra ID custom security attribute definitions. Specify `Id` parameter to gets a list of custom security attribute definitions.
+The `Get-EntraCustomSecurityAttributeDefinition` cmdlet gets a list of Microsoft Entra ID custom security attribute definitions. Specify `Id` parameter to gets a list of custom security attribute definitions.
 
 ## EXAMPLES
 
@@ -50,7 +50,7 @@ Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttribute
 Get-EntraCustomSecurityAttributeDefinition
 ```
 
-```output
+```Output
 Id                                      AttributeSet          Description                         IsCollection IsSearchable Name                             Status     Typ
                                                                                                                                                                         e
 --                                      ------------          -----------                         ------------ ------------ ----                             ------     ---
@@ -71,7 +71,7 @@ Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttribute
 Get-EntraCustomSecurityAttributeDefinition -Id 'Engineering_Project'
 ```
 
-```output
+```Output
 Id                  AttributeSet Description IsCollection IsSearchable Name    Status     Type   UsePreDefinedValuesOnly
 --                  ------------ ----------- ------------ ------------ ----    ------     ----   -----------------------
 Engineering_Project Engineering  new update1 True         True         Project Deprecated String False
