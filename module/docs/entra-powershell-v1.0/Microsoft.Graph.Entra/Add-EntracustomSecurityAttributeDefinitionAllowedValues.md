@@ -57,9 +57,9 @@ Alpine True
 
 This example Add a predefined value:
 
-- Attribute set: `Engineering`
-- Attribute: `Project`
-- Predefined value: `Alpine`
+- `-CustomSecurityAttributeDefinitionId` Specify the unique identifier for custom security attribute definition.
+- `-Id` Specify the the unique identifier of an object.
+- `-IsActive` Specify whether the predefined value is active or deactivated.
 
 ## PARAMETERS
 
