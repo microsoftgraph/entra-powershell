@@ -17,46 +17,57 @@ schema: 2.0.0
 # Get-EntraBetaPrivateAccessApplicationSegment
 
 ## Synopsis
-The Get-EntraBetaPrivateAccessApplicationSegment cmdlet retrieves a list of all application segments associated to a Private Access application, or if specified, details of a specific application segment.
+
+Retrieves a list of all application segments associated to a Private Access application, or if specified, details of a specific application segment.
 
 ## Description
-The Get-EntraBetaPrivateAccessApplicationSegment cmdlet retrieves a list of all application segments associated to a Private Access application, or if specified, details of a specific application segment.
+
+The `Get-EntraBetaPrivateAccessApplicationSegment` cmdlet retrieves a list of all application segments associated to a Private Access application, or if specified, details of a specific application segment.
 
 ## Examples
 
 ### Example 1: Retrieve all application segments associated to an application
+
 ```powershell
-PS C:\> Get-EntraBetaPrivateAccessApplicationSegment -ObjectId b97db9dd-85c7-4365-ac05-bd824728ab83
+Get-EntraBetaPrivateAccessApplicationSegment -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444'
 ```
-```output
+
+```Output
 destinationHost : 10.1.1.20
 destinationType : ip
 port            : 0
 ports           : {22-22}
 protocol        : tcp
-id              : 89a0ff5a-0440-4411-8f1c-d4e0be0635c8
+id              : cccc2222-dd33-4444-55ee-666666ffffff
 
 destinationHost : 10.20.20.20
 destinationType : ip
 port            : 0
 ports           : {8080-8080}
 protocol        : tcp
-id              : 47da55f4-26b1-47ab-a34c-20a86a5e22a7
+id              : cccc2222-dd33-4444-55ee-666666ffffff
 ```
 
 This command retrieves all application segments for an application.
 
 ### Example 2: Retrieve a specific application segment associated to an application
+
 ```powershell
-PS C:\> Get-EntraBetaPrivateAccessApplicationSegment b97db9dd-85c7-4365-ac05-bd824728ab83 -ApplicationSegmentId 89a0ff5a-0440-4411-8f1c-d4e0be0635c8
+$params = @{
+    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    ApplicationSegmentId = 'cccc2222-dd33-4444-55ee-666666ffffff'
+}
+
+Get-EntraBetaPrivateAccessApplicationSegment @params
 ```
-```output
+
+```Output
 destinationHost : 10.1.1.20
 destinationType : ip
 port            : 0
 ports           : {22-22}
 protocol        : tcp
-id              : 89a0ff5a-0440-4411-8f1c-d4e0be0635c8
+id              : cccc2222-dd33-4444-55ee-666666ffffff
 ```
 
 This example demonstrates how to retrieve information for a specific application segment.
@@ -64,10 +75,11 @@ This example demonstrates how to retrieve information for a specific application
 ## Parameters
 
 ### -ObjectId
-The object id of a Private Access application object.
+
+The Object ID of a Private Access application object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: AllApplicationSegments, SingleApplicationSegment
 Aliases: id
 
@@ -79,10 +91,11 @@ Accept wildcard characters: False
 ```
 
 ### -ApplicationSegmentId
+
 Specifies a specific application segment to retrieve.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: SingleApplicationSegment
 Aliases:
 
@@ -94,16 +107,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### System.String
+
 System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## RELATED LINKS
