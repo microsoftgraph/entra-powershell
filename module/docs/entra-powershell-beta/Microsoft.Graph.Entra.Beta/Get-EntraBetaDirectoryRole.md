@@ -4,10 +4,11 @@ description: This article provides details on the Get-EntraBetaDirectoryRole com
 
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/19/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
+author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
@@ -18,85 +19,96 @@ schema: 2.0.0
 # Get-EntraBetaDirectoryRole
 
 ## Synopsis
+
 Gets a directory role.
 
 ## Syntax
 
 ### GetQuery (Default)
+
 ```powershell
 Get-EntraBetaDirectoryRole 
-    [-Filter <String>] 
+ [-Filter <String>] 
  [<CommonParameters>]
 ```
 
 ### GetById
+
 ```powershell
 Get-EntraBetaDirectoryRole 
-    -ObjectId <String> 
+ -ObjectId <String> 
  [<CommonParameters>]
 ```
 
 ## Description
-The **Get-EntraBetaDirectoryRole** cmdlet gets a directory role from Microsoft Entra ID.
+
+The `Get-EntraBetaDirectoryRole` cmdlet gets a directory role from Microsoft Entra ID. Specify `ObjectId` parameter to get a directory role.
 
 ## Examples
 
 ### Example 1: Get a directory role by ID
+
 ```powershell
-PS C:\>Get-EntraBetaDirectoryRole -ObjectId "019ea7a2-1613-47c9-81cb-20ba35b1ae48"
+Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+Get-EntraBetaDirectoryRole -ObjectId '56644e28-bf8b-4dad-8595-24448ffa3cb8'
 ```
 
-```output
-ObjectId                             DisplayName                        Description
---------                             -----------                        -----------
-019ea7a2-1613-47c9-81cb-20ba35b1ae48 Company Administrator              Company Administrator role has full access to perform any operation in the company scope.
+```Output
+DeletedDateTime Id                                   Description
+--------------- --                                   -----------
+                56644e28-bf8b-4dad-8595-24448ffa3cb8 Perform all migration functionality to migrate content to Microsoft 365 usin...
 ```
 
 This command gets the specified directory role.
 
+- `-ObjectId` parameter specifies the ID of a directory role in Microsoft Entra ID.
+
 ### Example 2: Get all directory roles
+
 ```powershell
-PS C:\>Get-EntraBetaDirectoryRole
+Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+Get-EntraBetaDirectoryRole
 ```
 
-```output
-ObjectId                             DisplayName                        Description
---------                             -----------                        -----------
-019ea7a2-1613-47c9-81cb-20ba35b1ae48 Company Administrator              Company Administrator role has full access to perform any operation in the company scope.
-2b3a80bc-51a4-476d-8e09-cd8b6cdde5ea Directory Writers                  Allows access read tasks and a subset of write tasks in the directory.
-526b7173-5a6e-49dc-88ec-b677a9093709 User Account Administrator         User Account Administrator has access to perform common user management related tasks.
-542f5aef-b23f-4e34-a838-6f2b9205b3d6 Directory Synchronization Accounts Directory Synchronization Accounts
-68239fa3-6b01-4396-aeb4-6af38a1b6abf Directory Readers                  Allows access to various read only tasks in the directory.
-8c6a5c45-e93e-4f2b-81be-b57ad4c43ddd Privileged Role Administrator      Privileged Role Administrator has access to perform common role management related tasks.
-8f8a1cf4-d535-4ccd-8552-7267c7ee0a88 Helpdesk Administrator             Helpdesk Administrator has access to perform common helpdesk related tasks.
-b89a48d4-7595-48d0-bb36-69fe4b220668 Device Administrators              Device Administrators
-d96eb2b3-0970-4827-8f26-6008efd86511 Security Administrator             Security Administrator allows ability to read and manage security configuration and reports.
+```Output
+DeletedDateTime Id                                   Description
+--------------- --                                   -----------
+                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Perform all migration functionality to migrate content to Microsoft 365 usin...
+                aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb Can manage all aspects of users and groups, including resetting passwords fo...
+                bbbbbbbb-7777-8888-9999-cccccccccccc Can read basic directory information. Commonly used to grant directory read ...
+                cccccccc-8888-9999-0000-dddddddddddd Can read and write basic directory information. For granting access to appli...
 ```
 
 This command gets all the directory roles.
 
 ### Example 3: Get a directory role filter by ObjectId
+
 ```powershell
-PS C:\>Get-EntraBetaDirectoryRole -Filter "ObjectId eq '019ea7a2-1613-47c9-81cb-20ba35b1ae48'"
+Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+Get-EntraBetaDirectoryRole -Filter "ObjectId eq '56644e28-bf8b-4dad-8595-24448ffa3cb8'"
 ```
 
-```output
-ObjectId                             DisplayName                        Description
---------                             -----------                        -----------
-019ea7a2-1613-47c9-81cb-20ba35b1ae48 Company Administrator              Company Administrator role has full access to perform any operation in the company scope.
+```Output
+DeletedDateTime Id                                   Description
+--------------- --                                   -----------
+                56644e28-bf8b-4dad-8595-24448ffa3cb8 Perform all migration functionality to migrate content to Microsoft 365 usin...
 ```
 
 This command gets the directory role by ObjectId.
 
+- `-ObjectId` parameter specifies the ID of a directory role in Microsoft Entra ID.
+
 ### Example 4: Get a directory role filter by displayName
+
 ```powershell
-PS C:\>Get-EntraBetaDirectoryRole -Filter "displayName eq 'Company Administrator'"
+Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+Get-EntraBetaDirectoryRole -Filter "displayName eq 'Helpdesk Administrator'"
 ```
 
-```output
-ObjectId                             DisplayName                        Description
---------                             -----------                        -----------
-019ea7a2-1613-47c9-81cb-20ba35b1ae48 Company Administrator              Company Administrator role has full access to perform any operation in the company scope.
+```Output
+DeletedDateTime Id                                   Description
+--------------- --                                   -----------
+                56644e28-bf8b-4dad-8595-24448ffa3cb8 Perform all migration functionality to migrate content to Microsoft 365 usin...
 ```
 
 This command gets the directory role by display name.
@@ -104,11 +116,12 @@ This command gets the directory role by display name.
 ## Parameters
 
 ### -Filter
-The oData v3.0 filter statement. 
+
+The oData v3.0 filter statement.
 Controls which objects are returned.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery
 Aliases:
 
@@ -120,10 +133,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a directory role in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -135,7 +149,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -146,4 +161,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## Related Links
 
 [Enable-EntraBetaDirectoryRole](Enable-EntraBetaDirectoryRole.md)
-
