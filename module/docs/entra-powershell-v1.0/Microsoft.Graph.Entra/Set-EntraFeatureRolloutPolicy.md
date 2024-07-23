@@ -37,7 +37,7 @@ Set-EntraFeatureRolloutPolicy
 
 ## Description
 
-An admin uses this `Set-EntraFeatureRolloutPolicy` cmdlet to modify the cloud authentication roll-out policy including whether the method for cloud authentication is Pass-through Authentication or not (Password hash-sync) and whether Seamless SSO is enabled.
+An admin uses the `Set-EntraFeatureRolloutPolicy` cmdlet to modify the cloud authentication roll-out policy including whether the method for cloud authentication is Pass-through Authentication or not (Password hash-sync) and whether Seamless SSO is enabled.
 Users in groups assigned to the policy start authenticating via the new authentication method and via Seamless SSO if specified. Specify `Id` parameter to update the policy for cloud authentication roll-out.
 
 ## Examples
@@ -57,6 +57,12 @@ Set-EntraFeatureRolloutPolicy  @params
 ```
 
 This command updates the policy for cloud authentication roll-out in Microsoft Entra ID.
+
+- `-Id` - Specify the ID of cloud authentication roll-out policy
+- `-DisplayName` - Specifies the display name of the cloud authentication roll-out policy.
+- `-Description` - Specifies the description of the cloud authentication roll-out policy.
+- `-IsAppliedToOrganization` - Specifies if the cloud authentication roll-out policy applied to the entire organization.
+- `-IsEnabled` - Specifies the status of cloud authentication roll-out policy.
 
 ## Parameters
 
