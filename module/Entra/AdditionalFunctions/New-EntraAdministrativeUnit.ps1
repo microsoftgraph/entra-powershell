@@ -76,11 +76,16 @@ function New-EntraAdministrativeUnit {
     
     $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method POST -Body $body
     $response = $response | ConvertTo-Json | ConvertFrom-Json
-    $response | ForEach-Object {
-        if($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+    $auList = @()
+    foreach($data in $response){
+        $auType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphAdministrativeUnit
+        $data.PSObject.Properties | ForEach-Object {
+            $propertyName = $_.Name
+            $propertyValue = $_.Value
+            $auType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
         }
+        $auList += $auType
     }
-    $response
+    $auList
     }
 }
