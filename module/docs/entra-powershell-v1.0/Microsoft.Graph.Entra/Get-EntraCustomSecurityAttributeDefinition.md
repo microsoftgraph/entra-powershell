@@ -79,6 +79,7 @@ Engineering_Project Engineering  new update1 True         True         Project D
 
 Get a custom security attribute definition.
 
+- `-Id` Specify the unique identifier of custom security attribute definition object.
 - Attribute set: `Engineering`
 - Attribute: `ProjectDate`
 
