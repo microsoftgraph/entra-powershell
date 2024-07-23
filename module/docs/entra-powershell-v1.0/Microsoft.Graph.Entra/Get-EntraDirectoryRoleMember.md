@@ -2,9 +2,9 @@
 title: Get-EntraDirectoryRoleMember.
 description: This article provides details on the Get-EntraDirectoryRoleMember command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/20/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,46 +17,53 @@ schema: 2.0.0
 
 # Get-EntraDirectoryRoleMember
 
-## SYNOPSIS
+## Synopsis
+
 Gets members of a directory role.
 
-## SYNTAX
+## Syntax
 
 ```powershell
-Get-EntraDirectoryRoleMember 
- -ObjectId <String> 
+Get-EntraDirectoryRoleMember
+ -ObjectId <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraDirectoryRoleMember cmdlet gets the members of a directory role in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Get-EntraDirectoryRoleMember` cmdlet gets the members of a directory role in Microsoft Entra ID.
+
+## Examples
 
 ### Example 1: Get members by role ID
+
 ```powershell
-PS C:\>Get-EntraDirectoryRoleMember -ObjectId 1d73e796-aac5-4b3a-b7e7-74a3d1926a85
+Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+Get-EntraDirectoryRoleMember -ObjectId '1d73e796-aac5-4b3a-b7e7-74a3d1926a85'
 ```
+
 ```Output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {admin@m365x99297270.onmicrosoft.com}
+imAddresses                     : {admin@contoso.onmicrosoft.com}
 preferredLanguage               : en
-mail                            : admin@M365x99297270.onmicrosoft.com
-securityIdentifier              : S-1-12-1-2574072234-1301806508-533216682-2892133300
-identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=admin@M365x99297270.onmicrosoft.com}}
+mail                            : admin@contoso.onmicrosoft.com
+securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
+identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
 ```
 
 This command demonstrates how to get the members of the specified role.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
+
 Specifies the ID of a directory role in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -67,18 +74,34 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Add-EntraDirectoryRoleMember](Add-EntraDirectoryRoleMember.md)
 
 [Remove-EntraDirectoryRoleMember](Remove-EntraDirectoryRoleMember.md)
-

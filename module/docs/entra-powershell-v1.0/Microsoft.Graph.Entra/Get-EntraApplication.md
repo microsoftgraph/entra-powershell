@@ -2,9 +2,9 @@
 title: Get-EntraApplication.
 description: This article provides details on the Get-EntraApplication command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 06/04/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,19 +17,20 @@ schema: 2.0.0
 
 # Get-EntraApplication
 
-## SYNOPSIS
+## Synopsis
 
 Gets an application.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
 ```powershell
 Get-EntraApplication 
- [-Filter <String>] 
- [-All] 
- [-Top <Int32>] 
+ [-Filter <String>]
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -37,8 +38,9 @@ Get-EntraApplication
 
 ```powershell
 Get-EntraApplication 
- [-SearchString <String>] 
- [-All] 
+ [-SearchString <String>]
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -46,16 +48,17 @@ Get-EntraApplication
 
 ```powershell
 Get-EntraApplication 
- -ObjectId <String> 
- [-All] 
+ -ObjectId <String>
+ [-Property <String[]>]
+ [-All]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraApplication` cmdlet gets a Microsoft Entra ID application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get an application by ObjectId
 
@@ -150,7 +153,7 @@ Get-EntraApplication -Filter "identifierUris/any(uri:uri eq 'http://wingtips.win
 
 This example demonstrates how to retrieve applications by its identifierUris from Microsoft Entra ID.  
 
-## PARAMETERS
+## Parameters
 
 ### -All
 
@@ -170,7 +173,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies an oData v3.0 filter statement.
+Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
@@ -233,17 +236,33 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraApplication](New-EntraApplication.md)
 

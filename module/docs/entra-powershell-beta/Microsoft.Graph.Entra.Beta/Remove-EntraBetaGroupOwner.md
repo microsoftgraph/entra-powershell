@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraBetaGroupOwner.
+description: This article provides details on the Remove-EntraBetaGroupOwner command.
+
+
+ms.topic: reference
+ms.date: 06/18/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -7,33 +17,47 @@ schema: 2.0.0
 
 # Remove-EntraBetaGroupOwner
 
-## SYNOPSIS
+## Synopsis
+
 Removes an owner from a group.
 
-## SYNTAX
+## Syntax
 
+```powershell
+Remove-EntraBetaGroupOwner 
+ -OwnerId <String> 
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
-Remove-EntraBetaGroupOwner -OwnerId <String> -ObjectId <String> [<CommonParameters>]
-```
 
-## DESCRIPTION
-The Remove-EntraBetaGroupOwner cmdlet removes an owner from a group in Azure Active Directory (AD).
+## Description
 
-## EXAMPLES
+The `Remove-EntraBetaGroupOwner` cmdlet removes an owner from a group in Microsoft Entra ID. Specify the `ObjectId` and `OwnerId` parameters to remove an owner from a group.
+
+## Examples
 
 ### Example 1: Remove an owner
-```
-PS C:\>Remove-EntraBetaGroupOwner -ObjectId "62438306-7c37-4638-a72d-0ee8d9217680" -OwnerId "0a1068c0-dbb6-4537-9db3-b48f3e31dd76"
+
+```powershell
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+$params = @{
+    ObjectId = 'qqqqqqqq-5555-0000-1111-hhhhhhhhhhhh'
+    OwnerId = 'xxxxxxxx-8888-5555-9999-bbbbbbbbbbbb'
+}
+
+Remove-EntraBetaGroupOwner @params
 ```
 
-## PARAMETERS
+This example demonstrates how to remove an owner from a group in Microsoft Entra ID.
 
+## Parameters
 
 ### -ObjectId
-Specifies the ID of a group in Azure AD.
+
+Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -45,10 +69,11 @@ Accept wildcard characters: False
 ```
 
 ### -OwnerId
+
 Specifies the ID of an owner.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -60,17 +85,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
 
-[Add-EntraBetaGroupOwner]()
+## Related links
 
-[Get-EntraBetaGroupOwner]()
+[Add-EntraBetaGroupOwner](Add-EntraBetaGroupOwner.md)
 
+[Get-EntraBetaGroupOwner](Get-EntraBetaGroupOwner.md)
