@@ -10,7 +10,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/en-us/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaGroupAppRoleAssignment
+
 schema: 2.0.0
 ---
 

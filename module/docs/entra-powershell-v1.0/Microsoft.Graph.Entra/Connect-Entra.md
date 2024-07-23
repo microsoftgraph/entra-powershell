@@ -10,7 +10,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/en-us/powershell/module/Microsoft.Graph.Entra/Connect-Entra
+
 schema: 2.0.0
 ---
 

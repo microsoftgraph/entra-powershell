@@ -1,7 +1,8 @@
 ---
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/en-us/powershell/module/Microsoft.Graph.Entra/Get-EntraUnsupportedCommand
+
 schema: 2.0.0
 ---
 
