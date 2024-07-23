@@ -1,9 +1,9 @@
 ---
 title: Get-EntraCustomSecurityAttributeDefinitionAllowedValue.
 description: This article provides details on the Get-EntraCustomSecurityAttributeDefinitionAllowedValue command.
-ms.service: entra
+
 ms.topic: reference
-ms.date: 06/14/2024
+ms.date: 07/23/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -42,7 +42,7 @@ Get-EntraCustomSecurityAttributeDefinitionAllowedValue
 
 ## DESCRIPTION
 
-Gets the predefined value for a Microsoft Entra ID custom security attribute definition. Specify `CustomSecurityAttributeDefinitionId` parameter to Get the predefined value custom security attribute definition.
+The `Get-EntraCustomSecurityAttributeDefinitionAllowedValue` cmdley gets the predefined value for a Microsoft Entra ID custom security attribute definition. Specify `CustomSecurityAttributeDefinitionId` parameter to get the predefined value custom security attribute definition.
 
 ## EXAMPLES
 
@@ -53,7 +53,7 @@ Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttribute
 Get-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId 'Engineering_Project'
 ```
 
-```output
+```Output
 Id    IsActive
 --    --------
 Apline True
@@ -71,7 +71,7 @@ Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttribute
 Get-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Id 'Alpine'
 ```
 
-```output
+```Output
 id      isActive
 --      --------
 Apline      True
@@ -90,7 +90,7 @@ Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttribute
 Get-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Filter "id eq 'Apline'"
 ```
 
-```output
+```Output
 id      isActive
 --      --------
 Apline      True
@@ -167,3 +167,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## NOTES
 
 ## RELATED LINKS
+
+[Add-EntraCustomSecurityAttributeDefinitionAllowedValue](Add-EntraCustomSecurityAttributeDefinitionAllowedValue.md)
+
+[Set-EntraCustomSecurityAttributeDefinitionAllowedValue](Set-EntraCustomSecurityAttributeDefinitionAllowedValue.md)
