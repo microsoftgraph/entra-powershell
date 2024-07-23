@@ -49,6 +49,7 @@ Get-EntraBetaApplicationServiceEndpoint -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbb
 ```
 
 This example demonstrates how to retrieve service endpoint of the application that is specified through the Object ID parameter.
+`-ObjectId` parameter specifies the ID of an application object in Microsoft Entra ID.
 
 ### Example 2: Get all service endpoints
 
@@ -58,8 +59,9 @@ Get-EntraBetaApplicationServiceEndpoint -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbb
 ```
 
 This example demonstrates how to retrieve all service endpoints of a specified application.
+`-ObjectId` parameter specifies the ID of an application object in Microsoft Entra ID.
 
-### Example 2: Get top five service endpoints
+### Example 3: Get top five service endpoints
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
@@ -67,6 +69,7 @@ Get-EntraBetaApplicationServiceEndpoint -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbb
 ```
 
 This example demonstrates how to retrieve five service endpoints of a specified application.
+`-ObjectId` parameter specifies the ID of an application object in Microsoft Entra ID.
 
 ## Parameters
 

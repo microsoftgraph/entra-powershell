@@ -49,6 +49,7 @@ CustomKeyIdentifier DisplayName     EndDateTime           Key KeyId             
 ```
 
 This command gets the key credentials for the specified application.
+`-ObjectId` parameter specifies the ID of an application object in Microsoft Entra ID.
 
 ## Parameters
 
