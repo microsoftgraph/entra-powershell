@@ -2,7 +2,7 @@
 title: Get-EntraBetaAuditDirectoryLogs.
 description: This article provides details on the Get-EntraBetaAuditDirectoryLogs command.
 
-ms.service: active-directory
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -111,7 +111,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-The OData v3.0 filter statement.
+The OData v4.0 filter statement.
 Controls which objects are returned.
 
 ```yaml

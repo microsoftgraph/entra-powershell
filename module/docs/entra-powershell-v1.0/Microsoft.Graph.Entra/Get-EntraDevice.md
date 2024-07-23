@@ -2,7 +2,7 @@
 title: Get-EntraDevice.
 description: This article provides details on the Get-EntraDevice command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -26,10 +26,11 @@ Gets a device from Microsoft Entra ID.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraDevice 
+Get-EntraDevice
  [-Top <Int32>]
  [-All]
  [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -39,6 +40,7 @@ Get-EntraDevice
 Get-EntraDevice 
  [-SearchString <String>]
  [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -48,6 +50,7 @@ Get-EntraDevice
 Get-EntraDevice 
  -ObjectId <String>
  [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -169,7 +172,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies the oData v3.0 filter statement.
+Specifies the OData v4.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
@@ -229,6 +232,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

@@ -2,7 +2,7 @@
 title: Get-EntraBetaRoleDefinition
 description: This article provides details on the Get-EntraBetaRoleDefinition command.
 
-ms.service: active-directory
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -202,7 +202,7 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-Specifies an oData v3.0 filter string to match a set of role definitions.
+Specifies an OData v4.0 filter string to match a set of role definitions.
 
 ```yaml
 Type: String
