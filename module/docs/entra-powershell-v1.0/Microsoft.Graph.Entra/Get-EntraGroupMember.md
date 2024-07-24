@@ -46,16 +46,15 @@ Get-EntraGroupMember -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {averys@contoso.com}
-preferredLanguage               :
-mail                            : averys@contoso.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=averys@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
+Id                                   DeletedDateTime
+--                                   ---------------
+edc45b95-0207-453a-bbbe-c24a038c08c0
+f23f2d12-d5f4-4fb2-8fa3-e1945ac21f5f
+53f91ddf-09ec-4920-828c-596c452baeb3
+3bcbb018-f644-41ab-88d3-74b0c6de22ae
+45e4229d-cacc-4765-9b33-58525924fbee
+8b19813e-6273-4209-a47e-991690681f85
+1e14ea46-c6ff-48a7-a31c-4195626a6be8
 ```
 
 This example demonstrates how to retrieve group member by ID.  
@@ -68,26 +67,10 @@ Get-EntraGroupMember -ObjectId 'hhhhhhhh-8888-9999-8888-cccccccccccc' -Top 2
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {ParkerJ@contoso.com}
-preferredLanguage               : en
-mail                            : ParkerJ@contoso.com
-securityIdentifier              : B-2-33-4-5555555555-6666666666-7777777-8888888888
-identities                      : {System.Collections.Hashtable}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {ParkerJ@contoso.com}
-preferredLanguage               :
-mail                            : ParkerJ@contoso.com
-securityIdentifier              : C-3-44-5-6666666666-7777777777-8888888-9999999999
-identities                      : {System.Collections.Hashtable}
-consentProvidedForMinor         :
+Id                                   DeletedDateTime
+--                                   ---------------
+edc45b95-0207-453a-bbbe-c24a038c08c0
+f23f2d12-d5f4-4fb2-8fa3-e1945ac21f5f
 ```
 
 This example demonstrates how to retrieve top two groups from Microsoft Entra ID.  
@@ -100,15 +83,15 @@ Get-EntraGroupMember -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' -All
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {SawyerM@contoso.com}
-preferredLanguage               : en
-mail                            : SawyerM@contoso.com
-securityIdentifier              : D-4-55-6-7777777777-8888888888-9999999-0000000000
-identities                      : {System.Collections.Hashtable}
-consentProvidedForMinor         :
+Id                                   DeletedDateTime
+--                                   ---------------
+edc45b95-0207-453a-bbbe-c24a038c08c0
+f23f2d12-d5f4-4fb2-8fa3-e1945ac21f5f
+53f91ddf-09ec-4920-828c-596c452baeb3
+3bcbb018-f644-41ab-88d3-74b0c6de22ae
+45e4229d-cacc-4765-9b33-58525924fbee
+8b19813e-6273-4209-a47e-991690681f85
+1e14ea46-c6ff-48a7-a31c-4195626a6be8
 ```
 
 This command is used to retrieve all members of a specific group. The `-ObjectId` parameter specifies the ID of the group whose members should be retrieved. The `-All` parameter indicates that all members of the group should be retrieved.

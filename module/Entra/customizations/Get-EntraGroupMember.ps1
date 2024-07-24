@@ -33,12 +33,12 @@
         }
         if($null -ne $PSBoundParameters["Top"] -and  (-not $PSBoundParameters.ContainsKey("All")))
         {
-            $topCount = $PSBoundParameters["Top"] + 1
+            $topCount = $PSBoundParameters["Top"]
             if ($topCount -gt 999) {
-                $URI = "$baseUri/$($params.GroupId)/members?`$top=999&$properties"
+                $URI = "$baseUri/$($params.GroupId)/members/?`$top=999&$properties"
             }
             else{
-                $URI = "$baseUri/$($params.GroupId)/members?`$top=$topCount&$properties"
+                $URI = "$baseUri/$($params.GroupId)/members/?`$top=$topCount&$properties"
             }
         }
     
@@ -51,7 +51,7 @@
         try {
             $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $all = $All.IsPresent
-            $increment = $topCount - $data.Count - 1
+            $increment = $topCount - $data.Count
             while ($response.'@odata.nextLink' -and (($all) -or ($increment -gt 0 -and -not $all))) {
                 $URI = $response.'@odata.nextLink'
                 if (-not $all) {
@@ -68,19 +68,20 @@
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
             }
         }
-        if ($data.'@odata.type' -notcontains 'microsoft.graph.servicePrincipal') {
-            $URI = "$baseUri/$($params.GroupId)/members/microsoft.graph.servicePrincipal?$properties"
-            $topCount = $Top - $data.count
-            if ($PSBoundParameters.ContainsKey("Top") -and $topCount -gt 0) {
-                $URI = "$baseUri/$($params.GroupId)/members/microsoft.graph.servicePrincipal?`$top=$topCount&$properties"
-                $response = Invoke-GraphRequest -Uri $URI -Method $Method
-                $serviceprincipal += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-            }
-            elseif($null -eq $PSBoundParameters["Top"]){
-                $response = Invoke-GraphRequest -Uri $URI -Method $Method
-                $serviceprincipal += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-            }
-            try{
+        try {
+            if ($data.'@odata.type' -notcontains 'microsoft.graph.servicePrincipal' -or $data.ServicePrincipalType -eq 'Application') {
+                $URI = "$baseUri/$($params.GroupId)/members/microsoft.graph.servicePrincipal?$properties"
+                $topCount = $Top - $data.count
+                if ($PSBoundParameters.ContainsKey("Top") -and $topCount -gt 0) {
+                    $URI = "$baseUri/$($params.GroupId)/members/microsoft.graph.servicePrincipal?`$top=$topCount&$properties"
+                    $response = Invoke-GraphRequest -Uri $URI -Method $Method
+                    $serviceprincipal += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                }
+                elseif($null -eq $PSBoundParameters["Top"]){
+                    $response = Invoke-GraphRequest -Uri $URI -Method $Method
+                    $serviceprincipal += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                }
+                
                 $serviceprincipal | ForEach-Object {
                     if($null -ne $_) {
                         Add-Member -InputObject $_ -MemberType NoteProperty -Name '@odata.type' -Value '#microsoft.graph.servicePrincipal'
@@ -88,8 +89,9 @@
                 }
                 $data += $serviceprincipal
             }
-            catch {}
         }
+        catch {}
+        
         $userList = @()
         foreach ($response in $data) {
             $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
