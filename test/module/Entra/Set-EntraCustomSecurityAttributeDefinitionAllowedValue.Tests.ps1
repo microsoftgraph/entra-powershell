@@ -10,32 +10,32 @@ BeforeAll {
 Describe "Test for Set-EntraCustomSecurityAttributeDefinitionAllowedValue" {
 
     It "Should return empty object" {
-        $result = Set-EntraMSCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId "Engineering_Project" -Id "Alpine" -IsActive $true
+        $result = Set-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId "Engineering_Project" -Id "Alpine" -IsActive $true
         $result | Should -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
 
     It "Should fail when CustomSecurityAttributeDefinitionId is empty" {
-        { Set-EntraMSCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId "" } | Should -Throw "Cannot bind argument to parameter 'CustomSecurityAttributeDefinitionId'*"
+        { Set-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId "" } | Should -Throw "Cannot bind argument to parameter 'CustomSecurityAttributeDefinitionId'*"
     }
     It "Should fail when CustomSecurityAttributeDefinitionId is null" {
-        { Set-EntraMSCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId } | Should -Throw "Missing an argument for parameter 'CustomSecurityAttributeDefinitionId'*"
+        { Set-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId } | Should -Throw "Missing an argument for parameter 'CustomSecurityAttributeDefinitionId'*"
     }
     It "Should fail when invalid parameter is passed" {
-        { Set-EntraMSCustomSecurityAttributeDefinitionAllowedValue -xyz } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
+        { Set-EntraCustomSecurityAttributeDefinitionAllowedValue -xyz } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
     }
 
     It "Should fail when Id is empty" {
-        { Set-EntraMSCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId "Engineering_Project" -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id'*"
+        { Set-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId "Engineering_Project" -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id'*"
     }
     It "Should fail when Id is null" {
-        { Set-EntraMSCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId "Engineering_Project" -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
+        { Set-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId "Engineering_Project" -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
     }
     
     It "Should contain 'User-Agent' header" {
         Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraMSCustomSecurityAttributeDefinitionAllowedValue"
-        $result = Set-EntraMSCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId "Engineering_Project" -Id "Alpine" -IsActive $true
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraCustomSecurityAttributeDefinitionAllowedValue"
+        $result = Set-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId "Engineering_Project" -Id "Alpine" -IsActive $true
         $params = Get-Parameters -data $result
         $a= $params | ConvertTo-json | ConvertFrom-Json
         $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue        
