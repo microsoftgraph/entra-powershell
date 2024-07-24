@@ -46,13 +46,15 @@ Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 New-EntraBetaApplicationPasswordCredential -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa'
 ```
 
-```output
+```Output
 CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                    StartDateTime
 ------------------- ----------- -----------          ---- -----                                ----------                    -------------
                                 3/21/2026 9:48:40 AM n34  tttttttt-0000-2222-0000-aaaaaaaaaaaa wbBNW8kCuiPjNRg9NX98W_aaaaaaa 3/21/2024 9:48:40 AM
 ```
 
 This command creates new password credential for specified application.
+
+- `-ObjectId` Specifies the ID of a user.
 
 ### Example 2: Create a password credential using CustomKeyIdentifier parameter
 
@@ -67,13 +69,16 @@ $params = @{
 New-EntraBetaApplicationPasswordCredential @params
 ```
 
-```output
+```Output
 CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                    StartDateTime
 ------------------- ----------- -----------          ---- -----                                ----------                    -------------
                                 3/21/2026 9:48:40 AM n34  tttttttt-0000-2222-0000-aaaaaaaaaaaa wbBNW8kCuiPjNRg9NX98W_aaaaaaa 3/21/2024 9:48:40 AM
 ```
 
 This command creates new password credential for specified application.
+
+- `-ObjectId` Specifies the ID of a user.
+- `-CustomKeyIdentifier` Speicifies unique binary identifier.
 
 ### Example 3: Create a password credential using StartDate parameter
 
@@ -88,13 +93,16 @@ $params = @{
 New-EntraBetaApplicationPasswordCredential @params
 ```
 
-```output
+```Output
 CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                    StartDateTime
 ------------------- ----------- -----------          ---- -----                                ----------                    -------------
                                 3/21/2026 9:48:40 AM n34  tttttttt-0000-2222-0000-aaaaaaaaaaaa wbBNW8kCuiPjNRg9NX98W_aaaaaaa 3/21/2024 9:48:40 AM
 ```
 
 This command creates new password credential for specified application.
+
+- `-ObjectId` Specifies the ID of a user.
+- `-StartDate` Speicifies the date and time at which the password becomes valid.
 
 ### Example 4: Create a password credential using EndDate parameter
 
@@ -109,13 +117,16 @@ $params = @{
 New-EntraBetaApplicationPasswordCredential @params
 ```
 
-```output
+```Output
 CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                    StartDateTime
 ------------------- ----------- -----------          ---- -----                                ----------                    -------------
                                 3/21/2026 9:48:40 AM n34  tttttttt-0000-2222-0000-aaaaaaaaaaaa wbBNW8kCuiPjNRg9NX98W_aaaaaaa 3/21/2024 9:48:40 AM
 ```
 
 This command creates new password credential for specified application.
+
+- `-ObjectId` Specifies the ID of a user.
+- `-EndDate` Speicifies The date and time at which the password expires.
 
 ## Parameters
 

@@ -2,7 +2,6 @@
 title: New-EntraBetaApplicationKeyCredential
 description: This article provides details on the New-EntraBetaApplicationKeyCredential command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -77,6 +76,13 @@ Value               : {49, 50, 51}
 
 This example shows how to create an application key credential.
 
+- `-ObjectId` Specifies a unique ID of an application
+- `-CustomKeyIdentifier` Specifies a custom key ID.
+- `-StartDate` Specifies the time when the key becomes valid as a DateTime object.
+- `-Type` Specifies the type of the key.
+- `-Usage` Specifies the key usage. for `AsymmetricX509Cert` the usage must be `Verify`and for `X509CertAndPassword` the usage must be `Sign`.
+- `-Value` Specifies the value for the key.
+
 You can use the `Get-EntraApplication` cmdlet to retrieve the application Object ID.
 
 ### Example 2: Use a certificate to add an application key credential
@@ -107,6 +113,14 @@ New-EntraBetaApplicationKeyCredential @params
 ```
 
 This example shows how to create an application key credential.
+
+- `-ObjectId` Specifies a unique ID of an application
+- `-CustomKeyIdentifier` Specifies a custom key ID.
+- `-StartDate` Specifies the time when the key becomes valid as a DateTime object.
+- `-EndDate` Specifies the time when the key becomes invalid as a DateTime object.
+- `-Type` Specifies the type of the key.
+- `-Usage` Specifies the key usage. for `AsymmetricX509Cert` the usage must be `Verify`and for `X509CertAndPassword` the usage must be `Sign`.
+- `-Value` Specifies the value for the key.
 
 ## Parameters
 
