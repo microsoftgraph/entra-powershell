@@ -14,10 +14,8 @@ BeforeAll {
             return $response
             
     }
- 
- 
     Mock -CommandName Invoke-GraphRequest -MockWith $ScriptBlock -ModuleName Microsoft.Graph.Entra
-
+}
 Describe "Test for Remove-EntraPolicy" {
     It "Should return empty object" {
         $result = Remove-EntraPolicy -Id bbbbbbbb-1111-1111-1111-cccccccccccc
