@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraBetaRoleAssignment
+description: This article provides details on the Remove-EntraBetaRoleAssignment command.
+
+
+ms.topic: reference
+ms.date: 07/24/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,33 +18,43 @@ schema: 2.0.0
 # Remove-EntraBetaRoleAssignment
 
 ## Synopsis
-{{ Fill in the Synopsis }}
+
+Delete a Microsoft Entra ID roleAssignment.
 
 ## Syntax
 
-```
-Remove-EntraBetaRoleAssignment [-Id] <String> [<CommonParameters>]
+```powershell
+Remove-EntraBetaRoleAssignment 
+ -Id <String> 
+ [<CommonParameters>]
 ```
 
 ## Description
-{{ Fill in the Description }}
+
+The `Remove-EntraBetaRoleAssignment` cmdlet removes a role assignment from Microsoft Entra ID.
 
 ## Examples
 
-### Example 1
+### Example 1: Remove a role assignment
+
 ```powershell
-PS C:\> {{ Add example code here }}
+ Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory' #For the directory (Microsoft Entra ID) provider
+ Connect-Entra -Scopes 'EntitlementManagement.ReadWrite.All' #For the entitlement management provider
+ Remove-EntraBetaRoleAssignment -Id 'Y1vFBcN4i0e3ngdNDocmngJAWGnAbFVAnJQyBBLv1lM-1'
 ```
 
-{{ Add example description here }}
+This example removes the specified role assignment from Microsoft Entra ID.
+
+- `-Id` parameter specifies the role assignment ID.
 
 ## Parameters
 
 ### -Id
-{{ Fill Id Description }}
+
+The unique identifier of an object in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -46,7 +66,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -55,6 +76,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
+
+[New-EntraBetaRoleAssignment](New-EntraBetaRoleAssignment.md)
+
+[Get-EntraBetaRoleAssignment](Get-EntraBetaRoleAssignment.md)

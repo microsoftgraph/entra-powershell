@@ -1,4 +1,15 @@
 ---
+title: Reset-EntraBetaLifeCycleGroup.
+description: This article provides details on the Reset-EntraBetaLifeCycleGroup command.
+
+
+ms.topic: reference
+ms.date: 07/23/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -8,34 +19,43 @@ schema: 2.0.0
 # Reset-EntraBetaLifeCycleGroup
 
 ## Synopsis
+
 Renews a group by updating the RenewedDateTime property on a group to the current DateTime.
 
 ## Syntax
 
-```
-Reset-EntraBetaLifeCycleGroup -GroupId <String> [<CommonParameters>]
+```powershell
+Reset-EntraBetaLifeCycleGroup 
+ -GroupId <String> 
+ [<CommonParameters>]
 ```
 
 ## Description
-The Reset-EntraBetaLifeCycleGroup renews a group by updating the RenewedDateTime property on a group to the current DateTime.
+
+The `Reset-EntraBetaLifeCycleGroup` renews a group by updating the RenewedDateTime property on a group to the current DateTime.
 When a group is renewed, the group expiration is extended by the number of days defined in the policy.
 
 ## Examples
 
 ### Example 1
-```
-PS C:\> Reset-EntraBetaLifeCycleGroup -groupId cffd97bd-6b91-4c4e-b553-6918a320211c
+
+```powershell
+Connect-Entra -Scopes 'Group.ReadWrite.All'
+Reset-EntraBetaLifeCycleGroup -GroupId 'hhhhhhhh-8888-9999-8888-cccccccccccc'
 ```
 
-The Reset-EntraBetaLifeCycleGroup renews a specified group by updating the RenewedDateTime property on a group to the current DateTime.
+This example demonstrates how to renew a specified group.  
+
+- `-GroupId` - Specifies the lifecycle policy object ID.  
 
 ## Parameters
 
 ### -GroupId
-Specifies the ID of a group in Azure Active Directory.
+
+Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -47,14 +67,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### None
+
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
