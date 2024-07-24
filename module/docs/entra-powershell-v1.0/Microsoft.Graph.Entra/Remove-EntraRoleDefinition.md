@@ -12,7 +12,7 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/en-us/powershell/module/Microsoft.Graph.Entra/Remove-EntraRoleDefinition
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraRoleDefinition
 
 schema: 2.0.0
 ---
