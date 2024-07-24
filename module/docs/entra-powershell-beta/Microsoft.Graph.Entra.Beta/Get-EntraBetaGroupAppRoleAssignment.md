@@ -3,10 +3,11 @@ title: Get-EntraBetaGroupAppRoleAssignment
 description: This article provides details on the Get-EntraBetaGroupAppRoleAssignment command.
 
 ms.topic: reference
-ms.date: 06/24/2024
+ms.date: 07/24/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
+author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
@@ -52,7 +53,9 @@ MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 
 MSVrBV4APk--eAGnHqMKBDtEqPRvu8xLqWHDSXUhoTE M365 License Manager                Ask HR
 ```
 
-This example retrieves the application role assignments of the group.
+This example retrieves the application role assignments of a group.
+
+- `-ObjectId` parameter specifies the ID of a group in Microsoft Entra ID.
 
 ### Example 2: Retrieve all application role assignments of a group
 
@@ -69,7 +72,9 @@ MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 
 MSVrBV4APk--eAGnHqMKBDtEqPRvu8xLqWHDSXUhoTE M365 License Manager                Ask HR
 ```
 
-This command gets all application role assignments of the specified group.
+This example retrieves all application role assignments of the specified group.
+
+- `-ObjectId` parameter specifies the ID of a group in Microsoft Entra ID.
 
 ### Example 3: Retrieve top two application role assignments of a group
 
@@ -85,7 +90,9 @@ MSVrBV4APk--eAGnHqMKBLflsQG3rU1EmDFKvgra41I Microsoft Device Management Checkin 
 MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 Ask HR
 ```
 
-This command gets top two application role assignments of the specified group.
+This example retrieves top two application role assignments of the specified group.
+
+- `-ObjectId` parameter specifies the ID of a group in Microsoft Entra ID.
 
 ## Parameters
 
