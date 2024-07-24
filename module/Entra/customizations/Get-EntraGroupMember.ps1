@@ -33,57 +33,13 @@
         }
         if($null -ne $PSBoundParameters["Top"] -and  (-not $PSBoundParameters.ContainsKey("All")))
         {
-            $topCount = $PSBoundParameters["Top"]
+            $topCount = $PSBoundParameters["Top"] + 1
             if ($topCount -gt 999) {
                 $URI = "$baseUri/$($params.GroupId)/members?`$top=999&$properties"
             }
             else{
                 $URI = "$baseUri/$($params.GroupId)/members?`$top=$topCount&$properties"
             }
-        }
-        if($null -ne $PSBoundParameters["WarningVariable"])
-        {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $PSBoundParameters["Verbose"]
-        }
-        if($null -ne $PSBoundParameters["InformationAction"])
-        {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $PSBoundParameters["Debug"]
-        }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-        }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
@@ -95,7 +51,7 @@
         try {
             $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $all = $All.IsPresent
-            $increment = $topCount - $data.Count
+            $increment = $topCount - $data.Count - 1
             while ($response.'@odata.nextLink' -and (($all) -or ($increment -gt 0 -and -not $all))) {
                 $URI = $response.'@odata.nextLink'
                 if (-not $all) {
@@ -112,7 +68,39 @@
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
             }
         }
-        $data 
+        if ($data.'@odata.type' -notcontains 'microsoft.graph.servicePrincipal') {
+            $URI = "$baseUri/$($params.GroupId)/members/microsoft.graph.servicePrincipal?$properties"
+            $topCount = $Top - $data.count
+            if ($PSBoundParameters.ContainsKey("Top") -and $topCount -gt 0) {
+                $URI = "$baseUri/$($params.GroupId)/members/microsoft.graph.servicePrincipal?`$top=$topCount&$properties"
+                $response = Invoke-GraphRequest -Uri $URI -Method $Method
+                $serviceprincipal += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+            }
+            elseif($null -eq $PSBoundParameters["Top"]){
+                $response = Invoke-GraphRequest -Uri $URI -Method $Method
+                $serviceprincipal += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+            }
+            try{
+                $serviceprincipal | ForEach-Object {
+                    if($null -ne $_) {
+                        Add-Member -InputObject $_ -MemberType NoteProperty -Name '@odata.type' -Value '#microsoft.graph.servicePrincipal'
+                    }
+                }
+                $data += $serviceprincipal
+            }
+            catch {}
+        }
+        $userList = @()
+        foreach ($response in $data) {
+            $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
+            $response.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name
+                $propertyValue = $_.Value
+                $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+            }
+            $userList += $userType
+        }
+        $userList  
     }  
 '@
 }
