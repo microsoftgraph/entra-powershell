@@ -95,6 +95,9 @@
         $userList = @()
         foreach ($response in $data) {
             $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
+            if (-not ($response -is [psobject])) {
+                $response = [pscustomobject]@{ Value = $response }
+            }
             $response.PSObject.Properties | ForEach-Object {
                 $propertyName = $_.Name
                 $propertyValue = $_.Value
@@ -102,7 +105,7 @@
             }
             $userList += $userType
         }
-        $userList  
+        $userList 
     }  
 '@
 }
