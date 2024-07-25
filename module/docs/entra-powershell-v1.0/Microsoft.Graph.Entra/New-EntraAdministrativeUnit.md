@@ -23,7 +23,8 @@ manager: CelesteDG
 >>>>>>> 6cd6824f9e532c51e54c1c0bde3f7f4323930e96
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraAdministrativeUnit
+
 schema: 2.0.0
 ---
 
