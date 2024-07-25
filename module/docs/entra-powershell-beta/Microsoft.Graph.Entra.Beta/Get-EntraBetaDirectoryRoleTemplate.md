@@ -25,7 +25,8 @@ Gets directory role templates.
 ## Syntax
 
 ```powershell
-Get-EntraBetaDirectoryRoleTemplate 
+Get-EntraBetaDirectoryRoleTemplate
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -55,6 +56,22 @@ DeletedDateTime Id                                   Description
 This example retrieves the role templates in Microsoft Entra ID.
 
 ## Parameters
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### CommonParameters
 

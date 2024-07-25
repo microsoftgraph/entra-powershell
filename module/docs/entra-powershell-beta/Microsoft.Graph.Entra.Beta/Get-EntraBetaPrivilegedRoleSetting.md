@@ -14,14 +14,24 @@ Get role settings
 ## Syntax
 
 ### GetQuery (Default)
-```
-Get-EntraBetaPrivilegedRoleSetting [-Top <Int32>] [-Filter <String>] -ProviderId <String>
+
+```powershell
+Get-EntraBetaPrivilegedRoleSetting
+ -ProviderId <String>
+ [-Top <Int32>]
+ [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraBetaPrivilegedRoleSetting -Id <String> -ProviderId <String> [<CommonParameters>]
+
+```powershell
+Get-EntraBetaPrivilegedRoleSetting
+ -Id <String>
+ -ProviderId <String>
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ## Description
@@ -102,6 +112,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
