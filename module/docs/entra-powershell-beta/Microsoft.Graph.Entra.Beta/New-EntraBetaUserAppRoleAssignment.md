@@ -1,4 +1,15 @@
 ---
+title: New-EntraBetaUserAppRoleAssignment.
+description: This article provides details on the New-EntraBetaUserAppRoleAssignment command.
+
+
+ms.topic: reference
+ms.date: 07/25/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaUserAppRoleAssignment
@@ -9,69 +20,100 @@ schema: 2.0.0
 # New-EntraBetaUserAppRoleAssignment
 
 ## Synopsis
+
 Assigns a user to an application role.
 
 ## Syntax
 
-```
-New-EntraBetaUserAppRoleAssignment -ResourceId <String> -Id <String> -ObjectId <String> -PrincipalId <String>
+```powershell
+New-EntraBetaUserAppRoleAssignment 
+ -ResourceId <String> 
+ -Id <String> 
+ -ObjectId <String> 
+ -PrincipalId <String>
  [<CommonParameters>]
 ```
 
 ## Description
-The New-EntraBetaUserAppRoleAssignment cmdlet assigns a user to an application role in Azure Active Directory (AD).
+
+The New-EntraBetaUserAppRoleAssignment cmdlet assigns a user to an application role in Microsoft Entra ID.
+
+To grant an app role assignment to a user, you need three identifiers:
+
+- PrincipalId: The id of the user to whom you are assigning the app role.
+
+- ResourceId: The id of the resource servicePrincipal that has defined the app role.
+
+- Id: The id of the appRole (defined on the resource service principal) to assign to the user.
 
 ## Examples
 
 ### Example 1: Assign a user to an application without roles
-```
-# Get AppId of the app to assign the user to
 
-$appId = Get-EntraBetaApplication -SearchString "<Your App's display name>"
-
-# Get the user to be added
-
-$user = Get-EntraBetaUser -searchstring "<Your user's UPN>"
-
-# Get the service principal for the app you want to assign the user to
-
+```powershell
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+$appId = (Get-EntraBetaApplication -SearchString 'NewApplication').AppId
+$user = Get-EntraBetaUser -searchstring 'NewUser'
 $servicePrincipal = Get-EntraBetaServicePrincipal -Filter "appId eq 'appId'"
-
-# Create the user app role assignment
 
 New-EntraBetaUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.ObjectId -ResourceId $servicePrincipal.ObjectId -Id ([Guid]::Empty)
 ```
 
-This command assigns a user to and application that doesn;t have any roles.
+```Output
+DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId                          PrincipalType ResourceDisplayName
+--------------- --                                          ---------                            ---------------     -------------------- -----------                          ------------- ------------------- -
+                A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 18-06-2024 11:22:40 
+```
+
+This command assigns a user to an application that doesn't have any roles.
+
+- `-ObjectId` parameter specifies the ID of a user to whom you are assigning the app role.
+- `-PrincipalId` parameter specifies the ID of a user to whom you are assigning the app role.
+- `-ResourceId` parameter specifies the ID of a resource servicePrincipal that has defined the app role.
+- `-Id` parameter specifies the ID of a appRole (defined on the resource service principal) to assign to the user.
 
 ### Example 2: Assign a user to a specific role within an application
-```
-$username = "<You user's UPN>"
-$appname = "<Your App's display name>"
-$spo = Get-EntraBetaServicePrincipal -Filter "Displayname eq '$appname'"
-$user = Get-EntraBetaUser -ObjectId $username
-New-EntraBetaUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.ObjectId -ResourceId $spo.ObjectId -Id $spo.Approles[1].id
+
+```powershell
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+$userName = 'SawyerM@contoso.com'
+$appName = 'Box'
+$spo = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '$appName'"
+$user = Get-EntraBetaUser -Filter "userPrincipalName eq '$userName'"
+New-EntraBetaUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.ObjectId -ResourceId $servicePrincipal.ObjectId -Id $spo.Approles[1].id
 ```
 
-This cmdlet assigns to the specified user the application role of which the Id is specified with $spo.Approles\[1\].id.
-please refer to the description of the -Id parameter for more information on how to retrieve application roles for an application.
+```Output
+DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId                          PrincipalType ResourceDisplayName
+--------------- --                                          ---------                            ---------------     -------------------- -----------                          ------------- -------------------
+                A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 06/18/2024 09:47:00 Sawyer Miller        1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 User          Box
+```
+
+This example demonstrates how to assign a user to an application role in Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies the ID of a user to whom you are assigning the app role.
+- `-PrincipalId` parameter specifies the ID of a user to whom you are assigning the app role.
+- `-ResourceId` parameter specifies the ID of a resource servicePrincipal that has defined the app role.
+- `-Id` parameter specifies the ID of a appRole (defined on the resource service principal) to assign to the user.
 
 ## Parameters
 
 ### -Id
+
 The ID of the app role to assign.
-Provide an empty guid when creating a new app role assignement for an application that does not have any roles, or the Id of the role to assign to the user.
+
+If application doesn't have any roles while creating new app role assignment then provide an empty guid, or the Id of the role to assign to the user.
 
 You can retrieve the application's roles by examining the application object's AppRoles property:
 
-Get-AzureadApplication -SearchString "Your Application display name" | select Approles | Fl
+`Get-EntraBetaApplication -SearchString 'Your-Application-DisplayName' | select Approles | Format-List`
 
 This cmdlet returns the list of roles that are defined in an application:
 
-AppRoles : {class AppRole {              AllowedMemberTypes: System.Collections.Generic.List1\[System.String\]              Description: \<description for this role\>              DisplayName: \<display name for this role\>              Id: 97e244a2-6ccd-4312-9de6-ecb21884c9f7              IsEnabled: True              Value: \<Value that will be transmitted as a claim in a token for this role\>            }            }
+AppRoles: {GUID1, GUID2}
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -82,13 +124,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-
-
 ### -ObjectId
-Specifies the ID of the user (as a UPN or ObjectId) in Azure AD to which the new app role is to be assigned
+
+Specifies the ID of the user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID to which the new app role is to be assigned.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -100,11 +141,12 @@ Accept wildcard characters: False
 ```
 
 ### -PrincipalId
+
 The object ID of the principal to which the new app role is assigned.
 When assigning a new role to a user provide the object ID of the user.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -116,10 +158,11 @@ Accept wildcard characters: False
 ```
 
 ### -ResourceId
+
 The object ID of the Service Principal for the application to which the user role is assigned.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -131,7 +174,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -141,7 +185,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaUserAppRoleAssignment]()
+[Get-EntraBetaUserAppRoleAssignment](Get-EntraBetaUserAppRoleAssignment.md)
 
-[Remove-EntraBetaUserAppRoleAssignment]()
-
+[Remove-EntraBetaUserAppRoleAssignment](Remove-EntraBetaUserAppRoleAssignment.md)

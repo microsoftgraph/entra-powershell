@@ -1,4 +1,15 @@
 ---
+title: Get-EntraBetaUserDirectReport.
+description: This article provides details on the Get-EntraBetaUserDirectReport command.
+
+
+ms.topic: reference
+ms.date: 07/25/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaUserDirectReport
@@ -9,6 +20,7 @@ schema: 2.0.0
 # Get-EntraBetaUserDirectReport
 
 ## Synopsis
+
 Get the user's direct reports.
 
 ## Syntax
@@ -23,28 +35,100 @@ Get-EntraBetaUserDirectReport
 ```
 
 ## Description
-The Get-EntraBetaUserDirectReport cmdlet gets the direct reports for a user in Azure Active Directory (AD).
+
+The `Get-EntraBetaUserDirectReport` cmdlet gets the direct reports for a user in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Get a user's direct reports
-```
-PS C:\>Get-EntraBetaUserDirectReport -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16"
 
-ObjectId                             ObjectType
---------                             ----------
-5e8b0f4d-2cd4-4e17-9467-b0f6a5c0c4d0 User
+```powershell
+Connect-Entra -Scopes 'User.Read' #Delegated Permission
+Connect-Entra -Scopes 'User.Read.All' #Application Permission
+Get-EntraBetaUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+```
+
+```Output
+ageGroup                        :
+onPremisesLastSyncDateTime      :
+creationType                    :
+imAddresses                     : {debrab@contoso.com}
+preferredLanguage               :
+mail                            : DebraB@contoso.com
+securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
+identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=DebraB@contoso.com}}
+consentProvidedForMinor         :
+onPremisesUserPrincipalName     :
+assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=33334444-dddd-5555-eeee-6666ffff7777}, @{disabledPlans=System.Object[]; skuId=44445555-eeee-6666-ffff-7777aaaa8888},
+                                  @{disabledPlans=System.Object[]; skuId=55556666-ffff-7777-aaaa-8888bbbb9999}}
 ```
 
 This command gets the direct report for the specified user.
 
+- `-ObjectId` parameter specifies user object ID.
+
+### Example 2: Get all direct reports
+
+```powershell
+Connect-Entra -Scopes 'User.Read' #Delegated Permission
+Connect-Entra -Scopes 'User.Read.All' #Application Permission
+Get-EntraBetaUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All 
+```
+
+```output
+ageGroup                        :
+onPremisesLastSyncDateTime      :
+creationType                    :
+imAddresses                     : {debrab@contoso.com}
+preferredLanguage               :
+mail                            : DebraB@contoso.com
+securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
+identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=DebraB@contoso.com}}
+consentProvidedForMinor         :
+onPremisesUserPrincipalName     :
+assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=33334444-dddd-5555-eeee-6666ffff7777}, @{disabledPlans=System.Object[]; skuId=44445555-eeee-6666-ffff-7777aaaa8888},
+                                  @{disabledPlans=System.Object[]; skuId=55556666-ffff-7777-aaaa-8888bbbb9999}}
+```
+
+This example demonstrates how to retrieve all direct reports for a user in Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies user object ID.
+
+### Example 3: Get a top five direct reports
+
+```powershell
+Connect-Entra -Scopes 'User.Read' #Delegated Permission
+Connect-Entra -Scopes 'User.Read.All' #Application Permission
+Get-EntraBetaUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 5
+```
+
+```output
+ageGroup                        :
+onPremisesLastSyncDateTime      :
+creationType                    :
+imAddresses                     : {debrab@contoso.com}
+preferredLanguage               :
+mail                            : DebraB@contoso.com
+securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
+identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=DebraB@contoso.com}}
+consentProvidedForMinor         :
+onPremisesUserPrincipalName     :
+assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=33334444-dddd-5555-eeee-6666ffff7777}, @{disabledPlans=System.Object[]; skuId=44445555-eeee-6666-ffff-7777aaaa8888},
+                                  @{disabledPlans=System.Object[]; skuId=55556666-ffff-7777-aaaa-8888bbbb9999}}
+```
+
+This example demonstrates how to retrieve top five direct reports for a user in Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies user object ID.
+
 ## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -56,10 +140,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a user in Azure Active Directory (UPN or ObjectId)
+
+Specifies the ID of a user in Microsoft Entra ID (UserPrincipalName or ObjectId).
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -71,10 +156,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -87,7 +173,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -102,7 +188,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
