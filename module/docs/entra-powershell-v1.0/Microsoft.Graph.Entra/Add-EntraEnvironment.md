@@ -2,7 +2,7 @@
 title: Add-EntraEnvironment
 description: This article provides details on the Add-EntraEnvironment command.
 
-ms.service: active-directory
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Add-EntraEnvironment
+
 schema: 2.0.0
 ---
 
@@ -22,7 +23,6 @@ schema: 2.0.0
 Adds Microsoft Entra environment to the settings file.
 
 ## Syntax
-
 
 ### Add Entra Environment Name
 
@@ -46,13 +46,22 @@ Adds Microsoft Entra environment to the settings file.
 ### Example 1: Add a user defined environment
 
 ```powershell
-PS C:\>Add-EntraEnvironment -Name "Canary" -GraphEndpoint "https://canary.graph.microsoft.com" -AzureADEndpoint "https://login.microsoftonline.com"
+$params = @{
+    Name = 'Canary'
+    GraphEndpoint = 'https://canary.graph.microsoft.com'
+    AzureADEndpoint = 'https://login.microsoftonline.com'
+}
+
+Add-EntraEnvironment @params
+```
+
+```Output
 Name     AzureADEndpoint                      GraphEndpoint                 Type
 ----     ---------------                      -------------                 ----
 Canary    https://login.microsoftonline.com   https://microsoftgraph.com User-defined                                                                                    {}
 ```
 
-Adds a User defined Entra environment to the settings file.
+Adds a user-defined Entra environment to the settings file.
 
 ## Parameters
 
@@ -97,7 +106,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

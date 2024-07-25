@@ -2,7 +2,7 @@
 title: Get-EntraRoleDefinition
 description: This article provides details on the Get-EntraRoleDefinition command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraRoleDefinition
+
 schema: 2.0.0
 ---
 
@@ -26,28 +27,31 @@ Gets information about role definitions in Microsoft Entra ID.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraRoleDefinition 
- [-All] 
- [-Top <Int32>] 
- [-Filter <String>] 
+Get-EntraRoleDefinition
+ [-All]
+ [-Top <Int32>]
+ [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetVague
 
 ```powershell
-Get-EntraRoleDefinition 
- [-SearchString <String>] 
- [-All] 
+Get-EntraRoleDefinition
+ [-SearchString <String>]
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraRoleDefinition 
- -Id <String> 
- [-All] 
+Get-EntraRoleDefinition
+ -Id <String>
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -158,7 +162,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies an oData v3.0 filter string to match a set of role definitions.
+Specifies an OData v4.0 filter string to match a set of role definitions.
 
 ```yaml
 Type: System.String
@@ -185,6 +189,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

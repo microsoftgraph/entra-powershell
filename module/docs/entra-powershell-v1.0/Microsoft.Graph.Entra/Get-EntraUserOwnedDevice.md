@@ -2,7 +2,7 @@
 title: Get-EntraUserOwnedDevice
 description: This article provides details on the Get-EntraUserOwnedDevice command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -12,7 +12,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraUserOwnedDevice
+
 schema: 2.0.0
 ---
 
@@ -25,10 +26,11 @@ Get registered devices owned by a user.
 ## Syntax
 
 ```powershell
-Get-EntraUserOwnedDevice 
- -ObjectId <String> 
- [-All ] 
- [-Top <Int32>] 
+Get-EntraUserOwnedDevice
+ -ObjectId <String>
+ [-All ]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -132,6 +134,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

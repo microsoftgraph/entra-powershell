@@ -2,7 +2,7 @@
 title: Get-EntraApplication.
 description: This article provides details on the Get-EntraApplication command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraApplication
+
 schema: 2.0.0
 ---
 
@@ -27,9 +28,10 @@ Gets an application.
 
 ```powershell
 Get-EntraApplication 
- [-Filter <String>] 
- [-All] 
- [-Top <Int32>] 
+ [-Filter <String>]
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -37,8 +39,9 @@ Get-EntraApplication
 
 ```powershell
 Get-EntraApplication 
- [-SearchString <String>] 
- [-All] 
+ [-SearchString <String>]
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -46,8 +49,9 @@ Get-EntraApplication
 
 ```powershell
 Get-EntraApplication 
- -ObjectId <String> 
- [-All] 
+ -ObjectId <String>
+ [-Property <String[]>]
+ [-All]
  [<CommonParameters>]
 ```
 
@@ -170,7 +174,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies an oData v3.0 filter statement.
+Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
@@ -230,6 +234,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

@@ -1,7 +1,7 @@
 ---
 title: Get-EntraObjectByObjectId.
 description: This article provides details on the Get-EntraObjectByObjectId command.
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -10,7 +10,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraObjectByObjectId
+
 schema: 2.0.0
 ---
 
@@ -23,9 +24,10 @@ Retrieves the objects specified by the ObjectIds parameter.
 ## Syntax
 
 ```powershell
-Get-EntraObjectByObjectId 
+Get-EntraObjectByObjectId
  -ObjectIds <System.Collections.Generic.List`1[String]>
  [-Types <System.Collections.Generic.List`1[String]>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -113,6 +115,22 @@ Specifies the type of objects that the cmdlet returns.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
 Parameter Sets: (All)
 Aliases:
 
