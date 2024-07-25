@@ -1,6 +1,6 @@
 ---
-title: Get-EntraDomainFedrationSettings
-description: This article provides details on the Get-EntraDomainFedrationSettings command.
+title: Get-EntraDomainFederationSettings
+description: This article provides details on the Get-EntraDomainFederationSettings command.
 
 
 ms.topic: reference
@@ -12,11 +12,12 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraDomainFederationSettings
+
 schema: 2.0.0
 ---
 
-# Get-EntraDomainFedrationSettings
+# Get-EntraDomainFederationSettings
 
 ## Synopsis
 
@@ -25,7 +26,7 @@ Gets key settings for a federated domain.
 ## Syntax
 
 ```powershell
-Get-EntraDomainFedrationSettings 
+Get-EntraDomainFederationSettings 
  -DomainName <String>
  [-TenantId <Guid>]
  [<CommonParameters>]

@@ -2,44 +2,51 @@
 title: Get-EntraBetaUserManager.
 description: This article provides details on the Get-EntraBetaUserManager command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 06/20/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaUserManager
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaUserManager
 
 ## Synopsis
+
 Gets the manager of a user.
 
 ## Syntax
 
-```
-Get-EntraBetaUserManager 
- -ObjectId <String> 
+```powershell
+Get-EntraBetaUserManager
+ -ObjectId <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
-The Get-EntraBetaUserManager cmdlet gets the manager of a user in Microsoft Entra ID.
+
+The `Get-EntraBetaUserManager` cmdlet gets the manager of a user in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Get the manager of a user
+
 ```powershell
-PS C:\>Get-EntraBetaUserManager -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215"
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraBetaUserManager -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
-```output
+
+```Output
 DeletedDateTime                 :
-Id                              : 26bb22db-6b8e-4adb-b761-264c869d5245
+Id                              : 00aa00aa-bb11-cc22-dd33-44ee44ee44ee
 @odata.context                  : https://graph.microsoft.com/beta/$metadata#directoryObjects/$entity
 @odata.type                     : #microsoft.graph.user
 accountEnabled                  : True
@@ -51,17 +58,16 @@ department                      : Sales & Marketing
 displayName                     : Miriam Graham
 ```
 
-This example demonstrates how to retrieve the manager of a specific user.  
-
-This command gets the manager of a specified user.
+This example demonstrates how to retrieve the manager of a specific user.
 
 ## Parameters
 
 ### -ObjectId
-The unique identifier of a user in Microsoft Entra ID (UserPrincipalName or ObjectId)
+
+The unique identifier of a user in Microsoft Entra ID (User Principal Name or ObjectId).
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -72,8 +78,25 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -86,4 +109,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Remove-EntraBetaUserManager](Remove-EntraBetaUserManager.md)
 
 [Set-EntraBetaUserManager](Set-EntraBetaUserManager.md)
-

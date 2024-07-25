@@ -1,41 +1,58 @@
 ---
+title: Remove-EntraBetaAdministrativeUnit
+description: This article provides details on the Remove-EntraBetaAdministrativeUnit command.
+
+
+ms.topic: reference
+ms.date: 07/03/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaAdministrativeUnit
+
 schema: 2.0.0
 ---
 
 # Remove-EntraBetaAdministrativeUnit
 
 ## Synopsis
+
 Removes an administrative unit.
 
 ## Syntax
 
-```
-Remove-EntraBetaAdministrativeUnit -ObjectId <String> [<CommonParameters>]
+```powershell
+Remove-EntraBetaAdministrativeUnit 
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## Description
-The Remove-EntraBetaAdministrativeUnit cmdlet removes an administrative unit from Azure Active Directory.
+
+The `Remove-EntraBetaAdministrativeUnit` cmdlet removes an administrative unit from Microsoft Entra ID. Specify `ObjectId` parameter to delete an administrative unit.
 
 ## Examples
 
-### Example 1
+### Example 1: Remove an administrative unit
+
 ```powershell
-PS C:\> {{ Add example code here }}
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+Remove-EntraBetaAdministrativeUnit -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'  
 ```
 
-{{ Add example description here }}
+This command removes the specified administrative unit from Microsoft Entra ID.
 
 ## Parameters
 
-
 ### -ObjectId
-Specifies the ID of an administrative unit in Active Directory.
+
+Specifies the ID of an administrative unit in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -47,7 +64,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -57,7 +75,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaAdministrativeUnit]()
+[New-EntraBetaAdministrativeUnit](New-EntraBetaAdministrativeUnit.md)
 
-[Set-EntraBetaAdministrativeUnit]()
+[Set-EntraBetaAdministrativeUnit](Set-EntraBetaAdministrativeUnit.md)
 
+[Get-EntraBetaAdministrativeUnit](Get-EntraBetaAdministrativeUnit.md)

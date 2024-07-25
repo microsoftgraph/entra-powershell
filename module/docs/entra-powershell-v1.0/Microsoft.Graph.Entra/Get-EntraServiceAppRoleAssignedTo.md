@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraServiceAppRoleAssignedTo
+
 schema: 2.0.0
 ---
 
@@ -35,10 +36,11 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 ## Syntax
 
 ```powershell
-Get-EntraServiceAppRoleAssignedTo 
+Get-EntraServiceAppRoleAssignedTo
  -ObjectId <String>
  [-All ]
  [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -146,6 +148,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

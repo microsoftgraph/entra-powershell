@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraPermissionGrantPolicy
+
 schema: 2.0.0
 ---
 
@@ -26,15 +27,17 @@ Gets a permission grant policy.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraPermissionGrantPolicy 
+Get-EntraPermissionGrantPolicy
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraPermissionGrantPolicy 
- -Id <String> 
+Get-EntraPermissionGrantPolicy
+ -Id <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -91,6 +94,22 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

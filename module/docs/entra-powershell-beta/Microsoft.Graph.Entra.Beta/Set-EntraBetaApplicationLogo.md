@@ -4,7 +4,7 @@ description: This article provides details on the Set-EntraBetaApplicationLogo c
 
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 06/19/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,7 +12,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaApplicationLogo
+
 schema: 2.0.0
 ---
 
@@ -62,7 +63,7 @@ Connect-Entra -Scopes 'Application.ReadWrite.All'
 Set-EntraBetaApplicationLogo -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -FilePath 'D:\applogo.jpg'
 ```
 
-This cmdlet sets the application logo for the application specified by the ObjectID parameter to the image specified with the Filepath parameter.
+This cmdlet sets the application logo for the application specified by the `-ObjectId` parameter to the image specified with the `-FilePath` parameter.
 
 ## Parameters
 
@@ -116,3 +117,5 @@ System.IO.Stream System.Byte\[\]
 File uploads must be smaller than 500KB.
 
 ## Related Links
+
+[Get-EntraBetaApplicationLogo](Get-EntraBetaApplicationLogo.md)

@@ -10,7 +10,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Connect-Entra
+
 schema: 2.0.0
 ---
 
@@ -18,9 +19,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Connects with an authenticated account to use Microsoft Entra PowerShell cmdlet requests.
-
-This module supports several authentication scenarios depending on your use case such as: delegated (interactive) and app-only (noninteractive).
+Connect to Microsoft Entra ID with an authenticated account.
 
 ## Syntax
 
@@ -106,7 +105,11 @@ Connect-Entra
 
 ## Description
 
-The `Connect-Entra` cmdlet connects to Microsoft Entra ID with an authenticated account for use with cmdlets from the Microsoft Entra PowerShell module.
+The `Connect-Entra` cmdlet connects to Microsoft Entra ID with an authenticated account.
+
+Several authentication scenarios are supported based on your use case, such as delegated (interactive) and app-only (non-interactive).
+
+`Connect-Entra` is an alias for `Connect-MgGraph`.
 
 ## Examples
 
@@ -116,7 +119,7 @@ The `Connect-Entra` cmdlet connects to Microsoft Entra ID with an authenticated 
 Connect-Entra
 ```
 
-This command connects the current PowerShell session to a Microsoft Entra ID tenant using credentials.
+This example shows how to connect your current PowerShell session to a Microsoft Entra ID tenant using credentials.
 
 ### Example 2: Delegated access: Connect a PowerShell session to a tenant with required scopes
 
@@ -142,7 +145,7 @@ Connect-Entra -AccessToken $secureString
 Welcome to Microsoft Graph!
 ```
 
-This example shows how to authenticate to Microsoft Entra ID using an access token.
+This example shows how to interactively authenticate to Microsoft Entra ID using an access token.
 
 For more information on how to get or create access token, see [Request an access token](https://learn.microsoft.com/graph/auth-v2-user#3-request-an-access-token).
 
@@ -156,7 +159,7 @@ Connect-Entra -UseDeviceCode
 To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code A1B2CDEFGH to authenticate.
 ```
 
-This example shows how to authenticate to Microsoft Entra ID with device.
+This example shows how to interactively authenticate to Microsoft Entra ID using device code flow.
 
 For more information, see [Device Code flow](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-device-code).
 
@@ -176,7 +179,7 @@ Connect-Entra @connectParams
 Welcome to Microsoft Graph!
 ```
 
-This command Connect a session using a ApplicationId and CertificateThumbprint.
+This example shows how to authenticate using an ApplicationId and CertificateThumbprint.
 
 For more information on how to get or create CertificateThumbprint, see [Authenticate with app-only access](https://learn.microsoft.com/powershell/entra-powershell/app-only-access-auth).
 
@@ -235,7 +238,7 @@ Uses an automatically managed identity on a service instance. The identity is ti
 ### Example 10: App-only access: Using managed identity: User-assigned managed identity
 
 ```powershell
-Connect-Entra -Identity -ClientId '00001111-aaaa-2222-bbbb-3333cccc4444'
+Connect-Entra -Identity -ClientId 'User_Assigned_Managed_identity_Client_Id'
 ```
 
 Uses a user created managed identity as a standalone Azure resource.
