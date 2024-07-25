@@ -61,7 +61,7 @@ This Command update Description of specific administrative unit.
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     DisplayName = 'UpdatedAU'
 }
 Set-EntraAdministrativeUnit @params
