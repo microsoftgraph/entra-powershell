@@ -18,11 +18,11 @@ schema: 2.0.0
 
 ## Synopsis
 
-Creates an application segments associated to a Private Access application.
+Creates an application segment associated to a Private Access application.
 
 ## Description
 
-The `New-EntraBetaPrivateAccessApplicationSegment` cmdlet creates an application segments associated to a Private Access application.
+The `New-EntraBetaPrivateAccessApplicationSegment` cmdlet creates an application segment associated to a Private Access application.
 
 ## Examples
 
@@ -64,7 +64,7 @@ protocol        : tcp,udp
 id              : cccc2222-dd33-4444-55ee-666666ffffff
 ```
 
-### Example 3: Create application segments using an input file
+### Example 3: Create application segment using an input file
 
 AppSegments.csv
 
