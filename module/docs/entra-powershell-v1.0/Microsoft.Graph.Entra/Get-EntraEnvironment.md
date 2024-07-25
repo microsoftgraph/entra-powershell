@@ -2,26 +2,27 @@
 title: Get-EntraEnvironment
 description: This article provides details on the Get-EntraEnvironment command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 05/07/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraEnvironment
+
 schema: 2.0.0
 ---
 
 # Get-EntraEnvironment
 
-## SYNOPSIS
+## Synopsis
 
 Gets global public Environments.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -33,51 +34,51 @@ Get-EntraEnvironment
 ### GetByName
 
 ```powershell
-PS C:\>Get-EntraEnvironment 
+Get-EntraEnvironment 
  -Name <String> 
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-When you use Connect-Entra, you can choose to target other environments. By default, Connect-Entra targets the global public cloud.
+When you use `Connect-Entra`, you can choose to target other environments. By default, `Connect-Entra` targets the global public cloud.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a list of public cloud environments
 
 ```powershell
-PS C:\>Get-EntraEnvironment
+Get-EntraEnvironment
 ```
 
-```output
-Name , AzureADEndpoint, GraphEndpoint, Type
----------         ------------------------------ --------------------------- ---------------
-China    https://login.chinacloudapi.cn    https://microsoftgraph.chinacloudapi.cn Built-in
+```Output
+Name     AzureADEndpoint                   GraphEndpoint                           Type
+----     ---------------                   -------------                           ----
 Global   https://login.microsoftonline.com https://graph.microsoft.com             Built-in
-USGov    https://login.microsoftonline.us  https://graph.microsoft.us              Built-in
+China    https://login.chinacloudapi.cn    https://microsoftgraph.chinacloudapi.cn Built-in
 USGovDoD https://login.microsoftonline.us  https://dod-graph.microsoft.us          Built-in
-Germany  https://login.microsoftonline.de  https://graph.microsoft.de              Built-in                                                                                      {}
+USGov    https://login.microsoftonline.us  https://graph.microsoft.us              Built-in
+Germany  https://login.microsoftonline.de  https://graph.microsoft.de              Built-in
+Canary   https://login.microsoftonline.com https://canary.graph.microsoft.com      User-defined
 ```
 
 This command retrieves a list of global public Environments.
 
-### Example 2: Get a specific environment created.
+### Example 2: Get a specific environment created
 
 ```powershell
-PS C:\>Get-EntraEnvironment -Name "Global"
+Get-EntraEnvironment -Name 'Global'
 ```
 
-```output
-Name , AzureADEndpoint, GraphEndpoint, Type
-
---------         ------------------ ------------------ --------
-Global   https://login.microsoftonline.com https://graph.microsoft.com             Built-in                                                                                  {}
+```Output
+Name   AzureADEndpoint                   GraphEndpoint               Type
+----   ---------------                   -------------               ----
+Global https://login.microsoftonline.com https://graph.microsoft.com Built-in
 ```
 
 This command retrieves an environment with the specified name.
 
-## PARAMETERS
+## Parameters
 
 ### -Name
 
@@ -94,14 +95,14 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraEnvironment](Add-EntraEnvironment.md)

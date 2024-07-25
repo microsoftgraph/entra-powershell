@@ -2,100 +2,112 @@
 title: Get-EntraUserAppRoleAssignment.
 description: This article provides details on the Get-EntraUserAppRoleAssignment command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/19/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraUserAppRoleAssignment
+
 schema: 2.0.0
 ---
 
 # Get-EntraUserAppRoleAssignment
 
-## SYNOPSIS
+## Synopsis
+
 Get a user application role assignment.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraUserAppRoleAssignment
  -ObjectId <String>
  [-All]
  [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
+
 The Get-EntraUserAppRoleAssignment cmdlet gets a user application role assignment.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a user application role assignment
+
 ```powershell
-PS C:\> $UserId = (Get-EntraUser -Top 1).ObjectId
-PS C:\> Get-EntraUserAppRoleAssignment -ObjectId $UserId
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Directory.Read.All' #Application Permission
+ $UserId = (Get-EntraUser -Top 1).ObjectId
+ Get-EntraUserAppRoleAssignment -ObjectId $UserId
 ```
+
 ```output
 DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName   PrincipalId                          PrincipalType ResourceDisplayName
 --------------- --                                          ---------                            ---------------     --------------------   -----------                          ------------- -------------------
-                0ekrQWAUYUCO7cyiA_yyFYFF7ENp2l9Alu5oP9S5INQ 00000000-0000-0000-0000-000000000000 31-07-2023 04:29:57 Adele Vance            412be9d1-1460-4061-8eed-cca203fcb215 User          ProvisioningPowerBi
-                0ekrQWAUYUCO7cyiA_yyFYu1Ohj4gzpHldy7n1LzP0s 00000000-0000-0000-0000-000000000000 12-07-2023 10:09:17 Adele Vance            412be9d1-1460-4061-8eed-cca203fcb215 User          Microsoft Graph ...
-                0ekrQWAUYUCO7cyiA_yyFcBL1QS_V4RIhml0g8rMT9c edaa71bf-f833-4989-8316-82d11fc811e5 13-09-2023 16:41:53 Adele Vance            412be9d1-1460-4061-8eed-cca203fcb215 User          Test-App-5
-                0ekrQWAUYUCO7cyiA_yyFdUpCZMR_e5Cn01fWFA9OUE 7dfd756e-8c27-4472-b2b7-38c17fc5de5e 13-09-2023 17:28:17 Adele Vance            412be9d1-1460-4061-8eed-cca203fcb215 User          Ksh
+                0ekrQWAUYUCO7cyiA_A1bC2dE3fH4i             00001111-aaaa-2222-bbbb-3333cccc4444 31-07-2023 04:29:57 Avery Smith            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-1
+                0ekrQWAUYUCO7cyiA_C2dE3fH4iJ5k             11112222-bbbb-3333-cccc-4444dddd5555 12-07-2023 10:09:17 Avery Smith            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-2
+                0ekrQWAUYUCO7cyiA_H4iJ5kL6mN7o             22223333-cccc-4444-dddd-5555eeee6666 13-09-2023 16:41:53 Avery Smith            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-5
+                0ekrQWAUYUCO7cyiA_J5kL6mN7oP8q             33334444-dddd-5555-eeee-6666ffff7777 13-09-2023 17:28:17 Avery Smith            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-7
+
 ```
 
-This example demonstrates how to retrieve user application role assignment by providing ID.  
-The first command gets the ID of a Microsoft Entra ID user by using the Get-EntraUser (./Get-EntraUser.md) cmdlet. 
-The command stores the value in the $UserId variable.  
-The second command gets a user application role assignment for the user in $UserId.
+This example demonstrates how to retrieve user application role assignment by providing ID.
+  
+- The first command gets the ID of a Microsoft Entra ID user by using the [Get-EntraUser](./Get-EntraUser.md) cmdlet and stores the value in the $UserId variable.  
+
+- The second command gets a user application role assignment for the user in $UserId.
 
 ### Example 2: Get all application role assignments
+
 ```powershell
-PS C:\>  Get-EntraUserAppRoleAssignment -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -All 
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Directory.Read.All' #Application Permission
+Get-EntraUserAppRoleAssignment -ObjectId 'aaaaaaaa-bbbb-cccc-1111-222222222222' -All 
 ```
-```output
+
+```Output
 DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName   PrincipalId                          PrincipalType ResourceDisplayName
 --------------- --                                          ---------                            ---------------     --------------------   -----------                          ------------- -------------------
-                0ekrQWAUYUCO7cyiA_yyFYFF7ENp2l9Alu5oP9S5INQ 00000000-0000-0000-0000-000000000000 31-07-2023 04:29:57 Adele Vance            412be9d1-1460-4061-8eed-cca203fcb215 User          ProvisioningPowerBi
-                0ekrQWAUYUCO7cyiA_yyFYu1Ohj4gzpHldy7n1LzP0s 00000000-0000-0000-0000-000000000000 12-07-2023 10:09:17 Adele Vance            412be9d1-1460-4061-8eed-cca203fcb215 User          Microsoft Graph ...
-                0ekrQWAUYUCO7cyiA_yyFcBL1QS_V4RIhml0g8rMT9c edaa71bf-f833-4989-8316-82d11fc811e5 13-09-2023 16:41:53 Adele Vance            412be9d1-1460-4061-8eed-cca203fcb215 User          Test-App-5
-                0ekrQWAUYUCO7cyiA_yyFdUpCZMR_e5Cn01fWFA9OUE 7dfd756e-8c27-4472-b2b7-38c17fc5de5e 13-09-2023 17:28:17 Adele Vance            412be9d1-1460-4061-8eed-cca203fcb215 User          Ksh
-                --dP9CxGvUGdNo4754xNX8ixX6_HdZ9FnObn6kjsHk0 4c5b2e45-75e7-4e8c-9292-d30062373387 20-10-2023 16:58:52 Contoso                f44fe7fb-462c-41bd-9d36-8e3be78c4d5f Group         Entra-App-Testing
-                f3-c3NaRZ0K4Z2kB0NSIVIiJjUvXRlxJgcXdUFZ_xno 01c2bb8e-0895-42c8-b950-3ec8abc7a012 07-07-2023 15:24:11 sg-Sales and Marketing dc9c7f7f-91d6-4267-b867-6901d0d48854 Group         LinkedIn
+                0ekrQWAUYUCO7cyiA_A1bC2dE3fH4i             00001111-aaaa-2222-bbbb-3333cccc4444 31-07-2023 04:29:57 Avery Smith            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-1
+                0ekrQWAUYUCO7cyiA_C2dE3fH4iJ5k             11112222-bbbb-3333-cccc-4444dddd5555 12-07-2023 10:09:17 Avery Smith            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-2 
+                0ekrQWAUYUCO7cyiA_H4iJ5kL6mN7o             22223333-cccc-4444-dddd-5555eeee6666 13-09-2023 16:41:53 Avery Smith            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-5
+                0ekrQWAUYUCO7cyiA_J5kL6mN7oP8q             33334444-dddd-5555-eeee-6666ffff7777 13-09-2023 17:28:17 Avery Smith            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-7
 ```
 
-This example demonstrates how to retrieve all application role assignment for the specified user.   
-This command gets user all application role assignment for the specified user.
+This example demonstrates how to retrieve all application role assignment for the specified user.
 
-### Example 3: Get top five application role assignments
+### Example 3: Get top two application role assignments
+
 ```powershell
-PS C:\> Get-EntraUserAppRoleAssignment -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -Top 5
-```
-```output
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId                          PrincipalType ResourceDisplayName
---------------- --                                          ---------                            ---------------     -------------------- -----------                          ------------- -------------------
-                0ekrQWAUYUCO7cyiA_yyFYFF7ENp2l9Alu5oP9S5INQ 00000000-0000-0000-0000-000000000000 31-07-2023 04:29:57 Adele Vance          412be9d1-1460-4061-8eed-cca203fcb215 User          ProvisioningPowerBi
-                0ekrQWAUYUCO7cyiA_yyFYu1Ohj4gzpHldy7n1LzP0s 00000000-0000-0000-0000-000000000000 12-07-2023 10:09:17 Adele Vance          412be9d1-1460-4061-8eed-cca203fcb215 User          Microsoft Graph Co...
-                0ekrQWAUYUCO7cyiA_yyFcBL1QS_V4RIhml0g8rMT9c edaa71bf-f833-4989-8316-82d11fc811e5 13-09-2023 16:41:53 Adele Vance          412be9d1-1460-4061-8eed-cca203fcb215 User          Test-App-5
-                0ekrQWAUYUCO7cyiA_yyFdUpCZMR_e5Cn01fWFA9OUE 7dfd756e-8c27-4472-b2b7-38c17fc5de5e 13-09-2023 17:28:17 Adele Vance          412be9d1-1460-4061-8eed-cca203fcb215 User          Ksh
-                --dP9CxGvUGdNo4754xNX8ixX6_HdZ9FnObn6kjsHk0 4c5b2e45-75e7-4e8c-9292-d30062373387 20-10-2023 16:58:52 Contoso              f44fe7fb-462c-41bd-9d36-8e3be78c4d5f Group         Entra-App-Testing
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Directory.Read.All' #Application Permission
+Get-EntraUserAppRoleAssignment -ObjectId 'aaaaaaaa-bbbb-cccc-1111-222222222222' -Top 2
 ```
 
-This example demonstrates how to retrieve top five application role assignment for the specified user.   
-This command gets five user application role assignment for the specified user.
+```Output
+DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName   PrincipalId                          PrincipalType ResourceDisplayName
+--------------- --                                          ---------                            ---------------     --------------------   -----------                          ------------- -------------------
+                0ekrQWAUYUCO7cyiA_A1bC2dE3fH4i             00001111-aaaa-2222-bbbb-3333cccc4444 31-07-2023 04:29:57 Avery Smith            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-1
+                0ekrQWAUYUCO7cyiA_C2dE3fH4iJ5k             11112222-bbbb-3333-cccc-4444dddd5555 12-07-2023 10:09:17 Avery Smith            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-2 
+```
 
-## PARAMETERS
+This example demonstrates how to retrieve top two application role assignment for the specified user.
+
+## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -105,11 +117,13 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
 ### -ObjectId
+
 Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -121,10 +135,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -135,16 +150,33 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Get-EntraUser](Get-EntraUser.md)
 

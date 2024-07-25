@@ -2,24 +2,27 @@
 title: Get-EntraContactThumbnailPhoto
 description: This article provides details on the Get-EntraContactThumbnailPhoto command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/21/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraContactThumbnailPhoto
+
 schema: 2.0.0
 ---
 
 # Get-EntraContactThumbnailPhoto
-## SYNOPSIS
+
+## Synopsis
+
 Retrieves the thumbnail photo of a contact.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraContactThumbnailPhoto 
@@ -30,14 +33,17 @@ Get-EntraContactThumbnailPhoto
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
+
 Retrieves the thumbnail photo of a contact.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the memberships of a contact
+
 ```powershell
-PS C:\> Get-EntraContactThumbnailPhoto -ObjectId b052db07-e7ec-4c0e-b481-a5ba550b9ee7
+Connect-Entra -Scopes 'Contacts.Read'
+Get-EntraContactThumbnailPhoto -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 ```output
@@ -49,23 +55,24 @@ Height               : 390
 HorizontalResolution : 96
 VerticalResolution   : 96
 Flags                : 77840
-RawFormat            : [ImageFormat: b96b3cae-0728-11d3-9d7b-0000f81ef32e]
+RawFormat            : [ImageFormat: aaaa0000-bb11-2222-33cc-444444dddddd]
 PixelFormat          : Format24bppRgb
 Palette              : System.Drawing.Imaging.ColorPalette
-FrameDimensionsList  : {7462dc86-6180-4c7e-8e3f-ee7333a7a483}
+FrameDimensionsList  : {eeee4444-ff55-6666-77aa-888888bbbbbb}
 PropertyIdList       : {274, 305, 306, 36867...}
 PropertyItems        : {274, 305, 306, 36867...}
 ```
 
 This example retrieves the thumbnail photo of the contact object specified with the object ID parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -FileName
+
 When provided, the cmdlet writes a copy of the thumbnail photo to this filename.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -77,10 +84,11 @@ Accept wildcard characters: False
 ```
 
 ### -FilePath
+
 When provided, the cmdlet writes a copy of the thumbnail photo to this file path using a random filename.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -92,10 +100,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 The object ID of the contact for which the thumbnail photo is retrieved.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -107,10 +116,11 @@ Accept wildcard characters: False
 ```
 
 ### -View
+
 If this parameter value is set to $True, display the retrieved thumbnail photo in a new window.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -122,16 +132,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
 
 ### System.String
+
 System.Boolean
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+
+## Notes
 
 ## RELATED LINKS

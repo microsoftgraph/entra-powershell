@@ -2,9 +2,9 @@
 title: Remove-EntraApplicationProxyApplication
 description: This article provides details on the Remove-EntraApplicationProxyApplication command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/26/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,16 +12,17 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraApplicationProxyApplication
+
 schema: 2.0.0
 ---
 
 # Remove-EntraApplicationProxyApplication
 
-## SYNOPSIS
+## Synopsis
 Deletes an Application Proxy application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraApplicationProxyApplication 
@@ -30,10 +31,10 @@ Remove-EntraApplicationProxyApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraApplicationProxyApplication cmdlet removes Application Proxy configurations from a specific application in Microsoft Entra ID, and can delete the application completely if specified.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a Proxy Application
 ```powershell
@@ -49,7 +50,7 @@ PS C:\> Remove-EntraApplicationProxyApplication -ObjectId 0d7b0f02-3f63-414d-8d2
 
 This command removes a Proxy Application, and removes it from Microsoft Entra ID completely.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique application Id of the application.
@@ -88,10 +89,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
 ## RELATED LINKS

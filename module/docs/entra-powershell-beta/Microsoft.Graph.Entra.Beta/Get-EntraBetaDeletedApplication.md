@@ -1,31 +1,43 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaDeletedApplication
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaDeletedApplication
 
-## SYNOPSIS
+## Synopsis
 Retrieves the list of previously deleted applications
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
-```
-Get-EntraBetaDeletedApplication [-Top <Int32>] [-All] [-Filter <String>] [<CommonParameters>]
+
+```powershell
+Get-EntraBetaDeletedApplication
+ [-Top <Int32>]
+ [-All]
+ [-Filter <String>]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ### GetVague
-```
-Get-EntraBetaDeletedApplication [-SearchString <String>] [-All] [<CommonParameters>]
+
+```powershell
+Get-EntraBetaDeletedApplication
+ [-SearchString <String>]
+ [-All]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Retrieves the list of previously deleted applications
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -54,7 +66,7 @@ ObjectId                             AppId                                Displa
 
 This example shows how an existing application was deleted and how the G-EntraBetaDeletedApplication cmdlet retrieves the application from the list of deleted applications
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -116,17 +128,33 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

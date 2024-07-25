@@ -2,25 +2,27 @@
 title: Remove-EntraApplication
 description: This article provides details on the Remove-EntraApplication command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/05/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraApplication
+
 schema: 2.0.0
 ---
 
 # Remove-EntraApplication
 
-## SYNOPSIS
+## Synopsis
+
 Delete an application by ObjectId.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraApplication 
@@ -28,25 +30,29 @@ Remove-EntraApplication
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Remove-EntraApplication cmdlet removes the specified application from Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Remove-EntraApplication` cmdlet removes the specified application from Microsoft Entra ID.
+
+## Examples
 
 ### Example 1: Remove an application
+
 ```powershell
-PS C:\>Remove-EntraApplication -ObjectId "acd10942-5747-4385-8824-4c5d5fa904f9"
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+Remove-EntraApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 This command removes the specified application.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
+
 Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -58,19 +64,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Get-EntraApplication](Get-EntraApplication.md)
 
 [New-EntraApplication](New-EntraApplication.md)
 
 [Set-EntraApplication](Set-EntraApplication.md)
-

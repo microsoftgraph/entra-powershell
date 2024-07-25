@@ -1,26 +1,31 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaServicePrincipalOAuth2PermissionGrant
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaServicePrincipalOAuth2PermissionGrant
 
-## SYNOPSIS
+## Synopsis
 Gets an oAuth2PermissionGrant object.
 
-## SYNTAX
+## Syntax
 
-```
-Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ObjectId <String> [-All] [-Top <Int32>]
+```powershell
+Get-EntraBetaServicePrincipalOAuth2PermissionGrant
+ -ObjectId <String>
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaServicePrincipalOAuth2PermissionGrant cmdlet gets an oAuth2PermissionGrant object for a service principal in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the OAuth2 permission grants of a service principal
 ```
@@ -33,7 +38,7 @@ The command stores the ID in the $ServicePrincipalId variable.
 
 The second command gets the OAuth2 permission grants of a service principal identified by $ServicePrincipalId.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -80,16 +85,32 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaServicePrincipal]()
 

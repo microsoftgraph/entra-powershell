@@ -2,25 +2,27 @@
 title:  Get-EntraServicePrincipalKeyCredential.
 description: This article provides details on the  Get-EntraServicePrincipalKeyCredential Command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/22/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraServicePrincipalKeyCredential
+
 schema: 2.0.0
 ---
 
 # Get-EntraServicePrincipalKeyCredential
 
-## SYNOPSIS
+## Synopsis
+
 Get key credentials for a service principal.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraServicePrincipalKeyCredential 
@@ -28,34 +30,39 @@ Get-EntraServicePrincipalKeyCredential
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
+
 The Get-EntraServicePrincipalKeyCredential cmdlet gets the key credentials for a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the key credential of a service principal
+
 ```powershell
-PS C:\> $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
-PS C:\> Get-EntraServicePrincipalKeyCredential -ObjectId $ServicePrincipalId
+Connect-Entra -Scopes 'Application.Read.All'
+$ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
+Get-EntraServicePrincipalKeyCredential -ObjectId $ServicePrincipalId
 ```
+
 ```output
 CustomKeyIdentifier DisplayName EndDateTime         Key KeyId                                StartDateTime       Type      Usage
 ------------------- ----------- -----------         --- -----                                -------------       ----      -----
-                                08/02/2025 09:57:08     68b45e27-fef8-4f0d-bc7a-76bd949c16d1 08/02/2024 09:57:08 Symmetric Sign
+                                08/02/2025 09:57:08     aaaaaaaa-0b0b-1c1c-2d2d-333333333333 08/02/2024 09:57:08 Symmetric Sign
 ```
 
-The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md) cmdlet. 
+The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md) cmdlet.
 The command stores the ID in the $ServicePrincipalId variable.
 
 The second command gets the key credential for the service principal identified by $ServicePrincipalId.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
+
 Specifies the ID of the application for which to get the password credential.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -67,19 +74,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
 
 [New-EntraServicePrincipalKeyCredential](New-EntraServicePrincipalKeyCredential.md)
 
 [Remove-EntraServicePrincipalKeyCredential](Remove-EntraServicePrincipalKeyCredential.md)
-

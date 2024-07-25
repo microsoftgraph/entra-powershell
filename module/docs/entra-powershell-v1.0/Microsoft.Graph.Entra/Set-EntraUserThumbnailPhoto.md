@@ -2,27 +2,30 @@
 title: Set-EntraUserThumbnailPhoto.
 description: This article provides details on the Set-EntraUserThumbnailPhoto command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 04/08/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraUserThumbnailPhoto
+
 schema: 2.0.0
 ---
 
 # Set-EntraUserThumbnailPhoto
 
-## SYNOPSIS
+## Synopsis
+
 Set the thumbnail photo for a user.
 
-## SYNTAX
+## Syntax
 
 ### File (Default)
+
 ```powershell
 Set-EntraUserThumbnailPhoto 
  [-ObjectId <String>] 
@@ -31,6 +34,7 @@ Set-EntraUserThumbnailPhoto
 ```
 
 ### Stream
+
 ```powershell
 Set-EntraUserThumbnailPhoto 
  -FileStream <Stream> 
@@ -39,6 +43,7 @@ Set-EntraUserThumbnailPhoto
 ```
 
 ### ByteArray
+
 ```powershell
 Set-EntraUserThumbnailPhoto 
  [-ObjectId <String>] 
@@ -46,26 +51,37 @@ Set-EntraUserThumbnailPhoto
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
+
 This cmdlet is used to set the thumbnail photo for a user.
 
-## EXAMPLES
+Updating any user's photo in the organization requires the User.ReadWrite.All permission. Updating only the signed-in user's photo requires the User.ReadWrite permission.
 
-### Example 1: Sets the thumbnail photo.
+## Examples
+
+### Example 1: Sets the thumbnail photo
 
 ```powershell
-PS C:\WINDOWS\system32> Set-EntraUserThumbnailPhoto -ObjectId ba6752c4-6a2e-4be5-a23d-67d8d5980796 -FilePath D:\UserThumbnailPhoto.jpg
+Connect-Entra -Scopes 'User.ReadWrite' #Delegated Permission
+Connect-Entra -Scopes 'User.ReadWrite.All' #Application Permission
+$params = @{
+    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    FilePath = 'D:\UserThumbnailPhoto.jpg'
+}
+
+Set-EntraUserThumbnailPhoto @params
 ```
 
 This example sets the thumbnail photo of the user specified with the ObjectId parameter to the image specified with the FilePath parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -FilePath
+
 The file path of the image to be uploaded as the user thumbnail photo.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: File
 Aliases:
 
@@ -77,10 +93,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 The Object ID of the user for which the user thumbnail photo is set.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -92,18 +109,21 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
 
 ### System.String
+
 System.IO.Stream System.Byte\[\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Get-EntraUserThumbnailPhoto](Get-EntraUserThumbnailPhoto.md)
