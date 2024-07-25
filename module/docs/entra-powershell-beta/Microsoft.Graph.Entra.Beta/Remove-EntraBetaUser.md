@@ -2,14 +2,13 @@
 title: Remove-EntraBetaUser
 description: This article provides details on the Remove-EntraBetaUser command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 02/27/2024
+ms.date: 06/20/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
-
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -18,36 +17,41 @@ schema: 2.0.0
 
 # Remove-EntraBetaUser
 
-## SYNOPSIS
+## Synopsis
+
 Removes a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraBetaUser 
-    -ObjectId <String>
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The **Remove-EntraBetaUser** cmdlet removes a user in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Remove-EntraBetaUser` cmdlet removes a user in Microsoft Entra ID. Specify the `ObjectId` parameter to remove the specified user in Microsoft Entra ID.
+
+## Examples
 
 ### Example 1: Remove a user
+
 ```powershell
-PS C:\>Remove-EntraBetaUser -ObjectId "TestUser@example.com"
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Remove-EntraBetaUser -ObjectId 'TestUser@example.com'
 ```
 
 This command removes the specified user in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
+
 Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -59,19 +63,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Get-EntraBetaUser](Get-EntraBetaUser.md)
 
 [New-EntraBetaUser](New-EntraBetaUser.md)
 
 [Set-EntraBetaUser](Set-EntraBetaUser.md)
-

@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "New-AzureADUser"
-    TargetName = $null
-    Parameters = $null
-    Outputs = $null
+    SourceName   = "New-AzureADUser"
+    TargetName   = $null
+    Parameters   = $null
+    Outputs      = $null
     CustomScript = @'
     PROCESS {    
         $params = @{}
@@ -70,10 +70,6 @@
         if($null -ne $PSBoundParameters["ImmutableId"])
         {
             $params["OnPremisesImmutableId"] = $PSBoundParameters["ImmutableId"]
-        }
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $Null
         }
         if($null -ne $PSBoundParameters["City"])
         {
@@ -153,51 +149,10 @@
         {
             $params["BusinessPhones"] = @($PSBoundParameters["TelephoneNumber"])
         }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $Null
-        }
         if($null -ne $PSBoundParameters["CreationType"])
         {
             $params["CreationType"] = $PSBoundParameters["CreationType"]
         }
-        if($null -ne $PSBoundParameters["WarningVariable"])
-        {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-	    if($null -ne $PSBoundParameters["InformationAction"])
-        {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-        }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }
-        
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
@@ -206,12 +161,26 @@
         $response = Invoke-GraphRequest -Headers $customHeaders -Uri 'https://graph.microsoft.com/v1.0/users?$select=*' -Method POST -Body $params
         $response = $response | ConvertTo-Json | ConvertFrom-Json
         $response | ForEach-Object {
-            if($null -ne $_) {
+            if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name UserState -Value ExternalUserState
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name UserStateChangedOn -Value ExternalUserStateChangeDateTime
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name Mobile -Value mobilePhone
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name DeletionTimestamp -Value DeletedDateTime
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name DirSyncEnabled -Value OnPremisesSyncEnabled
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ImmutableId -Value onPremisesImmutableId
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name LastDirSyncTime -Value OnPremisesLastSyncDateTime
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ProvisioningErrors -Value onPremisesProvisioningErrors
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value BusinessPhones
+                
+                $userData = [Microsoft.Graph.PowerShell.Models.MicrosoftGraphUser]::new()
+                $_.PSObject.Properties | ForEach-Object {
+                    $userData | Add-Member -MemberType NoteProperty -Name $_.Name -Value $_.Value -Force
+                }
             }
-        }
-        $response 
-        }    
+        }        
+        $userData
+    }  
 '@
 }
 

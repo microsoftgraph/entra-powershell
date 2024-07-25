@@ -2,9 +2,9 @@
 title: Get-EntraUserMembership.
 description: This article provides details on the Get-EntraUserMembership command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/07/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -17,84 +17,94 @@ schema: 2.0.0
 
 # Get-EntraUserMembership
 
-## SYNOPSIS
+## Synopsis
+
 Get user memberships.
 
-## SYNTAX
+## Syntax
 
 ```powershell
-Get-EntraUserMembership 
+Get-EntraUserMembership
  -ObjectId <String>
- [-All]  
- [-Top <Int32>] 
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
+
 The Get-EntraUserMembership cmdlet gets user memberships in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get user memberships
+
 ```powershell
-PS C:\>Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1"
-```
-```output
-Id                                   DeletedDateTime
---                                   ---------------
-056b2531-005e-4f3e-be78-01a71ea30a04
-3da073b9-e731-4ec1-a4f6-6e02865a8c8a
-cc3cc7a2-ba9a-4158-814c-d5ee1af66d24
-2788a657-62c9-4546-9d4d-2ddee8a8bc9b
-0bdddeb1-88a6-4251-aaa5-98b48271158b
-eeee7782-696d-4be3-ace0-e20c1df6693e
+Connect-Entra -Scopes 'User.Read'
+Get-EntraUserMembership -ObjectId 'dddddddd-9999-0000-1111-eeeeeeeeeeee'
 ```
 
-This example demonstrates how to retrieve user memberships in Microsoft Entra ID.   
-This command gets the memberships for the specified user.
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+eeeeeeee-4444-5555-6666-ffffffffffff
+ffffffff-5555-6666-7777-aaaaaaaaaaaa
+bbbbbbbb-7777-8888-9999-cccccccccccc
+```
+
+This example demonstrates how to retrieve user memberships in Microsoft Entra ID.
 
 ### Example 2: Get All memberships
+
 ```powershell
-PS C:\>Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -All
-```
-```output
-Id                                   DeletedDateTime
---                                   ---------------
-056b2531-005e-4f3e-be78-01a71ea30a04
-3da073b9-e731-4ec1-a4f6-6e02865a8c8a
-cc3cc7a2-ba9a-4158-814c-d5ee1af66d24
-2788a657-62c9-4546-9d4d-2ddee8a8bc9b
-0bdddeb1-88a6-4251-aaa5-98b48271158b
-eeee7782-696d-4be3-ace0-e20c1df6693e
+Connect-Entra -Scopes 'User.Read'
+Get-EntraUserMembership -ObjectId 'dddddddd-9999-0000-1111-eeeeeeeeeeee' -All
 ```
 
-This example demonstrates how to retrieve users all memberships in Microsoft Entra ID.     
-This command gets the all memberships for the specified user.
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+eeeeeeee-4444-5555-6666-ffffffffffff
+ffffffff-5555-6666-7777-aaaaaaaaaaaa
+bbbbbbbb-7777-8888-9999-cccccccccccc
+```
+
+This example demonstrates how to retrieve users all memberships in Microsoft Entra ID.
 
 ### Example 3: Get top five memberships
+
 ```powershell
-PS C:\>Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -Top 5
+Connect-Entra -Scopes 'User.Read'
+Get-EntraUserMembership -ObjectId 'dddddddd-9999-0000-1111-eeeeeeeeeeee' -Top 5
 ```
-```output
+
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-056b2531-005e-4f3e-be78-01a71ea30a04
-3da073b9-e731-4ec1-a4f6-6e02865a8c8a
-cc3cc7a2-ba9a-4158-814c-d5ee1af66d24
-2788a657-62c9-4546-9d4d-2ddee8a8bc9b
-0bdddeb1-88a6-4251-aaa5-98b48271158b
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+eeeeeeee-4444-5555-6666-ffffffffffff
+ffffffff-5555-6666-7777-aaaaaaaaaaaa
 ```
 
-This example demonstrates how to retrieve users top five memberships in Microsoft Entra ID.      
-This command gets the top five memberships for the specified user.
+This example demonstrates how to retrieve users top five memberships in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -106,10 +116,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -121,10 +132,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -135,13 +147,30 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links

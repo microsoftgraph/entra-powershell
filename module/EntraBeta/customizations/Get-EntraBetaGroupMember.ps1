@@ -37,7 +37,7 @@
         }
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($null -ne $PSBoundParameters["InformationAction"])
         {
@@ -45,7 +45,7 @@
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if($null -ne $PSBoundParameters["OutVariable"])
         {
@@ -70,7 +70,11 @@
         if($null -ne $PSBoundParameters["WarningAction"])
         {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }       
+        }
+        if($null -ne $PSBoundParameters["Property"])
+        {
+            $params["Property"] = $PSBoundParameters["Property"]
+        }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug

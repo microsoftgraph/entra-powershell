@@ -7,19 +7,19 @@ schema: 2.0.0
 
 # Get-EntraBetaContactMembership
 
-## SYNOPSIS
+## Synopsis
 Get a contact membership.
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraBetaContactMembership -ObjectId <String> [-All] [-Top <Int32>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaContactMembership cmdlet gets a contact membership in Azure Active Directory.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the memberships of a contact
 ```
@@ -35,7 +35,7 @@ The first command gets a contact by using the Get-EntraBetaContact (./Get-EntraB
 
 The second command gets the memberships for $Contact.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -84,13 +84,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaContact]()
 

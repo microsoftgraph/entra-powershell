@@ -1,9 +1,9 @@
 ---
 title: Remove-EntraBetaServicePrincipalPasswordCredential
 description: This article provides details on the Remove-EntraBetaServicePrincipalPasswordCredential command.
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 04/17/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -16,10 +16,10 @@ schema: 2.0.0
 
 # Remove-EntraBetaServicePrincipalPasswordCredential
 
-## SYNOPSIS
+## Synopsis
 Removes a password credential from a service principal.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraBetaServicePrincipalPasswordCredential
@@ -28,10 +28,10 @@ Remove-EntraBetaServicePrincipalPasswordCredential
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaServicePrincipalPasswordCredential cmdlet removes a password credential from a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a password credential from a service principal in Microsoft Entra ID.  
 ```powershell
@@ -42,7 +42,7 @@ This command demonstrates how to remove a password credential from a service pri
 ObjectId: The ObjectId of the specified Service Principal Password Credential.  
 KeyID: The unique identifier of the Password Credential.  
 
-## PARAMETERS
+## Parameters
 
 ### -KeyId
 Specifies the unique identifier of password credential.
@@ -77,10 +77,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
 ## RELATED LINKS

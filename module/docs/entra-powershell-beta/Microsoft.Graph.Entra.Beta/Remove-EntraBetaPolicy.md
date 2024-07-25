@@ -1,4 +1,15 @@
 ---
+title: Remove-EntraBetaPolicy.
+description: This article provides details on the Remove-EntraBetaPolicy command.
+
+
+ms.topic: reference
+ms.date: 07/02/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version:
@@ -7,37 +18,41 @@ schema: 2.0.0
 
 # Remove-EntraBetaPolicy
 
-## SYNOPSIS
+## Synopsis
+
 Removes a policy.
 
-## SYNTAX
+## Syntax
 
-```
-Remove-EntraBetaPolicy -Id <String> 
+```powershell
+Remove-EntraBetaPolicy 
+ -Id <String> 
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Remove-EntraBetaPolicy cmdlet removes a policy from Azure Active Directory (AD).
+## Description
 
-## EXAMPLES
+The `Remove-EntraBetaPolicy` cmdlet removes a policy from Microsoft Entra ID. Specify `Id` parameter to remove a specific policy.
+
+## Examples
 
 ### Example 1: Remove a policy
+
+```powershell
+Connect-Entra -Scopes 'Policy.Read.ApplicationConfiguration'
+Remove-EntraBetaPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
-PS C:\>Remove-EntraBetaPolicy -Id *<ID>*.
-```
 
-This command removes the specified policy.
+This command removes the specified policy from Microsoft Entra ID.
 
-## PARAMETERS
-
-
+## Parameters
 
 ### -Id
-The Id of the policy you want to remove
+
+The Id of the policy you want to remove.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -49,19 +64,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
 
-[Get-EntraBetaPolicy]()
+## Related Links
 
-[New-EntraBetaPolicy]()
+[Get-EntraBetaPolicy](Get-EntraBetaPolicy.md)
 
-[Set-EntraBetaPolicy]()
+[New-EntraBetaPolicy](New-EntraBetaPolicy.md)
 
+[Set-EntraBetaPolicy](Set-EntraBetaPolicy.md)

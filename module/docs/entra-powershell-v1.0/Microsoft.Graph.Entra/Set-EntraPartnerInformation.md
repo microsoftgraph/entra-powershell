@@ -2,9 +2,9 @@
 title: Set-EntraPartnerInformation
 description: This article provides details on the Set-EntraPartnerInformation command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 05/20/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,10 +18,11 @@ schema: 2.0.0
 
 # Set-EntraPartnerInformation
 
-## SYNOPSIS
+## Synopsis
+
 Sets company information for partners.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraPartnerInformation 
@@ -35,49 +36,67 @@ Set-EntraPartnerInformation
  [-TenantId <Guid>] 
  [<CommonParameters>]
 ```
-## DESCRIPTION
-The Set-EntraPartnerInformation cmdlet is used by partners to set partner-specific properties.
+
+## Description
+
+The `Set-EntraPartnerInformation` cmdlet is used by partners to set partner-specific properties.
 These properties can view by all tenants that the partner has access to.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Update the help URL
+
 ```powershell
-PS C:\> Set-EntraPartnerInformation -PartnerHelpUrl "http://www.help.contoso.com"
+Set-EntraPartnerInformation -PartnerHelpUrl 'http://www.help.contoso.com'
 ```
+
 This command updates the help URL for this partner.
 
 ### Example 2: Update the Support URL
+
 ```powershell
-PS C:\> Set-EntraPartnerInformation -PartnerSupportUrl "http://www.test1.com"
+Set-EntraPartnerInformation -PartnerSupportUrl 'http://www.test1.com'
 ```
+
 This command updates the Support URL for this partner.
 
 ### Example 3: Update the Commerce URL
+
 ```powershell
-PS C:\> Set-EntraPartnerInformation -PartnerCommerceUrl "http://www.test1.com" 
+Set-EntraPartnerInformation -PartnerCommerceUrl 'http://www.test1.com'
 ```
+
 This command updates the Commerce URL for this partner.
 
 ### Example 4: Update the SupportEmails
+
 ```powershell
-PS C:\> Set-EntraPartnerInformation -PartnerSupportEmails "contoso@example.com" 
+Set-EntraPartnerInformation -PartnerSupportEmails 'contoso@example.com' 
 ```
+
 This command updates the SupportEmails for this partner.
 
 ### Example 5: Update the SupportTelephones
+
 ```powershell
-PS C:\> Set-EntraPartnerInformation -PartnerSupportTelephones "2342" -TenantId "b73cc049-a025-4441-ba3a-8826d9a68ecc"
+$params = @{
+    PartnerSupportTelephones = '234234234'
+    TenantId = 'bbbbcccc-1111-dddd-2222-eeee3333ffff'
+}
+
+Set-EntraPartnerInformation @params
 ```
+
 This command updates the SupportTelephones for this partner.
 
-## PARAMETERS
+## Parameters
 
 ### -PartnerCommerceUrl
+
 Specifies the URL for the partner's commerce website.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -89,10 +108,11 @@ Accept wildcard characters: False
 ```
 
 ### -PartnerHelpUrl
+
 Specifies the URL for the partner's Help website.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -104,6 +124,7 @@ Accept wildcard characters: False
 ```
 
 ### -PartnerSupportEmails
+
 Specifies the support email address for the partner.
 
 ```yaml
@@ -119,6 +140,7 @@ Accept wildcard characters: False
 ```
 
 ### -PartnerSupportTelephones
+
 Specifies the support telephone numbers for the partner.
 
 ```yaml
@@ -134,10 +156,11 @@ Accept wildcard characters: False
 ```
 
 ### -PartnerSupportUrl
+
 Specifies the URL for the partner's support website.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -149,12 +172,13 @@ Accept wildcard characters: False
 ```
 
 ### -TenantId
+
 Specifies the unique ID of the tenant on which to perform the operation.
 The default value is the tenant of the current user.
 This parameter applies only to partner users.
 
 ```yaml
-Type: Guid
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -166,6 +190,7 @@ Accept wildcard characters: False
 ```
 
 ### -CompanyType
+
 Specifies the partner's company type.
 
 ```yaml
@@ -181,11 +206,12 @@ Accept wildcard characters: False
 ```
 
 ### -PartnerCompanyName
+
 Specifies the partner's company name.
 
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -197,13 +223,15 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
+
 [Get-EntraPartnerInformation](Get-EntraPartnerInformation.md)
