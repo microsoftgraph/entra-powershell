@@ -2,7 +2,7 @@
 title: New-EntraBetaOauth2PermissionGrant
 description: This article provides details on the New-EntraBetaOauth2PermissionGrant command.
 
-ms.service: active-directory
+
 ms.topic: reference
 ms.date: 06/28/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaOauth2PermissionGrant
+
 schema: 2.0.0
 ---
 

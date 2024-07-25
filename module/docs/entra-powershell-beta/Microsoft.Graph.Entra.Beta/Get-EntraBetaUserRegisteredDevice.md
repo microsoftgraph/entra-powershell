@@ -1,40 +1,100 @@
 ---
+title: Get-EntraBetaUserRegisteredDevice
+description: This article provides details on the Get-EntraBetaUserRegisteredDevice command.
+
+
+ms.topic: reference
+ms.date: 06/20/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaUserRegisteredDevice
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaUserRegisteredDevice
 
 ## Synopsis
+
 Get devices registered by a user.
 
 ## Syntax
 
-```
-Get-EntraBetaUserRegisteredDevice [-Top <Int32>] -ObjectId <String> [-All] [<CommonParameters>]
+```powershell
+Get-EntraBetaUserRegisteredDevice
+ -ObjectId <String>
+ [-Top <Int32>]
+ [-All]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ## Description
-The Get-EntraBetaUserRegisteredDevice cmdlet gets devices registered by a user in Azure Active Directory (AD).
+
+The `Get-EntraBetaUserRegisteredDevice` cmdlet gets devices registered by a user in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Get registered devices
+
+```Powershell
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraBetaUserRegisteredDevice -ObjectId  'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
-PS C:\>Get-EntraBetaUserRegisteredDevice -ObjectId  "df19e8e6-2ad7-453e-87f5-037f6529ae16"
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+00aa00aa-bb11-cc22-dd33-44ee44ee44ee
+11bb11bb-cc22-dd33-ee44-55ff55ff55ff
 ```
 
 This command gets the devices that are registered to the specified user.
 
+### Example 2: Get all registered devices
+
+```Powershell
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraBetaUserRegisteredDevice -ObjectId  'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All 
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+00aa00aa-bb11-cc22-dd33-44ee44ee44ee
+11bb11bb-cc22-dd33-ee44-55ff55ff55ff
+```
+
+This command gets all the devices that are registered to the specified user.
+
+### Example 3: Get one registered device
+
+```Powershell
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraBetaUserRegisteredDevice -ObjectId  'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 1
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+00aa00aa-bb11-cc22-dd33-44ee44ee44ee
+```
+
+This command gets the top one device that are registered to the specified user.
+
 ## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -46,10 +106,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a user (as a UPN or ObjectId) in Azure AD.
+
+Specifies the ID of a user (as a User Principal Name or ObjectId) in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -61,10 +122,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies The maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -75,8 +137,25 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -84,4 +163,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Notes
 
-## RELATED LINKS
+## Related Links

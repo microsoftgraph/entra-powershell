@@ -2,7 +2,7 @@
 title: Get-EntraUserThumbnailPhoto.
 description: This article provides details on the Get-EntraUserThumbnailPhoto command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraUserThumbnailPhoto
+
 schema: 2.0.0
 ---
 
@@ -24,11 +25,12 @@ Retrieve the thumbnail photo of a user.
 ## Syntax
 
 ```powershell
-Get-EntraUserThumbnailPhoto 
- -ObjectId <String> 
- [-FileName <String>] 
- [-View <Boolean>] 
+Get-EntraUserThumbnailPhoto
+ -ObjectId <String>
+ [-FileName <String>]
+ [-View <Boolean>]
  [-FilePath <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -117,6 +119,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
