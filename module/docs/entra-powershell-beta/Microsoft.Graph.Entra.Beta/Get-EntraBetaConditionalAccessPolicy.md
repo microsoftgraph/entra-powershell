@@ -14,13 +14,20 @@ Gets an Azure Active Directory conditional access policy.
 ## Syntax
 
 ### GetQuery (Default)
-```
-Get-EntraBetaConditionalAccessPolicy [<CommonParameters>]
+
+```powershell
+Get-EntraBetaConditionalAccessPolicy
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraBetaConditionalAccessPolicy -PolicyId <String> [<CommonParameters>]
+
+```powershell
+Get-EntraBetaConditionalAccessPolicy
+ -PolicyId <String>
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ## Description
@@ -69,6 +76,22 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
