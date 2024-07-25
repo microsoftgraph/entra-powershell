@@ -19,6 +19,7 @@ schema: 2.0.0
 # New-EntraInvitation
 
 ## Synopsis
+
 This cmdlet is used to invite a new external user to your directory.
 
 ## Syntax
@@ -35,39 +36,39 @@ New-EntraInvitation
 ```
 
 ## Description
+
 This cmdlet is used to invite a new external user to your directory.
+
+Invitation adds an external user to the organization. When creating a new invitation, you have several options available:
+
+- On invitation creation, Microsoft Graph can automatically send an invitation email directly to the invited user, or your app can use the inviteRedeemUrl returned in the response to craft your own invitation (through your communication mechanism of choice) to the invited user. If you decide to have Microsoft Graph send an invitation email automatically, you can specify the content and language of the email by using invitedUserMessageInfo.
+- When the user is invited, a user entity (of userType Guest) is created and can be used to control access to resources. The invited user has to go through the redemption process to access any resources they have been invited to.
+
+To reset the redemption status for a guest user, the User.ReadWrite.All permission is the minimum required.
+
+For delegated scenarios, the signed-in user must have at least one of the following roles: Guest Inviter, Directory Writers, or User Administrator. Additionally, to reset the redemption status, the signed-in user must have the Helpdesk Administrator or User Administrator role.
 
 ## Examples
 
-### Example 1: Invite a new external user to your directory.
+### Example 1: Invite a new external user to your directory
 
 ```powershell
-New-EntraInvitation -InvitedUserEmailAddress someexternaluser@externaldomain.com -SendInvitationMessage $True -InviteRedirectUrl "https://myapps.onmicrosoft.com"
+Connect-Entra -Scopes 'User.Invite.All'
+$params = @{
+    InvitedUserEmailAddress = 'someexternaluser@externaldomain.com'
+    SendInvitationMessage = $True
+    InviteRedirectUrl = 'https://myapps.onmicrosoft.com'
+}
+
+New-EntraInvitation @params
 ```
-```output
-Id                      : 3d8a715c-d652-4f28-80ed-8cc58bf4dbb9
-InviteRedeemUrl         : https://login.microsoftonline.com/redeem?rd=https%3a%2f%2finvitations.microsoft.com%2fredeem%2f%3ftenant%3dd5aec55f-2d12-4442-8d2f
-                          -ccca95d4390e%26user%3d3d8a715c-d652-4f28-80ed-8cc58bf4dbb9%26ticket%3dTXpn2wc0Oa2HCz7tgjMPT1xVHXTTC0tw3Nd%25252fr78tKXg%25253d%26
-                          ver%3d2.0
+
+```Output
+Id                      : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+InviteRedeemUrl         : https://login.microsoftonline.com/redeem?...
 InviteRedirectUrl       : https://myapps.onmicrosoft.com/
 InvitedUser             : @{AboutMe=; AccountEnabled=; Activities=; AgeGroup=; AgreementAcceptances=; AppRoleAssignments=; AssignedLicenses=;
-                          AssignedPlans=; Authentication=; AuthorizationInfo=; Birthday=; BusinessPhones=; Calendar=; CalendarGroups=; CalendarView=;
-                          Calendars=; Chats=; City=; CompanyName=; ConsentProvidedForMinor=; ContactFolders=; Contacts=; Country=; CreatedDateTime=;
-                          CreatedObjects=; CreationType=; CustomSecurityAttributes=; DeletedDateTime=; Department=; DeviceEnrollmentLimit=;
-                          DeviceManagementTroubleshootingEvents=; DirectReports=; DisplayName=; Drive=; Drives=; EmployeeExperience=; EmployeeHireDate=;
-                          EmployeeId=; EmployeeLeaveDateTime=; EmployeeOrgData=; EmployeeType=; Events=; Extensions=; ExternalUserState=;
-                          ExternalUserStateChangeDateTime=; FaxNumber=; FollowedSites=; GivenName=; HireDate=; Id=2de0b03a-9093-4e4c-a400-9a540cc31144;
-                          Identities=; ImAddresses=; InferenceClassification=; Insights=; Interests=; IsResourceAccount=; JobTitle=; JoinedTeams=;
-                          LastPasswordChangeDateTime=; LegalAgeGroupClassification=; LicenseAssignmentStates=; LicenseDetails=; Mail=; MailFolders=;
-                          MailNickname=; MailboxSettings=; ManagedAppRegistrations=; ManagedDevices=; Manager=; MemberOf=; Messages=; MobilePhone=;
-                          MySite=; Oauth2PermissionGrants=; OfficeLocation=; OnPremisesDistinguishedName=; OnPremisesDomainName=;
-                          OnPremisesExtensionAttributes=; OnPremisesImmutableId=; OnPremisesLastSyncDateTime=; OnPremisesProvisioningErrors=;
-                          OnPremisesSamAccountName=; OnPremisesSecurityIdentifier=; OnPremisesSyncEnabled=; OnPremisesUserPrincipalName=; Onenote=;
-                          OnlineMeetings=; OtherMails=; Outlook=; OwnedDevices=; OwnedObjects=; PasswordPolicies=; PasswordProfile=; PastProjects=;
-                          People=; Photo=; Photos=; Planner=; PostalCode=; PreferredDataLocation=; PreferredLanguage=; PreferredName=; Presence=; Print=;
-                          ProvisionedPlans=; ProxyAddresses=; RegisteredDevices=; Responsibilities=; Schools=; ScopedRoleMemberOf=; SecurityIdentifier=;
-                          ServiceProvisioningErrors=; Settings=; ShowInAddressList=; SignInActivity=; SignInSessionsValidFromDateTime=; Skills=; State=;
-                          StreetAddress=; Surname=; Teamwork=; Todo=; TransitiveMemberOf=; UsageLocation=; UserPrincipalName=; UserType=}
+                          UserType=}
 InvitedUserDisplayName  :
 InvitedUserEmailAddress : someexternaluser@externaldomain.com
 InvitedUserMessageInfo  : @{CcRecipients=System.Object[]; CustomizedMessageBody=; MessageLanguage=}
@@ -75,41 +76,34 @@ InvitedUserType         : Guest
 ResetRedemption         : False
 SendInvitationMessage   : True
 Status                  : PendingAcceptance
-ObjectId                : 3d8a715c-d652-4f28-80ed-8cc58bf4dbb9
+ObjectId                : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 AdditionalProperties    : @{@odata.context=https://graph.microsoft.com/v1.0/$metadata#invitations/$entity}
 ```
+
 This example sent an email to the user who's email address is in the -InvitedUserEmailAddress parameter.
+
 When the user accepts the invitation, they're forwarded to the url as specified in the -InviteRedirectUrl parameter.
 
-### Example 2: Invite a new external user to your directory with InvitedUserDisplayName parameter.
+### Example 2: Invite a new external user to your directory with InvitedUserDisplayName parameter
 
 ```powershell
-New-EntraInvitation -InvitedUserEmailAddress someexternaluser@externaldomain.com -SendInvitationMessage $True -InviteRedirectUrl "https://myapps.onmicrosoft.com" -InvitedUserDisplayName "microsoftuser"
+Connect-Entra -Scopes 'User.Invite.All'
+$params = @{
+    InvitedUserEmailAddress = 'someexternaluser@externaldomain.com'
+    SendInvitationMessage = $True
+    InviteRedirectUrl = 'https://myapps.onmicrosoft.com'
+    InvitedUserDisplayName = 'microsoftuser'
+}
+
+New-EntraInvitation @params
 ```
-```output
-Id                      : 3d8a715c-d652-4f28-80ed-8cc58bf4dbb9
-InviteRedeemUrl         : https://login.microsoftonline.com/redeem?rd=https%3a%2f%2finvitations.microsoft.com%2fredeem%2f%3ftenant%3dd5aec55f-2d12-4442-8d2f
-                          -ccca95d4390e%26user%3d3d8a715c-d652-4f28-80ed-8cc58bf4dbb9%26ticket%3dTXpn2wc0Oa2HCz7tgjMPT1xVHXTTC0tw3Nd%25252fr78tKXg%25253d%26
-                          ver%3d2.0
+
+```Output
+Id                      : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+InviteRedeemUrl         : https://login.microsoftonline.com/redeem?...
 InviteRedirectUrl       : https://myapps.onmicrosoft.com/
 InvitedUser             : @{AboutMe=; AccountEnabled=; Activities=; AgeGroup=; AgreementAcceptances=; AppRoleAssignments=; AssignedLicenses=;
-                          AssignedPlans=; Authentication=; AuthorizationInfo=; Birthday=; BusinessPhones=; Calendar=; CalendarGroups=; CalendarView=;
-                          Calendars=; Chats=; City=; CompanyName=; ConsentProvidedForMinor=; ContactFolders=; Contacts=; Country=; CreatedDateTime=;
-                          CreatedObjects=; CreationType=; CustomSecurityAttributes=; DeletedDateTime=; Department=; DeviceEnrollmentLimit=;
-                          DeviceManagementTroubleshootingEvents=; DirectReports=; DisplayName=; Drive=; Drives=; EmployeeExperience=; EmployeeHireDate=;
-                          EmployeeId=; EmployeeLeaveDateTime=; EmployeeOrgData=; EmployeeType=; Events=; Extensions=; ExternalUserState=;
-                          ExternalUserStateChangeDateTime=; FaxNumber=; FollowedSites=; GivenName=; HireDate=; Id=2de0b03a-9093-4e4c-a400-9a540cc31144;
-                          Identities=; ImAddresses=; InferenceClassification=; Insights=; Interests=; IsResourceAccount=; JobTitle=; JoinedTeams=;
-                          LastPasswordChangeDateTime=; LegalAgeGroupClassification=; LicenseAssignmentStates=; LicenseDetails=; Mail=; MailFolders=;
-                          MailNickname=; MailboxSettings=; ManagedAppRegistrations=; ManagedDevices=; Manager=; MemberOf=; Messages=; MobilePhone=;
-                          MySite=; Oauth2PermissionGrants=; OfficeLocation=; OnPremisesDistinguishedName=; OnPremisesDomainName=;
-                          OnPremisesExtensionAttributes=; OnPremisesImmutableId=; OnPremisesLastSyncDateTime=; OnPremisesProvisioningErrors=;
-                          OnPremisesSamAccountName=; OnPremisesSecurityIdentifier=; OnPremisesSyncEnabled=; OnPremisesUserPrincipalName=; Onenote=;
-                          OnlineMeetings=; OtherMails=; Outlook=; OwnedDevices=; OwnedObjects=; PasswordPolicies=; PasswordProfile=; PastProjects=;
-                          People=; Photo=; Photos=; Planner=; PostalCode=; PreferredDataLocation=; PreferredLanguage=; PreferredName=; Presence=; Print=;
-                          ProvisionedPlans=; ProxyAddresses=; RegisteredDevices=; Responsibilities=; Schools=; ScopedRoleMemberOf=; SecurityIdentifier=;
-                          ServiceProvisioningErrors=; Settings=; ShowInAddressList=; SignInActivity=; SignInSessionsValidFromDateTime=; Skills=; State=;
-                          StreetAddress=; Surname=; Teamwork=; Todo=; TransitiveMemberOf=; UsageLocation=; UserPrincipalName=; UserType=}
+                          UserType=}
 InvitedUserDisplayName  : microsoftuser
 InvitedUserEmailAddress : someexternaluser@externaldomain.com
 InvitedUserMessageInfo  : @{CcRecipients=System.Object[]; CustomizedMessageBody=; MessageLanguage=}
@@ -117,44 +111,36 @@ InvitedUserType         : Guest
 ResetRedemption         : False
 SendInvitationMessage   : True
 Status                  : PendingAcceptance
-ObjectId                : 3d8a715c-d652-4f28-80ed-8cc58bf4dbb9
+ObjectId                : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 AdditionalProperties    : @{@odata.context=https://graph.microsoft.com/v1.0/$metadata#invitations/$entity}
 
 ```
+
 This example demonstrates how to invite a new external user to your directory with InvitedUserDisplayName parameter.
 
-### Example 3: Invite a new external user to your directory with InvitedUserMessageInfo parameter.
+### Example 3: Invite a new external user to your directory with InvitedUserMessageInfo parameter
 
 ```powershell
+Connect-Entra -Scopes 'User.Invite.All'
 $a= New-Object Microsoft.Open.MSGraph.Model.InvitedUserMessageInfo
->> $a.CustomizedMessageBody = "Hi there, how are you"
->> $a.MessageLanguage = "EN"
->> New-EntraInvitation -InvitedUserEmailAddress "someexternaluser@externaldomain.com" -SendInvitationMessage $True -InviteRedirectUrl "https://myapps.microsoft.com" -InvitedUserMessageInfo $a
+$a.CustomizedMessageBody = 'Hi there, how are you'
+$a.MessageLanguage = 'EN'
+$params = @{
+    InvitedUserEmailAddress = 'someexternaluser@externaldomain.com'
+    SendInvitationMessage = $True
+    InviteRedirectUrl = 'https://myapps.microsoft.com'
+    InvitedUserMessageInfo = $a
+}
+
+New-EntraInvitation @params
 ```
-```output
-Id                      : b47dfdd8-727e-46ae-8f72-807166f09e6c
-InviteRedeemUrl         : https://login.microsoftonline.com/redeem?rd=https%3a%2f%2finvitations.microsoft.com%2fredeem%2f%3ftenant%3dd5aec55f-2d12-4442-8d2f
-                          -ccca95d4390e%26user%3db47dfdd8-727e-46ae-8f72-807166f09e6c%26ticket%3dKk%25252faQ8k1Jr1Z9F9didqY%25252b4mDkVf%25252b5%25252f6gZcZ
-                          Gn9qki%25252bM%25253d%26ver%3d2.0
+
+```Output
+Id                      : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+InviteRedeemUrl         : https://login.microsoftonline.com/redeem?...
 InviteRedirectUrl       : https://myapps.microsoft.com/
 InvitedUser             : @{AboutMe=; AccountEnabled=; Activities=; AgeGroup=; AgreementAcceptances=; AppRoleAssignments=; AssignedLicenses=;
-                          AssignedPlans=; Authentication=; AuthorizationInfo=; Birthday=; BusinessPhones=; Calendar=; CalendarGroups=; CalendarView=;
-                          Calendars=; Chats=; City=; CompanyName=; ConsentProvidedForMinor=; ContactFolders=; Contacts=; Country=; CreatedDateTime=;
-                          CreatedObjects=; CreationType=; CustomSecurityAttributes=; DeletedDateTime=; Department=; DeviceEnrollmentLimit=;
-                          DeviceManagementTroubleshootingEvents=; DirectReports=; DisplayName=; Drive=; Drives=; EmployeeExperience=; EmployeeHireDate=;
-                          EmployeeId=; EmployeeLeaveDateTime=; EmployeeOrgData=; EmployeeType=; Events=; Extensions=; ExternalUserState=;
-                          ExternalUserStateChangeDateTime=; FaxNumber=; FollowedSites=; GivenName=; HireDate=; Id=2de0b03a-9093-4e4c-a400-9a540cc31144;
-                          Identities=; ImAddresses=; InferenceClassification=; Insights=; Interests=; IsResourceAccount=; JobTitle=; JoinedTeams=;
-                          LastPasswordChangeDateTime=; LegalAgeGroupClassification=; LicenseAssignmentStates=; LicenseDetails=; Mail=; MailFolders=;
-                          MailNickname=; MailboxSettings=; ManagedAppRegistrations=; ManagedDevices=; Manager=; MemberOf=; Messages=; MobilePhone=;
-                          MySite=; Oauth2PermissionGrants=; OfficeLocation=; OnPremisesDistinguishedName=; OnPremisesDomainName=;
-                          OnPremisesExtensionAttributes=; OnPremisesImmutableId=; OnPremisesLastSyncDateTime=; OnPremisesProvisioningErrors=;
-                          OnPremisesSamAccountName=; OnPremisesSecurityIdentifier=; OnPremisesSyncEnabled=; OnPremisesUserPrincipalName=; Onenote=;
-                          OnlineMeetings=; OtherMails=; Outlook=; OwnedDevices=; OwnedObjects=; PasswordPolicies=; PasswordProfile=; PastProjects=;
-                          People=; Photo=; Photos=; Planner=; PostalCode=; PreferredDataLocation=; PreferredLanguage=; PreferredName=; Presence=; Print=;
-                          ProvisionedPlans=; ProxyAddresses=; RegisteredDevices=; Responsibilities=; Schools=; ScopedRoleMemberOf=; SecurityIdentifier=;
-                          ServiceProvisioningErrors=; Settings=; ShowInAddressList=; SignInActivity=; SignInSessionsValidFromDateTime=; Skills=; State=;
-                          StreetAddress=; Surname=; Teamwork=; Todo=; TransitiveMemberOf=; UsageLocation=; UserPrincipalName=; UserType=}
+                          UserType=}
 InvitedUserDisplayName  :
 InvitedUserEmailAddress : someexternaluser@externaldomain.com
 InvitedUserMessageInfo  : @{CcRecipients=System.Object[]; CustomizedMessageBody=Hi there, how are you; MessageLanguage=EN}
@@ -162,41 +148,32 @@ InvitedUserType         : Guest
 ResetRedemption         : False
 SendInvitationMessage   : True
 Status                  : PendingAcceptance
-ObjectId                : b47dfdd8-727e-46ae-8f72-807166f09e6c
+ObjectId                : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 AdditionalProperties    : @{@odata.context=https://graph.microsoft.com/v1.0/$metadata#invitations/$entity}
 ```
+
 This example demonstrates how to invite a new external user to your directory with InvitedUserMessageInfo parameter.
 
-### Example 4: Invite a new external user to your directory with InvitedUserType parameter.
+### Example 4: Invite a new external user to your directory with InvitedUserType parameter
 
 ```powershell
- New-EntraInvitation -InvitedUserEmailAddress "someexternaluser@externaldomain.com" -SendInvitationMessage $True -InviteRedirectUrl "https://myapps.microsoft.com"  -InvitedUserType Guest
+Connect-Entra -Scopes 'User.Invite.All'
+$params = @{
+    InvitedUserEmailAddress = 'someexternaluser@externaldomain.com'
+    SendInvitationMessage = $True
+    InviteRedirectUrl = 'https://myapps.microsoft.com'
+    InvitedUserType = 'Guest'
+}
+
+New-EntraInvitation @params
 ```
 
-```output
-Id                      : b47dfdd8-727e-46ae-8f72-807166f09e6c
-InviteRedeemUrl         : https://login.microsoftonline.com/redeem?rd=https%3a%2f%2finvitations.microsoft.com%2fredeem%2f%3ftenant%3dd5aec55f-2d12-4442-8d2f
-                          -ccca95d4390e%26user%3db47dfdd8-727e-46ae-8f72-807166f09e6c%26ticket%3dKk%25252faQ8k1Jr1Z9F9didqY%25252b4mDkVf%25252b5%25252f6gZcZ
-                          Gn9qki%25252bM%25253d%26ver%3d2.0
+```Output
+Id                      : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+InviteRedeemUrl         : https://login.microsoftonline.com/redeem?...
 InviteRedirectUrl       : https://myapps.microsoft.com/
 InvitedUser             : @{AboutMe=; AccountEnabled=; Activities=; AgeGroup=; AgreementAcceptances=; AppRoleAssignments=; AssignedLicenses=;
-                          AssignedPlans=; Authentication=; AuthorizationInfo=; Birthday=; BusinessPhones=; Calendar=; CalendarGroups=; CalendarView=;
-                          Calendars=; Chats=; City=; CompanyName=; ConsentProvidedForMinor=; ContactFolders=; Contacts=; Country=; CreatedDateTime=;
-                          CreatedObjects=; CreationType=; CustomSecurityAttributes=; DeletedDateTime=; Department=; DeviceEnrollmentLimit=;
-                          DeviceManagementTroubleshootingEvents=; DirectReports=; DisplayName=; Drive=; Drives=; EmployeeExperience=; EmployeeHireDate=;
-                          EmployeeId=; EmployeeLeaveDateTime=; EmployeeOrgData=; EmployeeType=; Events=; Extensions=; ExternalUserState=;
-                          ExternalUserStateChangeDateTime=; FaxNumber=; FollowedSites=; GivenName=; HireDate=; Id=2de0b03a-9093-4e4c-a400-9a540cc31144;
-                          Identities=; ImAddresses=; InferenceClassification=; Insights=; Interests=; IsResourceAccount=; JobTitle=; JoinedTeams=;
-                          LastPasswordChangeDateTime=; LegalAgeGroupClassification=; LicenseAssignmentStates=; LicenseDetails=; Mail=; MailFolders=;
-                          MailNickname=; MailboxSettings=; ManagedAppRegistrations=; ManagedDevices=; Manager=; MemberOf=; Messages=; MobilePhone=;
-                          MySite=; Oauth2PermissionGrants=; OfficeLocation=; OnPremisesDistinguishedName=; OnPremisesDomainName=;
-                          OnPremisesExtensionAttributes=; OnPremisesImmutableId=; OnPremisesLastSyncDateTime=; OnPremisesProvisioningErrors=;
-                          OnPremisesSamAccountName=; OnPremisesSecurityIdentifier=; OnPremisesSyncEnabled=; OnPremisesUserPrincipalName=; Onenote=;
-                          OnlineMeetings=; OtherMails=; Outlook=; OwnedDevices=; OwnedObjects=; PasswordPolicies=; PasswordProfile=; PastProjects=;
-                          People=; Photo=; Photos=; Planner=; PostalCode=; PreferredDataLocation=; PreferredLanguage=; PreferredName=; Presence=; Print=;
-                          ProvisionedPlans=; ProxyAddresses=; RegisteredDevices=; Responsibilities=; Schools=; ScopedRoleMemberOf=; SecurityIdentifier=;
-                          ServiceProvisioningErrors=; Settings=; ShowInAddressList=; SignInActivity=; SignInSessionsValidFromDateTime=; Skills=; State=;
-                          StreetAddress=; Surname=; Teamwork=; Todo=; TransitiveMemberOf=; UsageLocation=; UserPrincipalName=; UserType=}
+                          UserType=}
 InvitedUserDisplayName  :
 InvitedUserEmailAddress : someexternaluser@externaldomain.com
 InvitedUserMessageInfo  : @{CcRecipients=System.Object[]; CustomizedMessageBody=; MessageLanguage=}
@@ -204,18 +181,20 @@ InvitedUserType         : Guest
 ResetRedemption         : False
 SendInvitationMessage   : True
 Status                  : PendingAcceptance
-ObjectId                : b47dfdd8-727e-46ae-8f72-807166f09e6c
+ObjectId                : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 AdditionalProperties    : @{@odata.context=https://graph.microsoft.com/v1.0/$metadata#invitations/$entity}
 ```
+
 This example demonstrates how to invite a new external user to your directory with InvitedUserType parameter.
 
 ## Parameters
 
 ### -InvitedUserDisplayName
+
 The display name of the user as it appears in your directory.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -227,10 +206,11 @@ Accept wildcard characters: False
 ```
 
 ### -InvitedUserEmailAddress
+
 The Email address to which the invitation is sent.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -242,6 +222,7 @@ Accept wildcard characters: False
 ```
 
 ### -InvitedUserMessageInfo
+
 Addition information to specify how the invitation message is sent.
 
 ```yaml
@@ -257,6 +238,7 @@ Accept wildcard characters: False
 ```
 
 ### -InvitedUser
+
 An existing user object in the directory that you want to add or update the B2B credentials for.
 
 ```yaml
@@ -272,12 +254,13 @@ Accept wildcard characters: False
 ```
 
 ### -InvitedUserType
-The userType of the user being invited.
-By default, userType is Guest.
+
+The userType of the user being invited. By default, userType is Guest.
+
 You can invite as Member of your company administrator.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -289,10 +272,11 @@ Accept wildcard characters: False
 ```
 
 ### -InviteRedirectUrl
+
 The URL that the invited user is forwarded after accepting the invitation.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -304,10 +288,11 @@ Accept wildcard characters: False
 ```
 
 ### -SendInvitationMessage
+
 A Boolean parameter that indicates whether or not an invitation message sent to the invited user.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -319,14 +304,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### None
+
 ## Outputs
 
 ### System.Object
+
 ## Notes
+
+- See more information - <https://learn.microsoft.com/graph/api/invitation-post>.
 
 ## Related Links
