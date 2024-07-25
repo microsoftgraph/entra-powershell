@@ -28,15 +28,17 @@ If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraBetaGroupLifecyclePolicy 
+Get-EntraBetaGroupLifecyclePolicy
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraBetaGroupLifecyclePolicy 
- -Id <String> 
+Get-EntraBetaGroupLifecyclePolicy
+ -Id <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -92,6 +94,22 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
