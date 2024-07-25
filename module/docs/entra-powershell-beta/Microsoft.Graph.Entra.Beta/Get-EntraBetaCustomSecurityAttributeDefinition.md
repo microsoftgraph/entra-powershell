@@ -11,7 +11,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaCustomSecurityAttributeDefinition
+
 schema: 2.0.0
 ---
 
@@ -26,15 +27,17 @@ Gets a list of custom security attribute definitions.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraBetaCustomSecurityAttributeDefinition 
+Get-EntraBetaCustomSecurityAttributeDefinition
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraBetaCustomSecurityAttributeDefinition 
- -Id <String> 
+Get-EntraBetaCustomSecurityAttributeDefinition
+ -Id <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -98,6 +101,22 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
