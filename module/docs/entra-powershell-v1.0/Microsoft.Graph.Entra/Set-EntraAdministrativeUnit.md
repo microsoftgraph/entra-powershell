@@ -33,7 +33,7 @@ Set-EntraAdministrativeUnit
 
 ## Description
 
-The `Set-EntraAdministrativeUnit` cmdlet updates an administrative unit in Microsoft Entra ID. Use the `ObjectId` parameter to specify the unit to update.
+The `Set-EntraAdministrativeUnit` cmdlet updates an administrative unit in Microsoft Entra ID. Use the `Id` parameter to specify the unit to update.
 
 In delegated scenarios, the signed-in user needs a supported Microsoft Entra role or a custom role with `microsoft.directory/administrativeUnits/allProperties/allTasks permission`. The least privileged role for this operation is Privileged Role Administrator
 
