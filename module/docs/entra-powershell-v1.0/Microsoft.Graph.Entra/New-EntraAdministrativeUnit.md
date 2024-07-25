@@ -17,11 +17,11 @@ schema: 2.0.0
 
 # New-EntraAdministrativeUnit
 
-## SYNOPSIS
+## Synopsis
 
 Creates an administrative unit.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraAdministrativeUnit
@@ -30,11 +30,11 @@ New-EntraAdministrativeUnit
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `New-EntraAdministrativeUnit` cmdlet creates an administrative unit in Microsoft Entra ID. Specify `DisplayName` parameter for create an administrative unit.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create an administrative unit
 
@@ -54,7 +54,7 @@ This example demonstrates how to create an administrative unit
 - `DisplayName` Specifies the display name of the new administrative unit.
 - `Description` Specifies a description for the new administrative unit.
 
-## PARAMETERS
+## Examples
 
 ### -Description
 
@@ -92,13 +92,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraAdministrativeUnit](Get-EntraAdministrativeUnit.md)
 
