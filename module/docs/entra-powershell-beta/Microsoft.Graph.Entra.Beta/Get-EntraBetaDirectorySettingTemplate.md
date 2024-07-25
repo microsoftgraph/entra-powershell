@@ -14,14 +14,20 @@ Gets a directory setting template.
 ## Syntax
 
 ### GetQuery (Default)
-```
-Get-EntraBetaDirectorySettingTemplate 
+
+```powershell
+Get-EntraBetaDirectorySettingTemplate
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraBetaDirectorySettingTemplate -Id <String> [<CommonParameters>]
+
+```powershell
+Get-EntraBetaDirectorySettingTemplate
+ -Id <String>
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ## Description
@@ -52,6 +58,22 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

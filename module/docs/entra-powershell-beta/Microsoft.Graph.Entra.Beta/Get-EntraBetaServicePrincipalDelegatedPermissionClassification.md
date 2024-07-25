@@ -23,14 +23,22 @@ Retreive the delegated permission classification objects on a service principal.
 ## Syntax
 
 ### GetQuery (Default)
-```
-Get-EntraBetaServicePrincipalDelegatedPermissionClassification [-Filter <String>]
- -ServicePrincipalId <String> [<CommonParameters>]
+
+```powershell
+Get-EntraBetaServicePrincipalDelegatedPermissionClassification
+ -ServicePrincipalId <String>
+ [-Filter <String>]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraBetaServicePrincipalDelegatedPermissionClassification -ServicePrincipalId <String> -Id <String>
+
+```powershell
+Get-EntraBetaServicePrincipalDelegatedPermissionClassification
+ -ServicePrincipalId <String>
+ -Id <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -125,6 +133,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
