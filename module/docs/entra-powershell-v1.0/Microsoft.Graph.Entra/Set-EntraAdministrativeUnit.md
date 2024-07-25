@@ -52,7 +52,7 @@ Set-EntraAdministrativeUnit @params
 
 This Command update Description of specific administrative unit.
 
-- `-ObjectId` - Specifies the ID of an administrative unit, which you want to update. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the administrative unit.
+- `-Id` - Specifies the ID of an administrative unit, which you want to update. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the administrative unit.
 
 - `-Description` - Specifies a description, which you want to update.
 
