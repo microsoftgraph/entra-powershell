@@ -9,7 +9,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraScopedRoleMembership
+
 schema: 2.0.0
 ---
 

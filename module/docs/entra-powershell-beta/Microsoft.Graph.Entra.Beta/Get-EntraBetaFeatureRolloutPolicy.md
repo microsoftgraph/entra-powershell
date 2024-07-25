@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaFeatureRolloutPolicy
+
 schema: 2.0.0
 ---
 
@@ -26,24 +27,27 @@ Gets the policy for cloud authentication roll-out in Microsoft Entra ID.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraBetaFeatureRolloutPolicy 
- [-Filter <String>] 
+Get-EntraBetaFeatureRolloutPolicy
+ [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetVague
 
 ```powershell
-Get-EntraBetaFeatureRolloutPolicy 
- [-SearchString <String>] 
+Get-EntraBetaFeatureRolloutPolicy
+ [-SearchString <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraBetaFeatureRolloutPolicy 
- -Id <String> 
+Get-EntraBetaFeatureRolloutPolicy
+ -Id <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -163,6 +167,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
