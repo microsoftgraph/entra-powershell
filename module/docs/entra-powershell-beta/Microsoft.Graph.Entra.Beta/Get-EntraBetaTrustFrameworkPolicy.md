@@ -14,13 +14,21 @@ This cmdlet is used to retrieve the created trust framework policies (custom pol
 ## Syntax
 
 ### GetQuery (Default)
-```
-Get-EntraBetaTrustFrameworkPolicy [<CommonParameters>]
+
+```powershell
+Get-EntraBetaTrustFrameworkPolicy
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraBetaTrustFrameworkPolicy -Id <String> [-OutputFilePath <String>] [<CommonParameters>]
+
+```powershell
+Get-EntraBetaTrustFrameworkPolicy
+ -Id <String>
+ [-OutputFilePath <String>]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ## Description
@@ -71,6 +79,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
