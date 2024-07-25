@@ -57,7 +57,6 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 - Authentication Policy Administrator (Update Password Rule Settings)
 - User Administrator (Read basic properties on setting templates and settings)
 
-
 ## Examples
 
 ### Example 1: Get a directory setting
