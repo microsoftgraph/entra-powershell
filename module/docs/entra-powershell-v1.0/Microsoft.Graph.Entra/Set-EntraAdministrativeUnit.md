@@ -25,7 +25,7 @@ Updates an administrative unit.
 
 ```powershell
 Set-EntraAdministrativeUnit 
- -ObjectId <String> 
+ -Id <String> 
  [-Description <String>] 
  [-DisplayName <String>] 
  [<CommonParameters>]
