@@ -107,7 +107,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -Id
 
 Specifies the ID of an administrative unit in Microsoft Entra ID
 
