@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraApplicationKeyCredential
+
 schema: 2.0.0
 ---
 
@@ -43,7 +44,6 @@ An application can use this command along with `New-EntraApplicationKeyCredentia
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-
 $params = @{
     ObjectId = '33334444-dddd-5555-eeee-6666ffff7777'
     KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
@@ -58,7 +58,7 @@ This command removes the specified key credential from the specified application
 
 ### -KeyId
 
-Specifies a custom key ID.
+Specifies a custom key ID. The unique identifier for the password.
 
 ```yaml
 Type: System.String
