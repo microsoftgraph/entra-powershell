@@ -16,11 +16,11 @@ schema: 2.0.0
 
 # Get-EntraCustomSecurityAttributeDefinitionAllowedValue
 
-## SYNOPSIS
+## Synopsis
 
 Gets the predefined value for a custom security attribute definition.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -40,11 +40,11 @@ Get-EntraCustomSecurityAttributeDefinitionAllowedValue
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraCustomSecurityAttributeDefinitionAllowedValue` cmdley gets the predefined value for a Microsoft Entra ID custom security attribute definition. Specify `CustomSecurityAttributeDefinitionId` parameter to get the predefined value custom security attribute definition.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all predefined values
 
@@ -105,7 +105,7 @@ This example Get a predefined value with Filter.
 - Attribute: `Project`
 - `-Id` Specify the unique identifier of a predefined value.
 
-## PARAMETERS
+## Parameters
 
 ### -CustomSecurityAttributeDefinitionId
 
@@ -159,17 +159,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraCustomSecurityAttributeDefinitionAllowedValue](Add-EntraCustomSecurityAttributeDefinitionAllowedValue.md)
 
