@@ -1,7 +1,6 @@
 ---
 title: Get-EntraScopedRoleMembership
 description: This article provides details on the Get-EntraScopedRoleMembership command.
-ms.service: entra
 
 ms.topic: reference
 ms.date: 06/26/2024
@@ -26,7 +25,7 @@ Gets a scoped role membership from an administrative unit.
 
 ```powershell
 Get-EntraScopedRoleMembership 
- -Id <String>
+ -ObjectId <String>
  [-ScopedRoleMembershipId <String>]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -41,7 +40,7 @@ The Get-EntraScopedRoleMembership cmdlet gets a scoped role membership from an a
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-Get-EntraScopedRoleMembership -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc' -ScopedRoleMembershipId '3d3d3d3d-4444-eeee-5555-6f6f6f6f6f6f'
+Get-EntraScopedRoleMembership -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc' -ScopedRoleMembershipId '3d3d3d3d-4444-eeee-5555-6f6f6f6f6f6f'
 ```
 
 ```Output
@@ -52,11 +51,14 @@ bbbbbbbb-1111-2222-3333-cccccccccccc 1b1b1b1b-2222-cccc-3333-4d4d4d4d4d4d 356b71
 
 This command gets the scoped role membership from a specified administrative unit with specified scoped role membership ID.
 
+- `-ObjectId` - Specifies the ID of an administrative unit.
+- `-ScopedRoleMembershipId` - Specifies a description, which you want to update.
+
 ### Example 2: List scoped administrators for administrative unit
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-Get-EntraScopedRoleMembership -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+Get-EntraScopedRoleMembership -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 ```Output
@@ -68,9 +70,11 @@ bbbbbbbb-1111-2222-3333-cccccccccccc 3d3d3d3d-4444-eeee-5555-6f6f6f6f6f6f 8a20c6
 
 This command gets the list of scoped role membership from a specified administrative unit.
 
+- `-ObjectId` - Specifies the ID of an administrative unit.
+
 ## Parameters
 
-### -Id
+### -ObjectId
 
 Specifies the ID of an object.
 
