@@ -47,6 +47,17 @@ Get-EntraBetaDirectorySetting
 
 The `Get-EntraBetaDirectorySetting` cmdlet gets a directory setting from Microsoft Entra ID. Specify `Id` parameter to get a directory setting.
 
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported [Microsoft Entra role](https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference) or a custom role with a supported role permission. The following least privileged roles are supported:
+
+- Microsoft Entra Joined Device Local Administrator (Read basic properties on setting templates and settings)
+- Directory Readers (Read basic properties on setting templates and settings)
+- Global Reader (Read basic properties on setting templates and settings)
+- Groups Administrator (Manage all group settings)
+- Directory Writers (Manage all group settings)
+- Authentication Policy Administrator (Update Password Rule Settings)
+- User Administrator (Read basic properties on setting templates and settings)
+
+
 ## Examples
 
 ### Example 1: Get a directory setting
