@@ -12,7 +12,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaDevice
+
 schema: 2.0.0
 ---
 
@@ -27,28 +28,31 @@ Gets a device from Microsoft Entra ID.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraBetaDevice 
- [-Filter <String>] 
- [-All] 
- [-Top <Int32>] 
+Get-EntraBetaDevice
+ [-Filter <String>]
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetByValue
 
 ```powershell
-Get-EntraBetaDevice 
- [-SearchString <String>] 
- [-All] 
+Get-EntraBetaDevice
+ [-SearchString <String>]
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraBetaDevice 
- -ObjectId <String> 
- [-All] 
+Get-EntraBetaDevice
+ -ObjectId <String>
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -236,6 +240,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

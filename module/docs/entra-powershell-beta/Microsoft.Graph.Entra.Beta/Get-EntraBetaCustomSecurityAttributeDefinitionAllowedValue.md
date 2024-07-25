@@ -1,7 +1,8 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
+
 schema: 2.0.0
 ---
 
@@ -13,15 +14,23 @@ schema: 2.0.0
 ## Syntax
 
 ### GetQuery (Default)
-```
-Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue [-Filter <String>]
- -CustomSecurityAttributeDefinitionId <String> [<CommonParameters>]
+
+```powershell
+Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
+ -CustomSecurityAttributeDefinitionId <String>
+ [-Filter <String>]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId <String>
- -Id <String> [<CommonParameters>]
+
+```powershell
+Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
+ -CustomSecurityAttributeDefinitionId <String>
+ -Id <String>
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ## Description
@@ -80,6 +89,22 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
