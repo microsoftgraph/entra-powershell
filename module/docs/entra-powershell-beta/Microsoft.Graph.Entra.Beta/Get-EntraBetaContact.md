@@ -1,7 +1,17 @@
 ---
+title: Get-EntraBetaContact
+description: This article provides details on the Get-EntraBetaContact command.
+
+ms.topic: reference
+ms.date: 07/18/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaContact
+
 schema: 2.0.0
 ---
 
@@ -13,13 +23,23 @@ Gets a contact from Azure Active Directory.
 ## Syntax
 
 ### GetQuery (Default)
-```
-Get-EntraBetaContact [-Filter <String>] [-All] [-Top <Int32>] [<CommonParameters>]
+
+```powershell
+Get-EntraBetaContact
+ [-Filter <String>]
+ [-All] [-Top <Int32>]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraBetaContact -ObjectId <String> [-All] [<CommonParameters>]
+
+```powershell
+Get-EntraBetaContact
+ -ObjectId <String>
+ [-All]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ## Description
@@ -56,7 +76,7 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-Specifies an oData v3.0 filter statement.
+Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
@@ -98,6 +118,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
