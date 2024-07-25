@@ -23,13 +23,23 @@ Gets a contact from Azure Active Directory.
 ## Syntax
 
 ### GetQuery (Default)
-```
-Get-EntraBetaContact [-Filter <String>] [-All] [-Top <Int32>] [<CommonParameters>]
+
+```powershell
+Get-EntraBetaContact
+ [-Filter <String>]
+ [-All] [-Top <Int32>]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraBetaContact -ObjectId <String> [-All] [<CommonParameters>]
+
+```powershell
+Get-EntraBetaContact
+ -ObjectId <String>
+ [-All]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ## Description
@@ -108,6 +118,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

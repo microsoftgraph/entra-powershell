@@ -13,8 +13,11 @@ Retrieves a list of permission grants that have been consented for this group.
 
 ## Syntax
 
-```
-Get-EntraBetaGroupPermissionGrant -Id <String> [<CommonParameters>]
+```powershell
+Get-EntraBetaGroupPermissionGrant
+ -Id <String>
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ## Description
@@ -50,6 +53,22 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

@@ -14,13 +14,23 @@ Get an Azure Active Directory permission grant condition set by id.
 ## Syntax
 
 ### GetQuery (Default)
-```
-Get-EntraBetaPermissionGrantConditionSet -ConditionSetType <String> -PolicyId <String> [<CommonParameters>]
+
+```powershell
+Get-EntraBetaPermissionGrantConditionSet
+ -ConditionSetType <String>
+ -PolicyId <String>
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraBetaPermissionGrantConditionSet -Id <String> -ConditionSetType <String> -PolicyId <String>
+
+```powershell
+Get-EntraBetaPermissionGrantConditionSet
+ -Id <String>
+ -ConditionSetType <String>
+ -PolicyId <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -88,6 +98,22 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
