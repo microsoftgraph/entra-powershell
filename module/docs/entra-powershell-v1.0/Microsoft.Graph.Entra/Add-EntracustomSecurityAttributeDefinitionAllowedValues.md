@@ -16,11 +16,11 @@ schema: 2.0.0
 
 # Add-EntraCustomSecurityAttributeDefinitionAllowedValues
 
-## SYNOPSIS
+## Synopsis
 
 Adds a predefined value for a custom security attribute definition.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraCustomSecurityAttributeDefinitionAllowedValues 
@@ -30,11 +30,11 @@ Add-EntraCustomSecurityAttributeDefinitionAllowedValues
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Add-EntraCustomSecurityAttributeDefinitionAllowedValues` adds a predefined value for a Microsoft Entra ID custom security attribute definition.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a predefined value for a Microsoft Entra ID custom security attribute definition
 
@@ -61,7 +61,7 @@ This example Add a predefined value:
 - `-Id` Specify the the unique identifier of an object.
 - `-IsActive` Specify whether the predefined value is active or deactivated.
 
-## PARAMETERS
+## Parameters
 
 ### -CustomSecurityAttributeDefinitionId
 
@@ -115,17 +115,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraCustomSecurityAttributeDefinitionAllowedValues](Get-EntraCustomSecurityAttributeDefinitionAllowedValues.md)
 
