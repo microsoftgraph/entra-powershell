@@ -69,7 +69,7 @@ Set-EntraAdministrativeUnit @params
 
 This Command update DisplayName specific administrative unit.
 
-- `-ObjectId` - Specifies the ID of an administrative unit, which you want to update. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the administrative unit.
+- `-Id` - Specifies the ID of an administrative unit, which you want to update. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the administrative unit.
 
 - `-DisplayName` - Specifies a display name, which you want to update.
 
