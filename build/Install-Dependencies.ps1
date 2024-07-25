@@ -10,7 +10,11 @@ param(
 
 	[ValidateScript({ Test-Path $_ })]
 	[string]
-    $ModuleSettingsPath
+	$ModuleSettingsPath,
+
+	# Force installation of required modules, even if they are already installed.
+	[switch]
+	$Force
 )
 
 . "$psscriptroot/common-functions.ps1"
@@ -18,10 +22,28 @@ param(
 $settingPath = "$PSScriptRoot/../module/$ModuleName/config/ModuleSettings.json"
 if ($ModuleSettingsPath) { $settingPath = $ModuleSettingsPath }
 $content = Get-Content -Path $settingPath | ConvertFrom-Json
-Write-Verbose("Installing Module $($content.sourceModule)")
-Install-Module $content.sourceModule -scope currentuser -Force -AllowClobber
 
-foreach ($moduleName in $content.destinationModuleName){
-    Write-Verbose("Installing Module $($moduleName)")
-    Install-Module $moduleName -scope currentuser -RequiredVersion $content.destinationModuleVersion -Force -AllowClobber
+if ($Force) {
+	Write-Verbose 'Skipping the check for installed prerequisites.'
+} else {
+	Write-Verbose 'Checking installed modules for required dependencies.'
+	$InstalledModules = Get-Module -ListAvailable -Verbose:$false | Group-Object -Property Name
+}
+
+$SourceModule = $content.sourceModule
+if (($InstalledModules.Name -contains $SourceModule) -and -not $Force) {
+	Write-Verbose "The $SourceModule module is already installed."
+} else {
+	Write-Verbose("Installing Module: $sourceModule")
+	Install-Module $sourceModule -Scope CurrentUser -Force -AllowClobber
+}
+
+foreach ($moduleName in $content.destinationModuleName) {
+	$InstalledModuleReference = $InstalledModules.Where({ $_.Name -eq $moduleName }).Group
+	if (($InstalledModuleReference.Version -ge $content.destinationModuleVersion) -and -not $Force) {
+		Write-Verbose "The $moduleName module is already installed."
+	} else {
+		Write-Verbose "Installing Module: $moduleName"
+		Install-Module $moduleName -Scope CurrentUser -RequiredVersion $content.destinationModuleVersion -Force -AllowClobber
+	}
 }
