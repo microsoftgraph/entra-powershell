@@ -19,6 +19,7 @@ schema: 2.0.0
 # Remove-EntraApplicationVerifiedPublisher
 
 ## Synopsis
+
 Removes the verified publisher from an application.
 
 ## Syntax
@@ -30,24 +31,29 @@ Remove-EntraApplicationVerifiedPublisher
 ```
 
 ## Description
+
 Removes the verified publisher from an application.
 
 ## Examples
 
-### Example 1: Remove the verified publisher from an application.
+### Example 1: Remove the verified publisher from an application
+
 ```Powershell
-$appObjId = 'ad6c71a5-e48f-4320-bb59-92642a2d8d9f'
-          Remove-EntraApplicationVerifiedPublisher -AppObjectId $appObjId
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+$appObjId = '22223333-cccc-4444-dddd-5555eeee6666'
+Remove-EntraApplicationVerifiedPublisher -AppObjectId $appObjId
 ```
+
 This command demonstrates how to remove the verified publisher from an application.  
 
 ## Parameters
 
 ### -AppObjectId
+
 The unique identifier of a Microsoft Entra ID Application object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -59,11 +65,13 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### String
+
 ## Outputs
 
 ## Notes
@@ -71,4 +79,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## Related Links
 
 [Set-EntraApplicationVerifiedPublisher](Set-EntraApplicationVerifiedPublisher.md)
-
