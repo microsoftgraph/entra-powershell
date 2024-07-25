@@ -10,7 +10,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaContract
+
 schema: 2.0.0
 ---
 
@@ -22,13 +23,24 @@ Gets a contract.
 ## Syntax
 
 ### GetQuery (Default)
-```
-Get-EntraBetaContract [-Filter <String>] [-All] [-Top <Int32>] [<CommonParameters>]
+
+```powershell
+Get-EntraBetaContract
+ [-Filter <String>]
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraBetaContract -ObjectId <String> [-All] [<CommonParameters>]
+
+```powershell
+Get-EntraBetaContract
+ -ObjectId <String>
+ [-All]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ## Description
@@ -125,6 +137,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
