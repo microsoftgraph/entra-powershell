@@ -2,9 +2,9 @@
 title: Get-EntraPartnerInformation
 description: This article provides details on the Get-EntraPartnerInformation command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,16 +12,17 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraPartnerInformation
+
 schema: 2.0.0
 ---
 
 # Get-EntraPartnerInformation
 
-## SYNOPSIS
+## Synopsis
 Retrieves company-level information for partners.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```powershell
@@ -36,11 +37,11 @@ Get-EntraPartnerInformation
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaPartnerInformation cmdlet is used to retrieve partner-specific information.
 This cmdlet should only be used for partner tenants.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve partner information
 ```powershell
@@ -60,7 +61,7 @@ PartnerSupportUrl        :
 
 This command retrieves partner-specific information.
 
-## PARAMETERS
+## Parameters
 
 ### -TenantId
 The unique ID of the tenant to perform the operation on.
@@ -82,9 +83,9 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### The cmdlet returns the following company level information:
 ### - CompanyType: The type of this company (can be partner or regular tenant)
@@ -94,6 +95,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### - PartnerCommerceUrl: URL for the partner's commerce web site.
 ### - PartnerSupportUrl: URL for the Partner's support website.
 ### - PartnerHelpUrl: URL for the partner's help web site.
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

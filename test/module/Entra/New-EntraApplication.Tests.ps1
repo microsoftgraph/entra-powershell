@@ -24,6 +24,7 @@ BeforeAll {
                 "SignInAudience"            = "AzureADandPersonalMicrosoftAccount"
                 "Web"                       = @{HomePageUrl = "https://localhost/demoapp"; ImplicitGrantSettings = ""; LogoutUrl = ""; }
                 "Parameters"                = $args
+                "AdditionalProperties" = @{CountriesBlockedForMinors = $null; LegalAgeGroupRule = "Allow" }
             }
         )
     }

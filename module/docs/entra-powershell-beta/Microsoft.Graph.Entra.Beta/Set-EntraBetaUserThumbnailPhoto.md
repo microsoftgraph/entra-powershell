@@ -1,16 +1,17 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaUserThumbnailPhoto
+
 schema: 2.0.0
 ---
 
 # Set-EntraBetaUserThumbnailPhoto
 
-## SYNOPSIS
+## Synopsis
 Set the thumbnail photo for a user
 
-## SYNTAX
+## Syntax
 
 ### File (Default)
 ```
@@ -27,10 +28,10 @@ Set-EntraBetaUserThumbnailPhoto [-ObjectId <String>] -ImageByteArray <Byte[]> [<
 Set-EntraBetaUserThumbnailPhoto [-ObjectId <String>] -FileStream <Stream> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet is used to set the thumbnail photo for a user
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -39,7 +40,7 @@ PS C:\WINDOWS\system32> Set-EntraBetaUserThumbnailPhoto -ObjectId ba6752c4-6a2e-
 
 This example sets the thumbnail photo of the user specified witht eh PObjectId parameter to the image specified with the FilePath parameter
 
-## PARAMETERS
+## Parameters
 
 ### -FilePath
 The file path of the image to be uploaded as the user thumbnail photo
@@ -104,14 +105,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 System.IO.Stream System.Byte\[\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

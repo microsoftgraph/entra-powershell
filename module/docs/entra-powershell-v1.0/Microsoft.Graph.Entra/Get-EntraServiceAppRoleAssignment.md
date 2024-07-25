@@ -2,91 +2,107 @@
 title: Get-EntraServiceAppRoleAssignment.
 description: This article provides details on the Get-EntraServiceAppRoleAssignment command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/27/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraServiceAppRoleAssignment
+
 schema: 2.0.0
 ---
 
 # Get-EntraServiceAppRoleAssignment
 
-## SYNOPSIS
+## Synopsis
+
 Gets a service principal application role assignment.
 
-## SYNTAX
+## Syntax
 
 ```powershell
-Get-EntraServiceAppRoleAssignment 
+Get-EntraServiceAppRoleAssignment
  -ObjectId <String>
  [-All]
- [-Top <Int32>] 
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraServiceAppRoleAssignment cmdlet gets a role assignment for a service principal application in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Get-EntraServiceAppRoleAssignment` cmdlet gets a role assignment for a service principal application in Microsoft Entra ID.
+
+## Examples
 
 ### Example 1: Retrieve the application role assignments for a service principal
 
 ```powershell
-PS C:\> $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
-PS C:\> Get-EntraServiceAppRoleAssignment -ObjectId $ServicePrincipalId
+ Connect-Entra -Scopes 'Application.Read.All'
+ $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
+ Get-EntraServiceAppRoleAssignment -ObjectId $ServicePrincipalId
 ```
-```output
+
+```Output
 DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId                          PrincipalType ResourceDisplayName
 --------------- --                                          ---------                            ---------------     -------------------- -----------                          ------------- -------------------
-                MSVrBV4APk--eAGnHqMKBDtEqPRvu8xLqWHDSXUhoTE 00000000-0000-0000-0000-000000000000 29-02-2024 05:53:00 Ask HR               056b2531-005e-4f3e-be78-01a71ea30a04 Group         M365 License Manager
+                2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 29-02-2024 05:53:00 Ask HR               aaaaaaaa-bbbb-cccc-1111-222222222222 Group         M365 License Manager
 ```
 
-The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md) cmdlet. 
-The command stores the ID in the $ServicePrincipalId variable.
+This command gets application role assignments for specified service principal.
 
-The second command gets the application role assignments for the service principal in identified by $ServicePrincipalId.
+- The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md) cmdlet. The command stores the ID in the $ServicePrincipalId variable.
+
+- The second command gets the application role assignments for the service principal in identified by $ServicePrincipalId.
 
 ### Example 2: Retrieve all application role assignments for a service principal
+
 ```powershell
-PS C:\> Get-EntraServiceAppRoleAssignment -ObjectId "021510b7-e753-40aa-b668-29753295ca34" -All
+ Connect-Entra -Scopes 'Application.Read.All'
+ Get-EntraServiceAppRoleAssignment -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -All
 ```
-```output
+
+```Output
 DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId
 --------------- --                                          ---------                            ---------------     -------------------- -----------
-                qjltmaz9l02qPcgftHNirITXiOnmHR5GmW_oEXl_ZL8 00000000-0000-0000-0000-000000000000 07/07/2023 17:03:59 MOD Administrator    996d39aa-fdac-4d97-aa3d-c81fb4...
-                0ekrQWAUYUCO7cyiA_yyFYFF7ENp2l9Alu5oP9S5INQ 00000000-0000-0000-0000-000000000000 31/07/2023 04:29:57 Adele Vance          412be9d1-1460-4061-8eed-cca203...
-                MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I 00000000-0000-0000-0000-000000000000 29/02/2024 05:53:51 Ask HR               056b2531-005e-4f3e-be78-01a71e...
+                1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:41 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
+                2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:38 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
+                3cccccc3-4dd4-5ee5-6ff6-7aaaaaaaaaa7 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:37 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
+                4dddddd4-5ee5-6ff6-7aa7-8bbbbbbbbbb8 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:39 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
+                5eeeeee5-6ff6-7aa7-8bb8-9cccccccccc9 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:39 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
 ```
 
 This command gets all application role assignments for specified service principal.
 
 ### Example 3: Retrieve the top five application role assignments for a service principal
+
 ```powershell
-PS C:\> Get-EntraServiceAppRoleAssignment -ObjectId "021510b7-e753-40aa-b668-29753295ca34" -Top 3
+ Connect-Entra -Scopes 'Application.Read.All'
+ Get-EntraServiceAppRoleAssignment -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -Top 3
 ```
-```output
+
+```Output
 DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId
 --------------- --                                          ---------                            ---------------     -------------------- -----------
-                qjltmaz9l02qPcgftHNirITXiOnmHR5GmW_oEXl_ZL8 00000000-0000-0000-0000-000000000000 07/07/2023 17:03:59 MOD Administrator    996d39aa-fdac-4d97-aa3d-c81fb4...
-                0ekrQWAUYUCO7cyiA_yyFYFF7ENp2l9Alu5oP9S5INQ 00000000-0000-0000-0000-000000000000 31/07/2023 04:29:57 Adele Vance          412be9d1-1460-4061-8eed-cca203...
-                MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I 00000000-0000-0000-0000-000000000000 29/02/2024 05:53:51 Ask HR               056b2531-005e-4f3e-be78-01a71e...
-
+                1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:41 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
+                2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:38 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
+                3cccccc3-4dd4-5ee5-6ff6-7aaaaaaaaaa7 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:37 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
 ```
+
 This command gets three application role assignments for specified service principal.
 
-## PARAMETERS
+## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -96,11 +112,13 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
 ### -ObjectId
+
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -112,10 +130,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 The maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -126,16 +145,33 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
 

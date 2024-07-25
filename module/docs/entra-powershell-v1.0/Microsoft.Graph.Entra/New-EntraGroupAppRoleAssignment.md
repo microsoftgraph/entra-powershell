@@ -2,26 +2,27 @@
 title: New-EntraGroupAppRoleAssignment.
 description: This article provides details on the New-EntraGroupAppRoleAssignment command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/06/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraGroupAppRoleAssignment
+
 schema: 2.0.0
 ---
 
 # New-EntraGroupAppRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 
 Assign a group of users to an application role.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraGroupAppRoleAssignment 
@@ -32,11 +33,11 @@ New-EntraGroupAppRoleAssignment
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The New-EntraGroupAppRoleAssignment cmdlet assigns a group of users to an application role in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Assign a group of users to an application
 
@@ -65,7 +66,7 @@ This example demonstrates how to assign a group of users to an application role 
 
 - `Id`: The ID of the appRole (defined on the resource service principal) to assign to the group.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -136,13 +137,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraGroupAppRoleAssignment](Get-EntraGroupAppRoleAssignment.md)
 

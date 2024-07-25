@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaServicePrincipal
+
 schema: 2.0.0
 ---
 
@@ -21,7 +22,7 @@ schema: 2.0.0
 
 Updates a service principal.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraBetaServicePrincipal
@@ -47,7 +48,7 @@ Set-EntraBetaServicePrincipal
 
 The Set-EntraBetaServicePrincipal cmdlet updates a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Disable the account of a service principal
 

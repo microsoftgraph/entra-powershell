@@ -2,9 +2,9 @@
 title: New-EntraApplicationExtensionProperty
 description: This article provides details on the New-EntraApplicationExtensionProperty command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/21/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,16 +12,18 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraApplicationExtensionProperty
+
 schema: 2.0.0
 ---
 
 # New-EntraApplicationExtensionProperty
 
-## SYNOPSIS
+## Synopsis
+
 Creates an application extension property.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraApplicationExtensionProperty 
@@ -32,63 +34,94 @@ New-EntraApplicationExtensionProperty
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The New-EntraApplicationExtensionProperty cmdlet creates an application extension property for an object in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `New-EntraApplicationExtensionProperty` cmdlet creates an application extension property for an object in Microsoft Entra ID.
+
+## Examples
 
 ### Example 1: Create an extension property
+
 ```powershell
-PS C:\>New-EntraApplicationExtensionProperty -ObjectID "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -Name "NewAttribute"
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+$params = @{
+    ObjectID = '11112222-bbbb-3333-cccc-4444dddd5555'
+    Name = 'NewAttribute'
+}
+
+New-EntraApplicationExtensionProperty @params
 ```
 
-```output
+```Output
 DeletedDateTime Id                                   AppDisplayName  DataType IsSyncedFromOnPremises Name                                                    TargetObjects
 --------------- --                                   --------------  -------- ---------------------- ----                                                    -------------
-                d083d12d-c280-4a23-a644-b4e71a09a4cb my new test app String   False                  extension_ec5edf3fe79749dd8d1e7760a1c1c943_NewAttribute {}
+                11112222-bbbb-3333-cccc-4444dddd5555 My new test app String   False                  extension_11112222-bbbb-3333-cccc-4444dddd5555_NewAttribute {}
 ```
 
 This command creates an application extension property of the string type for the specified object.
 
 ### Example 2: Create an extension property with data type parameter
+
 ```powershell
-PS C:\>New-EntraApplicationExtensionProperty -ObjectID "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -Name "NewAttribute" -DataType "boolean"
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+$params = @{
+    ObjectID = '11112222-bbbb-3333-cccc-4444dddd5555'
+    Name = 'NewAttribute'
+    DataType = 'Boolean'
+}
+
+New-EntraApplicationExtensionProperty @params
 ```
 
-```output
+```Output
 DeletedDateTime Id                                   AppDisplayName  DataType IsSyncedFromOnPremises Name                                                    TargetObjects
 --------------- --                                   --------------  -------- ---------------------- ----                                                    -------------
-                d083d12d-c280-4a23-a644-b4e71a09a4cb my new test app Boolean  False                  extension_ec5edf3fe79749dd8d1e7760a1c1c943_NewAttribute {}
+                11112222-bbbb-3333-cccc-4444dddd5555 My new test app Boolean  False                  extension_11112222-bbbb-3333-cccc-4444dddd5555_NewAttribute {}
 ```
 
 This command creates an application extension property of the specified data type for the specified object.
 
 ### Example 3: Create an extension property with targets parameter
+
 ```powershell
-PS C:\>$targets = New-Object System.Collections.Generic.List[System.String]
-PS C:\>$targets.Add('User')
-PS C:\>New-EntraApplicationExtensionProperty -ObjectID "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -Name "NewAttribute" -TargetObjects $targets
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+$targets = New-Object System.Collections.Generic.List[System.String]
+$targets.Add('User')
+$params = @{
+    ObjectID = '11112222-bbbb-3333-cccc-4444dddd5555'
+    Name = 'NewAttribute'
+    TargetObjects = $targets
+}
+
+New-EntraApplicationExtensionProperty @params
 ```
 
-```output
+```Output
 DeletedDateTime Id                                   AppDisplayName  DataType IsSyncedFromOnPremises Name                                                    TargetObjects
 --------------- --                                   --------------  -------- ---------------------- ----                                                    -------------
-                d083d12d-c280-4a23-a644-b4e71a09a4cb my new test app String   False                  extension_ec5edf3fe79749dd8d1e7760a1c1c943_NewAttribute {User}
+                11112222-bbbb-3333-cccc-4444dddd5555 My new test app String   False                  extension_11112222-bbbb-3333-cccc-4444dddd5555_NewAttribute {User}
 ```
 
-The first command initializes new generic string list collection.  
+The example shows how to create an application extension property with the specified target objects for the specified object.
 
-The second command adds an item to the list.  
-
-The final command creates an application extension property with the specified target objects for the specified object.
-
-## PARAMETERS
+## Parameters
 
 ### -DataType
-Specifies the data type of the extension property.
+
+Specifies the data type of the value the extension property can hold. Following values are supported.
+
+- Binary - 256 bytes maximum
+- Boolean
+- DateTime - Must be specified in ISO 8601 format. Will be stored in UTC.
+- Integer - 32-bit value.
+- LargeInteger - 64-bit value.
+- String - 256 characters maximum
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -100,10 +133,11 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-Specifies the data type of the extension property.
+
+Name of the extension property.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -115,10 +149,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies a unique ID of an application in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -130,7 +165,15 @@ Accept wildcard characters: False
 ```
 
 ### -TargetObjects
-Specifies target objects.
+
+Specifies the Microsoft Graph resources that can use the extension property. All values must be in PascalCase. The following values are supported.
+
+- User
+- Group
+- AdministrativeUnit
+- Application
+- Device
+- Organization
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -145,17 +188,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Get-EntraApplicationExtensionProperty](Get-EntraApplicationExtensionProperty.md)
 
 [Remove-EntraApplicationExtensionProperty](Remove-EntraApplicationExtensionProperty.md)
-

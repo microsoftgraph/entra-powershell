@@ -2,25 +2,27 @@
 title: Remove-EntraOAuth2PermissionGrant 
 description: This article provides details on the Remove-EntraOAuth2PermissionGrant command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/11/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraOAuth2PermissionGrant
+
 schema: 2.0.0
 ---
 
 # Remove-EntraOAuth2PermissionGrant
 
-## SYNOPSIS
+## Synopsis
+
 Removes an oAuth2PermissionGrant.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraOAuth2PermissionGrant 
@@ -28,34 +30,39 @@ Remove-EntraOAuth2PermissionGrant
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Remove-EntraOAuth2PermissionGrant cmdlet removes an oAuth2PermissionGrant object in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Remove-EntraOAuth2PermissionGrant` cmdlet removes an oAuth2PermissionGrant object in Microsoft Entra ID.
+
+When a delegated permission grant is deleted, the access it granted is revoked. Existing access tokens will continue to be valid for their lifetime, but new access tokens will not be granted for the delegated permissions identified in the deleted oAuth2PermissionGrant.
+
+## Examples
 
 ### Example 1: Remove an OAuth2 permission grant
 
 ```powershell
-PS C:\> $SharePointSP = Get-EntraServicePrincipal | Where-Object {$_.DisplayName -eq "Microsoft.SharePoint"}
-PS C:\> $SharePointOA2AllSitesRead = Get-EntraOAuth2PermissionGrant | Where-Object {$_.ResourceId -eq $SharePointSP.ObjectId} | Where-Object {$_.Scope -eq "AllSites.Read"}
-PS C:\> Remove-EntraOAuth2PermissionGrant -ObjectId $SharePointOA2AllSitesRead.ObjectId
+ Connect-Entra -Scopes 'DelegatedPermissionGrant.ReadWrite.All'
+ $SharePointSP = Get-EntraServicePrincipal | Where-Object {$_.DisplayName -eq 'Microsoft.SharePoint'}
+ $SharePointOA2AllSitesRead = Get-EntraOAuth2PermissionGrant | Where-Object {$_.ResourceId -eq $SharePointSP.ObjectId} | Where-Object {$_.Scope -eq 'AllSites.Read'}
+ Remove-EntraOAuth2PermissionGrant -ObjectId $SharePointOA2AllSitesRead.ObjectId
 ```
 
-The first command gets a service principal that matches the specified display name by using the [Get-EntraServicePrincipal](./Get-EntraServicePrincipal.md) cmdlet. 
-The command stores the result in the $SharePointSP variable.
+This example shows how to remove an oAuth2PermissionGrant object in Microsoft Entra ID.
 
-The second command gets certain permission grants by using the [Get-EntraOAuth2PermissionGrant](./Get-EntraOAuth2PermissionGrant.md) cmdlet. 
-The command stores the result in the $SharePointOA2AllSitesRead variable.
+- The first command gets a service principal that matches the specified display name by using the [Get-EntraServicePrincipal](./Get-EntraServicePrincipal.md) cmdlet. The command stores the result in the $SharePointSP variable.
 
-The final command removes the permission grant in $SharePointOA2AllSitesRead.
+- The second command gets certain permission grants by using the [Get-EntraOAuth2PermissionGrant](./Get-EntraOAuth2PermissionGrant.md) cmdlet. The command stores the result in the $SharePointOA2AllSitesRead variable.
 
-## PARAMETERS
+- The final command removes the permission grant in $SharePointOA2AllSitesRead.
+
+## Parameters
 
 ### -ObjectId
+
 Specifies the ID of an oAuth2PermissionGrant object in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -67,15 +74,16 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Get-EntraOAuth2PermissionGrant](Get-EntraOAuth2PermissionGrant.md)
 

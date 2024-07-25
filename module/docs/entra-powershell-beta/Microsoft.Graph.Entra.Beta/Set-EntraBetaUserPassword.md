@@ -1,26 +1,27 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaUserPassword
+
 schema: 2.0.0
 ---
 
 # Set-EntraBetaUserPassword
 
-## SYNOPSIS
+## Synopsis
 Sets the password of a user.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaUserPassword -ObjectId <String> -Password <SecureString> [-ForceChangePasswordNextLogin <Boolean>]
  [-EnforceChangePasswordPolicy <Boolean>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraBetaUserPassword cmdlet sets the password for a user in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Set a user's password
 ```
@@ -29,7 +30,7 @@ PS C:\>Set-EntraBetaUserPassword -ObjectId  "df19e8e6-2ad7-453e-87f5-037f6529ae1
 
 This command sets the specified user's password.
 
-## PARAMETERS
+## Parameters
 
 ### -EnforceChangePasswordPolicy
 If set to true, force the user to change their password
@@ -94,10 +95,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

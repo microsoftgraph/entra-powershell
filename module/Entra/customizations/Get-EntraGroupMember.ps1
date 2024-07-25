@@ -16,6 +16,12 @@
         $Method = "GET"
         $keysChanged = @{ObjectId = "Id"}
 
+        if($null -ne $PSBoundParameters["Property"])
+        {
+            $selectProperties = $PSBoundParameters["Property"]
+            $selectProperties = $selectProperties -Join ','
+            $properties = "`$select=$($selectProperties)"
+        }
         if($null -ne $PSBoundParameters["ObjectId"])
         {
             $params["GroupId"] = $PSBoundParameters["ObjectId"]
@@ -45,7 +51,7 @@
         }
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($null -ne $PSBoundParameters["InformationAction"])
         {
@@ -53,7 +59,7 @@
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if($null -ne $PSBoundParameters["OutVariable"])
         {

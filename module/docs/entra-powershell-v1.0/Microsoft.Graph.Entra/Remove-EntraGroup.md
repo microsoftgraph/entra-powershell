@@ -2,25 +2,26 @@
 title: Remove-EntraGroup
 description: This article provides details on the Remove-EntraGroup command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/05/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraGroup
+
 schema: 2.0.0
 ---
 
 # Remove-EntraGroup
 
-## SYNOPSIS
+## Synopsis
 
 Removes a group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraGroup 
@@ -28,10 +29,10 @@ Remove-EntraGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Remove-EntraGroup cmdlet removes a group from Microsoft Entra ID.
-Note that a Unified Group can be restored withing 30 days after deletion using the Restore-EntraMSDeletedDirectoryObject cmdlet.
+Note that a Unified Group can be restored withing 30 days after deletion using the Restore-EntraDeletedDirectoryObject cmdlet.
 Security groups can't be restored after deletion.
 
 **Notes on permissions:**
@@ -41,7 +42,7 @@ The following conditions apply for apps to delete role-assignable groups:
 - For delegated scenarios, the app must be assigned the `RoleManagement.ReadWrite.Directory` delegated permission, and the calling user must be the creator of the group or be assigned at least the Privileged Role Administrator Microsoft Entra role.
 - For app-only scenarios, the calling app must be the owner of the group or be assigned the `RoleManagement.ReadWrite.Directory` application permission or be assigned at least the Privileged Role Administrator Microsoft Entra role.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a group
 
@@ -52,7 +53,7 @@ Remove-EntraGroup -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq'
 
 This command is used to remove a group. The `-ObjectId` parameter specifies the ID of the group to be removed.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -74,13 +75,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraGroup](Get-EntraGroup.md)
 

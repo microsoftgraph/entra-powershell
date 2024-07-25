@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "New-AzureADUser"
-    TargetName = $null
-    Parameters = $null
-    Outputs = $null
+    SourceName   = "New-AzureADUser"
+    TargetName   = $null
+    Parameters   = $null
+    Outputs      = $null
     CustomScript = @'
     PROCESS {    
         $params = @{}
@@ -73,7 +73,7 @@
         }
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($null -ne $PSBoundParameters["City"])
         {
@@ -155,7 +155,7 @@
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if($null -ne $PSBoundParameters["CreationType"])
         {
@@ -204,12 +204,27 @@
         
         $response = New-MgBetaUser @params -Headers $customHeaders
         $response | ForEach-Object {
-            if($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+            if ($null -ne $_) {
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name UserState -Value ExternalUserState
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name UserStateChangedOn -Value ExternalUserStateChangeDateTime
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name Mobile -Value mobilePhone
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name DeletionTimestamp -Value DeletedDateTime
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name DirSyncEnabled -Value OnPremisesSyncEnabled
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ImmutableId -Value onPremisesImmutableId
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name LastDirSyncTime -Value OnPremisesLastSyncDateTime
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name ProvisioningErrors -Value onPremisesProvisioningErrors
+                Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value BusinessPhones
+                
+                $userData = [Microsoft.Graph.PowerShell.Models.MicrosoftGraphUser]::new()
+                $_.PSObject.Properties | ForEach-Object {
+                    $value = $_.Value | ConvertTo-Json | ConvertFrom-Json
+                    $userData | Add-Member -MemberType NoteProperty -Name $_.Name -Value $value -Force
+                }
             }
-        }
-        $response | ConvertTo-Json | ConvertFrom-Json
-        }    
+        }        
+        $userData
+    }  
 '@
 }
 

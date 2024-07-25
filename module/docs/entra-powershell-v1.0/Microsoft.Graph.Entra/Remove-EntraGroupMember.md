@@ -2,26 +2,27 @@
 title: Remove-EntraGroupMember.
 description: This article provides details on the Remove-EntraGroupMember command.
 
-ms.service: entra
+
 ms.topic: reference
-ms.date: 03/07/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraGroupMember
+
 schema: 2.0.0
 ---
 
 # Remove-EntraGroupMember
 
-## SYNOPSIS
+## Synopsis
 
 Removes a member from a group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraGroupMember 
@@ -30,11 +31,11 @@ Remove-EntraGroupMember
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Remove-EntraGroupMember cmdlet removes a member from a group in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a member
 
@@ -51,7 +52,7 @@ ObjectId - Specifies the object ID of a group in Microsoft Entra ID.
 
 MemberId - Specifies the ID of the member to remove.
 
-## PARAMETERS
+## Parameters
 
 ### -MemberId
 
@@ -89,13 +90,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraGroupMember](Add-EntraGroupMember.md)
 
