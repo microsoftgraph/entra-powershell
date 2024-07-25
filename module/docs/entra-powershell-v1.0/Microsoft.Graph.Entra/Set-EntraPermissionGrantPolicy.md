@@ -12,13 +12,15 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraPermissionGrantPolicy
+
 schema: 2.0.0
 ---
 
 # Set-EntraPermissionGrantPolicy
 
 ## Synopsis
+
 Updates a permission grant policy.
 
 ## Syntax
@@ -32,20 +34,35 @@ Set-EntraPermissionGrantPolicy
 ```
 
 ## Description
+
 The Set-EntraPermissionGrantPolicy command updates a Microsoft Entra ID permission grant policy.
 
 ## Examples
 
 ### Example 1: Update description of permission grant policy
+
 ```powershell
-PS C:\> Set-EntraPermissionGrantPolicy -Id "my_permission_grant_policy_id" -Description "updated description"
+Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
+$params = @{
+    Id = 'my_permission_grant_policy_id'
+    Description = 'Updated description'
+}
+
+Set-EntraPermissionGrantPolicy @params
 ```
 
 This command updates the description of the specified permission grant policy.
 
 ### Example 2: Update display name of permission grant policy
+
 ```powershell
-PS C:\> Set-EntraPermissionGrantPolicy -Id "my_permission_grant_policy_id" -DisplayName "update displayname"
+Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
+$params = @{
+    Id = 'my_permission_grant_policy_id'
+    DisplayName = 'Updated DisplayName'
+}
+
+Set-EntraPermissionGrantPolicy @params
 ```
 
 This command updates the display name of the specified permission grant policy.
@@ -53,10 +70,11 @@ This command updates the display name of the specified permission grant policy.
 ## Parameters
 
 ### -Description
+
 Specifies the description of the permission grant policy.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -68,10 +86,11 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
+
 Specifies the display name of the permission grant policy.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -83,10 +102,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
+
 Specifies the unique identifier of the permission grant policy.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -98,7 +118,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -113,4 +134,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraPermissionGrantPolicy](Get-EntraPermissionGrantPolicy.md)
 
 [Remove-EntraPermissionGrantPolicy](Remove-EntraPermissionGrantPolicy.md)
-
