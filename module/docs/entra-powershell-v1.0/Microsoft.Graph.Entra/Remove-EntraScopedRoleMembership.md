@@ -16,11 +16,11 @@ schema: 2.0.0
 
 # Remove-EntraScopedRoleMembership
 
-## SYNOPSIS
+## Synopsis
 
 Removes a scoped role membership.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraScopedRoleMembership 
@@ -29,11 +29,11 @@ Remove-EntraScopedRoleMembership
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Remove-EntraScopedRoleMembership` cmdlet removes a scoped role membership from Microsoft Entra ID. Specify `ObjectId` and `ScopedRoleMembershipId` parameter to remove a scoped role membership.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Removes a scoped role membership
 
@@ -52,7 +52,7 @@ This cmdlet removes a specific scoped role membership from Microsoft Entra ID.
 
 - `-ScopedRoleMembershipId` - specifies the unique identifier (ID) of the scoped role membership, which you want to remove. In this example, `aaaaaaaa-bbbb-1111-aaaa-ddddddddddd` represent the ID of the ScopedRoleMembership.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -90,13 +90,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraScopedRoleMembership](Add-EntraScopedRoleMembership.md)
 
