@@ -28,14 +28,14 @@ Retrieves the list of previously deleted applications.
 
 ```powershell
 Get-EntraBetaDeletedApplication
- [-Filter <String>]
- [-All]
  [-Top <Int32>]
+ [-All]
+ [-Filter <String>]
  [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-### GetByValue
+### GetVague
 
 ```powershell
 Get-EntraBetaDeletedApplication

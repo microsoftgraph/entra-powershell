@@ -13,8 +13,11 @@ This cmdlet retrieves the objects that are referenced by a given domain name
 
 ## Syntax
 
-```
-Get-EntraBetaDomainNameReference -Name <String> [<CommonParameters>]
+```powershell
+Get-EntraBetaDomainNameReference
+ -Name <String>
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ## Description
@@ -43,6 +46,22 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
