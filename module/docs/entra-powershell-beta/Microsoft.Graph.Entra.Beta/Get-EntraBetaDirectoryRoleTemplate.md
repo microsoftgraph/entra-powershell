@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaDirectoryRoleTemplate
+
 schema: 2.0.0
 ---
 
@@ -24,7 +25,8 @@ Gets directory role templates.
 ## Syntax
 
 ```powershell
-Get-EntraBetaDirectoryRoleTemplate 
+Get-EntraBetaDirectoryRoleTemplate
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -54,6 +56,22 @@ DeletedDateTime Id                                   Description
 This example retrieves the role templates in Microsoft Entra ID.
 
 ## Parameters
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### CommonParameters
 
