@@ -44,7 +44,7 @@ In delegated scenarios, the signed-in user needs a supported Microsoft Entra rol
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     Description = 'Updated AU Description'
 }
 Set-EntraAdministrativeUnit @params
