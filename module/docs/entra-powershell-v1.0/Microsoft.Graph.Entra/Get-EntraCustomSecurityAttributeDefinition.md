@@ -16,11 +16,11 @@ schema: 2.0.0
 
 # Get-EntraCustomSecurityAttributeDefinition
 
-## SYNOPSIS
+## Synopsis
 
 Gets a list of custom security attribute definitions.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -37,11 +37,11 @@ Get-EntraCustomSecurityAttributeDefinition
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraCustomSecurityAttributeDefinition` cmdlet gets a list of Microsoft Entra ID custom security attribute definitions. Specify `Id` parameter to gets a list of custom security attribute definitions.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a list of all custom security attribute definitions
 
@@ -83,7 +83,7 @@ Get a custom security attribute definition.
 - Attribute set: `Engineering`
 - Attribute: `ProjectDate`
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -105,17 +105,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraCustomSecurityAttributeDefinition](New-EntraCustomSecurityAttributeDefinition.md)
 
