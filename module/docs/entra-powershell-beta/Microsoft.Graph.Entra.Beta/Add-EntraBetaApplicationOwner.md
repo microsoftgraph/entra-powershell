@@ -74,7 +74,7 @@ Accept wildcard characters: False
 
 ### -RefObjectId
 
-Specifies the ID of the Active Directory object to assign as owner/manager/member.
+Specifies the ID of the Microsoft Entra ID object to assign as owner/manager/member.
 
 ```yaml
 Type: System.String
