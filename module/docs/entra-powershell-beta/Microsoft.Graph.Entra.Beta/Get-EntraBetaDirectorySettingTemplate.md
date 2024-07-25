@@ -1,7 +1,8 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaDirectorySettingTemplate
+
 schema: 2.0.0
 ---
 
@@ -13,14 +14,20 @@ Gets a directory setting template.
 ## Syntax
 
 ### GetQuery (Default)
-```
-Get-EntraBetaDirectorySettingTemplate 
+
+```powershell
+Get-EntraBetaDirectorySettingTemplate
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraBetaDirectorySettingTemplate -Id <String> [<CommonParameters>]
+
+```powershell
+Get-EntraBetaDirectorySettingTemplate
+ -Id <String>
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ## Description
@@ -51,6 +58,22 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
