@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraAdministrativeUnit
+
 schema: 2.0.0
 ---
 
@@ -151,7 +152,14 @@ Accept wildcard characters: False
 
 ### -Filter
 
+<<<<<<< HEAD
 Filter items by property values.
+=======
+Specifies an OData v4.0 filter statement.
+This parameter filters which objects are returned.
+
+For more information about OData v4.0 filter expressions, see <https://msdn.microsoft.com/library/hh169248%28v=nav.90%29.aspx>
+>>>>>>> b400ef98fff7bf204f24f4466c53f573aa113707
 
 ```yaml
 Type: System.String
