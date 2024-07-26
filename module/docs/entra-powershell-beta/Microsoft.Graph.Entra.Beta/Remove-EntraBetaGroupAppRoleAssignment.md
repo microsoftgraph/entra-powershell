@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraBetaGroupAppRoleAssignment
+description: This article provides details on the Remove-EntraBetaGroupAppRoleAssignment command.
+
+
+ms.topic: reference
+ms.date: 07/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaGroupAppRoleAssignment
@@ -9,34 +19,48 @@ schema: 2.0.0
 # Remove-EntraBetaGroupAppRoleAssignment
 
 ## Synopsis
+
 Delete a group application role assignment.
 
 ## Syntax
 
-```
-Remove-EntraBetaGroupAppRoleAssignment -ObjectId <String> -AppRoleAssignmentId <String>
+```powershell
+Remove-EntraBetaGroupAppRoleAssignment 
+ -ObjectId <String> 
+ -AppRoleAssignmentId <String>
  [<CommonParameters>]
 ```
 
 ## Description
-The Remove-EntraBetaGroupAppRoleAssignment cmdlet removes a group application role assignment from Azure Active Directory (AD).
+
+The `Remove-EntraBetaGroupAppRoleAssignment` cmdlet removes a group application role assignment from Microsoft Entra ID.
 
 ## Examples
 
-### Example 1
+### Example 1: Remove group app role assignment
+
 ```powershell
-PS C:\> {{ Add example code here }}
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+$Params = @{
+    ObjectId = 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq' 
+    AppRoleAssignmentId = 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
+}
+Remove-EntraBetaGroupAppRoleAssignment @Params
 ```
 
-{{ Add example description here }}
+This example demonstrates how to remove the specified group application role assignment.
+
+- `-ObjectId` parameter specifies the object ID of a group.
+- `-AppRoleAssignmentId` parameter specifies the object ID of a group application role assignment.
 
 ## Parameters
 
 ### -AppRoleAssignmentId
+
 Specifies the object ID of the group application role assignment.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -47,13 +71,12 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-
-
 ### -ObjectId
-Specifies the object ID of a group in Azure AD.
+
+Specifies the object ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -65,7 +88,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -75,7 +99,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaGroupAppRoleAssignment]()
+[Get-EntraBetaGroupAppRoleAssignment](Get-EntraBetaGroupAppRoleAssignment.md)
 
-[New-EntraBetaGroupAppRoleAssignment]()
-
+[New-EntraBetaGroupAppRoleAssignment](New-EntraBetaGroupAppRoleAssignment.md)

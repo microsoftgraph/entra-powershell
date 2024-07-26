@@ -151,6 +151,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 [Get-EntraBetaUserExtension](Get-EntraBetaUserExtension.md)
 
-[Get-EntraBetaExtensionProperty](Get-EntraBetaExtensionProperty.md)
-
 [Remove-EntraBetaUserExtension](Remove-EntraBetaUserExtension.md)
