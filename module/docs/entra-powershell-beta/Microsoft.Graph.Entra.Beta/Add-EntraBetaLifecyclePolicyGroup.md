@@ -1,4 +1,15 @@
 ---
+title: Add-EntraLifecyclePolicyGroup
+description: This article provides details on the Add-EntraLifecyclePolicyGroup command.
+
+
+ms.topic: reference
+ms.date: 07/22/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Add-EntraBetaLifecyclePolicyGroup
@@ -9,33 +20,48 @@ schema: 2.0.0
 # Add-EntraBetaLifecyclePolicyGroup
 
 ## Synopsis
-Adds a group to a lifecycle policy
+
+Adds a group to a lifecycle policy.
 
 ## Syntax
 
-```
-Add-EntraBetaLifecyclePolicyGroup -Id <String> -GroupId <String> [<CommonParameters>]
+```powershell
+Add-EntraBetaLifecyclePolicyGroup 
+ -Id <String> 
+ -GroupId <String> 
+ [<CommonParameters>]
 ```
 
 ## Description
-The Add-EntraBetaLifecyclePolicyGroup cmdlet adds a group to a lifecycle policy in Azure Active Directory
+
+The `Add-EntraBetaLifecyclePolicyGroup` cmdlet adds a group to a lifecycle policy in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1
-```
-PS C:\>Add-EntraBetaLifecyclePolicyGroup -Id "b4c908b0-3595-4add-91b4-c5400b31b57b" -groupId "cffd97bd-6b91-4c4e-b553-6918a320211c"
+
+```powershell
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+$params = @{
+    Id = '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6'
+    groupId = 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq'
+}
+Add-EntraBetaLifecyclePolicyGroup @params
 ```
 
-This command adds a group to the lifecycle policy.
+This example adds a group to the lifecycle policy.
+
+- `-Id` parameter specifies the ID of the Lifecycle Policy add to the group.
+- `-GroupId`  parameter specifies the ID of the group add to the Lifecycle Policy.
 
 ## Parameters
 
 ### -GroupId
-Specifies the ID of a group in Azure Active Directory.
+
+Specifies the ID of a group in  Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -47,10 +73,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Specifies the ID of the lifecycle policy object in Azure Active Directory.
+
+Specifies the ID of the lifecycle policy object in  Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -62,14 +89,21 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### System.String
+
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
+
+[Get-EntraBetaLifecyclePolicyGroup](Get-EntraBetaLifecyclePolicyGroup.md)
+
+[Remove-EntraBetaLifecyclePolicyGroup](Remove-EntraBetaLifecyclePolicyGroup.md)
