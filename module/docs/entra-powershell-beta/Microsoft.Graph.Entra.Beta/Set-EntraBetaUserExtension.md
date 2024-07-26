@@ -1,4 +1,15 @@
 ---
+title: Set-EntraBetaUserExtension.
+description: This article provides details on the Set-EntraBetaUserExtension command.
+
+
+ms.topic: reference
+ms.date: 07/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaUserExtension
@@ -9,46 +20,63 @@ schema: 2.0.0
 # Set-EntraBetaUserExtension
 
 ## Synopsis
+
 Sets a user extension.
 
 ## Syntax
 
 ### SetSingle
-```
-Set-EntraBetaUserExtension -ExtensionName <String> -ObjectId <String> -ExtensionValue <String>
+
+```powershell
+Set-EntraBetaUserExtension 
+ -ExtensionName <String> 
+ -ObjectId <String> 
+ -ExtensionValue <String>
  [<CommonParameters>]
 ```
 
 ### SetMultiple
-```
-Set-EntraBetaUserExtension -ObjectId <String>
+
+```powershell
+Set-EntraBetaUserExtension 
+ -ObjectId <String>
  -ExtensionNameValues <System.Collections.Generic.Dictionary`2[System.String,System.String]>
  [<CommonParameters>]
 ```
 
 ## Description
-The Set-EntraBetaUserExtension cmdlet sets a user extension in Azure Active Directory (Azure AD).
+
+The `Set-EntraBetaUserExtension` cmdlet sets a user extension in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Set the value of an extension attribute for a user
-```
-PS C:\> $User = Get-EntraBetaUser -Top 1
-PS C:\> Set-EntraBetaUserExtension -ObjectId $User.ObjectId -ExtensionName extension_e5e29b8a85d941eab8d12162bd004528_extensionAttribute8 -ExtensionValue "New Value"
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+$User = Get-EntraBetaUser -Top 1
+$params = @{
+    ObjectId = $User.ObjectId 
+    ExtensionName = 'extension_e5e29b8a85d941eab8d12162bd004528_extensionAttribute8' 
+    ExtensionValue = 'New Value'
+}
+Set-EntraBetaUserExtension @params
 ```
 
-The first command gets a user by using the Get-EntraBetaUser (./Get-EntraBetaUser.md)cmdlet, and then stores it in the $User variable.
+This example shows how to update the value of the extension attribute for a specified user. Use `Get-EntraBetaUser` cmdlet to retrieve user object Id.
 
-The second command  sets the value of the extension attribute that hast he specified name to the value New Value.
-You can get extension attribute names by using the Get-AzureAdExtensionProperty (./Get-AzureAdExtensionProperty.md)cmdlet.
+- `-ObjectId` parameter specifies the user Object ID.
+- `-ExtensionName` parameter specifies the name of an extension.
+- `-ExtensionValue` parameter specifies the extension name values.
 
 ## Parameters
 
 ### -ExtensionName
+
 Specifies the name of an extension.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: SetSingle
 Aliases:
 
@@ -60,6 +88,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExtensionNameValues
+
 Specifies extension name values.
 
 ```yaml
@@ -75,10 +104,11 @@ Accept wildcard characters: False
 ```
 
 ### -ExtensionValue
+
 Specifies an extension value.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: SetSingle
 Aliases:
 
@@ -90,10 +120,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of an object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -105,7 +136,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -115,11 +147,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaUser]()
+[Get-EntraBetaUser](Get-EntraBetaUser.md)
 
-[Get-EntraBetaUserExtension]()
+[Get-EntraBetaUserExtension](Get-EntraBetaUserExtension.md)
 
-[Get-AzureAdExtensionProperty]()
+[Get-EntraBetaExtensionProperty](Get-EntraBetaExtensionProperty)
 
-[Remove-EntraBetaUserExtension]()
-
+[Remove-EntraBetaUserExtension](Remove-EntraBetaUserExtension.md)

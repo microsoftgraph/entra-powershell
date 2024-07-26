@@ -1,32 +1,50 @@
 ---
+title: Revoke-EntraBetaSignedInUserAllRefreshToken.
+description: This article provides details on the Revoke-EntraBetaSignedInUserAllRefreshToken command.
+
+
+ms.topic: reference
+ms.date: 07/25/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Revoke-EntraBetaSignedInUserAllRefreshToken
-
 schema: 2.0.0
 ---
 
 # Revoke-EntraBetaSignedInUserAllRefreshToken
 
 ## Synopsis
+
 Invalidates the refresh tokens issued to applications for the current user.
 
 ## Syntax
 
-```
-Revoke-EntraBetaSignedInUserAllRefreshToken [<CommonParameters>]
+```powershell
+Revoke-EntraBetaSignedInUserAllRefreshToken 
+ [<CommonParameters>]
 ```
 
 ## Description
-The Revoke-EntraBetaSignedInUserAllRefreshToken cmdlet invalidates the refresh tokens issued to applications for the current user. 
-The cmdlet also invalidates tokens issued to session cookies in a browser for the user. 
+
+The `Revoke-EntraBetaSignedInUserAllRefreshToken` cmdlet invalidates the refresh tokens issued to applications for the current user.
+The cmdlet also invalidates tokens issued to session cookies in a browser for the user.
 The cmdlet operates by resetting the refreshTokensValidFromDateTime user property to the current date and time.
 
 ## Examples
 
 ### Example 1: Revoke refresh tokens for the current user
+
+```powershell
+Connect-Entra -Scopes 'User.RevokeSessions.All'
+Revoke-EntraBetaSignedInUserAllRefreshToken
 ```
-PS C:\> Revoke-EntraBetaSignedInUserAllRefreshToken
+
+```Output
+True
 ```
 
 This command revokes the tokens for the current user.
@@ -34,7 +52,8 @@ This command revokes the tokens for the current user.
 ## Parameters
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -44,7 +63,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Revoke-EntraBetaUserAllRefreshToken]()
+[Revoke-EntraBetaUserAllRefreshToken](Revoke-EntraBetaUserAllRefreshToken.md)
 
 [#AzureAD: Certificate based authentication for iOS and Android now in preview!](https://blogs.technet.microsoft.com/enterprisemobility/2016/07/18/azuread-certificate-based-authentication-for-ios-and-android-now-in-preview/)
-
