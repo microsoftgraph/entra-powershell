@@ -129,6 +129,8 @@ System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutra
 ## RELATED LINKS
 
 [Get-EntraBetaApplication](Get-EntraBetaApplication.md)
+
 [Remove-EntraBetaPrivateAccessApplicationSegment](Remove-EntraBetaPrivateAccessApplicationSegment.md)
+
 [New-EntraBetaPrivateAccessApplicationSegment](New-EntraBetaPrivateAccessApplicationSegment.md)
 
