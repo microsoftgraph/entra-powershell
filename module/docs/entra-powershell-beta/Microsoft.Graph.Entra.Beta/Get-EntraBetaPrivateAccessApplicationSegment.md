@@ -47,7 +47,7 @@ This command retrieves all application segments for an application.
 ### Example 2: Retrieve a specific application segment associated to an application
 
 ```powershell
-```powershell
+Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
 $ApplicationObjectId = (Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'").ObjectId
 
 $params = @{
