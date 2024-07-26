@@ -2,16 +2,15 @@
 title: Get-EntraBetaApplicationPasswordCredential
 description: This article provides details on the Get-EntraBetaApplicationPasswordCredential command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaApplicationPasswordCredential
 schema: 2.0.0
 ---
 
@@ -32,7 +31,7 @@ Get-EntraBetaApplicationPasswordCredential
 
 ## Description
 
-The `Get-EntraBetaApplicationPasswordCredential` cmdlet gets the password credentials for a Microsoft Entra ID application.
+The `Get-EntraBetaApplicationPasswordCredential` cmdlet receives the password credentials for a Microsoft Entra ID application. Specify `ObjectId` parameter to cmdlet receives the password credentials.
 
 ## Examples
 
@@ -40,17 +39,18 @@ The `Get-EntraBetaApplicationPasswordCredential` cmdlet gets the password creden
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-New-EntraBetaApplicationPasswordCredential -ObjectId aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+Get-EntraBetaApplicationPasswordCredential -ObjectId `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb`
 ```
 
-```output
-CustomKeyIdentifier  DisplayName EndDateTime           Hint KeyId                                SecretText StartDateTime
--------------------  ----------- -----------           ---- -----                                ---------- -------------
-{116, 101, 115, 116}             11/24/2024 6:28:39 AM 123  bbbbbbbb-1111-2222-3333-cccccccccccc            11/24/2023 6:28:39 AM
+```Output
+CustomKeyIdentifier  DisplayName EndDateTime         Hint KeyId                                SecretText StartDateTime
+-------------------  ----------- -----------         ---- -----                                ---------- -------------
+{100, 101, 109, 111} demo        26/07/2025 10:34:40 Ap6  bbbbbbbb-1111-2222-3333-cccccccccccc             26/07/2024 10:34:40
 ```
 
 This command gets the password credential for specified application.
-`-ObjectId` parameter specifies the ID of an application object in Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies the ID of an application object in Microsoft Entra ID.
 
 ## Parameters
 
@@ -72,7 +72,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -97,3 +97,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[New-EntraBetaApplicationPasswordCredential](New-EntraBetaApplicationPasswordCredential.md)
+[Remove-EntraBetaApplicationPasswordCredential](Remove-EntraBetaApplicationPasswordCredential.md)
