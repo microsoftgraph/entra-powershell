@@ -20,6 +20,7 @@ schema: 2.0.0
 # Set-EntraBetaUserLicense
 
 ## Synopsis
+
 Adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
 ## Syntax
@@ -32,40 +33,100 @@ Set-EntraBetaUserLicense
 ```
 
 ## Description
-The **Set-EntraBetaUserLicense** adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
+
+The `Set-EntraBetaUserLicense` adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
 ## Examples
 
 ### Example 1: Add a license to a user based on a template user
+
 ```powershell
-PS C:\> $LicensedUser = Get-EntraBetaUser -ObjectId "TemplateUser@contoso.com"  
-PS C:\> $User = Get-EntraBetaUser -ObjectId "User@contoso.com"  
-PS C:\> $License = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense 
-PS C:\> $License.SkuId = $LicensedUser.AssignedLicenses.SkuId 
-PS C:\> $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
-PS C:\> $Licenses.AddLicenses = $License 
-PS C:\> Set-EntraBetaUserLicense -ObjectId $User.ObjectId -AssignedLicenses $Licenses
+Connect-Entra -Scopes 'User.ReadWrite.All'
+$LicensedUser = Get-EntraBetaUser -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
+$User = Get-EntraBetaUser -ObjectId 'dddddddd-3333-4444-5555-eeeeeeeeeeee' 
+$License = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense 
+$License.SkuId = $LicensedUser.AssignedLicenses.SkuId 
+$Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
+$Licenses.AddLicenses = $License 
+$Params = @{
+    ObjectId = $User.ObjectId 
+    AssignedLicenses = $Licenses
+}
+Set-EntraBetaUserLicense @Params
 ```
 
-The first command gets a user by using the [Get-EntraBetaUser](./Get-EntraBetaUser.md) cmdlet, and then stores it in the $LicensedUser variable.  
+```Output
+Name                           Value
+----                           -----
+externalUserStateChangeDateTi…
+businessPhones                 {8976546787}
+postalCode                     444601
+createdDateTime                06-11-2023 04:48:19
+surname                        KTETSs
+jobTitle                       Manager
+employeeType
+otherMails                     {test12@M365x99297270.OnMicrosoft.com}
+isResourceAccount
+usageLocation                  DE
+legalAgeGroupClassification    Adult
+id                             cccccccc-2222-3333-4444-dddddddddddd
+isLicenseReconciliationNeeded  False
+```
 
-The second command gets another user by using Get-EntraBetaUser, and then stores it in the $User variable.  
+This example demonstrates how to assign a license to a user.
 
-The third command creates an AssignedLicense type, and then stores it in the $License variable.  
+- `-ObjectId` parameter specifies the user object ID.
+- `-AssignedLicenses` parameter specifies a list of licenses to assign or remove.
 
-The fourth command set the SkuId property of $License to the same value as the SkuId property of $LicensedUser.  
+### Example 2: Add a license to a user by copying license from another user
 
-The fifth command creates an AssignedLicenses object, and stores it in the $Licenses variable.  
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+$LicensedUser = Get-EntraBetaUser -ObjectId 'dddddddd-3333-4444-5555-eeeeeeeeeeee'
+$User = Get-EntraBetaUser -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
+$License1 = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense 
+$License1.SkuId = $LicensedUser.AssignedLicenses.SkuId[0] 
+$License2 = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense
+$License2.SkuId = $LicensedUser.AssignedLicenses.SkuId[1]
+$addLicensesArray = @()
+$addLicensesArray += $License1
+$addLicensesArray += $License2
+$Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
+$Licenses.AddLicenses = $addLicensesArray
+$Params = @{
+    ObjectId = $User.ObjectId 
+    AssignedLicenses = $Licenses
+}
+Set-EntraBetaUserLicense @Params
+```
 
-The sixth command adds the license in $License to $Licenses.  
+```Output
+Name                           Value
+----                           -----
+externalUserStateChangeDateTi…
+businessPhones                 {8976546787}
+postalCode                     444601
+createdDateTime                06-11-2023 04:48:19
+surname                        KTETSs
+jobTitle                       Manager
+employeeType
+otherMails                     {test12@M365x99297270.OnMicrosoft.com}
+isResourceAccount
+usageLocation                  DE
+legalAgeGroupClassification    Adult
+id                             cccccccc-2222-3333-4444-dddddddddddd
+isLicenseReconciliationNeeded  False
+```
 
-The final command assigns the licenses in $Licenses to the user in $User.  
+This example demonstrates how to assign a license to a user by copying license from another user.
 
-The licenses in $Licenses includes $License from the third and fourth commands.
+- `-ObjectId` parameter specifies the user object ID.
+- `-AssignedLicenses` parameter specifies a list of licenses to assign or remove.
 
 ## Parameters
 
 ### -AssignedLicenses
+
 Specifies a list of licenses to assign or remove.
 
 ```yaml
@@ -81,10 +142,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.
+
+Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -96,7 +158,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -107,4 +170,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## Related Links
 
 [Get-EntraBetaUser](Get-EntraBetaUser.md)
-

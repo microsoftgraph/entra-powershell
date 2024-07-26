@@ -45,7 +45,11 @@ Connect-Entra -Scopes 'Application.Read.All'
 $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
 $Groups.GroupIds = (Get-EntraBetaGroup -Top 1).ObjectId
 $UserID = (Get-EntraBetaUser -Top 1).ObjectId
-Select-EntraBetaGroupIdsUserIsMemberOf  -ObjectId $UserId -GroupIdsForMembershipCheck $Groups
+$Params = @{
+    ObjectId = $UserId 
+    GroupIdsForMembershipCheck = $Groups
+}
+Select-EntraBetaGroupIdsUserIsMemberOf @Params
 ```
 
 ```Output
