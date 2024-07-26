@@ -121,7 +121,7 @@ Accept wildcard characters: False
 Specifies the status of cloud authentication roll-out policy.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
