@@ -29,6 +29,7 @@ The `Get-EntraBetaPrivateAccessApplicationSegment` cmdlet retrieves a list of al
 ### Example 1: Retrieve all application segments associated to an application
 
 ```powershell
+Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
 $ApplicationObjectId = (Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'").ObjectId
 Get-EntraBetaPrivateAccessApplicationSegment -ObjectId $ApplicationObjectId
 ```
