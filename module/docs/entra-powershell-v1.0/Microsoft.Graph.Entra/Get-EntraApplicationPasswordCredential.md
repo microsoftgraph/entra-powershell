@@ -33,7 +33,8 @@ Get-EntraApplicationPasswordCredential
 
 ## Description
 
-The `Get-EntraApplicationPasswordCredential` cmdlet gets the password credentials for a Microsoft Entra ID application.
+The `Get-EntraApplicationPasswordCredential` cmdlet gets the password credentials for a Microsoft Entra
+application.
 
 ## Examples
 
@@ -72,7 +73,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
