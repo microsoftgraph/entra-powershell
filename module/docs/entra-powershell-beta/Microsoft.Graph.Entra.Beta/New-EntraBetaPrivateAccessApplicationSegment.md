@@ -29,6 +29,7 @@ The `New-EntraBetaPrivateAccessApplicationSegment` cmdlet creates an application
 ### Example 1: Create a simple application segment
 
 ```powershell
+Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
 $ApplicationObjectId = (Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'").ObjectId
 
 $params = @{
