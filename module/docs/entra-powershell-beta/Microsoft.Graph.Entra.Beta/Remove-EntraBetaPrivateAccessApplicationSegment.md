@@ -29,6 +29,7 @@ The `Remove-EntraBetaPrivateAccessApplicationSegment` cmdlet removes application
 ### Example 1: Delete an application segment
 
 ```powershell
+Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
 $ApplicationObjectId = (Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'").ObjectId
 $ApplicationSegmentId = (Get-EntraBetaPrivateAccessApplicationSegment -ObjectId $ApplicationObjectId -Top 1).Id
 
