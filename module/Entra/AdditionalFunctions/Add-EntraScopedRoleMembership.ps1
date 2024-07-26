@@ -92,7 +92,7 @@ function Add-EntraScopedRoleMembership {
     Write-Debug("=========================================================================`n")
     
     $response = Invoke-GraphRequest -Headers $customHeaders -Uri $Uri -Method "POST" -Body $body
-    $response = $response | ConvertTo-Json | ConvertFrom-Json
+    $response = $response | ConvertTo-Json -Depth 5 | ConvertFrom-Json
     $response | ForEach-Object {
         if($null -ne $_) {
             Add-Member -InputObject $_ -MemberType AliasProperty -Name AdministrativeUnitObjectId -Value AdministrativeUnitId
