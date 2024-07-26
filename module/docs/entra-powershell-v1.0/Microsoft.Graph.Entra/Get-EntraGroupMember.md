@@ -2,7 +2,6 @@
 title: Get-EntraGroupMember.
 description: This article provides details on the Get-EntraGroupMember command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -35,7 +34,7 @@ Get-EntraGroupMember
 
 ## Description
 
-The Get-EntraGroupMember cmdlet gets a member of a group in Microsoft Entra ID.
+The `Get-EntraGroupMember` cmdlet retrieves a member of a group in Microsoft Entra ID. Specify `ObjectId` parameter to retrieve a member of a group.
 
 ## Examples
 
@@ -46,20 +45,19 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraGroupMember -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
-```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {averys@contoso.com}
-preferredLanguage               :
-mail                            : averys@contoso.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=averys@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+00aa00aa-bb11-cc22-dd33-44ee44ee44ee
+11bb11bb-cc22-dd33-ee44-55ff55ff55ff
+22cc22cc-dd33-ee44-ff55-66aa66aa66aa
+33dd33dd-ee44-ff55-aa66-77bb77bb77bb
+44ee44ee-ff55-aa66-bb77-88cc88cc88cc
 ```
 
-This example demonstrates how to retrieve group member by ID.  
+This example demonstrates how to retrieve group member by ID.
+
+- `-ObjectId` Specifies the ID of a group.
 
 ### Example 2: Get two group member
 
@@ -68,30 +66,16 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraGroupMember -ObjectId 'hhhhhhhh-8888-9999-8888-cccccccccccc' -Top 2 
 ```
 
-```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {ParkerJ@contoso.com}
-preferredLanguage               : en
-mail                            : ParkerJ@contoso.com
-securityIdentifier              : B-2-33-4-5555555555-6666666666-7777777-8888888888
-identities                      : {System.Collections.Hashtable}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {ParkerJ@contoso.com}
-preferredLanguage               :
-mail                            : ParkerJ@contoso.com
-securityIdentifier              : C-3-44-5-6666666666-7777777777-8888888-9999999999
-identities                      : {System.Collections.Hashtable}
-consentProvidedForMinor         :
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+00aa00aa-bb11-cc22-dd33-44ee44ee44ee
+11bb11bb-cc22-dd33-ee44-55ff55ff55ff
 ```
 
 This example demonstrates how to retrieve top two groups from Microsoft Entra ID.  
+
+- `-ObjectId` Specifies the ID of a group.
 
 ### Example 3: Get all members within a group by group ID
 
@@ -100,27 +84,28 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraGroupMember -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' -All 
 ```
 
-```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {SawyerM@contoso.com}
-preferredLanguage               : en
-mail                            : SawyerM@contoso.com
-securityIdentifier              : D-4-55-6-7777777777-8888888888-9999999-0000000000
-identities                      : {System.Collections.Hashtable}
-consentProvidedForMinor         :
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+00aa00aa-bb11-cc22-dd33-44ee44ee44ee
+11bb11bb-cc22-dd33-ee44-55ff55ff55ff
+22cc22cc-dd33-ee44-ff55-66aa66aa66aa
+33dd33dd-ee44-ff55-aa66-77bb77bb77bb
+44ee44ee-ff55-aa66-bb77-88cc88cc88cc
 ```
 
 This command is used to retrieve all members of a specific group. The `-ObjectId` parameter specifies the ID of the group whose members should be retrieved. The `-All` parameter indicates that all members of the group should be retrieved.
 
+- `-ObjectId` Specifies the ID of a group.
+
 ## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -181,7 +166,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
