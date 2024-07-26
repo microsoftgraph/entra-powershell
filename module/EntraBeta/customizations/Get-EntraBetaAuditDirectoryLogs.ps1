@@ -91,7 +91,7 @@
                 $propsToConvert = @('InitiatedBy', 'TargetResources', 'AdditionalDetails')
         
                 foreach ($prop in $propsToConvert) {
-                    $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
+                    $value = $_.$prop | ConvertTo-Json -Depth 5 | ConvertFrom-Json
                     $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
                 }
             }
