@@ -26,11 +26,11 @@ Describe "Test for Set-EntraAdministrativeUnit" {
         { Set-EntraAdministrativeUnit -xyz } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
     }
     It "Should contain 'User-Agent' header" {
-        Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraAdministrativeUnit"
-        $result = Set-EntraAdministrativeUnit -ObjectId bbbbbbbb-1111-1111-1111-cccccccccccc -DisplayName "test" -Description "test"
-        $params = Get-Parameters -data $result
-        $a= $params | ConvertTo-json | ConvertFrom-Json
-        $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue        
+        Set-EntraAdministrativeUnit -ObjectId bbbbbbbb-1111-1111-1111-cccccccccccc -DisplayName "test" -Description "test"
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $true
+        }
     } 
 }

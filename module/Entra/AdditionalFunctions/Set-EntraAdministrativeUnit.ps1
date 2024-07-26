@@ -85,13 +85,7 @@ function Set-EntraAdministrativeUnit {
     $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
     Write-Debug("=========================================================================`n")
 
-    $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method PATCH -Body $body
-    $response = $response | ConvertTo-Json | ConvertFrom-Json
-    $response | ForEach-Object {
-        if($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-        }
-    }
-    $response
+    Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method PATCH -Body $body
+    
     }
 }
