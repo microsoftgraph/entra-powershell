@@ -29,7 +29,8 @@ The `Get-EntraBetaPrivateAccessApplicationSegment` cmdlet retrieves a list of al
 ### Example 1: Retrieve all application segments associated to an application
 
 ```powershell
-Get-EntraBetaPrivateAccessApplicationSegment -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444'
+$ApplicationObjectId = (Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'").ObjectId
+Get-EntraBetaPrivateAccessApplicationSegment -ObjectId $ApplicationObjectId
 ```
 
 ```Output
@@ -53,8 +54,11 @@ This command retrieves all application segments for an application.
 ### Example 2: Retrieve a specific application segment associated to an application
 
 ```powershell
+```powershell
+$ApplicationObjectId = (Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'").ObjectId
+
 $params = @{
-    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    ObjectId = $ApplicationObjectId
     ApplicationSegmentId = 'cccc2222-dd33-4444-55ee-666666ffffff'
 }
 
@@ -123,3 +127,8 @@ System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutra
 ## Notes
 
 ## RELATED LINKS
+
+[Get-EntraBetaApplication](Get-EntraBetaApplication.md)
+[Remove-EntraBetaPrivateAccessApplicationSegment](Remove-EntraBetaPrivateAccessApplicationSegment.md)
+[New-EntraBetaPrivateAccessApplicationSegment](New-EntraBetaPrivateAccessApplicationSegment.md)
+
