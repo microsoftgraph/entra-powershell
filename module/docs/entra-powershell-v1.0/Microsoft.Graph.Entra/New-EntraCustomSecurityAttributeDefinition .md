@@ -3,7 +3,7 @@ title: New-EntraCustomSecurityAttributeDefinition
 description: This article provides details on the New-EntraCustomSecurityAttributeDefinition command.
 
 ms.topic: reference
-ms.date: 07/15/2024
+ms.date: 07/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -46,25 +46,37 @@ This `New-EntraCustomSecurityAttributeDefinition` cmdlet Adds a new Microsoft En
 
 ```powershell
  Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
- New-EntraCustomSecurityAttributeDefinition -AttributeSet 'demo' -Name 'ProjectD2345' -Description 'Target coletion date' -Type 'String' -Status 'Available' -IsCollection $false -IsSearchable $true -UsePreDefinedValuesOnly $true
+$params = @{
+    AttributeSet = 'demo'
+    Name = 'Project'
+    Description = 'Target coletion date'
+    Type = 'String'
+    Status = 'Available'
+    IsCollection = $false
+    IsSearchable = $true 
+    UsePreDefinedValuesOnly = $true
+
+}
+ New-EntraCustomSecurityAttributeDefinition @params
 ```
 
 ```Output
-Name                           Value
-----                           -----
-attributeSet                   demo
-usePreDefinedValuesOnly        True
-isCollection                   False
-status                         Available
-isSearchable                   True
-@odata.context                 https://graph.microsoft.com/v1.0/$metadata#directory/customSecurityAttributeDefinitions/$entity
-name                           ProjectD2345
-id                             demo_ProjectD2345
-description                    Target coletion date
-type                           String
+Id                   AttributeSet Description          IsCollection IsSearchable Name          Status    Type   UsePreDefinedValuesOnly
+--                   ------------ -----------          ------------ ------------ ----          ------    ----   -----------------------
+demo_Project demo      Target coletion date False        False        Project Available String True
+
 ```
 
 This command creates new custom security attribute definition object.
+
+- `-AttributeSet` Specifies name of the attribute set.
+- `-Description`  Specifies description for the custom security attribute definition.
+- `-IsCollection` Indicates whether multiple values can be assigned to the custom security attribute.
+- `-IsSearchable` Indicates whether custom security attribute values are indexed for searching on objects that are assigned attribute values.
+- `-Name` Specifies name of the custom security attribute. Must be unique within an attribute set.
+- `-Status` Specifies whether the custom security attribute is active or deactivated. Acceptable values are 'Available' and 'Deprecated.'
+- `-Type` Specifies the data type of the attribute.
+- `-UsePreDefinedValuesOnly` Indicates whether only predefined values can be assigned to the custom security attribute. If set to false, free-form values are allowed.
 
 ## Parameters
 
