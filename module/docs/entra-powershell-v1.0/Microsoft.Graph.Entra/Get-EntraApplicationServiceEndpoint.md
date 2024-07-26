@@ -37,7 +37,7 @@ Get-EntraApplicationServiceEndpoint
 
 This cmdlet retrieves the service endpoint(s) of an application.
 The service endpoint entity contains service discovery information.
-The serviceEndpoints property of the Application entity is of type ServiceEndpoint.
+The serviceEndpoints property of the application entity is of type ServiceEndpoint.
 Other services can use the information stored in the ServiceEndpoint entity to find this service and its addressable endpoints.
 
 ## Examples
@@ -122,7 +122,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
