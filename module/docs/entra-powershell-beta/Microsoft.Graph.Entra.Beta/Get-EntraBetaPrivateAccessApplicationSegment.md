@@ -40,13 +40,6 @@ port            : 0
 ports           : {22-22}
 protocol        : tcp
 id              : cccc2222-dd33-4444-55ee-666666ffffff
-
-destinationHost : 10.20.20.20
-destinationType : ip
-port            : 0
-ports           : {8080-8080}
-protocol        : tcp
-id              : cccc2222-dd33-4444-55ee-666666ffffff
 ```
 
 This command retrieves all application segments for an application.
