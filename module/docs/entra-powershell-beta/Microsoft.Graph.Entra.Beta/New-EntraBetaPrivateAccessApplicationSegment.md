@@ -55,6 +55,7 @@ id              : cccc2222-dd33-4444-55ee-666666ffffff
 ### Example 2: Create an application segment using ranges of IPs and multiple ports
 
 ```powershell
+Connect-Entra -Scopes 'NetworkAccessPolicy.ReadWrite.All', 'Application.ReadWrite.All', 'NetworkAccess.ReadWrite.All'
 $ApplicationObjectId = (Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'").ObjectId
 
 $params = @{
