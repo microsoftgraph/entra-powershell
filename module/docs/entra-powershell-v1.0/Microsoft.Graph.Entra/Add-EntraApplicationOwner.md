@@ -33,7 +33,7 @@ Add-EntraApplicationOwner
 
 ## Description
 
-The `Add-EntraApplicationOwner` cmdlet adds an owner to a Microsoft Entra ID application.
+The `Add-EntraApplicationOwner` cmdlet adds an owner to a Microsoft Entra application.
 
 ## Examples
 
@@ -74,7 +74,7 @@ Accept wildcard characters: False
 
 ### -RefObjectId
 
-Specifies the ID of the Microsoft Entra ID object to assign as owner/manager/member.
+Specifies the ID of the Microsoft Entra object to assign as owner/manager/member.
 
 ```yaml
 Type: System.String
@@ -90,7 +90,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
