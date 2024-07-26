@@ -48,17 +48,12 @@ Get-EntraDeviceRegisteredUser -ObjectId $DevId
 ```
 
 ```Output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {}
-preferredLanguage               :
-mail                            : admin@contoso.onmicrosoft.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {}
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+ffffffff-4444-5555-6666-gggggggggggg
 ```
 
 This example demonstrates how to retrieve registered user for a specific Microsoft Entra ID device.
@@ -75,17 +70,12 @@ Get-EntraDeviceRegisteredUser -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -
 ```
 
 ```Output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {}
-preferredLanguage               :
-mail                            : admin@contoso.onmicrosoft.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {}
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+ffffffff-4444-5555-6666-gggggggggggg
 ```
 
 This example demonstrates how to retrieve all registered users for a specified device.
@@ -98,17 +88,10 @@ Get-EntraDeviceRegisteredUser -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -
 ```
 
 ```Output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {}
-preferredLanguage               :
-mail                            : admin@contoso.onmicrosoft.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {}
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
 ```
 
 This example demonstrates how to retrieve top two registered users for the specified device.
