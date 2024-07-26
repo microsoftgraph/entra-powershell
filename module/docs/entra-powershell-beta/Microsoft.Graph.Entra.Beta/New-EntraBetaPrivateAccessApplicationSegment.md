@@ -29,7 +29,17 @@ The `New-EntraBetaPrivateAccessApplicationSegment` cmdlet creates an application
 ### Example 1: Create a simple application segment
 
 ```powershell
-New-EntraBetaPrivateAccessApplicationSegment -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -DestinationHost 'ssh.contoso.local' -Ports 22 -Protocol TCP -DestinationType FQDN
+$ApplicationObjectId = (Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'").ObjectId
+
+$params = @{
+    ObjectId = $ApplicationObjectId
+    DestinationHost = 'ssh.contoso.local'
+    Ports = 22
+    Protocol = 'TCP'
+    DestinationType = 'FQDN'
+}
+
+New-EntraBetaPrivateAccessApplicationSegment @params
 ```
 
 ```Output
@@ -44,8 +54,10 @@ id              : cccc2222-dd33-4444-55ee-666666ffffff
 ### Example 2: Create an application segment using ranges of IPs and multiple ports
 
 ```powershell
+$ApplicationObjectId = (Get-EntraBetaApplication -Filter "DisplayName eq '<GlobalSecureAccess_Application_DisplayName>'").ObjectId
+
 $params = @{
-    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    ObjectId = $ApplicationObjectId
     DestinationHost = '192.168.1.100..192.168.1.110'
     Ports = '22,3389'
     Protocol = 'TCP,UDP'
@@ -201,3 +213,9 @@ System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutra
 ## Notes
 
 ## RELATED LINKS
+
+[Get-EntraBetaPrivateAccessApplicationSegment](Get-EntraBetaPrivateAccessApplicationSegment.md)
+
+[Remove-EntraBetaPrivateAccessApplicationSegment](Remove-EntraBetaPrivateAccessApplicationSegment.md)
+
+[Get-EntraBetaApplication](Get-EntraBetaApplication.md)
