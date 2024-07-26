@@ -2,9 +2,9 @@
 title: Set-EntraUserLicense
 description: This article provides details on the Set-EntraUserLicense command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 02/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,16 +12,18 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraUserLicense
+
 schema: 2.0.0
 ---
 
 # Set-EntraUserLicense
 
-## SYNOPSIS
+## Synopsis
+
 Adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraUserLicense 
@@ -30,41 +32,57 @@ Set-EntraUserLicense
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Set-EntraUserLicense adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
+## Description
 
-## EXAMPLES
+The `Set-EntraUserLicense` adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
+
+For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
+
+- Directory Writers
+- License Administrator
+- User Administrator
+
+## Examples
 
 ### Example 1: Add a license to a user based on a template user
+
 ```powershell
-PS C:\> $LicensedUser = Get-EntraUser -ObjectId "TemplateUser@contoso.com"  
-PS C:\> $User = Get-EntraUser -ObjectId "User@contoso.com"  
-PS C:\> $License = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense 
-PS C:\> $License.SkuId = $LicensedUser.AssignedLicenses.SkuId 
-PS C:\> $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
-PS C:\> $Licenses.AddLicenses = $License 
-PS C:\> Set-EntraUserLicense -ObjectId $User.ObjectId -AssignedLicenses $Licenses
+Connect-Entra -Scopes 'User.ReadWrite.All'
+$LicensedUser = Get-EntraUser -ObjectId 'TemplateUser@contoso.com"' 
+$User = Get-EntraUser -ObjectId 'SawyerM@contoso.com' 
+$License = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense 
+$License.SkuId = $LicensedUser.AssignedLicenses.SkuId 
+$Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
+$Licenses.AddLicenses = $License 
+Set-EntraUserLicense -ObjectId $User.ObjectId -AssignedLicenses $Licenses
 ```
 
-The first command gets a user by using the [Get-EntraUser](./Get-EntraUser.md) cmdlet, and then stores it in the $LicensedUser variable.  
+This example demonstrates how to assign a license to a user.
 
-The second command gets another user by using Get-EntraUser, and then stores it in the $User variable.  
+### Example 2: Add a license to a user by copying license from another user
 
-The third command creates an AssignedLicense type, and then stores it in the $License variable.  
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+$LicensedUser = Get-EntraUser -ObjectId dddddddd-3333-4444-5555-eeeeeeeeeeee
+$User = Get-EntraUser -ObjectId aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 
+$License1 = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense 
+$License1.SkuId = $LicensedUser.AssignedLicenses.SkuId[0] 
+$License2 = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense
+$License2.SkuId = $LicensedUser.AssignedLicenses.SkuId[1]
+$addLicensesArray = @()
+$addLicensesArray += $License1
+$addLicensesArray += $License2
+$Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
+$Licenses.AddLicenses = $addLicensesArray
+Set-EntraUserLicense -ObjectId $User.ObjectId -AssignedLicenses $Licenses
+```
 
-The fourth command set the SkuId property of $License to the same value as the SkuId property of $LicensedUser.  
+This example demonstrates how to assign a license to a user by copying license from another user.
 
-The fifth command creates an AssignedLicenses object, and stores it in the $Licenses variable.  
-
-The sixth command adds the license in $License to $Licenses.  
-
-The final command assigns the licenses in $Licenses to the user in $User.  
-
-The licenses in $Licenses includes $License from the third and fourth commands.
-
-## PARAMETERS
+## Parameters
 
 ### -AssignedLicenses
+
 Specifies a list of licenses to assign or remove.
 
 ```yaml
@@ -80,10 +98,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -95,15 +114,15 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Get-EntraUser](Get-EntraUser.md)
-

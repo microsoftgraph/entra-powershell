@@ -1,27 +1,28 @@
 ---
-title: Add-EntraScopedRoleMembership.
+title: Add-EntraScopedRoleMembership
 description: This article provides details on the Add-EntraScopedRoleMembership command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 06/05/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
-author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Add-EntraScopedRoleMembership
+
 schema: 2.0.0
 ---
 
 # Add-EntraScopedRoleMembership
 
-## SYNOPSIS
+## Synopsis
 
 Adds a scoped role membership to an administrative unit.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraScopedRoleMembership
@@ -32,27 +33,28 @@ Add-EntraScopedRoleMembership
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The Add-EntraScopedRoleMembership cmdlet adds a scoped role membership to an administrative unit.
+The `Add-EntraScopedRoleMembership` cmdlet adds a scoped role membership to an administrative unit.
 
-## EXAMPLES
+## Examples
 
-### Example 1: Adds a scoped role membership to an administrative unit
+### Example 1: Add a scoped role membership to an administrative unit
 
 ```powershell
-$User = Get-EntraUser -SearchString "The user that will be an admin on this unit"
-$Role = Get-EntraDirectoryRole | Where-Object -Property DisplayName -EQ -Value "User Account Administrator"
-$Unit = Get-EntraAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value "<Display name of unit"
-$RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
-$RoleMember.ObjectId = $User.ObjectID
-Add-EntraScopedRoleMembership -ObjectId $unit.ObjectId -RoleObjectId $Role.ObjectId -RoleMemberInfo $RoleMember
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+$User = Get-EntraUser -SearchString 'MarkWood'
+$Role = Get-EntraDirectoryRole -Filter "DisplayName eq 'User Administrator'"
+$Unit = Get-EntraAdministrativeUnit -Filter "DisplayName eq 'New MSAdmin unit'"
+$RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRolememberinfo
+$RoleMember.Id = $User.ObjectID
+Add-EntraScopedRoleMembership -ObjectId $Unit.Id -RoleObjectId $Role.ObjectId -RoleMemberInfo $RoleMember
 ```
 
 ```output
 @odata.context             : https://graph.microsoft.com/v1.0/$metadata#scopedRoleMemberships/$entity
 administrativeUnitId       : aaaaaaaa-bbbb-cccc-aaaa-aaaaaaaa
-roleMemberInfo             : @{id= aaaaaaaa-bbbb-cccc-aaaa-aaaaaaaa; userPrincipalName=DemoTests1ac196c1-3343-4419-8c3b-6f95c02a83e2@M365x99297270.OnMicrosoft.com;
+roleMemberInfo             : @{id= aaaaaaaa-bbbb-cccc-aaaa-aaaaaaaa;     userPrincipalName=DemoTests1ac196c1-3343-4419-8c3b-6f95c02a83e2@M365x99297270.OnMicrosoft.com;
                              displayName=DemoTests1ac196c1-3343-4419-8c3b-6f95c02a83e2}
 id                         : zTVcE8KFQ0W4bI9tvt6kz5G_C9Qom7tCpCzyrakzL7YfYhUwtb_KQJI9hDn_fbKGU
 roleId                     : dddddddd-bbbb-cccc-aaaa-aaaaaaaa
@@ -61,9 +63,9 @@ RoleObjectId               : ffffffff-bbbb-cccc-aaaa-aaaaaaaa
 ObjectId                   : aaaaaaaaaaaaaaaaaaaaaa_bbbbbbbbbbbbbbbbbbbbbbbbbb_cccccccc_aaaaa
 ```
 
-This example adds a scoped role membership to an administrative unit.
+The example shows how to add a user to the specified role within the specified administrative unit.
 
-## PARAMETERS
+## Parameters
 
 ### -AdministrativeUnitObjectId
 
@@ -102,7 +104,7 @@ Accept wildcard characters: False
 Specifies a RoleMemberInfo object.
 
 ```yaml
-Type: System.RoleMemberInfo
+Type: System.MsRoleMemberInfo
 Parameter Sets: (All)
 Aliases:
 
@@ -115,7 +117,7 @@ Accept wildcard characters: False
 
 ### -RoleObjectId
 
-Specifies DirectoryRole ID.
+Specifies the ID of a directory role.
 
 ```yaml
 Type: System.String
@@ -133,13 +135,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraScopedRoleMembership](Get-EntraScopedRoleMembership.md)
 

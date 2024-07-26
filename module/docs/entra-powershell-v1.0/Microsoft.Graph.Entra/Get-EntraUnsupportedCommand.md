@@ -1,25 +1,26 @@
 ---
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraUnsupportedCommand
+
 schema: 2.0.0
 ---
 
 # Get-EntraUnsupportedCommand
 
-## SYNOPSIS
+## Synopsis
 {{ Fill in the Synopsis }}
 
-## SYNTAX
+## Syntax
 
 ```
 Get-EntraUnsupportedCommand
 ```
 
-## DESCRIPTION
+## Description
 {{ Fill in the Description }}
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```powershell
@@ -28,15 +29,15 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
-## INPUTS
+## Inputs
 
 ### None
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

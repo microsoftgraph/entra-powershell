@@ -1,16 +1,17 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaAccountSku
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaAccountSku
 
-## SYNOPSIS
+## Synopsis
 Retrieves all the SKUs for a company.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```
@@ -22,12 +23,12 @@ Get-EntraBetaAccountSku [<CommonParameters>]
 Get-EntraBetaAccountSku [-TenantId <Guid>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaAccountSku will return all the SKUs that the company owns.
 
-## EXAMPLES
+## Examples
 
-### EXAMPLE 1
+### Example 1
 ```
 Get-EntraBetaAccountSku
 ```
@@ -38,7 +39,7 @@ Description
 
 This command returns a list of SKUs.
 
-## PARAMETERS
+## Parameters
 
 ### -TenantId
 The unique ID of the tenant to perform the operation on.
@@ -61,10 +62,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

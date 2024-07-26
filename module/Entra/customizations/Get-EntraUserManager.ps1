@@ -14,7 +14,7 @@
         $keysChanged = @{ObjectId = "Id"}
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($null -ne $PSBoundParameters["ObjectId"])
         {
@@ -22,7 +22,7 @@
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if($null -ne $PSBoundParameters["WarningVariable"])
         {
@@ -60,15 +60,26 @@
         {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
+
+        $URI = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager?`$select=*"
+
+        if($null -ne $PSBoundParameters["Property"])
+        {
+            $selectProperties = $PSBoundParameters["Property"]
+            $selectProperties = $selectProperties -Join ','
+            $properties = "`$select=$($selectProperties)"
+            $URI = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager?$properties"
+        }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-    
-        try {
-            $URI = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager?`$select=*"
-            $response = Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method -ErrorAction Stop
-            $response = $response | ConvertTo-Json | ConvertFrom-Json
+        
+        $URI = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager?`$select=*"
+        $response = Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method -ErrorAction Stop
+
+        try {            
+            $response = $response | ConvertTo-Json -Depth 5 | ConvertFrom-Json
             $response | ForEach-Object {
                 if($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
