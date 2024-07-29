@@ -25,7 +25,7 @@
             $params["Uri"] = "$baseUri/?$properties"
         }
 
-        if($null -ne $PSBoundParameters["Top"] -and  (-not $PSBoundParameters.ContainsKey("All")))
+        if($null -ne $PSBoundParameters["Top"])
         {
             $topCount = $PSBoundParameters["Top"]
             if ($topCount -gt 999) {
@@ -79,9 +79,9 @@ ErrorCode: Request_ResourceNotFound"
             $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $all = $All.IsPresent
             $increment = $topCount - $data.Count
-            while ($response.'@odata.nextLink' -and (($all) -or ($increment -gt 0 -and -not $all))) {
+            while (($response.'@odata.nextLink' -and (($all -and ($increment -lt 0)) -or $increment -gt 0))) {
                 $params["Uri"] = $response.'@odata.nextLink'
-                if (-not $all) {
+                if ($increment -gt 0) {
                     $topValue = [Math]::Min($increment, 999)
                     $params["Uri"] = $params["Uri"].Replace('$top=999', "`$top=$topValue")
                     $increment -= $topValue
@@ -115,6 +115,6 @@ ErrorCode: Request_ResourceNotFound"
             $userList += $userType
         }
         $userList 
-    } 
+    }
 '@
 }
