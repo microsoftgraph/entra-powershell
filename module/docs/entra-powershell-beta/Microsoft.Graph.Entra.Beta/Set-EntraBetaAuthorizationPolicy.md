@@ -43,7 +43,7 @@ Set-EntraBetaAuthorizationPolicy
 
 ## Description
 
-The Set-EntraBetaAuthorizationPolicy cmdlet updates an Azure Active Directory authorization policy.
+The `Set-EntraBetaAuthorizationPolicy` cmdlet updates an Azure Active Directory authorization policy.
 
 ## Examples
 
