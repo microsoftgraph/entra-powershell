@@ -208,7 +208,7 @@ This example shows how to assign application permissions to a service principal 
 
 ### -Id
 
-Specifies the `Id` of the app role (defined on the resource service principal) to assign to the client service principal.
+Specifies the `Id` of the app role (defined on the resource service principal) to assign to the principal.
 
 ```yaml
 Type: System.String
