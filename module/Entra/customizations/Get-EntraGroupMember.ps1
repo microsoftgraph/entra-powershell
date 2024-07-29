@@ -31,6 +31,7 @@
             $URI = "$baseUri/$($params.GroupId)/members?$properties"
         }
         if($null -ne $PSBoundParameters["Top"])
+        if($null -ne $PSBoundParameters["Top"])
         {
             $topCount = $PSBoundParameters["Top"]
             if ($topCount -gt 999) {
@@ -53,7 +54,9 @@
             $all = $All.IsPresent
             $increment = $topCount - $data.Count
             while (($response.'@odata.nextLink' -and (($all -and ($increment -lt 0)) -or $increment -gt 0))) {
+            while (($response.'@odata.nextLink' -and (($all -and ($increment -lt 0)) -or $increment -gt 0))) {
                 $URI = $response.'@odata.nextLink'
+                if ($increment -gt 0) {
                 if ($increment -gt 0) {
                     $topValue = [Math]::Min($increment, 999)
                     if($minTop){
