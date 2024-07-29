@@ -1,10 +1,9 @@
 ---
-title: Get-EntraBetaUser
+title: Get-EntraBetaUser.
 description: This article provides details on the Get-EntraBetaUser command.
 
-
 ms.topic: reference
-ms.date: 06/21/2024
+ms.date: 07/29/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -92,6 +91,8 @@ Adele Vance bbbbbbbb-1111-2222-3333-cccccccccccc testUpn@tenant.com testUpn@tena
 
 This command gets the specified user.
 
+- `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
+
 ### Example 3: Search among retrieved users
 
 ```powershell
@@ -162,6 +163,7 @@ Accept wildcard characters: False
 Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
 Details on querying with oData can be found here: <https://learn.microsoft.com/graph/aad-advanced-queries?tabs=powershell>
+
 ```yaml
 Type: System.String
 Parameter Sets: GetQuery

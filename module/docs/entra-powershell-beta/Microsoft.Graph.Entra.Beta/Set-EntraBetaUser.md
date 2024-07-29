@@ -2,9 +2,8 @@
 title: Set-EntraBetaUser.
 description: This article provides details on the Set-EntraBetaUser command.
 
-
 ms.topic: reference
-ms.date: 06/21/2024
+ms.date: 07/29/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -76,6 +75,8 @@ Set-EntraUser -ObjectId 'TestUser@example.com' -Displayname $user.Displayname
 
 This example updates the specified user's Display name parameter.
 
+- `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
+
 ### Example 2: Set the specified user's AccountEnabled parameter
 
 ```powershell
@@ -84,6 +85,9 @@ Set-EntraBetaUser -ObjectId 'aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb' -AccountEnabl
 ```
 
 This example updates the specified user's AccountEnabled parameter.
+
+- `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
+- `-AccountEnabled` Specifies whether the account is enabled.
 
 ### Example 3: Set all but specified user's ConsentProvidedForMinor parameter
 
@@ -94,6 +98,9 @@ Get-EntraBetaUser -Top 1  | Where-Object -FilterScript { $_.DisplayName -notmatc
 
 This example updates the specified user's as minors with parental consent.
 
+- `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
+- `-ConsentProvidedForMinor` Sets whether consent has to obtained for minors. Allowed values: null, granted, denied, and notRequired.
+
 ### Example 4: Set the specified user's parameter
 
 ```powershell
@@ -102,6 +109,9 @@ Set-EntraBetaUser -ObjectId 'aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb' -City 'Add ci
 ```
 
 This example updates the specified user's parameter.
+
+- `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
+- `-UserType` classify user types in your directory, such as "Member" and "Guest."
 
 ### Example 5: Set the specified user's PasswordProfile parameter
 
@@ -116,6 +126,8 @@ Set-EntraBetaUser -ObjectId 'aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb' -PasswordProf
 ```
 
 This example updates the specified user's PasswordProfile parameter.
+
+- `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
 
 ## Parameters
 
@@ -220,7 +232,7 @@ Accept wildcard characters: False
 
 ### -ExtensionProperty
 
-Add data to custom user properties as the basic open extensions or the more versatile schema extensions. 
+Add data to custom user properties as the basic open extensions or the more versatile schema extensions.
 
 ```yaml
 Type: System.Collections.Generic.Dictionary`2[System.String,System.String]
