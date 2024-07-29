@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaServicePrincipalO
 
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/29/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -19,6 +19,7 @@ schema: 2.0.0
 # Get-EntraBetaServicePrincipalOwner
 
 ## Synopsis
+
 Get the owner of a service principal.
 
 ## Syntax
@@ -33,67 +34,81 @@ Get-EntraBetaServicePrincipalOwner
 ```
 
 ## Description
-The Get-EntraBetaServicePrincipalOwner cmdlet gets the owners of a service principal in Microsoft Entra ID.
+
+The `Get-EntraBetaServicePrincipalOwner` cmdlet gets the owners of a service principal in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Retrieve the owner of a service principal
+
 ```powershell
-PS C:\> $ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
-PS C:\> Get-EntraBetaServicePrincipalOwner -ObjectId $ServicePrincipalId
+Connect-Entra -Scopes 'Application.Read.All'
+$ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
+Get-EntraBetaServicePrincipalOwner -ObjectId $ServicePrincipalId
 ```
 
-```output
-ObjectId                             DisplayName    UserPrincipalName   UserType
---------                             -----------    -----------------   --------
-fd560167-ff1f-471a-8d74-3b0070abcea1 Adams Smith    Adams@contoso.com   Member
-15b958d9-af43-40be-8e91-bcd5676556f7 Peter Kons     Peter@contoso.com   Member
-b7753478-6cec-4965-96cc-560c5fb6fcd4 Mary Kom       Mary@contoso.com    Member
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
 ```
 
-The first command gets the ID of a service principal by using the [Get-EntraBetaServicePrincipal](./Get-EntraBetaServicePrincipal.md) cmdlet. 
-The command stores the ID in the $ServicePrincipalId variable.
+This example gets the owners of a specified service principal.  
+You can use `Get-EntraBetServicePrincipal` cmdlet to retrieve a service principal object Id.
 
-The second command gets the owner of a service principal identified by $ServicePrincipalId.
+- `ObjectId` parameter specifies the service principal object ID.
 
 ### Example 2: Retrieve all the owners of a service principal
+
 ```powershell
-PS C:\> $ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
-PS C:\> Get-EntraBetaServicePrincipalOwner -ObjectId $ServicePrincipalId -All
+Connect-Entra -Scopes 'Application.Read.All'
+$ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
+Get-EntraBetaServicePrincipalOwner -ObjectId $ServicePrincipalId -All
 ```
 
-```output
-ObjectId                             DisplayName    UserPrincipalName   UserType
---------                             -----------    -----------------   --------
-fd560167-ff1f-471a-8d74-3b0070abcea1 Adams Smith    Adams@contoso.com   Member
-15b958d9-af43-40be-8e91-bcd5676556f7 Peter Kons     Peter@contoso.com   Member
-b7753478-6cec-4965-96cc-560c5fb6fcd4 Mary Kom       Mary@contoso.com    Member
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
 ```
 
-This command gets all the owners of a service principal.
+This command gets all the owners of a service principal.  
+You can use `Get-EntraBetServicePrincipal` cmdlet to retrieve a service principal object Id.
+
+- `ObjectId` parameter specifies the service principal object ID.
 
 ### Example 3: Retrieve top two owners of a service principal
+
 ```powershell
-PS C:\> $ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
-PS C:\> Get-EntraBetaServicePrincipalOwner -ObjectId $ServicePrincipalId -Top 2
+Connect-Entra -Scopes 'Application.Read.All'
+$ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
+Get-EntraBetaServicePrincipalOwner -ObjectId $ServicePrincipalId -Top 2
 ```
 
-```output
-ObjectId                             DisplayName    UserPrincipalName   UserType
---------                             -----------    -----------------   --------
-fd560167-ff1f-471a-8d74-3b0070abcea1 Adams Smith    Adams@contoso.com   Member
-15b958d9-af43-40be-8e91-bcd5676556f7 Peter Kons     Peter@contoso.com   Member
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
-This command gets top two owners of a service principal.
+This command gets top two owners of a service principal.  
+You can use `Get-EntraBetServicePrincipal` cmdlet to retrieve a service principal object Id.
+
+- `-ObjectId` parameter specifies the service principal object ID.
 
 ## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -105,10 +120,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -120,10 +136,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -151,7 +168,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
