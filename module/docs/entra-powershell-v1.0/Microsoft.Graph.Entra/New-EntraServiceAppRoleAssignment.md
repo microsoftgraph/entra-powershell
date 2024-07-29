@@ -140,7 +140,7 @@ This example demonstrates how to assign an app role to a group in Microsoft Entr
 - `ObjectId`:  The ObjectId of the app's service principal.
 - `ResourceId`: The `Id` of the resource servicePrincipal (the API) that defines the app role (the application permission).
 - `Id`: The `Id` of the app role (defined on the resource service principal) to assign to the client service principal. If no app roles are defined on the resource app, you can use `00000000-0000-0000-0000-000000000000`.
-- `PrincipalId`: The `Id` of the client service principal to which you're assigning the app role.
+- `PrincipalId`: The `Id` of the group to which you're assigning the app role.
 
 ### Example 4: Assign permissions to a service principal
 
