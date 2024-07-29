@@ -240,7 +240,7 @@ Accept wildcard characters: False
 
 ### -PrincipalId
 
-Specifies a principal ID, a client service principal to which you're assigning the app role.
+Specifies the unique identifier (id), for the user, security group, or service principal you're assigning the app role.
 
 ```yaml
 Type: System.String
