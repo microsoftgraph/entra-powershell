@@ -84,17 +84,7 @@
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name UserStateChangedOn -Value externalUserStateChangeDate
             }
         }
-        $userList = @()
-        foreach ($data in $response) {
-            $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
-            $data.PSObject.Properties | ForEach-Object {
-                $propertyName = $_.Name
-                $propertyValue = $_.Value
-                $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
-            }
-            $userList += $userType
+        $response 
         }
-        $userList
-    }
 '@
 }

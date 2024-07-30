@@ -61,17 +61,7 @@
         Write-Debug("=========================================================================`n")
                 
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri 'https://graph.microsoft.com/v1.0/me/revokeSignInSessions' -Method POST).value
-        $userList = @()
-        foreach ($data in $response) {
-            $userType = New-Object Microsoft.Graph.PowerShell.Models.ComponentsMwc6EoResponsesRevokesigninsessionsresponseContentApplicationJsonSchema
-            $data.PSObject.Properties | ForEach-Object {
-                $propertyName = $_.Name
-                $propertyValue = $_.Value
-                $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
-            }
-            $userList += $userType
-        }
-        $userList
+        $response
     }  
 '@
 }
