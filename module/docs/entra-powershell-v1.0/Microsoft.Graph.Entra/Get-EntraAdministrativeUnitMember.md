@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraAdministrativeUnitMember
+
 schema: 2.0.0
 ---
 
@@ -26,12 +27,17 @@ Gets a member of an administrative unit.
 ```powershell
 Get-EntraAdministrativeUnitMember
 <<<<<<< HEAD
+<<<<<<< HEAD
  -ObjectId <String> 
  [-All] 
 =======
  -Id <String> 
  [-All]
 >>>>>>> 3cf9e81484c7f0c7eece1594f143e77b8a0f098a
+=======
+ -ObjectId <String> 
+ [-All]
+>>>>>>> 153f4566518a4bf4df5bd1442794d65108661f3f
  [-Top <Int32>]
  [-Property <String[]>]
  [<CommonParameters>]

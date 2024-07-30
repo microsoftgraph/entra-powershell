@@ -11,7 +11,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaApplicationSignInDetailedSummary
+
 schema: 2.0.0
 ---
 
@@ -22,8 +23,11 @@ Get detailed sign in summaries
 
 ## Syntax
 
-```
-Get-EntraBetaApplicationSignInDetailedSummary [-Top <Int32>] [-Filter <String>] [<CommonParameters>]
+```powershell
+Get-EntraBetaApplicationSignInDetailedSummary
+ [-Top <Int32>]
+ [-Filter <String>]
+ [<CommonParameters>]
 ```
 
 ## Description

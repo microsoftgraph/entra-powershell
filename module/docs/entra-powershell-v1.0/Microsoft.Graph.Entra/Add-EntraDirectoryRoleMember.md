@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Add-EntraDirectoryRoleMember
+
 schema: 2.0.0
 ---
 
@@ -43,7 +44,10 @@ Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
 Add-EntraDirectoryRoleMember -ObjectId '019ea7a2-1613-47c9-81cb-20ba35b1ae48' -RefObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
-This command adds a member to a directory role. The `-ObjectId` parameter specifies the ID of the role to which the member should be added, and the `-RefObjectId` parameter specifies the ID of the member to be added.
+This command adds a member to a directory role.
+
+- `ObjectId` parameter specifies the ID of the directory role to which the member will be added. Use the `Get-EntraDirectoryRole` command to retrieve the details of the directory role.
+- `RefObjectId` parameter specifies the ID of Microsoft Entra ID object to assign as owner/manager/member.
 
 ## Parameters
 

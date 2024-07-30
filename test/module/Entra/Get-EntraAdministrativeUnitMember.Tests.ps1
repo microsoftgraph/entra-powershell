@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll{
     if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
         Import-Module Microsoft.Graph.Entra      
@@ -35,9 +38,6 @@ Describe "Tests for Get-EntraAdministrativeUnitMember"{
     It "Should fail when All has an argument" {
         { Get-EntraAdministrativeUnitMember -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
     }
-    It "Should fail when filter is empty" {
-        { Get-EntraAdministrativeUnitMember -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
-    }
     It "Should fail when Top is empty" {
         { Get-EntraAdministrativeUnitMember -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
     }
@@ -47,21 +47,15 @@ Describe "Tests for Get-EntraAdministrativeUnitMember"{
     It "Should fail when invalid parameter is passed" {
         { Get-EntraAdministrativeUnitMember -xyz } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
     }
-    It "Should return specific AdministrativeUnit by filter" {
-        $result = Get-EntraAdministrativeUnitMember -Filter "displayName -eq 'test111'"
-        $result | Should -Not -BeNullOrEmpty
-        $result.DisplayName | should -Be 'test111'
-        Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
-    }  
     It "Should return top AdministrativeUnit" {
-        $result = @(Get-EntraAdministrativeUnitMember -Top 1)
+        $result = @(Get-EntraAdministrativeUnitMember -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Top 1)
         $result | Should -Not -BeNullOrEmpty
         $result | Should -HaveCount 1 
-        Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }  
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAdministrativeUnitMember"
-        $result = Get-EntraAdministrativeUnitMember -Top 1
+        $result = Get-EntraAdministrativeUnitMember -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Top 1
         $params = Get-Parameters -data $result.Parameters
         $a= $params | ConvertTo-json | ConvertFrom-Json
         $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue
