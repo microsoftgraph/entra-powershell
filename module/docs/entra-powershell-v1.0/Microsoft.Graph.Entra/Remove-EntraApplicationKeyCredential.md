@@ -2,7 +2,7 @@
 title: Remove-EntraApplicationKeyCredential.
 description: This article provides details on the Remove-EntraApplicationKeyCredential command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,13 +11,15 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraApplicationKeyCredential
+
 schema: 2.0.0
 ---
 
 # Remove-EntraApplicationKeyCredential
 
 ## Synopsis
+
 Removes a key credential from an application.
 
 ## Syntax
@@ -30,25 +32,37 @@ Remove-EntraApplicationKeyCredential
 ```
 
 ## Description
-The Remove-EntraApplicationKeyCredential cmdlet removes a key credential from an application.
+
+The `Remove-EntraApplicationKeyCredential` cmdlet removes a key credential from an application.
+
+An application can use this command along with `New-EntraApplicationKeyCredential` to automate the rolling of its expiring keys.
 
 ## Examples
 
 ### Example 1: Remove a key credential
-```
-PS C:\> Remove-EntraApplicationKeyCredential -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -KeyId "6aa971c6-3040-45df-87ed-581c8c09ff2b"
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+
+$params = @{
+    ObjectId = '33334444-dddd-5555-eeee-6666ffff7777'
+    KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
+}
+
+Remove-EntraApplicationKeyCredential @params
 ```
 
 This command removes the specified key credential from the specified application.
 
 ## Parameters
 
-
 ### -KeyId
+
 Specifies a custom key ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -60,10 +74,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies a unique ID of an application in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -75,7 +90,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

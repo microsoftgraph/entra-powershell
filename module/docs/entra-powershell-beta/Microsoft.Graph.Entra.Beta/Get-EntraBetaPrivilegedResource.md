@@ -2,7 +2,7 @@
 title: Get-EntraBetaPrivilegedResource.
 description: This article provides details on Get-EntraBetaPrivilegedResource command.
 
-ms.service: active-directory
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -12,7 +12,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaPrivilegedResource
+
 schema: 2.0.0
 ---
 

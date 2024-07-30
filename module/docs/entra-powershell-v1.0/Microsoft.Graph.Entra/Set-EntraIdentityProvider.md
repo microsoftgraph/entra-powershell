@@ -2,7 +2,7 @@
 title: Set-EntraIdentityProvider
 description: This article provides details on the Set-EntraIdentityProvider command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -12,7 +12,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraIdentityProvider
+
 schema: 2.0.0
 ---
 

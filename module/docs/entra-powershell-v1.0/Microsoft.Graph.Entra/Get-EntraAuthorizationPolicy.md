@@ -2,7 +2,7 @@
 title: Get-EntraAuthorizationPolicy
 description: This article provides details on the Get-EntraAuthorizationPolicy command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -10,7 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraAuthorizationPolicy
+
 schema: 2.0.0
 ---
 
@@ -23,7 +24,8 @@ Gets an authorization policy, which represents a policy that can control Microso
 ## Syntax
 
 ```powershell
-Get-EntraAuthorizationPolicy 
+Get-EntraAuthorizationPolicy
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -52,6 +54,22 @@ DeletedDateTime Description DisplayName            Id                  AllowEmai
 This command gets the Microsoft Entra ID authorization policy.
 
 ## Parameters
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### CommonParameters
 

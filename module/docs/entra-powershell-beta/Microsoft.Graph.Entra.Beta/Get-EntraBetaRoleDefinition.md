@@ -2,7 +2,7 @@
 title: Get-EntraBetaRoleDefinition
 description: This article provides details on the Get-EntraBetaRoleDefinition command.
 
-ms.service: active-directory
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaRoleDefinition
+
 schema: 2.0.0
 ---
 
@@ -202,7 +203,7 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-Specifies an oData v3.0 filter string to match a set of role definitions.
+Specifies an OData v4.0 filter string to match a set of role definitions.
 
 ```yaml
 Type: String

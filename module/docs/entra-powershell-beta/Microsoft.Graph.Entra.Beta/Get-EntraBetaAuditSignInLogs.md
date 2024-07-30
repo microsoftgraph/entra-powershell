@@ -2,7 +2,7 @@
 title: Get-EntraBetaAuditSignInLogs.
 description: This article provides details on the Get-EntraBetaAuditSignInLogs command.
 
-ms.service: active-directory
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -12,7 +12,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaAuditSignInLogs
+
 schema: 2.0.0
 ---
 
@@ -120,7 +121,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-The oData v3.0 filter statement.
+The OData v4.0 filter statement.
 Controls which objects are returned.
 
 ```yaml
