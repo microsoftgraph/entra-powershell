@@ -19,6 +19,7 @@ schema: 2.0.0
 # Set-EntraUserExtension
 
 ## Synopsis
+
 Sets a user extension.
 
 ## Syntax
@@ -30,27 +31,28 @@ Set-EntraUserExtension
 ```
 
 ## Description
-The Set-EntraUserExtension cmdlet sets a user extension in Microsoft Entra ID.
+
+The `Set-EntraUserExtension` cmdlet sets a user extension in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Set the value of an extension attribute for a user
+
 ```powershell
-PS C:\> $User = Get-EntraUser -Top 1
-PS C:\> Set-EntraUserExtension -ObjectId $User.ObjectId 
+$User = Get-EntraUser -Top 1
+Set-EntraUserExtension -ObjectId $User.ObjectId 
 ```
 
-The first command gets a user by using the [Get-EntraUser](./Get-EntraUser.md) cmdlet, and then stores it in the $User variable.
-
-The second command  sets the value of the extension attribute for a specified user.
+This example shows how to update the value of the extension attribute for a specified user.
 
 ## Parameters
 
 ### -ObjectId
+
 Specifies the ID of an object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -62,7 +64,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -79,4 +82,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraExtensionProperty](Get-EntraExtensionProperty.md)
 
 [Remove-EntraUserExtension](Remove-EntraUserExtension.md)
-
