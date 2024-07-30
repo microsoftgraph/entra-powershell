@@ -34,17 +34,20 @@ Add-EntraCustomSecurityAttributeDefinitionAllowedValues
 
 The `Add-EntraCustomSecurityAttributeDefinitionAllowedValues` adds a predefined value for a Microsoft Entra ID custom security attribute definition.
 
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
+
 ## Examples
 
 ### Example 1: Add a predefined value for a Microsoft Entra ID custom security attribute definition
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
+$CustomSecurityAttributeDefinitionId = (Get-EntraCustomSecurityAttributeDefinition -Id <attributename_attributedefinition>).Id
 $params = @{
-    CustomSecurityAttributeDefinitionId = 'Engineering_Project'
+    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinitionId
     Id = 'Alpine'
     IsActive = $true
- }
+}
 Add-EntraCustomSecurityAttributeDefinitionAllowedValues @params
 ```
 
@@ -55,10 +58,10 @@ Id   IsActive
 Alpine True
 ```
 
-This example Add a predefined value:
+This example adds a predefined value to a custom security attribute definition.
 
-- `-CustomSecurityAttributeDefinitionId` Specify the unique identifier for custom security attribute definition.
-- `-Id` Specify the the unique identifier of an object.
+- `-CustomSecurityAttributeDefinitionId` Specify the unique identifier for custom security attribute definition. You can use the command `Get-EntraCustomSecurityAttributeDefinition` to get the ID.
+- `-Id` Specify the identifier for the predefined value.
 - `-IsActive` Specify whether the predefined value is active or deactivated.
 
 ## Parameters
@@ -81,7 +84,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-The unique identifier of an object in Microsoft Entra ID.
+The unique identifier for the predefined value, which can be up to 64 characters long and include Unicode characters. Spaces are allowed, but some special characters aren't. This identifier is case sensitive, can't be changed later, and is required.
 
 ```yaml
 Type: System.String
