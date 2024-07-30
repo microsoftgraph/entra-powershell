@@ -41,6 +41,13 @@ Get-EntraCustomSecurityAttributeDefinition
 
 The `Get-EntraCustomSecurityAttributeDefinition` cmdlet gets a list of Microsoft Entra ID custom security attribute definitions. Specify `Id` parameter to gets a list of custom security attribute definitions.
 
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The following privileged roles are supported for this operation:
+
+- Attribute Assignment Reader
+- Attribute Definition Reader
+- Attribute Assignment Administrator
+- Attribute Definition Administrator
+
 ## Examples
 
 ### Example 1: Get a list of all custom security attribute definitions
@@ -56,10 +63,6 @@ Id                                      AttributeSet          Description       
 --                                      ------------          -----------                         ------------ ------------ ----                             ------     ---
 engineering_newvalue                    engineering           new value for command test          True         True         newvalue                         Available  Str
 Engineering_ProjectDate                 Engineering           Target completion date              False        True         ProjectDate                      Available  Str
-Test_Date                               Test                  Target completion date              False        True         Date                             Available  Str
-Test_ProjectDate                        Test                  Target completion date              False        True         ProjectDate                      Available  Str
-test2_ProjectDate                       test2                 Description Value                   False        True         ProjectDate                      Deprecated Str
-Testeng1_ProjectDate                    Testeng1              Target completion date              False        True         ProjectDate                      Available  Str
 ```
 
 This example get all custom security attribute definitions.
