@@ -3,11 +3,12 @@ title: Get-EntraBetaServicePrincipalDelegatedPermissionClassification
 description: This article provides details on the Get-EntraBetaServicePrincipalDelegatedPermissionClassification command.
 
 ms.topic: reference
-ms.date: 07/18/2024
+ms.date: 07/30/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaServicePrincipalDelegatedPermissionClassification
@@ -18,7 +19,8 @@ schema: 2.0.0
 # Get-EntraBetaServicePrincipalDelegatedPermissionClassification
 
 ## Synopsis
-Retreive the delegated permission classification objects on a service principal.
+
+Retrieve the delegated permission classification objects on a service principal.
 
 ## Syntax
 
@@ -43,58 +45,84 @@ Get-EntraBetaServicePrincipalDelegatedPermissionClassification
 ```
 
 ## Description
-The Get-EntraBetaServicePrincipalDelegatedPermissionClassification cmdlet retrieves the delegated permission classifications from a service principal.
+
+The `Get-EntraBetaServicePrincipalDelegatedPermissionClassification` cmdlet retrieves the delegated permission classifications from a service principal.
 
 ## Examples
 
 ### Example 1: Get a list of delegated permission classifications
+
+```powershell
+ Connect-Entra -Scopes 'Application.Read.All'
+ $params = @{
+  ServicePrincipalId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+ }
+Get-EntraBetaServicePrincipalDelegatedPermissionClassification @params
 ```
-PS C:\> Get-EntraBetaServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "95f56359-0165-4f80-bffb-c89d06cf2c6f"
 
-Classification : Low
-Id             : 5XBeIKarUkypdm0tRsSAQwE
-PermissionId   : 205e70e5-aba6-4c52-a976-6d2d46c48043
-PermissionName : Sites.Read.All
-
-Classification : Low
-Id             : ntbaFJsJyUKBC9ACmB_uwQE
-PermissionId   : 14dad69e-099b-42c9-810b-d002981feec1
-PermissionName : profile
+```Output
+Id                      Classification PermissionId                         PermissionName
+--                      -------------- ------------                         --------------
+bbbbbbbb-7777-8888-9999-cccccccccccc low            eeeeeeee-4444-5555-6666-ffffffffffff Sites.Read.All
+cccccccc-8888-9999-0000-dddddddddddd low            dddd3333-ee44-5555-66ff-777777aaaaaa profile
 ```
 
 This command retrieves all delegated permission classifications from the service principal.
 
-### Example 2: Get a delegated permission classifications
-```
-PS C:\> Get-EntraBetaServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "95f56359-0165-4f80-bffb-c89d06cf2c6f" -Id "5XBeIKarUkypdm0tRsSAQwE"
+- `-ServicePrincipalId` parameter specifies the service principal object ID.
 
-Classification : Low
-Id             : 5XBeIKarUkypdm0tRsSAQwE
-PermissionId   : 205e70e5-aba6-4c52-a976-6d2d46c48043
-PermissionName : Sites.Read.All
+### Example 2: Get a delegated permission classification
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+$params = @{
+  ServicePrincipalId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
+  Id = 'aaaa0000-bb11-2222-33cc-444444dddddd'
+}
+
+Get-EntraBetaServicePrincipalDelegatedPermissionClassification @params
+```
+
+```Output
+Id                      Classification PermissionId                         PermissionName
+--                      -------------- ------------                         --------------
+bbbbbbbb-7777-8888-9999-cccccccccccc low            eeeeeeee-4444-5555-6666-ffffffffffff Sites.Read.All
 ```
 
 This command retrieves the delegated permission classification by Id from the service principal.
 
-### Example 3: Get a delegated permission classification with filter
-```
-PS C:\> Get-EntraBetaServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "95f56359-0165-4f80-bffb-c89d06cf2c6f" -Filter "PermissionName eq 'Sites.Read.All'"
+- `-ServicePrincipalId` parameter specifies the service principal object ID.
+- `-Id` parameter specifies the unique identifier of a delegated permission classification object.
 
-Classification : Low
-Id             : 5XBeIKarUkypdm0tRsSAQwE
-PermissionId   : 205e70e5-aba6-4c52-a976-6d2d46c48043
-PermissionName : Sites.Read.All
+### Example 3: Get a delegated permission classification with filter
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+ $params = @{
+  ServicePrincipalId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'  
+  Filter = "PermissionName eq 'Sites.Read.All'"
+ }
+Get-EntraBetaServicePrincipalDelegatedPermissionClassification @params
+```
+
+```Output
+Id                      Classification PermissionId                         PermissionName
+--                      -------------- ------------                         --------------
+bbbbbbbb-7777-8888-9999-cccccccccccc low            eeeeeeee-4444-5555-6666-ffffffffffff Sites.Read.All
 ```
 
 This command retrieves the filtered delegated permission classifications from the service principal.
 
+- `-ServicePrincipalId` parameter specifies the service principal object ID.
+
 ## Parameters
 
 ### -ServicePrincipalId
-The unique identifier of a service principal object in Azure Active Directory.
+
+The unique identifier of a service principal object in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -106,10 +134,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-The unique identifier of a delegated permission classification object id.
+
+The unique identifier of a delegated permission classification object Id.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -121,11 +150,12 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-The OData v4.0 filter statement. 
+
+The OData v4.0 filter statement.
 Controls which objects are returned.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery
 Aliases:
 
@@ -138,7 +168,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -153,12 +183,15 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ## Outputs
 
 ### Microsoft.Online.Administration.DelegatedPermissionClassification
+
 ## Notes
+
 ## Related Links

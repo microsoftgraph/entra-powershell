@@ -1,4 +1,13 @@
 ---
+title: Get-EntraBetaServicePrincipalPasswordCredential
+description: This article provides details on the Get-EntraBetaServicePrincipalPasswordCredential command.
+
+ms.topic: reference
+ms.date: 07/29/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaServicePrincipalPasswordCredential
@@ -9,39 +18,51 @@ schema: 2.0.0
 # Get-EntraBetaServicePrincipalPasswordCredential
 
 ## Synopsis
+
 Get credentials for a service principal.
 
 ## Syntax
 
-```
-Get-EntraBetaServicePrincipalPasswordCredential -ObjectId <String> [<CommonParameters>]
+```powershell
+Get-EntraBetaServicePrincipalPasswordCredential 
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## Description
-The Get-EntraBetaServicePrincipalPasswordCredential cmdlet gets the password credentials for a service principal in Azure Active Directory (AD).
+
+The `Get-EntraBetaServicePrincipalPasswordCredential` cmdlet gets the password credentials for a service principal in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Retrieve the password credential of a service principal
-```
-PS C:\> $ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
-PS C:\> Get-EntraBetaServicePrincipalPasswordCredential -ObjectId $ServicePrincipalId
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+$ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
+Get-EntraBetaServicePrincipalPasswordCredential -ObjectId $ServicePrincipalId
 ```
 
-The first command gets the ID of a service principal by using the Get-EntraBetaServicePrincipal (./Get-EntraBetaServicePrincipal.md)cmdlet. 
-The command stores the ID in the $ServicePrincipalId variable.
+```Output
+CustomKeyIdentifier DisplayName EndDateTime         Hint KeyId                                SecretText StartDateTime
+------------------- ----------- -----------         ---- -----                                ---------- -------------
+                                17-04-2025 07:32:41 gjW  bdf6a3df-cc9b-4612-b948-e32804ee88f7            17-04-2024 07:32:41
+                                21-03-2025 08:12:08 4fl  7f4414ec-8f72-49a8-b949-70d635899656            21-03-2024 08:12:08
+                                12-12-2024 08:39:07 mjl  0fff6b21-0a20-4f7c-93ba-26ed9b648344            12-12-2023 08:39:10
+```
 
-The second command gets the password credential of a service principal identified by $ServicePrincipalId.
+This example retrieves the password credentials for specified service principal in Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies the object ID of a service principal. You can use `Get-EntraBetaServicePrincipal` to retrieve service principal object ID.
 
 ## Parameters
 
-
-
 ### -ObjectId
+
 Specifies the ID of the service principal for which to get password credentials.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -53,7 +74,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -63,9 +85,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaServicePrincipal]()
+[New-EntraBetaServicePrincipalPasswordCredential](New-EntraBetaServicePrincipalPasswordCredential.md)
 
-[New-EntraBetaServicePrincipalPasswordCredential]()
-
-[Remove-EntraBetaServicePrincipalPasswordCredential]()
-
+[Remove-EntraBetaServicePrincipalPasswordCredential](Remove-EntraBetaServicePrincipalPasswordCredential.md)
