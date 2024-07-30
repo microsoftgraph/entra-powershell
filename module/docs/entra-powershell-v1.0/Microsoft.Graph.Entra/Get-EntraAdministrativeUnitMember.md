@@ -2,9 +2,8 @@
 title: Get-EntraAdministrativeUnitMember
 description: This article provides details on the Get-EntraAdministrativeUnitMember command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/30/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,7 +11,6 @@ manager: CelesteDG
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraAdministrativeUnitMember
-
 schema: 2.0.0
 ---
 
@@ -26,18 +24,8 @@ Gets a member of an administrative unit.
 
 ```powershell
 Get-EntraAdministrativeUnitMember
-<<<<<<< HEAD
-<<<<<<< HEAD
- -ObjectId <String> 
- [-All] 
-=======
- -Id <String> 
- [-All]
->>>>>>> 3cf9e81484c7f0c7eece1594f143e77b8a0f098a
-=======
  -ObjectId <String> 
  [-All]
->>>>>>> 153f4566518a4bf4df5bd1442794d65108661f3f
  [-Top <Int32>]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -45,7 +33,7 @@ Get-EntraAdministrativeUnitMember
 
 ## Description
 
-The `Get-EntraAdministrativeUnitMember` cmdlet gets a member of a Microsoft Entra ID administrative unit. Specify `ObjectId` parameter to gets a member.
+The `Get-EntraAdministrativeUnitMember` cmdlet gets a member of a Microsoft Entra ID administrative unit. Specify `ObjectId` parameter to get a member.
 
 ## Examples
 
@@ -57,38 +45,14 @@ Get-EntraAdministrativeUnitMember -ObjectId 'bbbbbbbb-1111-1111-1111-ccccccccccc
 ```
 
 ```Output
-visibility                    : Private
-description                   :
-groupTypes                    : {Unified}
-displayName                   : testentra
-membershipRule                :
-mail                          : testentra@M365x99297270.onmicrosoft.com
-theme                         :
-serviceProvisioningErrors     : {}
-renewedDateTime               : 02/10/2023 09:42:25
-onPremisesLastSyncDateTime    :
-preferredDataLocation         :
-proxyAddresses                : {SMTP:testentra@M365x99297270.onmicrosoft.com}
-isAssignableToRole            : True
-@odata.type                   : #microsoft.graph.group             :
-mailNickname                  : testentra
-onPremisesSamAccountName      :
-resourceBehaviorOptions       : {}
-deletedDateTime               :
-membershipRuleProcessingState :
-securityEnabled               : True
-mailEnabled                   : True
-securityIdentifier            : S-1-12-1-4266007001-1094819047-283928483-4102749171
-createdDateTime               : 02/10/2023 09:42:25
-onPremisesDomainName          :
-id                            : bbbbbbbb-1111-1111-1111-cccccccccccc
-expirationDateTime            :
-onPremisesSecurityIdentifier  :
-ObjectId                      : bbbbbbbb-1111-1111-1111-cccccccccccc
-
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-1111-1111-cccccccccccc
 ```
 
 This example returns the list of administrative unit members from specified administrative unit ObjectID.
+
+- `-ObjectId` Specifies the ID of an administrative unit.
 
 ### Example 2: Get all administrative unit members by ObjectId
 
@@ -98,40 +62,17 @@ Get-EntraAdministrativeUnitMember -ObjectId 'bbbbbbbb-1111-1111-1111-ccccccccccc
 ```
 
 ```Output
-visibility                    : Private
-description                   :
-groupTypes                    : {Unified}
-displayName                   : testentra
-membershipRule                :
-mail                          : testentra@M365x99297270.onmicrosoft.com
-theme                         :
-serviceProvisioningErrors     : {}
-renewedDateTime               : 02/10/2023 09:42:25
-onPremisesLastSyncDateTime    :
-preferredDataLocation         :
-proxyAddresses                : {SMTP:testentra@M365x99297270.onmicrosoft.com}
-isAssignableToRole            : True
-@odata.type                   : #microsoft.graph.group             :
-mailNickname                  : testentra
-onPremisesSamAccountName      :
-resourceBehaviorOptions       : {}
-deletedDateTime               :
-membershipRuleProcessingState :
-securityEnabled               : True
-mailEnabled                   : True
-securityIdentifier            : S-1-12-1-4266007001-1094819047-283928483-4102749171
-createdDateTime               : 02/10/2023 09:42:25
-onPremisesDomainName          :
-id                            : bbbbbbbb-1111-1111-1111-cccccccccccc
-expirationDateTime            :
-onPremisesSecurityIdentifier  :
-ObjectId                      : bbbbbbbb-1111-1111-1111-cccccccccccc
-
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-1111-1111-cccccccccccc
+aaaabbbb-0000-cccc-1111-dddd2222eeee
 ```
 
 This example returns the list of administrative unit members from specified administrative unit ObjectID.
 
-### Example 3: Get top one administrative unit members by ObjectId
+`-ObjectId` Specifies the ID of an administrative unit.
+
+### Example 3: Get top one administrative unit member by ObjectId
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
@@ -139,37 +80,14 @@ Get-EntraAdministrativeUnitMember -ObjectId 'bbbbbbbb-1111-1111-1111-ccccccccccc
 ```
 
 ```Output
-visibility                    : Private
-description                   :
-groupTypes                    : {Unified}
-displayName                   : testentra
-membershipRule                :
-mail                          : testentra@M365x99297270.onmicrosoft.com
-theme                         :
-serviceProvisioningErrors     : {}
-renewedDateTime               : 02/10/2023 09:42:25
-onPremisesLastSyncDateTime    :
-preferredDataLocation         :
-proxyAddresses                : {SMTP:testentra@M365x99297270.onmicrosoft.com}
-isAssignableToRole            : True
-@odata.type                   : #microsoft.graph.group             :
-mailNickname                  : testentra
-onPremisesSamAccountName      :
-resourceBehaviorOptions       : {}
-deletedDateTime               :
-membershipRuleProcessingState :
-securityEnabled               : True
-mailEnabled                   : True
-securityIdentifier            : S-1-12-1-4266007001-1094819047-283928483-4102749171
-createdDateTime               : 02/10/2023 09:42:25
-onPremisesDomainName          :
-id                            : bbbbbbbb-1111-1111-1111-cccccccccccc
-expirationDateTime            :
-onPremisesSecurityIdentifier  :
-ObjectId                      : bbbbbbbb-1111-1111-1111-cccccccccccc
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-1111-1111-cccccccccccc
 ```
 
 This example returns top specified administrative unit members from specified administrative unit ObjectID.
+
+`-ObjectId` Specifies the ID of an administrative unit.
 
 ## Parameters
 
