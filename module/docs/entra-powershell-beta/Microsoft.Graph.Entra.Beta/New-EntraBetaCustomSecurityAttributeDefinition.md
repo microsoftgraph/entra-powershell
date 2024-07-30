@@ -41,18 +41,23 @@ New-EntraBetaCustomSecurityAttributeDefinition
 
 Create a new customSecurityAttributeDefinition object. Specify `IsSearchable`, `IsCollection`, `AttributeSet`, `Type`, `Name`, `Status` and `UsePreDefinedValuesOnly` parameters for create a new custom security attribute definition.
 
+You can define up to 500 active objects in a tenant.
+
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
+
 ## Examples
 
 ### Example 1: Add a custom security attribute
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttributeDefinition.ReadWrite.All'
+$AttributeSet  = Get-EntraBetaAttributeSet -Id '<CustomAttributeSetId>'
 $params = @{
     Name = 'ProjectTest' 
     Description = 'Target completion' 
     Type = 'String' 
     Status = 'Available' 
-    AttributeSet = 'Test' 
+    AttributeSet = $AttributeSet.Id 
     IsCollection = $False 
     IsSearchable = $True 
     UsePreDefinedValuesOnly = $False
@@ -69,7 +74,7 @@ Test_ProjectTest Test         Target completion False        True         Projec
 This example demonstrates how to add a custom security attribute.
 
 - `Name` parameter specifies the name of the custom security attribute.
-- `Description` parameter specifies the description for the attribute set.
+- `Description` parameter specifies the description of the custom security attribute.
 - `Type` parameter specifies the data type for the custom security attribute values.
 - `Status` parameter specifies the custom security attribute is active or deactivated.
 - `AttributeSet` parameter specifies the name of attribute set.
@@ -97,7 +102,7 @@ Accept wildcard characters: False
 
 ### -Description
 
-Description of the custom security attribute. Can be up to 128 characters long and include Unicode characters. Can be changed later.
+Description of the custom security attribute, up to 128 characters long and including Unicode characters. This description can be changed later.
 
 ```yaml
 Type: System.String

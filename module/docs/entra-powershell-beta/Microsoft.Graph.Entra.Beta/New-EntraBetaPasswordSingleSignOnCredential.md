@@ -41,7 +41,7 @@ Admin could create the group credentials as well.
 ### Example 1: New password single-sign-on credentials
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All and Directory.Read.All, Directory.ReadWrite.All'
+Connect-Entra -Scopes 'Application.ReadWrite.All','Directory.ReadWrite.All'
 $credentials = New-Object -TypeName Microsoft.Open.MSGraph.Model.PasswordSSOCredentials
 $credentials.Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 $creds1 = [Microsoft.Open.MSGraph.Model.PasswordSSOCredential]@{FieldId="param_emailOrUserName"; Value="foobar@ms.com"; Type="text"}
@@ -63,7 +63,7 @@ cccccccc-2222-3333-4444-dddddddddddd
 This example demonstrates how to create an password SSO credential for the given ObjectId and PasswordSSOObjectId.
 
 - `PasswordSSOObjectId` parameter specifies the User or Group ID.
-- `ObjectId` parameter specifies the ID of Microsoft Entra ID Object.
+- `ObjectId` parameter specifies the ID of a service principal.
 
 ## Parameters
 

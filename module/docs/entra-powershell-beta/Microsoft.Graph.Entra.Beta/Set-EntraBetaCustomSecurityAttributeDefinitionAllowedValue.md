@@ -76,7 +76,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-The unique identifier for an entity. Read-only.
+Indicates whether the predefined value is active or deactivated. If set to false, this predefined value cannot be assigned to any additional supported directory objects. This field is optional.
 
 ```yaml
 Type: System.String

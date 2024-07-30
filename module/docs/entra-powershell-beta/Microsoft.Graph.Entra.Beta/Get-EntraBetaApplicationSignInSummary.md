@@ -34,7 +34,14 @@ Get-EntraBetaApplicationSignInSummary
 
 ## Description
 
-The `Get-EntraBetaApplicationSignInSummary` cmdlet gets sign in summaries for the last 7 or 30 days.
+The `Get-EntraBetaApplicationSignInSummary` cmdlet gets sign-in summaries for the last 7 or 30 days.
+
+Returns the properties below:
+
+- appDisplayName - the name of the application that the user signed into.
+- failedSignInCount - count of failed sign-ins made by the application.
+- successPercentage - the percentage of successful sign-ins made by the application.
+- successfulSignInCount - count of successful sign-ins made by the application.
 
 ## Examples
 
@@ -140,7 +147,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-The oData v3.0 filter statement.
+The OData v4.0 filter statement.
 Controls which objects are returned.
 
 ```yaml

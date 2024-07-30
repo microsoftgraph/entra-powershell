@@ -42,9 +42,10 @@ Note that the password field is hidden for security purpose.
 ### Example 1: Get password single-sign-on credentials
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All and Directory.Read.All, Directory.ReadWrite.All'
+Connect-Entra -Scopes 'Application.ReadWrite.All','Directory.ReadWrite.All'
+$servicePrincipal = Get-EntraBetaservicePrincipal -ObjectId '66667777-aaaa-8888-bbbb-9999cccc0000'
 $params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    ObjectId = $servicePrincipal.Id
     PasswordSSOObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 }
 Get-EntraBetaPasswordSingleSignOnCredential @params
@@ -59,7 +60,7 @@ cccccccc-2222-3333-4444-dddddddddddd
 This example returns a password SSO credential for the given ObjectId and PasswordSSOObjectId.
 
 - `PasswordSSOObjectId` parameter specifies the User or Group ID.
-- `ObjectId` parameter specifies the ID of Microsoft Entra ID Object.
+- `ObjectId` parameter specifies the ID of a service principal. You can use `Get-EntraBetaservicePrincipal` cmdlet to get service principal object ID.
 
 ## Parameters
 

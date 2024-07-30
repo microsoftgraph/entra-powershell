@@ -45,6 +45,13 @@ Get-EntraBetaCustomSecurityAttributeDefinition
 
 Gets a list of Microsoft Entra ID custom security attribute definitions. Specify `Id` parameter to get a list of custom security attribute definitions.
 
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The following privileged roles are supported for this operation:
+
+- Attribute Assignment Reader
+- Attribute Definition Reader
+- Attribute Assignment Administrator
+- Attribute Definition Administrator
+
 ## Examples
 
 ### Example 1: Get a list of all custom security attribute definitions
@@ -57,14 +64,8 @@ Get-EntraBetaCustomSecurityAttributeDefinition
 ```Output
 Id                                      AttributeSet          Description                         IsCollection IsSearchable Name                             Status     Type    UsePreDefinedValuesOnly
 --                                      ------------          -----------                         ------------ ------------ ----                             ------     ----    -----------------------
-engineering_newvalue                    engineering           new value for command test          True         True         newvalue                         Available  String  False
+Engineering_newvalue                    Engineering           New Eng Value          True         True         NewValue                         Available  String  False
 Engineering_ProjectDate                 Engineering           Target completion date              False        True         ProjectDate                      Available  String  False
-Test_Date                               Test                  Target completion date              False        True         Date                             Available  String  True
-Test_ProjectDate                        Test                  Target completion date              False        True         ProjectDate                      Available  String  True
-test2_ProjectDate                       test2                 Description Value                   False        True         ProjectDate                      Deprecated String  True
-Testeng1_ProjectDate                    Testeng1              Target completion date              False        True         ProjectDate                      Available  String  True
-Test5_ProjectDate                       Test5                 Target completion date              False        True         ProjectDate                      Available  String  False
-DEMO7_ProjectDate                       DEMO7                 Target completion date              False        True         ProjectDate                      Available  String  False
 ```
 
 This example returns all custom security attribute definitions.

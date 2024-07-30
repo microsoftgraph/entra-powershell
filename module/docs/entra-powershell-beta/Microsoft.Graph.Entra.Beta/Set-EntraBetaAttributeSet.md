@@ -36,6 +36,8 @@ Set-EntraBetaAttributeSet
 
 Updates a Microsoft Entra ID attribute set object identified by ID. Specify `Id` parameter to update an attribute set.
 
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
+
 ## Examples
 
 ### Example 1: Update an attribute set
@@ -51,7 +53,7 @@ Set-EntraBetaAttributeSet @params
 
 This example update an attribute set.
 
-- `Id` parameter specifies the name of the attribute set.
+- `Id` parameter specifies the name of the attribute set. You can `Get-EntraBetaAttributeSet` to get more details.
 - `Description` parameter specifies the description for the attribute set.
 
 ### Example 2: Update an attribute set using MaxAttributesPerSet
@@ -67,14 +69,14 @@ Set-EntraBetaAttributeSet @params
 
 This example update an attribute set using MaxAttributesPerSet.
 
-- `Id` parameter specifies the name of the attribute set.
+- `Id` parameter specifies the name of the attribute set. You can `Get-EntraBetaAttributeSet` to get more details.
 - `MaxAttributesPerSet` parameter specifies the maximum number of custom security attributes.
 
 ## Parameters
 
 ### -Description
 
-Description for the attribute set.
+Description of the attribute set, up to 128 characters long, including Unicode characters. This description can be changed later.
 
 ```yaml
 Type: System.String
@@ -90,7 +92,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-Name of the attribute set. Must be unique within a tenant.
+Name of the attribute set. Unique identifier for the attribute set within a tenant. This identifier can be up to 32 characters long and may include Unicode characters. It cannot contain spaces or special characters, and it cannot be changed later. The identifier is case insensitive.
 
 ```yaml
 Type: System.String
@@ -106,7 +108,7 @@ Accept wildcard characters: False
 
 ### -MaxAttributesPerSet
 
-Maximum number of custom security attributes that can be defined in the attribute set.
+Maximum number of custom security attributes that can be defined in this attribute set. The default value is null. If not specified, the administrator can add up to 500 active attributes per tenant. This setting can be changed later.
 
 ```yaml
 Type: System.Int32

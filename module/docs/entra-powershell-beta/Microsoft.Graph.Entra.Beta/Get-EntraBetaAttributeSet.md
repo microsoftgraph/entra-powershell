@@ -50,20 +50,14 @@ Gets a list of Microsoft Entra ID attribute sets. Specify `Id` parameter to retr
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-Set-EntraBetaAttributeSet 
+Get-EntraBetaAttributeSet 
 ```
 
 ```Output
 Id                    Description                           MaxAttributesPerSet
 --                    -----------                           -------------------
-engineering           Attributes for cloud engineering team 25
-Test2                 Attributes for test2  team            25
-demo                  NEW Demo Description                  25
-demo2                 TEST THE DEMO
-DEMO5
-DEMO6                 Description to test the demo6
-DEMO7                 Description to test the demo6         24
-demo3                 Demo3's Description                   33
+Engineering           Attributes for cloud engineering team 25
+Contoso                 Attributes for Contoso            25
 ```
 
 This example returns all attribute sets.
@@ -72,7 +66,7 @@ This example returns all attribute sets.
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-Get-EntraAttributeSet -Id 'Testing'
+Get-EntraBetaAttributeSet -Id 'Testing'
 ```
 
 ```Output
@@ -83,13 +77,13 @@ Testing Attributes for engineering team 10
 
 This example demonstrates how to retrieve an attribute set by Id.
 
-- `Id` parameter specifies the Id of a Microsoft Entra ID object.
+- `Id` parameter specifies the unique identifier for the attribute set within a tenant.
 
 ## Parameters
 
 ### -Id
 
-The unique identifier of a Microsoft Entra ID set object.
+Unique identifier for the attribute set within a tenant. This identifier can be up to 32 characters long and may include Unicode characters. It cannot contain spaces or special characters, and it cannot be changed later. The identifier is case insensitive.
 
 ```yaml
 Type: System.String

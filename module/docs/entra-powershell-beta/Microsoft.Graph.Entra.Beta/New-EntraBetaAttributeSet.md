@@ -36,6 +36,8 @@ New-EntraBetaAttributeSet
 
 Adds a new Microsoft Entra ID attribute set object.
 
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
+
 ## Examples
 
 ### Example 1: Add a single attribute set
@@ -66,7 +68,7 @@ This example demonstrates hoe to add a single attribute set.
 
 ### -Description
 
-Description for the attribute set.
+Description of the attribute set, up to 128 characters long, including Unicode characters. This description can be changed later.
 
 ```yaml
 Type: System.String
@@ -98,7 +100,7 @@ Accept wildcard characters: False
 
 ### -MaxAttributesPerSet
 
-Maximum number of custom security attributes that can be defined in the attribute set.
+Maximum number of custom security attributes that can be defined in this attribute set. The default value is null. If not specified, the administrator can add up to 500 active attributes per tenant. This setting can be changed later.
 
 ```yaml
 Type: System.Int32

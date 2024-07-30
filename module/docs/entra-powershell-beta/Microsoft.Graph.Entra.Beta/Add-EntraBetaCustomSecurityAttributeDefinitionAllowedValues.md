@@ -36,18 +36,21 @@ Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues
 
 Adds a predefined value for a Microsoft Entra ID custom security attribute definition.
 
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
+
 ## Examples
 
 ### Example 1: Add a predefined value for a Microsoft Entra ID custom security attribute definition
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
+$CustomSecurityAttributeDefinitionId = (Get-EntraBetaCustomSecurityAttributeDefinition -Id <attributename_attributedefinition>).Id
 $params = @{
-    CustomSecurityAttributeDefinitionId = 'Engineering_Project'
+    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinitionId
     Id = 'Alpine'
     IsActive = $true
 }
-Add-EntraCustomSecurityAttributeDefinitionAllowedValues @params
+Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues @params
 ```
 
 ```Output
@@ -58,10 +61,10 @@ id                             Alpine
 isActive                       True
 ```
 
-This example Add a predefined value for a custom security attributr definition.
+This example adds a predefined value to a custom security attribute definition.
 
-- `CustomSecurityAttributeDefinitionId` parameter specifies the custom security attribute definition ID.
-- `Id` parameter specifies the ID of Microsoft Entra ID Object.
+- `CustomSecurityAttributeDefinitionId` parameter specifies the custom security attribute definition ID. You can use the command `Get-EntraBetaCustomSecurityAttributeDefinition` to get the Id.
+- `Id` parameter specifies the identifier for the predefined value.
 - `IsActive` parameter specifies the predefined value is active or deactivated.
 
 ## Parameters
@@ -84,7 +87,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-The unique identifier of an object in Microsoft Entra ID.
+The unique identifier for the predefined value, which can be up to 64 characters long and include Unicode characters. Spaces are allowed, but some special characters are not. This identifier is case sensitive, cannot be changed later, and is required.
 
 ```yaml
 Type: System.String

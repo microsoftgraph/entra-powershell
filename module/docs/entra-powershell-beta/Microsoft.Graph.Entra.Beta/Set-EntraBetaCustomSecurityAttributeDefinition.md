@@ -37,6 +37,8 @@ Set-EntraBetaCustomSecurityAttributeDefinition
 
 Update the properties of a customSecurityAttributeDefinition object. Specify `Id` parameter to update a custom security attribute definition.
 
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
+
 ## Examples
 
 ### Example 1: Update a custom security attribute
@@ -55,7 +57,7 @@ Set-EntraBetaCustomSecurityAttributeDefinition @params
 This example update a custom security attribute.
 
 - `Id` parameter specifies the custom security attribute definition object ID.
-- `Description` parameter specifies the description for the attribute set.
+- `Description` parameter specifies the description of the custom security attribute.
 - `Status` parameter specifies the custom security attribute is active or deactivated.
 - `UsePreDefinedValuesOnly` parameter specifies the only predefined values can be assigned to the custom security attribute.
 
@@ -63,7 +65,7 @@ This example update a custom security attribute.
 
 ### -Description
 
-Description of the custom security attribute. Can be up to 128 characters long and include Unicode characters. Can be changed later.
+Description of the custom security attribute, up to 128 characters long and including Unicode characters. This description can be changed later.
 
 ```yaml
 Type: System.String
