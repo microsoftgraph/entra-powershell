@@ -38,14 +38,18 @@ New-EntraCustomSecurityAttributeDefinition
 
 ## Description
 
-This `New-EntraCustomSecurityAttributeDefinition` cmdlet Adds a new Microsoft Entra ID custom security attribute definition object.
+Create a new customSecurityAttributeDefinition object. Specify `IsSearchable`, `IsCollection`, `AttributeSet`, `Type`, `Name`, `Status` and `UsePreDefinedValuesOnly` parameters for create a new custom security attribute definition.
+
+You can define up to 500 active objects in a tenant.
+
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
 
 ## Examples
 
 ### Example 1: Add new custom security attribute definition object
 
 ```powershell
- Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
+ Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All','CustomSecAttributeDefinition.ReadWrite.All'
 $params = @{
     AttributeSet = 'demo'
     Name = 'Project'
@@ -67,22 +71,22 @@ demo_Project demo      Target coletion date False        False        Project Av
 
 ```
 
-This command creates new custom security attribute definition object.
+This example demonstrates how to add a custom security attribute.
 
-- `-AttributeSet` Specifies name of the attribute set.
-- `-Description`  Specifies description for the custom security attribute definition.
-- `-IsCollection` Indicates whether multiple values can be assigned to the custom security attribute.
-- `-IsSearchable` Indicates whether custom security attribute values are indexed for searching on objects that are assigned attribute values.
-- `-Name` Specifies name of the custom security attribute. Must be unique within an attribute set.
-- `-Status` Specifies whether the custom security attribute is active or deactivated. Acceptable values are 'Available' and 'Deprecated.'
-- `-Type` Specifies the data type of the attribute.
-- `-UsePreDefinedValuesOnly` Indicates whether only predefined values can be assigned to the custom security attribute. If set to false, free-form values are allowed.
+- `Name` parameter specifies the name of the custom security attribute.
+- `Description` parameter specifies the description of the custom security attribute.
+- `Type` parameter specifies the data type for the custom security attribute values.
+- `Status` parameter specifies the custom security attribute is active or deactivated.
+- `AttributeSet` parameter specifies the name of attribute set.
+- `IsCollection` parameter specifies the allows multiple values can be assigned to the custom security attribute.
+- `IsSearchable` parameter specifies the custom security attribute values are indexed for searching on objects.
+- `UsePreDefinedValuesOnly` parameter specifies the only predefined values can be assigned to the custom security attribute.
 
 ## Parameters
 
 ### -AttributeSet
 
-Name of the attribute set in Microsoft Entra ID.
+Name of the attribute set. Case insensitive.
 
 ```yaml
 Type: System.String
@@ -98,7 +102,7 @@ Accept wildcard characters: False
 
 ### -Description
 
-Description for the custom security attribute definition.
+Description of the custom security attribute, up to 128 characters long and including Unicode characters. This description can be changed later.
 
 ```yaml
 Type: System.String
@@ -114,7 +118,7 @@ Accept wildcard characters: False
 
 ### -IsCollection
 
-Indicates whether multiple values can be assigned to the custom security attribute.
+Indicates whether multiple values can be assigned to the custom security attribute. Can't be changed later. If type is set to Boolean, isCollection can't be set to true.
 
 ```yaml
 Type: System.Boolean
@@ -130,7 +134,7 @@ Accept wildcard characters: False
 
 ### -IsSearchable
 
-Indicates whether custom security attribute values are indexed for searching on objects that are assigned attribute values.
+Indicates whether custom security attribute values are indexed for searching on objects that are assigned attribute values. Can't be changed later.
 
 ```yaml
 Type: System.Boolean
@@ -146,7 +150,7 @@ Accept wildcard characters: False
 
 ### -Name
 
-Name of the custom security attribute. Must be unique within an attribute set.
+Name of the custom security attribute. Must be unique within an attribute set. Can be up to 32 characters long and include Unicode characters. Can't contain spaces or special characters. Can't be changed later. Case insensitive.
 
 ```yaml
 Type: System.String
@@ -162,7 +166,7 @@ Accept wildcard characters: False
 
 ### -Status
 
-Specifies whether the custom security attribute is active or deactivated. Acceptable values are 'Available' and 'Deprecated.'
+Specifies whether the custom security attribute is active or deactivated. Acceptable values are: Available and Deprecated. Can be changed later.
 
 ```yaml
 Type: System.String
@@ -178,7 +182,7 @@ Accept wildcard characters: False
 
 ### -Type
 
-Specifies the data type of the attribute.
+Data type for the custom security attribute values. Supported types are: Boolean, Integer, and String. Can't be changed later.
 
 ```yaml
 Type: System.String
@@ -194,7 +198,7 @@ Accept wildcard characters: False
 
 ### -UsePreDefinedValuesOnly
 
-Indicates whether only predefined values can be assigned to the custom security attribute. If set to false, free-form values are allowed.
+Indicates whether only predefined values can be assigned to the custom security attribute. If set to false, free-form values are allowed. Can later be changed from true to false, but can't be changed from false to true. If type is set to Boolean, usePreDefinedValuesOnly can't be set to true.
 
 ```yaml
 Type: System.Boolean
@@ -225,4 +229,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Related Links
 
 [Set-EntraCustomSecurityAttributeDefinition](Set-EntraCustomSecurityAttributeDefinition.md)
+
 [Get-EntraCustomSecurityAttributeDefinition](Get-EntraCustomSecurityAttributeDefinition.md)
