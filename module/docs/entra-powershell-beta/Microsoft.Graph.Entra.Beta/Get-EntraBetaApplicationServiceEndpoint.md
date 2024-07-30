@@ -2,7 +2,6 @@
 title: Get-EntraBetaApplicationServiceEndpoint.
 description: This article provides details on the Get-EntraBetaApplicationServiceEndpoint command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -34,7 +33,7 @@ Get-EntraBetaApplicationServiceEndpoint
 
 ## Description
 
-This cmdlet retrieves the service endpoint(s) of an application.
+The `Get-EntraBetaApplicationServiceEndpoint` cmdlet retrieves the service endpoint(s) of an application.
 The service endpoint entity contains service discovery information.
 The serviceEndpoints property of the Application entity is of type ServiceEndpoint.
 Other services can use the information stored in the ServiceEndpoint entity to find this service and its addressable endpoints.

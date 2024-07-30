@@ -99,4 +99,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Related Links
 
 [New-EntraBetaApplicationPasswordCredential](New-EntraBetaApplicationPasswordCredential.md)
+
 [Remove-EntraBetaApplicationPasswordCredential](Remove-EntraBetaApplicationPasswordCredential.md)

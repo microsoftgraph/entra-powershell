@@ -1,7 +1,6 @@
 ---
-title: Get-EntraBetaApplicationKeyCredential
+title: Get-EntraBetaApplicationKeyCredential.
 description: This article provides details on the Get-EntraBetaApplicationKeyCredential command.
-
 
 ms.topic: reference
 ms.date: 06/26/2024
@@ -32,7 +31,7 @@ Get-EntraBetaApplicationKeyCredential
 
 ## Description
 
-The `Get-EntraBetaApplicationKeyCredential` cmdlet retrieves the key credentials for an application.
+The `Get-EntraBetaApplicationKeyCredential` cmdlet retrieves the key credentials for an application. Specify `ObjectId` parameter to retrieve the key credentials for an application.
 
 ## Examples
 

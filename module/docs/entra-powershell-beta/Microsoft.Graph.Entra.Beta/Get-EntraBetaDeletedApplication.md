@@ -47,7 +47,9 @@ Get-EntraBetaDeletedApplication
 
 ## Description
 
-Retrieves the list of previously deleted applications.
+The `Get-EntraBetaDeletedApplication` cmdlet Retrieves the list of previously deleted applications.
+
+Note: Deleted security groups are permanently removed and cannot be retrieved.
 
 ## Examples
 
@@ -139,8 +141,7 @@ This cmdlet retrieves deleted applications having specified display name.
 
 List all pages.
 
-```
-
+```yaml
 Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
