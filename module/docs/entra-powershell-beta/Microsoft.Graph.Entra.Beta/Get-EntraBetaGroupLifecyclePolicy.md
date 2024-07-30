@@ -4,7 +4,7 @@ description: This article provides details on the Get-EntraBetaGroupLifecyclePol
 
 
 ms.topic: reference
-ms.date: 06/18/2024
+ms.date: 07/22/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -59,7 +59,7 @@ Get-EntraBetaGroupLifecyclePolicy
 ```Output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
-eeeeeeee-4444-5555-6666-ffffffffffff example@contoso.un          99                  Selected
+eeeeeeee-4444-5555-6666-ffffffffffff example@contoso.com                     200                 Selected
 ```
 
 This example demonstrates how to retrieve the properties and relationships of all groupLifecyclePolicies in Microsoft Entra ID.
@@ -74,10 +74,12 @@ Get-EntraBetaGroupLifecyclePolicy -Id 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
 ```Output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
-ffffffff-5555-6666-7777-aaaaaaaaaaaa admingroup@contoso.com      200                 All
+ffffffff-5555-6666-7777-aaaaaaaaaaaa example@contoso.com                     200                 Selected
 ```
 
-This command is used to retrieve a specific Microsoft Group Lifecycle Policy. The Id parameter specifies the ID of the Lifecycle Policy to be retrieved.
+This command is used to retrieve a specific Microsoft Group Lifecycle Policy.
+
+- `-Id` parameter specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID.
 
 ## Parameters
 
