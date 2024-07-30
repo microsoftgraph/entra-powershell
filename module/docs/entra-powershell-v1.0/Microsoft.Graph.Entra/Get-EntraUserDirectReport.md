@@ -48,18 +48,12 @@ Get-EntraUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {debrab@contoso.com}
-preferredLanguage               :
-mail                            : DebraB@contoso.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=DebraB@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=33334444-dddd-5555-eeee-6666ffff7777}, @{disabledPlans=System.Object[]; skuId=44445555-eeee-6666-ffff-7777aaaa8888},
-                                  @{disabledPlans=System.Object[]; skuId=55556666-ffff-7777-aaaa-8888bbbb9999}}
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
 ```
 
 This example demonstrates how to retrieve direct reports for a user in Microsoft Entra ID.
@@ -73,18 +67,12 @@ Get-EntraUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {debrab@contoso.com}
-preferredLanguage               :
-mail                            : DebraB@contoso.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=DebraB@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=33334444-dddd-5555-eeee-6666ffff7777}, @{disabledPlans=System.Object[]; skuId=44445555-eeee-6666-ffff-7777aaaa8888},
-                                  @{disabledPlans=System.Object[]; skuId=55556666-ffff-7777-aaaa-8888bbbb9999}}
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
 ```
 
 This example demonstrates how to retrieve all direct reports for a user in Microsoft Entra ID.
@@ -94,22 +82,15 @@ This example demonstrates how to retrieve all direct reports for a user in Micro
 ```powershell
 Connect-Entra -Scopes 'User.Read' #Delegated Permission
 Connect-Entra -Scopes 'User.Read.All' #Application Permission
-Get-EntraUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 5
+Get-EntraUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 3
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {debrab@contoso.com}
-preferredLanguage               :
-mail                            : DebraB@contoso.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=DebraB@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=33334444-dddd-5555-eeee-6666ffff7777}, @{disabledPlans=System.Object[]; skuId=44445555-eeee-6666-ffff-7777aaaa8888},
-                                  @{disabledPlans=System.Object[]; skuId=55556666-ffff-7777-aaaa-8888bbbb9999}}
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
 ```
 
 This example demonstrates how to retrieve top five direct reports for a user in Microsoft Entra ID.

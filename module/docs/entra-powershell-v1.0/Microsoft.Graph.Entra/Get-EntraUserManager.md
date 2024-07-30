@@ -45,16 +45,9 @@ Get-EntraUserManager -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff'
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {miriamg@contoso.com}
-preferredLanguage               :
-mail                            : MiriamG@contoso.com
-securityIdentifier              : B-2-33-4-5555555555-6666666666-7777777-8888888888
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=MiriamG@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This example demonstrates how to retrieve the manager of a specific user.

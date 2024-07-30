@@ -48,6 +48,12 @@ Connect-Entra -Scopes 'User.RevokeSessions.All'
 Revoke-EntraSignedInUserAllRefreshToken
 ```
 
+```Output
+Value
+-----
+True
+```
+
 This command revokes the tokens for the current user.
 
 ## Parameters

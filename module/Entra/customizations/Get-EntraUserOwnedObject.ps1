@@ -80,23 +80,39 @@
             $Top = $PSBoundParameters["Top"]
         }
 
-        if($Top -ne $null){
+        if($null -ne $Top){
+            $userList = @()
             $response | ForEach-Object {
                 if ($null -ne $_ -and $Top -gt 0) {
-                    $_ | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $data = $_ | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
+                    $data.PSObject.Properties | ForEach-Object {
+                        $propertyName = $_.Name
+                        $propertyValue = $_.Value
+                        $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                    }
+                    $userList += $userType
+                    $Top = $Top - 1
                 }
-
-                $Top = $Top - 1
             }
+            $userList
         }
         else {
+            $userList = @()
             $response | ForEach-Object {
                 if ($null -ne $_) {
-                    $_ | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $data = $_ | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
+                    $data.PSObject.Properties | ForEach-Object {
+                        $propertyName = $_.Name
+                        $propertyValue = $_.Value
+                        $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                    }
+                    $userList += $userType
                 }
             }
+            $userList
         }
-
     }
 '@
 }
