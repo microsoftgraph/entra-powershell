@@ -111,7 +111,7 @@
                      'PublisherDomain','Web','RequiredResourceAccess')
                      
                 foreach ($prop in $propsToConvert) {
-                    $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
+                    $value = $_.$prop | ConvertTo-Json -Depth 10 | ConvertFrom-Json
                     $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
                 }
                
