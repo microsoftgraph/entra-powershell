@@ -1,4 +1,15 @@
 ---
+title: Get-EntraBetaServiceAppRoleAssignment.
+description: This article provides details on the Get-EntraBetaServiceAppRoleAssignment command.
+
+
+ms.topic: reference
+ms.date: 07/30/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaServiceAppRoleAssignment
@@ -9,6 +20,7 @@ schema: 2.0.0
 # Get-EntraBetaServiceAppRoleAssignment
 
 ## Synopsis
+
 Gets a service principal application role assignment.
 
 ## Syntax
@@ -23,28 +35,77 @@ Get-EntraBetaServiceAppRoleAssignment
 ```
 
 ## Description
-The Get-EntraBetaServiceAppRoleAssignment cmdlet gets a role assignment for a service principal application in Azure Active Directory (AD).
+
+The Get-`EntraBetaServiceAppRoleAssignment` cmdlet gets a role assignment for a service principal application in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Retrieve the application role assignments for a service principal
-```
-PS C:\> $ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
-PS C:\> Get-EntraBetaServiceAppRoleAssignment -ObjectId $ServicePrincipalId
+
+```powershell
+ Connect-Entra -Scopes 'Application.Read.All'
+ $ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
+ Get-EntraBetaServiceAppRoleAssignment -ObjectId $ServicePrincipalId
 ```
 
-The first command gets the ID of a service principal by using the Get-EntraBetaServicePrincipal (./Get-EntraBetaServicePrincipal.md)cmdlet. 
-The command stores the ID in the $ServicePrincipalId variable.
+```Output
+Id                                          AppRoleId                            CreationTimestamp   PrincipalDisplayName PrincipalId                          PrincipalType ResourceDisplayName ResourceId
+--                                          ---------                            -----------------   -------------------- -----------                          ------------- ------------------- ----------
+1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 07-07-2023 17:03:59 MOD Administrator    aaaaaaaa-bbbb-cccc-1111-222222222222 User          ProvisioningPowerBi 021510b7-e753-40…
+```
 
-The second command gets the application role assignments for the service principal in identified by $ServicePrincipalId.
+This command gets application role assignments for specified service principal.
+
+- `-ObjectId` parameter specifies the service principal object ID.
+
+### Example 2: Retrieve all application role assignments for a service principal
+
+```powershell
+ Connect-Entra -Scopes 'Application.Read.All'
+ Get-EntraServiceAppRoleAssignment -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -All
+```
+
+```Output
+Id                                          AppRoleId                            CreationTimestamp   PrincipalDisplayName PrincipalId                          PrincipalType ResourceDisplayName ResourceId
+--                                          ---------                            -----------------   -------------------- -----------                          ------------- ------------------- ----------
+1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 07-07-2023 17:03:59 MOD Administrator    aaaaaaaa-bbbb-cccc-1111-222222222222 User          ProvisioningPowerBi 021510b7-e753-40…
+2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 07-07-2023 17:03:59 MOD Administrator    aaaaaaaa-bbbb-cccc-1111-222222222222 User1          ProvisioningPowerBi 021510b7-e753-40…
+3cccccc3-4dd4-5ee5-6ff6-7aaaaaaaaaa7 00000000-0000-0000-0000-000000000000 07-07-2023 17:03:59 MOD Administrator    aaaaaaaa-bbbb-cccc-1111-222222222222 User2          ProvisioningPowerBi 021510b7-e753-40…
+4dddddd4-5ee5-6ff6-7aa7-8bbbbbbbbbb8 00000000-0000-0000-0000-000000000000 07-07-2023 17:03:59 MOD Administrator    aaaaaaaa-bbbb-cccc-1111-222222222222 User3          ProvisioningPowerBi 021510b7-e753-40…
+5eeeeee5-6ff6-7aa7-8bb8-9cccccccccc9 00000000-0000-0000-0000-000000000000 07-07-2023 17:03:59 MOD Administrator    aaaaaaaa-bbbb-cccc-1111-222222222222 User4          ProvisioningPowerBi 021510b7-e753-40…
+```
+
+This command gets all application role assignments for specified service principal.
+
+- `-ObjectId` parameter specifies the service principal object ID.
+
+### Example 3: Retrieve the top three application role assignments for a service principal
+
+```powershell
+ Connect-Entra -Scopes 'Application.Read.All'
+ Get-EntraServiceAppRoleAssignment -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -Top 3
+```
+
+```Output
+Id                                          AppRoleId                            CreationTimestamp   PrincipalDisplayName PrincipalId                          PrincipalType ResourceDisplayName ResourceId
+--                                          ---------                            -----------------   -------------------- -----------                          ------------- ------------------- ----------
+1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 07-07-2023 17:03:59 MOD Administrator    aaaaaaaa-bbbb-cccc-1111-222222222222 User          ProvisioningPowerBi 021510b7-e753-40…
+2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 07-07-2023 17:03:59 MOD Administrator    aaaaaaaa-bbbb-cccc-1111-222222222222 User1          ProvisioningPowerBi 021510b7-e753-40…
+3cccccc3-4dd4-5ee5-6ff6-7aaaaaaaaaa7 00000000-0000-0000-0000-000000000000 07-07-2023 17:03:59 MOD Administrator    aaaaaaaa-bbbb-cccc-1111-222222222222 User2          ProvisioningPowerBi 021510b7-e753-40…
+```
+
+This command gets top three application role assignments for specified service principal.
+
+- `-ObjectId` parameter specifies the service principal object ID.
 
 ## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -56,10 +117,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a service principal in Azure AD.
+
+Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -71,10 +133,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 The maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -87,7 +150,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -102,7 +165,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -112,8 +176,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaServicePrincipal]()
+[Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)
 
-[New-EntraBetaServiceAppRoleAssignment]()
+[New-EntraBetaServiceAppRoleAssignment](New-EntraBetaServiceAppRoleAssignment.md)
 
-[Remove-EntraBetaServiceAppRoleAssignment]()
+[Remove-EntraBetaServiceAppRoleAssignment](Remove-EntraBetaServiceAppRoleAssignment.md)
