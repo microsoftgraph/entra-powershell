@@ -60,7 +60,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaDeletedApplication
 ```
 
-```output
+```Output
 DisplayName Id                                   AppId                                SignInAudience PublisherDomain
 ----------- --                                   -----                                -------------- ---------------
 TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
@@ -78,7 +78,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaDeletedApplication -All
 ```
 
-```output
+```Output
 DisplayName Id                                   AppId                                SignInAudience PublisherDomain
 ----------- --                                   -----                                -------------- ---------------
 TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
@@ -96,7 +96,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaDeletedApplication -Top 2
 ```
 
-```output
+```Output
 DisplayName Id                                   AppId                                SignInAudience PublisherDomain
 ----------- --                                   -----                                -------------- ---------------
 TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
@@ -112,7 +112,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaDeletedApplication -SearchString 'TestApp1'
 ```
 
-```output
+```Output
 DisplayName Id                                   AppId                                SignInAudience PublisherDomain
 ----------- --                                   -----                                -------------- ---------------
 TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
@@ -127,7 +127,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaDeletedApplication -Filter "DisplayName contains 'TestApp1'"
 ```
 
-```output
+```Output
 DisplayName Id                                   AppId                                SignInAudience PublisherDomain
 ----------- --                                   -----                                -------------- ---------------
 TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
