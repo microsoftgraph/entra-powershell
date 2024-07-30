@@ -63,9 +63,9 @@ isActive                       True
 
 This example adds a predefined value to a custom security attribute definition.
 
-- `CustomSecurityAttributeDefinitionId` parameter specifies the custom security attribute definition ID. You can use the command `Get-EntraBetaCustomSecurityAttributeDefinition` to get the Id.
-- `Id` parameter specifies the identifier for the predefined value.
-- `IsActive` parameter specifies the predefined value is active or deactivated.
+- `-CustomSecurityAttributeDefinitionId` parameter specifies the custom security attribute definition ID. You can use the command `Get-EntraBetaCustomSecurityAttributeDefinition` to get the Id.
+- `-Id` parameter specifies the identifier for the predefined value.
+- `-IsActive` parameter specifies the predefined value is active or deactivated.
 
 ## Parameters
 

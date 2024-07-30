@@ -44,7 +44,7 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 ### Example 1: Update a custom security attribute
 
 ```powershell
-Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttributeDefinition.ReadWrite.All'
+Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All', 'CustomSecAttributeDefinition.ReadWrite.All'
 $params = @{
     Id = 'Test_ProjectTest' 
     Description = 'Target completion' 
@@ -56,10 +56,10 @@ Set-EntraBetaCustomSecurityAttributeDefinition @params
 
 This example update a custom security attribute.
 
-- `Id` parameter specifies the custom security attribute definition object ID.
-- `Description` parameter specifies the description of the custom security attribute.
-- `Status` parameter specifies the custom security attribute is active or deactivated.
-- `UsePreDefinedValuesOnly` parameter specifies the only predefined values can be assigned to the custom security attribute.
+- `-Id` parameter specifies the custom security attribute definition object ID.
+- `-Description` parameter specifies the description of the custom security attribute.
+- `-Status` parameter specifies the custom security attribute is active or deactivated.
+- `-UsePreDefinedValuesOnly` parameter specifies the only predefined values can be assigned to the custom security attribute.
 
 ## Parameters
 

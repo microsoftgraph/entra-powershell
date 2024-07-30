@@ -69,8 +69,8 @@ Set-EntraBetaAttributeSet @params
 
 This example update an attribute set using MaxAttributesPerSet.
 
-- `Id` parameter specifies the name of the attribute set. You can `Get-EntraBetaAttributeSet` to get more details.
-- `MaxAttributesPerSet` parameter specifies the maximum number of custom security attributes.
+- `-Id` parameter specifies the name of the attribute set. You can `Get-EntraBetaAttributeSet` to get more details.
+- `-MaxAttributesPerSet` parameter specifies the maximum number of custom security attributes.
 
 ## Parameters
 

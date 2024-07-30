@@ -62,8 +62,8 @@ cccccccc-2222-3333-4444-dddddddddddd
 
 This example demonstrates how to create an password SSO credential for the given ObjectId and PasswordSSOObjectId.
 
-- `PasswordSSOObjectId` parameter specifies the User or Group ID.
-- `ObjectId` parameter specifies the ID of a service principal.
+- `-PasswordSSOObjectId` parameter specifies the User or Group ID.
+- `-ObjectId` parameter specifies the object ID of a service principal.
 
 ## Parameters
 

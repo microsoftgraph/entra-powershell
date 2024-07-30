@@ -56,8 +56,8 @@ Set-EntraBetaPasswordSingleSignOnCredential @params
 
 This example demonstrates how to set the password SSO credentials for the given ObjectId and PasswordSSOObjectId.
 
-- `PasswordSSOObjectId` parameter specifies the User or Group ID.
-- `ObjectId` parameter specifies the ID of a service principal.
+- `-PasswordSSOObjectId` parameter specifies the User or Group ID.
+- `-ObjectId` parameter specifies the object ID of a service principal.
 
 ## Parameters
 

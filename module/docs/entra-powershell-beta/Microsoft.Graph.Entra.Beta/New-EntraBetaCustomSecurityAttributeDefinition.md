@@ -50,7 +50,7 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 ### Example 1: Add a custom security attribute
 
 ```powershell
-Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttributeDefinition.ReadWrite.All'
+Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All', 'CustomSecAttributeDefinition.ReadWrite.All'
 $AttributeSet  = Get-EntraBetaAttributeSet -Id '<CustomAttributeSetId>'
 $params = @{
     Name = 'ProjectTest' 
@@ -73,14 +73,14 @@ Test_ProjectTest Test         Target completion False        True         Projec
 
 This example demonstrates how to add a custom security attribute.
 
-- `Name` parameter specifies the name of the custom security attribute.
-- `Description` parameter specifies the description of the custom security attribute.
-- `Type` parameter specifies the data type for the custom security attribute values.
-- `Status` parameter specifies the custom security attribute is active or deactivated.
-- `AttributeSet` parameter specifies the name of attribute set.
-- `IsCollection` parameter specifies the allows multiple values can be assigned to the custom security attribute.
-- `IsSearchable` parameter specifies the custom security attribute values are indexed for searching on objects.
-- `UsePreDefinedValuesOnly` parameter specifies the only predefined values can be assigned to the custom security attribute.
+- `-Name` parameter specifies the name of the custom security attribute.
+- `-Description` parameter specifies the description of the custom security attribute.
+- `-Type` parameter specifies the data type for the custom security attribute values.
+- `-Status` parameter specifies the custom security attribute is active or deactivated.
+- `-AttributeSet` parameter specifies the name of attribute set.
+- `-IsCollection` parameter specifies the allows multiple values can be assigned to the custom security attribute.
+- `-IsSearchable` parameter specifies the custom security attribute values are indexed for searching on objects.
+- `-UsePreDefinedValuesOnly` parameter specifies the only predefined values can be assigned to the custom security attribute.
 
 ## Parameters
 

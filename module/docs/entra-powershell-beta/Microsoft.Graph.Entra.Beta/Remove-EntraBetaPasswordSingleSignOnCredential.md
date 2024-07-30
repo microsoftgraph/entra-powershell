@@ -41,7 +41,7 @@ Admin could remove the group credentials as well.
 ### Example 1: Remove password single-sign-on credentials
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All and Directory.Read.All, Directory.ReadWrite.All'
+Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.ReadWrite.All'
 $params = @{
     ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
     PasswordSSOCredential = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
@@ -51,8 +51,8 @@ Remove-EntraBetaPasswordSingleSignOnCredential @params
 
 This example removes the password SSO credentials for the given ObjectId and PasswordSSOObjectId.
 
-- `PasswordSSOObjectId` parameter specifies the User or Group ID.
-- `ObjectId` parameter specifies the ID of Microsoft Entra ID Object.
+- `-PasswordSSOObjectId` parameter specifies the User or Group ID.
+- `-ObjectId` parameter specifies the object ID of a service principal.
 
 ## Parameters
 
