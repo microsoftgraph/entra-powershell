@@ -40,7 +40,11 @@ The `Add-EntraAdministrativeUnitMember` cmdlet adds a Microsoft Entra ID adminis
 ### Example 1: Add user as an administrative unit member
 
 ```powershell
-Add-EntraAdministrativeUnitMember -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -RefObjectId 'dddddddd-3333-4444-5555-eeeeeeeeeeee'
+$params = @{
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    RefObjectId = 'dddddddd-3333-4444-5555-eeeeeeeeeeee'
+}
+Add-EntraAdministrativeUnitMember @params
 ```
 
 This command adds a user as an administrative unit member.
