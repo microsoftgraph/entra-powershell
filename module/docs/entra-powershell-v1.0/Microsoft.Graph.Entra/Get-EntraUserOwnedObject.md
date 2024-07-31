@@ -2,7 +2,6 @@
 title: Get-EntraUserOwnedObject
 description: This article provides details on the Get-EntraUserOwnedObject command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -35,7 +34,7 @@ Get-EntraUserOwnedObject
 
 ## Description
 
-The Get-EntraUserOwnedObject cmdlet gets objects owned by a user in Microsoft Entra ID.
+The `Get-EntraUserOwnedObject` cmdlet gets objects owned by a user in Microsoft Entra ID. Specify `ObjectId` parameter to get objects owned by user.
 
 ## Examples
 
@@ -59,6 +58,8 @@ hhhhhhhh-5555-6666-7777-iiiiiiiiiiii
 
 This command gets objects owned by the specified user.
 
+- `-ObjectId` Parameter specifies the ID of a user as a UserPrincipalName or ObjectId.
+
 ### Example 2: Get all objects owned by a user
 
 ```powershell
@@ -79,6 +80,8 @@ hhhhhhhh-5555-6666-7777-iiiiiiiiiiii
 
 This command gets all the objects owned by the specified user.
 
+- `-ObjectId` Parameter specifies the ID of a user as a UserPrincipalName or ObjectId.
+
 ### Example 3: Get top three objects owned by a user
 
 ```powershell
@@ -95,6 +98,8 @@ cccccccc-2222-3333-4444-dddddddddddd
 ```
 
 This command gets the top three objects owned by the specified user.
+
+- `-ObjectId` Parameter specifies the ID of a user as a UserPrincipalName or ObjectId.
 
 ## Parameters
 
@@ -116,7 +121,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.
+Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -148,7 +153,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

@@ -2,9 +2,8 @@
 title: Get-EntraDeviceRegisteredUser.
 description: This article provides details on the Get-EntraDeviceRegisteredUser command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/31/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -35,7 +34,7 @@ Get-EntraDeviceRegisteredUser
 
 ## Description
 
-The `Get-EntraDeviceRegisteredUser` cmdlet gets a registered user for a Microsoft Entra ID device.
+The `Get-EntraDeviceRegisteredUser` cmdlet gets a registered user for a Microsoft Entra ID device. Specify `ObjectId` parameter to get a registered user for a Microsoft Entra ID device.
 
 ## Examples
 
@@ -62,6 +61,8 @@ This example demonstrates how to retrieve registered user for a specific Microso
 
 - The second command gets the registered users of the device in `$DevId`.
 
+- `-ObjectId` Parameter specifies an object ID of a device, which you want to retrieve.
+
 ### Example 2: Get all registered users of a device
 
 ```powershell
@@ -80,6 +81,8 @@ ffffffff-4444-5555-6666-gggggggggggg
 
 This example demonstrates how to retrieve all registered users for a specified device.
 
+- `-ObjectId` Parameter specifies an object ID of a device, which you want to retrieve.
+
 ### Example 3: Get top two registered users of a device
 
 ```powershell
@@ -95,6 +98,8 @@ cccccccc-2222-3333-4444-dddddddddddd
 ```
 
 This example demonstrates how to retrieve top two registered users for the specified device.
+
+- `-ObjectId` Parameter specifies an object ID of a device, which you want to retrieve.
 
 ## Parameters
 
@@ -148,7 +153,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

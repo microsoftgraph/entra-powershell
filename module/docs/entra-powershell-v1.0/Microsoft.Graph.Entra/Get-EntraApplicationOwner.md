@@ -2,7 +2,6 @@
 title: Get-EntraApplicationOwner.
 description: This article provides details on the Get-EntraApplicationOwner command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -35,7 +34,7 @@ Get-EntraApplicationOwner
 
 ## Description
 
-The `Get-EntraApplicationOwner` cmdlet gets an owner of a Microsoft Entra application.
+The `Get-EntraApplicationOwner` cmdlet gets an owner of a Microsoft Entra application. Specify `ObjectId` parameter to get a specific owner.
 
 ## Examples
 
@@ -47,13 +46,15 @@ Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 Get-EntraApplicationOwner -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
 This example demonstrates how to get the owners of an application in Microsoft Entra ID.
+
+- `-ObjectId` Parameter specifies the ID of an application.
 
 ### Example 2: Get all owners of an application
 
@@ -63,7 +64,7 @@ Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 Get-EntraApplicationOwner -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 bbbbbbbb-1111-2222-3333-cccccccccccc
@@ -73,6 +74,8 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee
 
 This example demonstrates how to get the all owners of a specified application in Microsoft Entra ID.
 
+- `-ObjectId` Parameter specifies the ID of an application.
+
 ### Example 3: Get top two owners of an application
 
 ```powershell
@@ -81,7 +84,7 @@ Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 Get-EntraApplicationOwner -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 2
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 bbbbbbbb-1111-2222-3333-cccccccccccc
@@ -89,6 +92,8 @@ cccccccc-2222-3333-4444-dddddddddddd
 ```
 
 This example demonstrates how to get the two owners of a specified application in Microsoft Entra ID.
+
+- `-ObjectId` Parameter specifies the ID of an application.
 
 ## Parameters
 
@@ -142,7 +147,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
