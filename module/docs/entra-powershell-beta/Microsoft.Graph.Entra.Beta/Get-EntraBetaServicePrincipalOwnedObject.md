@@ -58,7 +58,7 @@ This example retrieves an object owned by a service principal in Microsoft Entra
 
 - `-ObjectId` parameter specifies the service principal object ID.
 
-### Example 2: Retrieve all the owned objects of a service principal
+### Example 2: Retrieve all owned objects of a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'

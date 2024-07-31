@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Gets an oAuth2PermissionGrant object.
+Gets an OAuth2PermissionGrant object.
 
 ## Syntax
 
@@ -35,7 +35,7 @@ Get-EntraBetaServicePrincipalOAuth2PermissionGrant
 
 ## Description
 
-The `Get-EntraBetaServicePrincipalOAuth2PermissionGrant` cmdlet gets an oAuth2PermissionGrant object for a service principal in Microsoft Entra ID.
+The `Get-EntraBetaServicePrincipalOAuth2PermissionGrant` cmdlet gets an OAuth2PermissionGrant object for a service principal in Microsoft Entra ID.
 
 ## Examples
 
@@ -53,7 +53,7 @@ Id                                                               ClientId       
 A1bC2dE3f...                      00001111-aaaa-2222-bbbb-3333cccc4444 AllPrincipals                                    aaaaaaaa-bbbb-cccc-1111-222222222222 openid profile U...
 ```
 
-This cmdlet retrieves a oAuth2PermissionGrant object for a service principal in Microsoft Entra ID. You can use the command `Get-EntraBetaServicePrincipal` to get service principal Id.
+This cmdlet retrieves a OAuth2PermissionGrant object for a service principal in Microsoft Entra ID. You can use the command `Get-EntraBetaServicePrincipal` to get service principal Id.
 
 - `-ObjectId` parameter specifies the service principal object ID.
 
@@ -72,7 +72,7 @@ A1bC2dE3f...                                                      00001111-aaaa-
 A1bC2dE3f...                                                      00001111-aaaa-2222-bbbb-3333cccc4444 Principal      996d39aa-fdac-4d97-aa3d-c81fb47362ac aaaaaaaa-bbbb-cccc-1111-222222222222 PrivilegedAccess...
 ```
 
-This example demonstrates how to get all oAuth2PermissionGrant object for a service principal in Microsoft Entra ID.  
+This example demonstrates how to get all OAuth2PermissionGrant object for a service principal in Microsoft Entra ID.  
 
 - `-ObjectId` parameter specifies the service principal object ID.
 
@@ -90,7 +90,7 @@ A1bC2dE3f...                                                      00001111-aaaa-
 A1bC2dE3f...                                                      00001111-aaaa-2222-bbbb-3333cccc4444 Principal      412be9d1-1460-4061-8eed-cca203fcb215 aaaaaaaa-bbbb-cccc-1111-222222222222 openid profile U...
 ```
 
-This example demonstrates how to get top two oAuth2PermissionGrant object for a service principal in Microsoft Entra ID.  
+This example demonstrates how to get top two OAuth2PermissionGrant object for a service principal in Microsoft Entra ID.  
 
 - `-ObjectId` parameter specifies the service principal object ID.
 

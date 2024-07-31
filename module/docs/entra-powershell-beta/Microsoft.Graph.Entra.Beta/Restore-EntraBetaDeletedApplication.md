@@ -54,8 +54,8 @@ Get-EntraBetaApplication
 ```Output
 DisplayName                                        Id                                   AppId                                SignInAudience                     PublisherDomain
 -----------                                        --                                   -----                                --------------                     ---------------
-deepak                                             ffffffff-5555-6666-7777-aaaaaaaaaaaa 00001111-aaaa-2222-bbbb-3333cccc4444  AzureADMyOrg                       M365x99297270.mail.onmicrosoft.com
-test app                                           eeeeeeee-4444-5555-6666-ffffffffffff 11112222-bbbb-3333-cccc-4444dddd5555 AzureADandPersonalMicrosoftAccount M365x99297270.onmicrosoft.com
+deepak                                             ffffffff-5555-6666-7777-aaaaaaaaaaaa 00001111-aaaa-2222-bbbb-3333cccc4444  AzureADMyOrg                       test.mail.contoso.com
+test app                                           eeeeeeee-4444-5555-6666-ffffffffffff 11112222-bbbb-3333-cccc-4444dddd5555 AzureADandPersonalMicrosoftAccount test.mail.contoso.com
 ```
 
 ```powershell
@@ -67,7 +67,7 @@ Get-EntraBetaDeletedApplication
 ```Output
 DisplayName                    Id                                   AppId                                SignInAudience                     PublisherDomain
 -----------                    --                                   -----                                --------------                     ---------------
-deepak                         ffffffff-5555-6666-7777-aaaaaaaaaaaa 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg                       domain@contoso.com
+deepak                         ffffffff-5555-6666-7777-aaaaaaaaaaaa 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg                       test.mail.contoso.com
 ```
 
 ```powershell

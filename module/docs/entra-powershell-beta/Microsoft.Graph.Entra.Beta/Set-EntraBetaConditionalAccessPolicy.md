@@ -1,4 +1,13 @@
 ---
+title: Set-EntraBetaConditionalAccessPolicy
+description: This article provides details on the Set-EntraBetaConditionalAccessPolicy command.
+
+ms.topic: reference
+ms.date: 07/31/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaConditionalAccessPolicy
@@ -9,43 +18,103 @@ schema: 2.0.0
 # Set-EntraBetaConditionalAccessPolicy
 
 ## Synopsis
-Updates a conditional access policy in Azure Active Directory by Id.
+
+Updates a conditional access policy in Microsoft Entra ID by Id.
 
 ## Syntax
 
-```
-Set-EntraBetaConditionalAccessPolicy [-Id <String>] -PolicyId <String>
- [-SessionControls <ConditionalAccessSessionControls>] [-ModifiedDateTime <String>] [-CreatedDateTime <String>]
- [-State <String>] [-GrantControls <ConditionalAccessGrantControls>]
- [-Conditions <ConditionalAccessConditionSet>] [-DisplayName <String>] [<CommonParameters>]
+```powershell
+Set-EntraBetaConditionalAccessPolicy 
+ -PolicyId <String>
+ [-Id <String>] 
+ [-SessionControls <ConditionalAccessSessionControls>] 
+ [-ModifiedDateTime <String>] 
+ [-CreatedDateTime <String>]
+ [-State <String>] 
+ [-GrantControls <ConditionalAccessGrantControls>]
+ [-Conditions <ConditionalAccessConditionSet>] 
+ [-DisplayName <String>] 
+ [<CommonParameters>]
 ```
 
 ## Description
-This cmdlet allows an admin to update a conditional access policy in Azure Active Directory by Id.
+
+This cmdlet allows an admin to update a conditional access policy in Microsoft Entra ID by Id.
+
 Conditional access policies are custom rules that define an access scenario.
 
 ## Examples
 
-### Example 1: Updates a conditional access policy in Azure AD by PolicyId.
-```
-PS C:\> Set-EntraBetaConditionalAccessPolicy -PolicyId 6b5e999b-0ba8-4186-a106-e0296c1c4358 -DisplayName "MFA policy 1" -State "Enabled"
+### Example 1: Updates a conditional access policy by PolicyId
 
-          Id                      : 6b5e999b-0ba8-4186-a106-e0296c1c4358
-          DisplayName             : MFA policy 1
-          CreatedDateTime         : 2019-09-26T23:12:16.0792706Z
-          ModifiedDateTime        : 2019-09-27T00:12:12.5986473Z
-          State                   : Enabled
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+$cond = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
+$control = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls
+$session = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls
+$params = @{
+    PolicyId = '4dddddd4-5ee5-6ff6-7aa7-8bbbbbbbbbb8'
+    DisplayName = 'MFA policy updated'
+    State = 'Enabled'
+    Conditions = $cond
+    GrantControls = $control
+    SessionControls = $session
+}
+
+Set-EntraBetaConditionalAccessPolicy @params
 ```
 
-This command updates a new conditional access policy in Azure AD.
+The example shows how to update a conditional access policy in Microsoft Entra ID.
+
+- `-PolicyId` parameter specifies the policy Id of conditional access policy.
+- `-DisplayName` parameter specifies the display name of a conditional access policy.
+- `-State` parameter specifies the enabled or disabled state of the conditional access policy.
+- `-Conditions` parameter specifies the conditions for the conditional access policy.
+- `-GrantControls` parameter specifies the controls for the conditional access policy.
+- `-SessionControls` parameter Enables limited experiences within specific cloud applications.
+
+### Example 2: Updates display name for a conditional access policy by PolicyId
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+$params = @{
+    PolicyId = '4dddddd4-5ee5-6ff6-7aa7-8bbbbbbbbbb8'
+    DisplayName = 'MFA policy updated'
+}
+
+Set-EntraBetaConditionalAccessPolicy @params
+```
+
+This command updates a conditional access policy in Microsoft Entra ID.
+
+- `-PolicyId` parameter specifies the policy Id of conditional access policy.
+- `-DisplayName` parameter specifies the display name of a conditional access policy.
+
+### Example 3: Updates state for a conditional access policy by PolicyId
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+$params = @{
+    PolicyId = '4dddddd4-5ee5-6ff6-7aa7-8bbbbbbbbbb8'
+    State = 'Enabled'
+}
+
+Set-EntraBetaConditionalAccessPolicy @params
+```
+
+This command updates a conditional access policy in Microsoft Entra ID.
+
+- `-PolicyId` parameter specifies the policy Id of conditional access policy.
+- `-State` parameter specifies the enabled or disabled state of the conditional access policy.
 
 ## Parameters
 
 ### -PolicyId
-Specifies the policy id of a conditional access policy in Azure Active Directory.
+
+Specifies the policy Id of a conditional access policy in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -57,10 +126,11 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-Specifies the display name of a conditional access policy in Azure Active Directory.
+
+Specifies the display name of a conditional access policy in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -72,10 +142,11 @@ Accept wildcard characters: False
 ```
 
 ### -State
-Specifies the enabled or disabled state of the conditional access policy in Azure Active Directory.
+
+Specifies the enabled or disabled state of the conditional access policy in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -87,7 +158,8 @@ Accept wildcard characters: False
 ```
 
 ### -Conditions
-Specifies the conditions for the conditional access policy in Azure Active Directory.
+
+Specifies the conditions for the conditional access policy in Microsoft Entra ID.
 
 ```yaml
 Type: ConditionalAccessConditionSet
@@ -102,7 +174,8 @@ Accept wildcard characters: False
 ```
 
 ### -GrantControls
-Specifies the controls for the conditional access policy in Azure Active Directory.
+
+Specifies the controls for the conditional access policy in Microsoft Entra ID.
 
 ```yaml
 Type: ConditionalAccessGrantControls
@@ -117,10 +190,11 @@ Accept wildcard characters: False
 ```
 
 ### -CreatedDateTime
-{{ Fill CreatedDateTime Description }}
+
+The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2024 is 2024-01-01T00:00:00Z. Readonly.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -132,10 +206,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+
+Specifies the policy Id of a conditional access policy in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -147,10 +222,11 @@ Accept wildcard characters: False
 ```
 
 ### -ModifiedDateTime
-{{ Fill ModifiedDateTime Description }}
+
+The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2024 is 2024-01-01T00:00:00Z. Readonly.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -162,7 +238,8 @@ Accept wildcard characters: False
 ```
 
 ### -SessionControls
-{{ Fill SessionControls Description }}
+
+Enables limited experiences within specific cloud applications.
 
 ```yaml
 Type: ConditionalAccessSessionControls
@@ -177,18 +254,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ## Outputs
 
 ## Notes
+
 ## Related Links
 
-[Get-EntraBetaConditionalAccessPolicy]()
+[Get-EntraBetaConditionalAccessPolicy](Get-EntraBetaConditionalAccessPolicy.md)
 
-[New-EntraBetaConditionalAccessPolicy]()
+[New-EntraBetaConditionalAccessPolicy](New-EntraBetaConditionalAccessPolicy.md)
 
-[Remove-EntraBetaConditionalAccessPolicy]()
-
+[Remove-EntraBetaConditionalAccessPolicy](Remove-EntraBetaConditionalAccessPolicy.md)

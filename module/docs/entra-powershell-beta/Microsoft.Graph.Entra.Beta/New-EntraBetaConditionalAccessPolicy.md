@@ -68,7 +68,7 @@ $params = @{
      GrantControls = $controls
      SessionControls = $SessionControls
  }
->> New-EntraBetaConditionalAccessPolicy @params
+New-EntraBetaConditionalAccessPolicy @params
 ```
 
 ```Output
@@ -115,7 +115,7 @@ Id                                   CreatedDateTime     Description DisplayName
 5eeeeee5-6ff6-7aa7-8bb8-9cccccccccc9 31-07-2024 07:22:21             MFA policy                   enabled
 ```
 
-This command creates a new conditional access policy in Microsoft Entra ID that blocks access to Exchange Online from non-trusted regions.
+This command creates a new conditional access policy in Microsoft Entra ID that blocks access to Exchange Online from nontrusted regions.
 
 - `-DisplayName` parameter specifies the display name of a conditional access policy.
 - `-State` parameter specifies the enabled or disabled state of the conditional access policy.
@@ -190,7 +190,7 @@ Accept wildcard characters: False
 
 ### -CreatedDateTime
 
-The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Readonly.
+The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2024 is 2024-01-01T00:00:00Z. Readonly.
 
 ```yaml
 Type: System.String
@@ -206,7 +206,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-Specifies the policy id of a conditional access policy in Microsoft Entra ID.
+Specifies the policy Id of a conditional access policy in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -222,7 +222,7 @@ Accept wildcard characters: False
 
 ### -ModifiedDateTime
 
-The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Readonly.
+The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2024 is 2024-01-01T00:00:00Z. Readonly.
 
 ```yaml
 Type: System.String
