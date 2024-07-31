@@ -93,13 +93,26 @@ function Add-EntraScopedRoleMembership {
     
     $response = Invoke-GraphRequest -Headers $customHeaders -Uri $Uri -Method "POST" -Body $body
     $response = $response | ConvertTo-Json -Depth 5 | ConvertFrom-Json
-    $response | ForEach-Object {
-        if($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name AdministrativeUnitObjectId -Value AdministrativeUnitId
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name RoleObjectId -Value RoleId
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+    # $response | ForEach-Object {
+    #     if($null -ne $_) {
+    #         Add-Member -InputObject $_ -MemberType AliasProperty -Name AdministrativeUnitObjectId -Value AdministrativeUnitId
+    #         Add-Member -InputObject $_ -MemberType AliasProperty -Name RoleObjectId -Value RoleId
+    #         Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+    #     }
+    # }
+    # $response
+    $targetList = @()
+    $type= [Microsoft.Graph.PowerShell.Models.MicrosoftGraphScopedRoleMembership]
+    foreach ($item in $response) {
+        $targetObject = [Activator]::CreateInstance($type)
+        foreach ($property in $item.PSObject.Properties) {
+            if ($targetObject.PSObject.Properties[$property.Name]) {
+                $targetObject.PSObject.Properties[$property.Name].Value = $property.Value
+            }
         }
+        $targetList += $targetObject
     }
-    $response
+
+    $targetList
     }
 }
