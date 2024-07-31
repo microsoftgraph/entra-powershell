@@ -10,17 +10,9 @@ manager: CelesteDG
 author: msewaweru
 ms.reviewer: stevemutungi
 
-{{ //for GA or v1.0 commands
-external help file: Microsoft.Graph.Entra-Help.xml
-Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/<Command-Name>
-}}
-
-{{ //for beta commands
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
-Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/<Command-Name>
-}}
+external help file: Microsoft.Graph.Entra-Help.xml  //use `Microsoft.Graph.Entra.Beta-Help.xml` for beta commands
+Module Name: Microsoft.Graph.Entra  //use `Microsoft.Graph.Entra.Beta` for beta commands
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/<Command-Name> //use `https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/<Command-Name>` for beta commands
 
 schema: 2.0.0
 ---
