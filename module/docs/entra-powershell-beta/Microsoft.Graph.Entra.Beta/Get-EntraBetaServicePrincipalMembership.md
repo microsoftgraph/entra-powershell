@@ -2,7 +2,6 @@
 title: Get-EntraBetaServicePrincipalMembership.
 description: This article provides details on the Get-EntraBetaServicePrincipalMembership command.
 
-
 ms.topic: reference
 ms.date: 07/31/2024
 ms.author: eunicewaweru

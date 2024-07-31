@@ -2,7 +2,6 @@
 title:  Get-EntraBetaServicePrincipalOwnedObject.
 description: This article provides details on the  Get-EntraBetaServicePrincipalOwnedObject Command.
 
-
 ms.topic: reference
 ms.date: 07/31/2024
 ms.author: eunicewaweru

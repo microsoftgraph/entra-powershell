@@ -2,7 +2,6 @@
 title:  Restore-EntraBetaDeletedApplication.
 description: This article provides details on the  Restore-EntraBetaDeletedApplication Command.
 
-
 ms.topic: reference
 ms.date: 07/30/2024
 ms.author: eunicewaweru

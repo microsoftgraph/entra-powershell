@@ -2,7 +2,6 @@
 title: Select-EntraBetaGroupIdsServicePrincipalIsMemberOf.
 description: This article provides details on the Select-EntraBetaGroupIdsServicePrincipalIsMemberOf command.
 
-
 ms.topic: reference
 ms.date: 07/31/2024
 ms.author: eunicewaweru

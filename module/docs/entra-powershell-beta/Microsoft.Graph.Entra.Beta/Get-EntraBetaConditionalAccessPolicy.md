@@ -1,7 +1,6 @@
 ---
-title: Get-EntraBetaConditionalAccessPolicy
+title: Get-EntraBetaConditionalAccessPolicy.
 description: This article provides details on the Get-EntraBetaConditionalAccessPolicy command.
-
 
 ms.topic: reference
 ms.date: 07/30/2024
@@ -130,6 +129,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 [New-EntraBetaConditionalAccessPolicy](New-EntraBetaConditionalAccessPolicy.md)
 
-[Set-EntraBetaConditionalAccessPolicy](Set-EntraBetaConditionalAccessPolicy.ms)
+[Set-EntraBetaConditionalAccessPolicy](Set-EntraBetaConditionalAccessPolicy.md)
 
 [Remove-EntraBetaConditionalAccessPolicy](Remove-EntraBetaConditionalAccessPolicy.md)

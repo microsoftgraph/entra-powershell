@@ -2,7 +2,6 @@
 title: Get-EntraBetaServicePrincipalOAuth2PermissionGrant.
 description: This article provides details on the Get-EntraBetaServicePrincipalOAuth2PermissionGrant command.
 
-
 ms.topic: reference
 ms.date: 07/31/2024
 ms.author: eunicewaweru
