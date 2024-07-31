@@ -53,7 +53,7 @@ CustomKeyIdentifier DisplayName EndDateTime         Hint KeyId                  
 
 This example retrieves the password credentials for specified service principal in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the object ID of a service principal. You can use `Get-EntraBetaServicePrincipal` to retrieve service principal object ID.
+- `-ObjectId` parameter specifies the object ID of a service principal. You can use the command `Get-EntraBetaServicePrincipal` to get a service principal object ID.
 
 ## Parameters
 

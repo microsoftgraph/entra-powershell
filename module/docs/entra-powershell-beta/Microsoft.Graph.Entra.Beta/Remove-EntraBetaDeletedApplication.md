@@ -3,7 +3,7 @@ title: Remove-EntraBetaDeletedApplication
 description: This article provides details on the Remove-EntraBetaDeletedApplication command.
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/30/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,6 +18,7 @@ schema: 2.0.0
 # Remove-EntraBetaDeletedApplication
 
 ## Synopsis
+
 Permanently delete a recently deleted application object from deleted items.
 
 ## Syntax
@@ -25,27 +26,39 @@ Permanently delete a recently deleted application object from deleted items.
 ```powershell
 Remove-EntraBetaDeletedApplication 
  [-ObjectId] <String> 
-[<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## Description
+
 Permanently delete a recently deleted application object from deleted items. After an item is permanently deleted, it can't be restored.
+
+For delegated scenarios, the calling user needs to have at least one of the following Microsoft Entra roles.
+
+- To permanently delete deleted applications or service principals: Application Administrator, Cloud Application Administrator, or Hybrid Identity Administrator.
+
 ## Examples
 
 ### Example 1: Remove deleted application object
+
 ```powershell
-PS C:\> $Id = Get-EntraBetaDeletedApplication -SearchString "newtest10" 
-PS C:\> Remove-EntraBetaDeletedApplication -ObjectId $Id.id
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+$App = Get-EntraBetaDeletedApplication -SearchString 'My PowerShell Application' 
+Remove-EntraBetaDeletedApplication -ObjectId $App.Id
 ```
 
-This command removes recently deleted application.
+This command removes recently deleted application. You can use the command  `Get-EntraBetaDeletedApplication` to get deleted application Id.
+
+- `-ObjectId` parameter specifies the ObjectId of a deleted application.
 
 ## Parameters
 
 ### -ObjectId
+
 The unique identifier of deleted application.
+
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -57,7 +70,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -66,6 +80,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
+
+[Restore-EntraBetaDeletedApplication](Restore-EntraBetaDeletedApplication.md)
+
+[Get-EntraBetaDeletedApplication](Get-EntraBetaDeletedApplication.md)

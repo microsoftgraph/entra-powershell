@@ -54,7 +54,7 @@ Id                                          AppRoleId                           
 1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 07-07-2023 17:03:59 MOD Administrator    aaaaaaaa-bbbb-cccc-1111-222222222222 User          ProvisioningPowerBi 021510b7-e753-40…
 ```
 
-This command gets application role assignments for specified service principal.
+This command gets application role assignments for specified service principal. You can use the command `Get-EntraBetaServicePrincipal` to get service principal Id.
 
 - `-ObjectId` parameter specifies the service principal object ID.
 

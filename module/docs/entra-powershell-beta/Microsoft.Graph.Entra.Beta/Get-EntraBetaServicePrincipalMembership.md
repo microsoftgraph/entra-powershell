@@ -1,4 +1,15 @@
 ---
+title: Get-EntraBetaServicePrincipalMembership.
+description: This article provides details on the Get-EntraBetaServicePrincipalMembership command.
+
+
+ms.topic: reference
+ms.date: 07/31/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaServicePrincipalMembership
@@ -9,6 +20,7 @@ schema: 2.0.0
 # Get-EntraBetaServicePrincipalMembership
 
 ## Synopsis
+
 Get a service principal membership.
 
 ## Syntax
@@ -23,28 +35,69 @@ Get-EntraBetaServicePrincipalMembership
 ```
 
 ## Description
-The Get-EntraBetaServicePrincipalMembership cmdlet gets the memberships of a service principal in Azure Active Directory (Azure AD).
+
+The `Get-EntraBetaServicePrincipalMembership` cmdlet gets the memberships of a service principal in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Retrieve the memberships of a service principal
-```
-PS C:\> $ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
-PS C:\> Get-EntraBetaServicePrincipalMembership -ObjectId $ServicePrincipalId
+
+```powershell
+ Connect-Entra -Scopes 'Application.Read.All'
+ $ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
+ Get-EntraBetaServicePrincipalMembership -ObjectId $ServicePrincipalId
 ```
 
-The first command gets the ID of a service principal by using the Get-EntraBetaServicePrincipal (./Get-EntraBetaServicePrincipal.md)cmdlet. 
-The command stores the ID in the $ServicePrincipalId variable.
+This cmdlet retrieves a specified service principal memberships in Microsoft Entra ID. You can use the command `Get-EntraBetaServicePrincipal` to get service principal Id.
 
-The second command gets the memberships of a service principal identified by $ServicePrincipalId.
+- `-ObjectId` parameter specifies the service principal object ID.
+
+### Example 2: Retrieve all memberships of a service principal
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraBetaServicePrincipalMembership -ObjectId '33334444-dddd-5555-eeee-6666ffff7777' -All 
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+11112222-aaaa-3333-bbbb-4444cccc5555
+22223333-cccc-4444-dddd-5555eeee6666
+33334444-dddd-5555-eeee-6666ffff7777
+```
+
+This command gets all memberships of a specified service principal.
+
+- `-ObjectId` parameter specifies the service principal object ID.
+
+### Example 3: Retrieve top two memberships of a service principal
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraBetaServicePrincipalMembership -ObjectId '22223333-cccc-4444-dddd-5555eeee6666' -Top 2
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+11112222-aaaa-3333-bbbb-4444cccc5555
+22223333-cccc-4444-dddd-5555eeee6666
+
+```
+
+This command gets top two memberships of a specified service principal.
+
+- `-ObjectId` parameter specifies the service principal object ID.
 
 ## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -56,10 +109,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a service principal in Azure AD.
+
+Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -71,10 +125,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -102,7 +157,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -112,4 +168,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaServicePrincipal]()
+[Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)
