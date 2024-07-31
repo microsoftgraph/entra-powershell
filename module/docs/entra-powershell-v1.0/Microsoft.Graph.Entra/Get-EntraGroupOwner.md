@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraGroupOwner
+
 schema: 2.0.0
 ---
 
@@ -46,16 +47,12 @@ Get-EntraGroupOwner -ObjectId 'vvvvvvvv-7777-9999-7777-jjjjjjjjjjjj'
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {HaydenL@contoso.com}
-preferredLanguage               : en
-mail                            : HaydenL@contoso.com
-securityIdentifier              : B-2-33-4-5555555555-6666666666-7777777-8888888888
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=HaydenL@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
 ```
 
 This example demonstrates how to retrieve the owner of a specific group.  
@@ -68,19 +65,12 @@ Get-EntraGroupOwner -ObjectId 'zzzzzzzz-6666-8888-9999-pppppppppppp' -All
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {BlakeM@contoso.com}
-preferredLanguage               : en
-mail                            : BlakeM@contoso.com
-securityIdentifier              : E-5-66-7-8888888888-9999999999-0000000-1111111111
-identities                      : {System.Collections.Hashtable}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
-department                      :
-jobTitle                        :
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
 ```
 
 This example demonstrates how to retrieve the all owner of a specific group.  
@@ -93,23 +83,10 @@ Get-EntraGroupOwner -ObjectId 'vvvvvvvv-8888-9999-0000-jjjjjjjjjjjj' -Top 2
 ```
 
 ```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {QuinnA@contoso.com}
-preferredLanguage               : en
-mail                            : QuinnA@contoso.com
-securityIdentifier              : D-4-55-6-7777777777-8888888888-9999999-0000000000
-identities                      : {System.Collections.Hashtable}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
-department                      :
-jobTitle                        :
-proxyAddresses                  : {SMTP:QuinnA@contoso.com}
-legalAgeGroupClassification     :
-assignedPlans                   : {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
-id                              : tttttttt-0000-2222-0000-aaaaaaaaaaaa
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
 This example demonstrates how to retrieve the top two owners of a specific group.  

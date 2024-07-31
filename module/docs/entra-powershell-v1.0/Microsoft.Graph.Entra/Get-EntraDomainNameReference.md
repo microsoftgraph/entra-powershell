@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraDomainNameReference
+
 schema: 2.0.0
 ---
 
@@ -46,20 +47,14 @@ The work or school account needs to belong to at least the Domain Name Administr
 ```
 
 ```Output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {}
-preferredLanguage               :
-mail                            : Hood@contoso.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=Hood@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {}
-department                      :
-jobTitle                        :
-proxyAddresses                  : {SMTP:Hood@contoso.com}
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+ffffffff-4444-5555-6666-gggggggggggg
+hhhhhhhh-5555-6666-7777-iiiiiiiiiiii
 ```
 
 This example shows how to retrieve the domain name reference objects for a domain that is specified through the -Name parameter.

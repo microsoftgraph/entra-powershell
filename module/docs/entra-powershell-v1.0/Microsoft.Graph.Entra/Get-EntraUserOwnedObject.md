@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraUserOwnedObject
+
 schema: 2.0.0
 ---
 
@@ -46,16 +47,14 @@ Get-EntraUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
-ObjectId                             ObjectType
---------                             ----------
-bbbbbbbb-1111-2222-3333-cccccccccccc Group
-cccccccc-2222-3333-4444-dddddddddddd Group
-dddddddd-3333-4444-5555-eeeeeeeeeeee Group
-eeeeeeee-4444-5555-6666-ffffffffffff Group
-ffffffff-5555-6666-7777-aaaaaaaaaaaa Group
-aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb Group
-bbbbbbbb-7777-8888-9999-cccccccccccc Application
-cccccccc-8888-9999-0000-dddddddddddd Group
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+ffffffff-4444-5555-6666-gggggggggggg
+hhhhhhhh-5555-6666-7777-iiiiiiiiiiii
 ```
 
 This command gets objects owned by the specified user.
@@ -68,16 +67,14 @@ Get-EntraUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
 ```
 
 ```Output
-ObjectId                             ObjectType
---------                             ----------
-bbbbbbbb-1111-2222-3333-cccccccccccc Group
-cccccccc-2222-3333-4444-dddddddddddd Group
-dddddddd-3333-4444-5555-eeeeeeeeeeee Group
-eeeeeeee-4444-5555-6666-ffffffffffff Group
-ffffffff-5555-6666-7777-aaaaaaaaaaaa Group
-aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb Group
-bbbbbbbb-7777-8888-9999-cccccccccccc Application
-cccccccc-8888-9999-0000-dddddddddddd Group
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+ffffffff-4444-5555-6666-gggggggggggg
+hhhhhhhh-5555-6666-7777-iiiiiiiiiiii
 ```
 
 This command gets all the objects owned by the specified user.
@@ -90,11 +87,11 @@ Get-EntraUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 3
 ```
 
 ```Output
-ObjectId                             ObjectType
---------                             ----------
-ffffffff-5555-6666-7777-aaaaaaaaaaaa Group
-aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb Group
-bbbbbbbb-7777-8888-9999-cccccccccccc Application
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
 ```
 
 This command gets the top three objects owned by the specified user.

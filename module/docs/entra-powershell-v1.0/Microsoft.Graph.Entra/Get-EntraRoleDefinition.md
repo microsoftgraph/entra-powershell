@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraRoleDefinition
+
 schema: 2.0.0
 ---
 
@@ -161,7 +162,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies an oData v3.0 filter string to match a set of role definitions.
+Specifies an OData v4.0 filter string to match a set of role definitions.
 
 ```yaml
 Type: System.String
