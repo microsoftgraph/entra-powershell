@@ -50,9 +50,9 @@ Get-EntraDeviceRegisteredOwner -ObjectId $DevId
 ```
 
 ```Output
-ObjectId                             DisplayName     UserPrincipalName     UserType
---------                             -----------    -----------------      --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan    maria@contoso.com       Member
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This example shows how to find the registered owner of a device.
@@ -69,10 +69,10 @@ Get-EntraDeviceRegisteredOwner -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
 ```Output
-ObjectId                             DisplayName     UserPrincipalName     UserType
---------                             -----------    -----------------      --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com       Member
-cccccccc-2222-3333-4444-dddddddddddd Parker McLean   parker@contoso.com      Member
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+cccccccc-2222-3333-4444-dddddddddddd
 ```
 
 This command gets the registered owner of a device.
@@ -85,10 +85,10 @@ Get-EntraDeviceRegisteredOwner -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -A
 ```
 
 ```Output
-ObjectId                             DisplayName     UserPrincipalName     UserType
---------                             -----------    -----------------      --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com       Member
-cccccccc-2222-3333-4444-dddddddddddd Parker McLean   parker@contoso.com      Member
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+cccccccc-2222-3333-4444-dddddddddddd
 ```
 
 This command retrieves all the registered owners of a device.
@@ -101,9 +101,9 @@ Get-EntraDeviceRegisteredOwner -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -T
 ```
 
 ```Output
-ObjectId                             DisplayName     UserPrincipalName     UserType
---------                             -----------    -----------------      --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan  maria@contoso.com       Member
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This command retrieves top one registered owner of a device.

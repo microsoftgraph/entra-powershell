@@ -45,22 +45,10 @@ Get-EntraObjectByObjectId  -ObjectIds aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb , bbb
 ```
 
 ```Output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {admin@contoso.onmicrosoft.com}
-preferredLanguage               :
-mail                            : admin@contoso.onmicrosoft.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=cccccccc-2222-3333-4444-dddddddddddd}, @{disabledPlans=System.Object[];
-                                  skuId=dddddddd-3333-4444-5555-eeeeeeeeeeee}, @{disabledPlans=System.Object[]; skuId=eeeeeeee-4444-5555-6666-ffffffffffff}}
-department                      : Engineering
-jobTitle                        : Product Manager
-
-
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
 This example two objects are retrieved (a DeviceConfiguration object and an Application object) as specified by the value of the ObjectIds parameter.
@@ -73,20 +61,9 @@ Get-EntraObjectByObjectId -ObjectIds aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb -Types
 ```
 
 ```Output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {admin@contoso.onmicrosoft.com}
-preferredLanguage               :
-mail                            : admin@contoso.onmicrosoft.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=cccccccc-2222-3333-4444-dddddddddddd}, @{disabledPlans=System.Object[];
-                                  skuId=dddddddd-3333-4444-5555-eeeeeeeeeeee}, @{disabledPlans=System.Object[]; skuId=eeeeeeee-4444-5555-6666-ffffffffffff}}
-department                      : Engineering
-jobTitle                        : Product Manager
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This example demonstrates how to retrieve objects for a specified object type.

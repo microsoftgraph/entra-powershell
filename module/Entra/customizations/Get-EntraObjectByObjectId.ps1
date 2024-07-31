@@ -77,8 +77,25 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Invoke-GraphRequest -Uri $URI  -Method POST -Body $body -Headers $customHeaders
-        $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+        $response = Invoke-GraphRequest -Uri $URI  -Method POST -Body $body -Headers $customHeaders | ConvertTo-Json -depth 10 | ConvertFrom-Json
+        try {    
+            $response = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+        }
+        catch {}
+
+        if($response){
+            $userList = @()
+            foreach ($data in $response) {
+                $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
+                $data.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name
+                    $propertyValue = $_.Value
+                    $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                }
+                $userList += $userType
+            }
+            $userList
+        } 
     }    
 '@
 }
