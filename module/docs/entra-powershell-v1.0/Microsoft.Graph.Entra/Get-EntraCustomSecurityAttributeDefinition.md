@@ -1,26 +1,26 @@
 ---
-title: Get-EntraCustomSecurityAttributeDefinition .
+title: Get-EntraCustomSecurityAttributeDefinition.
 description: This article provides details on the Get-EntraCustomSecurityAttributeDefinition command.
-ms.service: entra
+
 ms.topic: reference
-ms.date: 06/13/2024
+ms.date: 07/23/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraCustomSecurityAttributeDefinition
 schema: 2.0.0
 ---
 
 # Get-EntraCustomSecurityAttributeDefinition
 
-## SYNOPSIS
+## Synopsis
 
 Gets a list of custom security attribute definitions.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -37,11 +37,18 @@ Get-EntraCustomSecurityAttributeDefinition
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-Gets a list of Microsoft Entra ID custom security attribute definitions. Specify `Id` parameter to gets a list of custom security attribute definitions.
+The `Get-EntraCustomSecurityAttributeDefinition` cmdlet gets a list of Microsoft Entra ID custom security attribute definitions. Specify `Id` parameter to gets a list of custom security attribute definitions.
 
-## EXAMPLES
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The following privileged roles are supported for this operation:
+
+- Attribute Assignment Reader
+- Attribute Definition Reader
+- Attribute Assignment Administrator
+- Attribute Definition Administrator
+
+## Examples
 
 ### Example 1: Get a list of all custom security attribute definitions
 
@@ -50,16 +57,12 @@ Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttribute
 Get-EntraCustomSecurityAttributeDefinition
 ```
 
-```output
+```Output
 Id                                      AttributeSet          Description                         IsCollection IsSearchable Name                             Status     Typ
                                                                                                                                                                         e
 --                                      ------------          -----------                         ------------ ------------ ----                             ------     ---
 engineering_newvalue                    engineering           new value for command test          True         True         newvalue                         Available  Str
 Engineering_ProjectDate                 Engineering           Target completion date              False        True         ProjectDate                      Available  Str
-Test_Date                               Test                  Target completion date              False        True         Date                             Available  Str
-Test_ProjectDate                        Test                  Target completion date              False        True         ProjectDate                      Available  Str
-test2_ProjectDate                       test2                 Description Value                   False        True         ProjectDate                      Deprecated Str
-Testeng1_ProjectDate                    Testeng1              Target completion date              False        True         ProjectDate                      Available  Str
 ```
 
 This example get all custom security attribute definitions.
@@ -71,7 +74,7 @@ Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttribute
 Get-EntraCustomSecurityAttributeDefinition -Id 'Engineering_Project'
 ```
 
-```output
+```Output
 Id                  AttributeSet Description IsCollection IsSearchable Name    Status     Type   UsePreDefinedValuesOnly
 --                  ------------ ----------- ------------ ------------ ----    ------     ----   -----------------------
 Engineering_Project Engineering  new update1 True         True         Project Deprecated String False
@@ -79,10 +82,11 @@ Engineering_Project Engineering  new update1 True         True         Project D
 
 Get a custom security attribute definition.
 
+- `-Id` Specify the unique identifier of custom security attribute definition object.
 - Attribute set: `Engineering`
 - Attribute: `ProjectDate`
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -104,17 +108,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraCustomSecurityAttributeDefinition](New-EntraCustomSecurityAttributeDefinition.md)
 
