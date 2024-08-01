@@ -54,16 +54,19 @@ function Get-EntraFeatureRolloutPolicy {
             $data = $data | Select-Object $Property
         }
 
-        $userList = @()
-        foreach ($response in $data) {
-            $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphFeatureRolloutPolicy
-            $response.PSObject.Properties | ForEach-Object {
-                $propertyName = $_.Name
-                $propertyValue = $_.Value
-                $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+        if($data)
+        {
+            $userList = @()
+            foreach ($response in $data) {
+                $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphFeatureRolloutPolicy
+                $response.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name
+                    $propertyValue = $_.Value
+                    $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                }
+                $userList += $userType
             }
-            $userList += $userType
+            $userList 
         }
-        $userList 
     }
 }
