@@ -2,10 +2,10 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 @{
-    SourceName = "Get-AzureADApplicationOwner"
-    TargetName = $null
-    Parameters = $null
-    outputs = $null
+    SourceName   = "Get-AzureADApplicationOwner"
+    TargetName   = $null
+    Parameters   = $null
+    outputs      = $null
     CustomScript = @'   
     PROCESS {    
         $params = @{}
@@ -92,17 +92,19 @@
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
             }
         }
-        $userList = @()
-        foreach ($data in $response) {
-            $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
-            $data.PSObject.Properties | ForEach-Object {
-                $propertyName = $_.Name
-                $propertyValue = $_.Value
-                $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+        if($response){
+            $userList = @()
+            foreach ($data in $response) {
+                $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
+                $data.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name
+                    $propertyValue = $_.Value
+                    $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                }
+                $userList += $userType
             }
-            $userList += $userType
+            $userList 
         }
-        $userList 
     }
 '@
 }
