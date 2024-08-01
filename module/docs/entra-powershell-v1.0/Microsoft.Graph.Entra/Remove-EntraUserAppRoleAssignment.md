@@ -33,7 +33,7 @@ Remove-EntraUserAppRoleAssignment
 
 ## Description
 
-The Remove-EntraUserAppRoleAssignment cmdlet removes a user application role assignment in Microsoft Entra ID.
+The `Remove-EntraUserAppRoleAssignment` cmdlet removes a user application role assignment in Microsoft Entra ID.
 
 ## Examples
 
@@ -51,6 +51,11 @@ Remove-EntraUserAppRoleAssignment @RemoveAppRoleParams
 ```
 
 This example demonstrates how to Remove the user app role assignment in Microsoft Entra ID.
+
+- `ObjectId` parameter specifies the user ID.
+- `AppRoleAssignmentId` parameter specifies the application role assignment ID.
+
+Use the `Get-EntraUserAppRoleAssignment` cmdlet to get more details.
 
 ## Parameters
 
