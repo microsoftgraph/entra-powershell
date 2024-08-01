@@ -94,14 +94,26 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = New-MgInvitation @params -Headers $customHeaders
+        $response = New-MgInvitation @params -Headers $customHeaders | ConvertTo-Json -Depth 2 | ConvertFrom-Json
         $response | ForEach-Object {
             if($null -ne $_) {
             Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
     
             }
         }
-        $response | ConvertTo-Json -Depth 2 | ConvertFrom-Json
+        if($response){
+                $userList = @()
+                foreach ($data in $response) {
+                    $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphInvitation
+                    $data.PSObject.Properties | ForEach-Object {
+                        $propertyName = $_.Name
+                        $propertyValue = $_.Value
+                        $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                    }
+                    $userList += $userType
+                }
+                $userList    
+            }
         }
 '@
 }
