@@ -70,45 +70,20 @@ function New-EntraApplicationFromApplicationTemplate {
         }
 
         $uri = "https://graph.microsoft.com/v1.0/applicationTemplates/$Id/instantiate"
-        $response =  invoke-graphrequest -uri $uri -Headers $customHeaders -Body $body -Method POST
-        $Application = [PSCustomObject]@{
-            "Id"                      = ($response.Application).id
-            "ObjectId"                = ($response.Application).id
-            "ApplicationTemplateId"   = ($response.Application).applicationTemplateId
-            "AppId"                   = ($response.Application).AppId
-            "DisplayName"             = ($response.Application).DisplayName
-            "Homepage"                = $response.Application.web.homePageUrl
-            "IdentifierUris"          = ($response.Application).IdentifierUris
-            "PublicClient"            = ($response.Application).PublicClient.RedirectUris            
-            "LogoutUrl"               = $response.Application.web.LogoutUrl
-            "GroupMembershipClaims"   = ($response.Application).GroupMembershipClaims
+        $response =  invoke-graphrequest -uri $uri -Headers $customHeaders -Body $body -Method POST | ConvertTo-Json -Depth 5 | ConvertFrom-Json                
+        $memberList = @()
+        foreach($data in $response){
+            $memberType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphApplicationServicePrincipal
+            if (-not ($data -is [psobject])) {
+                $data = [pscustomobject]@{ Value = $data }
+            }
+            $data.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name
+                $propertyValue = $_.Value
+                $memberType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+            }
+            $memberList += $memberType
         }
-        $ServicePrincipal = [PSCustomObject]@{
-            "Id"                        = ($response.ServicePrincipal).Id
-            "ObjectId"                  = ($response.ServicePrincipal).Id
-            "AccountEnabled"            = ($response.ServicePrincipal).AccountEnabled
-            "AppDisplayName"            = ($response.ServicePrincipal).AppDisplayName
-            "ApplicationTemplateId"     = ($response.ServicePrincipal).applicationTemplateId
-            "AppId"                     = ($response.ServicePrincipal).AppId
-            "AppRoleAssignmentRequired" = ($response.ServicePrincipal).AppRoleAssignmentRequired            
-            "DisplayName"               = ($response.ServicePrincipal).DisplayName            
-            "LogoutUrl"                 = ($response.ServicePrincipal).LogoutUrl 
-            "Homepage"                  = ($response.ServicePrincipal).Homepage
-            "PublisherName"             = ($response.ServicePrincipal).verifiedPublisher.displayName
-            "PreferredTokenSigningKeyThumbprint" = ($response.ServicePrincipal).PreferredTokenSigningKeyThumbprint
-            "ReplyUrls" = ($response.ServicePrincipal).ReplyUrls
-            "Tags" = ($response.ServicePrincipal).Tags
-            "ServicePrincipalNames" = ($response.ServicePrincipal).ServicePrincipalNames
-            "KeyCredentials" =  ($response.ServicePrincipal).KeyCredentials
-            "PasswordCredentials" = ($response.ServicePrincipal).PasswordCredentials
-            "IdentifierUris"            = ($response.Application).IdentifierUris
-            "PublicClient"              = ($response.Application).PublicClient.RedirectUris
-            "GroupMembershipClaims"     = ($response.Application).GroupMembershipClaims
-        }
-        $re = [PSCustomObject]@{
-            "application"     = $Application
-            "serviceprincipal" = $ServicePrincipal
-        }
-        $re
+        $memberList  
     }     
 }
