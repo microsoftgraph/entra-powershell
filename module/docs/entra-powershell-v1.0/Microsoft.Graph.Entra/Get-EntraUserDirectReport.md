@@ -2,9 +2,8 @@
 title: Get-EntraUserDirectReport.
 description: This article provides details on the Get-EntraUserDirectReport command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 08/01/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -35,7 +34,7 @@ Get-EntraUserDirectReport
 
 ## Description
 
-The Get-EntraUserDirectReport cmdlet gets the direct reports for a user in Microsoft Entra ID.
+The `Get-EntraUserDirectReport` cmdlet gets the direct reports for a user in Microsoft Entra ID. Specify `ObjectId` parameter gets the direct reports for a user.
 
 ## Examples
 
@@ -58,6 +57,8 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee
 
 This example demonstrates how to retrieve direct reports for a user in Microsoft Entra ID.
 
+- `-ObjectId` Parameter specifies the ID of a user (UserPrincipalName or ObjectId).
+
 ### Example 2: Get all direct reports
 
 ```powershell
@@ -66,7 +67,7 @@ Connect-Entra -Scopes 'User.Read.All' #Application Permission
 Get-EntraUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All 
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
@@ -77,6 +78,8 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee
 
 This example demonstrates how to retrieve all direct reports for a user in Microsoft Entra ID.
 
+- `-ObjectId` Parameter specifies the ID of a user (UserPrincipalName or ObjectId).
+
 ### Example 3: Get a top five direct reports
 
 ```powershell
@@ -85,7 +88,7 @@ Connect-Entra -Scopes 'User.Read.All' #Application Permission
 Get-EntraUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 3
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
@@ -94,6 +97,8 @@ cccccccc-2222-3333-4444-dddddddddddd
 ```
 
 This example demonstrates how to retrieve top five direct reports for a user in Microsoft Entra ID.
+
+- `-ObjectId` Parameter specifies the ID of a user (UserPrincipalName or ObjectId).
 
 ## Parameters
 
@@ -147,7 +152,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
