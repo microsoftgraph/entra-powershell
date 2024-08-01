@@ -1,15 +1,13 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-@{
-    SourceName = "Get-AzureADCurrentSessionInfo"
-    TargetName = $null
-    Parameters = $null
-    Outputs = $null
-    CustomScript = @'
-    PROCESS {    
+
+function Get-EntraContext {
+    [CmdletBinding(DefaultParameterSetName = '')]
+    param ()
+
+    PROCESS {
         $params = @{}
-        $keysChanged = @{}
         if($null -ne $PSBoundParameters["ErrorAction"])
         {
             $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
@@ -62,10 +60,6 @@
         {
             $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
         }
-        if($null -ne $PSBoundParameters["Property"])
-        {
-            $params["Property"] = $PSBoundParameters["Property"]
-        }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
@@ -74,5 +68,6 @@
         $response = Get-MgContext @params
         $response
     }
-'@
 }
+Set-Alias -Name Get-EntraCurrentSessionInfo -Value Get-EntraContext -Scope Global -Force
+
