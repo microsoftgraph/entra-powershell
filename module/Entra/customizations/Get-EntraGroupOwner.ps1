@@ -92,6 +92,8 @@
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
             }
         }
+        if($response){
+            $userList = @()
             foreach ($data in $response) {
                 $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
                 $data.PSObject.Properties | ForEach-Object {
@@ -101,7 +103,8 @@
                 }
                 $userList += $userType
             }
-            $userList 
-        }
+            $userList
+        } 
+    }
 '@
 }
