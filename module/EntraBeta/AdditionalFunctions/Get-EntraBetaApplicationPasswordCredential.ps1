@@ -33,17 +33,19 @@ function Get-EntraBetaApplicationPasswordCredential {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name StartDate -Value startDateTime
             }
         }
-        $userList = @()
-        foreach ($data in $response) {
-            $userType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphPasswordCredential
-            $data.PSObject.Properties | ForEach-Object {
-                $propertyName = $_.Name
-                $propertyValue = $_.Value
-                $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
-            }
-            $userList += $userType
-        } 
-
+        if($response)
+        {
+            $userList = @()
+            foreach ($data in $response) {
+                $userType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphPasswordCredential
+                $data.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name
+                    $propertyValue = $_.Value
+                    $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                }
+                $userList += $userType
+            }  
+        }
         if($null -ne $PSBoundParameters["Property"])
         {
             $userList | Select-Object $PSBoundParameters["Property"]
