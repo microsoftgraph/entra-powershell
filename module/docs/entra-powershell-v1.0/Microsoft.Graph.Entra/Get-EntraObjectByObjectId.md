@@ -33,7 +33,7 @@ Get-EntraObjectByObjectId
 
 ## Description
 
-Retrieves the objects specified by the ObjectIds parameter.
+The `Get-EntraObjectByObjectId` cmdlet retrieves the objects specified by the ObjectIds parameter.
 
 ## Examples
 
@@ -41,7 +41,7 @@ Retrieves the objects specified by the ObjectIds parameter.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraObjectByObjectId  -ObjectIds aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb , bbbbbbbb-1111-2222-3333-cccccccccccc
+Get-EntraObjectByObjectId  -ObjectIds 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' , 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 ```Output
@@ -52,6 +52,8 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
 This example two objects are retrieved (a DeviceConfiguration object and an Application object) as specified by the value of the ObjectIds parameter.
+
+- `-ObjectIds` Parameters specify one or more object IDs's, separated by commas, for which the objects are retrieved.
 
 ### Example 2: Get an object by types
 
@@ -68,11 +70,15 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 
 This example demonstrates how to retrieve objects for a specified object type.
 
+- `-ObjectIds` Parameters specify one or more object IDs's, separated by commas, for which the objects are retrieved.
+
+- `-Type` Parameter Specifies the type of objects that the cmdlet returns. If not specified, the default is directoryObject, which includes all resource types defined in the directory.
+
 ## Parameters
 
 ### -ObjectIds
 
-One or more object IDs's, separated by commas, for which the objects are retrieved. The IDs are GUIDs, represented as strings. You can specify up to 1000 IDs.
+One or more object IDs's, separated by commas, for which the objects are retrieved. The IDs are GUIDs, represented as strings. You can specify up to 1,000 IDs.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -104,7 +110,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

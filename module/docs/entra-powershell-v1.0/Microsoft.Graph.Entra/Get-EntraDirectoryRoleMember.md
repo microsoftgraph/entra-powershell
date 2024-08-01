@@ -2,7 +2,6 @@
 title: Get-EntraDirectoryRoleMember.
 description: This article provides details on the Get-EntraDirectoryRoleMember command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -52,6 +51,8 @@ bbbbbbbb-7777-8888-9999-cccccccccccc
 
 This command demonstrates how to get the members of the specified role.
 
+- `-ObjectId` parameter specifies the ID of a directory role.
+
 ## Parameters
 
 ### -ObjectId
@@ -72,7 +73,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
