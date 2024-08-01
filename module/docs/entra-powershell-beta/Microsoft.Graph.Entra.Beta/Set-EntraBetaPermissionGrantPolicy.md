@@ -1,4 +1,13 @@
 ---
+title: Set-EntraBetaPermissionGrantPolicy
+description: This article provides details on the Set-EntraBetaPermissionGrantPolicy command.
+
+ms.topic: reference
+ms.date: 08/01/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaPermissionGrantPolicy
@@ -9,32 +18,67 @@ schema: 2.0.0
 # Set-EntraBetaPermissionGrantPolicy
 
 ## Synopsis
+
 Updates a permission grant policy.
 
 ## Syntax
 
-```
-Set-EntraBetaPermissionGrantPolicy [-Description <String>] [-DisplayName <String>] -Id <String>
+```powershell
+Set-EntraBetaPermissionGrantPolicy 
+ -Id <String>
+ [-Description <String>] 
+ [-DisplayName <String>] 
  [<CommonParameters>]
 ```
 
 ## Description
-The Set-EntraBetaPermissionGrantPolicy command updates an Azure Active Directory permission grant policy.
+
+The `Set-EntraBetaPermissionGrantPolicy` command updates a Microsoft Entra ID permission grant policy.
 
 ## Examples
 
-### Example 1
+### Example 1: Update description of permission grant policy
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
+$params = @{
+    Id = 'my_permission_grant_policy_id'
+    Description = 'Updated description'
+}
+
+Set-EntraBetaPermissionGrantPolicy @params
 ```
-PS C:\> Set-EntraBetaPermissionGrantPolicy -Id "my_permission_grant_policy_id" -Description "updated description" -DisplayName "update displayname"
+
+This command updates the description of the specified permission grant policy.
+
+- `-Id` parameter specifies the unique identifier of the permission grant policy.
+- `-Description` parameter specifies the description for the permission grant policy.
+
+### Example 2: Update display name of permission grant policy
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
+$params = @{
+    Id = 'my_permission_grant_policy_id'
+    DisplayName = 'Updated DisplayName'
+}
+
+Set-EntraBetaPermissionGrantPolicy @params
 ```
+
+This command updates the display name of the specified permission grant policy.
+
+- `-Id` parameter specifies the unique identifier of the permission grant policy.
+- `-DisplayName` parameter specifies the display name for the permission grant policy.
 
 ## Parameters
 
 ### -Description
+
 Specifies the description of the permission grant policy.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -46,10 +90,11 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
+
 Specifies the display name of the permission grant policy.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -61,10 +106,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
+
 Specifies the unique identifier of the permission grant policy.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -76,7 +122,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -86,9 +133,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[New-EntraBetaPermissionGrantPolicy]()
+[New-EntraBetaPermissionGrantPolicy](New-EntraBetaPermissionGrantPolicy.md)
 
-[Get-EntraBetaPermissionGrantPolicy]()
+[Get-EntraBetaPermissionGrantPolicy](Get-EntraBetaPermissionGrantPolicy.md)
 
-[Remove-EntraBetaPermissionGrantPolicy]()
-
+[Remove-EntraBetaPermissionGrantPolicy](Remove-EntraBetaPermissionGrantPolicy.md)
