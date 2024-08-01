@@ -2,7 +2,6 @@
 title: Add-EntraScopedRoleMembership
 description: This article provides details on the Add-EntraScopedRoleMembership command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -35,7 +34,9 @@ Add-EntraScopedRoleMembership
 
 ## Description
 
-The `Add-EntraScopedRoleMembership` cmdlet adds a scoped role membership to an administrative unit.
+The `Add-EntraScopedRoleMembership` cmdlet adds a scoped role membership to an administrative unit. Specify `ObjectId` parameter to add a scoped role membership.
+
+For delegated scenarios, the calling user needs at least the Privileged Role Administrator Microsoft Entra role.
 
 ## Examples
 
@@ -48,22 +49,25 @@ $Role = Get-EntraDirectoryRole -Filter "DisplayName eq 'User Administrator'"
 $Unit = Get-EntraAdministrativeUnit -Filter "DisplayName eq 'New MSAdmin unit'"
 $RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRolememberinfo
 $RoleMember.Id = $User.ObjectID
-Add-EntraScopedRoleMembership -ObjectId $Unit.Id -RoleObjectId $Role.ObjectId -RoleMemberInfo $RoleMember
+$params = @{
+    ObjectId = $unit.ObjectId
+    RoleObjectId = $Role.ObjectId
+    RoleMemberInfo = $RoleMember
+}
+Add-EntraScopedRoleMembership @params
 ```
 
-```output
-@odata.context             : https://graph.microsoft.com/v1.0/$metadata#scopedRoleMemberships/$entity
-administrativeUnitId       : aaaaaaaa-bbbb-cccc-aaaa-aaaaaaaa
-roleMemberInfo             : @{id= aaaaaaaa-bbbb-cccc-aaaa-aaaaaaaa;     userPrincipalName=DemoTests1ac196c1-3343-4419-8c3b-6f95c02a83e2@M365x99297270.OnMicrosoft.com;
-                             displayName=DemoTests1ac196c1-3343-4419-8c3b-6f95c02a83e2}
-id                         : zTVcE8KFQ0W4bI9tvt6kz5G_C9Qom7tCpCzyrakzL7YfYhUwtb_KQJI9hDn_fbKGU
-roleId                     : dddddddd-bbbb-cccc-aaaa-aaaaaaaa
-AdministrativeUnitObjectId : aaaaaaaa-bbbb-cccc-aaaa-aaaaaaaa
-RoleObjectId               : ffffffff-bbbb-cccc-aaaa-aaaaaaaa
-ObjectId                   : aaaaaaaaaaaaaaaaaaaaaa_bbbbbbbbbbbbbbbbbbbbbbbbbb_cccccccc_aaaaa
+```Output
+Id                                                                AdministrativeUnitId                 RoleId
+--                                                                --------------------                 ------
+dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
 The example shows how to add a user to the specified role within the specified administrative unit.
+
+- `-ObjectId` Paramater specifies the ID of an administrative unit.
+- `-RoleObjectId` Paramater specifies the ID of a directory role.
+- `-RoleMemberInfo` Paramater specifies a RoleMemberInfo object.
 
 ## Parameters
 
