@@ -1,26 +1,26 @@
 ---
 title: Add-EntraCustomSecurityAttributeDefinitionAllowedValues.
 description: This article provides details on the Add-EntraCustomSecurityAttributeDefinitionAllowedValues command.
-ms.service: entra
+
 ms.topic: reference
-ms.date: 06/12/2024
+ms.date: 07/23/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Add-EntraCustomSecurityAttributeDefinitionAllowedValues
 schema: 2.0.0
 ---
 
 # Add-EntraCustomSecurityAttributeDefinitionAllowedValues
 
-## SYNOPSIS
+## Synopsis
 
 Adds a predefined value for a custom security attribute definition.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraCustomSecurityAttributeDefinitionAllowedValues 
@@ -30,33 +30,41 @@ Add-EntraCustomSecurityAttributeDefinitionAllowedValues
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-Adds a predefined value for a Microsoft Entra ID custom security attribute definition.
+The `Add-EntraCustomSecurityAttributeDefinitionAllowedValues` adds a predefined value for a Microsoft Entra ID custom security attribute definition.
 
-## EXAMPLES
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
+
+## Examples
 
 ### Example 1: Add a predefined value for a Microsoft Entra ID custom security attribute definition
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-Add-EntraCustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Id 'Alpine' -IsActive $true
+$CustomSecurityAttributeDefinitionId = (Get-EntraCustomSecurityAttributeDefinition -Id <attributename_attributedefinition>).Id
+$params = @{
+    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinitionId
+    Id = 'Alpine'
+    IsActive = $true
+}
+Add-EntraCustomSecurityAttributeDefinitionAllowedValues @params
 ```
 
-```output
+```Output
 
 Id   IsActive
 --   --------
 Alpine True
 ```
 
-This example Add a predefined value:
+This example adds a predefined value to a custom security attribute definition.
 
-- Attribute set: `Engineering`
-- Attribute: `Project`
-- Predefined value: `Alpine`
+- `-CustomSecurityAttributeDefinitionId` Specify the unique identifier for custom security attribute definition. You can use the command `Get-EntraCustomSecurityAttributeDefinition` to get the ID.
+- `-Id` Specify the identifier for the predefined value.
+- `-IsActive` Specify whether the predefined value is active or deactivated.
 
-## PARAMETERS
+## Parameters
 
 ### -CustomSecurityAttributeDefinitionId
 
@@ -76,7 +84,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-The unique identifier of an object in Microsoft Entra ID.
+The unique identifier for the predefined value, which can be up to 64 characters long and include Unicode characters. Spaces are allowed, but some special characters aren't. This identifier is case sensitive, can't be changed later, and is required.
 
 ```yaml
 Type: System.String
@@ -110,14 +118,18 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
+
+[Get-EntraCustomSecurityAttributeDefinitionAllowedValues](Get-EntraCustomSecurityAttributeDefinitionAllowedValues.md)
+
+[Set-EntraCustomSecurityAttributeDefinitionAllowedValues](Set-EntraCustomSecurityAttributeDefinitionAllowedValues.md)
