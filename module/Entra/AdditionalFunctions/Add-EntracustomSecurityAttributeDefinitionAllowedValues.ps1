@@ -63,16 +63,19 @@ function Add-EntraCustomSecurityAttributeDefinitionAllowedValues {
         $Uri = "https://graph.microsoft.com/v1.0/directory/customSecurityAttributeDefinitions/$CustomSecurityAttributeDefinitionId/allowedValues"
         $Method = "POST"
         $response = Invoke-GraphRequest -Uri $Uri -Method $Method -Body $body -Headers $customHeaders | ConvertTo-Json | ConvertFrom-Json
-        $userList = @()
-        foreach ($data in $response) {
-            $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphAllowedValue
-            $data.PSObject.Properties | ForEach-Object {
-                $propertyName = $_.Name
-                $propertyValue = $_.Value
-                $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+        if($response)
+        {
+            $userList = @()
+            foreach ($data in $response) {
+                $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphAllowedValue
+                $data.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name
+                    $propertyValue = $_.Value
+                    $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                }
+                $userList += $userType
             }
-            $userList += $userType
-        }
-        $userList 
+            $userList
+        } 
     }
 }
