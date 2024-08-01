@@ -26,9 +26,7 @@ function Get-EntraBetaApplicationPasswordCredential {
         $response | ForEach-Object {
             if($null -ne $_) {
                 $CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes([System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_.CustomKeyIdentifier)))
-                $DisplayName = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_.CustomKeyIdentifier))
                 Add-Member -InputObject $_ -MemberType NoteProperty -Name CustomKeyIdentifier -Value $CustomKeyIdentifier -Force
-                Add-Member -InputObject $_ -MemberType NoteProperty -Name DisplayName -Value $DisplayName -Force
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name EndDate -Value endDateTime
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name StartDate -Value startDateTime
             }
