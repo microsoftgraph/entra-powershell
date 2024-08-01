@@ -102,6 +102,19 @@
             }
         }
         $response | ConvertTo-Json -Depth 2 | ConvertFrom-Json
-        }
+        
+
+        $targetObject = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphInvitation
+            foreach ($property in $response.PSObject.Properties) {
+                if ($targetObject.PSObject.Properties[$property.Name]) {                    
+                    #AdditionalProperties is readOnly
+                    if ($property.Name -ne "AdditionalProperties"){ 
+                        $targetObject.PSObject.Properties[$property.Name].Value = $property.Value
+                    }                    
+                }
+            }
+           
+        $targetObject
+    }
 '@
 }
