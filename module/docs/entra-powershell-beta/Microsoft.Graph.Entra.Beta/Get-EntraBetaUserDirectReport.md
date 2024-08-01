@@ -2,7 +2,6 @@
 title: Get-EntraBetaUserDirectReport.
 description: This article provides details on the Get-EntraBetaUserDirectReport command.
 
-
 ms.topic: reference
 ms.date: 07/25/2024
 ms.author: eunicewaweru
@@ -65,7 +64,7 @@ assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=333344
 
 This command gets the direct report for the specified user.
 
-- `-ObjectId` parameter specifies user object ID.
+- `-ObjectId` parameter specifies the user object ID.
 
 ### Example 2: Get all direct reports
 
@@ -75,7 +74,7 @@ Connect-Entra -Scopes 'User.Read.All' #Application Permission
 Get-EntraBetaUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All 
 ```
 
-```output
+```Output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
@@ -92,7 +91,7 @@ assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=333344
 
 This example demonstrates how to retrieve all direct reports for a user in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies user object ID.
+- `-ObjectId` parameter specifies the user object ID.
 
 ### Example 3: Get a top five direct reports
 
@@ -119,7 +118,7 @@ assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=333344
 
 This example demonstrates how to retrieve top five direct reports for a user in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies user object ID.
+- `-ObjectId` parameter specifies the user object ID.
 
 ## Parameters
 
@@ -141,7 +140,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-Specifies the ID of a user in Microsoft Entra ID (UserPrincipalName or ObjectId).
+Specifies the ID of a user (UserPrincipalName or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String

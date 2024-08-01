@@ -2,7 +2,6 @@
 title: Get-EntraBetaServicePrincipalOwner
 description: This article provides details on the Get-EntraBetaServicePrincipalOwner command.
 
-
 ms.topic: reference
 ms.date: 07/29/2024
 ms.author: eunicewaweru
@@ -55,8 +54,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 cccccccc-2222-3333-4444-dddddddddddd
 ```
 
-This example gets the owners of a specified service principal.  
-You can use `Get-EntraBetServicePrincipal` cmdlet to retrieve a service principal object Id.
+This example gets the owners of a specified service principal. You can use the comand `Get-EntraBetaServicePrincipal` to get service principal object Id.
 
 - `ObjectId` parameter specifies the service principal object ID.
 
@@ -76,8 +74,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 cccccccc-2222-3333-4444-dddddddddddd
 ```
 
-This command gets all the owners of a service principal.  
-You can use `Get-EntraBetServicePrincipal` cmdlet to retrieve a service principal object Id.
+This command gets all the owners of a service principal. You can use the comand `Get-EntraBetServicePrincipal` to get service principal object Id.
 
 - `ObjectId` parameter specifies the service principal object ID.
 
@@ -96,8 +93,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
-This command gets top two owners of a service principal.  
-You can use `Get-EntraBetServicePrincipal` cmdlet to retrieve a service principal object Id.
+This command gets top two owners of a service principal. You can use the comand `Get-EntraBetServicePrincipal` to get service principal object Id.
 
 - `-ObjectId` parameter specifies the service principal object ID.
 
@@ -153,7 +149,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

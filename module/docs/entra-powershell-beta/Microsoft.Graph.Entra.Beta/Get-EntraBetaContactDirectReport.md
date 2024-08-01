@@ -2,7 +2,6 @@
 title: Get-EntraBetaContactDirectReport
 description: This article provides details on the Get-EntraBetaContactDirectReport command.
 
-
 ms.topic: reference
 ms.date: 07/29/2024
 ms.author: eunicewaweru
@@ -48,9 +47,7 @@ $Contact = Get-EntraBetaContact -Top 1
 Get-EntraBetaContactDirectReport -ObjectId $Contact.ObjectId
 ```
 
-This example shows how to retrieve direct reports for an organizational contact.
-
-You can use `Get-EntraBetaContact` cmdlet to retrieve an organizational contact.
+This example shows how to retrieve direct reports for an organizational contact. You can use the command `Get-EntraBetaContact` to get organizational contact.
 
 - `-ObjectId` parameter specifies the contact object ID.
 

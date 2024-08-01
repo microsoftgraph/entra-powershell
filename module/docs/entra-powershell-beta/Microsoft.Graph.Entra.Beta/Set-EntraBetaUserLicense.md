@@ -2,9 +2,8 @@
 title: Set-EntraBetaUserLicense
 description: This article provides details on the Set-EntraBetaUserLicense command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -27,8 +26,8 @@ Adds or removes licenses for a Microsoft online service to the list of assigned 
 
 ```powershell
 Set-EntraBetaUserLicense 
-    -ObjectId <String> 
-    -AssignedLicenses <AssignedLicenses>
+ -ObjectId <String> 
+ -AssignedLicenses <AssignedLicenses>
  [<CommonParameters>]
 ```
 
@@ -73,7 +72,7 @@ id                             cccccccc-2222-3333-4444-dddddddddddd
 isLicenseReconciliationNeeded  False
 ```
 
-This example demonstrates how to assign a license to a user.
+This example demonstrates how to assign a license to a user. You can use the command `Get-EntraBetaUser` to get user object Id.
 
 - `-ObjectId` parameter specifies the user object ID.
 - `-AssignedLicenses` parameter specifies a list of licenses to assign or remove.
@@ -118,7 +117,7 @@ id                             cccccccc-2222-3333-4444-dddddddddddd
 isLicenseReconciliationNeeded  False
 ```
 
-This example demonstrates how to assign a license to a user by copying license from another user.
+This example demonstrates how to assign a license to a user by copying license from another user. You can use the command `Get-EntraBetaUser` to get user object Id.
 
 - `-ObjectId` parameter specifies the user object ID.
 - `-AssignedLicenses` parameter specifies a list of licenses to assign or remove.

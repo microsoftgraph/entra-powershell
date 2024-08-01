@@ -2,7 +2,6 @@
 title: Set-EntraBetaAuthorizationPolicy.
 description: This article provides details on the Set-EntraBetaAuthorizationPolicy command.
 
-
 ms.topic: reference
 ms.date: 07/30/2024
 ms.author: eunicewaweru
@@ -63,11 +62,11 @@ Set-EntraBetaAuthorizationPolicy @Params
 
 This example demonstrates how to update a Microsoft Entra ID authorization policy.
 
-- `Id` parameter specifies the authorization policy ID.
-- `DisplayName` parameter specifies display name of the authorization policy.
-- `Description` parameter specifies the description of a authorization policy.
-- `GuestUserRoleId` parameter specifies the roletemplateId for the role that should be granted to guest user.
-- `EnabledPreviewFeatures` parameter specifies the preview features enabled for private preview on the tenant.
+- `-Id` parameter specifies the authorization policy ID.
+- `-DisplayName` parameter specifies display name of the authorization policy.
+- `-Description` parameter specifies the description of a authorization policy.
+- `-GuestUserRoleId` parameter specifies the roletemplateId for the role that should be granted to guest user.
+- `-EnabledPreviewFeatures` parameter specifies the preview features enabled for private preview on the tenant.
 
 ### Example 2: Update DefaultUserRolePermissions of authorization policy
 
@@ -86,8 +85,8 @@ Set-EntraBetaAuthorizationPolicy @Params
 
 This example demonstrates how to update a DefaultUserRolePermissions of authorization policy in Microsoft Entra ID.
 
-- `Id` parameter specifies the authorization policy ID.
-- `DefaultUserRolePermissions` parameter specifies the customizable default user role permissions.
+- `-Id` parameter specifies the authorization policy ID.
+- `-DefaultUserRolePermissions` parameter specifies the customizable default user role permissions.
 
 ## Parameters
 

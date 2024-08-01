@@ -2,13 +2,11 @@
 title: Remove-EntraBetaGroupAppRoleAssignment
 description: This article provides details on the Remove-EntraBetaGroupAppRoleAssignment command.
 
-
 ms.topic: reference
 ms.date: 07/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
-
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaGroupAppRoleAssignment
@@ -41,11 +39,11 @@ The `Remove-EntraBetaGroupAppRoleAssignment` cmdlet removes a group application 
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-$Params = @{
+$params = @{
     ObjectId = 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq' 
     AppRoleAssignmentId = 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
 }
-Remove-EntraBetaGroupAppRoleAssignment @Params
+Remove-EntraBetaGroupAppRoleAssignment @params
 ```
 
 This example demonstrates how to remove the specified group application role assignment.

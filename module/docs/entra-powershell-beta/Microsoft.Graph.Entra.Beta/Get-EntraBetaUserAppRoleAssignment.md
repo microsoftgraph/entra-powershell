@@ -2,7 +2,6 @@
 title: Get-EntraBetaUserAppRoleAssignment.
 description: This article provides details on the Get-EntraBetaUserAppRoleAssignment command.
 
-
 ms.topic: reference
 ms.date: 07/25/2024
 ms.author: eunicewaweru
@@ -59,7 +58,7 @@ DeletedDateTime Id                                          AppRoleId           
 
 ```
 
-This example retrieves a user application role assignment for the user in $UserId.
+This example retrieves a user application role assignment for the user in $UserId. You can use the comand `Get-EntraBetaUser` to get service principal object Id.
 
 - `-ObjectId` parameter specifies the object ID of a user.
 
@@ -155,7 +154,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

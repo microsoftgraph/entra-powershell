@@ -28,7 +28,8 @@ Gets a contact from Microsoft Entra ID.
 ```powershell
 Get-EntraBetaContact
  [-Filter <String>]
- [-All] [-Top <Int32>]
+ [-All] 
+ [-Top <Int32>]
  [-Property <String[]>]
  [<CommonParameters>]
 ```

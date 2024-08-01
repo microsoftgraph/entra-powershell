@@ -2,7 +2,6 @@
 title: Get-EntraBetaDomainServiceConfigurationRecord.
 description: This article provides details on the Get-EntraBetaDomainServiceConfigurationRecord command.
 
-
 ms.topic: reference
 ms.date: 07/29/2024
 ms.author: eunicewaweru
@@ -36,18 +35,17 @@ Get-EntraBetaDomainServiceConfigurationRecord
 
 Gets the domain's service configuration records from the `serviceConfigurationRecords` navigation property.
 
-After you have successfully verified the ownership of a domain and you have indicated what services you plan to use with the domain, you can request Azure AD to return you a set of DNS records which you need to add to the zone file of the domain so that the services can work properly with your domain.
+After you have successfully verified the ownership of a domain and you have indicated what services you plan to use with the domain, you can request Microsoft Entra ID to return you a set of DNS records which you need to add to the zone file of the domain so that the services can work properly with your domain.
 
 ## Examples
 
-### Example 1: Retrieve domain service configuration records by name
+### Example 1: Retrieve domain service configuration records by Name
 
 ```powershell
 Connect-Entra -Scopes 'Domain.Read.All'
-Get-EntraBetaDomainServiceConfigurationRecord -name 'test.mail.contoso.com'
+Get-EntraBetaDomainServiceConfigurationRecord -Name 'test.mail.contoso.com'
 ```
 
-```Output
 ```Output
 Id                                   IsOptional Label                                            RecordType SupportedService           Ttl
 --                                   ---------- -----                                            ---------- ----------------           ---
@@ -61,7 +59,7 @@ ffff5555-aa66-7777-88bb-999999cccccc False      enterpriseenrollment.test.mail.c
 
 This example shows how to retrieve the Domain service configuration records for a domain with the given name.
 
-- `-name` parameter specifies domain name for which the domain service configuration records are to be retrieved.
+- `-Name` parameter specifies domain name for which the domain service configuration records are to be retrieved.
 
 ## Parameters
 
@@ -83,7 +81,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

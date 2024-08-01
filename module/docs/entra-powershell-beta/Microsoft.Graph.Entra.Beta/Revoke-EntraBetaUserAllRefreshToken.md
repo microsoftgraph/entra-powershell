@@ -2,7 +2,6 @@
 title: Revoke-EntraBetaUserAllRefreshToken.
 description: This article provides details on the Revoke-EntraBetaUserAllRefreshToken command.
 
-
 ms.topic: reference
 ms.date: 07/25/2024
 ms.author: eunicewaweru
@@ -50,7 +49,7 @@ Value
 True
 ```
 
-This command revokes the tokens for the specified user.
+This example demonstrates how to revoke the tokens for the specified user.
 
 - `-ObjectId` parameter specifies the unique object ID of a user.
 

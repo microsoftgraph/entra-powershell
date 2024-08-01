@@ -2,7 +2,6 @@
 title: Get-EntraBetaUserExtension.
 description: This article provides details on the Get-EntraBetaUserExtension command.
 
-
 ms.topic: reference
 ms.date: 07/25/2024
 ms.author: eunicewaweru
@@ -52,10 +51,9 @@ Id
 com.contoso.roamingSettings
 ```
 
-This example shows how to retrieve the extension attributes for a specified user.  
-Use `Get-EntraBetaUser` to retrieve user object Id.
+This example shows how to retrieve the extension attributes for a specified user. You can use the command `Get-EntraBetaUser` to get user object Id.
 
-- `-Objectid` parameter specifies the object ID.
+- `-Objectid` parameter specifies the user object ID.
 
 ## Parameters
 
@@ -77,7 +75,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

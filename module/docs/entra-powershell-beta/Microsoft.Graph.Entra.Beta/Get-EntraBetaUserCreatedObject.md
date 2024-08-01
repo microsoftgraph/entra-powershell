@@ -2,7 +2,6 @@
 title:  Get-EntraBetaUserCreatedObject.
 description: This article provides details on the  Get-EntraBetaUserCreatedObject Command.
 
-
 ms.topic: reference
 ms.date: 07/25/2024
 ms.author: eunicewaweru
@@ -151,7 +150,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

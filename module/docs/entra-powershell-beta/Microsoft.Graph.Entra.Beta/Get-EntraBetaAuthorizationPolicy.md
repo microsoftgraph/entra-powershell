@@ -2,7 +2,6 @@
 title: Get-EntraBetaAuthorizationPolicy
 description: This article provides details on the Get-EntraBetaAuthorizationPolicy command.
 
-
 ms.topic: reference
 ms.date: 07/29/2024
 ms.author: eunicewaweru

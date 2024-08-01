@@ -2,7 +2,6 @@
 title: Get-EntraBetaContactManager
 description: This article provides details on the Get-EntraBetaContactManager command.
 
-
 ms.topic: reference
 ms.date: 07/29/2024
 ms.author: eunicewaweru
@@ -45,8 +44,7 @@ $Contact = Get-EntraBetaContact -Top 1
 Get-EntraBetaContactManager -ObjectId $Contact.ObjectId
 ```
 
-The example demonstrates how to retrieve the manager of a contact.
-You can use `Get-EntraBetaContact` cmdlet to retrieve an organizational contact.
+The example demonstrates how to retrieve the manager of a contact. You can use the command `Get-EntraBetaContact` to get organizational contact.
 
 - `-ObjectId` parameter specifies the contact object ID.
 

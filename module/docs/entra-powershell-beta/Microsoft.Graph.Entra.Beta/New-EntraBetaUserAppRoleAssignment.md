@@ -2,7 +2,6 @@
 title: New-EntraBetaUserAppRoleAssignment.
 description: This article provides details on the New-EntraBetaUserAppRoleAssignment command.
 
-
 ms.topic: reference
 ms.date: 07/25/2024
 ms.author: eunicewaweru
@@ -40,11 +39,11 @@ The New-EntraBetaUserAppRoleAssignment cmdlet assigns a user to an application r
 
 To grant an app role assignment to a user, you need three identifiers:
 
-- PrincipalId: The id of the user to whom you are assigning the app role.
+- PrincipalId: The Id of the user to whom you are assigning the app role.
 
-- ResourceId: The id of the resource servicePrincipal that has defined the app role.
+- ResourceId: The Id of the resource servicePrincipal that has defined the app role.
 
-- Id: The id of the appRole (defined on the resource service principal) to assign to the user.
+- Id: The Id of the appRole (defined on the resource service principal) to assign to the user.
 
 ## Examples
 
@@ -55,8 +54,13 @@ Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
 $appId = (Get-EntraBetaApplication -SearchString 'NewApplication').AppId
 $user = Get-EntraBetaUser -searchstring 'NewUser'
 $servicePrincipal = Get-EntraBetaServicePrincipal -Filter "appId eq 'appId'"
-
-New-EntraBetaUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.ObjectId -ResourceId $servicePrincipal.ObjectId -Id ([Guid]::Empty)
+$params = @{
+    ObjectId = $user.ObjectId 
+    PrincipalId = $user.ObjectId 
+    ResourceId = $servicePrincipal.ObjectId 
+    Id = ([Guid]::Empty)
+}
+New-EntraBetaUserAppRoleAssignment @params
 ```
 
 ```Output
@@ -65,7 +69,10 @@ DeletedDateTime Id                                          AppRoleId           
                 A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 18-06-2024 11:22:40 
 ```
 
-This command assigns a user to an application that doesn't have any roles.
+This command assigns a user to an application that doesn't have any roles.  
+You can use the command `Get-EntraBetaUser` to get user object Id.  
+You can use the command `Get-EntraBetaApplication` to get application Id.  
+You can use the command `Get-EntraBetaServicePrincipal` to get service principal object Id.
 
 - `-ObjectId` parameter specifies the ID of a user to whom you are assigning the app role.
 - `-PrincipalId` parameter specifies the ID of a user to whom you are assigning the app role.
@@ -80,7 +87,13 @@ $userName = 'SawyerM@contoso.com'
 $appName = 'Box'
 $spo = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '$appName'"
 $user = Get-EntraBetaUser -Filter "userPrincipalName eq '$userName'"
-New-EntraBetaUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.ObjectId -ResourceId $servicePrincipal.ObjectId -Id $spo.Approles[1].id
+$params = @{
+    ObjectId = $user.ObjectId 
+    PrincipalId = $user.ObjectId 
+    ResourceId = $servicePrincipal.ObjectId 
+    Id = $spo.Approles[1].Id
+}
+New-EntraBetaUserAppRoleAssignment @params
 ```
 
 ```Output
@@ -89,7 +102,9 @@ DeletedDateTime Id                                          AppRoleId           
                 A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 06/18/2024 09:47:00 Sawyer Miller        1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 User          Box
 ```
 
-This example demonstrates how to assign a user to an application role in Microsoft Entra ID.
+This example demonstrates how to assign a user to an application role in Microsoft Entra ID.  
+You can use the command `Get-EntraBetaUser` to get user object Id.  
+You can use the command `Get-EntraBetaServicePrincipal` to get service principal object Id.
 
 - `-ObjectId` parameter specifies the ID of a user to whom you are assigning the app role.
 - `-PrincipalId` parameter specifies the ID of a user to whom you are assigning the app role.

@@ -2,7 +2,6 @@
 title: Update-EntraBetaSignedInUserPassword.
 description: This article provides details on the Update-EntraBetaSignedInUserPassword command.
 
-
 ms.topic: reference
 ms.date: 07/26/2024
 ms.author: eunicewaweru
@@ -34,6 +33,8 @@ Update-EntraBetaSignedInUserPassword
 ## Description
 
 The `Update-EntraBetaSignedInUserPassword` cmdlet updates the password for the signed-in user in Microsoft Entra ID.
+
+Allow users to update their own passwords. Any user can update their password without needing to be in an administrator role.
 
 ## Examples
 

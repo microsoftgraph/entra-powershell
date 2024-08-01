@@ -2,7 +2,6 @@
 title: Add-EntraBetaServicePrincipalOwner
 description: This article provides details on the Add-EntraBetaServicePrincipalOwner command.
 
-
 ms.topic: reference
 ms.date: 07/29/2024
 ms.author: eunicewaweru
@@ -52,11 +51,11 @@ Add-EntraBetaServicePrincipalOwner @Params
 ```
 
 This example demonstrates how to add an owner to a service principal.  
-You can use `Get-EntraBetServicePrincipal` cmdlet to retrieve a service principal object Id.
-You can use `Get-EntraBetUser` cmdlet to retrieve a user object Id.
+You can use the command `Get-EntraBetaServicePrincipal` to get service principal object Id.
+You can use the command `Get-EntraBetUser` to get user object Id.
 
-- `ObjectId` parameter specifies the service principal object ID.
-- `RefObjectId` parameter specifies the user object ID
+- `-ObjectId` parameter specifies the service principal object ID.
+- `-RefObjectId` parameter specifies the user object ID.
 
 ## Parameters
 
