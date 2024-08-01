@@ -12,7 +12,7 @@
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{}
         if ($PSBoundParameters.ContainsKey("Debug")) {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if ($null -ne $PSBoundParameters["ID"]) {
             $id = $PSBoundParameters["ID"]
@@ -21,7 +21,7 @@
             $RefObjectId = $PSBoundParameters["RefObjectId"]
         }
         if ($PSBoundParameters.ContainsKey("Verbose")) {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($null -ne $PSBoundParameters["WarningVariable"])
         {

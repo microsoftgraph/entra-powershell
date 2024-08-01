@@ -1,8 +1,7 @@
 ---
 title: New-EntraBetaApplicationPasswordCredential
-description: This article provides details on the Set-EntraBetaApplicationProxyConnector command.
+description: This article provides details on the New-EntraBetaApplicationPasswordCredential command.
 
-ms.service: active-directory
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -12,7 +11,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaApplicationPasswordCredential
+
 schema: 2.0.0
 ---
 
@@ -35,7 +35,7 @@ New-EntraBetaApplicationPasswordCredential
 
 ## Description
 
-The New-EntraBetaApplicationPasswordCredential cmdlet creates a password credential for an application in Microsoft Entra ID.
+The `New-EntraBetaApplicationPasswordCredential` cmdlet creates a password credential for an application in Microsoft Entra ID.
 
 ## Examples
 
@@ -172,7 +172,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
-
-[Get-EntraBetaApplicationPasswordCredential](Get-EntraBetaApplicationPasswordCredential.md)
 
 [Remove-EntraBetaApplicationPasswordCredential](Remove-EntraBetaApplicationPasswordCredential.md)

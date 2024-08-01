@@ -2,7 +2,7 @@
 title: Get-EntraServicePrincipalDelegatedPermissionClassification
 description: This article provides details on the Get-EntraServicePrincipalDelegatedPermissionClassification command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraServicePrincipalDelegatedPermissionClassification
+
 schema: 2.0.0
 ---
 
@@ -26,18 +27,20 @@ Retrieve the delegated permission classification objects on a service principal.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraServicePrincipalDelegatedPermissionClassification 
- -ServicePrincipalId <String> 
+Get-EntraServicePrincipalDelegatedPermissionClassification
+ -ServicePrincipalId <String>
  [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraServicePrincipalDelegatedPermissionClassification 
- -ServicePrincipalId <String> 
+Get-EntraServicePrincipalDelegatedPermissionClassification
+ -ServicePrincipalId <String>
  -Id <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -129,7 +132,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-The oData v3.0 filter statement.
+The OData v4.0 filter statement.
 Controls which objects are returned.
 
 ```yaml
@@ -141,6 +144,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

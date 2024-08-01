@@ -2,7 +2,7 @@
 title: Get-EntraContactMembership
 description: This article provides details on the Get-EntraContactMembership command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraContactMembership
+
 schema: 2.0.0
 ---
 
@@ -24,10 +25,11 @@ Get a contact membership.
 ## Syntax
 
 ```powershell
-Get-EntraContactMembership 
- -ObjectId <String> 
- [-All] 
- [-Top <Int32>] 
+Get-EntraContactMembership
+ -ObjectId <String>
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -137,6 +139,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
