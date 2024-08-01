@@ -27,16 +27,18 @@ function Get-EntraCustomSecurityAttributeDefinition {
             $response = $response.value 
         }
         catch {}
-        $userList = @()
-        foreach ($data in $response) {
-            $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphCustomSecurityAttributeDefinition
-            $data.PSObject.Properties | ForEach-Object {
-                $propertyName = $_.Name
-                $propertyValue = $_.Value
-                $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+        if($response){
+            $userList = @()
+            foreach ($data in $response) {
+                $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphCustomSecurityAttributeDefinition
+                $data.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name
+                    $propertyValue = $_.Value
+                    $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                }
+                $userList += $userType
             }
-            $userList += $userType
-        }
-        $userList        
+            $userList
+        }        
     }
 }
