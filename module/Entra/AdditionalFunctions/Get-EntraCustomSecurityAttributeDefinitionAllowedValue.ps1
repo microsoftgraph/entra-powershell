@@ -34,16 +34,19 @@ function Get-EntraCustomSecurityAttributeDefinitionAllowedValue {
             $response = $response.value 
         }
         catch {}
-        $userList = @()
-        foreach ($data in $response) {
-            $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphAllowedValue
-            $data.PSObject.Properties | ForEach-Object {
-                $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
-                $propertyValue = $_.Value
-                $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+        if($response)
+        {
+            $userList = @()
+            foreach ($data in $response) {
+                $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphAllowedValue
+                $data.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                    $propertyValue = $_.Value
+                    $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                }
+                $userList += $userType
             }
-            $userList += $userType
+            $userList
         }
-        $userList
     }
 }
