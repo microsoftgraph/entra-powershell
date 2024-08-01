@@ -61,9 +61,11 @@
         Write-Debug("=========================================================================`n")
                 
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri 'https://graph.microsoft.com/v1.0/me/revokeSignInSessions' -Method POST).value
-        $responseType = New-Object Microsoft.Graph.PowerShell.Models.ComponentsMwc6EoResponsesRevokesigninsessionsresponseContentApplicationJsonSchema
-        $responseType.Value= $response
-        $responseType
+        if($response){
+            $responseType = New-Object Microsoft.Graph.PowerShell.Models.ComponentsMwc6EoResponsesRevokesigninsessionsresponseContentApplicationJsonSchema
+            $responseType.Value= $response
+            $responseType
+        }
     }  
 '@
 }
