@@ -1,49 +1,70 @@
 ---
+title: Add-EntraBetaServicePrincipalOwner
+description: This article provides details on the Add-EntraBetaServicePrincipalOwner command.
+
+ms.topic: reference
+ms.date: 07/29/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Add-EntraBetaServicePrincipalOwner
+
 schema: 2.0.0
 ---
 
 # Add-EntraBetaServicePrincipalOwner
 
 ## Synopsis
+
 Adds an owner to a service principal.
 
 ## Syntax
 
-```
-Add-EntraBetaServicePrincipalOwner -ObjectId <String> -RefObjectId <String>
+```powershell
+Add-EntraBetaServicePrincipalOwner 
+ -ObjectId <String> 
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 
 ## Description
-The Add-EntraBetaServicePrincipalOwner cmdlet adds an owner to a service principal in Azure Active Directory.
+
+The `Add-EntraBetaServicePrincipalOwner` cmdlet adds an owner to a service principal in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Add a user as an owner to a service principal
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+$ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
+$OwnerId = (Get-EntraBetaUser -Top 1).ObjectId
+$Params = @{
+    ObjectId = $ServicePrincipalId 
+    RefObjectId = $OwnerId  
+}
+Add-EntraBetaServicePrincipalOwner @Params
 ```
-PS C:\> $ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
-PS C:\> $OwnerId = (Get-EntraBetaUser -Top 1).ObjectId
-PS C:\> Add-EntraBetaServicePrincipalOwner -ObjectId $ServicePrincipalId -RefObjectId -$OwnerId
-```
 
-The first command gets the object ID of a service principal by using the Get-EntraBetaServicePrincipal (./Get-EntraBetaServicePrincipal.md)cmdlet, and then stores it in the $ServicePrincipalId variable.
+This example demonstrates how to add an owner to a service principal.  
+You can use the command `Get-EntraBetaServicePrincipal` to get service principal object Id.
+You can use the command `Get-EntraBetUser` to get user object Id.
 
-The second command gets the object ID a user by using the Get-EntraBetaUser (./Get-EntraBetaUser.md)cmdlet, and then stores it in the $OwnerId variable.
-
-The final command adds the user specified by $OwnerId an owner to a service principal specified by $ServicePrincipalId.
+- `-ObjectId` parameter specifies the service principal object ID.
+- `-RefObjectId` parameter specifies the user object ID.
 
 ## Parameters
 
-
-
 ### -ObjectId
-Specifies the ID of a service principal in Active Directory.
+
+Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -55,10 +76,11 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
-Specifies the ID of the Active Directory object to assign as owner/manager/member.
+
+Specifies the ID of the Microsoft Entra ID object to assign as owner/manager/member.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -70,7 +92,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -80,11 +103,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaServicePrincipal]()
+[Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)
 
-[Get-EntraBetaServicePrincipalOwner]()
+[Get-EntraBetaServicePrincipalOwner](Get-EntraBetaServicePrincipalOwner.md)
 
-[Get-EntraBetaUser]()
+[Get-EntraBetaUser](Get-EntraBetaUser.md)
 
-[Remove-EntraBetaServicePrincipalOwner]()
-
+[Remove-EntraBetaServicePrincipalOwner](Remove-EntraBetaServicePrincipalOwner.md)

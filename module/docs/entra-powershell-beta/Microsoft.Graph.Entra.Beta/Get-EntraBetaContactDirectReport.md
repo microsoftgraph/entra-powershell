@@ -1,43 +1,86 @@
 ---
+title: Get-EntraBetaContactDirectReport
+description: This article provides details on the Get-EntraBetaContactDirectReport command.
+
+ms.topic: reference
+ms.date: 07/29/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaContactDirectReport
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaContactDirectReport
 
 ## Synopsis
+
 Get the direct reports for a contact.
 
 ## Syntax
 
-```
-Get-EntraBetaContactDirectReport -ObjectId <String> [-All] [-Top <Int32>] [<CommonParameters>]
+```powershell
+Get-EntraBetaContactDirectReport
+ -ObjectId <String>
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ## Description
-The Get-EntraBetaContactDirectReport cmdlet gets the direct reports for a contact.
+
+The `Get-EntraBetaContactDirectReport` cmdlet gets the direct reports for a contact.
 
 ## Examples
 
 ### Example 1: Get the direct reports of a contact
-```
-PS C:\> $Contact = Get-EntraBetaContact -Top 1
-PS C:\> Get-EntraBetaContactDirectReport -ObjectId $Contact.ObjectId
+
+```powershell
+Connect-Entra -Scopes 'OrgContact.Read.All'
+$Contact = Get-EntraBetaContact -Top 1
+Get-EntraBetaContactDirectReport -ObjectId $Contact.ObjectId
 ```
 
-The first command gets a contact by using the Get-EntraBetaContact (./Get-EntraBetaContact.md)cmdlet, and then stores it in the $Contact variable.
+This example shows how to retrieve direct reports for an organizational contact. You can use the command `Get-EntraBetaContact` to get organizational contact.
 
-The second command gets the direct reports for $Contact.
+- `-ObjectId` parameter specifies the contact object ID.
+
+### Example 2: Get all direct reports of a contact
+
+```powershell
+Connect-Entra -Scopes 'OrgContact.Read.All'
+Get-EntraBetaContactDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
+```
+
+This example shows how to retrieve all direct reports for an organizational contact.
+
+- `-ObjectId` parameter specifies the contact object ID.
+
+### Example 3: Get top two direct reports of a contact
+
+```powershell
+Connect-Entra -Scopes 'OrgContact.Read.All'
+Get-EntraBetaContactDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 2
+```
+
+This example shows how to retrieve top two direct reports for an organizational contact.
+
+- `-ObjectId` parameter specifies the contact object ID.
 
 ## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -49,10 +92,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a contact in Azure Active Directory.
+
+Specifies the ID of a contact in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -64,10 +108,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -78,8 +123,25 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned.
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -89,5 +151,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaContact]()
-
+[Get-EntraBetaContact](Get-EntraBetaContact.md)

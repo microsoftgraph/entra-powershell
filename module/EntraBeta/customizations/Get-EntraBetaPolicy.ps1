@@ -90,7 +90,7 @@
         if ($PSBoundParameters.ContainsKey("ID")) {
             $response = $response | Where-Object { $_.id -eq $Id }
             if($Null -eq $response ) {
-                Write-Error "Get-AzureADPolicy : Error occurred while executing Get-Policy 
+                Write-Error "Get-EntraBetaPolicy : Error occurred while executing Get-Policy 
                 Code: Request_BadRequest
                 Message: Invalid object identifier '$Id' ."
             }
@@ -98,12 +98,7 @@
             $response = $response | Select-Object -First $Top
         }
         
-        if ($MyInvocation.PipelineLength -gt 1) {
-            $response  
-        }
-        else {
-            $response | Select-Object Id, DisplayName, Type, IsOrganizationDefault
-        }    
+        $response   
     } 
 '@
 }

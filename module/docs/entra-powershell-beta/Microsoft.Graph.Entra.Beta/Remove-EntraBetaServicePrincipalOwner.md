@@ -1,43 +1,65 @@
 ---
+title: Remove-EntraBetaServicePrincipalOwner
+description: This article provides details on the Remove-EntraBetaServicePrincipalOwner command.
+
+ms.topic: reference
+ms.date: 07/29/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaServicePrincipalOwner
+
 schema: 2.0.0
 ---
 
 # Remove-EntraBetaServicePrincipalOwner
 
 ## Synopsis
+
 Removes an owner from a service principal.
 
 ## Syntax
 
-```
-Remove-EntraBetaServicePrincipalOwner -OwnerId <String> -ObjectId <String>
+```powershell
+Remove-EntraBetaServicePrincipalOwner 
+ -OwnerId <String> 
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 
 ## Description
-The Remove-EntraBetaServicePrincipalOwner cmdlet removes an owner from a service principal in Azure Active Directory (AD).
+
+The `Remove-EntraBetaServicePrincipalOwner` cmdlet removes an owner from a service principal in Microsoft Entra ID.
 
 ## Examples
 
-### Example 1
+### Example 1: Removes an owner from a service principal
+
 ```powershell
-PS C:\> {{ Add example code here }}
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+$params= @{
+    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444' 
+    OwnerId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+}
+Remove-EntraBetaServicePrincipalOwner @params
 ```
 
-{{ Add example description here }}
+This example demonstrates how to remove an owner from a service principal in Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies the service principal object ID.
+- `-OwnerId` parameter specifies the service principal owner object ID.
 
 ## Parameters
 
-
-
 ### -ObjectId
+
 Specifies the ID of a service principal.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -49,10 +71,11 @@ Accept wildcard characters: False
 ```
 
 ### -OwnerId
+
 Specifies the ID of the owner.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -64,7 +87,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -74,7 +98,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Add-EntraBetaServicePrincipalOwner]()
+[Add-EntraBetaServicePrincipalOwner](Add-EntraBetaServicePrincipalOwner.md)
 
-[Get-EntraBetaServicePrincipalOwner]()
-
+[Get-EntraBetaServicePrincipalOwner](Get-EntraBetaServicePrincipalOwner.md)
