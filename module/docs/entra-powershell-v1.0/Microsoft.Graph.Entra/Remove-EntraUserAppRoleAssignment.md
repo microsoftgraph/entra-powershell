@@ -2,25 +2,27 @@
 title: Remove-EntraUserAppRoleAssignment.
 description: This article provides details on the Remove-EntraUserAppRoleAssignment command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/11/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraUserAppRoleAssignment
+
 schema: 2.0.0
 ---
 
 # Remove-EntraUserAppRoleAssignment
 
-## SYNOPSIS
+## Synopsis
+
 Removes a user application role assignment.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraUserAppRoleAssignment
@@ -29,25 +31,40 @@ Remove-EntraUserAppRoleAssignment
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Remove-EntraUserAppRoleAssignment cmdlet removes a user application role assignment in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Remove-EntraUserAppRoleAssignment` cmdlet removes a user application role assignment in Microsoft Entra ID.
+
+## Examples
 
 ### Example 1
+
 ```powershell
-PS C:\>  Remove-EntraUserAppRoleAssignment -ObjectId bbf5d921-bb52-434b-96a0-95888e44faf5 -AppRoleAssignmentId Idn1u1K7S0OWoJWIjkT69ZuAI6_HyiZJv_bPBryomlg
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+
+$RemoveAppRoleParams = @{
+    ObjectId              = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    AppRoleAssignmentId   = 'C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w'
+}
+
+Remove-EntraUserAppRoleAssignment @RemoveAppRoleParams
 ```
 
-This example demonstrates how to Remove the user app role assignment in Microsoft Entra ID.   
+This example demonstrates how to Remove the user app role assignment in Microsoft Entra ID.
 
-## PARAMETERS
+- `ObjectId` parameter specifies the user ID.
+- `AppRoleAssignmentId` parameter specifies the application role assignment ID.
+
+Use the `Get-EntraUserAppRoleAssignment` cmdlet to get more details.
+
+## Parameters
 
 ### -AppRoleAssignmentId
+
 Specifies the ID of an application role assignment.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -59,10 +76,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID (as a User Principal Name or ObjectId) of a user in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -74,17 +92,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Get-EntraUserAppRoleAssignment](Get-EntraUserAppRoleAssignment.md)
 
 [New-EntraUserAppRoleAssignment](New-EntraUserAppRoleAssignment.md)
-

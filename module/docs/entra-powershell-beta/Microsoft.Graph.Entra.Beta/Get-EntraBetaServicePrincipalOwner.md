@@ -2,38 +2,40 @@
 title: Get-EntraBetaServicePrincipalOwner
 description: This article provides details on the Get-EntraBetaServicePrincipalOwner command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/01/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaServicePrincipalOwner
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaServicePrincipalOwner
 
-## SYNOPSIS
+## Synopsis
 Get the owner of a service principal.
 
-## SYNTAX
+## Syntax
 
 ```powershell
-Get-EntraBetaServicePrincipalOwner 
-    -ObjectId <String> 
-    [-All <Boolean>] 
-    [-Top <Int32>] 
+Get-EntraBetaServicePrincipalOwner
+ -ObjectId <String>
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The **Get-EntraBetaServicePrincipalOwner** cmdlet gets the owners of a service principal in Microsoft Entra ID.
+## Description
+The Get-EntraBetaServicePrincipalOwner cmdlet gets the owners of a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the owner of a service principal
 ```powershell
@@ -57,7 +59,7 @@ The second command gets the owner of a service principal identified by $ServiceP
 ### Example 2: Retrieve all the owners of a service principal
 ```powershell
 PS C:\> $ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
-PS C:\> Get-EntraBetaServicePrincipalOwner -ObjectId $ServicePrincipalId -All $true
+PS C:\> Get-EntraBetaServicePrincipalOwner -ObjectId $ServicePrincipalId -All
 ```
 
 ```output
@@ -85,21 +87,20 @@ fd560167-ff1f-471a-8d74-3b0070abcea1 Adams Smith    Adams@contoso.com   Member
 
 This command gets top two owners of a service principal.
 
-## PARAMETERS
+## Parameters
 
 ### -All
-If true, return all service principal owners for this service principal.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -133,20 +134,35 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraBetaServicePrincipalOwner](Add-EntraBetaServicePrincipalOwner.md)
 
 [Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)
 
 [Remove-EntraBetaServicePrincipalOwner](Remove-EntraBetaServicePrincipalOwner.md)
-

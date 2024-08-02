@@ -1,25 +1,26 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaApplicationKeyCredential
+
 schema: 2.0.0
 ---
 
 # Remove-EntraBetaApplicationKeyCredential
 
-## SYNOPSIS
+## Synopsis
 Removes a key credential from an application.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaApplicationKeyCredential -ObjectId <String> -KeyId <String>[<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaApplicationKeyCredential cmdlet removes a key credential from an application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a key credential
 ```
@@ -28,7 +29,7 @@ PS C:\> Remove-EntraBetaApplicationKeyCredential -ObjectId "3ddd22e7-a150-4bb3-b
 
 This command removes the specified key credential from the specified application.
 
-## PARAMETERS
+## Parameters
 
 
 ### -KeyId
@@ -64,13 +65,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaApplicationKeyCredential]()
 

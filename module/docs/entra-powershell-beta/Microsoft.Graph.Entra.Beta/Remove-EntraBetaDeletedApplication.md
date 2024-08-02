@@ -1,38 +1,49 @@
 ---
-external help file: Microsoft.Graph.Entra.Beta-help.xml
+title: Remove-EntraBetaDeletedApplication
+description: This article provides details on the Remove-EntraBetaDeletedApplication command.
+
+ms.topic: reference
+ms.date: 06/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaDeletedApplication
+
 schema: 2.0.0
 ---
 
 # Remove-EntraBetaDeletedApplication
 
-## SYNOPSIS
-{{ Fill in the Synopsis }}
+## Synopsis
+Permanently delete a recently deleted application object from deleted items.
 
-## SYNTAX
+## Syntax
 
-```
-Remove-EntraBetaDeletedApplication [-ObjectId] <String> [<CommonParameters>]
-```
-
-## DESCRIPTION
-{{ Fill in the Description }}
-
-## EXAMPLES
-
-### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Remove-EntraBetaDeletedApplication 
+ [-ObjectId] <String> 
+[<CommonParameters>]
 ```
 
-{{ Add example description here }}
+## Description
+Permanently delete a recently deleted application object from deleted items. After an item is permanently deleted, it can't be restored.
+## Examples
 
-## PARAMETERS
+### Example 1: Remove deleted application object
+```powershell
+PS C:\> $Id = Get-EntraBetaDeletedApplication -SearchString "newtest10" 
+PS C:\> Remove-EntraBetaDeletedApplication -ObjectId $Id.id
+```
+
+This command removes recently deleted application.
+
+## Parameters
 
 ### -ObjectId
-{{ Fill ObjectId Description }}
-
+The unique identifier of deleted application.
 ```yaml
 Type: String
 Parameter Sets: (All)
@@ -48,13 +59,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

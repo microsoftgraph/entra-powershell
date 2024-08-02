@@ -1,0 +1,272 @@
+---
+title: Get-EntraBetaApplicationProxyConnectorGroup.
+description: This article provides details on the Get-EntraBetaApplicationProxyConnectorGroup.
+
+ms.topic: reference
+ms.date: 07/16/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
+external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Module Name: Microsoft.Graph.Entra.Beta
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaApplicationProxyConnectorGroup
+
+schema: 2.0.0
+---
+
+# Get-EntraBetaApplicationProxyConnectorGroup
+
+## Synopsis
+
+The `Get-EntraBetaApplicationProxyConnectorGroup` cmdlet retrieves a list of all connector groups, or if specified, details of a specific connector group.
+
+## Syntax
+
+### GetQuery (Default)
+
+```powershell
+Get-EntraBetaApplicationProxyConnectorGroup 
+ [-All] 
+ [-Top <Int32>] 
+ [-Filter <String>]
+ [<CommonParameters>]
+```
+
+### GetByValue
+
+```powershell
+Get-EntraBetaApplicationProxyConnectorGroup 
+ [-SearchString <String>] 
+ [-All] 
+ [<CommonParameters>]
+```
+
+### GetById
+
+```powershell
+Get-EntraBetaApplicationProxyConnectorGroup
+ -Id <String> 
+ [-All] 
+ [<CommonParameters>]
+```
+
+## Description
+
+The `Get-EntraBetaApplicationProxyConnectorGroup` cmdlet retrieves a list of all connector groups, or if specified, details of the specified connector group. Specify `Id` parameter for retrieve connector groups.
+
+## Examples
+
+### Example 1: Retrieve all connector groups
+
+```powershell
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+Get-EntraBetaApplicationProxyConnectorGroup
+```
+
+```Output
+Name                           Value
+----                           -----
+id                             aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+region                         eur
+connectorGroupType             applicationProxy
+isDefault                      True
+name                           Default
+
+id                             bbbbbbbb-1111-2222-3333-cccccccccccc
+region                         eur
+connectorGroupType             applicationProxy
+isDefault                      False
+name                           test1
+```
+
+This example retrieves all connector groups.
+
+### Example 2: Retrieve a specific connector group
+
+```powershell
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+Get-EntraBetaApplicationProxyConnectorGroup -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+```
+
+```Output
+Name                           Value
+----                           -----
+id                             bbbbbbbb-1111-2222-3333-cccccccccccc
+@odata.context                 https://graph.microsoft.com/beta/$metadata#onPremisesPublishingProfiles('applicationProxy')/connectorGroups/$entity
+isDefault                      True
+name                           Default
+region                         eur
+connectorGroupType             applicationProxy
+```
+
+This example retrieves a specific connector group.
+
+- `Id` parameter specifies the connector group ID.
+
+### Example 3: Retrieve Top one connector groups
+
+```powershell
+Get-EntraBetaApplicationProxyConnectorGroup -Top 1
+```
+
+```Output
+Name                           Value
+----                           -----
+id                             bbbbbbbb-1111-2222-3333-cccccccccccc
+@odata.context                 https://graph.microsoft.com/beta/$metadata#onPremisesPublishingProfiles('applicationProxy')/connectorGroups/$entity
+isDefault                      True
+name                           Default
+region                         eur
+connectorGroupType             applicationProxy
+```
+
+This example retrieves top one connector groups.
+
+### Example 4: Retrieve a connector groups with filter parameter
+
+```powershell
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+Get-EntraBetaApplicationProxyConnectorGroup -Filter "name eq 'Default'"
+```
+
+```Output
+Name                           Value
+----                           -----
+id                             bbbbbbbb-1111-2222-3333-cccccccccccc
+region                         eur
+connectorGroupType             applicationProxy
+isDefault                      True
+name                           Default
+```
+
+This example retrieves a connector groups with filter parameter.
+
+### Example 5:Retrieve a connector groups with String parameter
+
+```powershell
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+Get-EntraBetaApplicationProxyConnectorGroup -SearchString 'Test'
+```
+
+```Output
+Name                           Value
+----                           -----
+id                             bbbbbbbb-1111-2222-3333-cccccccccccc
+region                         eur
+connectorGroupType             applicationProxy
+isDefault                      False
+name                           test1
+```
+
+This example retrieves a connector groups with String parameter.
+
+## Parameters
+
+### -All
+
+List all pages.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Filter
+
+Specifies an oData v3.0 filter statement.
+This parameter controls which objects are returned.
+Details on querying with oData can be found here: <https://www.odata.org/documentation/odata-version-3-0/odata-version-3-0-core-protocol/#queryingcollections>
+
+```yaml
+Type: System.String
+Parameter Sets: GetQuery
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Id
+
+The ID of the specific connector group.
+You can find this ID by running the command without this parameter to get the desired ID, or by going into the portal and viewing connector group details.
+
+```yaml
+Type: System.String
+Parameter Sets: GetById
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -SearchString
+
+Specifies the search string.
+
+```yaml
+Type: System.String
+Parameter Sets: GetVague
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Top
+
+Specifies the maximum number of records to return.
+
+```yaml
+Type: System.Int32
+Parameter Sets: GetQuery
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
+
+### System.String
+
+System.Nullable\`1\[\[System. Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
+
+## Outputs
+
+### System.Object
+
+## Notes
+
+## Related Links
+
+[New-EntraBetaApplicationProxyConnectorGroup](New-EntraBetaApplicationProxyConnectorGroup.md)
+
+[Set-EntraBetaApplicationProxyConnectorGroup](Set-EntraBetaApplicationProxyConnectorGroup.md)
+
+[Remove-EntraBetaApplicationProxyConnectorGroup](Remove-EntraBetaApplicationProxyConnectorGroup.md)
