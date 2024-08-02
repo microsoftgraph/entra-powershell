@@ -42,14 +42,14 @@ function Get-EntraBetaApplicationPasswordCredential {
                     $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
                 }
                 $userList += $userType
-            }  
-        }
-        if($null -ne $PSBoundParameters["Property"])
-        {
-            $userList | Select-Object $PSBoundParameters["Property"]
-        }
-        else {
-            $userList
+            } 
+            if($null -ne $PSBoundParameters["Property"])
+            {
+                $userList | Select-Object $PSBoundParameters["Property"]
+            }
+            else {
+                $userList
+            } 
         }
     }
 }
