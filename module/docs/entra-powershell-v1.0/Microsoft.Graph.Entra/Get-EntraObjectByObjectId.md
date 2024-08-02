@@ -1,7 +1,7 @@
 ---
 title: Get-EntraObjectByObjectId.
 description: This article provides details on the Get-EntraObjectByObjectId command.
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -10,7 +10,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraObjectByObjectId
+
 schema: 2.0.0
 ---
 
@@ -23,9 +24,10 @@ Retrieves the objects specified by the ObjectIds parameter.
 ## Syntax
 
 ```powershell
-Get-EntraObjectByObjectId 
+Get-EntraObjectByObjectId
  -ObjectIds <System.Collections.Generic.List`1[String]>
  [-Types <System.Collections.Generic.List`1[String]>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -93,7 +95,7 @@ This example demonstrates how to retrieve objects for a specified object type.
 
 ### -ObjectIds
 
-One or more object IDs, separated by commas, for which the objects are retrieved.
+One or more object IDs's, separated by commas, for which the objects are retrieved. The IDs are GUIDs, represented as strings. You can specify up to 1000 IDs.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -109,10 +111,26 @@ Accept wildcard characters: False
 
 ### -Types
 
-Specifies the type of objects that the cmdlet returns.
+Specifies the type of objects that the cmdlet returns. If not specified, the default is directoryObject, which includes all resource types defined in the directory. You can specify any object derived from directoryObject in the collection, such as User, Group, and Device objects.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
 Parameter Sets: (All)
 Aliases:
 

@@ -2,154 +2,147 @@
 title: Get-EntraBetaRoleDefinition
 description: This article provides details on the Get-EntraBetaRoleDefinition command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/22/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaRoleDefinition
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaRoleDefinition
 
 ## Synopsis
+
 Gets information about role definitions in Microsoft Entra ID.
 
 ## Syntax
 
 ### GetQuery (Default)
+
 ```powershell
-Get-EntraBetaRoleDefinition 
- [-All] 
- [-Top <Int32>] 
- [-Filter <String>] 
+Get-EntraBetaRoleDefinition
+ [-All]
+ [-Top <Int32>]
+ [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetVague
+
 ```powershell
-Get-EntraBetaRoleDefinition 
- [-SearchString <String>] 
- [-All] 
+Get-EntraBetaRoleDefinition
+ [-SearchString <String>]
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
+
 ```powershell
-Get-EntraBetaRoleDefinition 
- -Id <String> 
- [-All] 
+Get-EntraBetaRoleDefinition
+ -Id <String>
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
-The Get-EntraBetaRoleDefinition cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the Id parameter. Specify the SearchString or Filter parameter to find particular role definition.
+
+The `Get-EntraBetaRoleDefinition` cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the `Id` parameter. Specify the SearchString or Filter parameter to find particular role definition.
 
 ## Examples
 
 ### Example 1: Get all role definitions
+
 ```powershell
-PS C:\> Get-EntraBetaRoleDefinition
+ Connect-Entra -Scopes 'RoleManagement.Read.Directory' #For the directory (Microsoft Entra ID) provider
+ Connect-Entra -Scopes 'EntitlementManagement.Read.All' #For the entitlement management provider
+ Get-EntraBetaRoleDefinition
 ```
 
-```output
-Id              : 690e93e9-da28-4b25-9d0d-2f0b4e6b2ff9
-OdataType       :
-Description     : SampleRoleDefinition1.
-DisplayName     : SampleRoleDef
-IsBuiltIn       : False
-ResourceScopes  : {/}
-IsEnabled       : True
-RolePermissions : {class RolePermission {
-                  AllowedResourceActions:
-                  microsoft.directory/applications/create
-                    Condition:
-                  }
-                  }
-
-Id              : 1a327991-10cb-4266-877a-998fb4df78ec
-OdataType       :
-Description     :
-DisplayName     : SampleRoleDefinition2.
-IsBuiltIn       : False
-ResourceScopes  : {/}
-IsEnabled       : True
-RolePermissions : {class RolePermission {
-                  AllowedResourceActions:
-                  microsoft.directory/applications/create
-                    Condition:
-                  }
-                  }
-TemplateId      : 332a8659-25b8-4b3e-b545-38b331c48b2b
-Version         :
+```Output
+DisplayName                                              Id                                   TemplateId                           Description
+-----------                                              --                                   ----------                           -----------
+Global Administrator                                     00aa00aa-bb11-cc22-dd33-44ee44ee44ee 62e90394-69f5-4237-9190-012177145e10 Can manage all aspects of Microsoft Entra ID and Microsoft services that use M…
+Guest User                                               11bb11bb-cc22-dd33-ee44-55ff55ff55ff 10dae51f-b6af-4016-8d66-8c2a99b929b3 Default role for guest users. Can read a limited set of directory information.
+Restricted Guest User                                    33dd33dd-ee44-ff55-aa66-77bb77bb77bb 2af84b1e-32c8-42b7-82bc-daa82404023b Restricted role for guest users. Can read a limited set of directory informati…
+Guest Inviter                                            44ee44ee-ff55-aa66-bb77-88cc88cc88cc 95e79109-95c0-4d8e-aee3-d01accf2d47b Can invite guest users independent of the 'members can invite guests' setting.
 ```
 
 This command returns all the role definitions present.
 
 ### Example 2: Get a role definition by ID
+
 ```powershell
-PS C:\> Get-EntraBetaRoleDefinition -Id 1a327991-10cb-4266-877a-998fb4df78ec
+ Connect-Entra -Scopes 'RoleManagement.Read.Directory' #For the directory (Microsoft Entra ID) provider
+ Connect-Entra -Scopes 'EntitlementManagement.Read.All' #For the entitlement management provider
+ Get-EntraBetaRoleDefinition -Id '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
 ```
 
-```output
-Id              : 1a327991-10cb-4266-877a-998fb4df78ec
-OdataType       :
-Description     :
-DisplayName     : SampleRoleDefinition2.
-IsBuiltIn       : False
-ResourceScopes  : {/}
-IsEnabled       : True
-RolePermissions : {class RolePermission {
-                  AllowedResourceActions:
-                  microsoft.directory/applications/create
-                    Condition:
-                  }
-                  }
-TemplateId      : 332a8659-25b8-4b3e-b545-38b331c48b2b
-Version         :
+```Output
+DisplayName          Id                                   TemplateId                           Description                                                                                              IsBuiltIn
+-----------          --                                   ----------                           -----------                                                                                              ---------
+Global Administrator 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 62e90394-69f5-4237-9190-012177145e10 Can manage all aspects of Microsoft Entra ID and Microsoft services that use Microsoft Entra identities. True
 ```
 
 This command returns a specified role definition.
 
+- `-Id` parameter specifies the roleDefinition object ID.
+
 ### Example 3: Filter role definitions by display name
+
 ```powershell
-PS C:\> Get-EntraBetaRoleDefinition -Filter "startswith(displayName, 'Sample')"
+ Connect-Entra -Scopes 'RoleManagement.Read.Directory' #For the directory (Microsoft Entra ID) provider
+ Connect-Entra -Scopes 'EntitlementManagement.Read.All' #For the entitlement management provider
+ Get-EntraBetaRoleDefinition -Filter "startsWith(displayName, 'Restricted')"
 ```
 
-```output
-Id              : 690e93e9-da28-4b25-9d0d-2f0b4e6b2ff9
-OdataType       :
-Description     : SampleRoleDefinition1.
-DisplayName     : SampleRoleDef
-IsBuiltIn       : False
-ResourceScopes  : {/}
-IsEnabled       : True
-RolePermissions : {class RolePermission {
-                  AllowedResourceActions:
-                  microsoft.directory/applications/create
-                    Condition:
-                  }
-                  }
-Id              : 1a327991-10cb-4266-877a-998fb4df78ec
-OdataType       :
-Description     :
-DisplayName     : SampleRoleDefinition2.
-IsBuiltIn       : False
-ResourceScopes  : {/}
-IsEnabled       : True
-RolePermissions : {class RolePermission {
-                  AllowedResourceActions:
-                  microsoft.directory/applications/create
-                    Condition:
-                  }
-                  }
-TemplateId      : 332a8659-25b8-4b3e-b545-38b331c48b2b
-Version         :
+```Output
+DisplayName           Id                                   TemplateId                           Description                                                                       IsBuiltIn IsEnabled
+-----------           --                                   ----------                           -----------                                                                       --------- ---------
+Restricted Guest User 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 2af84b1e-32c8-42b7-82bc-daa82404023b Restricted role for guest users. Can read a limited set of directory information. True      True
+```
+
+This command return all the role definitions containing the specified display name.
+
+### Example 4: Get top two role definition
+
+```powershell
+ Connect-Entra -Scopes 'RoleManagement.Read.Directory' #For the directory (Microsoft Entra ID) provider
+ Connect-Entra -Scopes 'EntitlementManagement.Read.All' #For the entitlement management provider
+ Get-EntraBetaRoleDefinition -Top 2
+```
+
+```Output
+DisplayName           Id                                   TemplateId                           Description                                                                       IsBuiltIn IsEnabled
+-----------           --                                   ----------                           -----------                                                                       --------- ---------
+Restricted Guest User 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 2af84b1e-32c8-42b7-82bc-daa82404023b Restricted role for guest users. Can read a limited set of directory information. True      True
+```
+
+This command return top two the role definitions in Microsoft Entra ID.
+
+### Example 5: Filter role definitions by display name
+
+```powershell
+ Connect-Entra -Scopes 'RoleManagement.Read.Directory' #For the directory (Microsoft Entra ID) provider
+ Connect-Entra -Scopes 'EntitlementManagement.Read.All' #For the entitlement management provider
+ Get-EntraBetaRoleDefinition -SearchString 'Global'
+ ```
+
+```Output
+DisplayName           Id                                   TemplateId                           Description                                                                       IsBuiltIn IsEnabled
+-----------           --                                   ----------                           -----------                                                                       --------- ---------
+Global Administrator               00aa00aa-bb11-cc22-dd33-44ee44ee44ee 62e90394-69f5-4237-9190-012177145e10 Can manage all aspects of Microsoft Entra ID and Microsoft services that use Microsoft Entra identit…
+Global Reader                      11bb11bb-cc22-dd33-ee44-55ff55ff55ff f2ef992c-3afb-46b9-b7cf-a126ee74c451 Can read everything that a Global Administrator can, but not update anything.
 ```
 
 This command return all the role definitions containing the specified display name.
@@ -157,10 +150,11 @@ This command return all the role definitions containing the specified display na
 ## Parameters
 
 ### -Id
+
 Specifies the ID of the role definition.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -172,10 +166,11 @@ Accept wildcard characters: False
 ```
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -187,10 +182,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records that this cmdlet gets. The default value is 100.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: GetQuery
 Aliases:
 
@@ -202,10 +198,11 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-Specifies an oData v3.0 filter string to match a set of role definitions.
+
+Specifies an OData v4.0 filter string to match a set of role definitions.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery
 Aliases:
 
@@ -217,10 +214,11 @@ Accept wildcard characters: False
 ```
 
 ### -SearchString
+
 Specifies a search string.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetVague
 Aliases:
 
@@ -231,17 +229,42 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### String
+
 ### Bool?
+
 ### Int?
-### String
+
 ## Outputs
 
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleDefinition
 
-## RELATED LINKS
+## Related Links
+
+[New-EntraBetaRoleDefinition](New-EntraBetaRoleDefinition.md)
+
+[Remove-EntraBetaRoleDefinition](Remove-EntraBetaRoleDefinition.md)
+
+[Set-EntraBetaRoleDefinition](Set-EntraBetaRoleDefinition.md)

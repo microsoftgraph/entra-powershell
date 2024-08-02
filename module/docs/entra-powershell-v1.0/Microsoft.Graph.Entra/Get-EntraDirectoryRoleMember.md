@@ -2,7 +2,7 @@
 title: Get-EntraDirectoryRoleMember.
 description: This article provides details on the Get-EntraDirectoryRoleMember command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraDirectoryRoleMember
+
 schema: 2.0.0
 ---
 
@@ -24,14 +25,15 @@ Gets members of a directory role.
 ## Syntax
 
 ```powershell
-Get-EntraDirectoryRoleMember 
- -ObjectId <String> 
+Get-EntraDirectoryRoleMember
+ -ObjectId <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Get-EntraDirectoryRoleMember` cmdlet gets the members of a directory role in Microsoft Entra ID.
+The `Get-EntraDirectoryRoleMember` cmdlet retrieves the members of a directory role in Microsoft Entra ID. To obtain the members of a specific directory role, specify the `ObjectId`. Use the `Get-EntraDirectoryRole` cmdlet to get the `ObjectId` value.
 
 ## Examples
 
@@ -43,14 +45,9 @@ Get-EntraDirectoryRoleMember -ObjectId '1d73e796-aac5-4b3a-b7e7-74a3d1926a85'
 ```
 
 ```Output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {admin@contoso.onmicrosoft.com}
-preferredLanguage               : en
-mail                            : admin@contoso.onmicrosoft.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-7777-8888-9999-cccccccccccc
 ```
 
 This command demonstrates how to get the members of the specified role.
@@ -70,6 +67,22 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

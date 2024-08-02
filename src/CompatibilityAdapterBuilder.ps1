@@ -621,8 +621,8 @@ $OutputTransformations
     }
 
     hidden [string] GetParametersDefinitions([PSCustomObject] $Command) {
-        $commonParameterNames = @("Verbose", "Debug","ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable","WhatIf","Confirm")  
-        $ignorePropertyParameter = @("Get-EntraBetaApplicationPolicy", "Get-EntraBetaApplicationSignInSummary","Get-EntraBetaMSPrivilegedRoleAssignment","Get-EntraBetaMSTrustFrameworkPolicy","Get-EntraBetaPolicy","Get-EntraBetaPolicyAppliedObject","Get-EntraBetaServicePrincipalPolicy","Get-EntraApplicationLogo","Get-EntraBetaApplicationLogo","Get-EntraApplicationKeyCredential","Get-EntraBetaApplicationKeyCredential","Get-EntraBetaServicePrincipalKeyCredential","Get-EntraBetaServicePrincipalPasswordCredential","Get-EntraServicePrincipalKeyCredential","Get-EntraServicePrincipalPasswordCredential")
+        $commonParameterNames = @("ProgressAction","Verbose", "Debug","ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable","WhatIf","Confirm")  
+        $ignorePropertyParameter = @("Get-EntraBetaApplicationPolicy", "Get-EntraBetaApplicationSignInSummary","Get-EntraBetaPrivilegedRoleAssignment","Get-EntraBetaTrustFrameworkPolicy","Get-EntraBetaPolicy","Get-EntraBetaPolicyAppliedObject","Get-EntraBetaServicePrincipalPolicy","Get-EntraApplicationLogo","Get-EntraBetaApplicationLogo","Get-EntraApplicationKeyCredential","Get-EntraBetaApplicationKeyCredential","Get-EntraBetaServicePrincipalKeyCredential","Get-EntraBetaServicePrincipalPasswordCredential","Get-EntraServicePrincipalKeyCredential","Get-EntraServicePrincipalPasswordCredential")
         $params = $(Get-Command -Name $Command.Old).Parameters
         $paramsList = @()
         foreach ($paramKey in $Command.Parameters.Keys) {
@@ -654,7 +654,21 @@ $OutputTransformations
             $paramsList += $paramBlock
         }
 
-        if("Get" -eq $Command.Verb -and !$ignorePropertyParameter.Contains($Command.Generate)){
+        $addProperty = $true
+        if('' -ne $Command.New){
+            $addProperty = $false
+            $targetCmdparams = $(Get-Command -Name $Command.New).Parameters.Keys
+            if($null -ne $targetCmdparams){
+                foreach($param in $targetCmdparams) {
+                    if($param -eq 'Property') {
+                        $addProperty = $true
+                        break
+                    }
+                } 
+            }     
+        }
+
+        if("Get" -eq $Command.Verb -and !$ignorePropertyParameter.Contains($Command.Generate) -and $addProperty){
             $paramsList += $this.GetPropertyParameterBlock()
         }
 
@@ -680,18 +694,36 @@ $OutputTransformations
 
         foreach($attrib in $param.Attributes){
             $arrayAttrib = @()
-            if($attrib.ParameterSetName -ne "__AllParameterSets"){
-                $arrayAttrib += "ParameterSetName = `"$($attrib.ParameterSetName)`""
+            
+            try {
+                if($attrib.ParameterSetName -ne "__AllParameterSets"){
+                    $arrayAttrib += "ParameterSetName = `"$($attrib.ParameterSetName)`""
+                }
             }
-            if($attrib.Mandatory){
-                $arrayAttrib += "Mandatory = `$true"
+            catch {}                
+            
+           try {
+                if($attrib.Mandatory){
+                    $arrayAttrib += "Mandatory = `$true"
+                }
+           }
+           catch {}
+                
+           
+           try {
+                if($attrib.ValueFromPipeline){
+                    $arrayAttrib += "ValueFromPipeline = `$true"
+                }
+           }
+           catch {}
+                
+            try {
+                if($attrib.ValueFromPipelineByPropertyName){
+                    $arrayAttrib += "ValueFromPipelineByPropertyName = `$true"
+                }
             }
-            if($attrib.ValueFromPipeline){
-                $arrayAttrib += "ValueFromPipeline = `$true"
-            }
-            if($attrib.ValueFromPipelineByPropertyName){
-                $arrayAttrib += "ValueFromPipelineByPropertyName = `$true"
-            }
+            catch {}
+           
             $strAttrib = $arrayAttrib -Join ', '
 
             if($strAttrib.Length -gt 0){
@@ -786,7 +818,7 @@ $OutputTransformations
         $paramBlock = @"
     if(`$PSBoundParameters.ContainsKey("$($Name)"))
     {
-        `$params["$($Name)"] = `$Null
+        `$params["$($Name)"] = `$PSBoundParameters["$($Name)"]
     }
 
 "@

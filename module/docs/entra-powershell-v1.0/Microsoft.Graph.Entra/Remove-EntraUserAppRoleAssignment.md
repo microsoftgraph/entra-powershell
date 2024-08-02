@@ -2,7 +2,7 @@
 title: Remove-EntraUserAppRoleAssignment.
 description: This article provides details on the Remove-EntraUserAppRoleAssignment command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraUserAppRoleAssignment
+
 schema: 2.0.0
 ---
 
@@ -32,7 +33,7 @@ Remove-EntraUserAppRoleAssignment
 
 ## Description
 
-The Remove-EntraUserAppRoleAssignment cmdlet removes a user application role assignment in Microsoft Entra ID.
+The `Remove-EntraUserAppRoleAssignment` cmdlet removes a user application role assignment in Microsoft Entra ID.
 
 ## Examples
 
@@ -50,6 +51,11 @@ Remove-EntraUserAppRoleAssignment @RemoveAppRoleParams
 ```
 
 This example demonstrates how to Remove the user app role assignment in Microsoft Entra ID.
+
+- `ObjectId` parameter specifies the user ID.
+- `AppRoleAssignmentId` parameter specifies the application role assignment ID.
+
+Use the `Get-EntraUserAppRoleAssignment` cmdlet to get more details.
 
 ## Parameters
 

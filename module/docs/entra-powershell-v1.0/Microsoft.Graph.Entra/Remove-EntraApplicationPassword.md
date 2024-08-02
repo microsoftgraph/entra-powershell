@@ -2,7 +2,7 @@
 title: Remove-EntraApplicationPassword.
 description: This article provides details on the Remove-EntraApplicationPassword command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,13 +11,15 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraApplicationPassword
+
 schema: 2.0.0
 ---
 
 # Remove-EntraApplicationPassword
 
 ## Synopsis
+
 Remove a password from an application.
 
 ## Syntax
@@ -30,26 +32,37 @@ Remove-EntraApplicationPassword
 ```
 
 ## Description
+
 Remove a password from an application.
 
 ## Examples
 
 ### Example 1: Removes a password from an application
+
 ```powershell
-PS C:\>Remove-EntraApplicationPassword -ObjectId 1f88e99f-37a3-468f-80ae-e07b62ed0287 -KeyId 80e561ed-44ed-48dc-8c09-9d4803e26e4c
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+$params = @{
+    ObjectId = '33334444-dddd-5555-eeee-6666ffff7777'
+    KeyId = 'cccccccc-2d2d-3e3e-4f4f-555555555555'
+}
+
+Remove-EntraApplicationPassword @params
 ```
 
-This command remove the specified password from the specified application.  
-ObjectId: The ObjectId of the specified application.
-KeyID: The unique identifier of the PasswordCredential.  
+This command remove the specified password from the specified application.
+
+- `ObjectId`: The ObjectId of the specified application.
+- `KeyID`: The unique identifier of the PasswordCredential.  
 
 ## Parameters
 
 ### -ObjectId
+
 The unique identifier of the object specific Microsoft Entra ID object
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -61,10 +74,11 @@ Accept wildcard characters: False
 ```
 
 ### -KeyId
+
 The unique identifier for the key.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -76,11 +90,13 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### string
+
 ## Outputs
 
 ## Notes
@@ -88,4 +104,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## Related Links
 
 [New-EntraApplicationPassword](New-EntraApplicationPassword.md)
-

@@ -1,23 +1,26 @@
 ---
 title: Remove-EntraBetaApplicationProxyConnectorGroup.
 description: This article provides details on the Remove-EntraBetaApplicationProxyConnectorGroup command.
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/18/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaApplicationProxyConnectorGroup
+
 schema: 2.0.0
 ---
 
 # Remove-EntraBetaApplicationProxyConnectorGroup
 
 ## Synopsis
-The Remove-EntraBetaApplicationProxyConnectorGroup cmdlet deletes an Application Proxy Connector group.
+
+The `Remove-EntraBetaApplicationProxyConnectorGroup` cmdlet deletes an Application Proxy Connector group.
 
 ## Syntax
 
@@ -28,25 +31,32 @@ Remove-EntraBetaApplicationProxyConnectorGroup
 ```
 
 ## Description
-The Remove-EntraBetaApplicationProxyConnectorGroup cmdlet deletes an Application Proxy Connector Group.
+
+The `Remove-EntraBetaApplicationProxyConnectorGroup` cmdlet deletes an Application Proxy Connector Group.
 It can only be used on an empty connector group, with no connectors assigned.
 
 ## Examples
 
 ### Example 1: Remove a specific Connector Group
+
 ```powershell
-PS C:\> Get-EntraBetaApplicationProxyConnectorGroup -Id 59462d3c-a1bc-40a0-9bed-be799357ebce
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+Remove-EntraBetaApplicationProxyConnectorGroup -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
-This command Remove a specific Connector Group.
+
+This example removes a specific Connector Group.
+
+- `Id` parameter specifies the connector group ID.
 
 ## Parameters
 
 ### -Id
+
 The ID of the Connector group to delete.
-You can find this value by running the Get-EntraBetaApplicationProxyConnectorGroup command.
+You can find this value by running the `Get-EntraBetaApplicationProxyConnectorGroup` command.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -58,15 +68,23 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### System.String
+
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
 
+[New-EntraBetaApplicationProxyConnectorGroup](New-EntraBetaApplicationProxyConnectorGroup.md)
+
+[Set-EntraBetaApplicationProxyConnectorGroup](Set-EntraBetaApplicationProxyConnectorGroup.md)
+
+[Get-EntraBetaApplicationProxyConnectorGroup](Get-EntraBetaApplicationProxyConnectorGroup.md)

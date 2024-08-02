@@ -2,7 +2,7 @@
 title: Get-EntraPermissionGrantConditionSet
 description: This article provides details on the Get-EntraPermissionGrantConditionSet command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -12,7 +12,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraPermissionGrantConditionSet
+
 schema: 2.0.0
 ---
 
@@ -27,19 +28,21 @@ Get a Microsoft Entra ID permission grant condition set by id.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraPermissionGrantConditionSet 
- -ConditionSetType <String> 
- -PolicyId <String> 
+Get-EntraPermissionGrantConditionSet
+ -ConditionSetType <String>
+ -PolicyId <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraPermissionGrantConditionSet 
- -ConditionSetType <String> 
- -Id <String> 
+Get-EntraPermissionGrantConditionSet
+ -ConditionSetType <String>
+ -Id <String>
  -PolicyId <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -53,7 +56,12 @@ Get a Microsoft Entra ID permission grant condition set object by id.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-Get-EntraPermissionGrantConditionSet -PolicyId 'policy1' -ConditionSetType 'includes'
+$params = @{
+    PolicyId = 'policy1'
+    ConditionSetType = 'includes'
+}
+
+Get-EntraPermissionGrantConditionSet @params
 ```
 
 ```output
@@ -68,7 +76,12 @@ This command gets all permission grant condition sets that are included in the p
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-Get-EntraPermissionGrantConditionSet -PolicyId 'policy1' -ConditionSetType 'excludes'
+$params = @{
+    PolicyId = 'policy1'
+    ConditionSetType = 'excludes'
+}
+
+Get-EntraPermissionGrantConditionSet @params
 ```
 
 ```output
@@ -84,7 +97,13 @@ This command gets all permission grant condition sets that are excluded in the p
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-Get-EntraPermissionGrantConditionSet -PolicyId 'policy1' -ConditionSetType 'includes' -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$params = @{
+    PolicyId = 'policy1'
+    ConditionSetType = 'includes'
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+}
+
+Get-EntraPermissionGrantConditionSet @params
 ```
 
 ```output
@@ -145,6 +164,22 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
@@ -164,4 +199,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Set-EntraPermissionGrantConditionSet](Set-EntraPermissionGrantConditionSet.md)
 
 [Remove-EntraPermissionGrantConditionSet](Remove-EntraPermissionGrantConditionSet.md)
-

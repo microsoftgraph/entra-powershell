@@ -15,10 +15,10 @@
         }
         
         if ($PSBoundParameters.ContainsKey("Debug")) {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if ($PSBoundParameters.ContainsKey("Verbose")) {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($null -ne $PSBoundParameters["WarningVariable"])
         {
@@ -83,7 +83,7 @@
         if($Top -ne $null){
             $response | ForEach-Object {
                 if ($null -ne $_ -and $Top -gt 0) {
-                    $_ | ConvertTo-Json | ConvertFrom-Json
+                    $_ | ConvertTo-Json -Depth 10 | ConvertFrom-Json
                 }
 
                 $Top = $Top - 1
@@ -92,7 +92,7 @@
         else {
             $response | ForEach-Object {
                 if ($null -ne $_) {
-                    $_ | ConvertTo-Json | ConvertFrom-Json
+                    $_ | ConvertTo-Json -Depth 10 | ConvertFrom-Json
                 }
             }
         }

@@ -2,7 +2,7 @@
 title: New-EntraPermissionGrantPolicy
 description: This article provides details on the New-EntraPermissionGrantPolicy command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -12,13 +12,15 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraPermissionGrantPolicy
+
 schema: 2.0.0
 ---
 
 # New-EntraPermissionGrantPolicy
 
 ## Synopsis
+
 Creates a permission grant policy.
 
 ## Syntax
@@ -32,16 +34,19 @@ New-EntraPermissionGrantPolicy
 ```
 
 ## Description
+
 The New-EntraPermissionGrantPolicy cmdlet creates a Microsoft Entra ID permission grant policy.
 
 ## Examples
 
 ### Example 1: Create a permission grant policy
+
 ```powershell
-PS C:\> New-EntraPermissionGrantPolicy -Id "my_new_permission_grant_policy_id"
+Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
+New-EntraPermissionGrantPolicy -Id 'my_new_permission_grant_policy_id'
 ```
 
-```output
+```Output
 DeletedDateTime Description DisplayName Id
 --------------- ----------- ----------- --
                                         my_new_permission_grant_policy_id
@@ -50,11 +55,19 @@ DeletedDateTime Description DisplayName Id
 This command creates new permission grant policy.
 
 ### Example 1: Create a permission grant policy with display name and description parameters
+
 ```powershell
-PS C:\> New-EntraPermissionGrantPolicy -Id "my_new_permission_grant_policy_id"  -DisplayName "MyNewPermissionGrantPolicy" -Description "My new permission grant policy"
+Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
+$params = @{
+    Id = 'my_new_permission_grant_policy_id'
+    DisplayName = 'MyNewPermissionGrantPolicy'
+    Description = 'My new permission grant policy'
+}
+
+New-EntraPermissionGrantPolicy @params
 ```
 
-```output
+```Output
 DeletedDateTime Description                    DisplayName                Id
 --------------- -----------                    -----------                --
                 My new permission grant policy MyNewPermissionGrantPolicy my_new_permission_grant_policy_id
@@ -65,10 +78,11 @@ This command creates new permission grant policy.
 ## Parameters
 
 ### -Description
+
 Specifies the description for the permission grant policy.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -80,10 +94,11 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
+
 Specifies the display name for the permission grant policy.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -95,10 +110,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
+
 Specifies the unique identifier of the permission grant policy.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -110,7 +126,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -125,4 +142,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Set-EntraPermissionGrantPolicy](Set-EntraPermissionGrantPolicy.md)
 
 [Remove-EntraPermissionGrantPolicy](Remove-EntraPermissionGrantPolicy.md)
-
