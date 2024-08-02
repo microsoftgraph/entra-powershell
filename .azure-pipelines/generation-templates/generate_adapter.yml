@@ -214,7 +214,6 @@ steps:
       . ./build/common-functions.ps1
       Unregister-LocalGallery
     pwsh: false
-
 - task: PSScriptAnalyzer@1
   displayName: 'Run PSScriptAnalyzer'
   inputs:
