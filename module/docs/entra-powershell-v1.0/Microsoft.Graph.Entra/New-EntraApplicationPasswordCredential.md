@@ -72,7 +72,7 @@ New-EntraApplicationPasswordCredential @params
 ```output
 CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                               StartDateTime
 ------------------- ----------- -----------          ---- -----                                ----------                               -------------
-100 101 109 111     demo        8/2/2026 11:47:53 AM 8Mw  dc212467-5993-448b-a2a3-a87be2ee83a3 8Mw8Q~VOBPisiqF9P-hSnKWJZ.baWu7BKglA-dyX 8/2/2024 11:47:53 AM
+100 101 109 111     demo        8/2/2026 11:47:53 AM 8Mw  tttttttt-0000-2222-0000-aaaaaaaaaaaa wbBNW8kCuiPjNRg9NX98W_aaaaaaa 8/2/2024 11:47:53 AM
 ```
 
 This command creates new password credential for specified application.
