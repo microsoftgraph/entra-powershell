@@ -1,25 +1,26 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Enable-EntraAzureADAlias
+
 schema: 2.0.0
 ---
 
 # Enable-EntraAzureADAlias
 
-## SYNOPSIS
+## Synopsis
 {{ Fill in the Synopsis }}
 
-## SYNTAX
+## Syntax
 
 ```
 Enable-EntraAzureADAlias
 ```
 
-## DESCRIPTION
+## Description
 {{ Fill in the Description }}
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```powershell
@@ -28,15 +29,15 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
-## INPUTS
+## Inputs
 
 ### None
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

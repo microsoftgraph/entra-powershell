@@ -1,16 +1,17 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaTenantDetail
+
 schema: 2.0.0
 ---
 
 # Set-EntraBetaTenantDetail
 
-## SYNOPSIS
+## Synopsis
 Set contact details for a tenant
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaTenantDetail [-MarketingNotificationEmails <System.Collections.Generic.List`1[System.String]>]
@@ -21,10 +22,10 @@ Set-EntraBetaTenantDetail [-MarketingNotificationEmails <System.Collections.Gene
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet is used to set various contact details for a tenant.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -33,7 +34,7 @@ PS C:\WINDOWS\system32> Set-EntraBetaTenantDetail -MarketingNotificationEmails "
 
 THis example shows how to set the various tenant details
 
-## PARAMETERS
+## Parameters
 
 ### -MarketingNotificationEmails
 The email address that is used to send marketing notification emails
@@ -113,12 +114,12 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### None
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
