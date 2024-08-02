@@ -1,6 +1,6 @@
 ---
 title: Get-EntraBetaPermissionGrantPolicy
-description: This article provides details on the Get-EntraMSBetaPermissionGrantPolicy command.
+description: This article provides details on the Get-EntraBetaPermissionGrantPolicy command.
 
 
 ms.topic: reference
@@ -12,7 +12,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaPermissionGrantPolicy
+
 schema: 2.0.0
 ---
 
@@ -58,7 +59,7 @@ This command gets all the permission grant policies.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-Get-EntraMSPermissionGrantPolicy -Id 'testtenant-sampleapp-permissions'
+Get-EntraBetaPermissionGrantPolicy -Id 'testtenant-sampleapp-permissions'
 ```
 
 ```Output

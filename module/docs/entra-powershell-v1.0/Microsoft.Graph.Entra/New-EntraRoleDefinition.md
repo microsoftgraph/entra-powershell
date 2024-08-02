@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraRoleDefinition
+
 schema: 2.0.0
 ---
 
@@ -54,7 +55,7 @@ Create a new Microsoft Entra ID `roleDefinition` object.
     DisplayName = 'MyRoleDefinition'
  }
 
- New-EntraMSRoleDefinition @params
+ New-EntraRoleDefinition @params
 ```
 
 ```Output
@@ -80,7 +81,7 @@ This command creates a new role definition in Microsoft Entra ID.
     Description = 'Role Definition demo'
  }
 
- New-EntraMSRoleDefinition @params
+ New-EntraRoleDefinition @params
 ```
 
 ```Output
@@ -106,7 +107,7 @@ This command creates a new role definition with Description parameter.
     ResourceScopes = '/'
  }
 
- New-EntraMSRoleDefinition @params
+ New-EntraRoleDefinition @params
 ```
 
 ```Output
@@ -131,7 +132,7 @@ This command creates a new role definition with ResourceScopes parameter.
     TemplateId = '4dd5aa9c-cf4d-4895-a993-740d342802b9'
  }
 
- New-EntraMSRoleDefinition @params
+ New-EntraRoleDefinition @params
 ```
 
 ```Output
@@ -156,7 +157,7 @@ This command creates a new role definition with TemplateId parameter.
     Version = '2'
  }
 
- New-EntraMSRoleDefinition @params
+ New-EntraRoleDefinition @params
 ```
 
 ```Output
@@ -296,7 +297,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Get-EntraMSRoleDefinition](Get-EntraMSRoleDefinition.md)
+[Get-EntraRoleDefinition](Get-EntraRoleDefinition.md)
 
 [Remove-EntraRoleDefinition](Remove-EntraRoleDefinition.md)
 

@@ -12,7 +12,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaDevice
+
 schema: 2.0.0
 ---
 
@@ -176,7 +177,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies the oData v3.0 filter statement.
+Specifies the OData v4.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml

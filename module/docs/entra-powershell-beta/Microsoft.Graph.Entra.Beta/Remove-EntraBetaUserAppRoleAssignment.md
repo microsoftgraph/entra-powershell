@@ -1,41 +1,67 @@
 ---
+title: Remove-EntraBetaUserAppRoleAssignment.
+description: This article provides details on the Remove-EntraBetaUserAppRoleAssignment command.
+
+ms.topic: reference
+ms.date: 07/17/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaUserAppRoleAssignment
+
 schema: 2.0.0
 ---
 
 # Remove-EntraBetaUserAppRoleAssignment
 
 ## Synopsis
+
 Removes a user application role assignment.
 
 ## Syntax
 
-```
-Remove-EntraBetaUserAppRoleAssignment -ObjectId <String> -AppRoleAssignmentId <String>
+```powershell
+Remove-EntraBetaUserAppRoleAssignment 
+ -ObjectId <String>
+ -AppRoleAssignmentId <String>
  [<CommonParameters>]
 ```
 
 ## Description
-The Remove-EntraBetaUserAppRoleAssignment cmdlet removes a user application role assignment in Azure Active Directory (AD).
+
+The `Remove-EntraBetaUserAppRoleAssignment` cmdlet removes a user application role assignment in Microsoft Entra ID.
 
 ## Examples
 
-### Example 1
+### Example 1: Remove user app role assignment  
+
 ```powershell
-PS C:\> {{ Add example code here }}
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+$RemoveAppRoleParams = @{
+    ObjectId              = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    AppRoleAssignmentId   = 'C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w'
+}
+Remove-EntraUserAppRoleAssignment @RemoveAppRoleParams
 ```
 
-{{ Add example description here }}
+This example demonstrates how to Remove the user app role assignment in Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies the user ID.
+- `-AppRoleAssignmentId` parameter specifies the application role assignment ID.
+
+Use the `Get-EntraUserAppRoleAssignment` cmdlet to get more details.
 
 ## Parameters
 
 ### -AppRoleAssignmentId
+
 Specifies the ID of an application role assignment.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -46,13 +72,12 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-
-
 ### -ObjectId
-Specifies the ID (as a UPN or ObjectId) of a user in Azure AD.
+
+Specifies the ID (as a UserPrincipleName or ObjectId) of a user in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -64,7 +89,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -74,7 +100,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaUserAppRoleAssignment]()
+[Get-EntraBetaUserAppRoleAssignment](Get-EntraBetaUserAppRoleAssignment.md)
 
-[New-EntraBetaUserAppRoleAssignment]()
-
+[New-EntraBetaUserAppRoleAssignment](New-EntraBetaUserAppRoleAssignment.md)
