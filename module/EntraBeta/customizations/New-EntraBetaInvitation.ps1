@@ -95,26 +95,27 @@
         Write-Debug("=========================================================================`n")
         
         $response = New-MgBetaInvitation @params -Headers $customHeaders
-        $response | ForEach-Object {
-            if($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-    
-            }
+       
+        try {    
+            $data = $response.Value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         }
-        $response | ConvertTo-Json -Depth 2 | ConvertFrom-Json
+        catch {
+            $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+        }
         
-
-        $targetObject = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphInvitation
-            foreach ($property in $response.PSObject.Properties) {
-                if ($targetObject.PSObject.Properties[$property.Name]) {                    
-                    #AdditionalProperties is readOnly
-                    if ($property.Name -ne "AdditionalProperties"){ 
-                        $targetObject.PSObject.Properties[$property.Name].Value = $property.Value
-                    }                    
-                }
+        $targetList = @()
+        foreach ($res in $data) {
+            $targetType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectoryObject
+            $res.PSObject.Properties | ForEach-Object {
+                if ($_.Name -ne "AdditionalProperties"){
+                $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                $propertyValue = $_.Value
+                $targetType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                }   
             }
-           
-        $targetObject
+            $targetList += $targetType
+        }
+        $targetList     
     }
 '@
 }
