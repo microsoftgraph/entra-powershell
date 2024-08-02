@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 function Get-EntraBetaApplicationProxyConnectorMemberOf {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
@@ -65,12 +69,23 @@ function Get-EntraBetaApplicationProxyConnectorMemberOf {
 
         $response = Invoke-GraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri 
         try {    
-            $call = $response.value 
-            $call
+            $data = $response.Value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         }
         catch {
-            $response
+            $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         }
+        
+            $targetList = @()
+            foreach ($res in $data) {
+                $targetType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphConnectorGroup
+                $res.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                    $propertyValue = $_.Value
+                    $targetType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                }
+                $targetList += $targetType
+            }
+            $targetList    
 
     }        
 }

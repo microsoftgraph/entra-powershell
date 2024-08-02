@@ -71,7 +71,19 @@
         Write-Debug("=========================================================================`n")
         $URI = "https://graph.microsoft.com/beta/reports/getAzureADApplicationSignInSummary(period='D{0}'){1}{2}" -f $Days, $filterApplied, $topCount
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method $Method | ConvertTo-Json | ConvertFrom-Json).value
-        $response
+        
+        $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+        $targetList = @()
+        foreach ($res in $data) {
+            $targetType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphApplicationSignInSummary
+            $res.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                $propertyValue = $_.Value
+                $targetType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+            }
+            $targetList += $targetType
+        }
+        $targetList         
     }    
 '@
 }

@@ -69,14 +69,19 @@
         Write-Debug("=========================================================================`n")
         $response = Get-MgBetaUserManager @params -Headers $customHeaders -ErrorAction Stop
         try {      
-            $response | ConvertTo-Json -Depth 5 | ConvertFrom-Json      
-            $response | ForEach-Object {
-                if($null -ne $_) {
-                    Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties
-                    Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+            $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json     
+            
+            $targetList = @()
+            foreach ($res in $data) {
+                $targetType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectoryObject
+                $res.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                    $propertyValue = $_.Value
+                    $targetType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
                 }
-            }  
-            $response          
+                $targetList += $targetType
+            }
+            $targetList   
         }
         catch {}
         }
