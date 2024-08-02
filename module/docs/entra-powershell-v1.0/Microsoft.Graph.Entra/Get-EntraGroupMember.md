@@ -106,12 +106,12 @@ Get-EntraGroupMember -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' | Select-O
 ```
 
 ```Output
-displayName                                        @odata.type
------------                                        -----------
-test1                                        #microsoft.graph.user
-test2                                        #microsoft.graph.user
-test2                                        #microsoft.graph.servicePrincipal
-test3                                        #microsoft.graph.servicePrincipal
+displayName                          @odata.type
+-----------                          -----------
+test1                                #microsoft.graph.user
+test2                                #microsoft.graph.user
+test2                                #microsoft.graph.servicePrincipal
+test3                                #microsoft.graph.servicePrincipal
 ```
 
 This example retrieves the members of a specified group by its `ObjectId` and selects only the `DisplayName` and `@odata.type` properties for each member.
