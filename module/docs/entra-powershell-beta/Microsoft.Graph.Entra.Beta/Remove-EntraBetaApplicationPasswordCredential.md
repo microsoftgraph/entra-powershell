@@ -1,26 +1,27 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaApplicationPasswordCredential
+
 schema: 2.0.0
 ---
 
 # Remove-EntraBetaApplicationPasswordCredential
 
-## SYNOPSIS
+## Synopsis
 Removes a password credential from an application.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaApplicationPasswordCredential -ObjectId <String> -KeyId <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaApplicationPasswordCredential cmdlet removes a password credential from an application in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove an application password credential
 ```
@@ -36,7 +37,7 @@ The command stores it in the $KeyId variable.
 
 The final command removes the application password credential for the application identified by $AppID.
 
-## PARAMETERS
+## Parameters
 
 
 ### -KeyId
@@ -72,13 +73,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaApplication]()
 

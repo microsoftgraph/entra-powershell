@@ -2,53 +2,59 @@
 title: Get-EntraGroupOwner.
 description: This article provides details on the Get-EntraGroupOwner command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/08/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraGroupOwner
+
 schema: 2.0.0
 ---
 
 # Get-EntraGroupOwner
 
-## SYNOPSIS
+## Synopsis
+
 Gets an owner of a group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
-Get-EntraGroupOwner 
- -ObjectId <String>  
- [-All] 
- [-Top <Int32>] 
+Get-EntraGroupOwner
+ -ObjectId <String>
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
+
 The Get-EntraGroupOwner cmdlet gets an owner of a group in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a group owner by ID
 
 ```powershell
-PS C:\>Get-EntraGroupOwner -ObjectId "ba828166-dcd3-4349-aee9-9fbbf619105d"
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraGroupOwner -ObjectId 'vvvvvvvv-7777-9999-7777-jjjjjjjjjjjj'
 ```
+
 ```output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {admin@m365x99297270.onmicrosoft.com}
+imAddresses                     : {HaydenL@contoso.com}
 preferredLanguage               : en
-mail                            : admin@M365x99297270.onmicrosoft.com
-securityIdentifier              : S-1-12-1-2574072234-1301806508-533216682-2892133300
-identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=admin@M365x99297270.onmicrosoft.com}}
+mail                            : HaydenL@contoso.com
+securityIdentifier              : B-2-33-4-5555555555-6666666666-7777777-8888888888
+identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=HaydenL@contoso.com}}
 consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
 ```
@@ -56,17 +62,20 @@ onPremisesUserPrincipalName     :
 This example demonstrates how to retrieve the owner of a specific group.  
 
 ### Example 2: Gets all group owners
+
 ```powershell
-PS C:\>Get-EntraGroupOwner -ObjectId "c072b115-ed7b-47cb-90d3-d5019d8bfd51" -All
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraGroupOwner -ObjectId 'zzzzzzzz-6666-8888-9999-pppppppppppp' -All
 ```
+
 ```output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {admin@m365x99297270.onmicrosoft.com}
+imAddresses                     : {BlakeM@contoso.com}
 preferredLanguage               : en
-mail                            : admin@M365x99297270.onmicrosoft.com
-securityIdentifier              : S-1-12-1-2574072234-1301806508-533216682-2892133300
+mail                            : BlakeM@contoso.com
+securityIdentifier              : E-5-66-7-8888888888-9999999999-0000000-1111111111
 identities                      : {System.Collections.Hashtable}
 consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
@@ -77,41 +86,42 @@ jobTitle                        :
 
 This example demonstrates how to retrieve the all owner of a specific group.  
 
-
 ### Example 3: Gets two group owners
+
 ```powershell
-PS C:\>Get-EntraGroupOwner -ObjectId "c072b115-ed7b-47cb-90d3-d5019d8bfd51" -Top 2
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraGroupOwner -ObjectId 'vvvvvvvv-8888-9999-0000-jjjjjjjjjjjj' -Top 2
 ```
+
 ```output
 ageGroup                        :
 onPremisesLastSyncDateTime      :
 creationType                    :
-imAddresses                     : {admin@m365x99297270.onmicrosoft.com}
+imAddresses                     : {QuinnA@contoso.com}
 preferredLanguage               : en
-mail                            : admin@M365x99297270.onmicrosoft.com
-securityIdentifier              : S-1-12-1-2574072234-1301806508-533216682-2892133300
+mail                            : QuinnA@contoso.com
+securityIdentifier              : D-4-55-6-7777777777-8888888888-9999999-0000000000
 identities                      : {System.Collections.Hashtable}
 consentProvidedForMinor         :
 onPremisesUserPrincipalName     :
 assignedLicenses                : {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
 department                      :
 jobTitle                        :
-proxyAddresses                  : {SMTP:admin@M365x99297270.onmicrosoft.com}
+proxyAddresses                  : {SMTP:QuinnA@contoso.com}
 legalAgeGroupClassification     :
 assignedPlans                   : {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
-id                              : 996d39aa-fdac-4d97-aa3d-c81fb47362ac
+id                              : tttttttt-0000-2222-0000-aaaaaaaaaaaa
 ```
 
 This example demonstrates how to retrieve the top two owners of a specific group.  
 
-
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -121,12 +131,12 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 ### -ObjectId
+
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -138,10 +148,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -152,16 +163,33 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraGroupOwner](Add-EntraGroupOwner.md)
 
