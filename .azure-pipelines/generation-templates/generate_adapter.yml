@@ -218,7 +218,7 @@ steps:
 - task: PSScriptAnalyzer@1
   displayName: 'Run PSScriptAnalyzer'
   inputs:
-    Path: '$(Build.SourcesDirectory)/module'
+    Path: '$(Build.SourcesDirectory)'
     Settings: required
     IgnorePattern: .gdn
     Recurse: true
