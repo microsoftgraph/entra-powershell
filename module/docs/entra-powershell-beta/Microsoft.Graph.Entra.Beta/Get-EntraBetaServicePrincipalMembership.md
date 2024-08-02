@@ -47,9 +47,15 @@ The `Get-EntraBetaServicePrincipalMembership` cmdlet gets the memberships of a s
  Get-EntraBetaServicePrincipalMembership -ObjectId $ServicePrincipalId
 ```
 
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+11112222-aaaa-3333-bbbb-4444cccc5555
+```
+
 This cmdlet retrieves a specified service principal memberships in Microsoft Entra ID. You can use the command `Get-EntraBetaServicePrincipal` to get service principal Id.
 
-- `-ObjectId` parameter specifies the service principal object ID.
+- `-ObjectId` parameter specifies the service principal Id.
 
 ### Example 2: Retrieve all memberships of a service principal
 
@@ -68,7 +74,7 @@ Id                                   DeletedDateTime
 
 This command gets all memberships of a specified service principal.
 
-- `-ObjectId` parameter specifies the service principal object ID.
+- `-ObjectId` parameter specifies the service principal Id.
 
 ### Example 3: Retrieve top two memberships of a service principal
 
@@ -87,7 +93,7 @@ Id                                   DeletedDateTime
 
 This command gets top two memberships of a specified service principal.
 
-- `-ObjectId` parameter specifies the service principal object ID.
+- `-ObjectId` parameter specifies the service principal Id.
 
 ## Parameters
 

@@ -55,13 +55,13 @@ Id                                          AppRoleId                           
 
 This command gets application role assignments for specified service principal. You can use the command `Get-EntraBetaServicePrincipal` to get service principal Id.
 
-- `-ObjectId` parameter specifies the service principal object ID.
+- `-ObjectId` parameter specifies the service principal Id.
 
 ### Example 2: Retrieve all application role assignments for a service principal
 
 ```powershell
  Connect-Entra -Scopes 'Application.Read.All'
- Get-EntraServiceAppRoleAssignment -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -All
+ Get-EntraBetaServiceAppRoleAssignment -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -All
 ```
 
 ```Output
@@ -76,13 +76,13 @@ Id                                          AppRoleId                           
 
 This command gets all application role assignments for specified service principal.
 
-- `-ObjectId` parameter specifies the service principal object ID.
+- `-ObjectId` parameter specifies the service principal Id.
 
 ### Example 3: Retrieve the top three application role assignments for a service principal
 
 ```powershell
  Connect-Entra -Scopes 'Application.Read.All'
- Get-EntraServiceAppRoleAssignment -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -Top 3
+ Get-EntraBetaServiceAppRoleAssignment -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -Top 3
 ```
 
 ```Output
@@ -95,7 +95,7 @@ Id                                          AppRoleId                           
 
 This command gets top three application role assignments for specified service principal.
 
-- `-ObjectId` parameter specifies the service principal object ID.
+- `-ObjectId` parameter specifies the service principal Id.
 
 ## Parameters
 

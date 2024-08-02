@@ -56,7 +56,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 
 This example retrieves an object owned by a service principal in Microsoft Entra ID. You can use the command `Get-EntraBetaServicePrincipal` to get service principal Id.
 
-- `-ObjectId` parameter specifies the service principal object ID.
+- `-ObjectId` parameter specifies the service principal Id.
 
 ### Example 2: Retrieve all owned objects of a service principal
 
@@ -74,7 +74,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 
 This example retrieves all owned objects of a specified service principal in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the service principal object ID.
+- `-ObjectId` parameter specifies the service principal Id.
 
 ### Example 3: Retrieve top one owned object of a service principal
 
@@ -91,7 +91,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 
 This example retrieves the top one owned object of a specified service principal in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the service principal object ID.
+- `-ObjectId` parameter specifies the service principal Id.
 
 ## Parameters
 

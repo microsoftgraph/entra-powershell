@@ -2,7 +2,6 @@
 title: Remove-EntraBetaServicePrincipal.
 description: This article provides details on the Remove-EntraBetaServicePrincipal command.
 
-
 ms.topic: reference
 ms.date: 07/31/2024
 ms.author: eunicewaweru
@@ -47,7 +46,7 @@ Remove-EntraBetaServicePrincipal -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444
 
 This example demonstrates how to remove a service principal in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the service principal object ID.
+- `-ObjectId` parameter specifies the service principal Id.
 
 ## Parameters
 

@@ -46,7 +46,7 @@ Remove-EntraBetaConditionalAccessPolicy -PolicyId '3cccccc3-4dd4-5ee5-6ff6-7aaaa
 
 This command deletes a conditional access policy in Microsoft Entra ID.
 
-- `-PolicyId` parameter specifies the conditional access policy ID.
+- `-PolicyId` parameter specifies the conditional access policy Id.
 
 ## Parameters
 

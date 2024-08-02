@@ -46,7 +46,7 @@ Remove-EntraBetaNamedLocationPolicy -PolicyId '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeee
 
 This command demonstrates how to delete the named location policy in Microsoft Entra ID.
 
-- `-PolicyId` parameter specifies the policy Id of named location policy.
+- `-PolicyId` parameter specifies the Id of named location policy.
 
 ## Parameters
 

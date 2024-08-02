@@ -63,7 +63,7 @@ Set-EntraBetaNamedLocationPolicy @params
 
 This example shows how to update an IP named location policy in Microsoft Entra ID by PolicyId.
 
-- `-PolicyId` parameter specifies the policy Id of named location policy.
+- `-PolicyId` parameter specifies the Id of a named location policy.
 - `-OdataType` parameter specifies the odata type of a named location policy.
 - `-DisplayName` parameter specifies the display name of a named location policy.
 - `-IsTrusted` parameter specifies the IsTrusted value for the named location policy.
@@ -84,7 +84,7 @@ Set-EntraBetaNamedLocationPolicy @params
 
 This command updates a country named location policy in Microsoft Entra ID by PolicyId.
 
-- `-PolicyId` parameter specifies the policy Id of named location policy.
+- `-PolicyId` parameter specifies the Id of a named location policy.
 - `-OdataType` parameter specifies the odata type of a named location policy.
 - `-IncludeUnknownCountriesAndRegions` parameter specifies the includeUnknownCountriesAndRegions value for the named location policy.
 
@@ -103,7 +103,7 @@ Set-EntraBetaNamedLocationPolicy @params
 
 This command updates display name of named location policy in Microsoft Entra ID by PolicyId.
 
-- `-PolicyId` parameter specifies the policy Id of named location policy.
+- `-PolicyId` parameter specifies the Id of a named location policy.
 - `-OdataType` parameter specifies the odata type of a named location policy.
 - `-DisplayName` parameter specifies the display name of a named location policy.
 

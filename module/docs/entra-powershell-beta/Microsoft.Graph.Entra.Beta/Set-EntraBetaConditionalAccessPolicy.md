@@ -66,7 +66,7 @@ Set-EntraBetaConditionalAccessPolicy @params
 
 The example shows how to update a conditional access policy in Microsoft Entra ID.
 
-- `-PolicyId` parameter specifies the policy Id of conditional access policy.
+- `-PolicyId` parameter specifies the Id of conditional access policy.
 - `-DisplayName` parameter specifies the display name of a conditional access policy.
 - `-State` parameter specifies the enabled or disabled state of the conditional access policy.
 - `-Conditions` parameter specifies the conditions for the conditional access policy.
@@ -87,7 +87,7 @@ Set-EntraBetaConditionalAccessPolicy @params
 
 This command updates a conditional access policy in Microsoft Entra ID.
 
-- `-PolicyId` parameter specifies the policy Id of conditional access policy.
+- `-PolicyId` parameter specifies the Id of conditional access policy.
 - `-DisplayName` parameter specifies the display name of a conditional access policy.
 
 ### Example 3: Updates state for a conditional access policy by PolicyId
@@ -104,7 +104,7 @@ Set-EntraBetaConditionalAccessPolicy @params
 
 This command updates a conditional access policy in Microsoft Entra ID.
 
-- `-PolicyId` parameter specifies the policy Id of conditional access policy.
+- `-PolicyId` parameter specifies the Id of conditional access policy.
 - `-State` parameter specifies the enabled or disabled state of the conditional access policy.
 
 ## Parameters

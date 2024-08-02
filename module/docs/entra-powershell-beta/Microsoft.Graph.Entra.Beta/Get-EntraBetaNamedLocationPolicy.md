@@ -81,7 +81,7 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee 31/07/2024 9:53:10   NamedLocation   31/07/
 
 This example retrieves a specified named location policy in Microsoft Entra ID.
 
-- `-PolicyId` parameter specifies the policy Id of named location policy.
+- `-PolicyId` parameter specifies the policy Id of a named location policy.
 
 ## Parameters
 

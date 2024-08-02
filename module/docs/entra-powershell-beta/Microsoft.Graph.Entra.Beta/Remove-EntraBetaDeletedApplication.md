@@ -49,7 +49,7 @@ Remove-EntraBetaDeletedApplication -ObjectId $App.Id
 
 This command removes recently deleted application. You can use the command  `Get-EntraBetaDeletedApplication` to get deleted application Id.
 
-- `-ObjectId` parameter specifies the ObjectId of a deleted application.
+- `-ObjectId` parameter specifies the Id of a deleted application.
 
 ## Parameters
 

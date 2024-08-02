@@ -43,6 +43,7 @@ Get-EntraBetaConditionalAccessPolicy
 ## Description
 
 This cmdlet allows an admin to get the Microsoft Entra ID conditional access policy.
+
 Conditional access policies are custom rules that define an access scenario.
 
 ## Examples

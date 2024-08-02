@@ -49,9 +49,9 @@ CustomKeyIdentifier DisplayName EndDateTime         Key KeyId                   
                                 08-02-2025 09:57:08     68b45e27-fef8-4f0d-bc7a-76bd949c16d1 08-02-2024 09:57:08 Symmetric Sign
 ```
 
-This example retrieves the key credentials for specified service principal in Microsoft Entra ID.
+This example retrieves the key credentials for specified service principal in Microsoft Entra ID. You can use the command `Get-EntraBetaServicePrincipal` to get a service principal object Id.
 
-- `-ObjectId` parameter specifies the object ID of a service principal. You can use the command `Get-EntraBetaServicePrincipal` to get a service principal object Id.
+- `-ObjectId` parameter specifies the service principal Id.
 
 ## Parameters
 

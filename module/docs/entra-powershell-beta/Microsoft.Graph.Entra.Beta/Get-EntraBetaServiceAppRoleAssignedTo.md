@@ -50,7 +50,7 @@ The `Get-EntraBetaServiceAppRoleAssignedTo` cmdlet gets app role assignments for
 
 ## Examples
 
-### Example 1
+### Example 1: Get app role assignment by Id
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
@@ -66,7 +66,7 @@ DeletedDateTime Id                                          AppRoleId           
 
 This example shows how to get app role assignments for an app or service, granted to users, groups and other service principals.
 
-- `-ObjectId` parameter specifies the service principal object ID.
+- `-ObjectId` parameter specifies the service principal Id.
 
 ### Example 2: Get all app role assignments
 
@@ -87,7 +87,7 @@ DeletedDateTime Id                                          AppRoleId           
 
 This command gets the all app role assignments for the service principal granted to users, groups and other service principals.
 
-- `-ObjectId` parameter specifies the service principal object ID.
+- `-ObjectId` parameter specifies the service principal Id.
 
 ### Example 3: Get five app role assignments
 
@@ -107,7 +107,7 @@ DeletedDateTime Id                                          AppRoleId           
 
 This command gets the five app role assignments for the service principal granted to users, groups and other service principals.
 
-- `-ObjectId` parameter specifies the service principal object ID.
+- `-ObjectId` parameter specifies the service principal Id.
 
 ## Parameters
 

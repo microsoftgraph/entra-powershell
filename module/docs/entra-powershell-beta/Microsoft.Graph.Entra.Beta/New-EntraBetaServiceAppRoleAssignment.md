@@ -72,7 +72,7 @@ DeletedDateTime Id                                          AppRoleId           
                 2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 3/12/2024 11:05:29 AM Box                  aaaaaaaa-bbbb-cccc-1111-222222222222
 ```
 
-This example demonstrates how to assign an app role to another service principal in Microsoft Entra ID.
+This example demonstrates how to assign an app role to another service principal in Microsoft Entra ID. You can use the command `Get-EntraBetaServicePrincipal` to get a service principal Id.
 
 - `-ObjectId` parameter specifies the ObjectId of a client service principal to which you're assigning the app role.
 - `-ResourceId`parameter specifies the ObjectId of the resource service principal.
@@ -103,7 +103,9 @@ DeletedDateTime Id                                          AppRoleId           
                 2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 3/12/2024 11:07:15 AM Test Contoso         aaaaaaaa-bbbb-cccc-1111-222222222222
 ```
 
-This example demonstrates how to assign an app role to a user in Microsoft Entra ID.
+This example demonstrates how to assign an app role to a user in Microsoft Entra ID.  
+You can use the command `Get-EntraBetaServicePrincipal` to get a service principal Id.  
+You can use the command `Get-EntraBetaUser` to get a user Id.
 
 - `-ObjectId` parameter specifies the ObjectId of the app's service principal.
 - `-ResourceId`parameter specifies the ObjectId of the app's service principal.
@@ -134,7 +136,9 @@ DeletedDateTime Id                                          AppRoleId           
                 2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 3/12/2024 10:59:38 AM testGroup12          aaaaaaaa-bbbb-cccc-1111-222222222222
 ```
 
-This example demonstrates how to assign an app role to a group in Microsoft Entra ID.
+This example demonstrates how to assign an app role to a group in Microsoft Entra ID.  
+You can use the command `Get-EntraBetaServicePrincipal` to get a service principal Id.  
+You can use the command `Get-EntraBetaGroup` to get a group Id.
 
 - `-ObjectId` parameter specifies the ObjectId of the app's service principal.
 - `-ResourceId`parameter specifies the ObjectId of the app's service principal.

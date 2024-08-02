@@ -2,7 +2,6 @@
 title: Get-EntraBetaServicePrincipalCreatedObject.
 description: This article provides details on the Get-EntraBetaServicePrincipalCreatedObject command.
 
-
 ms.topic: reference
 ms.date: 07/31/2024
 ms.author: eunicewaweru
@@ -50,7 +49,7 @@ The `Get-EntraBetaServicePrincipalCreatedObject` cmdlet gets an object created b
 
 This example gets objects created by the service principal identified by $ServicePrincipalId. You can use the command `Get-EntraBetaServicePrincipal` to get service principal Id.
 
-- `-ObjectId` parameter specifies the service principal object ID.
+- `-ObjectId` parameter specifies the service principal Id.
 
 ### Example 2: Retrieve the all objects created by a service principal
 
@@ -61,7 +60,7 @@ Get-EntraBetaServicePrincipalCreatedObject -ObjectId '00001111-aaaa-2222-bbbb-33
 
 This example demonstrates how to get the all object created by a specified service principal in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the service principal object ID.
+- `-ObjectId` parameter specifies the service principal Id.
 
 ### Example 3: Retrieve the top two objects created by a service principal
 
@@ -72,7 +71,7 @@ Get-EntraBetaServicePrincipalCreatedObject -ObjectId '00001111-aaaa-2222-bbbb-33
 
 This example demonstrates how to get the top two object created by a specified service principal in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the service principal object ID.
+- `-ObjectId` parameter specifies the service principal Id.
 
 ## Parameters
 
