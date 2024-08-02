@@ -98,6 +98,26 @@ This command is used to retrieve all members of a specific group. The `-ObjectId
 
 - `-ObjectId` Specifies the ID of a group.
 
+### Example 4: Retrieve and Select Group Member Properties
+
+```powershell
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraGroupMember -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' | Select-Object DisplayName, '@odata.type' 
+```
+
+```Output
+displayName                                        @odata.type
+-----------                                        -----------
+test1                                        #microsoft.graph.user
+test2                                        #microsoft.graph.user
+test2                                        #microsoft.graph.servicePrincipal
+test3                                        #microsoft.graph.servicePrincipal
+```
+
+This example retrieves the members of a specified group by its `ObjectId` and selects only the `DisplayName` and `@odata.type` properties for each member.
+
+- `-ObjectId` Specifies the ID of a group.
+
 ## Parameters
 
 ### -All
