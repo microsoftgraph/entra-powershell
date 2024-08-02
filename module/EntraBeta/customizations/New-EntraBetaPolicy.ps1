@@ -15,35 +15,35 @@
 
         if($params.type -eq "activityBasedTimeoutPolicy" ) {
             $params.type  = "activityBasedTimeoutPolicies"    
-            $respType = New-Object -TypeName Microsoft.Graph.PowerShell.Models.MicrosoftGrphActivityBasedTimeoutPolicy    
+            $respType = New-Object -TypeName Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGrphActivityBasedTimeoutPolicy    
         }
         elseif ($params.type -eq "appManagementPolicy") {
             $params.type = "appManagementPolicies"
-            $respType = New-Object -TypeName Microsoft.Graph.PowerShell.Models.MicrosoftGraphAppManagementPolicy
+            $respType = New-Object -TypeName Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphAppManagementPolicy
         }
         elseif ($params.type -eq "claimsMappingPolicies") {
              $params.type = "claimsMappingPolicies"         
-             $respType = New-Object -TypeName Microsoft.Graph.PowerShell.Models.MicrosoftGraphClaimsMappingPolicy     
+             $respType = New-Object -TypeName Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphClaimsMappingPolicy     
         } 
         elseif ($params.type -eq "featureRolloutPolicy") {
             $params.type = "featureRolloutPolicies"
-            $respType = New-Object -TypeName Microsoft.Graph.PowerShell.Models.MicrosoftGraphFeatureRolloutPolicy   
+            $respType = New-Object -TypeName Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphFeatureRolloutPolicy   
         }
         elseif ($params.type -eq "HomeRealmDiscoveryPolicy") {
              $params.type = "homeRealmDiscoveryPolicies"
-             $respType = New-Object -TypeName Microsoft.Graph.PowerShell.Models.MicrosoftGraphHomeRealmDiscoveryPolicy 
+             $respType = New-Object -TypeName Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphHomeRealmDiscoveryPolicy 
         }
         elseif ($params.type -eq "tokenIssuancePolicy") {
             $params.type = "tokenIssuancePolicies"
-            $respType = New-Object -TypeName Microsoft.Graph.PowerShell.Models.MicrosoftGraphTokenIssuancePolicy   
+            $respType = New-Object -TypeName Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphTokenIssuancePolicy   
         }
         elseif ($params.type -eq "tokenLifetimePolicy") {
             $params.type = "tokenLifetimePolicies"
-            $respType = New-Object -TypeName Microsoft.Graph.PowerShell.Models.MicrosoftGraphTokenLifetimePolicy 
+            $respType = New-Object -TypeName Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphTokenLifetimePolicy 
         }
         elseif ($params.type -eq "permissionGrantPolicy") {
             $params.type = "permissionGrantPolicies"
-            $respType = New-Object -TypeName Microsoft.Graph.PowerShell.Models.MicrosoftGraphPermissionGrantPolicy 
+            $respType = New-Object -TypeName Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphPermissionGrantPolicy 
         }
 
         $params["Uri"] = "https://graph.microsoft.com/beta/policies/" + $params.type
