@@ -37,6 +37,18 @@ Get-EntraUserOAuth2PermissionGrant
 
 The Get-EntraUserOAuth2PermissionGrant cmdlet gets an oAuth2PermissionGrant object for the specified user in Microsoft Entra ID.
 
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with a supported role permission. The following least privileged roles are supported for this operation.
+
+- Application Administrator
+- Application Developer
+- Cloud Application Administrator
+- Directory Writers
+- Privileged Role Administrator
+- User Administrator
+- Directory Readers
+- Global Reader
+- Guest Inviter
+
 ## Examples
 
 ### Example 1: Retrieve the OAuth2 permission grants for a user
@@ -47,7 +59,7 @@ The Get-EntraUserOAuth2PermissionGrant cmdlet gets an oAuth2PermissionGrant obje
  Get-EntraUserOAuth2PermissionGrant -ObjectId $UserId
 ```
 
-The example demonstrates how to retrieve the OAuth2 permission grants for the user.
+This example retrieves the OAuth2 permission grants for a user using the ObjectId parameter. Use the `Get-EntraBetaUser` cmdlet to obtain the `ObjectId` value.
 
 ### Example 2: Retrieve the OAuth2 permission grants for a user using object ID parameter
 

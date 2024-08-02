@@ -13,8 +13,10 @@ Gets the password SSO credentials
 
 ## Syntax
 
-```
-Get-EntraBetaPasswordSingleSignOnCredential -ObjectId <String> -PasswordSSOObjectId <PasswordSSOObjectId>
+```powershell
+Get-EntraBetaPasswordSingleSignOnCredential
+ -ObjectId <String>
+ -PasswordSSOObjectId <PasswordSSOObjectId>
  [<CommonParameters>]
 ```
 

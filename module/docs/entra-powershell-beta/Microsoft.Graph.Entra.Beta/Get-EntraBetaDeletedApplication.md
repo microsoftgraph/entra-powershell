@@ -14,13 +14,24 @@ Retrieves the list of previously deleted applications
 ## Syntax
 
 ### GetQuery (Default)
-```
-Get-EntraBetaDeletedApplication [-Top <Int32>] [-All] [-Filter <String>] [<CommonParameters>]
+
+```powershell
+Get-EntraBetaDeletedApplication
+ [-Top <Int32>]
+ [-All]
+ [-Filter <String>]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ### GetVague
-```
-Get-EntraBetaDeletedApplication [-SearchString <String>] [-All] [<CommonParameters>]
+
+```powershell
+Get-EntraBetaDeletedApplication
+ [-SearchString <String>]
+ [-All]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ## Description
@@ -114,6 +125,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

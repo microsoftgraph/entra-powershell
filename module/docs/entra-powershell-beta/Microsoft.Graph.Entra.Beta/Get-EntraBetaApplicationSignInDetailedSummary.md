@@ -23,8 +23,11 @@ Get detailed sign in summaries
 
 ## Syntax
 
-```
-Get-EntraBetaApplicationSignInDetailedSummary [-Top <Int32>] [-Filter <String>] [<CommonParameters>]
+```powershell
+Get-EntraBetaApplicationSignInDetailedSummary
+ [-Top <Int32>]
+ [-Filter <String>]
+ [<CommonParameters>]
 ```
 
 ## Description
