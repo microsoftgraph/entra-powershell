@@ -12,7 +12,7 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraApplicationFromApplicationTemplate
 schema: 2.0.0
 ---
 
@@ -41,10 +41,17 @@ This `New-EntraApplicationFromApplicationTemplate` cmdlet allows users to create
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$instantiated_app = New-EntraApplicationTemplate -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -DisplayName 'bugzilla-copy1'
+$params = @{
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    DisplayName = 'bugzilla-copy1'
+}
+$instantiated_app =New-EntraApplicationFromApplicationTemplate @params
 ```
 
 This command instantiates a new application based on application template referenced by the ID.
+
+- `-Id` Parameter specifies Application TemplateId.
+- `-DisplayName` Parameter specifies application template display name.
 
 ## Parameters
 
