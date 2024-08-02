@@ -66,19 +66,10 @@ Get-EntraBetaApplicationProxyConnectorGroup
 ```
 
 ```Output
-Name                           Value
-----                           -----
-id                             aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-region                         eur
-connectorGroupType             applicationProxy
-isDefault                      True
-name                           Default
-
-id                             bbbbbbbb-1111-2222-3333-cccccccccccc
-region                         eur
-connectorGroupType             applicationProxy
-isDefault                      False
-name                           test1
+Id                                   ConnectorGroupType IsDefault Name                       Region
+--                                   ------------------ --------- ----                       ------
+bbbbbbbb-1111-2222-3333-cccccccccccc applicationProxy   False     Test                       eur
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb applicationProxy   True      Default                    eur
 ```
 
 This example retrieves all connector groups.
@@ -93,12 +84,9 @@ Get-EntraBetaApplicationProxyConnectorGroup -Id 'bbbbbbbb-1111-2222-3333-ccccccc
 ```Output
 Name                           Value
 ----                           -----
-id                             bbbbbbbb-1111-2222-3333-cccccccccccc
-@odata.context                 https://graph.microsoft.com/beta/$metadata#onPremisesPublishingProfiles('applicationProxy')/connectorGroups/$entity
-isDefault                      True
-name                           Default
-region                         eur
-connectorGroupType             applicationProxy
+Id                                   ConnectorGroupType IsDefault Name                       Region
+--                                   ------------------ --------- ----                       ------
+bbbbbbbb-1111-2222-3333-cccccccccccc applicationProxy   False     Test                       eur
 ```
 
 This example retrieves a specific connector group.
@@ -112,14 +100,9 @@ Get-EntraBetaApplicationProxyConnectorGroup -Top 1
 ```
 
 ```Output
-Name                           Value
-----                           -----
-id                             bbbbbbbb-1111-2222-3333-cccccccccccc
-@odata.context                 https://graph.microsoft.com/beta/$metadata#onPremisesPublishingProfiles('applicationProxy')/connectorGroups/$entity
-isDefault                      True
-name                           Default
-region                         eur
-connectorGroupType             applicationProxy
+Id                                   ConnectorGroupType IsDefault Name                       Region
+--                                   ------------------ --------- ----                       ------
+bbbbbbbb-1111-2222-3333-cccccccccccc applicationProxy   False     Test                       eur
 ```
 
 This example retrieves top one connector groups.
@@ -132,18 +115,14 @@ Get-EntraBetaApplicationProxyConnectorGroup -Filter "name eq 'Default'"
 ```
 
 ```Output
-Name                           Value
-----                           -----
-id                             bbbbbbbb-1111-2222-3333-cccccccccccc
-region                         eur
-connectorGroupType             applicationProxy
-isDefault                      True
-name                           Default
+Id                                   ConnectorGroupType IsDefault Name                       Region
+--                                   ------------------ --------- ----                       ------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb applicationProxy   True      Default                    eur
 ```
 
 This example retrieves a connector groups with filter parameter.
 
-### Example 5:Retrieve a connector groups with String parameter
+### Example 5: Retrieve a connector groups with String parameter
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
@@ -151,13 +130,9 @@ Get-EntraBetaApplicationProxyConnectorGroup -SearchString 'Test'
 ```
 
 ```Output
-Name                           Value
-----                           -----
-id                             bbbbbbbb-1111-2222-3333-cccccccccccc
-region                         eur
-connectorGroupType             applicationProxy
-isDefault                      False
-name                           test1
+Id                                   ConnectorGroupType IsDefault Name                       Region
+--                                   ------------------ --------- ----                       ------
+bbbbbbbb-1111-2222-3333-cccccccccccc applicationProxy   False     Test                       eur
 ```
 
 This example retrieves a connector groups with String parameter.
@@ -182,7 +157,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies an oData v3.0 filter statement.
+Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
 Details on querying with oData can be found here: <https://www.odata.org/documentation/odata-version-3-0/odata-version-3-0-core-protocol/#queryingcollections>
 
