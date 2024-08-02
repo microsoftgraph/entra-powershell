@@ -1,7 +1,8 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaPasswordSingleSignOnCredential
+
 schema: 2.0.0
 ---
 
@@ -12,8 +13,10 @@ Gets the password SSO credentials
 
 ## Syntax
 
-```
-Get-EntraBetaPasswordSingleSignOnCredential -ObjectId <String> -PasswordSSOObjectId <PasswordSSOObjectId>
+```powershell
+Get-EntraBetaPasswordSingleSignOnCredential
+ -ObjectId <String>
+ -PasswordSSOObjectId <PasswordSSOObjectId>
  [<CommonParameters>]
 ```
 
