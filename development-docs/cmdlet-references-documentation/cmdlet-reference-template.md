@@ -17,8 +17,6 @@ online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.En
 schema: 2.0.0
 ---
 
-# Microsoft Entra PowerShell cmdlet reference template
-
 # Cmdlet name
 
 Reference
@@ -61,8 +59,8 @@ Module:
   
 - In the absence of the permissions table, ensure that the first command in every example specifies the scope required to successfully execute the example.
 - Don't use PowerShell prompt as part of the example. That is, don't use: `PS C:\>`
-- Don't use real GUIDs or other sensitive data in examples. Instead, replace real GUIDs with placeholder GUIDs, such as `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` that use the pattern `LLLLLLLL-NNNN-NNNN-NNNN-LLLLLLLLLLLL` where L is a letter and N is a number between 0-9. Refer to [this guidance](https://microsoft-my.sharepoint.com/:x:/p/celested/ERiaYLteNeVNuWhZ1LUtYOcBKHxF94ptX1E1wTPZEnoAiQ?e=PrvIeb&wdOrigin=TEAMS-MAGLEV.p2p_ns.rwc&wdExp=TEAMS-TREATMENT&wdhostclicktime=1716885662919&web=1) for GUID placeholders for different entities.
-- Use this tool to generate [CELA-approved](https://microsoft.sharepoint.com/sites/celaweb-tools/sitepages/fictitiousnamefinder.aspx) gender-neutral names.
+- Don't use real GUIDs or other sensitive data in examples. Instead, replace real GUIDs with placeholder GUIDs, such as `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` that use the pattern `LLLLLLLL-NNNN-NNNN-NNNN-LLLLLLLLLLLL` where L is a letter and N is a number between 0-9. Refer to [this guidance](./sample-data/fictitious-guids.md) for GUID placeholders for different entities.
+- Use this article to get a [list of sample names](./sample-data/fictitious-names.md).
 
 ### Example number: Example title
 
