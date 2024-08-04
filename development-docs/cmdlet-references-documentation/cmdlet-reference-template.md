@@ -1,5 +1,5 @@
 ---
-title: <Command-Name> // e.g. Add-EntraDeviceRegisteredOwner
+title: <Command-Name> // for example, Add-EntraDeviceRegisteredOwner
 description: Learn the format to follow when writing cmdlet reference content for Microsoft Entra PowerShell docs.
 
 

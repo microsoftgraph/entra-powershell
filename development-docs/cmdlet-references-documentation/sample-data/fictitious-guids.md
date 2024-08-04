@@ -11,7 +11,7 @@ ms.reviewer: stevemutungi
 
 # Fictitious GUIDs
 
-As a security measure, Microsoft recommends use of fictitious GUID values instead of real values that can be used by attackers.
+As a security measure, Microsoft recommends using fictitious GUID values instead of real values that attackers can use.
 
 This article contains a list of fictitious GUIDs.
 
