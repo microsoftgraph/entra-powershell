@@ -15,10 +15,10 @@
         }
         
         if ($PSBoundParameters.ContainsKey("Debug")) {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if ($PSBoundParameters.ContainsKey("Verbose")) {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($null -ne $PSBoundParameters["WarningVariable"])
         {
@@ -57,14 +57,23 @@
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
 
+        $URI = "/beta/users/$($params.UserId)/ownedObjects"
+
+        if($null -ne $PSBoundParameters["Property"])
+        {
+            $selectProperties = $PSBoundParameters["Property"]
+            $selectProperties = $selectProperties -Join ','
+            $properties = "`$select=$($selectProperties)"
+            $URI = "/beta/users/$($params.UserId)/ownedObjects?$properties"
+        }
+
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
         $Method = "GET"
-        $URI = '/beta/users/'+$params["UserId"]+'/ownedObjects'
 
-        $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method $Method).value;
+        $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).value;
         
         $Top = $null
         if ($null -ne $PSBoundParameters["Top"]) {
@@ -74,7 +83,7 @@
         if($Top -ne $null){
             $response | ForEach-Object {
                 if ($null -ne $_ -and $Top -gt 0) {
-                    $_ | ConvertTo-Json | ConvertFrom-Json
+                    $_ | ConvertTo-Json -Depth 10 | ConvertFrom-Json
                 }
 
                 $Top = $Top - 1
@@ -83,7 +92,7 @@
         else {
             $response | ForEach-Object {
                 if ($null -ne $_) {
-                    $_ | ConvertTo-Json | ConvertFrom-Json
+                    $_ | ConvertTo-Json -Depth 10 | ConvertFrom-Json
                 }
             }
         }

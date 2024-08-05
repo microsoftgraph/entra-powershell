@@ -2,9 +2,9 @@
 title: Get-EntraBetaAuditSignInLogs.
 description: This article provides details on the Get-EntraBetaAuditSignInLogs command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 11/10/2023
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,29 +12,31 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaAuditSignInLogs
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaAuditSignInLogs
 
-## SYNOPSIS
+## Synopsis
 Get audit logs of sign-ins.
 
-## SYNTAX
+## Syntax
 
 ```powershell
-Get-EntraBetaAuditSignInLogs 
+Get-EntraBetaAuditSignInLogs
  [-All]
- [-Top <Int32>] 
- [-Filter <String>] 
+ [-Top <Int32>]
+ [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaAuditSignInLogs cmdlet gets the Microsoft Entra ID sign-in log.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get all logs
 
@@ -85,7 +87,7 @@ These commands show how to get sign-in logs by ActivityDisplayName.
 ```
 These commands show how to get sign-in logs by the result.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -120,7 +122,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-The oData v3.0 filter statement.
+The OData v4.0 filter statement.
 Controls which objects are returned.
 
 ```yaml
@@ -135,12 +137,28 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## RELATED LINKS
+## Related Links

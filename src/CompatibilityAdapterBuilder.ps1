@@ -380,7 +380,8 @@ public $($object.GetType().Name)()
         $def += @"
 
 `"@
-    Add-Type -TypeDefinition `$def
+    try{ Add-Type -TypeDefinition `$def }
+    catch{}
 
 # ------------------------------------------------------------------------------
 # End of Type definitios required for commands inputs
@@ -415,7 +416,6 @@ public $($object.GetType().Name)()
             ProjectUri = $($content.projectUri)
             IconUri = $($content.iconUri)
             ReleaseNotes = $($content.releaseNotes)
-            ExternalModuleDependencies = $($content.requiredModules)
             Prerelease = $null
         }
         $manisfestPath = Join-Path $this.OutputFolder "$($this.ModuleName).psd1"
@@ -458,7 +458,16 @@ public $($object.GetType().Name)()
         $newCmdletData = @()
         $cmdletsToExport = @()
         $missingCmdletsToExport = @()
+        if('Microsoft.Graph.Entra' -eq $this.ModuleName){
+            $cmdletsToSkip = @("Add-AzureADMSApplicationOwner", "Get-AzureADMSApplication", "Get-AzureADMSApplicationExtensionProperty", "Get-AzureADMSApplicationOwner", "New-AzureADApplication", "New-AzureADMSApplicationExtensionProperty", "Remove-AzureADMSApplication", "Remove-AzureADMSApplicationExtensionProperty", "Remove-AzureADMSApplicationOwner", "Set-AzureADApplication", "Set-AzureADMSApplicationLogo", "Get-AzureADMSGroup", "New-AzureADGroup", "Remove-AzureADMSGroup", "Set-AzureADGroup")        
+        }
+        else{
+            $cmdletsToSkip = @("Add-AzureADMSAdministrativeUnitMember", "Add-AzureADMSScopedRoleMembership", "Get-AzureADMSAdministrativeUnit", "Get-AzureADMSAdministrativeUnitMember", "Get-AzureADMSScopedRoleMembership", "New-AzureADAdministrativeUnit", "Remove-AzureADMSAdministrativeUnit", "Remove-AzureADMSAdministrativeUnitMember", "Remove-AzureADMSScopedRoleMembership", "Set-AzureADAdministrativeUnit", "Add-AzureADMSApplicationOwner", "Get-AzureADMSApplication", "Get-AzureADMSApplicationExtensionProperty", "Get-AzureADMSApplicationOwner", "New-AzureADApplication","New-AzureADMSApplicationExtensionProperty","Remove-AzureADMSApplication","Remove-AzureADMSApplicationExtensionProperty","Remove-AzureADMSApplicationOwner","Set-AzureADApplication","Set-AzureADMSApplicationLogo","Get-AzureADMSGroup","New-AzureADGroup","Remove-AzureADMSGroup","Set-AzureADGroup","Get-AzureADMSPrivilegedRoleAssignment","Get-AzureADMSServicePrincipal","Set-AzureADMSServicePrincipal","Get-AzureADMSUser","Set-AzureADMSUser","New-AzureADMSUser","New-AzureADMSServicePrincipal")
+        }
         foreach ($cmd in $originalCmdlets.Keys){
+            if ($cmdletsToSkip -contains $cmd) {
+                continue
+            }
             $originalCmdlet = $originalCmdlets[$cmd]
             $newFunction = $this.GetNewCmdTranslation($cmd, $originalCmdlet, $targetCmdlets, $this.NewPrefix)
             if($newFunction){
@@ -612,7 +621,8 @@ $OutputTransformations
     }
 
     hidden [string] GetParametersDefinitions([PSCustomObject] $Command) {
-        $commonParameterNames = @("Verbose", "Debug","ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable","WhatIf","Confirm")  
+        $commonParameterNames = @("ProgressAction","Verbose", "Debug","ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable","WhatIf","Confirm")  
+        $ignorePropertyParameter = @("Get-EntraBetaApplicationPolicy", "Get-EntraBetaApplicationSignInSummary","Get-EntraBetaPrivilegedRoleAssignment","Get-EntraBetaTrustFrameworkPolicy","Get-EntraBetaPolicy","Get-EntraBetaPolicyAppliedObject","Get-EntraBetaServicePrincipalPolicy","Get-EntraApplicationLogo","Get-EntraBetaApplicationLogo","Get-EntraApplicationKeyCredential","Get-EntraBetaApplicationKeyCredential","Get-EntraBetaServicePrincipalKeyCredential","Get-EntraBetaServicePrincipalPasswordCredential","Get-EntraServicePrincipalKeyCredential","Get-EntraServicePrincipalPasswordCredential")
         $params = $(Get-Command -Name $Command.Old).Parameters
         $paramsList = @()
         foreach ($paramKey in $Command.Parameters.Keys) {
@@ -644,7 +654,39 @@ $OutputTransformations
             $paramsList += $paramBlock
         }
 
+        $addProperty = $true
+        if('' -ne $Command.New){
+            $addProperty = $false
+            $targetCmdparams = $(Get-Command -Name $Command.New).Parameters.Keys
+            if($null -ne $targetCmdparams){
+                foreach($param in $targetCmdparams) {
+                    if($param -eq 'Property') {
+                        $addProperty = $true
+                        break
+                    }
+                } 
+            }     
+        }
+
+        if("Get" -eq $Command.Verb -and !$ignorePropertyParameter.Contains($Command.Generate) -and $addProperty){
+            $paramsList += $this.GetPropertyParameterBlock()
+        }
+
         return $paramsList -Join ",`n"
+    }
+
+    hidden [string] GetPropertyParameterBlock(){
+        $propertyType = "System.String[]"
+        $arrayAttrib = @()
+        $arrayAttrib += "Mandatory = `$false"
+        $arrayAttrib += "ValueFromPipeline = `$false"
+        $arrayAttrib += "ValueFromPipelineByPropertyName = `$true"
+        $strAttrib = $arrayAttrib -Join ', '
+        $attributesString += "[Parameter($strAttrib)]`n    "
+        $propertyParamBlock = @"
+    $attributesString[$propertyType] `$Property
+"@
+        return $propertyParamBlock
     }
 
     hidden [string] GetParameterAttributes($param){
@@ -652,18 +694,36 @@ $OutputTransformations
 
         foreach($attrib in $param.Attributes){
             $arrayAttrib = @()
-            if($attrib.ParameterSetName -ne "__AllParameterSets"){
-                $arrayAttrib += "ParameterSetName = `"$($attrib.ParameterSetName)`""
+            
+            try {
+                if($attrib.ParameterSetName -ne "__AllParameterSets"){
+                    $arrayAttrib += "ParameterSetName = `"$($attrib.ParameterSetName)`""
+                }
             }
-            if($attrib.Mandatory){
-                $arrayAttrib += "Mandatory = `$true"
+            catch {}                
+            
+           try {
+                if($attrib.Mandatory){
+                    $arrayAttrib += "Mandatory = `$true"
+                }
+           }
+           catch {}
+                
+           
+           try {
+                if($attrib.ValueFromPipeline){
+                    $arrayAttrib += "ValueFromPipeline = `$true"
+                }
+           }
+           catch {}
+                
+            try {
+                if($attrib.ValueFromPipelineByPropertyName){
+                    $arrayAttrib += "ValueFromPipelineByPropertyName = `$true"
+                }
             }
-            if($attrib.ValueFromPipeline){
-                $arrayAttrib += "ValueFromPipeline = `$true"
-            }
-            if($attrib.ValueFromPipelineByPropertyName){
-                $arrayAttrib += "ValueFromPipelineByPropertyName = `$true"
-            }
+            catch {}
+           
             $strAttrib = $arrayAttrib -Join ', '
 
             if($strAttrib.Length -gt 0){
@@ -701,6 +761,10 @@ $OutputTransformations
             }
             
             $paramsList += $paramBlock            
+        }
+
+        if("Get" -eq $Command.Verb){
+            $paramsList += $this.GetCustomParameterTransformation("Property")
         }
             
         return $paramsList
@@ -754,7 +818,7 @@ $OutputTransformations
         $paramBlock = @"
     if(`$PSBoundParameters.ContainsKey("$($Name)"))
     {
-        `$params["$($Name)"] = `$Null
+        `$params["$($Name)"] = `$PSBoundParameters["$($Name)"]
     }
 
 "@
@@ -774,6 +838,17 @@ $OutputTransformations
         `$TmpValue = `$PSBoundParameters["$($Param.Name)"]
         $($Param.SpecialMapping)
         `$params["$($Param.TargetName)"] = `$Value
+    }
+
+"@
+        return $paramBlock
+    }
+
+    hidden [string] GetCustomParameterTransformation([string] $ParameterName){
+        $paramBlock = @"
+    if(`$null -ne `$PSBoundParameters["$($ParameterName)"])
+    {
+        `$params["$($ParameterName)"] = `$PSBoundParameters["$($ParameterName)"]
     }
 
 "@
@@ -931,7 +1006,7 @@ $($output)
       
         if($null -ne $targetCmd){
             if($SourceCmdlet.Prefix.contains('MS')){
-                $Prefix = $NewPrefix  + 'MS'
+                $Prefix = $NewPrefix
             } else {
                 $prefix = $NewPrefix
             }
