@@ -49,8 +49,8 @@ Remove-EntraBetaServicePrincipalOwner @params
 
 This example demonstrates how to remove an owner from a service principal in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the service principal object ID.
-- `-OwnerId` parameter specifies the service principal owner object ID.
+- `-ObjectId` parameter specifies the service principal Id.
+- `-OwnerId` parameter specifies the service principal owner Id.
 
 ## Parameters
 

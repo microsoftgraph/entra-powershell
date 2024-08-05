@@ -74,7 +74,7 @@ isLicenseReconciliationNeeded  False
 
 This example demonstrates how to assign a license to a user. You can use the command `Get-EntraBetaUser` to get user object Id.
 
-- `-ObjectId` parameter specifies the user object ID.
+- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 - `-AssignedLicenses` parameter specifies a list of licenses to assign or remove.
 
 ### Example 2: Add a license to a user by copying license from another user
@@ -119,7 +119,7 @@ isLicenseReconciliationNeeded  False
 
 This example demonstrates how to assign a license to a user by copying license from another user. You can use the command `Get-EntraBetaUser` to get user object Id.
 
-- `-ObjectId` parameter specifies the user object ID.
+- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 - `-AssignedLicenses` parameter specifies a list of licenses to assign or remove.
 
 ## Parameters

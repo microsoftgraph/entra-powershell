@@ -57,7 +57,7 @@ eeeeeeee-4444-5555-6666-ffffffffffff
 
 This example retrieves an object created by the specified user.
 
-- `-ObjectId` parameter specifies the user object ID.
+- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 
 ### Example 2: Get all user-created objects
 
@@ -78,7 +78,7 @@ eeeeeeee-4444-5555-6666-ffffffffffff
 
 This example retrieves all objects created by the specified user.
 
-- `-ObjectId` parameter specifies the user object ID.
+- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 
 ### Example 3: Get a top one user-created object
 
@@ -96,7 +96,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 
 This example retrieves top one object created by the specified user.
 
-- `-ObjectId` parameter specifies the user object ID.
+- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 
 ## Parameters
 

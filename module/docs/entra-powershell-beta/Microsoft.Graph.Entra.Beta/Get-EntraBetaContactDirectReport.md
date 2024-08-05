@@ -49,7 +49,7 @@ Get-EntraBetaContactDirectReport -ObjectId $Contact.ObjectId
 
 This example shows how to retrieve direct reports for an organizational contact. You can use the command `Get-EntraBetaContact` to get organizational contact.
 
-- `-ObjectId` parameter specifies the contact object ID.
+- `-ObjectId` parameter specifies the contact Id.
 
 ### Example 2: Get all direct reports of a contact
 
@@ -60,7 +60,7 @@ Get-EntraBetaContactDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 
 This example shows how to retrieve all direct reports for an organizational contact.
 
-- `-ObjectId` parameter specifies the contact object ID.
+- `-ObjectId` parameter specifies the contact Id.
 
 ### Example 3: Get top two direct reports of a contact
 
@@ -71,7 +71,7 @@ Get-EntraBetaContactDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 
 This example shows how to retrieve top two direct reports for an organizational contact.
 
-- `-ObjectId` parameter specifies the contact object ID.
+- `-ObjectId` parameter specifies the contact Id.
 
 ## Parameters
 

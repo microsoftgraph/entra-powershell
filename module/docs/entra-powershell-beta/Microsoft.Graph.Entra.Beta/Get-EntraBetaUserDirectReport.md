@@ -55,7 +55,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 
 This command gets the direct report for the specified user.
 
-- `-ObjectId` parameter specifies the user object ID.
+- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 
 ### Example 2: Get all direct reports
 
@@ -74,7 +74,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 
 This example demonstrates how to retrieve all direct reports for a user in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the user object ID.
+- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 
 ### Example 3: Get a top two direct reports
 
@@ -93,7 +93,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 
 This example demonstrates how to retrieve top five direct reports for a user in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the user object ID.
+- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 
 ## Parameters
 

@@ -69,7 +69,7 @@ cccccccc-8888-9999-0000-dddddddddddd low            dddd3333-ee44-5555-66ff-7777
 
 This command retrieves all delegated permission classifications from the service principal.
 
-- `-ServicePrincipalId` parameter specifies the service principal object ID.
+- `-ServicePrincipalId` parameter specifies the unique identifier of a service principal.
 
 ### Example 2: Get a delegated permission classifications
 
@@ -90,8 +90,8 @@ bbbbbbbb-7777-8888-9999-cccccccccccc low            eeeeeeee-4444-5555-6666-ffff
 
 This command retrieves the delegated permission classification by Id from the service principal.
 
-- `-ServicePrincipalId` parameter specifies the service principal object ID.
-- `-Id` parameter specifies the delegated permission classification object ID.
+- `-ServicePrincipalId` parameter specifies the unique identifier of a service principal.
+- `-Id` parameter specifies the delegated permission classification object Id.
 
 ### Example 3: Get a delegated permission classification with filter
 
@@ -111,8 +111,8 @@ bbbbbbbb-7777-8888-9999-cccccccccccc low            eeeeeeee-4444-5555-6666-ffff
 
 This command retrieves the filtered delegated permission classifications from the service principal.
 
-- `-ServicePrincipalId` parameter specifies the service principal object ID.
-- `-Id` parameter specifies the delegated permission classification object ID.
+- `-ServicePrincipalId` parameter specifies the unique identifier of a service principal.
+- `-Id` parameter specifies the delegated permission classification object Id.
 
 ## Parameters
 
@@ -134,7 +134,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-The unique identifier of a delegated permission classification object id.
+The unique identifier of a delegated permission classification object Id.
 
 ```yaml
 Type: System.String

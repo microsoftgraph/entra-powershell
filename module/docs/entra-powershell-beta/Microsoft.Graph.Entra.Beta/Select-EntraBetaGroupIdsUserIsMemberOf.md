@@ -56,11 +56,11 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This example retrieves the group membership of a group for a user identified by $UserId.  
-You can use the command `Get-EntraBetaUser` to get user object Id.  
-You can use the command `Get-EntraBetaGroup` to get group object Id.  
+You can use the command `Get-EntraBetaUser` to get user Id.  
+You can use the command `Get-EntraBetaGroup` to get group Id.  
 
-- `-ObjectId` parameter specifies the user Object ID.
-- `-GroupIdsForMembershipCheck` parameter specifies the group Object ID.
+- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
+- `-GroupIdsForMembershipCheck` parameter specifies the group Object Ids.
 
 ## Parameters
 

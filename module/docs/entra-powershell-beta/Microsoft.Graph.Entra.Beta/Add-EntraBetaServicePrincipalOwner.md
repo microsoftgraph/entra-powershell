@@ -51,11 +51,11 @@ Add-EntraBetaServicePrincipalOwner @Params
 ```
 
 This example demonstrates how to add an owner to a service principal.  
-You can use the command `Get-EntraBetaServicePrincipal` to get service principal object Id.
-You can use the command `Get-EntraBetUser` to get user object Id.
+You can use the command `Get-EntraBetaServicePrincipal` to get service principal Id.
+You can use the command `Get-EntraBetUser` to get user Id.
 
-- `-ObjectId` parameter specifies the service principal object ID.
-- `-RefObjectId` parameter specifies the user object ID.
+- `-ObjectId` parameter specifies the service principal Id.
+- `-RefObjectId` parameter specifies the user object Id.
 
 ## Parameters
 

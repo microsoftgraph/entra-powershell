@@ -56,7 +56,7 @@ cccccccc-2222-3333-4444-dddddddddddd
 
 This example gets the owners of a specified service principal. You can use the comand `Get-EntraBetaServicePrincipal` to get service principal object Id.
 
-- `ObjectId` parameter specifies the service principal object ID.
+- `-ObjectId` parameter specifies the unique identifier of a service principal.
 
 ### Example 2: Retrieve all the owners of a service principal
 
@@ -76,7 +76,7 @@ cccccccc-2222-3333-4444-dddddddddddd
 
 This command gets all the owners of a service principal. You can use the comand `Get-EntraBetServicePrincipal` to get service principal object Id.
 
-- `ObjectId` parameter specifies the service principal object ID.
+- `-ObjectId` parameter specifies the unique identifier of a service principal.
 
 ### Example 3: Retrieve top two owners of a service principal
 
@@ -95,7 +95,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 
 This command gets top two owners of a service principal. You can use the comand `Get-EntraBetServicePrincipal` to get service principal object Id.
 
-- `-ObjectId` parameter specifies the service principal object ID.
+- `-ObjectId` parameter specifies the unique identifier of a service principal.
 
 ## Parameters
 

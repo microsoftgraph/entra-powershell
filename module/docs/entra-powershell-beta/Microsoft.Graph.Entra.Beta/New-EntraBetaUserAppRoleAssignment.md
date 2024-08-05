@@ -74,10 +74,10 @@ You can use the command `Get-EntraBetaUser` to get user object Id.
 You can use the command `Get-EntraBetaApplication` to get application Id.  
 You can use the command `Get-EntraBetaServicePrincipal` to get service principal object Id.
 
-- `-ObjectId` parameter specifies the ID of a user to whom you are assigning the app role.
-- `-PrincipalId` parameter specifies the ID of a user to whom you are assigning the app role.
-- `-ResourceId` parameter specifies the ID of a resource servicePrincipal that has defined the app role.
-- `-Id` parameter specifies the ID of a appRole (defined on the resource service principal) to assign to the user.
+- `-ObjectId` parameter specifies the Id of a user to whom you are assigning the app role.
+- `-PrincipalId` parameter specifies the Id of a user to whom you are assigning the app role.
+- `-ResourceId` parameter specifies the Id of a resource servicePrincipal that has defined the app role.
+- `-Id` parameter specifies the Id of a appRole (defined on the resource service principal) to assign to the user.
 
 ### Example 2: Assign a user to a specific role within an application
 
@@ -106,10 +106,10 @@ This example demonstrates how to assign a user to an application role in Microso
 You can use the command `Get-EntraBetaUser` to get user object Id.  
 You can use the command `Get-EntraBetaServicePrincipal` to get service principal object Id.
 
-- `-ObjectId` parameter specifies the ID of a user to whom you are assigning the app role.
-- `-PrincipalId` parameter specifies the ID of a user to whom you are assigning the app role.
-- `-ResourceId` parameter specifies the ID of a resource servicePrincipal that has defined the app role.
-- `-Id` parameter specifies the ID of a appRole (defined on the resource service principal) to assign to the user.
+- `-ObjectId` parameter specifies the Id of a user to whom you are assigning the app role.
+- `-PrincipalId` parameter specifies the Id of a user to whom you are assigning the app role.
+- `-ResourceId` parameter specifies the Id of a resource servicePrincipal that has defined the app role.
+- `-Id` parameter specifies the Id of a appRole (defined on the resource service principal) to assign to the user.
 
 ## Parameters
 

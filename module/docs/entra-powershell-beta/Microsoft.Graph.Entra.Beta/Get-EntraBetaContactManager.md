@@ -46,7 +46,7 @@ Get-EntraBetaContactManager -ObjectId $Contact.ObjectId
 
 The example demonstrates how to retrieve the manager of a contact. You can use the command `Get-EntraBetaContact` to get organizational contact.
 
-- `-ObjectId` parameter specifies the contact object ID.
+- `-ObjectId` parameter specifies the contact Id.
 
 ## Parameters
 

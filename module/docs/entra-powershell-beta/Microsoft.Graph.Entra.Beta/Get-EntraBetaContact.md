@@ -83,7 +83,7 @@ Contoso Contact     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com    
 
 This example retrieves specified contact in the directory.
 
-- `-ObjectId` parameter specifies the contact object ID.
+- `-ObjectId` parameter specifies the contact Id.
 
 ### Example 3: Retrieve all contacts objects in the directory
 

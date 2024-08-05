@@ -51,7 +51,7 @@ True
 
 This example demonstrates how to revoke the tokens for the specified user.
 
-- `-ObjectId` parameter specifies the unique object ID of a user.
+- `-ObjectId` parameter specifies the unique identifier of a user.
 
 ## Parameters
 
