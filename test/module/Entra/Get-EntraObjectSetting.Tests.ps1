@@ -60,16 +60,13 @@ Describe "Get-EntraObjectSetting" {
 
             $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
-
         It "Should contain 'User-Agent' header" {
-
-
-            Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraObjectSetting"
-        $result = Get-EntraObjectSetting -TargetType "Groups" -TargetObjectId "9b424169-7f2b-4747-aa64-afbecbb28111"
-        $params = Get-Parameters -data $result
-        $a= $params | ConvertTo-json | ConvertFrom-Json
-        $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue 
-        }    
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraObjectSetting"
+            Get-EntraObjectSetting -TargetType "Groups" -TargetObjectId "9b424169-7f2b-4747-aa64-afbecbb28111" | Out-Null
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }   
     }
 }

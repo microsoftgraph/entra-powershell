@@ -108,7 +108,32 @@ function Get-EntraObjectSetting {
             }
         } catch {}        
 
-        $data
-    }        
-      
+        $targetTypeList = @()
+
+        if($TargetType.ToLower() -eq 'groups'){
+            foreach($res in $data){
+                $groupType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphGroupSetting
+                $res.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                    $propertyValue = $_.Value
+                    $groupType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                }
+                $targetTypeList += $groupType
+            }
+        }
+        
+        if($TargetType.ToLower() -eq 'users'){
+            foreach($res in $data){
+                $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphUserSettings
+                $res.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                    $propertyValue = $_.Value
+                    $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                }
+                $targetTypeList += $userType
+            }
+        }
+
+        $targetTypeList
+    }      
 }
