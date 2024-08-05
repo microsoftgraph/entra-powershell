@@ -1,4 +1,13 @@
 ---
+title: Get-EntraBetaObjectSetting.
+description: This article provides details on the Get-EntraBetaObjectSetting command.
+
+ms.topic: reference
+ms.date: 08/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaObjectSetting
@@ -9,6 +18,7 @@ schema: 2.0.0
 # Get-EntraBetaObjectSetting
 
 ## Synopsis
+
 Gets an object setting.
 
 ## Syntax
@@ -38,24 +48,92 @@ Get-EntraBetaObjectSetting
 ```
 
 ## Description
-The Get-EntraBetaObjectSetting cmdlet gets an object setting from Azure Active Directory (AD).
+
+The `Get-EntraBetaObjectSetting` cmdlet retrieves an object setting from Microsoft Entra ID.
 
 ## Examples
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
+### Example 1: Retrieve object setting from Microsoft Entra ID
+
+```powershell
+Get-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId 'aaaaaaaa-1111-1111-1111-000000000000'
 ```
 
-{{ Add example description here }}
+```Output
+
+Id                                   DisplayName         TemplateId
+--                                   -----------         ----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Group.Unified.Guest 22cc22cc-dd33-ee44-ff55-66aa66aa66aa
+```
+
+This command retrieves  object setting from Microsoft Entra ID.
+
+- `-TargetType` Parameter specifies the target type.
+- `-TargetObjectId` Parameter specifies the ID of the target object.
+
+### Example 2: Retrieve Specific object setting from Microsoft Entra ID
+
+```powershell
+Get-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId 'aaaaaaaa-1111-1111-1111-000000000000' -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+```
+
+```Output
+
+Id                                   DisplayName         TemplateId
+--                                   -----------         ----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Group.Unified.Guest 22cc22cc-dd33-ee44-ff55-66aa66aa66aa
+```
+
+This command retrieves Specific object setting from Microsoft Entra ID.
+
+- `-TargetType` Parameter specifies the target type.
+- `-TargetObjectId` Parameter specifies the ID of the target object.
+- `-Id` Parameter specifies the ID of a settings object.
+
+### Example 3: Retrieve top one object setting from Microsoft Entra ID
+
+```powershell
+Get-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId 'aaaaaaaa-1111-1111-1111-000000000000' -Top 1
+```
+
+```Output
+
+Id                                   DisplayName         TemplateId
+--                                   -----------         ----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Group.Unified.Guest 22cc22cc-dd33-ee44-ff55-66aa66aa66aa
+```
+
+This command retrieves top one object setting from Microsoft Entra ID.
+
+- `-TargetType` Parameter specifies the target type.
+- `-TargetObjectId` Parameter specifies the ID of the target object.
+
+### Example 3: Retrieve all object setting from Microsoft Entra ID
+
+```powershell
+Get-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId 'aaaaaaaa-1111-1111-1111-000000000000' -All
+```
+
+```Output
+
+Id                                   DisplayName         TemplateId
+--                                   -----------         ----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Group.Unified.Guest 22cc22cc-dd33-ee44-ff55-66aa66aa66aa
+```
+
+This command retrieves all records of object setting from Microsoft Entra ID.
+
+- `-TargetType` Parameter specifies the target type.
+- `-TargetObjectId` Parameter specifies the ID of the target object.
 
 ## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -67,10 +145,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
+
 Specifies the ID of a settings object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -82,10 +161,11 @@ Accept wildcard characters: False
 ```
 
 ### -TargetObjectId
+
 Specifies the ID of the target object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -97,10 +177,11 @@ Accept wildcard characters: False
 ```
 
 ### -TargetType
+
 Specifies the target type.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -112,10 +193,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: GetQuery
 Aliases:
 
@@ -128,7 +210,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -143,7 +225,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -153,9 +236,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[New-EntraBetaObjectSetting]()
+[New-EntraBetaObjectSetting](New-EntraBetaObjectSetting.md)
 
-[Remove-EntraBetaObjectSetting]()
+[Remove-EntraBetaObjectSetting](Remove-EntraBetaObjectSetting.md)
 
-[Set-EntraBetaObjectSetting]()
-
+[Set-EntraBetaObjectSetting](Set-EntraBetaObjectSetting.md)
