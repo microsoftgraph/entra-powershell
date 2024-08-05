@@ -105,7 +105,19 @@
             }
             Id = $response.id
         }
-        $customObject
+        $customObject = $customObject | ConvertTo-Json -depth 5 | ConvertFrom-Json
+        $certificateList = @()
+
+        foreach ($certAuthority in $customObject) {
+            $certificateType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphCertificateBasedAuthConfiguration
+            $certAuthority.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name
+                $propertyValue = $_.Value
+                Add-Member -InputObject $certificateType -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+            }
+            $certificateList += $certificateType
+        }
+        $certificateList
     } 
 '@
 }

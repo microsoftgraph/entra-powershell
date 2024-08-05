@@ -50,9 +50,9 @@ New-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $new_ca
 ```
 
 ```Output
-Id                                   CertificateAuthorities
---                                   ----------------------
-0a0a0a0a-1111-bbbb-2222-3c3c3c3c3c3c {class CertificateAuthorityInformation {...
+Id
+--
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This command creates the trusted certificate authorities in your directory.

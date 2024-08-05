@@ -97,7 +97,18 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
                 
-        Invoke-GraphRequest @params -Headers $customHeaders
+        $response = Invoke-GraphRequest @params -Headers $customHeaders | ConvertTo-Json -Depth 5 | ConvertFrom-Json
+        $certificateList = @()
+            foreach ($data in $response) {
+                $certificateType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphCertificateBasedAuthConfiguration
+                $data.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name
+                    $propertyValue = $_.Value
+                    $certificateType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                }
+                $certificateList += $certificateType
+            }
+        $certificateList 
     } 
 '@
 }

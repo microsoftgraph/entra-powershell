@@ -45,6 +45,12 @@ $cer[0].CrlDistributionPoint = "https://example.crl"
 Set-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
 ```
 
+```Output
+Id
+--
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+```
+
 This command updates the trusted certificate authorities that are defined in your directory.
 
 ## Parameters
