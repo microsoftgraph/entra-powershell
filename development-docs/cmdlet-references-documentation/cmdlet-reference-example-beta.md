@@ -1,6 +1,6 @@
 ---
-title: Get-EntraUser
-description: This article provides details on the Get-EntraUser command
+title: Get-EntraBetaUser
+description: This article provides details on the Get-EntraBetaUser command
 
 
 ms.topic: reference
@@ -9,14 +9,14 @@ ms.author: eunicewaweru
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
-Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraUser
+external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Module Name: Microsoft.Graph.Entra.Beta
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaUser
 
 schema: 2.0.0
 ---
 
-# Get-EntraUser
+# Get-EntraBetaUser
 
 Reference
 
@@ -29,7 +29,7 @@ Gets users from Microsoft Entra ID.
 ## Syntax
 
 ```powershell
-Get-EntraUser 
+Get-EntraBetaUser 
  [-ReturnDeletedUsers] 
  [-City <String>] 
  [-Country <String>] 
@@ -50,7 +50,7 @@ Get-EntraUser
 ```
 
 ```powershell
-Get-EntraUser
+Get-EntraBetaUser
  -UserId <Guid>
  [-ReturnDeletedUsers]
  [-TenantId <Guid>]
@@ -59,7 +59,7 @@ Get-EntraUser
 
 ## Description  
   
-The `Get-EntraUser` cmdlet gets an individual user or list of users. Specify the `UserId` parameter to get a specific user.
+The `Get-EntraBetaUser` cmdlet gets an individual user or list of users. Specify the `UserId` parameter to get a specific user.
 
 ## Examples
 
@@ -69,7 +69,7 @@ This example demonstrates how to retrieve all users from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUser
+Get-EntraBetaUser
 ```
 
 ```Output
@@ -90,7 +90,7 @@ In this example, we provide the user's ID to retrieve a specific user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUser -UserId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaUser -UserId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -144,8 +144,8 @@ Accept wildcard characters: False
 
 ## Related links
 
-New-EntraUser
+New-EntraBetaUser
 
-Remove-EntraUser
+Remove-EntraBetaUser
 
-Update-EntraUser
+Update-EntraBetaUser

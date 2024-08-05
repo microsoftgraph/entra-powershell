@@ -64,7 +64,7 @@ D--changes-->C
 
 | Stage          | Description                                                                                                                                                                     |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Get Started    | Familiarize yourself with cmdlets, modules, parameters, piping best practices, key concepts, naming conventions, testing, review processes, and other best practice guidelines. |
+| Get Started    | Familiarize yourself with [cmdlets](./design-guidelines/cmdlet-best-practices.md), modules, parameters, piping best practices, key concepts, naming conventions, testing, review processes, and other best practice guidelines. |
 | Implementation | Set up the environment, develop cmdlet logic, create unit tests, and document cmdlets with examples.                                                                            |
 | Review         | Submit changes by raising a pull request for review by the community and the Microsoft Entra PowerShell Engineering team.                                                       |
 | Publish        | We deploy approved changes in the next release train.                                                                                                                           |
@@ -93,7 +93,7 @@ To develop in the Entra PowerShell repository locally, you first need to create 
 
 Once your fork of the Entra PowerShell repository has been created, you need to clone your fork to your local machine. To do so, run the following command:
 
-```
+```git
 git clone https://github.com/<YOUR GITHUB USERNAME>/entra-powershell.git
 ```
 
@@ -101,13 +101,13 @@ You now be able to create your own branches, commit changes, and push commits to
 
 **Note**: we recommend adding the _microsoftgraph/entra-powershell_ repository to your list of tracked repositories in Git. This allows you to easily pull changes from the `microsoftgraph/entra-powershell` repository. To do this, run the following command:
 
-```
+```git
 git remote add upstream https://github.com/microsoftgraph/entra-powershell.git
 ```
 
 Then, to pull changes from the **main** branch in _microsoftgraph/entra-powershell_ into your local working branch, run the following command:
 
-```
+```git
 git pull upstream main
 ```
 
