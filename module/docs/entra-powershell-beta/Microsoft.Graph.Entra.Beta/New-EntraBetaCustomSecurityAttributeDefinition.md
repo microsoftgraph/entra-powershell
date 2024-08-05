@@ -60,7 +60,7 @@ $params = @{
     AttributeSet = $AttributeSet.Id 
     IsCollection = $False 
     IsSearchable = $True 
-    UsePreDefinedValuesOnly = $False
+    UsePreDefinedValuesOnly = $True
 }
 New-EntraBetaCustomSecurityAttributeDefinition  @params
 ```
