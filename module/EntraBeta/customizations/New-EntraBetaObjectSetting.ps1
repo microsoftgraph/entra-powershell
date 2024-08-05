@@ -70,7 +70,19 @@
             [regex]::Replace($propertyValues,'(?<=")(\w+)(?=":)',{$args[0].Groups[1].Value.ToLower()})
              }
         $response = Invoke-GraphRequest -Headers $customHeaders -Method POST -Uri https://graph.microsoft.com/beta/$TargetType/$TargetObjectId/settings -Body $directorySettingsJson
-        $response | ConvertTo-Json | ConvertFrom-Json
+        $response = $response | ConvertTo-Json | ConvertFrom-Json
+
+        $targetTypeList = @()
+        foreach($data in $response){
+            $target = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectorySetting
+            $data.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                $propertyValue = $_.Value
+                $target | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+            }
+            $targetTypeList += $target
+        }
+        $targetTypeList
     }
 '@
 }
