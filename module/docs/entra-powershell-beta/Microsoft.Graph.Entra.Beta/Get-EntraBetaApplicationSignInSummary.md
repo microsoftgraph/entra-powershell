@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaApplicationSignInSummary.
+description: This article provides details on the Get-EntraBetaApplicationSignInSummary command.
+
+ms.topic: reference
+ms.date: 07/08/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaApplicationSignInSummary
@@ -9,41 +19,122 @@ schema: 2.0.0
 # Get-EntraBetaApplicationSignInSummary
 
 ## Synopsis
-Get signin summary by last number of days
+
+Get sign in summary by last number of days.
 
 ## Syntax
 
-```
-Get-EntraBetaApplicationSignInSummary -Days <Int32> [-Top <Int32>] [-Filter <String>] [<CommonParameters>]
+```powershell
+Get-EntraBetaApplicationSignInSummary 
+ -Days <Int32> 
+ [-Top <Int32>] 
+ [-Filter <String>] 
+ [<CommonParameters>]
 ```
 
 ## Description
-The Get-EntraBetaApplicationSignInSummary cmdlet gets sign in summaries for the last 7 or 30 days.
+
+The `Get-EntraBetaApplicationSignInSummary` cmdlet gets sign-in summaries for the last 7 or 30 days.
+
+Returns the properties below:
+
+- appDisplayName - the name of the application that the user signed into.
+- failedSignInCount - count of failed sign-ins made by the application.
+- successPercentage - the percentage of successful sign-ins made by the application.
+- successfulSignInCount - count of successful sign-ins made by the application.
 
 ## Examples
 
 ### Example 1: Get sign in summary by application for the last week
-```
-PS C:\>Get-EntraBetaApplicationSignInSummary -Days 7 -Filter "appDisplayName eq 'Graph Explorer'"
+
+```powershell
+Connect-Entra -Scopes 'Reports.Read.All'
+Get-EntraBetaApplicationSignInSummary -Days 7 -Filter "appDisplayName eq 'Graph Explorer'"
 ```
 
-This command gets a summary of all sign ins to Graph Explorer for the last 7 days.
+```Output
+id                    : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+appDisplayName        : Graph Explorer
+successfulSignInCount : 8
+failedSignInCount     : 0
+successPercentage     : 100
+```
+
+This example returns a summary of all sign ins to Graph Explorer for the last seven days.
+
+- `-Days` parameter specifies the number of past days summary contains. Valid values are only 7 and 30.
 
 ### Example 2: Get sign in summaries for the last month
-```
-PS C:\>Get-EntraBetaApplicationSignInSummary -Days 30
+
+```powershell
+Connect-Entra -Scopes 'Reports.Read.All'
+Get-EntraBetaApplicationSignInSummary -Days 30
 ```
 
-This command gets summaries for all sign ins from the past 30 days.
+```Output
+id                    : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+appDisplayName        : Graph Explorer
+successfulSignInCount : 8
+failedSignInCount     : 0
+successPercentage     : 100
+
+id                    : bbbbbbbb-1111-2222-3333-cccccccccccc
+appDisplayName        : Azure Portal
+successfulSignInCount : 46
+failedSignInCount     : 6
+successPercentage     : 88.46
+
+id                    : cccccccc-2222-3333-4444-dddddddddddd
+appDisplayName        : Bing
+successfulSignInCount : 2
+failedSignInCount     : 0
+successPercentage     : 100
+
+id                    : dddddddd-3333-4444-5555-eeeeeeeeeeee
+appDisplayName        : Azure DevOps
+successfulSignInCount : 5
+failedSignInCount     : 0
+successPercentage     : 100
+```
+
+This example returns summaries for all sign ins from the past 30 days.
+
+- `-Days` parameter specifies the number of past days summary contains. Valid values are only 7 and 30.
+
+### Example 3: Get top two sign in summaries for the last month
+
+```powershell
+Connect-Entra -Scopes 'Reports.Read.All'
+Get-EntraBetaApplicationSignInSummary -Days 30 -Top 2
+```
+
+```Output
+id                    : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+appDisplayName        : Graph Explorer
+successfulSignInCount : 8
+failedSignInCount     : 0
+successPercentage     : 100
+
+id                    : bbbbbbbb-1111-2222-3333-cccccccccccc
+appDisplayName        : Azure Portal
+successfulSignInCount : 46
+failedSignInCount     : 6
+successPercentage     : 88.46
+```
+
+This example returns top two summaries sign ins from the past 30 days.
+
+- `-Days` parameter specifies the number of past days summary contains. Valid values are only 7 and 30.
 
 ## Parameters
 
 ### -Days
-Number of past days summary will contain.
+
+Number of past days summary contains.
 Valid values are 7 and 30
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -55,10 +146,12 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-{{ Fill Filter Description }}
+
+The OData v4.0 filter statement.
+Controls which objects are returned.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -70,10 +163,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
-{{ Fill Top Description }}
+
+The maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -85,12 +179,15 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ## Outputs
 
 ### Microsoft.Online.Administration.GetApplicationSignInSummaryObjectsResponse
+
 ## Notes
+
 ## Related Links
