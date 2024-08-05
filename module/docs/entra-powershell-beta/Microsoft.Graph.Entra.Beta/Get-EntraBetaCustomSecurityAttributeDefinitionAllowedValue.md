@@ -79,7 +79,7 @@ This example retrieves an all predefined values.
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
 $CustomSecurityAttributeDefinitionId  = Get-EntraBetaCustomSecurityAttributeDefinition -Id <attributename_attributedefinition>
 $params = @{
-    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinitionId
+    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinitionId.Id
     Id = 'Alpine'
 }
 Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue @params
