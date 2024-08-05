@@ -53,11 +53,9 @@ Get-EntraBetaApplicationSignInSummary -Days 7 -Filter "appDisplayName eq 'Graph 
 ```
 
 ```Output
-id                    : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-appDisplayName        : Graph Explorer
-successfulSignInCount : 8
-failedSignInCount     : 0
-successPercentage     : 100
+Id                                   AppDisplayName FailedSignInCount SuccessPercentage SuccessfulSignInCount
+--                                   -------------- ----------------- ----------------- ---------------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Graph Explorer 0                 100               14
 ```
 
 This example returns a summary of all sign ins to Graph Explorer for the last seven days.
@@ -72,29 +70,11 @@ Get-EntraBetaApplicationSignInSummary -Days 30
 ```
 
 ```Output
-id                    : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-appDisplayName        : Graph Explorer
-successfulSignInCount : 8
-failedSignInCount     : 0
-successPercentage     : 100
-
-id                    : bbbbbbbb-1111-2222-3333-cccccccccccc
-appDisplayName        : Azure Portal
-successfulSignInCount : 46
-failedSignInCount     : 6
-successPercentage     : 88.46
-
-id                    : cccccccc-2222-3333-4444-dddddddddddd
-appDisplayName        : Bing
-successfulSignInCount : 2
-failedSignInCount     : 0
-successPercentage     : 100
-
-id                    : dddddddd-3333-4444-5555-eeeeeeeeeeee
-appDisplayName        : Azure DevOps
-successfulSignInCount : 5
-failedSignInCount     : 0
-successPercentage     : 100
+Id                                   AppDisplayName                         FailedSignInCount SuccessPercentage SuccessfulSignInCount
+--                                   --------------                         ----------------- ----------------- ---------------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Graph Explorer                         3                 96.74             89
+bbbbbbbb-1111-2222-3333-cccccccccccc Azure Portal                           3                 99.15             350
+cccccccc-2222-3333-4444-dddddddddddd Microsoft Community v2                 0                 100               4
 ```
 
 This example returns summaries for all sign ins from the past 30 days.
@@ -109,17 +89,10 @@ Get-EntraBetaApplicationSignInSummary -Days 30 -Top 2
 ```
 
 ```Output
-id                    : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-appDisplayName        : Graph Explorer
-successfulSignInCount : 8
-failedSignInCount     : 0
-successPercentage     : 100
-
-id                    : bbbbbbbb-1111-2222-3333-cccccccccccc
-appDisplayName        : Azure Portal
-successfulSignInCount : 46
-failedSignInCount     : 6
-successPercentage     : 88.46
+Id                                   AppDisplayName                         FailedSignInCount SuccessPercentage SuccessfulSignInCount
+--                                   --------------                         ----------------- ----------------- ---------------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Graph Explorer                         3                 96.74             89
+bbbbbbbb-1111-2222-3333-cccccccccccc Azure Portal                           3                 99.15             350
 ```
 
 This example returns top two summaries sign ins from the past 30 days.
