@@ -38,7 +38,7 @@ The `New-EntraBetaDirectorySetting` cmdlet creates a directory settings object i
 ### Example 1: Creates new settings object
 
 ```powershell
-Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+Connect-Entra -Scopes 'Directory.ReadWrite.All', 'Group.Read.All' , 'Group.ReadWrite.All'
 $l=$template = Get-EntraBetaDirectorySettingTemplate -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 $settingsCopy = $template.CreateDirectorySetting()
 New-EntraBetaDirectorySetting -DirectorySetting $settingsCopy | Select *
