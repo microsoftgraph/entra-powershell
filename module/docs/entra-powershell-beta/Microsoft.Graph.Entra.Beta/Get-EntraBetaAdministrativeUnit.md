@@ -2,7 +2,6 @@
 title: Get-EntraBetaAdministrativeUnit.
 description: This article provides details on the Get-EntraBetaAdministrativeUnit command.
 
-
 ms.topic: reference
 ms.date: 07/02/2024
 ms.author: eunicewaweru
@@ -98,7 +97,7 @@ This command gets all the administrative units.
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-Get-EntraBetaAdministrativeUnit -Id aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+Get-EntraBetaAdministrativeUnit -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -108,6 +107,8 @@ DeletedDateTime Id                                   Description          Displa
 ```
 
 This example returns the details of the specified administrative unit.
+
+- `-ObjectId` parameter specifies the administrative unit Id.
 
 ### Example 4: Get administrative units filter by display name
 
@@ -210,7 +211,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

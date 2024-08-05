@@ -51,6 +51,9 @@ Remove-EntraBetaScopedRoleMembership @params
 
 This cmdlet removes a specific scoped role membership from Microsoft Entra ID.
 
+- `-ObjectId` parameter specifies the administrative unit Id.
+- `-ScopedRoleMembershipId` parameter specifies the scoped role membership Id.
+
 ## Parameters
 
 ### -ObjectId

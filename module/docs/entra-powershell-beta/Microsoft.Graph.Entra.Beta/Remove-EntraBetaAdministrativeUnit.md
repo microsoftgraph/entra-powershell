@@ -2,7 +2,6 @@
 title: Remove-EntraBetaAdministrativeUnit
 description: This article provides details on the Remove-EntraBetaAdministrativeUnit command.
 
-
 ms.topic: reference
 ms.date: 07/03/2024
 ms.author: eunicewaweru
@@ -44,6 +43,8 @@ Remove-EntraBetaAdministrativeUnit -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbb
 ```
 
 This command removes the specified administrative unit from Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies the administrative unit Id.
 
 ## Parameters
 

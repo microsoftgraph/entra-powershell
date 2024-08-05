@@ -2,7 +2,6 @@
 title: Set-EntraBetaAdministrativeUnit
 description: This article provides details on the Set-EntraBetaAdministrativeUnit command.
 
-
 ms.topic: reference
 ms.date: 07/03/2024
 ms.author: eunicewaweru
@@ -52,6 +51,9 @@ Set-EntraBetaAdministrativeUnit @params
 
 This Command update DisplayName of specific administrative unit.
 
+- `-Id` parameter specifies the administrative unit Id.
+- `-DisplayName` parameter specifies the display name for the administrative unit.
+
 ### Example 2: Update Description
 
 ```powershell
@@ -65,6 +67,9 @@ Set-EntraBetaAdministrativeUnit @params
 
 This example shows how to update the description of a specific administrative unit.
 
+- `-Id` parameter specifies the administrative unit Id.
+- `-Description` parameter specifies the description for the administrative unit.
+
 ### Example 3: Update IsMemberManagementRestricted
 
 ```powershell
@@ -77,6 +82,9 @@ Set-EntraBetaAdministrativeUnit @params
 ```
 
 This example shows how to update the `IsMemberManagementRestricted` setting for a specific administrative unit.
+
+- `-Id` parameter specifies the administrative unit Id.
+- `-IsMemberManagementRestricted` parameter specifies the management rights on resources in the administrative units should be restricted to ONLY the administrators scoped on the administrative unit object.
 
 ## Parameters
 

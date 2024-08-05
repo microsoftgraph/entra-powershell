@@ -2,7 +2,6 @@
 title: Remove-EntraBetaAdministrativeUnitMember.
 description: This article provides details on the Remove-EntraBetaAdministrativeUnitMember command.
 
-
 ms.topic: reference
 ms.date: 07/04/2024
 ms.author: eunicewaweru
@@ -50,6 +49,9 @@ Remove-EntraBetaAdministrativeUnitMember @params
 ```
 
 This command removes a specified member (user or group) from a specified administrative unit.
+
+- `-ObjectId` parameter specifies the administrative unit Id.
+- `-MemberId` parameter specifies the administrative unit member Id.
 
 ## Parameters
 

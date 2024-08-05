@@ -2,9 +2,8 @@
 title: Add-EntraBetaAdministrativeUnitMember.
 description: This article provides details on the Add-EntraBetaAdministrativeUnitMember command.
 
-
 ms.topic: reference
-ms.date: 07/04/2024
+ms.date: 08/05/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -48,10 +47,13 @@ $params = @{
     RefObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
     ObjectId = 'dddddddd-2222-2222-3333-cccccccccccc'
 }
-Add-EntraAdministrativeUnitMember @params
+Add-EntraBetaAdministrativeUnitMember @params
 ```
 
 This example shows how to add an administrative unit member.
+
+- `-ObjectId` parameter specifies the administrative unit Id.
+- `-RefObjectId` parameter specifies the Id of the user or group you want to add as a member of the administrative unit.
 
 ## Parameters
 

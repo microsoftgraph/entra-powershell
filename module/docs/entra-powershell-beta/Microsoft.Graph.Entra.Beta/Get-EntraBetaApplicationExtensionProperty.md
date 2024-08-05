@@ -2,7 +2,6 @@
 title: Get-EntraBetaApplicationExtensionProperty
 description: This article provides details on the Get-EntraBetaApplicationExtensionProperty command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -41,16 +40,18 @@ The `Get-EntraBetaApplicationExtensionProperty` cmdlet gets application extensio
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaApplicationExtensionProperty -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84"
+Get-EntraBetaApplicationExtensionProperty -ObjectId 'aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc'
 ```
 
-```output
+```Output
 ObjectId                             Name                                                    TargetObjects
 --------                             ----                                                    -------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb extension_36ee4c6c081240a2b820b22ebd02bce3_NewAttribute {}
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Newextension                                                {}
 ```
 
 This command gets the extension properties for the specified application in Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies the the unique identifier of a application.
 
 ## Parameters
 
@@ -72,7 +73,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -88,7 +89,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

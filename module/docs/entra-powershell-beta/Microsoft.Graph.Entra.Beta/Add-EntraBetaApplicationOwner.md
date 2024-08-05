@@ -2,7 +2,6 @@
 title: Add-EntraBetaApplicationOwner
 description: This article provides details on the Add-EntraBetaApplicationOwner command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -43,16 +42,19 @@ The `Add-EntraBetaApplicationOwner` cmdlet adds an owner to a Microsoft Entra ID
 Connect-Entra -Scopes 'Application.ReadWrite.All'
 $ApplicationId = (Get-EntraBetaApplication -Top 1).ObjectId
 $UserObjectId = (Get-EntraBetaUser -Top 1).ObjectId
-Add-EntraBetaApplicationOwner -ObjectId $ApplicationId -RefObjectId $UserObjectId
+$params = @{
+    ObjectId = $ApplicationId 
+    RefObjectId = $UserObjectId
+}
+Add-EntraBetaApplicationOwner @params
 ```
 
-The first command gets an application using [Get-EntraBetaApplication](./Get-EntraBetaApplication.md) cmdlet, and stores the ObjectId property value in $ApplicationId variable.  
+This example demonstrates how to adds an owner to an application in Microsoft Entra ID.
+You can use the command `Get-EntraBetaApplication` to get application Id.
+You can use the command `Get-EntraBetaUser` to get user Id.
 
-The second command gets a user using [Get-EntraBetaUser](./Get-EntraBetaUser.md) cmdlet, and stores the ObjectId property value in $UserObjectId variable.  
-
-This final command adds an owner in $UserObjectId to an application in $ApplicationId.
-
-This command adds an owner to an application.
+- `-ObjectId` parameter specifies the application Id.
+- `-RefObjectId` parameter specifies the user Id.
 
 ## Parameters
 

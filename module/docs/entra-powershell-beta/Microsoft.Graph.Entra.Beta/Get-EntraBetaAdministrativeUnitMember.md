@@ -2,7 +2,6 @@
 title: Get-EntraBetaAdministrativeUnitMember.
 description: This article provides details on the Get-EntraBetaAdministrativeUnitMember command.
 
-
 ms.topic: reference
 ms.date: 07/04/2024
 ms.author: eunicewaweru
@@ -59,11 +58,13 @@ ffffffff-5555-6666-7777-aaaaaaaaaaaa
 
 This example returns the list of administrative unit members from specified administrative unit ObjectId.
 
+- `-ObjectId` parameter specifies the administrative unit Id.
+
 ### Example 2: Get all administrative unit members by ObjectId
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-Get-EntraBetaAdministrativeUnitMember -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaAdministrativeUnitMember -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
 ```
 
 ```Output
@@ -77,6 +78,8 @@ ffffffff-5555-6666-7777-aaaaaaaaaaaa
 ```
 
 This example returns the list of all administrative unit members from specified administrative unit ObjectId.
+
+- `-ObjectId` parameter specifies the administrative unit Id.
 
 ### Example 3: Get top three administrative unit members by ObjectId
 
@@ -94,6 +97,8 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee
 ```
 
 This example returns top three administrative unit members from specified administrative unit ObjectId.
+
+- `-ObjectId` parameter specifies the administrative unit Id.
 
 ## Parameters
 
@@ -147,7 +152,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

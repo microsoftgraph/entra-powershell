@@ -2,7 +2,6 @@
 title: Get-EntraBetaScopedRoleMembership.
 description: This article provides details on the Get-EntraBetaScopedRoleMembership command.
 
-
 ms.topic: reference
 ms.date: 07/05/2024
 ms.author: eunicewaweru
@@ -73,6 +72,9 @@ dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bb
 
 This example list scoped administrators with objectId.
 
+- `-ObjectId` parameter specifies the administrative unit Id.
+- `-ScopedRoleMembershipId` parameter specifies the scoped role membership Id.
+
 ## Parameters
 
 ### -ObjectId
@@ -109,7 +111,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

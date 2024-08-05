@@ -2,9 +2,8 @@
 title: Add-EntraBetaScopedRoleMembership.
 description: This article provides details on the Add-EntraBetaScopedRoleMembership command.
 
-
 ms.topic: reference
-ms.date: 07/05/2024
+ms.date: 08/05/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -66,6 +65,10 @@ dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bb
 ```
 
 This example adds a scoped role membership to an administrative unit.
+
+- `-ObjectId` parameter specifies the administrative unit Id.
+- `-RoleObjectId` parameter specifies the DirectoryRole Id.
+- `-RoleMemberInfo` parameter specifies the RoleMemberInfo object Id.
 
 ## Parameters
 
