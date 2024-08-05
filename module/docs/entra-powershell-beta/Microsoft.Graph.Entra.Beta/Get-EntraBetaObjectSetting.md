@@ -56,6 +56,7 @@ The `Get-EntraBetaObjectSetting` cmdlet retrieves an object setting from Microso
 ### Example 1: Retrieve object setting from Microsoft Entra ID
 
 ```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
 Get-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId 'aaaaaaaa-1111-1111-1111-000000000000'
 ```
 
@@ -74,6 +75,7 @@ This command retrieves  object setting from Microsoft Entra ID.
 ### Example 2: Retrieve Specific object setting from Microsoft Entra ID
 
 ```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
 Get-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId 'aaaaaaaa-1111-1111-1111-000000000000' -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
@@ -93,6 +95,7 @@ This command retrieves Specific object setting from Microsoft Entra ID.
 ### Example 3: Retrieve top one object setting from Microsoft Entra ID
 
 ```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
 Get-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId 'aaaaaaaa-1111-1111-1111-000000000000' -Top 1
 ```
 
@@ -108,9 +111,10 @@ This command retrieves top one object setting from Microsoft Entra ID.
 - `-TargetType` Parameter specifies the target type.
 - `-TargetObjectId` Parameter specifies the ID of the target object.
 
-### Example 3: Retrieve all object setting from Microsoft Entra ID
+### Example 4: Retrieve all object setting from Microsoft Entra ID
 
 ```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
 Get-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId 'aaaaaaaa-1111-1111-1111-000000000000' -All
 ```
 
