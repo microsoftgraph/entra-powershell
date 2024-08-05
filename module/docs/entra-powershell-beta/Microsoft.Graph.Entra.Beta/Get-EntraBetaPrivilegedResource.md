@@ -12,7 +12,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaPrivilegedResource
+
 schema: 2.0.0
 ---
 
@@ -24,19 +25,23 @@ Get Microsoft Entra ID privileged resource.
 ## Syntax
 
 ### GetQuery (Default)
-```
+
+```powershell
 Get-EntraBetaPrivilegedResource
-   -ProviderId <String>
-   [-Top <Int32>]
-   [-Filter <String>]
+ -ProviderId <String>
+ [-Top <Int32>]
+ [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
-```
+
+```powershell
 Get-EntraBetaPrivilegedResource
-   -ProviderId <String>
-   -Id <String>
+ -ProviderId <String>
+ -Id <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -102,7 +107,7 @@ Get a resource for AzureResource provider by Filter
 PS C:\> Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Top 1
 ```
 
-````output
+```output
 Id                                   DisplayName       ExternalId
 --                                   -----------       ----------
 0d626126-a0f3-444c-a025-84c2715389b4 ToGraph_443DEMos1 /0d626126-a0f3-444c-a025-84c271...
@@ -168,6 +173,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
