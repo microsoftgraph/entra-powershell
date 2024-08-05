@@ -2,9 +2,9 @@
 title: Set-EntraApplicationProxyApplicationCustomDomainCertificate
 description: This article provides details on the Set-EntraApplicationProxyApplicationCustomDomainCertificate command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/27/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,17 +12,18 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraApplicationProxyApplicationCustomDomainCertificate
+
 schema: 2.0.0
 ---
 
 # Set-EntraApplicationProxyApplicationCustomDomainCertificate
 
-## SYNOPSIS
+## Synopsis
 The Set-EntraApplicationProxyApplicationCustomDomainCertificate cmdlet assigns a certificate to an application configured for Application Proxy in Microsoft Entra ID.
 This uploads the certificate and allows the application to use Custom Domains.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraApplicationProxyApplicationCustomDomainCertificate
@@ -32,12 +33,12 @@ Set-EntraApplicationProxyApplicationCustomDomainCertificate
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraApplicationProxyApplicationCustomDomainCertificate cmdlet assigns a certificate to an application configured for Application Proxy in Microsoft Entra ID.
 This uploads the certificate and allows the application to use Custom Domains.
 If you have one certificate that includes many of your applications, you only need to upload it with one application and are assigned to the other relevant applications.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Assign a certificate to an application configured for Application Proxy
 ```powershell
@@ -47,7 +48,7 @@ PS C:\> Set-EntraApplicationProxyApplicationCustomDomainCertificate -ObjectId 4e
 
 This command assigns a certificate to an application configured for Application Proxy.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 The unique application ID for the application the certificate should be uploaded to.
@@ -99,14 +100,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 ### System.Security.SecureString
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
 ## RELATED LINKS

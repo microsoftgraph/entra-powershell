@@ -2,9 +2,9 @@
 title: Get-EntraApplicationProxyConnectorGroupMembers
 description: This article provides details on the Get-EntraApplicationProxyConnectorGroupMembers command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/27/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,29 +12,30 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraApplicationProxyConnectorGroupMembers
+
 schema: 2.0.0
 ---
 
 # Get-EntraApplicationProxyConnectorGroupMembers
 
-## SYNOPSIS
+## Synopsis
 The Get-EntraApplicationProxyConnectorGroupMembers get all the Application Proxy connectors associated with the given connector group. 
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraApplicationProxyConnectorGroupMembers
  -Id <String>
- [-All <Boolean>]
+ [-All]
  [-Top <Int32>]
  [-Filter <String>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraApplicationProxyConnectorGroupMembers gets all the Application Proxy connectors associated with the given connector group. 
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Show all the connectors in the group
 ```powershell
@@ -50,25 +51,25 @@ ea4a4b91-aace-4e8b-b81a-b2f6429a477e test-vm-conn1 52.18.9.115 active
 
 The output of this command, showing all the connectors in the group.
 
-## PARAMETERS
+## Parameters
 
 ### -All
-If true, return all users. If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -Filter
-Specifies an oData v3.0 filter statement. This parameter controls which objects are returned. Details on querying with oData can be found here: https://www.odata.org/documentation/odata-version-3-0/odata-version-3-0-core-protocol/#queryingcollections
+Specifies an OData v4.0 filter statement. This parameter controls which objects are returned. Details on querying with oData can be found here: <https://learn.microsoft.com/graph/aad-advanced-queries?tabs=powershell>
 
 ```yaml
 Type: String
@@ -112,17 +113,17 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-## INPUTS
+## Inputs
 
 ### System.String
 System.Nullable`1[[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
 System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
 
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
 ## RELATED LINKS

@@ -1,42 +1,57 @@
 ---
-external help file: Microsoft.Graph.Entra-help.xml
+title: Enable-EntraAzureADAlias.
+description: This article provides details on the Enable-EntraAzureADAlias command.
+
+
+ms.topic: reference
+ms.date: 06/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Enable-EntraAzureADAlias
+
 schema: 2.0.0
 ---
 
 # Enable-EntraAzureADAlias
 
-## SYNOPSIS
-{{ Fill in the Synopsis }}
+## Synopsis
 
-## SYNTAX
+Enables aliases for AzureAD modules.
 
-```
+## Syntax
+
+```powershell
 Enable-EntraAzureADAlias
 ```
 
-## DESCRIPTION
-{{ Fill in the Description }}
+## Description
 
-## EXAMPLES
+Enables aliases for Azure AD modules.
+
+## Examples
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+Enable-EntraAzureADAlias
 ```
 
-{{ Add example description here }}
+Enables all Azure AD prefixes for the current PowerShell session.
 
-## PARAMETERS
+## Parameters
 
-## INPUTS
+## Inputs
 
 ### None
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
 
-## RELATED LINKS
+## Notes
+
+## Related Links

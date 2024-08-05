@@ -1,43 +1,86 @@
 ---
+title: Get-EntraBetaScopedRoleMembership.
+description: This article provides details on the Get-EntraBetaScopedRoleMembership command.
+
+
+ms.topic: reference
+ms.date: 07/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaScopedRoleMembership
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaScopedRoleMembership
 
-## SYNOPSIS
-Gets a scoped role membership from an administrative unit.
+## Synopsis
 
-## SYNTAX
+List Microsoft Entra role assignments with administrative unit scope.
 
-```
-Get-EntraBetaScopedRoleMembership -ObjectId <String> [-ScopedRoleMembershipId <String>] [<CommonParameters>]
-```
+## Syntax
 
-## DESCRIPTION
-The Get-EntraBetaScopedRoleMembership cmdlet gets a scoped role membership from an administrative unit in Azure Active Directory (AD).
-
-## EXAMPLES
-
-### Example 1 Get Scoped Role Administrator
-```
-PS C:\>Get-EntraBetaScopedRoleMembership -ObjectId "526b7173-5a6e-49dc-88ec-b677a9093709" -ScopedRoleMembershipId "356b7173-5a6e-49dc-88ec-b677a9093709"
+```powershell
+Get-EntraBetaScopedRoleMembership
+ -ObjectId <String>
+ [-ScopedRoleMembershipId <String>]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
-### Example 2 List scoped administrators for AU.
-```
-PS C:\>Get-EntraBetaScopedRoleMembership -ObjectId "526b7173-5a6e-49dc-88ec-b677a9093709"
+## Description
+
+The `Get-EntraBetaScopedRoleMembership` cmdlet lists Microsoft Entra role assignments with an administrative unit scope. Use the `ObjectId` parameter to retrieve a specific scoped role membership.
+
+## Examples
+
+### Example 1: Get Scoped Role Administrator
+
+```powershell
+Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+$params = @{
+    ObjectId = 'aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc'
+    ScopedRoleMembershipId = 'dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc'
+}
+Get-EntraBetaScopedRoleMembership @params
 ```
 
-## PARAMETERS
+```Output
+Id                                                                AdministrativeUnitId                 RoleId
+--                                                                --------------------                 ------
+dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bbbbbbbb-1111-2222-3333-cccccccccccc
+```
+
+This example gets scoped role administrator.
+
+### Example 2: List scoped administrators for administrative unit by ObjectId
+
+```powershell
+Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+Get-EntraBetaScopedRoleMembership -ObjectId 'aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc'
+```
+
+```Output
+Id                                                                AdministrativeUnitId                 RoleId
+--                                                                --------------------                 ------
+dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bbbbbbbb-1111-2222-3333-cccccccccccc
+```
+
+This example list scoped administrators with objectId.
+
+## Parameters
 
 ### -ObjectId
+
 Specifies the ID of an object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -49,10 +92,11 @@ Accept wildcard characters: False
 ```
 
 ### -ScopedRoleMembershipId
+
 Specifies the ID of a scoped role membership.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -63,18 +107,34 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
 
-[Add-EntraBetaScopedRoleMembership]()
+## Related Links
 
-[Remove-EntraBetaScopedRoleMembership]()
+[Add-EntraBetaScopedRoleMembership](Add-EntraBetaScopedRoleMembership.md)
 
+[Remove-EntraBetaScopedRoleMembership](Remove-EntraBetaScopedRoleMembership.md)

@@ -1,25 +1,39 @@
 ---
+title: Get-EntraBetaApplicationSignInDetailedSummary
+description: This article provides details on the Get-EntraBetaApplicationSignInDetailedSummary command.
+
+ms.topic: reference
+ms.date: 07/18/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaApplicationSignInDetailedSummary
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaApplicationSignInDetailedSummary
 
-## SYNOPSIS
+## Synopsis
 Get detailed sign in summaries
 
-## SYNTAX
+## Syntax
 
-```
-Get-EntraBetaApplicationSignInDetailedSummary [-Top <Int32>] [-Filter <String>] [<CommonParameters>]
+```powershell
+Get-EntraBetaApplicationSignInDetailedSummary
+ [-Top <Int32>]
+ [-Filter <String>]
+ [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaApplicationSignInDetailedSummary cmdlet gets Azure Active Directory sign ins, grouped by application, date, and sign in status.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get sign in detailed summary by application and date
 ```
@@ -35,7 +49,7 @@ PS C:\>Get-EntraBetaApplicationSignInDetailedSummary -Filter "status/errorCode e
 
 This command gets all sign ins that failed with 50089 code for "FailureReason: Flow token expired".
 
-## PARAMETERS
+## Parameters
 
 ### -Top
 The maximum number of records to return.
@@ -53,7 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-The oData v3.0 filter statement. 
+The OData v4.0 filter statement. 
 Controls which objects are returned.
 
 ```yaml
@@ -71,10 +85,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
 ### Microsoft.Online.Administration.GetApplicationSignInDetailedSummaryObjectsResponse
-## NOTES
-## RELATED LINKS
+## Notes
+## Related Links
