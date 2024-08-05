@@ -56,7 +56,7 @@ New-EntraBetaApplicationPassword @params
 ```Output
 CustomKeyIdentifier DisplayName EndDateTime           Hint KeyId                                SecretText                               StartDateTime
 ------------------- ----------- -----------           ---- -----                                ----------                               -------------
-{97}                test        2/28/2025 12:09:41 PM C57  aaaaaaaa-0b0b-1c1c-2d2d-333333333333 C578Q~hZEx7lu6TUFAilAMxu-5q6EioLPOFAUa66 12/28/2024 12:09:41 PM
+{97}                test        2/28/2025 12:09:41 PM C57  aaaaaaaa-0b0b-1c1c-2d2d-333333333333 <my-secret-text> 12/28/2024 12:09:41 PM
 ```
 
 This example adds a password to the specified application.
