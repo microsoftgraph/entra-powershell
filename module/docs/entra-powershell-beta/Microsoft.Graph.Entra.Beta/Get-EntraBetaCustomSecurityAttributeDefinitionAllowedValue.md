@@ -102,7 +102,7 @@ This example retrieves a specific predefined value.
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
 $CustomSecurityAttributeDefinitionId  = Get-EntraBetaCustomSecurityAttributeDefinition -Id <attributename_attributedefinition>
 $params = @{
-    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinitionId
+    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinitionId.Id
     Filter = "Id eq 'Apline'"
 }
 Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue @params
