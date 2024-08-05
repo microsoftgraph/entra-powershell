@@ -38,17 +38,12 @@ $scriptblock = {
 Describe "Get-EntraTenantDetail" {
     Context "Test for Get-EntraTenantDetail" {
         It "Should return all Tenant Detail" {
-            $result = Get-EntraTenantDetail -All $true
+            $result = Get-EntraTenantDetail -All 
             $result | Should -Not -BeNullOrEmpty
             
             Should -Invoke -CommandName Get-MgOrganization -ModuleName Microsoft.Graph.Entra -Times 1
         }   
-        It "Should fail when All is empty" {
-            { Get-EntraTenantDetail -All  } | Should -Throw "Missing an argument for parameter 'All'*"
-        }
-        It "Should fail when All is invalid" {
-            { Get-EntraTenantDetail -All "xyz" } | Should -Throw "Cannot process argument transformation on parameter 'All'*"
-        }
+        
         It "Should return top Tenant Detail" {
             $result = Get-EntraTenantDetail -Top 1
             $result | Should -Not -BeNullOrEmpty

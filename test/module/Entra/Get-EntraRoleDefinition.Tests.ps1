@@ -29,10 +29,10 @@ BeforeAll {
     Mock -CommandName Get-MgRoleManagementDirectoryRoleDefinition -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 
-Describe "Get-EntraMSRoleDefinition" {
-    Context "Test for Get-EntraMSRoleDefinition" {
+Describe "Get-EntraRoleDefinition" {
+    Context "Test for Get-EntraRoleDefinition" {
         It "Should return specific Ms role Defination" {
-            $result = Get-EntraMSRoleDefinition -Id "54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
+            $result = Get-EntraRoleDefinition -Id "54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be "Mock-App"
             $result.Id | Should -Be "54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
@@ -40,70 +40,65 @@ Describe "Get-EntraMSRoleDefinition" {
             Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Id is empty" {
-            { Get-EntraMSRoleDefinition -Id  } | Should -Throw "Missing an argument for parameter 'Id'*"
+            { Get-EntraRoleDefinition -Id  } | Should -Throw "Missing an argument for parameter 'Id'*"
         }
         It "Should fail when Id is invalid" {
-            { Get-EntraMSRoleDefinition -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
+            { Get-EntraRoleDefinition -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
         }
 
         It "Should return all Ms role assignments" {
-            $result = Get-EntraMSRoleDefinition -All $true
+            $result = Get-EntraRoleDefinition -All 
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Graph.Entra -Times 1
-        }
-        It "Should fail when All is empty" {
-            { Get-EntraMSRoleDefinition -All } | Should -Throw "Missing an argument for parameter 'All'*"
-        }
-         It "Should fail when All is invalid" {
-            { Get-EntraMSRoleDefinition -All XY } | Should -Throw "Cannot process argument transformation on parameter 'All'*"
-        }
+        }        
+         
         It "Should return top Ms role assignment" {
-            $result = Get-EntraMSRoleDefinition -Top 1
+            $result = Get-EntraRoleDefinition -Top 1
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Top is empty" {
-            { Get-EntraMSRoleDefinition -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraRoleDefinition -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
          It "Should fail when Top is invalid" {
-            { Get-EntraMSRoleDefinition -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraRoleDefinition -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
         It "Should return specific application by SearchString" {
-            $result = Get-EntraMSRoleDefinition -SearchString 'Mock-App'
+            $result = Get-EntraRoleDefinition -SearchString 'Mock-App'
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-App'
 
             Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when String is empty" {
-            { Get-EntraMSRoleDefinition -SearchString  } | Should -Throw "Missing an argument for parameter 'SearchString'*"
+            { Get-EntraRoleDefinition -SearchString  } | Should -Throw "Missing an argument for parameter 'SearchString'*"
         }         
         It "Should return specific application by filter" {
-            $result = Get-EntraMSRoleDefinition -Filter "DisplayName eq 'Mock-App'"
+            $result = Get-EntraRoleDefinition -Filter "DisplayName eq 'Mock-App'"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'Mock-App'
 
             Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when filter is empty" {
-            { Get-EntraMSRoleDefinition -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
+            { Get-EntraRoleDefinition -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
         }
           
         It "Result should Contain ObjectId" {
-            $result = Get-EntraMSRoleDefinition -Id "54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
+            $result = Get-EntraRoleDefinition -Id "54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
             $result.ObjectId | should -Be "54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
         }     
         It "Should contain Filter in parameters when passed SearchString to it" {              
-            $result = Get-EntraMSRoleDefinition -SearchString 'Mock-App'
+            $result = Get-EntraRoleDefinition -SearchString 'Mock-App'
             $params = Get-Parameters -data $result.Parameters
             $params.Filter | Should -Match "Mock-App"
         }
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraMSRoleDefinition"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraRoleDefinition"
 
-            $result = Get-EntraMSRoleDefinition -Id "54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
+            $result = Get-EntraRoleDefinition -Id "54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }

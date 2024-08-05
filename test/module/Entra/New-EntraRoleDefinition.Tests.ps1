@@ -28,12 +28,12 @@ BeforeAll {
     Mock -CommandName New-MgRoleManagementDirectoryRoleDefinition -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 
-Describe "New-EntraMSRoleDefinition" {
-    Context "Test for New-EntraMSRoleDefinition" {
+Describe "New-EntraRoleDefinition" {
+    Context "Test for New-EntraRoleDefinition" {
         It "Should return specific Ms role Defination" {
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-            $result = New-EntraMSRoleDefinition -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2
+            $result = New-EntraRoleDefinition -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be "Mock-App"
             $result.Id | Should -Be "54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
@@ -45,59 +45,59 @@ Describe "New-EntraMSRoleDefinition" {
             Should -Invoke -CommandName New-MgRoleManagementDirectoryRoleDefinition  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when RolePermissions is empty" {
-            {New-EntraMSRoleDefinition -RolePermissions  -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2} | Should -Throw "Missing an argument for parameter 'RolePermissions'*"
+            {New-EntraRoleDefinition -RolePermissions  -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2} | Should -Throw "Missing an argument for parameter 'RolePermissions'*"
         }
         It "Should fail when IsEnabled is empty" {
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-            {New-EntraMSRoleDefinition -RolePermissions $RolePermissions -IsEnabled  -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2} | Should -Throw "Missing an argument for parameter 'IsEnabled'*"
+            {New-EntraRoleDefinition -RolePermissions $RolePermissions -IsEnabled  -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2} | Should -Throw "Missing an argument for parameter 'IsEnabled'*"
         }
         It "Should fail when IsEnabled is invalid" {
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-            {New-EntraMSRoleDefinition -RolePermissions $RolePermissions -IsEnabled xy -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2} | Should -Throw "Cannot process argument transformation on parameter 'IsEnabled'*"
+            {New-EntraRoleDefinition -RolePermissions $RolePermissions -IsEnabled xy -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2} | Should -Throw "Cannot process argument transformation on parameter 'IsEnabled'*"
         }
         It "Should fail when DisplayName is empty" {
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-            {New-EntraMSRoleDefinition -RolePermissions $RolePermissions -IsEnabled $false -DisplayName  -ResourceScopes "/" -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2} | Should -Throw "Missing an argument for parameter 'DisplayName'*"
+            {New-EntraRoleDefinition -RolePermissions $RolePermissions -IsEnabled $false -DisplayName  -ResourceScopes "/" -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2} | Should -Throw "Missing an argument for parameter 'DisplayName'*"
         }
         It "Should fail when DisplayName is invalid" {
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-            {New-EntraMSRoleDefinition -RolePermissions $RolePermissions -IsEnabled $false -DisplayName "" -ResourceScopes "/" -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2} | Should -Throw "Cannot bind argument to parameter 'DisplayName' because it is an empty string."
+            {New-EntraRoleDefinition -RolePermissions $RolePermissions -IsEnabled $false -DisplayName "" -ResourceScopes "/" -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2} | Should -Throw "Cannot bind argument to parameter 'DisplayName' because it is an empty string."
         }
         It "Should fail when ResourceScopes is empty" {
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-            {New-EntraMSRoleDefinition -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes  -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2} | Should -Throw "Missing an argument for parameter 'ResourceScopes'*"
+            {New-EntraRoleDefinition -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes  -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2} | Should -Throw "Missing an argument for parameter 'ResourceScopes'*"
         }
         It "Should fail when Description is empty" {
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-            {New-EntraMSRoleDefinition -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/"  -Description -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2} | Should -Throw "Missing an argument for parameter 'Description'*"
+            {New-EntraRoleDefinition -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/"  -Description -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2} | Should -Throw "Missing an argument for parameter 'Description'*"
         }
         It "Should fail when TemplateId is empty" {
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-            {New-EntraMSRoleDefinition -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/"  -Description "Mock-App" -TemplateId  -Version 2} | Should -Throw "Missing an argument for parameter 'TemplateId'*"
+            {New-EntraRoleDefinition -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/"  -Description "Mock-App" -TemplateId  -Version 2} | Should -Throw "Missing an argument for parameter 'TemplateId'*"
         }
         It "Should fail when Version is empty" {
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-            {New-EntraMSRoleDefinition -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/"  -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1"-Version } | Should -Throw "Missing an argument for parameter 'Version'*"
+            {New-EntraRoleDefinition -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/"  -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1"-Version } | Should -Throw "Missing an argument for parameter 'Version'*"
         }
         It "Result should Contain ObjectId" {
             $result = $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-            $result = New-EntraMSRoleDefinition -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2
+            $result = New-EntraRoleDefinition -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2
             $result.ObjectId | should -Be "54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
         }
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraMSRoleDefinition"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraRoleDefinition"
             $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
             $RolePermissions.AllowedResourceActions =  @("microsoft.directory/applications/basic/read")
-            $result = New-EntraMSRoleDefinition -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2
+            $result = New-EntraRoleDefinition -RolePermissions $RolePermissions -IsEnabled $false -DisplayName 'Mock-App' -ResourceScopes "/" -Description "Mock-App" -TemplateId "4dd5aa9c-cf4d-4895-a993-740d342802b1" -Version 2
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
