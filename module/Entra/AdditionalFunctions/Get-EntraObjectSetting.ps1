@@ -38,8 +38,7 @@ function Get-EntraObjectSetting {
         {
             $Id = $PSBoundParameters["Id"]
             $params["Uri"] = "$baseUri/$($Id)"
-        }
-        
+        }       
         
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
