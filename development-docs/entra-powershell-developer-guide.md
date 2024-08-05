@@ -62,12 +62,12 @@ D--changes-->C
 
 ```
 
-| Stage          | Description                                                                                                                                                                     |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Get Started    | Familiarize yourself with [cmdlets](./design-guidelines/cmdlet-best-practices.md), modules, parameters, piping best practices, key concepts, naming conventions, testing, review processes, and other best practice guidelines. |
-| Implementation | Set up the environment, develop cmdlet logic, create unit tests, and document cmdlets with examples.                                                                            |
-| Review         | Submit changes by raising a pull request for review by the community and the Microsoft Entra PowerShell Engineering team.                                                       |
-| Publish        | We deploy approved changes in the next release train.                                                                                                                           |
+| Stage          | Description                                                                                                                                                                                                                     |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Get Started    | Familiarize yourself with [cmdlets](./design-guidelines/cmdlet-best-practices.md), modules, [parameters](./design-guidelines/parameter-best-practices.md), [piping](./design-guidelines/piping-best-practices.md) best practices, key concepts, naming conventions, testing, review processes, and other best practice guidelines. |
+| Implementation | [Set up the environment], develop cmdlet logic, create unit tests, and document cmdlets with examples.                                                                                                                            |
+| Review         | Submit changes by raising a pull request for review by the community and the Microsoft Entra PowerShell Engineering team.                                                                                                       |
+| Publish        | We deploy approved changes in the next release train.                                                                                                                                                                           |
 
 ## Prerequisites
 
