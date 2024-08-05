@@ -2,9 +2,9 @@
 title: Get-EntraFederationProperty
 description: This article provides details on the Get-EntraFederationProperty command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,16 +12,18 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraFederationProperty
+
 schema: 2.0.0
 ---
 
 # Get-EntraFederationProperty
 
-## SYNOPSIS
+## Synopsis
+
 Displays the properties of the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraFederationProperty 
@@ -29,25 +31,40 @@ Get-EntraFederationProperty
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraFederationProperty cmdlet gets key settings from both the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online. You can use this information to troubleshoot authentication problems caused by mismatched settings between the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online.
+## Description
 
-## EXAMPLES
+The `Get-EntraFederationProperty` cmdlet gets key settings from both the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online.
+
+You can use this information to troubleshoot authentication problems caused by mismatched settings between the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online.
+
+For delegated scenarios, the calling user must be assigned at least one of the following Microsoft Entra roles:
+
+- Global Reader
+- Security Reader
+- Domain Name Administrator
+- External Identity Provider Administrator
+- Hybrid Identity Administrator
+- Security Administrator
+
+## Examples
 
 ### Example 1: Display properties for specified domain
+
 ```powershell
-PS C:\> Get-EntraFederationProperty -DomainName contoso.com
+Connect-Entra -Scopes 'Domain.Read.All'
+Get-EntraFederationProperty -DomainName contoso.com
 ```
 
 This command displays properties for specified domain.
 
-## PARAMETERS
+## Parameters
 
 ### -DomainName
+
 The domain name for which the properties from both the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online are displayed.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -59,12 +76,13 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links

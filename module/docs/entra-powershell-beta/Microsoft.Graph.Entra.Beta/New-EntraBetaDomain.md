@@ -1,16 +1,17 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaDomain
+
 schema: 2.0.0
 ---
 
 # New-EntraBetaDomain
 
-## SYNOPSIS
+## Synopsis
 Creates a domain.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaDomain [-IsDefault <Boolean>]
@@ -18,10 +19,10 @@ New-EntraBetaDomain [-IsDefault <Boolean>]
  [-IsDefaultForCloudRedirections <Boolean>] [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraBetaDomain cmdlet creates a domain in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Create a new Domain
 ```
@@ -67,7 +68,7 @@ PS C:\>New-EntraBetaDomain -Name Contoso.com -IsDefault
 
 This command creates a new domain and marks it as the default to be used for new user creation.
 
-## PARAMETERS
+## Parameters
 
 ### -IsDefault
 Indicates whether or not this is the default domain that is used for user creation.
@@ -133,13 +134,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Confirm-EntraBetaDomain]()
 

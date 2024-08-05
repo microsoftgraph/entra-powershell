@@ -1,26 +1,31 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaServicePrincipalOwnedObject
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaServicePrincipalOwnedObject
 
-## SYNOPSIS
+## Synopsis
 Gets an object owned by a service principal.
 
-## SYNTAX
+## Syntax
 
-```
-Get-EntraBetaServicePrincipalOwnedObject -ObjectId <String> [-All <Boolean>] [-Top <Int32>]
+```powershell
+Get-EntraBetaServicePrincipalOwnedObject
+ -ObjectId <String>
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaServicePrincipalOwnedObject cmdlet gets an object that is owned by a service principal in Azure Active Directory (Azure AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the owned objects of a service principal
 ```
@@ -33,21 +38,20 @@ The command stores the ID in the $ServicePrincipalId variable.
 
 The second command gets the owned objects of a service principal identified by $ServicePrincipalId.
 
-## PARAMETERS
+## Parameters
 
 ### -All
-If true, return all objects owned by this service principal.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -81,16 +85,31 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaServicePrincipal]()
-
