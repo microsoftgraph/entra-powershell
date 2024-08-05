@@ -45,7 +45,7 @@ $PasswordCredential.StartDateTime = Get-Date -Year 2024 -Month 12 -Day 28
 $PasswordCredential.EndDateTime = Get-Date -Year 2025 -Month 2 -Day 28
 $PasswordCredential.CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes('a')
 $PasswordCredential.Hint = 'b'
-$PasswordCredential.DisplayName = 'test'
+$PasswordCredential.DisplayName = 'mypassword'
 $params = @{
     ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     PasswordCredential = $PasswordCredential
@@ -54,9 +54,9 @@ New-EntraBetaApplicationPassword @params
 ```
 
 ```Output
-CustomKeyIdentifier DisplayName EndDateTime           Hint KeyId                                SecretText                               StartDateTime
-------------------- ----------- -----------           ---- -----                                ----------                               -------------
-                test        2/28/2025 12:09:41 PM EQ:  aaaaaaaa-0b0b-1c1c-2d2d-333333333333 <my-secret-text> 12/28/2024 12:09:41 PM
+CustomKeyIdentifier DisplayName EndDateTime           Hint KeyId                                SecretText                       StartDateTime
+------------------- ----------- -----------           ---- -----                                ----------                       -------------
+                    mypassword  10/28/2021 3:57:37 PM EQ:  bbbbbbbb-1c1c-2d2d-3e3e-444444444444 <my-secret-text> 10/28/2019 3:57:37 PM
 ```
 
 This example adds a password to the specified application.
