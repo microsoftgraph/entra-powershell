@@ -17,7 +17,7 @@ BeforeAll {
                 "secretText"  = ""
                 "endDateTime"       = "11/24/2024 6:28:39 AM"
                 "CustomKeyIdentifier" = "dGVzdA=="
-                "DisplayName" = ""
+                "DisplayName" = "test"
 
             }
         )
@@ -30,7 +30,7 @@ Describe "Get-EntraBetaApplicationPasswordCredential" {
         It "Should return specific Policy" {
             $result = Get-EntraBetaApplicationPasswordCredential -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result.keyId | Should -Be "bbbbbbbb-1111-2222-3333-rrrrrrrrrrrr"
-            $result.DisplayName | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be "test"
             $result.CustomKeyIdentifier.gettype().name | Should -Be 'Byte[]'
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
