@@ -40,7 +40,7 @@ The Set-EntraTrustedCertificateAuthority cmdlet updates a trusted certificate au
 ```powershell
 Connect-Entra -Scopes 'Organization.ReadWrite.All'
 
-$cer = Set-EntraTrustedCertificateAuthority #Get the CertificateAuthorityInformation object
+$cer = Get-EntraTrustedCertificateAuthority #Get the CertificateAuthorityInformation object
 $cer[0].CrlDistributionPoint = "https://example.crl"
 Set-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
 ```
