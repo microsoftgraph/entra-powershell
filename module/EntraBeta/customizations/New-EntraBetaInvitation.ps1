@@ -13,7 +13,16 @@
         $keysChanged = @{}
         if($null -ne $PSBoundParameters["InvitedUser"])
         {
-            $params["InvitedUser"] = $PSBoundParameters["InvitedUser"]
+            $TmpValue = $PSBoundParameters["InvitedUser"]
+            $Temp = @{}
+            foreach ($property in $TmpValue.PSObject.Properties) {
+                $Temp[$property.Name] = $property.Value
+            }
+            $params["InvitedUser"] = $Temp
+        }
+        if($null -ne $PSBoundParameters["ResetRedemption"])
+        {
+            $params["ResetRedemption"] = $PSBoundParameters["ResetRedemption"]
         }
         if($null -ne $PSBoundParameters["InvitedUserMessageInfo"])
         {
@@ -95,27 +104,7 @@
         Write-Debug("=========================================================================`n")
         
         $response = New-MgBetaInvitation @params -Headers $customHeaders
-       
-        try {    
-            $data = $response.Value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-        }
-        catch {
-            $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-        }
-        
-        $targetList = @()
-        foreach ($res in $data) {
-            $targetType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectoryObject
-            $res.PSObject.Properties | ForEach-Object {
-                if ($_.Name -ne "AdditionalProperties"){
-                $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
-                $propertyValue = $_.Value
-                $targetType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
-                }   
-            }
-            $targetList += $targetType
-        }
-        $targetList     
+        $response
     }
 '@
 }
