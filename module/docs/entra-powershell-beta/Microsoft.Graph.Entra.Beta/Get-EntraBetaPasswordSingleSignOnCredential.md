@@ -59,7 +59,7 @@ cccccccc-2222-3333-4444-dddddddddddd
 
 This example returns a password SSO credential for the given ObjectId and PasswordSSOObjectId.
 
-- `PasswordSSOObjectId` parameter specifies the User or Group ID.
+- `PasswordSSOObjectId` parameter specifies the ID of the user or group this credential set belongs to.
 - `ObjectId` parameter specifies the ID of a service principal. You can use `Get-EntraBetaservicePrincipal` cmdlet to get service principal object ID.
 
 ## Parameters
