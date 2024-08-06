@@ -42,8 +42,9 @@ Admin could remove the group credentials as well.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All', 'Directory.ReadWrite.All'
+$servicePrincipal = Get-EntraBetaservicePrincipal -SearchString '<service-principal-name>'
 $params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
+    ObjectId = $servicePrincipal.Id 
     PasswordSSOCredential = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 }
 Remove-EntraBetaPasswordSingleSignOnCredential @params
