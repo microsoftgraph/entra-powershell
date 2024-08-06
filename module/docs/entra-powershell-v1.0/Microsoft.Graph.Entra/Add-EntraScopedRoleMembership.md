@@ -26,7 +26,6 @@ Adds a scoped role membership to an administrative unit.
 ```powershell
 Add-EntraScopedRoleMembership
  -ObjectId <String> 
- [-AdministrativeUnitObjectId <String>]
  [-RoleObjectId <String>] 
  [-RoleMemberInfo <RoleMemberInfo>] 
  [<CommonParameters>]
@@ -70,22 +69,6 @@ The example shows how to add a user to the specified role within the specified a
 - `-RoleMemberInfo` Paramater specifies a RoleMemberInfo object.
 
 ## Parameters
-
-### -AdministrativeUnitObjectId
-
-Specifies the ID of an administrative unit.
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -ObjectId
 
