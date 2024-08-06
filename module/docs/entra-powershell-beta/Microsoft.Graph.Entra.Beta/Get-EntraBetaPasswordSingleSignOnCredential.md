@@ -43,7 +43,7 @@ Note that the password field is hidden for security purpose.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Directory.ReadWrite.All'
-$servicePrincipal = Get-EntraBetaservicePrincipal -ObjectId '66667777-aaaa-8888-bbbb-9999cccc0000'
+$servicePrincipal = Get-EntraBetaservicePrincipal -SearchString '<service-principal-name>'
 $params = @{
     ObjectId = $servicePrincipal.Id
     PasswordSSOObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
