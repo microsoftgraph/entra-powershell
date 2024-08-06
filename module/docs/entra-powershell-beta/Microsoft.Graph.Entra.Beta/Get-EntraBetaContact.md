@@ -1,6 +1,6 @@
 ---
 title: Get-EntraBetaContact
-description: This article provides details on the Get-EntraBetaContact example.
+description: This article provides details on the Get-EntraBetaContact command.
 
 ms.topic: reference
 ms.date: 07/29/2024
