@@ -73,13 +73,13 @@
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
             }
         }
+        $serviceprincipal = @()
         if (($data.count -eq 0) -or $data.'@odata.type' -notcontains 'microsoft.graph.servicePrincipal') {
             $URI = "$baseUri/$($params.GroupId)/members/microsoft.graph.servicePrincipal?$properties"
             $topCount = $Top - $data.count
             if ($PSBoundParameters.ContainsKey("Top") -and $topCount -gt 0) {
                 $increment = $topCount - $data.Count 
-                $increment = 1  
-                $serviceprincipal = @()
+                $increment = 1 
                 $hasNextLink = $false  
 
             do {
