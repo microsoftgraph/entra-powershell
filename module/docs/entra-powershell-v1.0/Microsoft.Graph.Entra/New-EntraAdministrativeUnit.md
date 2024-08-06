@@ -40,7 +40,7 @@ The `New-EntraAdministrativeUnit` cmdlet creates an administrative unit in Micro
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-New-EntraAdministrativeUnit -DisplayName "test_AdministrativeUnit" -Description "add-your-description"
+New-EntraBAdministrativeUnit -DisplayName 'test_AdministrativeUnit'
 ```
 
 ```Output
@@ -51,10 +51,31 @@ DeletedDateTime Id                                   Description          Displa
 
 This example demonstrates how to create an administrative unit
 
-- `DisplayName` Specifies the display name of the new administrative unit.
-- `Description` Specifies a description for the new administrative unit.
+- `-DisplayName` Specifies the display name of the new administrative unit.
 
-## Examples
+### Example 2: Create an administrative unit using '-Description' parameter
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$params = @{
+    DisplayName = 'test111'
+    Description = 'New AdministrativeUnit'
+}
+New-EntraAdministrativeUnit @params
+```
+
+```Output
+DeletedDateTime Id                                   Description DisplayName IsMemberManagementRestricted Visibility
+--------------- --                                   ----------- ----------- ---------------------------- ----------
+                bbbbbbbb-1111-2222-3333-cccccccccccc New AdminiatrativeUnit     test111     False
+```
+
+This command creates an administrative unit.
+
+- `-DisplayName` Specifies the display name of the new administrative unit.
+- `-Description` Specifies a description for the new administrative unit.
+
+## Parameters
 
 ### -Description
 
