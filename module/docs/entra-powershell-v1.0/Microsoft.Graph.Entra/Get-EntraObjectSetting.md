@@ -45,65 +45,78 @@ Get-EntraObjectSetting
 
 ## Description
 
-The `Get-EntraObjectSetting` cmdlet gets an object setting from Microsoft Entra ID. Specify `TargetType` and `TargetObjectId` parameter to get an object setting
+The `Get-EntraObjectSetting` cmdlet Retrieve an object setting from Microsoft Entra ID. Specify `TargetType` and `TargetObjectId` parameter to get an object setting
 
 ## Examples
 
-### Example 1: Get an object setting
+### Example 1: Retrieve an object setting
 
 ```powershell
  Get-EntraObjectSetting -TargetType 'Groups' -TargetObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
-id                                   templateId                           displayName         values
---                                   ----------                           -----------         ------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbcccc-1111-dddd-2222-eeee3333ffff Group.Unified.Guest {@{name=AllowToAddGuests; value=false}}
+Id                                   DisplayName         TemplateId
+--                                   -----------         ----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Group.Unified.Guest 22cc22cc-dd33-ee44-ff55-66aa66aa66aa
 ```
 
-This command gets an object setting.
+This command retrieves  object setting from Microsoft Entra ID.
 
-### Example 2: Get an object setting with ID parameter
+- `-TargetType` Parameter specifies the target type.
+- `-TargetObjectId` Parameter specifies the ID of the target object.
+
+### Example 2: Retrieve an object setting with ID parameter
 
 ```powershell
  Get-EntraObjectSetting -TargetType 'Groups' -TargetObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff' -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
-id                                   templateId                           displayName         values
---                                   ----------                           -----------         ------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbcccc-1111-dddd-2222-eeee3333ffff Group.Unified.Guest {@{name=AllowToAddGuests; value=false}}
+Id                                   DisplayName         TemplateId
+--                                   -----------         ----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Group.Unified.Guest 22cc22cc-dd33-ee44-ff55-66aa66aa66aa
 ```
 
-This command gets an object setting with ID parameter.
+This command retrieves Specific object setting from Microsoft Entra ID.
 
-### Example 3: Get a top one object setting
+- `-TargetType` Parameter specifies the target type.
+- `-TargetObjectId` Parameter specifies the ID of the target object.
+- `-Id` Parameter specifies the ID of a settings object.
+
+### Example 3: Retrieve a top one object setting
 
 ```powershell
  Get-EntraObjectSetting -TargetType 'Groups' -TargetObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 1
 ```
 
 ```Output
-id                                   templateId                           displayName         values
---                                   ----------                           -----------         ------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbcccc-1111-dddd-2222-eeee3333ffff Group.Unified.Guest {@{name=AllowToAddGuests; value=false}}
+Id                                   DisplayName         TemplateId
+--                                   -----------         ----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Group.Unified.Guest 22cc22cc-dd33-ee44-ff55-66aa66aa66aa
 ```
 
-This command gets a top one object setting.
+This command retrieves top one object setting from Microsoft Entra ID.
 
-### Example 4: Get an all object setting
+- `-TargetType` Parameter specifies the target type.
+- `-TargetObjectId` Parameter specifies the ID of the target object.
+
+### Example 4: Retrieve all object setting from Microsoft Entra ID
 
 ```powershell
  Get-EntraObjectSetting -TargetType 'Groups' -TargetObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
 ```
 
 ```Output
-id                                   templateId                           displayName         values
---                                   ----------                           -----------         ------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbcccc-1111-dddd-2222-eeee3333ffff Group.Unified.Guest {@{name=AllowToAddGuests; value=false}}
+Id                                   DisplayName         TemplateId
+--                                   -----------         ----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Group.Unified.Guest 22cc22cc-dd33-ee44-ff55-66aa66aa66aa
 ```
 
-This command gets an all object setting.
+This command retrieves all records of object setting from Microsoft Entra ID.
+
+- `-TargetType` Parameter specifies the target type.
+- `-TargetObjectId` Parameter specifies the ID of the target object.
 
 ## Parameters
 
@@ -198,3 +211,9 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[New-EntraObjectSetting](New-EntraObjectSetting.md)
+
+[Remove-EntraObjectSetting](Remove-EntraObjectSetting.md)
+
+[Set-EntraObjectSetting](Set-EntraObjectSetting.md)
