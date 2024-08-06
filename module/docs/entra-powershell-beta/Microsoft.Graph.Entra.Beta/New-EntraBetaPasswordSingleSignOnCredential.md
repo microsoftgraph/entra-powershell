@@ -44,6 +44,7 @@ Admin could create the group credentials as well.
 Connect-Entra -Scopes 'Application.ReadWrite.All','Directory.ReadWrite.All'
 $credentials = New-Object -TypeName Microsoft.Open.MSGraph.Model.PasswordSSOCredentials
 $credentials.Id = '<user-or-group-Id>'
+$servicePrincipal = Get-EntraBetaservicePrincipal -SearchString '<service-principal-name>'
 $creds1 = [Microsoft.Open.MSGraph.Model.PasswordSSOCredential]@{FieldId="param_emailOrUserName"; Value="foobar@ms.com"; Type="text"}
 $creds2 = [Microsoft.Open.MSGraph.Model.PasswordSSOCredential]@{FieldId="param_password"; Value="my-secret"; Type="password"}
 $credentials.Credentials = @($creds1, $creds2)
