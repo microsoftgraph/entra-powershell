@@ -47,7 +47,7 @@ $params = @{
     Id = 'Alpine'
     IsActive = $true
 }
-Set-EntraCustomSecurityAttributeDefinitionAllowedValue @params
+Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue @params
 ```
 
 This example update a custom security attribute definition predefined value.
