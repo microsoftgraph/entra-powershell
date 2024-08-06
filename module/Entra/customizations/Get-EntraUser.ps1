@@ -11,6 +11,7 @@
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
         $topCount = $null
+        $upnPresent = $false
         $baseUri = 'https://graph.microsoft.com/v1.0/users'
         $properties = '$select=Id,AccountEnabled,AgeGroup,OfficeLocation,AssignedLicenses,AssignedPlans,City,CompanyName,ConsentProvidedForMinor,Country,CreationType,Department,DisplayName,GivenName,OnPremisesImmutableId,JobTitle,LegalAgeGroupClassification,Mail,MailNickName,MobilePhone,OnPremisesSecurityIdentifier,OtherMails,PasswordPolicies,PasswordProfile,PostalCode,PreferredLanguage,ProvisionedPlans,OnPremisesProvisioningErrors,ProxyAddresses,RefreshTokensValidFromDateTime,ShowInAddressList,State,StreetAddress,Surname,BusinessPhones,UsageLocation,UserPrincipalName,ExternalUserState,ExternalUserStateChangeDateTime,UserType,OnPremisesLastSyncDateTime,ImAddresses,SecurityIdentifier,OnPremisesUserPrincipalName,ServiceProvisioningErrors,IsResourceAccount,OnPremisesExtensionAttributes,DeletedDateTime,OnPremisesSyncEnabled,EmployeeType,EmployeeHireDate,CreatedDateTime,EmployeeOrgData,preferredDataLocation,Identities,onPremisesSamAccountName,EmployeeId,EmployeeLeaveDateTime,AuthorizationInfo,FaxNumber,OnPremisesDistinguishedName,OnPremisesDomainName,IsLicenseReconciliationNeeded,signInSessionsValidFromDateTime,SignInActivity'
         $params["Method"] = "GET"
@@ -24,7 +25,7 @@
             $params["Uri"] = "$baseUri/?$properties"
         }
 
-        if($null -ne $PSBoundParameters["Top"] -and  (-not $PSBoundParameters.ContainsKey("All")))
+        if($null -ne $PSBoundParameters["Top"])
         {
             $topCount = $PSBoundParameters["Top"]
             if ($topCount -gt 999) {
@@ -45,16 +46,14 @@
         if($null -ne $PSBoundParameters["ObjectId"])
         {
             $UserId = $PSBoundParameters["ObjectId"]
-            if ([Guid]::TryParse($UserId, [ref]([Guid]::Empty))) {
+            if ($UserId -match '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'){
+                $f = '$' + 'Filter'
+                $Filter = "UserPrincipalName eq '$UserId'"
+                $params["Uri"] += "&$f=$Filter"
+                $upnPresent = $true
+            }
+            else{
                 $params["Uri"] = "$baseUri/$($UserId)?$properties"
-            } 
-            else {
-                $params["Uri"] = "$baseUri/$($UserId)"
-                try {
-                    $Id = Invoke-GraphRequest @params
-                    $params["Uri"] = "$baseUri/$($Id.Id)?$properties"
-                }
-                catch {}
             }
         }
         if($null -ne $PSBoundParameters["Filter"])
@@ -69,14 +68,20 @@
         Write-Debug("=========================================================================`n")
         
         $response = Invoke-GraphRequest @params -Headers $customHeaders
+        if ($upnPresent -and ($null -eq $response.value -or $response.value.Count -eq 0)){
+            Write-Error "Resource '$ObjectId' does not exist or one of its queried reference-property objects are not present.
+
+Status: 404 (NotFound)
+ErrorCode: Request_ResourceNotFound"
+        }
         $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         try {
             $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $all = $All.IsPresent
             $increment = $topCount - $data.Count
-            while ($response.'@odata.nextLink' -and (($all) -or ($increment -gt 0 -and -not $all))) {
+            while (($response.'@odata.nextLink' -and (($all -and ($increment -lt 0)) -or $increment -gt 0))) {
                 $params["Uri"] = $response.'@odata.nextLink'
-                if (-not $all) {
+                if ($increment -gt 0) {
                     $topValue = [Math]::Min($increment, 999)
                     $params["Uri"] = $params["Uri"].Replace('$top=999', "`$top=$topValue")
                     $increment -= $topValue
@@ -110,6 +115,6 @@
             $userList += $userType
         }
         $userList 
-    } 
+    }
 '@
 }
