@@ -49,7 +49,7 @@ $creds1 = [Microsoft.Open.MSGraph.Model.PasswordSSOCredential]@{FieldId="param_e
 $creds2 = [Microsoft.Open.MSGraph.Model.PasswordSSOCredential]@{FieldId="param_password"; Value="my-secret"; Type="password"}
 $credentials.Credentials = @($creds1, $creds2)
 $params = @{
-    ObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    ObjectId = $servicePrincipal.Id
     PasswordSSOCredential = $credentials
 }
 New-EntraBetaPasswordSingleSignOnCredential @params
