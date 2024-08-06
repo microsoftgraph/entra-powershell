@@ -85,14 +85,14 @@
             do {
                 $topValue = [Math]::Min($topCount, 999)
                 $URI = "$baseUri/$($params.GroupId)/members/microsoft.graph.servicePrincipal?`$top=$topValue&$properties"
-                $response = Invoke-GraphRequest -Uri $URI -Method $Method
+                $response = Invoke-GraphRequest -Uri $URI -Method $Method -Headers $customHeaders 
                 $serviceprincipal += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
                 $hasNextLink = $null -ne $response.PSObject.Properties.Match('@odata.nextLink')
                 $increment--
             } while ($increment -gt 0 -and $hasNextLink)
             }
             elseif($null -eq $PSBoundParameters["Top"]){
-                $response = Invoke-GraphRequest -Uri $URI -Method $Method
+                $response = Invoke-GraphRequest -Uri $URI -Method $Method -Headers $customHeaders 
                 $serviceprincipal += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             }
             try{
