@@ -11,7 +11,17 @@
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $baseUrl = "https://graph.microsoft.com/beta/policies/"
-        $endpoints = @("homeRealmDiscoveryPolicies", "claimsMappingPolicies", "tokenIssuancePolicies", "tokenLifetimePolicies", "activityBasedTimeoutPolicies", "featureRolloutPolicies", 	"defaultAppManagementPolicy", "appManagementPolicies", "authenticationFlowsPolicy",	"authenticationMethodsPolicy", "permissionGrantPolicies")
+        $endpoints = @("homeRealmDiscoveryPolicies", 
+                        "claimsMappingPolicies",
+                        "tokenIssuancePolicies", 
+                        "tokenLifetimePolicies",
+                        "activityBasedTimeoutPolicies", 
+                        "featureRolloutPolicies", 
+                        "defaultAppManagementPolicy", 
+                        "appManagementPolicies",
+                        "authenticationFlowsPolicy",
+                        "authenticationMethodsPolicy", 
+                        "permissionGrantPolicies")
         
         $response = @()
         foreach ($endpoint in $endpoints) {
@@ -22,6 +32,7 @@
             catch {
                 $policies = (Invoke-GraphRequest -Headers $customHeaders -Uri $url -Method GET)
             }
+            
             $policies | ForEach-Object {
                 $_.Type = ($endpoint.Substring(0, 1).ToUpper() + $endpoint.Substring(1) -replace "ies", "y")
                 $response += $_
@@ -29,6 +40,7 @@
                     break 
                 }
             }
+            
         }
 
         if ($PSBoundParameters.ContainsKey("Debug")) {
@@ -88,19 +100,22 @@
             $response = $response | Select-Object -First $Top
         }
          
-        $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json        
+        $data = $response | ConvertTo-Json -Depth 50 | ConvertFrom-Json        
         $respList = @()
        
-        foreach ($res in $data) {                      
+        foreach ($res in $data) {                                  
             switch ($res.type) {
-                "activityBasedTimeoutPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGrphActivityBasedTimeoutPolicy }
-                "appManagementPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphAppManagementPolicy }
-                "claimsMappingPolicies" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphClaimsMappingPolicy }
-                "featureRolloutPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphFeatureRolloutPolicy }
+                "ActivityBasedTimeoutPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphActivityBasedTimeoutPolicy }
+                "AppManagementPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphAppManagementPolicy }
+                "ClaimsMappingPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphClaimsMappingPolicy }
+                "FeatureRolloutPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphFeatureRolloutPolicy }
                 "HomeRealmDiscoveryPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphHomeRealmDiscoveryPolicy }
-                "tokenIssuancePolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphTokenIssuancePolicy }
-                "tokenLifetimePolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphTokenLifetimePolicy }
-                "permissionGrantPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphPermissionGrantPolicy }
+                "TokenIssuancePolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphTokenIssuancePolicy }
+                "TokenLifetimePolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphTokenLifetimePolicy }
+                "PermissionGrantPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphPermissionGrantPolicy }
+                "DefaultAppManagementPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphappManagementPolicy }
+                "AuthenticationFlowsPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphauthenticationFlowsPolicy }
+                "AuthenticationMethodsPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphauthenticationMethodsPolicy}
                 default { Write-Error "Unknown type: " + $res.type}
             }
 
