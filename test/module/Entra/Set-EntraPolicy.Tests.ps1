@@ -49,7 +49,7 @@ Describe "Test for Set-EntraPolicy" {
     It "Should contain 'User-Agent' header" {
         Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraPolicy"
-        $result = Set-EntraPolicy -Id "Engineering_Project"  -type "homeRealmDiscoveryPolicies"
+        $result = Set-EntraPolicy -Id "Engineering_Project"  -type "HomeRealmDiscoveryPolicy"
         $params = Get-Parameters -data $result
         $a= $params | ConvertTo-json | ConvertFrom-Json
         $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue        
