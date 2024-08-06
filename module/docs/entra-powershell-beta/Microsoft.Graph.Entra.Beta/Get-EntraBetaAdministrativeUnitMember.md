@@ -43,7 +43,7 @@ The `Get-EntraBetaAdministrativeUnitMember` cmdlet gets a member of a Microsoft 
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-name>'"
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-name>'"
 Get-EntraBetaAdministrativeUnitMember -ObjectId $AdministrativeUnit.Id
 ```
 
@@ -65,7 +65,7 @@ This example returns the list of administrative unit members from specified admi
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-name>'"
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-name>'"
 Get-EntraBetaAdministrativeUnitMember -ObjectId $AdministrativeUnit.Id -All
 ```
 
@@ -87,7 +87,7 @@ This example returns the list of all administrative unit members from specified 
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-name>'"
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-name>'"
 Get-EntraBetaAdministrativeUnitMember -ObjectId $AdministrativeUnit.Id -Top 3
 ```
 

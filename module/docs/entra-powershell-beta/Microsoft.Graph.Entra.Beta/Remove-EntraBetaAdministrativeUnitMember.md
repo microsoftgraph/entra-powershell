@@ -41,7 +41,7 @@ The `Remove-EntraBetaAdministrativeUnitMember` cmdlet removes an administrative 
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-name>'"
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-name>'"
 $params = @{
     ObjectId = $AdministrativeUnit.Id
     MemberId = 'eeeeeeee-4444-5555-6666-ffffffffffff'

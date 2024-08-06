@@ -47,7 +47,7 @@ For delegated scenarios, the calling user needs at least the Privileged Role Adm
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
 $User = Get-EntraBetaUser -SearchString '<user-name>'
 $Role = Get-EntraBetaDirectoryRole | Where-Object -Property DisplayName -EQ -Value 'User Administrator'
-$Unit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-name>'"
+$Unit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-name>'"
 $RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
 $RoleMember.ObjectId = $User.ObjectID
 $params = @{

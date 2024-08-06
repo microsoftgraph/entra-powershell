@@ -42,8 +42,9 @@ The `Set-EntraBetaAdministrativeUnit` cmdlet updates an administrative unit in M
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-name>'"
 $params = @{
-    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    Id = $AdministrativeUnit.Id
     DisplayName = 'UpdatedAU'
 }
 Set-EntraBetaAdministrativeUnit @params
@@ -58,8 +59,9 @@ This Command update DisplayName of specific administrative unit.
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-name>'"
 $params = @{
-    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    Id = $AdministrativeUnit.Id
     Description = 'Updated AU Description'
 }
 Set-EntraBetaAdministrativeUnit @params
@@ -74,8 +76,9 @@ This example shows how to update the description of a specific administrative un
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-name>'"
 $params = @{
-    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    Id = $AdministrativeUnit.Id
     IsMemberManagementRestricted = $true
 }
 Set-EntraBetaAdministrativeUnit @params
