@@ -77,17 +77,6 @@
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================")
 
-        Write-Host($response.type)
-
-        # $response | ForEach-Object {
-        #     if ($null -ne $_) {
-        #         foreach ($Keys in $_.Keys) { 
-        #             $Keys=$Keys.SubString(0, 1).ToUpper() + $Keys.Substring(1)
-        #             $_ | Add-Member -MemberType NoteProperty -Name $Keys -Value ($_.$Keys) -Force
-        #         }
-        #     }
-        # }
-        
         if ($PSBoundParameters.ContainsKey("ID")) {
             $response = $response | Where-Object { $_.id -eq $Id }
             if($Null -eq $response ) {
@@ -112,7 +101,7 @@
                 "tokenIssuancePolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphTokenIssuancePolicy }
                 "tokenLifetimePolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphTokenLifetimePolicy }
                 "permissionGrantPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphPermissionGrantPolicy }
-                default { Write-Error "Unknown type: $Type" }
+                default { Write-Error "Unknown type: " + $res.type}
             }
 
             $res.PSObject.Properties | ForEach-Object {
