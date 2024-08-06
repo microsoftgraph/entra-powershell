@@ -43,7 +43,7 @@ Admin could create the group credentials as well.
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Directory.ReadWrite.All'
 $credentials = New-Object -TypeName Microsoft.Open.MSGraph.Model.PasswordSSOCredentials
-$credentials.Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$credentials.Id = '<user-or-group-Id>'
 $creds1 = [Microsoft.Open.MSGraph.Model.PasswordSSOCredential]@{FieldId="param_emailOrUserName"; Value="foobar@ms.com"; Type="text"}
 $creds2 = [Microsoft.Open.MSGraph.Model.PasswordSSOCredential]@{FieldId="param_password"; Value="my-secret"; Type="password"}
 $credentials.Credentials = @($creds1, $creds2)
