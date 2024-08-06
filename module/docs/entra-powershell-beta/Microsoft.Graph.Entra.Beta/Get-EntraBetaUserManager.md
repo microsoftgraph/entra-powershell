@@ -45,20 +45,14 @@ Get-EntraBetaUserManager -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
-DeletedDateTime                 :
-Id                              : 00aa00aa-bb11-cc22-dd33-44ee44ee44ee
-@odata.context                  : https://graph.microsoft.com/beta/$metadata#directoryObjects/$entity
-@odata.type                     : #microsoft.graph.user
-accountEnabled                  : True
-businessPhones                  : {+1 858 555 0109}
-city                            : San Diego
-createdDateTime                 : 2023-07-07T14:18:05Z
-country                         : United States
-department                      : Sales & Marketing
-displayName                     : Miriam Graham
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This example demonstrates how to retrieve the manager of a specific user.
+
+- `-ObjectId` Parameter specifies ObjectID or User Principal Name of User.
 
 ## Parameters
 
@@ -80,7 +74,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
