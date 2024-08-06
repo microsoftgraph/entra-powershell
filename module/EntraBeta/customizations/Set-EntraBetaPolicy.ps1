@@ -11,17 +11,31 @@
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         
-        $array = ("activityBasedTimeoutPolicies",	"defaultAppManagementPolicy",	"appManagementPolicies",	"authenticationFlowsPolicy",	"authenticationMethodsPolicy",	"claimsMappingPolicies",	"featureRolloutPolicies",	"homeRealmDiscoveryPolicies",	"permissionGrantPolicies",	"tokenIssuancePolicies",	"tokenLifetimePolicies")
-        if ($null -ne $PSBoundParameters["type"]) {
-            $to_type = $Type
+         $policyTypeMap = @{
+            "ActivityBasedTimeoutPolicy"  = "activityBasedTimeoutPolicies"
+            "AppManagementPolicy" = "appManagementPolicies"
+            "DefaultAppManagementPolicy" = "defaultAppManagementPolicy"
+            "AuthenticationFlowsPolicy" = "authenticationFlowsPolicy"
+            "AuthenticationMethodsPolicy" = "authenticationMethodsPolicy"
+            "ClaimsMappingPolicy" = "claimsMappingPolicies"
+            "FeatureRolloutPolicy" = "featureRolloutPolicies"
+            "HomeRealmDiscoveryPolicy" = "homeRealmDiscoveryPolicies"
+            "PermissionGrantPolicy" = "permissionGrantPolicies"
+            "TokenIssuancePolicy" = "tokenIssuancePolicies"
+            "TokenLifetimePolicy" = "tokenLifetimePolicies"
         }
-         else {
-             $to_type = $null
-         }
+
+        $policyTypes = $policyTypeMap.Values
+
+        if ($null -ne $PSBoundParameters["type"]) {
+            $type = if ($policyTypeMap.ContainsKey($type)) { $policyTypeMap[$type] } else { $null }
+        } else {
+            $type = $null
+        }                
         
-         if($null -eq $to_type) {
-            foreach ($a in $array) {
-                $uri = "https://graph.microsoft.com/beta/policies/" + $a + "/" + $id
+        if(!$type) {
+            foreach ($pType in $policyTypes) {
+                $uri = "https://graph.microsoft.com/v1.0/policies/" + $pType + "/" + $id
                 try {
                     $response = Invoke-GraphRequest -Uri $uri -Method GET
                     break
@@ -31,7 +45,7 @@
             $policy = ($response.'@odata.context') -match 'policies/([^/]+)/\$entity'
             $type = $Matches[1]
         }
-            if($array -notcontains $type) {
+            if($policyTypes -notcontains $type) {
                 Write-Error "Set-AzureADPolicy : Error occurred while executing SetPolicy 
                 Code: Request_BadRequest
                 Message: Invalid value specified for property 'type' of resource 'Policy'."
