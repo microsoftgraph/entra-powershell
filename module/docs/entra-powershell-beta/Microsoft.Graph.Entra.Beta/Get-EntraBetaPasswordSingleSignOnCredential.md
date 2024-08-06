@@ -82,7 +82,7 @@ Accept wildcard characters: False
 
 ### -PasswordSSOObjectId
 
-User or group ID.
+The ID of the user or group this credential set belongs to.
 
 ```yaml
 Type: System.PasswordSSOObjectId
