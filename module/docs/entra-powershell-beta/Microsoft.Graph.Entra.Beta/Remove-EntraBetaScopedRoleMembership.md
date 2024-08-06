@@ -42,17 +42,18 @@ The `Remove-EntraBetaScopedRoleMembership` cmdlet removes a scoped role membersh
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-name>'"
 $params = @{
-    ObjectId = 'aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc'
+    ObjectId = $AdministrativeUnit.Id
     ScopedRoleMembershipId = 'dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc'
 }
 Remove-EntraBetaScopedRoleMembership @params
 ```
 
-This cmdlet removes a specific scoped role membership from Microsoft Entra ID.
+This cmdlet removes a specific scoped role membership from Microsoft Entra ID. You can use the command `Get-EntraBetaAdministrativeUnit` to get administrative unit Id.
 
-- `-ObjectId` parameter specifies the administrative unit Id.
-- `-ScopedRoleMembershipId` parameter specifies the scoped role membership Id.
+- `-ObjectId` parameter specifies the ID of an administrative unit.
+- `-ScopedRoleMembershipId` parameter specifies the ID of the scoped role membership to remove.
 
 ## Parameters
 

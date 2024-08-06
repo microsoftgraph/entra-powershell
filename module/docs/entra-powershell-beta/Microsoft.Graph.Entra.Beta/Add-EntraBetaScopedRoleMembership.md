@@ -45,9 +45,9 @@ For delegated scenarios, the calling user needs at least the Privileged Role Adm
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$User = Get-EntraBetaUser -SearchString 'Conf Room Adams'
+$User = Get-EntraBetaUser -SearchString '<user-name>'
 $Role = Get-EntraBetaDirectoryRole | Where-Object -Property DisplayName -EQ -Value 'User Administrator'
-$Unit = Get-EntraBetaAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value 'NewUnit'
+$Unit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-name>'"
 $RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
 $RoleMember.ObjectId = $User.ObjectID
 $params = @{
@@ -64,10 +64,13 @@ Id                                                                Administrative
 dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
-This example adds a scoped role membership to an administrative unit.
+This example adds a scoped role membership to an administrative unit.  
+You can use the command `Get-EntraBetaAdministrativeUnit` to get administrativeunit Id.  
+You can use the command `Get-EntraBetaUser` to get user Id.  
+You can use the command `Get-EntraBetaDirectoryRole` to get directory role Id.  
 
-- `-ObjectId` parameter specifies the administrative unit Id.
-- `-RoleObjectId` parameter specifies the DirectoryRole Id.
+- `-ObjectId` parameter specifies the ID of an administrative unit.
+- `-RoleObjectId` parameter specifies the ID of the DirectoryRole.
 - `-RoleMemberInfo` parameter specifies the RoleMemberInfo object Id.
 
 ## Parameters

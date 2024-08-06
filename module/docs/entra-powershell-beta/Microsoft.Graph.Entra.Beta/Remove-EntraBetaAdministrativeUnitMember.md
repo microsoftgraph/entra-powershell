@@ -41,8 +41,9 @@ The `Remove-EntraBetaAdministrativeUnitMember` cmdlet removes an administrative 
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-name>'"
 $params = @{
-    ObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    ObjectId = $AdministrativeUnit.Id
     MemberId = 'eeeeeeee-4444-5555-6666-ffffffffffff'
 }
 Remove-EntraBetaAdministrativeUnitMember @params
@@ -50,8 +51,8 @@ Remove-EntraBetaAdministrativeUnitMember @params
 
 This command removes a specified member (user or group) from a specified administrative unit.
 
-- `-ObjectId` parameter specifies the administrative unit Id.
-- `-MemberId` parameter specifies the administrative unit member Id.
+- `-ObjectId` parameter specifies the ID of an administrative unit.
+- `-MemberId` parameter specifies the ID of the administrative unit member.
 
 ## Parameters
 

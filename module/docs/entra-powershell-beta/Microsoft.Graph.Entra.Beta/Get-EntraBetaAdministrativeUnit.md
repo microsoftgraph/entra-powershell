@@ -108,7 +108,7 @@ DeletedDateTime Id                                   Description          Displa
 
 This example returns the details of the specified administrative unit.
 
-- `-ObjectId` parameter specifies the administrative unit Id.
+- `-ObjectId` parameter specifies the ID of an administrative unit.
 
 ### Example 4: Get administrative units filter by display name
 
