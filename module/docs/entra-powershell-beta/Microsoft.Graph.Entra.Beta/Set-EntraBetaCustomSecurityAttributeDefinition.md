@@ -49,7 +49,6 @@ $params = @{
     Id = 'Test_ProjectTest' 
     Description = 'Target completion' 
     Status = 'Available' 
-    UsePreDefinedValuesOnly = $False 
 }
 Set-EntraBetaCustomSecurityAttributeDefinition @params
 ```
