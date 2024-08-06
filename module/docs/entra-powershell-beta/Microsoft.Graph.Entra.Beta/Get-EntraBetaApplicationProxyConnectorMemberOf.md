@@ -45,13 +45,9 @@ Get-EntraBetaApplicationProxyConnectorMemberOf -Id 'aaaaaaaa-0000-1111-2222-bbbb
 ```
 
 ```Output
-Name                           Value
-----                           -----
-id                             bbbbbbbb-1111-2222-3333-cccccccccccc
-region
-connectorGroupType             applicationProxy
-isDefault                      False
-name                           test-group
+Id                                   ConnectorGroupType IsDefault Name                       Region
+--                                   ------------------ --------- ----                       ------
+bbbbbbbb-1111-2222-3333-cccccccccccc applicationProxy   False     Backup Application Servers
 ```
 
 This example retrieves the ConnectorGroup With Specified Connector ID.  

@@ -83,7 +83,7 @@
         if($Top -ne $null){
             $response | ForEach-Object {
                 if ($null -ne $_ -and $Top -gt 0) {
-                    $_ | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $data=  $_ | ConvertTo-Json -Depth 10 | ConvertFrom-Json
                 }
 
                 $Top = $Top - 1
@@ -92,10 +92,22 @@
         else {
             $response | ForEach-Object {
                 if ($null -ne $_) {
-                    $_ | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $data= $_ | ConvertTo-Json -Depth 10 | ConvertFrom-Json
                 }
             }
         }
+
+        $targetList = @()
+        foreach ($res in $data) {
+            $targetType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectoryObject
+            $res.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                $propertyValue = $_.Value
+                $targetType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+            }
+            $targetList += $targetType
+        }
+        $targetList
 
 } 
 '@

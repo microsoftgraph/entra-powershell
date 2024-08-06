@@ -75,18 +75,8 @@
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================
-")
+        Write-Debug("=========================================================================")
 
-        $response | ForEach-Object {
-            if ($null -ne $_) {
-                foreach ($Keys in $_.Keys) { 
-                    $Keys=$Keys.SubString(0, 1).ToUpper() + $Keys.Substring(1)
-                    $_ | Add-Member -MemberType NoteProperty -Name $Keys -Value ($_.$Keys) -Force
-                }
-            }
-        }
-        
         if ($PSBoundParameters.ContainsKey("ID")) {
             $response = $response | Where-Object { $_.id -eq $Id }
             if($Null -eq $response ) {
@@ -97,8 +87,32 @@
         } elseif (-not $All -and $Top) {
             $response = $response | Select-Object -First $Top
         }
-        
-        $response   
-    } 
+         
+        $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json        
+        $respList = @()
+       
+        foreach ($res in $data) {                      
+            switch ($res.type) {
+                "activityBasedTimeoutPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGrphActivityBasedTimeoutPolicy }
+                "appManagementPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphAppManagementPolicy }
+                "claimsMappingPolicies" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphClaimsMappingPolicy }
+                "featureRolloutPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphFeatureRolloutPolicy }
+                "HomeRealmDiscoveryPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphHomeRealmDiscoveryPolicy }
+                "tokenIssuancePolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphTokenIssuancePolicy }
+                "tokenLifetimePolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphTokenLifetimePolicy }
+                "permissionGrantPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphPermissionGrantPolicy }
+                default { Write-Error "Unknown type: " + $res.type}
+            }
+
+            $res.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                $propertyValue = $_.Value
+                $respType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+            }
+            $respList += $respType
+        }
+        $respList  
+    }     
+ 
 '@
 }
