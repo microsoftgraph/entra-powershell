@@ -2,9 +2,9 @@
 title: Get-EntraApplicationProxyConnectorGroup
 description: This article provides details on the Get-EntraApplicationProxyConnectorGroup command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/27/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,16 +12,17 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraApplicationProxyConnectorGroup
+
 schema: 2.0.0
 ---
 
 # Get-EntraApplicationProxyConnectorGroup
 
-## SYNOPSIS
+## Synopsis
 The Get-EntraApplicationProxyConnectorGroup cmdlet retrieves a list of all connector groups, or if specified, details of a specific connector group.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 ```powershell
@@ -48,10 +49,10 @@ Get-EntraApplicationProxyConnectorGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraApplicationProxyConnectorGroup cmdlet retrieves a list of all connector groups, or if specified, details of the specified connector group.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve all connector groups
 ```powershell
@@ -81,7 +82,7 @@ a39b9095-8dc8-4d3a-86c3-e7b5c3f0fb84 Application Servers applicationProxy       
 
 This command retrieves a specific connector group.
 
-## PARAMETERS
+## Parameters
 
 ### -All
 List all pages.
@@ -99,9 +100,9 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-Specifies an oData v3.0 filter statement.
+Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
-Details on querying with oData can be found here: https://www.odata.org/documentation/odata-version-3-0/odata-version-3-0-core-protocol/#queryingcollections
+Details on querying with oData can be found here: <https://learn.microsoft.com/graph/aad-advanced-queries?tabs=powershell>
 
 ```yaml
 Type: String
@@ -164,14 +165,14 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
 System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
 ## RELATED LINKS

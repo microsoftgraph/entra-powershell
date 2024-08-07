@@ -1,6 +1,7 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
+
 function Get-EntraBetaHasObjectsWithDirSyncProvisioningError {
     [CmdletBinding(DefaultParameterSetName = 'GetById')]
     param (
@@ -10,13 +11,13 @@ function Get-EntraBetaHasObjectsWithDirSyncProvisioningError {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         if ($PSBoundParameters.ContainsKey("Verbose")) {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if ($null -ne $PSBoundParameters["TenantId"]) {
             $params["TenantId"] = $PSBoundParameters["TenantId"]
         }
         if ($PSBoundParameters.ContainsKey("Debug")) {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if($null -ne $PSBoundParameters["WarningVariable"])
         {

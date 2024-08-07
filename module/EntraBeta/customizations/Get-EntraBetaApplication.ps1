@@ -32,7 +32,7 @@
         }
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($null -ne $PSBoundParameters["All"])
         {
@@ -43,7 +43,7 @@
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if($null -ne $PSBoundParameters["Top"])
         {
@@ -84,6 +84,10 @@
         if($null -ne $PSBoundParameters["WarningAction"])
         {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+        }
+        if($null -ne $PSBoundParameters["Property"])
+        {
+            $params["Property"] = $PSBoundParameters["Property"]
         }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")

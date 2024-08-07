@@ -1,6 +1,7 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
+
 function Get-EntraBetaFederationProperty {
     <#
     .SYNOPSIS
@@ -36,13 +37,13 @@ function Get-EntraBetaFederationProperty {
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{}
         if ($PSBoundParameters.ContainsKey("Verbose")) {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if ($null -ne $PSBoundParameters["DomainName"]) {
             $params["DomainId"] = $PSBoundParameters["DomainName"]
         }
         if ($PSBoundParameters.ContainsKey("Debug")) {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if($null -ne $PSBoundParameters["WarningVariable"])
         {

@@ -1,6 +1,7 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
+
 function Set-EntraDirSyncFeature {
         [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
         param (
@@ -14,7 +15,7 @@ function Set-EntraDirSyncFeature {
             $params = @{}
             $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
             if ($PSBoundParameters.ContainsKey("Verbose")) {
-                $Verbose = $Null
+                $Verbose = $PSBoundParameters["Verbose"]
             }
             if ($null -ne $PSBoundParameters["Feature"]) {
                 $Feature = $PSBoundParameters["Feature"] + "Enabled"
@@ -23,7 +24,7 @@ function Set-EntraDirSyncFeature {
                 $Enabled = $PSBoundParameters["Enabled"]
             }
             if ($PSBoundParameters.ContainsKey("Debug")) {
-                $params["Debug"] = $Null
+                $params["Debug"] = $PSBoundParameters["Debug"]
             }
             if($null -ne $PSBoundParameters["WarningVariable"])
             {

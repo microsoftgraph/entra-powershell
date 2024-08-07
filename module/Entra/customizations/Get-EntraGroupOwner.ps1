@@ -15,9 +15,15 @@
         $properties = '$select=*'
         $Method = "GET"
         $keysChanged = @{ObjectId = "Id"}
+        if($null -ne $PSBoundParameters["Property"])
+        {
+            $selectProperties = $PSBoundParameters["Property"]
+            $selectProperties = $selectProperties -Join ','
+            $properties = "`$select=$($selectProperties)"
+        }
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($null -ne $PSBoundParameters["ObjectId"])
         {
@@ -31,7 +37,7 @@
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if($null -ne $PSBoundParameters["Top"])
         {
@@ -80,7 +86,7 @@
         Write-Debug("=========================================================================`n")
         
         $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).value
-        $response = $response | ConvertTo-Json | ConvertFrom-Json
+        $response = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         $response | ForEach-Object {
             if($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
