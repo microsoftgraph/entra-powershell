@@ -34,11 +34,11 @@ Select-EntraGroupIdsGroupIsMemberOf
 
 ## Description
 
-The Select-EntraGroupIdsGroupIsMemberOf cmdlet gets the groups that a specified group is a member of in Microsoft Entra ID.
+The `Select-EntraGroupIdsGroupIsMemberOf` cmdlet gets the groups that a specified group is a member of in Microsoft Entra ID.
 
 ## Examples
 
-### Example 1: Get the group membership of a group for a group.
+### Example 1: Get the group membership of a group for a group
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
@@ -48,13 +48,10 @@ $GroupId = (Get-EntraGroup -Top 1).ObjectId
 Select-EntraGroupIdsGroupIsMemberOf  -ObjectId $GroupId -GroupIdsForMembershipCheck $Groups
 ```
 
-The first command creates a GroupIdsForMembershipCheck object, and then stores it in the $Groups variable.
+This example gets the group membership of a group identified by $GroupId. Use `Get-EntraGroup` cmdlet to obtain group `ObjectId` value.
 
-The second command gets an ID for a group by using the [Get-EntraGroup](./Get-EntraGroup.md) cmdlet, and then stores it as a property of $Groups.
-
-The third command gets the ID of a group by using Get-EntraGroup, and then stores it in the $GroupId variable.
-
-The final command gets the group membership of a group identified by $GroupId.
+- `-ObjectId` parameter specifies the group ID.
+- `-GroupIdsForMembershipCheck` Specifies an array of group object IDs.
 
 ## Parameters
 
@@ -92,7 +89,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
