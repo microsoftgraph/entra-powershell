@@ -104,6 +104,12 @@
         Write-Debug("=========================================================================`n")
         
         $response = New-MgBetaInvitation @params -Headers $customHeaders
+        $response | ForEach-Object {
+            if($null -ne $_) {
+            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+    
+            }
+        }
         $response
     }
 '@
