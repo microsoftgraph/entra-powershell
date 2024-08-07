@@ -41,7 +41,12 @@ function Set-EntraPolicy {
         $policyTypes = $policyTypeMap.Values
 
         if ($null -ne $PSBoundParameters["type"]) {
-            $type = if ($policyTypeMap.ContainsKey($type)) { $policyTypeMap[$type] } else { $null }
+            $type = if ($policyTypeMap.ContainsKey($type)) { $policyTypeMap[$type] } else { 
+                Write-Error "Set-EntraBetADPolicy : Error occurred while executing SetPolicy 
+                Code: Request_BadRequest
+                Message: Invalid value specified for property 'type' of resource 'Policy'."
+                return;  
+            }
         } else {
             $type = $null
         }                
@@ -130,8 +135,8 @@ function Set-EntraPolicy {
                 Write-Debug("=========================================================================`n")
             
                 $body = $params | ConvertTo-Json
-                $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Body $body -Method $Method
-                $response
+               Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Body $body -Method $Method
+               
         }
         
     }    
