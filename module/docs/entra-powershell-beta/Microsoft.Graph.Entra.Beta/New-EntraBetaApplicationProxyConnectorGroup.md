@@ -1,25 +1,28 @@
 ---
 title: New-EntraBetaApplicationProxyConnectorGroup
 description: This article provides details on the New-EntraBetaApplicationProxyConnectorGroupcommand.
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 04/05/2024
+ms.date: 07/16/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaApplicationProxyConnectorGroup
+
 schema: 2.0.0
 ---
 
 # New-EntraBetaApplicationProxyConnectorGroup
 
-## SYNOPSIS
-The New-EntraBetaApplicationProxyConnectorGroup cmdlet creates a new Application Proxy Connector group.
+## Synopsis
 
-## SYNTAX
+The `New-EntraBetaApplicationProxyConnectorGroup` cmdlet creates a new Application Proxy Connector group.
+
+## Syntax
 
 ```powershell
 New-EntraBetaApplicationProxyConnectorGroup
@@ -27,34 +30,42 @@ New-EntraBetaApplicationProxyConnectorGroup
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The New-EntraBetaApplicationProxyConnectorGroup cmdlet creates a new Application Proxy connector group.
+## Description
 
-## EXAMPLES
+The `New-EntraBetaApplicationProxyConnectorGroup` cmdlet creates a new Application Proxy connector group.
 
-### Example 1: Create a new Connector Group.
+## Examples
+
+### Example 1: Create a new Connector Group
+
 ```powershell
-PS C:\> New-EntraBetaApplicationProxyConnectorGroup -Name "Backup Application Servers"
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+New-EntraBetaApplicationProxyConnectorGroup -Name 'Backup Application Servers'
 ```
-```output
+
+```Output
 Name                           Value
 ----                           -----
-id                             55311d30-74d7-4cad-a7d7-f8d76e110345
+id                             aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 @odata.context                 https://graph.microsoft.com/beta/$metadata#onPremisesPublishingProfiles('applicationProxy')/connectorGroups/$entity
 isDefault                      False
 name                           Backup Application Servers
 region                         eur
 connectorGroupType             applicationProxy
 ```
-This Command Create a new Connector Group with the name "Backup Application Servers"
 
-## PARAMETERS
+This example creates a new Connector Group using specified name.
+
+- `-Name` parameter specifies the new connector group name.
+
+## Parameters
 
 ### -Name
+
 The name of the new Connector Group.
 
 ```yaml
-Type: Name
+Type: System.Name
 Parameter Sets: (All)
 Aliases:
 
@@ -66,14 +77,23 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
 
 ### Microsoft.Open.MSGraph.Model.Name
-## OUTPUTS
+
+## Outputs
 
 ### System.Object
-## NOTES
 
-## RELATED LINKS
+## Notes
+
+## Related Links
+
+[Set-EntraBetaApplicationProxyConnectorGroup](Set-EntraBetaApplicationProxyConnectorGroup.md)
+
+[Get-EntraBetaApplicationProxyConnectorGroup](Get-EntraBetaApplicationProxyConnectorGroup.md)
+
+[Remove-EntraBetaApplicationProxyConnectorGroup](Remove-EntraBetaApplicationProxyConnectorGroup.md)

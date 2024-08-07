@@ -1,6 +1,7 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
+
 function Set-EntraPartnerInformation {    
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
@@ -30,7 +31,7 @@ function Set-EntraPartnerInformation {
         $body = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         if ($PSBoundParameters.ContainsKey("Verbose")) {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if ($null -ne $PSBoundParameters["TenantId"]) {
             $body["partnerTenantId"] = $PSBoundParameters["TenantId"]
@@ -57,7 +58,7 @@ function Set-EntraPartnerInformation {
             $body["supportUrl"] = $PSBoundParameters["PartnerSupportUrl"]
         }
         if ($PSBoundParameters.ContainsKey("Debug")) {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")

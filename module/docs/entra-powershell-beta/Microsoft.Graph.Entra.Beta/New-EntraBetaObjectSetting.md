@@ -1,26 +1,27 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaObjectSetting
+
 schema: 2.0.0
 ---
 
 # New-EntraBetaObjectSetting
 
-## SYNOPSIS
+## Synopsis
 Creates a settings object.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaObjectSetting -DirectorySetting <DirectorySetting> -TargetType <String> -TargetObjectId <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraBetaObjectSetting cmdlet creates a settings object in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -29,7 +30,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 ### -DirectorySetting
 Specifies the new settings.
@@ -80,13 +81,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaObjectSetting]()
 
