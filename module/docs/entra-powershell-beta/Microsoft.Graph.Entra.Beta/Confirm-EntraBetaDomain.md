@@ -1,26 +1,27 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Confirm-EntraBetaDomain
+
 schema: 2.0.0
 ---
 
 # Confirm-EntraBetaDomain
 
-## SYNOPSIS
+## Synopsis
 Validate the ownership of a domain.
 
-## SYNTAX
+## Syntax
 
 ```
 Confirm-EntraBetaDomain [-CrossCloudVerificationCode <CrossCloudVerificationCodeBody>] -Name <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Confirm-EntraBetaDomain cmdlet validates the ownership of an Azure Active Directory domain.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Confirm the domain
 ```
@@ -36,7 +37,7 @@ PS C:\>Confirm-EntraBetaDomain -Name Contoso.com -CrossCloudVerificationCode ms8
 
 This command will confirm your domain for dual federation scenarios.
 
-## PARAMETERS
+## Parameters
 
 ### -Name
 Specifies the name of the domain.
@@ -71,13 +72,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaDomain]()
 

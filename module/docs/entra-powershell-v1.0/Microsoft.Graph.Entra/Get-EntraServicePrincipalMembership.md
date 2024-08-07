@@ -2,44 +2,49 @@
 title: Get-EntraServicePrincipalMembership.
 description: This article provides details on the Get-EntraServicePrincipalMembership command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/06/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraServicePrincipalMembership
+
 schema: 2.0.0
 ---
 
 # Get-EntraServicePrincipalMembership
 
-## SYNOPSIS
+## Synopsis
+
 Get a service principal membership.
 
-## SYNTAX
+## Syntax
 
 ```powershell
-Get-EntraServicePrincipalMembership 
+Get-EntraServicePrincipalMembership
  -ObjectId <String>
- [-All <Boolean>] 
+ [-All]
  [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
+
 The Get-EntraServicePrincipalMembership cmdlet gets the memberships of a service principal in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the memberships of a service principal.
 
 ```powershell
-PS C:\> $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
-PS C:\> Get-EntraServicePrincipalMembership -ObjectId $ServicePrincipalId
+Connect-Entra -Scopes 'Application.Read.All'
+$ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
+Get-EntraServicePrincipalMembership -ObjectId $ServicePrincipalId
 ```
 
 The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md) cmdlet. 
@@ -50,52 +55,56 @@ The second command gets the memberships of a service principal identified by $Se
 ### Example 2: Retrieve all memberships of a service principal
 
 ```powershell
-PS C:\> Get-EntraServicePrincipalMembership -ObjectId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -All $true
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraServicePrincipalMembership -ObjectId '33334444-dddd-5555-eeee-6666ffff7777' -All 
 ```
+
 ```output
 Id                                   DeletedDateTime
 --                                   ---------------
-7dc3a38a-4c92-40bd-b290-ea00f85b478c
-
+33334444-dddd-5555-eeee-6666ffff7777
 ```
+
 This command gets all memberships of a specified service principal.
 
 ### Example 3: Retrieve top two memberships of a service principal
+
 ```powershell
-PS C:\> Get-EntraServicePrincipalMembership -ObjectId "02ed943d-6eca-4f99-83d6-e6fbf9dc63ae" -Top 2
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraServicePrincipalMembership -ObjectId '22223333-cccc-4444-dddd-5555eeee6666' -Top 2
 ```
+
 ```output
 Id                                   DeletedDateTime
 --                                   ---------------
-7dc3a38a-4c92-40bd-b290-ea00f85b478c
-
+22223333-cccc-4444-dddd-5555eeee6666
 ```
 
 This command gets two memberships of a specified service principal.
 
-## PARAMETERS
+## Parameters
 
 ### -All
-If true, return all memberships.
-If false, return the number of objects specified by the Top parameter.
+
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
 ### -ObjectId
+
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -107,10 +116,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -121,16 +131,32 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
-

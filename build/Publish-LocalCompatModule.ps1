@@ -12,6 +12,25 @@ param(
 
 $modulePath = Join-Path (Get-ModuleBasePath) (Get-ConfigValue -Name ModuleOutputSubdirectoryName)
 $modulePath = Join-Path $modulePath (Get-ModuleName)
+$fullModuleName = Get-ModuleName
+if($fullModuleName -eq 'Microsoft.Graph.Entra'){
+	$moduleName = 'Entra'
+}
+else{
+	$moduleName = 'EntraBeta'
+}
+
+$settingPath = "$PSScriptRoot/../module/$ModuleName/config/ModuleSettings.json"
+$content = Get-Content -Path $settingPath | ConvertFrom-Json
+
+if($moduleName -eq 'Entra'){
+	Publish-Module -Name Microsoft.Graph.Authentication -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName)
+}
+
+foreach ($destinationModuleName in $content.destinationModuleName){
+    Write-Verbose("Publishing Module $($destinationModuleName)")
+	Publish-Module -Name $destinationModuleName -RequiredVersion $content.destinationModuleVersion -Repository (Get-LocalPSRepoName)
+}
 
 Publish-Module -Path $modulePath -Repository (Get-LocalPSRepoName)
 

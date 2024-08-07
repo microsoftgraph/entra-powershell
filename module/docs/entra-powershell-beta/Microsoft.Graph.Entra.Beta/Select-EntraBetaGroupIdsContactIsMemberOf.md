@@ -1,37 +1,61 @@
 ---
+title: Select-EntraBetaGroupIdsContactIsMemberOf
+description: This article provides details on the Select-EntraBetaGroupIdsContactIsMemberOf.
+
+ms.topic: reference
+ms.date: 07/17/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Select-EntraBetaGroupIdsContactIsMemberOf
+
 schema: 2.0.0
 ---
 
 # Select-EntraBetaGroupIdsContactIsMemberOf
 
-## SYNOPSIS
+## Synopsis
+
 Get groups in which a contact is a member.
 
-## SYNTAX
+## Syntax
 
-```
-Select-EntraBetaGroupIdsContactIsMemberOf -ObjectId <String>
- -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> [<CommonParameters>]
-```
-
-## DESCRIPTION
-The Select-EntraBetaGroupIdsContactIsMemberOf cmdlet gets groups in Azure Active Directory (AD) in which a contact is a member.
-
-## EXAMPLES
-
-### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Select-EntraBetaGroupIdsContactIsMemberOf 
+ -ObjectId <String>
+ -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> 
+ [<CommonParameters>]
 ```
 
-{{ Add example description here }}
+## Description
 
-## PARAMETERS
+The `Select-EntraBetaGroupIdsContactIsMemberOf` cmdlet gets groups in Microsoft Entra ID in which a contact is a member.
+
+## Examples
+
+### Example 1: Get groups in which a contact is a member
+
+```powershell
+Connect-Entra -Scopes 'OrgContact.Read.All,Group.Read.All'
+$Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+$Groups.GroupIds = (Get-EntraBetaGroup -ObjectId 'jjjjjjjj-9999-7777-7777-uuuuuuuuuuuu').ObjectId
+$UserID = (Get-EntraBetaContact -ObjectId 'hhhhhhhh-8888-9999-8888-cccccccccccc').ObjectId
+Select-EntraBetaGroupIdsContactIsMemberOf -ObjectId $UserID -GroupIdsForMembershipCheck $Groups
+```
+
+This example demonstrates how to get groups in which a contact is a member.
+
+- `-ObjectId` parameter specifies the contact Object ID.
+- `-GroupIdsForMembershipCheck` parameter specifies the group Object ID.
+
+## Parameters
 
 ### -GroupIdsForMembershipCheck
+
 Specifies an array of group object IDs.
 
 ```yaml
@@ -47,10 +71,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the object ID of a contact in Azure AD.
+
+Specifies the object ID of a contact in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -62,12 +87,13 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links

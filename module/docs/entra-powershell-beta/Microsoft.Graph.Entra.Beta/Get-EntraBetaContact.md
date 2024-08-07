@@ -1,31 +1,51 @@
 ---
+title: Get-EntraBetaContact
+description: This article provides details on the Get-EntraBetaContact command.
+
+ms.topic: reference
+ms.date: 07/18/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaContact
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaContact
 
-## SYNOPSIS
+## Synopsis
 Gets a contact from Azure Active Directory.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
-```
-Get-EntraBetaContact [-Filter <String>] [-All <Boolean>] [-Top <Int32>] [<CommonParameters>]
+
+```powershell
+Get-EntraBetaContact
+ [-Filter <String>]
+ [-All] [-Top <Int32>]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraBetaContact -ObjectId <String> [-All <Boolean>] [<CommonParameters>]
+
+```powershell
+Get-EntraBetaContact
+ -ObjectId <String>
+ [-All]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaContact cmdlet gets a contact from Azure Active Directory.
 
-## EXAMPLES
+## Examples
 
 ### Example 1 Retrieve all contact objects in the directory
 ```
@@ -38,26 +58,25 @@ b052db07-e7ec-4c0e-b481-a5ba550b9ee7 contact@contoso.com Contoso Contact
 
 This command retrieves all contact objects in the directory.
 
-## PARAMETERS
+## Parameters
 
 ### -All
-If true, return all contacts.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -Filter
-Specifies an oData v3.0 filter statement.
+Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
@@ -102,16 +121,32 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Remove-EntraBetaContact]()
 

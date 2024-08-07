@@ -2,27 +2,30 @@
 title: Remove-EntraUserExtension.
 description: This article provides details on the Remove-EntraUserExtension command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/22/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraUserExtension
+
 schema: 2.0.0
 ---
 
 # Remove-EntraUserExtension
 
-## SYNOPSIS
+## Synopsis
+
 Removes a user extension.
 
-## SYNTAX
+## Syntax
 
 ### SetMultiple
+
 ```powershell
 Remove-EntraUserExtension 
  -ObjectId <String> 
@@ -31,6 +34,7 @@ Remove-EntraUserExtension
 ```
 
 ### SetSingle
+
 ```powershell
 Remove-EntraUserExtension 
  -ObjectId <String> 
@@ -38,25 +42,33 @@ Remove-EntraUserExtension
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Remove-EntraUserExtension cmdlet removes a user extension from Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Remove-EntraUserExtension` cmdlet removes a user extension from Microsoft Entra ID.
 
-### Example 1: Remove the "Test Extension" attribute from user: TestUser@example.com
+## Examples
+
+### Example 1: Remove the "Test Extension" attribute from user: <TestUser@example.com>
+
 ```powershell
-PS C:\> Remove-EntraUserExtension -ObjectId TestUser@example.com -ExtensionName "Test Extension"
+$params = @{
+    ObjectId = 'TestUser@example.com'
+    ExtensionName = 'Test Extension'
+}
+
+Remove-EntraUserExtension @params
 ```
 
-This will remove the "Test Extension" attribute from user: TestUser@example.com.
+This will remove the "Test Extension" attribute from user: <TestUser@example.com>.
 
-## PARAMETERS
+## Parameters
 
 ### -ExtensionName
+
 Specifies the name of an extension.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: SetSingle
 Aliases:
 
@@ -68,6 +80,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExtensionNames
+
 Specifies an array of extension names.
 
 ```yaml
@@ -83,10 +96,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies an object ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -98,17 +112,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Get-EntraUserExtension](Get-EntraUserExtension.md)
 
 [Set-EntraUserExtension](Set-EntraUserExtension.md)
-

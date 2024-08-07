@@ -1,27 +1,29 @@
 ---
 title: Set-EntraBetaApplicationProxyApplicationSingleSignOn
-
 description: This article provides details on the Set-EntraBetaApplicationProxyApplicationSingleSignOn command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 04/03/2024
+ms.date: 07/16/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaApplicationProxyApplicationSingleSignOn
+
 schema: 2.0.0
 ---
 
 # Set-EntraBetaApplicationProxyApplicationSingleSignOn
 
-## SYNOPSIS
-The Set-EntraBetaApplicationProxyApplicationSingleSignOn cmdlet allows you to set and modify single sign-on (SSO) settings for an application configured for Application Proxy in Microsoft Entra ID.
+## Synopsis
 
-## SYNTAX
+The `Set-EntraBetaApplicationProxyApplicationSingleSignOn` cmdlet allows you to set and modify single sign-on (SSO) settings for an application configured for Application Proxy in Microsoft Entra ID.
+
+## Syntax
 
 ```powershell
 Set-EntraBetaApplicationProxyApplicationSingleSignOn 
@@ -32,29 +34,53 @@ Set-EntraBetaApplicationProxyApplicationSingleSignOn
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Set-EntraBetaApplicationProxyApplicationSingleSignOn cmdlet allows you to set and modify single sign-on (SSO) settings for an application configured for Application Proxy in Microsoft Entra ID.
+## Description
+
+The `Set-EntraBetaApplicationProxyApplicationSingleSignOn` cmdlet allows you to set and modify single sign-on (SSO) settings for an application configured for Application Proxy in Microsoft Entra ID.
 This is limited to setting No SSO, Kerberos Constrained Delegation (for applications using Integrated Windows Authentication), and Header-based SSO.
 
-## EXAMPLES
+## Examples
 
-### Example 1:  Assign an application to use Kerberos Constrained Delegation, and specify required parameters.
+### Example 1:  Assign an application to use Kerberos Constrained Delegation, and specify required parameters
+
 ```powershell
-PS C:\> Set-EntraBetaApplicationProxyApplicationSingleSignOn -ObjectId 4eba5342-8d17-4eac-a1f6-62a0de26311e -SingleSignOnMode OnPremisesKerberos -KerberosInternalApplicationServicePrincipalName "https/www.adventure-works.com" -KerberosDelegatedLoginIdentity OnPremisesUserPrincipalName
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+$params = @{
+    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
+    SingleSignOnMode = 'OnPremisesKerberos' 
+    KerberosInternalApplicationServicePrincipalName = 'https/www.adventure-works.com' 
+    KerberosDelegatedLoginIdentity = 'OnPremisesUserPrincipalName'
+}
+Set-EntraBetaApplicationProxyApplicationSingleSignOn @params
 ```
 
-This command Assign an application to use Kerberos Constrained Delegation, and specify required parameters.
+This example assigns an application to use Kerberos Constrained Delegation, and specify required parameters.
+
+- `-ObjectId` parameter specifies the application ID.
+- `-SingleSignOnMode` parameter specifies the type of SSO.
+- `-KerberosInternalApplicationServicePrincipalName` parameter specifies the internal application ServicePrincipalName of the application server.
+- `-KerberosDelegatedLoginIdentity` parameter specifies the Connector group ID that assigned to this application.
 
 ### Example 2: Remove SSO from an application
-```
-PS C:\> Set-EntraBetaApplicationProxyApplicationSingleSignOn -ObjectId 4eba5342-8d17-4eac-a1f6-62a0de26311e -SingleSignOnMode None
+
+```powershell
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+$params = @{
+    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
+    SingleSignOnMode = 'None' 
+}
+Set-EntraBetaApplicationProxyApplicationSingleSignOn @params
 ```
 
-This example demonstrates how to Remove SSO from an application.
+This example demonstrates how to remove SSO from an application.
 
-## PARAMETERS
+- `-ObjectId` parameter specifies the application ID.
+- `-SingleSignOnMode` parameter specifies the type of SSO.
+
+## Parameters
 
 ### -KerberosDelegatedLoginIdentity
+
 The identity that the Connector can use on behalf of your users to authenticate.
 
 ```yaml
@@ -71,11 +97,12 @@ Accept wildcard characters: False
 ```
 
 ### -KerberosInternalApplicationServicePrincipalName
+
 The internal application SPN of the application server.
-This SPN needs to be in the list of services to which the Connector can present delegated credentials.
+This ServicePrincipalName (SPN) needs to be in the list of services to which the Connector can present delegated credentials.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -87,12 +114,13 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 The unique application ID of the application that needs different SSO settings.
-ObjectId can be found using the Get-EntraBetaApplication command.
+ObjectId can be found using the `Get-EntraBetaApplication` command.
 You can also find this in the Microsoft Portal by navigating to Microsoft Entra ID, Enterprise Applications, All Applications, Select your application, go to the properties tab, and use the ObjectId on that page.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -104,6 +132,7 @@ Accept wildcard characters: False
 ```
 
 ### -SingleSignOnMode
+
 Choose the type of SSO you would like the application to use.
 Only three SSO settings are supported in PowerShell, for more options, please use the Microsoft Portal.
 
@@ -121,16 +150,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
 
 ### System.String
+
 System.Nullable\`1\[\[Microsoft.Open.MSGraph.Model.OnPremisesPublishingSingleSignOnObject+SingleSignOnModeEnum, Microsoft.Open.MS.GraphV10.Client, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null\]\] System.Nullable\`1\[\[Microsoft.Open.MSGraph.Model.OnPremisesPublishingKerberosSignOnSettingsObject+KerberosSignOnMappingAttributeTypeEnum, Microsoft.Open.MS.GraphV10.Client, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null\]\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
 
-## RELATED LINKS
+## Notes
+
+## Related Links

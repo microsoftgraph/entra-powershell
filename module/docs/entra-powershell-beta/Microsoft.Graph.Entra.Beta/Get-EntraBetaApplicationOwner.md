@@ -1,25 +1,31 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaApplicationOwner
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaApplicationOwner
 
-## SYNOPSIS
+## Synopsis
 Gets the owner of an application.
 
-## SYNTAX
+## Syntax
 
-```
-Get-EntraBetaApplicationOwner [-Top <Int32>] -ObjectId <String> [-All <Boolean>] [<CommonParameters>]
+```powershell
+Get-EntraBetaApplicationOwner
+ -ObjectId <String>
+ [-Top <Int32>]
+ [-All]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Get-EntraBetaApplicationOwner cmdlet get an owner of an Azure Active Directory application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the owner of an application
 ```
@@ -32,21 +38,20 @@ c13dd34a-492b-4561-b171-40fcce2916c5 User
 
 This command gets the owner of an application.
 
-## PARAMETERS
+## Parameters
 
 ### -All
-If true, return all owners.
-If false, return the number of objects specified by the Top parameter
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -80,16 +85,32 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraBetaApplicationOwner]()
 

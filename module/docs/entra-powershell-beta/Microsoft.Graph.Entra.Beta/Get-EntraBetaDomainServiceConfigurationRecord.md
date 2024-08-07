@@ -1,26 +1,30 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaDomainServiceConfigurationRecord
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaDomainServiceConfigurationRecord
 
-## SYNOPSIS
+## Synopsis
 Gets the domain's service configuration records from the serviceConfigurationRecords navigation property.
 
-## SYNTAX
+## Syntax
 
-```
-Get-EntraBetaDomainServiceConfigurationRecord -Name <String> [<CommonParameters>]
+```powershell
+Get-EntraBetaDomainServiceConfigurationRecord
+ -Name <String>
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 Gets the domain's service configuration records from the serviceConfigurationRecords navigation property. 
 After you have successfully verified the ownership of a domain and you have indicated what services you plan to use with the domain, you can request Azure AD to return you a set of DNS records which you need to add to the zone file of the domain so that the services can work properly with your domain.
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -39,7 +43,7 @@ b457cd8d-e1bb-4ea9-ae65-cb31c551e27a _sipfederationtls._tcp.drumkit.onmicrosoft.
 
 This example shows how to retrieve the Domain service configuration records for a domain with the given name
 
-## PARAMETERS
+## Parameters
 
 ### -Name
 The name of the domain for which the domain service configuration records are to be retrieved
@@ -56,15 +60,31 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

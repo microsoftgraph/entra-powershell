@@ -6,46 +6,83 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {    
-        `$params = @{}
-        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
-        `$keysChanged = @{}
-        if(`$null -ne `$PSBoundParameters["NewPassword"])
+        $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        $keysChanged = @{}
+        if($null -ne $PSBoundParameters["NewPassword"])
         {
-            `$params["NewPassword"] = `$PSBoundParameters["NewPassword"]
+            $params["NewPassword"] = $PSBoundParameters["NewPassword"]
         }
-        if(`$PSBoundParameters.ContainsKey("Verbose"))
+        if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            `$params["Verbose"] = `$Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
-        if(`$PSBoundParameters.ContainsKey("Debug"))
+        if($PSBoundParameters.ContainsKey("Debug"))
         {
-            `$params["Debug"] = `$Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
-        if(`$null -ne `$PSBoundParameters["CurrentPassword"])
+        if($null -ne $PSBoundParameters["WarningVariable"])
         {
-            `$params["CurrentPassword"] = `$PSBoundParameters["CurrentPassword"]
+            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+        }
+        if($null -ne $PSBoundParameters["InformationVariable"])
+        {
+            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+        }
+	    if($null -ne $PSBoundParameters["InformationAction"])
+        {
+            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+        }
+        if($null -ne $PSBoundParameters["OutVariable"])
+        {
+            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+        }
+        if($null -ne $PSBoundParameters["OutBuffer"])
+        {
+            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+        }
+        if($null -ne $PSBoundParameters["ErrorVariable"])
+        {
+            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+        }
+        if($null -ne $PSBoundParameters["PipelineVariable"])
+        {
+            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+        }
+        if($null -ne $PSBoundParameters["ErrorAction"])
+        {
+            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        }
+        if($null -ne $PSBoundParameters["WarningAction"])
+        {
+            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
+        }
+        if($null -ne $PSBoundParameters["CurrentPassword"])
+        {
+            $params["CurrentPassword"] = $PSBoundParameters["CurrentPassword"]
         } 
-        `$currsecur = [System.Runtime.InteropServices.Marshal]::SecureStringToGlobalAllocUnicode(`$params.CurrentPassword)
-        `$curr = [System.Runtime.InteropServices.Marshal]::PtrToStringUni(`$currsecur)
+        $currsecur = [System.Runtime.InteropServices.Marshal]::SecureStringToGlobalAllocUnicode($params.CurrentPassword)
+        $curr = [System.Runtime.InteropServices.Marshal]::PtrToStringUni($currsecur)
     
-        `$newsecur = [System.Runtime.InteropServices.Marshal]::SecureStringToGlobalAllocUnicode(`$params.NewPassword)
-        `$new = [System.Runtime.InteropServices.Marshal]::PtrToStringUni(`$newsecur)
+        $newsecur = [System.Runtime.InteropServices.Marshal]::SecureStringToGlobalAllocUnicode($params.NewPassword)
+        $new = [System.Runtime.InteropServices.Marshal]::PtrToStringUni($newsecur)
     
-        `$params["Url"]  = "https://graph.microsoft.com/beta/me/changePassword"
-        `$body = @{
-            currentPassword = `$curr
-            newPassword = `$new 
+        $params["Url"]  = "https://graph.microsoft.com/beta/me/changePassword"
+        $body = @{
+            currentPassword = $curr
+            newPassword = $new 
         }
-        `$body = `$body | ConvertTo-Json
+        $body = $body | ConvertTo-Json
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-        Write-Debug("=========================================================================`n")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================
+")
         
-        `$response = Invoke-GraphRequest -Headers `$customHeaders -Uri `$params.Url -Method POST -Body `$body
-        `$response
-        }
-"@
+        $response = Invoke-GraphRequest -Headers $customHeaders -Uri $params.Url -Method POST -Body $body
+        $response
+    } 
+'@
 }
