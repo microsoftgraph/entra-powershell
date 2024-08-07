@@ -31,7 +31,7 @@
         {
             $URI = "$baseUri/$($params.GroupId)/members?$properties"
         }
-        if($null -ne $PSBoundParameters["Top"] -and  (-not $PSBoundParameters.ContainsKey("All")))
+        if($null -ne $PSBoundParameters["Top"])
         {
             $topCount = $PSBoundParameters["Top"]
             if ($topCount -gt 999) {
@@ -96,9 +96,9 @@
             $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $all = $All.IsPresent
             $increment = $topCount - $data.Count
-            while ($response.'@odata.nextLink' -and (($all) -or ($increment -gt 0 -and -not $all))) {
+            while (($response.'@odata.nextLink' -and (($all -and ($increment -lt 0)) -or $increment -gt 0))) {
                 $URI = $response.'@odata.nextLink'
-                if (-not $all) {
+                if ($increment -gt 0) {
                     $topValue = [Math]::Min($increment, 999)
                     $URI = $URI.Replace('$top=999', "`$top=$topValue")
                     $increment -= $topValue
@@ -112,8 +112,18 @@
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
             }
         }
-        $data 
-    }  
+        $userList = @()
+        foreach ($response in $data) {
+            $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
+            $response.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name
+                $propertyValue = $_.Value
+                $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+            }
+            $userList += $userType
+        }
+        $userList 
+    } 
 '@
 }
 
