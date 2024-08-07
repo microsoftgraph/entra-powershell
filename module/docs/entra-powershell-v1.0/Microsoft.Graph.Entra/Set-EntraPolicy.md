@@ -52,7 +52,7 @@ Set-EntraPolicy @params
 
 This command updates display name of the specified policy in Microsoft Entra ID.
 
-- `-Id` - Specifies the ID of the policy for which you want to set values. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the policy.
+- `-Id` - Specifies the ID of the policy for which you want to set values.
 
 - `DisplayName` - Specifies the display name.
 
@@ -69,10 +69,10 @@ Set-EntraPolicy @params
 
 This command updates definition of the specified policy in Microsoft Entra ID.
 
-- `-Id` - Specifies the ID of the policy for which you want to set values. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the policy.
+- `-Id` - Specifies the ID of the policy for which you want to set values.
 
 - `Definition` - Specifies the array of stringified JSON that contains all the rules of the policy.
-In this example, `@('{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')` represents definition of the activityBasedTimeoutPolicies.
+In this example, `@('{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')` represents definition of the activityBasedTimeoutPolicy.
 
 ### Example 3: Update a policy organization default
 
@@ -87,7 +87,9 @@ Set-EntraPolicy @params
 
 This command updates organization default of the specified policy in Microsoft Entra ID.
 
-- `-Id` - Specifies the ID of the policy for which you want to set values. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the policy.
+- `-Id` - Specifies the ID of the policy for which you want to set values.
+
+- `-IsOrganizationDefault` If true, activates this policy. Only one policy of the same type can be the organization default. Optional, default is false.
 
 ### Example 4: Update policy type
 
@@ -95,24 +97,23 @@ This command updates organization default of the specified policy in Microsoft E
 Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
 $params = @{
     Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-    Type = 'homeRealmDiscoveryPolicies'
+    Type = 'ActivityBasedTimeoutPolicy'
 }
 Set-EntraPolicy @params
 ```
 
 This example demonstrates how to update the `type` property of a specified policy in Microsoft Entra ID.
 
-- `-Id` - Specifies the ID of the policy for which you want to set values. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the policy.
+- `-Id` - Specifies the ID of the policy for which you want to set values.
 
-- `-Type` - Specifies the type of policy. In this example, `homeRealmDiscoveryPolicies`
- represents the type of policy.
+- `-Type` - Specifies the type of policy. In this example, `ActivityBasedTimeoutPolicy` represents the type of policy.
 
 ## Parameters
 
 ### -Definition
 
 Specifies the array of stringified JSON that contains all the rules of the policy.
-For example -Definition @("{"TokenLifetimePolicy":{"Version":1,"MaxInactiveTime":"20:00:00"}}").
+For example -Definition @('{"TokenLifetimePolicy":{"Version":1,"MaxInactiveTime":"20:00:00"}}').
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
