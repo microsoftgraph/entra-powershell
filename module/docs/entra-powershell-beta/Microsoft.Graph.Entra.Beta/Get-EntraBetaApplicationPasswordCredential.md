@@ -39,7 +39,7 @@ The `Get-EntraBetaApplicationPasswordCredential` cmdlet receives the password cr
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaApplicationPasswordCredential -ObjectId `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb`
+Get-EntraBetaApplicationPasswordCredential -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
