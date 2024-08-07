@@ -47,10 +47,10 @@ $Params = @{
 Remove-EntraBetaServicePrincipalPasswordCredential @Params
 ```
 
-This command demonstrates how to remove a password credential from a service principal in Microsoft Entra ID.  
+This example demonstrates how to remove a password credential from a service principal in Microsoft Entra ID.  
 
 - `-ObjectId` parameter specifies the ObjectId of a specified Service Principal Password Credential.  
-- `-KeyId` parameter specifies the unique identifier of a Password Credential.  
+- `-KeyId` parameter specifies the unique identifier of a Password Credential. 
 
 ## Parameters
 
