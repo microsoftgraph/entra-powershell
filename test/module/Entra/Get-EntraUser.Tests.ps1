@@ -1,86 +1,45 @@
-# ------------------------------------------------------------------------------
-#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
-# ------------------------------------------------------------------------------
-
-BeforeAll {  
+BeforeAll {
     if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
-        Import-Module Microsoft.Graph.Entra      
+        Import-Module Microsoft.Graph.Entra
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
-    
+
     $scriptblock = {
-        $valueObject = [PSCustomObject]@{
-            "DisplayName"                      = "Mock-User"
-            "AccountEnabled"                   = $true
-            "Mail"                             = "User@aaabbbcccc.OnMicrosoft.com"
-            "userPrincipalName"                = "User@aaabbbcccc.OnMicrosoft.com"
-            "DeletedDateTime"                  = $null
-            "CreatedDateTime"                  = $null
-            "EmployeeId"                       = $null
-            "Id"                               = "bbbbbbbb-1111-2222-3333-cccccccccccc"
-            "Surname"                          = $null
-            "MailNickName"                     = "User"
-            "OnPremisesDistinguishedName"      = $null
-            "OnPremisesSecurityIdentifier"     = $null
-            "OnPremisesUserPrincipalName"      = $null
-            "OnPremisesSyncEnabled"            = $false
-            "onPremisesImmutableId"            = $null
-            "OnPremisesLastSyncDateTime"       = $null
-            "JobTitle"                         = $null
-            "CompanyName"                      = $null
-            "Department"                       = $null
-            "Country"                          = $null
-            "BusinessPhones"                   = @{}
-            "OnPremisesProvisioningErrors"     = @{}
-            "ImAddresses"                      = @{}
-            "ExternalUserState"                = $null
-            "ExternalUserStateChangeDateTime"  = $null
-            "MobilePhone"                      = $null
-        }
-
-        # Response from an Invoke-GraphRequest is a hashtable with @odata.context and Value objects
-
-        # Name                           Value
-        # ----                           -----
-        # @odata.context                 https://graph.microsoft.com/v1.0/$metadata#users
-        # value                          {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hasht...
-
-        $response = @{
-            '@odata.context'        = 'Users()'
-            Value                   = $valueObject
-        }
+        # Write-Host "Mocking Get-EntraUser with parameters: $($args | ConvertTo-Json -Depth 3)"
 
         return @(
-            $response
+            [PSCustomObject]@{
+                Id                              = "fd560167-ff1f-471a-8d74-3b0070abcea1"
+                ExternalUserState               = "PendingAcceptance"
+                ExternalUserStateChangeDateTime = "16-01-2024 10:30:25"
+                mobilePhone                     = "123456789"
+                DeletedDateTime                 = $null
+                AssignedLicenses                = $null
+                AssignedPlans                   = $null
+                PasswordProfile                 = $null
+                DisplayName                     = "Conf Room Adams"
+                Parameters                      = $args
+            }
         )
+
     }
 
-    Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
+    Mock -CommandName Get-MgUser -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
-  
+
 Describe "Get-EntraUser" {
     Context "Test for Get-EntraUser" {
-        It "Should return specific user" {
-            $result = Get-EntraUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
-            Write-Verbose "Result : {$result}" -Verbose
+        It "Should return specific User" {
+            $result = Get-EntraUser -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
+            $result.Id | should -Be "fd560167-ff1f-471a-8d74-3b0070abcea1"
+            $result.mobilePhone | Should -Be "123456789"
+            $result.ExternalUserStateChangeDateTime | Should -Be "16-01-2024 10:30:25"
+            $result.ExternalUserState | Should -Be "PendingAcceptance"
+            $result.DisplayName | Should -Be "Conf Room Adams"
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
-        }
 
-        It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUser"
-
-            $result = Get-EntraUser -Top 1
-            $result | Should -Not -BeNullOrEmpty
-
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUser"
-
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
-                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
-                $true
-            }
+            should -Invoke -CommandName Get-MgUser -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should fail when ObjectId is empty string value" {
@@ -92,44 +51,48 @@ Describe "Get-EntraUser" {
         }
 
         It "Should return all contact" {
-            $result = Get-EntraUser -All
-            $result | Should -Not -BeNullOrEmpty
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+            $result = Get-EntraUser -All $true
+            $result | Should -Not -BeNullOrEmpty            
+            Should -Invoke -CommandName Get-MgUser  -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
-        It "Should fail when All has an argument" {
-            { Get-EntraUser -All $true} | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
+        It "Should fail when All is empty" {
+            { Get-EntraUser -All } | Should -Throw "Missing an argument for parameter 'All'*"
         }
+
+        It "Should fail when All is invalid" {
+            { Get-EntraContact -All XY } | Should -Throw  "Cannot process argument transformation on parameter 'All'*"
+        }  
 
         It "Should return top user" {
             $result = Get-EntraUser -Top 1
             $result | Should -Not -BeNullOrEmpty
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
-        }
+            Should -Invoke -CommandName Get-MgUser  -ModuleName Microsoft.Graph.Entra -Times 1
+        }    
 
         It "Should fail when top is empty" {
             { Get-EntraUser -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
-        }
+        }  
 
         It "Should fail when top is invalid" {
             { Get-EntraUser -Top HH } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
-        }
+        }  
 
         It "Should return specific user by filter" {
-            $result = Get-EntraUser -Filter "DisplayName eq 'Mock-User'"
+            $result = Get-EntraUser -Filter "DisplayName eq 'Conf Room Adams'"
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | should -Be 'Mock-User'
+            $result.DisplayName | should -Be 'Conf Room Adams'
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
-        }
+            Should -Invoke -CommandName Get-MgUser  -ModuleName Microsoft.Graph.Entra -Times 1
+        } 
 
         It "Should return specific user by search string" {
-            $result = Get-EntraUser -SearchString "Mock-User"
+            $result = Get-EntraUser -SearchString "Conf Room Adams"
             $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be 'Mock-User'
-
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+            $result.DisplayName | Should -Be 'Conf Room Adams'
+        
+            Should -Invoke -CommandName Get-MgUser  -ModuleName Microsoft.Graph.Entra -Times 1
 
         }
 
@@ -139,28 +102,20 @@ Describe "Get-EntraUser" {
 
         It "Should fail when Missing an argument for parameter Filter" {
             { Get-EntraUser -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
+        } 
+
+        It "Should contain UserId in parameters when passed ObjectId to it" {
+            $result = Get-EntraUser -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1"
+            $params = Get-Parameters -data $result.Parameters
+            $params.UserId | Should -Match "fd560167-ff1f-471a-8d74-3b0070abcea1"
         }
 
-        It "Property parameter should work" {
-            $result = Get-EntraUser -Property DisplayName
-            $result | Should -Not -BeNullOrEmpty
-            $result.DisplayName | Should -Be 'Mock-User'
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUser"
+            $result = Get-EntraUser -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1"
+            $params = Get-Parameters -data $result.Parameters
+            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }  
 
-            Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
-        }
-
-        It "Should fail when Property is empty" {
-            { Get-EntraUser -Property } | Should -Throw "Missing an argument for parameter 'Property'.*"
-        }
-
-        # It "Should contain UserId in parameters when passed ObjectId to it" {
-        #     $result = Get-EntraUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
-        #     $result | Should -Not -BeNullOrEmpty
-
-        #     Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
-        #         $UserId | Should -Be $null
-        #         $true
-        #     }
-        # }
     }
 }
