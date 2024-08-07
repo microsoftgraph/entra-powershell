@@ -1,51 +1,78 @@
 ---
+title: Set-EntraBetaApplicationLogo
+description: This article provides details on the Set-EntraBetaApplicationLogo command.
+
+
+ms.topic: reference
+ms.date: 06/19/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaApplicationLogo
+
 schema: 2.0.0
 ---
 
 # Set-EntraBetaApplicationLogo
 
-## SYNOPSIS
+## Synopsis
+
 Sets the logo for an Application
 
-## SYNTAX
+## Syntax
 
 ### File (Default)
-```
-Set-EntraBetaApplicationLogo [-ObjectId <String>] -FilePath <String> [<CommonParameters>]
-```
 
-### ByteArray
-```
-Set-EntraBetaApplicationLogo [-ObjectId <String>] -ImageByteArray <Byte[]> [<CommonParameters>]
+```powershell
+Set-EntraBetaApplicationLogo 
+ -ObjectId <String> 
+ -FilePath <String> 
+ [<CommonParameters>]
 ```
 
 ### Stream
-```
-Set-EntraBetaApplicationLogo [-ObjectId <String>] -FileStream <Stream> [<CommonParameters>]
-```
 
-## DESCRIPTION
-This cmdlet is used to set the logo for an application
-
-## EXAMPLES
-
-### Example 1
-```
-PS C:\WINDOWS\system32> Set-EntraBetaApplicationLogo -ObjectId 79592454-dea7-4660-9d91-f1768e5055ac -FilePath D:\applogo.jpg
+```powershell
+Set-EntraBetaApplicationLogo 
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
-This cmdlet sets the application logo for the application specified by the the ObjectID parameter to the image specified with the FIlepath parameter
+### ByteArray
 
-## PARAMETERS
+```powershell
+Set-EntraBetaApplicationLogo 
+ -ObjectId <String> 
+ [<CommonParameters>]
+```
+
+## Description
+
+This cmdlet is used to set the logo for an application.
+
+## Examples
+
+### Example 1: Sets the application logo for the application specified by the ObjectID parameter
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+Set-EntraBetaApplicationLogo -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -FilePath 'D:\applogo.jpg'
+```
+
+This cmdlet sets the application logo for the application specified by the `-ObjectId` parameter to the image specified with the `-FilePath` parameter.
+
+## Parameters
 
 ### -FilePath
-The file path of the file that is to be uploaded as the application logo
+
+The file path of the file that is to be uploaded as the application logo.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: File
 Aliases:
 
@@ -56,41 +83,12 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -FileStream
-A fileStream that is to be used as the application logo
-
-```yaml
-Type: Stream
-Parameter Sets: Stream
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -ImageByteArray
-And ImageByteArray that is to be used as the application logo
-
-```yaml
-Type: Byte[]
-Parameter Sets: ByteArray
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
 ### -ObjectId
-The ObjectID of the Application for which the logo is set
+
+The ObjectID of the Application for which the logo is set.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -102,16 +100,22 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
 
 ### System.String
+
 System.IO.Stream System.Byte\[\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
 
-## RELATED LINKS
+## Notes
+File uploads must be smaller than 500KB.
+
+## Related Links
+
+[Get-EntraBetaApplicationLogo](Get-EntraBetaApplicationLogo.md)
