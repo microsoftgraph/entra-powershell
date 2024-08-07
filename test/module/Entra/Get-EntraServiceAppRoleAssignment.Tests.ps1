@@ -39,17 +39,12 @@ Describe "Get-EntraServiceAppRoleAssigned" {
             { Get-EntraServiceAppRoleAssignment -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string.*"
         }
         It "Should return all service principal application role assignment." {
-            $result = Get-EntraServiceAppRoleAssignment -ObjectId "021510b7-e753-40aa-b668-29753295ca34" -All $true
+            $result = Get-EntraServiceAppRoleAssignment -ObjectId "021510b7-e753-40aa-b668-29753295ca34" -All 
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgServicePrincipalAppRoleAssignedTo  -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when All is empty" {
-            { Get-EntraServiceAppRoleAssignment -ObjectId "021510b7-e753-40aa-b668-29753295ca34" -All } | Should -Throw "Missing an argument for parameter 'All'*"
-        } 
-        It "Should fail when All is invalid" {
-            { Get-EntraServiceAppRoleAssignment -ObjectId "021510b7-e753-40aa-b668-29753295ca34" -All xyz} | Should -Throw "Cannot process argument transformation on parameter 'All'.*"
-        }              
+                   
         It "Should return top service principal application role assignment." {
             $result =  Get-EntraServiceAppRoleAssignment -ObjectId "021510b7-e753-40aa-b668-29753295ca34" -top 1
             $result | Should -Not -BeNullOrEmpty
