@@ -39,8 +39,7 @@ The `Remove-EntraBetaServicePrincipalPasswordCredential` cmdlet removes a passwo
 ### Example 1: Remove a password credential from a service principal in Microsoft Entra ID  
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $Params = @{
     ObjectId = 'aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb'
     KeyId = 'bbbbbbbb-1c1c-2d2d-3e3e-444444444444'
