@@ -43,7 +43,7 @@ The `New-EntraBetaApplicationPasswordCredential` cmdlet creates a password crede
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "displayName eq '<displayName>'"
+$application = Get-EntraBetaApplication -Filter "displayName eq '<displayName>'"
 New-EntraBetaApplicationPasswordCredential -ObjectId $application.Id
 ```
 
@@ -61,7 +61,7 @@ This command creates new password credential for specified application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "displayName eq '<displayName>'"
+$application = Get-EntraBetaApplication -Filter "displayName eq '<displayName>'"
 $parameters = @{
     ObjectId = $application.Id
     CustomKeyIdentifier = '<userfriendlyDisplayName>'
@@ -85,7 +85,7 @@ This command creates new password credential for specified application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "displayName eq '<displayName>'"
+$application = Get-EntraBetaApplication -Filter "displayName eq '<displayName>'"
 $parameters = @{
     ObjectId = $application.Id
     StartDate = (Get-Date).AddYears(0)
@@ -110,7 +110,7 @@ This command creates new password credential for specified application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$application = Get-EntraApplication -Filter "displayName eq '<displayName>'"
+$application = Get-EntraBetaApplication -Filter "displayName eq '<displayName>'"
 $parameters = @{
     ObjectId = $application.Id
     EndDate = (Get-Date).AddYears(2)
