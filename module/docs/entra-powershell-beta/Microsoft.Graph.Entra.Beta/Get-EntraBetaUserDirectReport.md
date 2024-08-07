@@ -42,9 +42,8 @@ The `Get-EntraBetaUserDirectReport` cmdlet gets the direct reports for a user in
 ### Example 1: Get a user's direct reports
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' #Delegated Permission
-Connect-Entra -Scopes 'User.Read.All' #Application Permission
-Get-EntraBetaUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Connect-Entra -Scopes 'User.Read','User.Read.All'
+Get-EntraBetaUserDirectReport -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -60,9 +59,8 @@ This command gets the direct report for the specified user.
 ### Example 2: Get all direct reports
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' #Delegated Permission
-Connect-Entra -Scopes 'User.Read.All' #Application Permission
-Get-EntraBetaUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All 
+Connect-Entra -Scopes 'User.Read','User.Read.All'
+Get-EntraBetaUserDirectReport -ObjectId 'SawyerM@contoso.com' -All 
 ```
 
 ```Output
@@ -79,9 +77,8 @@ This example demonstrates how to retrieve all direct reports for a user in Micro
 ### Example 3: Get a top two direct reports
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' #Delegated Permission
-Connect-Entra -Scopes 'User.Read.All' #Application Permission
-Get-EntraBetaUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 2
+Connect-Entra -Scopes 'User.Read','User.Read.All'
+Get-EntraBetaUserDirectReport -ObjectId 'SawyerM@contoso.com' -Top 2
 ```
 
 ```Output
