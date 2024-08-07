@@ -36,7 +36,7 @@ function Add-EntraScopedRoleMembership {
         $params["RoleMemberInfo"] = $Value | ConvertTo-Json
         $body.roleMemberInfo = $Value
     }
-    
+
     if($null -ne $PSBoundParameters["ErrorAction"])
     {
         $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
@@ -59,11 +59,11 @@ function Add-EntraScopedRoleMembership {
     }
     if($PSBoundParameters.ContainsKey("Verbose"))
     {
-        $params["Verbose"] = $Null
+        $params["Verbose"] = $PSBoundParameters["Verbose"]
     }
     if($PSBoundParameters.ContainsKey("Debug"))
     {
-        $params["Debug"] = $Null
+        $params["Debug"] = $PSBoundParameters["Debug"]
     }
     if($null -ne $PSBoundParameters["ErrorVariable"])
     {
