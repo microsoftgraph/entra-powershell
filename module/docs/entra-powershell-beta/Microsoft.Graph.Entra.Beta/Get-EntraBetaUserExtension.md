@@ -41,7 +41,7 @@ The `Get-EntraBetaUserExtension` cmdlet gets a user extension in Microsoft Entra
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-$UserId = (Get-EntraBetaUser -Top 1).ObjectId
+$UserId = (Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com').ObjectId
 Get-EntraBetaUserExtension -ObjectId $UserId
 ```
 
