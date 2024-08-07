@@ -42,8 +42,8 @@ The `Get-EntraBetaServicePrincipalOwner` cmdlet gets the owners of a service pri
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
-Get-EntraBetaServicePrincipalOwner -ObjectId $ServicePrincipalId
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
+Get-EntraBetaServicePrincipalOwner -ObjectId $servicePrincipal.ObjectId
 ```
 
 ```Output
@@ -62,8 +62,8 @@ This example gets the owners of a specified service principal. You can use the c
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
-Get-EntraBetaServicePrincipalOwner -ObjectId $ServicePrincipalId -All
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
+Get-EntraBetaServicePrincipalOwner -ObjectId $servicePrincipal.ObjectId -All
 ```
 
 ```Output
@@ -82,8 +82,8 @@ This command gets all the owners of a service principal. You can use the comand 
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
-Get-EntraBetaServicePrincipalOwner -ObjectId $ServicePrincipalId -Top 2
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
+Get-EntraBetaServicePrincipalOwner -ObjectId $servicePrincipal.ObjectId -Top 2
 ```
 
 ```Output
@@ -96,6 +96,40 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 This command gets top two owners of a service principal. You can use the comand `Get-EntraBetServicePrincipal` to get service principal object Id.
 
 - `-ObjectId` parameter specifies the unique identifier of a service principal.
+
+### Example 4: Retrieve service principal owner details
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
+# Get the owners of the service principal
+$owners = Get-EntraBetaServicePrincipalOwner -ObjectId $servicePrincipal.ObjectId -All
+$result = @()
+
+# Loop through each owner and get their UserPrincipalName and DisplayName
+foreach ($owner in $owners) {
+    $userId = $owner.Id
+    $user = Get-EntraBetaUser -ObjectId $userId
+    $userDetails = [PSCustomObject]@{
+        Id                = $owner.Id
+        UserPrincipalName = $user.UserPrincipalName
+        DisplayName       = $user.DisplayName
+    }
+    $result += $userDetails
+}
+
+# Output the result in a table format
+$result | Format-Table -AutoSize
+```
+
+```Output
+Id                                   UserPrincipalName             DisplayName
+--                                   -----------------             -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb AlexW@contoso.com  Alex Wilber
+bbbbbbbb-1111-2222-3333-cccccccccccc AdeleV@contoso.com Adele Vance
+```
+
+This example shows how to retrieve additional details of a service principal owner such as displayName, userPrincipalName.
 
 ## Parameters
 
