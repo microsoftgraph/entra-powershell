@@ -2,16 +2,15 @@
 title: Remove-EntraScopedRoleMembership.
 description: This article provides details on the Remove-EntraScopedRoleMembership command.
 
-
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/19/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
-author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraScopedRoleMembership
+
 schema: 2.0.0
 ---
 
@@ -25,27 +24,37 @@ Removes a scoped role membership.
 
 ```powershell
 Remove-EntraScopedRoleMembership 
- -ScopedRoleMembershipId <String> 
- -Id <String> [<CommonParameters>]
+ -ObjectId <String> 
+ -ScopedRoleMembershipId <String>
+ [<CommonParameters>]
 ```
 
 ## Description
-The Remove-EntraScopedRoleMembership cmdlet removes a scoped role membership from Microsoft Entra ID.
+
+The `Remove-EntraScopedRoleMembership` cmdlet removes a scoped role membership from Microsoft Entra ID. Specify `ObjectId` and `ScopedRoleMembershipId` parameter to remove a scoped role membership.
 
 ## Examples
 
 ### Example 1: Removes a scoped role membership
 
 ```powershell
-Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-Remove-EntraScopedRoleMembership -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc' -ScopedRoleMembershipId '3d3d3d3d-4444-eeee-5555-6f6f6f6f6f6f'
+Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+$params = @{
+    ObjectId = 'aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc'
+    ScopedRoleMembershipId = 'dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc'
+}
+Remove-EntraScopedRoleMembership @params
 ```
 
-Removes scoped membership.
+This cmdlet removes a specific scoped role membership from Microsoft Entra ID.
+
+- `ObjectId` - specifies the object (ID) which you want to remove. In this example, `aaaaaaaa-2222-bbbb-aaaa-cccccccccccc` represents the ID of the Administrative Unit.
+
+- `ScopedRoleMembershipId` - This parameter specifies the unique identifier (ID) of the scoped role membership that you want to remove. In this example, aaaaaaaa-bbbb-1111-aaaa-ddddddddddd represents the ID of the ScopedRoleMembership. To obtain the details of a scoped role membership, you can use the `Get-EntraScopedRoleMembership` command
 
 ## Parameters
 
-### -Id
+### -ObjectId
 
 Specifies an object ID.
 
@@ -92,4 +101,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Add-EntraScopedRoleMembership](Add-EntraScopedRoleMembership.md)
 
 [Get-EntraScopedRoleMembership](Get-EntraScopedRoleMembership.md)
-

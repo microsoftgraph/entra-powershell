@@ -10,7 +10,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaApplication
+
 schema: 2.0.0
 ---
 
@@ -25,28 +26,31 @@ Gets an application.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraBetaApplication 
- [-Top <Int32>] 
- [-All] 
- [-Filter <String>] 
+Get-EntraBetaApplication
+ [-Top <Int32>]
+ [-All]
+ [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetByValue
 
 ```powershell
-Get-EntraBetaApplication 
- [-SearchString <String>] 
- [-All] 
+Get-EntraBetaApplication
+ [-SearchString <String>]
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraBetaApplication 
- -ObjectId <String> 
- [-All] 
+Get-EntraBetaApplication
+ -ObjectId <String>
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -168,7 +172,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies an oData v3.0 filter statement.
+Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
@@ -228,6 +232,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

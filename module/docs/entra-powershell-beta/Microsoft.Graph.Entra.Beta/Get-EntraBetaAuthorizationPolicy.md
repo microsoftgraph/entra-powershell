@@ -1,7 +1,8 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaAuthorizationPolicy
+
 schema: 2.0.0
 ---
 
@@ -13,13 +14,20 @@ Gets an authorization policy.
 ## Syntax
 
 ### GetQuery (Default)
-```
-Get-EntraBetaAuthorizationPolicy [<CommonParameters>]
+
+```powershell
+Get-EntraBetaAuthorizationPolicy
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraBetaAuthorizationPolicy -Id <String> [<CommonParameters>]
+
+```powershell
+Get-EntraBetaAuthorizationPolicy
+ -Id <String>
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ## Description
@@ -46,6 +54,22 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

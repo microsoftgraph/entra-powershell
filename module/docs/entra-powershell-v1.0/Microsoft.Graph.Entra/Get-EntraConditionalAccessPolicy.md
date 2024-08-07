@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraConditionalAccessPolicy
+
 schema: 2.0.0
 ---
 
@@ -54,7 +55,7 @@ Connect-Entra -Scopes 'Policy.Read.All'
 Get-EntraConditionalAccessPolicy
 ```
 
-```output
+```Output
 Id                                   CreatedDateTime      Description DisplayName                ModifiedDateTime     State    TemplateId
 --                                   ---------------      ----------- -----------                ----------------     -----    ----------
 eeeeeeee-4444-5555-6666-ffffffffffff 2/27/2024 6:23:21 AM             ConditionalAccessPolicy    2/29/2024 2:41:17 PM disabled
@@ -71,7 +72,7 @@ Connect-Entra -Scopes 'Policy.Read.All'
 Get-EntraConditionalAccessPolicy -PolicyId 'eeeeeeee-4444-5555-6666-ffffffffffff'
 ```
 
-```output
+```Output
 Id                                   CreatedDateTime      Description DisplayName                ModifiedDateTime     State    TemplateId
 --                                   ---------------      ----------- -----------                ----------------     -----    ----------
 eeeeeeee-4444-5555-6666-ffffffffffff 2/27/2024 6:23:21 AM             ConditionalAccessPolicy    2/29/2024 2:41:17 PM disabled
@@ -130,4 +131,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Set-EntraConditionalAccessPolicy](Set-EntraConditionalAccessPolicy.md)
 
 [Remove-EntraConditionalAccessPolicy](Remove-EntraConditionalAccessPolicy.md)
-

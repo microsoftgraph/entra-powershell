@@ -12,13 +12,15 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraIdentityProvider
+
 schema: 2.0.0
 ---
 
 # New-EntraIdentityProvider
 
 ## Synopsis
+
 This cmdlet is used to configure a new identity provider in the directory.
 
 ## Syntax
@@ -33,23 +35,42 @@ New-EntraIdentityProvider
 ```
 
 ## Description
+
 This cmdlet is used to configure an identity provider in the directory.
+
 Adding an identity provider will allow users to sign up for or sign into applications secured by Microsoft Entra ID B2C using the identity provider.
 
 Configuring an identity provider in your Microsoft Entra ID tenant also enables future B2B guest scenarios.
-For example, an organization has resources in Office 365 that needs to be shared with a Gmail user.
-The Gmail user will use their Google account credentials to authenticate and access the documents.
 
-The current set of identity providers can be Microsoft, Google, Facebook, Amazon, or LinkedIn.
+For example, an organization has resources in Office 365 that needs to be shared with a Gmail user. The Gmail user will use their Google account credentials to authenticate and access the documents.
+
+The current set of identity providers can be:
+
+- Microsoft
+- Google
+- Facebook
+- Amazon
+- LinkedIn
+
+The work or school account needs to belong to at least the External Identity Provider Administrator Microsoft Entra role.
 
 ## Examples
 
 ### Example 1: Add LinkedIn identity provider
+
 ```powershell
-PS C:\> New-EntraIdentityProvider -Type LinkedIn -Name LinkedInName -ClientId LinkedInAppClientId -ClientSecret LinkedInAppClientSecret
+Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
+$params = @{
+    Type = 'LinkedIn'
+    Name = 'LinkedInName'
+    ClientId = 'LinkedInAppClientId'
+    ClientSecret = 'LinkedInAppClientSecret'
+}
+
+New-EntraIdentityProvider @params
 ```
 
-```output
+```Output
 Id             DisplayName
 --             -----------
 LinkedIn-OAUTH LinkedInName
@@ -60,11 +81,11 @@ This example adds a LinkedIn identity provider.
 ## Parameters
 
 ### -ClientId
-The client ID for the application.
-This is the client ID obtained when registering the application with the identity provider.
+
+The client identifier for the application, obtained during the application's registration with the identity provider.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -76,11 +97,11 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSecret
-The client secret for the application.
-This is the client secret obtained when registering the application with the identity provider.
+
+The client secret for the application, obtained during registration with the identity provider, is write-only. A read operation returns `****`.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -92,10 +113,11 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 The display name of the identity provider.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -107,11 +129,13 @@ Accept wildcard characters: False
 ```
 
 ### -Type
-The identity provider type.
-It must be one of the following values: Microsoft, Google, Facebook, Amazon, or LinkedIn.
+
+The identity provider type. It must be one of the following values: Microsoft, Google, Facebook, Amazon, or LinkedIn.
+
+For a B2B scenario, possible values: Google, Facebook. For a B2C scenario, possible values: Microsoft, Google, Amazon, LinkedIn, Facebook, GitHub, Twitter, Weibo, QQ, WeChat.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -123,14 +147,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### None
+
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
+
+[Remove-EntraIdentityProvider](Remove-EntraIdentityProvider.md)

@@ -1,62 +1,72 @@
 ---
+title: Enable-EntraBetaDirectoryRole
+description: This article provides details on the Enable-EntraBetaDirectoryRole command.
+
+
+ms.topic: reference
+ms.date: 07/19/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Enable-EntraBetaDirectoryRole
+
 schema: 2.0.0
 ---
 
 # Enable-EntraBetaDirectoryRole
 
 ## Synopsis
-Activates an existing directory role in Azure Active Directory.
+
+Activates an existing directory role in Microsoft Entra ID.
 
 ## Syntax
 
-```
-Enable-EntraBetaDirectoryRole [-RoleTemplateId <String>] [<CommonParameters>]
+```powershell
+Enable-EntraBetaDirectoryRole 
+ [-RoleTemplateId <String>] 
+ [<CommonParameters>]
 ```
 
 ## Description
-The Enable-EntraBetaDirectoryRole cmdlet activates an existing directory role in Azure Active Directory.
+
+The `Enable-EntraBetaDirectoryRole` cmdlet activates an existing directory role in Microsoft Entra ID.
+
+The Company Administrators and the default user directory roles (User, Guest User, and Restricted Guest User) are activated by default. To access and assign members to other directory roles, you must first activate them using their corresponding directory role template ID.
 
 ## Examples
 
 ### Example 1: Enable a directory role
-```
-# Retrieve the Template Role object for the Guest Inviter role 
-$InviterRole = Get-EntraBetaDirectoryRoleTemplate | Where-Object {$_.DisplayName -eq "Guest Inviter"}
 
-# Inspect the $Inveoter variable to make sure we found the correct template role
-$InviterRole
-
-ObjectId                             DisplayName   Description
---------                             -----------   -----------
-95e79109-95c0-4d8e-aee3-d01accf2d47b Guest Inviter Guest Inviter has access to invite guest users.
-
-# Enable the Inviter Role
+```powershell
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+$InviterRole = Get-EntraBetaDirectoryRoleTemplate | Where-Object {$_.DisplayName -eq 'Guest Inviter'}
 Enable-EntraBetaDirectoryRole -RoleTemplateId $InviterRole.ObjectId
-
-ObjectId                             DisplayName   Description
---------                             -----------   -----------
-03618579-3c16-4765-9539-86d9163ee3d9 Guest Inviter Guest Inviter has access to invite guest users.
 ```
 
-The first command gets an inviter role that has the display name Guest Inviter by using the Get-EntraBetaDirectoryRoleTemplate (./Get-EntraBetaDirectoryRoleTemplate.md)cmdlet. 
-The command stores Guest Inviter in the $InviterRole variable.
+```Output
+DeletedDateTime Id                                   Description                                       DisplayName              RoleTemplateId
+--------------- --                                   -----------                                       -----------              --------------
+                aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb Can manage all aspects of the SharePoint service. SharePoint Administrator 0000aaaa-11bb-cccc-dd22-eeeeee333333
+```
 
-The second command displays the contents of $InviterRole.
+The example shows how to enable the directory role.
 
-The final command enables the directory role in $InviterRole.
+You can use `Get-EntraDirectoryRoleTemplate` to fetch a specific directory role to activate.
+
+- `RoleTemplateId` parameter specifies the ID of the role template to enable.
 
 ## Parameters
 
-
-
 ### -RoleTemplateId
-The ID of the Role template to enable
+
+The ID of the Role template to enable.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -68,7 +78,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -78,7 +89,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaDirectoryRole]()
+[Get-EntraBetaDirectoryRole](Get-EntraBetaDirectoryRole.md)
 
-[Get-EntraBetaDirectoryRoleTemplate]()
-
+[Get-EntraBetaDirectoryRoleTemplate](Get-EntraBetaDirectoryRoleTemplate.md)

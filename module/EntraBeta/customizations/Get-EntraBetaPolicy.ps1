@@ -93,6 +93,7 @@
             $response = $response | Where-Object { $_.id -eq $Id }
             if($Null -eq $response ) {
                 Write-Error "Get-EntraBetaPolicy : Error occurred while executing Get-Policy 
+                Write-Error "Get-EntraBetaPolicy : Error occurred while executing Get-Policy 
                 Code: Request_BadRequest
                 Message: Invalid object identifier '$Id' ."
             }

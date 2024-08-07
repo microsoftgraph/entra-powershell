@@ -1,51 +1,90 @@
 ---
+title: Set-EntraBetaUserThumbnailPhoto.
+description: This article provides details on the Set-EntraBetaUserThumbnailPhoto command.
+
+
+ms.topic: reference
+ms.date: 07/24/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaUserThumbnailPhoto
+
 schema: 2.0.0
 ---
 
 # Set-EntraBetaUserThumbnailPhoto
 
 ## Synopsis
-Set the thumbnail photo for a user
+
+Set the thumbnail photo for a user.
 
 ## Syntax
 
 ### File (Default)
-```
-Set-EntraBetaUserThumbnailPhoto [-ObjectId <String>] -FilePath <String> [<CommonParameters>]
+
+```powershell
+Set-EntraBetaUserThumbnailPhoto 
+ -FilePath <String>
+ [-ObjectId <String>] 
+ [<CommonParameters>]
 ```
 
 ### ByteArray
-```
-Set-EntraBetaUserThumbnailPhoto [-ObjectId <String>] -ImageByteArray <Byte[]> [<CommonParameters>]
+
+```powershell
+Set-EntraBetaUserThumbnailPhoto 
+ -ImageByteArray <Byte[]>
+ [-ObjectId <String>] 
+ [<CommonParameters>]
 ```
 
 ### Stream
-```
-Set-EntraBetaUserThumbnailPhoto [-ObjectId <String>] -FileStream <Stream> [<CommonParameters>]
+
+```powershell
+Set-EntraBetaUserThumbnailPhoto 
+ -FileStream <Stream>
+ [-ObjectId <String>] 
+ [<CommonParameters>]
 ```
 
 ## Description
-This cmdlet is used to set the thumbnail photo for a user
+
+This cmdlet is used to set the thumbnail photo for a user.
+
+Updating any user's photo in the organization requires the User.ReadWrite.All permission. Updating only the signed-in user's photo requires the User.ReadWrite permission.
 
 ## Examples
 
-### Example 1
-```
-PS C:\WINDOWS\system32> Set-EntraBetaUserThumbnailPhoto -ObjectId ba6752c4-6a2e-4be5-a23d-67d8d5980796 -FilePath D:\UserThumbnailPhoto.jpg
+### Example 1: Sets the thumbnail photo
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite' #Delegated Permission
+Connect-Entra -Scopes 'User.ReadWrite.All' #Application Permission
+$params = @{
+    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    FilePath = 'D:\UserThumbnailPhoto.jpg'
+}
+Set-EntraUserThumbnailPhoto @params
 ```
 
-This example sets the thumbnail photo of the user specified witht eh PObjectId parameter to the image specified with the FilePath parameter
+This example sets the thumbnail photo of the user specified with the ObjectId parameter to the image specified with the FilePath parameter.
+
+- `-ObjectId` parameter specifies the ID of a user in Microsoft Entra ID.
+- `-FilePath` parameter specifies the file path of the image to be uploaded as the user thumbnail photo.
 
 ## Parameters
 
 ### -FilePath
-The file path of the image to be uploaded as the user thumbnail photo
+
+The file path of the image to be uploaded as the user thumbnail photo.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: File
 Aliases:
 
@@ -57,10 +96,11 @@ Accept wildcard characters: False
 ```
 
 ### -FileStream
-A filestream that contains the user thumbnail photo
+
+A filestream that contains the user thumbnail photo.
 
 ```yaml
-Type: Stream
+Type: System.Stream
 Parameter Sets: Stream
 Aliases:
 
@@ -72,10 +112,11 @@ Accept wildcard characters: False
 ```
 
 ### -ImageByteArray
-An Image Byte Array that contains the user thumbnail photo
+
+An Image Byte Array that contains the user thumbnail photo.
 
 ```yaml
-Type: Byte[]
+Type: System.Byte[]
 Parameter Sets: ByteArray
 Aliases:
 
@@ -87,10 +128,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-The Object ID of the user for which the user thumbnail photo is set
+
+The Object ID of the user for which the user thumbnail photo is set.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -102,16 +144,21 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### System.String
+
 System.IO.Stream System.Byte\[\]
 
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
+
+[Get-EntraBetaUserThumbnailPhoto](Get-EntraBetaUserThumbnailPhoto.md)

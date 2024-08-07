@@ -1,44 +1,135 @@
 ---
+title: Get-EntraBetaUserOAuth2PermissionGrant
+description: This article provides details on the Get-EntraBetaUserOAuth2PermissionGrant command.
+
+
+ms.topic: reference
+ms.date: 07/18/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaUserOAuth2PermissionGrant
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaUserOAuth2PermissionGrant
 
 ## Synopsis
+
 Gets an oAuth2PermissionGrant object.
 
 ## Syntax
 
-```
-Get-EntraBetaUserOAuth2PermissionGrant -ObjectId <String> [-All] [-Top <Int32>] [<CommonParameters>]
+```powershell
+Get-EntraBetaUserOAuth2PermissionGrant
+ -ObjectId <String>
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ## Description
-The Get-EntraBetaUserOAuth2PermissionGrant cmdlet gets an oAuth2PermissionGrant object for the specified user in Azure Active Directory (AD).
+
+The `Get-EntraBetaUserOAuth2PermissionGrant` cmdlet gets an oAuth2PermissionGrant object for the specified user in Microsoft Entra ID. Specify `ObjectId` parameter to retrieve an oAuth2PermissionGrant object.
+
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with a supported role permission. The following least privileged roles are supported for this operation.
+
+- Application Administrator
+- Application Developer
+- Cloud Application Administrator
+- Directory Writers
+- Privileged Role Administrator
+- User Administrator
+- Directory Readers
+- Global Reader
+- Guest Inviter
 
 ## Examples
 
 ### Example 1: Retrieve the OAuth2 permission grants for a user
-```
-PS C:\> $UserId = (Get-EntraBetaUser -Top 1).ObjectId
-PS C:\> Get-EntraBetaUserOAuth2PermissionGrant -ObjectId $UserId
+
+```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
+$UserId = (Get-EntraBetaUser -Top 1).ObjectId
+Get-EntraBetaUserOAuth2PermissionGrant -ObjectId $UserId
 ```
 
-The first command gets the ID of an Azure AD user by using the Get-EntraBetaUser (./Get-EntraBetaUser.md)cmdlet. 
-The command stores the value in the $UserId variable.
+```Output
+Id                                                               ClientId                             ConsentType ExpiryTime
+--                                                               --------                             ----------- ----------
+HXFXwKLgoUC4rwbZbCDIdffW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 00001111-aaaa-2222-bbbb-3333cccc4444 Principal   08-01-2024 10:0...
+9uBzRwC0s0CFCDQN6O4Ik_fW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 11112222-bbbb-3333-cccc-4444dddd5555 Principal   13-01-2024 08:0...
+```
 
-The second command gets the OAuth2 permission grants for the user identified by $UserId.
+This example retrieves the OAuth2 permission grants for a user using the ObjectId parameter. Use the `Get-EntraBetaUser` cmdlet to obtain the `ObjectId` value.
+
+### Example 2: Retrieve the OAuth2 permission grants for a user using object ID parameter
+
+```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraUserOAuth2PermissionGrant -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+```
+
+```Output
+Id                                                               ClientId                             ConsentType ExpiryTime
+--                                                               --------                             ----------- ----------
+HXFXwKLgoUC4rwbZbCDIdffW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 00001111-aaaa-2222-bbbb-3333cccc4444 Principal   08-01-2024 10:0...
+9uBzRwC0s0CFCDQN6O4Ik_fW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 11112222-bbbb-3333-cccc-4444dddd5555 Principal   13-01-2024 08:0...
+```
+
+This example retrieves the OAuth2 permission grants for a user using object ID parameter.
+
+- `-ObjectId` parameter specifies the user ID.
+
+### Example 3: Retrieve the OAuth2 permission grants for a user using All parameter
+
+```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraUserOAuth2PermissionGrant -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
+```
+
+```Output
+Id                                                               ClientId                             ConsentType ExpiryTime
+--                                                               --------                             ----------- ----------
+HXFXwKLgoUC4rwbZbCDIdffW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 00001111-aaaa-2222-bbbb-3333cccc4444 Principal   08-01-2024 10:0...
+9uBzRwC0s0CFCDQN6O4Ik_fW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 11112222-bbbb-3333-cccc-4444dddd5555 Principal   13-01-2024 08:0...
+```
+
+This example retrieves the OAuth2 permission grants for a user using All parameter.
+
+- `-ObjectId` parameter specifies the user ID.
+
+### Example 4: Retrieve top one OAuth2 permission grant
+
+```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraUserOAuth2PermissionGrant -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 1
+```
+
+```Output
+Id                                                               ClientId                             ConsentType ExpiryTime
+--                                                               --------                             ----------- ----------
+HXFXwKLgoUC4rwbZbCDIdffW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 00001111-aaaa-2222-bbbb-3333cccc4444 Principal   08-01-2024 10:0...
+```
+
+This Example Retrieve top one the OAuth2 permission grant in Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies the user ID.
 
 ## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -48,11 +139,13 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
 ### -ObjectId
-Specifies the ID (as a UPN or ObjectId) of a user in Azure AD.
+
+Specifies the ID (as a User Principal Name or ObjectId) of a user in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -64,10 +157,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -78,8 +172,25 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -89,5 +200,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaUser]()
-
+[Get-EntraBetaUser](Get-EntraBetaUser.md)

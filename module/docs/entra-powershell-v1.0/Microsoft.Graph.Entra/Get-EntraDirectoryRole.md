@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraDirectoryRole
+
 schema: 2.0.0
 ---
 
@@ -119,7 +120,7 @@ This command gets the directory role by display name.
 
 ### -Filter
 
-The oData v3.0 filter statement.
+The OData v4.0 filter statement.
 Controls which objects are returned.
 
 ```yaml

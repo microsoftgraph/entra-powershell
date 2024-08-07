@@ -11,7 +11,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraPolicy
+
 schema: 2.0.0
 ---
 
@@ -55,10 +56,20 @@ Get-EntraPolicy
 ```
 
 ```Output
-Definition                                                                                       DeletedDateTime Description DisplayName                                 Id
-----------                                                                                       --------------- ----------- -----------                                 --
-{{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                             Activepolicy                            bbbbbbbb-1111-2222-3333-cccccccccccc
-{{"HomeRealmDiscoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                                 PolicyDemo                              aaaaaaaa-1111-1111-1111-000000000000
+Name                           Value
+----                           -----
+deletedDateTime
+id                             'bbbbbbbb-1111-2222-3333-cccccccccccc
+displayName                    New update
+definition                     {{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}
+isOrganizationDefault          False
+Type                           HomeRealmDiscoveryPolicy
+deletedDateTime
+id                             bbbbbbbb-1111-2222-3333-cccccccccccc
+displayName                    MyPolicy
+definition                     {{"HomeRealmDisccccoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}
+isOrganizationDefault          False
+Type                           HomeRealmDiscoveryPolicy
 ```
 
 This example shows how to return all policies.
@@ -67,36 +78,25 @@ This example shows how to return all policies.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'
-Get-EntraPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraPolicy -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 ```Output
-Definition                                                                                       DeletedDateTime Description DisplayName                                 Id
-----------                                                                                       --------------- ----------- -----------                                 --
-{{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                             Activepolicy                            bbbbbbbb-1111-2222-3333-cccccccccccc
+Name                           Value
+----                           -----
+deletedDateTime
+id                             bbbbbbbb-1111-2222-3333-cccccccccccc
+displayName                    MyPolicy
+definition                     {{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}
+isOrganizationDefault          False
+Type                           HomeRealmDiscoveryPolicy
 ```
 
 This example demonstrated how to receive policy with specific ID.
 
-- `Id` parameter specifies the unique policy ID, which you want to receive. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the policy.
+- `Id` parameter specifies the unique policy ID, which you want to receive. In this example, `bbbbbbbb-1111-2222-3333-cccccccccccc` represents the ID of the policy.
 
-### Example 3: Get all policies
-
-```powershell
-Connect-Entra -Scopes 'Policy.Read.All'
-Get-EntraPolicy -All
-```
-
-```Output
-Definition                                                                                       DeletedDateTime Description DisplayName                                 Id
-----------                                                                                       --------------- ----------- -----------                                 --
-{{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                             Activepolicy                            bbbbbbbb-1111-2222-3333-cccccccccccc
-{{"HomeRealmDiscoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                                 PolicyDemo                              aaaaaaaa-1111-1111-1111-000000000000
-```
-
-This example demonstrates how to retrieve all policies in Microsoft Entra ID.
-
-### Example 4: Get top one policies
+### Example 3: Get a top one policy
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'
@@ -104,13 +104,17 @@ Get-EntraPolicy -Top 1
 ```
 
 ```Output
-Definition                                                                                       DeletedDateTime Description DisplayName                                 Id
-----------                                                                                       --------------- ----------- -----------                                 --
-{{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                             Activepolicy                            bbbbbbbb-1111-2222-3333-cccccccccccc
-
+Name                           Value
+----                           -----
+deletedDateTime
+id                             bbbbbbbb-1111-2222-3333-cccccccccccc
+displayName                    MyPolicy
+definition                     {{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}
+isOrganizationDefault          False
+Type                           HomeRealmDiscoveryPolicy
 ```
 
-This example demonstrates how to retrieve top one policies in Microsoft Entra ID.
+This example Return top one policy.
 
 ## PARAMETERS
 

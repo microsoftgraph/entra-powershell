@@ -12,7 +12,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaUserRegisteredDevice
+
 schema: 2.0.0
 ---
 
@@ -25,10 +26,11 @@ Get devices registered by a user.
 ## Syntax
 
 ```powershell
-Get-EntraBetaUserRegisteredDevice 
+Get-EntraBetaUserRegisteredDevice
  -ObjectId <String>
- [-Top <Int32>]  
- [-All] 
+ [-Top <Int32>]
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -132,6 +134,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
