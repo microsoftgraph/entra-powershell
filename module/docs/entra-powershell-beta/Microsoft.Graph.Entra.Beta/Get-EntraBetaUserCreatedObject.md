@@ -41,9 +41,8 @@ The `Get-EntraBetaUserCreatedObject` cmdlet gets objects created by a user in Mi
 ### Example 1: Get a user-created object
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' #Delegated Permission
-Connect-Entra -Scopes 'User.Read.All' #Application Permission
-Get-EntraBetaUserCreatedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Connect-Entra -Scopes 'User.Read','User.Read.All'
+Get-EntraBetaUserCreatedObject -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -62,9 +61,8 @@ This example retrieves an object created by the specified user.
 ### Example 2: Get all user-created objects
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' #Delegated Permission
-Connect-Entra -Scopes 'User.Read.All' #Application Permission
-Get-EntraBetaUserCreatedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
+Connect-Entra -Scopes 'User.Read','User.Read.All'
+Get-EntraBetaUserCreatedObject -ObjectId 'SawyerM@contoso.com' -All
 ```
 
 ```Output
@@ -83,9 +81,8 @@ This example retrieves all objects created by the specified user.
 ### Example 3: Get a top one user-created object
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' #Delegated Permission
-Connect-Entra -Scopes 'User.Read.All' #Application Permission
-Get-EntraBetaUserCreatedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 1
+Connect-Entra -Scopes 'User.Read','User.Read.All'
+Get-EntraBetaUserCreatedObject -ObjectId 'SawyerM@contoso.com' -Top 1
 ```
 
 ```Output
