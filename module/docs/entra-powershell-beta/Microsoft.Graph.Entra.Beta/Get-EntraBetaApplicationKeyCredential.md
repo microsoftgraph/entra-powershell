@@ -55,7 +55,7 @@ This command gets the key credentials for the specified application.
 
 ### -ObjectId
 
-Specifies a unique ID of an application in Microsoft Entra ID for which to get key credentials.
+Specifies a unique ID of an application in Microsoft Entra ID to retrieve key credentials. Use `Get-EntraBetaApplication` for more details.
 
 ```yaml
 Type: System.String
