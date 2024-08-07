@@ -40,9 +40,12 @@ The `Remove-EntraBetaServicePrincipalOwner` cmdlet removes an owner from a servi
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<ServicePrincipal-DisplayName>'"
+$owner = Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com'
+
 $params= @{
-    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444' 
-    OwnerId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    ObjectId = $servicePrincipal.Id 
+    OwnerId = $owner.Id
 }
 Remove-EntraBetaServicePrincipalOwner @params
 ```
