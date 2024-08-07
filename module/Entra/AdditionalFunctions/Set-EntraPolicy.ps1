@@ -26,7 +26,7 @@ function Set-EntraPolicy {
         
         $policyTypeMap = @{
             "ActivityBasedTimeoutPolicy"  = "activityBasedTimeoutPolicies"
-            "AppManagementPolicy" = "appManagementPolicies"
+            "ApplicationManagementPolicy" = "appManagementPolicies"
             "DefaultAppManagementPolicy" = "defaultAppManagementPolicy"
             "AuthenticationFlowsPolicy" = "authenticationFlowsPolicy"
             "AuthenticationMethodsPolicy" = "authenticationMethodsPolicy"
