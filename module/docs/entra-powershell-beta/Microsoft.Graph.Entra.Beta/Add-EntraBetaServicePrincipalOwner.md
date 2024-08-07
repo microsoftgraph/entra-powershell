@@ -39,8 +39,7 @@ The `Add-EntraBetaServicePrincipalOwner` cmdlet adds an owner to a service princ
 ### Example 1: Add a user as an owner to a service principal
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
 $OwnerId = (Get-EntraBetaUser -Top 1).ObjectId
 $Params = @{
