@@ -3,13 +3,11 @@
 # ------------------------------------------------------------------------------
 function Add-EntraScopedRoleMembership {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
-    param (
-    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $RoleObjectId,
+    param (    
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $ObjectId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $AdministrativeUnitObjectId,
+    [System.String] $RoleObjectId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [Microsoft.Open.MSGraph.Model.MsRoleMemberInfo] $RoleMemberInfo
     )
@@ -18,7 +16,27 @@ function Add-EntraScopedRoleMembership {
     $params = @{}
     $body = @{}
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-    $keysChanged = @{RoleObjectId = "RoleId"; ObjectId = "Id"; AdministrativeUnitObjectId = "AdministrativeUnitId1"}
+
+    if($null -ne $PSBoundParameters["ObjectId"])
+    {
+        $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]
+        $Uri = "/v1.0/directory/administrativeUnits/$($params.AdministrativeUnitId)/scopedRoleMembers"     
+    }    
+    if($null -ne $PSBoundParameters["RoleObjectId"])
+    {
+        $params["RoleId"] = $PSBoundParameters["RoleObjectId"]
+        $body.roleId = $PSBoundParameters["RoleObjectId"];
+    }
+    if($null -ne $PSBoundParameters["RoleMemberInfo"])
+    {
+        $TmpValue = $PSBoundParameters["RoleMemberInfo"]
+        $Value = @{
+            id = ($TmpValue).Id
+        }
+        $params["RoleMemberInfo"] = $Value | ConvertTo-Json
+        $body.roleMemberInfo = $Value
+    }
+    
     if($null -ne $PSBoundParameters["ErrorAction"])
     {
         $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
@@ -47,24 +65,10 @@ function Add-EntraScopedRoleMembership {
     {
         $params["Debug"] = $Null
     }
-    if($null -ne $PSBoundParameters["RoleObjectId"])
-    {
-        $params["RoleId"] = $PSBoundParameters["RoleObjectId"]
-        $body.roleId = $PSBoundParameters["RoleObjectId"];
-    }
     if($null -ne $PSBoundParameters["ErrorVariable"])
     {
         $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
-    if($null -ne $PSBoundParameters["AdministrativeUnitObjectId"])
-    {
-        $params["AdministrativeUnitId1"] = $PSBoundParameters["AdministrativeUnitObjectId"]
-    }
-    if($null -ne $PSBoundParameters["ObjectId"])
-    {
-        $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]
-        $Uri = "/v1.0/directory/administrativeUnits/$($params.AdministrativeUnitId)/scopedRoleMembers"     
-    }
+    }    
     if($null -ne $PSBoundParameters["OutBuffer"])
     {
         $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
@@ -72,15 +76,6 @@ function Add-EntraScopedRoleMembership {
     if($null -ne $PSBoundParameters["WarningAction"])
     {
         $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
-    if($null -ne $PSBoundParameters["RoleMemberInfo"])
-    {
-        $TmpValue = $PSBoundParameters["RoleMemberInfo"]
-        $Value = @{
-            id = ($TmpValue).Id
-        }
-        $params["RoleMemberInfo"] = $Value | ConvertTo-Json
-        $body.roleMemberInfo = $Value
     }
     if($null -ne $PSBoundParameters["InformationVariable"])
     {
