@@ -1,4 +1,14 @@
 ---
+title: Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue.
+description: This article provides details on the Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue command.
+
+ms.topic: reference
+ms.date: 07/12/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
@@ -9,34 +19,51 @@ schema: 2.0.0
 # Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
 
 ## Synopsis
-{{ Fill in the Synopsis }}
+
+Updates an existing custom security attribute definition predefined value.
 
 ## Syntax
 
-```
-Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue [-IsActive <Boolean>]
- -CustomSecurityAttributeDefinitionId <String> -Id <String> [<CommonParameters>]
+```powershell
+Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue 
+ -CustomSecurityAttributeDefinitionId <String> 
+ -Id <String>
+ [-IsActive <Boolean>]
+ [<CommonParameters>]
 ```
 
 ## Description
-{{ Fill in the Description }}
+
+This `Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue` cmdlet Update a Microsoft Entra ID custom security attribute definition predefined value object identified by ID. Specify `CustomSecurityAttributeDefinitionId` and `Id` parameter to update a Microsoft Entra ID custom security attribute definition predefined value.
 
 ## Examples
 
-### Example 1
+### Example 1: Update a custom security attribute definition predefined value
+
 ```powershell
-PS C:\> {{ Add example code here }}
+Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
+$params = @{
+    CustomSecurityAttributeDefinitionId = 'Engineering_Project'
+    Id = 'Alpine'
+    IsActive = $true
+}
+Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue @params
 ```
 
-{{ Add example description here }}
+This example update a custom security attribute definition predefined value.
+
+- `-CustomSecurityAttributeDefinitionId` parameter specifies the custom security attribute definition ID.
+- `-Id` parameter specifies the ID of Microsoft Entra ID Object.
+- `-IsActive` parameter specifies the predefined value is active or deactivated.
 
 ## Parameters
 
 ### -CustomSecurityAttributeDefinitionId
-{{ Fill CustomSecurityAttributeDefinitionId Description }}
+
+The unique identifier of customSecurityAttributeDefinition.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -48,10 +75,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+
+Indicates whether the predefined value is active or deactivated. If set to false, this predefined value cannot be assigned to any additional supported directory objects. This field is optional.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -63,10 +91,11 @@ Accept wildcard characters: False
 ```
 
 ### -IsActive
-{{ Fill IsActive Description }}
+
+Indicates whether the predefined value is active or deactivated. If set to false, this predefined value can't be assigned to any other supported directory objects.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -78,7 +107,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -87,6 +117,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
+
+[Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues](Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues.md)
+
+[Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue](Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue.md)
