@@ -1,4 +1,14 @@
 ---
+title: Set-EntraBetaPasswordSingleSignOnCredential.
+description: This article provides details on the Set-EntraBetaPasswordSingleSignOnCredential command.
+
+ms.topic: reference
+ms.date: 07/09/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaPasswordSingleSignOnCredential
@@ -9,40 +19,55 @@ schema: 2.0.0
 # Set-EntraBetaPasswordSingleSignOnCredential
 
 ## Synopsis
-Sets the password SSO credentials
+
+Sets the password Single-Sign-On (SSO) credentials.
 
 ## Syntax
 
-```
-Set-EntraBetaPasswordSingleSignOnCredential -ObjectId <String>
- -PasswordSSOCredential <PasswordSSOCredentials> [<CommonParameters>]
+```powershell
+Set-EntraBetaPasswordSingleSignOnCredential 
+ -ObjectId <String>
+ -PasswordSSOCredential <PasswordSSOCredentials> 
+ [<CommonParameters>]
 ```
 
 ## Description
-This cmdlet enables users to set their Password Single-sign-on credentials for an application which they are part of.
+
+This cmdlet enables users to set their Password Single-Sign-On credentials for an application that they're part of. Specify `ObjectId` and `PasswordSSOCredential` parameters to updates SSO credentials.
 Admin could set the group credentials as well.
 
 ## Examples
 
-### Set password single-sign-on credentials
-```
-PS C:\> $credentials = New-Object -TypeName Microsoft.Open.MSGraph.Model.PasswordSSOCredentials
-PS C:\> $credentials.Id = "a4210a97-5e26-4cfe-88f1-118ed4886f27"
-PS C:\> $creds1 = [Microsoft.Open.MSGraph.Model.PasswordSSOCredential]@{FieldId="param_1"; Value="barfoo@ms.com"; Type="text"}
-PS C:\> $creds2 = [Microsoft.Open.MSGraph.Model.PasswordSSOCredential]@{FieldId="param_2"; Value="my-secret"; Type="password"}
-PS C:\> $credentials.Credentials = @($creds1, $creds2)
-PS C:\> Set-EntraBetaPasswordSingleSignOnCredential -ObjectId 9ac9883e-0ac5-4c32-8737-4267f56a28cc -PasswordSSOCredential $credentials
+### Example 1: Set password single-sign-on credentials
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All','Directory.ReadWrite.All'
+$servicePrincipal = Get-EntraBetaservicePrincipal -SearchString '<service-principal-name>'
+$credentials = New-Object -TypeName Microsoft.Open.MSGraph.Model.PasswordSSOCredentials
+$credentials.Id = '<user-or-group-Id>'
+$creds1 = [Microsoft.Open.MSGraph.Model.PasswordSSOCredential]@{FieldId="param_emailOrUserName"; Value="foobar@ms.com"; Type="text"}
+$creds2 = [Microsoft.Open.MSGraph.Model.PasswordSSOCredential]@{FieldId="param_password"; Value="my-secret"; Type="password"}
+$credentials.Credentials = @($creds1, $creds2)
+$params = @{
+    ObjectId = $servicePrincipal.Id
+    PasswordSSOCredential = $credentials
+}
+Set-EntraBetaPasswordSingleSignOnCredential @params
 ```
 
-This command sets the password sso credentials for the given ObjectId and PasswordSSOObjectId.
+This example demonstrates how to set the password SSO credentials for the given ObjectId and PasswordSSOObjectId.
+
+- `-PasswordSSOObjectId` parameter specifies the User or Group ID.
+- `-ObjectId` parameter specifies the object ID of a service principal.
 
 ## Parameters
 
 ### -ObjectId
-The unique identifier of the object specific Azure Active Directory object
+
+The unique identifier of the object specific Microsoft Entra ID object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -54,10 +79,11 @@ Accept wildcard characters: False
 ```
 
 ### -PasswordSSOCredential
-User or group id
+
+User or group ID.
 
 ```yaml
-Type: PasswordSSOCredentials
+Type: System.PasswordSSOCredentials
 Parameter Sets: (All)
 Aliases:
 
@@ -69,11 +95,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ## Outputs
 
 ## Notes
+
 ## Related Links
+
+[New-EntraBetaPasswordSingleSignOnCredential](New-EntraBetaPasswordSingleSignOnCredential.md)
+
+[Get-EntraBetaPasswordSingleSignOnCredential](Get-EntraBetaPasswordSingleSignOnCredential.md)
+
+[Remove-EntraBetaPasswordSingleSignOnCredential](Remove-EntraBetaPasswordSingleSignOnCredential.md)
