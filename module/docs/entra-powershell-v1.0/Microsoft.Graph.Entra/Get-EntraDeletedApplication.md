@@ -122,7 +122,7 @@ This cmdlet retrieves deleted applications using SearchString parameter.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraDeletedApplication -Filter "DisplayName contains 'TestApp1'"
+Get-EntraDeletedApplication -Filter "DisplayName eq 'TestApp1'"
 ```
 
 ```output
