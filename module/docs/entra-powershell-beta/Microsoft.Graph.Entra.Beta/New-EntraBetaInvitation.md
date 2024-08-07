@@ -3,7 +3,7 @@ title: New-EntraBetaInvitation.
 description: This article provides details on the New-EntraBetaInvitation command.
 
 ms.topic: reference
-ms.date: 07/08/2024
+ms.date: 08/07/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
