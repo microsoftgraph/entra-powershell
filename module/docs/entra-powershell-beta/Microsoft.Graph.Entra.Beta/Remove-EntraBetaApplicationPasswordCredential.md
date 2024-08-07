@@ -44,15 +44,10 @@ $KeyIDs = Get-EntraBetaApplicationPasswordCredential -ObjectId $AppId
 Remove-EntraBetaApplicationPasswordCredential -ObjectId $AppId -KeyId $KeyIds[0].KeyId
 ```
 
-The first command gets the ID of an application by using the [Get-EntraBetaApplication](./Get-EntraBetaApplication.md) cmdlet, and then stores it in the $AppID variable.
+This example demonstrates how to remove the password credential for an application.
 
-The second command gets the password credential for the application identified by $AppID by using the [Get-EntraBetaApplicationPasswordCredential](./ Get-EntraBetaApplicationPasswordCredential.md) cmdlet.
-The command stores it in the $KeyId variable.
-
-The final command removes the application password credential for the application identified by $AppID.
-
-- `-ObjectId` Specifies the ID of the application.
-- `-KeyId` Specifies the ID of the password credential.
+- `ObjectId` Specifies the ID of the application. Use `Get-EntraBetaApplication` to get application ObjectId value.
+- `KeyId` Specifies the ID of the password credential. Use `Get-EntraBetaApplicationPasswordCredential` to retrieve a specific credential details.
 
 ## Parameters
 
