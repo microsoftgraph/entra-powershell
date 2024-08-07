@@ -49,8 +49,7 @@ As part of the request validation, proof of possession of an existing key is ver
 ### Example 1: Create a new application key credential
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 
 $AppId = (Get-EntraApplication -Top 1).Objectid
 $params = @{
