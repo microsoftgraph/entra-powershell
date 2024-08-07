@@ -45,7 +45,7 @@ Set-EntraBetaUserExtension
 
 ## Description
 
-The `Set-EntraBetaUserExtension` cmdlet sets a user extension in Microsoft Entra ID.
+The `Set-EntraBetaUserExtension` cmdlet updates a user extension in Microsoft Entra ID.
 
 ## Examples
 
@@ -53,7 +53,7 @@ The `Set-EntraBetaUserExtension` cmdlet sets a user extension in Microsoft Entra
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$User = Get-EntraBetaUser -Top 1
+$User = Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com'
 $params = @{
     ObjectId = $User.ObjectId 
     ExtensionName = 'extension_e5e29b8a85d941eab8d12162bd004528_extensionAttribute8' 
