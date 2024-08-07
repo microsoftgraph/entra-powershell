@@ -55,7 +55,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc Peter Kons     Peter@contoso.com   Member
 cccccccc-2222-3333-4444-dddddddddddd Mary Kom       Mary@contoso.com    Member
 ```
 
-This example gets the owners of a specified service principal. You can use the comand `Get-EntraBetaServicePrincipal` to get service principal object Id.
+This example gets the owners of a specified service principal. You can use the comand `Get-EntraServicePrincipal` to get service principal object Id.
 
 - `ObjectId` parameter specifies the unique identifier of a service principal.
 
@@ -75,7 +75,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc Peter Kons     Peter@contoso.com   Member
 cccccccc-2222-3333-4444-dddddddddddd Mary Kom       Mary@contoso.com    Member
 ```
 
-This example retrieves all the owners of a service principal. You can use the comand `Get-EntraBetServicePrincipal` to get service principal object Id.
+This example retrieves all the owners of a service principal. You can use the comand `Get-EntraServicePrincipal` to get service principal object Id.
 
 - `ObjectId` parameter specifies the unique identifier of a service principal.
 
@@ -94,7 +94,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adams Smith    Adams@contoso.com   Member
 bbbbbbbb-1111-2222-3333-cccccccccccc Peter Kons     Peter@contoso.com   Member
 ```
 
-This example retrieves the top two owners of a service principal. You can use the comand `Get-EntraBetServicePrincipal` to get service principal object Id.
+This example retrieves the top two owners of a service principal. You can use the comand `Get-EntraServicePrincipal` to get service principal object Id.
 
 - `-ObjectId` parameter specifies the unique identifier of a service principal.
 
