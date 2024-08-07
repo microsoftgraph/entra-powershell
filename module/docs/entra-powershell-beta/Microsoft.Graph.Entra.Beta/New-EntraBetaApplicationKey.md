@@ -1,4 +1,13 @@
 ---
+title: New-EntraBetaApplicationKey.
+description: This article provides details on the New-EntraBetaApplicationKey command.
+
+ms.topic: reference
+ms.date: 07/31/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaApplicationKey
@@ -9,30 +18,51 @@ schema: 2.0.0
 # New-EntraBetaApplicationKey
 
 ## Synopsis
+
 Adds a new key to an application.
 
 ## Syntax
 
-```
-New-EntraBetaApplicationKey -ObjectId <String> -KeyCredential <KeyCredential>
- [-PasswordCredential <PasswordCredential>] -Proof <String> [<CommonParameters>]
+```powershell
+New-EntraBetaApplicationKey 
+ -ObjectId <String> 
+ -KeyCredential <KeyCredential>
+ -Proof <String> 
+ [-PasswordCredential <PasswordCredential>] 
+ [<CommonParameters>]
 ```
 
 ## Description
+
 Adds a new key to an application.
 
 ## Examples
 
 ### Example 1: Add a key credential to an application
-```
-PS C:\>New-EntraBetaApplicationKey -ObjectId 14a3f1ac-46a7-4d00-b1ca-0b2b84f033c2 -KeyCredential @{ key=[System.Convert]::FromBase64String("{base64cert}") } -PasswordCredential @{ displayname = "mypassword" } -Proof "{token}"
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+$params = @{
+    ObjectId = 'cccccccc-8888-9999-0000-dddddddddddd'
+    KeyCredential = @{ key=[System.Convert]::FromBase64String('{base64cert}') }
+    PasswordCredential = @{ DisplayName = 'mypassword' }
+    Proof = '{token}'
+}
+New-EntraBetaApplicationKey @params
 ```
 
-This command adds a key credential the specified application.
+This command adds a key credential to an specified application.
+
+- `-ObjectId` parameter specifies the unique identifier of an application.
+- `-KeyCredential` parameter specifies the application key credential to add.
+- `-PasswordCredential` parameter specifies the application password credential to add.
+- `-Proof` parameter specifies the signed JWT token used as a proof of possession of the existing keys.
 
 ## Parameters
 
 ### -KeyCredential
+
 The application key credential to add.
 
 NOTES: keyId value should be null.
@@ -50,10 +80,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-The unique identifier of the object specific Azure Active Directory object
+
+The unique identifier of the object specific Microsoft Entra ID object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -65,6 +96,7 @@ Accept wildcard characters: False
 ```
 
 ### -PasswordCredential
+
 The application password credential to add.
 
 NOTES: keyId value should be null.
@@ -82,10 +114,11 @@ Accept wildcard characters: False
 ```
 
 ### -Proof
-A signed JWT token used as a proof of possession of the existing keys
+
+A signed JWT token used as a proof of possession of the existing keys.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -97,19 +130,21 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
-### string
-### Microsoft.Open.MSGraph.Model.KeyCredential
-### Microsoft.Open.MSGraph.Model.PasswordCredential
-## Outputs
+### String
 
 ### Microsoft.Open.MSGraph.Model.KeyCredential
+
+### Microsoft.Open.MSGraph.Model.PasswordCredential
+
+## Outputs
+
 ## Notes
 
 ## Related Links
 
-[Remove-EntraBetaApplicationKey]()
-
+[Remove-EntraBetaApplicationKey](Remove-EntraBetaApplicationKey.md)

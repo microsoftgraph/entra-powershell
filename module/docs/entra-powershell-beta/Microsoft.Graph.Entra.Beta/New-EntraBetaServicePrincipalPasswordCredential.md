@@ -3,7 +3,7 @@ title: New-EntraBetaServicePrincipalPasswordCredential
 description: This article provides details on the New-EntraBetaServicePrincipalPasswordCredential command.
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/29/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -19,6 +19,7 @@ schema: 2.0.0
 # New-EntraBetaServicePrincipalPasswordCredential
 
 ## Synopsis
+
 Creates a password credential for a service principal.
 
 ## Syntax
@@ -32,16 +33,24 @@ New-EntraBetaServicePrincipalPasswordCredential
 ```
 
 ## Description
-The New-EntraBetaServicePrincipalPasswordCredential cmdlet creates a password credential for a service principal in Microsoft Entra ID.
+
+The `New-EntraBetaServicePrincipalPasswordCredential` cmdlet creates a password credential for a service principal in Microsoft Entra ID.
 
 ## Examples
 
-
 ### Example 1: Create a password credential with StartDate
+
 ```powershell
-PS C:\> New-EntraBetaServicePrincipalPasswordCredential -ObjectID "000aa8f0-ccde-4b68-914b-d922971b6192" -StartDate 2024-04-21T14:14:14Z
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+$Params = @{
+    ObjectId = 'aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb'
+    StartDate = '2024-04-21T14:14:14Z'
+}
+New-EntraBetaServicePrincipalPasswordCredential @Params
 ```
-```output
+
+```Output
 endDateTime         : 17/04/2026 07:39:07
 customKeyIdentifier :
 @odata.type         : #microsoft.graph.servicePrincipal
@@ -56,12 +65,22 @@ EndDate             : 17/04/2026 07:39:07
 
 This example demonstrates how to create a password credential with StartDate for a service principal in Microsoft Entra ID.  
 
+- `-ObjectId` parameter specifies the object ID of a service principal.
+- `-StarteDate` parameter specifies the date and time at which the password becomes valid.
 
 ### Example 2: Create a password credential with EndtDate
+
 ```powershell
-PS C:\> New-EntraBetaServicePrincipalPasswordCredential -ObjectID "021510b7-e753-40aa-b668-29753295ca34" -EndDate 2030-03-21T14:14:14Z
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+$Params = @{
+    ObjectId = 'aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb'
+    EndDate = '2030-03-21T14:14:14Z'
+}
+New-EntraBetaServicePrincipalPasswordCredential @Params
 ```
-```output
+
+```Output
 endDateTime         : 21/03/2030 14:14:14
 customKeyIdentifier :
 @odata.type         : #microsoft.graph.servicePrincipal
@@ -73,15 +92,20 @@ startDateTime       : 17/04/2024 07:41:01
 StartDate           : 17/04/2024 07:41:01
 EndDate             : 21/03/2030 14:14:14
 ```
-This example demonstrates how to create a password credential with EndDate for a service principal in Microsoft Entra ID.       
+
+This example demonstrates how to create a password credential with EndDate for a service principal in Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies the object ID of a service principal.
+- `-EndDate` parameter specifies the date and time at which the password expires represented using ISO 8601 format and is always in UTC time.
 
 ## Parameters
 
 ### -EndDate
+
 The date and time at which the password expires represented using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2024 is 2024-01-01T00:00:00Z.
 
 ```yaml
-Type: DateTime
+Type: System.DateTime
 Parameter Sets: (All)
 Aliases:
 
@@ -93,10 +117,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of the service principal.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -108,10 +133,11 @@ Accept wildcard characters: False
 ```
 
 ### -StartDate
+
 The date and time at which the password becomes valid. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2024 is 2024-01-01T00:00:00Z.
 
 ```yaml
-Type: DateTime
+Type: System.DateTime
 Parameter Sets: (All)
 Aliases:
 
@@ -123,7 +149,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -131,4 +158,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Notes
 
-## RELATED LINKS
+## Related Links
+
+[Get-EntraBetaServicePrincipalPasswordCredential](Get-EntraBetaServicePrincipalPasswordCredential.md)
+
+[Remove-EntraBetaServicePrincipalPasswordCredential](Remove-EntraBetaServicePrincipalPasswordCredential.md)
