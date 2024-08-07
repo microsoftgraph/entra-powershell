@@ -41,9 +41,10 @@ The `Select-EntraBetaGroupIdsUserIsMemberOf` cmdlet selects the groups that a us
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
+$myGroup = Get-EntraBetaGroup -Filter "DisplayName eq '<Group-DisplayName>'"
+$UserId = 'SawyerM@contoso.com'
 $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-$Groups.GroupIds = (Get-EntraBetaGroup -Top 1).ObjectId
-$UserId = (Get-EntraBetaUser -Top 1).ObjectId
+$Groups.GroupIds = $myGroup.ObjectId
 $Params = @{
     ObjectId = $UserId 
     GroupIdsForMembershipCheck = $Groups
@@ -55,9 +56,7 @@ Select-EntraBetaGroupIdsUserIsMemberOf @Params
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
-This example retrieves the group membership of a group for a user identified by $UserId.  
-You can use the command `Get-EntraBetaUser` to get user Id.  
-You can use the command `Get-EntraBetaGroup` to get group Id.  
+This example retrieves the group membership of a group for a user.
 
 - `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 - `-GroupIdsForMembershipCheck` parameter specifies the group Object Ids.
@@ -107,3 +106,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[Get-EntraBetaGroup](Get-EntraBetaGroup.md)
