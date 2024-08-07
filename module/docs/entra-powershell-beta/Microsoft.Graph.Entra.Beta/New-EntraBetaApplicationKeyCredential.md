@@ -93,7 +93,7 @@ Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 
 $cer = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 #create a new certificate object
-$cer.Import('C:\Users\PFuller\Desktop\abc.cer') 
+$cer.Import('C:\Users\ContosoUser\appcert.cer') 
 $bin = $cer.GetRawCertData()
 $base64Value = [System.Convert]::ToBase64String($bin)
 $bin = $cer.GetCertHash()
