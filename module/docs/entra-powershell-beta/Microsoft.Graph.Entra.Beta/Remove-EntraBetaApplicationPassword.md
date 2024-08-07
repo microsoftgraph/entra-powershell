@@ -39,10 +39,10 @@ Remove a password from an application.
 ### Example 1: Removes a password from an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraBetaApplication -Filter "DisplayName eq '<Application-DisplayName>'"
 $params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    ObjectId = $application.Id
     KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
 }
 Remove-EntraBetaApplicationPassWord @params
@@ -57,7 +57,7 @@ This example removes the specified password from the specified application.
 
 ### -ObjectId
 
-The unique identifier of the object specific Microsoft Entra ID object.
+The unique identifier of the application.
 
 ```yaml
 Type: System.String
