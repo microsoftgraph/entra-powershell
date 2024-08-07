@@ -22,6 +22,12 @@ schema: 2.0.0
 
 Adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
+For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
+
+- Directory Writers
+- License Administrator
+- User Administrator
+
 ## Syntax
 
 ```powershell
@@ -41,8 +47,8 @@ The `Set-EntraBetaUserLicense` adds or removes licenses for a Microsoft online s
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$LicensedUser = Get-EntraBetaUser -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
-$User = Get-EntraBetaUser -ObjectId 'dddddddd-3333-4444-5555-eeeeeeeeeeee' 
+$LicensedUser = Get-EntraBetaUser -ObjectId 'TemplateUser@contoso.com"' 
+$User = Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com' 
 $License = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense 
 $License.SkuId = $LicensedUser.AssignedLicenses.SkuId 
 $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
@@ -64,7 +70,7 @@ createdDateTime                06-11-2023 04:48:19
 surname                        KTETSs
 jobTitle                       Manager
 employeeType
-otherMails                     {test12@M365x99297270.OnMicrosoft.com}
+otherMails                     {SawyerM@contoso.com}
 isResourceAccount
 usageLocation                  DE
 legalAgeGroupClassification    Adult
@@ -81,8 +87,8 @@ This example demonstrates how to assign a license to a user. You can use the com
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$LicensedUser = Get-EntraBetaUser -ObjectId 'dddddddd-3333-4444-5555-eeeeeeeeeeee'
-$User = Get-EntraBetaUser -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
+$LicensedUser = Get-EntraBetaUser -ObjectId 'AdeleV@contoso.com'
+$User = Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com' 
 $License1 = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense 
 $License1.SkuId = $LicensedUser.AssignedLicenses.SkuId[0] 
 $License2 = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense
@@ -109,7 +115,7 @@ createdDateTime                06-11-2023 04:48:19
 surname                        KTETSs
 jobTitle                       Manager
 employeeType
-otherMails                     {test12@M365x99297270.OnMicrosoft.com}
+otherMails                     {SawyerM@contoso.com}
 isResourceAccount
 usageLocation                  DE
 legalAgeGroupClassification    Adult
