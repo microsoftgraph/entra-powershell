@@ -39,6 +39,7 @@ The `Remove-EntraBetaApplicationPasswordCredential` cmdlet removes a password cr
 ### Example 1: Remove an application password credential
 
 ```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All'
 $AppID = (Get-EntraBetaApplication -Top 1).ObjectId
 $KeyIDs = Get-EntraBetaApplicationPasswordCredential -ObjectId $AppId
 Remove-EntraBetaApplicationPasswordCredential -ObjectId $AppId -KeyId $KeyIds[0].KeyId
