@@ -56,7 +56,7 @@ This command gets the password credential for specified application.
 
 ### -ObjectId
 
-The objectID of the application for which to get the password credential.
+The objectID of the application for which to get the password credential. Use `Get-EntraBetaApplication` for more details.
 
 ```yaml
 Type: System.String
