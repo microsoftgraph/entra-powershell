@@ -4,11 +4,12 @@ description: This article provides details on the Get-EntraBetaLifecyclePolicyGr
 
 
 ms.topic: reference
-ms.date: 06/18/2024
+ms.date: 07/22/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaLifecyclePolicyGroup
@@ -41,7 +42,7 @@ The `Get-EntraBetaLifecyclePolicyGroup` retrieves the lifecycle policy object to
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaLifecyclePolicyGroup -Id 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
+Get-EntraBetaLifecyclePolicyGroup -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 ```Output
@@ -50,7 +51,10 @@ Id                                   AlternateNotificationEmails GroupLifetimeIn
 bbbbbbbb-1111-2222-3333-cccccccccccc admingroup@contoso.com      200                 All
 ```
 
-This example demonstrates how to retrieve lifecycle policy object for a group.
+This example demonstrates how to retrieve lifecycle policy object by Id in Microsoft Entra ID.  
+This example retrieves the lifecycle policy object to which a group belongs.
+
+- `-Id` - Specifies the ID of a group.  
 
 ## Parameters
 
