@@ -1,6 +1,6 @@
 ---
-title: Remove-EntraApplicationExtensionProperty
-description: This article provides details on the Remove-EntraApplicationExtensionProperty command.
+title: Remove-EntraBetaApplicationExtensionProperty
+description: This article provides details on the Remove-EntraBetaApplicationExtensionProperty command.
 
 ms.topic: reference
 ms.date: 08/06/2024

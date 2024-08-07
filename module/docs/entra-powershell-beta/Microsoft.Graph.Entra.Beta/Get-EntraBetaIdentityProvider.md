@@ -85,7 +85,7 @@ Google-OAUTH Test
 
 This example retrieves the properties for the specified identity provider.
 
-- `-Id` parameter specifies the unique identifier for an identity provider.
+- `-Id` parameter specifies the unique identifier of the identity provider.
 
 ## Parameters
 
