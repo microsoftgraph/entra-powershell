@@ -61,10 +61,8 @@ Describe "Set-EntraTrustedCertificateAuthority" {
         It "Should return created one" {
             $cer = Get-EntraTrustedCertificateAuthority 
             $cer[0].CrlDistributionPoint = "https://example.crl"
-            $cer[0].DeltaCrlDistributionPoint = "https://example2.crl"
-            $cer[0].TrustedIssuer = "CN=ms-cmdlett"
-            $cer[0].TrustedIssuerSki = "E48DBC5D4AF447E9D9D4A5440D4096C70AF5352A"
-
+            $cer[0].DeltaCrlDistributionPoint = "https://example2.crl"            
+            
             $result = Set-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer
 
             $result | Should -Not -BeNullOrEmpty
@@ -91,9 +89,7 @@ Describe "Set-EntraTrustedCertificateAuthority" {
             $cer = Get-EntraTrustedCertificateAuthority 
             $cer[0].CrlDistributionPoint = "https://example.crl"
             $cer[0].DeltaCrlDistributionPoint = "https://example2.crl"
-            $cer[0].TrustedIssuer = "CN=ms-cmdlett"
-            $cer[0].TrustedIssuerSki = "E48DBC5D4AF447E9D9D4A5440D4096C70AF5352A"
-
+            
             $result = Set-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer
 
             $params = Get-Parameters -data $result."@odata.context"
@@ -105,9 +101,7 @@ Describe "Set-EntraTrustedCertificateAuthority" {
             $cer = Get-EntraTrustedCertificateAuthority 
             $cer[0].CrlDistributionPoint = "https://example.crl"
             $cer[0].DeltaCrlDistributionPoint = "https://example2.crl"
-            $cer[0].TrustedIssuer = "CN=ms-cmdlett"
-            $cer[0].TrustedIssuerSki = "E48DBC5D4AF447E9D9D4A5440D4096C70AF5352A"
-
+            
             $result = Set-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer
 
             $params = Get-Parameters -data $result."@odata.context"
