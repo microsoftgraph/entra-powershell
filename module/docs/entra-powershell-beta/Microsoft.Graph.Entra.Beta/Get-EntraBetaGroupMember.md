@@ -2,104 +2,116 @@
 title: Get-EntraBetaGroupMember.
 description: This article provides details on the Get-EntraBetaGroupMember command.
 
-ms.service: active-directory
 ms.topic: reference
-ms.date: 03/06/2023
+ms.date: 06/24/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaGroupMember
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaGroupMember
 
-## SYNOPSIS
+## Synopsis
+
 Gets a member of a group.
 
-## SYNTAX
+## Syntax
 
-```
-Get-EntraBetaGroupMember 
- -ObjectId <String> 
- [-Top <Int32>] 
- [-All <Boolean>] 
+```powershell
+Get-EntraBetaGroupMember
+ -ObjectId <String>
+ [-Top <Int32>]
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraBetaGroupMember cmdlet gets a member of a group in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Get-EntraBetaGroupMember` cmdlet gets a member of a group in Microsoft Entra ID. Specify the `ObjectId` parameter to get a member of a group.
+
+## Examples
 
 ### Example 1: Get a group member by ID
+
 ```Powershell
-PS C:\>Get-EntraBetaGroupMember -ObjectId "05b0552e-39cd-4df4-a8f5-00ade912e83d"
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaGroupMember -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff'
 ```
-```output
+
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-2ae2d97b-4bde-42aa-b7c0-7c91a4c91a77
+bbbbbbbb-7777-8888-9999-cccccccccccc
 ```
 
 This example demonstrates how to retrieve group member by ID.  
 
 ### Example 2: Get two group member
+
 ```powershell
-PS C:\>Get-EntraBetaGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -Top 2
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaGroupMember -ObjectId 'bbbbbbbb-7777-8888-9999-cccccccccccc' -Top 2
 ```
-```output
+
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-996d39aa-fdac-4d97-aa3d-c81fb47362ac
-1554fcc2-9d6e-446b-9e1a-651c9ccfa413
+cccccccc-8888-9999-0000-dddddddddddd
+dddddddd-9999-0000-1111-eeeeeeeeeeee
 ```
 
 This example demonstrates how to retrieve top two groups from Microsoft Entra ID.  
 
 ### Example 3: Get all members within a group by group ID
+
 ```powershell
-PS C:\>Get-EntraBetaGroupMember -ObjectId "0a58c57b-a9ae-49a2-824f-8e9cb86d4512" -All $true
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraBetaGroupMember -ObjectId 'dddddddd-9999-0000-1111-eeeeeeeeeeee' -All
 ```
-```output
+
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-996d39aa-fdac-4d97-aa3d-c81fb47362ac
-1554fcc2-9d6e-446b-9e1a-651c9ccfa413
-e19c5875-9f67-4634-9af7-8e544aa76765
-142bffc9-e10c-4ea0-ac17-bee0ac7468fd
-2ae2d97b-4bde-42aa-b7c0-7c91a4c91a77
-4a18c37a-a83d-489d-a35c-fdad407cd734
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+eeeeeeee-4444-5555-6666-ffffffffffff
+aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb
+bbbbbbbb-7777-8888-9999-cccccccccccc
+cccccccc-8888-9999-0000-dddddddddddd
 ```
 
 This example retrieves all members within a group by group ID.  
 
-## PARAMETERS
+## Parameters
 
 ### -All
-If true, return all group members.
-If false, return the number of objects specified by the Top parameter.
+
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -111,10 +123,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -125,18 +138,34 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Add-EntraBetaGroupMember](Add-EntraBetaGroupMember.md)
 
 [Remove-EntraBetaGroupMember](Remove-EntraBetaGroupMember.md)
-

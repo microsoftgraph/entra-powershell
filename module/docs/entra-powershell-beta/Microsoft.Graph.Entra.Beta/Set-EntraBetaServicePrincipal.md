@@ -1,16 +1,17 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaServicePrincipal
+
 schema: 2.0.0
 ---
 
 # Set-EntraBetaServicePrincipal
 
-## SYNOPSIS
+## Synopsis
 Updates a service principal.
 
-## SYNTAX
+## Syntax
 
 ```
 Set-EntraBetaServicePrincipal [-AccountEnabled <String>]
@@ -25,10 +26,10 @@ Set-EntraBetaServicePrincipal [-AccountEnabled <String>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraBetaServicePrincipal cmdlet updates a service principal in Azure Active Directory (Azure AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Disable the account of a service principal
 ```
@@ -37,7 +38,7 @@ PS C:\> Set-EntraBetaServicePrincipal -ObjectId 2e0d8ca7-57d1-4a87-9c2a-b3638a4c
 
 This command disables the account of the specified service principal.
 
-## PARAMETERS
+## Parameters
 
 ### -AccountEnabled
 Indicates whether the account is enabled.
@@ -298,13 +299,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaServicePrincipal]()
 

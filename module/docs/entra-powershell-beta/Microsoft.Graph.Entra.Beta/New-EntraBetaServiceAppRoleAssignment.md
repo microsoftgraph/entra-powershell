@@ -1,16 +1,17 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaServiceAppRoleAssignment
+
 schema: 2.0.0
 ---
 
 # New-EntraBetaServiceAppRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 Assigns a service principal to an application role.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaServiceAppRoleAssignment -ResourceId <String> -Id <String> -ObjectId <String>
@@ -18,10 +19,10 @@ New-EntraBetaServiceAppRoleAssignment -ResourceId <String> -Id <String> -ObjectI
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraBetaServiceAppRoleAssignment cmdlet assigns a service principal to an application role in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```powershell
@@ -30,7 +31,7 @@ PS C:\> {{ Add example code here }}
 
 {{ Add example description here }}
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 Specifies the ID.
@@ -97,13 +98,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaServiceAppRoleAssignment]()
 

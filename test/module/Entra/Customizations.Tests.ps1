@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 BeforeAll {    
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         Import-Module Microsoft.Graph.Entra
@@ -17,19 +21,23 @@ Describe 'Checking Files'{
             if(("Generic" -ne $name) -and ("Types" -ne $name)){
                 Write-Host "Checking $name"
                 $value = . $_.FullName
-                $name | Should -Be $value.SourceName 
+                $name | Should -Be ($value.SourceName -ireplace "AzureADMS","AzureAD")  
             }            
         }
     }
 
     It 'Checking that customizations produce commands' {
+        $modifiedCommands = @{}
+        $module = Get-Module Microsoft.Graph.Entra
+        foreach ($key in $module.ExportedCommands.Keys) {
+            $newKey = $key -replace 'AzureADMS', 'AzureAD'
+            $modifiedCommands[$newKey] = $module.ExportedCommands[$key]
+        }
         $files | ForEach-Object {
             $name = $_.Name -ireplace ".ps1",""
             $name = $name -ireplace "AzureAD","Entra"
             if(("Generic" -ne $name) -and ("Types" -ne $name)){
-                Write-Host "Checking $name"
-                $module = Get-Module Microsoft.Graph.Entra
-                $module.ExportedCommands.ContainsKey($name) | Should -BeTrue
+                $modifiedCommands.ContainsKey($name) | Should -BeTrue
             }
         }
     }

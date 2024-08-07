@@ -2,9 +2,9 @@
 title: Remove-EntraUser
 description: This article provides details on the Remove-EntraUser command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/27/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,16 +12,18 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraUser
+
 schema: 2.0.0
 ---
 
 # Remove-EntraUser
 
-## SYNOPSIS
+## Synopsis
+
 Removes a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraUser 
@@ -29,25 +31,35 @@ Remove-EntraUser
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
+
 The Remove-EntraUser cmdlet removes a user in Microsoft Entra ID.
 
-## EXAMPLES
+The calling user must be assigned at least one of the following Microsoft Entra roles:
+
+- User Administrator
+
+- Privileged Authentication Administrator
+
+## Examples
 
 ### Example 1: Remove a user
+
 ```powershell
-PS C:\>Remove-EntraUser -ObjectId "TestUser@example.com"
+Connect-Entra -Scopes 'User.ReadWrite.All'
+Remove-EntraUser -ObjectId 'SawyerM@Contoso.com'
 ```
 
 This command removes the specified user in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
+
 Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -59,19 +71,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Get-EntraUser](Get-EntraUser.md)
 
 [New-EntraUser](New-EntraUser.md)
 
 [Set-EntraUser](Set-EntraUser.md)
-

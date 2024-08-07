@@ -1,16 +1,17 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaUserExtension
+
 schema: 2.0.0
 ---
 
 # Set-EntraBetaUserExtension
 
-## SYNOPSIS
+## Synopsis
 Sets a user extension.
 
-## SYNTAX
+## Syntax
 
 ### SetSingle
 ```
@@ -25,10 +26,10 @@ Set-EntraBetaUserExtension -ObjectId <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Set-EntraBetaUserExtension cmdlet sets a user extension in Azure Active Directory (Azure AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Set the value of an extension attribute for a user
 ```
@@ -41,7 +42,7 @@ The first command gets a user by using the Get-EntraBetaUser (./Get-EntraBetaUse
 The second command  sets the value of the extension attribute that hast he specified name to the value New Value.
 You can get extension attribute names by using the Get-AzureAdExtensionProperty (./Get-AzureAdExtensionProperty.md)cmdlet.
 
-## PARAMETERS
+## Parameters
 
 ### -ExtensionName
 Specifies the name of an extension.
@@ -106,13 +107,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaUser]()
 

@@ -21,17 +21,57 @@
         {
             $body["endDateTime"] = $PSBoundParameters["EndDate"]
         }
+        if($null -ne $PSBoundParameters["CustomKeyIdentifier"])
+        {
+            $body["displayName"] = $PSBoundParameters["CustomKeyIdentifier"]
+        }
         if($null -ne $PSBoundParameters["ObjectId"])
         {
             $params["ApplicationId"] = $PSBoundParameters["ObjectId"]
         }
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
+        }
+        if($null -ne $PSBoundParameters["WarningVariable"])
+        {
+            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
+        }
+        if($null -ne $PSBoundParameters["InformationVariable"])
+        {
+            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
+        }
+	    if($null -ne $PSBoundParameters["InformationAction"])
+        {
+            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
+        }
+        if($null -ne $PSBoundParameters["OutVariable"])
+        {
+            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
+        }
+        if($null -ne $PSBoundParameters["OutBuffer"])
+        {
+            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
+        }
+        if($null -ne $PSBoundParameters["ErrorVariable"])
+        {
+            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
+        }
+        if($null -ne $PSBoundParameters["PipelineVariable"])
+        {
+            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
+        }
+        if($null -ne $PSBoundParameters["ErrorAction"])
+        {
+            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
+        }
+        if($null -ne $PSBoundParameters["WarningAction"])
+        {
+            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
         $params["PasswordCredential"] = $body
 
@@ -41,7 +81,14 @@
 ")
         
         $response = Add-MgApplicationPassword @params -Headers $customHeaders 
+        $response | ForEach-Object {
+            If($_.DisplayName){
+                $Value = [System.Text.Encoding]::ASCII.GetBytes($_.DisplayName)
+                Add-Member -InputObject $_ -MemberType NoteProperty -Name CustomKeyIdentifier -Value $Value -Force
+            }
+            Add-Member -InputObject $_ -MemberType AliasProperty -Name Value -Value SecretText
+        }
         $response
-        }  
+    }  
 '@
 }

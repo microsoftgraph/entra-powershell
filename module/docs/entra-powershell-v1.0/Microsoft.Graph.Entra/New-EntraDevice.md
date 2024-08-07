@@ -2,9 +2,9 @@
 title: New-EntraDevice
 description: This article provides details on the New-EntraDevice command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/22/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,16 +12,18 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraDevice
+
 schema: 2.0.0
 ---
 
 # New-EntraDevice
 
-## SYNOPSIS
+## Synopsis
+
 Creates a device.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraDevice 
@@ -43,31 +45,46 @@ New-EntraDevice
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The New-EntraDevice cmdlet creates a device in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `New-EntraDevice` cmdlet creates a device in Microsoft Entra ID.
+
+## Examples
 
 ### Example 1: Create a device
+
 ```powershell
-PS C:\>New-EntraDevice -AccountEnabled $true -DisplayName "My new device" -AlternativeSecurityIds $altsecid -DeviceId $guid -DeviceOSType "OS/2" -DeviceOSVersion "9.3"
+Connect-Entra -Scopes 'Directory.AccessAsUser.All' #Delegated Permission
+Connect-Entra -Scopes 'Device.ReadWrite.All' #Application Permission
+
+$params = @{
+    AccountEnabled = $true
+    DisplayName = 'My new device'
+    AlternativeSecurityIds = $altsecid
+    DeviceId = $guid
+    DeviceOSType = 'OS/2'
+    DeviceOSVersion = '9.3'
+}
+
+New-EntraDevice @params
 ```
 
-```output
+```Output
 ObjectId                             DeviceId                             DisplayName
 --------                             --------                             -----------
-99a1915d-298f-42d1-93ae-71646b85e2fa 5547679b-809d-4e2c-9820-3c4401a573a8 My new device
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb dddddddd-3333-4444-5555-eeeeeeeeeeee My new device
 ```
 
 This command creates a new device.
 
-## PARAMETERS
+## Parameters
 
 ### -AccountEnabled
+
 Indicates whether the account is enabled.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -79,6 +96,7 @@ Accept wildcard characters: False
 ```
 
 ### -AlternativeSecurityIds
+
 Specifies alternative security IDs.
 
 ```yaml
@@ -94,10 +112,11 @@ Accept wildcard characters: False
 ```
 
 ### -ApproximateLastLogonTimeStamp
+
 Specifies last sign-in date time.
 
 ```yaml
-Type: DateTime
+Type: System.DateTime
 Parameter Sets: (All)
 Aliases:
 
@@ -109,10 +128,11 @@ Accept wildcard characters: False
 ```
 
 ### -DeviceId
+
 Specifies the ID of the device.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -124,10 +144,11 @@ Accept wildcard characters: False
 ```
 
 ### -DeviceMetadata
+
 The metadata for this device
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -139,10 +160,11 @@ Accept wildcard characters: False
 ```
 
 ### -DeviceObjectVersion
+
 Specifies the object version of the device.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -154,10 +176,11 @@ Accept wildcard characters: False
 ```
 
 ### -DeviceOSType
+
 Specifies the operating system type of the new device.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -169,10 +192,11 @@ Accept wildcard characters: False
 ```
 
 ### -DeviceOSVersion
+
 Specifies the operating system version of the new device.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -184,6 +208,7 @@ Accept wildcard characters: False
 ```
 
 ### -DevicePhysicalIds
+
 Specifies the physical ID.
 
 ```yaml
@@ -199,10 +224,11 @@ Accept wildcard characters: False
 ```
 
 ### -DeviceTrustType
+
 The trust type for this device
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -214,10 +240,11 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
+
 Specifies the display name of the new device.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -229,10 +256,11 @@ Accept wildcard characters: False
 ```
 
 ### -IsCompliant
+
 True if the device complies with Mobile Device Management (MDM) policies; otherwise, false.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -244,10 +272,11 @@ Accept wildcard characters: False
 ```
 
 ### -IsManaged
+
 True if the device is managed by a Mobile Device Management (MDM) app such as Intune; otherwise, false.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -259,10 +288,11 @@ Accept wildcard characters: False
 ```
 
 ### -ProfileType
+
 Specifies profile type of the device.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -274,6 +304,7 @@ Accept wildcard characters: False
 ```
 
 ### -SystemLabels
+
 Specifies labels for the device.
 
 ```yaml
@@ -289,19 +320,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Get-EntraDevice](Get-EntraDevice.md)
 
 [Remove-EntraDevice](Remove-EntraDevice.md)
 
 [Set-EntraDevice](Set-EntraDevice.md)
-

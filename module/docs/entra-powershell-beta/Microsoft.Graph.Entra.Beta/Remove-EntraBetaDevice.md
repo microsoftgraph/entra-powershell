@@ -2,25 +2,26 @@
 title: Remove-EntraBetaDevice
 description: This article provides details on the Remove-EntraBetaDevice command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/01/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaDevice
+
 schema: 2.0.0
 ---
 
 # Remove-EntraBetaDevice
 
-## SYNOPSIS
+## Synopsis
 Deletes a device.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraBetaDevice 
@@ -28,10 +29,10 @@ Remove-EntraBetaDevice
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The **Remove-EntraBetaDevice** cmdlet removes a device from Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove a device
 ```powershell
@@ -40,7 +41,7 @@ PS C:\>Remove-EntraBetaDevice -ObjectId "99a1915d-298f-42d1-93ae-71646b85e2fa"
 
 This command removes the specified device.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the object ID of a device in Microsoft Entra ID.
@@ -60,13 +61,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaDevice](Get-EntraBetaDevice.md)
 

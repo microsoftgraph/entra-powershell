@@ -1,26 +1,27 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaUserAppRoleAssignment
+
 schema: 2.0.0
 ---
 
 # New-EntraBetaUserAppRoleAssignment
 
-## SYNOPSIS
+## Synopsis
 Assigns a user to an application role.
 
-## SYNTAX
+## Syntax
 
 ```
 New-EntraBetaUserAppRoleAssignment -ResourceId <String> -Id <String> -ObjectId <String> -PrincipalId <String>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The New-EntraBetaUserAppRoleAssignment cmdlet assigns a user to an application role in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Assign a user to an application without roles
 ```
@@ -55,7 +56,7 @@ New-EntraBetaUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.O
 This cmdlet assigns to the specified user the application role of which the Id is specified with $spo.Approles\[1\].id.
 please refer to the description of the -Id parameter for more information on how to retrieve application roles for an application.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 The ID of the app role to assign.
@@ -132,13 +133,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaUserAppRoleAssignment]()
 

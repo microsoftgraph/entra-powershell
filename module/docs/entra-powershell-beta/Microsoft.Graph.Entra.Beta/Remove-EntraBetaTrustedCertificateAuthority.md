@@ -1,26 +1,27 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaTrustedCertificateAuthority
+
 schema: 2.0.0
 ---
 
 # Remove-EntraBetaTrustedCertificateAuthority
 
-## SYNOPSIS
+## Synopsis
 Removes a trusted certificate authority.
 
-## SYNTAX
+## Syntax
 
 ```
 Remove-EntraBetaTrustedCertificateAuthority -CertificateAuthorityInformation <CertificateAuthorityInformation>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Remove-EntraBetaTrustedCertificateAuthority cmdlet removes a trusted certificate authority from Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove the trusted certificate authorities that are defined in your directory
 ```
@@ -30,7 +31,7 @@ PS C:\> $cer = Get-EntraBetaTrustedCertificateAuthority #Get the CertificateAuth
 
 This command deletes the trusted certificate authorities that are defined in your directory.
 
-## PARAMETERS
+## Parameters
 
 ### -CertificateAuthorityInformation
 @{Text=}
@@ -52,13 +53,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaTrustedCertificateAuthority]()
 

@@ -8,6 +8,14 @@
     Outputs = $null
     CustomScript = @'
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-    (Get-MgApplication -Headers $customHeaders -ApplicationId `$PSBoundParameters["ObjectId"]).PasswordCredentials
+
+    if($null -ne $PSBoundParameters["Property"])
+    {
+        $params["Property"] = $PSBoundParameters["Property"]
+    }
+
+    # TODO : Invoke API and apply the correct Select query
+
+    (Get-MgApplication -Headers $customHeaders -ApplicationId $PSBoundParameters["ObjectId"]).PasswordCredentials
 '@
 }
