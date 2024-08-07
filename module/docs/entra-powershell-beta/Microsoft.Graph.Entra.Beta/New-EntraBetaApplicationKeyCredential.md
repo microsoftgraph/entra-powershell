@@ -55,7 +55,7 @@ $AppId = (Get-EntraApplication -Top 1).Objectid
 $params = @{
     ObjectId = $AppId
     CustomKeyIdentifier = 'EntraPowerShellKey'
-    StartDate = '11/7/2016'
+    StartDate = '2024-03-21T14:14:14Z'
     Type = 'Symmetric'
     Usage = 'Sign'
     Value = '<my-value>'
@@ -66,9 +66,9 @@ New-EntraBetaApplicationKeyCredential @params
 
 ```Output
 CustomKeyIdentifier : {84, 101, 115, 116}
-EndDate             : 11/7/2017 12:00:00 AM
+EndDate             : 2024-03-21T14:14:14Z
 KeyId               : aaaaaaaa-0b0b-1c1c-2d2d-333333333333
-StartDate           : 11/7/2016 12:00:00 AM
+StartDate           : 2025-03-21T14:14:14Z
 Type                : Symmetric
 Usage               : Sign
 Value               : {49, 50, 51}
@@ -83,7 +83,7 @@ This example shows how to create an application key credential.
 - `-Usage` Specifies the key usage. for `AsymmetricX509Cert` the usage must be `Verify`and for `X509CertAndPassword` the usage must be `Sign`.
 - `-Value` Specifies the value for the key.
 
-You can use the `Get-EntraApplication` cmdlet to retrieve the application Object ID.
+You can use the `Get-EntraBetaApplication` cmdlet to retrieve the application Object ID.
 
 ### Example 2: Use a certificate to add an application key credential
 
