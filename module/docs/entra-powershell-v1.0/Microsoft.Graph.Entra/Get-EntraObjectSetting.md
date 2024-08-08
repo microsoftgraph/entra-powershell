@@ -45,14 +45,19 @@ Get-EntraObjectSetting
 
 ## Description
 
-The `Get-EntraObjectSetting` cmdlet Retrieve an object setting from Microsoft Entra ID. Specify `TargetType` and `TargetObjectId` parameter to get an object setting
+The `Get-EntraObjectSetting` cmdlet Retrieve an object setting from Microsoft Entra ID. Specify `-TargetType` and `-TargetObjectId` parameter to get an object setting.
 
 ## Examples
 
-### Example 1: Retrieve an object setting
+### Example 1: Retrieve object setting from Microsoft Entra ID
 
 ```powershell
- Get-EntraObjectSetting -TargetType 'Groups' -TargetObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Connect-Entra -Scopes 'Directory.Read.All'
+$params = @{
+    TargetType = 'Groups'
+    TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
+}
+Get-EntraObjectSetting @params
 ```
 
 ```Output
@@ -69,7 +74,13 @@ This command retrieves  object setting from Microsoft Entra ID.
 ### Example 2: Retrieve an object setting with ID parameter
 
 ```powershell
- Get-EntraObjectSetting -TargetType 'Groups' -TargetObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff' -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Connect-Entra -Scopes 'Directory.Read.All'
+$params = @{
+    TargetType = 'Groups'
+    TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
+    Id ='aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+}
+Get-EntraObjectSetting @params
 ```
 
 ```Output
@@ -87,7 +98,12 @@ This command retrieves Specific object setting from Microsoft Entra ID.
 ### Example 3: Retrieve a top one object setting
 
 ```powershell
- Get-EntraObjectSetting -TargetType 'Groups' -TargetObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 1
+Connect-Entra -Scopes 'Directory.Read.All'
+$params = @{
+    TargetType = 'Groups'
+    TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
+}
+Get-EntraObjectSetting @params -Top 1
 ```
 
 ```Output
@@ -104,7 +120,12 @@ This command retrieves top one object setting from Microsoft Entra ID.
 ### Example 4: Retrieve all object setting from Microsoft Entra ID
 
 ```powershell
- Get-EntraObjectSetting -TargetType 'Groups' -TargetObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
+Connect-Entra -Scopes 'Directory.Read.All'
+$params = @{
+    TargetType = 'Groups'
+    TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
+}
+Get-EntraObjectSetting @params -All
 ```
 
 ```Output
