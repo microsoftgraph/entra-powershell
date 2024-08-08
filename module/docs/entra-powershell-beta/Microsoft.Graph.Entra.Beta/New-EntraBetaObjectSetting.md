@@ -58,7 +58,7 @@ This command creates a new settings object.
 
 - `-TargetType` Parameter specifies the type of the directory object.
 - `-TargetObjectId` Parameter specifies the ID of directory object to which to assign settings.
-- `-DirectorySetting` Parameter specifies the new settings.
+- `-DirectorySetting` Parameter Create a new setting using templates from `DirectorySettingTemplates`
 
 ## Parameters
 
