@@ -68,7 +68,7 @@ $params = @{
 Set-EntraApplication @params
 ```
 
-This command updates an application in Microsoft Entra ID.
+This command updates the display name of the application specified by the `-ObjectID` parameter.
 
 ### Example 2: Update an application using IdentifierUris parameter
 
@@ -83,7 +83,7 @@ $params = @{
 Set-EntraApplication @params
 ```
 
-This command updates an application in Microsoft Entra ID.
+This command updates the identifier URIs of the application specified by the `-ObjectID` parameter.
 
 ### Example 3: Update an application using GroupMembershipClaims parameter
 
@@ -98,7 +98,7 @@ $params = @{
 Set-EntraApplication @params
 ```
 
-This command updates an application in Microsoft Entra ID.
+This command updates the group membership claims of the application specified by the `-ObjectID` parameter.
 
 ### Example 4: Update an application using IsDeviceOnlyAuthSupported parameter
 
@@ -113,7 +113,7 @@ $params = @{
 Set-EntraApplication @params
 ```
 
-This command updates an application in Microsoft Entra ID.
+This command updates the `-IsDeviceOnlyAuthSupported` property of the application specified by the `-ObjectID` parameter.
 
 ### Example 5: Update an application using Tags parameter
 
@@ -128,7 +128,7 @@ $params = @{
 Set-EntraApplication @params
 ```
 
-This command updates an application in Microsoft Entra ID.
+This command updates the tags for the application specified by the `-ObjectID` parameter.
 
 ## Parameters
 
@@ -303,7 +303,7 @@ Accept wildcard characters: False
 
 ### -OptionalClaims
 
-Application developers can configure optional claims in their Microsoft Entra ID apps to specify which claims they want in tokens sent to their application by the Microsoft security token service.
+Application developers can configure optional claims in their Microsoft Entra applications to specify which claims they want in tokens sent to their application by the Microsoft security token service.
 
 ```yaml
 Type: OptionalClaims
@@ -335,7 +335,7 @@ Accept wildcard characters: False
 
 ### -PasswordCredentials
 
-The collection of password credentials associated with the application
+The collection of password credentials associated with the application.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.PasswordCredential]

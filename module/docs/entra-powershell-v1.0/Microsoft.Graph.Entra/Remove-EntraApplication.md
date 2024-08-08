@@ -43,7 +43,7 @@ Connect-Entra -Scopes 'Application.ReadWrite.All'
 Remove-EntraApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-This command removes the specified application.
+This command removes the specified application by specifying it's object ID.
 
 ## Parameters
 

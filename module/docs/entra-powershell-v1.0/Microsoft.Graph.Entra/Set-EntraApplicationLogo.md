@@ -21,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Sets the logo for an Application
+Sets the logo for an Application.
 
 ## Syntax
 
@@ -68,7 +68,7 @@ $params = @{
 Set-EntraApplicationLogo @params
 ```
 
-This cmdlet sets the application logo for the application specified by the ObjectID parameter to the image specified with the Filepath parameter.
+This cmdlet sets the application logo for the application specified by the `-ObjectID` parameter to the image specified with the `-Filepath` parameter.
 
 ## Parameters
 

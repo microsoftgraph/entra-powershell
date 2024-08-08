@@ -57,7 +57,7 @@ Get-EntraApplication
 
 ## Description
 
-The `Get-EntraApplication` cmdlet gets a Microsoft Entra ID application.
+The `Get-EntraApplication` cmdlet gets a Microsoft Entra application.
 
 ## Examples
 
@@ -143,7 +143,7 @@ DisplayName          Id                                   AppId                 
 My new application 2 kkkkkkkk-cccc-dddd-eeee-llllllllllll llllllll-dddd-eeee-ffff-mmmmmmmmmmmm AzureADandPersonalMicrosoftAccount contoso.com
 ```
 
-This cmdlet gets all applications that match the value of SearchString against the first characters in DisplayName.
+This cmdlet gets all applications that match the value of `-SearchString` parameter against the first characters in `DisplayName`.
 
 ### Example 6: Retrieve an application by identifierUris
 
@@ -152,7 +152,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraApplication -Filter "identifierUris/any(uri:uri eq 'http://wingtips.wingtiptoysonline.com')"
 ```
 
-This example demonstrates how to retrieve applications by its identifierUris from Microsoft Entra ID.  
+This example demonstrates how to retrieve applications by its identifier Uris from Microsoft Entra ID.  
 
 ## Parameters
 
@@ -239,7 +239,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

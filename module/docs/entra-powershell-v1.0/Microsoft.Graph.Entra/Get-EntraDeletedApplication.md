@@ -85,7 +85,7 @@ TestApp3    eeeeeeee-6666-7777-8888-ffffffffffff ffffffff-7777-8888-9999-ggggggg
 TestApp4    gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb-iiiiiiiiiiii AzureADMyOrg   contoso.com
 ```
 
-This cmdlet retrieves the list of deleted applications using All parameter.  
+This cmdlet retrieves the list of deleted applications using `All` parameter.  
 
 ### Example 3: Get top two deleted applications
 
@@ -116,7 +116,7 @@ DisplayName Id                                   AppId                          
 TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
 ```
 
-This cmdlet retrieves deleted applications using SearchString parameter.  
+This cmdlet retrieves deleted applications using `-SearchString` parameter.  
 
 ### Example 5: Get deleted applications filter by display name
 
@@ -131,7 +131,7 @@ DisplayName Id                                   AppId                          
 TestApp1    aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
 ```
 
-This cmdlet retrieves deleted applications having specified display name.  
+This cmdlet retrieves deleted applications with the specified string in their display name.  
 
 ## Parameters
 
@@ -139,8 +139,7 @@ This cmdlet retrieves deleted applications having specified display name.
 
 List all pages.
 
-```
-
+```yaml
 Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
@@ -170,7 +169,7 @@ Accept wildcard characters: False
 
 ### -SearchString
 
-Retrieve only those applications that satisfy the -SearchString value.
+Retrieve only those applications that satisfy the `-SearchString` value.
 
 ```yaml
 Type: System.String
@@ -203,7 +202,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
