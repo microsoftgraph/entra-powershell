@@ -33,7 +33,7 @@ Select-EntraGroupIdsUserIsMemberOf
 
 ## Description
 
-The Select-EntraGroupIdsUserIsMemberOf cmdlet selects the groups that a user is a member of in Microsoft Entra ID.
+The `Select-EntraGroupIdsUserIsMemberOf` cmdlet selects the groups that a user is a member of in Microsoft Entra ID.
 
 ## Examples
 
@@ -41,23 +41,25 @@ The Select-EntraGroupIdsUserIsMemberOf cmdlet selects the groups that a user is 
 
 ```powershell
  Connect-Entra -Scopes 'Application.Read.All'
- $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
- $Groups.GroupIds = (Get-EntraGroup -Top 1).ObjectId
- $UserId = (Get-EntraUser -Top 1).ObjectId
- Select-EntraGroupIdsUserIsMemberOf  -ObjectId $UserId -GroupIdsForMembershipCheck $Groups
+$myGroup = Get-EntraGroup -Filter "DisplayName eq '<Group-DisplayName>'"
+$UserId = 'SawyerM@contoso.com'
+$Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+$Groups.GroupIds = $myGroup.ObjectId
+$Params = @{
+    ObjectId = $UserId 
+    GroupIdsForMembershipCheck = $Groups
+}
+Select-EntraGroupIdsUserIsMemberOf @Params
 ```
 
-```output
+```Output
 bbbbbbbb-5555-5555-0000-qqqqqqqqqqqq
 ```
 
-The first command creates a GroupIdsForMembershipCheck object, and then stores it in the $Groups variable.
+This example retrieves the group membership of a group for a user.
 
-The second command gets an ID for a group by using the [Get-EntraGroup](./Get-EntraGroup.md) cmdlet, and then stores it as a property of $Groups.
-
-The third command gets the ID of a user by using the [Get-EntraUser](./Get-EntraUser.md) cmdlet, and then stores it in the $UserId variable.
-
-The final command gets the group membership of a group for a user identified by $UserId.
+- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
+- `-GroupIdsForMembershipCheck` parameter specifies the group Object Ids.
 
 ## Parameters
 
@@ -95,7 +97,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

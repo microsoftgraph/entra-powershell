@@ -1,55 +1,56 @@
 ---
-title: Set-EntraUserExtension.
-description: This article provides details on the Set-EntraUserExtension command.
-
+title: Remove-EntraPolicy.
+description: This article provides details on the Remove-EntraPolicy command.
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/16/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraUserExtension
-
+online version:
 schema: 2.0.0
 ---
 
-# Set-EntraUserExtension
+# Remove-EntraPolicy
 
 ## Synopsis
 
-Sets a user extension.
+Removes a policy.
 
 ## Syntax
 
 ```powershell
-Set-EntraUserExtension
- -ObjectId <String>
+Remove-EntraPolicy 
+ -Id <String> 
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Set-EntraUserExtension` cmdlet updates a user extension in Microsoft Entra ID.
+The `Remove-EntraPolicy` cmdlet removes a policy from Microsoft Entra ID. Specify `Id` parameter to remove a specific policy.
 
 ## Examples
 
-### Example 1: Set the value of an extension attribute for a user
+### Example 1: Remove a policy
 
 ```powershell
-$User = Get-EntraUser -ObjectId 'SawyerM@contoso.com'
-Set-EntraUserExtension -ObjectId $User.ObjectId 
+Connect-Entra -Scopes 'Policy.Read.ApplicationConfiguration'
+Remove-EntraPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-This example shows how to update the value of the extension attribute for a specified user.
+This command removes the specified policy from Microsoft Entra ID.
+
+- `-Id` - specifies the ID of the policy you want to remove. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the Policy.
 
 ## Parameters
 
-### -ObjectId
+### -Id
 
-Specifies the ID of an object.
+The ID of the policy you want to remove.
 
 ```yaml
 Type: System.String
@@ -75,10 +76,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Get-EntraUser](Get-EntraUser.md)
+[Get-EntraPolicy](Get-EntraPolicy.md)
 
-[Get-EntraUserExtension](Get-EntraUserExtension.md)
+[New-EntraPolicy](New-EntraPolicy.md)
 
-[Get-EntraExtensionProperty](Get-EntraExtensionProperty.md)
-
-[Remove-EntraUserExtension](Remove-EntraUserExtension.md)
+[Set-EntraPolicy](Set-EntraPolicy.md)
