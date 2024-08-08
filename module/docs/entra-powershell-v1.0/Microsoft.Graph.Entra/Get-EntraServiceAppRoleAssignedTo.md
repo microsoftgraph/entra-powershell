@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraServiceAppRoleAssignedTo
+
 schema: 2.0.0
 ---
 
@@ -20,17 +21,6 @@ schema: 2.0.0
 ## Synopsis
 
 Gets app role assignments for this app or service, granted to users, groups and other service principals.
-
-For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
-
-- Directory Synchronization Accounts
-- Directory Writer
-- Hybrid Identity Administrator
-- Identity Governance Administrator
-- Privileged Role Administrator
-- User Administrator
-- Application Administrator
-- Cloud Application Administrator
 
 ## Syntax
 
@@ -46,6 +36,17 @@ Get-EntraServiceAppRoleAssignedTo
 ## Description
 
 The `Get-EntraServiceAppRoleAssignedTo` cmdlet gets app role assignments for this app or service, granted to users, groups and other service principals.
+
+For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
+
+- Directory Synchronization Accounts
+- Directory Writer
+- Hybrid Identity Administrator
+- Identity Governance Administrator
+- Privileged Role Administrator
+- User Administrator
+- Application Administrator
+- Cloud Application Administrator
 
 ## Examples
 

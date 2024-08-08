@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraServicePrincipalDelegatedPermissionClassification
+
 schema: 2.0.0
 ---
 
@@ -53,14 +54,15 @@ The Get-EntraServicePrincipalDelegatedPermissionClassification cmdlet retrieves 
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 'bbbb1111-cc22-3333-44dd-555555eeeeee'
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
+Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId $servicePrincipal.Id
 ```
 
-```output
-Id                      Classification PermissionId                         PermissionName
---                      -------------- ------------                         --------------
-bbbbbbbb-7777-8888-9999-cccccccccccc low            eeeeeeee-4444-5555-6666-ffffffffffff Sites.Read.All
-cccccccc-8888-9999-0000-dddddddddddd low            dddd3333-ee44-5555-66ff-777777aaaaaa profile
+```Output
+Id                                    Classification PermissionId                         PermissionName
+--                                    -------------- ------------                         --------------
+bbbbbbbb-7777-8888-9999-cccccccccccc  low            eeeeeeee-4444-5555-6666-ffffffffffff Sites.Read.All
+cccccccc-8888-9999-0000-dddddddddddd  low            dddd3333-ee44-5555-66ff-777777aaaaaa profile
 ```
 
 This command retrieves all delegated permission classifications from the service principal.
@@ -69,13 +71,19 @@ This command retrieves all delegated permission classifications from the service
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 'bbbb1111-cc22-3333-44dd-555555eeeeee' -Id 'bbbbbbbb-7777-8888-9999-cccccccccccc'
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
+$Params = @{
+    ServicePrincipalId = $servicePrincipal.Id
+    Id = 'bbbbbbbb-7777-8888-9999-cccccccccccc'
+}
+
+Get-EntraServicePrincipalDelegatedPermissionClassification @Params
 ```
 
-```output
-Id                      Classification PermissionId                         PermissionName
---                      -------------- ------------                         --------------
-bbbbbbbb-7777-8888-9999-cccccccccccc low            eeeeeeee-4444-5555-6666-ffffffffffff Sites.Read.All
+```Output
+Id                                    Classification PermissionId                         PermissionName
+--                                    -------------- ------------                         --------------
+bbbbbbbb-7777-8888-9999-cccccccccccc  low            eeeeeeee-4444-5555-6666-ffffffffffff Sites.Read.All
 ```
 
 This command retrieves the delegated permission classification by Id from the service principal.
@@ -84,13 +92,19 @@ This command retrieves the delegated permission classification by Id from the se
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 'bbbb1111-cc22-3333-44dd-555555eeeeee -Filter "PermissionName eq 'Sites.Read.All'"
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
+$Params = @{
+    ServicePrincipalId = 'bbbb1111-cc22-3333-44dd-555555eeeeee'
+    Filter = "PermissionName eq 'Sites.Read.All'"
+}
+
+Get-EntraServicePrincipalDelegatedPermissionClassification @Params
 ```
 
-```output
-Id                      Classification PermissionId                         PermissionName
---                      -------------- ------------                         --------------
-bbbbbbbb-7777-8888-9999-cccccccccccc low            eeeeeeee-4444-5555-6666-ffffffffffff Sites.Read.All
+```Output
+Id                                    Classification PermissionId                         PermissionName
+--                                    -------------- ------------                         --------------
+bbbbbbbb-7777-8888-9999-cccccccccccc  low            eeeeeeee-4444-5555-6666-ffffffffffff Sites.Read.All
 ```
 
 This command retrieves the filtered delegated permission classifications from the service principal.
@@ -131,7 +145,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-The oData v3.0 filter statement.
+The OData v4.0 filter statement.
 Controls which objects are returned.
 
 ```yaml

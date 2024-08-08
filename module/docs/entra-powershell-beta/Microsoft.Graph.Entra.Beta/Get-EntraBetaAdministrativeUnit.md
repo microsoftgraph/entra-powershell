@@ -12,7 +12,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaAdministrativeUnit
+
 schema: 2.0.0
 ---
 
@@ -27,19 +28,21 @@ Gets an administrative unit.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraBetaAdministrativeUnit 
- [-Filter <String>] 
- [-All] 
- [-Top <Int32>] 
+Get-EntraBetaAdministrativeUnit
+ [-Filter <String>]
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraBetaAdministrativeUnit 
- -ObjectId <String> 
- [-All] 
+Get-EntraBetaAdministrativeUnit
+ -ObjectId <String>
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -156,10 +159,10 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies an oData v3.0 filter statement.
+Specifies an OData v4.0 filter statement.
 This parameter filters which objects are returned.
 
-For more information about oData v3.0 filter expressions, see https://msdn.microsoft.com/library/hh169248%28v=nav.90%29.aspx
+For more information about OData v4.0 filter expressions, see https://msdn.microsoft.com/library/hh169248%28v=nav.90%29.aspx
 
 ```yaml
 Type: System.String
@@ -202,6 +205,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
