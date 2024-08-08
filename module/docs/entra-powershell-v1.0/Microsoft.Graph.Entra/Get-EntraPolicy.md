@@ -95,6 +95,8 @@ Definition                                                                      
 {{"HomeRealmDiscoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                                 PolicyDemo                              aaaaaaaa-1111-1111-1111-000000000000
 ```
 
+This example demonstrates how to retrieve all policies in Microsoft Entra ID.
+
 ### Example 4: Get a top one policy
 
 ```powershell
