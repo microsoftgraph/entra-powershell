@@ -1,22 +1,21 @@
 ---
-title: Set-EntraBetaPolicy.
-description: This article provides details on the Set-EntraBetaPolicy command.
+title: Set-EntraPolicy.
+description: This article provides details on the Set-EntraPolicy command.
 
 ms.topic: reference
-ms.date: 08/07/2024
+ms.date: 07/22/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
-Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaPolicy
-
+external help file: Microsoft.Graph.Entra-Help.xml
+Module Name: Microsoft.Graph.Entra
+online version:
 schema: 2.0.0
 ---
 
-# Set-EntraBetaPolicy
+# Set-EntraPolicy
 
 ## Synopsis
 
@@ -25,7 +24,7 @@ Updates a policy.
 ## Syntax
 
 ```powershell
-Set-EntraBetaPolicy 
+Set-EntraPolicy 
  -Id <String>
  [-Definition <System.Collections.Generic.List`1[System.String]>] 
  [-DisplayName <String>] 
@@ -36,7 +35,7 @@ Set-EntraBetaPolicy
 
 ## Description
 
-The `Set-EntraBetaPolicy` cmdlet sets a policy in Microsoft Entra ID. Specify `Id` parameter to updates specific policy.
+The `Set-EntraPolicy` cmdlet sets a policy in Microsoft Entra ID. Specify `Id` parameter to updates specific policy.
 
 ## Examples
 
@@ -48,7 +47,7 @@ $params = @{
     Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     DisplayName = 'NewUpdated'
 }
-Set-EntraBetaPolicy @params 
+Set-EntraPolicy @params 
 ```
 
 This command updates display name of the specified policy in Microsoft Entra ID.
@@ -65,7 +64,7 @@ $params = @{
     Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     Definition = @('{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')
 }
-Set-EntraBetaPolicy @params
+Set-EntraPolicy @params
 ```
 
 This command updates definition of the specified policy in Microsoft Entra ID.
@@ -83,7 +82,7 @@ $params = @{
     Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     IsOrganizationDefault = $false
 }
-Set-EntraBetaPolicy @params
+Set-EntraPolicy @params
 ```
 
 This command updates organization default of the specified policy in Microsoft Entra ID.
@@ -100,7 +99,7 @@ $params = @{
     Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     Type = 'ActivityBasedTimeoutPolicy'
 }
-Set-EntraBetaPolicy @params
+Set-EntraPolicy @params
 ```
 
 This example demonstrates how to update the `type` property of a specified policy in Microsoft Entra ID.
@@ -205,8 +204,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Get-EntraBetaPolicy](Get-EntraBetaPolicy.md)
+[Get-EntraPolicy](Get-EntraPolicy.md)
 
-[New-EntraBetaPolicy](New-EntraBetaPolicy.md)
+[New-EntraPolicy](New-EntraPolicy.md)
 
-[Remove-EntraBetaPolicy](Remove-EntraBetaPolicy.md)
+[Remove-EntraPolicy](Remove-EntraPolicy.md)
