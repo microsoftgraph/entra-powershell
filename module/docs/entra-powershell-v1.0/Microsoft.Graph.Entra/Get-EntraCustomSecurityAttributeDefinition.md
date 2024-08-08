@@ -53,7 +53,7 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 ### Example 1: Get a list of all custom security attribute definitions
 
 ```powershell
-Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttributeDefinition.ReadWrite.All'
+Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All`, `CustomSecAttributeDefinition.ReadWrite.All'
 Get-EntraCustomSecurityAttributeDefinition
 ```
 
@@ -70,7 +70,7 @@ This example get all custom security attribute definitions.
 ### Example 2: Get a specific custom security attribute definitions
 
 ```powershell
-Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All, CustomSecAttributeDefinition.ReadWrite.All'
+Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All`, `CustomSecAttributeDefinition.ReadWrite.All'
 Get-EntraCustomSecurityAttributeDefinition -Id 'Engineering_Project'
 ```
 
