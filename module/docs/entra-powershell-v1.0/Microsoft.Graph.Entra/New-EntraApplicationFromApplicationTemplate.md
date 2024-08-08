@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Instantiates an application
+Instantiates an application.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ New-EntraApplicationFromApplicationTemplate
 
 ## Description
 
-This `New-EntraApplicationFromApplicationTemplate` cmdlet allows users to create application from application template. Specify `Id` and `DisplayName` parameter to create application from application template.
+This `New-EntraApplicationFromApplicationTemplate` cmdlet allows users to create application from application template. Specify `-Id` and `-DisplayName` parameter to create application from application template.
 
 ## Examples
 
@@ -73,7 +73,7 @@ Accept wildcard characters: False
 
 ### -DisplayName
 
-Application template display name
+Application template display name.
 
 ```yaml
 Type: System.ApplicationTemplateDisplayName
