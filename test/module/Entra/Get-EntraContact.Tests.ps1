@@ -70,19 +70,11 @@ Describe "Get-EntraContact" {
         }
 
         It "Should return all contact" {
-            $result = Get-EntraContact -All $true
+            $result = Get-EntraContact -All 
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgContact  -ModuleName Microsoft.Graph.Entra -Times 1
         }
-
-        It "Should fail when All is empty" {
-            { Get-EntraContact -All } | Should -Throw "Missing an argument for parameter 'All'*"
-        }           
-        
-        It "Should fail when All is invalid" {
-            { Get-EntraContact -All XY } | Should -Throw  "Cannot process argument transformation on parameter 'All'*"
-        }        
 
         It "Should return specific group by filter" {
             $result = Get-EntraContact -Filter "DisplayName -eq 'Bob Kelly (TAILSPIN)'"
