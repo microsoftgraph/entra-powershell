@@ -34,7 +34,7 @@ Get-EntraServicePrincipalOwnedObject
 
 ## Description
 
-The `Get-EntraServicePrincipalOwnedObject` cmdlet retrieves an object owned by a service principal in Microsoft Entra ID. Specify `ObjectId` parameter retrieve an object owned by a service principal.
+The `Get-EntraServicePrincipalOwnedObject` cmdlet retrieves an object owned by a service principal in Microsoft Entra ID. Specify `-ObjectId` parameter retrieve an object owned by a service principal.
 
 ## Examples
 
@@ -46,7 +46,7 @@ $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
 Get-EntraServicePrincipalOwnedObject -ObjectId $ServicePrincipalId
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
@@ -55,7 +55,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 
 This command retrieves an object owned by a service principal.
 
-- `-ObjectId` - Specifies the ID of a service principal.
+- `-ObjectId` Parameter specifies the ID of a service principal.
 
 ### Example 2: Retrieve all the owned objects of a service principal
 
@@ -64,7 +64,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraServicePrincipalOwnedObject -ObjectId '11112222-bbbb-3333-cccc-4444dddd5555' -All 
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
@@ -73,7 +73,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 
 This command gets the owned objects of a service principal identified by `11112222-bbbb-3333-cccc-4444dddd5555`.  
 
-- `-ObjectId` - Specifies the ID of a service principal.
+- `-ObjectId` Parameter specifies the ID of a service principal.
 
 ### Example 3: Retrieve top one owned object of a service principal
 
@@ -82,7 +82,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraServicePrincipalOwnedObject -ObjectId '11112222-bbbb-3333-cccc-4444dddd5555' -Top 1
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 bbbbbbbb-1111-2222-3333-cccccccccccc
@@ -90,7 +90,7 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 
 This command gets top one owned object of a service principal identified by `11112222-bbbb-3333-cccc-4444dddd5555`.  
 
-- `-ObjectId` - Specifies the ID of a service principal.
+- `-ObjectId` Parameter specifies the ID of a service principal.
 
 ## Parameters
 
@@ -144,7 +144,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

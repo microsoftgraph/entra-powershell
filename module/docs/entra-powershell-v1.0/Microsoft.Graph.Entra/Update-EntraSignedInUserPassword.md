@@ -54,9 +54,9 @@ Update-EntraSignedInUserPassword @params
 
 This example updates the password for the signed-in user.
 
-- `-CurrentPassword` - Specifies the current password of the signed-in user.
+- `-CurrentPassword` Parameter specifies the current password of the signed-in user.
 
-- `-NewPassword` -  Specifies the new password for the signed-in user.
+- `-NewPassword` Parameter specifies  the new password for the signed-in user.
 
 ## Parameters
 
