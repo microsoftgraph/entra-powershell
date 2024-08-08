@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
         Import-Module Microsoft.Graph.Entra      
@@ -29,43 +32,43 @@ BeforeAll {
     Mock -CommandName New-MgIdentityConditionalAccessNamedLocation -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
-Describe "New-EntraMSNamedLocationPolicy " {
-    Context "Test for New-EntraMSNamedLocationPolicy" {
+Describe "New-EntraNamedLocationPolicy " {
+    Context "Test for New-EntraNamedLocationPolicy" {
         It "Should return created NamedLocationPolicy" {
             $ipRanges1 = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
             $ipRanges1.cidrAddress = "6.5.4.1/30"
             $ipRanges2 = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
             $ipRanges2.cidrAddress = "6.5.4.2/30"
-            $result = New-EntraMSNamedLocationPolicy -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "NamedLocation" -IpRanges @($ipRanges1, $ipRanges2) -IsTrusted $false 
+            $result = New-EntraNamedLocationPolicy -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "NamedLocation" -IpRanges @($ipRanges1, $ipRanges2) -IsTrusted $false 
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be "04fee326-10cf-4211-8edd-d2bd3f4a9a9c"
 
             Should -Invoke -CommandName New-MgIdentityConditionalAccessNamedLocation  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when OdataType is empty" {
-            { New-EntraMSNamedLocationPolicy -OdataType } | Should -Throw "Missing an argument for parameter 'OdataType'. Specify a parameter of type 'System.String' and try again."
+            { New-EntraNamedLocationPolicy -OdataType } | Should -Throw "Missing an argument for parameter 'OdataType'. Specify a parameter of type 'System.String' and try again."
         }
         It "Should fail when DisplayName is empty" {
-            { New-EntraMSNamedLocationPolicy -DisplayName } | Should -Throw "Missing an argument for parameter 'DisplayName'. Specify a parameter of type 'System.String' and try again."
+            { New-EntraNamedLocationPolicy -DisplayName } | Should -Throw "Missing an argument for parameter 'DisplayName'. Specify a parameter of type 'System.String' and try again."
         }
         It "Should fail when IpRanges is empty" {
-            { New-EntraMSNamedLocationPolicy -IpRanges } | Should -Throw "Missing an argument for parameter 'IpRanges'.*"
+            { New-EntraNamedLocationPolicy -IpRanges } | Should -Throw "Missing an argument for parameter 'IpRanges'.*"
         }
         It "Should fail when IsTrusted is empty" {
-            { New-EntraMSNamedLocationPolicy -IsTrusted } | Should -Throw "Missing an argument for parameter 'IsTrusted'.*"
+            { New-EntraNamedLocationPolicy -IsTrusted } | Should -Throw "Missing an argument for parameter 'IsTrusted'.*"
         }
         It "Should fail when CountriesAndRegions is empty" {
-            { New-EntraMSNamedLocationPolicy -CountriesAndRegions } | Should -Throw "Missing an argument for parameter 'CountriesAndRegions'.*"
+            { New-EntraNamedLocationPolicy -CountriesAndRegions } | Should -Throw "Missing an argument for parameter 'CountriesAndRegions'.*"
         }
         It "Should fail when IncludeUnknownCountriesAndRegions is empty" {
-            { New-EntraMSNamedLocationPolicy -IncludeUnknownCountriesAndRegions } | Should -Throw "Missing an argument for parameter 'IncludeUnknownCountriesAndRegions'.*"
+            { New-EntraNamedLocationPolicy -IncludeUnknownCountriesAndRegions } | Should -Throw "Missing an argument for parameter 'IncludeUnknownCountriesAndRegions'.*"
         } 
         It "Result should Contain ObjectId" {
-            $result = New-EntraMSNamedLocationPolicy -OdataType "#microsoft.graph.countryNamedLocation" -DisplayName "NamedLocation" -CountriesAndRegions @("US", "ID", "CA") -IncludeUnknownCountriesAndRegions $true
+            $result = New-EntraNamedLocationPolicy -OdataType "#microsoft.graph.countryNamedLocation" -DisplayName "NamedLocation" -CountriesAndRegions @("US", "ID", "CA") -IncludeUnknownCountriesAndRegions $true
             $result.ObjectId | should -Be "04fee326-10cf-4211-8edd-d2bd3f4a9a9c"
         }     
         It "Should contain params inside BodyParameter" {              
-            $result = New-EntraMSNamedLocationPolicy -OdataType "#microsoft.graph.countryNamedLocation" -DisplayName "NamedLocation" -CountriesAndRegions @("US", "ID", "CA") -IncludeUnknownCountriesAndRegions $true
+            $result = New-EntraNamedLocationPolicy -OdataType "#microsoft.graph.countryNamedLocation" -DisplayName "NamedLocation" -CountriesAndRegions @("US", "ID", "CA") -IncludeUnknownCountriesAndRegions $true
             $params = Get-Parameters -data $result.Parameters
             $BodyParameters = $params.BodyParameter.AdditionalProperties
             $BodyParameters.includeUnknownCountriesAndRegions | Should -Be "True"
@@ -73,9 +76,9 @@ Describe "New-EntraMSNamedLocationPolicy " {
             $BodyParameters.countriesAndRegions | Should -Be @('US', 'ID', 'CA')
         }
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraMSNamedLocationPolicy"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraNamedLocationPolicy"
 
-            $result = New-EntraMSNamedLocationPolicy -OdataType "#microsoft.graph.countryNamedLocation" -DisplayName "NamedLocation" -CountriesAndRegions @("US", "ID", "CA") -IncludeUnknownCountriesAndRegions $true
+            $result = New-EntraNamedLocationPolicy -OdataType "#microsoft.graph.countryNamedLocation" -DisplayName "NamedLocation" -CountriesAndRegions @("US", "ID", "CA") -IncludeUnknownCountriesAndRegions $true
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }

@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
         Import-Module Microsoft.Graph.Entra      
@@ -30,10 +33,10 @@ BeforeAll {
     Mock -CommandName Get-MgPolicyAuthorizationPolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
-Describe "Get-EntraMSAuthorizationPolicy" {
-    Context "Test for Get-EntraMSAuthorizationPolicy" {
+Describe "Get-EntraAuthorizationPolicy" {
+    Context "Test for Get-EntraAuthorizationPolicy" {
         It "Should return AuthorizationPolicy" {
-            $result = Get-EntraMSAuthorizationPolicy
+            $result = Get-EntraAuthorizationPolicy
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'authorizationPolicy'
             $result.DisplayName | should -Be 'AuthorizationPolicy'
@@ -48,9 +51,9 @@ Describe "Get-EntraMSAuthorizationPolicy" {
             Should -Invoke -CommandName Get-MgPolicyAuthorizationPolicy  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should contain 'User-Agent' header" {
-           $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraMSAuthorizationPolicy"
+           $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAuthorizationPolicy"
 
-            $result = Get-EntraMSAuthorizationPolicy
+            $result = Get-EntraAuthorizationPolicy
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }

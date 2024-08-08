@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
         Import-Module Microsoft.Graph.Entra      
@@ -19,10 +22,10 @@ BeforeAll {
     Mock -CommandName Get-MgServicePrincipalDelegatedPermissionClassification -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
-Describe "Get-EntraMSServicePrincipalDelegatedPermissionClassification" {
-    Context "Test for Get-EntraMSServicePrincipalDelegatedPermissionClassification" {
+Describe "Get-EntraServicePrincipalDelegatedPermissionClassification" {
+    Context "Test for Get-EntraServicePrincipalDelegatedPermissionClassification" {
         It "Should return specific ServicePrincipalDelegatedPermissionClassification" {
-            $result = Get-EntraMSServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 0008861a-d455-4671-bd24-ce9b3bfce288
+            $result = Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 0008861a-d455-4671-bd24-ce9b3bfce288
             $result | Should -Not -BeNullOrEmpty
             Write-Host ($result | convertto-json) 
             $result.Id | should -Be "T2qU_E28O0GgkLLIYRPsTwE"
@@ -30,24 +33,24 @@ Describe "Get-EntraMSServicePrincipalDelegatedPermissionClassification" {
             Should -Invoke -CommandName Get-MgServicePrincipalDelegatedPermissionClassification -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when ServicePrincipalId is invalid" {
-            { Get-EntraMSServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string.*"
+            { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string.*"
         }
         It "Should fail when ServicePrincipalId is empty" {
-            { Get-EntraMSServicePrincipalDelegatedPermissionClassification -ServicePrincipalId } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'.*"
+            { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'.*"
         }
         It "Should return specific ServicePrincipalDelegatedPermissionClassification when Id passed to it" {
-            $result = Get-EntraMSServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 0008861a-d455-4671-bd24-ce9b3bfce288 -Id T2qU_E28O0GgkLLIYRPsTwE
+            $result = Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 0008861a-d455-4671-bd24-ce9b3bfce288 -Id T2qU_E28O0GgkLLIYRPsTwE
             $params = Get-Parameters -data $result.Parameters 
             $params.DelegatedPermissionClassificationId | should -Be "T2qU_E28O0GgkLLIYRPsTwE"
         } 
         It "Should fail when Id is invalid" {
-            { Get-EntraMSServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 0008861a-d455-4671-bd24-ce9b3bfce288 -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string.*"
+            { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 0008861a-d455-4671-bd24-ce9b3bfce288 -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string.*"
         }  
         It "Should fail when Id is empty" {
-            { Get-EntraMSServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 0008861a-d455-4671-bd24-ce9b3bfce288 -Id } | Should -Throw "Missing an argument for parameter 'Id'.*"
+            { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 0008861a-d455-4671-bd24-ce9b3bfce288 -Id } | Should -Throw "Missing an argument for parameter 'Id'.*"
         } 
         It "Should return specific ServicePrincipalDelegatedPermissionClassification when applied filter to it" {
-            $result = Get-EntraMSServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 0008861a-d455-4671-bd24-ce9b3bfce288 -Filter "PermissionName eq 'LicenseManager.AccessAsUser'"
+            $result = Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 0008861a-d455-4671-bd24-ce9b3bfce288 -Filter "PermissionName eq 'LicenseManager.AccessAsUser'"
             $result.PermissionName | should -Be "LicenseManager.AccessAsUser"
             $result.ObjectId | should -Be "T2qU_E28O0GgkLLIYRPsTwE"
         }  
@@ -55,9 +58,9 @@ Describe "Get-EntraMSServicePrincipalDelegatedPermissionClassification" {
             { Get-AzureADMSServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 0008861a-d455-4671-bd24-ce9b3bfce288 -Filter } | Should -Throw "Missing an argument for parameter 'Filter'.*"
         }   
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraMSServicePrincipalDelegatedPermissionClassification"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalDelegatedPermissionClassification"
 
-            $result = Get-EntraMSServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 0008861a-d455-4671-bd24-ce9b3bfce288
+            $result = Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 0008861a-d455-4671-bd24-ce9b3bfce288
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }

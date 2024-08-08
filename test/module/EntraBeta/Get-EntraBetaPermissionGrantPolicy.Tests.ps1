@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if ((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null) {
         Import-Module Microsoft.Graph.Entra.Beta   
@@ -21,34 +24,34 @@ BeforeAll {
     Mock -CommandName Get-MgBetaPolicyPermissionGrantPolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
 }
   
-Describe "Get-EntraBetaMSPermissionGrantPolicy" {
-    Context "Test for Get-EntraBetaMSPermissionGrantPolicy" {
+Describe "Get-EntraBetaPermissionGrantPolicy" {
+    Context "Test for Get-EntraBetaPermissionGrantPolicy" {
         It "Should return specific PermissionGrantPolicy" {
-            $result = Get-EntraBetaMSPermissionGrantPolicy -Id "microsoft-all-application-permissions"
+            $result = Get-EntraBetaPermissionGrantPolicy -Id "microsoft-all-application-permissions"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be "microsoft-all-application-permissions"
 
             Should -Invoke -CommandName Get-MgBetaPolicyPermissionGrantPolicy  -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when Id is empty" {
-            { Get-EntraBetaMSPermissionGrantPolicy -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
+            { Get-EntraBetaPermissionGrantPolicy -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
         }
         It "Should fail when Id is empty" {
-            { Get-EntraBetaMSPermissionGrantPolicy -Id } | Should -Throw "Missing an argument for parameter 'Id'. Specify a parameter of type 'System.String' and try again."
+            { Get-EntraBetaPermissionGrantPolicy -Id } | Should -Throw "Missing an argument for parameter 'Id'. Specify a parameter of type 'System.String' and try again."
         }  
         It "Result should Contain ObjectId" {
-            $result = Get-EntraBetaMSPermissionGrantPolicy -Id "microsoft-all-application-permissions"
+            $result = Get-EntraBetaPermissionGrantPolicy -Id "microsoft-all-application-permissions"
             $result.ObjectId | should -Be "microsoft-all-application-permissions"
         }     
         It "Should contain PermissionGrantPolicyId in parameters when passed ObjectId to it" {              
-            $result = Get-EntraBetaMSPermissionGrantPolicy -Id "microsoft-all-application-permissions"
+            $result = Get-EntraBetaPermissionGrantPolicy -Id "microsoft-all-application-permissions"
             $params = Get-Parameters -data $result.Parameters
             $params.PermissionGrantPolicyId | Should -Be "microsoft-all-application-permissions"
         }
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaMSPermissionGrantPolicy"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaPermissionGrantPolicy"
 
-            $result = Get-EntraBetaMSPermissionGrantPolicy -Id "microsoft-all-application-permissions"
+            $result = Get-EntraBetaPermissionGrantPolicy -Id "microsoft-all-application-permissions"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
