@@ -18,7 +18,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Retrieve a list of applicationTemplate objects
+Retrieve a list of applicationTemplate objects.
 
 ## Syntax
 
@@ -50,7 +50,7 @@ Connect-Entra
 $all_templates = Get-EntraApplicationTemplate
 ```
 
-This command gets all the application template objects
+This command gets all the application template objects.
 
 ### Example 2: Gets an application template object
 
