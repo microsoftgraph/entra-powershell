@@ -57,7 +57,11 @@ The `Get-EntraBetaObjectSetting` cmdlet retrieves an object setting from Microso
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId 'aaaaaaaa-1111-1111-1111-000000000000'
+$params = @{
+    TargetType = 'Groups'
+    TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
+}
+Get-EntraBetaObjectSetting @params
 ```
 
 ```Output
@@ -76,7 +80,13 @@ This command retrieves  object setting from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId 'aaaaaaaa-1111-1111-1111-000000000000' -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$params = @{
+    TargetType = 'Groups'
+    TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
+    Id ='aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+
+}
+Get-EntraBetaObjectSetting @params
 ```
 
 ```Output
@@ -96,7 +106,11 @@ This command retrieves Specific object setting from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId 'aaaaaaaa-1111-1111-1111-000000000000' -Top 1
+$params = @{
+    TargetType = 'Groups'
+    TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
+}
+Get-EntraBetaObjectSetting @params -Top 1
 ```
 
 ```Output
@@ -115,7 +129,12 @@ This command retrieves top one object setting from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId 'aaaaaaaa-1111-1111-1111-000000000000' -All
+Connect-Entra -Scopes 'Directory.Read.All'
+$params = @{
+    TargetType = 'Groups'
+    TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
+}
+Get-EntraBetaObjectSetting @params -All
 ```
 
 ```Output
