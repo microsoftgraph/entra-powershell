@@ -39,7 +39,7 @@ The `New-EntraPolicy` cmdlet creates a policy in Microsoft Entra ID. Specify `-D
 
 ## Examples
 
-### Example 1: Create a new policy
+### Example 1: Create a new HomeRealmDiscoveryPolicy policy
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
