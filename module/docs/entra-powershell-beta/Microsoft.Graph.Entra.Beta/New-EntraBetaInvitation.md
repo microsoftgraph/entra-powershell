@@ -75,7 +75,7 @@ This example sent an email to the user who's email address is in the `-InvitedUs
 
 When the user accepts the invitation, they're forwarded to the url as specified in the `-InviteRedirectUrl` parameter.
 
-- `-SendInvitationMessage` Parameter indicates whether or not an invitation message will be sent to the invited user
+- `-SendInvitationMessage` Parameter indicates whether or not an invitation message will be sent to the invited user.
 
 ### Example 2: Invite a new external user to your directory with InvitedUserDisplayName parameter
 
@@ -97,12 +97,12 @@ Id                                   InviteRedeemUrl
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb https://login.microsoftonline.com/redeem?rd=https%3a%2f%2finvitations.microsoft.com%2fredeem%2f%3ftenant%3dd5aec55f-2d12-4442-8d2f-cc…
 ```
 
-This example demonstrates how to invite a new external user to your directory with InvitedUserDisplayName parameter.
+This example demonstrates how to invite a new external user to your directory with `-InvitedUserDisplayName` parameter.
 
 - `-InvitedUserEmailAddress`Parameter specifies the Email address to which the invitation is sent.
 - `-SendInvitationMessage` Parameter indicates whether or not an invitation message will be sent to the invited user
 - `-InviteRedirectUrl` Parameter specifies The URL to which the invited user is forwarded after accepting the invitation.
-- `-InvitedUserDisplayName`Parameter specifies the  display name of the user
+- `-InvitedUserDisplayName`Parameter specifies the  display name of the user.
 
 ### Example 3: Invite a new external user to your directory with InvitedUserMessageInfo parameter
 
@@ -128,7 +128,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb https://login.microsoftonline.com/redeem?rd
 ```
 
 - `-InvitedUserEmailAddress`Parameter specifies the Email address to which the invitation is sent.
-- `-SendInvitationMessage` Parameter indicates whether or not an invitation message will be sent to the invited user
+- `-SendInvitationMessage` Parameter indicates whether or not an invitation message will be sent to the invited user.
 - `-InviteRedirectUrl` Parameter specifies The URL to which the invited user is forwarded after accepting the invitation.
 - `-InvitedUserMessageInfo`Parameter specifies addition information to specify how the invitation message is sent.
 
@@ -160,7 +160,7 @@ Once reset, External user has to re-redeem the invitation to continue to access 
 
 ### -InvitedUserDisplayName
 
-The display name of the user as it appears in your directory
+The display name of the user as it appears in your directory.
 
 ```yaml
 Type: System.String
@@ -176,7 +176,7 @@ Accept wildcard characters: False
 
 ### -InvitedUserEmailAddress
 
-The Email address to which the invitation is sent
+The Email address to which the invitation is sent.
 
 ```yaml
 Type: System.String
@@ -192,7 +192,7 @@ Accept wildcard characters: False
 
 ### -InvitedUserMessageInfo
 
-Addition information to specify how the invitation message is sent
+Addition information to specify how the invitation message is sent.
 
 ```yaml
 Type: InvitedUserMessageInfo
