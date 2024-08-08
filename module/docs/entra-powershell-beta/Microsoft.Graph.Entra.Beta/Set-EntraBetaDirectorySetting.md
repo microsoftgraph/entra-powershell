@@ -39,17 +39,21 @@ The `Set-EntraBetaDirectorySetting` cmdlet updates a directory setting in Micros
 ### Example 1: updates a directory setting
 
 ```powershell
- Connect-Entra -Scopes 'Directory.ReadWrite.All', 'Policy.ReadWrite.Authorization'
- $TemplateId = (Get-EntraBetaDirectorySettingTemplate | where { $_.DisplayName -eq 'Group.Unified' }).Id
- $Template = Get-EntraBetaDirectorySettingTemplate | where -Property Id -Value $TemplateId -EQ
- $Setting = $Template.CreateDirectorySetting()
- $Setting["EnableMIPLabels"] = 'False'
- Set-EntraBetaDirectorySetting -Id 'aaaaaaaa-1111-1111-1111-000000000000' -DirectorySetting $Setting
+Connect-Entra -Scopes 'Directory.ReadWrite.All', 'Policy.ReadWrite.Authorization'
+$TemplateId = (Get-EntraBetaDirectorySettingTemplate | where { $_.DisplayName -eq 'Group.Unified' }).Id
+$Template = Get-EntraBetaDirectorySettingTemplate | where -Property Id -Value $TemplateId -EQ
+$Setting = $Template.CreateDirectorySetting()
+$Setting["EnableMIPLabels"] = 'False'
+$params = @{
+    Id = 'aaaaaaaa-1111-1111-1111-000000000000'
+    DirectorySetting = $Setting
+}
+Set-EntraBetaDirectorySetting @params
 ```
 
 This example updates directory settings object in Microsoft Entra ID.
 
-- `-DirectorySetting` Parameter specifies directory settings.
+- `-DirectorySetting` Parameter updates the property of directory settings.
 - `-Id` Parameter specifies the ID of a setting object
 
 ## Parameters

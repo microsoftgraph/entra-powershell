@@ -76,7 +76,7 @@ This command gets an application template object for the given id.
 
 ### -Id
 
-The unique identifier of an application template
+The unique identifier of an application template.
 
 ```yaml
 Type: System.String
@@ -92,7 +92,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

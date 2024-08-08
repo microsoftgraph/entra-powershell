@@ -20,6 +20,7 @@ schema: 2.0.0
 ## Synopsis
 
 Deletes a directory setting in  Microsoft Entra ID.
+
 ## Syntax
 
 ```powershell

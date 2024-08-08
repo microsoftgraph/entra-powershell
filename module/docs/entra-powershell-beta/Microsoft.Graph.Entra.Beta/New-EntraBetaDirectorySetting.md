@@ -39,18 +39,18 @@ The `New-EntraBetaDirectorySetting` cmdlet creates a directory settings object i
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All', 'Group.Read.All' , 'Group.ReadWrite.All'
-$l=$template = Get-EntraBetaDirectorySettingTemplate -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-$settingsCopy = $template.CreateDirectorySetting()
-New-EntraBetaDirectorySetting -DirectorySetting $settingsCopy | Select *
+$TemplateId = (Get-EntraBetaDirectorySettingTemplate | where { $_.DisplayName -eq "Group.Unified" }).Id
+$Template = Get-EntraBetaDirectorySettingTemplate | where -Property Id -Value $TemplateId -EQ
+$Setting = $Template.CreateDirectorySetting()
+$Setting["UsageGuidelinesUrl"] = "https://guideline.example.com"
+$Setting["EnableMIPLabels"] = "True"
+New-EntraBetaDirectorySetting -DirectorySetting $Setting
 ```
 
 ```Output
-ObjectId             : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-DisplayName          :
-Id                   : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-TemplateId           : 00aa00aa-bb11-cc22-dd33-44ee44ee44ee
-Values               : {EnableAccessCheckForPrivilegedApplicationUpdates}
-AdditionalProperties : {[@odata.context, https://graph.microsoft.com/beta/$metadata#settings/$entity]}
+Id                                   DisplayName TemplateId
+--                                   ----------- ----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb             00aa00aa-bb11-cc22-dd33-44ee44ee44ee
 ```
 
 This example Creates new settings object in Microsoft Entra ID.

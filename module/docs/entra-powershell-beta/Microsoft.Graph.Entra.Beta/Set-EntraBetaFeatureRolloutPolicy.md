@@ -48,21 +48,49 @@ Users in groups assigned to the policy start authenticating via the new authenti
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
 $params = @{
     Id = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
-    DisplayName = 'Feature-Rollout-Policytest'
-    Description = 'Feature-Rollout-test'
-    IsAppliedToOrganization = $false 
+    DisplayName = 'Feature-Rollout-Policytest' 
     IsEnabled = $false
 }
-Set-EntraBetaFeatureRolloutPolicy @params
+Set-EntraBetaFeatureRolloutPolicy  @params
 ```
 
 This command updates the policy for cloud authentication roll-out in Microsoft Entra ID.
 
 - `-Id` - Specify the ID of cloud authentication roll-out policy
 - `-DisplayName` - Specifies the display name of the cloud authentication roll-out policy.
-- `-Description` - Specifies the description of the cloud authentication roll-out policy.
-- `-IsAppliedToOrganization` - Specifies if the cloud authentication roll-out policy applied to the entire organization.
 - `-IsEnabled` - Specifies the status of cloud authentication roll-out policy.
+
+### Example 2: Updates the Description
+
+```powershell
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+$params = @{
+    Id = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    Description = 'Feature-Rollout-test'
+}
+Set-EntraBetaFeatureRolloutPolicy  @params
+```
+
+This command updates the `-Description` of policy for cloud authentication roll-out in Microsoft Entra ID.
+
+- `-Id` Specify the ID of cloud authentication roll-out policy.
+- `-Description` Specifies the description of the cloud authentication roll-out policy.
+
+### Example 3: Updates the IsAppliedToOrganization
+
+```powershell
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+$params = @{
+    Id = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    IsAppliedToOrganization = $false
+}
+Set-EntraBetaFeatureRolloutPolicy  @params
+```
+
+This command updates the `-IsAppliedToOrganization` parameter of policy for cloud authentication roll-out in Microsoft Entra ID.
+
+- `-Id` Specify the ID of cloud authentication roll-out policy.
+- `-IsAppliedToOrganization` Parameter determines whether a particular feature rollout policy should be applied to the entire organization or not.
 
 ## Parameters
 
