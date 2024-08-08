@@ -52,7 +52,7 @@ For delegated scenarios, the signed-in user must have at least one of the follow
 
 ## Examples
 
-### ### Example 1: Invite a new external user to your directory
+### Example 1: Invite a new external user to your directory
 
 ```powershell
 Connect-Entra -Scopes 'User.Invite.All'
