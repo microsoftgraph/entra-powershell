@@ -1,7 +1,6 @@
 ---
-title: Add-EntraScopedRoleMembership
+title: Add-EntraScopedRoleMembership.
 description: This article provides details on the Add-EntraScopedRoleMembership command.
-
 
 ms.topic: reference
 ms.date: 06/26/2024
@@ -25,17 +24,18 @@ Adds a scoped role membership to an administrative unit.
 ## Syntax
 
 ```powershell
-Add-EntraScopedRoleMembership 
- -Id <String>
- [-RoleMemberInfo <MsRoleMemberInfo>] 
- [-AdministrativeUnitId <String>] 
- [-RoleId <String>] 
+Add-EntraScopedRoleMembership
+ -ObjectId <String> 
+ [-RoleObjectId <String>] 
+ [-RoleMemberInfo <RoleMemberInfo>] 
  [<CommonParameters>]
 ```
 
 ## Description
 
-The Add-EntraScopedRoleMembership cmdlet adds a scoped role membership to an administrative unit.
+The `Add-EntraScopedRoleMembership` cmdlet adds a scoped role membership to an administrative unit. Specify `-ObjectId` parameter to add a scoped role membership.
+
+For delegated scenarios, the calling user needs at least the Privileged Role Administrator Microsoft Entra role.
 
 ## Examples
 
@@ -46,38 +46,31 @@ Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
 $User = Get-EntraUser -SearchString 'MarkWood'
 $Role = Get-EntraDirectoryRole -Filter "DisplayName eq 'User Administrator'"
 $Unit = Get-EntraAdministrativeUnit -Filter "DisplayName eq 'New MSAdmin unit'"
-$RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRolememberinfo.RoleMemberInfo
+$RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRolememberinfo
 $RoleMember.Id = $User.ObjectID
-Add-EntraScopedRoleMembership -Id $Unit.Id -RoleId $Role.ObjectId -RoleMemberInfo $RoleMember
+$params = @{
+    ObjectId = $unit.ObjectId
+    RoleObjectId = $Role.ObjectId
+    RoleMemberInfo = $RoleMember
+}
+Add-EntraScopedRoleMembership @params
 ```
 
 ```Output
-AdministrativeUnitId     RoleId  
---------------------------            ------------  
-11bb11bb-cc22-dd33-ee44-55ff55ff55ff  22cc22cc-dd33-ee44-ff55-66aa66aa66aa
+Id                                                                AdministrativeUnitId                 RoleId
+--                                                                --------------------                 ------
+dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
 The example shows how to add a user to the specified role within the specified administrative unit.
 
+- `-ObjectId` Paramater specifies the ID of an administrative unit.
+- `-RoleObjectId` Paramater specifies the ID of a directory role.
+- `-RoleMemberInfo` Paramater specifies a RoleMemberInfo object.
+
 ## Parameters
 
-### -AdministrativeUnitId
-
-Specifies the ID of an administrative unit.
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Id
+### -ObjectId
 
 Specifies the ID of an administrative unit.
 
@@ -109,7 +102,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -RoleId
+### -RoleObjectId
 
 Specifies the ID of a directory role.
 
