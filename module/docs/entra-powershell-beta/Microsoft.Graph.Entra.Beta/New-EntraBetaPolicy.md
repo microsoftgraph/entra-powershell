@@ -60,7 +60,7 @@ Definition                                                                     D
 
 This command creates a new policy in Microsoft Entra ID.
 
-- `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy
+- `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy.
 
 - `-Type` Parameter specifies the type of policy.
 
@@ -86,7 +86,7 @@ Definition                                                                     D
 
 This command creates a new policy using 'IsOrganizationDefault' parameter in Microsoft Entra ID.
 
-- `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy
+- `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy.
 
 - `-Type` - Parameter specifies the type of policy. In this example, `HomeRealmDiscoveryPolicy`
  represents the type of policy.
@@ -97,7 +97,7 @@ This command creates a new policy using 'IsOrganizationDefault' parameter in Mic
 
 ### -Definition
 
-Specifies an array of JSON that contains all the rules of the policy, for example: -Definition @("{"TokenLifetimePolicy":{"Version":1,"MaxInactiveTime":"20:00:00"}}")
+Specifies an array of JSON that contains all the rules of the policy, for example: -Definition @("{"TokenLifetimePolicy":{"Version":1,"MaxInactiveTime":"20:00:00"}}").
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
