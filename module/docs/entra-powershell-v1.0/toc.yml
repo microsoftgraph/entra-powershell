@@ -14,16 +14,14 @@
     href: Microsoft.Graph.Entra/Add-EntraGroupMember.md
   - name: Add-EntraGroupOwner
     href: Microsoft.Graph.Entra/Add-EntraGroupOwner.md
-  - name: Add-EntraMSAdministrativeUnitMember
-    href: Microsoft.Graph.Entra/Add-EntraMSAdministrativeUnitMember.md
-  - name: Add-EntraMSApplicationOwner
-    href: Microsoft.Graph.Entra/Add-EntraMSApplicationOwner.md
-  - name: Add-EntraMSLifecyclePolicyGroup
-    href: Microsoft.Graph.Entra/Add-EntraMSLifecyclePolicyGroup.md
-  - name: Add-EntraMSScopedRoleMembership
-    href: Microsoft.Graph.Entra/Add-EntraMSScopedRoleMembership.md
-  - name: Add-EntraMSServicePrincipalDelegatedPermissionClassification
-    href: Microsoft.Graph.Entra/Add-EntraMSServicePrincipalDelegatedPermissionClassification.md
+  - name: Add-EntraAdministrativeUnitMember
+    href: Microsoft.Graph.Entra/Add-EntraAdministrativeUnitMember.md
+  - name: Add-EntraApplicationOwner
+    href: Microsoft.Graph.Entra/Add-EntraApplicationOwner.md
+  - name: Add-EntraLifecyclePolicyGroup
+    href: Microsoft.Graph.Entra/Add-EntraLifecyclePolicyGroup.md
+  - name: Add-EntraScopedRoleMembership
+    href: Microsoft.Graph.Entra/Add-EntraScopedRoleMembership.md
   - name: Add-EntraServicePrincipalOwner
     href: Microsoft.Graph.Entra/Add-EntraServicePrincipalOwner.md
   - name: Confirm-EntraDomain
@@ -60,8 +58,6 @@
     href: Microsoft.Graph.Entra/Get-EntraContactMembership.md
   - name: Get-EntraContract
     href: Microsoft.Graph.Entra/Get-EntraContract.md
-  - name: Get-EntraCurrentSessionInfo
-    href: Microsoft.Graph.Entra/Get-EntraCurrentSessionInfo.md
   - name: Get-EntraDeletedApplication
     href: Microsoft.Graph.Entra/Get-EntraDeletedApplication.md
   - name: Get-EntraDevice
@@ -82,8 +78,8 @@
     href: Microsoft.Graph.Entra/Get-EntraDirSyncfeature.md
   - name: Get-EntraDomain
     href: Microsoft.Graph.Entra/Get-EntraDomain.md
-  - name: Get-EntraDomainFedrationSettings
-    href: Microsoft.Graph.Entra/Get-EntraDomainFedrationSettings.md
+  - name: Get-EntraDomainFederationSettings
+    href: Microsoft.Graph.Entra/Get-EntraDomainFederationSettings.md
   - name: Get-EntraDomainNameReference
     href: Microsoft.Graph.Entra/Get-EntraDomainNameReference.md
   - name: Get-EntraDomainServiceConfigurationRecord
@@ -104,48 +100,46 @@
     href: Microsoft.Graph.Entra/Get-EntraGroupOwner.md
   - name: Get-EntraHasObjectsWithDirSyncProvisioningError
     href: Microsoft.Graph.Entra/Get-EntraHasObjectsWithDirSyncProvisioningError.md
-  - name: Get-EntraMSAdministrativeUnit
-    href: Microsoft.Graph.Entra/Get-EntraMSAdministrativeUnit.md
-  - name: Get-EntraMSAdministrativeUnitMember
-    href: Microsoft.Graph.Entra/Get-EntraMSAdministrativeUnitMember.md
-  - name: Get-EntraMSApplication
-    href: Microsoft.Graph.Entra/Get-EntraMSApplication.md
-  - name: Get-EntraMSApplicationExtensionProperty
-    href: Microsoft.Graph.Entra/Get-EntraMSApplicationExtensionProperty.md
-  - name: Get-EntraMSApplicationOwner
-    href: Microsoft.Graph.Entra/Get-EntraMSApplicationOwner.md
-  - name: Get-EntraMSAuthorizationPolicy
-    href: Microsoft.Graph.Entra/Get-EntraMSAuthorizationPolicy.md
-  - name: Get-EntraMSConditionalAccessPolicy
-    href: Microsoft.Graph.Entra/Get-EntraMSConditionalAccessPolicy.md
-  - name: Get-EntraMSDeletedDirectoryObject
-    href: Microsoft.Graph.Entra/Get-EntraMSDeletedDirectoryObject.md
-  - name: Get-EntraMSDeletedGroup
-    href: Microsoft.Graph.Entra/Get-EntraMSDeletedGroup.md
-  - name: Get-EntraMSGroup
-    href: Microsoft.Graph.Entra/Get-EntraMSGroup.md
-  - name: Get-EntraMSGroupLifecyclePolicy
-    href: Microsoft.Graph.Entra/Get-EntraMSGroupLifecyclePolicy.md
-  - name: Get-EntraMSGroupPermissionGrant
-    href: Microsoft.Graph.Entra/Get-EntraMSGroupPermissionGrant.md
-  - name: Get-EntraMSIdentityProvider
-    href: Microsoft.Graph.Entra/Get-EntraMSIdentityProvider.md
-  - name: Get-EntraMSLifecyclePolicyGroup
-    href: Microsoft.Graph.Entra/Get-EntraMSLifecyclePolicyGroup.md
-  - name: Get-EntraMSNamedLocationPolicy
-    href: Microsoft.Graph.Entra/Get-EntraMSNamedLocationPolicy.md
-  - name: Get-EntraMSPermissionGrantConditionSet
-    href: Microsoft.Graph.Entra/Get-EntraMSPermissionGrantConditionSet.md
-  - name: Get-EntraMSPermissionGrantPolicy
-    href: Microsoft.Graph.Entra/Get-EntraMSPermissionGrantPolicy.md
-  - name: Get-EntraMSRoleAssignment
-    href: Microsoft.Graph.Entra/Get-EntraMSRoleAssignment.md
-  - name: Get-EntraMSRoleDefinition
-    href: Microsoft.Graph.Entra/Get-EntraMSRoleDefinition.md
-  - name: Get-EntraMSScopedRoleMembership
-    href: Microsoft.Graph.Entra/Get-EntraMSScopedRoleMembership.md
-  - name: Get-EntraMSServicePrincipalDelegatedPermissionClassification
-    href: Microsoft.Graph.Entra/Get-EntraMSServicePrincipalDelegatedPermissionClassification.md
+  - name: Get-EntraAdministrativeUnit
+    href: Microsoft.Graph.Entra/Get-EntraAdministrativeUnit.md
+  - name: Get-EntraAdministrativeUnitMember
+    href: Microsoft.Graph.Entra/Get-EntraAdministrativeUnitMember.md
+  - name: Get-EntraApplication
+    href: Microsoft.Graph.Entra/Get-EntraApplication.md
+  - name: Get-EntraApplicationExtensionProperty
+    href: Microsoft.Graph.Entra/Get-EntraApplicationExtensionProperty.md
+  - name: Get-EntraApplicationOwner
+    href: Microsoft.Graph.Entra/Get-EntraApplicationOwner.md
+  - name: Get-EntraAuthorizationPolicy
+    href: Microsoft.Graph.Entra/Get-EntraAuthorizationPolicy.md
+  - name: Get-EntraConditionalAccessPolicy
+    href: Microsoft.Graph.Entra/Get-EntraConditionalAccessPolicy.md
+  - name: Get-EntraDeletedDirectoryObject
+    href: Microsoft.Graph.Entra/Get-EntraDeletedDirectoryObject.md
+  - name: Get-EntraDeletedGroup
+    href: Microsoft.Graph.Entra/Get-EntraDeletedGroup.md
+  - name: Get-EntraGroup
+    href: Microsoft.Graph.Entra/Get-EntraGroup.md
+  - name: Get-EntraGroupLifecyclePolicy
+    href: Microsoft.Graph.Entra/Get-EntraGroupLifecyclePolicy.md
+  - name: Get-EntraGroupPermissionGrant
+    href: Microsoft.Graph.Entra/Get-EntraGroupPermissionGrant.md
+  - name: Get-EntraIdentityProvider
+    href: Microsoft.Graph.Entra/Get-EntraIdentityProvider.md
+  - name: Get-EntraLifecyclePolicyGroup
+    href: Microsoft.Graph.Entra/Get-EntraLifecyclePolicyGroup.md
+  - name: Get-EntraNamedLocationPolicy
+    href: Microsoft.Graph.Entra/Get-EntraNamedLocationPolicy.md
+  - name: Get-EntraPermissionGrantConditionSet
+    href: Microsoft.Graph.Entra/Get-EntraPermissionGrantConditionSet.md
+  - name: Get-EntraPermissionGrantPolicy
+    href: Microsoft.Graph.Entra/Get-EntraPermissionGrantPolicy.md
+  - name: Get-EntraRoleAssignment
+    href: Microsoft.Graph.Entra/Get-EntraRoleAssignment.md
+  - name: Get-EntraRoleDefinition
+    href: Microsoft.Graph.Entra/Get-EntraRoleDefinition.md
+  - name: Get-EntraScopedRoleMembership
+    href: Microsoft.Graph.Entra/Get-EntraScopedRoleMembership.md
   - name: Get-EntraOAuth2PermissionGrant
     href: Microsoft.Graph.Entra/Get-EntraOAuth2PermissionGrant.md
   - name: Get-EntraObjectByObjectId
@@ -224,36 +218,36 @@
     href: Microsoft.Graph.Entra/New-EntraGroup.md
   - name: New-EntraGroupAppRoleAssignment
     href: Microsoft.Graph.Entra/New-EntraGroupAppRoleAssignment.md
-  - name: New-EntraMSAdministrativeUnit
-    href: Microsoft.Graph.Entra/New-EntraMSAdministrativeUnit.md
-  - name: New-EntraMSApplication
-    href: Microsoft.Graph.Entra/New-EntraMSApplication.md
-  - name: New-EntraMSApplicationExtensionProperty
-    href: Microsoft.Graph.Entra/New-EntraMSApplicationExtensionProperty.md
-  - name: New-EntraMSApplicationKey
-    href: Microsoft.Graph.Entra/New-EntraMSApplicationKey.md
-  - name: New-EntraMSApplicationPassword
-    href: Microsoft.Graph.Entra/New-EntraMSApplicationPassword.md
-  - name: New-EntraMSConditionalAccessPolicy
-    href: Microsoft.Graph.Entra/New-EntraMSConditionalAccessPolicy.md
-  - name: New-EntraMSGroup
-    href: Microsoft.Graph.Entra/New-EntraMSGroup.md
-  - name: New-EntraMSGroupLifecyclePolicy
-    href: Microsoft.Graph.Entra/New-EntraMSGroupLifecyclePolicy.md
-  - name: New-EntraMSIdentityProvider
-    href: Microsoft.Graph.Entra/New-EntraMSIdentityProvider.md
-  - name: New-EntraMSInvitation
-    href: Microsoft.Graph.Entra/New-EntraMSInvitation.md
-  - name: New-EntraMSNamedLocationPolicy
-    href: Microsoft.Graph.Entra/New-EntraMSNamedLocationPolicy.md
-  - name: New-EntraMSPermissionGrantConditionSet
-    href: Microsoft.Graph.Entra/New-EntraMSPermissionGrantConditionSet.md
-  - name: New-EntraMSPermissionGrantPolicy
-    href: Microsoft.Graph.Entra/New-EntraMSPermissionGrantPolicy.md
-  - name: New-EntraMSRoleAssignment
-    href: Microsoft.Graph.Entra/New-EntraMSRoleAssignment.md
-  - name: New-EntraMSRoleDefinition
-    href: Microsoft.Graph.Entra/New-EntraMSRoleDefinition.md
+  - name: New-EntraAdministrativeUnit
+    href: Microsoft.Graph.Entra/New-EntraAdministrativeUnit.md
+  - name: New-EntraApplication
+    href: Microsoft.Graph.Entra/New-EntraApplication.md
+  - name: New-EntraApplicationExtensionProperty
+    href: Microsoft.Graph.Entra/New-EntraApplicationExtensionProperty.md
+  - name: New-EntraApplicationKey
+    href: Microsoft.Graph.Entra/New-EntraApplicationKey.md
+  - name: New-EntraApplicationPassword
+    href: Microsoft.Graph.Entra/New-EntraApplicationPassword.md
+  - name: New-EntraConditionalAccessPolicy
+    href: Microsoft.Graph.Entra/New-EntraConditionalAccessPolicy.md
+  - name: New-EntraGroup
+    href: Microsoft.Graph.Entra/New-EntraGroup.md
+  - name: New-EntraGroupLifecyclePolicy
+    href: Microsoft.Graph.Entra/New-EntraGroupLifecyclePolicy.md
+  - name: New-EntraIdentityProvider
+    href: Microsoft.Graph.Entra/New-EntraIdentityProvider.md
+  - name: New-EntraInvitation
+    href: Microsoft.Graph.Entra/New-EntraInvitation.md
+  - name: New-EntraNamedLocationPolicy
+    href: Microsoft.Graph.Entra/New-EntraNamedLocationPolicy.md
+  - name: New-EntraPermissionGrantConditionSet
+    href: Microsoft.Graph.Entra/New-EntraPermissionGrantConditionSet.md
+  - name: New-EntraPermissionGrantPolicy
+    href: Microsoft.Graph.Entra/New-EntraPermissionGrantPolicy.md
+  - name: New-EntraRoleAssignment
+    href: Microsoft.Graph.Entra/New-EntraRoleAssignment.md
+  - name: New-EntraRoleDefinition
+    href: Microsoft.Graph.Entra/New-EntraRoleDefinition.md
   - name: New-EntraServiceAppRoleAssignment
     href: Microsoft.Graph.Entra/New-EntraServiceAppRoleAssignment.md
   - name: New-EntraServicePrincipal
@@ -298,48 +292,46 @@
     href: Microsoft.Graph.Entra/Remove-EntraGroupMember.md
   - name: Remove-EntraGroupOwner
     href: Microsoft.Graph.Entra/Remove-EntraGroupOwner.md
-  - name: Remove-EntraMSAdministrativeUnit
-    href: Microsoft.Graph.Entra/Remove-EntraMSAdministrativeUnit.md
-  - name: Remove-EntraMSAdministrativeUnitMember
-    href: Microsoft.Graph.Entra/Remove-EntraMSAdministrativeUnitMember.md
-  - name: Remove-EntraMSApplication
-    href: Microsoft.Graph.Entra/Remove-EntraMSApplication.md
-  - name: Remove-EntraMSApplicationExtensionProperty
-    href: Microsoft.Graph.Entra/Remove-EntraMSApplicationExtensionProperty.md
-  - name: Remove-EntraMSApplicationKey
-    href: Microsoft.Graph.Entra/Remove-EntraMSApplicationKey.md
-  - name: Remove-EntraMSApplicationOwner
-    href: Microsoft.Graph.Entra/Remove-EntraMSApplicationOwner.md
-  - name: Remove-EntraMSApplicationPassword
-    href: Microsoft.Graph.Entra/Remove-EntraMSApplicationPassword.md
-  - name: Remove-EntraMSApplicationVerifiedPublisher
-    href: Microsoft.Graph.Entra/Remove-EntraMSApplicationVerifiedPublisher.md
-  - name: Remove-EntraMSConditionalAccessPolicy
-    href: Microsoft.Graph.Entra/Remove-EntraMSConditionalAccessPolicy.md
-  - name: Remove-EntraMSDeletedDirectoryObject
-    href: Microsoft.Graph.Entra/Remove-EntraMSDeletedDirectoryObject.md
-  - name: Remove-EntraMSGroup
-    href: Microsoft.Graph.Entra/Remove-EntraMSGroup.md
-  - name: Remove-EntraMSGroupLifecyclePolicy
-    href: Microsoft.Graph.Entra/Remove-EntraMSGroupLifecyclePolicy.md
-  - name: Remove-EntraMSIdentityProvider
-    href: Microsoft.Graph.Entra/Remove-EntraMSIdentityProvider.md
-  - name: Remove-EntraMSLifecyclePolicyGroup
-    href: Microsoft.Graph.Entra/Remove-EntraMSLifecyclePolicyGroup.md
-  - name: Remove-EntraMSNamedLocationPolicy
-    href: Microsoft.Graph.Entra/Remove-EntraMSNamedLocationPolicy.md
-  - name: Remove-EntraMSPermissionGrantConditionSet
-    href: Microsoft.Graph.Entra/Remove-EntraMSPermissionGrantConditionSet.md
-  - name: Remove-EntraMSPermissionGrantPolicy
-    href: Microsoft.Graph.Entra/Remove-EntraMSPermissionGrantPolicy.md
-  - name: Remove-EntraMSRoleAssignment
-    href: Microsoft.Graph.Entra/Remove-EntraMSRoleAssignment.md
-  - name: Remove-EntraMSRoleDefinition
-    href: Microsoft.Graph.Entra/Remove-EntraMSRoleDefinition.md
-  - name: Remove-EntraMSScopedRoleMembership
-    href: Microsoft.Graph.Entra/Remove-EntraMSScopedRoleMembership.md
-  - name: Remove-EntraMSServicePrincipalDelegatedPermissionClassification
-    href: Microsoft.Graph.Entra/Remove-EntraMSServicePrincipalDelegatedPermissionClassification.md
+  - name: Remove-EntraAdministrativeUnit
+    href: Microsoft.Graph.Entra/Remove-EntraAdministrativeUnit.md
+  - name: Remove-EntraAdministrativeUnitMember
+    href: Microsoft.Graph.Entra/Remove-EntraAdministrativeUnitMember.md
+  - name: Remove-EntraApplication
+    href: Microsoft.Graph.Entra/Remove-EntraApplication.md
+  - name: Remove-EntraApplicationExtensionProperty
+    href: Microsoft.Graph.Entra/Remove-EntraApplicationExtensionProperty.md
+  - name: Remove-EntraApplicationKey
+    href: Microsoft.Graph.Entra/Remove-EntraApplicationKey.md
+  - name: Remove-EntraApplicationOwner
+    href: Microsoft.Graph.Entra/Remove-EntraApplicationOwner.md
+  - name: Remove-EntraApplicationPassword
+    href: Microsoft.Graph.Entra/Remove-EntraApplicationPassword.md
+  - name: Remove-EntraApplicationVerifiedPublisher
+    href: Microsoft.Graph.Entra/Remove-EntraApplicationVerifiedPublisher.md
+  - name: Remove-EntraConditionalAccessPolicy
+    href: Microsoft.Graph.Entra/Remove-EntraConditionalAccessPolicy.md
+  - name: Remove-EntraDeletedDirectoryObject
+    href: Microsoft.Graph.Entra/Remove-EntraDeletedDirectoryObject.md
+  - name: Remove-EntraGroup
+    href: Microsoft.Graph.Entra/Remove-EntraGroup.md
+  - name: Remove-EntraGroupLifecyclePolicy
+    href: Microsoft.Graph.Entra/Remove-EntraGroupLifecyclePolicy.md
+  - name: Remove-EntraIdentityProvider
+    href: Microsoft.Graph.Entra/Remove-EntraIdentityProvider.md
+  - name: Remove-EntraLifecyclePolicyGroup
+    href: Microsoft.Graph.Entra/Remove-EntraLifecyclePolicyGroup.md
+  - name: Remove-EntraNamedLocationPolicy
+    href: Microsoft.Graph.Entra/Remove-EntraNamedLocationPolicy.md
+  - name: Remove-EntraPermissionGrantConditionSet
+    href: Microsoft.Graph.Entra/Remove-EntraPermissionGrantConditionSet.md
+  - name: Remove-EntraPermissionGrantPolicy
+    href: Microsoft.Graph.Entra/Remove-EntraPermissionGrantPolicy.md
+  - name: Remove-EntraRoleAssignment
+    href: Microsoft.Graph.Entra/Remove-EntraRoleAssignment.md
+  - name: Remove-EntraRoleDefinition
+    href: Microsoft.Graph.Entra/Remove-EntraRoleDefinition.md
+  - name: Remove-EntraScopedRoleMembership
+    href: Microsoft.Graph.Entra/Remove-EntraScopedRoleMembership.md
   - name: Remove-EntraOAuth2PermissionGrant
     href: Microsoft.Graph.Entra/Remove-EntraOAuth2PermissionGrant.md
   - name: Remove-EntraServiceAppRoleAssignment
@@ -362,12 +354,12 @@
     href: Microsoft.Graph.Entra/Remove-EntraUserExtension.md
   - name: Remove-EntraUserManager
     href: Microsoft.Graph.Entra/Remove-EntraUserManager.md
-  - name: Reset-EntraMSLifeCycleGroup
-    href: Microsoft.Graph.Entra/Reset-EntraMSLifeCycleGroup.md
+  - name: Reset-EntraLifeCycleGroup
+    href: Microsoft.Graph.Entra/Reset-EntraLifeCycleGroup.md
   - name: Restore-EntraDeletedApplication
     href: Microsoft.Graph.Entra/Restore-EntraDeletedApplication.md
-  - name: Restore-EntraMSDeletedDirectoryObject
-    href: Microsoft.Graph.Entra/Restore-EntraMSDeletedDirectoryObject.md
+  - name: Restore-EntraDeletedDirectoryObject
+    href: Microsoft.Graph.Entra/Restore-EntraDeletedDirectoryObject.md
   - name: Revoke-EntraSignedInUserAllRefreshToken
     href: Microsoft.Graph.Entra/Revoke-EntraSignedInUserAllRefreshToken.md
   - name: Revoke-EntraUserAllRefreshToken
@@ -396,32 +388,32 @@
     href: Microsoft.Graph.Entra/Set-EntraDomainFederationSettings.md
   - name: Set-EntraGroup
     href: Microsoft.Graph.Entra/Set-EntraGroup.md
-  - name: Set-EntraMSAdministrativeUnit
-    href: Microsoft.Graph.Entra/Set-EntraMSAdministrativeUnit.md
-  - name: Set-EntraMSApplication
-    href: Microsoft.Graph.Entra/Set-EntraMSApplication.md
-  - name: Set-EntraMSApplicationLogo
-    href: Microsoft.Graph.Entra/Set-EntraMSApplicationLogo.md
-  - name: Set-EntraMSApplicationVerifiedPublisher
-    href: Microsoft.Graph.Entra/Set-EntraMSApplicationVerifiedPublisher.md
-  - name: Set-EntraMSAuthorizationPolicy
-    href: Microsoft.Graph.Entra/Set-EntraMSAuthorizationPolicy.md
-  - name: Set-EntraMSConditionalAccessPolicy
-    href: Microsoft.Graph.Entra/Set-EntraMSConditionalAccessPolicy.md
-  - name: Set-EntraMSGroup
-    href: Microsoft.Graph.Entra/Set-EntraMSGroup.md
-  - name: Set-EntraMSGroupLifecyclePolicy
-    href: Microsoft.Graph.Entra/Set-EntraMSGroupLifecyclePolicy.md
-  - name: Set-EntraMSIdentityProvider
-    href: Microsoft.Graph.Entra/Set-EntraMSIdentityProvider.md
-  - name: Set-EntraMSNamedLocationPolicy
-    href: Microsoft.Graph.Entra/Set-EntraMSNamedLocationPolicy.md
-  - name: Set-EntraMSPermissionGrantConditionSet
-    href: Microsoft.Graph.Entra/Set-EntraMSPermissionGrantConditionSet.md
-  - name: Set-EntraMSPermissionGrantPolicy
-    href: Microsoft.Graph.Entra/Set-EntraMSPermissionGrantPolicy.md
-  - name: Set-EntraMSRoleDefinition
-    href: Microsoft.Graph.Entra/Set-EntraMSRoleDefinition.md
+  - name: Set-EntraAdministrativeUnit
+    href: Microsoft.Graph.Entra/Set-EntraAdministrativeUnit.md
+  - name: Set-EntraApplication
+    href: Microsoft.Graph.Entra/Set-EntraApplication.md
+  - name: Set-EntraApplicationLogo
+    href: Microsoft.Graph.Entra/Set-EntraApplicationLogo.md
+  - name: Set-EntraApplicationVerifiedPublisher
+    href: Microsoft.Graph.Entra/Set-EntraApplicationVerifiedPublisher.md
+  - name: Set-EntraAuthorizationPolicy
+    href: Microsoft.Graph.Entra/Set-EntraAuthorizationPolicy.md
+  - name: Set-EntraConditionalAccessPolicy
+    href: Microsoft.Graph.Entra/Set-EntraConditionalAccessPolicy.md
+  - name: Set-EntraGroup
+    href: Microsoft.Graph.Entra/Set-EntraGroup.md
+  - name: Set-EntraGroupLifecyclePolicy
+    href: Microsoft.Graph.Entra/Set-EntraGroupLifecyclePolicy.md
+  - name: Set-EntraIdentityProvider
+    href: Microsoft.Graph.Entra/Set-EntraIdentityProvider.md
+  - name: Set-EntraNamedLocationPolicy
+    href: Microsoft.Graph.Entra/Set-EntraNamedLocationPolicy.md
+  - name: Set-EntraPermissionGrantConditionSet
+    href: Microsoft.Graph.Entra/Set-EntraPermissionGrantConditionSet.md
+  - name: Set-EntraPermissionGrantPolicy
+    href: Microsoft.Graph.Entra/Set-EntraPermissionGrantPolicy.md
+  - name: Set-EntraRoleDefinition
+    href: Microsoft.Graph.Entra/Set-EntraRoleDefinition.md
   - name: Set-EntraServicePrincipal
     href: Microsoft.Graph.Entra/Set-EntraServicePrincipal.md
   - name: Set-EntraTenantDetail

@@ -2,9 +2,9 @@
 title: Set-EntraBetaUserLicense
 description: This article provides details on the Set-EntraBetaUserLicense command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 02/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,16 +12,17 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaUserLicense
+
 schema: 2.0.0
 ---
 
 # Set-EntraBetaUserLicense
 
-## SYNOPSIS
+## Synopsis
 Adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Set-EntraBetaUserLicense 
@@ -30,10 +31,10 @@ Set-EntraBetaUserLicense
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The **Set-EntraBetaUserLicense** adds or removes licenses for a Microsoft online service to the list of assigned licenses for a user.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a license to a user based on a template user
 ```powershell
@@ -62,7 +63,7 @@ The final command assigns the licenses in $Licenses to the user in $User.
 
 The licenses in $Licenses includes $License from the third and fourth commands.
 
-## PARAMETERS
+## Parameters
 
 ### -AssignedLicenses
 Specifies a list of licenses to assign or remove.
@@ -97,13 +98,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaUser](Get-EntraBetaUser.md)
 
