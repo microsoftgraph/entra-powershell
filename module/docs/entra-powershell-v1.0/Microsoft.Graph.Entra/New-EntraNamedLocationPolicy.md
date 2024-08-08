@@ -20,6 +20,7 @@ schema: 2.0.0
 # New-EntraNamedLocationPolicy
 
 ## Synopsis
+
 Creates a new named location policy in Microsoft Entra ID.
 
 ## Syntax
@@ -37,21 +38,32 @@ New-EntraNamedLocationPolicy
 ```
 
 ## Description
+
 This cmdlet allows an admin to create new named location policy in Microsoft Entra ID.
+
 Conditional access policies are custom rules that define an access scenario.
 
 ## Examples
 
-### Example 1: Creates a new Ip named location policy in Microsoft Entra ID.
+### Example 1: Creates a new Ip named location policy in Microsoft Entra ID
+
 ```powershell
-PS C:\> $ipRanges = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
-PS C:\> $ipRanges.cidrAddress = "6.5.4.3/32"
-PS C:\> New-EntraNamedLocationPolicy -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "IP named location policy" -IsTrusted $false -IpRanges $ipRanges
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+$ipRanges = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
+$ipRanges.cidrAddress = '6.5.4.3/32'
+$params = @{
+    OdataType = '#microsoft.graph.ipNamedLocation'
+    DisplayName = 'IP named location policy'
+    IsTrusted = $false
+    IpRanges = $ipRanges
+}
+
+New-EntraNamedLocationPolicy @params
 ```
 
-```output
+```Output
 OdataType               : #microsoft.graph.ipNamedLocation
-Id                      : 6b5e999b-0ba8-4186-a106-e0296c1c4358
+Id                      : bbbbbbbb-1111-2222-3333-cccccccccccc
 DisplayName             : IP named location policy
 CreatedDateTime         : 2019-09-26T23:12:16.0792706Z
 ModifiedDateTime        : 2019-09-27T00:12:12.5986473Z
@@ -65,14 +77,23 @@ IpRanges                : {
 
 This command creates a new country named location policy in Microsoft Entra ID.
 
-### Example 2: Creates a new country named location policy in Microsoft Entra ID.
+### Example 2: Creates a new country named location policy in Microsoft Entra ID
+
 ```powershell
-PS C:\> New-EntraNamedLocationPolicy -OdataType "#microsoft.graph.countryNamedLocation" -DisplayName "Country named location policy" -CountriesAndRegions "IN" -IncludeUnknownCountriesAndRegions $false
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+$params = @{
+    ODataType = '#microsoft.graph.countryNamedLocation'
+    DisplayName = 'Country named location policy'
+    CountriesAndRegions = 'IN'
+    IncludeUnknownCountriesAndRegions = $false
+}
+
+New-EntraNamedLocationPolicy @params
 ```
 
 ```output
 OdataType                         : #microsoft.graph.countryNamedLocation
-Id                                : 13975bae-089f-4358-8da3-cc262f29276b
+Id                                : bbbbbbbb-1111-2222-3333-cccccccccccc
 DisplayName                       : Country named location policy
 CreatedDateTime                   : 2019-09-26T23:12:16.0792706Z
 ModifiedDateTime                  : 2019-09-27T00:12:12.5986473Z
@@ -85,10 +106,11 @@ This command creates a new country named location policy in Microsoft Entra ID.
 ## Parameters
 
 ### -OdataType
-Specifies the odata type of a named location policy object in Microsoft Entra ID.
+
+Specifies the OData type of a named location policy object in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -100,10 +122,11 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-Specifies the display name of a named location policy in Microsoft Entra ID.
+
+Specifies the human-readable name of the location.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -115,7 +138,8 @@ Accept wildcard characters: False
 ```
 
 ### -IpRanges
-Specifies the ip ranges of the named location policy in Microsoft Entra ID.
+
+List of IP address ranges in IPv4 CIDR format (e.g., 1.2.3.4/32) or any valid IPv6 format as specified in IETF RFC596. The @odata.type of the ipRange is also required.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.IpRange]
@@ -130,10 +154,11 @@ Accept wildcard characters: False
 ```
 
 ### -IsTrusted
+
 Specifies the isTrusted value for the named location policy in Microsoft Entra ID.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -145,7 +170,8 @@ Accept wildcard characters: False
 ```
 
 ### -CountriesAndRegions
-Specifies the countries and regions for the named location policy in Microsoft Entra ID.
+
+List of countries and/or regions in the two-letter format specified by ISO 3166-2.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.CountriesAndRegion]
@@ -160,10 +186,11 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeUnknownCountriesAndRegions
+
 Specifies the includeUnknownCountriesAndRegions value for the named location policy in Microsoft Entra ID.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -175,10 +202,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
+
 Specifies the ID of a named location policy in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -190,13 +218,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ## Outputs
 
 ## Notes
+
+- For more information, see [Create namedLocation](/graph/api/conditionalaccessroot-post-namedlocations).
+
 ## Related Links
 
 [Get-EntraNamedLocationPolicy](Get-EntraNamedLocationPolicy.md)
@@ -204,4 +236,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Set-EntraNamedLocationPolicy](Set-EntraNamedLocationPolicy.md)
 
 [Remove-EntraNamedLocationPolicy](Remove-EntraNamedLocationPolicy.md)
-

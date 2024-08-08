@@ -654,7 +654,21 @@ $OutputTransformations
             $paramsList += $paramBlock
         }
 
-        if("Get" -eq $Command.Verb -and !$ignorePropertyParameter.Contains($Command.Generate)){
+        $addProperty = $true
+        if('' -ne $Command.New){
+            $addProperty = $false
+            $targetCmdparams = $(Get-Command -Name $Command.New).Parameters.Keys
+            if($null -ne $targetCmdparams){
+                foreach($param in $targetCmdparams) {
+                    if($param -eq 'Property') {
+                        $addProperty = $true
+                        break
+                    }
+                } 
+            }     
+        }
+
+        if("Get" -eq $Command.Verb -and !$ignorePropertyParameter.Contains($Command.Generate) -and $addProperty){
             $paramsList += $this.GetPropertyParameterBlock()
         }
 
