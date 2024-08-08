@@ -1,5 +1,5 @@
 ---
-title: Set-EntraCustomSecurityAttributeDefinitionAllowedValue
+title: Set-EntraCustomSecurityAttributeDefinitionAllowedValue.
 description: This article provides details on the Set-EntraCustomSecurityAttributeDefinitionAllowedValue command.
 
 ms.topic: reference
@@ -11,7 +11,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraCustomSecurityAttributeDefinitionAllowedValue
+
 schema: 2.0.0
 ---
 
@@ -32,7 +33,7 @@ Set-EntraCustomSecurityAttributeDefinitionAllowedValue
 
 ## Description
 
-The `Set-EntraCustomSecurityAttributeDefinitionAllowedValue` cmdlet update a Microsoft Entra ID custom security attribute definition predefined value object identified by ID. Specify `CustomSecurityAttributeDefinitionId` and `Id` parameter to update a Microsoft Entra ID custom security attribute definition predefined value.
+The `Set-EntraCustomSecurityAttributeDefinitionAllowedValue` cmdlet update a Microsoft Entra ID custom security attribute definition predefined value object identified by ID. Specify `-CustomSecurityAttributeDefinitionId` and `-Id` parameter to update a Microsoft Entra ID custom security attribute definition predefined value.
 
 ## Examples
 
@@ -43,22 +44,22 @@ Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
 $params = @{
     CustomSecurityAttributeDefinitionId = 'Engineering_Project'
     Id = 'Alpine'
-    IsActive = $false
+    IsActive = $true
 }
 Set-EntraCustomSecurityAttributeDefinitionAllowedValue @params
 ```
 
-This example deactivates a predefined value.
+This example update a custom security attribute definition predefined value.
 
-- Attribute set: `Engineering`
-- Attribute: `Project`
-- Predefined value: `Alpine`
+- `-CustomSecurityAttributeDefinitionId` parameter specifies the custom security attribute definition ID.
+- `-Id` parameter specifies the ID of Microsoft Entra ID Object.
+- `-IsActive` parameter specifies the predefined value is active or deactivated.
 
 ## Parameters
 
 ### -CustomSecurityAttributeDefinitionId
 
-The unique identifier of customSecurityAttributeDefinition
+The unique identifier of customSecurityAttributeDefinition.
 
 ```yaml
 Type: System.String
@@ -74,7 +75,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-The unique identifier for an entity. Read-only.
+Indicates whether the predefined value is active or deactivated. If set to false, this predefined value cannot be assigned to any additional supported directory objects. This field is optional.
 
 ```yaml
 Type: System.String
