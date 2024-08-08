@@ -55,7 +55,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb             00aa00aa-bb11-cc22-dd33-44ee44e
 
 This example Creates new settings object in Microsoft Entra ID.
 
-- `-DirectorySetting` Specifies directory settings.
+- `-DirectorySetting` Parameter Create a new setting using templates from `DirectorySettingTemplates`
 
 ## Parameters
 
