@@ -1,4 +1,13 @@
 ---
+title: Confirm-EntraBetaDomain.
+description: This article provides details on the Confirm-EntraBetaDomain command.
+
+ms.topic: reference
+ms.date: 08/08/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Confirm-EntraBetaDomain
@@ -9,30 +18,40 @@ schema: 2.0.0
 # Confirm-EntraBetaDomain
 
 ## Synopsis
+
 Validate the ownership of a domain.
 
 ## Syntax
 
-```
-Confirm-EntraBetaDomain [-CrossCloudVerificationCode <CrossCloudVerificationCodeBody>] -Name <String>
+```powershell
+Confirm-EntraBetaDomain 
+ -Name <String> 
+ [-CrossCloudVerificationCode <CrossCloudVerificationCodeBody>] 
  [<CommonParameters>]
 ```
 
 ## Description
-The Confirm-EntraBetaDomain cmdlet validates the ownership of an Azure Active Directory domain.
+
+The `Confirm-EntraBetaDomain` cmdlet validates the ownership of an Microsoft Entra ID domain.
+
+The work or school account needs to belong to at least the **Domain Name Administrator** Microsoft Entra role.
 
 ## Examples
 
 ### Example 1: Confirm the domain
-```
-PS C:\>Confirm-EntraBetaDomain -Name Contoso.com
+
+```powershell
+Connect-Entra -Scopes 'Domain.ReadWrite.All'
+Confirm-EntraBetaDomain -Name Contoso.com
 ```
 
 This command will confirm your domain; changing the status to "Verified".
 
 ### Example 2: Confirm the domain with a cross cloud verification code
-```
-PS C:\>Confirm-EntraBetaDomain -Name Contoso.com -CrossCloudVerificationCode ms84324896
+
+```powershell
+Connect-Entra -Scopes 'Domain.ReadWrite.All'
+Confirm-EntraBetaDomain -Name Contoso.com -CrossCloudVerificationCode ms84324896
 ```
 
 This command will confirm your domain for dual federation scenarios.
@@ -40,10 +59,11 @@ This command will confirm your domain for dual federation scenarios.
 ## Parameters
 
 ### -Name
+
 Specifies the name of the domain.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -55,6 +75,7 @@ Accept wildcard characters: False
 ```
 
 ### -CrossCloudVerificationCode
+
 The cross-cloud domain verification code.
 
 ```yaml
@@ -70,6 +91,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
@@ -80,11 +102,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaDomain]()
+[Get-EntraBetaDomain](Get-EntraBetaDomain.md)
 
-[New-EntraBetaDomain]()
+[New-EntraBetaDomain](New-EntraBetaDomain.md)
 
-[Remove-EntraBetaDomain]()
+[Remove-EntraBetaDomain](Remove-EntraBetaDomain.md)
 
-[Set-EntraBetaDomain]()
-
+[Set-EntraBetaDomain](Set-EntraBetaDomain.md)
