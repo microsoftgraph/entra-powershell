@@ -43,9 +43,9 @@ Connect-Entra -Scopes 'Application.ReadWrite.All','Directory.ReadWrite.All'
 $PasswordCredential= New-Object Microsoft.Open.MSGraph.Model.PasswordCredential
 $PasswordCredential.StartDateTime = Get-Date -Year 2024 -Month 12 -Day 28
 $PasswordCredential.EndDateTime = Get-Date -Year 2025 -Month 2 -Day 28
+$PasswordCredential.KeyId = 'bbbbbbbb-1c1c-2d2d-3e3e-444444444444'
 $PasswordCredential.CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes('a')
 $PasswordCredential.Hint = 'b'
-$PasswordCredential.DisplayName = 'mypassword'
 $params = @{
     ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     PasswordCredential = $PasswordCredential
@@ -54,9 +54,9 @@ New-EntraBetaApplicationPassword @params
 ```
 
 ```Output
-CustomKeyIdentifier DisplayName EndDateTime           Hint KeyId                                SecretText                       StartDateTime
-------------------- ----------- -----------           ---- -----                                ----------                       -------------
-                    mypassword  10/28/2021 3:57:37 PM EQ:  bbbbbbbb-1c1c-2d2d-3e3e-444444444444 <my-secret-text> 10/28/2019 3:57:37 PM
+CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                               StartDateTime
+------------------- ----------- -----------          ---- -----                                ----------                               -------------
+{97}                            2/28/2025 7:05:39 AM nnW  bbbbbbbb-1c1c-2d2d-3e3e-444444444444 <my-secret-text> 12/28/2024 7:05:39 AM
 ```
 
 This example adds a password to the specified application.

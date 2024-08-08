@@ -51,9 +51,8 @@ To grant an app role assignment to a user, you need three identifiers:
 
 ```powershell
 Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
-$appId = (Get-EntraBetaApplication -SearchString 'NewApplication').AppId
 $user = Get-EntraBetaUser -searchstring 'NewUser'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "appId eq 'appId'"
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
 $params = @{
     ObjectId = $user.ObjectId 
     PrincipalId = $user.ObjectId 
@@ -64,9 +63,9 @@ New-EntraBetaUserAppRoleAssignment @params
 ```
 
 ```Output
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId                          PrincipalType ResourceDisplayName
---------------- --                                          ---------                            ---------------     -------------------- -----------                          ------------- ------------------- -
-                A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 18-06-2024 11:22:40 
+Id                                          AppRoleId                            CreationTimestamp   PrincipalDisplayName PrincipalId                          PrincipalType ResourceDisplayName ResourceId
+--                                          ---------                            -----------------   -------------------- -----------                          ------------- ------------------- ----------
+ZwFW_R__GkeNdDsAcKvOoerWWY8NKDJGlIgS4FjeyXQ 00000000-0000-0000-0000-000000000000 08-08-2024 05:40:06 Conf Room Adams      aaaaaaaa-bbbb-cccc-1111-222222222222 User          testp22             07188127-baa9-4f…
 ```
 
 This command assigns a user to an application that doesn't have any roles.  
@@ -90,16 +89,16 @@ $user = Get-EntraBetaUser -Filter "userPrincipalName eq '$userName'"
 $params = @{
     ObjectId = $user.ObjectId 
     PrincipalId = $user.ObjectId 
-    ResourceId = $servicePrincipal.ObjectId 
+    ResourceId = $spo.ObjectId
     Id = $spo.Approles[1].Id
 }
 New-EntraBetaUserAppRoleAssignment @params
 ```
 
 ```Output
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId                          PrincipalType ResourceDisplayName
---------------- --                                          ---------                            ---------------     -------------------- -----------                          ------------- -------------------
-                A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 06/18/2024 09:47:00 Sawyer Miller        1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 User          Box
+Id                                          AppRoleId                            CreationTimestamp   PrincipalDisplayName PrincipalId                          PrincipalType ResourceDisplayName  ResourceId
+--                                          ---------                            -----------------   -------------------- -----------                          ------------- -------------------  ----------
+Idn1u1K7S0OWoJWIjkT69Stnjqd1iblKlg-GoqVkNlM cbbf6a32-6dcd-4f22-9be7-ffb128119fae 08-08-2024 08:13:26 Test One Updated     bbbbbbbb-cccc-dddd-2222-333333333333 User          M365 License Manager 0008861a-d455-4…
 ```
 
 This example demonstrates how to assign a user to an application role in Microsoft Entra ID.  
