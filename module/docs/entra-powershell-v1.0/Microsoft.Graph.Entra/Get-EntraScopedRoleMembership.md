@@ -1,5 +1,5 @@
 ---
-title: Get-EntraScopedRoleMembership
+title: Get-EntraScopedRoleMembership.
 description: This article provides details on the Get-EntraScopedRoleMembership command.
 
 ms.topic: reference
@@ -57,8 +57,8 @@ aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bbbbbbbb-1111-2222-3333-cccccccccccc 000000
 
 This command gets the scoped role membership from a specified administrative unit with specified scoped role membership ID.
 
-- `-ObjectId` - Specifies the ID of an administrative unit.
-- `-ScopedRoleMembershipId` - Specifies a description, which you want to update.
+- `-ObjectId` Specifies the ID of an administrative unit.
+- `-ScopedRoleMembershipId` Specifies a description, which you want to update.
 
 ### Example 2: List scoped administrators for administrative unit
 
@@ -75,7 +75,7 @@ aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bbbbbbbb-1111-2222-3333-cccccccccccc 000000
 
 This command gets the list of scoped role membership from a specified administrative unit.
 
-- `-ObjectId` - Specifies the ID of an administrative unit.
+- `-ObjectId` Specifies the ID of an administrative unit.
 
 ## Parameters
 
