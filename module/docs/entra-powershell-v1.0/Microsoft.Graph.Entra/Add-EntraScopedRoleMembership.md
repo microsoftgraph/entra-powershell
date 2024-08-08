@@ -1,5 +1,5 @@
 ---
-title: Add-EntraScopedRoleMembership
+title: Add-EntraScopedRoleMembership.
 description: This article provides details on the Add-EntraScopedRoleMembership command.
 
 ms.topic: reference
@@ -33,7 +33,7 @@ Add-EntraScopedRoleMembership
 
 ## Description
 
-The `Add-EntraScopedRoleMembership` cmdlet adds a scoped role membership to an administrative unit. Specify `ObjectId` parameter to add a scoped role membership.
+The `Add-EntraScopedRoleMembership` cmdlet adds a scoped role membership to an administrative unit. Specify `-ObjectId` parameter to add a scoped role membership.
 
 For delegated scenarios, the calling user needs at least the Privileged Role Administrator Microsoft Entra role.
 
