@@ -35,7 +35,7 @@ New-EntraPolicy
 
 ## Description
 
-The `New-EntraPolicy` cmdlet creates a policy in Microsoft Entra ID. Specify `DisplayName`, `Definition` and `Type` parameters for create a new policy.
+The `New-EntraPolicy` cmdlet creates a policy in Microsoft Entra ID. Specify `-DisplayName`, `-Definition` and `-Type` parameters for create a new policy.
 
 ## Examples
 
@@ -62,7 +62,7 @@ This command creates a new policy in Microsoft Entra ID.
 
 - `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy
 
-- `Type` Parameter specifies the type of policy.
+- `-Type` Parameter specifies the type of policy.
 
 ### Example 2: Create a new policy by 'IsOrganizationDefault' parameter
 
@@ -97,7 +97,7 @@ This command creates a new policy using 'IsOrganizationDefault' parameter in Mic
 
 ### -Definition
 
-Specifies an array of JSON that contains all the rules of the policy, for example: -Definition @("{"TokenLifetimePolicy":{"Version":1,"MaxInactiveTime":"20:00:00"}}")
+Specifies an array of JSON that contains all the rules of the policy, for example: -Definition @('{"TokenLifetimePolicy":{"Version":1,"MaxInactiveTime":"20:00:00"}}').
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
