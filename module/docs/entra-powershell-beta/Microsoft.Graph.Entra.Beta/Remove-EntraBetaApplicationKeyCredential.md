@@ -54,7 +54,7 @@ Remove-EntraBetaApplicationKeyCredential @params
 This command removes the specified key credential from the specified application.
 
 - `-ObjectId` Specifies the ID of an application.
-- `-KeyId` Specifies a custom key ID.
+- `-KeyId` Specifies a custom key ID. Use `Get-EntraBetaApplicationKeyCredential` to get the keyId details.
 
 ## Parameters
 
