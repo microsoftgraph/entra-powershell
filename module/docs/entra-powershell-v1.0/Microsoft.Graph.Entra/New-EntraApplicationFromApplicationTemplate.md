@@ -43,7 +43,7 @@ This `New-EntraApplicationFromApplicationTemplate` cmdlet allows users to create
 Connect-Entra -Scopes 'Application.ReadWrite.All'
 $params = @{
     Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-    DisplayName = 'bugzilla-copy1'
+    DisplayName = 'ApplicationTemplate'
 }
 $instantiated_app =New-EntraApplicationFromApplicationTemplate @params
 ```
