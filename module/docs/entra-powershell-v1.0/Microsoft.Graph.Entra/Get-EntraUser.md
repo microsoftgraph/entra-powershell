@@ -143,7 +143,7 @@ In this example, we retrieve all users whose MailNickname starts with Ada.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
-Get-EntraUser -Top 1  -Property 'SignInActivity' | Select-Object -ExpandProperty 'SignInActivity'
+Get-EntraUser -ObjectId 'cccccccc-2222-3333-4444-dddddddddddd' -Property 'SignInActivity' | Select-Object -ExpandProperty 'SignInActivity'
 ```
 
 ```output
