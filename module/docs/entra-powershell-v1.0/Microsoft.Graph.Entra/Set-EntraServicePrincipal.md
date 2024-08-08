@@ -34,6 +34,7 @@ Set-EntraServicePrincipal
  [-ServicePrincipalType <String>]
  [-AlternativeNames <System.Collections.Generic.List`1[System.String]>]
  [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]>]
+ [-PreferredSingleSignOnMode <String>]
  [-Tags <System.Collections.Generic.List`1[System.String]>] 
  [-AccountEnabled <String>]
  [-ServicePrincipalNames <System.Collections.Generic.List`1[System.String]>]
@@ -303,6 +304,22 @@ Specifies password credentials.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PreferredSingleSignOnMode
+
+Specifies the single sign-on mode configured for this application. Microsoft Entra ID uses the preferred single sign-on mode to launch the application from Microsoft 365 or the My Apps portal. The supported values are password, saml, notSupported, and oidc.
+
+```yaml
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
