@@ -129,7 +129,6 @@ This command retrieves top one object setting from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Connect-Entra -Scopes 'Directory.Read.All'
 $params = @{
     TargetType = 'Groups'
     TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
