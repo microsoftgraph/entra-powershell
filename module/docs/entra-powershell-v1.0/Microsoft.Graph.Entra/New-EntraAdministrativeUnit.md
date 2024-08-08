@@ -32,7 +32,7 @@ New-EntraAdministrativeUnit
 
 ## Description
 
-The `New-EntraAdministrativeUnit` cmdlet creates an administrative unit in Microsoft Entra ID. Specify `DisplayName` parameter for create an administrative unit.
+The `New-EntraAdministrativeUnit` cmdlet creates an administrative unit in Microsoft Entra ID. Specify `-DisplayName` parameter for create an administrative unit.
 
 ## Examples
 
@@ -49,7 +49,7 @@ DeletedDateTime Id                                   Description          Displa
                 cc604cc2-5636-4306-a705-bd0a763eff00 add-your-description test_AdministrativeUnit
 ```
 
-This example demonstrates how to create an administrative unit
+This example demonstrates how to create an administrative unit.
 
 - `-DisplayName` Specifies the display name of the new administrative unit.
 
