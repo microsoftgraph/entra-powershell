@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaDomainNameReference
+title: Get-EntraBetaDomainNameReference.
 description: This article provides details on the Get-EntraBetaDomainNameReference command.
 
 ms.topic: reference
@@ -19,7 +19,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-This cmdlet retrieves the objects that are referenced by a given domain name
+This cmdlet retrieves the objects that are referenced by a given domain name.
 
 ## Syntax
 
@@ -57,7 +57,7 @@ This example shows how to retrieve the domain name reference objects for a domai
 
 ### -Name
 
-The name of the domain name for which the referenced objects are retrieved
+The name of the domain name for which the referenced objects are retrieved.
 
 ```yaml
 Type: System.String
@@ -73,7 +73,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

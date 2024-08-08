@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaDomain
+title: Get-EntraBetaDomain.
 description: This article provides details on the Get-EntraBetaDomain command.
 
 ms.topic: reference
@@ -98,7 +98,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
