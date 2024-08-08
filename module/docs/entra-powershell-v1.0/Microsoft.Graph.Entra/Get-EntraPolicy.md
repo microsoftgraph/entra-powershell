@@ -59,7 +59,7 @@ Get-EntraPolicy
 Name                           Value
 ----                           -----
 deletedDateTime
-id                             'bbbbbbbb-1111-2222-3333-cccccccccccc
+id                             bbbbbbbb-1111-2222-3333-cccccccccccc
 displayName                    New update
 definition                     {{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}
 isOrganizationDefault          False

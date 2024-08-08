@@ -56,6 +56,8 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This command creates new password credential for specified application.
 
+- `-ObjectId` Specifies the ID of a user.
+
 ### Example 2: Create a password credential using CustomKeyIdentifier parameter
 
 ```powershell
@@ -76,6 +78,9 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 ```
 
 This command creates new password credential for specified application.
+
+- `-ObjectId` Specifies the ID of a user.
+- `-CustomKeyIdentifier` Speicifies unique binary identifier.
 
 ### Example 3: Create a password credential using StartDate parameter
 
@@ -99,6 +104,9 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This command creates new password credential for specified application.
 
+- `-ObjectId` Specifies the ID of a user.
+- `-StartDate` Speicifies the date and time at which the password becomes valid.
+
 ### Example 4: Create a password credential using EndDate parameter
 
 ```powershell
@@ -120,6 +128,9 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 ```
 
 This command creates new password credential for specified application.
+
+- `-ObjectId` Specifies the ID of a user.
+- `-EndDate` Speicifies The date and time at which the password expires.
 
 ## Parameters
 
