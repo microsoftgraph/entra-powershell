@@ -16,11 +16,11 @@ schema: 2.0.0
 
 # Remove-EntraExternalDomainFederation
 
-## SYNOPSIS
+## Synopsis
 
 Delete an externalDomainFederation by external domain name.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraExternalDomainFederation 
@@ -28,11 +28,11 @@ Remove-EntraExternalDomainFederation
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 This `Remove-EntraExternalDomainFederation` cmdlet removes an externalDomainFederation by external domain name. Specify `ExternalDomainName` parameter for remove an externalDomainFederation.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Deletes an external domain federation setting for a given external domain
 
@@ -43,7 +43,7 @@ Remove-EntraExternalDomainFederation -ExternalDomainName 'test.com'
 
 This command deletes an external domain federation setting.
 
-## PARAMETERS
+## Parameters
 
 ### -ExternalDomainName
 
@@ -65,10 +65,10 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

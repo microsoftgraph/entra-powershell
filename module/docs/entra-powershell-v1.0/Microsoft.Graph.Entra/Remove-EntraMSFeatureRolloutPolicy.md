@@ -16,11 +16,11 @@ schema: 2.0.0
 
 # Remove-EntraMSFeatureRolloutPolicy
 
-## SYNOPSIS
+## Synopsis
 
 Allows an admin to remove the policy for cloud authentication roll-out in Microosoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraMSFeatureRolloutPolicy 
@@ -28,12 +28,12 @@ Remove-EntraMSFeatureRolloutPolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 An admin will use this cmdlet to remove the cloud authentication roll-out policy and have all users where policy applied to be free of the policy.
 Users in groups that were assigned to the policy will fall back to the global authentication method (most common case will be federation). Specify `Id` parameter for remove an policy for cloud authentication roll-out.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Removes the policy for cloud authentication roll-out in Microsoft Entra ID
 
@@ -44,7 +44,7 @@ Remove-EntraMSFeatureRolloutPolicy -Id '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
 
 This command removes the policy for cloud authentication roll-out in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -66,13 +66,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraMSFeatureRolloutPolicy](New-EntraMSFeatureRolloutPolicy.md)
 

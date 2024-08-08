@@ -16,12 +16,12 @@ schema: 2.0.0
 
 # Remove-EntraMSFeatureRolloutPolicyDirectoryObject
 
-## SYNOPSIS
+## Synopsis
 
 Allows an admin to remove a group from the cloud authentication rollout policy in Microsoft Entra ID.
 Users in group revert back to the authenticating using the global policy (in most cases are federation).
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraMSFeatureRolloutPolicyDirectoryObject 
@@ -30,13 +30,13 @@ Remove-EntraMSFeatureRolloutPolicyDirectoryObject
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 An admin uses this cmdlet to remove groups from the cloud authentication roll-out policy.
 Users in these groups start authenticating against the global authentication policy (for example,
 federation). Specify `Id` and `ObjectId` parameter for remove groups from the cloud authentication roll-out policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Removes a group from the cloud authentication roll-out policy from Microsoft Entra ID
 
@@ -47,7 +47,7 @@ Remove-EntraMSFeatureRolloutPolicyDirectoryObject -Id '00aa00aa-bb11-cc22-dd33-4
 
 This command removes a group from the cloud authentication roll-out policy from Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
@@ -85,12 +85,12 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraMSFeatureRolloutPolicyDirectoryObject](Add-EntraMSFeatureRolloutPolicyDirectoryObject.md)

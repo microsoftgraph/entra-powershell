@@ -16,11 +16,11 @@ schema: 2.0.0
 
 # Remove-EntraApplicationPolicy
 
-## SYNOPSIS
+## Synopsis
 
 Removes an application policy.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraApplicationPolicy 
@@ -29,22 +29,26 @@ Remove-EntraApplicationPolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Remove-EntraApplicationPolicy` cmdlet removes an application policy from Microsoft Entra ID. Specify the `Id` and `PolicyId` parameter to remove an application policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Remove an application policy
 
 ```powershell
-Connect-Entra -Scopes 'Policy.Read.All,Application.ReadWrite.OwnedBy, Policy.Read.All, Application.ReadWrite.All, Policy.ReadWrite.ApplicationConfiguration, Application.ReadWrite.OwnedBy, Policy.ReadWrite.ApplicationConfiguration, Application.ReadWrite.All'
-Remove-EntraApplicationPolicy -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -PolicyId '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+$params = @{
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    PolicyId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+}
+Remove-EntraApplicationPolicy @params
 ```
 
 This command removes the specified application policy.
 
-## PARAMETERS
+## Parameters
 
 ### -PolicyId
 
@@ -82,13 +86,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraApplicationPolicy](Add-EntraApplicationPolicy.md)
 
