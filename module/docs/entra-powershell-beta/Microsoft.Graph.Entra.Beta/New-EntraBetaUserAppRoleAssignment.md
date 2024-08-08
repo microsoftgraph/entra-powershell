@@ -51,8 +51,9 @@ To grant an app role assignment to a user, you need three identifiers:
 
 ```powershell
 Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
+$appId = (Get-EntraApplication -SearchString '<App-DisplayName>').AppId
 $user = Get-EntraBetaUser -searchstring 'NewUser'
-$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "appId eq '$appId'"
 $params = @{
     ObjectId = $user.ObjectId 
     PrincipalId = $user.ObjectId 
@@ -84,13 +85,14 @@ You can use the command `Get-EntraBetaServicePrincipal` to get service principal
 Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
 $userName = 'SawyerM@contoso.com'
 $appName = 'Box'
-$spo = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '$appName'"
+$appId = Get-EntraBetaApplication -Filter "DisplayName eq '$appname'"
+$spo = Get-EntraBetaServicePrincipal -All | Where-Object {$_.AppId -eq $appId.AppId }
 $user = Get-EntraBetaUser -Filter "userPrincipalName eq '$userName'"
 $params = @{
     ObjectId = $user.ObjectId 
     PrincipalId = $user.ObjectId 
     ResourceId = $spo.ObjectId
-    Id = $spo.Approles[1].Id
+    Id = $appId.AppRoles.Id
 }
 New-EntraBetaUserAppRoleAssignment @params
 ```
