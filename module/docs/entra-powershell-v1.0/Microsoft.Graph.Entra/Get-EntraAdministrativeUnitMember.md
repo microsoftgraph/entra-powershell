@@ -1,5 +1,5 @@
 ---
-title: Get-EntraAdministrativeUnitMember
+title: Get-EntraAdministrativeUnitMember.
 description: This article provides details on the Get-EntraAdministrativeUnitMember command.
 
 ms.topic: reference
@@ -33,7 +33,7 @@ Get-EntraAdministrativeUnitMember
 
 ## Description
 
-The `Get-EntraAdministrativeUnitMember` cmdlet gets a member of a Microsoft Entra ID administrative unit. Specify `ObjectId` parameter to get a member.
+The `Get-EntraAdministrativeUnitMember` cmdlet gets a member of a Microsoft Entra ID administrative unit. Specify `-ObjectId` parameter to get a member.
 
 ## Examples
 
@@ -141,7 +141,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
