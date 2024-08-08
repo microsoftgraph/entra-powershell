@@ -1,5 +1,5 @@
 ---
-title: Select-EntraGroupIdsUserIsMemberOf.
+title: Select-EntraGroupIdsUserIsMemberOf
 description: This article provides details on the Select-EntraGroupIdsUserIsMemberOf command.
 
 

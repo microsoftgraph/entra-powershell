@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraDomain.
+title: Remove-EntraDomain
 description: This article provides details on the Remove-EntraDomain command.
 
 

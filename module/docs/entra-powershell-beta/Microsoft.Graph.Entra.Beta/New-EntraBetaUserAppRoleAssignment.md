@@ -1,5 +1,5 @@
 ---
-title: New-EntraBetaUserAppRoleAssignment.
+title: New-EntraBetaUserAppRoleAssignment
 description: This article provides details on the New-EntraBetaUserAppRoleAssignment command.
 
 ms.topic: reference

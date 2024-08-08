@@ -1,5 +1,5 @@
 ---
-title: Select-EntraBetaGroupIdsUserIsMemberOf.
+title: Select-EntraBetaGroupIdsUserIsMemberOf
 description: This article provides details on the Select-EntraBetaGroupIdsUserIsMemberOf command.
 
 ms.topic: reference

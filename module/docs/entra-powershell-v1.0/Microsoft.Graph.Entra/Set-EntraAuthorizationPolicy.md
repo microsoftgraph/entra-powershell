@@ -1,5 +1,5 @@
 ---
-title: Set-EntraAuthorizationPolicy.
+title: Set-EntraAuthorizationPolicy
 description: This article provides details on the Set-EntraAuthorizationPolicy command.
 
 

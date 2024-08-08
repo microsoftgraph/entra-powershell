@@ -1,5 +1,5 @@
 ---
-title: New-EntraPolicy.
+title: New-EntraPolicy
 description: This article provides details on the New-EntraPolicy command.
 
 ms.topic: reference

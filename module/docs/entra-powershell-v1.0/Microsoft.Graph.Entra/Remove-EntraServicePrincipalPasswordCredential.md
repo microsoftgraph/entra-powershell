@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaAuditSignInLogs.
+title: Get-EntraBetaAuditSignInLogs
 description: This article provides details on the Get-EntraBetaAuditSignInLogs command.
 
 

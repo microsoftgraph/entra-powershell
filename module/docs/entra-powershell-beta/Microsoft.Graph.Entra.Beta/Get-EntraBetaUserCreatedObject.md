@@ -1,5 +1,5 @@
 ---
-title:  Get-EntraBetaUserCreatedObject.
+title:  Get-EntraBetaUserCreatedObject
 description: This article provides details on the  Get-EntraBetaUserCreatedObject Command.
 
 ms.topic: reference

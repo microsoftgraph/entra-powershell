@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraUserAppRoleAssignment.
+title: Remove-EntraUserAppRoleAssignment
 description: This article provides details on the Remove-EntraUserAppRoleAssignment command.
 
 

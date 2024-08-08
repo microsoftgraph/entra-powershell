@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaPasswordSingleSignOnCredential.
+title: Remove-EntraBetaPasswordSingleSignOnCredential
 description: This article provides details on the Remove-EntraBetaPasswordSingleSignOnCredential command.
 
 ms.topic: reference

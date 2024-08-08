@@ -1,5 +1,5 @@
 ---
-title: Add-EntraBetaScopedRoleMembership.
+title: Add-EntraBetaScopedRoleMembership
 description: This article provides details on the Add-EntraBetaScopedRoleMembership command.
 
 

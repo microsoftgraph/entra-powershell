@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaUserAppRoleAssignment.
+title: Get-EntraBetaUserAppRoleAssignment
 description: This article provides details on the Get-EntraBetaUserAppRoleAssignment command.
 
 ms.topic: reference

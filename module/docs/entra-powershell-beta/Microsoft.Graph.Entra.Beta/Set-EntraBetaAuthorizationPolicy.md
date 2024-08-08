@@ -1,5 +1,5 @@
 ---
-title: Set-EntraBetaAuthorizationPolicy.
+title: Set-EntraBetaAuthorizationPolicy
 description: This article provides details on the Set-EntraBetaAuthorizationPolicy command.
 
 ms.topic: reference

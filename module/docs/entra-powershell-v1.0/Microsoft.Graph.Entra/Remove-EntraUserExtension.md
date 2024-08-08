@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraUserExtension.
+title: Remove-EntraUserExtension
 description: This article provides details on the Remove-EntraUserExtension command.
 
 
