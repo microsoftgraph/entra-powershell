@@ -11,7 +11,7 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraFeatureRolloutPolicy
 schema: 2.0.0
 ---
 
@@ -75,7 +75,6 @@ This command updates the `-Description` of policy for cloud authentication roll-
 
 - `-Id` Specify the ID of cloud authentication roll-out policy.
 - `-Description` Specifies the description of the cloud authentication roll-out policy.
-- `-IsEnabled` Specifies the status of cloud authentication roll-out policy.
 
 ### Example 3: Updates the IsAppliedToOrganization
 
