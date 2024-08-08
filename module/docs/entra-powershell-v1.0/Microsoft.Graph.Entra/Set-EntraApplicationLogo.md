@@ -2,9 +2,9 @@
 title: Set-EntraApplicationLogo
 description: This article provides details on the Set-EntraApplicationLogo command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/21/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,18 +12,21 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraApplicationLogo
+
 schema: 2.0.0
 ---
 
 # Set-EntraApplicationLogo
 
-## SYNOPSIS
+## Synopsis
+
 Sets the logo for an Application
 
-## SYNTAX
+## Syntax
 
 ### File (Default)
+
 ```powershell
 Set-EntraApplicationLogo 
  -ObjectId <String> 
@@ -32,6 +35,7 @@ Set-EntraApplicationLogo
 ```
 
 ### Stream
+
 ```powershell
 Set-EntraApplicationLogo 
  -ObjectId <String> 
@@ -39,32 +43,41 @@ Set-EntraApplicationLogo
 ```
 
 ### ByteArray
+
 ```powershell
 Set-EntraApplicationLogo 
  -ObjectId <String> 
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
+
 This cmdlet is used to set the logo for an application.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Sets the application logo for the application specified by the ObjectID parameter
 
 ```powershell
-PS C:\> Set-EntraApplicationLogo -ObjectId 79592454-dea7-4660-9d91-f1768e5055ac -FilePath D:\applogo.jpg
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+$params = @{
+    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    FilePath = 'D:\applogo.jpg'
+}
+
+Set-EntraApplicationLogo @params
 ```
 
 This cmdlet sets the application logo for the application specified by the ObjectID parameter to the image specified with the Filepath parameter.
 
-## PARAMETERS
+## Parameters
 
 ### -FilePath
+
 The file path of the file that is to be uploaded as the application logo.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: File
 Aliases:
 
@@ -74,11 +87,13 @@ Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
+
 ### -ObjectId
+
 The ObjectID of the Application for which the logo is set.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -90,16 +105,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
 
 ### System.String
+
 System.IO.Stream System.Byte\[\]
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
 
-## RELATED LINKS
+## Notes
+
+## Related Links

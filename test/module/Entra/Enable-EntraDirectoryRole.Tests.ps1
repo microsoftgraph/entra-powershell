@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         Import-Module Microsoft.Graph.Entra
@@ -16,7 +20,7 @@ Describe "Enable-EntraDirectoryRole" {
             Should -Invoke -CommandName New-MgDirectoryRole -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when RoleTemplateId is empty" {
-            { Enable-EntraDirectoryRole -RoleTemplateId "" }
+            { Enable-EntraDirectoryRole -RoleTemplateId } | Should -Throw "Missing an argument for parameter 'RoleTemplateId'*"
         }
         It "Should contain 'User-Agent' header" {
             Mock -CommandName New-MgDirectoryRole -MockWith { $args } -ModuleName Microsoft.Graph.Entra

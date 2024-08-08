@@ -1,26 +1,27 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Select-EntraBetaGroupIdsServicePrincipalIsMemberOf
+
 schema: 2.0.0
 ---
 
 # Select-EntraBetaGroupIdsServicePrincipalIsMemberOf
 
-## SYNOPSIS
+## Synopsis
 Selects the groups in which a service principal is a member.
 
-## SYNTAX
+## Syntax
 
 ```
 Select-EntraBetaGroupIdsServicePrincipalIsMemberOf -ObjectId <String>
  -GroupIdsForMembershipCheck <GroupIdsForMembershipCheck> [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The Select-EntraBetaGroupIdsServicePrincipalIsMemberOf cmdlet selects the groups in which a service principal is a member in Azure Active Directory (AD).
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the group membership of a group for a service principal
 ```
@@ -42,7 +43,7 @@ The third command gets the ID of a service principal by using the Get-EntraBetaS
 
 The final command gets the group membership of a group for a service principal identified by $SPId.
 
-## PARAMETERS
+## Parameters
 
 ### -GroupIdsForMembershipCheck
 Specifies an array of group object IDs.
@@ -79,10 +80,10 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links

@@ -2,9 +2,9 @@
 title: Add-EntraBetaDeviceRegisteredUser
 description: This article provides details on the Add-EntraBetaDeviceRegisteredUser command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 02/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,16 +12,17 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Add-EntraBetaDeviceRegisteredUser
+
 schema: 2.0.0
 ---
 
 # Add-EntraBetaDeviceRegisteredUser
 
-## SYNOPSIS
+## Synopsis
 Adds a registered user for a device.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraBetaDeviceRegisteredUser 
@@ -30,10 +31,10 @@ Add-EntraBetaDeviceRegisteredUser
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 The **Add-EntraBetaDeviceRegisteredUser** cmdlet adds a registered user for a Microsoft Entra ID device.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add a user as a registered user
 ```powershell
@@ -50,7 +51,7 @@ The final command adds the user in $User as the registered user for the device i
 
 Both parameters use the ObjectId property of specified object.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 Specifies the ID of the device.
@@ -85,13 +86,13 @@ Accept wildcard characters: False
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraBetaDevice](Get-EntraBetaDevice.md)
 

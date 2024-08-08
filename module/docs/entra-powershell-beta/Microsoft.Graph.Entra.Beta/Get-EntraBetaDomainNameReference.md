@@ -1,25 +1,29 @@
 ---
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaDomainNameReference
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaDomainNameReference
 
-## SYNOPSIS
+## Synopsis
 This cmdlet retrieves the objects that are referenced by a given domain name
 
-## SYNTAX
+## Syntax
 
-```
-Get-EntraBetaDomainNameReference -Name <String> [<CommonParameters>]
+```powershell
+Get-EntraBetaDomainNameReference
+ -Name <String>
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 This cmdlet retrieves the objects that are referenced by a given domain name
 
-## EXAMPLES
+## Examples
 
 ### Example 1
 ```
@@ -28,7 +32,7 @@ PS C:\WINDOWS\system32> Get-EntraBetaDomainNameReference -Name drumkit.onmicroso
 
 This example shows how to retrieve the domain name reference objects for a domain that is specified through the -Name parameter
 
-## PARAMETERS
+## Parameters
 
 ### -Name
 The name of the domain name for which the referenced objects are retrieved
@@ -45,15 +49,31 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### System.String
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
