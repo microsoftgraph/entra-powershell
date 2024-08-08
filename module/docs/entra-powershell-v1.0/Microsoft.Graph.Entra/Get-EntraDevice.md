@@ -2,159 +2,182 @@
 title: Get-EntraDevice.
 description: This article provides details on the Get-EntraDevice command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/15/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraDevice
+
 schema: 2.0.0
 ---
 
 # Get-EntraDevice
 
-## SYNOPSIS
+## Synopsis
+
 Gets a device from Microsoft Entra ID.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
+
 ```powershell
-Get-EntraDevice 
+Get-EntraDevice
  [-Top <Int32>]
- [-All <Boolean>]
+ [-All]
  [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetByValue
+
 ```powershell
 Get-EntraDevice 
  [-SearchString <String>]
- [-All <Boolean>]
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
+
 ```powershell
 Get-EntraDevice 
  -ObjectId <String>
- [-All <Boolean>]
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
+
 The Get-EntraDevice cmdlet gets a device from Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get a device by ID
+
 ```powershell
-PS C:\>Get-EntraDevice -ObjectId "74825acb-c984-4b54-ab65-d38347ea5e90"
-```
-```output
-DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetadata DeviceOwnership
---------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             -------------- ---------------
-                74825acb-c984-4b54-ab65-d38347ea5e90 True                                                                                     6e9d44e6-f191-4957-bb31-c52f33817204 MetaData
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraDevice -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
-This example demonstrates how to retrieve specific device by providing ID.  
-This command gets the specified device.
+```Output
+DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetadata DeviceOwnership
+--------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             -------------- ---------------
+                bbbbbbbb-1111-2222-3333-cccccccccccc True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
+```
+
+This example demonstrates how to retrieve specific device by providing ID.
 
 ### Example 2: Get all devices
+
 ```powershell
-PS C:\>Get-EntraDevice
-```
-```output    
-DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetadata DeviceOwnership
---------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             -------------- ---------------
-                74825acb-c984-4b54-ab65-d38347ea5e90 True                                                                                     6e9d44e6-f191-4957-bb31-c52f33817204 MetaData
-                8542ebd1-3d49-4073-9dce-30f197c67755 True                                                                                     6e9d44e6-f191-4957-bb31-c62f33817204 MetaData
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraDevice
 ```
 
-This example demonstrates how to retrieve all devices from Microsoft Entra ID.  
-This command gets all available devices.
+```Output
+DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetadata DeviceOwnership
+--------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             -------------- ---------------
+                bbbbbbbb-1111-2222-3333-cccccccccccc True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
+                cccccccc-2222-3333-4444-dddddddddddd True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
+```
+
+This example demonstrates how to retrieve all devices from Microsoft Entra ID.
 
 ### Example 3: Get top two devices
+
 ```powershell
-PS C:\>Get-EntraDevice -Top 2
-```
-```output
-DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetadata DeviceOwnership
---------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             -------------- ---------------
-                74825acb-c984-4b54-ab65-d38347ea5e90 True                                                                                     6e9d44e6-f191-4957-bb31-c52f33817204 MetaData
-                8542ebd1-3d49-4073-9dce-30f197c67755 True                                                                                     6e9d44e6-f191-4957-bb31-c62f33817204 MetaData
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraDevice -Top 2
 ```
 
-This example demonstrates how to retrieve top two devices from Microsoft Entra ID.  
-This command gets the two devices from Microsoft Entra ID.
+```Output
+DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetadata DeviceOwnership
+--------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             -------------- ---------------
+                bbbbbbbb-1111-2222-3333-cccccccccccc True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
+                cccccccc-2222-3333-4444-dddddddddddd True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
+```
+
+This example demonstrates how to retrieve top two devices from Microsoft Entra ID.
 
 ### Example 4: Get a device by display name
+
 ```powershell
-PS C:\>Get-EntraDevice -Filter "DisplayName eq 'AkshayLodha'"
-```
-```output
-DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetadata DeviceOwnership
---------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             -------------- ---------------
-                74825acb-c984-4b54-ab65-d38347ea5e90 True                                                                                     6e9d44e6-f191-4957-bb31-c52f33817204 MetaData
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
 ```
 
-This example demonstrates how to retrieve device by display name from Microsoft Entra ID.  
-This command gets the specified device.
+```Output
+DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetadata DeviceOwnership
+--------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             -------------- ---------------
+                bbbbbbbb-1111-2222-3333-cccccccccccc True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
+```
+
+This example demonstrates how to retrieve device by display name from Microsoft Entra ID.
 
 ### Example 5: Get a device by display name
+
 ```powershell
-PS C:\>Get-EntraDevice -Filter "startswith(DisplayName,'Aksh')"
-```
-```output
-DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetadata DeviceOwnership
---------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             -------------- ---------------
-                74825acb-c984-4b54-ab65-d38347ea5e90 True                                                                                     6e9d44e6-f191-4957-bb31-c52f33817204 MetaData
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraDevice -Filter "startsWith(DisplayName,'Woodgrove')"
 ```
 
-This example demonstrates how to retrieve all the devices whose display name starts with Aksh from Microsoft Entra ID.  
+```Output
+DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetadata DeviceOwnership
+--------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             -------------- ---------------
+                bbbbbbbb-1111-2222-3333-cccccccccccc True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
+```
+
+This example demonstrates how to retrieve all the devices whose display name starts with Woodgrove from Microsoft Entra ID.  
 
 ### Example 6: Search among retrieved devices
+
 ```powershell
-PS C:\>Get-EntraDevice -SearchString "Ashwini"
+Connect-Entra -Scopes 'Device.Read.All'
+Get-EntraDevice -SearchString 'DESKTOP'
 ```
-```output
+
+```Output
 DeletedDateTime Id                                   AccountEnabled ApproximateLastSignInDateTime ComplianceExpirationDateTime DeviceCategory DeviceId                             DeviceMetadata DeviceOwnership
 --------------- --                                   -------------- ----------------------------- ---------------------------- -------------- --------                             -------------- ---------------
-                8542ebd1-3d49-4073-9dce-30f197c67755 True                                                                                     6e9d44e6-f191-4957-bb31-c62f33817204 MetaData
+                bbbbbbbb-1111-2222-3333-cccccccccccc True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
 ```
 
-This example demonstrates how to retrieve devices by search string from Microsoft Entra ID.  
-This command gets all devices that match the value of SearchString against the first characters in DisplayName.
+This example demonstrates how to retrieve devices by search string from Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -All
-If true, return all devices.
-If false, return the number of objects specified by the Top parameter.
+
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -Filter
-Specifies the oData v3.0 filter statement.
+
+Specifies the OData v4.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery
 Aliases:
 
@@ -166,10 +189,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a device in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -181,10 +205,11 @@ Accept wildcard characters: False
 ```
 
 ### -SearchString
+
 Specifies a search string.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetVague
 Aliases:
 
@@ -196,10 +221,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: GetQuery
 Aliases:
 
@@ -210,20 +236,36 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [New-EntraDevice](New-EntraDevice.md)
 
 [Remove-EntraDevice](Remove-EntraDevice.md)
 
 [Set-EntraDevice](Set-EntraDevice.md)
-

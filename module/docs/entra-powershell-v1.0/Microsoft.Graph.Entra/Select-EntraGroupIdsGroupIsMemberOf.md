@@ -2,9 +2,9 @@
 title: Select-EntraGroupIdsGroupIsMemberOf
 description: This article provides details on the Select-EntraGroupIdsGroupIsMemberOf command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/16/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,16 +12,18 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Select-EntraGroupIdsGroupIsMemberOf
+
 schema: 2.0.0
 ---
 
 # Select-EntraGroupIdsGroupIsMemberOf
 
-## SYNOPSIS
+## Synopsis
+
 Gets group IDs that a group is a member of.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Select-EntraGroupIdsGroupIsMemberOf 
@@ -30,18 +32,20 @@ Select-EntraGroupIdsGroupIsMemberOf
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
+
 The Select-EntraGroupIdsGroupIsMemberOf cmdlet gets the groups that a specified group is a member of in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Get the group membership of a group for a group.
 
 ```powershell
-PS C:\> $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
-PS C:\> $Groups.GroupIds = (Get-EntraGroup -Top 1).ObjectId
-PS C:\> $GroupId = (Get-EntraGroup -Top 1).ObjectId
-PS C:\> Select-EntraGroupIdsGroupIsMemberOf  -ObjectId $GroupId -GroupIdsForMembershipCheck $Groups
+Connect-Entra -Scopes 'GroupMember.Read.All'
+$Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+$Groups.GroupIds = (Get-EntraGroup -Top 1).ObjectId
+$GroupId = (Get-EntraGroup -Top 1).ObjectId
+Select-EntraGroupIdsGroupIsMemberOf  -ObjectId $GroupId -GroupIdsForMembershipCheck $Groups
 ```
 
 The first command creates a GroupIdsForMembershipCheck object, and then stores it in the $Groups variable.
@@ -52,9 +56,10 @@ The third command gets the ID of a group by using Get-EntraGroup, and then store
 
 The final command gets the group membership of a group identified by $GroupId.
 
-## PARAMETERS
+## Parameters
 
 ### -GroupIdsForMembershipCheck
+
 Specifies an array of group object IDs.
 
 ```yaml
@@ -68,11 +73,13 @@ Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
+
 ### -ObjectId
+
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -84,15 +91,15 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraGroup](Get-EntraGroup.md)
-

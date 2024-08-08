@@ -2,9 +2,9 @@
 title: Get-EntraBetaDeviceRegisteredOwner
 description: This article provides details on the Get-EntraBetaDeviceRegisteredOwner command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 02/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,29 +12,31 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaDeviceRegisteredOwner
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaDeviceRegisteredOwner
 
-## SYNOPSIS
+## Synopsis
 Gets the registered owner of a device.
 
-## SYNTAX
+## Syntax
 
 ```powershell
-Get-EntraBetaDeviceRegisteredOwner 
-    -ObjectId <String> 
-    [-All <Boolean>] 
-    [-Top <Int32>] 
+Get-EntraBetaDeviceRegisteredOwner
+ -ObjectId <String>
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The **Get-EntraBetaDeviceRegisteredOwner** cmdlet gets the registered owner of a device in Microsoft Entra ID.
+## Description
+The Get-EntraBetaDeviceRegisteredOwner cmdlet gets the registered owner of a device in Microsoft Entra ID.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Retrieve the registered owner of a device
 ```powershell
@@ -68,7 +70,7 @@ This command gets the registered owner of a device.
 
 ### Example 3: Retrieve all the registered owners of a device
 ```powershell
-PS C:\> Get-EntraBetaDeviceRegisteredOwner -ObjectId 8542ebd1-3d49-4073-9dce-30f197c67755 -All $true
+PS C:\> Get-EntraBetaDeviceRegisteredOwner -ObjectId 8542ebd1-3d49-4073-9dce-30f197c67755 -All
 ```
 
 ```output
@@ -93,21 +95,20 @@ ObjectId                             DisplayName     UserPrincipalName     UserT
 
 This command retrieves top one registered owner of a device.
 
-## PARAMETERS
+## Parameters
 
 ### -All
-If true, return all registered owners.
-If false, return the number of objects specified by the Top parameter.
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -141,20 +142,35 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraBetaDeviceRegisteredOwner](Add-EntraBetaDeviceRegisteredOwner.md)
 
 [Get-EntraBetaDevice](Get-EntraBetaDevice.md)
 
 [Remove-EntraBetaDeviceRegisteredOwner](Remove-EntraBetaDeviceRegisteredOwner.md)
-
