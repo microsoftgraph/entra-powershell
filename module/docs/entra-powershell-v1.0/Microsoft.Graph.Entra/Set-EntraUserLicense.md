@@ -63,8 +63,8 @@ This example demonstrates how to assign a license to a user.
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$LicensedUser = Get-EntraUser -ObjectId dddddddd-3333-4444-5555-eeeeeeeeeeee
-$User = Get-EntraUser -ObjectId aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 
+$LicensedUser = Get-EntraUser -ObjectId 'AdeleV@contoso.com'
+$User = Get-EntraUser -ObjectId 'SawyerM@contoso.com' 
 $License1 = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense 
 $License1.SkuId = $LicensedUser.AssignedLicenses.SkuId[0] 
 $License2 = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicense

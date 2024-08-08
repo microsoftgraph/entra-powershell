@@ -22,17 +22,6 @@ schema: 2.0.0
 
 Gets app role assignments for this app or service, granted to users, groups and other service principals.
 
-For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
-
-- Directory Synchronization Accounts
-- Directory Writer
-- Hybrid Identity Administrator
-- Identity Governance Administrator
-- Privileged Role Administrator
-- User Administrator
-- Application Administrator
-- Cloud Application Administrator
-
 ## Syntax
 
 ```powershell
@@ -47,6 +36,17 @@ Get-EntraServiceAppRoleAssignedTo
 ## Description
 
 The `Get-EntraServiceAppRoleAssignedTo` cmdlet gets app role assignments for this app or service, granted to users, groups and other service principals.
+
+For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
+
+- Directory Synchronization Accounts
+- Directory Writer
+- Hybrid Identity Administrator
+- Identity Governance Administrator
+- Privileged Role Administrator
+- User Administrator
+- Application Administrator
+- Cloud Application Administrator
 
 ## Examples
 
