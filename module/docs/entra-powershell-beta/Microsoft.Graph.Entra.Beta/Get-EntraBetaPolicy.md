@@ -134,7 +134,7 @@ Accept wildcard characters: False
 
 ### -All
 
-List all pages.
+List all policies.
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
