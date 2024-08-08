@@ -94,24 +94,29 @@ test adms2          iiiiiiii-aaaa-bbbb-cccc-jjjjjjjjjjjj jjjjjjjj-bbbb-cccc-dddd
 
 This example demonstrates how to get all applications from Microsoft Entra ID.
 
-### Example 3: Get five applications
+### Example 3: Get applications with expiring secrets
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaApplication -Top 5
+Get-EntraApplication |
+    Where-Object {
+        $_.PasswordCredentials.keyId -ne $null -and
+        $_.PasswordCredentials.EndDateTime -lt (Get-Date).AddDays(30)
+    } |
+    ForEach-Object {
+        $_.DisplayName,
+        $_.Id,
+        $_.PasswordCredentials
+    }
 ```
 
 ```Output
-DisplayName         Id                                   AppId                                SignInAudience                     PublisherDomain
------------         --                                   -----                                --------------                     ---------------
-test app            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADandPersonalMicrosoftAccount contoso.com
-ToGraph_443DEM      cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg                       contoso.com
-test adms           eeeeeeee-6666-7777-8888-ffffffffffff ffffffff-7777-8888-9999-gggggggggggg AzureADandPersonalMicrosoftAccount contoso.com
-test adms app azure gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb-iiiiiiiiiiii AzureADandPersonalMicrosoftAccount contoso.com
-test adms2          iiiiiiii-aaaa-bbbb-cccc-jjjjjjjjjjjj jjjjjjjj-bbbb-cccc-dddd-kkkkkkkkkkkk AzureADandPersonalMicrosoftAccount contoso.com
+CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText StartDateTime
+------------------- ----------- -----------          ---- -----                                ---------- -------------
+                    AppOne      8/19/2024 9:00:00 PM 1jQ  aaaaaaaa-0b0b-1c1c-2d2d-333333333333            8/6/2024 6:07:47 PM
 ```
 
-This example demonstrates how to get top five applications from Microsoft Entra ID.
+This example retrieves applications with expiring secrets within 30 days.
 
 ### Example 4: Get an application by display name
 
