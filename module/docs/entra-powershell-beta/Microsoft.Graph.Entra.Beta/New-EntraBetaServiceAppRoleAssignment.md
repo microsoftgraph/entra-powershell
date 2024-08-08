@@ -59,7 +59,7 @@ For delegated scenarios, the calling user needs at least one of the following Mi
  $params = @{
     ObjectId = $spo.ObjectId
     ResourceId = $spo.ObjectId
-    Id = $spo.Approles[1].id
+    Id = $spo.Approles[1].Id
     PrincipalId = $spo.ObjectId
 }
 
@@ -90,7 +90,7 @@ This example demonstrates how to assign an app role to another service principal
  $params = @{
     ObjectId = $spo.ObjectId
     ResourceId = $spo.ObjectId
-    Id = $spo.Approles[1].id
+    Id = $spo.Approles[1].Id
     PrincipalId = $user.ObjectId
 }
 
@@ -123,7 +123,7 @@ You can use the command `Get-EntraBetaUser` to get a user Id.
  $params = @{
     ObjectId = $spo.ObjectId
     ResourceId = $spo.ObjectId
-    Id = $spo.Approles[1].id
+    Id = $spo.Approles[1].Id
     PrincipalId = $group.ObjectId
  }
 

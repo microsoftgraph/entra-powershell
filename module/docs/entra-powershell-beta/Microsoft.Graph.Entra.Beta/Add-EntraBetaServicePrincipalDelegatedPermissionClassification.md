@@ -42,12 +42,12 @@ The `Add-EntraBetaServicePrincipalDelegatedPermissionClassification` cmdlet crea
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$ServicePrincipal = Get-EntraBetaServicePrincipal -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444'
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
 $PermissionId = $ServicePrincipal.PublishedPermissionScopes[0].Id
 $PermissionName =  $ServicePrincipal.PublishedPermissionScopes[0].Value
 
 $params = @{
-    ServicePrincipalId = $ServicePrincipal.Id
+    ServicePrincipalId = $ServicePrincipal.ObjectId
     PermissionId = $PermissionId
     Classification = 'Low'
     PermissionName = $PermissionName

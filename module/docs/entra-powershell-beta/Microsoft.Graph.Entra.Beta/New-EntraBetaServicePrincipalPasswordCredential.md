@@ -51,9 +51,17 @@ New-EntraBetaServicePrincipalPasswordCredential @Params
 ```
 
 ```Output
-CustomKeyIdentifier DisplayName EndDateTime         Hint KeyId                                SecretText                               StartDateTime
-------------------- ----------- -----------         ---- -----                                ----------                               -------------
-                                 07/08/2026 09:21:21 Ztq  bbbbbbbb-1c1c-2d2d-3e3e-444444444444 Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2 07/08/2024 09:21:21
+secretText          : A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u
+@odata.type         : #microsoft.graph.servicePrincipal
+endDateTime         : 08-08-2026 10:30:00
+hint                : LY.
+customKeyIdentifier :
+startDateTime       : 08-08-2024 14:14:14
+keyId               : aaaaaaaa-0b0b-1c1c-2d2d-333333333333
+@odata.context      : https://graph.microsoft.com/beta/$metadata#servicePrincipals('00001111-aaaa-2222-bbbb-3333cccc4444')/addPassword
+displayName         :
+StartDate           : 08-08-2024 14:14:14
+EndDate             : 08-08-2026 10:30:00
 ```
 
 This example demonstrates how to create a password credential with StartDate for a service principal in Microsoft Entra ID.  
@@ -74,9 +82,17 @@ New-EntraBetaServicePrincipalPasswordCredential @Params
 ```
 
 ```Output
-CustomKeyIdentifier DisplayName EndDateTime         Hint KeyId                                SecretText                               StartDateTime
-------------------- ----------- -----------         ---- -----                                ----------                               -------------
-                                 07/08/2026 09:21:21 Ztq  bbbbbbbb-1c1c-2d2d-3e3e-444444444444 Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2 07/08/2024 09:21:21
+secretText          : A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u
+@odata.type         : #microsoft.graph.servicePrincipal
+endDateTime         : 08-08-2026 10:30:00
+hint                : LY.
+customKeyIdentifier :
+startDateTime       : 08-08-2024 14:14:14
+keyId               : bbbbbbbb-1c1c-2d2d-3e3e-444444444444
+@odata.context      : https://graph.microsoft.com/beta/$metadata#servicePrincipals('00001111-aaaa-2222-bbbb-3333cccc4444')/addPassword
+displayName         :
+StartDate           : 08-08-2024 14:14:14
+EndDate             : 08-08-2026 10:30:00
 ```
 
 This example demonstrates how to create a password credential with EndDate for a service principal in Microsoft Entra ID.

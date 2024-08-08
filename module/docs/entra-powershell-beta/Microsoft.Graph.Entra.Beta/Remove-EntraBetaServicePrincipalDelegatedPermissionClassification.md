@@ -40,8 +40,9 @@ The `Remove-EntraBetaServicePrincipalDelegatedPermissionClassification` cmdlet d
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
 $params = @{
-    ServicePrincipalId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    ServicePrincipalId = $ServicePrincipal.ObjectId
     Id = 'aaaa0000-bb11-2222-33cc-444444dddddd'
 }
 Remove-EntraBetaServicePrincipalDelegatedPermissionClassification @params

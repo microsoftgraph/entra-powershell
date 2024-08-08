@@ -47,6 +47,10 @@ The `Select-EntraBetaGroupIdsServicePrincipalIsMemberOf` cmdlet selects the grou
  Select-EntraBetaGroupIdsServicePrincipalIsMemberOf -ObjectId $SPId -GroupIdsForMembershipCheck $Groups
 ```
 
+```Output
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+```
+
 This command gets the group membership of a group for a specified service principal.  
 You can use the command `Get-EntraBetaGroup` to get group Id.  
 You can use the command `Get-EntraBetaServicePrincipal` to get service principal Id.
