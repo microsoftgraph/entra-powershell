@@ -84,6 +84,64 @@ abcdefgh-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 00aa00
 
 This example shows how to retrieve specified subscribed SKUs.
 
+### Example 3: Get a list of users, their assigned licenses, and licensing source
+
+```powershell
+Connect-Entra -Scopes 'Organization.Read.All','User.Read.All','Group.Read.All'
+
+# Get all users with specified properties
+$Users = Get-EntraUser -All -Property AssignedLicenses, LicenseAssignmentStates, DisplayName, UserPrincipalName, ObjectId
+
+$SelectedUsers = $Users | Select-Object ObjectId, UserPrincipalName, DisplayName, AssignedLicenses -ExpandProperty LicenseAssignmentStates
+
+# Group Name lookup
+$GroupDisplayNames = @{}
+
+# Sku Part Number lookup
+$SkuPartNumbers = @{}
+
+# Populate the hashtable with group display names and SKU part numbers
+foreach ($User in $SelectedUsers) {
+    $AssignedByGroup = $User.AssignedByGroup
+    $SkuId = $User.SkuId
+
+    try {
+        # Check if the group display name is already in the hashtable
+        if (-not $GroupDisplayNames.ContainsKey($AssignedByGroup)) {
+            $Group = Get-EntraGroup -ObjectId $AssignedByGroup
+            $GroupDisplayNames[$AssignedByGroup] = $Group.DisplayName
+        }
+
+        $User | Add-Member -NotePropertyName 'GroupDisplayName' -NotePropertyValue $GroupDisplayNames[$AssignedByGroup]
+    } catch {
+        $User | Add-Member -NotePropertyName 'GroupDisplayName' -NotePropertyValue 'N/A (Direct Assignment)'
+    }
+
+    try {
+        # Check if the SKU part number is already in the hashtable
+        if (-not $SkuPartNumbers.ContainsKey($SkuId)) {
+            $Sku = Get-EntraSubscribedSku | Where-Object { $_.SkuId -eq $SkuId } | Select-Object -ExpandProperty SkuPartNumber
+            $SkuPartNumbers[$SkuId] = $Sku
+        }
+
+        $User | Add-Member -NotePropertyName 'SkuPartNumber' -NotePropertyValue $SkuPartNumbers[$SkuId]
+    } catch {
+        $User | Add-Member -NotePropertyName 'SkuPartNumber' -NotePropertyValue 'N/A'
+    }
+}
+
+$SelectedUsers | Format-Table UserPrincipalName, DisplayName, AssignedByGroup, GroupDisplayName, SkuId, SkuPartNumber, State, Error -AutoSize
+```
+
+```Output
+userPrincipalName       displayName       assignedByGroup                      GroupDisplayName    skuId                                SkuPartNumber  state  error
+-----------------       -----------       ---------------                      ----------------    -----                                -------------  -----  -----
+averyh@contoso.com      Avery Howard      cccccccc-2222-3333-4444-dddddddddddd Contoso Team        abcdefgh-1111-2222-bbbb-cccc33333333 ENTERPRISEPACK Active None
+devont@contoso.com      Devon Torres      ffffffff-5555-6666-7777-aaaaaaaaaaaa Retail              abcdefgh-1111-2222-bbbb-cccc33333333 ENTERPRISEPACK Active None
+```
+
+This example shows a list of users, their licenses, and the source of the license such as directly assigned or group assigned.
+
 ## Parameters
 
 ### -ObjectId
