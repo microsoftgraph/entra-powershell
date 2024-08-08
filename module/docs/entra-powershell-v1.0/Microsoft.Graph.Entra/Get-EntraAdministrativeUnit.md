@@ -45,7 +45,7 @@ Get-EntraAdministrativeUnit
 
 ## Description
 
-The `Get-EntraAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrative unit. Specify `ObjectID` parameter to get a specific administrative unit.
+The `Get-EntraAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrative unit. Specify `-ObjectID` parameter to get a specific administrative unit.
 
 ## Examples
 
@@ -202,7 +202,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
