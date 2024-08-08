@@ -2,7 +2,6 @@
 title: New-EntraUserAppRoleAssignment.
 description: This article provides details on the New-EntraUserAppRoleAssignment command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -55,8 +54,14 @@ $appId = (Get-EntraApplication -SearchString '<App-DisplayName>').AppId
 $user = Get-EntraUser -SearchString '<UserPrincipalName>'
 $servicePrincipal = Get-EntraServicePrincipal -Filter "appId eq '$appId'"
 
-# Create the user app role assignment
-New-EntraUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.ObjectId -ResourceId $servicePrincipal.ObjectId -Id ([Guid]::Empty)
+$params = @{
+    ObjectId    = $user.ObjectId
+    PrincipalId = $user.ObjectId
+    ResourceId  = $servicePrincipal.ObjectId
+    Id          = [Guid]::Empty
+}
+
+New-EntraUserAppRoleAssignment @params
 ```
 
 ```output
@@ -75,7 +80,15 @@ $userName = 'SawyerM@contoso.com'
 $appName = 'Box'
 $spo = Get-EntraServicePrincipal -Filter "DisplayName eq '$appName'"
 $user = Get-EntraUser -Filter "userPrincipalName eq '$userName'"
-New-EntraUserAppRoleAssignment -ObjectId $user.ObjectId -PrincipalId $user.ObjectId -ResourceId $spo.ObjectId -Id $spo.Approles[1].id
+
+$params = @{
+    ObjectId    = $user.ObjectId
+    PrincipalId = $user.ObjectId
+    ResourceId  = $spo.ObjectId
+    Id          = $spo.AppRoles[1].Id
+}
+
+New-EntraUserAppRoleAssignment @params
 ```
 
 ```Output

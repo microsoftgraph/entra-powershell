@@ -40,26 +40,26 @@ Remove a password from an application.
 ### Example 1: Removes a password from an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraApplication -Filter "DisplayName eq '<Application-DisplayName>'"
 $params = @{
-    ObjectId = '33334444-dddd-5555-eeee-6666ffff7777'
+    ObjectId = $application.Id
     KeyId = 'cccccccc-2d2d-3e3e-4f4f-555555555555'
 }
 
 Remove-EntraApplicationPassword @params
 ```
 
-This command remove the specified password from the specified application.
+This example removes the specified password from the specified application.
 
-- `ObjectId`: The ObjectId of the specified application.
-- `KeyID`: The unique identifier of the PasswordCredential.  
+- `-ObjectId` parameter specifies the unique identifier of the application.
+- `-KeyId` parameter specifies the unique identifier of the PasswordCredential.
 
 ## Parameters
 
 ### -ObjectId
 
-The unique identifier of the object specific Microsoft Entra ID object
+The unique identifier of the application.
 
 ```yaml
 Type: System.String
