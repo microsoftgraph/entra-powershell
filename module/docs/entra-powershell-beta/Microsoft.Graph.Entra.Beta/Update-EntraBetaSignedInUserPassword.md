@@ -1,5 +1,5 @@
 ---
-title: Update-EntraBetaSignedInUserPassword.
+title: Update-EntraBetaSignedInUserPassword
 description: This article provides details on the Update-EntraBetaSignedInUserPassword command.
 
 ms.topic: reference

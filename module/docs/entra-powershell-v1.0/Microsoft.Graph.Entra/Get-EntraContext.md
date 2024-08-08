@@ -1,5 +1,5 @@
 ---
-title: Get-EntraContext.
+title: Get-EntraContext
 description: This article provides details on the Get-EntraContext command.
 
 

@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaApplicationPasswordCredential.
+title: Remove-EntraBetaApplicationPasswordCredential
 description: This article provides details on the Remove-EntraBetaApplicationPasswordCredential command.
 
 ms.topic: reference

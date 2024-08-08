@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaUserDirectReport.
+title: Get-EntraBetaUserDirectReport
 description: This article provides details on the Get-EntraBetaUserDirectReport command.
 
 ms.topic: reference

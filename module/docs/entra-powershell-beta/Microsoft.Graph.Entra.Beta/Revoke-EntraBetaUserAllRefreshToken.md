@@ -1,5 +1,5 @@
 ---
-title: Revoke-EntraBetaUserAllRefreshToken.
+title: Revoke-EntraBetaUserAllRefreshToken
 description: This article provides details on the Revoke-EntraBetaUserAllRefreshToken command.
 
 ms.topic: reference

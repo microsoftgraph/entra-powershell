@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaApplicationKeyCredential.
+title: Get-EntraBetaApplicationKeyCredential
 description: This article provides details on the Get-EntraBetaApplicationKeyCredential command.
 
 ms.topic: reference

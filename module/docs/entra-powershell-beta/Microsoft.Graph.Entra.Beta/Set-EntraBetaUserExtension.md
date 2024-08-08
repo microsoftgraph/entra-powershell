@@ -1,5 +1,5 @@
 ---
-title: Set-EntraBetaUserExtension.
+title: Set-EntraBetaUserExtension
 description: This article provides details on the Set-EntraBetaUserExtension command.
 
 ms.topic: reference

@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaPolicy.
+title: Get-EntraBetaPolicy
 description: This article provides details on the Get-EntraBetaPolicy command.
 
 

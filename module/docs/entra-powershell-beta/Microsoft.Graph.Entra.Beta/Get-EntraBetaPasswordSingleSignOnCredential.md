@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaPasswordSingleSignOnCredential.
+title: Get-EntraBetaPasswordSingleSignOnCredential
 description: This article provides details on the Get-EntraBetaPasswordSingleSignOnCredential command.
 
 ms.topic: reference

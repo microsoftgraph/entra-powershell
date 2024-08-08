@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaUserExtension.
+title: Get-EntraBetaUserExtension
 description: This article provides details on the Get-EntraBetaUserExtension command.
 
 ms.topic: reference

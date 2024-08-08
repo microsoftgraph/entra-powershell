@@ -1,5 +1,5 @@
 ---
-title: Get-EntraPolicy.
+title: Get-EntraPolicy
 description: This article provides details on the Get-EntraPolicy command.
 
 ms.topic: reference

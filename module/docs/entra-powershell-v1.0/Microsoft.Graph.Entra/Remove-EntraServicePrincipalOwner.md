@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraServicePrincipalOwner.
+title: Remove-EntraServicePrincipalOwner
 description: This article provides details on the Remove-EntraServicePrincipalOwner command.
 
 

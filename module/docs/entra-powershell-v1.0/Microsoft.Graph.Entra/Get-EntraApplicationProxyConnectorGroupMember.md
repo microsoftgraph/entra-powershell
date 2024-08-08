@@ -1,5 +1,5 @@
 ---
-title: Get-EntraApplicationProxyConnectorGroupMember.
+title: Get-EntraApplicationProxyConnectorGroupMember
 description: This article provides details on the Get-EntraApplicationProxyConnectorGroupMember. Command.
 
 
