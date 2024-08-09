@@ -22,6 +22,8 @@ schema: 2.0.0
 
 Gets the domain's service configuration records from the `serviceConfigurationRecords` navigation property.
 
+Gets the domain's service configuration records from the `serviceConfigurationRecords` navigation property.
+
 ## Syntax
 
 ```powershell
@@ -32,6 +34,10 @@ Get-EntraBetaDomainServiceConfigurationRecord
 ```
 
 ## Description
+
+Gets the domain's service configuration records from the `serviceConfigurationRecords` navigation property.
+
+After you have successfully verified the ownership of a domain and you have indicated what services you plan to use with the domain, you can request Microsoft Entra ID to return you a set of DNS records which you need to add to the zone file of the domain so that the services can work properly with your domain.
 
 Gets the domain's service configuration records from the `serviceConfigurationRecords` navigation property.
 
@@ -57,9 +63,9 @@ eeee4444-ff55-6666-77aa-888888bbbbbb False      enterpriseregistration.test.mail
 ffff5555-aa66-7777-88bb-999999cccccc False      enterpriseenrollment.test.mail.contoso.com   CName      Intune                     3600
 ```
 
-This example shows how to retrieve the domain service configuration records for a domain with the given name.
+This example shows how to retrieve the Domain service configuration records for a domain with the given name.
 
-- `-Name` parameter specifies the name of a domain for which the domain service configuration records are to be retrieved.
+- `-Name` parameter specifies domain name for which the domain service configuration records are to be retrieved.
 
 ## Parameters
 

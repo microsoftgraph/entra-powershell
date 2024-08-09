@@ -1,5 +1,5 @@
 ---
-title: Set-EntraRoleDefinition.
+title: Set-EntraRoleDefinition
 description: This article provides details on the Set-EntraRoleDefinition command.
 
 

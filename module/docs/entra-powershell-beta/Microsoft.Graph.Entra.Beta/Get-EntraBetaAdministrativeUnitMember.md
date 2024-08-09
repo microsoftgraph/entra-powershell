@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaAdministrativeUnitMember.
+title: Get-EntraBetaAdministrativeUnitMember
 description: This article provides details on the Get-EntraBetaAdministrativeUnitMember command.
 
 

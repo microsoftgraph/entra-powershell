@@ -1,5 +1,5 @@
 ---
-title: Get-EntraUserExtension.
+title: Get-EntraUserExtension
 description: This article provides details on the Get-EntraUserExtension command.
 
 

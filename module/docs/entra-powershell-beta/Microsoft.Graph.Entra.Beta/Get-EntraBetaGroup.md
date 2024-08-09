@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaGroup.
+title: Get-EntraBetaGroup
 description: This article provides details on the Get-EntraBetaGroup command.
 
 ms.topic: reference

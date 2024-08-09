@@ -1,5 +1,5 @@
 ---
-title: Get-EntraUserDirectReport.
+title: Get-EntraUserDirectReport
 description: This article provides details on the Get-EntraUserDirectReport command.
 
 

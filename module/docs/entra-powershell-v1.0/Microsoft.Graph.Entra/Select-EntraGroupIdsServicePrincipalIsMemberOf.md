@@ -1,5 +1,5 @@
 ---
-title: Select-EntraGroupIdsServicePrincipalIsMemberOf.
+title: Select-EntraGroupIdsServicePrincipalIsMemberOf
 description: This article provides details on the Select-EntraGroupIdsServicePrincipalIsMemberOf command.
 
 

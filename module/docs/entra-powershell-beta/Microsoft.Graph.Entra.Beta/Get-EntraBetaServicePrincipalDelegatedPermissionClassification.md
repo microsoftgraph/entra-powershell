@@ -3,7 +3,7 @@ title: Get-EntraBetaServicePrincipalDelegatedPermissionClassification
 description: This article provides details on the Get-EntraBetaServicePrincipalDelegatedPermissionClassification command.
 
 ms.topic: reference
-ms.date: 07/30/2024
+ms.date: 07/29/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -54,9 +54,10 @@ The `Get-EntraBetaServicePrincipalDelegatedPermissionClassification` cmdlet retr
 
 ```powershell
  Connect-Entra -Scopes 'Application.Read.All'
- $params = @{
-  ServicePrincipalId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
- }
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
+$params = @{
+  ServicePrincipalId = $servicePrincipal.Id
+}
 Get-EntraBetaServicePrincipalDelegatedPermissionClassification @params
 ```
 
@@ -69,17 +70,17 @@ cccccccc-8888-9999-0000-dddddddddddd low            dddd3333-ee44-5555-66ff-7777
 
 This command retrieves all delegated permission classifications from the service principal.
 
-- `-ServicePrincipalId` parameter specifies the service principal object ID.
+- `-ServicePrincipalId` parameter specifies the unique identifier of a service principal. Use `Get-EntraBetaServicePrincipal` to get more details.
 
-### Example 2: Get a delegated permission classification
+### Example 2: Get a delegated permission classifications
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
 $params = @{
-  ServicePrincipalId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' 
-  Id = 'aaaa0000-bb11-2222-33cc-444444dddddd'
+  ServicePrincipalId = $servicePrincipal.Id 
+  Id = '5XBeIKarUkypdm0tRsSAQwE'
 }
-
 Get-EntraBetaServicePrincipalDelegatedPermissionClassification @params
 ```
 
@@ -91,17 +92,18 @@ bbbbbbbb-7777-8888-9999-cccccccccccc low            eeeeeeee-4444-5555-6666-ffff
 
 This command retrieves the delegated permission classification by Id from the service principal.
 
-- `-ServicePrincipalId` parameter specifies the service principal object ID.
-- `-Id` parameter specifies the unique identifier of a delegated permission classification object.
+- `-ServicePrincipalId` parameter specifies the unique identifier of a service principal. Use `Get-EntraBetaServicePrincipal` to get more details.
+- `-Id` parameter specifies the delegated permission classification object Id.
 
 ### Example 3: Get a delegated permission classification with filter
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
- $params = @{
-  ServicePrincipalId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'  
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
+$params = @{
+  ServicePrincipalId = $servicePrincipal.Id  
   Filter = "PermissionName eq 'Sites.Read.All'"
- }
+}
 Get-EntraBetaServicePrincipalDelegatedPermissionClassification @params
 ```
 
@@ -113,7 +115,8 @@ bbbbbbbb-7777-8888-9999-cccccccccccc low            eeeeeeee-4444-5555-6666-ffff
 
 This command retrieves the filtered delegated permission classifications from the service principal.
 
-- `-ServicePrincipalId` parameter specifies the service principal object ID.
+- `-ServicePrincipalId` parameter specifies the unique identifier of a service principal. Use `Get-EntraBetaServicePrincipal` to get more details.
+- `-Id` parameter specifies the delegated permission classification object Id.
 
 ## Parameters
 

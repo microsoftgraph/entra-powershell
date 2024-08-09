@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraGroupMember.
+title: Remove-EntraGroupMember
 description: This article provides details on the Remove-EntraGroupMember command.
 
 

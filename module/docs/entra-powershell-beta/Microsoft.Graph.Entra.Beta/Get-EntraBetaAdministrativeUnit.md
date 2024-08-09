@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaAdministrativeUnit.
+title: Get-EntraBetaAdministrativeUnit
 description: This article provides details on the Get-EntraBetaAdministrativeUnit command.
 
 
