@@ -1,5 +1,5 @@
 ---
-title: Set-EntraGroup.
+title: Set-EntraGroup
 description: This article provides details on the Set-EntraGroup command.
 
 

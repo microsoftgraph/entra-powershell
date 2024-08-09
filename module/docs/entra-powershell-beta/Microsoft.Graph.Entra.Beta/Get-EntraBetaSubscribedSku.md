@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaSubscribedSku.
+title: Get-EntraBetaSubscribedSku
 description: This article provides details on the Get-EntraBetaSubscribedSku command.
 
 

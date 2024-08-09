@@ -1,5 +1,6 @@
 ---
 title: Get-EntraUserDirectReport
+title: Get-EntraUserDirectReport
 description: This article provides details on the Get-EntraUserDirectReport command.
 
 
@@ -43,9 +44,8 @@ The `Get-EntraUserDirectReport` cmdlet gets the direct reports for a user in Mic
 ### Example 1: Get a user's direct reports
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' #Delegated Permission
-Connect-Entra -Scopes 'User.Read.All' #Application Permission
-Get-EntraUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Connect-Entra -Scopes 'User.Read','User.Read.All'
+Get-EntraUserDirectReport -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -64,9 +64,8 @@ This example demonstrates how to retrieve direct reports for a user in Microsoft
 ### Example 2: Get all direct reports
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' #Delegated Permission
-Connect-Entra -Scopes 'User.Read.All' #Application Permission
-Get-EntraUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All 
+Connect-Entra -Scopes 'User.Read','User.Read.All'
+Get-EntraUserDirectReport -ObjectId 'SawyerM@contoso.com' -All 
 ```
 
 ```Output
