@@ -20,6 +20,7 @@ schema: 2.0.0
 # Set-EntraPermissionGrantConditionSet
 
 ## Synopsis
+
 Update an existing Microsoft Entra ID permission grant condition set.
 
 ## Syntax
@@ -41,20 +42,46 @@ Set-EntraPermissionGrantConditionSet
 ```
 
 ## Description
-Updates a Microsoft Entra ID permission grant condition set object identified by id.
+
+Updates a Microsoft Entra ID permission grant condition set object identified by ID.
 
 ## Examples
 
-### Example 1: Update a permission grant condition set to includes permissions that is classified as low.
+### Example 1: Update a permission grant condition set to includes permissions that is classified as low
+
 ```powershell
-PS C:\> Set-EntraPermissionGrantConditionSet -PolicyId "policy1" -ConditionSetType "includes" -Id "665a9903-0398-48ab-b4e9-7a570d468b66" -PermissionClassification "Low"
+Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
+$params = @{
+    PolicyId = 'policy1'
+    ConditionSetType = 'includes'
+    Id = '665a9903-0398-48ab-b4e9-7a570d468b66'
+    PermissionClassification = 'Low'
+}
+
+Set-EntraPermissionGrantConditionSet @params
 ```
 
 This command updates sets the specified permission grant set to classify as low.
 
 ### Example 2: Update a permission grant condition set
+
 ```powershell
-PS C:\> Set-EntraPermissionGrantConditionSet -PolicyId "policy1" -ConditionSetType "includes" -Id "665a9903-0398-48ab-b4e9-7a570d468b66" -PermissionType "Delegated" -PermissionClassification "Low" -ResourceApplication "d9d40050-c784-4b56-a06d-477542a1cafc" -Permissions @("29bf4ca5-913e-427d-8a68-5890af945109") -ClientApplicationIds @("All") -ClientApplicationTenantIds @("All") -ClientApplicationPublisherIds @("All") -ClientApplicationsFromVerifiedPublisherOnly $true
+Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
+$params = @{
+    PolicyId = 'policy1'
+    ConditionSetType = 'includes'
+    Id = 'aaaa0000-bb11-2222-33cc-444444dddddd'
+    PermissionType = 'Delegated'
+    PermissionClassification = 'Low'
+    ResourceApplication = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
+    Permissions = @('29bf4ca5-913e-427d-8a68-5890af945109')
+    ClientApplicationIds = @('All')
+    ClientApplicationTenantIds = @('All')
+    ClientApplicationPublisherIds = @('All')
+    ClientApplicationsFromVerifiedPublisherOnly = $true
+}
+
+Set-EntraPermissionGrantConditionSet @params
 ```
 
 This command updates sets the specified permission grant set.
@@ -62,10 +89,11 @@ This command updates sets the specified permission grant set.
 ## Parameters
 
 ### -PolicyId
+
 The unique identifier of a Microsoft Entra ID permission grant policy object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -77,10 +105,11 @@ Accept wildcard characters: False
 ```
 
 ### -ConditionSetType
+
 The value indicates whether the condition sets are included in the policy or excluded.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -92,10 +121,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
+
 The unique identifier of a Microsoft Entra ID permission grant condition set object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -107,10 +137,11 @@ Accept wildcard characters: False
 ```
 
 ### -PermissionType
+
 Specific type of permissions (application, delegated) to scope consent operation down to.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -122,10 +153,11 @@ Accept wildcard characters: False
 ```
 
 ### -PermissionClassification
+
 Specific classification (all, low, medium, high) to scope consent operation down to.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -137,6 +169,7 @@ Accept wildcard characters: False
 ```
 
 ### -Permissions
+
 The identifier of the resource application to scope consent operation down to.
 It could be @("All") or a list of permission ids.
 
@@ -153,6 +186,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientApplicationIds
+
 The set of client application ids to scope consent operation down to.
 It could be @("All") or a list of client application Ids.
 
@@ -169,6 +203,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientApplicationTenantIds
+
 The set of client application tenant ids to scope consent operation down to.
 It could be @("All") or a list of client application tenant ids.
 
@@ -185,6 +220,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientApplicationPublisherIds
+
 The set of client applications publisher ids to scope consent operation down to.
 It could be @("All") or a list of client application publisher ids.
 
@@ -201,10 +237,11 @@ Accept wildcard characters: False
 ```
 
 ### -ClientApplicationsFromVerifiedPublisherOnly
+
 A value indicates whether to only includes client applications from verified publishers.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -216,11 +253,12 @@ Accept wildcard characters: False
 ```
 
 ### -ResourceApplication
+
 The identifier of the resource application to scope consent operation down to.
 It could be "Any" or a specific resource application id.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -232,13 +270,13 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### String
-### String
-### String
+
 ## Outputs
 
 ## Notes
@@ -250,4 +288,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraPermissionGrantConditionSet](Get-EntraPermissionGrantConditionSet.md)
 
 [Remove-EntraPermissionGrantConditionSet](Remove-EntraPermissionGrantConditionSet.md)
-

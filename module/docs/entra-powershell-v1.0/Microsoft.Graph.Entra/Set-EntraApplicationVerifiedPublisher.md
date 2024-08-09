@@ -20,7 +20,8 @@ schema: 2.0.0
 # Set-EntraApplicationVerifiedPublisher
 
 ## Synopsis
-Sets the verified publisher of an application to a verified Microsoft Partner Network (MPN) identifier.
+
+Set the verified publisher for an application using a verified Microsoft Partner Network (MPN) identifier.
 
 ## Syntax
 
@@ -32,27 +33,39 @@ Set-EntraApplicationVerifiedPublisher
 ```
 
 ## Description
-Sets the verified publisher of an application to a verified Microsoft Partner Network (MPN) identifier.
+
+Set the verified publisher for an application using a verified Microsoft Partner Network (MPN) identifier.
 
 ## Examples
 
-### Example 1: Set the verified publisher of an application.
+### Example 1: Set the verified publisher of an application
+
 ```powershell
-PS C:\> $appObjId = 'ad6c71a5-e48f-4320-bb59-92642a2d8d9f'
-PS C:\> $mpnId =  '0433167'
-PS C:\> $req =  @{verifiedPublisherId=$mpnId}
-PS C:\> Set-EntraApplicationVerifiedPublisher -AppObjectId $appObjId -SetVerifiedPublisherRequest $req
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+$appObjId = '11112222-bbbb-3333-cccc-4444dddd5555'
+$mpnId =  '0433167'
+$req =  @{verifiedPublisherId=$mpnId}
+
+$params = @{
+    AppObjectId = $appObjId
+    SetVerifiedPublisherRequest = $req
+}
+
+Set-EntraApplicationVerifiedPublisher @params
 ```
 
 This command sets the verified publisher of an application.
 
+The Microsoft Partner Network ID (MPNID) of the verified publisher can be obtained from the publisher's Partner Center account.
+
 ## Parameters
 
 ### -AppObjectId
+
 The unique identifier of a Microsoft Entra ID Application object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -64,6 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -SetVerifiedPublisherRequest
+
 A request body object containing the verifiedPublisherId property it's the MPNID value.
 
 ```yaml
@@ -79,12 +93,13 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### String
-### String
+
 ## Outputs
 
 ## Notes
@@ -92,4 +107,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## Related Links
 
 [Remove-EntraApplicationVerifiedPublisher](Remove-EntraApplicationVerifiedPublisher.md)
-

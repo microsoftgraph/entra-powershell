@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaUserManager.
+title: Remove-EntraBetaUserManager
 description: This article provides details on the Remove-EntraBetaUserManager command.
 
 

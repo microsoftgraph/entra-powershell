@@ -1,5 +1,5 @@
 ---
-title:  Get-EntraServicePrincipalOwnedObject.
+title:  Get-EntraServicePrincipalOwnedObject
 description: This article provides details on the  Get-EntraServicePrincipalOwnedObject Command.
 
 

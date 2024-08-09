@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraAdministrativeUnit.
+title: Remove-EntraAdministrativeUnit
 description: This article provides details on the Remove-EntraAdministrativeUnit command.
 
 ms.topic: reference

@@ -1,4 +1,13 @@
 ---
+title: Remove-EntraBetaApplicationPassword
+description: This article provides details on the Remove-EntraBetaApplicationPassword command.
+
+ms.topic: reference
+ms.date: 08/02/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaApplicationPassword
@@ -9,33 +18,49 @@ schema: 2.0.0
 # Remove-EntraBetaApplicationPassword
 
 ## Synopsis
+
 Remove a password from an application.
 
 ## Syntax
 
-```
-Remove-EntraBetaApplicationPassword -ObjectId <String> [-KeyId <String>] [<CommonParameters>]
+```powershell
+Remove-EntraBetaApplicationPassword 
+ -ObjectId <String> 
+ [-KeyId <String>] 
+ [<CommonParameters>]
 ```
 
 ## Description
+
 Remove a password from an application.
 
 ## Examples
 
 ### Example 1: Removes a password from an application
-```
-PS C:\>Remove-EntraBetaApplicationPassWord -ObjectId 1f88e99f-37a3-468f-80ae-e07b62ed0287 -KeyId 80e561ed-44ed-48dc-8c09-9d4803e26e4c
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraBetaApplication -Filter "DisplayName eq '<Application-DisplayName>'"
+$params = @{
+    ObjectId = $application.Id
+    KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
+}
+Remove-EntraBetaApplicationPassWord @params
 ```
 
-This command remove the specified password from the specified application.
+This example removes the specified password from the specified application.
+
+- `-ObjectId` parameter specifies the unique identifier of the application.
+- `-KeyId` parameter specifies the unique identifier of the PasswordCredential.
 
 ## Parameters
 
 ### -ObjectId
-The unique identifier of the object specific Azure Active Directory object
+
+The unique identifier of the application.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -47,10 +72,11 @@ Accept wildcard characters: False
 ```
 
 ### -KeyId
+
 The unique identifier for the key.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -62,16 +88,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
-### string
+### String
+
 ## Outputs
 
 ## Notes
 
 ## Related Links
 
-[New-EntraBetaApplicationPassword]()
-
+[New-EntraBetaApplicationPassword](New-EntraBetaApplicationPassword.md)

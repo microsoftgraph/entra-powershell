@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraApplicationKeyCredential.
+title: Remove-EntraApplicationKeyCredential
 description: This article provides details on the Remove-EntraApplicationKeyCredential command.
 
 
@@ -42,11 +42,10 @@ An application can use this command along with `New-EntraApplicationKeyCredentia
 ### Example 1: Remove a key credential
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraApplication -Filter "DisplayName eq '<Application-DisplayName>'"
 $params = @{
-    ObjectId = '33334444-dddd-5555-eeee-6666ffff7777'
+    ObjectId = $application.Id
     KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
 }
 
@@ -55,11 +54,14 @@ Remove-EntraApplicationKeyCredential @params
 
 This command removes the specified key credential from the specified application.
 
+- `-ObjectId` Specifies the ID of an application.
+- `-KeyId` Specifies a custom key ID. Use `Get-EntraApplicationKeyCredential` to get the keyId details.
+
 ## Parameters
 
 ### -KeyId
 
-Specifies a custom key ID.
+Specifies a custom key ID. The unique identifier for the password.
 
 ```yaml
 Type: System.String

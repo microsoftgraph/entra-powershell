@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraDeletedApplication.
+title: Remove-EntraDeletedApplication
 description: This article provides details on the Remove-EntraDeletedApplication command.
 
 

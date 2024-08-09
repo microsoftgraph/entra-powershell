@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaPrivilegedResource.
+title: Get-EntraBetaPrivilegedResource
 description: This article provides details on Get-EntraBetaPrivilegedResource command.
 
 

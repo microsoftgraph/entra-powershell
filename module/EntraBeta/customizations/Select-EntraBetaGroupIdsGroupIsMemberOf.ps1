@@ -17,7 +17,7 @@
         if($null -ne $PSBoundParameters["GroupIdsForMembershipCheck"])
         {
             $GroupIds = $PSBoundParameters["GroupIdsForMembershipCheck"]
-            $GroupIdData = Get-EntraBetaGroup -All $true
+            $GroupIdData = Get-EntraBetaGroup -All
         }
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
