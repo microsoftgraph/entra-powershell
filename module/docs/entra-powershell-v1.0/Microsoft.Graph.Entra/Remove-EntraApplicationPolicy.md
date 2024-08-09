@@ -96,4 +96,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 [Add-EntraApplicationPolicy](Add-EntraApplicationPolicy.md)
 
-[Get-EntraADApplicationPolicy](Get-EntraADApplicationPolicy.md)
+[Get-EntraApplicationPolicy](Get-EntraApplicationPolicy.md)
