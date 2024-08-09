@@ -1,5 +1,5 @@
 ---
-title: Get-EntraApplication.
+title: Get-EntraApplication
 description: This article provides details on the Get-EntraApplication command.
 
 

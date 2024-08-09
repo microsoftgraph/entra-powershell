@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaScopedRoleMembership.
+title: Get-EntraBetaScopedRoleMembership
 description: This article provides details on the Get-EntraBetaScopedRoleMembership command.
 
 

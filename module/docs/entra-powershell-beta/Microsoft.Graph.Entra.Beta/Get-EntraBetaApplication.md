@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaApplication.
+title: Get-EntraBetaApplication
 description: This article provides details on the Get-EntraBetaApplication command.
 
 ms.topic: reference

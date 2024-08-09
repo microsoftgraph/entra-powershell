@@ -1,5 +1,5 @@
 ---
-title: Get-EntraApplicationProxyApplicationConnectorGroup.
+title: Get-EntraApplicationProxyApplicationConnectorGroup
 description: This article provides details on the Get-EntraApplicationProxyApplicationConnectorGroup command.
 
 

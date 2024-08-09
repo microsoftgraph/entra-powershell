@@ -3,7 +3,7 @@ title: Get-EntraBetaContact
 description: This article provides details on the Get-EntraBetaContact command.
 
 ms.topic: reference
-ms.date: 07/18/2024
+ms.date: 07/29/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -18,7 +18,8 @@ schema: 2.0.0
 # Get-EntraBetaContact
 
 ## Synopsis
-Gets a contact from Azure Active Directory.
+
+Gets a contact from Microsoft Entra ID.
 
 ## Syntax
 
@@ -27,7 +28,8 @@ Gets a contact from Azure Active Directory.
 ```powershell
 Get-EntraBetaContact
  [-Filter <String>]
- [-All] [-Top <Int32>]
+ [-All] 
+ [-Top <Int32>]
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -43,28 +45,106 @@ Get-EntraBetaContact
 ```
 
 ## Description
-The Get-EntraBetaContact cmdlet gets a contact from Azure Active Directory.
+
+The `Get-EntraBetaContact` cmdlet gets a contact from Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1 Retrieve all contact objects in the directory
-```
-PS C:\> Get-EntraBetaContact
 
-ObjectId                             Mail                DisplayName
---------                             ----                -----------
-b052db07-e7ec-4c0e-b481-a5ba550b9ee7 contact@contoso.com Contoso Contact
+```powershell
+Connect-Entra -Scopes 'OrgContact.Read.All'
+Get-EntraBetaContact
 ```
 
-This command retrieves all contact objects in the directory.
+```Output
+DisplayName          Id                                   Mail                         MailNickname
+-----------          --                                   ----                         ------------
+Contoso Contact     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com         Contoso Contact
+Contoso Contact1    bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com        Contoso Contact 1
+Contoso Contact2    cccccccc-2222-3333-4444-dddddddddddd contact2@contoso.com        Contoso Contact 2
+Contoso Contact3    dddddddd-3333-4444-5555-eeeeeeeeeeee contact3@contoso.com        Contoso Contact 3
+```
+
+This example retrieves all contact objects in the directory.
+
+### Example 2: Retrieve specific contact object in the directory
+
+```powershell
+Connect-Entra -Scopes 'OrgContact.Read.All'
+Get-EntraBetaContact -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+```
+
+```Output
+DisplayName          Id                                   Mail                         MailNickname
+-----------          --                                   ----                         ------------
+Contoso Contact     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com         Contoso Contact
+```
+
+This example retrieves specified contact in the directory.
+
+- `-ObjectId` parameter specifies the contact Id.
+
+### Example 3: Retrieve all contacts objects in the directory
+
+```powershell
+Connect-Entra -Scopes 'OrgContact.Read.All'
+Get-EntraBetaContact -All 
+```
+
+```Output
+DisplayName          Id                                   Mail                         MailNickname
+-----------          --                                   ----                         ------------
+Contoso Contact     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com         Contoso Contact
+Contoso Contact1    bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com        Contoso Contact 1
+Contoso Contact2    cccccccc-2222-3333-4444-dddddddddddd contact2@contoso.com        Contoso Contact 2
+Contoso Contact3    dddddddd-3333-4444-5555-eeeeeeeeeeee contact3@contoso.com        Contoso Contact 3
+```
+
+This example retrieves all the contacts in the directory.
+
+### Example 4: Retrieve top two contacts objects in the directory
+
+```powershell
+Connect-Entra -Scopes 'OrgContact.Read.All'
+Get-EntraBetaContact -Top 2
+```
+
+```Output
+DisplayName          Id                                   Mail                         MailNickname
+-----------          --                                   ----                         ------------
+Contoso Contact     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com         Contoso Contact
+Contoso Contact1    bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com        Contoso Contact 1
+```
+
+This example retrieves top two contacts in the directory.
+
+### Example 5: Retrieve all contacts objects in the directory filter by DisplayName
+
+```powershell
+Connect-Entra -Scopes 'OrgContact.Read.All'
+Get-EntraBetaContact -Filter "DisplayName eq 'Contoso Contact'"
+```
+
+```Output
+DisplayName          Id                                   Mail                         MailNickname
+-----------          --                                   ----                         ------------
+Contoso Contact     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com         Contoso Contact
+Contoso Contact1    bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com        Contoso Contact 1
+Contoso Contact2    cccccccc-2222-3333-4444-dddddddddddd contact2@contoso.com        Contoso Contact 2
+Contoso Contact3    dddddddd-3333-4444-5555-eeeeeeeeeeee contact3@contoso.com        Contoso Contact 3
+```
+
+This example retrieves contacts having the specified display name.
 
 ## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -76,11 +156,12 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
+
 Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery
 Aliases:
 
@@ -92,10 +173,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a contact in Azure Active Directory.
+
+Specifies the ID of a contact in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -107,10 +189,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: GetQuery
 Aliases:
 
@@ -123,7 +206,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -138,7 +221,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -148,7 +232,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Remove-EntraBetaContact]()
-
-[Set-EntraBetaContact]()
-
+[Remove-EntraBetaContact](Remove-EntraBetaContact.md)

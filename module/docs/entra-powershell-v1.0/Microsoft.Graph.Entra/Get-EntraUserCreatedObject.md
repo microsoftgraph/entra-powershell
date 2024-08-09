@@ -1,5 +1,5 @@
 ---
-title:  Get-EntraUserCreatedObject.
+title:  Get-EntraUserCreatedObject
 description: This article provides details on the  Get-EntraUserCreatedObject Command.
 
 

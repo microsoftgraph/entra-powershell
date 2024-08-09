@@ -1,5 +1,5 @@
 ---
-title: Set-EntraBetaPolicy.
+title: Set-EntraBetaPolicy
 description: This article provides details on the Set-EntraBetaPolicy command.
 
 ms.topic: reference

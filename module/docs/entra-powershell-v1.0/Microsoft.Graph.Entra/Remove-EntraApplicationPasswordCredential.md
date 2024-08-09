@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraApplicationPasswordCredential.
+title: Remove-EntraApplicationPasswordCredential
 description: This article provides details on the Remove-EntraApplicationPasswordCredential command.
 
 

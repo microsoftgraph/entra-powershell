@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraApplicationVerifiedPublisher.
+title: Remove-EntraApplicationVerifiedPublisher
 description: This article provides details on the Remove-EntraApplicationVerifiedPublisher command.
 
 

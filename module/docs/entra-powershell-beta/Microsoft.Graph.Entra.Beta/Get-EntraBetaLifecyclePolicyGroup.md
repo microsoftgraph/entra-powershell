@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaLifecyclePolicyGroup.
+title: Get-EntraBetaLifecyclePolicyGroup
 description: This article provides details on the Get-EntraBetaLifecyclePolicyGroup command.
 
 
