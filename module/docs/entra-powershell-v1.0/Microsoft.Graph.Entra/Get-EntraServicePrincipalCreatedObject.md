@@ -1,5 +1,5 @@
 ---
-title: Get-EntraServicePrincipalCreatedObject.
+title: Get-EntraServicePrincipalCreatedObject
 description: This article provides details on the Get-EntraServicePrincipalCreatedObject command.
 
 

@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraConditionalAccessPolicy.
+title: Remove-EntraConditionalAccessPolicy
 description: This article provides details on the Remove-EntraConditionalAccessPolicy command.
 
 

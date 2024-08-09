@@ -1,5 +1,5 @@
 ---
-title: Get-EntraExtensionProperty.
+title: Get-EntraExtensionProperty
 description: This article provides details on the Get-EntraExtensionProperty command.
 
 

@@ -1,5 +1,5 @@
 ---
-title: Get-EntraUserManager.
+title: Get-EntraUserManager
 description: This article provides details on the Get-EntraUserManager command.
 
 

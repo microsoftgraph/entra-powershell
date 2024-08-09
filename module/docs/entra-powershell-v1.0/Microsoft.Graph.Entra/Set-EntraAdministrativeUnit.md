@@ -1,5 +1,5 @@
 ---
-title: Set-EntraAdministrativeUnit.
+title: Set-EntraAdministrativeUnit
 description: This article provides details on the Set-EntraAdministrativeUnit command.
 
 ms.topic: reference
