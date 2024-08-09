@@ -1,0 +1,18 @@
+trigger: none
+resources:
+  repositories:
+  - repository: templates
+    type: git
+    name: OneBranch.Pipelines/GovernedTemplates
+    ref: refs/heads/main
+  pipelines:
+  - pipeline: EntraPowerShell-Release-Build
+    trigger: none
+    source: EntraPowerShell-Release-Build
+extends:
+  template: v2/OneBranch.NonOfficial.CrossPlat.yml@templates
+  parameters:
+    stages:
+    - stage: PS_Gallery_Deploy
+      displayName: PS Gallery Deploy
+      dependsOn: []
