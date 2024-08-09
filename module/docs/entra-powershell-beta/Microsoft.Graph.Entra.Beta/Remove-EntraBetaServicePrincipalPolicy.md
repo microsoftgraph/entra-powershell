@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaServicePrincipalPolicy.
+title: Remove-EntraBetaServicePrincipalPolicy
 description: This article provides details on the Remove-EntraBetaServicePrincipalPolicy command.
 
 

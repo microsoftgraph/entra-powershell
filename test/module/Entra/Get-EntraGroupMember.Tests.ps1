@@ -11,10 +11,12 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "DisplayName"     = "demo"
-                "Id"              = "bbbbbbbb-1111-2222-3333-cccccccccccc"
-                "@odata.type"     = "#microsoft.graph.user"
-                "Description"     = "test"
+                "value"= @{
+                    "DisplayName"     = "demo"
+                    "Id"              = "bbbbbbbb-1111-2222-3333-cccccccccccc"
+                    "@odata.type"     = "#microsoft.graph.user"
+                    "Description"     = "test"
+                }
             }
         )
     }
@@ -27,7 +29,7 @@ Describe "Get-EntraGroupMember" {
         It "Should return specific group" {
             $result = Get-EntraGroupMember -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+            $result.Id | should -Contain 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 
             Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
         }

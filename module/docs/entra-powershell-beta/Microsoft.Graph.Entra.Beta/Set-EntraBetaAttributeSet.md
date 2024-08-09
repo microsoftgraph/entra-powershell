@@ -1,4 +1,14 @@
 ---
+title: Set-EntraBetaAttributeSet
+description: This article provides details on the Set-EntraBetaAttributeSet command.
+
+ms.topic: reference
+ms.date: 07/10/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaAttributeSet
@@ -9,34 +19,67 @@ schema: 2.0.0
 # Set-EntraBetaAttributeSet
 
 ## Synopsis
-{{ Fill in the Synopsis }}
+
+Updates an existing attribute set.
 
 ## Syntax
 
-```
-Set-EntraBetaAttributeSet [-Description <String>] -Id <String> [-MaxAttributesPerSet <Int32>]
+```powershell
+Set-EntraBetaAttributeSet 
+ -Id <String>
+ [-Description <String>] 
+ [-MaxAttributesPerSet <Int32>]
  [<CommonParameters>]
 ```
 
 ## Description
-{{ Fill in the Description }}
+
+Updates a Microsoft Entra ID attribute set object identified by ID. Specify `Id` parameter to update an attribute set.
+
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
 
 ## Examples
 
-### Example 1
+### Example 1: Update an attribute set
+
 ```powershell
-PS C:\> {{ Add example code here }}
+Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
+$params = @{
+    Id = 'Testing' 
+    Description = 'Attributes for engineering team'
+}
+Set-EntraBetaAttributeSet @params
 ```
 
-{{ Add example description here }}
+This example update an attribute set.
+
+- `Id` parameter specifies the name of the attribute set. You can `Get-EntraBetaAttributeSet` to get more details.
+- `Description` parameter specifies the description for the attribute set.
+
+### Example 2: Update an attribute set using MaxAttributesPerSet
+
+```powershell
+Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
+$params = @{
+    Id = 'Testing' 
+    MaxAttributesPerSet = 10
+}
+Set-EntraBetaAttributeSet @params
+```
+
+This example update an attribute set using MaxAttributesPerSet.
+
+- `-Id` parameter specifies the name of the attribute set. You can `Get-EntraBetaAttributeSet` to get more details.
+- `-MaxAttributesPerSet` parameter specifies the maximum number of custom security attributes.
 
 ## Parameters
 
 ### -Description
-{{ Fill Description Description }}
+
+Description of the attribute set, up to 128 characters long, including Unicode characters. This description can be changed later.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -48,10 +91,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+
+Name of the attribute set. Unique identifier for the attribute set within a tenant. This identifier can be up to 32 characters long and may include Unicode characters. It cannot contain spaces or special characters, and it cannot be changed later. The identifier is case insensitive.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -63,10 +107,11 @@ Accept wildcard characters: False
 ```
 
 ### -MaxAttributesPerSet
-{{ Fill MaxAttributesPerSet Description }}
+
+Maximum number of custom security attributes that can be defined in this attribute set. The default value is null. If not specified, the administrator can add up to 500 active attributes per tenant. This setting can be changed later.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -78,7 +123,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -87,6 +133,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
+
+[New-EntraBetaAttributeSet](New-EntraBetaAttributeSet.md)
+
+[Get-EntraBetaAttributeSet](Get-EntraBetaAttributeSet.md)

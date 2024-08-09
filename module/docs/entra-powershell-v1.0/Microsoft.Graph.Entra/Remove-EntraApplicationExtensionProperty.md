@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraApplicationExtensionProperty.
+title: Remove-EntraApplicationExtensionProperty
 description: This article provides details on the Remove-EntraApplicationExtensionProperty command.
 
 

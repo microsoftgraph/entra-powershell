@@ -1,5 +1,5 @@
 ---
-title: Revoke-EntraUserAllRefreshToken.
+title: Revoke-EntraUserAllRefreshToken
 description: This article provides details on the Revoke-EntraUserAllRefreshToken command.
 
 
