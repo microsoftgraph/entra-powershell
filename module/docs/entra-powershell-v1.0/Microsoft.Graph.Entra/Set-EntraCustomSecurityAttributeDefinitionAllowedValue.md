@@ -1,6 +1,7 @@
 ---
-title: Set-EntraCustomSecurityAttributeDefinitionAllowedValue.
+title: Set-EntraCustomSecurityAttributeDefinitionAllowedValue
 description: This article provides details on the Set-EntraCustomSecurityAttributeDefinitionAllowedValue command.
+
 
 ms.topic: reference
 ms.date: 07/11/2024
@@ -33,7 +34,7 @@ Set-EntraCustomSecurityAttributeDefinitionAllowedValue
 
 ## Description
 
-The `Set-EntraCustomSecurityAttributeDefinitionAllowedValue` cmdlet update a Microsoft Entra ID custom security attribute definition predefined value object identified by ID. Specify `-CustomSecurityAttributeDefinitionId` and `-Id` parameter to update a Microsoft Entra ID custom security attribute definition predefined value.
+The `Set-EntraCustomSecurityAttributeDefinitionAllowedValue` cmdlet update a Microsoft Entra ID custom security attribute definition predefined value object identified by ID. Specify `CustomSecurityAttributeDefinitionId` and `Id` parameter to update a Microsoft Entra ID custom security attribute definition predefined value.
 
 ## Examples
 
