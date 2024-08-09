@@ -1,5 +1,5 @@
 ---
-title: Get-EntraDomainServiceConfigurationRecord.
+title: Get-EntraDomainServiceConfigurationRecord
 description: This article provides details on the Get-EntraDomainServiceConfigurationRecord command.
 
 

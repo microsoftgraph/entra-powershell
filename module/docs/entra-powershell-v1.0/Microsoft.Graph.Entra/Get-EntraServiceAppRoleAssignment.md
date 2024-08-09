@@ -1,5 +1,5 @@
 ---
-title: Get-EntraServiceAppRoleAssignment.
+title: Get-EntraServiceAppRoleAssignment
 description: This article provides details on the Get-EntraServiceAppRoleAssignment command.
 
 

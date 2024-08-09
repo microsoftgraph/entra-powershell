@@ -1,5 +1,5 @@
 ---
-title: Get-EntraGroupPermissionGrant.
+title: Get-EntraGroupPermissionGrant
 description: This article provides details on the Get-EntraGroupPermissionGrant command.
 
 

@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraDeletedDirectoryObject.
+title: Remove-EntraDeletedDirectoryObject
 description: This article provides details on the Remove-EntraDeletedDirectoryObject command.
 
 

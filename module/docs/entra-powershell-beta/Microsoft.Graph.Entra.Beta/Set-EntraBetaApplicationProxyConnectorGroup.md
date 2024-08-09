@@ -1,5 +1,5 @@
 ---
-title: Set-EntraBetaApplicationProxyConnectorGroup.
+title: Set-EntraBetaApplicationProxyConnectorGroup
 description: This article provides details on the Set-EntraBetaApplicationProxyConnectorGroup command.
 
 ms.topic: reference
