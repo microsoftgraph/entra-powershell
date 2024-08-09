@@ -1,5 +1,5 @@
 ---
-title: Get-EntraCustomSecurityAttributeDefinitionAllowedValue.
+title: Get-EntraCustomSecurityAttributeDefinitionAllowedValue
 description: This article provides details on the Get-EntraCustomSecurityAttributeDefinitionAllowedValue command.
 
 
