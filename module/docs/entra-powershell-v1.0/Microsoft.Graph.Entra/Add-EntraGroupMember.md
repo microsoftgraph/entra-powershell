@@ -1,5 +1,5 @@
 ---
-title: Add-EntraGroupMember.
+title: Add-EntraGroupMember
 description: This article explains the Add-EntraGroupMember command.
 
 

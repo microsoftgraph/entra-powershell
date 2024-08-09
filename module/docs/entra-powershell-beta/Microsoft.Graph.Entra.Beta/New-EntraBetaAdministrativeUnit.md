@@ -35,6 +35,8 @@ New-EntraBetaAdministrativeUnit
 
 The `New-EntraBetaAdministrativeUnit` cmdlet creates an administrative unit in Microsoft Entra ID. Specify `DisplayName` parameter to create an administrative unit.
 
+In delegated scenarios, the signed-in user must be assigned a supported Microsoft Entra role or a custom role that includes the `microsoft.directory/administrativeUnits/allProperties/allTasks` permission. The Privileged Role Administrator role is the least privileged role that meets this requirement.
+
 ## Examples
 
 ### Example 1: Create an administrative unit

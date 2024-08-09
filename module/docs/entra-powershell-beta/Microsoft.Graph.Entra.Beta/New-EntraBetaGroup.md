@@ -1,5 +1,5 @@
 ---
-title: New-EntraBetaGroup.
+title: New-EntraBetaGroup
 description: This article provides details on the New-EntraBetaGroup command.
 
 

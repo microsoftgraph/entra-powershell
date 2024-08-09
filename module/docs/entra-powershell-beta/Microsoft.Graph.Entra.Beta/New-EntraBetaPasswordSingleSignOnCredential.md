@@ -1,5 +1,5 @@
 ---
-title: New-EntraBetaPasswordSingleSignOnCredential.
+title: New-EntraBetaPasswordSingleSignOnCredential
 description: This article provides details on the New-EntraBetaPasswordSingleSignOnCredential command.
 
 ms.topic: reference

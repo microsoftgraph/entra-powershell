@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaApplicationProxyConnectorGroup.
+title: Remove-EntraBetaApplicationProxyConnectorGroup
 description: This article provides details on the Remove-EntraBetaApplicationProxyConnectorGroup command.
 
 ms.topic: reference

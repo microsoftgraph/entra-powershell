@@ -1,5 +1,5 @@
 ---
-title: New-EntraServicePrincipalPasswordCredential.
+title: New-EntraServicePrincipalPasswordCredential
 description: This article provides details on the New-EntraServicePrincipalPasswordCredential command.
 
 

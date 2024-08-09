@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaScopedRoleMembership.
+title: Remove-EntraBetaScopedRoleMembership
 description: This article provides details on the Remove-EntraBetaScopedRoleMembership command.
 
 
