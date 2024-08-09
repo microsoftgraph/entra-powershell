@@ -1,6 +1,7 @@
 ---
-title: Get-EntraAdministrativeUnitMember.
+title: Get-EntraAdministrativeUnitMember
 description: This article provides details on the Get-EntraAdministrativeUnitMember command.
+
 
 ms.topic: reference
 ms.date: 07/30/2024
@@ -11,6 +12,7 @@ manager: CelesteDG
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraAdministrativeUnitMember
+
 schema: 2.0.0
 ---
 
@@ -33,7 +35,7 @@ Get-EntraAdministrativeUnitMember
 
 ## Description
 
-The `Get-EntraAdministrativeUnitMember` cmdlet gets a member of a Microsoft Entra ID administrative unit. Specify `-ObjectId` parameter to get a member.
+The `Get-EntraAdministrativeUnitMember` cmdlet gets a member of a Microsoft Entra ID administrative unit. Specify `ObjectId` parameter to get a member.
 
 ## Examples
 
