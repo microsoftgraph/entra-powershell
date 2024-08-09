@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaServicePrincipalPolicy.
+title: Get-EntraBetaServicePrincipalPolicy
 description: This article provides details on the Get-EntraBetaServicePrincipalPolicy command.
 
 

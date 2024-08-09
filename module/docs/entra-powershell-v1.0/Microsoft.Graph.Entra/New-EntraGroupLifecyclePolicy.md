@@ -1,5 +1,5 @@
 ---
-title: New-EntraGroupLifecyclePolicy.
+title: New-EntraGroupLifecyclePolicy
 description: This article provides details on the New-EntraGroupLifecyclePolicy command.
 
 

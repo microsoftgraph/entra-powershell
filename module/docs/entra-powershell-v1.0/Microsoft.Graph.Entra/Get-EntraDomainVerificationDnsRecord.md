@@ -1,5 +1,5 @@
 ---
-title: Get-EntraDomainVerificationDnsRecord.
+title: Get-EntraDomainVerificationDnsRecord
 description: This article provides details on the Get-EntraDomainVerificationDnsRecord command.
 
 
