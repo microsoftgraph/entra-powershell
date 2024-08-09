@@ -2,6 +2,7 @@
 title: Get-EntraBetaDomain
 description: This article provides details on the Get-EntraBetaDomain command.
 
+
 ms.topic: reference
 ms.date: 08/08/2024
 ms.author: eunicewaweru
