@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaUserAppRoleAssignment.
+title: Remove-EntraBetaUserAppRoleAssignment
 description: This article provides details on the Remove-EntraBetaUserAppRoleAssignment command.
 
 ms.topic: reference

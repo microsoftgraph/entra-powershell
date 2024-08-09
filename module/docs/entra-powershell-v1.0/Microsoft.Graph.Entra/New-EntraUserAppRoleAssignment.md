@@ -1,5 +1,5 @@
 ---
-title: New-EntraUserAppRoleAssignment.
+title: New-EntraUserAppRoleAssignment
 description: This article provides details on the New-EntraUserAppRoleAssignment command.
 
 ms.topic: reference

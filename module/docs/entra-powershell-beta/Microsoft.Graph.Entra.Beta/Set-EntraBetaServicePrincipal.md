@@ -1,5 +1,5 @@
 ---
-title: Set-EntraBetaServicePrincipal.
+title: Set-EntraBetaServicePrincipal
 description: This article provides details on the Set-EntraBetaServicePrincipal command.
 
 ms.service: active-directory

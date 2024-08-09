@@ -1,5 +1,5 @@
 ---
-title: Set-EntraBetaUserThumbnailPhoto.
+title: Set-EntraBetaUserThumbnailPhoto
 description: This article provides details on the Set-EntraBetaUserThumbnailPhoto command.
 
 

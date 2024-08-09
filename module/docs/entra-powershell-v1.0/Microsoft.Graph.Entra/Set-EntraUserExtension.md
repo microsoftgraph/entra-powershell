@@ -1,5 +1,5 @@
 ---
-title: Set-EntraUserExtension.
+title: Set-EntraUserExtension
 description: This article provides details on the Set-EntraUserExtension command.
 
 

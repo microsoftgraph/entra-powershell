@@ -1,5 +1,5 @@
 ---
-title: Set-EntraServicePrincipal.
+title: Set-EntraServicePrincipal
 description: This article provides details on the Set-EntraServicePrincipal command.
 
 
