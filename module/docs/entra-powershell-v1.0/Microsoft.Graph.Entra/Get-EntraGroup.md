@@ -1,5 +1,5 @@
 ---
-title: Get-EntraGroup.
+title: Get-EntraGroup
 description: This article explains the Get-EntraGroup command.
 
 

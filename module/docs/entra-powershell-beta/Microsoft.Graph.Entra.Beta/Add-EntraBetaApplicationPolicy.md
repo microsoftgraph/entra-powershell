@@ -1,5 +1,5 @@
 ---
-title: Add-EntraBetaApplicationPolicy.
+title: Add-EntraBetaApplicationPolicy
 description: This article provides details on the Add-EntraBetaApplicationPolicy command.
 
 

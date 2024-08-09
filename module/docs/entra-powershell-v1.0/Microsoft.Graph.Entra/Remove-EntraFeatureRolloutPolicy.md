@@ -1,6 +1,7 @@
 ---
-title: Remove-EntraFeatureRolloutPolicy.
+title: Remove-EntraFeatureRolloutPolicy
 description: This article provides details on the Remove-EntraFeatureRolloutPolicy command.
+
 
 ms.topic: reference
 ms.date: 07/22/2024
@@ -8,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraBetaFeatureRolloutPolicy
@@ -31,7 +33,7 @@ Remove-EntraFeatureRolloutPolicy
 ## Description
 
 An admin uses the `Remove-EntraFeatureRolloutPolicy` cmdlet to remove the cloud authentication roll-out policy and have all users where policy applied to be free of the policy.
-Users in groups that were assigned to the policy falls back to the global authentication method (most common case will be federation). Specify `Id` parameter to remove the cloud authentication roll-out policy.
+Users in groups that were assigned to the policy falls back to the global authentication method (most common case will be federation).
 
 ## Examples
 

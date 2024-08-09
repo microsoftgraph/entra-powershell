@@ -1,5 +1,5 @@
 ---
-title: Add-EntraBetaGroupMember.
+title: Add-EntraBetaGroupMember
 description: This article provides details on the Add-EntraBetaGroupMember command.
 
 ms.topic: reference
