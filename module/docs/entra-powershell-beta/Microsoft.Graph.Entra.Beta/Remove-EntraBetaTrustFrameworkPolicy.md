@@ -2,6 +2,7 @@
 title:  Remove-EntraBetaTrustFrameworkPolicy
 description: This article provides details on the Remove-EntraBetaTrustFrameworkPolicy command.
 
+
 ms.topic: reference
 ms.date: 08/08/2024
 ms.author: eunicewaweru
@@ -32,7 +33,7 @@ Remove-EntraBetaTrustFrameworkPolicy
 
 ## Description
 
-This `Remove-EntraBetaTrustFrameworkPolicy` cmdlet is used to delete a trust framework policy in the Microsoft Entra ID. The trust framework policy is permanently deleted. Specify `-Id` parameter to delete a trust framework policy.
+This `Remove-EntraBetaTrustFrameworkPolicy` cmdlet is used to delete a trust framework policy in the Microsoft Entra ID. The trust framework policy is permanently deleted.
 
 ## Examples
 

@@ -1,6 +1,7 @@
 ---
-title: Remove-EntraBetaDirectorySetting.
+title: Remove-EntraBetaDirectorySetting
 description: This article provides details on the Remove-EntraBetaDirectorySetting command.
+
 
 ms.topic: reference
 ms.date: 07/29/2024
@@ -8,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaDirectorySetting
@@ -31,7 +33,7 @@ Remove-EntraBetaDirectorySetting
 
 ## Description
 
-The `Remove-EntraBetaDirectorySetting` cmdlet removes a directory setting from Microsoft Entra ID. Specify `-Id` removes a directory setting.
+The `Remove-EntraBetaDirectorySetting` cmdlet removes a directory setting from Microsoft Entra ID.
 
 ## Examples
 

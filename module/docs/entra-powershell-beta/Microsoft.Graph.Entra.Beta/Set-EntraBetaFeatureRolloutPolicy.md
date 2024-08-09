@@ -1,6 +1,7 @@
 ---
-title: Set-EntraBetaFeatureRolloutPolicy.
+title: Set-EntraBetaFeatureRolloutPolicy
 description: This article provides details on the Set-EntraBetaFeatureRolloutPolicy command.
+
 
 ms.topic: reference
 ms.date: 07/26/2024
@@ -8,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaFeatureRolloutPolicy
@@ -38,7 +40,7 @@ Set-EntraBetaFeatureRolloutPolicy
 ## Description
 
 An admin uses the `Set-EntraBetaFeatureRolloutPolicy` cmdlet to modify the cloud authentication roll-out policy including whether the method for cloud authentication is Pass-through Authentication or not (Password hash-sync) and whether Seamless SSO is enabled.
-Users in groups assigned to the policy start authenticating via the new authentication method and via Seamless SSO if specified. Specify `Id` parameter to update the policy for cloud authentication roll-out.
+Users in groups assigned to the policy start authenticating via the new authentication method and via Seamless SSO if specified.
 
 ## Examples
 
