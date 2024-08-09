@@ -48,7 +48,7 @@ Create a new Microsoft Entra ID permission grant condition set object in an exis
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$permissionGrantPolicyId = 'test1'
+$permissionGrantPolicyId = 'policy1'
 $params = @{
 PolicyId = $permissionGrantPolicyId
 ConditionSetType = 'includes'
@@ -74,13 +74,13 @@ aaaa0000-bb11-2222-33cc-444444dddddd False                           {all}      
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$permissionGrantPolicyId = 'test1'
-$AppRole = (Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'").AppRoles
+$permissionGrantPolicyId = 'policy1'
+$permission = (Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'").AppRoles.Id
 $params = @{
 PolicyId = $permissionGrantPolicyId
 ConditionSetType = 'includes'
 PermissionType = 'delegated'
-Permissions = @('8b590330-0eb2-45d0-baca-a00ecf7e7b87', 'dac1c8fa-e6e4-47b8-a128-599660b8cd5c', 'f6db0cc3-88cd-4c74-a374-3d8c7cc4c50b')
+Permissions = @($permission)
 ResourceApplication = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
 }
 
@@ -105,7 +105,7 @@ This command creates a permission grant condition set in an existing policy that
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$permissionGrantPolicyId = 'test1'
+$permissionGrantPolicyId = 'policy1'
 $params = @{
 PolicyId = $permissionGrantPolicyId
 ConditionSetType = 'excludes'
@@ -144,13 +144,13 @@ This command creates a permission grant condition set in an existing policy that
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-$permissionGrantPolicyId = 'test1'
-$AppRole = (Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'").AppRoles
+$permissionGrantPolicyId = 'policy1'
+$permission = (Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-displayname>'").AppRoles.Id
 $params = @{
 PolicyId = $permissionGrantPolicyId
 ConditionSetType = 'excludes'
 PermissionType = 'delegated'
-Permissions = @('8b590330-0eb2-45d0-baca-a00ecf7e7b87', 'dac1c8fa-e6e4-47b8-a128-599660b8cd5c', 'f6db0cc3-88cd-4c74-a374-3d8c7cc4c50b')
+Permissions = @($permission)
 ResourceApplication = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
 PermissionClassification = 'low'
 ClientApplicationsFromVerifiedPublisherOnly = $true

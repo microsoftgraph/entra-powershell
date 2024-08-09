@@ -19,7 +19,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Get a Microsoft Entra ID permission grant condition set by Id.
+Get a Microsoft Entra ID permission grant condition set by ID.
 
 ## Syntax
 
@@ -46,7 +46,7 @@ Get-EntraBetaPermissionGrantConditionSet
 
 ## Description
 
-Get a Microsoft Entra ID permission grant condition set object by Id.
+Get a Microsoft Entra ID permission grant condition set object by ID.
 
 ## Examples
 
