@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraTrustedCertificateAuthority
@@ -31,7 +32,7 @@ Set-EntraTrustedCertificateAuthority
 
 ## Description
 
-The Set-EntraTrustedCertificateAuthority cmdlet updates a trusted certificate authority in Microsoft Entra ID.
+The `Set-EntraTrustedCertificateAuthority` cmdlet updates a trusted certificate authority in Microsoft Entra ID.
 
 ## Examples
 

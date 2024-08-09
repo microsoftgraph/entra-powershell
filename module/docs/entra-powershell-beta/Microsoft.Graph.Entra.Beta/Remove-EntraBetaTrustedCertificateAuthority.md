@@ -2,11 +2,14 @@
 title: Remove-EntraBetaTrustedCertificateAuthority
 description: This article provides details on the Remove-EntraBetaTrustedCertificateAuthority command.
 
+
 ms.topic: reference
-ms.date: 08/06/2024
+ms.date: 07/04/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaTrustedCertificateAuthority

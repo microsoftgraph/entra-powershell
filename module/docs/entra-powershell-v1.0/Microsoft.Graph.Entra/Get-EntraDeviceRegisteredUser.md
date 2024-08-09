@@ -1,13 +1,15 @@
 ---
-title: Get-EntraDeviceRegisteredUser.
+title: Get-EntraDeviceRegisteredUser
 description: This article provides details on the Get-EntraDeviceRegisteredUser command.
 
+
 ms.topic: reference
-ms.date: 07/31/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraDeviceRegisteredUser
