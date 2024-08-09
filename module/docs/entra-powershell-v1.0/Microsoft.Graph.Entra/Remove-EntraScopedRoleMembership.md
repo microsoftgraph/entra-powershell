@@ -2,11 +2,14 @@
 title: Remove-EntraScopedRoleMembership
 description: This article provides details on the Remove-EntraScopedRoleMembership command.
 
+
 ms.topic: reference
-ms.date: 07/19/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraScopedRoleMembership
@@ -31,7 +34,7 @@ Remove-EntraScopedRoleMembership
 
 ## Description
 
-The `Remove-EntraScopedRoleMembership` cmdlet removes a scoped role membership from Microsoft Entra ID. Specify `ObjectId` and `ScopedRoleMembershipId` parameter to remove a scoped role membership.
+The `Remove-EntraScopedRoleMembership` cmdlet removes a scoped role membership from Microsoft Entra ID.
 
 ## Examples
 

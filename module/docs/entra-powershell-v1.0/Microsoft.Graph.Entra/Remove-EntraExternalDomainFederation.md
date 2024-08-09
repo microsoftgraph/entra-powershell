@@ -1,7 +1,8 @@
 ---
 title: Remove-EntraExternalDomainFederation
 description: This article provides details on the Remove-EntraExternalDomainFederation command.
-ms.service: entra
+
+
 ms.topic: reference
 ms.date: 06/11/2024
 ms.author: eunicewaweru
@@ -10,7 +11,9 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraExternalDomainFederation
+
 schema: 2.0.0
 ---
 
@@ -30,7 +33,7 @@ Remove-EntraExternalDomainFederation
 
 ## Description
 
-This `Remove-EntraExternalDomainFederation` cmdlet removes an externalDomainFederation by external domain name. Specify `ExternalDomainName` parameter for remove an externalDomainFederation.
+This `Remove-EntraExternalDomainFederation` cmdlet removes an externalDomainFederation by external domain name.
 
 ## Examples
 
@@ -42,6 +45,8 @@ Remove-EntraExternalDomainFederation -ExternalDomainName 'test.com'
 ```
 
 This command deletes an external domain federation setting.
+
+- `ExternalDomainName` Parameter specifies unique identifer of an externalDomainFederation.
 
 ## Parameters
 

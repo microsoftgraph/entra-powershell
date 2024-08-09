@@ -1,12 +1,15 @@
 ---
-title: Remove-EntraApplicationPolicy.
+title: Remove-EntraApplicationPolicy
 description: This article provides details on the Remove-EntraApplicationPolicy command.
-ms.service: active-directory
+
+
 ms.topic: reference
-ms.date: 06/06/2024
+ms.date: 06/6/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraScopedRoleMembership
@@ -31,7 +34,7 @@ Remove-EntraApplicationPolicy
 
 ## Description
 
-The `Remove-EntraApplicationPolicy` cmdlet removes an application policy from Microsoft Entra ID. Specify the `Id` and `PolicyId` parameter to remove an application policy.
+The `Remove-EntraApplicationPolicy` cmdlet removes an application policy from Microsoft Entra ID.
 
 ## Examples
 
