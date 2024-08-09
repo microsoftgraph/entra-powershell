@@ -32,15 +32,18 @@ New-EntraAdministrativeUnit
 ```
 
 ## Description
-The New-EntraAdministrativeUnit cmdlet creates an administrative unit in Microsoft Entra ID.
+
+The `New-EntraAdministrativeUnit` cmdlet creates an administrative unit in Microsoft Entra ID. Specify `DisplayName` parameter to create an administrative unit.
+
+In delegated scenarios, the signed-in user must be assigned a supported Microsoft Entra role or a custom role that includes the `microsoft.directory/administrativeUnits/allProperties/allTasks` permission. The Privileged Role Administrator role is the least privileged role that meets this requirement.
 
 ## Examples
 
 ### Example 1: Create an administrative unit
 
 ```powershell
- Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
- New-EntraAdministrativeUnit -DisplayName 'TestAU'
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+New-EntraAdministrativeUnit -DisplayName 'TestAU'
 ```
 
 ```Output
@@ -54,8 +57,13 @@ This command creates an administrative unit.
 ### Example 2: Create an administrative unit using '-Description' parameter
 
 ```powershell
- Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
- New-EntraAdministrativeUnit -DisplayName 'Pacific Administrative Unit' -Description 'Administrative Unit for Pacific region'
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$params = @{
+    DisplayName = 'Pacific Administrative Unit'
+    Description = 'Administrative Unit for Pacific region'
+}
+
+New-EntraAdministrativeUnit @params
 ```
 
 ```Output
@@ -117,4 +125,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Remove-EntraAdministrativeUnit](Remove-EntraAdministrativeUnit.md)
 
 [Set-EntraAdministrativeUnit](Set-EntraAdministrativeUnit.md)
-

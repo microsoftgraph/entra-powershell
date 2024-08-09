@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraIdentityProvider.
+title: Remove-EntraIdentityProvider
 description: This article provides details on the Remove-EntraIdentityProvider command.
 
 

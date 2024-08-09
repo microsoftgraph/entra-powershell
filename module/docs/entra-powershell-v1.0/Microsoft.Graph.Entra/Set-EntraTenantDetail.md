@@ -1,5 +1,5 @@
 ---
-title: Set-EntraTenantDetail.
+title: Set-EntraTenantDetail
 description: This article provides details on the Set-EntraTenantDetail command.
 
 

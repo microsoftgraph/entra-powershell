@@ -1,5 +1,5 @@
 ---
-title: Set-EntraUserExtension.
+title: Set-EntraUserExtension
 description: This article provides details on the Set-EntraUserExtension command.
 
 
@@ -32,14 +32,14 @@ Set-EntraUserExtension
 
 ## Description
 
-The `Set-EntraUserExtension` cmdlet sets a user extension in Microsoft Entra ID.
+The `Set-EntraUserExtension` cmdlet updates a user extension in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Set the value of an extension attribute for a user
 
 ```powershell
-$User = Get-EntraUser -Top 1
+$User = Get-EntraUser -ObjectId 'SawyerM@contoso.com'
 Set-EntraUserExtension -ObjectId $User.ObjectId 
 ```
 

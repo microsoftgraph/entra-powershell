@@ -1,5 +1,5 @@
 ---
-title: Get-EntraDirectoryRoleMember.
+title: Get-EntraDirectoryRoleMember
 description: This article provides details on the Get-EntraDirectoryRoleMember command.
 
 

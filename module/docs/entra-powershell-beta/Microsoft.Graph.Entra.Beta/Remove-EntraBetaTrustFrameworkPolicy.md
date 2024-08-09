@@ -1,5 +1,5 @@
 ---
-title:  Remove-EntraBetaTrustFrameworkPolicy.
+title:  Remove-EntraBetaTrustFrameworkPolicy
 description: This article provides details on the Remove-EntraBetaTrustFrameworkPolicy command.
 
 
