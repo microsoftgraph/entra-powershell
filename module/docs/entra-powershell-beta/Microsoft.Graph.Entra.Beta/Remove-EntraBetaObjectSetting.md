@@ -1,4 +1,15 @@
 ---
+title: Remove-EntraBetaObjectSetting
+description: This article provides details on the Remove-EntraBetaObjectSetting command.
+
+
+ms.topic: reference
+ms.date: 08/08/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaObjectSetting
@@ -9,36 +20,51 @@ schema: 2.0.0
 # Remove-EntraBetaObjectSetting
 
 ## Synopsis
-Deletes settings in Azure Active Directory.
+
+Deletes settings in Microsoft Entra ID.
 
 ## Syntax
 
-```
-Remove-EntraBetaObjectSetting -Id <String> -TargetType <String> -TargetObjectId <String>
+```powershell
+Remove-EntraBetaObjectSetting 
+ -Id <String> 
+ -TargetType <String> 
+ -TargetObjectId <String>
  [<CommonParameters>]
 ```
 
 ## Description
-The Remove-EntraBetaObjectSetting cmdlet removes object settings in Azure Active Directory (AD).
+
+The `Remove-EntraBetaObjectSetting` cmdlet removes object settings in Microsoft Entra ID.
 
 ## Examples
 
-### Example 1
-```
-PS C:\> {{ Add example code here }}
+### Example 1: Removes object settings
+
+```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
+$params = @{
+    TargetType = 'Groups'
+    TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+}
+Remove-EntraBetaObjectSetting @params
 ```
 
-{{ Add example description here }}
+This example removes object settings from Microsoft Entra ID
+
+- `-TargetType` Parameter specifies the target type.
+- `-TargetObjectId` Parameter specifies the ID of the target object.
+- `-Id` Parameter specifies the ID of a settings object.
 
 ## Parameters
 
-
-
 ### -Id
-Specfies the ID of a settings object in Azure AD.
+
+Specifies the ID of a settings object in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -50,10 +76,11 @@ Accept wildcard characters: False
 ```
 
 ### -TargetObjectId
+
 Specifies the object ID of the target.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -65,10 +92,11 @@ Accept wildcard characters: False
 ```
 
 ### -TargetType
+
 Specifies the target type.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -80,7 +108,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -90,9 +119,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaObjectSetting]()
+[Get-EntraBetaObjectSetting](Get-EntraBetaObjectSetting.md)
 
-[New-EntraBetaObjectSetting]()
+[New-EntraBetaObjectSetting](New-EntraBetaObjectSetting.md)
 
-[Set-EntraBetaObjectSetting]()
-
+[Set-EntraBetaObjectSetting](Set-EntraBetaObjectSetting.md)

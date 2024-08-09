@@ -4,7 +4,7 @@ description: This article provides details on the Remove-EntraBetaTrustFramework
 
 
 ms.topic: reference
-ms.date: 07/05/2024
+ms.date: 08/08/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -33,7 +33,7 @@ Remove-EntraBetaTrustFrameworkPolicy
 
 ## Description
 
-This `Remove-EntraBetaTrustFrameworkPolicy` cmdlet is used to delete a trust framework policy in the Microsoft Entra ID. The trust framework policy is permanently deleted. Specify `Id` parameter to delete a trust framework policy.
+This `Remove-EntraBetaTrustFrameworkPolicy` cmdlet is used to delete a trust framework policy in the Microsoft Entra ID. The trust framework policy is permanently deleted.
 
 ## Examples
 
@@ -41,10 +41,12 @@ This `Remove-EntraBetaTrustFrameworkPolicy` cmdlet is used to delete a trust fra
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.TrustFramework'
-Remove-EntraBetaTrustFrameworkPolicy -Id B2C_1A_signup_signin
+Remove-EntraBetaTrustFrameworkPolicy -Id 'B2C_1A_signup_signin'
 ```
 
 This example removes the specified trust framework policy.
+
+- `-Id` Parameter specifies unique identifier for a trust framework policy.
 
 ## Parameters
 
