@@ -1,6 +1,7 @@
 ---
-title: New-EntraApplicationFromApplicationTemplate.
+title: New-EntraApplicationFromApplicationTemplate
 description: This article provides details on the New-EntraApplicationFromApplicationTemplate command.
+
 
 ms.service: entra
 ms.topic: reference
@@ -33,7 +34,7 @@ New-EntraApplicationFromApplicationTemplate
 
 ## Description
 
-This `New-EntraApplicationFromApplicationTemplate` cmdlet allows users to create application from application template. Specify `-Id` and `-DisplayName` parameter to create application from application template.
+This `New-EntraApplicationFromApplicationTemplate` cmdlet allows users to create application from application template.
 
 ## Examples
 
@@ -45,7 +46,13 @@ $params = @{
     Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     DisplayName = 'ApplicationTemplate'
 }
-$instantiated_app =New-EntraApplicationFromApplicationTemplate @params
+New-EntraApplicationFromApplicationTemplate @params
+```
+
+```Output
+@odata.context                                                                         servicePrincipal
+--------------                                                                         ----------------
+https://graph.microsoft.com/v1.0/$metadata#microsoft.graph.applicationServicePrincipal @{oauth2PermissionScopes=System.Object[]; servicePrincipalType=Application; displ...}
 ```
 
 This command instantiates a new application based on application template referenced by the ID.
