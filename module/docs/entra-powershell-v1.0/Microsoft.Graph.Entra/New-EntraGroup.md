@@ -1,5 +1,5 @@
 ---
-title: New-EntraGroup.
+title: New-EntraGroup
 description: This article provides details on the New-EntraGroup command.
 
 ms.topic: reference

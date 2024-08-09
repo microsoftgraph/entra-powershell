@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaApplicationSignInSummary.
+title: Get-EntraBetaApplicationSignInSummary
 description: This article provides details on the Get-EntraBetaApplicationSignInSummary command.
 
 ms.topic: reference

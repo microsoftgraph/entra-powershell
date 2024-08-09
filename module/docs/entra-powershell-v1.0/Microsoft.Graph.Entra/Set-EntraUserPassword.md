@@ -1,5 +1,5 @@
 ---
-title: Set-EntraUserPassword.
+title: Set-EntraUserPassword
 description: This article provides details on the Set-EntraUserPassword command.
 
 

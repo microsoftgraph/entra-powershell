@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaFeatureRolloutPolicy.
+title: Remove-EntraBetaFeatureRolloutPolicy
 description: This article provides details on the Remove-EntraBetaFeatureRolloutPolicy command.
 
 
