@@ -1,5 +1,5 @@
 ---
-title: Add-EntraBetaAdministrativeUnitMember.
+title: Add-EntraBetaAdministrativeUnitMember
 description: This article provides details on the Add-EntraBetaAdministrativeUnitMember command.
 
 

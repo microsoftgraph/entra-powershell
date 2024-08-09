@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaDirectorySettingTemplate.
+title: Get-EntraBetaDirectorySettingTemplate
 description: This article provides details on the Get-EntraBetaDirectorySettingTemplate command.
 
 ms.topic: reference

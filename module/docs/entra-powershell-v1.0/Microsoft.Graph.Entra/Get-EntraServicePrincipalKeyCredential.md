@@ -1,5 +1,5 @@
 ---
-title:  Get-EntraServicePrincipalKeyCredential.
+title:  Get-EntraServicePrincipalKeyCredential
 description: This article provides details on the  Get-EntraServicePrincipalKeyCredential Command.
 
 

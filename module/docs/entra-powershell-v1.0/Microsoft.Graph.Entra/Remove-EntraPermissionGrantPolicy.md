@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraPermissionGrantPolicy.
+title: Remove-EntraPermissionGrantPolicy
 description: This article provides details on the Remove-EntraPermissionGrantPolicy command.
 
 

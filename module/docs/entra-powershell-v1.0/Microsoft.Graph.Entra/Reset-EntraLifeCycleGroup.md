@@ -1,5 +1,5 @@
 ---
-title: Reset-EntraLifeCycleGroup.
+title: Reset-EntraLifeCycleGroup
 description: This article provides details on the Reset-EntraLifeCycleGroup command.
 
 

@@ -1,5 +1,5 @@
 ---
-title: New-EntraServicePrincipal.
+title: New-EntraServicePrincipal
 description: This article provides details on the New-EntraServicePrincipal command.
 
 

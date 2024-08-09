@@ -64,7 +64,7 @@ The Get-EntraUser cmdlet gets a user from Microsoft Entra ID.
 ### Example 1: Get top three users
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
+Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUser -Top 3
 ```
 
@@ -81,7 +81,7 @@ This example demonstrates how to get top three users from Microsoft Entra ID.
 ### Example 2: Get a user by ID
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
+Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUser -ObjectId 'cccccccc-2222-3333-4444-dddddddddddd'
 ```
 
@@ -96,7 +96,7 @@ This example demonstrates how to retrieve specific user by providing ID.
 ### Example 3: Search among retrieved users
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
+Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUser -SearchString 'New'
 ```
 
@@ -112,7 +112,7 @@ This cmdlet gets all users that match the value of SearchString against the firs
 ### Example 4: Get a user by userPrincipalName
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
+Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUser -Filter "UserPrincipalName eq 'NewUser@contoso.com'"
 ```
 
@@ -127,7 +127,7 @@ In this example, we retrieve user by `UserPrincipalName` from Microsoft Entra ID
 ### Example 5: Get a user by MailNickname
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
+Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUser -Filter "startswith(MailNickname,'Ada')"
 ```
 
@@ -138,6 +138,24 @@ Mark Adams bbbbbbbb-1111-2222-3333-cccccccccccc Adams@contoso.com Adams@contoso.
 ```
 
 In this example, we retrieve all users whose MailNickname starts with Ada.
+
+### Example 6: Get SignInActivity of a User
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
+Get-EntraUser -ObjectId 'cccccccc-2222-3333-4444-dddddddddddd' -Property 'SignInActivity' | Select-Object -ExpandProperty 'SignInActivity'
+```
+
+```output
+lastNonInteractiveSignInRequestId : bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa 
+lastNonInteractiveSignInDateTime  : 7/31/2024 1:20:28 PM
+lastSuccessfulSignInRequestId     : bbbbbbbb-1111-2222-3333-cccccccccccc 
+lastSignInDateTime                : 7/31/2024 8:18:35 AM
+lastSignInRequestId               : bbbbbbbb-1111-2222-3333-dddddddddddd 
+lastSuccessfulSignInDateTime      : 7/31/2024 1:20:28 PM
+```
+
+This example demonstrates how to retrieve the SignInActivity of a specific user by selecting a property.
 
 ## Parameters
 
