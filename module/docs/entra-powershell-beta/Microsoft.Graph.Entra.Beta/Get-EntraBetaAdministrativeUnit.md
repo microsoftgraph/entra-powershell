@@ -2,6 +2,7 @@
 title: Get-EntraBetaAdministrativeUnit
 description: This article provides details on the Get-EntraBetaAdministrativeUnit command.
 
+
 ms.topic: reference
 ms.date: 07/02/2024
 ms.author: eunicewaweru
@@ -162,8 +163,6 @@ Accept wildcard characters: False
 
 Specifies an OData v4.0 filter statement.
 This parameter filters which objects are returned.
-
-For more information about OData v4.0 filter expressions, see https://msdn.microsoft.com/library/hh169248%28v=nav.90%29.aspx
 
 ```yaml
 Type: System.String

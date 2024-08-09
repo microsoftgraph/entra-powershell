@@ -2,6 +2,7 @@
 title: Add-EntraBetaScopedRoleMembership
 description: This article provides details on the Add-EntraBetaScopedRoleMembership command.
 
+
 ms.topic: reference
 ms.date: 08/06/2024
 ms.author: eunicewaweru
@@ -44,13 +45,13 @@ For delegated scenarios, the calling user needs at least the Privileged Role Adm
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$User = Get-EntraBetaUser -SearchString '<user-name>'
-$Role = Get-EntraBetaDirectoryRole | Where-Object -Property DisplayName -EQ -Value '<directory-role-name>'
-$Unit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-name>'"
+$User = Get-EntraBetaUser -SearchString 'MarkWood'
+$Role = Get-EntraBetaDirectoryRole -Filter "DisplayName eq '<directory-role-display-name>'" 
+$Unit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
 $RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
 $RoleMember.ObjectId = $User.ObjectId
 $params = @{
-    ObjectId = $unit.ObjectId
+    ObjectId = $Unit.ObjectId
     RoleObjectId = $Role.ObjectId
     RoleMemberInfo = $RoleMember
 }

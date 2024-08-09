@@ -2,12 +2,14 @@
 title: Remove-EntraBetaApplicationExtensionProperty
 description: This article provides details on the Remove-EntraBetaApplicationExtensionProperty command.
 
+
 ms.topic: reference
 ms.date: 08/06/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaApplicationExtensionProperty
@@ -43,7 +45,7 @@ Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 $Application = Get-EntraBetaApplication -SearchString '<application-name>'
 $params = @{
-    ObjectId = $Application.Id
+    ObjectId = $Application.ObjectId
     ExtensionPropertyId = 'cccc2222-dd33-4444-55ee-666666ffffff'
 }
 

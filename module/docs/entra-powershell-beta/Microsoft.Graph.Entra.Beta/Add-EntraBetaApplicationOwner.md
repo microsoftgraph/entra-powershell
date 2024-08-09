@@ -2,6 +2,7 @@
 title: Add-EntraBetaApplicationOwner
 description: This article provides details on the Add-EntraBetaApplicationOwner command.
 
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru

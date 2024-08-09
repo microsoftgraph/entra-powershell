@@ -2,6 +2,7 @@
 title: Add-EntraBetaAdministrativeUnitMember
 description: This article provides details on the Add-EntraBetaAdministrativeUnitMember command.
 
+
 ms.topic: reference
 ms.date: 08/05/2024
 ms.author: eunicewaweru
@@ -43,11 +44,11 @@ To add a user, group, or device to an administrative unit, the calling principal
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-name>'"
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
 $User = Get-EntraBetaUser -SearchString '<user-name>'
 $params = @{
-    RefObjectId = $AdministrativeUnit.Id
-    ObjectId = $User.Id
+    ObjectId = $AdministrativeUnit.ObjectId
+    RefObjectId = $User.ObjectId
 }
 Add-EntraBetaAdministrativeUnitMember @params
 ```

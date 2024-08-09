@@ -2,12 +2,14 @@
 title: New-EntraBetaApplicationExtensionProperty
 description: This article provides details on the New-EntraBetaApplicationExtensionProperty command.
 
+
 ms.topic: reference
 ms.date: 08/06/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaApplicationExtensionProperty
@@ -45,7 +47,7 @@ Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 $Application = Get-EntraBetaApplication -SearchString '<application-name>'
 $params = @{
-    ObjectId = $Application.Id
+    ObjectId = $Application.ObjectId
     Name = 'NewAttribute'
 }
 
@@ -70,7 +72,7 @@ Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 $Application = Get-EntraBetaApplication -SearchString '<application-name>'
 $params = @{
-    ObjectId = $Application.Id
+    ObjectId = $Application.ObjectId
     Name = 'NewAttribute'
     DataType = 'Boolean'
 }
@@ -99,7 +101,7 @@ $Application = Get-EntraBetaApplication -SearchString '<application-name>'
 $targets = New-Object System.Collections.Generic.List[System.String]
 $targets.Add('User')
 $params = @{
-    ObjectId = $Application.Id
+    ObjectId = $Application.ObjectId
     Name = 'NewAttribute'
     TargetObjects = $targets
 }

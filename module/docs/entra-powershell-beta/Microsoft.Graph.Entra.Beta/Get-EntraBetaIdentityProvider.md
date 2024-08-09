@@ -2,11 +2,13 @@
 title: Get-EntraBetaIdentityProvider
 description: This article provides details on the Get-EntraBetaIdentityProvider command.
 
+
 ms.topic: reference
 ms.date: 08/06/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaIdentityProvider
@@ -80,7 +82,7 @@ Get-EntraBetaIdentityProvider -Id 'Google-OAUTH'
 ```Output
 Id           DisplayName
 --           -----------
-Google-OAUTH Test
+Google-OAUTH GoogleName
 ```
 
 This example retrieves the properties for the specified identity provider.

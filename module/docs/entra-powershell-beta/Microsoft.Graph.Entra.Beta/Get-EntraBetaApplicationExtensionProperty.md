@@ -2,6 +2,7 @@
 title: Get-EntraBetaApplicationExtensionProperty
 description: This article provides details on the Get-EntraBetaApplicationExtensionProperty command.
 
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -41,13 +42,13 @@ The `Get-EntraBetaApplicationExtensionProperty` cmdlet gets application extensio
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $Application = Get-EntraBetaApplication -SearchString '<application-name>'
-Get-EntraBetaApplicationExtensionProperty -ObjectId $Application.Id
+Get-EntraBetaApplicationExtensionProperty -ObjectId $Application.ObjectId
 ```
 
 ```Output
-ObjectId                             Name                                                    TargetObjects
---------                             ----                                                    -------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Newextension                                                {}
+DeletedDateTime Id                                   AppDisplayName DataType IsMultiValued IsSyncedFromOnPremises Name                                                    TargetObjects
+--------------- --                                   -------------- -------- ------------- ---------------------- ----                                                    -------------
+                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb                Boolean  False         False                  extension_c371a443f6734a3e8982a26357fb7d59_NewAttribute {User}
 ```
 
 This command gets the extension properties for the specified application in Microsoft Entra ID. You cane use the command `Get-EntraBetaApplication` to get application Id.

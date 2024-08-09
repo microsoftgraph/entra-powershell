@@ -2,6 +2,7 @@
 title: Get-EntraBetaScopedRoleMembership
 description: This article provides details on the Get-EntraBetaScopedRoleMembership command.
 
+
 ms.topic: reference
 ms.date: 07/05/2024
 ms.author: eunicewaweru
@@ -42,9 +43,9 @@ The `Get-EntraBetaScopedRoleMembership` cmdlet lists Microsoft Entra role assign
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-name>'"
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
 $params = @{
-    ObjectId = $AdministrativeUnit.Id
+    ObjectId = $AdministrativeUnit.ObjectId
     ScopedRoleMembershipId = 'dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc'
 }
 Get-EntraBetaScopedRoleMembership @params
@@ -82,7 +83,7 @@ This example list scoped administrators with objectId.
 
 ### -ObjectId
 
-Specifies the ID of an object.
+Specifies the ID of an administrative unit object.
 
 ```yaml
 Type: System.String

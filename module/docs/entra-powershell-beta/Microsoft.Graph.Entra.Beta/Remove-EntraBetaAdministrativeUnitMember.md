@@ -2,6 +2,7 @@
 title: Remove-EntraBetaAdministrativeUnitMember
 description: This article provides details on the Remove-EntraBetaAdministrativeUnitMember command.
 
+
 ms.topic: reference
 ms.date: 07/04/2024
 ms.author: eunicewaweru
@@ -41,9 +42,9 @@ The `Remove-EntraBetaAdministrativeUnitMember` cmdlet removes an administrative 
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-name>'"
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
 $params = @{
-    ObjectId = $AdministrativeUnit.Id
+    ObjectId = $AdministrativeUnit.ObjectId
     MemberId = 'eeeeeeee-4444-5555-6666-ffffffffffff'
 }
 Remove-EntraBetaAdministrativeUnitMember @params

@@ -2,6 +2,7 @@
 title: New-EntraBetaAdministrativeUnit
 description: This article provides details on the New-EntraBetaAdministrativeUnit command.
 
+
 ms.topic: reference
 ms.date: 07/03/2024
 ms.author: eunicewaweru

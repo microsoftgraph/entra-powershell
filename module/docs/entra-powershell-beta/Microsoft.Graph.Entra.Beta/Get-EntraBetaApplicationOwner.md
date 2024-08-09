@@ -2,11 +2,13 @@
 title: Get-EntraBetaApplicationOwner
 description: This article provides details on the Get-EntraBetaApplicationOwner command.
 
+
 ms.topic: reference
 ms.date: 08/06/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaApplicationOwner
@@ -43,7 +45,7 @@ The `Get-EntraBetaApplicationOwner` cmdlet get an owner of an Microsoft Entra ID
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 $Application = Get-EntraBetaApplication -SearchString '<application-name>'
-Get-EntraBetaApplicationOwner -ObjectId $Application.Id
+Get-EntraBetaApplicationOwner -ObjectId $Application.ObjectId
 ```
 
 ```Output
@@ -65,7 +67,7 @@ This example demonstrates how to get the owners of an application in Microsoft E
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 $Application = Get-EntraBetaApplication -SearchString '<application-name>'
-Get-EntraBetaApplicationOwner -ObjectId $Application.Id -All
+Get-EntraBetaApplicationOwner -ObjectId $Application.ObjectId -All
 ```
 
 ```Output
@@ -87,7 +89,7 @@ This example demonstrates how to get the all owners of a specified application i
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
 $Application = Get-EntraBetaApplication -SearchString '<application-name>'
-Get-EntraBetaApplicationOwner -ObjectId $Application.Id -Top 2
+Get-EntraBetaApplicationOwner -ObjectId $Application.ObjectId -Top 2
 ```
 
 ```Output
