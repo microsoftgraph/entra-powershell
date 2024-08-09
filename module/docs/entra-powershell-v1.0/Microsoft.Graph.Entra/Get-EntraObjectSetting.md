@@ -1,16 +1,18 @@
 ---
-title: Get-EntraObjectSetting.
+title: Get-EntraObjectSetting
 description: This article provides details on the Get-EntraObjectSetting command.
-ms.service: entra
+
+
 ms.topic: reference
 ms.date: 07/03/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraObjectSetting
 schema: 2.0.0
 ---
 
@@ -45,7 +47,7 @@ Get-EntraObjectSetting
 
 ## Description
 
-The `Get-EntraObjectSetting` cmdlet Retrieve an object setting from Microsoft Entra ID. Specify `-TargetType` and `-TargetObjectId` parameter to get an object setting.
+The `Get-EntraObjectSetting` cmdlet Retrieve an object setting from Microsoft Entra ID.
 
 ## Examples
 
