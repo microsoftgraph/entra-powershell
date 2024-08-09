@@ -13,7 +13,12 @@
         $keysChanged = @{}
         if($null -ne $PSBoundParameters["InvitedUser"])
         {
-            $params["InvitedUser"] = $PSBoundParameters["InvitedUser"]
+            $TmpValue = $PSBoundParameters["InvitedUser"]
+            $Temp = @{}
+            foreach ($property in $TmpValue.PSObject.Properties) {
+                $Temp[$property.Name] = $property.Value
+            }
+            $params["InvitedUser"] = $Temp
         }
         if($null -ne $PSBoundParameters["InvitedUserMessageInfo"])
         {
@@ -101,7 +106,7 @@
     
             }
         }
-        $response | ConvertTo-Json -Depth 2 | ConvertFrom-Json
-        }
+        $response
+    }
 '@
 }

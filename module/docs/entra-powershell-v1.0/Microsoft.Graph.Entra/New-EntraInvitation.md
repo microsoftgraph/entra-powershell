@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraInvitation
@@ -64,20 +65,9 @@ New-EntraInvitation @params
 ```
 
 ```Output
-Id                      : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-InviteRedeemUrl         : https://login.microsoftonline.com/redeem?...
-InviteRedirectUrl       : https://myapps.onmicrosoft.com/
-InvitedUser             : @{AboutMe=; AccountEnabled=; Activities=; AgeGroup=; AgreementAcceptances=; AppRoleAssignments=; AssignedLicenses=;
-                          UserType=}
-InvitedUserDisplayName  :
-InvitedUserEmailAddress : someexternaluser@externaldomain.com
-InvitedUserMessageInfo  : @{CcRecipients=System.Object[]; CustomizedMessageBody=; MessageLanguage=}
-InvitedUserType         : Guest
-ResetRedemption         : False
-SendInvitationMessage   : True
-Status                  : PendingAcceptance
-ObjectId                : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-AdditionalProperties    : @{@odata.context=https://graph.microsoft.com/v1.0/$metadata#invitations/$entity}
+Id                                   InviteRedeemUrl
+--                                   ---------------
+9e2b9f02-c2cb-4832-920d-81959f44e397 https://login.microsoftonline.com/redeem?rd=https%3a%2f%2finvitations.microsoft.com%2fredeem%2f%3ftenant%3dd5aec55f-2d12-4442-8d2f-cc…
 ```
 
 This example sent an email to the user who's email address is in the -InvitedUserEmailAddress parameter.
@@ -99,21 +89,9 @@ New-EntraInvitation @params
 ```
 
 ```Output
-Id                      : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-InviteRedeemUrl         : https://login.microsoftonline.com/redeem?...
-InviteRedirectUrl       : https://myapps.onmicrosoft.com/
-InvitedUser             : @{AboutMe=; AccountEnabled=; Activities=; AgeGroup=; AgreementAcceptances=; AppRoleAssignments=; AssignedLicenses=;
-                          UserType=}
-InvitedUserDisplayName  : microsoftuser
-InvitedUserEmailAddress : someexternaluser@externaldomain.com
-InvitedUserMessageInfo  : @{CcRecipients=System.Object[]; CustomizedMessageBody=; MessageLanguage=}
-InvitedUserType         : Guest
-ResetRedemption         : False
-SendInvitationMessage   : True
-Status                  : PendingAcceptance
-ObjectId                : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-AdditionalProperties    : @{@odata.context=https://graph.microsoft.com/v1.0/$metadata#invitations/$entity}
-
+Id                                   InviteRedeemUrl
+--                                   ---------------
+9e2b9f02-c2cb-4832-920d-81959f44e397 https://login.microsoftonline.com/redeem?rd=https%3a%2f%2finvitations.microsoft.com%2fredeem%2f%3ftenant%3dd5aec55f-2d12-4442-8d2f-cc…
 ```
 
 This example demonstrates how to invite a new external user to your directory with InvitedUserDisplayName parameter.
@@ -136,20 +114,9 @@ New-EntraInvitation @params
 ```
 
 ```Output
-Id                      : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-InviteRedeemUrl         : https://login.microsoftonline.com/redeem?...
-InviteRedirectUrl       : https://myapps.microsoft.com/
-InvitedUser             : @{AboutMe=; AccountEnabled=; Activities=; AgeGroup=; AgreementAcceptances=; AppRoleAssignments=; AssignedLicenses=;
-                          UserType=}
-InvitedUserDisplayName  :
-InvitedUserEmailAddress : someexternaluser@externaldomain.com
-InvitedUserMessageInfo  : @{CcRecipients=System.Object[]; CustomizedMessageBody=Hi there, how are you; MessageLanguage=EN}
-InvitedUserType         : Guest
-ResetRedemption         : False
-SendInvitationMessage   : True
-Status                  : PendingAcceptance
-ObjectId                : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-AdditionalProperties    : @{@odata.context=https://graph.microsoft.com/v1.0/$metadata#invitations/$entity}
+Id                                   InviteRedeemUrl
+--                                   ---------------
+9e2b9f02-c2cb-4832-920d-81959f44e397 https://login.microsoftonline.com/redeem?rd=https%3a%2f%2finvitations.microsoft.com%2fredeem%2f%3ftenant%3dd5aec55f-2d12-4442-8d2f-cc…
 ```
 
 This example demonstrates how to invite a new external user to your directory with InvitedUserMessageInfo parameter.
@@ -169,20 +136,9 @@ New-EntraInvitation @params
 ```
 
 ```Output
-Id                      : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-InviteRedeemUrl         : https://login.microsoftonline.com/redeem?...
-InviteRedirectUrl       : https://myapps.microsoft.com/
-InvitedUser             : @{AboutMe=; AccountEnabled=; Activities=; AgeGroup=; AgreementAcceptances=; AppRoleAssignments=; AssignedLicenses=;
-                          UserType=}
-InvitedUserDisplayName  :
-InvitedUserEmailAddress : someexternaluser@externaldomain.com
-InvitedUserMessageInfo  : @{CcRecipients=System.Object[]; CustomizedMessageBody=; MessageLanguage=}
-InvitedUserType         : Guest
-ResetRedemption         : False
-SendInvitationMessage   : True
-Status                  : PendingAcceptance
-ObjectId                : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-AdditionalProperties    : @{@odata.context=https://graph.microsoft.com/v1.0/$metadata#invitations/$entity}
+Id                                   InviteRedeemUrl
+--                                   ---------------
+9e2b9f02-c2cb-4832-920d-81959f44e397 https://login.microsoftonline.com/redeem?rd=https%3a%2f%2finvitations.microsoft.com%2fredeem%2f%3ftenant%3dd5aec55f-2d12-4442-8d2f-cc…
 ```
 
 This example demonstrates how to invite a new external user to your directory with InvitedUserType parameter.

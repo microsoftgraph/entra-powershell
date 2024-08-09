@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraDirectoryRoleMember
@@ -52,6 +53,8 @@ bbbbbbbb-7777-8888-9999-cccccccccccc
 
 This command demonstrates how to get the members of the specified role.
 
+- `-ObjectId` parameter specifies the ID of a directory role.
+
 ## Parameters
 
 ### -ObjectId
@@ -72,7 +75,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
