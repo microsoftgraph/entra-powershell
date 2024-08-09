@@ -72,6 +72,8 @@ DeletedDateTime Description                               DisplayName           
 
 This command gets the specified permission grant policy.
 
+- `Id` parameter specifies the permission grant policy ID.
+
 ## Parameters
 
 ### -Id

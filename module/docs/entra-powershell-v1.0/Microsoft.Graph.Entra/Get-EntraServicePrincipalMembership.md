@@ -1,5 +1,5 @@
 ---
-title: Get-EntraServicePrincipalMembership.
+title: Get-EntraServicePrincipalMembership
 description: This article provides details on the Get-EntraServicePrincipalMembership command.
 
 

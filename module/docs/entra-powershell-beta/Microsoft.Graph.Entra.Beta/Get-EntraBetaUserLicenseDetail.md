@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaUserLicenseDetail.
+title: Get-EntraBetaUserLicenseDetail
 description: This article provides details on the Get-EntraBetaUserLicenseDetail command.
 
 ms.topic: reference

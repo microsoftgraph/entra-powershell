@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaAdministrativeUnitMember.
+title: Remove-EntraBetaAdministrativeUnitMember
 description: This article provides details on the Remove-EntraBetaAdministrativeUnitMember command.
 
 

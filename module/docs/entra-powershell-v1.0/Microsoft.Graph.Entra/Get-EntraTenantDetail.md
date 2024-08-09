@@ -1,5 +1,5 @@
 ---
-title: Get-EntraTenantDetail.
+title: Get-EntraTenantDetail
 description: This article provides details on the Get-EntraTenantDetail command.
 
 

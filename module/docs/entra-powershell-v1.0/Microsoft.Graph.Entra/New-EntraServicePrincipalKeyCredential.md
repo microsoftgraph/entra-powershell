@@ -1,5 +1,5 @@
 ---
-title: New-EntraServicePrincipalKeyCredential.
+title: New-EntraServicePrincipalKeyCredential
 description: This article provides details on the New-EntraServicePrincipalKeyCredential command.
 
 

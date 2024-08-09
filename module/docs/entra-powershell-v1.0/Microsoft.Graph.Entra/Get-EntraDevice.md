@@ -1,5 +1,5 @@
 ---
-title: Get-EntraDevice.
+title: Get-EntraDevice
 description: This article provides details on the Get-EntraDevice command.
 
 
