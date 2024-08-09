@@ -1,5 +1,5 @@
 ---
-title:  Get-EntraServicePrincipalOwnedObject
+title: Get-EntraServicePrincipalOwnedObject
 description: This article provides details on the  Get-EntraServicePrincipalOwnedObject Command.
 
 
@@ -9,8 +9,8 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
-external help file: Microsoft.Graph.Entra-Help.xml
 
+external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraServicePrincipalOwnedObject
 
@@ -36,7 +36,7 @@ Get-EntraServicePrincipalOwnedObject
 
 ## Description
 
-The `Get-EntraServicePrincipalOwnedObject` cmdlet retrieves an object owned by a service principal in Microsoft Entra ID. Specify `ObjectId` parameter retrieve an object owned by a service principal.
+The `Get-EntraServicePrincipalOwnedObject` cmdlet retrieves an object owned by a service principal in Microsoft Entra ID.
 
 ## Examples
 
