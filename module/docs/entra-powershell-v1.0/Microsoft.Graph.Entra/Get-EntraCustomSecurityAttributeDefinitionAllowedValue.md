@@ -2,12 +2,14 @@
 title: Get-EntraCustomSecurityAttributeDefinitionAllowedValue.
 description: This article provides details on the Get-EntraCustomSecurityAttributeDefinitionAllowedValue command.
 
+
 ms.topic: reference
-ms.date: 07/23/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraCustomSecurityAttributeDefinitionAllowedValue
@@ -55,7 +57,7 @@ The signed-in user must be assigned one of the following directory roles:
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$CustomSecurityAttributeDefinitionId  = Get-EntraCustomSecurityAttributeDefinition -Id <attributename_attributedefinition>
+$CustomSecurityAttributeDefinitionId  = Get-EntraCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>'
 Get-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId $CustomSecurityAttributeDefinitionId
 ```
 
@@ -73,7 +75,7 @@ This example retrieves an all predefined values.
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$CustomSecurityAttributeDefinitionId  = Get-EntraCustomSecurityAttributeDefinition -Id <attributename_attributedefinition>
+$CustomSecurityAttributeDefinitionId  = Get-EntraCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>'
 $params = @{
     CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinitionId
     Id = 'Alpine'
@@ -96,7 +98,7 @@ This example retrieves a specific predefined value.
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$CustomSecurityAttributeDefinitionId  = Get-EntraCustomSecurityAttributeDefinition -Id <attributename_attributedefinition>
+$CustomSecurityAttributeDefinitionId  = Get-EntraCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>'
 $params = @{
     CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinitionId
     Filter = "Id eq 'Apline'"
