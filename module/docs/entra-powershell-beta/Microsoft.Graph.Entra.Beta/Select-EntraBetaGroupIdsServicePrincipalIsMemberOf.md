@@ -1,6 +1,7 @@
 ---
-title: Select-EntraBetaGroupIdsServicePrincipalIsMemberOf.
+title: Select-EntraBetaGroupIdsServicePrincipalIsMemberOf
 description: This article provides details on the Select-EntraBetaGroupIdsServicePrincipalIsMemberOf command.
+
 
 ms.topic: reference
 ms.date: 07/31/2024
@@ -42,9 +43,9 @@ The `Select-EntraBetaGroupIdsServicePrincipalIsMemberOf` cmdlet selects the grou
 ```powershell
  Connect-Entra -Scopes 'Application.Read.All'
  $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
- $Groups.GroupIds = (Get-EntraBetaGroup -Top 1).ObjectId
- $SPId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
- Select-EntraBetaGroupIdsServicePrincipalIsMemberOf -ObjectId $SPId -GroupIdsForMembershipCheck $Groups
+ $Groups.GroupIds = (Get-EntraBetaGroup -Top 10).ObjectId
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+ Select-EntraBetaGroupIdsServicePrincipalIsMemberOf -ObjectId $ServicePrincipal.ObjectId -GroupIdsForMembershipCheck $Groups
 ```
 
 ```Output
