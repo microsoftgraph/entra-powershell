@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaGroupOwner.
+title: Get-EntraBetaGroupOwner
 description: This article provides details on the Get-EntraBetaGroupOwner command.
 
 ms.topic: reference

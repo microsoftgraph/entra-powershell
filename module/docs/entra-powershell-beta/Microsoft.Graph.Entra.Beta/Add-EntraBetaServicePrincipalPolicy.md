@@ -1,5 +1,5 @@
 ---
-title: Add-EntraBetaServicePrincipalPolicy.
+title: Add-EntraBetaServicePrincipalPolicy
 description: This article provides details on the Add-EntraBetaServicePrincipalPolicy command.
 
 

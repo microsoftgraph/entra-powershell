@@ -1,5 +1,5 @@
 ---
-title: Set-EntraBetaPasswordSingleSignOnCredential.
+title: Set-EntraBetaPasswordSingleSignOnCredential
 description: This article provides details on the Set-EntraBetaPasswordSingleSignOnCredential command.
 
 ms.topic: reference

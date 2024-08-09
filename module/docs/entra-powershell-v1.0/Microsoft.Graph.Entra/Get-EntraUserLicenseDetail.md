@@ -1,5 +1,5 @@
 ---
-title: Get-EntraUserLicenseDetail.
+title: Get-EntraUserLicenseDetail
 description: This article provides details on the Get-EntraUserLicenseDetail command.
 
 

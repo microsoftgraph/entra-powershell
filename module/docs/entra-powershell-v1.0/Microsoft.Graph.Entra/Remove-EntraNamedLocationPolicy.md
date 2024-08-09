@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraNamedLocationPolicy.
+title: Remove-EntraNamedLocationPolicy
 description: This article provides details on the Remove-EntraNamedLocationPolicy command.
 
 
