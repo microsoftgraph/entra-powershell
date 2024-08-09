@@ -1,5 +1,5 @@
 ---
-title: Revoke-EntraSignedInUserAllRefreshToken.
+title: Revoke-EntraSignedInUserAllRefreshToken
 description: This article provides details on the Revoke-EntraSignedInUserAllRefreshToken command.
 
 

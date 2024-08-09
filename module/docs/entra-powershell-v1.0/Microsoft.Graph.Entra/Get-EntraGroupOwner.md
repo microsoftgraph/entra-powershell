@@ -1,5 +1,5 @@
 ---
-title: Get-EntraGroupOwner.
+title: Get-EntraGroupOwner
 description: This article provides details on the Get-EntraGroupOwner command.
 
 
