@@ -1,6 +1,7 @@
 ---
-title: Set-EntraBetaUser.
+title: Set-EntraBetaUser
 description: This article provides details on the Set-EntraBetaUser command.
+
 
 ms.topic: reference
 ms.date: 07/29/2024
@@ -68,9 +69,12 @@ The `Set-EntraBetaUser` cmdlet updates a user in Microsoft Entra ID. Specify the
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$user = Get-EntraBetaUser -ObjectId 'TestUser@example.com' 
-$user.DisplayName = 'YetAnotherTestUser' 
-Set-EntraUser -ObjectId 'TestUser@example.com' -Displayname $user.Displayname
+$user = Get-EntraBetaUser -SearchString '<user-display-name>'
+$params = @{
+   ObjectId = $user.ObjectId
+   DisplayName = 'Updated user Name'
+}
+Set-EntraBetaUser @params
 ```
 
 This example updates the specified user's Display name parameter.
@@ -81,7 +85,11 @@ This example updates the specified user's Display name parameter.
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Set-EntraBetaUser -ObjectId 'aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb' -AccountEnabled $true
+$params = @{
+   ObjectId = 'aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb'
+   AccountEnabled = $true
+}
+Set-EntraBetaUser @params
 ```
 
 This example updates the specified user's AccountEnabled parameter.
@@ -89,11 +97,12 @@ This example updates the specified user's AccountEnabled parameter.
 - `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
 - `-AccountEnabled` Specifies whether the account is enabled.
 
-### Example 3: Set all but specified user's ConsentProvidedForMinor parameter
+### Example 3: Set all but specified users as minors with parental consent
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Get-EntraBetaUser -Top 1  | Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } | ForEach-Object  { Set-EntraBetaUser -ObjectId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
+Get-EntraBetaUser -All  | Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } | 
+ForEach-Object  { Set-EntraBetaUser -ObjectId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
 ```
 
 This example updates the specified user's as minors with parental consent.
@@ -101,33 +110,57 @@ This example updates the specified user's as minors with parental consent.
 - `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
 - `-ConsentProvidedForMinor` Sets whether consent has to obtained for minors. Allowed values: null, granted, denied, and notRequired.
 
-### Example 4: Set the specified user's parameter
+### Example 4: Set the specified user's property
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-Set-EntraBetaUser -ObjectId 'aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb' -City 'Add city name' -CompanyName 'Microsoft' -ConsentProvidedForMinor 'Granted' -Country 'Add country name' -Department 'Add department name' -GivenName 'Mircosoft' -ImmutableId '#1' -JobTitle 'Manager' -MailNickName 'Add mailnickname' -Mobile '9984534564' -OtherMails 'test12@M365x99297270.OnMicrosoft.com' -PasswordPolicies 'DisableStrongPassword' -State 'UP' -StreetAddress 'Add address' -UserType 'Member'
+$params = @{
+   ObjectId = 'aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb'
+   City = 'Add city name'
+   CompanyName = 'Microsoft'
+   Country = 'Add country name'
+   Department = 'Add department name'
+   GivenName = 'Mircosoft'
+   ImmutableId = '#1' 
+   JobTitle = 'Manager'
+   MailNickName = 'Add mailnickname'
+   Mobile = '9984534564'
+   OtherMails = 'test12@M365x99297270.OnMicrosoft.com'
+   PasswordPolicies = 'DisableStrongPassword'
+   State = 'UP'
+   StreetAddress = 'Add address'
+   UserType = 'Member'
+}
+Set-EntraBetaUser @params
 ```
 
-This example updates the specified user's parameter.
+This example updates the specified user's property.
 
 - `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
 - `-UserType` classify user types in your directory, such as "Member" and "Guest."
+- `-PasswordPolicies` Specifies password policies for the user.
+- `-OtherMails` Specifies other email addresses for the user
 
 ### Example 5: Set the specified user's PasswordProfile parameter
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$a = @{
-   Password= "*****"
+$user = Get-EntraBetaUser -SearchString '<user-display-name>'
+$params= @{
+ObjectId = $user.ObjectId
+PasswordProfile  = @{
+   Password= '*****'
    ForceChangePasswordNextLogin = $true
    EnforceChangePasswordPolicy = $false
    }
-Set-EntraBetaUser -ObjectId 'aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb' -PasswordProfile $a
+}
+Set-EntraBetaUser @params
 ```
 
 This example updates the specified user's PasswordProfile parameter.
 
 - `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
+- `-PasswordProfile` specifies the user's password profile.
 
 ## Parameters
 
