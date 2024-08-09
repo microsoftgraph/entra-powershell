@@ -1,6 +1,7 @@
 ---
-title: Get-EntraAdministrativeUnit.
+title: Get-EntraAdministrativeUnit
 description: This article provides details on the Get-EntraAdministrativeUnit command.
+
 
 ms.topic: reference
 ms.date: 06/26/2024
