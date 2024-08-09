@@ -2,8 +2,9 @@
 title: Get-EntraBetaDomainServiceConfigurationRecord
 description: This article provides details on the Get-EntraBetaDomainServiceConfigurationRecord command.
 
+
 ms.topic: reference
-ms.date: 07/29/2024
+ms.date: 07/31/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -54,7 +55,7 @@ bbbb1111-cc22-3333-44dd-555555eeeeee False      test.mail.contoso.com           
 cccc2222-dd33-4444-55ee-666666ffffff False      autodiscover.test.mail.contoso.com           CName      Email                      3600
 dddd3333-ee44-5555-66ff-777777aaaaaa False      msoid.test.mail.contoso.com                  CName      OrgIdAuthentication        3600
 eeee4444-ff55-6666-77aa-888888bbbbbb False      enterpriseregistration.test.mail.contoso.com CName      Intune                     3600
-ffff5555-aa66-7777-88bb-999999cccccc False      enterpriseenrollment.test.mail.contoso.com   CName      Intune 
+ffff5555-aa66-7777-88bb-999999cccccc False      enterpriseenrollment.test.mail.contoso.com   CName      Intune                     3600
 ```
 
 This example shows how to retrieve the Domain service configuration records for a domain with the given name.

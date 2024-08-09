@@ -2,6 +2,7 @@
 title: Get-EntraBetaServicePrincipalDelegatedPermissionClassification
 description: This article provides details on the Get-EntraBetaServicePrincipalDelegatedPermissionClassification command.
 
+
 ms.topic: reference
 ms.date: 07/29/2024
 ms.author: eunicewaweru
@@ -20,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Retreive the delegated permission classification objects on a service principal.
+Retrieve the delegated permission classification objects on a service principal.
 
 ## Syntax
 
@@ -56,7 +57,7 @@ The `Get-EntraBetaServicePrincipalDelegatedPermissionClassification` cmdlet retr
  Connect-Entra -Scopes 'Application.Read.All'
 $servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
 $params = @{
-  ServicePrincipalId = $servicePrincipal.Id
+  ServicePrincipalId = $servicePrincipal.ObjectId
 }
 Get-EntraBetaServicePrincipalDelegatedPermissionClassification @params
 ```
@@ -78,7 +79,7 @@ This command retrieves all delegated permission classifications from the service
 Connect-Entra -Scopes 'Application.Read.All'
 $servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
 $params = @{
-  ServicePrincipalId = $servicePrincipal.Id 
+  ServicePrincipalId = $servicePrincipal.ObjectId 
   Id = '5XBeIKarUkypdm0tRsSAQwE'
 }
 Get-EntraBetaServicePrincipalDelegatedPermissionClassification @params
@@ -101,7 +102,7 @@ This command retrieves the delegated permission classification by Id from the se
 Connect-Entra -Scopes 'Application.Read.All'
 $servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
 $params = @{
-  ServicePrincipalId = $servicePrincipal.Id  
+  ServicePrincipalId = $servicePrincipal.ObjectId  
   Filter = "PermissionName eq 'Sites.Read.All'"
 }
 Get-EntraBetaServicePrincipalDelegatedPermissionClassification @params
@@ -198,3 +199,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[Add-EntraBetaServicePrincipalDelegatedPermissionClassification](Add-EntraBetaServicePrincipalDelegatedPermissionClassification.md)
+
+[Remove-EntraBetaServicePrincipalDelegatedPermissionClassification](Remove-EntraBetaServicePrincipalDelegatedPermissionClassification.md)

@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaConditionalAccessPolicy.
+description: This article provides details on the Get-EntraBetaConditionalAccessPolicy command.
+
+
+ms.topic: reference
+ms.date: 07/30/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaConditionalAccessPolicy
@@ -9,7 +19,8 @@ schema: 2.0.0
 # Get-EntraBetaConditionalAccessPolicy
 
 ## Synopsis
-Gets an Azure Active Directory conditional access policy.
+
+Gets a Microsoft Entra ID conditional access policy.
 
 ## Syntax
 
@@ -31,44 +42,55 @@ Get-EntraBetaConditionalAccessPolicy
 ```
 
 ## Description
-This cmdlet allows an admin to get the Azure Active Directory conditional access policy.
+
+This cmdlet allows an admin to get the Microsoft Entra ID conditional access policy.
+
 Conditional access policies are custom rules that define an access scenario.
 
 ## Examples
 
-### Example 1: Retrieves a list of all conditional access policies in Azure AD.
-```
-PS C:\> Get-EntraBetaConditionalAccessPolicy
+### Example 1: Retrieves a list of all conditional access policies in Microsoft Entra ID
 
-          Id                      : 6b5e999b-0ba8-4186-a106-e0296c1c4358
-          DisplayName             : Demo app for documentation
-          CreatedDateTime         : 2019-09-26T23:12:16.0792706Z
-          ModifiedDateTime        : 2019-09-27T00:12:12.5986473Z
-          State                   : Disabled
+```powershell
+Connect-Entra -Scopes 'Policy.Read.All'
+Get-EntraBetaConditionalAccessPolicy
 ```
 
-This command retrieves a list of all conditional access policies in Azure AD.
-
-### Example 2: Retrieves a conditional access policy in Azure AD with given Id.
-```
-PS C:\> Get-EntraBetaConditionalAccessPolicy -PolicyId "6b5e999b-0ba8-4186-a106-e0296c1c4358"
-
-          Id                      : 6b5e999b-0ba8-4186-a106-e0296c1c4358
-          DisplayName             : Demo app for documentation
-          CreatedDateTime         : 2019-09-26T23:12:16.0792706Z
-          ModifiedDateTime        : 2019-09-27T00:12:12.5986473Z
-          State                   : Disabled
+```Output
+Id                                   CreatedDateTime      Description DisplayName                ModifiedDateTime     State    
+--                                   ---------------      ----------- -----------                ----------------     -----    
+eeeeeeee-4444-5555-6666-ffffffffffff 2/27/2024 6:23:21 AM             ConditionalAccessPolicy    2/29/2024 2:41:17 PM disabled
+ffffffff-5555-6666-7777-aaaaaaaaaaaa 2/27/2024 6:26:00 AM             ConditionalAccessPolicy    2/29/2024 2:41:34 PM disabled
+aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb 2/27/2024 6:30:48 AM             ConditionalAccessPolicy    2/29/2024 2:43:53 PM disabled
 ```
 
-This command retrieves a conditional access policy in Azure AD.
+This example retrieves a list of all conditional access policies in Microsoft Entra ID.
+
+### Example 2: Retrieves a conditional access policy in Microsoft Entra ID with given ID
+
+```powershell
+Connect-Entra -Scopes 'Policy.Read.All'
+Get-EntraBetaConditionalAccessPolicy -PolicyId 'eeeeeeee-4444-5555-6666-ffffffffffff'
+```
+
+```Output
+Id                                   CreatedDateTime      Description DisplayName                ModifiedDateTime     State    
+--                                   ---------------      ----------- -----------                ----------------     -----   
+eeeeeeee-4444-5555-6666-ffffffffffff 2/27/2024 6:23:21 AM             ConditionalAccessPolicy    2/29/2024 2:41:17 PM disabled
+```
+
+This example retrieves a specified conditional access policy in Microsoft Entra ID.
+
+- `-PolicyId` parameter specifies the Id of a conditional access policy.
 
 ## Parameters
 
 ### -PolicyId
-Specifies the ID of a conditional access policy in Azure Active Directory.
+
+Specifies the ID of a conditional access policy in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -81,7 +103,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -96,18 +118,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ## Outputs
 
 ## Notes
+
 ## Related Links
 
-[New-EntraBetaConditionalAccessPolicy]()
+[New-EntraBetaConditionalAccessPolicy](New-EntraBetaConditionalAccessPolicy.md)
 
-[Set-EntraBetaConditionalAccessPolicy]()
+[Set-EntraBetaConditionalAccessPolicy](Set-EntraBetaConditionalAccessPolicy.md)
 
-[Remove-EntraBetaConditionalAccessPolicy]()
-
+[Remove-EntraBetaConditionalAccessPolicy](Remove-EntraBetaConditionalAccessPolicy.md)

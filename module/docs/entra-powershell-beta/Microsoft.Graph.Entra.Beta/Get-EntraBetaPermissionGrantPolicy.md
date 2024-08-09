@@ -48,16 +48,7 @@ The `Get-EntraBetaPermissionGrantPolicy` cmdlet gets an Microsoft Entra ID permi
 
 ## Examples
 
-### Example 1: Get all permission grant policies
-
-```powershell
-Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-Get-EntraBetaPermissionGrantPolicy
-```
-
-This command gets all the permission grant policies.
-
-### Example 2: Get a permission grant policy by ID
+### Example 1: Get a permission grant policy by ID
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
@@ -94,7 +85,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
