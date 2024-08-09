@@ -1,6 +1,7 @@
 ---
-title: Get-EntraBetaApplicationPolicy.
+title: Get-EntraBetaApplicationPolicy
 description: This article provides details on the Get-EntraBetaApplicationPolicy command.
+
 
 ms.topic: reference
 ms.date: 07/05/2024
@@ -32,7 +33,7 @@ Get-EntraBetaApplicationPolicy
 
 ## Description
 
-The `Get-EntraBetaApplicationPolicy` cmdlet gets a Microsoft Entra ID application policy. Specify `Id` parameter to retrieve an application policy.
+The `Get-EntraBetaApplicationPolicy` cmdlet gets a Microsoft Entra ID application policy.
 
 ## Examples
 

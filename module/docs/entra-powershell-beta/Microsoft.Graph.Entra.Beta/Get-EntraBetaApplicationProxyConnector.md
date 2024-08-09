@@ -2,6 +2,7 @@
 title: Get-EntraBetaApplicationProxyConnector
 description: This article provides details on the Get-EntraBetaApplicationProxyConnector command.
 
+
 ms.topic: reference
 ms.date: 07/16/2024
 ms.author: eunicewaweru

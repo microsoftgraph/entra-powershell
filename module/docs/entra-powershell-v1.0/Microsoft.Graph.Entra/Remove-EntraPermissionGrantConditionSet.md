@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraPermissionGrantConditionSet.
+title: Remove-EntraPermissionGrantConditionSet
 description: This article provides details on the Remove-EntraPermissionGrantConditionSet command.
 
 

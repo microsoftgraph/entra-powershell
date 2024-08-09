@@ -115,8 +115,8 @@
                 "PermissionGrantPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphPermissionGrantPolicy }
                 "DefaultAppManagementPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphappManagementPolicy }
                 "AuthenticationFlowsPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphauthenticationFlowsPolicy }
-                "AuthenticationMethodsPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphauthenticationMethodsPolicy}
-                default { Write-Error "Unknown type: " + $res.type}
+                "AuthenticationMethodsPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphauthenticationMethodsPolicy }
+                default { Write-Error "Unknown type: '$res.type'" }
             }
 
             $res.PSObject.Properties | ForEach-Object {

@@ -1,6 +1,7 @@
 ---
-title: Get-EntraBetaUserManager.
+title: Get-EntraBetaUserManager
 description: This article provides details on the Get-EntraBetaUserManager command.
+
 
 ms.topic: reference
 ms.date: 06/20/2024

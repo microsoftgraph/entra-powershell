@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaApplication.
+title: Remove-EntraBetaApplication
 description: This article provides details on the Remove-EntraBetaApplication command.
 
 ms.topic: reference

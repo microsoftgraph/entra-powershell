@@ -37,7 +37,6 @@ Get-EntraBetaUserOwnedObject
 ## Description
 
 The `Get-EntraBetaUserOwnedObject` cmdlet gets objects owned by a user in Microsoft Entra ID.
-Specify `ObjectId` parameter to retrieve objects owned by a user.
 
 ## Examples
 
@@ -148,7 +147,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

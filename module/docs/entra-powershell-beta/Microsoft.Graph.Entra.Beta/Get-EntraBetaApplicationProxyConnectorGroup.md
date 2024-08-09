@@ -1,6 +1,7 @@
 ---
-title: Get-EntraBetaApplicationProxyConnectorGroup.
+title: Get-EntraBetaApplicationProxyConnectorGroup
 description: This article provides details on the Get-EntraBetaApplicationProxyConnectorGroup.
+
 
 ms.topic: reference
 ms.date: 07/16/2024
@@ -54,7 +55,7 @@ Get-EntraBetaApplicationProxyConnectorGroup
 
 ## Description
 
-The `Get-EntraBetaApplicationProxyConnectorGroup` cmdlet retrieves a list of all connector groups, or if specified, details of the specified connector group. Specify `Id` parameter for retrieve connector groups.
+The `Get-EntraBetaApplicationProxyConnectorGroup` cmdlet retrieves a list of all connector groups, or if specified, details of the specified connector group.
 
 ## Examples
 
