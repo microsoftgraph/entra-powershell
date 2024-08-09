@@ -1,5 +1,5 @@
 ---
-title: Get-EntraDeviceRegisteredUser.
+title: Get-EntraDeviceRegisteredUser
 description: This article provides details on the Get-EntraDeviceRegisteredUser command.
 
 

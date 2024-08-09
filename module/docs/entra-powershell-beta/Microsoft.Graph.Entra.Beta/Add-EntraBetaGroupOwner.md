@@ -1,5 +1,5 @@
 ---
-title: Add-EntraBetaGroupOwner.
+title: Add-EntraBetaGroupOwner
 description: This article provides details on the Add-EntraBetaGroupOwner command.
 
 

@@ -1,5 +1,5 @@
 ---
-title: Set-EntraUserManager.
+title: Set-EntraUserManager
 description: This article provides details on the Set-EntraUserManager command.
 
 
