@@ -1,5 +1,5 @@
 ---
-title: Set-EntraDevice.
+title: Set-EntraDevice
 description: This article provides details on the Set-EntraDevice command.
 
 

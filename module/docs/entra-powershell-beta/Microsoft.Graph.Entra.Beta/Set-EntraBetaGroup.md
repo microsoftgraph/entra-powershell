@@ -1,5 +1,5 @@
 ---
-title: Set-EntraBetaGroup.
+title: Set-EntraBetaGroup
 description: This article provides details on the Set-EntraBetaGroup command.
 
 

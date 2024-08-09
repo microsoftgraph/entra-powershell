@@ -1,5 +1,5 @@
 ---
-title: Set-EntraUser.
+title: Set-EntraUser
 description: This article provides details on the Set-EntraUser command.
 
 
