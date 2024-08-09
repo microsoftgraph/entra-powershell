@@ -12,7 +12,6 @@ manager: CelesteDG
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraAdministrativeUnit
-
 schema: 2.0.0
 ---
 
@@ -39,7 +38,7 @@ Get-EntraAdministrativeUnit
 
 ```powershell
 Get-EntraAdministrativeUnit 
- -Id <String> 
+ -ObjectId <String> 
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -47,7 +46,7 @@ Get-EntraAdministrativeUnit
 
 ## Description
 
-The `Get-EntraAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrative unit.
+The `Get-EntraAdministrativeUnit` cmdlet gets a Microsoft Entra ID administrative unit. Specify `ObjectID` parameter to get a specific administrative unit.
 
 ## Examples
 
@@ -59,12 +58,13 @@ Get-EntraAdministrativeUnit
 ```
 
 ```Output
-Id                                   OdataType Description                                     DisplayName
---                                   --------- -----------                                     -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
-bbbbbbbb-1111-2222-3333-cccccccccccc                                                           SOC Retention
-cccccccc-2222-3333-4444-dddddddddddd           Container AU for restricted object control      DSR RMAU
-dddddddd-3333-4444-5555-eeeeeeeeeeee           Use to contain Personnel-managed project groups Personnel Projects
+DeletedDateTime Id                                   Description            DisplayName             Visibility
+--------------- --                                   -----------            -----------             ----------
+                dddddddd-3333-4444-5555-eeeeeeeeeeee  Updated Description    Updated DisplayName
+                cccccccc-2222-3333-4444-dddddddddddd  testdemo               test1
+                bbbbbbbb-1111-2222-3333-cccccccccccc                         TestAU
+                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb                         test_130624_09
+                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  demotest               test111
 ```
 
 This command gets all the administrative units.
@@ -77,12 +77,13 @@ Get-EntraAdministrativeUnit -All
 ```
 
 ```Output
-Id                                   OdataType Description                                     DisplayName
---                                   --------- -----------                                     -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
-bbbbbbbb-1111-2222-3333-cccccccccccc                                                           SOC Retention
-cccccccc-2222-3333-4444-dddddddddddd           Container AU for restricted object control      DSR RMAU
-dddddddd-3333-4444-5555-eeeeeeeeeeee           Use to contain Personnel-managed project groups Personnel Projects
+DeletedDateTime Id                                   Description            DisplayName             Visibility
+--------------- --                                   -----------            -----------             ----------
+                dddddddd-3333-4444-5555-eeeeeeeeeeee  Updated Description    Updated DisplayName
+                cccccccc-2222-3333-4444-dddddddddddd  testdemo               test1
+                bbbbbbbb-1111-2222-3333-cccccccccccc                         TestAU
+                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb                         test_130624_09
+                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  demotest               test111
 ```
 
 This command gets all the administrative units.
@@ -91,16 +92,18 @@ This command gets all the administrative units.
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-Get-EntraAdministrativeUnit -Id aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+Get-EntraAdministrativeUnit -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
-Id                                   OdataType Description                                     DisplayName
---                                   --------- -----------                                     -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
+DeletedDateTime Id                                   Description            DisplayName             Visibility
+--------------- --                                   -----------            -----------             ----------
+                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Updated Description    Updated DisplayName
 ```
 
 This example returns the details of the specified administrative unit.
+
+- `-ObjectId` Specifies the ID of an administrative unit.
 
 ### Example 4: Get administrative units filter by display name
 
@@ -110,9 +113,9 @@ Get-EntraAdministrativeUnit -Filter "DisplayName eq 'DAU-Test'"
 ```
 
 ```Output
-Id                                   OdataType Description                                     DisplayName
---                                   --------- -----------                                     -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
+DeletedDateTime Id                                   Description            DisplayName             Visibility
+--------------- --                                   -----------            -----------             ----------
+                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Dynamic AU testing in CORP tenant    DAU-Test
 ```
 
 This example list of administrative units containing display name with the specified name.
@@ -125,9 +128,9 @@ Get-EntraAdministrativeUnit -Top 1
 ```
 
 ```Output
-Id                                   OdataType Description                                     DisplayName
---                                   --------- -----------                                     -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb           Dynamic AU testing in CORP tenant               DAU-Test
+DeletedDateTime Id                                   Description            DisplayName             Visibility
+--------------- --                                   -----------            -----------             ----------
+                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Dynamic AU testing in CORP tenant    DAU-Test
 ```
 
 This example returns the specified top administrative units.
@@ -152,10 +155,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies an OData v4.0 filter statement.
-This parameter filters which objects are returned.
-
-For more information about OData v4.0 filter expressions, see <https://msdn.microsoft.com/library/hh169248%28v=nav.90%29.aspx>
+Filter items by property values.
 
 ```yaml
 Type: System.String
@@ -169,7 +169,7 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -Id
+### -ObjectId
 
 Specifies the ID of an administrative unit in Microsoft Entra ID.
 
@@ -203,7 +203,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
