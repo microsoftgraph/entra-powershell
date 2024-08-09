@@ -2,6 +2,7 @@
 title: New-EntraCustomSecurityAttributeDefinition
 description: This article provides details on the New-EntraCustomSecurityAttributeDefinition command.
 
+
 ms.topic: reference
 ms.date: 07/26/2024
 ms.author: eunicewaweru
@@ -12,6 +13,7 @@ author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version:  https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraCustomSecurityAttributeDefinition
+
 schema: 2.0.0
 ---
 
@@ -61,7 +63,7 @@ $params = @{
     UsePreDefinedValuesOnly = $true
 
 }
- New-EntraCustomSecurityAttributeDefinition @params
+New-EntraCustomSecurityAttributeDefinition @params
 ```
 
 ```Output
