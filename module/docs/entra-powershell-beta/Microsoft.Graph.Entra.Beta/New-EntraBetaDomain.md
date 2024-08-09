@@ -29,7 +29,6 @@ New-EntraBetaDomain
  -Name <String>
  [-IsDefault <Boolean>]
  [-SupportedServices <System.Collections.Generic.List`1[System.String]>] 
- [-IsDefaultForCloudRedirections <Boolean>] 
  [<CommonParameters>]
 ```
 
@@ -92,22 +91,6 @@ This example demonstrates how to create a new domain in Microsoft Entra ID and m
 
 Indicates whether or not this is the default domain that is used for user creation.
 There is only one default domain per company.
-
-```yaml
-Type: System.Boolean
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -IsDefaultForCloudRedirections
-
-Indicates whether or not this is the default domain used for cloud redirections.
 
 ```yaml
 Type: System.Boolean
