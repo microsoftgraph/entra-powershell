@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraApplicationKey.
+title: Remove-EntraApplicationKey
 description: This article provides details on the Remove-EntraApplicationKey command.
 
 

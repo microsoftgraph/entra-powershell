@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaUserThumbnailPhoto.
+title: Get-EntraBetaUserThumbnailPhoto
 description: This article provides details on the Get-EntraBetaUserThumbnailPhoto command.
 
 

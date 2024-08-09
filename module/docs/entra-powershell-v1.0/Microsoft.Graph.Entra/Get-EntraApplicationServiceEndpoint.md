@@ -1,5 +1,5 @@
 ---
-title: Get-EntraApplicationServiceEndpoint.
+title: Get-EntraApplicationServiceEndpoint
 description: This article provides details on the Get-EntraApplicationServiceEndpoint command.
 
 

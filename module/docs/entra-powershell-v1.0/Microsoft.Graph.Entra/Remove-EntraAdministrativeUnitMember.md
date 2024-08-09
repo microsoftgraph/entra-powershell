@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraAdministrativeUnitMember.
+title: Remove-EntraAdministrativeUnitMember
 description: This article provides details on the Remove-EntraAdministrativeUnitMember command.
 
 ms.topic: reference
