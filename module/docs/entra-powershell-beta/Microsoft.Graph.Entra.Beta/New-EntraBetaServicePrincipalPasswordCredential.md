@@ -2,12 +2,14 @@
 title: New-EntraBetaServicePrincipalPasswordCredential
 description: This article provides details on the New-EntraBetaServicePrincipalPasswordCredential command.
 
+
 ms.topic: reference
 ms.date: 07/29/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaServicePrincipalPasswordCredential
@@ -43,8 +45,9 @@ The `New-EntraBetaServicePrincipalPasswordCredential` cmdlet creates a password 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
 $Params = @{
-    ObjectId = 'aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb'
+    ObjectId = $ServicePrincipal.ObjectId
     StartDate = '2024-04-21T14:14:14Z'
 }
 New-EntraBetaServicePrincipalPasswordCredential @Params
@@ -66,7 +69,7 @@ EndDate             : 08-08-2026 10:30:00
 
 This example demonstrates how to create a password credential with StartDate for a service principal in Microsoft Entra ID.  
 
-- `-ObjectId` parameter specifies the object ID of a service principal.
+- `-ObjectId` parameter specifies the ID of a service principal.
 - `-StarteDate` parameter specifies the date and time at which the password becomes valid.
 
 ### Example 2: Create a password credential with EndtDate
@@ -74,8 +77,9 @@ This example demonstrates how to create a password credential with StartDate for
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
 $Params = @{
-    ObjectId = 'aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb'
+    ObjectId = $ServicePrincipal.ObjectId
     EndDate = '2030-03-21T14:14:14Z'
 }
 New-EntraBetaServicePrincipalPasswordCredential @Params
@@ -97,7 +101,7 @@ EndDate             : 08-08-2026 10:30:00
 
 This example demonstrates how to create a password credential with EndDate for a service principal in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the object ID of a service principal.
+- `-ObjectId` parameter specifies the ID of a service principal.
 - `-EndDate` parameter specifies the date and time at which the password expires represented using ISO 8601 format and is always in UTC time.
 
 ## Parameters

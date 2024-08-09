@@ -1,6 +1,7 @@
 ---
-title: New-EntraBetaServicePrincipal.
+title: New-EntraBetaServicePrincipal
 description: This article provides details on the New-EntraBetaServicePrincipal command.
+
 
 ms.topic: reference
 ms.date: 07/30/2024

@@ -2,12 +2,14 @@
 title: Remove-EntraBetaDeletedApplication
 description: This article provides details on the Remove-EntraBetaDeletedApplication command.
 
+
 ms.topic: reference
 ms.date: 07/30/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaDeletedApplication
@@ -44,7 +46,7 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
 $App = Get-EntraBetaDeletedApplication -SearchString 'My PowerShell Application' 
-Remove-EntraBetaDeletedApplication -ObjectId $App.Id
+Remove-EntraBetaDeletedApplication -ObjectId $App.ObjectId
 ```
 
 This command removes recently deleted application. You can use the command  `Get-EntraBetaDeletedApplication` to get deleted application Id.

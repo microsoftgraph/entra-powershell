@@ -2,12 +2,14 @@
 title: Remove-EntraBetaApplicationKey
 description: This article provides details on the Remove-EntraBetaApplicationKey command.
 
+
 ms.topic: reference
 ms.date: 07/31/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaApplicationKey
@@ -41,8 +43,9 @@ Removes a key from an application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Directory.ReadWrite.All'
+$app = Get-EntraBetaApplication -Filter "DisplayName eq '<application-display-name>'"
 $params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    ObjectId = $app.ObjectId
     KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
     Proof = '{token}'
 }

@@ -1,6 +1,7 @@
 ---
-title: New-EntraBetaServiceAppRoleAssignment.
+title: New-EntraBetaServiceAppRoleAssignment
 description: This article provides details on the New-EntraBetaServiceAppRoleAssignment command.
+
 
 ms.topic: reference
 ms.date: 07/30/2024
@@ -67,9 +68,9 @@ New-EntraBetaServiceAppRoleAssignment @params
 ```
 
 ```Output
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime       PrincipalDisplayName PrincipalId
---------------- --                                          ---------                            ---------------       -------------------- -----------
-                2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 3/12/2024 11:05:29 AM Box                  aaaaaaaa-bbbb-cccc-1111-222222222222
+Id                                          AppRoleId                            CreationTimestamp   PrincipalDisplayName PrincipalId                          PrincipalType    ResourceDisplayName ResourceId
+--                                          ---------                            -----------------   -------------------- -----------                          -------------    ------------------- ----------
+1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box                 aaaa0000-bb11-2222-33cc-444444dddddd
 ```
 
 This example demonstrates how to assign an app role to another service principal in Microsoft Entra ID. You can use the command `Get-EntraBetaServicePrincipal` to get a service principal Id.
@@ -98,9 +99,9 @@ New-EntraBetaServiceAppRoleAssignment @params
 ```
 
 ```Output
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime       PrincipalDisplayName PrincipalId
---------------- --                                          ---------                            ---------------       -------------------- -----------
-                2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 3/12/2024 11:07:15 AM Test Contoso         aaaaaaaa-bbbb-cccc-1111-222222222222
+Id                                          AppRoleId                            CreationTimestamp   PrincipalDisplayName PrincipalId                          PrincipalType    ResourceDisplayName ResourceId
+--                                          ---------                            -----------------   -------------------- -----------                          -------------    ------------------- ----------
+2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box                 bbbb1111-cc22-3333-44dd-555555eeeeee
 ```
 
 This example demonstrates how to assign an app role to a user in Microsoft Entra ID.  
@@ -118,7 +119,7 @@ You can use the command `Get-EntraBetaUser` to get a user Id.
  Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
  $appname = 'Box'
  $spo = Get-EntraBetaServicePrincipal -Filter "Displayname eq '$appname'"
- $group = Get-EntraBetaGroup -SearchString 'testGroup12'
+ $group = Get-EntraBetaGroup -SearchString 'testGroup'
 
  $params = @{
     ObjectId = $spo.ObjectId
@@ -131,9 +132,9 @@ You can use the command `Get-EntraBetaUser` to get a user Id.
 ```
 
 ```Output
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime       PrincipalDisplayName PrincipalId
---------------- --                                          ---------                            ---------------       -------------------- -----------
-                2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 3/12/2024 10:59:38 AM testGroup12          aaaaaaaa-bbbb-cccc-1111-222222222222
+Id                                          AppRoleId                            CreationTimestamp   PrincipalDisplayName PrincipalId                          PrincipalType    ResourceDisplayName ResourceId
+--                                          ---------                            -----------------   -------------------- -----------                          -------------    ------------------- ----------
+3cccccc3-4dd4-5ee5-6ff6-7aaaaaaaaaa7 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box                 cccc2222-dd33-4444-55ee-666666ffffff
 ```
 
 This example demonstrates how to assign an app role to a group in Microsoft Entra ID.  

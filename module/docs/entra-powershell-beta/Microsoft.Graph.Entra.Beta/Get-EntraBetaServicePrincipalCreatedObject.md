@@ -2,6 +2,7 @@
 title: Get-EntraBetaServicePrincipalCreatedObject.
 description: This article provides details on the Get-EntraBetaServicePrincipalCreatedObject command.
 
+
 ms.topic: reference
 ms.date: 07/31/2024
 ms.author: eunicewaweru
@@ -43,8 +44,8 @@ The `Get-EntraBetaServicePrincipalCreatedObject` cmdlet gets an object created b
 
 ```powershell
  Connect-Entra -Scopes 'Application.Read.All'
- $ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
- Get-EntraBetaServicePrincipalCreatedObject -ObjectId $ServicePrincipalId
+ $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+ Get-EntraBetaServicePrincipalCreatedObject -ObjectId $ServicePrincipal.ObjectId
 ```
 
 This example gets objects created by the service principal identified by $ServicePrincipalId. You can use the command `Get-EntraBetaServicePrincipal` to get service principal Id.
@@ -55,7 +56,8 @@ This example gets objects created by the service principal identified by $Servic
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaServicePrincipalCreatedObject -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -All
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServicePrincipalCreatedObject -ObjectId $ServicePrincipal.ObjectId -All
 ```
 
 This example demonstrates how to get the all object created by a specified service principal in Microsoft Entra ID.
@@ -66,7 +68,8 @@ This example demonstrates how to get the all object created by a specified servi
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaServicePrincipalCreatedObject -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -Top 2
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServicePrincipalCreatedObject -ObjectId $ServicePrincipal.ObjectId -Top 2
 ```
 
 This example demonstrates how to get the top two object created by a specified service principal in Microsoft Entra ID.

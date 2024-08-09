@@ -1,6 +1,7 @@
 ---
-title: Remove-EntraBetaServicePrincipal.
+title: Remove-EntraBetaServicePrincipal
 description: This article provides details on the Remove-EntraBetaServicePrincipal command.
+
 
 ms.topic: reference
 ms.date: 07/31/2024

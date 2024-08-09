@@ -2,6 +2,7 @@
 title: Get-EntraBetaConditionalAccessPolicy.
 description: This article provides details on the Get-EntraBetaConditionalAccessPolicy command.
 
+
 ms.topic: reference
 ms.date: 07/30/2024
 ms.author: eunicewaweru
@@ -80,7 +81,7 @@ eeeeeeee-4444-5555-6666-ffffffffffff 2/27/2024 6:23:21 AM             Conditiona
 
 This example retrieves a specified conditional access policy in Microsoft Entra ID.
 
-- `-PolicyId` parameter specifies the conditional access policy ID.
+- `-PolicyId` parameter specifies the Id of a conditional access policy.
 
 ## Parameters
 

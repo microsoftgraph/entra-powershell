@@ -1,6 +1,7 @@
 ---
-title: Get-EntraBetaServiceAppRoleAssignment.
+title: Get-EntraBetaServiceAppRoleAssignment
 description: This article provides details on the Get-EntraBetaServiceAppRoleAssignment command.
+
 
 ms.topic: reference
 ms.date: 07/30/2024
@@ -43,8 +44,8 @@ The Get-`EntraBetaServiceAppRoleAssignment` cmdlet gets a role assignment for a 
 
 ```powershell
  Connect-Entra -Scopes 'Application.Read.All'
- $ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
- Get-EntraBetaServiceAppRoleAssignment -ObjectId $ServicePrincipalId
+ $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+ Get-EntraBetaServiceAppRoleAssignment -ObjectId $ServicePrincipal.ObjectId
 ```
 
 ```Output
@@ -61,7 +62,8 @@ This command gets application role assignments for specified service principal. 
 
 ```powershell
  Connect-Entra -Scopes 'Application.Read.All'
- Get-EntraBetaServiceAppRoleAssignment -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -All
+ $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+ Get-EntraBetaServiceAppRoleAssignment -ObjectId $ServicePrincipal.ObjectId -All
 ```
 
 ```Output
@@ -81,8 +83,9 @@ This command gets all application role assignments for specified service princip
 ### Example 3: Retrieve the top three application role assignments for a service principal
 
 ```powershell
- Connect-Entra -Scopes 'Application.Read.All'
- Get-EntraBetaServiceAppRoleAssignment -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -Top 3
+Connect-Entra -Scopes 'Application.Read.All'
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServiceAppRoleAssignment -ObjectId $ServicePrincipal.ObjectId -Top 3
 ```
 
 ```Output

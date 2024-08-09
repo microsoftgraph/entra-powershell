@@ -2,12 +2,14 @@
 title: New-EntraBetaConditionalAccessPolicy
 description: This article provides details on the New-EntraBetaConditionalAccessPolicy command.
 
+
 ms.topic: reference
 ms.date: 07/31/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaConditionalAccessPolicy
@@ -48,7 +50,6 @@ Conditional access policies are custom rules that define an access scenario.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
-
 $conditions = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
 $conditions.Applications = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessApplicationCondition
 $conditions.Applications.IncludeApplications = '00000002-0000-0ff1-ce00-000000000000'

@@ -2,12 +2,14 @@
 title: Get-EntraBetaServicePrincipalKeyCredential
 description: This article provides details on the Get-EntraBetaServicePrincipalKeyCredential command.
 
+
 ms.topic: reference
 ms.date: 07/29/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaServicePrincipalKeyCredential
@@ -39,8 +41,8 @@ The `Get-EntraBetaServicePrincipalKeyCredential` cmdlet gets the key credentials
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
-Get-EntraBetaServicePrincipalKeyCredential -ObjectId $ServicePrincipalId
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServicePrincipalKeyCredential -ObjectId $ServicePrincipal.ObjectId
 ```
 
 ```Output

@@ -2,12 +2,14 @@
 title: New-EntraBetaApplicationKey.
 description: This article provides details on the New-EntraBetaApplicationKey command.
 
+
 ms.topic: reference
 ms.date: 07/31/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaApplicationKey
@@ -43,8 +45,9 @@ Adds a new key to an application.
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
 Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+$app = Get-EntraBetaApplication -Filter "DisplayName eq '<application-display-name>'"
 $params = @{
-    ObjectId = 'cccccccc-8888-9999-0000-dddddddddddd'
+    ObjectId = $app.ObjectId
     KeyCredential = @{ key=[System.Convert]::FromBase64String('{base64cert}') }
     PasswordCredential = @{ DisplayName = 'mypassword' }
     Proof = '{token}'

@@ -1,6 +1,7 @@
 ---
-title: Get-EntraBetaServiceAppRoleAssignedTo.
+title: Get-EntraBetaServiceAppRoleAssignedTo
 description: This article provides details on the Get-EntraBetaServiceAppRoleAssignedTo command.
+
 
 ms.topic: reference
 ms.date: 07/30/2024
@@ -54,14 +55,14 @@ The `Get-EntraBetaServiceAppRoleAssignedTo` cmdlet gets app role assignments for
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
-Get-EntraBetaServiceAppRoleAssignedTo -ObjectId $ServicePrincipalId
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServiceAppRoleAssignedTo -ObjectId $ServicePrincipal.ObjectId
 ```
 
 ```Output
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId
---------------- --                                          ---------                            ---------------     -------------------- -----------
-                1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:41 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
+Id                                          AppRoleId                            CreationTimestamp   PrincipalDisplayName PrincipalId                          PrincipalType    ResourceDisplayName ResourceId
+--                                          ---------                            -----------------   -------------------- -----------                          -------------    ------------------- ----------
+1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box 
 ```
 
 This example shows how to get app role assignments for an app or service, granted to users, groups and other service principals.
@@ -71,18 +72,19 @@ This example shows how to get app role assignments for an app or service, grante
 ### Example 2: Get all app role assignments
 
 ```powershell
- Connect-Entra -Scopes 'Application.Read.All'
- Get-EntraBetaServiceAppRoleAssignedTo -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -All 
+Connect-Entra -Scopes 'Application.Read.All'
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+ Get-EntraBetaServiceAppRoleAssignedTo -ObjectId $ServicePrincipal.ObjectId -All 
 ```
 
 ```Output
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId
---------------- --                                          ---------                            ---------------     -------------------- -----------
-                1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:41 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
-                2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:38 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
-                3cccccc3-4dd4-5ee5-6ff6-7aaaaaaaaaa7 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:37 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
-                4dddddd4-5ee5-6ff6-7aa7-8bbbbbbbbbb8 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:39 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
-                5eeeeee5-6ff6-7aa7-8bb8-9cccccccccc9 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:39 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
+Id                                          AppRoleId                            CreationTimestamp   PrincipalDisplayName PrincipalId                          PrincipalType    ResourceDisplayName ResourceId
+--                                          ---------                            -----------------   -------------------- -----------                          -------------    ------------------- ----------
+1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box                 aaaa0000-bb11-2222-33cc-444444dddddd
+2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box                 bbbb1111-cc22-3333-44dd-555555eeeeee
+3cccccc3-4dd4-5ee5-6ff6-7aaaaaaaaaa7 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box                 cccc2222-dd33-4444-55ee-666666ffffff
+4dddddd4-5ee5-6ff6-7aa7-8bbbbbbbbbb8 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box                 dddd3333-ee44-5555-66ff-777777aaaaaa
+5eeeeee5-6ff6-7aa7-8bb8-9cccccccccc9 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box                 eeee4444-ff55-6666-77aa-888888bbbbbb
 ```
 
 This command gets the all app role assignments for the service principal granted to users, groups and other service principals.
@@ -92,17 +94,19 @@ This command gets the all app role assignments for the service principal granted
 ### Example 3: Get five app role assignments
 
 ```powershell
- Get-EntraBetaServiceAppRoleAssignedTo -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -Top 5
+Connect-Entra -Scopes 'Application.Read.All'
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServiceAppRoleAssignedTo -ObjectId $ServicePrincipal.ObjectId -Top 5
 ```
 
 ```Output
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId
---------------- --                                          ---------                            ---------------     -------------------- -----------
-                1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:41 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
-                2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:38 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
-                3cccccc3-4dd4-5ee5-6ff6-7aaaaaaaaaa7 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:37 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
-                4dddddd4-5ee5-6ff6-7aa7-8bbbbbbbbbb8 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:39 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
-                5eeeeee5-6ff6-7aa7-8bb8-9cccccccccc9 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:39 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
+Id                                          AppRoleId                            CreationTimestamp   PrincipalDisplayName PrincipalId                          PrincipalType    ResourceDisplayName ResourceId
+--                                          ---------                            -----------------   -------------------- -----------                          -------------    ------------------- ----------
+1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box                 aaaa0000-bb11-2222-33cc-444444dddddd
+2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box                 bbbb1111-cc22-3333-44dd-555555eeeeee
+3cccccc3-4dd4-5ee5-6ff6-7aaaaaaaaaa7 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box                 cccc2222-dd33-4444-55ee-666666ffffff
+4dddddd4-5ee5-6ff6-7aa7-8bbbbbbbbbb8 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box                 dddd3333-ee44-5555-66ff-777777aaaaaa
+5eeeeee5-6ff6-7aa7-8bb8-9cccccccccc9 00000000-0000-0000-0000-000000000000 12-03-2024 11:05:29 Box                  aaaaaaaa-bbbb-cccc-1111-222222222222 ServicePrincipal Box                 eeee4444-ff55-6666-77aa-888888bbbbbb
 ```
 
 This command gets the five app role assignments for the service principal granted to users, groups and other service principals.
