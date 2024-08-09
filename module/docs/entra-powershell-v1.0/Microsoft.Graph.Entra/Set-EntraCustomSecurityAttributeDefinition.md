@@ -1,6 +1,7 @@
 ---
-title: Set-EntraCustomSecurityAttributeDefinition.
+title: Set-EntraCustomSecurityAttributeDefinition
 description: This article provides details on the Set-EntraCustomSecurityAttributeDefinition command.
+
 
 ms.topic: reference
 ms.date: 07/11/2024
@@ -12,6 +13,7 @@ author: msewaweru
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraCustomSecurityAttributeDefinition
+
 schema: 2.0.0
 ---
 
@@ -34,7 +36,7 @@ Set-EntraCustomSecurityAttributeDefinition
 
 ## Description
 
-The `Set-EntraCustomSecurityAttributeDefinition` cmdlet updates a Microsoft Entra ID custom security attribute definition object identified by ID. Specify `-Id` parameter to update a custom security attribute definition.
+The `Set-EntraCustomSecurityAttributeDefinition` cmdlet updates a Microsoft Entra ID custom security attribute definition object identified by ID. Specify `Id` parameter to update a custom security attribute definition.
 
 In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
 
