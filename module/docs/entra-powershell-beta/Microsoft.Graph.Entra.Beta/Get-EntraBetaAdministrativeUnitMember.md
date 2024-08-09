@@ -44,7 +44,8 @@ The `Get-EntraBetaAdministrativeUnitMember` cmdlet gets a member of a Microsoft 
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-Get-EntraBetaAdministrativeUnitMember -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraBetaAdministrativeUnitMember -ObjectId $AdministrativeUnit.ObjectId
 ```
 
 ```Output
@@ -59,11 +60,14 @@ ffffffff-5555-6666-7777-aaaaaaaaaaaa
 
 This example returns the list of administrative unit members from specified administrative unit ObjectId.
 
+- `-ObjectId` parameter specifies the ID of an administrative unit.
+
 ### Example 2: Get all administrative unit members by ObjectId
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-Get-EntraBetaAdministrativeUnitMember -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraBetaAdministrativeUnitMember -ObjectId $AdministrativeUnit.ObjectId -All
 ```
 
 ```Output
@@ -78,11 +82,14 @@ ffffffff-5555-6666-7777-aaaaaaaaaaaa
 
 This example returns the list of all administrative unit members from specified administrative unit ObjectId.
 
+- `-ObjectId` parameter specifies the ID of an administrative unit.
+
 ### Example 3: Get top three administrative unit members by ObjectId
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-Get-EntraBetaAdministrativeUnitMember -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 3
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraBetaAdministrativeUnitMember -ObjectId $AdministrativeUnit.ObjectId -Top 3
 ```
 
 ```Output
@@ -94,6 +101,8 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee
 ```
 
 This example returns top three administrative unit members from specified administrative unit ObjectId.
+
+- `-ObjectId` parameter specifies the ID of an administrative unit.
 
 ## Parameters
 
@@ -147,7 +156,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

@@ -4,7 +4,7 @@ description: This article provides details on the Add-EntraBetaScopedRoleMembers
 
 
 ms.topic: reference
-ms.date: 07/05/2024
+ms.date: 08/06/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -29,7 +29,6 @@ Assign a Microsoft Entra role with an administrative unit scope.
 Add-EntraBetaScopedRoleMembership 
  -ObjectId <String> 
  [-RoleMemberInfo <RoleMemberInfo>]
- [-AdministrativeUnitObjectId <String>] 
  [-RoleObjectId <String>] 
  [<CommonParameters>]
 ```
@@ -46,13 +45,13 @@ For delegated scenarios, the calling user needs at least the Privileged Role Adm
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
-$User = Get-EntraBetaUser -SearchString 'Conf Room Adams'
-$Role = Get-EntraBetaDirectoryRole | Where-Object -Property DisplayName -EQ -Value 'User Administrator'
-$Unit = Get-EntraBetaAdministrativeUnit | Where-Object -Property DisplayName -Eq -Value 'NewUnit'
+$User = Get-EntraBetaUser -SearchString 'MarkWood'
+$Role = Get-EntraBetaDirectoryRole -Filter "DisplayName eq '<directory-role-display-name>'" 
+$Unit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
 $RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
-$RoleMember.ObjectId = $User.ObjectID
+$RoleMember.ObjectId = $User.ObjectId
 $params = @{
-    ObjectId = $unit.ObjectId
+    ObjectId = $Unit.ObjectId
     RoleObjectId = $Role.ObjectId
     RoleMemberInfo = $RoleMember
 }
@@ -65,25 +64,16 @@ Id                                                                Administrative
 dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
-This example adds a scoped role membership to an administrative unit.
+This example adds a scoped role membership to an administrative unit.  
+You can use the command `Get-EntraBetaAdministrativeUnit` to get administrativeunit Id.  
+You can use the command `Get-EntraBetaUser` to get user Id.  
+You can use the command `Get-EntraBetaDirectoryRole` to get directory role Id.  
+
+- `-ObjectId` parameter specifies the Id of an administrative unit.
+- `-RoleObjectId` parameter specifies the Id of the DirectoryRole.
+- `-RoleMemberInfo` parameter specifies the RoleMemberInfo object Id.
 
 ## Parameters
-
-### -AdministrativeUnitObjectId
-
-Specifies the ID of an admininstrative unit.
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -ObjectId
 
