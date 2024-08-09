@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaFeatureRolloutPolicy.
+title: Get-EntraBetaFeatureRolloutPolicy
 description: This article provides details on the Get-EntraBetaFeatureRolloutPolicy command.
 
 

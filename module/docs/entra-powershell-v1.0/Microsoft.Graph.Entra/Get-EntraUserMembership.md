@@ -1,5 +1,5 @@
 ---
-title: Get-EntraUserMembership.
+title: Get-EntraUserMembership
 description: This article provides details on the Get-EntraUserMembership command.
 
 

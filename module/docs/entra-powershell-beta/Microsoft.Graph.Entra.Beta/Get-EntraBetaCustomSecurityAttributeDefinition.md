@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaCustomSecurityAttributeDefinition.
+title: Get-EntraBetaCustomSecurityAttributeDefinition
 description: This article provides details on the Get-EntraBetaCustomSecurityAttributeDefinition command.
 
 ms.topic: reference

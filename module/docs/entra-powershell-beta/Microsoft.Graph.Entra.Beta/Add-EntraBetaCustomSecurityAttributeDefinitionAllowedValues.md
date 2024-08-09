@@ -1,5 +1,5 @@
 ---
-title: Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues.
+title: Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues
 description: This article provides details on the Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues command.
 
 ms.topic: reference

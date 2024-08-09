@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaApplicationKeyCredential.
+title: Remove-EntraBetaApplicationKeyCredential
 description: This article provides details on the Remove-EntraBetaApplicationKeyCredential command.
 
 ms.topic: reference

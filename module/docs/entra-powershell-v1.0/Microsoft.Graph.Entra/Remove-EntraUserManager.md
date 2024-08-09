@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraUserManager.
+title: Remove-EntraUserManager
 description: This article provides details on the Remove-EntraUserManager command.
 
 

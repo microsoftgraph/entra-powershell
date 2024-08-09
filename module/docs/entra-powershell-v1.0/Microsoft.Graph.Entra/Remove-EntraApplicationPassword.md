@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraApplicationPassword.
+title: Remove-EntraApplicationPassword
 description: This article provides details on the Remove-EntraApplicationPassword command.
 
 

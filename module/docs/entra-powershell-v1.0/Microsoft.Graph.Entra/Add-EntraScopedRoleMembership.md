@@ -1,5 +1,5 @@
 ---
-title: Add-EntraScopedRoleMembership.
+title: Add-EntraScopedRoleMembership
 description: This article provides details on the Add-EntraScopedRoleMembership command.
 
 ms.topic: reference

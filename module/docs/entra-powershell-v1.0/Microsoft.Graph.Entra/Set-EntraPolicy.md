@@ -1,5 +1,5 @@
 ---
-title: Set-EntraPolicy.
+title: Set-EntraPolicy
 description: This article provides details on the Set-EntraPolicy command.
 
 ms.topic: reference
