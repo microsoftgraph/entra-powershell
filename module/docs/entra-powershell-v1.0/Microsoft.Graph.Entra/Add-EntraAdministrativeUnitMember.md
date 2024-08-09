@@ -1,6 +1,7 @@
 ---
-title: Add-EntraAdministrativeUnitMember.
+title: Add-EntraAdministrativeUnitMember
 description: This article provides details on the Add-EntraAdministrativeUnitMember command.
+
 
 ms.topic: reference
 ms.date: 07/19/2024
@@ -33,7 +34,7 @@ Add-EntraAdministrativeUnitMember
 
 ## Description
 
-The `Add-EntraAdministrativeUnitMember` cmdlet adds a Microsoft Entra ID administrative unit member. Specify `-Id` and `-RefObjectId` parameter to adds a Microsoft Entra ID administrative unit member.
+The `Add-EntraAdministrativeUnitMember` cmdlet adds a Microsoft Entra ID administrative unit member.
 
 ## Examples
 
