@@ -1,13 +1,15 @@
 ---
-title: Add-EntraCustomSecurityAttributeDefinitionAllowedValues.
+title: Add-EntraCustomSecurityAttributeDefinitionAllowedValues
 description: This article provides details on the Add-EntraCustomSecurityAttributeDefinitionAllowedValues command.
 
+
 ms.topic: reference
-ms.date: 07/23/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Add-EntraCustomSecurityAttributeDefinitionAllowedValues
@@ -42,7 +44,7 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$CustomSecurityAttributeDefinitionId = (Get-EntraCustomSecurityAttributeDefinition -Id <attributename_attributedefinition>).Id
+$CustomSecurityAttributeDefinitionId = (Get-EntraCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>').Id
 $params = @{
     CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinitionId
     Id = 'Alpine'
