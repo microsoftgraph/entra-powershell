@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaFeatureRolloutPolicyDirectoryObject.
+title: Remove-EntraBetaFeatureRolloutPolicyDirectoryObject
 description: This article provides details on the Remove-EntraBetaFeatureRolloutPolicyDirectoryObject command.
 
 

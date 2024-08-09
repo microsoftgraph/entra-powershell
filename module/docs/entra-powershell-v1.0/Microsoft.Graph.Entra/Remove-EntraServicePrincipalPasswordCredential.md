@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaAuditSignInLogs.
+title: Get-EntraBetaAuditSignInLogs
 description: This article provides details on the Get-EntraBetaAuditSignInLogs command.
 
 
@@ -33,22 +33,26 @@ Remove-EntraServicePrincipalPasswordCredential
 
 ## Description
 
-The Remove-EntraServicePrincipalPasswordCredential cmdlet removes a password credential from a service principal in Microsoft Entra ID.
+The `Remove-EntraServicePrincipalPasswordCredential` cmdlet removes a password credential from a service principal in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-Remove-AzureADServicePrincipalPasswordCredential -ObjectID '00001111-aaaa-2222-bbbb-3333cccc4444' -KeyId 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$Params = @{
+    ObjectID = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
+}
+
+Remove-EntraServicePrincipalPasswordCredential @Params
 ```
 
-This command demonstrates how to remove a password credential from a service principal in Microsoft Entra ID.  
+This example demonstrates how to remove a password credential from a service principal in Microsoft Entra ID.  
 
-- **ObjectId**: The ObjectId of the specified Service Principal Password Credential.  
-- **KeyID**: The unique identifier of the Password Credential.  
+- `-ObjectId` parameter specifies the ObjectId of a specified Service Principal Password Credential.  
+- `-KeyId` parameter specifies the unique identifier of a Password Credential.
 
 ## Parameters
 

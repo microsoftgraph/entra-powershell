@@ -45,6 +45,7 @@ Get-EntraNamedLocationPolicy
 ## Description
 
 This cmdlet allows an admin to get the Microsoft Entra ID named location policies.
+
 Named locations are custom rules that define network locations, which can then be used in a Conditional Access policy.
 
 ## Examples
@@ -56,7 +57,7 @@ Connect-Entra -Scopes 'Policy.Read.All'
 Get-EntraNamedLocationPolicy
 ```
 
-```output
+```Output
 Id                                   CreatedDateTime      DisplayName    ModifiedDateTime
 --                                   ---------------      -----------    ----------------
 dddddddd-3333-4444-5555-eeeeeeeeeeee 3/1/2024 9:53:10 AM  NamedLocation  3/1/2024 9:53:10 AM
@@ -74,7 +75,7 @@ Connect-Entra -Scopes 'Policy.Read.All'
 Get-EntraNamedLocationPolicy -PolicyId 'dddddddd-3333-4444-5555-eeeeeeeeeeee'
 ```
 
-```output
+```Output
 Id                                   CreatedDateTime      DisplayName    ModifiedDateTime
 --                                   ---------------      -----------    ----------------
 dddddddd-3333-4444-5555-eeeeeeeeeeee 3/1/2024 9:53:10 AM  NamedLocation  3/1/2024 9:53:10 AM
@@ -133,4 +134,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Set-EntraNamedLocationPolicy](Set-EntraNamedLocationPolicy.md)
 
 [Remove-EntraNamedLocationPolicy](Remove-EntraNamedLocationPolicy.md)
-
