@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraApplicationProxyConnectorGroup.
+title: Remove-EntraApplicationProxyConnectorGroup
 description: This article provides details on the Remove-EntraApplicationProxyConnectorGroup Command.
 
 

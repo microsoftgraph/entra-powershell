@@ -1,5 +1,5 @@
 ---
-title: Set-EntraDomain.
+title: Set-EntraDomain
 description: This article provides details on the Set-EntraDomain command.
 
 

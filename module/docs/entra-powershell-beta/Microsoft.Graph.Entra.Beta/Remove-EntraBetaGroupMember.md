@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaGroupMember.
+title: Remove-EntraBetaGroupMember
 description: This article provides details on the Remove-EntraBetaGroupMember command.
 
 

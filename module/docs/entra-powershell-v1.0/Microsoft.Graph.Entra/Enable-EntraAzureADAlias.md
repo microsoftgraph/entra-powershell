@@ -1,5 +1,5 @@
 ---
-title: Enable-EntraAzureADAlias.
+title: Enable-EntraAzureADAlias
 description: This article provides details on the Enable-EntraAzureADAlias command.
 
 

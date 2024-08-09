@@ -1,5 +1,5 @@
 ---
-title: Set-EntraBetaGroupLifecyclePolicy.
+title: Set-EntraBetaGroupLifecyclePolicy
 description: This article provides details on the Set-EntraBetaGroupLifecyclePolicy command.
 
 
