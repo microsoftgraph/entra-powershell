@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaUserMembership.
+title: Get-EntraBetaUserMembership
 description: This article provides details on the Get-EntraBetaUserMembership command.
 
 ms.topic: reference

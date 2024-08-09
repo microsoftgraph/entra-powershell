@@ -1,5 +1,5 @@
 ---
-title: Set-EntraBetaUser.
+title: Set-EntraBetaUser
 description: This article provides details on the Set-EntraBetaUser command.
 
 

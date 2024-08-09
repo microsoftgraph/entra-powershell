@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraScopedRoleMembership.
+title: Remove-EntraScopedRoleMembership
 description: This article provides details on the Remove-EntraScopedRoleMembership command.
 
 ms.topic: reference

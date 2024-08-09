@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaApplicationServiceEndpoint.
+title: Get-EntraBetaApplicationServiceEndpoint
 description: This article provides details on the Get-EntraBetaApplicationServiceEndpoint command.
 
 ms.topic: reference

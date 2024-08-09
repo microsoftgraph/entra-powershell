@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraApplicationKeyCredential.
+title: Remove-EntraApplicationKeyCredential
 description: This article provides details on the Remove-EntraApplicationKeyCredential command.
 
 

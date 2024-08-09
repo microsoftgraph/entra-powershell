@@ -1,5 +1,5 @@
 ---
-title: Get-EntraSubscribedSku.
+title: Get-EntraSubscribedSku
 description: This article provides details on the Get-EntraSubscribedSku command.
 
 

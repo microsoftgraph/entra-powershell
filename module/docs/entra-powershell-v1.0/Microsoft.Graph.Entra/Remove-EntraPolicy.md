@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraPolicy.
+title: Remove-EntraPolicy
 description: This article provides details on the Remove-EntraPolicy command.
 
 ms.topic: reference

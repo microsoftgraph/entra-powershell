@@ -1,5 +1,5 @@
 ---
-title: Get-EntraGroupMember.
+title: Get-EntraGroupMember
 description: This article provides details on the Get-EntraGroupMember command.
 
 ms.topic: reference

@@ -1,5 +1,5 @@
 ---
-title: Update-EntraSignedInUserPassword.
+title: Update-EntraSignedInUserPassword
 description: This article provides details on the Update-EntraSignedInUserPassword command.
 
 

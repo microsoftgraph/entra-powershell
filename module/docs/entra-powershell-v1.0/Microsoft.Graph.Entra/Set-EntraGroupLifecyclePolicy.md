@@ -1,5 +1,5 @@
 ---
-title: Set-EntraGroupLifecyclePolicy.
+title: Set-EntraGroupLifecyclePolicy
 description: This article provides details on the Set-EntraGroupLifecyclePolicy command.
 
 
