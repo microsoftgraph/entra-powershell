@@ -1,5 +1,5 @@
 ---
-title: New-EntraBetaPolicy.
+title: New-EntraBetaPolicy
 description: This article provides details on the New-EntraBetaPolicy command.
 
 

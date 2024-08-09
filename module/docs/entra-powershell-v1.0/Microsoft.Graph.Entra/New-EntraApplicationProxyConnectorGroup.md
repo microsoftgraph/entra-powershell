@@ -1,5 +1,5 @@
 ---
-title: New-EntraApplicationProxyConnectorGroup.
+title: New-EntraApplicationProxyConnectorGroup
 description: This article provides details on the New-EntraApplicationProxyConnectorGroup Command.
 
 

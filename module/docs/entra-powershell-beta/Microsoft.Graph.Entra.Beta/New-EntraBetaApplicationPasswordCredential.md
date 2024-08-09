@@ -42,40 +42,60 @@ The `New-EntraBetaApplicationPasswordCredential` cmdlet creates a password crede
 ### Example 1: Create a password credential
 
 ```powershell
-New-EntraBetaApplicationPasswordCredential -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa'
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraBetaApplication -Filter "displayName eq '<displayName>'"
+New-EntraBetaApplicationPasswordCredential -ObjectId $application.Id
 ```
 
-```output
+```Output
 CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                    StartDateTime
 ------------------- ----------- -----------          ---- -----                                ----------                    -------------
                                 3/21/2026 9:48:40 AM n34  tttttttt-0000-2222-0000-aaaaaaaaaaaa wbBNW8kCuiPjNRg9NX98W_aaaaaaa 3/21/2024 9:48:40 AM
 ```
 
 This command creates new password credential for specified application.
+
+- `-ObjectId` Specifies the ID of a user.
 
 ### Example 2: Create a password credential using CustomKeyIdentifier parameter
 
 ```powershell
-New-EntraBetaApplicationPasswordCredential -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' -CustomKeyIdentifier 'demoPassword'
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraBetaApplication -Filter "displayName eq '<displayName>'"
+$parameters = @{
+    ObjectId = $application.Id
+    CustomKeyIdentifier = '<userfriendlyDisplayName>'
+}
+New-EntraBetaApplicationPasswordCredential @parameters
 ```
 
-```output
+```Output
 CustomKeyIdentifier                           DisplayName  EndDateTime          Hint KeyId                                SecretText                               StartDat
                                                                                                                                                                    eTime
 -------------------                           -----------  -----------          ---- -----                                ----------                               --------
 100 101 109 111 80 97 115 115 119 111 114 100 demoPassword 6/10/2026 7:43:45 AM 9tb  tttttttt-0000-2222-0000-aaaaaaaaaaaa wbBNW8kCuiPjNRg9NX98W_EaU6cqG 6/10/...
-
 ```
 
 This command creates new password credential for specified application.
 
+- `-ObjectId` Specifies the ID of a user.
+- `-CustomKeyIdentifier` Speicifies unique binary identifier.
+
 ### Example 3: Create a password credential using StartDate parameter
 
 ```powershell
-New-EntraBetaApplicationPasswordCredential -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' -StartDate (get-date).AddYears(0)
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraBetaApplication -Filter "displayName eq '<displayName>'"
+$parameters = @{
+    ObjectId = $application.Id
+    StartDate = (Get-Date).AddYears(0)
+    CustomKeyIdentifier = '<userfriendlyDisplayName>'
+}
+
+New-EntraBetaApplicationPasswordCredential @parameters
 ```
 
-```output
+```Output
 CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                    StartDateTime
 ------------------- ----------- -----------          ---- -----                                ----------                    -------------
                                 3/21/2026 9:48:40 AM n34  tttttttt-0000-2222-0000-aaaaaaaaaaaa wbBNW8kCuiPjNRg9NX98W_aaaaaaa 3/21/2024 9:48:40 AM
@@ -83,25 +103,39 @@ CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                 
 
 This command creates new password credential for specified application.
 
+- `-ObjectId` Specifies the ID of a user.
+- `-StartDate` Speicifies the date and time at which the password becomes valid.
+
 ### Example 4: Create a password credential using EndDate parameter
 
 ```powershell
-New-EntraBetaApplicationPasswordCredential -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa'-EndDate (get-date).AddYears(2)
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$application = Get-EntraBetaApplication -Filter "displayName eq '<displayName>'"
+$parameters = @{
+    ObjectId = $application.Id
+    EndDate = (Get-Date).AddYears(2)
+    CustomKeyIdentifier = '<userfriendlyDisplayName>'
+}
+
+New-EntraBetaApplicationPasswordCredential @parameters
 ```
 
-```output
+```Output
 CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText                    StartDateTime
 ------------------- ----------- -----------          ---- -----                                ----------                    -------------
-                                3/21/2026 9:48:40 AM n34  tttttttt-0000-2222-0000-aaaaaaaaaaaa wbBNW8kCuiPjNRg9NX98W_aaaaaa 3/21/2024 9:48:40 AM
+                                3/21/2026 9:48:40 AM n34  tttttttt-0000-2222-0000-aaaaaaaaaaaa wbBNW8kCuiPjNRg9NX98W_aaaaaaa 3/21/2024 9:48:40 AM
 ```
 
 This command creates new password credential for specified application.
+
+- `-ObjectId` Specifies the ID of a user.
+- `-EndDate` Speicifies The date and time at which the password expires.
 
 ## Parameters
 
 ### -ObjectId
 
-Specifies the ID of a user in Microsoft Entra ID.
+Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -166,6 +200,8 @@ Accept wildcard characters: False
 ### CommonParameters
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
 
 ## Outputs
 

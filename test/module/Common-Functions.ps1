@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 $psVersion = $global:PSVersionTable.PSVersion
 if($null -ne (Get-Module -Name Microsoft.Graph.Entra.Beta)){
     $entraVersion = (Get-module Microsoft.Graph.Entra.Beta | select version).Version.ToString() 
