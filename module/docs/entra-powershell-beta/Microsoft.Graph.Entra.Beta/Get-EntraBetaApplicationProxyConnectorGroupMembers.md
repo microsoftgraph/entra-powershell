@@ -2,12 +2,14 @@
 title: Get-EntraBetaApplicationProxyConnectorGroupMembers
 description: This article provides details on the Get-EntraBetaApplicationProxyConnectorGroupMembers.
 
+
 ms.topic: reference
 ms.date: 07/17/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaApplicationProxyConnectorGroupMembers
@@ -33,7 +35,7 @@ Get-EntraBetaApplicationProxyConnectorGroupMembers
 
 ## Description
 
-The `Get-EntraBetaApplicationProxyConnectorGroupMembers` get all the Application Proxy connectors associated with the given connector group. Specify `Id` parameter to retrieve application proxy connectors associated with the given connector group.
+The `Get-EntraBetaApplicationProxyConnectorGroupMembers` get all the Application Proxy connectors associated with the given connector group.
 
 ## Examples
 
@@ -45,13 +47,9 @@ Get-EntraBetaApplicationProxyConnectorGroupMembers -Id 'aaaaaaaa-0000-1111-2222-
 ```
 
 ```Output
-Name                           Value
-----                           -----
-id                             bbbbbbbb-1111-2222-3333-cccccccccccc
-externalIp                     3.7.211.5
-machineName                    PERE-VARSHAM-FULLSTAK
-version                        1.5.3437.0
-status                         active
+Id                                   ExternalIP    MachineName           Status Version
+--                                   ----------    -----------           ------ -------
+bbbbbbbb-1111-2222-3333-cccccccccccc 106.195.6.123 AppProxy Machine active 1.5.3437.0
 
 ```
 
@@ -67,14 +65,9 @@ Get-EntraBetaApplicationProxyConnectorGroupMembers -Id 'aaaaaaaa-0000-1111-2222-
 ```
 
 ```Output
-Name                           Value
-----                           -----
-id                             bbbbbbbb-1111-2222-3333-cccccccccccc
-externalIp                     3.7.211.5
-machineName                    PERE-VARSHAM-FULLSTAK
-version                        1.5.3437.0
-status                         active
-
+Id                                   ExternalIP    MachineName           Status Version
+--                                   ----------    -----------           ------ -------
+bbbbbbbb-1111-2222-3333-cccccccccccc 106.195.6.123 AppProxy Machine active 1.5.3437.0
 ```
 
 This example retrieves top one connector in the group.
@@ -93,13 +86,9 @@ Get-EntraBetaApplicationProxyConnectorGroupMembers @params
 ```
 
 ```Output
-Name                           Value
-----                           -----
-id                             bbbbbbbb-1111-2222-3333-cccccccccccc
-externalIp                     3.7.211.5
-machineName                    AppProxy Machine
-version                        1.5.3437.0
-status                         active
+Id                                   ExternalIP    MachineName           Status Version
+--                                   ----------    -----------           ------ -------
+bbbbbbbb-1111-2222-3333-cccccccccccc 106.195.6.123 AppProxy Machine active 1.5.3437.0
 
 ```
 
@@ -127,7 +116,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies an oData v3.0 filter statement. This parameter controls which objects are returned. Details on querying with oData can be found here: <https://www.odata.org/documentation/odata-version-3-0/odata-version-3-0-core-protocol/#queryingcollections>
+Specifies an OData v4.0 filter statement. This parameter controls which objects are returned. Details on querying with oData can be found here: <https://www.odata.org/documentation/odata-version-3-0/odata-version-3-0-core-protocol/#queryingcollections>
 
 ```yaml
 Type: System.String

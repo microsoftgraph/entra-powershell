@@ -203,6 +203,17 @@ function New-EntraBetaApplicationProxyApplication {
                 Add-Member -InputObject $_ -MemberType NoteProperty -Name ObjectId -Value $Id
             }
         }
-        $response | Select-Object ObjectId,ExternalAuthenticationType,ApplicationServerTimeout,ExternalUrl,InternalUrl,IsTranslateHostHeaderEnabled,IsTranslateLinksInBodyEnabled,IsOnPremPublishingEnabled,VerifiedCustomDomainCertificatesMetadata,VerifiedCustomDomainKeyCredential,VerifiedCustomDomainPasswordCredential,SingleSignOnSettings,IsHttpOnlyCookieEnabled,IsSecureCookieEnabled,IsPersistentCookieEnabled    
+        
+        $response = $response | Select-Object ObjectId,ExternalAuthenticationType,ApplicationServerTimeout,ExternalUrl,InternalUrl,IsTranslateHostHeaderEnabled,IsTranslateLinksInBodyEnabled,IsOnPremPublishingEnabled,VerifiedCustomDomainCertificatesMetadata,VerifiedCustomDomainKeyCredential,VerifiedCustomDomainPasswordCredential,SingleSignOnSettings,IsHttpOnlyCookieEnabled,IsSecureCookieEnabled,IsPersistentCookieEnabled | ConvertTo-Json -depth 10 | ConvertFrom-Json
+            
+        $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphonPremisesPublishing
+            $response.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name
+                $propertyValue = $_.Value
+                $respType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+        
+            }
+        
+        $respType
         }        
 }

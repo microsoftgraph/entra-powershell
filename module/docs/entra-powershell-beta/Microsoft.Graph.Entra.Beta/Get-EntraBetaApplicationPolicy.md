@@ -33,7 +33,7 @@ Get-EntraBetaApplicationPolicy
 
 ## Description
 
-The `Get-EntraBetaApplicationPolicy` cmdlet gets an Microsoft Entra ID application policy. Specify `Id` parameter to retrieve an application policy.
+The `Get-EntraBetaApplicationPolicy` cmdlet gets a Microsoft Entra ID application policy.
 
 ## Examples
 
@@ -45,21 +45,14 @@ Get-EntraBetaApplicationPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
-deletedDateTime        :
-isManagementRestricted :
-@odata.type            : #microsoft.graph.policy
-alternativeIdentifier  :
-definition             : {"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}
-keyCredentials         :
-id                     : aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-displayName            : NewUpdated
-type                   : HomeRealmDiscoveryPolicy
-isOrganizationDefault  : False
-createdDateTime        : 17-10-2023 05:21:56
-odata.type             : #
+Definition                                                                                       DeletedDateTime Description DisplayName Id
+----------                                                                                       --------------- ----------- ----------- --
+{{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                             NewUpdated  aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This command gets the specified application policy.
+
+- `-Id` Parameter Specifies the ID of the application for which you need to retrieve the policy.
 
 ## Parameters
 
