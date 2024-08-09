@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraServicePrincipalKeyCredential.
+title: Remove-EntraServicePrincipalKeyCredential
 description: This article provides details on the Remove-EntraServicePrincipalKeyCredential command.
 
 

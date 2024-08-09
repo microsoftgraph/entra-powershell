@@ -1,5 +1,5 @@
 ---
-title: Get-EntraOAuth2PermissionGrant.
+title: Get-EntraOAuth2PermissionGrant
 description: This article provides details on the Get-EntraOAuth2PermissionGrant Command.
 
 

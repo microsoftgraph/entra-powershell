@@ -1,5 +1,5 @@
 ---
-title: Get-EntraUserAppRoleAssignment.
+title: Get-EntraUserAppRoleAssignment
 description: This article provides details on the Get-EntraUserAppRoleAssignment command.
 
 
