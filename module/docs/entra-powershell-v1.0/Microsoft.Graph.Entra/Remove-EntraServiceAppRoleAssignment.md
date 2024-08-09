@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraServiceAppRoleAssignment.
+title: Remove-EntraServiceAppRoleAssignment
 description: This article provides details on the Remove-EntraServiceAppRoleAssignment command.
 
 

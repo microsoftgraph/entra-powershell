@@ -1,5 +1,5 @@
 ---
-title: New-EntraInvitation.
+title: New-EntraInvitation
 description: This article provides details on the New-EntraInvitation command.
 
 

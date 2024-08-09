@@ -1,5 +1,5 @@
 ---
-title: Set-EntraBetaAttributeSet.
+title: Set-EntraBetaAttributeSet
 description: This article provides details on the Set-EntraBetaAttributeSet command.
 
 ms.topic: reference

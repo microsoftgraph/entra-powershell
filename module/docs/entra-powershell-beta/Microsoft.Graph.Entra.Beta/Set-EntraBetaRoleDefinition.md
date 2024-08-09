@@ -1,5 +1,5 @@
 ---
-title: Set-EntraBetaRoleDefinition.
+title: Set-EntraBetaRoleDefinition
 description: This article provides details on the Set-EntraBetaRoleDefinition command.
 
 

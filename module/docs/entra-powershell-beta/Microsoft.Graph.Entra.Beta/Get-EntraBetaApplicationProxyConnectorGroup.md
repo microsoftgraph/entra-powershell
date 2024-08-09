@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaApplicationProxyConnectorGroup.
+title: Get-EntraBetaApplicationProxyConnectorGroup
 description: This article provides details on the Get-EntraBetaApplicationProxyConnectorGroup.
 
 ms.topic: reference
