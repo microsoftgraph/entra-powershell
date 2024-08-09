@@ -4,11 +4,12 @@ description: This article provides details on the Update-EntraSignedInUserPasswo
 
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/22/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Update-EntraSignedInUserPassword
@@ -53,7 +54,11 @@ $params = @{
 Update-EntraSignedInUserPassword @params
 ```
 
-This command updates the password for the signed-in user.
+This example updates the password for the signed-in user.
+
+- `-CurrentPassword` Parameter specifies the current password of the signed-in user.
+
+- `-NewPassword` Parameter specifies  the new password for the signed-in user.
 
 ## Parameters
 
