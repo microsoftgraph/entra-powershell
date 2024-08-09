@@ -1,6 +1,7 @@
 ---
-title:  Get-EntraServicePrincipalOwnedObject.
+title:  Get-EntraServicePrincipalOwnedObject
 description: This article provides details on the  Get-EntraServicePrincipalOwnedObject Command.
+
 
 ms.topic: reference
 ms.date: 07/22/2024
@@ -9,6 +10,7 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
+
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraServicePrincipalOwnedObject
 
@@ -34,7 +36,7 @@ Get-EntraServicePrincipalOwnedObject
 
 ## Description
 
-The `Get-EntraServicePrincipalOwnedObject` cmdlet retrieves an object owned by a service principal in Microsoft Entra ID. Specify `-ObjectId` parameter retrieve an object owned by a service principal.
+The `Get-EntraServicePrincipalOwnedObject` cmdlet retrieves an object owned by a service principal in Microsoft Entra ID. Specify `ObjectId` parameter retrieve an object owned by a service principal.
 
 ## Examples
 
@@ -42,7 +44,7 @@ The `Get-EntraServicePrincipalOwnedObject` cmdlet retrieves an object owned by a
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
+$ServicePrincipalId = (Get-EntraServicePrincipal -Filter "DisplayName eq '<user-display-name>'").ObjectId
 Get-EntraServicePrincipalOwnedObject -ObjectId $ServicePrincipalId
 ```
 
@@ -50,7 +52,6 @@ Get-EntraServicePrincipalOwnedObject -ObjectId $ServicePrincipalId
 Id                                   DeletedDateTime
 --                                   ---------------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
-bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
 This command retrieves an object owned by a service principal.

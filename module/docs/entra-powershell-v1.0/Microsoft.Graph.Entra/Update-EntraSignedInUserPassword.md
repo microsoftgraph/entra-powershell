@@ -1,6 +1,7 @@
 ---
-title: Update-EntraSignedInUserPassword.
+title: Update-EntraSignedInUserPassword
 description: This article provides details on the Update-EntraSignedInUserPassword command.
+
 
 ms.topic: reference
 ms.date: 07/22/2024
@@ -8,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Update-EntraSignedInUserPassword
