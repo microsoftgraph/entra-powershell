@@ -61,10 +61,10 @@ The work or school account needs to belong to at least the External Identity Pro
 ```powershell
 Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
 $params = @{
-    Type = 'LinkedIn'
-    Name = 'LinkedInName'
-    ClientId = 'LinkedInAppClientId'
-    ClientSecret = 'LinkedInAppClientSecret'
+    Type = 'Google'
+    Name = 'GoogleName'
+    ClientId = 'Google123'
+    ClientSecret = 'GoogleClientSecret'
 }
 
 New-EntraBetaIdentityProvider @params
@@ -73,7 +73,7 @@ New-EntraBetaIdentityProvider @params
 ```Output
 Id             DisplayName
 --             -----------
-LinkedIn-OAUTH LinkedInName
+Google-OAUTH GoogleName
 ```
 
 This example adds a LinkedIn identity provider.

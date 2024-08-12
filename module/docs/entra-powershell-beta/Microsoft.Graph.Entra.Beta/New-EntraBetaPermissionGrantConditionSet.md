@@ -158,7 +158,7 @@ PermissionClassification = 'low'
 ClientApplicationsFromVerifiedPublisherOnly = $true
 ClientApplicationIds = @('00001111-aaaa-2222-bbbb-3333cccc4444', '11112222-bbbb-3333-cccc-4444dddd5555')
 ClientApplicationTenantIds = @('aaaabbbb-0000-cccc-1111-dddd2222eeee', 'bbbbcccc-1111-dddd-2222-eeee3333ffff', 'ccccdddd-2222-eeee-3333-ffff4444aaaa')
-ClientApplicationPublisherIds = @('verifiedpublishermpnid')
+ClientApplicationPublisherIds = @('33334444-dddd-5555-eeee-6666ffff7777')
 }
 New-EntraBetaPermissionGrantConditionSet @params
 ```
