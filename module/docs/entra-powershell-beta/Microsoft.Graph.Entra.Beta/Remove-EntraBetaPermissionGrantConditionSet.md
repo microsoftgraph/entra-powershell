@@ -2,12 +2,14 @@
 title: Remove-EntraBetaPermissionGrantConditionSet
 description: This article provides details on the Remove-EntraBetaPermissionGrantConditionSet command.
 
+
 ms.topic: reference
 ms.date: 08/08/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaPermissionGrantConditionSet
