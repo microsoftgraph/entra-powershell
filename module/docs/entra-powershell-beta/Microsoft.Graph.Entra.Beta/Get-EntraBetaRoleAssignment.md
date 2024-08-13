@@ -64,9 +64,8 @@ The `Get-EntraBetaRoleAssignment` cmdlet gets information about role assignments
 ### Example 1: Get role assignments
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.Read.Directory' #For the directory (Microsoft Entra ID) provider
- Connect-Entra -Scopes 'EntitlementManagement.Read.All' #For the entitlement management provider
- Get-EntraBetaRoleAssignment
+Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Get-EntraBetaRoleAssignment
 ```
 
 ```Output
@@ -84,9 +83,8 @@ This command gets the role assignments in Microsoft Entra ID.
 ### Example 2: Get role assignments using 'All' parameter
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.Read.Directory' #For the directory (Microsoft Entra ID) provider
- Connect-Entra -Scopes 'EntitlementManagement.Read.All' #For the entitlement management provider
- Get-EntraBetaRoleAssignment -All 
+Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Get-EntraBetaRoleAssignment -All 
 ```
 
 ```Output
@@ -104,9 +102,8 @@ This command gets all the role assignments in Microsoft Entra ID.
 ### Example 3: Get role assignments by Id
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.Read.Directory' #For the directory (Microsoft Entra ID) provider
- Connect-Entra -Scopes 'EntitlementManagement.Read.All' #For the entitlement management provider
- Get-EntraBetaRoleAssignment -Id '00001111-aaaa-2222-bbbb-3333cccc4444'
+Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Get-EntraBetaRoleAssignment -Id '00001111-aaaa-2222-bbbb-3333cccc4444'
 ```
 
 ```Output
@@ -122,9 +119,8 @@ This command gets the role assignments using specified roleAssignment Id.
 ### Example 4: Get role assignments filter by principalId
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.Read.Directory' #For the directory (Microsoft Entra ID) provider
- Connect-Entra -Scopes 'EntitlementManagement.Read.All' #For the entitlement management provider
- Get-EntraBetaRoleAssignment -Filter "principalId eq 'aaaaaaaa-bbbb-cccc-1111-222222222222'"
+Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Get-EntraBetaRoleAssignment -Filter "principalId eq 'aaaaaaaa-bbbb-cccc-1111-222222222222'"
 ```
 
 ```Output
@@ -139,9 +135,8 @@ This command gets the role assignments containing the specified principalId.
 ### Example 5: Get role assignments filter by roleDefinitionId
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.Read.Directory' #For the directory (Microsoft Entra ID) provider
- Connect-Entra -Scopes 'EntitlementManagement.Read.All' #For the entitlement management provider
- Get-EntraBetaRoleAssignment -Filter "roleDefinitionId eq 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'"
+Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Get-EntraBetaRoleAssignment -Filter "roleDefinitionId eq 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'"
 ```
 
 ```Output
@@ -159,8 +154,7 @@ This command gets the role assignments containing the specified roleDefinitionId
 ### Example 6: Get top two role assignments
 
 ```powershell
-Connect-Entra -Scopes 'RoleManagement.Read.Directory' #For the directory (Microsoft Entra ID) provider
-Connect-Entra -Scopes 'EntitlementManagement.Read.All' #For the entitlement management provider
+Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
 Get-EntraBetaRoleAssignment -Top 2
 ```
 
