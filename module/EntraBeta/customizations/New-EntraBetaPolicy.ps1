@@ -15,7 +15,7 @@
 
         if($params.type -eq "activityBasedTimeoutPolicy" ) {
             $params.type  = "activityBasedTimeoutPolicies"    
-            $respType = New-Object -TypeName Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGrphActivityBasedTimeoutPolicy    
+            $respType = New-Object -TypeName Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphActivityBasedTimeoutPolicy    
         }
         elseif ($params.type -eq "appManagementPolicy") {
             $params.type = "appManagementPolicies"
