@@ -5,7 +5,7 @@ function Get-EntraObjectSetting {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][System.String] $Id,
-        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]                  
+        [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable`1[System.Int32]] $Top,
         [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [switch] $All,
@@ -15,7 +15,7 @@ function Get-EntraObjectSetting {
         [System.String] $TargetObjectId
     )
 
-    PROCESS {    
+    PROCESS {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
         $topCount = $null
@@ -33,56 +33,10 @@ function Get-EntraObjectSetting {
                 $params["Uri"] += "&`$top=$topCount"
             }
         }
-
         if($null -ne $PSBoundParameters["Id"])
         {
             $Id = $PSBoundParameters["Id"]
             $params["Uri"] = "$baseUri/$($Id)"
-        }       
-        
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $Null
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $Null
-        }        
-	    if($null -ne $PSBoundParameters["WarningVariable"])
-        {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-	    if($null -ne $PSBoundParameters["InformationAction"])
-        {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-        }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
@@ -102,10 +56,10 @@ function Get-EntraObjectSetting {
                     $params["Uri"] = $params["Uri"].Replace('$top=999', "`$top=$topValue")
                     $increment -= $topValue
                 }
-                $response = Invoke-GraphRequest @params 
+                $response = Invoke-GraphRequest @params
                 $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             }
-        } catch {}        
+        } catch {}
 
         $targetTypeList = @()
 
@@ -120,7 +74,7 @@ function Get-EntraObjectSetting {
                 $targetTypeList += $groupType
             }
         }
-        
+
         if($TargetType.ToLower() -eq 'users'){
             foreach($res in $data){
                 $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphUserSettings
@@ -134,5 +88,5 @@ function Get-EntraObjectSetting {
         }
 
         $targetTypeList
-    }      
+    }
 }

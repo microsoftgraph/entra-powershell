@@ -25,7 +25,6 @@ Describe "Get-EntraObjectSetting" {
             $result = Get-EntraObjectSetting -TargetType "Groups" -TargetObjectId "9b424169-7f2b-4747-aa64-afbecbb28111"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
-
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }        
         It "Should fail when TargetType is empty" {
@@ -39,25 +38,20 @@ Describe "Get-EntraObjectSetting" {
         }
         It "Should return all Object Setting" {
             $result = Get-EntraObjectSetting -TargetType "Groups" -TargetObjectId "9b424169-7f2b-4747-aa64-afbecbb28111" -All 
-            $result | Should -Not -BeNullOrEmpty            
-
+            $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when All has an argument" {
             { Get-EntraObjectSetting -TargetType "Groups" -TargetObjectId "9b424169-7f2b-4747-aa64-afbecbb28111" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
-        }           
-
+        }
         It "Should return top Object Setting" {
             $result = @(Get-EntraObjectSetting -TargetType "Groups" -TargetObjectId "9b424169-7f2b-4747-aa64-afbecbb28111" -Top 1)
             $result | Should -Not -BeNullOrEmpty
-            $result | Should -HaveCount 1 
-
+            $result | Should -HaveCount 1
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
-        }  
-
+        }
         It "Should contain ID in parameters when passed TargetType TargetObjectId to it" {
             $result = Get-EntraObjectSetting -TargetType "Groups" -TargetObjectId "9b424169-7f2b-4747-aa64-afbecbb28111"
-
             $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Should contain 'User-Agent' header" {
@@ -67,6 +61,19 @@ Describe "Get-EntraObjectSetting" {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
-        }   
+        }
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraObjectSetting -TargetType "Groups" -TargetObjectId "9b424169-7f2b-4747-aa64-afbecbb28111" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        } 
     }
 }
