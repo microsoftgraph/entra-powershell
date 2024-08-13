@@ -3,7 +3,7 @@
 name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 parameters:
   - name: BuildAgent
-    default: 1es-aks-windows-gpu-pool
+    default: windows-latest
   - name: Pack
     type: boolean
     default: true
