@@ -21,7 +21,7 @@ steps:
           AuthSignCertName: 'ODataCodeSigningCert2024'
           FolderPath: ${{ parameters.FolderPath }}
           Pattern: ${{ parameters.Pattern }}
-          SessionTimeout: 90 
+          SessionTimeout: 160
           ServiceEndpointUrl: 'https://api.esrp.microsoft.com/api/v2' 
           MaxConcurrency: 25
           signConfigType: inlineSignParams
@@ -63,4 +63,3 @@ steps:
                       "toolVersion": "1.0"
                   }
               ]
-          SessionTimeout: 160
