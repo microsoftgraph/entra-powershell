@@ -3,7 +3,7 @@
 name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 parameters:
   - name: BuildAgent
-    default: windows-latest
+    default: Azure Pipelines 93
   - name: Pack
     type: boolean
     default: true
@@ -14,7 +14,7 @@ parameters:
 variables:
   BuildAgent: ${{ parameters.BuildAgent }}
 
-pool: $(BuildAgent)
+pool: Azure Pipelines
 
 trigger:
   branches:
