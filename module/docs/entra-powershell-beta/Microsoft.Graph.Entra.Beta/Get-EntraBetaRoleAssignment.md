@@ -59,6 +59,12 @@ Get-EntraBetaRoleAssignment
 
 The `Get-EntraBetaRoleAssignment` cmdlet gets information about role assignments in Microsoft Entra ID. To get a role assignment, specify the `Id` parameter. Specify the `SearchString` or `Filter` parameter to find a particular role assignment.
 
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role. The least privileged roles supported for this operation are as follows, in the order of least to most privileged:
+
+- Directory Readers
+- Global Reader
+- Privileged Role Administrator
+
 ## Examples
 
 ### Example 1: Get role assignments
