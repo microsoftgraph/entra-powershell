@@ -45,7 +45,7 @@ Specify `ObjectId` parameter to retrieve objects owned by a user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaUserOwnedObject -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -81,7 +81,7 @@ This example retrieves objects owned by the specified user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
+Get-EntraBetaUserOwnedObject -ObjectId 'SawyerM@contoso.com' -All
 ```
 
 ```Output
@@ -117,7 +117,7 @@ This example retrieves all the objects owned by the specified user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 3
+Get-EntraBetaUserOwnedObject -ObjectId 'SawyerM@contoso.com' -Top 3
 ```
 
 ```Output

@@ -43,7 +43,7 @@ The Get-EntraUserOwnedObject cmdlet gets objects owned by a user in Microsoft En
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraUserOwnedObject -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -65,7 +65,7 @@ This command gets objects owned by the specified user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All 
+Get-EntraUserOwnedObject -ObjectId 'SawyerM@contoso.com' -All 
 ```
 
 ```Output
@@ -87,7 +87,7 @@ This command gets all the objects owned by the specified user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 3
+Get-EntraUserOwnedObject -ObjectId 'SawyerM@contoso.com' -Top 3
 ```
 
 ```Output
