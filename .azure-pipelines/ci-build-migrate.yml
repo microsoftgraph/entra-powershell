@@ -2,12 +2,19 @@
 # Licensed under the MIT License.
 name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 parameters:
+  - name: BuildAgent
+    default: 1es-aks-windows-gpu-pool
   - name: Pack
     type: boolean
     default: true
   - name: Sign
     type: boolean
     default: true
+
+variables:
+  BuildAgent: ${{ parameters.BuildAgent }}
+
+pool: $(BuildAgent)
 
 trigger:
   branches:
@@ -23,7 +30,7 @@ jobs:
       - template: ./common-templates/install-tools.yml    
       - template: ./common-templates/security-pre-checks.yml
 
-      - template: ./generation-templates/generate_adapter.yml
+      - template: ./generation-templates/generate_adapter-migrate.yml
         parameters:
           Sign: ${{ parameters.Sign }}
 
