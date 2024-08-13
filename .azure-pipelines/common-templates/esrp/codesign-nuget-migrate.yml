@@ -9,6 +9,7 @@ parameters:
     type: string
     default: "*.nupkg"
 
+steps:
   - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@5 
     displayName: 'NuGet CodeSigning' 
     inputs: 
