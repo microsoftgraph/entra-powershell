@@ -10,12 +10,11 @@ function Get-EntraScopedRoleMembership {
     [System.String] $ScopedRoleMembershipId
     )
 
-    PROCESS {    
+    PROCESS {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{ObjectId = "Id"}
         $isList = $false
-        $baseUri = "https://graph.microsoft.com/v1.0/directory/administrativeUnits/"        
+        $baseUri = "https://graph.microsoft.com/v1.0/directory/administrativeUnits/"
         if($null -ne $PSBoundParameters["ObjectId"])
         {
             $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]
@@ -30,50 +29,6 @@ function Get-EntraScopedRoleMembership {
             $uri = $uri + "/$($params.ScopedRoleMembershipId)"
             $params["Uri"] = $uri
         }
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $Null
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $Null
-        }        
-        if($null -ne $PSBoundParameters["WarningVariable"])
-        {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-	    if($null -ne $PSBoundParameters["InformationAction"])
-        {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-        }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
@@ -85,7 +40,7 @@ function Get-EntraScopedRoleMembership {
         }
 
         $response | ForEach-Object {
-            if ($null -ne $_) {                    
+            if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name AdministrativeUnitObjectId -Value AdministrativeUnitId
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name RoleObjectId -Value RoleId
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
@@ -105,6 +60,6 @@ function Get-EntraScopedRoleMembership {
             }
             $memberList += $memberType
         }
-        $memberList  
+        $memberList
     }
 }
