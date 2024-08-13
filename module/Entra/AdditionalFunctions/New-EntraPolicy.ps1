@@ -26,7 +26,7 @@ function New-EntraPolicy {
 
         if($params.type -eq "activityBasedTimeoutPolicy" ) {
             $params.type  = "activityBasedTimeoutPolicies"
-            $respType = New-Object -TypeName Microsoft.Graph.PowerShell.Models.MicrosoftGrphActivityBasedTimeoutPolicy 
+            $respType = New-Object -TypeName Microsoft.Graph.PowerShell.Models.MicrosoftGraphActivityBasedTimeoutPolicy 
         }
         elseif ($params.type -eq "ApplicationManagementPolicy") {
          $params.type = "appManagementPolicies"
