@@ -38,4 +38,17 @@ Describe "Add-EntraAdministrativeUnitMember tests"{
         $params = Get-Parameters -data $result
         $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
     }
+    It "Should execute successfully without throwing an error " {
+        # Disable confirmation prompts       
+        $originalDebugPreference = $DebugPreference
+        $DebugPreference = 'Continue'
+
+        try {
+            # Act & Assert: Ensure the function doesn't throw an exception
+            { Add-EntraAdministrativeUnitMember -ObjectId "f306a126-cf2e-439d-b20f-95ce4bcb7ffa" -RefObjectId "d6873b36-81d6-4c5e-bec0-9e3ca2c86846" -Debug } | Should -Not -Throw
+        } finally {
+            # Restore original confirmation preference            
+            $DebugPreference = $originalDebugPreference        
+        }
+    }
 }
