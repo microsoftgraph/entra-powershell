@@ -1,5 +1,5 @@
 ---
-title:  Add-EntraBetaFeatureRolloutPolicyDirectoryObject
+title: Add-EntraBetaFeatureRolloutPolicyDirectoryObject
 description: This article provides details on the  Add-EntraBetaFeatureRolloutPolicyDirectoryObject command.
 
 
