@@ -143,6 +143,31 @@ This command creates a TokenIssuancePolicy in Microsoft Entra ID.
 
 - `-Type` Parameter specifies the type of policy.
 
+### Example 5: Create a ActivityBasedTimeoutPolicy
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
+$params = @{
+    Definition = @('{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')
+    DisplayName = 'ActivityBasedTimeoutPolicyname'
+    Type = 'ActivityBasedTimeoutPolicy'
+}
+New-EntraBetaPolicy @params
+```
+
+```Output
+Definition                                                                                       DeletedDateTime Description DisplayName                    Id
+----------                                                                                       --------------- ----------- -----------                    --
+{{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                             ActivityBasedTimeoutPolicyname aaaaaaaa-0000-1111-2222...
+
+```
+
+This command creates a ActivityBasedTimeoutPolicy in Microsoft Entra ID.
+
+- `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy.
+
+- `-Type` Parameter specifies the type of policy.
+
 ## Parameters
 
 ### -Definition
