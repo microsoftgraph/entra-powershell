@@ -2,22 +2,12 @@
 # Licensed under the MIT License.
 name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 parameters:
-  - name: BuildAgent
-    default: 1es-windows-ps-compute
-    displayName: Build Agent
   - name: Pack
     type: boolean
     default: true
   - name: Sign
     type: boolean
     default: true
-
-variables:
-  BuildAgent: ${{ parameters.BuildAgent }}
-  GitUserEmail: "GraphTooling@service.microsoft.com"
-  GitUserName: "Microsoft Graph DevX Tooling"
-
-pool: $(BuildAgent)
 
 trigger:
   branches:
