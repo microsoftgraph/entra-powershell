@@ -41,7 +41,7 @@ The `Get-EntraBetaUserManager` cmdlet gets the manager of a user in Microsoft En
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraBetaUserManager -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaUserManager -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -55,7 +55,7 @@ city                            : San Diego
 createdDateTime                 : 2023-07-07T14:18:05Z
 country                         : United States
 department                      : Sales & Marketing
-displayName                     : Miriam Graham
+displayName                     : Sawyer Miller
 ```
 
 This example demonstrates how to retrieve the manager of a specific user.

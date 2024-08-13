@@ -41,7 +41,7 @@ The Get-EntraUserManager cmdlet gets the manager of a user in Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUserManager -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff'
+Get-EntraUserManager -ObjectId 'miriamg@contoso.com'
 ```
 
 ```output
