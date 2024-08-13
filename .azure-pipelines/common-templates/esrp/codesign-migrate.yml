@@ -10,9 +10,8 @@ parameters:
       default: ".*.dll"
 
 steps:
-    - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
+    - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@5
       displayName: ESRP DLL CodeSigning
-      enabled: true
       inputs:
           ConnectedServiceName: 'EntraPowerShell ESRP CodeSign and NUGET' 
           AppRegistrationClientId: 'ce6e119c-a8c2-4744-9699-cd5389102d0d'
