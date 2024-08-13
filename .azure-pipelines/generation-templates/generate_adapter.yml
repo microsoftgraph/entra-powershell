@@ -128,7 +128,7 @@ steps:
       ./build/Create-CompatModule.ps1 -Module EntraBeta -Verbose
     pwsh: false
 - ${{ if eq(parameters.Sign, true) }}:
-  - template: ../common-templates/esrp/codesign.yml
+  - template: ../common-templates/esrp/codesign-migrate.yml
     parameters:
       FolderPath: "bin"
       Pattern: "*.psm1, *.psd1, *.format.ps1xml, *.ps1"
