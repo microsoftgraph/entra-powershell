@@ -1,5 +1,5 @@
 ---
-title: New-EntraBetaAdministrativeUnitMember.
+title: New-EntraBetaAdministrativeUnitMember
 description: This article provides details on the New-EntraBetaAdministrativeUnitMember command.
 
 
@@ -12,7 +12,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaAdministrativeUnitMember
+
 schema: 2.0.0
 ---
 

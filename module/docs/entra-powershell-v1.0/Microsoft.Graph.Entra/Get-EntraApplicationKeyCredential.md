@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraApplicationKeyCredential
+
 schema: 2.0.0
 ---
 
@@ -39,7 +40,8 @@ The `Get-EntraApplicationKeyCredential` cmdlet retrieves the key credentials for
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraApplicationKeyCredential -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+Get-EntraApplicationKeyCredential -ObjectId $application.ObjectId
 ```
 
 ```Output
@@ -49,6 +51,8 @@ CustomKeyIdentifier DisplayName     EndDateTime           Key KeyId             
 ```
 
 This command gets the key credentials for the specified application.
+
+`-ObjectId` parameter specifies the ID of an application object in Microsoft Entra ID.
 
 ## Parameters
 

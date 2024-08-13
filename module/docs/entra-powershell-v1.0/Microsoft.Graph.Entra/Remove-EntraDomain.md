@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraDomain.
+title: Remove-EntraDomain
 description: This article provides details on the Remove-EntraDomain command.
 
 
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraDomain
+
 schema: 2.0.0
 ---
 

@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraPermissionGrantPolicy
+
 schema: 2.0.0
 ---
 
@@ -46,7 +47,7 @@ The `Get-EntraPermissionGrantPolicy` cmdlet gets a Microsoft Entra ID permission
 
 ## Examples
 
-### Example 1: Get all permission grant policies.
+### Example 1: Get all permission grant policies
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
@@ -63,7 +64,7 @@ DeletedDateTime Description
 
 This command gets all the permission grant policies.  
 
-### Example 2: Get a permission grant policy by ID.
+### Example 2: Get a permission grant policy by ID
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
@@ -129,4 +130,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Set-EntraPermissionGrantPolicy](Set-EntraPermissionGrantPolicy.md)
 
 [Remove-EntraPermissionGrantPolicy](Remove-EntraPermissionGrantPolicy.md)
-

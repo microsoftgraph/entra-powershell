@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraDeletedDirectoryObject.
+title: Remove-EntraDeletedDirectoryObject
 description: This article provides details on the Remove-EntraDeletedDirectoryObject command.
 
 
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraDeletedDirectoryObject
+
 schema: 2.0.0
 ---
 

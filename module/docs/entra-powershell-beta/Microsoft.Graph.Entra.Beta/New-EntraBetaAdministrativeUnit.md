@@ -10,7 +10,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaAdministrativeUnit
+
 schema: 2.0.0
 ---
 
@@ -33,6 +34,8 @@ New-EntraBetaAdministrativeUnit
 ## Description
 
 The `New-EntraBetaAdministrativeUnit` cmdlet creates an administrative unit in Microsoft Entra ID. Specify `DisplayName` parameter to create an administrative unit.
+
+In delegated scenarios, the signed-in user must be assigned a supported Microsoft Entra role or a custom role that includes the `microsoft.directory/administrativeUnits/allProperties/allTasks` permission. The Privileged Role Administrator role is the least privileged role that meets this requirement.
 
 ## Examples
 

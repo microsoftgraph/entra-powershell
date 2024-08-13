@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraServicePrincipal
+
 schema: 2.0.0
 ---
 
@@ -56,7 +57,7 @@ Get-EntraServicePrincipal
 
 ## Description
 
-The Get-EntraServicePrincipal cmdlet gets a service principal in Microsoft Entra ID.
+The `Get-EntraServicePrincipal` cmdlet gets a service principal in Microsoft Entra ID.
 
 ## Examples
 
@@ -85,7 +86,7 @@ $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
 Get-EntraServicePrincipal $ServicePrincipalId
 ```
 
-```output
+```Output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 Demo App
@@ -104,7 +105,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraServicePrincipal -All 
 ```
 
-```output
+```Output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 Demo App
@@ -122,7 +123,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraServicePrincipal -Top 3
 ```
 
-```output
+```Output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 Demo App
@@ -139,7 +140,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraServicePrincipal -Filter "DisplayName eq 'ProjectWorkManagement'"
 ```
 
-```output
+```Output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
@@ -154,13 +155,71 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraServicePrincipal -SearchString "ProjectWorkManagement"
 ```
 
-```output
+```Output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
 ```
 
 This command gets a list of service principal, which has the specified display name.
+
+### Example 7: Retrieve all Enterprise apps
+
+```powershell
+Get-EntraServicePrincipal -Filter "tags/Any(x: x eq 'WindowsAzureActiveDirectoryIntegratedApp')"
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience         ServicePrincipalType
+-----------         --                                   -----                                --------------         --------------------
+Enterprise App1     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-5555-eeee-6666ffff7777                         Application
+Enterprise App2     11112222-bbbb-3333-cccc-4444dddd5555 22223333-cccc-4444-dddd-5555eeee6666 AzureADMultipleOrgs    Application
+```
+
+This example demonstrates how to retrieve all enterprise apps.
+
+### Example 8: Retrieve all App proxy apps
+
+```powershell
+Get-EntraServicePrincipal  -Filter "tags/Any(x: x eq 'WindowsAzureActiveDirectoryOnPremApp')"
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience         ServicePrincipalType
+-----------         --                                   -----                                --------------         --------------------
+App proxy 1     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-5555-eeee-6666ffff7777                         Application
+App proxy 2     11112222-bbbb-3333-cccc-4444dddd5555 22223333-cccc-4444-dddd-5555eeee6666 AzureADMultipleOrgs    Application
+```
+
+This example demonstrates how to retrieve all app proxy apps.
+
+### Example 9: Retrieve all disabled apps
+
+```powershell
+Get-EntraServicePrincipal -Filter "accountEnabled eq false"
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience         ServicePrincipalType
+-----------         --                                   -----                                --------------         --------------------
+Disabled App1     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-5555-eeee-6666ffff7777                         Application
+```
+
+This example demonstrates how to retrieve all disabled apps.
+
+### Example 10: Retrieve all Global Secure Access apps
+
+```powershell
+Get-EntraServicePrincipal -Filter "tags/Any(x: x eq 'PrivateAccessNonWebApplication') or tags/Any(x: x eq 'NetworkAccessManagedApplication')"
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience         ServicePrincipalType
+-----------         --                                   -----                                --------------         --------------------
+Global secure access app     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-5555-eeee-6666ffff7777                         Application
+```
+
+This example demonstrates how to retrieve all Global secure access apps.
 
 ## Parameters
 
@@ -183,7 +242,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies an oData v3.0 filter statement.
+Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml

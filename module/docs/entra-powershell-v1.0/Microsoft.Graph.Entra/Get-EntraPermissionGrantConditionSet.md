@@ -12,7 +12,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraPermissionGrantConditionSet
+
 schema: 2.0.0
 ---
 
@@ -55,7 +56,12 @@ Get a Microsoft Entra ID permission grant condition set object by id.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-Get-EntraPermissionGrantConditionSet -PolicyId 'policy1' -ConditionSetType 'includes'
+$params = @{
+    PolicyId = 'policy1'
+    ConditionSetType = 'includes'
+}
+
+Get-EntraPermissionGrantConditionSet @params
 ```
 
 ```output
@@ -70,7 +76,12 @@ This command gets all permission grant condition sets that are included in the p
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-Get-EntraPermissionGrantConditionSet -PolicyId 'policy1' -ConditionSetType 'excludes'
+$params = @{
+    PolicyId = 'policy1'
+    ConditionSetType = 'excludes'
+}
+
+Get-EntraPermissionGrantConditionSet @params
 ```
 
 ```output
@@ -86,7 +97,13 @@ This command gets all permission grant condition sets that are excluded in the p
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
-Get-EntraPermissionGrantConditionSet -PolicyId 'policy1' -ConditionSetType 'includes' -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$params = @{
+    PolicyId = 'policy1'
+    ConditionSetType = 'includes'
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+}
+
+Get-EntraPermissionGrantConditionSet @params
 ```
 
 ```output
@@ -182,4 +199,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Set-EntraPermissionGrantConditionSet](Set-EntraPermissionGrantConditionSet.md)
 
 [Remove-EntraPermissionGrantConditionSet](Remove-EntraPermissionGrantConditionSet.md)
-

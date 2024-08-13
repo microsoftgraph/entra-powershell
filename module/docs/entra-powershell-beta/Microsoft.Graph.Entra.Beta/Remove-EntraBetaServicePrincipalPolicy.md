@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaServicePrincipalPolicy.
+title: Remove-EntraBetaServicePrincipalPolicy
 description: This article provides details on the Remove-EntraBetaServicePrincipalPolicy command.
 
 
@@ -12,7 +12,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaServicePrincipalPolicy
+
 schema: 2.0.0
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaGroupMember.
+title: Get-EntraBetaGroupMember
 description: This article provides details on the Get-EntraBetaGroupMember command.
 
 ms.topic: reference
@@ -10,7 +10,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaGroupMember
+
 schema: 2.0.0
 ---
 
@@ -23,10 +24,11 @@ Gets a member of a group.
 ## Syntax
 
 ```powershell
-Get-EntraBetaGroupMember 
- -ObjectId <String> 
- [-Top <Int32>] 
- [-All] 
+Get-EntraBetaGroupMember
+ -ObjectId <String>
+ [-Top <Int32>]
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -133,6 +135,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

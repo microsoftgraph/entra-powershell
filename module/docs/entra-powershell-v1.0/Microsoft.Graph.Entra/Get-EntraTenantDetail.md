@@ -1,5 +1,5 @@
 ---
-title: Get-EntraTenantDetail.
+title: Get-EntraTenantDetail
 description: This article provides details on the Get-EntraTenantDetail command.
 
 
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraTenantDetail
+
 schema: 2.0.0
 ---
 

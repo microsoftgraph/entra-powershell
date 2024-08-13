@@ -1,5 +1,5 @@
 ---
-title: Get-EntraServicePrincipalOAuth2PermissionGrant.
+title: Get-EntraServicePrincipalOAuth2PermissionGrant
 description: This article provides details on the Get-EntraServicePrincipalOAuth2PermissionGrant command.
 
 
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraServicePrincipalOAuth2PermissionGrant
+
 schema: 2.0.0
 ---
 

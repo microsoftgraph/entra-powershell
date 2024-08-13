@@ -1,5 +1,5 @@
 ---
-title:  Add-EntraBetaFeatureRolloutPolicyDirectoryObject.
+title:  Add-EntraBetaFeatureRolloutPolicyDirectoryObject
 description: This article provides details on the  Add-EntraBetaFeatureRolloutPolicyDirectoryObject command.
 
 
@@ -12,7 +12,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Add-EntraBetaFeatureRolloutPolicyDirectoryObject
+
 schema: 2.0.0
 ---
 
