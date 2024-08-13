@@ -2,8 +2,6 @@
 # Licensed under the MIT License.
 name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 parameters:
-  - name: BuildAgent
-    default: Azure Pipelines 93
   - name: Pack
     type: boolean
     default: true
@@ -11,10 +9,8 @@ parameters:
     type: boolean
     default: true
 
-variables:
-  BuildAgent: ${{ parameters.BuildAgent }}
-
-pool: Azure Pipelines
+pool:
+  vmImage: windows-latest
 
 trigger:
   branches:
