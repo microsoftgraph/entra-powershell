@@ -1,5 +1,5 @@
 ---
-title: Get-EntraGroup.
+title: Get-EntraGroup
 description: This article explains the Get-EntraGroup command.
 
 
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraGroup
+
 schema: 2.0.0
 ---
 

@@ -1,17 +1,18 @@
 ---
-title: Get-EntraBetaGroupLifecyclePolicy.
+title: Get-EntraBetaGroupLifecyclePolicy
 description: This article provides details on the Get-EntraBetaGroupLifecyclePolicy command.
 
 
 ms.topic: reference
-ms.date: 06/18/2024
+ms.date: 07/22/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaGroupLifecyclePolicy
+
 schema: 2.0.0
 ---
 
@@ -27,15 +28,17 @@ If you specify no parameters, this cmdlet gets all groupLifecyclePolicies.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraBetaGroupLifecyclePolicy 
+Get-EntraBetaGroupLifecyclePolicy
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraBetaGroupLifecyclePolicy 
- -Id <String> 
+Get-EntraBetaGroupLifecyclePolicy
+ -Id <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -56,7 +59,7 @@ Get-EntraBetaGroupLifecyclePolicy
 ```Output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
-eeeeeeee-4444-5555-6666-ffffffffffff example@contoso.un          99                  Selected
+eeeeeeee-4444-5555-6666-ffffffffffff example@contoso.com                     200                 Selected
 ```
 
 This example demonstrates how to retrieve the properties and relationships of all groupLifecyclePolicies in Microsoft Entra ID.
@@ -71,10 +74,12 @@ Get-EntraBetaGroupLifecyclePolicy -Id 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
 ```Output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
-ffffffff-5555-6666-7777-aaaaaaaaaaaa admingroup@contoso.com      200                 All
+ffffffff-5555-6666-7777-aaaaaaaaaaaa example@contoso.com                     200                 Selected
 ```
 
-This command is used to retrieve a specific Microsoft Group Lifecycle Policy. The Id parameter specifies the ID of the Lifecycle Policy to be retrieved.
+This command is used to retrieve a specific Microsoft Group Lifecycle Policy.
+
+- `-Id` parameter specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID.
 
 ## Parameters
 
@@ -91,6 +96,22 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

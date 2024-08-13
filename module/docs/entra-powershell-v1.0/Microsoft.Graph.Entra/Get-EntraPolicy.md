@@ -11,17 +11,18 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraPolicy
+
 schema: 2.0.0
 ---
 
 # Get-EntraPolicy
 
-## SYNOPSIS
+## Synopsis
 
 Gets a policy.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
 
@@ -41,11 +42,11 @@ Get-EntraPolicy
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The `Get-EntraPolicy` cmdlet gets a policy in Microsoft Entra ID. Specify `Id` parameter to get a policy.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Gets all policy
 
@@ -55,20 +56,10 @@ Get-EntraPolicy
 ```
 
 ```Output
-Name                           Value
-----                           -----
-deletedDateTime
-id                             'bbbbbbbb-1111-2222-3333-cccccccccccc
-displayName                    New update
-definition                     {{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}
-isOrganizationDefault          False
-Type                           HomeRealmDiscoveryPolicy
-deletedDateTime
-id                             bbbbbbbb-1111-2222-3333-cccccccccccc
-displayName                    MyPolicy
-definition                     {{"HomeRealmDisccccoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}
-isOrganizationDefault          False
-Type                           HomeRealmDiscoveryPolicy
+Definition                                                                                       DeletedDateTime Description DisplayName                                 Id
+----------                                                                                       --------------- ----------- -----------                                 --
+{{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                             Activepolicy                            bbbbbbbb-1111-2222-3333-cccccccccccc
+{{"HomeRealmDiscoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                                 PolicyDemo                              aaaaaaaa-1111-1111-1111-000000000000
 ```
 
 This example shows how to return all policies.
@@ -81,21 +72,32 @@ Get-EntraPolicy -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 ```Output
-Name                           Value
-----                           -----
-deletedDateTime
-id                             bbbbbbbb-1111-2222-3333-cccccccccccc
-displayName                    MyPolicy
-definition                     {{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}
-isOrganizationDefault          False
-Type                           HomeRealmDiscoveryPolicy
+Definition                                                                                       DeletedDateTime Description DisplayName                                 Id
+----------                                                                                       --------------- ----------- -----------                                 --
+{{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                             Activepolicy                            bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
 This example demonstrated how to receive policy with specific ID.
 
 - `Id` parameter specifies the unique policy ID, which you want to receive. In this example, `bbbbbbbb-1111-2222-3333-cccccccccccc` represents the ID of the policy.
 
-### Example 3: Get a top one policy
+### Example 3: Get all policies
+
+```powershell
+Connect-Entra -Scopes 'Policy.Read.All'
+Get-EntraPolicy -All
+```
+
+```Output
+Definition                                                                                       DeletedDateTime Description DisplayName                                 Id
+----------                                                                                       --------------- ----------- -----------                                 --
+{{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                             Activepolicy                            bbbbbbbb-1111-2222-3333-cccccccccccc
+{{"HomeRealmDiscoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                                 PolicyDemo                              aaaaaaaa-1111-1111-1111-000000000000
+```
+
+This example demonstrates how to retrieve all policies in Microsoft Entra ID.
+
+### Example 4: Get a top one policy
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'
@@ -103,23 +105,18 @@ Get-EntraPolicy -Top 1
 ```
 
 ```Output
-Name                           Value
-----                           -----
-deletedDateTime
-id                             bbbbbbbb-1111-2222-3333-cccccccccccc
-displayName                    MyPolicy
-definition                     {{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}
-isOrganizationDefault          False
-Type                           HomeRealmDiscoveryPolicy
+Definition                                                                                       DeletedDateTime Description DisplayName                                 Id
+----------                                                                                       --------------- ----------- -----------                                 --
+{{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                             Activepolicy                            bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
-This example Return top one policy.
+This example demonstrates how to retrieve top one policies in Microsoft Entra ID.
 
-## PARAMETERS
+## Parameters
 
 ### -Id
 
-The ID of the policy you want to retrieve
+The ID of the policy you want to retrieve.
 
 ```yaml
 Type: System.String
@@ -169,13 +166,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [New-EntraPolicy](New-EntraPolicy.md)
 

@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaApplicationProxyConnectorGroup.
+title: Remove-EntraBetaApplicationProxyConnectorGroup
 description: This article provides details on the Remove-EntraBetaApplicationProxyConnectorGroup command.
 
 ms.topic: reference
@@ -11,7 +11,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaApplicationProxyConnectorGroup
+
 schema: 2.0.0
 ---
 

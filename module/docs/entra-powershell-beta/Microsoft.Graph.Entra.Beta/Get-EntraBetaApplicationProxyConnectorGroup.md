@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaApplicationProxyConnectorGroup.
+title: Get-EntraBetaApplicationProxyConnectorGroup
 description: This article provides details on the Get-EntraBetaApplicationProxyConnectorGroup.
 
 ms.topic: reference
@@ -11,7 +11,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaApplicationProxyConnectorGroup
+
 schema: 2.0.0
 ---
 

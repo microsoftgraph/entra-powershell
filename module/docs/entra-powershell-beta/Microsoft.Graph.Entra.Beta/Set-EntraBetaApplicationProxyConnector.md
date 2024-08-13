@@ -1,5 +1,5 @@
 ---
-title: Set-EntraBetaApplicationProxyConnector.
+title: Set-EntraBetaApplicationProxyConnector
 description: This article provides details on the Set-EntraBetaApplicationProxyConnector command.
 
 ms.topic: reference
@@ -11,7 +11,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaApplicationProxyConnector
+
 schema: 2.0.0
 ---
 

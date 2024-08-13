@@ -1,5 +1,5 @@
 ---
-title: New-EntraServicePrincipalPasswordCredential.
+title: New-EntraServicePrincipalPasswordCredential
 description: This article provides details on the New-EntraServicePrincipalPasswordCredential command.
 
 
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraServicePrincipalPasswordCredential
+
 schema: 2.0.0
 ---
 

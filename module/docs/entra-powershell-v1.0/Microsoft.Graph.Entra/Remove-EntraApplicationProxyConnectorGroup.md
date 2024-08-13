@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraApplicationProxyConnectorGroup.
+title: Remove-EntraApplicationProxyConnectorGroup
 description: This article provides details on the Remove-EntraApplicationProxyConnectorGroup Command.
 
 
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraApplicationProxyConnectorGroup
+
 schema: 2.0.0
 ---
 

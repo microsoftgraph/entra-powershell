@@ -11,7 +11,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaDeletedGroup
+
 schema: 2.0.0
 ---
 
@@ -26,28 +27,31 @@ This cmdlet is used to retrieve the soft deleted groups in a Microsoft Entra ID.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraBetaDeletedGroup 
- [-Filter <String>] 
- [-All] 
- [-Top <Int32>] 
+Get-EntraBetaDeletedGroup
+ [-Filter <String>]
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraBetaDeletedGroup 
- -Id <String> 
- [-All] 
+Get-EntraBetaDeletedGroup
+ -Id <String>
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-### GetByValue
+### GetVague
 
 ```powershell
-Get-EntraBetaDeletedGroup 
- [-All] 
- [-SearchString <String>] 
+Get-EntraBetaDeletedGroup
+ [-All]
+ [-SearchString <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -243,6 +247,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

@@ -11,7 +11,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaObjectByObjectId
+
 schema: 2.0.0
 ---
 
@@ -24,9 +25,10 @@ Retrieves the objects specified by the ObjectIds parameter.
 ## Syntax
 
 ```powershell
-Get-EntraBetaObjectByObjectId 
- -ObjectIds <System.Collections.Generic.List`1[System.String]>
+Get-EntraBetaObjectByObjectId
  [-Types <System.Collections.Generic.List`1[System.String]>]
+ -ObjectIds <System.Collections.Generic.List`1[System.String]>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -95,6 +97,22 @@ Specifies the type of objects that the cmdlet returns. If not specified, the def
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
 Parameter Sets: (All)
 Aliases:
 

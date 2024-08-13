@@ -1,5 +1,5 @@
 ---
-title: Get-EntraUserDirectReport.
+title: Get-EntraUserDirectReport
 description: This article provides details on the Get-EntraUserDirectReport command.
 
 
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraUserDirectReport
+
 schema: 2.0.0
 ---
 
@@ -41,9 +42,8 @@ The Get-EntraUserDirectReport cmdlet gets the direct reports for a user in Micro
 ### Example 1: Get a user's direct reports
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' #Delegated Permission
-Connect-Entra -Scopes 'User.Read.All' #Application Permission
-Get-EntraUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Connect-Entra -Scopes 'User.Read','User.Read.All'
+Get-EntraUserDirectReport -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -61,14 +61,15 @@ assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=333344
                                   @{disabledPlans=System.Object[]; skuId=55556666-ffff-7777-aaaa-8888bbbb9999}}
 ```
 
-This example demonstrates how to retrieve direct reports for a user in Microsoft Entra ID.
+This command gets the direct report for the specified user.
+
+- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 
 ### Example 2: Get all direct reports
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' #Delegated Permission
-Connect-Entra -Scopes 'User.Read.All' #Application Permission
-Get-EntraUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All 
+Connect-Entra -Scopes 'User.Read','User.Read.All'
+Get-EntraUserDirectReport -ObjectId 'SawyerM@contoso.com' -All 
 ```
 
 ```output
@@ -88,12 +89,13 @@ assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=333344
 
 This example demonstrates how to retrieve all direct reports for a user in Microsoft Entra ID.
 
+- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
+
 ### Example 3: Get a top five direct reports
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' #Delegated Permission
-Connect-Entra -Scopes 'User.Read.All' #Application Permission
-Get-EntraUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 5
+Connect-Entra -Scopes 'User.Read','User.Read.All'
+Get-EntraUserDirectReport -ObjectId 'SawyerM@contoso.com' -Top 5
 ```
 
 ```output
@@ -112,6 +114,8 @@ assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=333344
 ```
 
 This example demonstrates how to retrieve top five direct reports for a user in Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 
 ## Parameters
 
