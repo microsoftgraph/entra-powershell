@@ -34,5 +34,18 @@ Describe "Test for Set-EntraCustomSecurityAttributeDefinition" {
         $params = Get-Parameters -data $result
         $a= $params | ConvertTo-json | ConvertFrom-Json
         $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue        
-    } 
+    }
+    It "Should execute successfully without throwing an error " {
+        # Disable confirmation prompts       
+        $originalDebugPreference = $DebugPreference
+        $DebugPreference = 'Continue'
+
+        try {
+            # Act & Assert: Ensure the function doesn't throw an exception
+            { Set-EntraCustomSecurityAttributeDefinition -Id "Demo12_ProjectDatevaluevaluevalue12test" -Description "Test desc" -UsePreDefinedValuesOnly $false -Status "Available" } | Should -Not -Throw
+        } finally {
+            # Restore original confirmation preference            
+            $DebugPreference = $originalDebugPreference        
+        }
+    }
 }
