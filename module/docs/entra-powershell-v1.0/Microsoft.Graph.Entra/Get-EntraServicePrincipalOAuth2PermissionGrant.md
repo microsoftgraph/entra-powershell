@@ -1,5 +1,5 @@
 ---
-title: Get-EntraServicePrincipalOAuth2PermissionGrant.
+title: Get-EntraServicePrincipalOAuth2PermissionGrant
 description: This article provides details on the Get-EntraServicePrincipalOAuth2PermissionGrant command.
 
 

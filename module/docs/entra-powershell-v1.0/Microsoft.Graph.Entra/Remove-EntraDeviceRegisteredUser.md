@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraDeviceRegisteredUser.
+title: Remove-EntraDeviceRegisteredUser
 description: This article provides details on the Remove-EntraDeviceRegisteredUser command.
 
 

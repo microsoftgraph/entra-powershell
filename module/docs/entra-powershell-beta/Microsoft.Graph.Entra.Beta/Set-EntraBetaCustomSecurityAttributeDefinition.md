@@ -1,4 +1,14 @@
 ---
+title: Set-EntraBetaCustomSecurityAttributeDefinition
+description: This article provides details on the Set-EntraBetaCustomSecurityAttributeDefinition command.
+
+ms.topic: reference
+ms.date: 07/10/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaCustomSecurityAttributeDefinition
@@ -9,34 +19,55 @@ schema: 2.0.0
 # Set-EntraBetaCustomSecurityAttributeDefinition
 
 ## Synopsis
-{{ Fill in the Synopsis }}
+
+Update the properties of a customSecurityAttributeDefinition object.
 
 ## Syntax
 
-```
-Set-EntraBetaCustomSecurityAttributeDefinition -Id <String> [-Description <String>] [-Status <String>]
- [-UsePreDefinedValuesOnly <Boolean>] [<CommonParameters>]
+```powershell
+Set-EntraBetaCustomSecurityAttributeDefinition 
+ -Id <String> 
+ [-Description <String>] 
+ [-Status <String>]
+ [-UsePreDefinedValuesOnly <Boolean>] 
+ [<CommonParameters>]
 ```
 
 ## Description
-{{ Fill in the Description }}
+
+Update the properties of a customSecurityAttributeDefinition object. Specify `Id` parameter to update a custom security attribute definition.
+
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
 
 ## Examples
 
-### Example 1
+### Example 1: Update a custom security attribute
+
 ```powershell
-PS C:\> {{ Add example code here }}
+Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All', 'CustomSecAttributeDefinition.ReadWrite.All'
+$params = @{
+    Id = 'Test_ProjectTest' 
+    Description = 'Target completion' 
+    Status = 'Available' 
+}
+Set-EntraBetaCustomSecurityAttributeDefinition @params
 ```
 
-{{ Add example description here }}
+This example update a custom security attribute.
+
+- `-Id` parameter specifies the custom security attribute definition object ID.
+- `-Description` parameter specifies the description of the custom security attribute.
+- `-Status` parameter specifies the custom security attribute is active or deactivated.
+- `-UsePreDefinedValuesOnly` parameter specifies the only predefined values can be assigned to the custom security attribute.
 
 ## Parameters
 
 ### -Description
-{{ Fill Description Description }}
+
+Description of the custom security attribute, up to 128 characters long and including Unicode characters. This description can be changed later.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -48,10 +79,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+
+The unique identifier of a Microsoft Entra ID custom security attribute definition object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -63,10 +95,11 @@ Accept wildcard characters: False
 ```
 
 ### -Status
-{{ Fill Status Description }}
+
+Specifies whether the custom security attribute is active or deactivated. Acceptable values are: Available and Deprecated. Can be changed later.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -78,10 +111,11 @@ Accept wildcard characters: False
 ```
 
 ### -UsePreDefinedValuesOnly
-{{ Fill UsePreDefinedValuesOnly Description }}
+
+Indicates whether only predefined values can be assigned to the custom security attribute. If set to false, free-form values are allowed. Can later be changed from true to false, but can't be changed from false to true. If type is set to Boolean, usePreDefinedValuesOnly can't be set to true.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -93,7 +127,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -102,6 +137,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
+
+[New-EntraBetaCustomSecurityAttributeDefinition](New-EntraBetaCustomSecurityAttributeDefinition.md)
+
+[Get-EntraBetaCustomSecurityAttributeDefinition](Get-EntraBetaCustomSecurityAttributeDefinition.md)

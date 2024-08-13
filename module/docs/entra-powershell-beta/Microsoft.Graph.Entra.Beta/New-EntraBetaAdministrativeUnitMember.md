@@ -1,5 +1,5 @@
 ---
-title: New-EntraBetaAdministrativeUnitMember.
+title: New-EntraBetaAdministrativeUnitMember
 description: This article provides details on the New-EntraBetaAdministrativeUnitMember command.
 
 

@@ -30,9 +30,11 @@ New-EntraAdministrativeUnit
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The `New-EntraAdministrativeUnit` cmdlet creates an administrative unit in Microsoft Entra ID. Specify `DisplayName` parameter for create an administrative unit.
+The `New-EntraAdministrativeUnit` cmdlet creates an administrative unit in Microsoft Entra ID. Specify `DisplayName` parameter to create an administrative unit.
+
+In delegated scenarios, the signed-in user must be assigned a supported Microsoft Entra role or a custom role that includes the `microsoft.directory/administrativeUnits/allProperties/allTasks` permission. The Privileged Role Administrator role is the least privileged role that meets this requirement.
 
 ## EXAMPLES
 
@@ -40,19 +42,36 @@ The `New-EntraAdministrativeUnit` cmdlet creates an administrative unit in Micro
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
-New-EntraAdministrativeUnit -DisplayName "test_AdministrativeUnit" -Description "add-your-description"
+New-EntraAdministrativeUnit -DisplayName 'TestAU'
 ```
 
 ```Output
-DeletedDateTime Id                                   Description          DisplayName             Visibility
---------------- --                                   -----------          -----------             ----------
-                cc604cc2-5636-4306-a705-bd0a763eff00 add-your-description test_AdministrativeUnit
+DeletedDateTime Id                                   Description DisplayName Visibility
+--------------- --                                   ----------- ----------- ----------
+                bbbbbbbb-1111-2222-3333-cccccccccccc             TestAU
 ```
 
-This example demonstrates how to create an administrative unit
+This command creates an administrative unit.
 
-- `DisplayName` Specifies the display name of the new administrative unit.
-- `Description` Specifies a description for the new administrative unit.
+### Example 2: Create an administrative unit using '-Description' parameter
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$params = @{
+    DisplayName = 'Pacific Administrative Unit'
+    Description = 'Administrative Unit for Pacific region'
+}
+
+New-EntraAdministrativeUnit @params
+```
+
+```Output
+DeletedDateTime Id                                   Description DisplayName Visibility
+--------------- --                                   ----------- ----------- ----------
+                dddddddd-3333-4444-5555-eeeeeeeeeeee Administrative Unit for Pacific region     Pacific Administrative Unit
+```
+
+This command creates an administrative unit.
 
 ## PARAMETERS
 
