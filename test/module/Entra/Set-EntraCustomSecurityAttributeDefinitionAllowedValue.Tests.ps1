@@ -43,5 +43,18 @@ Describe "Test for Set-EntraCustomSecurityAttributeDefinitionAllowedValue" {
         $params = Get-Parameters -data $result
         $a= $params | ConvertTo-json | ConvertFrom-Json
         $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue        
-    } 
+    }
+    It "Should execute successfully without throwing an error " {
+        # Disable confirmation prompts       
+        $originalDebugPreference = $DebugPreference
+        $DebugPreference = 'Continue'
+
+        try {
+            # Act & Assert: Ensure the function doesn't throw an exception
+            { Set-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId "Engineering_Project" -Id "Alpine" -IsActive $true -Debug } | Should -Not -Throw
+        } finally {
+            # Restore original confirmation preference            
+            $DebugPreference = $originalDebugPreference        
+        }
+    }
 }
