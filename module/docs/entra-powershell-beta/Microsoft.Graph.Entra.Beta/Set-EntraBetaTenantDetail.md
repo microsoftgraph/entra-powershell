@@ -1,4 +1,15 @@
 ---
+title: Set-EntraBetaTenantDetail
+description: This article provides details on the Set-EntraBetaTenantDetail command.
+
+
+ms.topic: reference
+ms.date: 08/13/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaTenantDetail
@@ -9,12 +20,14 @@ schema: 2.0.0
 # Set-EntraBetaTenantDetail
 
 ## Synopsis
-Set contact details for a tenant
+
+Set contact details for a tenant.
 
 ## Syntax
 
-```
-Set-EntraBetaTenantDetail [-MarketingNotificationEmails <System.Collections.Generic.List`1[System.String]>]
+```powershell
+Set-EntraBetaTenantDetail 
+ [-MarketingNotificationEmails <System.Collections.Generic.List`1[System.String]>]
  [-TechnicalNotificationMails <System.Collections.Generic.List`1[System.String]>]
  [-PrivacyProfile <PrivacyProfile>]
  [-SecurityComplianceNotificationMails <System.Collections.Generic.List`1[System.String]>]
@@ -23,21 +36,85 @@ Set-EntraBetaTenantDetail [-MarketingNotificationEmails <System.Collections.Gene
 ```
 
 ## Description
+
 This cmdlet is used to set various contact details for a tenant.
+
+For delegated scenarios, the signed-in user must have at least one of the following Microsoft Entra roles.
+
+- Application Administrator
 
 ## Examples
 
-### Example 1
-```
-PS C:\WINDOWS\system32> Set-EntraBetaTenantDetail -MarketingNotificationEmails "amy@contoso.com","henry@contoso.com" -SecurityComplianceNotificationMails "john@contoso.com","mary@contoso.com" -SecurityComplianceNotificationPhones "1-555-625-9999", "1-555-233-5544" -TechnicalNotificationMails "peter@contoso.com"
+### Example 1: Set contact details for a tenant
+
+```powershell
+Connect-Entra -Scopes 'Organization.ReadWrite.All'
+$params = @{
+    MarketingNotificationEmails = @('amy@contoso.com', 'henry@contoso.com')
+    SecurityComplianceNotificationMails = @('john@contoso.com', 'mary@contoso.com')
+    SecurityComplianceNotificationPhones = @('1-555-625-9999', '1-555-233-5544')
+    TechnicalNotificationMails = 'peter@contoso.com'
+}
+
+Set-EntraBetaTenantDetail @params
 ```
 
-THis example shows how to set the various tenant details
+This example demonstrates how to set various contact details for a tenant.
+
+- `-MarketingNotificationEmails` parameter indicates the email addresses that are used to send marketing notification emails.
+- `-SecurityComplianceNotificationMails` parameter indicates the email addresses that are used to send security compliance emails.
+- `-SecurityComplianceNotificationPhones` parameter specifies the phone numbers that are used for security compliance.
+- `-TechnicalNotificationMails` parameter indicates the email addresses that are used for technical notification emails.
+
+### Example 2: Set MarketingNotificationEmails for a tenant
+
+```powershell
+Connect-Entra -Scopes 'Organization.ReadWrite.All'
+Set-EntraBetaTenantDetail -MarketingNotificationEmails @('amy@contoso.com','henry@contoso.com')
+```
+
+This example demonstrates how to set MarketingNotificationEmails detail for a tenant.
+
+- `-MarketingNotificationEmails` parameter indicates the email addresses that are used to send marketing notification emails.
+
+### Example 3: Set SecurityComplianceNotificationMails for a tenant
+
+```powershell
+Connect-Entra -Scopes 'Organization.ReadWrite.All'
+Set-EntraBetaTenantDetail -SecurityComplianceNotificationMails @('john@contoso.com','mary@contoso.com')
+```
+
+This example demonstrates how to set SecurityComplianceNotificationMails detail for a tenant.
+
+- `-SecurityComplianceNotificationMails` parameter indicates the email addresses that are used to send security compliance emails.
+
+### Example 4: Set -SecurityComplianceNotificationPhones for a tenant
+
+```powershell
+Connect-Entra -Scopes 'Organization.ReadWrite.All'
+Set-EntraBetaTenantDetail -SecurityComplianceNotificationPhones @('1-555-625-9999', '1-555-233-5544')
+```
+
+This example demonstrates how to set MarketingNotificationEmails detail for a tenant.
+
+- `-SecurityComplianceNotificationPhones` parameter specifies the phone numbers that are used for security compliance.
+
+### Example 5: Set TechnicalNotificationMails for a tenant
+
+```powershell
+Connect-Entra -Scopes 'Organization.ReadWrite.All'
+Set-EntraBetaTenantDetail -TechnicalNotificationMails 'peter@contoso.com'
+```
+
+This example demonstrates how to set TechnicalNotificationMails detail for a tenant.
+
+- `-TechnicalNotificationMails` parameter indicates the email addresses that are used for technical notification emails.
 
 ## Parameters
 
 ### -MarketingNotificationEmails
-The email address that is used to send marketing notification emails
+
+The email addresses that are used to send marketing notification emails.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -52,7 +129,8 @@ Accept wildcard characters: False
 ```
 
 ### -SecurityComplianceNotificationMails
-The email address that is used to send security compliance emails
+
+The email addresses that are used to send security compliance emails.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -67,7 +145,8 @@ Accept wildcard characters: False
 ```
 
 ### -SecurityComplianceNotificationPhones
-The phone number(s) that are used for security compliance
+
+One or more phone numbers that are used for security compliance.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -82,7 +161,8 @@ Accept wildcard characters: False
 ```
 
 ### -TechnicalNotificationMails
-The email addres(es) that are used for technical notification emails
+
+The email addresses that are used for technical notification emails.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -97,7 +177,8 @@ Accept wildcard characters: False
 ```
 
 ### -PrivacyProfile
-{{ Fill PrivacyProfile Description }}
+
+Represents a company's privacy profile, which includes a privacy statement URL and a contact person for questions regarding the privacy statement.
 
 ```yaml
 Type: PrivacyProfile
@@ -112,14 +193,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### None
+
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
+
+[Get-EntraBetaTenantDetail](Get-EntraBetaTenantDetail.md)

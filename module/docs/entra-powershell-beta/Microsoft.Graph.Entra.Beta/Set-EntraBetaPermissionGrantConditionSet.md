@@ -57,7 +57,7 @@ $params = @{
     PolicyId = $permissionGrantPolicyId
     ConditionSetType = 'includes'
     Id = 'aaaa0000-bb11-2222-33cc-444444dddddd'
-    PermissionClassification = 'Low'
+    PermissionClassification = 'low'
 }
 
 Set-EntraBetaPermissionGrantConditionSet @params
@@ -80,7 +80,7 @@ $params = @{
     ConditionSetType = 'includes'
     Id = 'aaaa0000-bb11-2222-33cc-444444dddddd'
     PermissionType = 'delegated'
-    PermissionClassification = 'Low'
+    PermissionClassification = 'low'
     ResourceApplication = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
     Permissions = @('All')
     ClientApplicationIds = @('All')

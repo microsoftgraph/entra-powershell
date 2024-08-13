@@ -56,7 +56,7 @@ The work or school account needs to belong to at least the External Identity Pro
 
 ## Examples
 
-### Example 1: Add LinkedIn identity provider
+### Example 1: Add Google identity provider
 
 ```powershell
 Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
@@ -73,10 +73,10 @@ New-EntraBetaIdentityProvider @params
 ```Output
 Id             DisplayName
 --             -----------
-Google-OAUTH GoogleName
+Google-OAUTH   GoogleName
 ```
 
-This example adds a LinkedIn identity provider.
+This example adds a Google identity provider.
 
 - `-Type` parameter specifies the identity provider type. It must be one of the following values: Microsoft, Google, Facebook, Amazon, or LinkedIn.
 - `-Name` parameter specifies the display name of the identity provider.
@@ -166,5 +166,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[Set-EntraBetaIdentityProvider](Set-EntraBetaIdentityProvider.md)
 
 [Remove-EntraBetaIdentityProvider](Remove-EntraBetaIdentityProvider.md)

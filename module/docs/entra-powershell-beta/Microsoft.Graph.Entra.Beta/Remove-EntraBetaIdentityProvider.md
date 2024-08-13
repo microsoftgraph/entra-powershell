@@ -87,3 +87,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Related Links
 
 [New-EntraBetaIdentityProvider](New-EntraBetaIdentityProvider.md)
+
+[Set-EntraBetaIdentityProvider](Set-EntraBetaIdentityProvider.md)
