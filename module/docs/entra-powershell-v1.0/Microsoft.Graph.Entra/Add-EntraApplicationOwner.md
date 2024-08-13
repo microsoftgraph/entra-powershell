@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Add-EntraApplicationOwner
+
 schema: 2.0.0
 ---
 
@@ -73,7 +74,7 @@ Accept wildcard characters: False
 
 ### -RefObjectId
 
-Specifies the ID of the Active Directory object to assign as owner/manager/member.
+Specifies the ID of the Microsoft Entra ID object to assign as owner/manager/member.
 
 ```yaml
 Type: System.String

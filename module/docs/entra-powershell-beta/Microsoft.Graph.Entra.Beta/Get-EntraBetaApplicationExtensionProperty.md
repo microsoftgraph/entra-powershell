@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaApplicationExtensionProperty
+
 schema: 2.0.0
 ---
 
@@ -24,8 +25,9 @@ Gets application extension properties.
 ## Syntax
 
 ```powershell
-Get-EntraBetaApplicationExtensionProperty 
-    -ObjectId <String>
+Get-EntraBetaApplicationExtensionProperty
+ -ObjectId <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -65,6 +67,22 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

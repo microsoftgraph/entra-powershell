@@ -1,6 +1,7 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
+
 Describe "Get-EntraApplication" {
     BeforeAll {
         if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){

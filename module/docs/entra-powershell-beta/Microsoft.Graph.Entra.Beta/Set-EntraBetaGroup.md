@@ -1,5 +1,5 @@
 ---
-title: Set-EntraBetaGroup.
+title: Set-EntraBetaGroup
 description: This article provides details on the Set-EntraBetaGroup command.
 
 
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaGroup
+
 schema: 2.0.0
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Get-EntraServicePrincipalCreatedObject.
+title: Get-EntraServicePrincipalCreatedObject
 description: This article provides details on the Get-EntraServicePrincipalCreatedObject command.
 
 
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraServicePrincipalCreatedObject
+
 schema: 2.0.0
 ---
 
