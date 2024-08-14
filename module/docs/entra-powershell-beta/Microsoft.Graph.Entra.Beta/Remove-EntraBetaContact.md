@@ -40,7 +40,7 @@ The `Remove-EntraBetaContact` removes a contact from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-$Contact = Get-EntraBetaContact -Top 1
+$Contact = Get-EntraBetaContact -Filter "DisplayName eq 'Contoso Contact'"
 Remove-EntraBetaContact -ObjectId $Contact.ObjectId
 ```
 

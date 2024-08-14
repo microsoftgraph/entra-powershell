@@ -61,7 +61,7 @@ This example shows how to add a registered owner to a device.
 
 ### -ObjectId
 
-Specifies the object ID.
+Specifies the ID of the device.
 
 ```yaml
 Type: System.String
