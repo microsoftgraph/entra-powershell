@@ -62,12 +62,12 @@ D--changes-->C
 
 ```
 
-| Stage          | Description                                                                                                                                                                                                                     |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Stage          | Description                                                                                                                                                                                                                                                                                                                        |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Get Started    | Familiarize yourself with [cmdlets](./design-guidelines/cmdlet-best-practices.md), modules, [parameters](./design-guidelines/parameter-best-practices.md), [piping](./design-guidelines/piping-best-practices.md) best practices, key concepts, naming conventions, testing, review processes, and other best practice guidelines. |
-| Implementation | [Set up the environment], develop cmdlet logic, create unit tests, and document cmdlets with examples.                                                                                                                            |
-| Review         | Submit changes by raising a pull request for review by the community and the Microsoft Entra PowerShell Engineering team.                                                                                                       |
-| Publish        | We deploy approved changes in the next release train.                                                                                                                                                                           |
+| Implementation | [Set up the environment], develop cmdlet logic, create unit tests, and document cmdlets with examples.                                                                                                                                                                                                                             |
+| Review         | Submit changes by raising a pull request for review by the community and the Microsoft Entra PowerShell Engineering team.                                                                                                                                                                                                          |
+| Publish        | We deploy approved changes in the next release train.                                                                                                                                                                                                                                                                              |
 
 ## Prerequisites
 
@@ -117,6 +117,56 @@ git pull upstream main
 
 Please check out the [_Cmdlet Best Practices_](./design-guidelines/cmdlet-best-practices.md) document for more information on how to create cmdlets that follow the PowerShell guidelines.
 
+### Design Review
+
+For a significant number of changes or additions, a design review of your proposed PowerShell cmdlets may be necessary. We recommend submitting this review through a [pull request][pull-request] with ample time for consideration. Before submitting a design review pull request, please ensure you have read the documents in the [Entra PowerShell Design Guidelines](./design-guidelines/README.md) folder.
+
+Another scenario that might require a design review is resolving design conflicts to ensure consistency and predictability. For example, when adding business roles, it's important to clearly distinguish between Privileged Identity Management roles and catalog roles to minimize conflicts.
+
+### Choose implementation folder
+
+Your new cmdlet can reside in either of these folders.
+
+| Folder name          | Description                                                                                                                                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Customizations       | For cmdlets ported from AzureAD module. See, [Beta](https://github.com/microsoftgraph/entra-powershell/tree/main-stevemutungi-dev-docs/module/EntraBeta/customizations) and [v1.0](https://github.com/microsoftgraph/entra-powershell/tree/main-stevemutungi-dev-docs/module/Entra/customizations) customization folders |
+| Additional Functions | For new cmdlets. See, [Beta](https://github.com/microsoftgraph/entra-powershell/tree/main-stevemutungi-dev-docs/module/EntraBeta/AdditionalFunctions) and [v1.0](https://github.com/microsoftgraph/entra-powershell/tree/main-stevemutungi-dev-docs/module/Entra/AdditionalFunctions) additional functions folders       |
+
+**Note**: If unsure, choose `Additional Functions` folder.
+
+### File naming convention
+
+The file name should be the same as the cmdlet name.
+
+### Adding Help Content
+
+All cmdlets that are created must have accompanying help that is displayed when users execute the command `Get-Help <your cmdlet>`.
+
+Each cmdlet has a markdown file that contains the help content that is displayed in PowerShell; these markdown files are created (and maintained) using the platyPS module.
+
+For complete documentation, see [`cmdlet-reference-template`](./cmdlet-references-documentation/cmdlet-reference-template.md) in the [`cmdlet references documentation`](./cmdlet-references-documentation/) folder. See [Beta](./cmdlet-references-documentation/cmdlet-reference-example-beta.md) and [v1.0](./cmdlet-references-documentation/cmdlet-reference-example.md) cmdlet examples.
+
+Place cmdlet reference .md files under:
+
+- [Beta docs](./../module/docs/entra-powershell-beta/) folder
+- [v1.0 docs](./../module/docs/entra-powershell-v1.0/) folder
+
+### Adding Tests
+
+All cmdlets **MUST** have unit tests. Developers are expected to write and run unit tests for their PowerShell code, ensuring that it behaves as expected and helping to prevent regressions. Entra PowerShell module use [Pester framework](https://pester.dev).
+Place cmdlet reference .md files under:
+
+- [Beta cmdlet tests](./../test/module/EntraBeta/) folder
+- [v1.0 cmdlet tests](./../test/module/Entra/) folder
+
+## After Development
+
+Once all of your cmdlets have been created and the appropriate tests have been added, you can open a pull request in the Entra PowerShell repository to have your cmdlets added to the next release. Please make sure to read [CONTRIBUTING.md](../CONTRIBUTING.md) for more information on how to open a pull request, clean up commits, make sure appropriate files have been added/changed, and more.
+
+### Publish to PowerShell Gallery
+
+The Entra PowerShell team will regularly publish the module, including all changes, to the [official PowerShell gallery](https://aka.ms/EntraPSGallery) as outlined in our [official documentation](https://learn.microsoft.com/powershell/entra-powershell/entraps-versioning-release-cadence).
+
 [git-cheat-sheet]: https://education.github.com/git-cheat-sheet-education.pdf
 [set-execution-policy]: https://learn.microsoft.com/powershell/module/microsoft.powershell.security/set-executionpolicy
 [powershell7]: https://github.com/PowerShell/PowerShell/releases/latest
@@ -125,3 +175,4 @@ Please check out the [_Cmdlet Best Practices_](./design-guidelines/cmdlet-best-p
 [vscode]: https://code.visualstudio.com/docs/setup/setup-overview
 [git-workflow]: https://guides.github.com/introduction/flow/
 [git-forking]: https://guides.github.com/activities/forking/
+[pull-request]: https://github.com/microsoftgraph/entra-powershell/pulls
