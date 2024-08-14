@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaAuditDirectoryLogs.
+title: Get-EntraBetaAuditDirectoryLogs
 description: This article provides details on the Get-EntraBetaAuditDirectoryLogs command.
 
 

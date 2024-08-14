@@ -1,5 +1,5 @@
 ---
-title: New-EntraBetaGroupAppRoleAssignment.
+title: New-EntraBetaGroupAppRoleAssignment
 description: This article provides details on the New-EntraBetaGroupAppRoleAssignment command.
 
 

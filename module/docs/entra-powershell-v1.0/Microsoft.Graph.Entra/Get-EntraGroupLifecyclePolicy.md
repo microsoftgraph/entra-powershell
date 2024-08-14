@@ -1,5 +1,5 @@
 ---
-title: Get-EntraGroupLifecyclePolicy.
+title: Get-EntraGroupLifecyclePolicy
 description: This article provides details on the Get-EntraGroupLifecyclePolicy command.
 
 

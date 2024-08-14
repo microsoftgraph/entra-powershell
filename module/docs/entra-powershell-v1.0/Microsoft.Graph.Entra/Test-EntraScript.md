@@ -1,5 +1,5 @@
 ---
-title: Test-EntraScript.
+title: Test-EntraScript
 description: This article provides details on the Test-EntraScript command.
 
 
