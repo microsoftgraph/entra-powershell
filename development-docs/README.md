@@ -52,10 +52,10 @@ Welcome! We're glad you're here. We're about to give you an overview of what we 
         A((Start)) --> B["Get Started #9992;
 (key concepts, naming, setup)"]
          B["Get Started #9992;
-(key concepts, naming, setup)"] --> C[fa:fa-code Develop, test,
-document]
-C[fa:fa-code Develop, test,
-document] --> D[fa:fa-check Review]
+(key concepts, naming, setup)"] --> C["Develop, test,
+document #2775;"]
+C["Develop, test,
+document #2775;"] --> D[fa:fa-check Review]
 D[fa:fa-check Review] --> E[fa:fa-upload Publish]
 E[fa:fa-upload Publish] --> F(((End)))
 D--changes-->C
