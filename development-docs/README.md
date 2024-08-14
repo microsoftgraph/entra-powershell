@@ -64,7 +64,7 @@ D--changes-->C
 
 | Stage          | Description                                                                                                                                                                                                                                                                                                                        |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Get Started    | Familiarize yourself with [cmdlets](./design-guidelines/cmdlet-best-practices.md), modules, [parameters](./design-guidelines/parameter-best-practices.md), [piping](./design-guidelines/piping-best-practices.md) best practices, key concepts, naming conventions, testing, review processes, and other best practice guidelines. |
+| Get Started    | Familiarize yourself with [cmdlets][cmdlet-best-practices], modules, [parameters](./design-guidelines/parameter-best-practices.md), [piping](./design-guidelines/piping-best-practices.md) best practices, key concepts, naming conventions, testing, review processes, and other best practice guidelines. |
 | Implementation | [Set up the environment], develop cmdlet logic, create unit tests, and document cmdlets with examples.                                                                                                                                                                                                                             |
 | Review         | Submit changes by raising a pull request for review by the community and the Microsoft Entra PowerShell Engineering team.                                                                                                                                                                                                          |
 | Publish        | We deploy approved changes in the next release train.                                                                                                                                                                                                                                                                              |
@@ -115,7 +115,7 @@ git pull upstream main
 
 ### PowerShell Cmdlet Design Guidelines
 
-Please check out the [_Cmdlet Best Practices_](./design-guidelines/cmdlet-best-practices.md) document for more information on how to create cmdlets that follow the PowerShell guidelines.
+Please check out the [_Cmdlet Best Practices_][cmdlet-best-practices] document for more information on how to create cmdlets that follow the PowerShell guidelines.
 
 ### Design Review
 
@@ -129,8 +129,8 @@ Your new cmdlet can reside in either of these folders.
 
 | Folder name          | Description                                                                                                                                                                                                                                                                                                              |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Customizations       | For cmdlets ported from AzureAD module. See, [Beta](https://github.com/microsoftgraph/entra-powershell/tree/main-stevemutungi-dev-docs/module/EntraBeta/customizations) and [v1.0](https://github.com/microsoftgraph/entra-powershell/tree/main-stevemutungi-dev-docs/module/Entra/customizations) customization folders |
-| Additional Functions | For new cmdlets. See, [Beta](https://github.com/microsoftgraph/entra-powershell/tree/main-stevemutungi-dev-docs/module/EntraBeta/AdditionalFunctions) and [v1.0](https://github.com/microsoftgraph/entra-powershell/tree/main-stevemutungi-dev-docs/module/Entra/AdditionalFunctions) additional functions folders       |
+| Customizations       | For cmdlets ported from AzureAD module. See, [Beta][Beta-customizations] and [v1.0][GA-customizations] customization folders |
+| Additional Functions | For new cmdlets. See, [Beta][Beta-Additional-functions] and [v1.0][GA-additional-functions] additional functions folders       |
 
 **Note**: If unsure, choose `Additional Functions` folder.
 
@@ -144,7 +144,7 @@ All cmdlets that are created must have accompanying help that is displayed when 
 
 Each cmdlet has a markdown file that contains the help content that is displayed in PowerShell; these markdown files are created (and maintained) using the platyPS module.
 
-For complete documentation, see [`cmdlet-reference-template`](./cmdlet-references-documentation/cmdlet-reference-template.md) in the [`cmdlet references documentation`](./cmdlet-references-documentation/) folder. See [Beta](./cmdlet-references-documentation/cmdlet-reference-example-beta.md) and [v1.0](./cmdlet-references-documentation/cmdlet-reference-example.md) cmdlet examples.
+For complete documentation, see [`cmdlet-reference-template`][cmdlet-reference-template] in the [`cmdlet references documentation`](./cmdlet-references-documentation/) folder. See [Beta][Beta-cmdlet-example] and [v1.0][GA-cmdlet-example] cmdlet examples.
 
 Place cmdlet reference .md files under:
 
@@ -153,7 +153,7 @@ Place cmdlet reference .md files under:
 
 ### Adding Tests
 
-All cmdlets **MUST** have unit tests. Developers are expected to write and run unit tests for their PowerShell code, ensuring that it behaves as expected and helping to prevent regressions. Entra PowerShell module use [Pester framework](https://pester.dev).
+All cmdlets **MUST** have unit tests. Developers are expected to write and run unit tests for their PowerShell code, ensuring that it behaves as expected and helping to prevent regressions. Entra PowerShell module use [Pester framework][pester-framework].
 Place cmdlet reference .md files under:
 
 - [Beta cmdlet tests](./../test/module/EntraBeta/) folder
@@ -165,7 +165,7 @@ Once all of your cmdlets have been created and the appropriate tests have been a
 
 ### Publish to PowerShell Gallery
 
-The Entra PowerShell team will regularly publish the module, including all changes, to the [official PowerShell gallery](https://aka.ms/EntraPSGallery) as outlined in our [official documentation](https://learn.microsoft.com/powershell/entra-powershell/entraps-versioning-release-cadence).
+The Entra PowerShell team will regularly publish the module, including all changes, to the [official PowerShell gallery][powershell-gallery] as outlined in our [official documentation][release-cadence].
 
 [git-cheat-sheet]: https://education.github.com/git-cheat-sheet-education.pdf
 [set-execution-policy]: https://learn.microsoft.com/powershell/module/microsoft.powershell.security/set-executionpolicy
@@ -176,3 +176,14 @@ The Entra PowerShell team will regularly publish the module, including all chang
 [git-workflow]: https://guides.github.com/introduction/flow/
 [git-forking]: https://guides.github.com/activities/forking/
 [pull-request]: https://github.com/microsoftgraph/entra-powershell/pulls
+[release-cadence]: https://learn.microsoft.com/powershell/entra-powershell/entraps-versioning-release-cadence
+[powershell-gallery]: https://aka.ms/EntraPSGallery
+[GA-additional-functions]: https://github.com/microsoftgraph/entra-powershell/tree/main-stevemutungi-dev-docs/module/Entra/AdditionalFunctions
+[Beta-Additional-functions]: https://github.com/microsoftgraph/entra-powershell/tree/main-stevemutungi-dev-docs/module/EntraBeta/AdditionalFunctions
+[GA-customizations]: https://github.com/microsoftgraph/entra-powershell/tree/main-stevemutungi-dev-docs/module/Entra/customizations
+[Beta-customizations]: https://github.com/microsoftgraph/entra-powershell/tree/main-stevemutungi-dev-docs/module/EntraBeta/customizations
+[cmdlet-best-practices]: ./design-guidelines/cmdlet-best-practices.md
+[pester-framework]: https://pester.dev
+[GA-cmdlet-example]: ./cmdlet-references-documentation/cmdlet-reference-example.md
+[Beta-cmdlet-example]: ./cmdlet-references-documentation/cmdlet-reference-example-beta.md
+[cmdlet-reference-template]: ./cmdlet-references-documentation/cmdlet-reference-template.md
