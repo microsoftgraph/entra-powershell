@@ -55,9 +55,9 @@ Welcome! We're glad you're here. We're about to give you an overview of what we 
 (key concepts, naming, setup)"] --> C["Develop, test,
 document #2775; "]
 C["Develop, test,
-document #2775; "] --> D[fa:fa-check Review ❵ ]
-D[fa:fa-check Review ❵ ] --> E[fa:fa-upload Publish]
-E[fa:fa-upload Publish] --> F(((End)))
+document #2775; "] --> D[Review ❴❵ ]
+D[Review ❴❵] --> E[Publish 🚀]
+E[Publish 🚀] --> F(((End)))
 D--changes-->C
 
 ```
