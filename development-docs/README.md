@@ -9,39 +9,16 @@ The Microsoft Entra PowerShell Developer Guide helps you develop and test Entra 
 - [Prerequisites](#prerequisites)
 - [Environment Setup](#environment-setup)
   - [GitHub Basics](#github-basics)
-  - [Building the Environment](#building-the-environment)
-  - [Generating Help](#generating-help)
-  - [Running Static Analysis](#running-static-analysis)
-  - [Running Tests](#running-tests)
-- [Before Adding a New Project](#before-adding-a-new-project)
-  - [.NET SDK](#net-sdk)
-  - [Design Review](#design-review)
-  - [Point of Contact](#point-of-contact)
-- [Setting Up a New Project](#setting-up-a-new-project)
-  - [Getting Started](#getting-started)
-    - [Creating the Project](#creating-the-project)
-    - [Adding Project References](#adding-project-references)
 - [Creating Cmdlets](#creating-cmdlets)
   - [PowerShell Cmdlet Design Guidelines](#powershell-cmdlet-design-guidelines)
-  - [Exceptions Guidelines](#exceptions-guidelines)
-  - [Enable Running PowerShell when Debugging](#enable-running-powershell-when-debugging)
-    - [Set a StartUp Project](#set-a-startup-project)
-    - [Setup a Debug Profile](#setup-a-debug-profile)
-  - [Adding Help Content](#adding-help-content)
-- [Adding Tests](#adding-tests)
-  - [Using Azure TestFramework](#using-azure-testframework)
-  - [Scenario Tests](#scenario-tests)
-    - [Adding Test Project](#adding-test-project)
-    - [Adding Scenario Tests](#adding-scenario-tests)
-    - [Use local files in test](#use-local-files-in-test)
-    - [Using Active Directory](#using-active-directory)
-    - [AD Scenario Tests](#ad-scenario-tests)
-    - [Recording/Running Tests](#recordingrunning-tests)
+  - [Design Review](#design-review)
+  - [Code folders](#choose-implementation-folder)
+  - [File naming convention](#file-naming-convention)
+  - [Adding Get-Help content](#adding-help-content)
+  - [Adding unit tests](#adding-tests)
 - [After Development](#after-development)
-  - [Change Log](#change-log)
-- [Misc](#misc)
-  - [Publish to PowerShell Gallery](#publish-to-powershell-gallery)
-- [AutoRest PowerShell Generator](#autorest-powershell-generator)
+  - [Code and doc review](#code-and-documentation-review)
+  - [Publishing to PowerShell gallery](#publish-to-powershell-gallery)
 
 ## Process overview
 
@@ -160,6 +137,8 @@ Place cmdlet reference .md files under:
 - [v1.0 cmdlet tests](./../test/module/Entra/) folder
 
 ## After Development
+
+### Code and documentation review
 
 Once all of your cmdlets have been created and the appropriate tests have been added, you can open a pull request in the Entra PowerShell repository to have your cmdlets added to the next release. Please make sure to read [CONTRIBUTING.md](../CONTRIBUTING.md) for more information on how to open a pull request, clean up commits, make sure appropriate files have been added/changed, and more.
 
