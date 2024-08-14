@@ -41,6 +41,7 @@ The `Add-EntraAdministrativeUnitMember` cmdlet adds a Microsoft Entra ID adminis
 ### Example 1: Add user as an administrative unit member
 
 ```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $params = @{
     Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     RefObjectId = 'dddddddd-3333-4444-5555-eeeeeeeeeeee'
