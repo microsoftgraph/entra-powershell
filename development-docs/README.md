@@ -53,10 +53,10 @@ Welcome! We're glad you're here. We're about to give you an overview of what we 
 (key concepts, naming, setup)"]
          B["Get Started #9992;
 (key concepts, naming, setup)"] --> C["Develop, test,
-document #2775; "]
+document ❴❵"]
 C["Develop, test,
-document #2775; "] --> D[Review ❴❵ ]
-D[Review ❴❵] --> E[Publish 🚀]
+document ❴❵"] --> D[Review ✔]
+D[Review ✔] --> E[Publish 🚀]
 E[Publish 🚀] --> F(((End)))
 D--changes-->C
 
