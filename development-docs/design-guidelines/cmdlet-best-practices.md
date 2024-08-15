@@ -22,7 +22,7 @@ From the [_Strongly Encouraged Development Guidelines_][strongly-encouraged-dev-
 
 Do capitalize both characters of two-character acronyms. For example, New-Entra*VM*.
 
-Do capitalize only the first character of acronyms with three or more characters, which aligned with Pascal case. for example, Restart-Az*Vmss*, New-Az*Sql*Database.
+Do capitalize only the first character of acronyms with three or more characters, which aligned with Pascal case. For example, Restart-Az*Vmss*, New-Az*Sql*Database.
 
 #### Specific Noun and Noun Singularity
 
@@ -34,21 +34,21 @@ From the [_Strongly Encouraged Development Guidelines_][sd01-strongly-encouraged
 
 #### Set vs. Update
 
-If your cmdlet is performing a **PATCH** operation (_i.e._, a partial replacement on the server), then the cmdlet should use the verb `Update`.
+If your cmdlet is performing a **PATCH** operation (_that is, a partial replacement on the server), then the cmdlet should use the verb `Update`.
 
-If your cmdlet is performing a **PUT** operation (_i.e._, a full replacement on the server), the cmdlet should use the verb `Set`.
+If your cmdlet is performing a **PUT** operation (_that is, a full replacement on the server), the cmdlet should use the verb `Set`.
 
 #### Cmdlet Alias
 
-If you there is a separate nomenclature for your service and/or resource, or if you would like to shorten the name of the cmdlet so it's easier to remember, you can add an alias attribute to your cmdlet to allow for this functionality.
+If your service or resource has a different name, or if you want to shorten the cmdlet name for easier recall, you can add an alias attribute to your cmdlet to enable this functionality.
 
 ### Output Type
 
-Specified by the `OutputType` attribute, this piece of metadata lets the user know what the type of the object returned by the cmdlet is (found in the **Outputs** section of a cmdlet's help content). The type specified here should always be a single element and not an enumeration of elements.
+`OutputType` attribute lets the user know what the type of the object returned by the cmdlet is (found in the **Outputs** section of a cmdlet's help content). The type specified here should always be a single element and not an enumeration of elements.
 
 #### Valid Output Types
 
-If the cmdlet returns an object, the type of the object returned must be defined; the output type for a cmdlet should _never_ be `object`, `PSObject`, `PSCustomObject` or the like. Returning these types of objects makes it difficult for the user to anticipate what properties will be found on the object returned from the cmdlet, as well as makes it impossible for the breaking change analyzer to detect if a breaking change was introduced to the cmdlet as the type is not defined.
+If the cmdlet returns an object, the type of the object returned must be defined; the output type for a cmdlet should _never_ be `object`, `PSObject`, `PSCustomObject` or the like. Returning these types of objects makes it difficult for the user to anticipate which properties will be found on the object returned from the cmdlet.
 
 In order to preserve proper piping scenarios, the output type for a cmdlet should _never_ be a `string`. If a cmdlet is expected to return a `string`, the suggestion is to introduce a new type that encapsulates the `string` information as a property and return that object. The PowerShell language revolves around objects and passing them around cmdlets; returning `string` objects can introduce inconsistencies in the piping experience for users.
 
