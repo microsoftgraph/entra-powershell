@@ -157,6 +157,10 @@ Once all of your cmdlets have been created and the appropriate tests have been a
 
 The Entra PowerShell team will regularly publish the module, including all changes, to the [official PowerShell gallery][powershell-gallery] as outlined in our [official documentation][release-cadence].
 
+## Crediting
+
+Significant contributions are credited in the [misc/acknowledgements](../../entra-powershell/misc/acknowledgements) file. You might be asked to make these updates on behalf of the Entra PowerShell Engineer who accepts your pull request.
+
 [git-cheat-sheet]: https://education.github.com/git-cheat-sheet-education.pdf
 [set-execution-policy]: https://learn.microsoft.com/powershell/module/microsoft.powershell.security/set-executionpolicy
 [powershell7]: https://github.com/PowerShell/PowerShell/releases/latest
