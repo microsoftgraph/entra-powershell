@@ -128,6 +128,8 @@ Place cmdlet reference .md files under:
 - [Beta docs](./../module/docs/entra-powershell-beta/) folder
 - [v1.0 docs](./../module/docs/entra-powershell-v1.0/) folder
 
+> _Entra PowerShell uses a single source of truth for both **Get-Help** and [public online documentation][cmdlet-references], stored in the [docs folder][docs-folder]._
+
 ### Adding Tests
 
 All cmdlets **MUST** have unit tests. Developers are expected to write and run unit tests for their PowerShell code, ensuring that it behaves as expected and helping to prevent regressions. Entra PowerShell module use [Pester framework][pester-framework].
@@ -173,3 +175,5 @@ The Entra PowerShell team will regularly publish the module, including all chang
 [GA-cmdlet-example]: ./cmdlet-references-documentation/cmdlet-reference-example.md
 [Beta-cmdlet-example]: ./cmdlet-references-documentation/cmdlet-reference-example-beta.md
 [cmdlet-reference-template]: ./cmdlet-references-documentation/cmdlet-reference-template.md
+[cmdlet-references]: https://learn.microsoft.com/powershell/module/microsoft.graph.entra
+[docs-folder]: https://github.com/microsoftgraph/entra-powershell/tree/main/module/docs
