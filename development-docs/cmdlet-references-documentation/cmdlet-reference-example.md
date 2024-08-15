@@ -20,7 +20,7 @@ schema: 2.0.0
 
 Reference
 
-Module: **Microsoft.Entra.Users**
+Module: **Microsoft.Graph.Entra**
 
 ## Synopsis
 
@@ -59,7 +59,7 @@ Get-EntraUser
 
 ## Description  
   
-The `Get-EntraUser` cmdlet gets an individual user or list of users. Specify the `UserId` parameter to get a specific user.
+The `Get-EntraUser` cmdlet gets an individual user or list of users. Specify the `ObjectId` parameter to get a specific user.
 
 ## Examples
 
@@ -82,15 +82,15 @@ Abdulla Kafeel               dddddddd-3333-4444-5555-eeeeeeeeeeee AbdullaK@conto
 Vladimir Zeman               eeeeeeee-4444-5555-6666-ffffffffffff VladimirZ@contoso.com                   VladimirZ@contoso.com                       
 ```
 
-This command retrieves all users in the company. It displays up to the default value of 500 results.
+This command retrieves all users in the company, displaying up to the default limit of 500 results.
 
 ### Example 2: Get a specific user
 
-In this example, we provide the user's ID to retrieve a specific user.
+In this example, we provide the user's ID to retrieve their details.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUser -UserId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraUser -ObjectId 'RastislavM@contoso.com'
 ```
 
 ```Output
@@ -99,9 +99,9 @@ DisplayName         Id                                   Mail                   
 Rastislav Moravcik aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb RastislavM@contoso.com               RastislavM@contoso.com                       
 ```
 
-This example returns the details of the specified user with the ID `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb`.
+This example returns the details of the specified user using their User Principal Name (UPN) `RastislavM@contoso.com`.
 
-- `-UserId` is the parameter that specifies the user ID of the user to get.
+- `-ObjectId` parameter specifies the ID of the user to retrieve.
 
 ## Parameters
 
@@ -144,8 +144,8 @@ Accept wildcard characters: False
 
 ## Related links
 
-New-EntraUser
+[New-EntraUser](New-EntraUser.md)
 
-Remove-EntraUser
+[Remove-EntraUser](Remove-EntraUser.md)
 
-Update-EntraUser
+[Update-EntraUser](Update-EntraUser.md)
