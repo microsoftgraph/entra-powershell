@@ -136,11 +136,18 @@ Place cmdlet reference .md files under:
 - [Beta cmdlet tests](./../test/module/EntraBeta/) folder
 - [v1.0 cmdlet tests](./../test/module/Entra/) folder
 
+> Note:
+>
+> 1. Ensure your pull request has tests to verify it works as expected. Pull requests without proper tests will not be accepted.
+> 1. Ensure all tests pass. The full test suite must run.
+
 ## After Development
 
 ### Code and documentation review
 
 Once all of your cmdlets have been created and the appropriate tests have been added, you can open a pull request in the Entra PowerShell repository to have your cmdlets added to the next release. Please make sure to read [CONTRIBUTING.md](../CONTRIBUTING.md) for more information on how to open a pull request, clean up commits, make sure appropriate files have been added/changed, and more.
+
+> _Tag your pull request with "Ready For Review" label._
 
 ### Publish to PowerShell Gallery
 
