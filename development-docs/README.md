@@ -102,7 +102,7 @@ For a significant number of changes or additions, a design review of your propos
 
 Another scenario that might require a design review is resolving design conflicts to ensure consistency and predictability. For example, when adding business roles, it's important to clearly distinguish between Privileged Identity Management roles and catalog roles to minimize conflicts.
 
-In the event of a persistent design conflict, the Entra PowerShell Governance Board will arbitrate and review the established guidelines. The board holds veto power, but all decisions are [documented](https://github.com/microsoftgraph/entra-powershell/discussions), including the options considered and the trade-offs involved
+In the event of a persistent design conflict, the Entra PowerShell Governance Board will arbitrate and review the established guidelines. The board holds veto power, but all decisions are [documented][discussions], including the options considered and the trade-offs involved
 
 ### Choose implementation folder
 
@@ -161,7 +161,7 @@ The Entra PowerShell team will regularly publish the module, including all chang
 
 ## Crediting
 
-Significant contributions are credited in the [misc/acknowledgements](../../entra-powershell/misc/acknowledgements) file. You might be asked to make these updates on behalf of the Entra PowerShell Engineer who accepts your pull request.
+Significant contributions are credited in the [misc/acknowledgements](./../misc/acknowledgements) file. You might be asked to make these updates on behalf of the Entra PowerShell Engineer who accepts your pull request.
 
 [git-cheat-sheet]: https://education.github.com/git-cheat-sheet-education.pdf
 [set-execution-policy]: https://learn.microsoft.com/powershell/module/microsoft.powershell.security/set-executionpolicy
@@ -185,3 +185,4 @@ Significant contributions are credited in the [misc/acknowledgements](../../entr
 [cmdlet-reference-template]: ./cmdlet-references-documentation/cmdlet-reference-template.md
 [cmdlet-references]: https://learn.microsoft.com/powershell/module/microsoft.graph.entra
 [docs-folder]: https://github.com/microsoftgraph/entra-powershell/tree/main/module/docs
+[discussions]: https://github.com/microsoftgraph/entra-powershell/discussions
