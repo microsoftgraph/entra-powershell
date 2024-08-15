@@ -16,7 +16,7 @@ From the [_Strongly Encouraged Development Guidelines_](https://learn.microsoft.
 
 #### Pascal Case
 
-Similar to cmdlets, parameters should follow pascal casing.From the [_Strongly Encouraged Development Guidelines_](https://learn.microsoft.com/powershell/scripting/developer/cmdlet/strongly-encouraged-development-guidelines#use-pascal-case-for-parameter-names):
+Similar to cmdlets, parameters should follow pascal casing. From the [_Strongly Encouraged Development Guidelines_](https://learn.microsoft.com/powershell/scripting/developer/cmdlet/strongly-encouraged-development-guidelines#use-pascal-case-for-parameter-names):
 
 > _Use Pascal case for parameter names. In other words, capitalize the first letter of each word in the parameter name, including the first letter of the name._
 
@@ -34,13 +34,13 @@ From the [_Strongly Encouraged Development Guidelines_](https://learn.microsoft.
 
 #### Parameter Alias
 
-If you there is a separate nomenclature for the parameter name, or if you would like to shorten the name of the parameter so it's easier to remember, you can add an alias attribute to your parameter to allow for this functionality.
+If there's a separate nomenclature for the parameter name, or if you would like to shorten the name of the parameter so it's easier to remember, you can add an alias attribute to your parameter to allow for this functionality.
 
 ### Parameter Types
 
 #### Valid Parameter Types
 
-The type of parameters should always be defined; a parameter should never be of type `object`, `PSObject`, `PSCustomObject` or the like. Defining a parameter with any of these types can make it difficult for the user to know what value they should be providing to the parameter, as well as makes it difficult for the breaking change analyzer to detect any breaking changes made to the parameter since it has no knowledge about changes in the types' properties.
+The type of parameters should always be defined; a parameter should never be of type `object`, `PSObject`, `PSCustomObject` or the like. Defining a parameter with any of these types can make it difficult for the user to know what value they should be providing to the parameter, and makes it difficult for the breaking change analyzer to detect any breaking changes made to the parameter since it has no knowledge about changes in the types' properties.
 
 #### Consistent Parameter Types
 
@@ -58,9 +58,9 @@ From the [_Strongly Encouraged Development Guidelines_](https://learn.microsoft.
 
 #### Secret Parameters
 
-For parameters whose type is string and which represent a value that should be kept secret in some fashion (such as a password, secret, key, etc.), the type of the parameter should be [SecureString](https://learn.microsoft.com/dotnet/api/system.security.securestring) to limit the exposure of sensitive string data from unexpected leakage during cmdlet execution. The practice also applies to output properties whose type is string and that should be kept in secret.
+For parameters whose type is string and which represent a value that should be kept secret (such as a password, secret, key, etc.), the type of the parameter should be [SecureString](https://learn.microsoft.com/dotnet/api/system.security.securestring) to limit the exposure of sensitive string data from unexpected leakage during cmdlet execution. The practice also applies to output properties whose type is string and that should be kept in secret.
 
-Please notice that DO NOT use `SecureString` for encryption purposes. We only recommend to use `SecureString` as a wrapper of string to prevent unexpected leakage of information as string may still be exposed to any process or operation that has access to raw memory.
+Notice that DO NOT use `SecureString` for encryption purposes. We only recommend using `SecureString` as a wrapper of string to prevent unexpected leakage of information as string may still be exposed to any process or operation that has access to raw memory.
 
 From [How secure is SecureString?](https://learn.microsoft.com/dotnet/api/system.security.securestring#how-secure-is-securestring)
 
@@ -70,11 +70,11 @@ From [How secure is SecureString?](https://learn.microsoft.com/dotnet/api/system
 
 Parameters of type `bool` are _strongly_ discouraged in PowerShell. The `SwitchParameter` type of a parameter acts a flag that signals whether or not some action should be taken based on if the parameter was provided or not.
 
-The only case where a `bool` parameter should be used is for a `PATCH` operation wrapped by an `Update-*` cmdlet; in this case, the user will have the option to set the value to `true` or `false`, or not provide a value at all, which keeps the value the same on the server. For a `PUT` operation wrapped by a `Set-*` cmdlet, the normal `SwitchParameter` type should be used.
+The only case where a `bool` parameter should be used to is for a `PATCH` operation wrapped by an `Update-*` cmdlet; in this case, the user can set the value to `true` or `false`, or not provide a value at all, which keeps the value the same on the server. For a `PUT` operation wrapped by a `Set-*` cmdlet, the normal `SwitchParameter` type should be used.
 
-## Parameter Set Guidelines
+## Parameter Sets Guidelines
 
-### Parameter Set Naming Conventions
+### Parameter Sets Naming Conventions
 
 The following are naming conventions to keep in mind when coming up with a name for your parameter set.
 
@@ -90,13 +90,13 @@ The following are guidelines that should be followed when working with the attri
 
 #### Mutually Exclusive Parameter Sets
 
-For PowerShell to determine which parameter set a user is intending to use with a set of provided parameters, the parameter sets need to be designed in such a way that they are mutually exclusive. From the remarks section of [_Parameter Attribute Declaration_](https://learn.microsoft.com/powershell/scripting/developer/cmdlet/parameter-attribute-declaration#remarks):
+For PowerShell to determine which parameter set a user is intending to use with a set of provided parameters, the parameter sets need to be designed in such a way that they're mutually exclusive. From the remarks section of [_Parameter Attribute Declaration_](https://learn.microsoft.com/powershell/scripting/developer/cmdlet/parameter-attribute-declaration#remarks):
 
 > _Each parameter set must have at least one unique parameter. Good cmdlet design indicates this unique parameter should also be mandatory if possible. If your cmdlet is designed to be run without parameters, the unique parameter cannot be mandatory._
 
 #### Positional Parameters Limit
 
-It is possible to call a PowerShell cmdlet without providing the parameter names, but just the values you would like to pass through. This is done by specifying the position at which the value of each parameter should be provided by using the `Position` property for a parameter.  However, when there are too many positional parameters in a single parameter set, it can be difficult for the user to remember the exact ordering in which the parameter values should be provided. From the remarks section of [_Parameter Attribute Declaration_](https://learn.microsoft.com/powershell/scripting/developer/cmdlet/parameter-attribute-declaration#remarks):
+It's possible to call a PowerShell cmdlet without providing the parameter names, but just the values you would like to pass through. This is done by specifying the position at which the value of each parameter should be provided by using the `Position` property for a parameter. However, when there are too many positional parameters in a single parameter set, it can be difficult for the user to remember the exact ordering in which the parameter values should be provided. From the remarks section of [_Parameter Attribute Declaration_](https://learn.microsoft.com/powershell/scripting/developer/cmdlet/parameter-attribute-declaration#remarks):
 
 > _When you specify positional parameters, limit the number of positional parameters in a parameter set to less than five. And, positional parameters do not have to be contiguous. Positions 5, 100, and 250 work the same as positions 0, 1, and 2._
 
