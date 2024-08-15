@@ -147,7 +147,7 @@ Place cmdlet reference .md files under:
 
 Once all of your cmdlets have been created and the appropriate tests have been added, you can open a pull request in the Entra PowerShell repository to have your cmdlets added to the next release. Please make sure to read [CONTRIBUTING.md](../CONTRIBUTING.md) for more information on how to open a pull request, clean up commits, make sure appropriate files have been added/changed, and more.
 
-> _Tag your pull request with "Ready For Review" label._
+> _Tag your pull request with **Ready For Review** label._
 
 ### Publish to PowerShell Gallery
 
