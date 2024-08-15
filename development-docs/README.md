@@ -100,6 +100,8 @@ For a significant number of changes or additions, a design review of your propos
 
 Another scenario that might require a design review is resolving design conflicts to ensure consistency and predictability. For example, when adding business roles, it's important to clearly distinguish between Privileged Identity Management roles and catalog roles to minimize conflicts.
 
+In the event of a persistent design conflict, the Entra PowerShell Governance Board will arbitrate and review the established guidelines. The board holds veto power, but all decisions are [documented](https://github.com/microsoftgraph/entra-powershell/discussions), including the options considered and the trade-offs involved
+
 ### Choose implementation folder
 
 Your new cmdlet can reside in either of these folders.
