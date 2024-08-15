@@ -20,7 +20,7 @@ The Microsoft Entra PowerShell Developer Guide helps you develop and test Entra 
   - [Code and doc review](#code-and-documentation-review)
   - [Publishing to PowerShell gallery](#publish-to-powershell-gallery)
 
-## Process overview
+## Development workflow
 
 Welcome! We're glad you're here. We're about to give you an overview of what we need to do to add cmdlets to the Entra PowerShell module. This guide aims to ensure consistency and provide a better experience for customers. Here is an overview of the process.
 
@@ -87,6 +87,8 @@ Then, to pull changes from the **main** branch in _microsoftgraph/entra-powershe
 ```git
 git pull upstream main
 ```
+
+> _The `main` branch is for the next feature release and is actively developed with new features, documentation changes, performance improvements, and bug fixes._
 
 ## Creating Cmdlets
 
