@@ -28,9 +28,9 @@ Do capitalize only the first character of acronyms with three or more characters
 
 From the [_Strongly Encouraged Development Guidelines_][sd01-strongly-encouraged-development-guidelines]:
 
-> _Nouns used in cmdlet naming need to be very specific so that the user can discover your cmdlets. Prefix generic nouns such as "server" with a shortened version of the product name. For example, if a noun refers to a server that is running an instance of Microsoft SQL Server, use a noun such as "SQLServer". The combination of specific nouns and the short list of approved verbs enable the user to quickly discover and anticipate functionality while avoiding duplication among cmdlet names._
+> _Nouns used in cmdlet naming need to be very specific so that the user can discover your cmdlets. The combination of specific nouns and the short list of approved verbs enable the user to quickly discover and anticipate functionality while avoiding duplication among cmdlet names._
 >
-> _To enhance the user experience, the noun that you choose for a cmdlet name should be singular. For example, use the name `Get-Process` instead of `Get-Processes`. It is best to follow this rule for all cmdlet names, even when a cmdlet is likely to act upon more than one item._
+> _To enhance the user experience, the noun that you choose for a cmdlet name should be singular. For example, use the name `Get-EntraUser` instead of `Get-EntraUsers`. It is best to follow this rule for all cmdlet names, even when a cmdlet is likely to act upon more than one item._
 
 #### Set vs. Update
 
@@ -44,7 +44,7 @@ If you there is a separate nomenclature for your service and/or resource, or if 
 
 ### Output Type
 
-Specified by the `OutputType` attribute, this piece of metadata lets the user know what the type of the object returned by the cmdlet is (found in the **Outputs** section of a cmdlet's help content). The type specified here should always be a single element and not an enumeration of elements (_e.g._, `PSVirtualMachine` instead of `List<PSVirtualMachine>`).
+Specified by the `OutputType` attribute, this piece of metadata lets the user know what the type of the object returned by the cmdlet is (found in the **Outputs** section of a cmdlet's help content). The type specified here should always be a single element and not an enumeration of elements.
 
 #### Valid Output Types
 
