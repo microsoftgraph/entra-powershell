@@ -25,7 +25,7 @@ The Microsoft Entra PowerShell Developer Guide helps you develop and test Entra 
 Welcome! We're glad you're here. We're about to give you an overview of what we need to do to add cmdlets to the Entra PowerShell module. This guide aims to ensure consistency and provide a better experience for customers. Here is an overview of the process.
 
 ```mermaid
-    flowchart TB
+    flowchart LR
         A((Start)) --> B["Get Started #9992;
 (key concepts, naming, setup)"]
          B["Get Started #9992;
