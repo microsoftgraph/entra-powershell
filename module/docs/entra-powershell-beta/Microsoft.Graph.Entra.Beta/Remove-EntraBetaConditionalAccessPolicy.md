@@ -42,7 +42,8 @@ Conditional access policies are custom rules that define an access scenario.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'
-Remove-EntraBetaConditionalAccessPolicy -PolicyId '3cccccc3-4dd4-5ee5-6ff6-7aaaaaaaaaa7'
+$policy = Get-EntraBetaConditionalAccessPolicy | Where-Object {$_.DisplayName -eq 'MFA policy'}
+Remove-EntraBetaConditionalAccessPolicy -PolicyId $policy.ObjectId
 ```
 
 This command deletes a conditional access policy in Microsoft Entra ID.
