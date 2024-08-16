@@ -123,6 +123,48 @@ This command creates a new conditional access policy in Microsoft Entra ID that 
 - `-Conditions` parameter specifies the conditions for the conditional access policy.
 - `-GrantControls` parameter specifies the controls for the conditional access policy.
 
+### Example 3: Use all conditions and controls
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+
+$Condition = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
+$Condition.clientAppTypes = @("mobileAppsAndDesktopClients","browser")
+$Condition.Applications = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessApplicationCondition
+$Condition.Applications.IncludeApplications = "00000002-0000-0ff1-ce00-000000000000"
+$Condition.Users = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessUserCondition
+$Condition.Users.IncludeUsers = "all"
+
+$Controls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls
+$Controls._Operator = "AND"
+$Controls.BuiltInControls = @("mfa")
+
+$SessionControls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls
+$ApplicationEnforcedRestrictions = New-Object Microsoft.Open.MSGraph.Model.ConditionalAccessApplicationEnforcedRestrictions
+$ApplicationEnforcedRestrictions.IsEnabled = $true
+$SessionControls.applicationEnforcedRestrictions = $ApplicationEnforcedRestrictions
+$params = @{
+     DisplayName = "ConditionalAccessPolicy"
+     Conditions = $conditions
+     GrantControls = $controls
+     SessionControls = $SessionControls
+ }
+New-EntraBetaConditionalAccessPolicy @params
+```
+
+```Output
+Id                                   CreatedDateTime     Description DisplayName             ModifiedDateTime State
+--                                   ---------------     ----------- -----------             ---------------- -----
+aaaaaaaa-1111-1111-1111-000000000000 16/08/2024 08:09:34             ConditionalAccessPolicy                  enabled
+```
+
+This example creates new conditional access policy in Microsoft Entra ID  with all the conditions and controls.
+
+- `-DisplayName` parameter specifies the display name of a conditional access policy.
+- `-Conditions` parameter specifies the conditions for the conditional access policy.
+- `-GrantControls` parameter specifies the controls for the conditional access policy.
+- `-SessionControls` parameter Enables limited experiences within specific cloud applications.
+
 ## Parameters
 
 ### -DisplayName
@@ -134,7 +176,7 @@ Type: System.String
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -166,7 +208,7 @@ Type: ConditionalAccessConditionSet
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -182,7 +224,7 @@ Type: ConditionalAccessGrantControls
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -246,7 +288,7 @@ Type: ConditionalAccessSessionControls
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
