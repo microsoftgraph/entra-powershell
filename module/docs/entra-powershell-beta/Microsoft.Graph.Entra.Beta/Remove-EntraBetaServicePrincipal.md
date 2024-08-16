@@ -40,8 +40,7 @@ The `Remove-EntraBetaServicePrincipal` cmdlet removes a service principal in Mic
 ### Example 1: Removes a service principal
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 Remove-EntraBetaServicePrincipal -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444'
 ```
 
