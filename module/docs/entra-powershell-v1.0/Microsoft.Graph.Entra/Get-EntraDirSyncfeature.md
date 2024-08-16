@@ -1,6 +1,6 @@
 ---
-title: Get-EntraDirSyncfeature
-description: This article provides details on the Get-EntraDirSyncfeature command.
+title: Get-EntraDirSyncFeature
+description: This article provides details on the Get-EntraDirSyncFeature command.
 
 
 ms.topic: reference
@@ -12,12 +12,12 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraDirSyncfeature
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraDirSyncFeature
 
 schema: 2.0.0
 ---
 
-# Get-EntraDirSyncfeature
+# Get-EntraDirSyncFeature
 
 ## Synopsis
 
@@ -26,7 +26,7 @@ Used to check the status of identity synchronization features for a tenant.
 ## Syntax
 
 ```powershell
-Get-EntraDirSyncfeature 
+Get-EntraDirSyncFeature 
  [-TenantId <Guid>] 
  [-Feature <String>] 
  [<CommonParameters>]
@@ -34,7 +34,7 @@ Get-EntraDirSyncfeature
 
 ## Description
 
-The `Get-EntraDirSyncfeature` cmdlet checks the status of identity synchronization features for a tenant.
+The `Get-EntraDirSyncFeature` cmdlet checks the status of identity synchronization features for a tenant.
 
 Features that can be used with this cmdlet include:
 
@@ -56,7 +56,7 @@ The cmdlet can be run without specifying any features, in which case it returns 
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.Read.All'
-Get-EntraDirSyncfeature
+Get-EntraDirSyncFeature
 ```
 
 ```Output
@@ -89,7 +89,7 @@ This command returns a list of all possible DirSync features and whether they're
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.Read.All'
-Get-EntraDirSyncfeature -Feature PasswordSync
+Get-EntraDirSyncFeature -Feature PasswordSync
 ```
 
 ```Output
