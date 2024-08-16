@@ -59,11 +59,6 @@ Get-EntraBetaDeletedApplication
 
 
 
-```Output
-DisplayName                    Id                                   AppId                                SignInAudience                     PublisherDomain
------------                    --                                   -----                                --------------                     ---------------
-deepak                         ffffffff-5555-6666-7777-aaaaaaaaaaaa 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMyOrg                       test.mail.contoso.com
-```
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
