@@ -21,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Used to check the status of identity synchronization features for a tenant.
+Checks the status of identity synchronization features for a tenant.
 
 ## Syntax
 
@@ -83,7 +83,7 @@ Enabled DirSyncFeature
   False UserWriteback
 ```
 
-This command returns a list of all possible DirSync features and whether they're enabled (True) or disabled (False).
+This example gets a list of all DirSync features and shows if they are enabled (True) or disabled (False).
 
 ### EXAMPLE 2: Return whether PasswordSync is enabled for the tenant (True) or disabled (False)
 
@@ -98,7 +98,9 @@ Enabled DirSyncFeature
   False PasswordSync
 ```
 
-This command returns whether PasswordSync is enabled for the tenant (True) or disabled (False).
+This example shows if PasswordSync is enabled (True) or disabled (False) for the tenant.
+
+- `Feature` specifies the DirSync feature to check the status of.
 
 ## Parameters
 
@@ -109,7 +111,7 @@ If this isn't provided then the value defaults to the tenant of the current user
 This parameter is only applicable to partner users.
 
 ```yaml
-Type: Guid
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -122,7 +124,7 @@ Accept wildcard characters: False
 
 ### -Feature
 
-The DirSync feature to get the status of.
+The DirSync feature to check the status of.
 
 ```yaml
 Type: System.String
