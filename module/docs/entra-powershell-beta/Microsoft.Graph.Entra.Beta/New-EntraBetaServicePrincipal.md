@@ -140,8 +140,7 @@ This example demonstrates how to create a new service Principal in Microsoft Ent
 ### Example 4: Create a new service principal by AlternativeNames, ServicePrincipalType, and ServicePrincipalName
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $MyApp=(Get-EntraBetaApplication -Filter "DisplayName eq 'Demo App'")
 $params = @{
     AppId = $MyApp.AppId 
