@@ -109,8 +109,7 @@ This example demonstrates how to create a new service Principal in Microsoft Ent
 ### Example 3: Create a new service principal by KeyCredentials
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $creds = New-Object Microsoft.Open.AzureAD.Model.KeyCredential
 $creds.CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes('Test')
 $startdate = Get-Date -Year 2024 -Month 07 -Day 23
