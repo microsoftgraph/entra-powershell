@@ -53,8 +53,7 @@ Connect-Entra -Scopes 'Application.ReadWrite.All'
 # List available applications
 Get-EntraBetaApplication
 
-```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+# Delete a specific application
 Remove-EntraBetaApplication -ObjectId 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
 Get-EntraBetaDeletedApplication
 ```
