@@ -52,14 +52,6 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 Connect-Entra -Scopes 'Application.ReadWrite.All'
 # List available applications
 Get-EntraBetaApplication
-```
-
-```Output
-DisplayName                                        Id                                   AppId                                SignInAudience                     PublisherDomain
------------                                        --                                   -----                                --------------                     ---------------
-deepak                                             ffffffff-5555-6666-7777-aaaaaaaaaaaa 00001111-aaaa-2222-bbbb-3333cccc4444  AzureADMyOrg                       test.mail.contoso.com
-test app                                           eeeeeeee-4444-5555-6666-ffffffffffff 11112222-bbbb-3333-cccc-4444dddd5555 AzureADandPersonalMicrosoftAccount test.mail.contoso.com
-```
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
