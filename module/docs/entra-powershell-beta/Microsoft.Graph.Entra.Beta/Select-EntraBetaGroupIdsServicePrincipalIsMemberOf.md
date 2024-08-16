@@ -41,11 +41,11 @@ The `Select-EntraBetaGroupIdsServicePrincipalIsMemberOf` cmdlet selects the grou
 ### Example 1: Get the group membership of a group for a service principal
 
 ```powershell
- Connect-Entra -Scopes 'Application.Read.All'
- $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
- $Groups.GroupIds = (Get-EntraBetaGroup -Top 10).ObjectId
+Connect-Entra -Scopes 'Application.Read.All'
+$Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
+$Groups.GroupIds = (Get-EntraBetaGroup -Top 10).ObjectId
 $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
- Select-EntraBetaGroupIdsServicePrincipalIsMemberOf -ObjectId $ServicePrincipal.ObjectId -GroupIdsForMembershipCheck $Groups
+Select-EntraBetaGroupIdsServicePrincipalIsMemberOf -ObjectId $ServicePrincipal.ObjectId -GroupIdsForMembershipCheck $Groups
 ```
 
 ```Output
