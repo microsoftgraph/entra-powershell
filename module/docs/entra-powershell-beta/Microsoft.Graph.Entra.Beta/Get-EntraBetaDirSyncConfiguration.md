@@ -78,7 +78,7 @@ If TenantId isn't, provided then it defaults to the tenant of the current user.
 This parameter is only applicable to partner users.
 
 ```yaml
-Type: Guid
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
