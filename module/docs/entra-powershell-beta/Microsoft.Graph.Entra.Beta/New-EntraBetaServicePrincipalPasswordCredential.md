@@ -74,8 +74,7 @@ This example demonstrates how to create a password credential with StartDate for
 ### Example 2: Create a password credential with EndtDate
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
 $Params = @{
     ObjectId = $ServicePrincipal.ObjectId
