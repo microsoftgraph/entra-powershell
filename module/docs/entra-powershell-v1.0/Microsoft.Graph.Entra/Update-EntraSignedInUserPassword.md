@@ -56,9 +56,9 @@ Update-EntraSignedInUserPassword @params
 
 This example updates the password for the signed-in user.
 
-- `-CurrentPassword` Parameter specifies the current password of the signed-in user.
+- `-CurrentPassword` specifies the current password of the signed-in user.
 
-- `-NewPassword` Parameter specifies  the new password for the signed-in user.
+- `-NewPassword` specifies the new password for the signed-in user.
 
 ## Parameters
 
@@ -104,6 +104,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-- For more details see [changePassword](/graph/api/user-changepassword).
+- For more information, see [changePassword](https://learn.microsoft.com/graph/api/user-changepassword).
 
 ## RELATED LINKS
