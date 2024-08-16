@@ -58,7 +58,6 @@ Remove-EntraBetaApplication -ObjectId 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
 Get-EntraBetaDeletedApplication
 
 
-
 # Restore a deleted application
 Restore-EntraBetaDeletedApplication -ObjectId 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
 ```
