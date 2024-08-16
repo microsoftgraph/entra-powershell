@@ -21,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Checks the status of identity synchronization features for a tenant.
+Checks the status of directory synchronization features for a tenant.
 
 ## Syntax
 
@@ -34,9 +34,9 @@ Get-EntraDirSyncFeature
 
 ## Description
 
-The `Get-EntraDirSyncFeature` cmdlet checks the status of identity synchronization features for a tenant.
+The `Get-EntraDirSyncFeature` cmdlet checks the status of directory synchronization features for a tenant.
 
-Features that can be used with this cmdlet include:
+Some of the features that can be used with this cmdlet include:
 
 - **DeviceWriteback**
 - **DirectoryExtensions**
@@ -52,7 +52,7 @@ The cmdlet can be run without specifying any features, in which case it returns 
 
 ## Examples
 
-### EXAMPLE 1: Return a list of all possible DirSync features and whether they're enabled (True) or disabled (False)
+### EXAMPLE 1: Return a list of all directory synchronization features
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.Read.All'
@@ -83,9 +83,9 @@ Enabled DirSyncFeature
   False UserWriteback
 ```
 
-This example gets a list of all DirSync features and shows if they are enabled (True) or disabled (False).
+This example gets a list of all directory synchronization features and shows if they are enabled (True) or disabled (False).
 
-### EXAMPLE 2: Return whether PasswordSync is enabled for the tenant (True) or disabled (False)
+### EXAMPLE 2: Return PasswordSync feature status
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.Read.All'
@@ -100,15 +100,13 @@ Enabled DirSyncFeature
 
 This example shows if PasswordSync is enabled (True) or disabled (False) for the tenant.
 
-- `Feature` specifies the DirSync feature to check the status of.
+- `Feature` specifies the directory synchronization feature to check the status of.
 
 ## Parameters
 
 ### -TenantId
 
-The unique ID of the tenant to perform the operation on.
-If this isn't provided then the value defaults to the tenant of the current user.
-This parameter is only applicable to partner users.
+The unique ID of the tenant on which to perform the operation. If not provided, the operation defaults to the tenant of the current user. This parameter is applicable only to partner users.
 
 ```yaml
 Type: System.String
@@ -124,7 +122,7 @@ Accept wildcard characters: False
 
 ### -Feature
 
-The DirSync feature to check the status of.
+The directory synchronization feature to check the status of.
 
 ```yaml
 Type: System.String
