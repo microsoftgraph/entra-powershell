@@ -50,7 +50,7 @@ AccidentalDeletionThreshold DeletionPreventionType
                         500 enabledForCount
 ```
 
-This command gets directory synchronization settings.
+This example gets directory synchronization settings.
 
 ### Example 2: Get directory synchronization settings by TenantId
 
@@ -65,7 +65,7 @@ AccidentalDeletionThreshold DeletionPreventionType
                         500 enabledForCount
 ```
 
-This command gets directory synchronization settings by TenantId.
+This example gets directory synchronization settings by TenantId.
 
 - `-TenantId` Parameter specifies the unique ID of the tenant to perform the operation on.
 
