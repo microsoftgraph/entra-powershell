@@ -9,12 +9,10 @@
     CustomScript = @'   
     PROCESS {    
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $topCount = $null
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand       
         $baseUri = 'https://graph.microsoft.com/v1.0/domains'
         $properties = '$select=*'
-        $Method = "GET"
-        $keysChanged = @{ObjectId = "Id"}
+        $Method = "GET"        
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
             $params["Verbose"] = $PSBoundParameters["Verbose"]

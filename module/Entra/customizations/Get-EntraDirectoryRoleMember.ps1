@@ -9,12 +9,10 @@
     CustomScript = @'   
     PROCESS {    
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $topCount = $null
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand       
         $baseUri = 'https://graph.microsoft.com/v1.0/directoryRoles'
         $properties = '$select=*'
-        $Method = "GET"
-        $keysChanged = @{ObjectId = "Id"}
+        $Method = "GET"        
         if($null -ne $PSBoundParameters["Property"])
         {
             $selectProperties = $PSBoundParameters["Property"]

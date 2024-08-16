@@ -10,8 +10,7 @@
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $Method = "GET"
-        $keysChanged = @{ObjectId = "Id"}
+        $Method = "GET"       
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
             $params["Verbose"] = $PSBoundParameters["Verbose"]

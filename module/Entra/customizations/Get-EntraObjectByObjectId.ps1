@@ -10,8 +10,7 @@
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $body = @{}
-        $keysChanged = @{ObjectIds = "Ids"}
+        $body = @{}        
         $URI = 'https://graph.microsoft.com/v1.0/directoryObjects/microsoft.graph.getByIds?$select=*'
         if($null -ne $PSBoundParameters["Property"])
         {

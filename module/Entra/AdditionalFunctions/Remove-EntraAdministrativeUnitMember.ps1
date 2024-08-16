@@ -13,7 +13,7 @@ function Remove-EntraAdministrativeUnitMember {
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-    $keysChanged = @{ObjectId = "Id"; MemberId = "DirectoryObjectId"}
+   
     if($null -ne $PSBoundParameters["ErrorAction"])
     {
         $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]

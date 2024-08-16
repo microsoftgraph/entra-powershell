@@ -13,8 +13,7 @@
         $topCount = $null
         $baseUri = 'https://graph.microsoft.com/v1.0/users'
         $properties = '$select=*'
-        $Method = "GET"
-        $keysChanged = @{ObjectId = "Id"}
+        $Method = "GET"        
         if($null -ne $PSBoundParameters["Property"])
         {
             $selectProperties = $PSBoundParameters["Property"]

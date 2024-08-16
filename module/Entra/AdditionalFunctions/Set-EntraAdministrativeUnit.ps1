@@ -15,8 +15,7 @@ function Set-EntraAdministrativeUnit {
     PROCESS {    
     $params = @{}
     $body = @{}
-    $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-    $keysChanged = @{}
+    $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand    
     if($null -ne $PSBoundParameters["ObjectId"])
     {
         $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]

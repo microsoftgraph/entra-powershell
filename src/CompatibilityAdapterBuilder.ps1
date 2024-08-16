@@ -581,11 +581,37 @@ $($Command.CustomScript)
     }
 
     hidden [CommandTranslation] NewFunctionMap([PSCustomObject] $Command){
-        Write-Host "Creating new function for $($Command.Generate)"
+        Write-Host "1 Creating new function for $($Command.Generate)"
+        
+        $cmdLstToSkipKeyIdpair=@(
+            "Get-EntraGroup",
+            "Get-EntraServicePrincipalDelegatedPermissionClassification",
+            "Get-EntraApplication",
+            "Get-EntraDeletedApplication",
+            "Get-EntraDeletedGroup",
+            "Get-EntraRoleAssignment",
+            "Get-EntraContact",
+            "Get-EntraRoleDefinition",
+            "Get-EntraContract",
+            "Get-EntraDevice",
+            "Get-EntraDirectoryRole",
+            "Get-EntraServicePrincipal",
+            "Get-EntraAdministrativeUnit"
+        )
+        
+        
         $parameterDefinitions = $this.GetParametersDefinitions($Command)
         $ParamterTransformations = $this.GetParametersTransformations($Command)
         $OutputTransformations = $this.GetOutputTransformations($Command)
-        $keyId = $this.GetKeyIdPair($Command)
+        
+        if($cmdLstToSkipKeyIdpair.Contains($Command.Generate)) {
+            
+            $keyId = $this.GetKeyIdPair($Command)
+        }
+        else {
+            $keyId=''
+        }
+        
         $customHeadersCommandName = "New-EntraCustomHeaders"
 
         if($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta')

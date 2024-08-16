@@ -9,8 +9,7 @@
     CustomScript = @'
     PROCESS {    
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand        
         if($null -ne $PSBoundParameters["NewPassword"])
         {
             $params["NewPassword"] = $PSBoundParameters["NewPassword"]
