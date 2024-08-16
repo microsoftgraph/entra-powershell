@@ -21,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Used to check the status of identity synchronization features for a tenant.
+Checks the status of identity synchronization features for a tenant.
 
 ## Syntax
 
