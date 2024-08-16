@@ -52,8 +52,7 @@ Create a new service Principal.
 ### Example 1: Create a new service principal by DisplayName, AccountEnabled, Tags, and AppRoleAssignmentRequired
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $MyApp=(Get-EntraBetaApplication -Filter "DisplayName eq 'Demo App'")
 $params = @{
     AccountEnabled = $true 
