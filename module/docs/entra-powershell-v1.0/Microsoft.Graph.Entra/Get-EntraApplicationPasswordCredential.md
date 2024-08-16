@@ -41,7 +41,8 @@ The `Get-EntraApplicationPasswordCredential` cmdlet gets the password credential
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraApplicationPasswordCredential -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+Get-EntraApplicationPasswordCredential -ObjectId $application.ObjectId
 ```
 
 ```Output
@@ -50,9 +51,9 @@ CustomKeyIdentifier  DisplayName EndDateTime           Hint KeyId               
 {116, 101, 115, 116}             11/24/2024 6:28:39 AM 123  bbbbbbbb-1111-2222-3333-cccccccccccc            11/24/2023 6:28:39 AM
 ```
 
-This command gets the password credential for specified application.
+This examples shows how to retrieve the password credential for specified application.
 
-- `-ObjectId` Parameter specifies The objectID of the application.
+- `-ObjectId` specifies The objectID of the application.
 
 ## Parameters
 
@@ -99,3 +100,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[Get-EntraApplication](Get-EntraApplication.md)
