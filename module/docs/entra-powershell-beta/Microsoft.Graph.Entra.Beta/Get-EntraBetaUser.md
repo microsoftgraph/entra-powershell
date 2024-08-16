@@ -82,7 +82,7 @@ This command gets two users.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraBetaUser -ObjectId 'ccccccc-2222-3333-4444-dddddddddddd'
+Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
