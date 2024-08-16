@@ -62,7 +62,8 @@ This command retrieves an object owned by a service principal.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraServicePrincipalOwnedObject -ObjectId '11112222-bbbb-3333-cccc-4444dddd5555' -All 
+$ServicePrincipalId = (Get-EntraServicePrincipal -Filter "DisplayName eq '<user-display-name>'").ObjectId
+Get-EntraServicePrincipalOwnedObject -ObjectId $ServicePrincipalId -All 
 ```
 
 ```Output
@@ -72,15 +73,16 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
-This command gets the owned objects of a service principal identified by `11112222-bbbb-3333-cccc-4444dddd5555`.  
+This example retrieves the owned objects of a service principal.  
 
-- `-ObjectId` Parameter specifies the ID of a service principal.
+- `-ObjectId` specifies the service principal's ID.
 
 ### Example 3: Retrieve top one owned object of a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraServicePrincipalOwnedObject -ObjectId '11112222-bbbb-3333-cccc-4444dddd5555' -Top 1
+$ServicePrincipalId = (Get-EntraServicePrincipal -Filter "DisplayName eq '<user-display-name>'").ObjectId
+Get-EntraServicePrincipalOwnedObject -ObjectId $ServicePrincipalId -Top 1
 ```
 
 ```Output
@@ -89,9 +91,9 @@ Id                                   DeletedDateTime
 bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
-This command gets top one owned object of a service principal identified by `11112222-bbbb-3333-cccc-4444dddd5555`.  
+This example retrieves the top one owned objects of a service principal.  
 
-- `-ObjectId` Parameter specifies the ID of a service principal.
+- `-ObjectId` specifies the service principal's ID.
 
 ## Parameters
 
