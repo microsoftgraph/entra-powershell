@@ -82,8 +82,7 @@ The tag `-Tags {WindowsAzureActiveDirectoryIntegratedApp}` is used to have this 
 ### Example 2: Create a new service principal by Homepage, logoutUrl, and ReplyUrls
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $MyApp=(Get-EntraBetaApplication -Filter "DisplayName eq 'Demo App'")
 $params = @{
     AppId = $MyApp.AppId 
