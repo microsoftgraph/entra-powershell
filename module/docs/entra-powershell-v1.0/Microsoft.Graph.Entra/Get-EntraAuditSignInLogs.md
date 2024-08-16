@@ -46,16 +46,17 @@ The `Get-EntraAuditSignInLogs` cmdlet gets the Microsoft Entra ID sign-in log.
 ```
 
 ```Output
-Id                                   AppDisplayName                AppId                                ClientAppUsed ConditionalAccessStatus CorrelationId
---                                   --------------                -----                                ------------- ----------------------- -------------
-ddabc319-f108-475f-be78-3b0196da4000 Azure Portal                  c44b4083-3bb0-49c1-b47d-974e53cbdf3c Browser       success                 171e740a-b9fc-4b7d-835d-3f...
-e6453dac-5c93-4119-b6d0-d367081f3d00 Graph Explorer                de8bc8b5-d9f9-48b1-a8ad-b748da725064 Browser       success                 0190c57f-a06e-7127-9f96-ef...
-7edf6d63-dc58-4da9-aaaf-c45f47d91400 Microsoft Account Controls V2 7eadcef8-456d-4611-9480-4fff72b8b9e2 Browser       success                 6159aef9-9453-4bab-b2a3-8c...
-4d883fb6-da26-421b-8e31-e4d5b3201200 Microsoft Account Controls V2 7eadcef8-456d-4611-9480-4fff72b8b9e2 Browser       success                 f90c34e8-d47e-4e08-8e28-7b...
-b0ddfa4e-7885-4cef-aaa0-364df8091300 Microsoft Account Controls V2 7eadcef8-456d-4611-9480-4fff72b8b9e2 Browser       success                 9e4ad99f-82ef-47b0-91b0-d0...
+Id                                   AppDisplayName AppId                                ClientAppUsed ConditionalAccessStatus CorrelationId                        Created
+                                                                                                                                                                    DateTim
+                                                                                                                                                                    e
+--                                   -------------- -----                                ------------- ----------------------- -------------                        -------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Azure Portal   00001111-aaaa-2222-bbbb-3333cccc4444 Browser       success                 aaaa0000-bb11-2222-33cc-444444dddddd 16/08/…
+bbbbbbbb-1111-2222-3333-cccccccccccc Azure Portal   00001111-aaaa-2222-bbbb-3333cccc4444 Browser       notApplied              dddd3333-ee44-5555-66ff-777777aaaaaa16/08/…
+cccccccc-2222-3333-4444-dddddddddddd Azure Portal   00001111-aaaa-2222-bbbb-3333cccc4444 Browser       notApplied              cccc2222-dd33-4444-55ee-666666ffffff 16/08/…
+dddddddd-3333-4444-5555-eeeeeeeeeeee Azure Portal   00001111-aaaa-2222-bbbb-3333cccc4444 Browser       notApplied              bbbb1111-cc22-3333-44dd-555555eeeeee 16/08/…
 ```
 
-This command gets all sign-in logs.
+This example returns all audit logs of sign-ins.
 
 ### Example 2: Get the first n logs
 
@@ -69,30 +70,37 @@ Id                                   AppDisplayName AppId                       
                                                                                                                                                                     DateTim
                                                                                                                                                                     e
 --                                   -------------- -----                                ------------- ----------------------- -------------                        -------
-ddabc319-f108-475f-be78-3b0196da4000 Azure Portal   c44b4083-3bb0-49c1-b47d-974e53cbdf3c Browser       success                 171e740a-b9fc-4b7d-835d-3f0224f31745 7/18...
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Azure Portal   00001111-aaaa-2222-bbbb-3333cccc4444 Browser       success                 aaaa0000-bb11-2222-33cc-444444dddddd 16/08/…
 ```
 
 This example returns the first n logs.
 
-### Example 3: Get audit logs containing a given ActivityDisplayName
+### Example 3: Get audit logs containing a given AppDisplayName
 
 ```powershell
  Connect-Entra -Scopes 'AuditLog.Read.All', 'Directory.Read.All'
- Get-EntraAuditSignInLogs -Filter "ActivityDisplayName eq 'Add owner to application'"
- Get-EntraAuditSignInLogs -Filter "ActivityDisplayName eq 'Add owner to application'" -Top 1
+ Get-EntraAuditSignInLogs -Filter  "AppDisplayName eq 'Azure Portal'"
+ Get-EntraAuditSignInLogs -Filter "AppDisplayName eq 'Azure Portal'" -Top 1
 ```
 
-These commands show how to get sign-in logs by ActivityDisplayName.
+```Output
+Id                                   AppDisplayName AppId                                ClientAppUsed ConditionalAccessStatus CorrelationId                        Created
+                                                                                                                                                                    DateTim
+                                                                                                                                                                    e
+--                                   -------------- -----                                ------------- ----------------------- -------------                        -------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Azure Portal   00001111-aaaa-2222-bbbb-3333cccc4444 Browser       success                 aaaa0000-bb11-2222-33cc-444444dddddd 16/08/…
+```
 
-### Example 4: Get all sign-in logs with a given result
+This example demonstrates how to retrieve sign-in logs by AppDisplayName.
+
+### Example 4: Get all sign-in logs between dates
 
 ```powershell
  Connect-Entra -Scopes 'AuditLog.Read.All', 'Directory.Read.All'
- Get-EntraAuditSignInLogs -Filter "result eq 'success'"
- Get-EntraAuditSignInLogs -Filter "result eq 'failure'" -Top 1
+ Get-EntraAuditSignInLogs -Filter "createdDateTime ge 2024-08-01T00:00:00Z and createdDateTime le 2024-08-16T23:59:59Z"
 ```
 
-These commands show how to get sign-in logs by the result.
+This example shows how to retrieve sign-in logs between dates.
 
 ## Parameters
 
@@ -130,7 +138,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-The oData v3.0 filter statement.
+The OData v4.0 filter statement.
 Controls which objects are returned.
 
 ```yaml
