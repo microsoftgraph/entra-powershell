@@ -581,7 +581,7 @@ $($Command.CustomScript)
     }
 
     hidden [CommandTranslation] NewFunctionMap([PSCustomObject] $Command){
-        Write-Host "1 Creating new function for $($Command.Generate)"
+        Write-Host "Creating new function for $($Command.Generate)"
         
         $cmdLstToSkipKeyIdpair=@(
             "Get-EntraGroup",
