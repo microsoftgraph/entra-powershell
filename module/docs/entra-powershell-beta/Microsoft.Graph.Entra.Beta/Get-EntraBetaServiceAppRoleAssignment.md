@@ -38,6 +38,17 @@ Get-EntraBetaServiceAppRoleAssignment
 
 The Get-`EntraBetaServiceAppRoleAssignment` cmdlet gets a role assignment for a service principal application in Microsoft Entra ID.
 
+For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
+
+- Directory Synchronization Accounts
+- Directory Writer
+- Hybrid Identity Administrator
+- Identity Governance Administrator
+- Privileged Role Administrator
+- User Administrator
+- Application Administrator
+- Cloud Application Administrator
+
 ## Examples
 
 ### Example 1: Retrieve the application role assignments for a service principal
