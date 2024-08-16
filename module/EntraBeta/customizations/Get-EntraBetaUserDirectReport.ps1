@@ -14,7 +14,7 @@
         $baseUri = 'https://graph.microsoft.com/beta/users'
         $properties = '$select=*'
         $Method = "GET"
-        $keysChanged = @{ObjectId = "Id"}
+       
         if($null -ne $PSBoundParameters["Property"])
         {
             $selectProperties = $PSBoundParameters["Property"]

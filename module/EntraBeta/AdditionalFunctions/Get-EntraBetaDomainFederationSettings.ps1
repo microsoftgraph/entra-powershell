@@ -48,7 +48,7 @@ function Get-EntraBetaDomainFederationSettings {
             $params = @{}
             $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
             if ($PSBoundParameters.ContainsKey("Verbose")) {
-                $Verbose = $Null
+                $params["Verbose"] = $Null
             }
             if ($PSBoundParameters.ContainsKey("TenantId")) {
                 $params["TenantId"] = $TenantId

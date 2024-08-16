@@ -13,7 +13,7 @@ function Remove-EntraBetaApplicationProxyApplicationConnectorGroup {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params["Method"] = "DELETE"
-        $body = @{}
+       
         if($null -ne $PSBoundParameters["ObjectId"])
         {
             $params["Uri"] = "https://graph.microsoft.com/beta/applications/$ObjectId/connectorGroup/"+'$ref'

@@ -9,8 +9,7 @@
     CustomScript = @'
     PROCESS {    
         $params = @{}
-        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{Mobile = "MobilePhone"; SignInNames = "Identities"; UserState = "ExternalUserState"; ImmutableId = "OnPremisesImmutableId"; UserStateChangedOn = "ExternalUserStateChangeDateTime"; TelephoneNumber = "BusinessPhones"}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand        
         if($null -ne $PSBoundParameters["PostalCode"])
         {
             $params["PostalCode"] = $PSBoundParameters["PostalCode"]

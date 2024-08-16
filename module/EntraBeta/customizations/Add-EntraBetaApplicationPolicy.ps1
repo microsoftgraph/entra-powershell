@@ -9,8 +9,7 @@
     CustomScript = @'
     PROCESS {        
         $params = @{}
-        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand        
         if ($PSBoundParameters.ContainsKey("Debug")) {
             $params["Debug"] = $PSBoundParameters["Debug"]
         }

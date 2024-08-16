@@ -10,7 +10,7 @@
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{}
+        
         if($null -ne $PSBoundParameters["NewPassword"])
         {
             $params["NewPassword"] = $PSBoundParameters["NewPassword"]

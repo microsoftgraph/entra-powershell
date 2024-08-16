@@ -48,9 +48,8 @@ function Set-EntraBetaServicePrincipal {
         $params["Uri"] = "https://graph.microsoft.com/beta/servicePrincipals"
         $params["Method"] = "PATCH"
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $body = @{}
-        $Web = @{}
-        $keysChanged = @{ObjectId = "Id"}
+        $body = @{}       
+       
         if($null -ne $PSBoundParameters["AccountEnabled"])
         {
             $body["accountEnabled"] = $PSBoundParameters["AccountEnabled"]
