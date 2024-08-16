@@ -56,7 +56,8 @@ Get-EntraBetaApplication
 # Delete a specific application
 Remove-EntraBetaApplication -ObjectId 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
 Get-EntraBetaDeletedApplication
-```
+
+
 
 ```Output
 DisplayName                    Id                                   AppId                                SignInAudience                     PublisherDomain
