@@ -43,8 +43,7 @@ The `New-EntraBetaServicePrincipalPasswordCredential` cmdlet creates a password 
 ### Example 1: Create a password credential with StartDate
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
 $Params = @{
     ObjectId = $ServicePrincipal.ObjectId
