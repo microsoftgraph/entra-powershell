@@ -148,4 +148,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Set-EntraDirSyncFeature](./Set-EntraDirSyncFeature.md)
+[Set-EntraDirSyncFeature](Set-EntraDirSyncFeature.md)

@@ -1,67 +1,113 @@
 ---
+title: Get-EntraBetaDirSyncFeature
+description: This article provides details on the Get-EntraBetaDirSyncFeature command.
+
+
+ms.topic: reference
+ms.date: 08/16/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaDirSyncfeature
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaDirSyncFeature
 
 schema: 2.0.0
 ---
 
-# Get-EntraBetaDirSyncfeature
+# Get-EntraBetaDirSyncFeature
 
 ## Synopsis
+
 Used to check the status of identity synchronization features for a tenant.
 
 ## Syntax
 
-```
-Get-EntraBetaDirSyncfeature [-TenantId <Guid>] [-Feature <String>] [<CommonParameters>]
+```powershell
+Get-EntraBetaDirSyncFeature 
+ [-TenantId <Guid>] 
+ [-Feature <String>] 
+ [<CommonParameters>]
 ```
 
 ## Description
-The Get-EntraBetaDirSyncfeature cmdlet is used to check the status of identity synchronization features for a tenant.
+
+The `Get-EntraBetaDirSyncFeature` cmdlet is used to check the status of identity synchronization features for a tenant.
+
 Features that can be used with this cmdlet include:
 
-    DeviceWriteback
-    DirectoryExtensions
-    DuplicateProxyAddressResiliency
-    DuplicateUPNResiliency
-    EnableSoftMatchOnUpn
-    PasswordSync
-    SynchronizeUpnForManagedUsers
-    UnifiedGroupWriteback
-    UserWriteback
+- **DeviceWriteback**
+- **DirectoryExtensions**
+- **DuplicateProxyAddressResiliency**
+- **DuplicateUPNResiliency**
+- **EnableSoftMatchOnUpn**
+- **PasswordSync**
+- **SynchronizeUpnForManagedUsers**
+- **UnifiedGroupWriteback**
+- **UserWriteback**
 
-    The cmdlet can also be run without any feature being specified, in which case it will return a list of all features and whether they are enabled or disabled.
+The cmdlet can be run without specifying any features, in which case it returns a list of all features and their enabled or disabled status.
 
 ## Examples
 
-### Example 1
-```
-Get-EntraBetaDirSyncfeature
-```
+### Example 1:  Return a list of all possible DirSync features and whether they're enabled (True) or disabled (False)
 
-Description
-
------------
-
-Returns a list of all possible DirSync features and whether they are enabled (True) or disabled (False).
-
-### Example 2
-```
-Get-EntraBetaDirSyncfeature -Feature PasswordSync
-s
-Description
+```Powershell
+Connect-Entra -Scopes 'OnPremDirectorySynchronization.Read.All'
+Get-EntraBetaDirSyncFeature
 ```
 
------------
+```Output
+Enabled DirSyncFeature
+------- --------------
+  False BlockCloudObjectTakeoverThroughHardMatch
+  False BlockSoftMatch
+  False BypassDirSyncOverrides
+  False CloudPasswordPolicyForPasswordSyncedUsers
+  False ConcurrentCredentialUpdate
+   True ConcurrentOrgIdProvisioning
+  False DeviceWriteback
+  False DirectoryExtensions
+  False FopeConflictResolution
+  False GroupWriteBack
+  False PasswordSync
+  False PasswordWriteback
+   True QuarantineUponProxyAddressesConflict
+   True QuarantineUponUpnConflict
+   True SoftMatchOnUpn
+   True SynchronizeUpnForManagedUsers
+  False UnifiedGroupWriteback
+  False UserForcePasswordChangeOnLogon
+  False UserWriteback
+```
 
-Returns whether PasswordSync is enabled for the tenant (True) or disabled (False).
+This command returns a list of all possible DirSync features and whether they're enabled (True) or disabled (False).
+
+### Example 2:  Return whether PasswordSync is enabled for the tenant (True) or disabled (False)
+
+```powershell
+Connect-Entra -Scopes 'OnPremDirectorySynchronization.Read.All'
+Get-EntraBetaDirSyncFeature -Feature 'PasswordSync'
+```
+
+```Output
+Enabled DirSyncFeature
+------- --------------
+  False PasswordSync
+```
+
+This command returns whether PasswordSync is enabled for the tenant (True) or disabled (False).
+
+- `Feature` Parameter specifies DirSync feature to get the status of.
 
 ## Parameters
 
 ### -TenantId
+
 The unique ID of the tenant to perform the operation on.
-If this is not provided then the value will default to the tenant of the current user.
+If this isn't provided then the value defaults to the tenant of the current user.
 This parameter is only applicable to partner users.
 
 ```yaml
@@ -77,10 +123,11 @@ Accept wildcard characters: False
 ```
 
 ### -Feature
+
 The DirSync feature to get the status of.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -92,7 +139,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -101,3 +149,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## Notes
 
 ## Related Links
+
+[Set-EntraBetaDirSyncFeature](Set-EntraBetaDirSyncFeature.md)
