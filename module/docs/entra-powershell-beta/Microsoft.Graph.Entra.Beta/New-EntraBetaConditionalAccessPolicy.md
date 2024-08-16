@@ -58,16 +58,11 @@ $conditions.Users.IncludeUsers = 'all'
 $controls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls
 $controls._Operator = 'OR'
 $controls.BuiltInControls = 'mfa'
-$SessionControls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls
-$ApplicationEnforcedRestrictions = New-Object Microsoft.Open.MSGraph.Model.ConditionalAccessApplicationEnforcedRestrictions
-$ApplicationEnforcedRestrictions.IsEnabled = $true
-$SessionControls.applicationEnforcedRestrictions = $ApplicationEnforcedRestrictions
 $params = @{
      DisplayName = 'MFA policy'
      State = 'Enabled'
      Conditions = $conditions
      GrantControls = $controls
-     SessionControls = $SessionControls
  }
 New-EntraBetaConditionalAccessPolicy @params
 ```
