@@ -54,9 +54,9 @@ Id                                   DeletedDateTime
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
-This command retrieves an object owned by a service principal.
+This example retrieves an object owned by a service principal.
 
-- `-ObjectId` Parameter specifies the ID of a service principal.
+- `-ObjectId` specifies the ID of a service principal.
 
 ### Example 2: Retrieve all the owned objects of a service principal
 
