@@ -50,6 +50,7 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
+# List available applications
 Get-EntraBetaApplication
 ```
 
