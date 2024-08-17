@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Gets a registered user.
+Retrieve a list of users that are registered users of the device.
 
 ## Syntax
 
@@ -62,10 +62,6 @@ assignedLicenses                : {}
 ```
 
 This example demonstrates how to retrieve registered user for a specific Microsoft Entra ID device.
-
-- The first command gets the object ID of a device by using the Get-EntraDevice (./Get-EntraDevice.md) cmdlet, and then stores it in the `$DevId` variable.
-
-- The second command gets the registered users of the device in `$DevId`.
 
 ### Example 2: Get all registered users of a device
 
