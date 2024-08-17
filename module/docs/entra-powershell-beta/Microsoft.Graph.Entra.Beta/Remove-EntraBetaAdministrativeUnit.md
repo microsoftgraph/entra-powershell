@@ -34,6 +34,8 @@ Remove-EntraBetaAdministrativeUnit
 
 The `Remove-EntraBetaAdministrativeUnit` cmdlet removes an administrative unit from Microsoft Entra ID. Specify `ObjectId` parameter to delete an administrative unit.
 
+To delete an administrative unit, the calling principal must have at least the Privileged Role Administrator role in Microsoft Entra.
+
 ## Examples
 
 ### Example 1: Remove an administrative unit

@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-This cmdlet is used to retrieve a soft deleted directory object from the directory.
+Retrieves a soft deleted directory object from the directory.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Get-EntraBetaDeletedDirectoryObject
 
 ## Description
 
-This cmdlet is used to retrieve a soft deleted directory object from the directory.
+The `Get-EntraBetaDeletedDirectoryObject` cmdlet retrieves a soft deleted directory object from the directory.
 Note that soft delete for groups is currently only implemented for Unified Groups (also known as
 Office 365 Groups).
 

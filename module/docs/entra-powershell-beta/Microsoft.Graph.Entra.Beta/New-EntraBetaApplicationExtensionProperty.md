@@ -43,8 +43,7 @@ The `New-EntraBetaApplicationExtensionProperty` cmdlet creates an application ex
 ### Example 1: Create an extension property
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $Application = Get-EntraBetaApplication -SearchString '<application-name>'
 $params = @{
     ObjectId = $Application.ObjectId
@@ -68,8 +67,7 @@ This command creates an application extension property of the string type for th
 ### Example 2: Create an extension property with data type parameter
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $Application = Get-EntraBetaApplication -SearchString '<application-name>'
 $params = @{
     ObjectId = $Application.ObjectId
@@ -95,8 +93,7 @@ This command creates an application extension property of the specified data typ
 ### Example 3: Create an extension property with targets parameter
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $Application = Get-EntraBetaApplication -SearchString '<application-name>'
 $targets = New-Object System.Collections.Generic.List[System.String]
 $targets.Add('User')
