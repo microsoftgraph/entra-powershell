@@ -115,7 +115,7 @@ This example updates the specified user's as minors with parental consent.
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
 $params = @{
-   ObjectId = 'aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb'
+   ObjectId = 'SawyerM@contoso.com'
    City = 'Add city name'
    CompanyName = 'Microsoft'
    Country = 'Add country name'
