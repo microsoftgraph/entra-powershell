@@ -51,7 +51,7 @@ The `Get-EntraBetaApplicationTemplate` cmdlet allows users to get a list of all 
 ### 1. Gets a list of application template objects
 
 ```powershell
-Connect-Entra
+Connect-Entra -Scopes 'Application.Read.All'
 $all_templates = Get-EntraBetaApplicationTemplate
 ```
 
