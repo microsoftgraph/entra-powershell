@@ -49,7 +49,7 @@ $params = @{
 Remove-EntraBetaApplicationOwner @params
 ```
 
-This command removes the specified owner from the specified application. You cane use the command `Get-EntraBetaApplication` to get application Id.
+This example removes the specified owner from the specified application. You can use the command `Get-EntraBetaApplication` to get application Id.
 
 - `-ObjectId` parameter specifies the the unique identifier of a application.
 - `-OwnerId` parameter specifies the ID of the owner.

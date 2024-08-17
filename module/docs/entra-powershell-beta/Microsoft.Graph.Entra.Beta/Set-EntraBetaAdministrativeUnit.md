@@ -37,6 +37,10 @@ Set-EntraBetaAdministrativeUnit
 
 The `Set-EntraBetaAdministrativeUnit` cmdlet updates an administrative unit in Microsoft Entra ID. Specify `Id` parameter to update a specific administrative unit.
 
+In delegated scenarios, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the `microsoft.directory/administrativeUnits/allProperties/allTasks` permission. 
+
+The Privileged Role Administrator is the least privileged role required for this operation.
+
 ## Examples
 
 ### Example 1: Update DisplayName
