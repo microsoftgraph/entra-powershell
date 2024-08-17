@@ -35,6 +35,16 @@ Remove-EntraBetaDirectorySetting
 
 The `Remove-EntraBetaDirectorySetting` cmdlet removes a directory setting from Microsoft Entra ID.
 
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles are supported:
+
+- Microsoft Entra Joined Device Local Administrator: Read basic properties on setting templates and settings.
+- Directory Readers: Read basic properties on setting templates and settings.
+- Global Reader: Read basic properties on setting templates and settings.
+- Groups Administrator: Manage all group settings.
+- Directory Writers: Manage all group settings.
+- Authentication Policy Administrator: Update Password Rule Settings.
+- User Administrator: Read basic properties on setting templates and settings.
+
 ## Examples
 
 ### Example 1: Removes a directory setting from Microsoft Entra ID
