@@ -47,13 +47,7 @@ $User = Get-EntraBetaDeviceRegisteredUser -ObjectId $Device.ObjectId
 Remove-EntraBetaDeviceRegisteredUser -ObjectId $Device.ObjectId -OwnerId $Owner.ObjectId
 ```
 
-This example shows how to remove the registered user from device.  
-
-- The first command gets a device by using the [Get-EntraBetaDevice](./Get-EntraBetaDevice.md) cmdlet, and then stores it in the `$Device` variable.
-
-- The second command gets the registered user for the device in `$Device` by using the [Get-EntraBetaDeviceRegisteredUser](./Get-EntraBetaDeviceRegisteredUser.md) cmdlet.The command stores it in the `$User` variable.
-
-- The final command removes the user in `$User` from the device in `$Device`.
+This example shows how to remove the registered user from device.
 
 ## Parameters
 
