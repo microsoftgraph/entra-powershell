@@ -86,7 +86,7 @@ This example updates the specified user's Display name parameter.
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
 $params = @{
-   ObjectId = 'aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb'
+   ObjectId = 'SawyerM@contoso.com'
    AccountEnabled = $true
 }
 Set-EntraBetaUser @params
