@@ -54,10 +54,6 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Maria Sullivan    maria@contoso.com       M
 
 This example shows how to find the registered owner of a device.
 
-- The first command gets the object ID of a device by using the [Get-EntraBetaDevice](./Get-EntraBetaDevice.md) cmdlet, and then stores it in the `$DevId` variable.  
-
-- The second command gets the registered owner of the device in `$DevId`.
-
 ### Example 2: Retrieve the registered owner of a device
 
 ```powershell
