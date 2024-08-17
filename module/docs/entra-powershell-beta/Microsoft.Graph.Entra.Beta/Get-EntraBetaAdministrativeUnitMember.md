@@ -38,6 +38,12 @@ Get-EntraBetaAdministrativeUnitMember
 
 The `Get-EntraBetaAdministrativeUnitMember` cmdlet gets a member of a Microsoft Entra ID administrative unit. Specify `ObjectId` parameters to retrieve an administrative unit member.
 
+In delegated scenarios with work or school accounts, the signed-in user must either be a member user or be assigned a supported Microsoft Entra role, or a custom role with the necessary permissions. The following least privileged roles are supported for this operation:
+
+- Directory Readers: Read basic properties on administrative units
+- Global Reader: Read all properties of administrative units, including members
+- Privileged Role Administrator: Create and manage administrative units (including members)
+
 ## Examples
 
 ### Example 1: Get an administrative unit member by ObjectId
