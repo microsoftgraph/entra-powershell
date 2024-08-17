@@ -75,7 +75,7 @@ Demo Two App          aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 22223333-cccc-4444-dd
 ProjectWorkManagement dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 AzureADMultipleOrgs Application
 ```
 
-This command retrieves all service principal from the directory.
+This example retrieves all service principal from the directory.
 
 ### Example 2: Retrieve a service principal by ID
 
@@ -91,11 +91,7 @@ DisplayName           Id                                   AppId                
 Demo App              bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
 ```
 
-The first command gets the ID of a service principal by using the [Get-EntraBetaServicePrincipal](./Get-EntraBetaServicePrincipal.md) cmdlet.  
-
-The command stores the ID in the $ServicePrincipalId variable.  
-
-The second command gets the service principal identified by $ServicePrincipalId.
+This example retrieves a specific service principal.
 
 ### Example 3: Retrieve all service principals from the directory
 
@@ -112,7 +108,7 @@ Demo Two App          aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 22223333-cccc-4444-dd
 ProjectWorkManagement dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 AzureADMultipleOrgs Application
 ```
 
-This command retrieves all service principals from the directory.
+This example retrieves all service principals from the directory.
 
 ### Example 4: Retrieve top three service principal from the directory
 
@@ -129,7 +125,7 @@ Demo Two App          aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 22223333-cccc-4444-dd
 ProjectWorkManagement dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 AzureADMultipleOrgs Application
 ```
 
-This command retrieves top three service principals from the directory.
+This example retrieves top three service principals from the directory.
 
 ### Example 5: Get a service principal by display name
 
@@ -144,7 +140,7 @@ DisplayName           Id                                   AppId                
 ProjectWorkManagement dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 AzureADMultipleOrgs Application
 ```
 
-This command gets a service principal by its display name.
+This example gets a service principal by its display name.
 
 ### Example 6: Retrieve a list of all service principal that have a display name that contains "ProjectWorkManagement"
 
@@ -159,7 +155,7 @@ DisplayName           Id                                   AppId                
 ProjectWorkManagement dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 AzureADMultipleOrgs Application
 ```
 
-This command gets a list of service principal, which has the specified display name.
+This example gets a list of service principal, which has the specified display name.
 
 ### Example 7: Retrieve all Enterprise apps
 
