@@ -39,8 +39,11 @@ Set-EntraBetaFeatureRolloutPolicy
 
 ## Description
 
-An admin uses the `Set-EntraBetaFeatureRolloutPolicy` cmdlet to modify the cloud authentication roll-out policy including whether the method for cloud authentication is Pass-through Authentication or not (Password hash-sync) and whether Seamless SSO is enabled.
-Users in groups assigned to the policy start authenticating via the new authentication method and via Seamless SSO if specified.
+An admin uses the `Set-EntraBetaFeatureRolloutPolicy` cmdlet to modify the cloud authentication rollout policy. 
+
+This includes specifying whether the method for cloud authentication is Pass-through Authentication or Password Hash Synchronization, and whether Seamless Single Sign-On (SSO) is enabled. 
+
+Users in groups assigned to the policy will start authenticating using the new method and Seamless SSO, if it is specified.
 
 ## Examples
 
