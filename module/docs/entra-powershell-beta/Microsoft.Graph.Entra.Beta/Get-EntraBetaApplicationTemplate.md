@@ -60,7 +60,7 @@ This command gets all the application template objects
 ### 2. Gets an application template object
 
 ```powershell
-Connect-Entra
+Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaApplicationTemplate -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
