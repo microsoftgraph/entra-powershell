@@ -35,7 +35,7 @@ Remove-EntraBetaTrustFrameworkPolicy
 
 The `Remove-EntraBetaTrustFrameworkPolicy` cmdlet deletes a trust framework policy in the Microsoft Entra ID. The trust framework policy is permanently deleted.
 
-The work or school account must have the `B2C IEF Keyset Administrator` role in Microsoft Entra
+The work or school account must have the `B2C IEF Keyset Administrator` role in Microsoft Entra.
 
 ## Examples
 
