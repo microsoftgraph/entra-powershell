@@ -40,6 +40,8 @@ The `Get-EntraBetaDeviceRegisteredOwner` cmdlet gets the registered owner of a d
 
 ## Examples
 
+### Example 1: Retrieve the registered owner of a device
+
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
 $DevId = (Get-EntraDevice -Top 1).ObjectId
