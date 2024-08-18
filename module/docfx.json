@@ -1,0 +1,40 @@
+{
+  "build": {
+    "content": [
+      { "dest": "entra-preview", "files": [ "breadcrumb/toc.yml" ]},
+
+      { "dest": "entra-preview", "files": [ "**/*.md", "**/*.yml" ], "src": "docs/entra-powershell-v1.0", "version": "entra-powershell-preview" },
+      { "dest": "module", "exclude": [ "toc.yml" ], "files": [ "**/*.yml" ], "src": "entra-powershell-preview", "version": "entra-powershell-preview" },
+      { "dest": "module", "files": [ "**/About/*.md" ], "src": "entra-powershell-preview", "version": "entra-powershell-preview" },
+      { "dest": "module/entra-powershell-preview", "files": [ "toc.yml" ], "src": "entra-powershell-preview", "version": "entra-powershell-preview" },
+
+      { "dest": "entra-preview", "files": [ "**/*.md", "**/*.yml" ], "src": "docs/entra-powershell-beta", "version": "entra-powershell-beta-preview" },
+      { "dest": "module", "exclude": [ "toc.yml" ], "files": [ "**/*.yml" ], "src": "entra-powershell-beta-preview", "version": "entra-powershell-beta-preview" },
+      { "dest": "module", "files": [ "**/About/*.md" ], "src": "entra-powershell-beta-preview", "version": "entra-powershell-beta-preview" },
+      { "dest": "module/entra-powershell-beta-preview", "files": [ "toc.yml" ], "src": "entra-powershell-beta-preview", "version": "entra-powershell-beta-preview" },
+
+      { "dest": "entra-preview", "files": [ "**/*.md", "**/*.yml" ], "src": "virtual-folder" },
+      { "dest": "module", "files": [ "**/*.md", "**/*.yml" ], "src": "virtual-folder-module" }
+    ],
+    "versions": {
+      "entra-powershell-preview": { "dest": "entra-powershell-preview" },
+      "entra-powershell-beta-preview": { "dest": "entra-powershell-beta-preview" },
+    },
+    "overwrite": [],
+    "externalReference": [],
+    "globalMetadata": {
+      "breadcrumb_path": "/powershell/samples/breadcrumb/toc.json",
+      "extendBreadcrumb": true,
+      "feedback_system": "Standard",
+      "ms.devlang": "powershell",
+      "ms.prod": "powershell",
+      "ms.topic": "reference",
+      "ms.author": "stevemutungi",
+      "author": "SteveMutungi254",
+    },
+    "template": [],
+    "markdownEngineName": "markdig",
+    "exportRawModel": true,
+    "exportViewModel": true
+  }
+}
