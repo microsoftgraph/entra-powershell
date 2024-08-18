@@ -55,7 +55,7 @@ Connect-Entra -Scopes 'Domain.ReadWrite.All'
 Confirm-EntraBetaDomain -Name Contoso.com -CrossCloudVerificationCode ms84324896
 ```
 
-This command will confirm your domain for dual federation scenarios.
+This example confirms a domain in dual federation scenarios.
 
 ## Parameters
 
