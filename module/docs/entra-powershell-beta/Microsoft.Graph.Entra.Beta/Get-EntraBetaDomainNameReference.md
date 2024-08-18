@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-This cmdlet retrieves the objects that are referenced by a given domain name.
+Retrieves the objects that are referenced by a given domain name.
 
 ## Syntax
 
