@@ -46,7 +46,7 @@ Connect-Entra -Scopes 'Domain.ReadWrite.All'
 Confirm-EntraBetaDomain -Name Contoso.com
 ```
 
-This command will confirm your domain; changing the status to "Verified".
+This example verifies a domain and updates its status to `verified`.
 
 ### Example 2: Confirm the domain with a cross cloud verification code
 
