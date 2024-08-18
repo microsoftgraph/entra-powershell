@@ -33,7 +33,7 @@ Get-EntraBetaDomainNameReference
 
 ## Description
 
-The `Get-EntraBetaDomainNameReference` cmdlet retrieves the objects that are referenced with a given domain name.
+The `Get-EntraBetaDomainNameReference` cmdlet retrieves the objects that are referenced by a given domain name.
 
 The work or school account needs to belong to at least the Domain Name Administrator or Global Reader Microsoft Entra role.
 
