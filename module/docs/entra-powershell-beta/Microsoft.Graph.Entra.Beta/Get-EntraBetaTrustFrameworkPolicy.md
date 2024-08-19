@@ -21,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-This cmdlet is used to retrieve the created trust framework policies (custom policies) in the directory.
+Retrieves the created trust framework policies (custom policies) in the directory.
 
 ## Syntax
 
@@ -45,7 +45,7 @@ Get-EntraBetaTrustFrameworkPolicy
 
 ## Description
 
-The `Get-EntraBetaTrustFrameworkPolicy` cmdlet is used to retrieve the trust framework policies that have been created in the directory.
+The `Get-EntraBetaTrustFrameworkPolicy` cmdlet retrieves the trust framework policies that have been created in the directory.
 
 ## Examples
 
