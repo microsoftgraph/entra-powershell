@@ -1,4 +1,15 @@
 ---
+title: Remove-EntraBetaApplicationKey
+description: This article provides details on the Remove-EntraBetaApplicationKey command.
+
+
+ms.topic: reference
+ms.date: 07/31/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaApplicationKey
@@ -9,33 +20,52 @@ schema: 2.0.0
 # Remove-EntraBetaApplicationKey
 
 ## Synopsis
+
 Removes a key from an application.
 
 ## Syntax
 
-```
-Remove-EntraBetaApplicationKey -ObjectId <String> [-KeyId <String>] [-Proof <String>] [<CommonParameters>]
+```powershell
+Remove-EntraBetaApplicationKey 
+ -ObjectId <String> 
+ [-KeyId <String>] 
+ [-Proof <String>] 
+ [<CommonParameters>]
 ```
 
 ## Description
+
 Removes a key from an application.
 
 ## Examples
 
 ### Example 1: Removes a key credential from an application
-```
-PS C:\>Remove-EntraBetaApplicationKey -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -KeyId "FDA27CF-1B58-4CAE-8CE7-CD04F0AAB945" -Proof {token}
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All','Directory.ReadWrite.All'
+$app = Get-EntraBetaApplication -Filter "DisplayName eq '<application-display-name>'"
+$params = @{
+    ObjectId = $app.ObjectId
+    KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
+    Proof = '{token}'
+}
+Remove-EntraBetaApplicationKey @params
 ```
 
-This command removes the specificed key credential from the specified application.
+This command removes the specified key credential from the specified application.
+
+- `-ObjectId` parameter specifies the unique identifier of an application.
+- `-KeyId` parameter specifies the key Id corresponding to the key object to be removed.
+- `-Proof` parameter specifies the JWT token provided as a proof of possession.
 
 ## Parameters
 
 ### -ObjectId
-The unique identifier of the object specific Azure Active Directory object
+
+The unique identifier of the object specific Microsoft Entra ID object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -47,10 +77,11 @@ Accept wildcard characters: False
 ```
 
 ### -KeyId
-The key id corresponding to the key object to be removed.
+
+The key Id corresponding to the key object to be removed.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -62,10 +93,11 @@ Accept wildcard characters: False
 ```
 
 ### -Proof
-The JWT token provided as a proof of possession.
+
+A signed JWT token used as a proof of possession.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -77,16 +109,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
-### string
+### String
+
 ## Outputs
 
 ## Notes
 
 ## Related Links
 
-[New-EntraBetaApplicationKey]()
-
+[New-EntraBetaApplicationKey](New-EntraBetaApplicationKey.md)
