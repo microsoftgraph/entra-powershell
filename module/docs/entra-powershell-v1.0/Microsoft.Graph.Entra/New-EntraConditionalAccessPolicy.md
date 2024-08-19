@@ -74,7 +74,7 @@ Id                                   CreatedDateTime     Description DisplayName
 aaaaaaaa-1111-1111-1111-000000000000 16/08/2024 07:29:09             MFA policy                   enabled
 ```
 
-This command creates a new conditional access policy in Microsoft Entra ID that requires MFA to access Exchange Online.
+The `New-EntraConditionalAccessPolicy` command creates a new conditional access policy in Microsoft Entra ID that requires MFA to access Exchange Online.
 
 ### Example 2: Creates a new conditional access policy in Microsoft Entra ID that blocks access to Exchange Online from nontrusted regions
 
