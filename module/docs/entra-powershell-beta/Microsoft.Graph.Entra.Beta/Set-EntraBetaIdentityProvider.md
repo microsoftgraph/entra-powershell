@@ -21,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-This cmdlet is used to update the properties of an existing identity provider configured in the directory.
+Update the properties of an existing identity provider configured in the directory.
 
 ## Syntax
 
@@ -37,7 +37,8 @@ Set-EntraBetaIdentityProvider
 
 ## Description
 
-This cmdlet is used to update the properties of an existing identity provider.
+The `Set-EntraBetaIdentityProvider` cmdlet is used to update the properties of an existing identity provider.
+
 The type of the identity provider cannot be modified.
 
 ## Examples
@@ -64,7 +65,7 @@ This example updates the client ID for the specified identity provider.
 Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
 $params = @{
     Id = 'Google-OAuth'
-    ClientSecret = 'NewClientSecrete'
+    ClientSecret = 'NewClientSecret'
 }
 Set-EntraBetadentityProvider @params
 ```
