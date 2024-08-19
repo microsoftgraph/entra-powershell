@@ -1,10 +1,9 @@
 ---
-title:  Get-EntraBetaServicePrincipalOwnedObject
-description: This article provides details on the  Get-EntraBetaServicePrincipalOwnedObject Command.
-
+title: Get-EntraBetaServicePrincipalOwnedObject
+description: This article provides details on the Get-EntraBetaServicePrincipalOwnedObject command.
 
 ms.topic: reference
-ms.date: 07/31/2024
+ms.date: 08/13/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -36,7 +35,7 @@ Get-EntraBetaServicePrincipalOwnedObject
 
 ## Description
 
-The `Get-EntraBetaServicePrincipalOwnedObject` cmdlet gets an object owned by a service principal in Microsoft Entra ID.
+The `Get-EntraBetaServicePrincipalOwnedObject` cmdlet gets an object that is owned by a service principal in Microsoft Entra ID.
 
 ## Examples
 
@@ -51,8 +50,26 @@ The `Get-EntraBetaServicePrincipalOwnedObject` cmdlet gets an object owned by a 
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 bbbbbbbb-1111-2222-3333-cccccccccccc
+```
+
+The command retrieves the owned objects of a service principal.
+
+- `-ObjectId` Parameter specifies the ID of a service principal.
+
+### Example 2: Retrieve the all owned objects of a service principal
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+$ServicePrincipalId = (Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<user-display-name>'").ObjectId
+Get-EntraBetaServicePrincipalOwnedObject -ObjectId $ServicePrincipalId -All
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
 ```
 
 This example retrieves an object owned by a service principal in Microsoft Entra ID. You can use the command `Get-EntraBetaServicePrincipal` to get service principal Id.
@@ -70,13 +87,13 @@ Get-EntraBetaServicePrincipalOwnedObject -ObjectId $ServicePrincipal.ObjectId -A
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
 ```
 
-This example retrieves all owned objects of a specified service principal in Microsoft Entra ID.
+The command receives the all owned objects of a service principal.
 
-- `-ObjectId` parameter specifies the ID of a service principal.
+- `-ObjectId` Parameter specifies the ID of a service principal.
 
 ### Example 3: Retrieve top one owned object of a service principal
 
