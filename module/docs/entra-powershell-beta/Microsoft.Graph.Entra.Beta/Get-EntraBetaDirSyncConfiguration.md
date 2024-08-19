@@ -27,7 +27,7 @@ Gets the directory synchronization settings.
 
 ```powershell
 Get-EntraBetaDirSyncConfiguration 
- [-TenantId <Guid>] 
+ [-TenantId <String>] 
  [<CommonParameters>]
 ```
 
@@ -56,7 +56,7 @@ This example gets directory synchronization settings.
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
-Get-EntraDirSyncConfiguration -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
+Get-EntraBetaDirSyncConfiguration -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
 ```
 
 ```Output
