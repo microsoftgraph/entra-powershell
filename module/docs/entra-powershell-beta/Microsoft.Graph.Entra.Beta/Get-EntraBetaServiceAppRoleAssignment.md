@@ -36,7 +36,7 @@ Get-EntraBetaServiceAppRoleAssignment
 
 ## Description
 
-The Get-`EntraBetaServiceAppRoleAssignment` cmdlet gets a role assignment for a service principal application in Microsoft Entra ID.
+The `Get-EntraBetaServiceAppRoleAssignment` cmdlet gets a role assignment for a service principal application in Microsoft Entra ID.
 
 For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
 
