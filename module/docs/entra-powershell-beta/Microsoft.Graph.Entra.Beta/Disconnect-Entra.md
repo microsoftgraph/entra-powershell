@@ -1,5 +1,5 @@
 ---
-title: Disconnect-Entra.
+title: Disconnect-Entra
 description: This article provides details on the Disconnect-Entra Command.
 
 
