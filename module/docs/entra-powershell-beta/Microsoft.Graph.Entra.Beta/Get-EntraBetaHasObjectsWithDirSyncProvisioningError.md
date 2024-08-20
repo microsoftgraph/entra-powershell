@@ -40,9 +40,7 @@ The `Get-EntraBetaHasObjectsWithDirSyncProvisioningError` returns whether Micros
 ### Example 1: Return whether Microsoft Entra ID has objects with DirSync provisioning error
 
 ```powershell
-Connect-Entra -Scopes 'User.Read.All', 'User.ReadWrite.All', 'Directory.Read.All', 'Directory.ReadWrite.All'
-Connect-Entra -Scopes 'Directory.Read.All', 'Directory.ReadWrite.All', 'Group.Read.All', 'Group.ReadWrite.All'
-Connect-Entra -Scopes 'Contacts.ReadWrite'
+Connect-Entra -Scopes 'User.Read.All', 'Directory.Read.All', 'Group.Read.All', 'Contacts.Read'
 
 Get-EntraBetaHasObjectsWithDirSyncProvisioningError 
 ```
