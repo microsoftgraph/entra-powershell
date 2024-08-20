@@ -34,16 +34,16 @@ New-EntraServicePrincipalPasswordCredential
 
 ## Description
 
-The New-EntraServicePrincipalPasswordCredential cmdlet creates a password credential for a service principal in Microsoft Entra ID.
+The `New-EntraServicePrincipalPasswordCredential` cmdlet creates a password credential for a service principal in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Create a password credential with StartDate
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-New-EntraServicePrincipalPasswordCredential -ObjectID '00001111-aaaa-2222-bbbb-3333cccc4444' -StartDate 2024-03-21T14:14:14Z
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+New-EntraServicePrincipalPasswordCredential -ObjectID $ServicePrincipal.ObjectId -StartDate 2024-03-21T14:14:14Z
 ```
 
 ```output
@@ -57,9 +57,9 @@ This example demonstrates how to create a password credential with StartDate for
 ### Example 2: Create a password credential with EndtDate
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-New-EntraServicePrincipalPasswordCredential -ObjectID '00001111-aaaa-2222-bbbb-3333cccc4444' -EndDate 2030-03-21T14:14:14Z
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+New-EntraServicePrincipalPasswordCredential -ObjectID $ServicePrincipal.ObjectId -EndDate 2030-03-21T14:14:14Z
 ```
 
 ```output
