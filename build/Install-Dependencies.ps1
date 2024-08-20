@@ -6,7 +6,7 @@
 param(
 	[ArgumentCompleter({ (Get-ChildItem -Path "$PSScriptRoot\..\module").Name })]
 	[string]
-	$ModuleName = 'AzureAD',
+	$ModuleName = 'Entra',
 
 	[ValidateScript({ Test-Path $_ })]
 	[string]

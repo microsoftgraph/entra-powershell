@@ -1,0 +1,86 @@
+---
+title: Revoke-EntraBetaUserAllRefreshToken
+description: This article provides details on the Revoke-EntraBetaUserAllRefreshToken command.
+
+ms.topic: reference
+ms.date: 07/25/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Module Name: Microsoft.Graph.Entra.Beta
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Revoke-EntraBetaUserAllRefreshToken
+schema: 2.0.0
+---
+
+# Revoke-EntraBetaUserAllRefreshToken
+
+## Synopsis
+
+Invalidates the refresh tokens issued to applications for a user.
+
+## Syntax
+
+```powershell
+Revoke-EntraBetaUserAllRefreshToken 
+ -ObjectId <String> 
+ [<CommonParameters>]
+```
+
+## Description
+
+The `Revoke-EntraBetaUserAllRefreshToken` cmdlet invalidates the refresh tokens issued to applications for a user.
+The cmdlet also invalidates tokens issued to session cookies in a browser for the user.
+The cmdlet operates by resetting the refreshTokensValidFromDateTime user property to the current date and time.
+
+## Examples
+
+### Example 1: Revoke refresh tokens for a user
+
+```powershell
+Connect-Entra -Scopes 'User.RevokeSessions.All'
+Revoke-EntraBetaUserAllRefreshToken -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff'
+```
+
+```Output
+Value
+-----
+True
+```
+
+This example demonstrates how to revoke the tokens for the specified user.
+
+- `-ObjectId` parameter specifies the unique identifier of a user.
+
+## Parameters
+
+### -ObjectId
+
+Specifies the unique ID of a user.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
+
+## Outputs
+
+## Notes
+
+## Related Links
+
+[Revoke-EntraBetaSignedInUserAllRefreshToken](Revoke-EntraBetaSignedInUserAllRefreshToken.md)

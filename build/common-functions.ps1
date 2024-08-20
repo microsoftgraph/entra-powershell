@@ -177,7 +177,7 @@ function Get-CustomizationFiles {
 	[cmdletbinding()]
 	param(
 		[string]
-		$Module = "AzureAD",
+		$Module = "Entra",
 
 		[string]
 		$Directory
@@ -207,7 +207,7 @@ function Get-CustomizationFiles {
 function Create-ModuleHelp {
 	param (
 		[string]
-		$Module = "AzureAD"
+		$Module = "Entra"
 	)
 
 	$binPath = Join-Path (Split-Path -Parent $psscriptroot) (Get-ConfigValue -Name OutputPath)
@@ -215,7 +215,7 @@ function Create-ModuleHelp {
 		New-Item -ItemType Directory -Path $binPath | Out-Null
 	}
 	$moduleDocsPath = Join-Path (Split-Path -Parent $psscriptroot) (Get-ConfigValue -Name ModuleSubdirectoryName)
-	$moduleDocsPath = Join-Path ($moduleDocsPath) ($Module)
 	$moduleDocsPath = Join-Path ($moduleDocsPath) (Get-ConfigValue -Name docsPath)
+	$moduleDocsPath = Join-Path ($moduleDocsPath) (Get-ConfigValue -Name ($Module + "Path"))
 	New-ExternalHelp -Path $moduleDocsPath -OutputPath $binPath -Force
 }
