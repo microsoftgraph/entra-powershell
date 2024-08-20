@@ -41,8 +41,9 @@ The `Remove-EntraServicePrincipalPasswordCredential` cmdlet removes a password c
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
 $Params = @{
-    ObjectID = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    ObjectID = $ServicePrincipal.ObjectId
     KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
 }
 
