@@ -52,9 +52,9 @@ Remove-EntraScopedRoleMembership @params
 
 This example removes a specific scoped role membership from Microsoft Entra ID.
 
-- `ObjectId` - parameter specifies the ID of an administrative unit.
+- `-ObjectId` - parameter specifies the ID of an administrative unit.
 
-- `ScopedRoleMembershipId` - parameter specifies the ID of the scoped role membership to remove. To obtain the details of a scoped role membership, you can use the `Get-EntraScopedRoleMembership` command.
+- `-ScopedRoleMembershipId` - parameter specifies the ID of the scoped role membership to remove. To obtain the details of a scoped role membership, you can use the `Get-EntraScopedRoleMembership` command.
 
 ## Parameters
 
