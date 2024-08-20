@@ -1,4 +1,15 @@
 ---
+title: Set-EntraBetaNamedLocationPolicy
+description: This article provides details on the Set-EntraBetaNamedLocationPolicy command.
+
+
+ms.topic: reference
+ms.date: 07/31/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaNamedLocationPolicy
@@ -9,45 +20,103 @@ schema: 2.0.0
 # Set-EntraBetaNamedLocationPolicy
 
 ## Synopsis
-Updates a named location policy in Azure Active Directory by PolicyId.
+
+Updates a named location policy in Microsoft Entra ID by PolicyId.
 
 ## Syntax
 
-```
-Set-EntraBetaNamedLocationPolicy [-IncludeUnknownCountriesAndRegions <Boolean>] [-Id <String>]
- -PolicyId <String> [-IsTrusted <Boolean>] [-OdataType <String>]
+```powershell
+Set-EntraBetaNamedLocationPolicy 
+ -PolicyId <String>
+ [-IncludeUnknownCountriesAndRegions <Boolean>] 
+ [-Id <String>]
+ [-IsTrusted <Boolean>] 
+ [-OdataType <String>]
  [-CountriesAndRegions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.CountriesAndRegion]>]
- [-IpRanges <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.IpRange]>] [-DisplayName <String>]
+ [-IpRanges <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.IpRange]>] 
+ [-DisplayName <String>]
  [<CommonParameters>]
 ```
 
 ## Description
-This cmdlet allows an admin to update a named location policy in Azure Active Directory by PolicyId.
+
+This cmdlet allows an admin to update a named location policy in Microsoft Entra ID by PolicyId.
+
 Conditional access policies are custom rules that define an access scenario.
 
 ## Examples
 
-### Example 1: Update an ip named location policy in Azure AD by PolicyId.
-```
-PS C:\> Set-EntraBetaNamedLocationPolicy -PolicyId 07a1f48d-0cbb-4c2c-8ea2-1ea00e3eb3b6 -OdataType "#microsoft.graph.ipNamedLocation" -IsTrusted $false
+### Example 1: Update an IP named location policy in Microsoft Entra ID by PolicyId
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+$ipRanges = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
+$ipRanges.cidrAddress = '6.5.4.3/32'
+$params = @{
+    PolicyId = '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6'
+    OdataType = '#microsoft.graph.ipNamedLocation'
+    IsTrusted = $false
+    IncludeUnknownCountriesAndRegions = $false
+    IpRanges = $ipRanges
+}
+
+Set-EntraBetaNamedLocationPolicy @params
 ```
 
-This command updates an ip named location policy in Azure AD by PolicyId.
+This example shows how to update an IP named location policy in Microsoft Entra ID by PolicyId.
 
-### Example 2: Update a country named location policy in Azure AD by PolicyId.
-```
-PS C:\> Set-EntraBetaNamedLocationPolicy -PolicyId 76fdfd4d-bd80-4c1e-8fd4-6abf49d121fe -OdataType "#microsoft.graph.countryNamedLocation" -IncludeUnknownCountriesAndRegions $true
+- `-PolicyId` parameter specifies the Id of a named location policy.
+- `-OdataType` parameter specifies the odata type of a named location policy.
+- `-DisplayName` parameter specifies the display name of a named location policy.
+- `-IsTrusted` parameter specifies the IsTrusted value for the named location policy.
+- `-IpRanges` parameter specifies List of IP address ranges in IPv4 CIDR format (e.g., 1.2.3.4/32) or any valid IPv6 format as specified in IETF RFC596.
+
+### Example 2: Update a country named location policy in Microsoft Entra ID by PolicyId
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+$params = @{
+    PolicyId = '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6'
+    OdataType = '#microsoft.graph.countryNamedLocation'
+    IncludeUnknownCountriesAndRegions = $true
+}
+
+Set-EntraBetaNamedLocationPolicy @params
 ```
 
-This command updates a country named location policy in Azure AD by PolicyId.
+This command updates a country named location policy in Microsoft Entra ID by PolicyId.
+
+- `-PolicyId` parameter specifies the Id of a named location policy.
+- `-OdataType` parameter specifies the odata type of a named location policy.
+- `-IncludeUnknownCountriesAndRegions` parameter specifies the includeUnknownCountriesAndRegions value for the named location policy.
+
+### Example 3: Update display name of a named location policy in Microsoft Entra ID by PolicyId
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.ConditionalAccess'
+$params = @{
+    PolicyId = '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6'
+    OdataType = '#microsoft.graph.ipNamedLocation'
+    DisplayName = 'NewName'
+}
+
+Set-EntraBetaNamedLocationPolicy @params
+```
+
+This command updates display name of named location policy in Microsoft Entra ID by PolicyId.
+
+- `-PolicyId` parameter specifies the Id of a named location policy.
+- `-OdataType` parameter specifies the odata type of a named location policy.
+- `-DisplayName` parameter specifies the display name of a named location policy.
 
 ## Parameters
 
 ### -PolicyId
-Specifies the ID of a named location policy in Azure Active Directory.
+
+Specifies the ID of a named location policy in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -59,10 +128,11 @@ Accept wildcard characters: False
 ```
 
 ### -OdataType
-Specifies the odata type of a named location policy object in Azure Active Directory.
+
+Specifies the odata type of a named location policy object in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -74,10 +144,11 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
-Specifies the display name of a named location policy in Azure Active Directory.
+
+Specifies the display name of a named location policy in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -89,7 +160,8 @@ Accept wildcard characters: False
 ```
 
 ### -IpRanges
-Specifies the ip ranges of the named location policy in Azure Active Directory.
+
+List of IP address ranges in IPv4 CIDR format (e.g., 1.2.3.4/32) or any valid IPv6 format as specified in IETF RFC596. The @odata.type of the ipRange is also required.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.IpRange]
@@ -104,10 +176,11 @@ Accept wildcard characters: False
 ```
 
 ### -IsTrusted
-Specifies the isTrusted value for the named location policy in Azure Active Directory.
+
+Specifies the IsTrusted value for the named location policy in Microsoft Entra ID.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -119,7 +192,8 @@ Accept wildcard characters: False
 ```
 
 ### -CountriesAndRegions
-Specifies the countries and regions for the named location policy in Azure Active Directory.
+
+Specifies the countries and regions for the named location policy in Microsoft Entra ID.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.CountriesAndRegion]
@@ -134,10 +208,11 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeUnknownCountriesAndRegions
-Specifies the includeUnknownCountriesAndRegions value for the named location policy in Azure Active Directory.
+
+Specifies the includeUnknownCountriesAndRegions value for the named location policy in Microsoft Entra ID.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -149,10 +224,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+
+Specifies the Id of a named location policy in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -164,18 +240,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ## Outputs
 
 ## Notes
+
 ## Related Links
 
-[Get-EntraBetaNamedLocationPolicy]()
+[New-EntraBetaNamedLocationPolicy](New-EntraBetaNamedLocationPolicy.md)
 
-[New-EntraBetaNamedLocationPolicy]()
+[Get-EntraBetaNamedLocationPolicy](Get-EntraBetaNamedLocationPolicy.md)
 
-[Remove-EntraBetaNamedLocationPolicy]()
-
+[Remove-EntraBetaNamedLocationPolicy](Remove-EntraBetaNamedLocationPolicy.md)

@@ -2,12 +2,14 @@
 title: Remove-EntraBetaPermissionGrantConditionSet
 description: This article provides details on the Remove-EntraBetaPermissionGrantConditionSet command.
 
+
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 08/08/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaPermissionGrantConditionSet
@@ -18,6 +20,7 @@ schema: 2.0.0
 # Remove-EntraBetaPermissionGrantConditionSet
 
 ## Synopsis
+
 Delete a Microsoft Entra ID permission grant condition set by ID.
 
 ## Syntax
@@ -31,23 +34,40 @@ Remove-EntraBetaPermissionGrantConditionSet
 ```
 
 ## Description
+
 Delete a Microsoft Entra ID permission grant condition set object by ID.
 
 ## Examples
 
 ### Example 1: Delete a permission grant condition set from a policy
+
 ```powershell
-PS C:\>Remove-EntraBetaPermissionGrantConditionSet -PolicyId "policy1" -ConditionSetType "excludes" -Id "665a9903-0398-48ab-b4e9-7a570d468b66"
+Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
+$permissionGrantPolicyId = 'policy1'
+$PermissionGrantConditionSetId = '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6'
+$params = @{
+    PolicyId = $permissionGrantPolicyId
+    ConditionSetType = 'excludes'
+    Id = $PermissionGrantConditionSetId
+}
+
+Remove-EntraBetaPermissionGrantConditionSet @params
 ```
-This command  Delete a permission grant condition set from a policy.
+
+This example demonstrates how to remove the Microsoft Entra ID permission grant condition set by ID.
+
+- `-PolicyId` parameter specifies the unique identifier of a permission grant policy.
+- `-ConditionSetType` parameter indicates whether the condition sets are included in the policy or excluded.
+- `-Id` parameter specifies the unique identifier of a permission grant condition set object.
 
 ## Parameters
 
 ### -PolicyId
+
 The unique identifier of a Microsoft Entra ID permission grant policy object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -59,10 +79,11 @@ Accept wildcard characters: False
 ```
 
 ### -ConditionSetType
+
 The value indicates whether the condition sets are included in the policy or excluded.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -74,10 +95,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
+
 The unique identifier of a Microsoft Entra ID permission grant condition set object.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -89,13 +111,13 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### String
-### String
-### String
+
 ## Outputs
 
 ## Notes
@@ -107,4 +129,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-EntraBetaPermissionGrantConditionSet](Get-EntraBetaPermissionGrantConditionSet.md)
 
 [Set-EntraBetaPermissionGrantConditionSet](Set-EntraBetaPermissionGrantConditionSet.md)
-

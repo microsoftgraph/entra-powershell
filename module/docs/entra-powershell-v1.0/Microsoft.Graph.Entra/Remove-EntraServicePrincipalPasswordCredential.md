@@ -1,10 +1,10 @@
 ---
-title: Get-EntraBetaAuditSignInLogs
-description: This article provides details on the Get-EntraBetaAuditSignInLogs command.
+title: Remove-EntraServicePrincipalPasswordCredential
+description: This article provides details on the Remove-EntraServicePrincipalPasswordCredential command.
 
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 08/20/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -37,12 +37,13 @@ The `Remove-EntraServicePrincipalPasswordCredential` cmdlet removes a password c
 
 ## Examples
 
-### Example 1
+### Example 1: Remove a password credential from a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
 $Params = @{
-    ObjectID = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    ObjectID = $ServicePrincipal.ObjectId
     KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
 }
 
@@ -90,7 +91,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
