@@ -26,14 +26,14 @@ Removes an owner from an application.
 
 ```powershell
 Remove-EntraBetaApplicationOwner 
-    -OwnerId <String> 
-    -ObjectId <String> 
+ -OwnerId <String> 
+ -ObjectId <String> 
  [<CommonParameters>]
 ```
 
 ## Description
 
-The Remove-EntraBetaApplicationOwner cmdlet removes an owner from an application in Microsoft Entra ID.
+The `Remove-EntraBetaApplicationOwner` cmdlet removes an owner from an application in Microsoft Entra ID.
 
 ## Examples
 
@@ -41,10 +41,18 @@ The Remove-EntraBetaApplicationOwner cmdlet removes an owner from an application
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Remove-EntraBetaApplicationOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -OwnerId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+$Application = Get-EntraBetaApplication -SearchString '<application-name>'
+$params = @{
+    ObjectId = $Application.ObjectId 
+    OwnerId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+}
+Remove-EntraBetaApplicationOwner @params
 ```
 
-This command removes the specified owner from the specified application.
+This example removes the specified owner from the specified application. You can use the command `Get-EntraBetaApplication` to get application Id.
+
+- `-ObjectId` parameter specifies the the unique identifier of a application.
+- `-OwnerId` parameter specifies the ID of the owner.
 
 ## Parameters
 
