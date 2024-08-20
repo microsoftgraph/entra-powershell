@@ -1,5 +1,5 @@
 ---
-title:  Add-EntraBetaFeatureRolloutPolicyDirectoryObject
+title: Add-EntraBetaFeatureRolloutPolicyDirectoryObject
 description: This article provides details on the  Add-EntraBetaFeatureRolloutPolicyDirectoryObject command.
 
 
@@ -54,9 +54,12 @@ Add-EntraBetaFeatureRolloutPolicyDirectoryObject @params
 
 This command adds a group to the cloud authentication roll-out policy in Microsoft Entra ID.
 
+- `-Id` Parameter specifies the ID of the cloud authentication roll-out policy.
+- `-RefObjectId` Parameter specifies the ID of the specific Microsoft Entra ID object that assigned to the cloud authentication roll-out policy.
+
 ## Parameters
 
-### -ID
+### -Id
 
 The unique identifier of the cloud authentication roll-out policy in Microsoft Entra ID.
 

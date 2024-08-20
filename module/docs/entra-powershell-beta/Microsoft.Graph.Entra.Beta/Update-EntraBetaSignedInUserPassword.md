@@ -1,13 +1,14 @@
 ---
-title: Update-EntraBetaSignedInUserPassword
+title: Update-EntraBetaSignedInUserPassword.
 description: This article provides details on the Update-EntraBetaSignedInUserPassword command.
+
 
 ms.topic: reference
 ms.date: 07/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
-author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Update-EntraBetaSignedInUserPassword
@@ -34,7 +35,7 @@ Update-EntraBetaSignedInUserPassword
 
 The `Update-EntraBetaSignedInUserPassword` cmdlet updates the password for the signed-in user in Microsoft Entra ID.
 
-Allow users to update their own passwords. Any user can update their password without needing to be in an administrator role.
+Enable users to update their own passwords. Any user can change their password without requiring administrator privileges.
 
 ## Examples
 
@@ -48,13 +49,14 @@ $params = @{
     CurrentPassword = $CurrentPassword
     NewPassword = $NewPassword
 }
-Update-EntraBetaSignedInUserPassword @Params
+Update-EntraBetaSignedInUserPassword @params
 ```
 
 This command updates the password for the signed-in user.
 
-- `-CurrentPassword` parameter specifies the current password of the signed-in user.
-- `-NewPassword` parameter specifies the new password for the signed-in user.
+- `-CurrentPassword` Parameter specifies the current password of the signed-in user.
+
+- `-NewPassword` Parameter specifies the new password for the signed-in user.
 
 ## Parameters
 
