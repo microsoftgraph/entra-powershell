@@ -46,7 +46,7 @@ $ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-
 New-EntraServicePrincipalPasswordCredential -ObjectID $ServicePrincipal.ObjectId -StartDate 2024-03-21T14:14:14Z
 ```
 
-```output
+```Output
 CustomKeyIdentifier DisplayName EndDateTime         Hint KeyId                                SecretText                               StartDateTime
 ------------------- ----------- -----------         ---- -----                                ----------                               -------------
                                 21-03-2026 12:12:13 333  aaaaaaaa-0b0b-1c1c-2d2d-333333333333 Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2 21-03-2024 14:14:14
@@ -62,7 +62,7 @@ $ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-
 New-EntraServicePrincipalPasswordCredential -ObjectID $ServicePrincipal.ObjectId -EndDate 2030-03-21T14:14:14Z
 ```
 
-```output
+```Output
 CustomKeyIdentifier DisplayName EndDateTime         Hint KeyId                                SecretText                               StartDateTime
 ------------------- ----------- -----------         ---- -----                                ----------                               -------------
                                 21-03-2030 14:14:14 333  aaaaaaaa-0b0b-1c1c-2d2d-333333333333 Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2 21-03-2024 12:15:10
