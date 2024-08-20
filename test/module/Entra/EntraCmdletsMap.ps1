@@ -112,11 +112,11 @@ $cmdlets2 = @(
         TargetName = "Get-MgApplicationExtensionProperty";
         IsApi = $false
     },
-    # @{
-    #     SourceName = "Get-EntraApplicationKeyCredential";
-    #     TargetName = "";
-    #     IsApi = $true
-    # },
+    @{
+        SourceName = "Get-EntraApplicationKeyCredential";
+        TargetName = "";
+        IsApi = $true
+    },
     @{
         SourceName = "Get-EntraApplicationLogo";
         TargetName = "";
@@ -127,11 +127,11 @@ $cmdlets2 = @(
         TargetName = "";
         IsApi = $true
     },
-    # @{
-    #     SourceName = "Get-EntraApplicationPasswordCredential";
-    #     TargetName = "";
-    #     IsApi = $true
-    # },
+    @{
+        SourceName = "Get-EntraApplicationPasswordCredential";
+        TargetName = "";
+        IsApi = $true
+    },
     @{
         SourceName = "Get-EntraApplicationServiceEndpoint";
         TargetName = "Get-MgServicePrincipalEndpoint";
@@ -227,11 +227,11 @@ $cmdlets2 = @(
         TargetName = "Get-MgServicePrincipalCreatedObject";
         IsApi = $false
     },
-    # @{
-    #     SourceName = "Get-EntraServicePrincipalKeyCredential";
-    #     TargetName = "";
-    #     IsApi = $true
-    # },
+    @{
+        SourceName = "Get-EntraServicePrincipalKeyCredential";
+        TargetName = "";
+        IsApi = $true
+    },
     @{
         SourceName = "Get-EntraServicePrincipalMembership";
         TargetName = "Get-MgServicePrincipalTransitiveMemberOf";
@@ -252,11 +252,11 @@ $cmdlets2 = @(
         TargetName = "Get-MgServicePrincipalOwner";
         IsApi = $false
     },
-    # @{
-    #     SourceName = "Get-EntraServicePrincipalPasswordCredential";
-    #     TargetName = "";
-    #     IsApi = $true
-    # },
+    @{
+        SourceName = "Get-EntraServicePrincipalPasswordCredential";
+        TargetName = "";
+        IsApi = $true
+    },
     @{
         SourceName = "Get-EntraSubscribedSku";
         TargetName = "Get-MgSubscribedSku";
