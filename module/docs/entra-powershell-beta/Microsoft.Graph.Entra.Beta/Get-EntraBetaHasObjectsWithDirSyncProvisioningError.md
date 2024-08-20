@@ -51,6 +51,22 @@ False
 
 This command returns whether Microsoft Entra ID has objects with DirSync provisioning error.
 
+### Example 2: Return whether Microsoft Entra ID has objects with DirSync provisioning error
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All', 'Directory.Read.All', 'Group.Read.All', 'Contacts.Read'
+
+Get-EntraBetaHasObjectsWithDirSyncProvisioningError -TenantId '0000aaaa-11bb-cccc-dd22-eeeeee333333'
+```
+
+```Output
+False
+```
+
+This command returns whether Microsoft Entra ID has objects with DirSync provisioning error.
+
+- `-TenantId` Specifies the ID of the tenant to perform the operation on.
+
 ## Parameters
 
 ### -TenantId
