@@ -81,6 +81,32 @@ Use the `Get-EntraBetaDomainFederationSettings -DomainName <your_domain_name> | 
 - `-PreferredAuthenticationProtocol` parameter specifies the preferred authentication protocol.
 - `-PromptLoginBehavior` parameter specifies the prompt sign-in behavior.
 
+### Example 2: Set the domain federation uri's
+
+```powershell
+Connect-Entra -Scopes 'Domain.ReadWrite.All'
+
+$params = @{
+    DomainName = 'contoso.com'
+    LogOffUri = 'https://adfs1.manan.lab/adfs/'
+    PassiveLogOnUri = 'https://adfs1.manan.lab/adfs/'
+    ActiveLogOnUri = 'https://adfs1.manan.lab/adfs/services/trust/2005/'
+    IssuerUri = 'http://adfs1.manan.lab/adfs/services/'
+    MetadataExchangeUri = 'https://adfs1.manan.lab/adfs/services/trust/'
+}
+
+Set-EntraBetaDomainFederationSettings @params
+```
+
+This command updates the domain federation domain settings.
+
+- `-DomainName` parameter specifies the fully qualified domain name to retrieve.
+- `-LogOffUri` parameter specifies the URL clients are redirected to when they sign out of Microsoft Entra ID services.
+- `-PassiveLogOnUri` parameter specifies URL that web-based clients will be directed to when signing in to Microsoft Entra ID services.
+- `-ActiveLogOnUri` parameter specifies the end point used by active clients when authenticating with domains set up for single sign-on.
+- `-IssuerUri` parameter specifies the unique identifier of the domain in the Microsoft Entra ID Identity platform derived from the federation server.
+- `-MetadataExchangeUri` parameter specifies the metadata exchange end point used for authentication from client applications.
+
 ## Parameters
 
 ### -DomainName

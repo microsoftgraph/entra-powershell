@@ -53,7 +53,7 @@ The work or school account needs to belong to one of the following Microsoft Ent
 
 ## Examples
 
-### EXAMPLE 1: Get password policy for a specified domain
+### Example 1: Get password policy for a specified domain
 
 ```powershell
 Connect-Entra -Scopes 'Domain.Read.All'

@@ -29,7 +29,6 @@ Updates a user in a domain that was recently converted from single sign-on (also
 Convert-EntraBetaFederatedUser 
  -UserPrincipalName <String> 
  [-NewPassword <String>] 
- [-TenantId <Guid>]
  [<CommonParameters>]
 ```
 
@@ -45,7 +44,7 @@ Admins with User Administrator, Helpdesk Administrator, or Password Administrato
 
 ## Examples
 
-### EXAMPLE 1: Update a user in a domain
+### Example 1: Update a user in a domain
 
 ```powershell
 Connect-Entra -Scopes 'UserAuthenticationMethod.ReadWrite.All'
@@ -85,24 +84,6 @@ Aliases:
 
 Required: False
 Position: 2
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -TenantId
-
-The unique ID of the tenant to perform the operation on.
-If this isn't, then it will default to the tenant of the current user.
-This parameter is only applicable to partner users.
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 3
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False

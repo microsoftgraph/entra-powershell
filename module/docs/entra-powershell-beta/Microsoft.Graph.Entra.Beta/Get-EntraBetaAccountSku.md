@@ -48,7 +48,7 @@ To map license names as displayed in the Microsoft Entra admin center or the Mic
 
 ## Examples
 
-### EXAMPLE 1: Gets a list of SKUs
+### Example 1: Gets a list of SKUs
 
 ```powershell
 Connect-Entra -Scopes 'Organization.Read.All'
@@ -65,7 +65,7 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee aaaabbbb-0000-cccc-1111-dddd2222eeee Contos
 
 This command returns a list of SKUs.
 
-### EXAMPLE 2: Gets a list of SKUs by TenantId
+### Example 2: Gets a list of SKUs by TenantId
 
 ```powershell
 Connect-Entra -Scopes 'Organization.Read.All'
