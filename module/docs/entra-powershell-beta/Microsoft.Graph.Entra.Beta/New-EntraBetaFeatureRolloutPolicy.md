@@ -1,4 +1,15 @@
 ---
+title: New-EntraBetaFeatureRolloutPolicy
+description: This article provides details on the New-EntraBetaFeatureRolloutPolicy command.
+
+
+ms.topic: reference
+ms.date: 07/05/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaFeatureRolloutPolicy
@@ -9,45 +20,96 @@ schema: 2.0.0
 # New-EntraBetaFeatureRolloutPolicy
 
 ## Synopsis
-Allows an admin to create the policy for cloud authentication roll-out in Azure AD.
+
+Allows an admin to create the policy for cloud authentication roll-out in Microsoft Entra ID.
 
 ## Syntax
 
-```
-New-EntraBetaFeatureRolloutPolicy -Feature <FeatureEnum> -IsEnabled <Boolean> [-Description <String>]
+```powershell
+New-EntraBetaFeatureRolloutPolicy 
+ -Feature <FeatureEnum> 
+ -IsEnabled <Boolean> 
+ [-Description <String>]
  [-IsAppliedToOrganization <Boolean>]
  [-AppliesTo <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.MsDirectoryObject]>]
- -DisplayName <String> [<CommonParameters>]
+ -DisplayName <String> 
+ [<CommonParameters>]
 ```
 
 ## Description
-This cmdlet allows an admin to create the policy for cloud authentication roll-out (users moving from federation to cloud auth) in Azure AD.
-The policy admin can identify whether the users will authenticate using password hashes in Azure AD (Password hash-sync) or Active Directory on-premises directly (Pass-through authentication).
+
+The `New-EntraBetaFeatureRolloutPolicy` cmdlet allows an admin to create the policy for cloud authentication roll-out (users moving from federation to cloud auth) in Microsoft Entra ID.
+The policy admin can identify whether the users authenticate using password hashes in Microsoft Entra ID (Password hash-sync) or Microsoft Entra ID on-premises directly (Pass-through authentication).
 
 ## Examples
 
-### Example 1: Creates the policy for cloud authentication roll-out in Azure AD.
-```
-PS C:\> New-EntraBetaFeatureRolloutPolicy -Feature PassthroughAuthentication -DisplayName "Passthrough Authentication Rollout Policy" -IsEnabled $true
+### Example 1: Creates the policy for cloud authentication roll-out in Microsoft Entra ID
 
-          Feature                 : PassthroughAuthentication
-          Id                      : 7ca3e599-e8cc-4d31-9ed6-19dd4f88e833
-          DisplayName             : Passthrough Authentication Rollout Policy
-          Description             :
-          IsEnabled               : True
-          IsAppliedToOrganization : False
-          AppliesTo               :
+```powershell
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+$params = @{
+    Feature = 'PassthroughAuthentication'
+    DisplayName = 'Passthrough Authentication Rollout Policy'
+    IsEnabled = $false
+}
+New-EntraBetaFeatureRolloutPolicy @params
 ```
 
-This command creates the policy for cloud authentication roll-out in Azure AD.
+```Output
+
+Id                                   Description DisplayName                               Feature                   IsAppliedToOrganization IsEnabled
+--                                   ----------- -----------                               -------                   ----------------------- ---------
+00aa00aa-bb11-cc22-dd33-44ee44ee44ee            Passthrough Authentication Rollout Policy passthroughAuthentication False                   False
+```
+
+This example creates the policy for cloud authentication roll-out in Microsoft Entra ID.
+
+- `-Feature` Specifies a feature assigned to the cloud authentication roll-out policy.
+Currently, you can assign PassthroughAuthentication | SeamlessSso | PasswordHashSync | EmailAsAlternateId.
+
+- `-DisplayName` Specifies the display name of the cloud authentication roll-out policy.
+
+- `-IsEnabled` Specifies the status of cloud authentication roll-out policy.
+
+### Example 2: Creates the policy for cloud authentication roll-out in Microsoft Entra ID
+
+```powershell
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+$params = @{
+    Feature = 'PassthroughAuthentication'
+    DisplayName = 'FeatureRolloutPolicy'
+    IsEnabled = $false
+    IsAppliedToOrganization = $false
+}
+New-EntraBetaFeatureRolloutPolicy @params
+```
+
+```Output
+
+Id                                   Description DisplayName          Feature                   IsAppliedToOrganization IsEnabled
+--                                   ----------- -----------          -------                   ----------------------- ---------
+00aa00aa-bb11-cc22-dd33-44ee44ee44ee           FeatureRolloutPolicy passthroughAuthentication False                   False
+```
+
+This command creates the policy for cloud authentication roll-out in Microsoft Entra ID.
+
+- `-Feature` Specifies a feature assigned to the cloud authentication roll-out policy.
+Currently, you can assign PassthroughAuthentication | SeamlessSso | PasswordHashSync | EmailAsAlternateId.
+
+- `-DisplayName` Specifies the display name of the cloud authentication roll-out policy.
+
+- `-IsEnabled` Specifies the status of cloud authentication roll-out policy.
+
+- `IsAppliedToOrganization` Specifies if the cloud authentication roll-out policy applied to the entire organization.
 
 ## Parameters
 
 ### -DisplayName
+
 Specifies the display name of the cloud authentication roll-out policy.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -59,6 +121,7 @@ Accept wildcard characters: False
 ```
 
 ### -Feature
+
 Specifies a feature assigned to the cloud authentication roll-out policy.
 
 Currently, you can assign PassthroughAuthentication | SeamlessSso | PasswordHashSync | EmailAsAlternateId.
@@ -76,10 +139,11 @@ Accept wildcard characters: False
 ```
 
 ### -IsEnabled
+
 Specifies the status of cloud authentication roll-out policy.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -91,10 +155,11 @@ Accept wildcard characters: False
 ```
 
 ### -Description
+
 Specifies the description of the cloud authentication roll-out policy.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -106,7 +171,8 @@ Accept wildcard characters: False
 ```
 
 ### -AppliesTo
-Specifies a list of Azure AD objects that is assigned to the feature.
+
+Specifies a list of Microsoft Entra ID objects that is assigned to the feature.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.MsDirectoryObject]
@@ -121,10 +187,11 @@ Accept wildcard characters: False
 ```
 
 ### -IsAppliedToOrganization
+
 Specifies if the cloud authentication roll-out policy applied to the entire organization.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -136,19 +203,21 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ## Outputs
 
 ### Microsoft.Online.Administration.MsFeatureRolloutPolicy
+
 ## Notes
+
 ## Related Links
 
-[Get-EntraBetaFeatureRolloutPolicy]()
+[Get-EntraBetaFeatureRolloutPolicy](Get-EntraBetaFeatureRolloutPolicy.md)
 
-[Set-EntraBetaFeatureRolloutPolicy]()
+[Set-EntraBetaFeatureRolloutPolicy](Set-EntraBetaFeatureRolloutPolicy.md)
 
-[Remove-EntraBetaFeatureRolloutPolicy]()
-
+[Remove-EntraBetaFeatureRolloutPolicy](Remove-EntraBetaFeatureRolloutPolicy.md)
