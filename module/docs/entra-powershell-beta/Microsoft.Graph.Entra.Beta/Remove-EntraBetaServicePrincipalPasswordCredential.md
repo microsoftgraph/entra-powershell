@@ -100,3 +100,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Related Links
 
 [Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)
+
+[Get-EntraBetaServicePrincipalPasswordCredential](Get-EntraServicePrincipalPasswordCredential.md)
+
+[New-EntraBetaServicePrincipalPasswordCredential](New-EntraServicePrincipalPasswordCredential.md)
