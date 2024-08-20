@@ -100,7 +100,7 @@ Currently, you can assign PassthroughAuthentication | SeamlessSso | PasswordHash
 
 - `-IsEnabled` Specifies the status of cloud authentication roll-out policy.
 
-- `IsAppliedToOrganization` Specifies if the cloud authentication roll-out policy applied to the entire organization.
+- `-IsAppliedToOrganization` Specifies if the cloud authentication roll-out policy applied to the entire organization.
 
 ## Parameters
 
