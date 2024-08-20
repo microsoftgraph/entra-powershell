@@ -1,6 +1,6 @@
 ## Building module
 
-Clone the module and follow the instructions described. You need **Microsoft.Graph PowerShell version 2.4** in order to build the module.
+Clone the module and follow the instructions described. You need **Microsoft.Graph PowerShell version 2.15.X** in order to build the module.
 
 ```powershell
 git clone https://github.com/microsoftgraph/entra-powershell.git
@@ -16,12 +16,16 @@ This module depends on some Microsoft Graph PowerShell modules. The following co
 .\build\Install-Dependencies.ps1 -ModuleName Entra
 ```
 
-or
+Or
 
 ```powershell
 # Install the dependencies for the Microsoft Entra PowerShell preview
 .\build\Install-Dependencies.ps1 -ModuleName EntraBeta
 ```
+
+> [!TIP]
+> If you encounter Execution Policies error, run the command `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`.
+
 ### Build help
 The module help files are generated from markdown documentation (using platyPS module). To install PlatyPS module, run the command `Install-Module -Name PlatyPS`.
 
@@ -106,13 +110,13 @@ To solve this error, run the command:
 $MaximumFunctionCount=32768
 ```
 
-or
+Or
 
 Use the latest version of PowerShell 7+ as the runtime version (highly recommended).
 
 3. Build Help error: `New-ExternalHelp : The term 'New-ExternalHelp' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again. `.
 
-To solve this error, install PlatyPS module by running the command below:
+To solve this error, install PlatyPS module by running the command:
 
 ```powershell
 Install-Module -Name PlatyPS

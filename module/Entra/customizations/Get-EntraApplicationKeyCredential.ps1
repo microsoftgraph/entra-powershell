@@ -8,7 +8,8 @@
     Outputs = $null
     CustomScript = @'
      PROCESS {
-    (Get-MgApplication -ApplicationId $PSBoundParameters["ObjectId"]).KeyCredentials
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        (Get-MgApplication -Headers $customHeaders -ApplicationId $PSBoundParameters["ObjectId"]).KeyCredentials
     }
 '@
 }

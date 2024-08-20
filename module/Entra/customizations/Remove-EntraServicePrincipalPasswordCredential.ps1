@@ -3,7 +3,13 @@
 # ------------------------------------------------------------------------------
 @{
     SourceName = "Remove-AzureADServicePrincipalPasswordCredential"
-    TargetName = "Remove-MgServicePrincipalPassword"
+    TargetName = $null
     Parameters = $null
     Outputs = $null
+    CustomScript = @'
+    PROCESS{
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        Remove-MgServicePrincipalPassword -Headers $customHeaders -ServicePrincipalId $PSBoundParameters["ObjectId"] -KeyId $PSBoundParameters["KeyId"]
+    }
+'@
 }

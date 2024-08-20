@@ -1,0 +1,140 @@
+---
+title: Add-EntraBetaScopedRoleMembership
+description: This article provides details on the Add-EntraBetaScopedRoleMembership command.
+
+
+ms.topic: reference
+ms.date: 08/06/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
+external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Module Name: Microsoft.Graph.Entra.Beta
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Add-EntraBetaScopedRoleMembership
+
+schema: 2.0.0
+---
+
+# Add-EntraBetaScopedRoleMembership
+
+## Synopsis
+
+Assign a Microsoft Entra role with an administrative unit scope.
+
+## Syntax
+
+```powershell
+Add-EntraBetaScopedRoleMembership 
+ -ObjectId <String> 
+ [-RoleMemberInfo <RoleMemberInfo>]
+ [-RoleObjectId <String>] 
+ [<CommonParameters>]
+```
+
+## Description
+
+The `Add-EntraBetaScopedRoleMembership` cmdlet adds a scoped role membership to an administrative unit. Specify `ObjectId` parameter to add a scoped role membership.
+
+For delegated scenarios, the calling user needs at least the Privileged Role Administrator Microsoft Entra role.
+
+## Examples
+
+### Example 1: Adds a scoped role membership to an administrative unit
+
+```powershell
+Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
+$User = Get-EntraBetaUser -SearchString 'MarkWood'
+$Role = Get-EntraBetaDirectoryRole -Filter "DisplayName eq '<directory-role-display-name>'" 
+$Unit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+$RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
+$RoleMember.ObjectId = $User.ObjectId
+$params = @{
+    ObjectId = $Unit.ObjectId
+    RoleObjectId = $Role.ObjectId
+    RoleMemberInfo = $RoleMember
+}
+Add-EntraBetaScopedRoleMembership @params
+```
+
+```Output
+Id                                                                AdministrativeUnitId                 RoleId
+--                                                                --------------------                 ------
+dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bbbbbbbb-1111-2222-3333-cccccccccccc
+```
+
+This example adds a scoped role membership to an administrative unit.  
+You can use the command `Get-EntraBetaAdministrativeUnit` to get administrativeunit Id.  
+You can use the command `Get-EntraBetaUser` to get user Id.  
+You can use the command `Get-EntraBetaDirectoryRole` to get directory role Id.  
+
+- `-ObjectId` parameter specifies the Id of an administrative unit.
+- `-RoleObjectId` parameter specifies the Id of the DirectoryRole.
+- `-RoleMemberInfo` parameter specifies the RoleMemberInfo object Id.
+
+## Parameters
+
+### -ObjectId
+
+Specifies the ID of an administrative unit.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -RoleMemberInfo
+
+Specifies a RoleMemberInfo object.
+
+```yaml
+Type: System.RoleMemberInfo
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -RoleObjectId
+
+Specifies DirectoryRole ID.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
+
+## Outputs
+
+## Notes
+
+## Related Links
+
+[Get-EntraBetaScopedRoleMembership](Get-EntraBetaScopedRoleMembership.md)
+
+[Remove-EntraBetaScopedRoleMembership](Remove-EntraBetaScopedRoleMembership.md)

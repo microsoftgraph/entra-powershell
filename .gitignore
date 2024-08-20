@@ -4,3 +4,5 @@
 /bin
 /.vscode
 /samples/test.ps1
+coverage.xml
+/testreport
