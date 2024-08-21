@@ -85,14 +85,18 @@ Describe "Get-EntraAuditDirectoryLogs" {
             $result = Get-EntraAuditDirectoryLogs -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"            
             $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
+
         It "Should contain 'User-Agent' header" { 
             Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAuditDirectoryLogs"
-            $result = Get-EntraAuditDirectoryLogs -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
-            $params = Get-Parameters -data $result
-            $a= $params | ConvertTo-json | ConvertFrom-Json
-            $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue 
+            $result =  Get-EntraAuditDirectoryLogs -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result | Should -Not -BeNullOrEmpty
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }    
         }
+        
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       
             $originalDebugPreference = $DebugPreference
