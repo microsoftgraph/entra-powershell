@@ -17,8 +17,8 @@ steps:
       AppRegistrationClientId: 'ce6e119c-a8c2-4744-9699-cd5389102d0d'
       AppRegistrationTenantId: '33e01921-4d64-4f8c-a055-5bdaffd5e33d' 
       AuthAKVName: 'ODataESRPKeyVault' 
-      AuthCertName: 'ODataCodeSigningCert2024' 
-      AuthSignCertName: 'buildtask-1fdsign'// this variable is only needed for codesign
+      AuthCertName: 'ODataCodeSignAuth-AutoRotate'
+      AuthSignCertName: 'ODataCodeSigningCert2024'
       FolderPath: ${{ parameters.FolderPath }}
       Pattern: ${{ parameters.Pattern }}
       SessionTimeout: 90 

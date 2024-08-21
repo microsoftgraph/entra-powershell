@@ -1,4 +1,15 @@
 ---
+title: New-EntraBetaApplicationExtensionProperty
+description: This article provides details on the New-EntraBetaApplicationExtensionProperty command.
+
+
+ms.topic: reference
+ms.date: 08/06/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaApplicationExtensionProperty
@@ -9,39 +20,119 @@ schema: 2.0.0
 # New-EntraBetaApplicationExtensionProperty
 
 ## Synopsis
+
 Creates an application extension property.
 
 ## Syntax
 
-```
-New-EntraBetaApplicationExtensionProperty -ObjectId <String> [-DataType <String>] [-Name <String>]
- [-TargetObjects <System.Collections.Generic.List`1[System.String]>] [<CommonParameters>]
+```powershell
+New-EntraBetaApplicationExtensionProperty 
+ -ObjectId <String> 
+ [-DataType <String>] 
+ -Name <String>
+ [-TargetObjects <System.Collections.Generic.List`1[System.String]>] 
+ [<CommonParameters>]
 ```
 
 ## Description
-The New-EntraBetaApplicationExtensionProperty cmdlet creates an application extension property for an object in Azure Active Directory.
+
+The `New-EntraBetaApplicationExtensionProperty` cmdlet creates an application extension property for an object in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Create an extension property
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$Application = Get-EntraBetaApplication -SearchString '<application-name>'
+$params = @{
+    ObjectId = $Application.ObjectId
+    Name = 'NewAttribute'
+}
+
+New-EntraBetaApplicationExtensionProperty @params
 ```
-PS C:\>New-EntraBetaApplicationExtensionProperty -ObjectID "3ddd22e7-a150-4bb3-b100-e410dea1cb84" -DataType "string" -Name "NewAttribute"
 
-
-ObjectId                             Name                                                    TargetObjects
---------                             ----                                                    -------------
-3ddd22e7-a150-4bb3-b100-e410dea1cb84 extension_36ee4c6c081240a2b820b22ebd02bce3_NewAttribute {}
+```Output
+DeletedDateTime Id                                   AppDisplayName  DataType IsSyncedFromOnPremises Name                                                    TargetObjects
+--------------- --                                   --------------  -------- ---------------------- ----                                                    -------------
+                11112222-bbbb-3333-cccc-4444dddd5555 My new test app String   False                  extension_11112222-bbbb-3333-cccc-4444dddd5555_NewAttribute {}
 ```
 
 This command creates an application extension property of the string type for the specified object.
 
+- `-ObjectId` parameter specifies the unique identifier of an application.
+- `-Name` parameter specifies the name of the extension property.
+
+### Example 2: Create an extension property with data type parameter
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$Application = Get-EntraBetaApplication -SearchString '<application-name>'
+$params = @{
+    ObjectId = $Application.ObjectId
+    Name = 'NewAttribute'
+    DataType = 'Boolean'
+}
+
+New-EntraBetaApplicationExtensionProperty @params
+```
+
+```Output
+DeletedDateTime Id                                   AppDisplayName  DataType IsSyncedFromOnPremises Name                                                    TargetObjects
+--------------- --                                   --------------  -------- ---------------------- ----                                                    -------------
+                11112222-bbbb-3333-cccc-4444dddd5555 My new test app Boolean  False                  extension_11112222-bbbb-3333-cccc-4444dddd5555_NewAttribute {}
+```
+
+This command creates an application extension property of the specified data type for the specified object.
+
+- `-ObjectId` parameter specifies the unique identifier of an application.
+- `-Name` parameter specifies the name of the extension property.
+- `-DataType` parameter specifies the data type of the value the extension property can hold.
+
+### Example 3: Create an extension property with targets parameter
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$Application = Get-EntraBetaApplication -SearchString '<application-name>'
+$targets = New-Object System.Collections.Generic.List[System.String]
+$targets.Add('User')
+$params = @{
+    ObjectId = $Application.ObjectId
+    Name = 'NewAttribute'
+    TargetObjects = $targets
+}
+
+New-EntraBetaApplicationExtensionProperty @params
+```
+
+```Output
+DeletedDateTime Id                                   AppDisplayName  DataType IsSyncedFromOnPremises Name                                                    TargetObjects
+--------------- --                                   --------------  -------- ---------------------- ----                                                    -------------
+                11112222-bbbb-3333-cccc-4444dddd5555 My new test app String   False                  extension_11112222-bbbb-3333-cccc-4444dddd5555_NewAttribute {User}
+```
+
+The example shows how to create an application extension property with the specified target objects for the specified object.
+
+- `-ObjectId` parameter specifies the unique identifier of an application.
+- `-Name` parameter specifies the name of the extension property.
+- `-TargetObjects` parameter specifies the Microsoft Graph resources that use the extension property. All values must be in PascalCase.
+
 ## Parameters
 
 ### -DataType
-Specifies the data type of the extension property.
+
+Specifies the data type of the value the extension property can hold. Following values are supported.
+
+- Binary - 256 bytes maximum
+- Boolean
+- DateTime - Must be specified in ISO 8601 format. Will be stored in UTC.
+- Integer - 32-bit value.
+- LargeInteger - 64-bit value.
+- String - 256 characters maximum
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -52,12 +143,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-
 ### -Name
-Specifies the data type of the extension property.
+
+Specifies the name of the extension property.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -69,10 +160,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies a unique ID of an application in Azure Active Directory.
+
+Specifies a unique ID of an application in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -84,7 +176,15 @@ Accept wildcard characters: False
 ```
 
 ### -TargetObjects
-Specifies target objects.
+
+Specifies the Microsoft Graph resources that can use the extension property. All values must be in PascalCase. The following values are supported.
+
+- User
+- Group
+- AdministrativeUnit
+- Application
+- Device
+- Organization
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -99,7 +199,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -109,7 +210,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaApplicationExtensionProperty]()
+[Get-EntraBetaApplicationExtensionProperty](Get-EntraBetaApplicationExtensionProperty.md)
 
-[Remove-EntraBetaApplicationExtensionProperty]()
-
+[Remove-EntraBetaApplicationExtensionProperty](Remove-EntraBetaApplicationExtensionProperty.md)
