@@ -52,8 +52,9 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All','CustomSecAttributeDefinition.ReadWrite.All'
+$AttributeSet  = Get-EntraAttributeSet -Id '<CustomAttributeSetId>'
 $params = @{
-    AttributeSet = 'demo'
+    AttributeSet = $AttributeSet.Id
     Name = 'Project'
     Description = 'Target completion date'
     Type = 'String'
