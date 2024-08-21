@@ -100,7 +100,7 @@ Enabled DirSyncFeature
 
 This example shows if PasswordSync is enabled (True) or disabled (False) for the tenant.
 
-- `Feature` specifies the directory synchronization feature to check the status of.
+- `-Feature` specifies the directory synchronization feature to check the status of.
 
 ## Parameters
 

@@ -48,7 +48,7 @@ For delegated scenarios, the calling user must be assigned at least one of the f
 
 ## Examples
 
-### Example 1:  Display properties for specified domain
+### Example 1: Display properties for specified domain
 
 ```powershell
 Connect-Entra -Scopes 'Domain.Read.All'
@@ -57,11 +57,13 @@ Get-EntraBetaFederationProperty -DomainName 'contoso.com'
 
 This command displays properties for specified domain.
 
+- `-DomainName` Specifies the domain name.
+
 ## Parameters
 
 ### -DomainName
 
-The domain name for which the properties from both the Active Directory Federation Services 2.0 server and Microsoft Online will be displayed.
+The domain name for which the properties from both the Microsoft Entra ID Federation Services 2.0 server and Microsoft Online are displayed.
 
 ```yaml
 Type: System.String

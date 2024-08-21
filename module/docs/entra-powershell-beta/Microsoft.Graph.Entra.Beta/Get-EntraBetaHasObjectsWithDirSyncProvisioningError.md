@@ -65,7 +65,7 @@ False
 
 This command returns whether Microsoft Entra ID has objects with DirSync provisioning error.
 
-- `-TenantId` Specifies the ID of the tenant to perform the operation on.
+- `-TenantId` Specifies the unique ID of the tenant.
 
 ## Parameters
 

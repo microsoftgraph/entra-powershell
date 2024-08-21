@@ -49,7 +49,7 @@ The `Set-EntraBetaDirSyncConfiguration` cmdlet modifies the directory synchroniz
 
 ## Examples
 
-### Example 1:  Set directory synchronization settings
+### Example 1: Set directory synchronization settings
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
@@ -78,7 +78,7 @@ This command sets directory synchronization settings.
 
 - `-AccidentalDeletionThreshold` Specifies the accidental deletion prevention configuration for a tenant.
 - `-Force` Forces the command to run without asking for user confirmation.
-- `-TenantId` Specifies ID of the tenant on which to perform the operation.
+- `-TenantId` Specifies the unique ID of the tenant.
 
 ## Parameters
 

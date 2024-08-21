@@ -67,7 +67,7 @@ AccidentalDeletionThreshold DeletionPreventionType
 
 This example gets directory synchronization settings by TenantId.
 
-- `-TenantId` Parameter specifies the unique ID of the tenant to perform the operation on.
+- `-TenantId` Specifies the unique ID of the tenant.
 
 ## Parameters
 
