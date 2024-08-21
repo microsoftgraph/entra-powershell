@@ -62,9 +62,9 @@ Alpine True
 
 This example adds a predefined value to a custom security attribute definition.
 
-- `-CustomSecurityAttributeDefinitionId` Specify the unique identifier for custom security attribute definition. You can use the command `Get-EntraCustomSecurityAttributeDefinition` to get the ID.
-- `-Id` Specify the identifier for the predefined value.
-- `-IsActive` Specify whether the predefined value is active or deactivated.
+- `-CustomSecurityAttributeDefinitionId` parameter specifies the custom security attribute definition ID. You can use the command `Get-EntraCustomSecurityAttributeDefinition` to get the ID.
+- `-Id` parameter specifies the identifier for the predefined value.
+- `-IsActive` parameter specifies the predefined value is active or deactivated.
 
 ## Parameters
 
@@ -86,7 +86,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-The unique identifier for the predefined value, which can be up to 64 characters long and include Unicode characters. Spaces are allowed, but some special characters aren't. This identifier is case sensitive, can't be changed later, and is required.
+The unique identifier for the predefined value, which can be up to 64 characters long and include Unicode characters. Spaces are allowed, but some special characters are not. This identifier is case sensitive, cannot be changed later, and is required.
 
 ```yaml
 Type: System.String
