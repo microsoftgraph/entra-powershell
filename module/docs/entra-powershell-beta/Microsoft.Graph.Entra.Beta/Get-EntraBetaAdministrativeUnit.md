@@ -98,7 +98,7 @@ This command gets all the administrative units.
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-Get-EntraBetaAdministrativeUnit -Id aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+Get-EntraBetaAdministrativeUnit -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -108,6 +108,8 @@ DeletedDateTime Id                                   Description          Displa
 ```
 
 This example returns the details of the specified administrative unit.
+
+- `-ObjectId` parameter specifies the ID of an administrative unit.
 
 ### Example 4: Get administrative units filter by display name
 
@@ -162,8 +164,6 @@ Accept wildcard characters: False
 Specifies an OData v4.0 filter statement.
 This parameter filters which objects are returned.
 
-For more information about OData v4.0 filter expressions, see https://msdn.microsoft.com/library/hh169248%28v=nav.90%29.aspx
-
 ```yaml
 Type: System.String
 Parameter Sets: GetQuery
@@ -210,7 +210,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
