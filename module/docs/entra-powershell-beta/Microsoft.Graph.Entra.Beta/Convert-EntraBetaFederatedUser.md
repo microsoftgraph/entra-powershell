@@ -53,6 +53,8 @@ Convert-EntraBetaFederatedUser -UserPrincipalName 'pattifuller@contoso.com'
 
 This command updates a user in a domain.
 
+- `-UserPrincipalName` parameter specifies the Microsoft Entra ID UserID for the user to convert.
+
 ## Parameters
 
 ### -UserPrincipalName
