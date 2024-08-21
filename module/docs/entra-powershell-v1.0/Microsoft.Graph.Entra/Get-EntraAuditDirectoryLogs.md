@@ -46,14 +46,12 @@ The `Get-EntraAuditDirectoryLogs` cmdlet gets a Microsoft Entra ID audit log.
 ```
 
 ```Output
-Id                                                                                                     ActivityDateTime      ActivityDisplayName                     Catego
-                                                                                                                                                                     ry
---                                                                                                     ----------------      -------------------                     ------
-Azure MFA_e5d6e53f-34bf-45b9-bc66-2becea08d0ee_d5aec55f-2d12-4442-8d2f-ccca95d4390e_133657790254965500 7/18/2024 12:23:45 PM DeleteDataFromCosmosDb                  Dir...
-Azure MFA_e5d6e53f-34bf-45b9-bc66-2becea08d0ee_d5aec55f-2d12-4442-8d2f-ccca95d4390e_133657790253042760 7/18/2024 12:23:45 PM DeleteDataFromBackend                   Dir...
-SSGM_ace6349b-5e96-41b3-83e4-70d05689c87d_WG3SE_192442720                                              7/18/2024 12:23:09 PM GroupsODataV4_GetgroupLifecyclePolicies Gro...
-Azure MFA_dc153e85-965a-46a5-9c16-b8a98e080887_d5aec55f-2d12-4442-8d2f-ccca95d4390e_133657789856593960 7/18/2024 12:23:05 PM DeleteDataFromCosmosDb                  Dir...
-Azure MFA_f540e94d-66e1-488e-af7f-941d5cedd815_d5aec55f-2d12-4442-8d2f-ccca95d4390e_133657789856583690 7/18/2024 12:23:05 PM DeleteDataFromCosmosDb                  Dir...
+Id                                                        ActivityDateTime    ActivityDisplayName Category        CorrelationId                        LoggedByService
+--                                                        ----------------    ------------------- --------        -------------                        ---------------
+SSGM_aaaa0000-bb11-2222-33cc-444444dddddd_FLLS1_142942141 16/08/2024 06:40:30 GroupsODataV4_Get   GroupManagement aaaa0000-bb11-2222-33cc-444444dddddd Self-service Grou...
+SSGM_dddd3333-ee44-5555-66ff-777777aaaaaa_4137P_166909703 16/08/2024 06:40:29 GroupsODataV4_Get   GroupManagement dddd3333-ee44-5555-66ff-777777aaaaaa Self-service Grou...
+SSGM_cccc2222-dd33-4444-55ee-666666ffffff_3AXYL_64838712  16/08/2024 06:40:25 GroupsODataV4_Get   GroupManagement cccc2222-dd33-4444-55ee-666666ffffff Self-service Grou...
+SSGM_bbbb1111-cc22-3333-44dd-555555eeeeee_OPIKI_130777111 16/08/2024 06:40:21 GroupsODataV4_Get   GroupManagement bbbb1111-cc22-3333-44dd-555555eeeeee Self-service Grou...   
 ```
 
 This command gets all audit logs.
@@ -66,13 +64,9 @@ This command gets all audit logs.
 ```
 
 ```Output
-Id                                                                                                     ActivityDateTime      ActivityDisplayName    Category            Cor
-                                                                                                                                                                        rel
-                                                                                                                                                                        ati
-                                                                                                                                                                        onI
-                                                                                                                                                                        d
---                                                                                                     ----------------      -------------------    --------            ---
-Azure MFA_e5d6e53f-34bf-45b9-bc66-2becea08d0ee_d5aec55f-2d12-4442-8d2f-ccca95d4390e_133657790254965500 7/18/2024 12:23:45 PM DeleteDataFromCosmosDb DirectoryManagement e5d
+Id                                                        ActivityDateTime    ActivityDisplayName Category        CorrelationId                        LoggedByService
+--                                                        ----------------    ------------------- --------        -------------                        ---------------
+SSGM_aaaa0000-bb11-2222-33cc-444444dddddd_FLLS1_142942141 16/08/2024 06:40:30 GroupsODataV4_Get   GroupManagement aaaa0000-bb11-2222-33cc-444444dddddd Self-service Grou...
 ```
 
 This example returns the first N logs.
@@ -81,13 +75,13 @@ This example returns the first N logs.
 
 ```powershell
  Connect-Entra -Scopes 'AuditLog.Read.All', 'Directory.Read.All'
- Get-EntraAuditDirectoryLogs -Filter "ActivityDisplayName eq 'Update rollout policy of feature'" -Top 1
+ Get-EntraAuditDirectoryLogs -Filter "ActivityDisplayName eq 'GroupsODataV4_Get'" -Top 1
 ```
 
 ```Output
-Id                                                                   ActivityDateTime     ActivityDisplayName              Category       CorrelationId
---                                                                   ----------------     -------------------              --------       -------------
-Application Proxy_2bb80bd5-7fd2-497d-84d6-da34c4529a8a_HTNSK_7223096 7/16/2024 5:13:49 AM Update rollout policy of feature Authentication 2bb80bd5-7fd2-497d-84d6-da34c4...
+Id                                                        ActivityDateTime    ActivityDisplayName Category        CorrelationId                        LoggedByService
+--                                                        ----------------    ------------------- --------        -------------                        ---------------
+SSGM_aaaa0000-bb11-2222-33cc-444444dddddd_FLLS1_142942141 16/08/2024 06:40:30 GroupsODataV4_Get   GroupManagement aaaa0000-bb11-2222-33cc-444444dddddd Self-service Grou...
 ```
 
 This command shows how to get audit logs by ActivityDisplayName.
@@ -136,7 +130,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-The OData v3.0 filter statement.
+The OData v4.0 filter statement.
 Controls which objects are returned.
 
 ```yaml
