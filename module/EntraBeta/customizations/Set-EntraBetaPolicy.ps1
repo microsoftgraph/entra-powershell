@@ -82,7 +82,6 @@
             
             $body = $params | ConvertTo-Json
             Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Body $body -Method $Method
-                
         }        
     }    
 '@
