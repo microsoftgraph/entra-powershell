@@ -21,16 +21,17 @@ function Get-EntraAuditSignInLogs {
         $topCount = $null
         $baseUri = 'https://graph.microsoft.com/v1.0/auditLogs/signIns'
         $params["Method"] = "GET"
-        $params["Uri"] = "$baseUri"+"?"
+        $params["Uri"] = "$baseUri"
+        $query = $null
 
         if($null -ne $PSBoundParameters["Top"])
         {
             $topCount = $PSBoundParameters["Top"]
             if ($topCount -gt 999) {
-                $params["Uri"] += "&`$top=999"
+                $query += "&`$top=999"
             }
             else{
-                $params["Uri"] += "&`$top=$topCount"
+                $query += "&`$top=$topCount"
             }
         }
 
@@ -42,8 +43,14 @@ function Get-EntraAuditSignInLogs {
         if($null -ne $PSBoundParameters["Filter"])
         {
             $Filter = $PSBoundParameters["Filter"]
-            $f = '$Filter'
-            $params["Uri"] += "&$f=$Filter"
+            $f = '$filter'
+            $query += "&$f=$Filter"
+        }
+
+        if($null -ne $query)
+        {
+            $query = "?" + $query.TrimStart("&")
+            $params["Uri"] += $query
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
