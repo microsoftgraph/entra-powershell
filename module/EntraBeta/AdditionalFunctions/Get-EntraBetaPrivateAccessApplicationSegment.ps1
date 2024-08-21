@@ -15,7 +15,7 @@ function Get-EntraBetaPrivateAccessApplicationSegment {
 	)
 
     PROCESS {
-		$customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
 		switch ($PSCmdlet.ParameterSetName) {
 			"AllApplicationSegments" {
 				$response = Invoke-GraphRequest -Method GET -Headers $customHeaders -OutputType PSObject -Uri "https://graph.microsoft.com/beta/applications/$ObjectId/onPremisesPublishing/segmentsConfiguration/microsoft.graph.ipSegmentConfiguration/applicationSegments"
