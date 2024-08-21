@@ -51,11 +51,11 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 ### Example 1: Add new custom security attribute definition object
 
 ```powershell
- Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All','CustomSecAttributeDefinition.ReadWrite.All'
+Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All','CustomSecAttributeDefinition.ReadWrite.All'
 $params = @{
     AttributeSet = 'demo'
     Name = 'Project'
-    Description = 'Target coletion date'
+    Description = 'Target completion date'
     Type = 'String'
     Status = 'Available'
     IsCollection = $false
@@ -69,7 +69,7 @@ New-EntraCustomSecurityAttributeDefinition @params
 ```Output
 Id                   AttributeSet Description          IsCollection IsSearchable Name          Status    Type   UsePreDefinedValuesOnly
 --                   ------------ -----------          ------------ ------------ ----          ------    ----   -----------------------
-demo_Project demo      Target coletion date False        False        Project Available String True
+demo_Project demo      Target completion date False        False        Project Available String True
 
 ```
 
