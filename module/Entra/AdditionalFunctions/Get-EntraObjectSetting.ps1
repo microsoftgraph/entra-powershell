@@ -12,7 +12,9 @@ function Get-EntraObjectSetting {
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [System.String] $TargetType,
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.String] $TargetObjectId
+        [System.String] $TargetObjectId,
+        [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+        [System.String[]] $Property
     )
 
     PROCESS {
@@ -21,8 +23,13 @@ function Get-EntraObjectSetting {
         $topCount = $null
         $baseUri = "https://graph.microsoft.com/v1.0/$TargetType/$TargetObjectId/settings"
         $params["Method"] = "GET"
-        $params["Uri"] = "$baseUri"+"?"
-
+        $params["Uri"] = $baseUri+'?$select=*'
+        if($null -ne $PSBoundParameters["Property"])
+        {
+            $selectProperties = $PSBoundParameters["Property"]
+            $selectProperties = $selectProperties -Join ','
+            $params["Uri"] = $baseUri+"?`$select=$($selectProperties)"
+        }
         if($null -ne $PSBoundParameters["Top"] -and  (-not $PSBoundParameters.ContainsKey("All")))
         {
             $topCount = $PSBoundParameters["Top"]
