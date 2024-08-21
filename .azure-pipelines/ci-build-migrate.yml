@@ -9,6 +9,9 @@ parameters:
     type: boolean
     default: true
 
+pool:
+  vmImage: windows-latest
+
 trigger:
   branches:
     include:
@@ -23,7 +26,7 @@ jobs:
       - template: ./common-templates/install-tools.yml    
       - template: ./common-templates/security-pre-checks.yml
 
-      - template: ./generation-templates/generate_adapter.yml
+      - template: ./generation-templates/generate_adapter-migrate.yml
         parameters:
           Sign: ${{ parameters.Sign }}
 

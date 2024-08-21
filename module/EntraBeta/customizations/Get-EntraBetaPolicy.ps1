@@ -73,6 +73,7 @@
                 "AuthenticationMethodsPolicy" { $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphauthenticationMethodsPolicy }
                 default { Write-Error "Unknown type: '$res.type'" }
             }
+
             $res.PSObject.Properties | ForEach-Object {
                 $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
                 $propertyValue = $_.Value
