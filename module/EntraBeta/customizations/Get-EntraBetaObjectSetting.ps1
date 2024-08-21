@@ -19,7 +19,7 @@
         {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
-            $params["Uri"] = $baseUri+"`$select=$($selectProperties)"
+            $params["Uri"] = $baseUri+"?`$select=$($selectProperties)"
         }
 
         if($null -ne $PSBoundParameters["Top"] -and  (-not $PSBoundParameters.ContainsKey("All")))
