@@ -50,5 +50,14 @@ Describe "Set-EntraBetaDirSyncFeature" {
         It "Should fail when Force parameter is passes with argument" {
             {Set-EntraBetaDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable $false -TenantId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Force "xy"} | Should -Throw "A positional parameter cannot be found that accepts argument*"
         }   
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAttributeSet"
+
+            Set-EntraBetaDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable $false -TenantId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Force -ErrorAction SilentlyContinue | Out-Null
+            Should -Invoke -CommandName Update-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }  
     }
 } 
