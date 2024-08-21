@@ -1,5 +1,5 @@
 ---
-title: Get-EntraObjectByObjectId.
+title: Get-EntraObjectByObjectId
 description: This article provides details on the Get-EntraObjectByObjectId command.
 
 ms.topic: reference

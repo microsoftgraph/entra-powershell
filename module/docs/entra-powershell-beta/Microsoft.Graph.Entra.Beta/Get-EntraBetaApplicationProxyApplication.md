@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaApplicationProxyApplication.
+title: Get-EntraBetaApplicationProxyApplication
 description: This article provides details on the Get-EntraBetaApplicationProxyApplication.
 
 ms.topic: reference

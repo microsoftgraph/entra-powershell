@@ -1,5 +1,5 @@
 ---
-title: Reset-EntraBetaLifeCycleGroup.
+title: Reset-EntraBetaLifeCycleGroup
 description: This article provides details on the Reset-EntraBetaLifeCycleGroup command.
 
 

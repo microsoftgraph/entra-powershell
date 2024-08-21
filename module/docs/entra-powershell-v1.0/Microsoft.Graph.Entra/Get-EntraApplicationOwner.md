@@ -1,5 +1,5 @@
 ---
-title: Get-EntraApplicationOwner.
+title: Get-EntraApplicationOwner
 description: This article provides details on the Get-EntraApplicationOwner command.
 
 

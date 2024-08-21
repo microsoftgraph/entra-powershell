@@ -1,5 +1,5 @@
 ---
-title: New-EntraGroupAppRoleAssignment.
+title: New-EntraGroupAppRoleAssignment
 description: This article provides details on the New-EntraGroupAppRoleAssignment command.
 
 
