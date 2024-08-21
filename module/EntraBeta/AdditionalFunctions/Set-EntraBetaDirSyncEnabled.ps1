@@ -12,6 +12,7 @@ function Set-EntraBetaDirSyncEnabled {
 
     PROCESS {
         $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $Null
         }
@@ -44,7 +45,7 @@ function Set-EntraBetaDirSyncEnabled {
             $choices = [System.Management.Automation.Host.ChoiceDescription[]]($Yes, $No, $Suspend)
             $decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
         }
-            $response = Update-MgBetaOrganization @params
+            $response = Update-MgBetaOrganization @params -Headers $customHeaders
             $response
     }
 }
