@@ -94,6 +94,7 @@ Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
 $params = @{
     Feature = 'BlockCloudObjectTakeoverThroughHardMatch'
     Enable = $True
+    TenantId = 'bbbbcccc-1111-dddd-2222-eeee3333ffff'
 }
 
 Set-EntraBetaDirSyncFeature @params
@@ -103,6 +104,7 @@ This command enables the BlockCloudObjectTakeoverThroughHardMatch feature for th
 
 - `-Feature` specifies the directory synchronization feature to turn on or off.
 - `-Enable` specifies whether the specified features are turned on for the company.
+- `-TenantId` Specifies the unique ID of the tenant.
 
 ## Parameters
 
