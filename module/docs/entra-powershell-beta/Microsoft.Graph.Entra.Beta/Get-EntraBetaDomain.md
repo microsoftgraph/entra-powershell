@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaDomain
+description: This article provides details on the Get-EntraBetaDomain command.
+
+
+ms.topic: reference
+ms.date: 08/08/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaDomain
@@ -9,6 +19,7 @@ schema: 2.0.0
 # Get-EntraBetaDomain
 
 ## Synopsis
+
 Gets a domain.
 
 ## Syntax
@@ -31,24 +42,64 @@ Get-EntraBetaDomain
 ```
 
 ## Description
-The Get-EntraBetaDomain cmdlet gets a domain in Azure Active Directory (AD).
+
+The `Get-EntraBetaDomain` cmdlet gets a domain in Microsoft Entra ID.
+
+The work or school account must be assigned to at least one of the following Microsoft Entra roles:
+
+- User Administrator
+- Helpdesk Administrator
+- Service Support Administrator
+- Directory Readers
+- AdHoc License Administrator
+- Application Administrator
+- Security Reader
+- Security Administrator
+- Privileged Role Administrator
+- Cloud Application Administrator
 
 ## Examples
 
-### Example 1
+### Example 1: Get a list of Domains that are created
+
 ```powershell
-PS C:\> {{ Add example code here }}
+Connect-Entra -Scopes 'Domain.Read.All'
+Get-EntraBetaDomain
 ```
 
-{{ Add example description here }}
+```Output
+Id          AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified PasswordNotificationWindowInDays
+--          ------------------ ------------------ -------------- --------- --------- ------ ---------- --------------------------------
+test22.com  Managed                               True           False     False     False  False      13
+test33.com  Managed                               True           False     False     False  False      15
+test44.com  Managed                               True           False     False     False  False      17
+```
+
+This command retrieves a list of domains.
+
+### Example 2: Get a specific Domain
+
+```powershell
+Connect-Entra -Scopes 'Domain.Read.All'
+Get-EntraBetaDomain -Name TEST22.com
+```
+
+```Output
+Id          AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified PasswordNotificationWindowInDays
+--          ------------------ ------------------ -------------- --------- --------- ------ ---------- --------------------------------
+test22.com  Managed                               True           False     False     False  False      13
+```
+
+This command retrieves a domain with the specified name.
 
 ## Parameters
 
 ### -Name
+
 Specifies the name of a domain.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -61,7 +112,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -76,7 +127,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -86,11 +138,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Confirm-EntraBetaDomain]()
+[Confirm-EntraBetaDomain](Confirm-EntraBetaDomain.md)
 
-[New-EntraBetaDomain]()
+[New-EntraBetaDomain](New-EntraBetaDomain.md)
 
-[Remove-EntraBetaDomain]()
+[Remove-EntraBetaDomain](Remove-EntraBetaDomain.md)
 
-[Set-EntraBetaDomain]()
-
+[Set-EntraBetaDomain](Set-EntraBetaDomain.md)
