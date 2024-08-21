@@ -1,5 +1,5 @@
 ---
-title: Get-EntraApplicationProxyConnector.
+title: Get-EntraApplicationProxyConnector
 description: This article provides details on the Get-EntraApplicationProxyConnector Command.
 
 
