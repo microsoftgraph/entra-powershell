@@ -21,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Updates an existing custom security attribute definition.
+Update the properties of a customSecurityAttributeDefinition object.
 
 ## Syntax
 
@@ -36,7 +36,7 @@ Set-EntraCustomSecurityAttributeDefinition
 
 ## Description
 
-The `Set-EntraCustomSecurityAttributeDefinition` cmdlet updates a Microsoft Entra ID custom security attribute definition object identified by ID. Specify `Id` parameter to update a custom security attribute definition.
+The `Set-EntraCustomSecurityAttributeDefinition` cmdlet updates the properties of a customSecurityAttributeDefinition object. Specify `Id` parameter to update a custom security attribute definition.
 
 In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
 
@@ -55,7 +55,7 @@ $params = @{
 Set-EntraCustomSecurityAttributeDefinition @params
 ```
 
-his example update a custom security attribute.
+This example update a custom security attribute.
 
 - `-Id` parameter specifies the custom security attribute definition object ID.
 - `-Description` parameter specifies the description of the custom security attribute.
