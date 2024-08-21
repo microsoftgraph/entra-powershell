@@ -1,4 +1,15 @@
 ---
+title: New-EntraBetaDevice
+description: This article provides details on the New-EntraBetaDevice command.
+
+
+ms.topic: reference
+ms.date: 08/12/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaDevice
@@ -9,32 +20,60 @@ schema: 2.0.0
 # New-EntraBetaDevice
 
 ## Synopsis
+
 Creates a device.
 
 ## Syntax
 
-```
-New-EntraBetaDevice -AccountEnabled <Boolean>
- [-DevicePhysicalIds <System.Collections.Generic.List`1[System.String]>] [-DeviceObjectVersion <Int32>]
- [-ApproximateLastLogonTimeStamp <DateTime>] [-ProfileType <String>]
+```powershell
+New-EntraBetaDevice 
+ -DisplayName <String> 
+ -DeviceOSType <String>
+ -AccountEnabled <Boolean>
+ -DeviceId <String>
+ -DeviceOSVersion <String>
  -AlternativeSecurityIds <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AlternativeSecurityId]>
- -DeviceOSVersion <String> -DisplayName <String> -DeviceOSType <String> [-DeviceTrustType <String>]
- [-IsManaged <Boolean>] [-SystemLabels <System.Collections.Generic.List`1[System.String]>]
- [-DeviceMetadata <String>] -DeviceId <String> [-IsCompliant <Boolean>] [<CommonParameters>]
+ [-DevicePhysicalIds <System.Collections.Generic.List`1[System.String]>] 
+ [-DeviceTrustType <String>] 
+ [-DeviceMetadata <String>]
+ [-ApproximateLastLogonTimeStamp <DateTime>] 
+ [-IsManaged <Boolean>]
+ [-DeviceObjectVersion <Int32>] 
+ [-IsCompliant <Boolean>]  
+ [-ProfileType <String>] 
+ [-SystemLabels <System.Collections.Generic.List`1[System.String]>]
+ [<CommonParameters>]
 ```
 
 ## Description
-The New-EntraBetaDevice cmdlet creates a device in Azure Active Directory (AD).
+
+The `New-EntraBetaDevice` cmdlet creates a device in Microsoft Entra ID.
+
+The calling user must be in one of the following Microsoft Entra roles: Intune Administrator or Windows 365 Administrator.
 
 ## Examples
 
 ### Example 1: Create a device
-```
-PS C:\>New-EntraBetaDevice -AccountEnabled $true -DisplayName "My new device" -AlternativeSecurityIds $altsecid -DeviceId $guid -DeviceOSType "OS/2" -DeviceOSVersion "9.3"
 
+```powershell
+Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
+
+$params = @{
+    AccountEnabled = $true
+    DisplayName = 'My new device'
+    AlternativeSecurityIds = $altsecid
+    DeviceId = $guid
+    DeviceOSType = 'OS/2'
+    DeviceOSVersion = '9.3'
+}
+
+New-EntraBetaDevice @params
+```
+
+```Output
 ObjectId                             DeviceId                             DisplayName
 --------                             --------                             -----------
-99a1915d-298f-42d1-93ae-71646b85e2fa 5547679b-809d-4e2c-9820-3c4401a573a8 My new device
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb dddddddd-3333-4444-5555-eeeeeeeeeeee My new device
 ```
 
 This command creates a new device.
@@ -42,10 +81,11 @@ This command creates a new device.
 ## Parameters
 
 ### -AccountEnabled
+
 Indicates whether the account is enabled.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -57,7 +97,8 @@ Accept wildcard characters: False
 ```
 
 ### -AlternativeSecurityIds
-@{Text=}
+
+Specifies alternative security IDs.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.AlternativeSecurityId]
@@ -72,10 +113,11 @@ Accept wildcard characters: False
 ```
 
 ### -ApproximateLastLogonTimeStamp
-@{Text=}
+
+Specifies last sign-in date time.
 
 ```yaml
-Type: DateTime
+Type: System.DateTime
 Parameter Sets: (All)
 Aliases:
 
@@ -87,10 +129,11 @@ Accept wildcard characters: False
 ```
 
 ### -DeviceId
+
 Specifies the ID of the device.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -102,10 +145,11 @@ Accept wildcard characters: False
 ```
 
 ### -DeviceMetadata
+
 The metadata for this device
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -117,10 +161,11 @@ Accept wildcard characters: False
 ```
 
 ### -DeviceObjectVersion
+
 Specifies the object version of the device.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -132,10 +177,11 @@ Accept wildcard characters: False
 ```
 
 ### -DeviceOSType
+
 Specifies the operating system type of the new device.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -147,10 +193,11 @@ Accept wildcard characters: False
 ```
 
 ### -DeviceOSVersion
+
 Specifies the operating system version of the new device.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -162,7 +209,8 @@ Accept wildcard characters: False
 ```
 
 ### -DevicePhysicalIds
-@{Text=}
+
+Specifies the physical ID.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -177,10 +225,11 @@ Accept wildcard characters: False
 ```
 
 ### -DeviceTrustType
+
 The trust type for this device
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -192,10 +241,11 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
+
 Specifies the display name of the new device.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -207,10 +257,11 @@ Accept wildcard characters: False
 ```
 
 ### -IsCompliant
-true if the device complies with Mobile Device Management (MDM) policies; otherwise, false.
+
+True if the device complies with Mobile Device Management (MDM) policies; otherwise, false.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -222,10 +273,11 @@ Accept wildcard characters: False
 ```
 
 ### -IsManaged
-true if the device is managed by a Mobile Device Management (MDM) app such as Intune; otherwise, false
+
+True if the device is managed by a Mobile Device Management (MDM) app such as Intune; otherwise, false.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -237,10 +289,11 @@ Accept wildcard characters: False
 ```
 
 ### -ProfileType
-{{ Fill ProfileType Description }}
+
+Specifies profile type of the device.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -252,7 +305,8 @@ Accept wildcard characters: False
 ```
 
 ### -SystemLabels
-{{ Fill SystemLabels Description }}
+
+Specifies labels for the device.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -267,7 +321,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -277,9 +332,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaDevice]()
+[Get-EntraBetaDevice](Get-EntraBetaDevice.md)
 
-[Remove-EntraBetaDevice]()
+[Remove-EntraBetaDevice](Remove-EntraBetaDevice.md)
 
-[Set-EntraBetaDevice]()
-
+[Set-EntraBetaDevice](Set-EntraBetaDevice.md)
