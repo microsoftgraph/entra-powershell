@@ -55,4 +55,25 @@ Describe "Get-EntraApplicationTemplate tests"{
             $DebugPreference = $originalDebugPreference        
         }
     }
+    It "Should fail when Top is invalid" {
+        { Get-EntraApplicationTemplate -Id "aaaaaaaa-1111-2222-3333-cccccccccccc" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+    }
+    It "Should return all templates" {
+        $result = Get-EntraApplicationTemplate -All 
+        $result | Should -Not -BeNullOrEmpty
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+    }
+    It "Should fail when All has an argument" {
+        { Get-EntraApplicationTemplate -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
+    }
+    It "Should contain property when passed property to it" {
+        $result = Get-EntraApplicationTemplate -Property DisplayName
+        $result.displayName | Should -Not -BeNullOrEmpty
+    }
+    It "Should return specific template by filter" {
+        $result = Get-EntraApplicationTemplate -Filter "DisplayName eq 'test name'"
+        $result | Should -Not -BeNullOrEmpty
+        $result.DisplayName | should -Be 'test name'
+        Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+    }
 }

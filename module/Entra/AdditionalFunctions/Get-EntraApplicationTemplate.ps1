@@ -5,21 +5,55 @@ function Get-EntraApplicationTemplate {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
     [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id
+    [System.String] $Id,
+    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.Int32]] $Top,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [switch] $All,
+    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Filter,
+    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+    [System.String[]] $Property
     )
 
     PROCESS {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $topCount = $null
         $uri = "https://graph.microsoft.com/v1.0/applicationTemplates"
-
+        $params["Method"] = "GET"
+        $params["Uri"] = $uri+'?$select=*'
+        
+        if($null -ne $PSBoundParameters["Property"])
+        {
+            $selectProperties = $PSBoundParameters["Property"]
+            $selectProperties = $selectProperties -Join ','
+            $params["Uri"] = $uri+"?`$select=$($selectProperties)"
+        }
+        if($null -ne $PSBoundParameters["Top"] -and  (-not $PSBoundParameters.ContainsKey("All")))
+        {
+            $topCount = $PSBoundParameters["Top"]
+            if ($topCount -gt 999) {
+                $params["Uri"] += "&`$top=999"
+            }
+            else{
+                $params["Uri"] += "&`$top=$topCount"
+            }
+        }
+        if($null -ne $PSBoundParameters["Filter"])
+        {
+            $Filter = $PSBoundParameters["Filter"]
+            $f = '$' + 'Filter'
+            $params["Uri"] += "&$f=$Filter"
+        }  
         if($null -ne $PSBoundParameters["Id"])
         {
             $params["ApplicationTemplateId"] = $PSBoundParameters["Id"]
-            $uri += "/$Id"
+            $params["Uri"] = $uri + "/$Id"
         }
 
-        $response = Invoke-GraphRequest -Uri $uri -Method GET -Headers $customHeaders
+        $response = Invoke-GraphRequest -Uri $($params.Uri) -Method GET -Headers $customHeaders
+
         if($response.ContainsKey('value')){
             $response = $response.value
         }
