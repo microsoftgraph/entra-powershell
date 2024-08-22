@@ -40,15 +40,15 @@ function Get-EntraApplicationTemplate {
             $Filter = $PSBoundParameters["Filter"]
             $f = '$' + 'Filter'
             $params["Uri"] += "&$f=$Filter"
-        }  
+        }        
+        if((-not $PSBoundParameters.ContainsKey("Top")) -and (-not $PSBoundParameters.ContainsKey("All")))
+        {
+            $params["Uri"] += "&`$top=100"
+        }
         if($null -ne $PSBoundParameters["Id"])
         {
             $params["ApplicationTemplateId"] = $PSBoundParameters["Id"]
             $params["Uri"] = $uri + "/$Id"
-        }
-        if((-not $PSBoundParameters.ContainsKey("Top")) -and (-not $PSBoundParameters.ContainsKey("All")))
-        {
-            $params["Uri"] += "&`$top=100"
         }
 
         $response = Invoke-GraphRequest -Uri $($params.Uri) -Method GET -Headers $customHeaders
