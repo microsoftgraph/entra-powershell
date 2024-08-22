@@ -66,11 +66,7 @@ function Set-EntraServicePrincipal {
         if($null -ne $PSBoundParameters["Tags"])
         {
             $body["tags"] = $PSBoundParameters["Tags"]
-        }
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $Null
-        }
+        }        
         if($null -ne $PSBoundParameters["DisplayName"])
         {
             $body["displayName"] = $PSBoundParameters["DisplayName"]
@@ -78,11 +74,7 @@ function Set-EntraServicePrincipal {
         if($null -ne $PSBoundParameters["AppId"])
         {
             $body["appId"] = $PSBoundParameters["AppId"]
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $Null
-        }
+        }        
         if($null -ne $PSBoundParameters["ErrorUrl"])
         {
             $body["ErrorUrl"] = $PSBoundParameters["ErrorUrl"]
@@ -165,42 +157,6 @@ function Set-EntraServicePrincipal {
         if($null -ne $PSBoundParameters["CustomSecurityAttributes"])
         {
             $body["customSecurityAttributes"] = $PSBoundParameters["CustomSecurityAttributes"]
-        }
-        if($null -ne $PSBoundParameters["WarningVariable"])
-        {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-	    if($null -ne $PSBoundParameters["InformationAction"])
-        {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-        }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
         $params["Body"] = $body
         Write-Debug("============================ TRANSFORMATIONS ============================")
