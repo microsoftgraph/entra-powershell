@@ -74,7 +74,7 @@ This example gets directory synchronization settings by TenantId.
 ### -TenantId
 
 The unique ID of the tenant to perform the operation on.
-If TenantId isn't, provided then it defaults to the tenant of the current user.
+If TenantId isn't provided, then it defaults to the tenant of the current user.
 This parameter is only applicable to partner users.
 
 ```yaml
