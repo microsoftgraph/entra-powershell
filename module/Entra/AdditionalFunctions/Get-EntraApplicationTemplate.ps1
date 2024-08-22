@@ -30,15 +30,10 @@ function Get-EntraApplicationTemplate {
             $selectProperties = $selectProperties -Join ','
             $params["Uri"] = $uri+"?`$select=$($selectProperties)"
         }
-        if($null -ne $PSBoundParameters["Top"] -and  (-not $PSBoundParameters.ContainsKey("All")))
+        if(($null -ne $PSBoundParameters["Top"] -and  (-not $PSBoundParameters.ContainsKey("All"))) -or ($null -ne $PSBoundParameters["Top"] -and  $null -ne $PSBoundParameters["All"]))
         {
-            $topCount = $PSBoundParameters["Top"]
-            if ($topCount -gt 999) {
-                $params["Uri"] += "&`$top=999"
-            }
-            else{
-                $params["Uri"] += "&`$top=$topCount"
-            }
+            $topCount = $PSBoundParameters["Top"]            
+            $params["Uri"] += "&`$top=$topCount"
         }
         if($null -ne $PSBoundParameters["Filter"])
         {
@@ -51,6 +46,10 @@ function Get-EntraApplicationTemplate {
             $params["ApplicationTemplateId"] = $PSBoundParameters["Id"]
             $params["Uri"] = $uri + "/$Id"
         }
+        if((-not $PSBoundParameters.ContainsKey("Top")) -and (-not $PSBoundParameters.ContainsKey("All")))
+        {
+            $params["Uri"] += "&`$top=100"
+        }
 
         $response = Invoke-GraphRequest -Uri $($params.Uri) -Method GET -Headers $customHeaders
 
@@ -58,7 +57,8 @@ function Get-EntraApplicationTemplate {
             $response = $response.value
         }
 
-        $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+        $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json       
+        
         $userList = @()
         foreach ($res in $data) {
             $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphApplicationTemplate

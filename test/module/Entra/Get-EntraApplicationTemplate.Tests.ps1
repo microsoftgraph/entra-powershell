@@ -55,6 +55,11 @@ Describe "Get-EntraApplicationTemplate tests"{
             $DebugPreference = $originalDebugPreference        
         }
     }
+    It "Should return top ApplicationTemplate" {
+        $result = Get-EntraApplicationTemplate -Top 1
+        $result | Should -Not -BeNullOrEmpty
+        Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
+    }
     It "Should fail when Top is invalid" {
         { Get-EntraApplicationTemplate -Id "aaaaaaaa-1111-2222-3333-cccccccccccc" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
     }
@@ -69,6 +74,9 @@ Describe "Get-EntraApplicationTemplate tests"{
     It "Should contain property when passed property to it" {
         $result = Get-EntraApplicationTemplate -Property DisplayName
         $result.displayName | Should -Not -BeNullOrEmpty
+    }
+    It "Should fail when Property is empty" {
+        { Get-EntraApplicationTemplate -Property } | Should -Throw "Missing an argument for parameter 'Property'.*"
     }
     It "Should return specific template by filter" {
         $result = Get-EntraApplicationTemplate -Filter "DisplayName eq 'test name'"
