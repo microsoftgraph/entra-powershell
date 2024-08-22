@@ -55,12 +55,11 @@ The contract object contains the following attributes:
 
 Possible values are:  
 
-++ "SyndicationPartner", which indicates a partner that exclusively resells and manages O365 and Intune for this customer.
+1. SyndicationPartner - indicates a partner that exclusively resells and manages O365 and Intune for this customer.
 They resell and support their customers.
-++ "BreadthPartner", which indicates that the partner has the ability to provide administrative support for this customer.
+1. BreadthPartner - indicates that the partner has the ability to provide administrative support for this customer.
 However the partner isn't allowed to resell to the customer.
-++ "ResellerPartner", which indicates a partner that is similar to a syndication partner, except that it doesn't have exclusive access to a tenant.
-In the syndication case, the customer can't buy additional direct subscriptions from Microsoft or from other partners.
+1. ResellerPartner - indicates a partner that is similar to a syndication partner, except that it doesn't have exclusive access to a tenant. In the syndication case, the customer can't buy additional direct subscriptions from Microsoft or from other partners.
 
 - `customerContextId` - unique identifier for the customer tenant referenced by this partnership.
 
