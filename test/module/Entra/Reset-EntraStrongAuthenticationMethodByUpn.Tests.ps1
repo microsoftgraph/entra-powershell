@@ -20,7 +20,8 @@ BeforeAll {
     Mock -CommandName Get-MgUserAuthenticationMethod  -MockWith {} -ModuleName Microsoft.Graph.Entra
 }
  
-Describe "Test for Reset-EntraStrongAuthenticationMethodByUpn" {
+Describe "Reset-EntraStrongAuthenticationMethodByUpn" {
+    Context "Test for Reset-EntraStrongAuthenticationMethodByUpn" {
     It "Should Resets the strong authentication method" {
         $result = Reset-EntraStrongAuthenticationMethodByUpn  -UserPrincipalName 'Test_contoso@M365x99297270.onmicrosoft.com'
         $result | Should -BeNullOrEmpty
@@ -63,4 +64,5 @@ Describe "Test for Reset-EntraStrongAuthenticationMethodByUpn" {
             $DebugPreference = $originalDebugPreference        
         }
     }
+}
 }
