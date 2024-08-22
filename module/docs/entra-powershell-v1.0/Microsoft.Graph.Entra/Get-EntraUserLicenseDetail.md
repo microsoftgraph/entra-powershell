@@ -41,7 +41,7 @@ This cmdlet retrieves license details for a user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserLicenseDetail -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraUserLicenseDetail -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```output
