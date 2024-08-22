@@ -13,6 +13,7 @@ author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraFeatureRolloutPolicy
+
 schema: 2.0.0
 ---
 
@@ -63,12 +64,12 @@ Id                                   Description          DisplayName          F
 
 This example creates the policy for cloud authentication roll-out in Microsoft Entra ID.
 
-- `-Feature` - Specifies a feature assigned to the cloud authentication roll-out policy.
+- `-Feature` Specifies a feature assigned to the cloud authentication roll-out policy.
 Currently, you can assign PassthroughAuthentication | SeamlessSso | PasswordHashSync | EmailAsAlternateId.
 
-- `-DisplayName` - Specifies the display name of the cloud authentication roll-out policy.
+- `-DisplayName` Specifies the display name of the cloud authentication roll-out policy.
 
-- `-IsEnabled` - Specifies the status of cloud authentication roll-out policy.
+- `-IsEnabled` Specifies the status of cloud authentication roll-out policy.
 
 ### Example 2: Creates the policy for cloud authentication roll-out in Microsoft Entra ID
 
@@ -92,14 +93,14 @@ Id                                   Description          DisplayName          F
 
 This command creates the policy for cloud authentication roll-out in Microsoft Entra ID.
 
-- `-Feature` - Specifies a feature assigned to the cloud authentication roll-out policy.
+- `-Feature` Specifies a feature assigned to the cloud authentication roll-out policy.
 Currently, you can assign PassthroughAuthentication | SeamlessSso | PasswordHashSync | EmailAsAlternateId.
 
-- `-DisplayName` - Specifies the display name of the cloud authentication roll-out policy.
+- `-DisplayName` Specifies the display name of the cloud authentication roll-out policy.
 
-- `-IsEnabled` - Specifies the status of cloud authentication roll-out policy.
+- `-IsEnabled` Specifies the status of cloud authentication roll-out policy.
 
-- `IsAppliedToOrganization` - Specifies if the cloud authentication roll-out policy applied to the entire organization.
+- `-IsAppliedToOrganization` Specifies if the cloud authentication roll-out policy applied to the entire organization.
 
 ## Parameters
 
