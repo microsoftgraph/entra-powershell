@@ -12,59 +12,14 @@ function Remove-EntraAdministrativeUnitMember {
 
     PROCESS {    
     $params = @{}
-    $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-    $keysChanged = @{ObjectId = "Id"; MemberId = "DirectoryObjectId"}
-    if($null -ne $PSBoundParameters["ErrorAction"])
-    {
-        $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-    }
-    if($PSBoundParameters.ContainsKey("Verbose"))
-    {
-        $params["Verbose"] = $Null
-    }
-    if($null -ne $PSBoundParameters["OutVariable"])
-    {
-        $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-    }
-    if($null -ne $PSBoundParameters["InformationAction"])
-    {
-        $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-    }
-    if($null -ne $PSBoundParameters["WarningVariable"])
-    {
-        $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-    }
-    if($PSBoundParameters.ContainsKey("Debug"))
-    {
-        $params["Debug"] = $Null
-    }
-    if($null -ne $PSBoundParameters["PipelineVariable"])
-    {
-        $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-    }
-    if($null -ne $PSBoundParameters["ErrorVariable"])
-    {
-        $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-    }
+    $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand    
     if($null -ne $PSBoundParameters["ObjectId"])
     {
         $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]
     }
-    if($null -ne $PSBoundParameters["OutBuffer"])
-    {
-        $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-    }
-    if($null -ne $PSBoundParameters["WarningAction"])
-    {
-        $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-    }
     if($null -ne $PSBoundParameters["MemberId"])
     {
         $params["DirectoryObjectId"] = $PSBoundParameters["MemberId"]
-    }
-    if($null -ne $PSBoundParameters["InformationVariable"])
-    {
-        $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
     }
 
     Write-Debug("============================ TRANSFORMATIONS ============================")
