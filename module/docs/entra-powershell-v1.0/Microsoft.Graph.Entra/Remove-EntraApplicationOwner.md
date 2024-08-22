@@ -49,7 +49,7 @@ $params = @{
 Remove-EntraApplicationOwner @params
 ```
 
-This exampple removes the specified owner from the specified application.
+This example removes the specified owner from the specified application.
 
 ## Parameters
 
