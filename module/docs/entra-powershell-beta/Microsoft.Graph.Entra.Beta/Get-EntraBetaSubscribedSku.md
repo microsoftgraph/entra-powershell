@@ -4,11 +4,12 @@ description: This article provides details on the Get-EntraBetaSubscribedSku com
 
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 08/13/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaSubscribedSku
@@ -19,6 +20,7 @@ schema: 2.0.0
 # Get-EntraBetaSubscribedSku
 
 ## Synopsis
+
 Gets subscribed SKUs to Microsoft services.
 
 ## Syntax
@@ -41,53 +43,111 @@ Get-EntraBetaSubscribedSku
 ```
 
 ## Description
-The Get-EntraBetaSubscribedSku cmdlet gets subscribed SKUs to Microsoft services.
+
+The `Get-EntraBetaSubscribedSku` cmdlet gets subscribed SKUs to Microsoft services.
 
 ## Examples
 
 ### Example 1: Get subscribed SKUs
+
 ```powershell
-PS C:\>Get-EntraBetaSubscribedSku
+Connect-Entra -Scopes 'Organization.Read.All'
+Get-EntraBetaSubscribedSku
 ```
-```
-Id                                                                        AccountId                            AccountName   AppliesTo CapabilityStatus ConsumedUnits SkuId                                SkuPart
-                                                                                                                                                                                                           Number
+
+```Output
+Id                                                                        AccountId                            AccountName   AppliesTo CapabilityStatus ConsumedUnits SkuId                                SkuPartNumber
 --                                                                        ---------                            -----------   --------- ---------------- ------------- -----                                -------
-d5aec55f-2d12-4442-8d2f-ccca95d4390e_b05e124f-c7cc-45a0-a6aa-8cf78c946968 d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User      Enabled          20            b05e124f-c7cc-45a0-a6aa-8cf78c946968 EMSP...
-d5aec55f-2d12-4442-8d2f-ccca95d4390e_c7df2760-2c81-4ef7-b578-5b5392b571df d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User      Enabled          20            c7df2760-2c81-4ef7-b578-5b5392b571df ENTE...
-d5aec55f-2d12-4442-8d2f-ccca95d4390e_6fd2c87f-b296-42f0-b197-1e91e994b900 d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User      Enabled          2             6fd2c87f-b296-42f0-b197-1e91e994b900 ENTE...
-d5aec55f-2d12-4442-8d2f-ccca95d4390e_f30db892-07e9-47e9-837c-80727f46fd3d d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User      Enabled          3             f30db892-07e9-47e9-837c-80727f46fd3d FLOW...
-d5aec55f-2d12-4442-8d2f-ccca95d4390e_6a0f6da5-0b87-4190-a6ae-9bb5a2b9546a d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User      Enabled          3             6a0f6da5-0b87-4190-a6ae-9bb5a2b9546a Win1...
-d5aec55f-2d12-4442-8d2f-ccca95d4390e_184efa21-98c3-4e5d-95ab-d07053a96e67 d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User      Enabled          20            184efa21-98c3-4e5d-95ab-d07053a96e67 INFO...
+aaaa0000-bb11-2222-33cc-444444dddddd 0000aaaa-11bb-cccc-dd22-eeeeee333333 M365x99297270 User      Enabled          20            aaaaaaaa-0b0b-1c1c-2d2d-333333333333 EMSP...
+bbbb1111-cc22-3333-44dd-555555eeeeee 1111bbbb-22cc-dddd-ee33-ffffff444444 M365x99297270 User      Enabled          20            bbbbbbbb-1c1c-2d2d-3e3e-444444444444 ENTE...
+cccc2222-dd33-4444-55ee-666666ffffff 2222cccc-33dd-eeee-ff44-aaaaaa555555 M365x99297270 User      Enabled          2             cccccccc-2d2d-3e3e-4f4f-555555555555 ENTE...
 ```
 
 This example demonstrates how to retrieve subscribed SKUs to Microsoft services.  
 
-This command gets subscribed SKUs.
-
-
 ### Example 2: Get subscribed SKUs by ObjectId
+
 ```powershell
-PS C:\>Get-EntraBetaSubscribedSku -ObjectId "d5aec55f-2d12-4442-8d2f-ccca95d4390e_b05e124f-c7cc-45a0-a6aa-8cf78c946968"
+Connect-Entra -Scopes 'Organization.Read.All'
+Get-EntraBetaSubscribedSku -ObjectId 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
 ```
-```output
-Id                                                                        AccountId                            AccountName   AppliesTo CapabilityStatus ConsumedUnits SkuId                                SkuPart
-                                                                                                                                                                                                           Number
+
+```Output
+Id                                                                        AccountId                            AccountName   AppliesTo CapabilityStatus ConsumedUnits SkuId                                SkuPartNumber
 --                                                                        ---------                            -----------   --------- ---------------- ------------- -----                                -------
-d5aec55f-2d12-4442-8d2f-ccca95d4390e_b05e124f-c7cc-45a0-a6aa-8cf78c946968 d5aec55f-2d12-4442-8d2f-ccca95d4390e M365x99297270 User      Enabled          20            b05e124f-c7cc-45a0-a6aa-8cf78c946968 EMSP...
+aaaa0000-bb11-2222-33cc-444444dddddd 0000aaaa-11bb-cccc-dd22-eeeeee333333 M365x99297270 User      Enabled          20            aaaaaaaa-0b0b-1c1c-2d2d-333333333333 EMSP...
 ```
 
-This example demonstrates how to retrieve specified subscribed SKUs to Microsoft services.  
+This example demonstrates how to retrieve specified subscribed SKUs to Microsoft services.
 
-This command gets specified subscribed SKUs to Microsoft services.
+- `-ObjectId` parameter specifies the ID of the SKU (Stock Keeping Unit).
+
+### Example 3: Get a list of users, their assigned licenses, and licensing source
+
+```powershell
+Connect-Entra -Scopes 'Organization.Read.All','User.Read.All','Group.Read.All'
+
+# Get all users with specified properties
+$Users = Get-EntraBetaUser -All -Property AssignedLicenses, LicenseAssignmentStates, DisplayName, UserPrincipalName, ObjectId
+
+$SelectedUsers = $Users | Select-Object ObjectId, UserPrincipalName, DisplayName, AssignedLicenses -ExpandProperty LicenseAssignmentStates
+
+# Group Name lookup
+$GroupDisplayNames = @{}
+
+# Sku Part Number lookup
+$SkuPartNumbers = @{}
+
+# Populate the hashtable with group display names and SKU part numbers
+foreach ($User in $SelectedUsers) {
+    $AssignedByGroup = $User.AssignedByGroup
+    $SkuId = $User.SkuId
+
+    try {
+        # Check if the group display name is already in the hashtable
+        if (-not $GroupDisplayNames.ContainsKey($AssignedByGroup)) {
+            $Group = Get-EntraBetaGroup -ObjectId $AssignedByGroup
+            $GroupDisplayNames[$AssignedByGroup] = $Group.DisplayName
+        }
+
+        $User | Add-Member -NotePropertyName 'GroupDisplayName' -NotePropertyValue $GroupDisplayNames[$AssignedByGroup]
+    } catch {
+        $User | Add-Member -NotePropertyName 'GroupDisplayName' -NotePropertyValue 'N/A (Direct Assignment)'
+    }
+
+    try {
+        # Check if the SKU part number is already in the hashtable
+        if (-not $SkuPartNumbers.ContainsKey($SkuId)) {
+            $Sku = Get-EntraBetaSubscribedSku | Where-Object { $_.SkuId -eq $SkuId } | Select-Object -ExpandProperty SkuPartNumber
+            $SkuPartNumbers[$SkuId] = $Sku
+        }
+
+        $User | Add-Member -NotePropertyName 'SkuPartNumber' -NotePropertyValue $SkuPartNumbers[$SkuId]
+    } catch {
+        $User | Add-Member -NotePropertyName 'SkuPartNumber' -NotePropertyValue 'N/A'
+    }
+}
+
+$SelectedUsers | Format-Table UserPrincipalName, DisplayName, AssignedByGroup, GroupDisplayName, SkuId, SkuPartNumber, State, Error -AutoSize
+```
+
+```Output
+userPrincipalName       displayName       assignedByGroup                      GroupDisplayName    skuId                                SkuPartNumber  state  error
+-----------------       -----------       ---------------                      ----------------    -----                                -------------  -----  -----
+averyh@contoso.com      Avery Howard      cccccccc-2222-3333-4444-dddddddddddd Contoso Team        abcdefgh-1111-2222-bbbb-cccc33333333 ENTERPRISEPACK Active None
+devont@contoso.com      Devon Torres      ffffffff-5555-6666-7777-aaaaaaaaaaaa Retail              abcdefgh-1111-2222-bbbb-cccc33333333 ENTERPRISEPACK Active None
+```
+
+This example shows a list of users, their licenses, and the source of the license such as directly assigned or group assigned.
 
 ## Parameters
 
 ### -ObjectId
+
 The object ID of the SKU (Stock Keeping Unit).
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -100,7 +160,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -115,7 +175,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
