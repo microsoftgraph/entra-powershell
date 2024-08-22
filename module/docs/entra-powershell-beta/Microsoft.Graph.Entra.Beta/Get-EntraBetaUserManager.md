@@ -2,6 +2,7 @@
 title: Get-EntraBetaUserManager
 description: This article provides details on the Get-EntraBetaUserManager command.
 
+
 ms.topic: reference
 ms.date: 06/20/2024
 ms.author: eunicewaweru
@@ -60,6 +61,8 @@ displayName                     : Sawyer Miller
 
 This example demonstrates how to retrieve the manager of a specific user.
 
+- `-ObjectId` Parameter specifies ObjectID or User Principal Name of User.
+
 ## Parameters
 
 ### -ObjectId
@@ -80,7 +83,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

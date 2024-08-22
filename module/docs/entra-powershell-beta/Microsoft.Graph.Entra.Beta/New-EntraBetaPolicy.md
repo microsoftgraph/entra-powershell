@@ -30,9 +30,7 @@ New-EntraBetaPolicy
  -Definition <System.Collections.Generic.List`1[System.String]> 
  -DisplayName <String>
  -Type <String>
- [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]>]
  [-IsOrganizationDefault <Boolean>] 
- [-AlternativeIdentifier <String>] 
  [<CommonParameters>]
 ```
 
@@ -55,78 +53,126 @@ New-EntraBetaPolicy @params
 ```
 
 ```Output
-Id                                   DisplayName Type                     IsOrganizationDefault Definition
---                                   ----------- ----                     --------------------- ----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb NewPolicy   HomeRealmDiscoveryPolicy                 False {{"HomeRealmDiscoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}
+Definition                                                                     DeletedDateTime Description DisplayName Id                                   IsOrganizationD
+                                                                                                                                                            efault
+----------                                                                     --------------- ----------- ----------- --                                   ---------------
+{{"HomeReayPolicy":{"AlternateLoginIDLookup":true, "IncluderIds":["UserID"]}}}                              NewPolicy aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb False
 ```
 
 This command creates a new policy in Microsoft Entra ID.
 
-### Example 2: Create a new policy by 'IsOrganizationDefault' parameter
+- `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy.
+
+- `-Type` Parameter specifies the type of policy.
+
+### Example 2: Create a ClaimsMappingPolicy policy by 'IsOrganizationDefault' parameter
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
 $params = @{
-    Definition = @('{"HomeRealmDiscoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')
-    DisplayName = 'NewPolicy'
-    Type = 'HomeRealmDiscoveryPolicy'
+    Definition = @('{ "definition": [ "{\"ClaimsMappingPolicy\":{\"Version\":1,\"IncludeBasicClaimSet\":\"true\",\"ClaimsSchema\":[{\"Source\":\"user\",\"ID\":\"userPrincipalName\",\"SAMLClaimType\":\"http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name\",\"JwtClaimType\":\"upn\"},{\"Source\":\"user\",\"ID\":\"displayName\",\"SAMLClaimType\":\"http://schemas.microsoft.com/identity/claims/displayname\",\"JwtClaimType\":\"name\"}]}}" ], "displayName": "Custom Claims Issuance Policy", "isOrganizationDefault": false }') 
+    DisplayName ='ClaimstestPolicy' 
+    Type = 'claimsMappingPolicies' 
+    IsOrganizationDefault = $false 
+}
+New-EntraBetaPolicy @params
+```
+
+```Output
+Definition
+----------
+{{ "definition": [ "{\"ClaimsMappingPolicy\":{\"Version\":1,\"IncludeBasicClaimSet\":\"true\",\"ClaimsSchema\":[{\"Source\":\"user\",\"ID\":\"userPrincipalName\",\"SAMLCl…
+```
+
+This command creates a ClaimsMappingPolicy using 'IsOrganizationDefault' parameter in Microsoft Entra ID.
+
+- `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy.
+
+- `-Type` - Parameter specifies the type of policy. In this example, `ClaimsMappingPolicy`
+ represents the type of policy.
+
+- `-IsOrganizationDefault` If true, activates this policy. Only one policy of the same type can be the organization default. Optional, default is false.
+
+### Example 3: Create a TokenLifetimePolicy
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
+$params = @{
+    Definition = @('{"TokenLifetimePolicy":{"Version":1,"AccessTokenLifetime":"8:00:00"}}')
+    DisplayName = 'TokenLifetimePolicy'
+    Type = 'TokenLifetimePolicy'
     IsOrganizationDefault = $false
 }
 New-EntraBetaPolicy @params
 ```
 
 ```Output
-Id                                   DisplayName Type                     IsOrganizationDefault Definition
---                                   ----------- ----                     --------------------- ----------
-bbbbbbbb-1111-2222-3333-cccccccccccc NewPolicy   HomeRealmDiscoveryPolicy                 False {{"HomeRealmDiscoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}
+Definition                                                              DeletedDateTime Description DisplayName          Id                                   IsOrganizatio
+                                                                                                                                                              nDefault
+----------                                                              --------------- ----------- -----------          --                                   -------------
+{{"TokenLifetimePolicy":{"Version":1,"AccessTokenLifetime":"8:00:00"}}}                             TokenLifetimePolicy aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb False
 ```
 
-This command creates a new policy using 'IsOrganizationDefault' parameter in Microsoft Entra ID.
+This command creates a TokenLifetimePolicy in Microsoft Entra ID.
 
-### Example 3: Create a new policy by 'AlternativeIdentifier' parameter
+- `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy.
+
+- `-Type` Parameter specifies the type of policy.
+
+### Example 4: Create a TokenIssuancePolicy
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
 $params = @{
-    Definition = @('{"ClaimsMappingPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')
-    DisplayName = 'NewPolicy'
-    Type = 'ClaimsMappingPolicies'
-    AlternativeIdentifier = "cccccccc-2222-3333-4444-dddddddddddd"
-    IsOrganizationDefault = $false
+    Definition = @('{"TokenIssuancePolicy":{"Version":1,"SigningAlgorithm":"http://www.w3.org/2001/04/xmldsig-more#rsa-sha256","SamlTokenVersion":1.1,"TokenResponseSigningPolicy":"TokenOnly","EmitSAMLNameFormat":"true"}}')
+    DisplayName = 'tokenIssuance'
+    Type = 'TokenIssuancePolicy'
 }
 New-EntraBetaPolicy @params
-
 ```
 
 ```Output
-Id                                   DisplayName Type                  IsOrganizationDefault Definition
---                                   ----------- ----                  --------------------- ----------
-dddddddd-3333-4444-5555-eeeeeeeeeeee NewPolicy   ClaimsMappingPolicies                 False {{"ClaimsMappingPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}
+Definition
+----------
+{{"TokenIssuancePolicy":{"Version":1,"SigningAlgorithm":"http://www.w3.org/2001/04/xmldsig-more#rsa-sha256","SamlTokenVersion":1.1,"TokenResponseSigningPolicy":"TokenOnly…
 ```
 
-This command creates a new policy using 'AlternativeIdentifier' parameter in Microsoft Entra ID.
+This command creates a TokenIssuancePolicy in Microsoft Entra ID.
+
+- `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy.
+
+- `-Type` Parameter specifies the type of policy.
+
+### Example 5: Create a ActivityBasedTimeoutPolicy
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
+$params = @{
+    Definition = @('{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')
+    DisplayName = 'ActivityBasedTimeoutPolicyname'
+    Type = 'ActivityBasedTimeoutPolicy'
+}
+New-EntraBetaPolicy @params
+```
+
+```Output
+Definition                                                                                       DeletedDateTime Description DisplayName                    Id
+----------                                                                                       --------------- ----------- -----------                    --
+{{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                             ActivityBasedTimeoutPolicyname aaaaaaaa-0000-1111-2222...
+
+```
+
+This command creates a ActivityBasedTimeoutPolicy in Microsoft Entra ID.
+
+- `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy.
+
+- `-Type` Parameter specifies the type of policy.
 
 ## Parameters
 
-### -AlternativeIdentifier
-
-Specifies an alternative ID.
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Definition
 
-Specifies an array of JSON that contains all the rules of the policy, for example: -Definition @("{"TokenLifetimePolicy":{"Version":1,"MaxInactiveTime":"20:00:00"}}")
+Specifies an array of JSON that contains all the rules of the policy, for example: -Definition @("{"TokenLifetimePolicy":{"Version":1,"MaxInactiveTime":"20:00:00"}}").
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -172,26 +218,10 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -KeyCredentials
-
-Specifies the key credentials.
-
-```yaml
-Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Type
 
 Specifies the type of policy.
-For token lifetimes, specify "TokenLifetimePolicy".
+For token lifetimes, specify "TokenLifetimePolicy."
 
 ```yaml
 Type: System.String
