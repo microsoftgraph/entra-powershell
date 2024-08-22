@@ -50,6 +50,8 @@ Some of the features that can be used with this cmdlet include:
 
 The cmdlet can be run without specifying any features, in which case it returns a list of all features and their enabled or disabled status.
 
+For delegated scenarios, the user needs to be assigned the Global Administrator role.
+
 ## Examples
 
 ### Example 1: Return a list of all directory synchronization features
