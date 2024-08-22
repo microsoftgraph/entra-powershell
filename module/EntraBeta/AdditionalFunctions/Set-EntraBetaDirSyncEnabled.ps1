@@ -2,27 +2,36 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 
-function Get-EntraBetaFederationProperty {
-    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+function Set-EntraBetaDirSyncEnabled {
+    [CmdletBinding(DefaultParameterSetName = 'All')]
     param (
-        [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false)][System.String] $DomainName,
-        [Parameter(ParameterSetName = "GetQuery", Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $false)][Switch] $SupportMultipleDomain
-        )
+        [Parameter(ParameterSetName = "All", ValueFromPipelineByPropertyName = $true, Mandatory = $true)][System.Boolean] $EnableDirsync,
+        [Parameter(ParameterSetName = "All", ValueFromPipelineByPropertyName = $true)][System.Guid] $TenantId,
+        [switch] $Force
+    )
 
-    PROCESS {    
+    PROCESS {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{}
-        if ($PSBoundParameters.ContainsKey("Verbose")) {
+        if ($EnableDirsync -or (-not($EnableDirsync))) {
+            $params["OnPremisesSyncEnabled"] =$PSBoundParameters["EnableDirsync"]
+        }
+        if ($null -ne $PSBoundParameters["TenantId"]) {
+            $params["OrganizationId"] = $PSBoundParameters["TenantId"]
+        }
+        if ([string]::IsNullOrWhiteSpace($TenantId)) {
+            $OnPremisesDirectorySynchronizationId = (Get-MgBetaDirectoryOnPremiseSynchronization).Id
+            $params["OrganizationId"] = $OnPremisesDirectorySynchronizationId
+        }
+        if($PSBoundParameters.ContainsKey("Verbose"))
+        {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
-        if ($null -ne $PSBoundParameters["DomainName"]) {
-            $params["DomainId"] = $PSBoundParameters["DomainName"]
-        }
-        if ($PSBoundParameters.ContainsKey("Debug")) {
+        if($PSBoundParameters.ContainsKey("Debug"))
+        {
             $params["Debug"] = $PSBoundParameters["Debug"]
-        }
-        if($null -ne $PSBoundParameters["WarningVariable"])
+        }        
+	    if($null -ne $PSBoundParameters["WarningVariable"])
         {
             $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
         }
@@ -61,17 +70,20 @@ function Get-EntraBetaFederationProperty {
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $response = Get-MgBetaDomainFederationConfiguration @params -Headers $customHeaders
-        $response | ForEach-Object {
-            if($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name ActiveClientSignInUrl -Value ActiveSignInUri
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name FederationServiceDisplayName -Value DisplayName
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name FederationServiceIdentifier -Value IssuerUri
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name FederationMetadataUrl -Value MetadataExchangeUri
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name PassiveClientSignInUrl -Value PassiveSignInUri
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name PassiveClientSignOutUrl -Value SignOutUri
-            }
+
+        if ($Force) {
+            $decision = 0
         }
-        $response
+        else {
+            $title = 'Confirm'
+            $question = 'Do you want to continue?'
+            $Suspend = New-Object System.Management.Automation.Host.ChoiceDescription "&Suspend", "S"
+            $Yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Y"
+            $No = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "S"
+            $choices = [System.Management.Automation.Host.ChoiceDescription[]]($Yes, $No, $Suspend)
+            $decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
+        }
+            $response = Update-MgBetaOrganization @params -Headers $customHeaders
+            $response
     }
 }
