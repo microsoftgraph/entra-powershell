@@ -9,6 +9,7 @@ function Reset-EntraStrongAuthenticationMethodByUpn {
         )
 
     PROCESS {
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         if ($null -ne $PSBoundParameters["UserPrincipalName"]) {
             $userId = $PSBoundParameters.UserPrincipalName
         }
@@ -45,7 +46,7 @@ function Reset-EntraStrongAuthenticationMethodByUpn {
             return $? # Return true if no error and false if there is an error
         }
 
-        $methods = Get-MgUserAuthenticationMethod -UserId $userId
+        $methods = Get-MgUserAuthenticationMethod -UserId $userId -Headers $customHeaders
         # -1 to account for passwordAuthenticationMethod
 
         foreach ($authMethod in $methods) {

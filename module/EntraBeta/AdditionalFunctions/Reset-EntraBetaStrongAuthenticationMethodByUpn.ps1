@@ -9,6 +9,7 @@ function Reset-EntraBetaStrongAuthenticationMethodByUpn {
     )
 
     PROCESS {
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         if ($null -ne $PSBoundParameters["UserPrincipalName"]) {
             $userId = $PSBoundParameters.UserPrincipalName
         }
@@ -45,7 +46,7 @@ function Reset-EntraBetaStrongAuthenticationMethodByUpn {
             return $? # Return true if no error and false if there is an error
         }
 
-        $methods = Get-MgBetaUserAuthenticationMethod -UserId $userId
+        $methods = Get-MgBetaUserAuthenticationMethod -UserId $userId -Headers $customHeaders
         # -1 to account for passwordAuthenticationMethod
 
         foreach ($authMethod in $methods) {
