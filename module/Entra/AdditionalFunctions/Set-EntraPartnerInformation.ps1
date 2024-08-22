@@ -29,10 +29,7 @@ function Set-EntraPartnerInformation {
     PROCESS {    
         $params = @{}
         $body = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        if ($PSBoundParameters.ContainsKey("Verbose")) {
-            $params["Verbose"] = $PSBoundParameters["Verbose"]
-        }
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand        
         if ($null -ne $PSBoundParameters["TenantId"]) {
             $body["partnerTenantId"] = $PSBoundParameters["TenantId"]
         }
@@ -56,9 +53,6 @@ function Set-EntraPartnerInformation {
         }        
         if ($null -ne $PSBoundParameters["PartnerSupportUrl"]) {
             $body["supportUrl"] = $PSBoundParameters["PartnerSupportUrl"]
-        }
-        if ($PSBoundParameters.ContainsKey("Debug")) {
-            $params["Debug"] = $PSBoundParameters["Debug"]
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")

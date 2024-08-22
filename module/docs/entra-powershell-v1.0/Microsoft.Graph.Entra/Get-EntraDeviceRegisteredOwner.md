@@ -54,11 +54,7 @@ Id                                   DeletedDateTime
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
-This example shows how to find the registered owner of a device.
-
-- The first command gets the object ID of a device by using the [Get-EntraDevice](./Get-EntraDevice.md) cmdlet, and then stores it in the `$DevId` variable.  
-
-- The second command gets the registered owner of the device in `$DevId`.
+This example shows how to find the registered owner of a device..
 
 - `-ObjectId` Parameter specifies the ID of a device.
 

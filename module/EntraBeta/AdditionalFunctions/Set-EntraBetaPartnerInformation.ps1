@@ -30,9 +30,7 @@ function Set-EntraBetaPartnerInformation {
         $params = @{}
         $body = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        if ($PSBoundParameters.ContainsKey("Verbose")) {
-            $params["Verbose"] = $PSBoundParameters["Verbose"]
-        }
+
         if ($null -ne $PSBoundParameters["TenantId"]) {
             $body["partnerTenantId"] = $PSBoundParameters["TenantId"]
         }
@@ -56,9 +54,6 @@ function Set-EntraBetaPartnerInformation {
         }        
         if ($null -ne $PSBoundParameters["PartnerSupportUrl"]) {
             $body["supportUrl"] = $PSBoundParameters["PartnerSupportUrl"]
-        }
-        if ($PSBoundParameters.ContainsKey("Debug")) {
-            $params["Debug"] = $PSBoundParameters["Debug"]
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
