@@ -15,5 +15,9 @@
 "Microsoft.Open.MSGraph.Model.MsRoleMemberInfo"=@"
     public System.String Id;
 "@
+"Microsoft.Open.MSGraph.Model.MsDirectoryObject" = @"
+        public System.String Id;
+        public System.String OdataType;
+"@
 }
 
