@@ -21,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Instantiates an application.
+Add an instance of an application from the Microsoft Entra application gallery into your directory.
 
 ## Syntax
 
@@ -34,14 +34,16 @@ New-EntraApplicationFromApplicationTemplate
 
 ## Description
 
-This `New-EntraApplicationFromApplicationTemplate` cmdlet allows users to create application from application template.
+The `New-EntraApplicationFromApplicationTemplate` cmdlet adds an instance of an application from the Microsoft Entra application gallery into your directory.
+
+The application template with ID `8adf8e6e-67b2-4cf2-a259-e3dc5476c621` can be used to add a non-gallery app that you can configure different single-sign on (SSO) modes like SAML SSO and password-based SSO.
 
 ## Examples
 
 ### Example 1: Creates an application from application template
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $params = @{
     Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     DisplayName = 'ApplicationTemplate'
@@ -57,14 +59,14 @@ https://graph.microsoft.com/v1.0/$metadata#microsoft.graph.applicationServicePri
 
 This command instantiates a new application based on application template referenced by the ID.
 
-- `-Id` Parameter specifies Application TemplateId.
-- `-DisplayName` Parameter specifies application template display name.
+- `-Id` specifies Application TemplateId.
+- `-DisplayName` specifies application template display name.
 
 ## Parameters
 
 ### -Id
 
-The unique identifier of an object in Microsoft Entra ID.
+The Id parameter specifies Application TemplateId.
 
 ```yaml
 Type: System.String
