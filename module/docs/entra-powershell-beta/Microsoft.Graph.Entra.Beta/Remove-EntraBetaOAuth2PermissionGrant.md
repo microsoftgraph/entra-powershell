@@ -1,4 +1,14 @@
 ---
+title: Remove-EntraBetaOAuth2PermissionGrant 
+description: This article provides details on the Remove-EntraBetaOAuth2PermissionGrant command.
+
+
+ms.topic: reference
+ms.date: 08/09/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaOAuth2PermissionGrant
@@ -9,43 +19,44 @@ schema: 2.0.0
 # Remove-EntraBetaOAuth2PermissionGrant
 
 ## Synopsis
-Removes an oAuth2PermissionGrant.
+
+Removes an OAuth2PermissionGrant.
 
 ## Syntax
 
-```
-Remove-EntraBetaOAuth2PermissionGrant -ObjectId <String> [<CommonParameters>]
+```powershell
+Remove-EntraBetaOAuth2PermissionGrant 
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## Description
-The Remove-EntraBetaOAuth2PermissionGrant cmdlet removes an oAuth2PermissionGrant object in Azure Active Directory (AD).
+
+The `Remove-EntraBetaOAuth2PermissionGrant` cmdlet removes an OAuth2PermissionGrant object in Microsoft Entra ID.
+
+When a delegated permission grant is deleted, the access it granted is revoked. Existing access tokens will continue to be valid for their lifetime, but new access tokens will not be granted for the delegated permissions identified in the deleted OAuth2PermissionGrant.
 
 ## Examples
 
 ### Example 1: Remove an OAuth2 permission grant
+
+```powershell
+Connect-Entra -Scopes 'DelegatedPermissionGrant.ReadWrite.All'
+$SharePointSP = Get-EntraBetaServicePrincipal | Where-Object {$_.DisplayName -eq 'Microsoft.SharePoint'}
+$SharePointOA2AllSitesRead = Get-EntraBetaOAuth2PermissionGrant | Where-Object {$_.ResourceId -eq $SharePointSP.ObjectId} | Where-Object {$_.Scope -eq 'AllSites.Read'}
+Remove-EntraBetaOAuth2PermissionGrant -ObjectId $SharePointOA2AllSitesRead.ObjectId
 ```
-PS C:\> $SharePointSP = Get-EntraBetaServicePrincipal | Where-Object {$_.DisplayName -eq "Microsoft.SharePoint"}
-PS C:\> $SharePointOA2AllSitesRead = Get-EntraBetaOAuth2PermissionGrant | Where-Object {$_.ResourceId -eq $SharePointSP.ObjectId} | Where-Object {$_.Scope -eq "AllSites.Read"}
-PS C:\> Remove-EntraBetaOAuth2PermissionGrant -ObjectId $SharePointOA2AllSitesRead.ObjectId
-```
 
-The first command gets a service principal that matches the specified display name by using the Get-EntraBetaServicePrincipal (./Get-EntraBetaServicePrincipal.md)cmdlet. 
-The command stores the result in the $SharePointSP variable.
-
-The second command gets certain permission grants by using the Get-EntraBetaOAuth2PermissionGrant (./Get-EntraBetaOAuth2PermissionGrant.md)cmdlet. 
-The command stores the result in the $SharePointOA2AllSitesRead variable.
-
-The final command removes the permission grant in $SharePointOA2AllSitesRead.
+This example shows how to remove an OAuth2PermissionGrant object in Microsoft Entra ID.
 
 ## Parameters
 
-
-
 ### -ObjectId
-Specifies the ID of an oAuth2PermissionGrant object in Azure AD.
+
+Specifies the ID of an OAuth2PermissionGrant object in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -57,7 +68,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -67,7 +79,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaOAuth2PermissionGrant]()
+[Get-EntraBetaOAuth2PermissionGrant](Get-EntraBetaOAuth2PermissionGrant.md)
 
-[Get-EntraBetaServicePrincipal]()
-
+[Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)

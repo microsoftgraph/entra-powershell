@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaDeletedDirectoryObject
+description: This article provides details on the Get-EntraBetaDeletedDirectoryObject command.
+
+
+ms.topic: reference
+ms.date: 08/06/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaDeletedDirectoryObject
@@ -9,7 +19,8 @@ schema: 2.0.0
 # Get-EntraBetaDeletedDirectoryObject
 
 ## Synopsis
-This cmdlet is used to retrieve a soft deleted directory object from the directory
+
+Retrieves a soft deleted directory object from the directory.
 
 ## Syntax
 
@@ -21,26 +32,38 @@ Get-EntraBetaDeletedDirectoryObject
 ```
 
 ## Description
-This cmdlet is used to retrieve a soft deleted directory object from the directory.
-Note that soft delete for groups is currently only implemented for Unified Groups (a.k.a.
+
+The `Get-EntraBetaDeletedDirectoryObject` cmdlet retrieves a soft deleted directory object from the directory.
+Note that soft delete for groups is currently only implemented for Unified Groups (also known as
 Office 365 Groups).
 
 ## Examples
 
-### Example 1
-```
-Get-EntraBetaDeletedDirectoryObject -Id 85b5ff1e-0402-400c-9e3c-0f9e965325d1
+### Example 1: Retrieve a deleted directory object
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.Read.All', 'Application.Read.All','Group.Read.All','User.Read.All'
+Get-EntraBetaDeletedDirectoryObject -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-This example shows how to retrieve the deleted directory object with id = 85b5ff1e-0402-400c-9e3c-0f9e965325d1 from the directory
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 06-08-2024 04:23:34
+```
+
+This example shows how to retrieve the deleted directory object from the directory.
+
+- `-Id` parameter specifies the Id of the directory object to retrieve.
 
 ## Parameters
 
 ### -Id
-The Id of the directory object to retrieve
+
+The Id of the directory object to retrieve.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -53,7 +76,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -68,14 +91,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### System.String
+
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
