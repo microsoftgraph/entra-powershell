@@ -44,7 +44,7 @@ Get-EntraBetaAccountSku
 
 The `Get-EntraBetaAccountSku` retrieves the list of commercial subscriptions acquired by an organization.
 
-To map license names as displayed in the Microsoft Entra admin center or the Microsoft 365 admin center to their Microsoft Graph skuId and skuPartNumber properties, refer to the provided mapping information.
+For a list of license names in the Microsoft Entra or Microsoft 365 admin centers and their corresponding Microsoft Graph `skuId` and `skuPartNumber` properties, refer to the [mapping information](https://learn.microsoft.com/entra/identity/users/licensing-service-plan-reference).
 
 ## Examples
 
