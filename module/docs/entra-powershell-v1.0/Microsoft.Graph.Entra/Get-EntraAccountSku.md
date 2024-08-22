@@ -36,7 +36,7 @@ Get-EntraAccountSku
 
 ```powershell
 Get-EntraAccountSku 
- [-TenantId <Guid>] 
+ [-TenantId <String>] 
  [<CommonParameters>]
 ```
 
@@ -48,7 +48,7 @@ For a list of license names in the Microsoft Entra or Microsoft 365 admin center
 
 ## Examples
 
-### EXAMPLE 1: Gets a list of SKUs
+### Example 1: Gets a list of SKUs
 
 ```powershell
 Connect-Entra -Scopes 'Organization.Read.All'
@@ -65,7 +65,7 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee aaaabbbb-0000-cccc-1111-dddd2222eeee Contos
 
 This command returns a list of SKUs.
 
-### EXAMPLE 2: Gets a list of SKUs by TenantId
+### Example 2: Gets a list of SKUs by TenantId
 
 ```powershell
 Connect-Entra -Scopes 'Organization.Read.All'
@@ -80,18 +80,20 @@ ffffffff-5555-6666-7777-aaaaaaaaaaaa aaaabbbb-0000-cccc-1111-dddd2222eeee Contos
 dddddddd-3333-4444-5555-eeeeeeeeeeee aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso User
 ```
 
-This command returns a list of SKUs for a tenant.
+This command returns a list of SKUs for a specified tenant.
+
+- `-TenantId` parameter specifies the unique ID of the tenant.
 
 ## Parameters
 
 ### -TenantId
 
 The unique ID of the tenant to perform the operation on.
-If this isn't provided then the value defaults to
-the tenant of the current user.
+If this isn't provided, then the value will default to the tenant of the current user.
+This parameter is only applicable to partner users.
 
 ```yaml
-Type: Guid
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
