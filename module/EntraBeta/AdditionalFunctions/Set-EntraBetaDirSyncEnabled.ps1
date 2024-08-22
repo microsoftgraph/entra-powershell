@@ -2,26 +2,36 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 
-function Get-EntraBetaDirSyncConfiguration {
-    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+function Set-EntraBetaDirSyncEnabled {
+    [CmdletBinding(DefaultParameterSetName = 'All')]
     param (
-        [Parameter(ParameterSetName = "GetQuery", Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][ValidateNotNullOrEmpty()][ValidateScript({ if ($_ -is [System.Guid]) { $true } else { throw "TenantId must be of type [System.Guid]." } })][System.guid] $TenantId
+        [Parameter(ParameterSetName = "All", ValueFromPipelineByPropertyName = $true, Mandatory = $true)][System.Boolean] $EnableDirsync,
+        [Parameter(ParameterSetName = "All", ValueFromPipelineByPropertyName = $true)][System.Guid] $TenantId,
+        [switch] $Force
     )
 
-    PROCESS {    
+    PROCESS {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{}
-        if ($PSBoundParameters.ContainsKey("Verbose")) {
-            $params["Verbose"] = $PSBoundParameters["Verbose"]
+        if ($EnableDirsync -or (-not($EnableDirsync))) {
+            $params["OnPremisesSyncEnabled"] =$PSBoundParameters["EnableDirsync"]
         }
         if ($null -ne $PSBoundParameters["TenantId"]) {
-            $params["OnPremisesDirectorySynchronizationId"] = $PSBoundParameters["TenantId"]
+            $params["OrganizationId"] = $PSBoundParameters["TenantId"]
         }
-        if ($PSBoundParameters.ContainsKey("Debug")) {
+        if ([string]::IsNullOrWhiteSpace($TenantId)) {
+            $OnPremisesDirectorySynchronizationId = (Get-MgBetaDirectoryOnPremiseSynchronization).Id
+            $params["OrganizationId"] = $OnPremisesDirectorySynchronizationId
+        }
+        if($PSBoundParameters.ContainsKey("Verbose"))
+        {
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
+        }
+        if($PSBoundParameters.ContainsKey("Debug"))
+        {
             $params["Debug"] = $PSBoundParameters["Debug"]
-        }
-        if($null -ne $PSBoundParameters["WarningVariable"])
+        }        
+	    if($null -ne $PSBoundParameters["WarningVariable"])
         {
             $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
         }
@@ -60,12 +70,20 @@ function Get-EntraBetaDirSyncConfiguration {
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $response = ((Get-MgBetaDirectoryOnPremiseSynchronization @params -Headers $customHeaders).configuration | Select-Object -Property AccidentalDeletionPrevention).AccidentalDeletionPrevention
-        # Create a custom table
-        $customTable = [PSCustomObject]@{
-            "AccidentalDeletionThreshold" = $response.AlertThreshold
-            "DeletionPreventionType"      = $response.SynchronizationPreventionType
+
+        if ($Force) {
+            $decision = 0
         }
-        $customTable 
+        else {
+            $title = 'Confirm'
+            $question = 'Do you want to continue?'
+            $Suspend = New-Object System.Management.Automation.Host.ChoiceDescription "&Suspend", "S"
+            $Yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Y"
+            $No = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "S"
+            $choices = [System.Management.Automation.Host.ChoiceDescription[]]($Yes, $No, $Suspend)
+            $decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
+        }
+            $response = Update-MgBetaOrganization @params -Headers $customHeaders
+            $response
     }
 }
