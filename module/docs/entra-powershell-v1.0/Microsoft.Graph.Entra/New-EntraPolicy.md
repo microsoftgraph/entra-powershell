@@ -2,6 +2,7 @@
 title: New-EntraPolicy
 description: This article provides details on the New-EntraPolicy command.
 
+
 ms.topic: reference
 ms.date: 08/02/2024
 ms.author: eunicewaweru
@@ -35,7 +36,7 @@ New-EntraPolicy
 
 ## Description
 
-The `New-EntraPolicy` cmdlet creates a policy in Microsoft Entra ID. Specify `-DisplayName`, `-Definition` and `-Type` parameters for create a new policy.
+The `New-EntraPolicy` cmdlet creates a policy in Microsoft Entra ID. Specify `DisplayName`, `Definition` and `Type` parameters for create a new policy.
 
 ## Examples
 
@@ -64,34 +65,108 @@ This command creates a new policy in Microsoft Entra ID.
 
 - `-Type` Parameter specifies the type of policy.
 
-### Example 2: Create a new policy by 'IsOrganizationDefault' parameter
+### Example 2: Create a ClaimsMappingPolicy policy by 'IsOrganizationDefault' parameter
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
 $params = @{
-    Definition = @('{"HomeRealmDiscoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')
-    DisplayName = 'NewPolicy'
-    Type = 'HomeRealmDiscoveryPolicy'
+    Definition = @('{ "definition": [ "{\"ClaimsMappingPolicy\":{\"Version\":1,\"IncludeBasicClaimSet\":\"true\",\"ClaimsSchema\":[{\"Source\":\"user\",\"ID\":\"userPrincipalName\",\"SAMLClaimType\":\"http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name\",\"JwtClaimType\":\"upn\"},{\"Source\":\"user\",\"ID\":\"displayName\",\"SAMLClaimType\":\"http://schemas.microsoft.com/identity/claims/displayname\",\"JwtClaimType\":\"name\"}]}}" ], "displayName": "Custom Claims Issuance Policy", "isOrganizationDefault": false }') 
+    DisplayName ='ClaimstestPolicy' 
+    Type = 'claimsMappingPolicies' 
+    IsOrganizationDefault = $false 
+}
+New-EntraPolicy @params
+```
+
+```Output
+Definition
+----------
+{{ "definition": [ "{\"ClaimsMappingPolicy\":{\"Version\":1,\"IncludeBasicClaimSet\":\"true\",\"ClaimsSchema\":[{\"Source\":\"user\",\"ID\":\"userPrincipalName\",\"SAMLCl…
+```
+
+This command creates a ClaimsMappingPolicy using 'IsOrganizationDefault' parameter in Microsoft Entra ID.
+
+- `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy.
+
+- `-Type` - Parameter specifies the type of policy. In this example, `ClaimsMappingPolicy`
+ represents the type of policy.
+
+- `-IsOrganizationDefault` If true, activates this policy. Only one policy of the same type can be the organization default. Optional, default is false.
+
+### Example 3: Create a TokenLifetimePolicy
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
+$params = @{
+    Definition = @('{"TokenLifetimePolicy":{"Version":1,"AccessTokenLifetime":"8:00:00"}}')
+    DisplayName = 'TokenLifetimePolicy'
+    Type = 'TokenLifetimePolicy'
     IsOrganizationDefault = $false
 }
 New-EntraPolicy @params
 ```
 
 ```Output
-Definition                                                                     DeletedDateTime Description DisplayName Id                                   IsOrganizationD
-                                                                                                                                                            efault
-----------                                                                     --------------- ----------- ----------- --                                   ---------------
-{{"HomeReayPolicy":{"AlternateLoginIDLookup":true, "IncluderIds":["UserID"]}}}                              NewPolicy aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb False
+Definition                                                              DeletedDateTime Description DisplayName          Id                                   IsOrganizatio
+                                                                                                                                                              nDefault
+----------                                                              --------------- ----------- -----------          --                                   -------------
+{{"TokenLifetimePolicy":{"Version":1,"AccessTokenLifetime":"8:00:00"}}}                             TokenLifetimePolicy aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb False
 ```
 
-This command creates a new policy using 'IsOrganizationDefault' parameter in Microsoft Entra ID.
+This command creates a TokenLifetimePolicy in Microsoft Entra ID.
 
-- `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy
+- `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy.
 
-- `-Type` - Parameter specifies the type of policy. In this example, `HomeRealmDiscoveryPolicy`
- represents the type of policy.
+- `-Type` Parameter specifies the type of policy.
 
-- `-IsOrganizationDefault` If true, activates this policy. Only one policy of the same type can be the organization default. Optional, default is false.
+### Example 4: Create a TokenIssuancePolicy
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
+$params = @{
+    Definition = @('{"TokenIssuancePolicy":{"Version":1,"SigningAlgorithm":"http://www.w3.org/2001/04/xmldsig-more#rsa-sha256","SamlTokenVersion":1.1,"TokenResponseSigningPolicy":"TokenOnly","EmitSAMLNameFormat":"true"}}')
+    DisplayName = 'tokenIssuance'
+    Type = 'TokenIssuancePolicy'
+}
+New-EntraPolicy @params
+```
+
+```Output
+Definition
+----------
+{{"TokenIssuancePolicy":{"Version":1,"SigningAlgorithm":"http://www.w3.org/2001/04/xmldsig-more#rsa-sha256","SamlTokenVersion":1.1,"TokenResponseSigningPolicy":"TokenOnly…
+```
+
+This command creates a TokenIssuancePolicy in Microsoft Entra ID.
+
+- `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy.
+
+- `-Type` Parameter specifies the type of policy.
+
+### Example 5: Create a ActivityBasedTimeoutPolicy
+
+```powershell
+Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
+$params = @{
+    Definition = @('{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')
+    DisplayName = 'ActivityBasedTimeoutPolicyname'
+    Type = 'ActivityBasedTimeoutPolicy'
+}
+New-EntraPolicy @params
+```
+
+```Output
+Definition                                                                                       DeletedDateTime Description DisplayName                    Id
+----------                                                                                       --------------- ----------- -----------                    --
+{{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                             ActivityBasedTimeoutPolicyname aaaaaaaa-0000-1111-2222...
+
+```
+
+This command creates a ActivityBasedTimeoutPolicy in Microsoft Entra ID.
+
+- `-Definition` Parameter specifies an array of JSON that contains all the rules of the policy.
+
+- `-Type` Parameter specifies the type of policy.
 
 ## Parameters
 
