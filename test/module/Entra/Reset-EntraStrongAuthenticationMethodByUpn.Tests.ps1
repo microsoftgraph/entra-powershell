@@ -14,7 +14,6 @@ BeforeAll {
                     "@odata.type"  = "#microsoft.graph.passwordAuthenticationMethod";
                     createdDateTime= "2023-11-21T12:43:51Z";
                 }
-                "Parameters"                = $args
             }
          )
     }
