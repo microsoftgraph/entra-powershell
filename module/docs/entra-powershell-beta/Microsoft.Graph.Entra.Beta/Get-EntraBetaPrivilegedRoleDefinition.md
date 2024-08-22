@@ -1,4 +1,15 @@
 ---
+title: Get-EntraBetaPrivilegedRoleDefinition
+description: This article provides details on Get-EntraBetaPrivilegedRoleDefinition command.
+
+
+ms.topic: reference
+ms.date: 08/12/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaPrivilegedRoleDefinition
@@ -9,7 +20,8 @@ schema: 2.0.0
 # Get-EntraBetaPrivilegedRoleDefinition
 
 ## Synopsis
-Get role definitions
+
+Get role definitions.
 
 ## Syntax
 
@@ -37,31 +49,112 @@ Get-EntraBetaPrivilegedRoleDefinition
 ```
 
 ## Description
-Get role definitions
+
+The `Get-EntraBetaPrivilegedRoleDefinition` cmdlet gets role definitions from Microsoft Entra ID.
 
 ## Examples
 
-### Example 1
-```
-PS C:\> Get-EntraBetaPrivilegedRoleDefinition -ProviderId AzureResources -ResourceId e5e7d29d-5465-45ac-885f-4716a5ee74b5 -Top 10
+### Example 1: Get role definitions for a specific provider and resource
+
+```powershell
+Connect-Entra -Scopes 'PrivilegedAccess.Read.AzureAD', 'PrivilegedAccess.Read.AzureResources' 'PrivilegedAccess.Read.AzureADGroup'
+$params = @{
+    ProviderId = 'aadRoles'
+    ResourceId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+}
+Get-EntraBetaPrivilegedRoleDefinition @params
 ```
 
-Get role definitions for a specific provider and resource
-
-### Example 1
+```Output
+Id                                   DisplayName                         ExternalId                           ResourceId                           TemplateId
+--                                   -----------                         ----------                           ----------                           ----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb custom proxy                       aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 22223333-cccc-4444-dddd-5555eeee6666 aaaaaaaa-0000-1111-2222…
+bbbbbbbb-1111-2222-3333-cccccccccccc Authentication Policy Administrator bbbbbbbb-1111-2222-3333-cccccccccccc 11112222-bbbb-3333-cccc-4444dddd5555 bbbbbbbb-1111-2222-3333…
+cccccccc-2222-3333-4444-dddddddddddd Search Administrator                cccccccc-2222-3333-4444-dddddddddddd 00001111-aaaa-2222-bbbb-3333cccc4444 cccccccc-2222-3333-4444…
 ```
-PS C:\> Get-EntraBetaPrivilegedRoleDefinition -ProviderId AzureResources -ResourceId e5e7d29d-5465-45ac-885f-4716a5ee74b5 -Id ff67e02b-d77b-4588-9f32-e02b7da6539b
+
+This example retrieves role definitions for a specific provider and resource.
+
+- `-ProviderId` Parameter specifies the ID of the specific provider.
+- `-ResourceId` Parameter specifies the ID of the specific resource.
+
+### Example 2: Get a role definition for a specific provider
+
+```Powershell
+Connect-Entra -Scopes 'PrivilegedAccess.Read.AzureAD', 'PrivilegedAccess.Read.AzureResources' 'PrivilegedAccess.Read.AzureADGroup'
+$params = @{
+    ProviderId = 'aadRoles'
+    ResourceId = '11112222-bbbb-3333-cccc-4444dddd5555'
+    Id = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+}
+Get-EntraBetaPrivilegedRoleDefinition @params
 ```
 
-Get a role definitions for a specific provider, resource and Id
+```Output
+Id                                   DisplayName                         ExternalId                           ResourceId                           TemplateId
+--                                   -----------                         ----------                           ----------                           ----------
+bbbbbbbb-1111-2222-3333-cccccccccccc Authentication Policy Administrator bbbbbbbb-1111-2222-3333-cccccccccccc 11112222-bbbb-3333-cccc-4444dddd5555 bbbbbbbb-1111-2222-3333…
+```
+
+This example retrieves a role definition for a specific provider, resource, and ID.
+
+- `-ProviderId` Parameter specifies the ID of the specific provider.
+- `-ResourceId` Parameter specifies the ID of the specific resource.
+- `-Id` Parameter specifies the ID of a role definition.
+
+### Example 3: Get a specific role definition by filter
+
+```powershell
+Connect-Entra -Scopes 'PrivilegedAccess.Read.AzureAD', 'PrivilegedAccess.Read.AzureResources' 'PrivilegedAccess.Read.AzureADGroup'
+$params = @{
+    ProviderId = 'aadRoles'
+    ResourceId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    Filter = "DisplayName eq 'custom proxy'"
+}
+Get-EntraBetaPrivilegedRoleDefinition @params
+```
+
+```Output
+Id                                   DisplayName                         ExternalId                           ResourceId                           TemplateId
+--                                   -----------                         ----------                           ----------                           ----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb custom proxy                       aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 22223333-cccc-4444-dddd-5555eeee6666 aaaaaaaa-0000-1111-2222…
+```
+
+This example retrieves a specific role definition by Filter.
+
+- `-ProviderId` Parameter specifies the ID of the specific provider.
+- `-ResourceId` Parameter specifies the ID of the specific resource.
+
+### Example 4: Get top role definition
+
+```powershell
+Connect-Entra -Scopes 'PrivilegedAccess.Read.AzureAD', 'PrivilegedAccess.Read.AzureResources' 'PrivilegedAccess.Read.AzureADGroup'
+$params = @{
+    ProviderId = 'aadRoles'
+    ResourceId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+}
+Get-EntraBetaPrivilegedRoleDefinition @params -Top 1
+```
+
+```Output
+Id                                   DisplayName                         ExternalId                           ResourceId                           TemplateId
+--                                   -----------                         ----------                           ----------                           ----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb custom proxy                       aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 22223333-cccc-4444-dddd-5555eeee6666 aaaaaaaa-0000-1111-2222…
+```
+
+This example retrieves a top one role definition.
+
+- `-ProviderId` Parameter specifies the ID of the specific provider.
+- `-ResourceId` Parameter specifies the ID of the specific resource.
 
 ## Parameters
 
 ### -Id
-The id of a role definition
+
+The ID of a role definition.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -73,10 +166,11 @@ Accept wildcard characters: False
 ```
 
 ### -ProviderId
-The unique identifier of the specific provider
+
+The unique identifier of the specific provider.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -88,10 +182,11 @@ Accept wildcard characters: False
 ```
 
 ### -ResourceId
-The unique identifier of the specific resource
+
+The unique identifier of the specific resource.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -103,10 +198,12 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-{{ Fill Filter Description }}
+
+Specifies an OData v4.0 filter statement.
+This parameter controls which objects are returned.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery
 Aliases:
 
@@ -118,10 +215,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
-{{ Fill Top Description }}
+
+The top result count.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: GetQuery
 Aliases:
 
@@ -134,7 +232,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -149,14 +247,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### System.String
+
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
