@@ -89,6 +89,8 @@ Id                                   Description          DisplayName           
 
 This command retrieves the policy for cloud authentication roll-out policy in Microsoft Entra ID.
 
+- `-Id` Parameter specifies the ID of the cloud authentication roll-out policy.
+
 ### Example 3: Retrieves cloud authentication roll-out in Microsoft Entra ID with given Search String
 
 ```powershell
@@ -108,7 +110,7 @@ This command retrieves the policy for cloud authentication roll-out policy in Mi
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraBetaFeatureRolloutPolicy -Filter "DisplayName eq'Feature-Rollout-Policytest'"
+Get-EntraBetaFeatureRolloutPolicy -Filter "DisplayName eq 'Feature-Rollout-Policytest'"
 ```
 
 ```Output
@@ -172,7 +174,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
