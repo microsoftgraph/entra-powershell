@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraGroupOwner
@@ -35,7 +36,9 @@ Get-EntraGroupOwner
 
 ## Description
 
-The Get-EntraGroupOwner cmdlet gets an owner of a group in Microsoft Entra ID.
+The `Get-EntraGroupOwner` cmdlet gets an owner of a group in Microsoft Entra ID. Specify `ObjectId` parameter gets an owner of a group.
+
+In delegated scenarios, the signed-in user must also be assigned a supported Microsoft Entra role or a custom role with the necessary permissions.
 
 ## Examples
 
@@ -46,20 +49,18 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraGroupOwner -ObjectId 'vvvvvvvv-7777-9999-7777-jjjjjjjjjjjj'
 ```
 
-```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {HaydenL@contoso.com}
-preferredLanguage               : en
-mail                            : HaydenL@contoso.com
-securityIdentifier              : B-2-33-4-5555555555-6666666666-7777777-8888888888
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=HaydenL@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
 ```
 
-This example demonstrates how to retrieve the owner of a specific group.  
+This example demonstrates how to retrieve the owner of a specific group.
+
+- `-ObjectId` Parameter specifies the ID of a group.
 
 ### Example 2: Gets all group owners
 
@@ -68,23 +69,18 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraGroupOwner -ObjectId 'zzzzzzzz-6666-8888-9999-pppppppppppp' -All
 ```
 
-```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {BlakeM@contoso.com}
-preferredLanguage               : en
-mail                            : BlakeM@contoso.com
-securityIdentifier              : E-5-66-7-8888888888-9999999999-0000000-1111111111
-identities                      : {System.Collections.Hashtable}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
-department                      :
-jobTitle                        :
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
 ```
 
 This example demonstrates how to retrieve the all owner of a specific group.  
+
+- `-ObjectId` Parameter specifies the ID of a group.
 
 ### Example 3: Gets two group owners
 
@@ -93,31 +89,21 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraGroupOwner -ObjectId 'vvvvvvvv-8888-9999-0000-jjjjjjjjjjjj' -Top 2
 ```
 
-```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {QuinnA@contoso.com}
-preferredLanguage               : en
-mail                            : QuinnA@contoso.com
-securityIdentifier              : D-4-55-6-7777777777-8888888888-9999999-0000000000
-identities                      : {System.Collections.Hashtable}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
-department                      :
-jobTitle                        :
-proxyAddresses                  : {SMTP:QuinnA@contoso.com}
-legalAgeGroupClassification     :
-assignedPlans                   : {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
-id                              : tttttttt-0000-2222-0000-aaaaaaaaaaaa
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
 This example demonstrates how to retrieve the top two owners of a specific group.  
 
+- `-ObjectId` Parameter specifies the ID of a group.
+
 ## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
@@ -131,6 +117,7 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
 ### -ObjectId
 
 Specifies the ID of a group in Microsoft Entra ID.
@@ -165,7 +152,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -181,7 +168,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
