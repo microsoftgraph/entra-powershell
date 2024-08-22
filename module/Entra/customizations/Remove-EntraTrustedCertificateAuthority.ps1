@@ -15,13 +15,13 @@
         $params["Method"] = "POST"
         $certNotFound = $true
         $modifiedCert = $PSBoundParameters["CertificateAuthorityInformation"]
-        $previusCerts = @()
+        $previousCerts = @()
         Get-EntraTrustedCertificateAuthority | ForEach-Object {
             if(($_.TrustedIssuer -eq $modifiedCert.TrustedIssuer) -and ($_.TrustedIssuerSki -eq $modifiedCert.TrustedIssuerSki)){
                 $certNotFound = $false
             }
             else{
-                $previusCerts += $_
+                $previousCerts += $_
             }
         }
         if($certNotFound){
@@ -30,7 +30,7 @@
         $body = @{
             certificateAuthorities = @()
         }
-        $previusCerts | ForEach-Object {
+        $previousCerts | ForEach-Object {
             $isRoot = $false
             if("RootAuthority" -eq $_.AuthorityType){
                 $isRoot = $true

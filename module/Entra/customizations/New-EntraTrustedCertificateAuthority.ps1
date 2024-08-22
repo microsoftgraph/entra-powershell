@@ -14,18 +14,18 @@
         $params["Uri"] = "/v1.0/organization/$tenantId/certificateBasedAuthConfiguration"
         $params["Method"] = "POST"
         $newCert = $PSBoundParameters["CertificateAuthorityInformation"]
-        $previusCerts = @()
+        $previousCerts = @()
         Get-EntraTrustedCertificateAuthority | ForEach-Object {
-            $previusCerts += $_
+            $previousCerts += $_
             if(($_.TrustedIssuer -eq $newCert.TrustedIssuer) -and ($_.TrustedIssuerSki -eq $newCert.TrustedIssuerSki)){
                 Throw [System.Management.Automation.PSArgumentException] "A certificate already exists on the server with associated trustedIssuer and trustedIssuerSki fields."
             }
         }
-        $previusCerts += $newCert
+        $previousCerts += $newCert
         $body = @{
             certificateAuthorities = @()
         }
-        $previusCerts | ForEach-Object {
+        $previousCerts | ForEach-Object {
             $isRoot = $false
             if("RootAuthority" -eq $_.AuthorityType){
                 $isRoot = $true
