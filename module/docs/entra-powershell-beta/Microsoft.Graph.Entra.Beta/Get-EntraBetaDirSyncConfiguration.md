@@ -35,6 +35,8 @@ Get-EntraBetaDirSyncConfiguration
 
 The `Get-EntraBetaDirSyncConfiguration` cmdlet gets the directory synchronization settings.
 
+For delegated scenarios, the user needs to be assigned the Global Administrator role.
+
 ## Examples
 
 ### Example 1: Get directory synchronization settings
