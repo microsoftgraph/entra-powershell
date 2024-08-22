@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraUserManager
@@ -33,7 +34,8 @@ Get-EntraUserManager
 
 ## Description
 
-The Get-EntraUserManager cmdlet gets the manager of a user in Microsoft Entra ID.
+The `Get-EntraUserManager` cmdlet gets the manager of a user in Microsoft Entra ID. Specify
+`ObjectId` parameter to get the specific manager of user.
 
 ## Examples
 
@@ -41,23 +43,18 @@ The Get-EntraUserManager cmdlet gets the manager of a user in Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUserManager -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff'
+Get-EntraUserManager -ObjectId 'miriamg@contoso.com'
 ```
 
-```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {miriamg@contoso.com}
-preferredLanguage               :
-mail                            : MiriamG@contoso.com
-securityIdentifier              : B-2-33-4-5555555555-6666666666-7777777-8888888888
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=MiriamG@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This example demonstrates how to retrieve the manager of a specific user.
+
+- `-ObjectId` Parameter specifies the unique identifier of a user (UserPrincipalName or ObjectId).
 
 ## Parameters
 
@@ -79,7 +76,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
