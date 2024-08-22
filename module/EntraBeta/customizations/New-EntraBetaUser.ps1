@@ -71,10 +71,6 @@
         {
             $params["OnPremisesImmutableId"] = $PSBoundParameters["ImmutableId"]
         }
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $PSBoundParameters["Verbose"]
-        }
         if($null -ne $PSBoundParameters["City"])
         {
             $params["City"] = $PSBoundParameters["City"]
@@ -119,7 +115,7 @@
                 forceChangePasswordNextSignInWithMfa = $TmpValue.EnforceChangePasswordPolicy
                 password = $TmpValue.Password 
             }
-            $params["PasswordProfile"] = $Value
+            $params["passwordProfile"] = $Value
         }
         if($null -ne $PSBoundParameters["UserType"])
         {
@@ -151,58 +147,19 @@
         }
         if($null -ne $PSBoundParameters["TelephoneNumber"])
         {
-            $params["BusinessPhones"] = $PSBoundParameters["TelephoneNumber"]
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $PSBoundParameters["Debug"]
+            $params["BusinessPhones"] = @($PSBoundParameters["TelephoneNumber"])
         }
         if($null -ne $PSBoundParameters["CreationType"])
         {
             $params["CreationType"] = $PSBoundParameters["CreationType"]
         }
-        if($null -ne $PSBoundParameters["WarningVariable"])
-        {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-	    if($null -ne $PSBoundParameters["InformationAction"])
-        {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-        }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        
-        $response = New-MgBetaUser @params -Headers $customHeaders
+        $params = $params | ConvertTo-Json
+        $response = Invoke-GraphRequest -Headers $customHeaders -Uri 'https://graph.microsoft.com/v1.0/users?$select=*' -Method POST -Body $params
+        $response = $response | ConvertTo-Json | ConvertFrom-Json
         $response | ForEach-Object {
             if ($null -ne $_) {
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
@@ -218,8 +175,7 @@
                 
                 $userData = [Microsoft.Graph.PowerShell.Models.MicrosoftGraphUser]::new()
                 $_.PSObject.Properties | ForEach-Object {
-                    $value = $_.Value | ConvertTo-Json | ConvertFrom-Json
-                    $userData | Add-Member -MemberType NoteProperty -Name $_.Name -Value $value -Force
+                    $userData | Add-Member -MemberType NoteProperty -Name $_.Name -Value $_.Value -Force
                 }
             }
         }        
