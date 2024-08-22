@@ -15,8 +15,7 @@
         $baseUri = 'https://graph.microsoft.com/v1.0/users'
         $properties = '$select=Id,AccountEnabled,AgeGroup,OfficeLocation,AssignedLicenses,AssignedPlans,City,CompanyName,ConsentProvidedForMinor,Country,CreationType,Department,DisplayName,GivenName,OnPremisesImmutableId,JobTitle,LegalAgeGroupClassification,Mail,MailNickName,MobilePhone,OnPremisesSecurityIdentifier,OtherMails,PasswordPolicies,PasswordProfile,PostalCode,PreferredLanguage,ProvisionedPlans,OnPremisesProvisioningErrors,ProxyAddresses,RefreshTokensValidFromDateTime,ShowInAddressList,State,StreetAddress,Surname,BusinessPhones,UsageLocation,UserPrincipalName,ExternalUserState,ExternalUserStateChangeDateTime,UserType,OnPremisesLastSyncDateTime,ImAddresses,SecurityIdentifier,OnPremisesUserPrincipalName,ServiceProvisioningErrors,IsResourceAccount,OnPremisesExtensionAttributes,DeletedDateTime,OnPremisesSyncEnabled,EmployeeType,EmployeeHireDate,CreatedDateTime,EmployeeOrgData,preferredDataLocation,Identities,onPremisesSamAccountName,EmployeeId,EmployeeLeaveDateTime,AuthorizationInfo,FaxNumber,OnPremisesDistinguishedName,OnPremisesDomainName,IsLicenseReconciliationNeeded,signInSessionsValidFromDateTime'
         $params["Method"] = "GET"
-        $params["Uri"] = "$baseUri/?$properties"
-        
+        $params["Uri"] = "$baseUri/?$properties"        
         if($null -ne $PSBoundParameters["Property"])
         {
             $selectProperties = $PSBoundParameters["Property"]
@@ -24,7 +23,6 @@
             $properties = "`$select=$($selectProperties)"
             $params["Uri"] = "$baseUri/?$properties"
         }
-
         if($null -ne $PSBoundParameters["Top"])
         {
             $topCount = $PSBoundParameters["Top"]
@@ -34,8 +32,7 @@
             else{
                 $params["Uri"] += "&`$top=$topCount"
             }
-        }
-        
+        }        
         if($null -ne $PSBoundParameters["SearchString"])
         {
             $TmpValue = $PSBoundParameters["SearchString"]
@@ -68,11 +65,11 @@
         Write-Debug("=========================================================================`n")
         
         $response = Invoke-GraphRequest @params -Headers $customHeaders
-        if ($upnPresent -and ($null -eq $response.value -or $response.value.Count -eq 0)){
+        if ($upnPresent -and ($null -eq $response.value -or $response.value.Count -eq 0))
+        {
             Write-Error "Resource '$ObjectId' does not exist or one of its queried reference-property objects are not present.
-
-Status: 404 (NotFound)
-ErrorCode: Request_ResourceNotFound"
+            Status: 404 (NotFound)
+            ErrorCode: Request_ResourceNotFound"
         }
         $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         try {
