@@ -27,7 +27,11 @@ Retrieve a list of applicationTemplate objects.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraApplicationTemplate 
+Get-EntraApplicationTemplate
+ [-Filter <String>]
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -71,6 +75,55 @@ This command gets an application template object for the given ID.
 
 - `-Id` Specify unique identifier of an application template.
 
+### Example 3: Gets top one application template object
+
+```powershell
+Connect-Entra
+Get-EntraApplicationTemplate -Top 1
+```
+
+```Output
+Id                                   Categories                                       Description DisplayName         HomePageUrl                           LogoUrl
+--                                   ----------                                       ----------- -----------         -----------                           -------
+00000007-0000-0000-c000-000000000000 {crm, productivity, collaboration, businessMgmt}             Dynamics CRM Online http://www.microsoft.com/dynamics/crm https://az4950…
+
+```
+
+This example demonstrates how to gets Top one application template object.
+
+### Example 4: Gets all application template object
+
+```powershell
+Connect-Entra
+Get-EntraApplicationTemplate -All
+```
+
+```Output
+Id                                   Categories                                       Description DisplayName         HomePageUrl                           LogoUrl
+--                                   ----------                                       ----------- -----------         -----------                           -------
+00000007-0000-0000-c000-000000000000 {crm, productivity, collaboration, businessMgmt}             Dynamics CRM Online http://www.microsoft.com/dynamics/crm https://az4950…
+00001111-aaaa-2222-bbbb-3333cccc4444 {businessMgmt, erp, finance}                     Xledger True Cloud ERP System. Xledger supports your ambition with three value pilla…
+11112222-bbbb-3333-cccc-4444dddd5555 {businessMgmt}                                   Capture and manage your ESG data from across the organization in an integrated, clou…
+
+```
+
+This example demonstrates how to get all application template object.
+
+### Example 5: Gets application template object With Filter
+
+```powershell
+Connect-Entra
+Get-EntraApplicationTemplate -Filter "DisplayName eq 'Dynamics CRM Online'"
+```
+
+```Output
+Id                                   Categories                                       Description DisplayName         HomePageUrl                           LogoUrl
+--                                   ----------                                       ----------- -----------         -----------                           -------
+00001111-aaaa-2222-bbbb-3333cccc4444 {crm, productivity, collaboration, businessMgmt}             Dynamics CRM Online http://www.microsoft.com/dynamics/crm https://az4950…
+```
+
+This example demonstrates how to retrieve application template by DisplayName.
+
 ## Parameters
 
 ### -Id
@@ -86,6 +139,71 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -All
+
+List all pages.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Filter
+
+Specifies an OData v4.0 filter statement.
+This parameter controls which objects are returned.
+
+```yaml
+Type: System.String
+Parameter Sets: GetQuery
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Top
+
+Specifies the maximum number of records to return.
+
+```yaml
+Type: System.Int32
+Parameter Sets: GetQuery
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned.
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
