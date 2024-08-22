@@ -2,30 +2,6 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 function Reset-EntraBetaStrongAuthenticationMethodByUpn {
-    <#
-    .SYNOPSIS
-        Resets the strong authentication method by using a user principal name.
-    
-    .DESCRIPTION
-        The Reset-EntraBetaStrongAuthenticationMethodByUpn cmdlet resets the strong authentication method by using a user principal name.
-    
-    .PARAMETER UserPrincipalName
-        Specifies the user principal name for which to reset the strong authentication method.
-
-    .PARAMETER TenantId
-        Specifies the unique ID of the tenant on which to perform the operation. The default value is the tenant of the current user. This parameter applies only to partner users.   
-
-    .PARAMETER <CommonParameters>
-        This cmdlet supports the common parameters: Verbose, Debug,
-        ErrorAction, ErrorVariable, WarningAction, WarningVariable,
-        OutBuffer, PipelineVariable, and OutVariable. For more information, see
-        about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
-        
-    .EXAMPLE
-        Reset-EntraBetaStrongAuthenticationMethodByUpn -UserPrincipalName Test_contoso.com#EXT#@M365x99297270.onmicrosoft.com
-
-        Resets the strong authentication method.
-    #>
     [CmdletBinding(DefaultParameterSetName = 'SetAccidentalDeletionThreshold')]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][System.String] $UserPrincipalName,
