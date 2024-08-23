@@ -7,17 +7,27 @@
                                 "ConversionType" : "Name",
                                 "SpecialMapping" : null
                             }
+                        ],
+                        "outputParameters":[
+                            {
+                                "SourceName" : "Id",
+                                "TargetName" : "Name",
+                                "ConversionType" : "Name"
+                            }
                         ]
                     },
 
-                    { "Command" :"Test", "URl" :"https://graph.microsoft.com/v1.0/applications", "Method" : "POST", "Parameters" : [
+                    { "Command" :"New-EntraTest", "URl" :"https://graph.microsoft.com/v1.0/applications", "Method" : "POST", "Parameters" : [
                             {
                                 "SourceName" : "ObjectId",
                                 "TargetName" : "ApplicationId",
-                                "ConversionType" : "Name",
-                                "SpecialMapping" : null
+                                "ConversionType" : "Name",                                
+                                "DataType": "string",
+                                "IsMandatory": true,
+                                "SpecialMapping" :null
                             }
                         ]
+
                     }
           
                 ]

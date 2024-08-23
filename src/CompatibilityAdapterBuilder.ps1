@@ -511,6 +511,9 @@ public $($object.GetType().Name)()
 
     # Creates the ModuleMap object, this is mainly used by other methods but can be called when debugging or finding missing cmdlets
     hidden [MappedCmdCollection] Map(){
+
+        Write-Host($this.NewPrefix)
+
         $this.ModuleMap = [MappedCmdCollection]::new($this.ModuleName)
         $originalCmdlets = $this.GetModuleCommands($this.SourceModuleName, $this.SourceModulePrefixs, $true)
         $targetCmdlets = $this.GetModuleCommands($this.DestinationModuleName, $this.DestinationPrefixs, $true)
@@ -532,7 +535,11 @@ public $($object.GetType().Name)()
             $newFunction = $this.GetNewCmdTranslation($cmd, $originalCmdlet, $targetCmdlets, $this.NewPrefix)
             if($newFunction){
                 $newCmdletData += $newFunction
-                $cmdletsToExport += $newFunction.Generate                
+                $cmdletsToExport += $newFunction.Generate    
+                if($newFunction.Generate -eq "New-EntraDomain"){
+                Write-Host("newCmdletData  " + $newFunction)
+                Write-Host("cmdletsToExport  " + $newFunction.Generate)
+                }
             }
             else{  
                 $missingCmdletsToExport += $cmd                          
@@ -540,16 +547,52 @@ public $($object.GetType().Name)()
             } 
         }
 
+        $missingCmdFromURLMapping = $this.GetMissingCmdFromURLMapping($newCmdletData,$this.NewPrefix)
+
+        foreach($function in $missingCmdFromURLMapping){
+            $newCmdletData += $function
+        }
+
         foreach($function in $this.HelperCmdletsToExport.GetEnumerator()){
             $cmdletsToExport += $function.Key
         }
-        
+        $this.GetMissingCmdFromURLMapping($newCmdletData,$this.NewPrefix)
         $this.ModuleMap.CommandsList = $cmdletsToExport
         $this.ModuleMap.MissingCommandsList = $missingCmdletsToExport
         $this.ModuleMap.Commands = $this.NewModuleMap($newCmdletData)
 
         return $this.ModuleMap
     }    
+
+    hidden [array] GetMissingCmdFromURLMapping([array] $newCmdletData, $prefix){
+        $missingCMdFromULRMapping = @()
+
+        foreach ($item in $this.ModuleUrlsMapping) {
+            if (-not $newCmdletData.Old.Contains($item.Command)) {
+               $cmdDetails= $this.GetParsedCmd($item.Command,$prefix)
+
+                $cmd += [PSCustomObject]@{
+                    Old = $item.Command
+                    New = $item.Command
+                    Generate = '{0}-{1}{2}' -f $cmdDetails.Verb, $Prefix, $cmdDetails.Noun
+                    Noun = $cmdDetails.Noun
+                    Verb = $cmdDetails.Verb
+                    Parameters = $null
+                    DefaultParameterSet = ""
+                    CustomScript = $null
+                }
+
+                $cmd.Parameters = $this.GetCmdletParameters($cmd)
+            $defaulParam = $this.GetDefaultParameterSet($item.Command)
+            $cmd.DefaultParameterSet = "DefaultParameterSetName = '$defaulParam'"
+
+            $missingCMdFromULRMapping +=$cmd
+            }
+        }
+
+        return $missingCMdFromULRMapping
+    }
+    
 
     hidden [scriptblock] GetUnsupportedCommand(){
         $unsupported = @"
@@ -1240,12 +1283,13 @@ $($output)
 
         $paramsList = @{}
         foreach ($paramKey in $sourceCmd.Parameters.Keys) {
-            $param = $sourceCmd.Parameters[$paramKey]
+            $param = $sourceCmd.Parameters[$paramKey]            
             $paramObj = [DataMap]::New($param.Name)
             
             if($this.CmdCustomizations.ContainsKey($Cmdlet.Old)) {
                 $custom = $this.CmdCustomizations[$Cmdlet.Old]
                 if(($null -ne $custom.Parameters) -and ($custom.Parameters.contains($param.Name))){
+                    Write-Host($custom.Parameters[$param.Name])
                     $paramsList.Add($param.Name, $custom.Parameters[$param.Name])
                     continue
                 }
