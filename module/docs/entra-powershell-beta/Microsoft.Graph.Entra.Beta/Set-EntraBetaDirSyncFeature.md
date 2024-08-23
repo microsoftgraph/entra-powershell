@@ -1,4 +1,15 @@
 ---
+title: Set-EntraBetaDirSyncFeature
+description: This article provides details on the Set-EntraBetaDirSyncFeature command.
+
+
+ms.topic: reference
+ms.date: 08/19/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaDirSyncFeature
@@ -9,58 +20,100 @@ schema: 2.0.0
 # Set-EntraBetaDirSyncFeature
 
 ## Synopsis
+
 Used to set identity synchronization features for a tenant.
 
 ## Syntax
 
-```
-Set-EntraBetaDirSyncFeature -Feature <String> -Enabled <Boolean> [-TenantId <Guid>] [-Force]
+```powershell
+Set-EntraBetaDirSyncFeature 
+ -Feature <String> 
+ -Enabled <Boolean> 
+ [-TenantId <String>] 
+ [-Force] 
  [<CommonParameters>]
 ```
 
 ## Description
-The Set-EntraBetaDirSyncFeature cmdlet is used to turn identity synchronization features on or off for 
-a tenant.
-Features that can be used with this cmdlet include:
 
-    SynchronizeUpnForManagedUsers- allows for the synchronization of UserPrincipalName updates from on-premises for managed (non-federated) users that have been assigned a license.
-These updates will be blocked if this feature is not enabled.
-Once this feature is enabled it cannot be disabled.
+The `Set-EntraBetaDirSyncFeature` cmdlet sets identity synchronization features for a tenant.  
 
-    EnableSoftMatchOnUpn- Soft Match is the process used to link an object being synced from on-premises for the first time with one that already exists in the cloud.
-When this feature is enabled Soft Match will first be attempted using the standard logic, based on primary SMTP address.
-If a match is not found based on primary SMTP, then a match will be attempted based on UserPrincipalName.
-Once this feature is enabled it cannot be disabled.
+You can use the following synchronization features with this cmdlet:  
 
-    DuplicateUPNResiliency (preview)- normally if a user was attempted to be provisioned with a non-unique UserPrincipalName, the user would fail to be created/updated due to the uniqueness violation.
-When this feature is enabled the conflicting UPN value will be â€œquarantinedâ€, a temporary UPN will be generated, and the user will be provisioned with that temporary UPN.
-This UPN will have the format of "\<UserName\>+\<Random Integer\>@\<Tenant Initial Domain\>.onmicrosoft.com".
+- **EnableSoftMatchOnUpn**: Soft match is the process used to link an object being synced from on-premises for the first time with one that already exists in the cloud. When this feature is enabled, soft match is attempted using the standard logic, based on the primary SMTP address. If a match isn't found based on primary SMTP, then a match is attempted based on UserPrincipalName. Once this feature is enabled, it can't be disabled.
+- **PasswordSync**: Used to indicate on-premise password synchronization.
+- **SynchronizeUpnForManagedUsers**: Allows for the synchronization of UserPrincipalName updates from on-premises for managed (nonfederated) users that are assigned a license. These updates are blocked if this feature isn't enabled. Once this feature is enabled, it can't be disabled.
+- **BlockSoftMatch**: When this feature is enabled, it blocks the soft match feature. Customers are encouraged to enable this feature and keep it enabled until soft matching is required again for their tenancy. This flag should be enabled again after any soft matching is completed and is no longer needed.
+- **BlockCloudObjectTakeoverThroughHardMatch**: Used to block cloud object takeover via source anchor hard match.
 
-    DuplicateProxyAddressResiliency (preview)- normally if an object was attempted to be provisioned with a non-unique ProxyAddress, the object would fail to be created/updated due to the uniqueness violation.
-When this feature is enabled the conflicting ProxyAddress value will be â€œquarantinedâ€ and the object will be provisioned without that specific ProxyAddress value.
+Enabling some of these features, such as EnableSoftMatchOnUpn and SynchronizationUpnForManagedUsers, is a permanent operation.
+You can't disable these features once they're enabled.
 
 ## Examples
 
-### Example 1
+### Example 1: Enable a feature for the tenant
+
+```powershell
+Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
+$params = @{
+    Feature = 'EnableSoftMatchOnUpn'
+    Enable = $True
+    Force = $true
+}
+
+Set-EntraBetaDirSyncFeature @params
 ```
---------------------------  Example 1  --------------------------
-    
-    Set-EntraBetaDirSyncFeature -Feature EnableSoftMatchOnUpn -Enable $true
-    
-    Description
-    
-    -----------
-    
-    Enables the SoftMatchOnUpn feature for the tenant.
+
+This command enables the SoftMatchOnUpn feature for the tenant.
+
+- `-Feature` specifies the directory synchronization feature to turn on or off.
+- `-Enable` specifies whether the specified features are turned on for the company.
+- `-Force` Forces the command to run without asking for user confirmation.
+
+### Example 2: Block Soft Matching for the tenant
+
+```powershell
+Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
+$params = @{
+    Feature = 'BlockSoftMatch'
+    Enable = $True
+}
+
+Set-EntraBetaDirSyncFeature @params
 ```
+
+This command enables the BlockSoftMatch feature for the tenant - effectively blocking the Soft Matching feature in the tenant.
+
+- `-Feature` specifies the directory synchronization feature to turn on or off.
+- `-Enable` specifies whether the specified features are turned on for the company.
+
+### Example 3: Block Cloud object takeover through Hard Matching for the tenant
+
+```powershell
+Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
+$params = @{
+    Feature = 'BlockCloudObjectTakeoverThroughHardMatch'
+    Enable = $True
+    TenantId = 'bbbbcccc-1111-dddd-2222-eeee3333ffff'
+}
+
+Set-EntraBetaDirSyncFeature @params
+```
+
+This command enables the BlockCloudObjectTakeoverThroughHardMatch feature for the tenant - effectively blocking the Hard Match object takeover.
+
+- `-Feature` specifies the directory synchronization feature to turn on or off.
+- `-Enable` specifies whether the specified features are turned on for the company.
+- `-TenantId` Specifies the unique ID of the tenant.
 
 ## Parameters
 
 ### -Feature
+
 The DirSync feature to turn on or off.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -72,10 +125,11 @@ Accept wildcard characters: False
 ```
 
 ### -Enabled
-{{ Fill Enabled Description }}
+
+Indicates whether the specified features are turned on for the company.
 
 ```yaml
-Type: Boolean
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -87,12 +141,11 @@ Accept wildcard characters: False
 ```
 
 ### -TenantId
-The unique ID of the tenant to perform the operation on.
-If this is not provided then the value will default to the tenant of the current user.
-This parameter is only applicable to partner users.
+
+The unique ID of the tenant on which to perform the operation. If not provided, the operation defaults to the tenant of the current user. This parameter is applicable only to partner users.
 
 ```yaml
-Type: Guid
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -104,10 +157,11 @@ Accept wildcard characters: False
 ```
 
 ### -Force
-{{ Fill Force Description }}
+
+Forces the command to run without asking for user confirmation.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -119,7 +173,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -128,3 +183,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## Notes
 
 ## Related Links
+
+[Get-EntraBetaDirSyncFeature](Get-EntraBetaDirSyncFeature.md)

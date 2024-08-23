@@ -3,32 +3,6 @@
 # ------------------------------------------------------------------------------
 
 function Get-EntraBetaAccountSku {
-    <#
-    .SYNOPSIS
-        Retrieves all the SKUs for a company.
-    
-    .DESCRIPTION
-        The Get-EntraBetaAccountSku will return all the SKUs that the company owns.
-    
-    .PARAMETER TenantId
-        The unique ID of the tenant to perform the operation on. If this is not provided then the value will default to
-        the tenant of the current user. This parameter is only applicable to partner users.
-
-    .PARAMETER <CommonParameters>
-        This cmdlet supports the common parameters: Verbose, Debug,
-        ErrorAction, ErrorVariable, WarningAction, WarningVariable,
-        OutBuffer, PipelineVariable, and OutVariable. For more information, see
-        about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
-        
-    .EXAMPLE
-        Get-EntraBetaAccountSku
-        
-        Description
-        
-        -----------
-        
-        This command returns a list of SKUs.
-    #>
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Parameter(ParameterSetName = "GetById", ValueFromPipelineByPropertyName = $true)][System.Guid] $TenantId
