@@ -9,7 +9,7 @@ BeforeAll {
         return @(
             [PSCustomObject]@{
               "DisplayName"     = "demo"
-              "Id"              = "056b2531-005e-4f3e-be78-01a71ea30a04"
+              "Id"              = "bbbbbbbb-1111-2222-3333-cccccccccccc"
               "MailEnabled"     = "False"
               "Description"     = "test"
               "MailNickname"    = "demoNickname"
@@ -25,9 +25,9 @@ BeforeAll {
 Describe "Get-EntraGroup" {
     Context "Test for Get-EntraGroup" {
         It "Should return specific group" {
-            $result = Get-EntraGroup -ObjectId "056b2531-005e-4f3e-be78-01a71ea30a04"
+            $result = Get-EntraGroup -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be '056b2531-005e-4f3e-be78-01a71ea30a04'
+            $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 
             Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -35,13 +35,13 @@ Describe "Get-EntraGroup" {
             { Get-EntraGroup -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
         It "Should return all group" {
-            $result = Get-EntraGroup -All $true
+            $result = Get-EntraGroup -All
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when All is empty" {
-            { Get-EntraGroup -All } | Should -Throw "Missing an argument for parameter 'All'*"
+        It "Should fail when All has an argument" {
+            { Get-EntraGroup -All $true} | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
         }           
         It "Should return specific group by searchstring" {
             $result = Get-EntraGroup -SearchString 'demo'
@@ -64,13 +64,13 @@ Describe "Get-EntraGroup" {
             Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Graph.Entra -Times 1
         }  
         It "Result should Contain ObjectId" {
-            $result = Get-EntraGroup -ObjectId "056b2531-005e-4f3e-be78-01a71ea30a04"
-            $result.ObjectId | should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
+            $result = Get-EntraGroup -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         } 
         It "Should contain GroupId in parameters when passed ObjectId to it" {
-            $result = Get-EntraGroup -ObjectId "056b2531-005e-4f3e-be78-01a71ea30a04"
+            $result = Get-EntraGroup -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
-            $params.GroupId | Should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
+            $params.GroupId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Should contain Filter in parameters when passed SearchString to it" {
             $result = Get-EntraGroup -SearchString 'demo'
@@ -82,6 +82,19 @@ Describe "Get-EntraGroup" {
             $result = Get-EntraGroup -SearchString 'demo'
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }    
+        } 
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraGroup -SearchString 'demo' -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }   
     }
 }
