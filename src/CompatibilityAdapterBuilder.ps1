@@ -47,7 +47,7 @@ class CompatibilityAdapterBuilder {
     hidden [string] $BasePath = $null
     hidden [string] $LoadMessage
     hidden [CommandUrlMap[]] $ModuleUrlsMapping = @()
-
+#hidden[array] $missingCmdFromURLMap=$null
 
     # Constructor that changes the output folder, load all the Required Modules and creates the output folder.
     CompatibilityAdapterBuilder() {  
@@ -98,8 +98,9 @@ class CompatibilityAdapterBuilder {
                 # $paramObj.ConversionType = $param.ConversionType
                 # $paramObj.SpecialMapping = $param.SpecialMapping
                 # $paramArray += $paramObj
-                
-                $paramArray += [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping))
+ 
+                $paramArray += [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping),
+                                            $param.ParameterSetName, $param.Mandatory, $param.ValueFromPipeline, $param.ValueFromPipelineByPropertyName, $param.DataType)
             }
             
             $this.ModuleUrlsMapping += [CommandUrlMap]::New($cmd.Command, $cmd.URL, $cmd.Method, $paramArray)
@@ -244,7 +245,13 @@ class CompatibilityAdapterBuilder {
 
         $psm1FileContent += $this.GetUnsupportedCommand()
 
-        $psm1FileContent += $this.GetAlisesFunction()        
+        $psm1FileContent += $this.GetAlisesFunction()    
+
+        # foreach($function in $this.missingCmdFromURLMap.GetEnumerator()){
+        #     $psm1FileContent += $this.NewFunctionURLMap11($function,$this.ModuleUrlsMapping)
+        # }
+
+        
         foreach($function in $this.HelperCmdletsToExport.GetEnumerator()){
             $psm1FileContent += $function.Value
         }
@@ -535,11 +542,7 @@ public $($object.GetType().Name)()
             $newFunction = $this.GetNewCmdTranslation($cmd, $originalCmdlet, $targetCmdlets, $this.NewPrefix)
             if($newFunction){
                 $newCmdletData += $newFunction
-                $cmdletsToExport += $newFunction.Generate    
-                if($newFunction.Generate -eq "New-EntraDomain"){
-                Write-Host("newCmdletData  " + $newFunction)
-                Write-Host("cmdletsToExport  " + $newFunction.Generate)
-                }
+                $cmdletsToExport += $newFunction.Generate                    
             }
             else{  
                 $missingCmdletsToExport += $cmd                          
@@ -547,16 +550,22 @@ public $($object.GetType().Name)()
             } 
         }
 
-        $missingCmdFromURLMapping = $this.GetMissingCmdFromURLMapping($newCmdletData,$this.NewPrefix)
+        $missingCmdFromURLMapping = $this.GetNewCmdFromURLMapping($newCmdletData,$this.NewPrefix)
+
+        # foreach($function in $missingCmdFromURLMapping){
+        #     $this.missingCmdFromURLMap.Add( $function)
+        #     $cmdletsToExport += $function.Generate
+        # }
 
         foreach($function in $missingCmdFromURLMapping){
-            $newCmdletData += $function
+            $newCmdletData+=$function
+            $cmdletsToExport += $function.Generate
         }
 
         foreach($function in $this.HelperCmdletsToExport.GetEnumerator()){
             $cmdletsToExport += $function.Key
         }
-        $this.GetMissingCmdFromURLMapping($newCmdletData,$this.NewPrefix)
+        $this.GetNewCmdFromURLMapping($newCmdletData,$this.NewPrefix)
         $this.ModuleMap.CommandsList = $cmdletsToExport
         $this.ModuleMap.MissingCommandsList = $missingCmdletsToExport
         $this.ModuleMap.Commands = $this.NewModuleMap($newCmdletData)
@@ -564,7 +573,7 @@ public $($object.GetType().Name)()
         return $this.ModuleMap
     }    
 
-    hidden [array] GetMissingCmdFromURLMapping([array] $newCmdletData, $prefix){
+    hidden [array] GetNewCmdFromURLMapping([array] $newCmdletData, $prefix){
         $missingCMdFromULRMapping = @()
 
         foreach ($item in $this.ModuleUrlsMapping) {
@@ -580,11 +589,8 @@ public $($object.GetType().Name)()
                     Parameters = $null
                     DefaultParameterSet = ""
                     CustomScript = $null
+                    type="new"
                 }
-
-                $cmd.Parameters = $this.GetCmdletParameters($cmd)
-            $defaulParam = $this.GetDefaultParameterSet($item.Command)
-            $cmd.DefaultParameterSet = "DefaultParameterSetName = '$defaulParam'"
 
             $missingCMdFromULRMapping +=$cmd
             }
@@ -655,7 +661,11 @@ Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList 
         
         foreach($Command in $Commands){
             Write-Host("old $($Command.Old)")  
-            if($this.ModuleUrlsMapping | Where-Object { $_.Command -eq $Command.Old }) {
+            if ($Command.type -eq "new" ) {
+                $URLMapping = $this.ModuleUrlsMapping | Where-Object { $_.command -eq $Command.Old }
+                $translations += $this.NewFunctionURLMap($Command, $URLMapping)
+            }
+            elseif($this.ModuleUrlsMapping | Where-Object { $_.Command -eq $Command.Old }) {
                 $URLMapping = $this.ModuleUrlsMapping | Where-Object { $_.command -eq $Command.Old }
                 $translations += $this.NewFunctionURLMap($Command, $URLMapping)
             }
@@ -691,11 +701,25 @@ $($Command.CustomScript)
 
     hidden [CommandTranslation] NewFunctionURLMap([PSCustomObject] $Command, [CommandUrlMap] $URLMapping ){
         Write-Host "Creating new function for $($Command.Generate) with graph URL"
-        $parameterDefinitions = $this.GetParametersDefinitions($Command)
-        $ParamterTransformations = $this.GetParametersTransformationsFromUrlMapping($Command,$URLMapping)
+        $parameterDefinitions ="";
+        $ParamterTransformations="";
+        if($Command.type -eq "new"){
+            $parameterDefinitions =$this.GetParametersDefinitionsForNewURLCmd($URLMapping)
+            write-host("parameterDefinitions  " +$parameterDefinitions)
+
+            $ParamterTransformations = $this.GetParametersTransformationsFromUrlMappingNewURL($URLMapping)
+            write-host("ParamterTransformations  " +$ParamterTransformations)
+        }else {
+            $parameterDefinitions = $this.GetParametersDefinitions($Command)
+            $ParamterTransformations = $this.GetParametersTransformationsFromUrlMapping($Command,$URLMapping)
+        }
+
         #$ParamterTransformations = $this.GetParametersTransformations($Command)
         $OutputTransformations = $this.GetOutputTransformations($Command)
-        $keyId = $this.GetKeyIdPair($Command)
+        $keyId=''
+        if($Command.type -ne "new"){
+            $keyId = $this.GetKeyIdPair($Command)
+        }
         $customHeadersCommandName = "New-EntraCustomHeaders"
         $URLCommand = $this.GetURLCommand($URLMapping)
 
@@ -781,6 +805,24 @@ $OutputTransformations
         return [CommandTranslation]::New($Command.Generate,$Command.Old,$codeBlock)
     }
 
+    hidden [string] GetParametersDefinitionsForNewURLCmd([PSCustomObject] $Command) {
+        $commonParameterNames = @("ProgressAction","Verbose", "Debug","ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable","WhatIf","Confirm")          
+        
+        $paramsList = @()
+        foreach ($param in $Command.Parameters) {
+            if($commonParameterNames.Contains($param.Name)) {
+                continue
+            }
+            $paramBlock = @"
+    $($this.GetParameterAttributesNeweURL($Param))[$($param.DataType)] `$$($param.Name)
+"@
+            $paramsList += $paramBlock
+        }
+        
+        return $paramsList -Join ",`n"
+    }
+
+
     hidden [string] GetParametersDefinitions([PSCustomObject] $Command) {
         $commonParameterNames = @("ProgressAction","Verbose", "Debug","ErrorAction", "ErrorVariable", "WarningAction", "WarningVariable", "OutBuffer", "PipelineVariable", "OutVariable", "InformationAction", "InformationVariable","WhatIf","Confirm")  
         $ignorePropertyParameter = @("Get-EntraBetaApplicationPolicy", "Get-EntraBetaApplicationSignInSummary","Get-EntraBetaMSPrivilegedRoleAssignment","Get-EntraBetaMSTrustFrameworkPolicy","Get-EntraBetaPolicy","Get-EntraBetaPolicyAppliedObject","Get-EntraBetaServicePrincipalPolicy","Get-EntraApplicationLogo","Get-EntraBetaApplicationLogo","Get-EntraApplicationKeyCredential","Get-EntraBetaApplicationKeyCredential","Get-EntraBetaServicePrincipalKeyCredential","Get-EntraBetaServicePrincipalPasswordCredential","Get-EntraServicePrincipalKeyCredential","Get-EntraServicePrincipalPasswordCredential")
@@ -836,6 +878,51 @@ $OutputTransformations
         return $propertyParamBlock
     }
 
+    hidden [string] GetParameterAttributesNeweURL($param){
+        $attributesString = ""
+
+        
+            $arrayAttrib = @()
+            
+            try {
+                if($param.ParameterSetName -ne "__AllParameterSets"){
+                    $arrayAttrib += "ParameterSetName = `"$($param.ParameterSetName)`""
+                }
+            }
+            catch {}                
+            
+           try {
+                if($param.Mandatory){
+                    $arrayAttrib += "Mandatory = `$true"
+                }
+           }
+           catch {}
+                
+           
+           try {
+                if($param.ValueFromPipeline){
+                    $arrayAttrib += "ValueFromPipeline = `$true"
+                }
+           }
+           catch {}
+                
+            try {
+                if($param.ValueFromPipelineByPropertyName){
+                    $arrayAttrib += "ValueFromPipelineByPropertyName = `$true"
+                }
+            }
+            catch {}
+           
+            $strAttrib = $arrayAttrib -Join ', '
+
+            if($strAttrib.Length -gt 0){
+                $attributesString += "[Parameter($strAttrib)]`n    "
+            }
+        
+
+        return $attributesString
+    }
+
     hidden [string] GetParameterAttributes($param){
         $attributesString = ""
 
@@ -880,6 +967,15 @@ $OutputTransformations
 
         return $attributesString
     }
+
+    hidden [string] GetParametersTransformationsFromUrlMappingNewURL([CommandUrlMap] $URLMapping) {
+       $paramsList = ""
+        foreach ($param in $URLMapping.Parameters){
+            $paramsList += $this.GetCustomParameterTransformation($param.Name)
+        }
+        return $paramsList
+    }
+    
 
     hidden [string] GetParametersTransformationsFromUrlMapping([PSCustomObject] $Command,[CommandUrlMap] $URLMapping) {
         $paramsList = ""
@@ -1252,6 +1348,7 @@ $($output)
                 Parameters = $null
                 DefaultParameterSet = ""
                 CustomScript = $null
+                type=""
             }
             if('' -eq $targetCmd){
                 $cmd.CustomScript = $this.CmdCustomizations[$SourceCmdName].CustomScript

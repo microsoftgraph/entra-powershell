@@ -20,6 +20,12 @@ class DataMap {
     [TransformationTypes] $ConversionType = 1
     [scriptblock] $SpecialMapping = $null
     [bool] $NameChanged = $false
+    [string] $ParameterSetName
+    [bool] $Mandatory
+    [bool] $ValueFromPipeline
+    [bool] $ValueFromPipelineByPropertyName
+    [string] $DataType
+
 
     DataMap(){        
     }
@@ -34,6 +40,22 @@ class DataMap {
         $this.TargetName = $TargetName
         $this.ConversionType = 2    
         $this.NameChanged = $true
+    }
+
+    DataMap($Name, $TargetName = $null, $ConversionType = 1, $SpecialMapping = $null,
+     $ParameterSetName=$null, $Mandatory=$false,$ValueFromPipeline=$false,$ValueFromPipelineByPropertyName=$false, $DataType = $null){
+        $this.Name = $Name
+        $this.TargetName = $TargetName
+        $this.ConversionType = $ConversionType    
+        $this.SpecialMapping = $SpecialMapping
+        $this.ParameterSetName  = $ParameterSetName
+        $this.Mandatory = $Mandatory
+        $this.ValueFromPipeline=$ValueFromPipeline
+        $this.ValueFromPipelineByPropertyName =$ValueFromPipelineByPropertyName
+        $this.DataType =$DataType
+        if($Name -ne $TargetName){
+            $this.NameChanged = $true
+        }
     }
 
     DataMap($Name, $TargetName = $null, $ConversionType = 1, $SpecialMapping = $null){

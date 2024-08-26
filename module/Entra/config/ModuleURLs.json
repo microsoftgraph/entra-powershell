@@ -1,11 +1,16 @@
 {
       "commands" : [
-                    { "Command" :"New-AzureADDomain", "URl" :"https://graph.microsoft.com/v1.0/domains", "Method" : "POST", "Parameters" : [
+                    { "Command" :"New-AzureADDomain", "URl" :"https://graph.microsoft.com/v1.0/domains1", "Method" : "POST", "Parameters" : [
                             {
                                 "SourceName" : "Name",
                                 "TargetName" : "Id",
                                 "ConversionType" : "Name",
-                                "SpecialMapping" : null
+                                "SpecialMapping" : null,
+                                "ParameterSetName":null,
+                                "Mandatory": false,
+                                "ValueFromPipeline":false,
+                                "ValueFromPipelineByPropertyName":false,                                
+                                "DataType": null     
                             }
                         ],
                         "outputParameters":[
@@ -17,15 +22,96 @@
                         ]
                     },
 
-                    { "Command" :"New-EntraTest", "URl" :"https://graph.microsoft.com/v1.0/applications", "Method" : "POST", "Parameters" : [
+                    { "Command" :"New-EntraGroupURLTest", "URl" :"https://graph.microsoft.com/v1.0/groups", "Method" : "POST", "Parameters" : [
                             {
-                                "SourceName" : "ObjectId",
-                                "TargetName" : "ApplicationId",
-                                "ConversionType" : "Name",                                
-                                "DataType": "string",
-                                "IsMandatory": true,
-                                "SpecialMapping" :null
+                                "SourceName" : "GroupTypes",
+                                "TargetName" : null,
+                                "ConversionType" : "None",  
+                                "SpecialMapping" :null,      
+                                "ParameterSetName":"InvokeByDynamicParameters",
+                                "Mandatory": false,
+                                "ValueFromPipeline":false,
+                                "ValueFromPipelineByPropertyName":false,                                
+                                "DataType": "System.Collections.Generic.List`1[System.String]"                                
+                            },
+                            {
+                                "SourceName" : "Description",
+                                "TargetName" : null,
+                                "ConversionType" : "None",  
+                                "SpecialMapping" :null,      
+                                "ParameterSetName":"InvokeByDynamicParameters",
+                                "Mandatory": false,
+                                "ValueFromPipeline":false,
+                                "ValueFromPipelineByPropertyName":false,                                
+                                "DataType": "System.String"                                
+                            },
+                            {
+                                "SourceName" : "DisplayName",
+                                "TargetName" : null,
+                                "ConversionType" : "None",  
+                                "SpecialMapping" :null,      
+                                "ParameterSetName":"InvokeByDynamicParameters",
+                                "Mandatory": true,
+                                "ValueFromPipeline":false,
+                                "ValueFromPipelineByPropertyName":false,                                
+                                "DataType": "System.String"                                
+                            },
+                            {
+                                "SourceName" : "IsAssignableToRole",
+                                "TargetName" : null,
+                                "ConversionType" : "None",  
+                                "SpecialMapping" :null,      
+                                "ParameterSetName":"InvokeByDynamicParameters",
+                                "Mandatory": false,
+                                "ValueFromPipeline":false,
+                                "ValueFromPipelineByPropertyName":false,                                
+                                "DataType": "System.Nullable`1[System.Boolean]"                                
+                            },
+                            {
+                                "SourceName" : "SecurityEnabled",
+                                "TargetName" : null,
+                                "ConversionType" : "None",  
+                                "SpecialMapping" :null,      
+                                "ParameterSetName":"InvokeByDynamicParameters",
+                                "Mandatory": true,
+                                "ValueFromPipeline":false,
+                                "ValueFromPipelineByPropertyName":false,                                
+                                "DataType": "System.Nullable`1[System.Boolean]"                                
+                            },
+                            {
+                                "SourceName" : "Visibility",
+                                "TargetName" : null,
+                                "ConversionType" : "None",  
+                                "SpecialMapping" :null,      
+                                "ParameterSetName":"InvokeByDynamicParameters",
+                                "Mandatory": false,
+                                "ValueFromPipeline":false,
+                                "ValueFromPipelineByPropertyName":false,                                
+                                "DataType": "System.String"                                
+                            },
+                            {
+                                "SourceName" : "MailEnabled",
+                                "TargetName" : null,
+                                "ConversionType" : "None",  
+                                "SpecialMapping" :null,      
+                                "ParameterSetName":"InvokeByDynamicParameters",
+                                "Mandatory": true,
+                                "ValueFromPipeline":false,
+                                "ValueFromPipelineByPropertyName":false,                                
+                                "DataType": "System.Nullable`1[System.Boolean]"                                
+                            },
+                            {
+                                "SourceName" : "MailNickname",
+                                "TargetName" : null,
+                                "ConversionType" : "None",  
+                                "SpecialMapping" :null,      
+                                "ParameterSetName":"InvokeByDynamicParameters",
+                                "Mandatory": true,
+                                "ValueFromPipeline":false,
+                                "ValueFromPipelineByPropertyName":false,                                
+                                "DataType": "System.String"                                
                             }
+                            
                         ]
 
                     }
