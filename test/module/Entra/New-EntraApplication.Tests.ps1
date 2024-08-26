@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         Import-Module Microsoft.Graph.Entra    
@@ -8,21 +12,23 @@ BeforeAll {
         # Write-Host "Mocking New-MgApplication with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
-              "AppId"                        = "5f783237-3457-45d8-93e7-a0edb1cfbfd1"
-              "DeletedDateTime"              = $null
-              "Id"                           = "111cc9b5-fce9-485e-9566-c68debafac5f"
-              "DisplayName"                  = "Mock-App"
-              "Info"                         = @{LogoUrl=""; MarketingUrl=""; PrivacyStatementUrl=""; SupportUrl=""; TermsOfServiceUrl=""}
-              "IsDeviceOnlyAuthSupported"    = $True
-              "IsFallbackPublicClient"       = $true
-              "KeyCredentials"               = @{CustomKeyIdentifier = @(211, 174, 247);DisplayName =""; Key="";KeyId="d903c7a3-75ea-4772-8935-5c0cf82068a7";Type="Symmetric";Usage="Sign"}
-              "OptionalClaims"               = @{AccessToken=""; IdToken=""; Saml2Token=""}
-              "ParentalControlSettings"      = @{CountriesBlockedForMinors=$null; LegalAgeGroupRule="Allow"}
-              "PasswordCredentials"          = @{}
-              "PublicClient"                 = @{RedirectUris=$null}
-              "PublisherDomain"              = "M365x99297270.onmicrosoft.com"
-              "SignInAudience"               = "AzureADandPersonalMicrosoftAccount"
-              "Web"                          = @{HomePageUrl="https://localhost/demoapp"; ImplicitGrantSettings=""; LogoutUrl="";}
+                "AppId"                     = "aaaaaaaa-1111-2222-3333-cccccccccccc"
+                "DeletedDateTime"           = $null
+                "Id"                        = "bbbbbbbb-1111-2222-3333-cccccccccccc"
+                "DisplayName"               = "Mock-App"
+                "Info"                      = @{LogoUrl = ""; MarketingUrl = ""; PrivacyStatementUrl = ""; SupportUrl = ""; TermsOfServiceUrl = "" }
+                "IsDeviceOnlyAuthSupported" = $True
+                "IsFallbackPublicClient"    = $true
+                "KeyCredentials"            = @{CustomKeyIdentifier = @(211, 174, 247); DisplayName = ""; Key = ""; KeyId = "d903c7a3-75ea-4772-8935-5c0cf82068a7"; Type = "Symmetric"; Usage = "Sign" }
+                "OptionalClaims"            = @{AccessToken = ""; IdToken = ""; Saml2Token = "" }
+                "ParentalControlSettings"   = @{CountriesBlockedForMinors = $null; LegalAgeGroupRule = "Allow" }
+                "PasswordCredentials"       = @{}
+                "PublicClient"              = @{RedirectUris = $null }
+                "PublisherDomain"           = "aaaabbbbbccccc.onmicrosoft.com"
+                "SignInAudience"            = "AzureADandPersonalMicrosoftAccount"
+                "Web"                       = @{HomePageUrl = "https://localhost/demoapp"; ImplicitGrantSettings = ""; LogoutUrl = ""; }
+                "Parameters"                = $args
+                "AdditionalProperties" = @{CountriesBlockedForMinors = $null; LegalAgeGroupRule = "Allow" }
             }
         )
     }
@@ -46,13 +52,26 @@ Describe "New-EntraApplication"{
             { New-EntraApplication -DisplayName "" } | Should -Throw "Cannot bind argument to parameter 'DisplayName' because it is an empty string."
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName New-MgApplication -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraApplication"
-
             $result = New-EntraApplication -DisplayName "Mock-App"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $result | Should -Not -BeNullOrEmpty
+            Should -Invoke -CommandName New-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { New-EntraApplication -DisplayName "Mock-App" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }   
     }
 }
