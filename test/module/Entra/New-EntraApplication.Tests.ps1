@@ -9,26 +9,24 @@ BeforeAll {
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
     
     $scriptblock = {
-        # Write-Host "Mocking New-MgApplication with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
-                "AppId"                     = "aaaaaaaa-1111-2222-3333-cccccccccccc"
-                "DeletedDateTime"           = $null
-                "Id"                        = "bbbbbbbb-1111-2222-3333-cccccccccccc"
-                "DisplayName"               = "Mock-App"
-                "Info"                      = @{LogoUrl = ""; MarketingUrl = ""; PrivacyStatementUrl = ""; SupportUrl = ""; TermsOfServiceUrl = "" }
-                "IsDeviceOnlyAuthSupported" = $True
-                "IsFallbackPublicClient"    = $true
-                "KeyCredentials"            = @{CustomKeyIdentifier = @(211, 174, 247); DisplayName = ""; Key = ""; KeyId = "d903c7a3-75ea-4772-8935-5c0cf82068a7"; Type = "Symmetric"; Usage = "Sign" }
-                "OptionalClaims"            = @{AccessToken = ""; IdToken = ""; Saml2Token = "" }
-                "ParentalControlSettings"   = @{CountriesBlockedForMinors = $null; LegalAgeGroupRule = "Allow" }
-                "PasswordCredentials"       = @{}
-                "PublicClient"              = @{RedirectUris = $null }
-                "PublisherDomain"           = "aaaabbbbbccccc.onmicrosoft.com"
-                "SignInAudience"            = "AzureADandPersonalMicrosoftAccount"
-                "Web"                       = @{HomePageUrl = "https://localhost/demoapp"; ImplicitGrantSettings = ""; LogoutUrl = ""; }
-                "Parameters"                = $args
-                "AdditionalProperties" = @{CountriesBlockedForMinors = $null; LegalAgeGroupRule = "Allow" }
+              "AppId"                     = "aaaaaaaa-1111-2222-3333-cccccccccccc"
+              "DeletedDateTime"           = $null
+              "Id"                        = "bbbbbbbb-1111-2222-3333-cccccccccccc"
+              "DisplayName"               = "Mock-App"
+              "Info"                      = @{LogoUrl = ""; MarketingUrl = ""; PrivacyStatementUrl = ""; SupportUrl = ""; TermsOfServiceUrl = "" }
+              "IsDeviceOnlyAuthSupported" = $True
+              "IsFallbackPublicClient"    = $true
+              "KeyCredentials"            = @{CustomKeyIdentifier = @(211, 174, 247); DisplayName = ""; Key = ""; KeyId = "d903c7a3-75ea-4772-8935-5c0cf82068a7"; Type = "Symmetric"; Usage = "Sign" }
+              "OptionalClaims"            = @{AccessToken = ""; IdToken = ""; Saml2Token = "" }
+              "ParentalControlSettings"   = @{CountriesBlockedForMinors = $null; LegalAgeGroupRule = "Allow" }
+              "PasswordCredentials"       = @{}
+              "PublicClient"              = @{RedirectUris = $null }
+              "PublisherDomain"           = "aaaabbbbbccccc.onmicrosoft.com"
+              "SignInAudience"            = "AzureADandPersonalMicrosoftAccount"
+              "Web"                       = @{HomePageUrl = "https://localhost/demoapp"; ImplicitGrantSettings = ""; LogoutUrl = ""; }              
+              "AdditionalProperties" = @{CountriesBlockedForMinors = $null; LegalAgeGroupRule = "Allow" }
             }
         )
     }
