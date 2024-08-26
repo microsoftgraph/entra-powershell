@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         Import-Module Microsoft.Graph.Entra      
@@ -11,8 +15,8 @@ BeforeAll {
               "DeletedDateTime" = $null
               "Description"     = "Read custom security attribute keys and values for supported Microsoft Entra objects."
               "DisplayName"     = "Attribute Assignment Reader"
-              "Id"              = "dc587a80-d49c-4700-a73b-57227856fc32"
-              "RoleTemplateId"  = "ffd52fa5-98dc-465c-991d-fc073eb59f8f"
+              "Id"              = "bbbbbbbb-1111-2222-3333-cccccccccc"
+              "RoleTemplateId"  = "aaaaaaaa-1111-2222-3333-cccccccccc"
               "Members"         = $null
               "ScopedMembers"   = $null
               "Parameters"      = $args
@@ -26,9 +30,9 @@ BeforeAll {
   Describe "Get-EntraDirectoryRole" {
     Context "Test for Get-EntraDirectoryRole" {
         It "Should return specific role" {
-            $result = Get-EntraDirectoryRole -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32"
+            $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be "dc587a80-d49c-4700-a73b-57227856fc32"
+            $result.Id | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc"
 
             Should -Invoke -CommandName Get-MgDirectoryRole  -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -43,19 +47,39 @@ BeforeAll {
             Should -Invoke -CommandName Get-MgDirectoryRole  -ModuleName Microsoft.Graph.Entra -Times 1
         }  
         It "Result should Contain ObjectId" {
-            $result = Get-EntraDirectoryRole -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32"
-            $result.ObjectId | should -Be "dc587a80-d49c-4700-a73b-57227856fc32"
+            $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc"
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc"
         } 
         It "Should contain DirectoryRoleId in parameters when passed ObjectId to it" {     
-            $result = Get-EntraDirectoryRole -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32"
+            $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc"
             $params = Get-Parameters -data $result.Parameters
-            $params.DirectoryRoleId | Should -Be "dc587a80-d49c-4700-a73b-57227856fc32"
+            $params.DirectoryRoleId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc"
+        }
+        It "Property parameter should work" {
+            $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc" -Property DisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be 'Attribute Assignment Reader'
+
+            Should -Invoke -CommandName Get-MgDirectoryRole  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirectoryRole"
-            $result = Get-EntraDirectoryRole -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32"
+            $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }     
+        }  
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }   
     }
   }
