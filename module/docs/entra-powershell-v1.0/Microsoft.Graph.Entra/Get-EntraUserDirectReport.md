@@ -1,113 +1,113 @@
 ---
-title: Get-EntraUserDirectReport.
+title: Get-EntraUserDirectReport
 description: This article provides details on the Get-EntraUserDirectReport command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/19/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraUserDirectReport
+
 schema: 2.0.0
 ---
 
 # Get-EntraUserDirectReport
 
-## SYNOPSIS
+## Synopsis
+
 Get the user's direct reports.
 
-## SYNTAX
+## Syntax
 
 ```powershell
-Get-EntraUserDirectReport 
- -ObjectId <String> 
- [-All] 
- [-Top <Int32>] 
+Get-EntraUserDirectReport
+ -ObjectId <String>
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraUserDirectReport cmdlet gets the direct reports for a user in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Get-EntraUserDirectReport` cmdlet gets the direct reports for a user in Microsoft Entra ID. Specify `ObjectId` parameter gets the direct reports for a user.
+
+## Examples
 
 ### Example 1: Get a user's direct reports
+
 ```powershell
-PS C:\> Get-EntraUserDirectReport -ObjectId "df19e8e6-2ad7-453e-87f5-037f6529ae16"
-```
-```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {debrab@m365x99297270.onmicrosoft.com}
-preferredLanguage               :
-mail                            : DebraB@M365x99297270.OnMicrosoft.com
-securityIdentifier              : S-1-12-1-2430512737-1080277439-3869513867-4132559946
-identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=DebraB@M365x99297270.OnMicrosoft.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=184efa21-98c3-4e5d-95ab-d07053a96e67}, @{disabledPlans=System.Object[]; skuId=b05e124f-c7cc-45a0-a6aa-8cf78c946968},
-                                  @{disabledPlans=System.Object[]; skuId=c7df2760-2c81-4ef7-b578-5b5392b571df}}
+Connect-Entra -Scopes 'User.Read','User.Read.All'
+Get-EntraUserDirectReport -ObjectId 'SawyerM@contoso.com'
 ```
 
-This example demonstrates how to retrieve direct reports for a user in Microsoft Entra ID.    
-This command gets the direct report for the specified user.
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+```
 
-### Example 2: Get a all direct reports
+This example demonstrates how to retrieve direct reports for a user in Microsoft Entra ID.
+
+- `-ObjectId` Parameter specifies the ID of a user (UserPrincipalName or ObjectId).
+
+### Example 2: Get all direct reports
+
 ```powershell
-PS C:\> Get-EntraUserDirectReport -ObjectId "c300541f-2c03-49cb-b25b-72f09cb29abf" -All 
-```
-```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {debrab@m365x99297270.onmicrosoft.com}
-preferredLanguage               :
-mail                            : DebraB@M365x99297270.OnMicrosoft.com
-securityIdentifier              : S-1-12-1-2430512737-1080277439-3869513867-4132559946
-identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=DebraB@M365x99297270.OnMicrosoft.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=184efa21-98c3-4e5d-95ab-d07053a96e67}, @{disabledPlans=System.Object[]; skuId=b05e124f-c7cc-45a0-a6aa-8cf78c946968},
-                                  @{disabledPlans=System.Object[]; skuId=c7df2760-2c81-4ef7-b578-5b5392b571df}}
+Connect-Entra -Scopes 'User.Read','User.Read.All'
+Get-EntraUserDirectReport -ObjectId 'SawyerM@contoso.com' -All 
 ```
 
-This example demonstrates how to retrieve all direct reports for a user in Microsoft Entra ID.  
-This command gets the all direct report for the specified user.
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+```
+
+This example demonstrates how to retrieve all direct reports for a user in Microsoft Entra ID.
+
+- `-ObjectId` Parameter specifies the ID of a user (UserPrincipalName or ObjectId).
 
 ### Example 3: Get a top five direct reports
+
 ```powershell
-PS C:\> Get-EntraUserDirectReport -ObjectId "c300541f-2c03-49cb-b25b-72f09cb29abf" -Top 5
-```
-```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {debrab@m365x99297270.onmicrosoft.com}
-preferredLanguage               :
-mail                            : DebraB@M365x99297270.OnMicrosoft.com
-securityIdentifier              : S-1-12-1-2430512737-1080277439-3869513867-4132559946
-identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=DebraB@M365x99297270.OnMicrosoft.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=184efa21-98c3-4e5d-95ab-d07053a96e67}, @{disabledPlans=System.Object[]; skuId=b05e124f-c7cc-45a0-a6aa-8cf78c946968},
-                                  @{disabledPlans=System.Object[]; skuId=c7df2760-2c81-4ef7-b578-5b5392b571df}}
+Connect-Entra -Scopes 'User.Read' #Delegated Permission
+Connect-Entra -Scopes 'User.Read.All' #Application Permission
+Get-EntraUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 3
 ```
 
-This example demonstrates how to retrieve top five direct reports for a user in Microsoft Entra ID.  
-This command gets the five direct report for the specified user.
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+```
 
-## PARAMETERS
+This example demonstrates how to retrieve top five direct reports for a user in Microsoft Entra ID.
+
+- `-ObjectId` Parameter specifies the ID of a user (UserPrincipalName or ObjectId).
+
+## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: Boolean
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -119,10 +119,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a user in Microsoft Entra ID (UserPrincipalName or ObjectId).
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -134,10 +135,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -148,13 +150,30 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned.
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links

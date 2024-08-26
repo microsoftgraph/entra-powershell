@@ -2,26 +2,27 @@
 title: Add-EntraGroupOwner
 description: This article explains the Add-EntraGroupOwner command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/05/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Add-EntraGroupOwner
+
 schema: 2.0.0
 ---
 
 # Add-EntraGroupOwner
 
-## SYNOPSIS
+## Synopsis
 
 Adds an owner to a group.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraGroupOwner 
@@ -30,11 +31,11 @@ Add-EntraGroupOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
 The Add-EntraGroupOwner cmdlet adds an owner to a Microsoft Entra ID group.
 
-## EXAMPLES
+## Examples
 
 ### Example 1: Add an owner to a group
 
@@ -45,7 +46,7 @@ Add-EntraGroupOwner -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq' -RefObjectI
 
 This command is used to add an owner to a group. The `-ObjectId` parameter specifies the ID of the group to which the owner should be added. The `-RefObjectId` parameter specifies the ID of the owner to be added to the group.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
 
@@ -83,13 +84,13 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraGroupOwner](Get-EntraGroupOwner.md)
 

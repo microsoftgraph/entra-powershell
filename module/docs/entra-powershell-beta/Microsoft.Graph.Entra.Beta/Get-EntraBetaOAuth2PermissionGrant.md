@@ -1,55 +1,115 @@
 ---
+title: Get-EntraBetaOAuth2PermissionGrant
+description: This article provides details on the Get-EntraBetaOAuth2PermissionGrant Command.
+
+
+ms.topic: reference
+ms.date: 08/09/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaOAuth2PermissionGrant
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaOAuth2PermissionGrant
 
-## SYNOPSIS
+## Synopsis
+
 Gets OAuth2PermissionGrant entities.
 
-## SYNTAX
+## Syntax
 
+```powershell
+Get-EntraBetaOAuth2PermissionGrant
+ [-Top <Int32>]
+ [-All]
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
-Get-EntraBetaOAuth2PermissionGrant [-Top <Int32>] [-All] [<CommonParameters>]
-```
 
-## DESCRIPTION
-The Get-EntraBetaOAuth2PermissionGrant cmdlet gets OAuth2PermissionGrant entities in Azure Active Directory (AD).
+## Description
 
-## EXAMPLES
+The `Get-EntraBetaOAuth2PermissionGrant` cmdlet gets OAuth2PermissionGrant entities in Microsoft Entra ID.
+
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles are supported for this operation:
+
+- Application Administrator
+- Application Developer
+- Cloud Application Administrator
+- Directory Writers
+- Privileged Role Administrator
+- User Administrator
+- Directory Readers
+- Global Reader
+
+## Examples
 
 ### Example 1: Get the OAuth2 permission grants
-```
-PS C:\> Get-EntraBetaOAuth2PermissionGrant
 
-ObjectId                                                         ResourceId                           Scope
---------                                                         ----------                           -----
-c-AY9qPNx0-4vVrWPxmED3iGICfrJnZDi2Jsj7SIpfXm6Bnf1yo-RYf1A39lKa4W 27208678-26eb-4376-8b62-6c8fb488a5f5 UserProfile.Read
-aPlw7ew41kiuWN7P6Av9X3iGICfrJnZDi2Jsj7SIpfV-R0UdFU0WTZ2ut7ZkWFvD 27208678-26eb-4376-8b62-6c8fb488a5f5 User.Read Directory.AccessAsUser.All
-aPlw7ew41kiuWN7P6Av9X3iGICfrJnZDi2Jsj7SIpfXm6Bnf1yo-RYf1A39lKa4W 27208678-26eb-4376-8b62-6c8fb488a5f5 UserProfile.Read user_impersonation
-WUarNRz2dUqY0u8dBKwglXiGICfrJnZDi2Jsj7SIpfXm6Bnf1yo-RYf1A39lKa4W 27208678-26eb-4376-8b62-6c8fb488a5f5 User.Read
-rbzRnQl5W0C0TpzshPS41HiGICfrJnZDi2Jsj7SIpfU                      27208678-26eb-4376-8b62-6c8fb488a5f5 User.Read
-Qp3O0EPJoUOgsLHe2NDOPXiGICfrJnZDi2Jsj7SIpfXm6Bnf1yo-RYf1A39lKa4W 27208678-26eb-4376-8b62-6c8fb488a5f5 User.Read
-Qp3O0EPJoUOgsLHe2NDOPUD-XnoDbmtOmpMPVcQFKs7m6Bnf1yo-RYf1A39lKa4W 7a5efe40-6e03-4e6b-9a93-0f55c4052ace MailboxSettings.ReadWrite Files.ReadWrite Files.Read profile email Tasks.ReadWrite Notes.Re...
-tCNicMsr30C8E6LrHPvvNniGICfrJnZDi2Jsj7SIpfU                      27208678-26eb-4376-8b62-6c8fb488a5f5 User.Read
-tCNicMsr30C8E6LrHPvvNl0FVbgdl8pHjyd2jlKSaDM                      b855055d-971d-47ca-8f27-768e52926833 AllSites.Read
-mK8RroiOPk6Yt1owm-5d_HiGICfrJnZDi2Jsj7SIpfU                      27208678-26eb-4376-8b62-6c8fb488a5f5 User.Read
-p4wNLtFXh0qcKrNjikytv3iGICfrJnZDi2Jsj7SIpfU                      27208678-26eb-4376-8b62-6c8fb488a5f5 Directory.ReadWrite.All User.Read
-p4wNLtFXh0qcKrNjikytv0D-XnoDbmtOmpMPVcQFKs4                      7a5efe40-6e03-4e6b-9a93-0f55c4052ace Directory.ReadWrite.All
+```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraBetaOAuth2PermissionGrant
+```
+
+```Output
+Id                              ClientId                             ConsentType   ExpiryTime          PrincipalId                          ResourceId                            Scope
+--                              --------                             -----------   ----------          -----------                          ----------                            -----
+A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u  00001111-aaaa-2222-bbbb-3333cccc4444 AllPrincipals 1/3/2024 1:28:59 PM                                      a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  User.ReadBasic.All
+C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w  00001111-aaaa-2222-bbbb-3333cccc4444 AllPrincipals 1/3/2024 1:28:59 PM                                      b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2  User.Read
+E3fH4iJ5kL6mN7oP8qR9sT0uV1wX2y  22223333-cccc-4444-dddd-5555eeee6666 Principal     1/3/2024 1:28:59 PM aaaaaaaa-bbbb-cccc-1111-222222222222 c2c2c2c2-dddd-eeee-ffff-a3a3a3a3a3a3  User.Read
+H4iJ5kL6mN7oP8qR9sT0uV1wX2yZ3a  22223333-cccc-4444-dddd-5555eeee6666 Principal     1/3/2024 1:28:59 PM aaaaaaaa-bbbb-cccc-1111-222222222222 d3d3d3d3-eeee-ffff-aaaa-b4b4b4b4b4b4  ActivityFeed.Read ServiceHealth.Read
 ```
 
 This command gets the OAuth2 permission grants.
 
-## PARAMETERS
+### Example 2: Get All the OAuth2 permission grants
+
+```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraBetaOAuth2PermissionGrant -All 
+```
+
+```Output
+Id                              ClientId                             ConsentType   ExpiryTime          PrincipalId                          ResourceId                            Scope
+--                              --------                             -----------   ----------          -----------                          ----------                            -----
+A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u  00001111-aaaa-2222-bbbb-3333cccc4444 AllPrincipals 1/3/2024 1:28:59 PM                                      a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  User.ReadBasic.All
+C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w  00001111-aaaa-2222-bbbb-3333cccc4444 AllPrincipals 1/3/2024 1:28:59 PM                                      b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2  User.Read
+E3fH4iJ5kL6mN7oP8qR9sT0uV1wX2y  22223333-cccc-4444-dddd-5555eeee6666 Principal     1/3/2024 1:28:59 PM aaaaaaaa-bbbb-cccc-1111-222222222222 c2c2c2c2-dddd-eeee-ffff-a3a3a3a3a3a3  User.Read
+H4iJ5kL6mN7oP8qR9sT0uV1wX2yZ3a  22223333-cccc-4444-dddd-5555eeee6666 Principal     1/3/2024 1:28:59 PM aaaaaaaa-bbbb-cccc-1111-222222222222 d3d3d3d3-eeee-ffff-aaaa-b4b4b4b4b4b4  ActivityFeed.Read ServiceHealth.Read
+```
+
+This command gets all the OAuth2 permission grants.
+
+### Example 3: Get top 2 OAuth2 permission grants record
+
+```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraBetaOAuth2PermissionGrant -Top 2
+```
+
+```output
+Id                             ClientId                             ConsentType   ExpiryTime           PrincipalId  ResourceId                            Scope
+--                             --------                             -----------   ----------           ------------ ----------                            -----
+A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u 00001111-aaaa-2222-bbbb-3333cccc4444 AllPrincipals 1/3/2024 1:28:59 PM               a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  User.ReadBasic.All
+C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w 00001111-aaaa-2222-bbbb-3333cccc4444 AllPrincipals 1/3/2024 1:28:59 PM               b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2  User.Read
+```
+
+This command gets top 2 OAuth2 permission grants records.
+
+## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -61,10 +121,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -75,15 +136,32 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
 
-[Remove-EntraBetaOAuth2PermissionGrant]()
+## Related Links
+
+[Remove-EntraBetaOAuth2PermissionGrant](Remove-EntraBetaOAuth2PermissionGrant.md)

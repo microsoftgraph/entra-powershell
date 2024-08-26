@@ -2,9 +2,9 @@
 title: Get-EntraHasObjectsWithDirSyncProvisioningError
 description: This article provides details on the Get-EntraHasObjectsWithDirSyncProvisioningError command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/28/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,49 +12,73 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraHasObjectsWithDirSyncProvisioningError
+
 schema: 2.0.0
 ---
 
 # Get-EntraHasObjectsWithDirSyncProvisioningError
 
-## SYNOPSIS
+## Synopsis
+
 Returns whether Microsoft Entra ID has objects with DirSync provisioning error.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Get-EntraHasObjectsWithDirSyncProvisioningError 
- [-TenantId <Guid>] 
+ [-TenantId <String>] 
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraHasObjectsWithDirSyncProvisioningError returns whether Microsoft Entra ID has objects 
-with DirSync provisioning error.
+## Description
 
-## EXAMPLES
+The `Get-EntraHasObjectsWithDirSyncProvisioningError` returns whether Microsoft Entra ID has objects with DirSync provisioning error.
+
+## Examples
 
 ### Example 1: Return whether Microsoft Entra ID has objects with DirSync provisioning error
+
 ```powershell
-PS C:\> Get-EntraHasObjectsWithDirSyncProvisioningError 
+Connect-Entra -Scopes 'User.Read.All', 'Directory.Read.All', 'Group.Read.All', 'Contacts.Read'
+
+Get-EntraHasObjectsWithDirSyncProvisioningError 
 ```
 
-```output
+```Output
 False
 ```
 
 This command returns whether Microsoft Entra ID has objects with DirSync provisioning error.
 
-## PARAMETERS
+### Example 2: Return whether Microsoft Entra ID has objects with DirSync provisioning error
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All', 'Directory.Read.All', 'Group.Read.All', 'Contacts.Read'
+
+Get-EntraHasObjectsWithDirSyncProvisioningError -TenantId '0000aaaa-11bb-cccc-dd22-eeeeee333333'
+```
+
+```Output
+False
+```
+
+This command returns whether Microsoft Entra ID has objects with DirSync provisioning error.
+
+- `-TenantId` Specifies the unique ID of the tenant.
+
+## Parameters
 
 ### -TenantId
+
 The unique ID of the tenant to perform the operation on.
+
 If this isn't provided then the value defaults to the tenant of the current user.
+
 This parameter is only applicable to partner users.
 
 ```yaml
-Type: Guid
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -66,13 +90,15 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-### System. Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
-## OUTPUTS
+## Inputs
 
-## NOTES
+### System.Nullable`1[[System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
 
-## RELATED LINKS
+## Outputs
+
+## Notes
+
+## Related Links

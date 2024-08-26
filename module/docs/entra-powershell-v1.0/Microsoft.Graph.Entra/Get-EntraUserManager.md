@@ -1,65 +1,69 @@
 ---
-title: Get-EntraUserManager.
+title: Get-EntraUserManager
 description: This article provides details on the Get-EntraUserManager command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/08/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraUserManager
+
 schema: 2.0.0
 ---
 
 # Get-EntraUserManager
 
-## SYNOPSIS
+## Synopsis
+
 Gets the manager of a user.
 
-## SYNTAX
+## Syntax
 
 ```powershell
-Get-EntraUserManager 
- -ObjectId <String> 
+Get-EntraUserManager
+ -ObjectId <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraUserManager cmdlet gets the manager of a user in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Get-EntraUserManager` cmdlet gets the manager of a user in Microsoft Entra ID. Specify
+`ObjectId` parameter to get the specific manager of user.
+
+## Examples
 
 ### Example 1: Get the manager of a user
+
 ```powershell
-PS C:\>Get-EntraUserManager -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215"
-```
-```output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {miriamg@m365x99297270.onmicrosoft.com}
-preferredLanguage               :
-mail                            : MiriamG@M365x99297270.OnMicrosoft.com
-securityIdentifier              : S-1-12-1-649798363-1255893902-1277583799-1163042182
-identities                      : {@{signInType=userPrincipalName; issuer=M365x99297270.onmicrosoft.com; issuerAssignedId=MiriamG@M365x99297270.OnMicrosoft.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraUserManager -ObjectId 'miriamg@contoso.com'
 ```
 
-This example demonstrates how to retrieve the manager of a specific user.    
-This command gets the manager of a specified user.
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+```
 
-## PARAMETERS
+This example demonstrates how to retrieve the manager of a specific user.
+
+- `-ObjectId` Parameter specifies the unique identifier of a user (UserPrincipalName or ObjectId).
+
+## Parameters
 
 ### -ObjectId
+
 The unique identifier of a user in Microsoft Entra ID (UserPrincipalName or ObjectId).
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -70,18 +74,34 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned.
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Remove-EntraUserManager](Remove-EntraUserManager.md)
 
 [Set-EntraUserManager](Set-EntraUserManager.md)
-

@@ -1,50 +1,66 @@
 ---
 title: Remove-EntraBetaDeletedApplication
 description: This article provides details on the Remove-EntraBetaDeletedApplication command.
-ms.service: active-directory
+
+
 ms.topic: reference
-ms.date: 04/17/2024
+ms.date: 07/30/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaDeletedApplication
+
 schema: 2.0.0
 ---
 
 # Remove-EntraBetaDeletedApplication
 
-## SYNOPSIS
+## Synopsis
+
 Permanently delete a recently deleted application object from deleted items.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraBetaDeletedApplication 
  [-ObjectId] <String> 
-[<CommonParameters>]
+ [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
+
 Permanently delete a recently deleted application object from deleted items. After an item is permanently deleted, it can't be restored.
-## EXAMPLES
+
+For delegated scenarios, the calling user needs to have at least one of the following Microsoft Entra roles.
+
+- To permanently delete deleted applications or service principals: Application Administrator, Cloud Application Administrator, or Hybrid Identity Administrator.
+
+## Examples
 
 ### Example 1: Remove deleted application object
+
 ```powershell
-PS C:\> $Id = Get-EntraBetaDeletedApplication -SearchString "newtest10" 
-PS C:\> Remove-EntraBetaDeletedApplication -ObjectId $Id.id
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+$App = Get-EntraBetaDeletedApplication -SearchString 'My PowerShell Application' 
+Remove-EntraBetaDeletedApplication -ObjectId $App.ObjectId
 ```
 
-This command removes recently deleted application.
+This command removes recently deleted application. You can use the command  `Get-EntraBetaDeletedApplication` to get deleted application Id.
 
-## PARAMETERS
+- `-ObjectId` parameter specifies the Id of a deleted application.
+
+## Parameters
 
 ### -ObjectId
+
 The unique identifier of deleted application.
+
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -56,15 +72,21 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
 
 ### System.String
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
 
-## RELATED LINKS
+## Notes
+
+## Related Links
+
+[Restore-EntraBetaDeletedApplication](Restore-EntraBetaDeletedApplication.md)
+
+[Get-EntraBetaDeletedApplication](Get-EntraBetaDeletedApplication.md)

@@ -2,162 +2,230 @@
 title: Get-EntraServicePrincipal
 description: This article provides details on the Get-EntraServicePrincipal command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/01/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraServicePrincipal
+
 schema: 2.0.0
 ---
 
 # Get-EntraServicePrincipal
 
-## SYNOPSIS
+## Synopsis
+
 Gets a service principal.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
+
 ```powershell
-Get-EntraServicePrincipal 
- [-Top <Int32>] 
- [-All] 
- [-Filter <String>] 
+Get-EntraServicePrincipal
+ [-Top <Int32>]
+ [-All]
+ [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetVague
+
 ```powershell
-Get-EntraServicePrincipal 
- [-SearchString <String>] 
- [-All] 
+Get-EntraServicePrincipal
+ [-SearchString <String>]
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
+
 ```powershell
-Get-EntraServicePrincipal 
- -ObjectId <String> 
- [-All] 
+Get-EntraServicePrincipal
+ -ObjectId <String>
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraServicePrincipal cmdlet gets a service principal in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Get-EntraServicePrincipal` cmdlet gets a service principal in Microsoft Entra ID.
+
+## Examples
 
 ### Example 1: Retrieve all service principal from the directory
+
 ```powershell
-PS C:\> Get-EntraServicePrincipal
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraServicePrincipal
 ```
 
-```output
+```Output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
-00221b6f-4387-4f3f-aa85-34316ad7f956 e5e29b8a-85d9-41ea-b8d1-2162bd004528 Tenant Schema Extension App
-012f6450-15be-4e45-b8b4-e630f0fb70fe 00000005-0000-0ff1-ce00-000000000000 Microsoft.YammerEnterprise
-06ab01eb-3e77-4d14-ae31-322c7730a65b 09abbdfd-ed23-44ee-a2d9-a627aa1c90f3 ProjectWorkManagement
-092aaf41-23e8-46eb-8c3d-fc0ee91cc62f 507bc9da-c4e2-40cb-96a7-ac90df92685c Office365Reports
-0ac66e69-5502-4406-a294-6dedeadc8cab 2cf9eb86-36b5-49dc-86ae-9a63135dfa8c AzureTrafficManagerandDNS
-0c0a6d9d-48c0-4aa7-b484-4e46f77d8ed9 0f698dd4-f011-4d23-a33e-b36416dcb1e6 Microsoft.OfficeClientService
-0cbef08e-a4b5-4dd9-865e-8f521c1c5fb4 0469d4cd-df37-4d93-8a61-f8c75b809164 Microsoft Policy Administration Service
-0ea80ff0-a9ea-43b6-b876-d5989efd8228 00000009-0000-0000-c000-000000000000 Microsoft Power BI Reporting and Analytics</dev:code>
+bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 Demo App
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 22223333-cccc-4444-dddd-5555eeee6666 Demo Two App
+dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
 ```
 
-This command retrieves all service principal from the directory.
+This example retrieves all service principal from the directory.
 
 ### Example 2: Retrieve a service principal by ID
+
 ```powershell
-PS C:\> $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
-PS C:\> Get-EntraServicePrincipal $ServicePrincipalId
+Connect-Entra -Scopes 'Application.Read.All'
+$ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
+Get-EntraServicePrincipal $ServicePrincipalId
 ```
 
-```output
+```Output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
-00221b6f-4387-4f3f-aa85-34316ad7f956 e5e29b8a-85d9-41ea-b8d1-2162bd004528 Tenant Schema Extension App
+bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 Demo App
 ```
 
-The first command gets the ID of a service principal by using the [Get-EntraServicePrincipal](./Get-EntraServicePrincipal.md) cmdlet.  
-
-The command stores the ID in the $ServicePrincipalId variable.  
-
-The second command gets the service principal identified by $ServicePrincipalId.
+This example retrieves a specific service principal.
 
 ### Example 3: Retrieve all service principals from the directory
+
 ```powershell
-PS C:\> Get-EntraServicePrincipal -All 
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraServicePrincipal -All 
 ```
 
-```output
+```Output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
-00221b6f-4387-4f3f-aa85-34316ad7f956 e5e29b8a-85d9-41ea-b8d1-2162bd004528 Tenant Schema Extension App
-012f6450-15be-4e45-b8b4-e630f0fb70fe 00000005-0000-0ff1-ce00-000000000000 Microsoft.YammerEnterprise
-06ab01eb-3e77-4d14-ae31-322c7730a65b 09abbdfd-ed23-44ee-a2d9-a627aa1c90f3 ProjectWorkManagement
-092aaf41-23e8-46eb-8c3d-fc0ee91cc62f 507bc9da-c4e2-40cb-96a7-ac90df92685c Office365Reports
-0ac66e69-5502-4406-a294-6dedeadc8cab 2cf9eb86-36b5-49dc-86ae-9a63135dfa8c AzureTrafficManagerandDNS
-0c0a6d9d-48c0-4aa7-b484-4e46f77d8ed9 0f698dd4-f011-4d23-a33e-b36416dcb1e6 Microsoft.OfficeClientService
-0cbef08e-a4b5-4dd9-865e-8f521c1c5fb4 0469d4cd-df37-4d93-8a61-f8c75b809164 Microsoft Policy Administration Service
-0ea80ff0-a9ea-43b6-b876-d5989efd8228 00000009-0000-0000-c000-000000000000 Microsoft Power BI Reporting and Analytics</dev:code>
+bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 Demo App
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 22223333-cccc-4444-dddd-5555eeee6666 Demo Two App
+dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
+ffffffff-5555-6666-7777-aaaaaaaaaaaa 44445555-eeee-6666-ffff-7777aaaa8888 Reports App
 ```
 
-This command retrieves all service principals from the directory.
+This example retrieves all service principals from the directory.
 
 ### Example 4: Retrieve top three service principal from the directory
+
 ```powershell
-PS C:\> Get-EntraServicePrincipal -Top 3
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraServicePrincipal -Top 3
 ```
 
-```output
+```Output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
-00221b6f-4387-4f3f-aa85-34316ad7f956 e5e29b8a-85d9-41ea-b8d1-2162bd004528 Tenant Schema Extension App
-012f6450-15be-4e45-b8b4-e630f0fb70fe 00000005-0000-0ff1-ce00-000000000000 Microsoft.YammerEnterprise
-06ab01eb-3e77-4d14-ae31-322c7730a65b 09abbdfd-ed23-44ee-a2d9-a627aa1c90f3 ProjectWorkManagement
+bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 Demo App
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 22223333-cccc-4444-dddd-5555eeee6666 Demo Two App
+dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
 ```
 
-This command retrieves top three service principals from the directory.
+This example retrieves top three service principals from the directory.
 
 ### Example 5: Get a service principal by display name
+
 ```powershell
-PS C:\> Get-EntraServicePrincipal -Filter "DisplayName eq 'ProjectWorkManagement'"
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraServicePrincipal -Filter "DisplayName eq 'ProjectWorkManagement'"
 ```
 
-```output
+```Output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
-06ab01eb-3e77-4d14-ae31-322c7730a65b 09abbdfd-ed23-44ee-a2d9-a627aa1c90f3 ProjectWorkManagement
+dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
 ```
 
-This command gets a service principal by its display name.
+This example gets a service principal by its display name.
 
 ### Example 6: Retrieve a list of all service principal that have a display name that contains "ProjectWorkManagement"
+
 ```powershell
-PS C:\> Get-EntraServicePrincipal -SearchString "ProjectWorkManagement"
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraServicePrincipal -SearchString "ProjectWorkManagement"
 ```
 
-```output
+```Output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
-06ab01eb-3e77-4d14-ae31-322c7730a65b 09abbdfd-ed23-44ee-a2d9-a627aa1c90f3 ProjectWorkManagement
+dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
 ```
 
-This command gets a list of service principal, which has the specified display name.
+This example gets a list of service principal, which has the specified display name.
 
-## PARAMETERS
+### Example 7: Retrieve all Enterprise apps
+
+```powershell
+Get-EntraServicePrincipal -Filter "tags/Any(x: x eq 'WindowsAzureActiveDirectoryIntegratedApp')"
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience         ServicePrincipalType
+-----------         --                                   -----                                --------------         --------------------
+Enterprise App1     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-5555-eeee-6666ffff7777                         Application
+Enterprise App2     11112222-bbbb-3333-cccc-4444dddd5555 22223333-cccc-4444-dddd-5555eeee6666 AzureADMultipleOrgs    Application
+```
+
+This example demonstrates how to retrieve all enterprise apps.
+
+### Example 8: Retrieve all App proxy apps
+
+```powershell
+Get-EntraServicePrincipal -Filter "tags/Any(x: x eq 'WindowsAzureActiveDirectoryOnPremApp')"
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience         ServicePrincipalType
+-----------         --                                   -----                                --------------         --------------------
+App proxy 1     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-5555-eeee-6666ffff7777                         Application
+App proxy 2     11112222-bbbb-3333-cccc-4444dddd5555 22223333-cccc-4444-dddd-5555eeee6666 AzureADMultipleOrgs    Application
+```
+
+This example demonstrates how to retrieve all app proxy apps.
+
+### Example 9: Retrieve all disabled apps
+
+```powershell
+Get-EntraServicePrincipal -Filter "accountEnabled eq false"
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience         ServicePrincipalType
+-----------         --                                   -----                                --------------         --------------------
+Disabled App1     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-5555-eeee-6666ffff7777                         Application
+```
+
+This example demonstrates how to retrieve all disabled apps.
+
+### Example 10: Retrieve all Global Secure Access apps
+
+```powershell
+Get-EntraServicePrincipal -Filter "tags/Any(x: x eq 'PrivateAccessNonWebApplication') or tags/Any(x: x eq 'NetworkAccessManagedApplication')"
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience         ServicePrincipalType
+-----------         --                                   -----                                --------------         --------------------
+Global secure access app     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-5555-eeee-6666ffff7777                         Application
+```
+
+This example demonstrates how to retrieve all Global secure access apps.
+
+## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: Boolean
+
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -169,11 +237,12 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-Specifies an oData v3.0 filter statement.
+
+Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery
 Aliases:
 
@@ -185,10 +254,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -200,10 +270,11 @@ Accept wildcard characters: False
 ```
 
 ### -SearchString
+
 Specifies a search string.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetVague
 Aliases:
 
@@ -215,10 +286,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: GetQuery
 Aliases:
 
@@ -229,16 +301,33 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
 

@@ -13,10 +13,7 @@
             $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand        
             $baseUri = 'https://graph.microsoft.com/beta/applications'
             $Method = "PUT"
-            if($PSBoundParameters.ContainsKey("Verbose"))
-            {
-                $params["Verbose"] = $Null
-            }
+            
             if($null -ne $PSBoundParameters["ObjectId"])
             {
                 $params["ApplicationId"] = $PSBoundParameters["ObjectId"]
@@ -31,7 +28,7 @@
                     $logoBytes = (Invoke-WebRequest $($params.FilePath)).Content
                 }
                 elseif($isLocalFile){
-                    $logoBytes = Get-Content $($params.FilePath) -Raw -Encoding Byte
+                    $logoBytes = [System.IO.File]::ReadAllBytes($($params.FilePath))
                 }
                 else{
                     Write-Error -Message "FilePath is invalid" -ErrorAction Stop

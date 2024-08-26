@@ -1,46 +1,93 @@
 ---
+title: Set-EntraBetaDirSyncConfiguration
+description: This article provides details on the Set-EntraBetaDirSyncConfiguration command.
+
+
+ms.topic: reference
+ms.date: 08/16/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaDirSyncConfiguration
+
 schema: 2.0.0
 ---
 
 # Set-EntraBetaDirSyncConfiguration
 
-## SYNOPSIS
-{{ Fill in the Synopsis }}
+## Synopsis
 
-## SYNTAX
+Modifies the directory synchronization settings.
+
+## Syntax
 
 ### SetAccidentalDeletionThreshold (Default)
-```
-Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold <UInt32> [-Force] [<CommonParameters>]
+
+```powershell
+Set-EntraBetaDirSyncConfiguration 
+ -AccidentalDeletionThreshold <UInt32> 
+ [-Force] 
+ [<CommonParameters>]
 ```
 
 ### All
-```
-Set-EntraBetaDirSyncConfiguration [-TenantId <Guid>] [-Force] [<CommonParameters>]
-```
 
-## DESCRIPTION
-{{ Fill in the Description }}
-
-## EXAMPLES
-
-### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Set-EntraBetaDirSyncConfiguration 
+ [-TenantId <String>] 
+ [-Force] 
+ [<CommonParameters>]
 ```
 
-{{ Add example description here }}
+## Description
 
-## PARAMETERS
+The `Set-EntraBetaDirSyncConfiguration` cmdlet modifies the directory synchronization settings.
+
+## Examples
+
+### Example 1: Set directory synchronization settings
+
+```powershell
+Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
+Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold '600' -Force
+```
+
+This command sets directory synchronization settings.
+
+- `-AccidentalDeletionThreshold` Specifies the accidental deletion prevention configuration for a tenant.
+- `-Force` Forces the command to run without asking for user confirmation.
+
+### Example 2: Set directory synchronization settings for a Tenant
+
+```powershell
+Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
+$params = @{
+    AccidentalDeletionThreshold = 600
+    TenantId = 'bbbbcccc-1111-dddd-2222-eeee3333ffff'
+    Force = $true
+}
+
+Set-EntraBetaDirSyncConfiguration @params
+```
+
+This command sets directory synchronization settings.
+
+- `-AccidentalDeletionThreshold` Specifies the accidental deletion prevention configuration for a tenant.
+- `-Force` Forces the command to run without asking for user confirmation.
+- `-TenantId` Specifies the unique ID of the tenant.
+
+## Parameters
 
 ### -AccidentalDeletionThreshold
-{{ Fill AccidentalDeletionThreshold Description }}
+
+Specifies the accidental deletion prevention configuration for a tenant.
 
 ```yaml
-Type: UInt32
+Type: System.UInt32
 Parameter Sets: SetAccidentalDeletionThreshold
 Aliases:
 
@@ -52,10 +99,11 @@ Accept wildcard characters: False
 ```
 
 ### -Force
-{{ Fill Force Description }}
+
+Forces the command to run without asking for user confirmation.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -67,10 +115,11 @@ Accept wildcard characters: False
 ```
 
 ### -TenantId
-{{ Fill TenantId Description }}
+
+The unique ID of the tenant on which to perform the operation. If not provided, the operation defaults to the tenant of the current user. This parameter is applicable only to partner users.
 
 ```yaml
-Type: Guid
+Type: System.String
 Parameter Sets: All
 Aliases:
 
@@ -82,17 +131,21 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
 
 ### System.UInt32
 
 ### System.Guid
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
-## NOTES
 
-## RELATED LINKS
+## Notes
+
+## Related Links
+
+[Get-EntraBetaDirSyncConfiguration](Get-EntraBetaDirSyncConfiguration.md)

@@ -2,9 +2,9 @@
 title: Add-EntraBetaDeviceRegisteredUser
 description: This article provides details on the Add-EntraBetaDeviceRegisteredUser command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 02/28/2024
+ms.date: 08/14/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,51 +12,59 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Add-EntraBetaDeviceRegisteredUser
+
 schema: 2.0.0
 ---
 
 # Add-EntraBetaDeviceRegisteredUser
 
-## SYNOPSIS
+## Synopsis
+
 Adds a registered user for a device.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Add-EntraBetaDeviceRegisteredUser 
-    -ObjectId <String> 
-    -RefObjectId <String> 
+ -ObjectId <String> 
+ -RefObjectId <String> 
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The **Add-EntraBetaDeviceRegisteredUser** cmdlet adds a registered user for a Microsoft Entra ID device.
+## Description
 
-## EXAMPLES
+The `Add-EntraBetaDeviceRegisteredUser` cmdlet adds a registered user for a Microsoft Entra ID device.
+
+## Examples
 
 ### Example 1: Add a user as a registered user
+
 ```powershell
-PS C:\> $User = Get-EntraBetaUser -Top 1
-PS C:\> $Device = Get-EntraBetaDevice -Top 1
-PS C:\> Add-EntraBetaDeviceRegisteredUser -ObjectId $Device.ObjectId -RefObjectId $User.ObjectId
+Connect-Entra -Scopes 'Device.ReadWrite.All'
+$User = Get-EntraBetaUser -SearchString '<user-display-name>'
+$Device = Get-EntraBetaDevice -SearchString '<device-display-name>'
+$params = @{
+    ObjectId = $Device.ObjectId 
+    RefObjectId = $User.ObjectId
+}
+Add-EntraBetaDeviceRegisteredUser @params
 ```
 
-The first command gets a user by using the [Get-EntraBetaUser](./Get-EntraBetaUser.md) cmdlet, and then stores it in the $User variable.  
+This example shows how to add a registered user to a device.
 
-The second command gets a device by using the [Get-EntraBetaDevice](./Get-EntraBetaDevice.md) cmdlet, and then stores it in the $Device variable.  
+- `-ObjectId` parameter specifies the unique identifier (Object ID) of the device to which you want to add a registered user. The $Device.ObjectId variable should contain the Object ID of the device. You can use the command `Get-EntraBetaDevice` to get device Id.
 
-The final command adds the user in $User as the registered user for the device in $Device. 
+- `-RefObjectId` parameter specifies the unique identifier (Object ID) of the user who will be added as a registered user of the device. The $User.ObjectId variable should contain the Object ID of the user. You can use the command `Get-EntraBetaUser` to get user Id.
 
-Both parameters use the ObjectId property of specified object.
-
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
+
 Specifies the ID of the device.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -68,10 +76,11 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
+
 Specifies the ID of the user.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -83,21 +92,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
 
-[Get-EntraBetaDevice](Get-EntraBetaDevice.md)
+## Related Links
 
 [Get-EntraBetaDeviceRegisteredUser](Get-EntraBetaDeviceRegisteredUser.md)
 
-[Get-EntraBetaUser](Get-EntraBetaUser.md)
-
 [Remove-EntraBetaDeviceRegisteredUser](Remove-EntraBetaDeviceRegisteredUser.md)
-

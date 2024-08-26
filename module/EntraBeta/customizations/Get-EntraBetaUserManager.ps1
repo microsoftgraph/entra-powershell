@@ -13,7 +13,7 @@
         $keysChanged = @{ObjectId = "Id"}
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($null -ne $PSBoundParameters["ObjectId"])
         {
@@ -21,7 +21,7 @@
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if($null -ne $PSBoundParameters["WarningVariable"])
         {
@@ -59,19 +59,29 @@
         {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
+        if($null -ne $PSBoundParameters["Property"])
+        {
+            $params["Property"] = $PSBoundParameters["Property"]
+        }
     
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        try {
-            $response = Get-MgBetaUserManager @params -Headers $customHeaders -ErrorAction Stop
-            $response | ForEach-Object {
-                if($null -ne $_) {
-                    Add-Member -InputObject $_ -NotePropertyMembers $_.AdditionalProperties
-                    Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
+        $response = Get-MgBetaUserManager @params -Headers $customHeaders -ErrorAction Stop
+        try {      
+            $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json     
+            
+            $targetList = @()
+            foreach ($res in $data) {
+                $targetType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectoryObject
+                $res.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                    $propertyValue = $_.Value
+                    $targetType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
                 }
+                $targetList += $targetType
             }
-            $response | ConvertTo-Json | ConvertFrom-Json
+            $targetList   
         }
         catch {}
         }

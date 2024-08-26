@@ -21,17 +21,21 @@
         {
             $body["endDateTime"] = $PSBoundParameters["EndDate"]
         }
+        if($null -ne $PSBoundParameters["CustomKeyIdentifier"])
+        {
+            $body["displayName"] = $PSBoundParameters["CustomKeyIdentifier"]
+        }
         if($null -ne $PSBoundParameters["ObjectId"])
         {
             $params["ApplicationId"] = $PSBoundParameters["ObjectId"]
         }
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if($null -ne $PSBoundParameters["WarningVariable"])
         {
@@ -77,7 +81,14 @@
 ")
         
         $response = Add-MgApplicationPassword @params -Headers $customHeaders 
+        $response | ForEach-Object {
+            If($_.DisplayName){
+                $Value = [System.Text.Encoding]::ASCII.GetBytes($_.DisplayName)
+                Add-Member -InputObject $_ -MemberType NoteProperty -Name CustomKeyIdentifier -Value $Value -Force
+            }
+            Add-Member -InputObject $_ -MemberType AliasProperty -Name Value -Value SecretText
+        }
         $response
-        }  
+    }  
 '@
 }

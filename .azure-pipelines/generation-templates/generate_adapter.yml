@@ -178,10 +178,10 @@ steps:
   displayName: 'Install Pester'
   inputs:
     targetType: inline
-    script: Install-Module Pester -scope currentuser -Force
+    script: Install-Module Pester -scope currentuser -SkipPublisherCheck -Force
     pwsh: false
 - task: powershell@2
-  displayName: 'Run tests EntraBeta'  
+  displayName: 'Run tests Entra'
   inputs:
     targetType: inline
     pwsh: true

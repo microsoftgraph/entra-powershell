@@ -2,9 +2,9 @@
 title: New-EntraApplicationKeyCredential
 description: This article provides details on the New-EntraApplicationKeyCredential command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/21/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -12,16 +12,18 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraApplicationKeyCredential
+
 schema: 2.0.0
 ---
 
 # New-EntraApplicationKeyCredential
 
-## SYNOPSIS
+## Synopsis
+
 Creates a key credential for an application.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraApplicationKeyCredential 
@@ -35,55 +37,86 @@ New-EntraApplicationKeyCredential
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The New-EntraApplicationKeyCredential cmdlet creates a key credential for an application.
+## Description
 
-## EXAMPLES
+The `New-EntraApplicationKeyCredential` cmdlet creates a key credential for an application.
+
+An application can use this command along with `Remove-EntraApplicationKeyCredential` to automate the rolling of its expiring keys.
+
+As part of the request validation, proof of possession of an existing key is verified before the action can be performed.
+
+## Examples
 
 ### Example 1: Create a new application key credential
+
 ```powershell
-PS C:\> $AppID = (Get-EntraApplication -Top 1).Objectid
-PS C:\> New-EntraApplicationKeyCredential -ObjectId $AppId -CustomKeyIdentifier "Test" -StartDate "11/7/2016" -Type "Symmetric" -Usage "Sign" -Value "123"
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+
+$AppId = (Get-EntraApplication -Top 1).Objectid
+$params = @{
+    ObjectId = $AppId
+    CustomKeyIdentifier = 'EntraPowerShellKey'
+    StartDate = '11/7/2016'
+    Type = 'Symmetric'
+    Usage = 'Sign'
+    Value = '<my-value>'
+}
+
+New-EntraApplicationKeyCredential @params
 ```
 
-```output
+```Output
 CustomKeyIdentifier : {84, 101, 115, 116}
 EndDate             : 11/7/2017 12:00:00 AM
-KeyId               : a5845538-3f67-402d-a03e-36d768f1441e
+KeyId               : aaaaaaaa-0b0b-1c1c-2d2d-333333333333
 StartDate           : 11/7/2016 12:00:00 AM
 Type                : Symmetric
 Usage               : Sign
 Value               : {49, 50, 51}
 ```
 
-The first command gets the ID of an application by using the [Get-EntraApplication](./Get-EntraApplication.md) cmdlet.
-The command stores it in the $AppId variable.  
+This example shows how to create an application key credential.
 
-The second command creates the application key credential for the application identified by $AppId.
+You can use the `Get-EntraApplication` cmdlet to retrieve the application Object ID.
 
 ### Example 2: Use a certificate to add an application key credential
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
+Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+
+$cer = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 #create a new certificate object
+$cer.Import('C:\Users\PFuller\Desktop\abc.cer') 
+$bin = $cer.GetRawCertData()
+$base64Value = [System.Convert]::ToBase64String($bin)
+$bin = $cer.GetCertHash()
+$base64Thumbprint = [System.Convert]::ToBase64String($bin)
+$keyid = [System.Guid]::NewGuid().ToString() 
+
+$params = @{
+    ObjectId = '22223333-cccc-4444-dddd-5555eeee6666'
+    CustomKeyIdentifier = $base64Thumbprint
+    Type = 'AsymmetricX509Cert'
+    Usage = 'Verify'
+    Value = $base64Value
+    StartDate = $cer.GetEffectiveDateString()
+    EndDate = $cer.GetExpirationDateString()
+}
+
+New-EntraApplicationKeyCredential @params
 ```
-PS C:\> $cer = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 #create a new certificate object
-PS C:\> $cer.Import("C:\Users\PFuller\Desktop\abc.cer") 
-PS C:\> $bin = $cer.GetRawCertData()
-PS C:\> $base64Value = [System.Convert]::ToBase64String($bin)
-PS C:\> $bin = $cer.GetCertHash()
-PS C:\> $base64Thumbprint = [System.Convert]::ToBase64String($bin)
-PS C:\> $keyid = [System.Guid]::NewGuid().ToString() 
-PS C:\> New-EntraApplicationKeyCredential -ObjectId 009d786a-3503-4217-b8ab-db03d71c179a -CustomKeyIdentifier  $base64Thumbprint  -Type AsymmetricX509Cert -Usage Verify -Value $base64Value  -StartDate $cer.GetEffectiveDateString() -EndDate cer.GetExpirationDateString()
-```
 
-The first seven commands create values for the application key credential and store them in variables.  
+This example shows how to create an application key credential.
 
-The final command uses a certificate to add an application key credential.
-
-## PARAMETERS
+## Parameters
 
 ### -CustomKeyIdentifier
+
 Specifies a custom key ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -95,10 +128,11 @@ Accept wildcard characters: False
 ```
 
 ### -EndDate
+
 Specifies the time when the key becomes invalid as a DateTime object.
 
 ```yaml
-Type: DateTime
+Type: System.DateTime
 Parameter Sets: (All)
 Aliases:
 
@@ -110,10 +144,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies a unique ID of an application in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -125,10 +160,11 @@ Accept wildcard characters: False
 ```
 
 ### -StartDate
+
 Specifies the time when the key becomes valid as a DateTime object.
 
 ```yaml
-Type: DateTime
+Type: System.DateTime
 Parameter Sets: (All)
 Aliases:
 
@@ -140,6 +176,7 @@ Accept wildcard characters: False
 ```
 
 ### -Type
+
 Specifies the type of the key.
 
 ```yaml
@@ -155,7 +192,11 @@ Accept wildcard characters: False
 ```
 
 ### -Usage
+
 Specifies the key usage.
+
+- `AsymmetricX509Cert`: The usage must be `Verify`.
+- `X509CertAndPassword`: The usage must be `Sign`.
 
 ```yaml
 Type: KeyUsage
@@ -170,10 +211,11 @@ Accept wildcard characters: False
 ```
 
 ### -Value
+
 Specifies the value for the key.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -185,21 +227,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Get-EntraApplication](Get-EntraApplication.md)
 
 [Get-EntraApplicationKeyCredential](Get-EntraApplicationKeyCredential.md)
 
 [Remove-EntraApplicationKeyCredential](Remove-EntraApplicationKeyCredential.md)
-
-[This cmdlet uses the ADAL library in Microsoft Entra ID. To learn more about ADAL, please follow this link:](https://www.cloudidentity.com/blog/2013/09/12/active-directory-authentication-library-adal-v1-for-net-general-availability/)
-

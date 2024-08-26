@@ -1,39 +1,66 @@
 ---
+title: Set-EntraBetaTrustedCertificateAuthority
+description: This article provides details on the Set-EntraBetaTrustedCertificateAuthority command.
+
+
+ms.topic: reference
+ms.date: 07/04/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaTrustedCertificateAuthority
+
 schema: 2.0.0
 ---
 
 # Set-EntraBetaTrustedCertificateAuthority
 
-## SYNOPSIS
+## Synopsis
+
 Updates a trusted certificate authority.
 
-## SYNTAX
+## Syntax
 
-```
-Set-EntraBetaTrustedCertificateAuthority -CertificateAuthorityInformation <CertificateAuthorityInformation>
+```powershell
+Set-EntraBetaTrustedCertificateAuthority 
+ -CertificateAuthorityInformation <CertificateAuthorityInformation>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Set-EntraBetaTrustedCertificateAuthority cmdlet updates a trusted certificate authority in Azure Active Directory (AD).
+## Description
 
-## EXAMPLES
+The `Set-EntraBetaTrustedCertificateAuthority` cmdlet updates a trusted certificate authority in Microsoft Entra ID.
+
+## Examples
 
 ### Example 1: Updates the trusted certificate authorities that are defined in your directory
+
+```powershell
+Connect-Entra -Scopes 'Organization.ReadWrite.All'
+
+$cer = Get-EntraBetaTrustedCertificateAuthority #Get the CertificateAuthorityInformation object
+$cer[0].CrlDistributionPoint = "https://example.crl"
+Set-EntraBetaTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
 ```
-PS C:\> $cer = Set-EntraBetaTrustedCertificateAuthority #Get the CertificateAuthorityInformation object
-		PS C:\> $cer[0].CrlDistributionPoint = "https://example.crl"
-		PS C:\> Set-EntraBetaTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
+
+```Output
+Id
+--
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This command updates the trusted certificate authorities that are defined in your directory.
 
-## PARAMETERS
+- `-CertificateAuthorityInformation` Parameter specifies a CertificateAuthorityInformation object.
+
+## Parameters
 
 ### -CertificateAuthorityInformation
+
 Specifies a CertificateAuthorityInformation object.
 
 ```yaml
@@ -49,19 +76,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
 
-[Get-EntraBetaTrustedCertificateAuthority]()
+## Related Links
 
-[New-EntraBetaTrustedCertificateAuthority]()
+[Get-EntraBetaTrustedCertificateAuthority](Get-EntraBetaTrustedCertificateAuthority.md)
 
-[Remove-EntraBetaTrustedCertificateAuthority]()
+[New-EntraBetaTrustedCertificateAuthority](New-EntraBetaTrustedCertificateAuthority.md)
 
+[Remove-EntraBetaTrustedCertificateAuthority](Remove-EntraBetaTrustedCertificateAuthority.md)
