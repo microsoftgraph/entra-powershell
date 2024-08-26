@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         Import-Module Microsoft.Graph.Entra        
@@ -42,6 +45,19 @@ Describe "Get-EntraPasswordPolicy" {
         $result = Get-EntraPasswordPolicy -DomainName "M365x99297270.onmicrosoft.com"
         $params = Get-Parameters -data $result.NotificationDays.Parameters
         $params.Headers["User-Agent"] | Should -Contain $userAgentHeaderValue
-        }    
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraPasswordPolicy -DomainName "M365x99297270.onmicrosoft.com" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }    
 }    

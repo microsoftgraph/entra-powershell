@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
 
@@ -19,7 +22,7 @@ BeforeAll {
 Describe "Get-EntraBetaDirSyncConfiguration" {
     Context "Test for Get-EntraBetaDirSyncConfiguration" {
         It "Get irectory synchronization settings" {
-            $result =  Get-EntraBetaDirSyncConfiguration -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
+            $result =  Get-EntraBetaDirSyncConfiguration -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
@@ -31,10 +34,32 @@ Describe "Get-EntraBetaDirSyncConfiguration" {
              { Get-EntraBetaDirSyncConfiguration -TenantId "" } | Should -Throw "Cannot process argument transformation on parameter 'TenantId'.*"
          }
          It "Should contain  in OnPremisesDirectorySynchronizationId parameters when passed TenantId to it" {
-            $result = Get-EntraBetaDirSyncConfiguration -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
+            $result = Get-EntraBetaDirSyncConfiguration -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $params = Get-Parameters -data $result.DeletionPreventionType.parameters 
-            $params.OnPremisesDirectorySynchronizationId | Should -Be "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
+            $params.OnPremisesDirectorySynchronizationId | Should -Be "aaaabbbb-0000-cccc-1111-dddd2222eeee"
         }  
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDirSyncConfiguration"
+    
+            Get-EntraBetaDirSyncConfiguration -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee" | Out-Null
+            Should -Invoke -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraBetaDirSyncConfiguration -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }  
 }
 

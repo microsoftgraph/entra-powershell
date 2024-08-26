@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         Import-Module Microsoft.Graph.Entra        
@@ -13,7 +16,7 @@ BeforeAll {
                 "MetadataExchangeUri" = "https://sts.anmaji.myworkspace.microsoft.com/adfs/services/trust/mex"  
                 "PassiveSignInUri"    = "https://sts.anmaji.myworkspace.microsoft.com/adfs/ls/"
                 "SignOutUri"          = "https://sts.anmaji.myworkspace.microsoft.com/adfs/ls/"   
-                "Parameters"          =$args      
+                "Parameters"          = $args      
             }
         )
     }    
@@ -54,6 +57,19 @@ Describe "Get-EntraFederationProperty" {
         $result = Get-EntraFederationProperty -DomainName "anmaji.myworkspace.microsoft.com"
         $params = Get-Parameters -data $result.Parameters
         $params.Headers["User-Agent"] | Should -Contain $userAgentHeaderValue
-        }  
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraFederationProperty -DomainName "anmaji.myworkspace.microsoft.com" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }    
 }    

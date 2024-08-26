@@ -54,6 +54,19 @@ Describe "Get-EntraFederationProperty" {
         $result = Get-EntraBetaFederationProperty -DomainName "anmaji.myworkspace.microsoft.com"
         $params = Get-Parameters -data $result.Parameters
         $params.Headers["User-Agent"] | Should -Contain $userAgentHeaderValue
-        }  
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraBetaFederationProperty -DomainName "anmaji.myworkspace.microsoft.com" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }    
 }    
