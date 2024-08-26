@@ -1,5 +1,5 @@
 ---
-title: New-EntraServicePrincipal.
+title: New-EntraServicePrincipal
 description: This article provides details on the New-EntraServicePrincipal command.
 
 
@@ -45,6 +45,13 @@ New-EntraServicePrincipal
 ## Description
 
 Create a new service Principal.
+
+For multitenant apps, the calling user must also be in at least one of the following Microsoft Entra roles:
+
+- Application Administrator
+- Cloud Application Administrator
+
+For single-tenant apps where the calling user is a non-admin user but is the owner of the backing application, the user must have the Application Developer role.
 
 ## Examples
 

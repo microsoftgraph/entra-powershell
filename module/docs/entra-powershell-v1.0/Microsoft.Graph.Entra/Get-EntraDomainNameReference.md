@@ -8,6 +8,7 @@ ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
+author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
@@ -20,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-This cmdlet retrieves the objects that are referenced with a given domain name.
+Retrieves the objects that are referenced by a given domain name.
 
 ## Syntax
 
@@ -33,7 +34,7 @@ Get-EntraDomainNameReference
 
 ## Description
 
-The `Get-EntraDomainNameReference` cmdlet retrieves the objects that are referenced with a given domain name.
+The `Get-EntraDomainNameReference` cmdlet retrieves the objects that are referenced with a given domain name. Specify `Name` parameter retrieve the objects.
 
 The work or school account needs to belong to at least the Domain Name Administrator or Global Reader Microsoft Entra role.
 
@@ -47,23 +48,19 @@ The work or school account needs to belong to at least the Domain Name Administr
 ```
 
 ```Output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {}
-preferredLanguage               :
-mail                            : Hood@contoso.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.com; issuerAssignedId=Hood@contoso.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {}
-department                      :
-jobTitle                        :
-proxyAddresses                  : {SMTP:Hood@contoso.com}
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+ffffffff-4444-5555-6666-gggggggggggg
+hhhhhhhh-5555-6666-7777-iiiiiiiiiiii
 ```
 
 This example shows how to retrieve the domain name reference objects for a domain that is specified through the -Name parameter.
+
+- `-Name` parameter specifies the name of the domain name for which the referenced objects are retrieved.
 
 ## Parameters
 
@@ -85,7 +82,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

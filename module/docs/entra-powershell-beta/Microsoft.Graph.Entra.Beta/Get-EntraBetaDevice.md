@@ -1,5 +1,5 @@
 ---
-title: Get-EntraBetaDevice.
+title: Get-EntraBetaDevice
 description: This article provides details on the Get-EntraBetaDevice command.
 
 

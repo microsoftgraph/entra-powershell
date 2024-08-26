@@ -1,5 +1,5 @@
 ---
-title: Set-EntraBetaUserPassword.
+title: Set-EntraBetaUserPassword
 description: This article provides details on the Set-EntraBetaUserPassword command.
 
 

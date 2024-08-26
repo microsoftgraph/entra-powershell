@@ -1,5 +1,5 @@
 ---
-title: New-EntraDomain.
+title: New-EntraDomain
 description: This article provides details on the New-EntraDomain command.
 
 

@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraServicePrincipal.
+title: Remove-EntraServicePrincipal
 description: This article provides details on the Remove-EntraServicePrincipal command.
 
 

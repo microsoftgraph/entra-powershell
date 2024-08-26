@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraDeletedDirectoryObject.
+title: Remove-EntraDeletedDirectoryObject
 description: This article provides details on the Remove-EntraDeletedDirectoryObject command.
 
 
@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-This cmdlet is used to permanently delete a previously deleted directory object.
+Permanently delete a previously deleted directory object.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Remove-EntraDeletedDirectoryObject
 
 ## Description
 
-This cmdlet is used to permanently delete a previously deleted directory object.
+The `Remove-EntraDeletedDirectoryObject` cmdlet is used to permanently delete a previously deleted directory object.
 
 When a directory object is permanently deleted, it can no longer be restored.
 
