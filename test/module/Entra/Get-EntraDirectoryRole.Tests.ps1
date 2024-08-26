@@ -15,8 +15,8 @@ BeforeAll {
               "DeletedDateTime" = $null
               "Description"     = "Read custom security attribute keys and values for supported Microsoft Entra objects."
               "DisplayName"     = "Attribute Assignment Reader"
-              "Id"              = "bbbbbbbb-1111-2222-3333-cccccccccc"
-              "RoleTemplateId"  = "aaaaaaaa-1111-2222-3333-cccccccccc"
+              "Id"              = "bbbbbbbb-1111-2222-3333-cccccccccccc"
+              "RoleTemplateId"  = "aaaaaaaa-1111-2222-3333-cccccccccccc"
               "Members"         = $null
               "ScopedMembers"   = $null
               "Parameters"      = $args
@@ -30,9 +30,9 @@ BeforeAll {
   Describe "Get-EntraDirectoryRole" {
     Context "Test for Get-EntraDirectoryRole" {
         It "Should return specific role" {
-            $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc"
+            $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc"
+            $result.Id | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
             Should -Invoke -CommandName Get-MgDirectoryRole  -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -47,16 +47,16 @@ BeforeAll {
             Should -Invoke -CommandName Get-MgDirectoryRole  -ModuleName Microsoft.Graph.Entra -Times 1
         }  
         It "Result should Contain ObjectId" {
-            $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc"
-            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc"
+            $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         } 
         It "Should contain DirectoryRoleId in parameters when passed ObjectId to it" {     
-            $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc"
+            $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
-            $params.DirectoryRoleId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc"
+            $params.DirectoryRoleId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Property parameter should work" {
-            $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc" -Property DisplayName
+            $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property DisplayName
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Attribute Assignment Reader'
 
@@ -64,7 +64,7 @@ BeforeAll {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirectoryRole"
-            $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc"
+            $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }  
@@ -75,7 +75,7 @@ BeforeAll {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc" -Debug } | Should -Not -Throw
+                { Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
