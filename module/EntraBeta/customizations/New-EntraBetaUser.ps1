@@ -7,7 +7,7 @@
     Parameters   = $null
     Outputs      = $null
     CustomScript = @'
-    PROCESS {    
+    PROCESS {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         
@@ -113,7 +113,7 @@
             $Value = @{
                 forceChangePasswordNextSignIn = $TmpValue.ForceChangePasswordNextLogin
                 forceChangePasswordNextSignInWithMfa = $TmpValue.EnforceChangePasswordPolicy
-                password = $TmpValue.Password 
+                password = $TmpValue.Password
             }
             $params["passwordProfile"] = $Value
         }
@@ -147,7 +147,7 @@
         }
         if($null -ne $PSBoundParameters["TelephoneNumber"])
         {
-            $params["BusinessPhones"] = @($PSBoundParameters["TelephoneNumber"])
+            $params["BusinessPhones"] = $PSBoundParameters["TelephoneNumber"]
         }
         if($null -ne $PSBoundParameters["CreationType"])
         {
@@ -172,16 +172,14 @@
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name LastDirSyncTime -Value OnPremisesLastSyncDateTime
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name ProvisioningErrors -Value onPremisesProvisioningErrors
                 Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value BusinessPhones
-                
-                $userData = [Microsoft.Graph.PowerShell.Models.MicrosoftGraphUser]::new()
+           
+                $userData = [Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphUser]::new()
                 $_.PSObject.Properties | ForEach-Object {
                     $userData | Add-Member -MemberType NoteProperty -Name $_.Name -Value $_.Value -Force
                 }
             }
-        }        
+        }
         $userData
-    }  
+    }
 '@
 }
-
-

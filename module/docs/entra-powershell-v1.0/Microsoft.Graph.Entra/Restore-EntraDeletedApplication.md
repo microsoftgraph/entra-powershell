@@ -49,34 +49,17 @@ For delegated scenarios, the calling user needs to have at least one of the foll
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
+# List available applications
 Get-EntraApplication
-```
 
-```Output
+# Delete a specific application
+Remove-EntraApplication -ObjectId 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
 
-ObjectId                             AppId                                DisplayName
---------                             -----                                -----------
-dddddddd-3333-4444-5555-eeeeeeeeeeee 00001111-aaaa-2222-bbbb-3333cccc4444 PowerShellGraphAPI
-eeeeeeee-4444-5555-6666-ffffffffffff 11112222-bbbb-3333-cccc-4444dddd5555 WingTips
-ffffffff-5555-6666-7777-aaaaaaaaaaaa 22223333-cccc-4444-dddd-5555eeee6666 AzurePopulator
-```
-
-```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
-Remove-EntraApplication -ObjectId dddddddd-3333-4444-5555-eeeeeeeeeeee
+# Retrieve the deleted application
 Get-EntraDeletedApplication
-```
 
-```Output
-
-ObjectId                             AppId                                DisplayName
---------                             -----                                -----------
-dddddddd-3333-4444-5555-eeeeeeeeeeee 00001111-aaaa-2222-bbbb-3333cccc4444 analog
-```
-
-```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
-Restore-EntraDeletedApplication -ObjectId dddddddd-3333-4444-5555-eeeeeeeeeeee
+# Restore a deleted application
+Restore-EntraDeletedApplication -ObjectId 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
 ```
 
 ```Output
