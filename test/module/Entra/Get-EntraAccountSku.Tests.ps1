@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         Import-Module Microsoft.Graph.Entra        
@@ -8,11 +11,11 @@ BeforeAll {
         return @(
             [PSCustomObject]@{
                    "PrepaidUnits"     = @{Enabled=20;LockedOut= 0; Suspended= 0;Warning =0}
-                   "Id"               = "d5aec55f-2d12-4442-8d2f-ccca95d4390e_b05e124f-c7cc-45a0-a6aa-8cf78c946968"
+                   "Id"               = "00001111-aaaa-2222-bbbb-3333cccc4444_11112222-bbbb-3333-cccc-4444dddd5555"
                    "ConsumedUnits"    = "20"
                    "AccountName"      = "M365x99297270"
                    "CapabilityStatus" = "Enabled"
-                   "AccountId"        = "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
+                   "AccountId"        = "00001111-aaaa-2222-bbbb-3333cccc4444"
                    "AppliesTo"        = "User"
                    "Parameters"       = $args
             }
@@ -24,13 +27,13 @@ BeforeAll {
 Describe "Get-EntraAccountSku" {
     Context "Test for Get-EntraAccountSku" {
         It "Returns all the SKUs for a company." {
-            $result = Get-EntraAccountSku -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
+            $result = Get-EntraAccountSku -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be "d5aec55f-2d12-4442-8d2f-ccca95d4390e_b05e124f-c7cc-45a0-a6aa-8cf78c946968"
+            $result.Id | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444_11112222-bbbb-3333-cccc-4444dddd5555"
             $result.ConsumedUnits | should -Be "20"
             $result.AccountName | should -Be "M365x99297270"
             $result.CapabilityStatus | should -Be "Enabled"
-            $result.AccountId | should -Be "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
+            $result.AccountId | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result.AppliesTo | should -Be "User"
 
             Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Graph.Entra -Times 1
@@ -44,9 +47,22 @@ Describe "Get-EntraAccountSku" {
        
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAccountSku"
-            $result = Get-EntraAccountSku -TenantId "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
+            $result = Get-EntraAccountSku -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraAccountSku -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         }
     }
 }

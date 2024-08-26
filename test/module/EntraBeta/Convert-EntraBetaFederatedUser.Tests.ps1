@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta      
@@ -6,14 +9,14 @@ BeforeAll {
      $scriptblockForAuthenticationMethod = {
             return @(
                 [PSCustomObject]@{
-                    "Id" = "00160a01-0755-47fa-a241-090fe6d5f71a"
+                    "Id" = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
                 }        
         )   
      }      
      $scriptblockForMgUser= {
         return @(
             [PSCustomObject]@{
-                "Id" = "daa2b3a5-23e0-409a-90c0-e28585d5e387"
+                "Id" = "22cc22cc-dd33-ee44-ff55-66aa66aa66aa"
             }        
     )   
  }  
@@ -25,7 +28,7 @@ BeforeAll {
  
     Describe "Convert-EntraBetaFederatedUser" {
     Context "Test for Convert-EntraBetaFederatedUser" {
-        It "Should sets identity synchronization features for a tenant." {
+        It "Should sets identity synchronization features for a tenant" {
             $result = Convert-EntraBetaFederatedUser -UserPrincipalName "xyz.onmicrosoft.com" -NewPassword "Pass1234"
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Reset-MgBetaUserAuthenticationMethodPassword -ModuleName Microsoft.Graph.Entra.Beta -Times 1
@@ -47,6 +50,19 @@ BeforeAll {
             $result =Convert-EntraBetaFederatedUser -UserPrincipalName "xyz.onmicrosoft.com" -NewPassword "Pass1234"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Convert-EntraBetaFederatedUser -UserPrincipalName "xyz.onmicrosoft.com" -NewPassword "Pass1234" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         }
     }
 } 
