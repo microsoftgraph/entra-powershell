@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta      
@@ -7,7 +10,7 @@ BeforeAll {
         return @(
             [PSCustomObject]@{
                 "Configuration" = @{ AlertThreshold =500 ; SynchronizationPreventionType = "enabledForCount"}
-                "Id"            = "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
+                "Id"            = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             }        
         )
         }
@@ -42,6 +45,28 @@ Describe "Set-EntraBetaDirSyncConfiguration" {
          
         It "Should fail when Force parameter is passes with argument" {
             {Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold "111" -Force "xy"} | Should -Throw "A positional parameter cannot be found that accepts argument*"
-        }   
+        }
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDirSyncConfiguration"
+
+            Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold "111" -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Force | Out-Null
+            Should -Invoke -CommandName Update-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold "111" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }
 }   
