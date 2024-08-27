@@ -1,4 +1,6 @@
-
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         Import-Module Microsoft.Graph.Entra      
@@ -8,7 +10,7 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-              "Id"                           = "0baf0e3a-86b8-464f-9778-f9d39071c876"
+              "Id"                           = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
               "DisplayName"                  = "Mock-App policies"
               "CreatedDateTime"              = "14-05-2024 09:38:07"
               "ModifiedDateTime"             = "14-05-2024 09:38:07"
@@ -36,7 +38,7 @@ Context "Test for New-EntraNamedLocationPolicy" {
             $ipRanges.cidrAddress = "6.5.4.1/30"
             $result = New-EntraNamedLocationPolicy -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies" -IpRanges $ipRanges -IsTrusted $true  -CountriesAndRegions @("US","ID","CA") -IncludeUnknownCountriesAndRegions $true
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "0baf0e3a-86b8-464f-9778-f9d39071c876"
+            $result.Id | Should -Be "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
             $result.DisplayName | Should -Be "Mock-App policies"
             $result.CreatedDateTime | Should -Be "14-05-2024 09:38:07"
 
@@ -76,7 +78,7 @@ Context "Test for New-EntraNamedLocationPolicy" {
             $ipRanges = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
             $ipRanges.cidrAddress = "6.5.4.1/30"
             $result = New-EntraNamedLocationPolicy  -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies" -IpRanges $ipRanges -IsTrusted $true  -CountriesAndRegions @("US","ID","CA") -IncludeUnknownCountriesAndRegions $true
-            $result.ObjectId | should -Be "0baf0e3a-86b8-464f-9778-f9d39071c876"
+            $result.ObjectId | should -Be "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
         }
         It "Should contain @odata.type in bodyparameters when passed OdataId to it" {
             Mock -CommandName New-MgIdentityConditionalAccessNamedLocation -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
@@ -108,10 +110,8 @@ Context "Test for New-EntraNamedLocationPolicy" {
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
-            }
+            }        
         }
 
-
     }
-
 }   
