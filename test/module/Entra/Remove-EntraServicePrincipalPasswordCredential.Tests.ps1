@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         Import-Module Microsoft.Graph.Entra
@@ -10,37 +13,50 @@ BeforeAll {
 Describe "Remove-EntraServicePrincipalPasswordCredential" {
     Context "Test for Remove-EntraServicePrincipalPasswordCredential" {
         It "Should return empty object" {
-            $result = Remove-EntraServicePrincipalPasswordCredential -ObjectID "1a3d700a-bedb-4e8f-bdda-72979a952a8d" -KeyId "d1abd143-6d5f-4a82-8e4a-53d690c3eeb6"
+            $result = Remove-EntraServicePrincipalPasswordCredential -ObjectID "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -KeyId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgServicePrincipalPassword -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when ObjectID is empty" {
-            { Remove-EntraServicePrincipalPasswordCredential -ObjectID  -KeyId "d1abd143-6d5f-4a82-8e4a-53d690c3eeb6" } | should -Throw "Missing an argument for parameter 'ObjectID'.*"
+            { Remove-EntraServicePrincipalPasswordCredential -ObjectID  -KeyId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333" } | should -Throw "Missing an argument for parameter 'ObjectID'.*"
         }   
         It "Should fail when ObjectID is invalid" {
-            {Remove-EntraServicePrincipalPasswordCredential -ObjectID "" -KeyId "d1abd143-6d5f-4a82-8e4a-53d690c3eeb6" } | should -Throw "Cannot bind argument to parameter 'ObjectID'*"
+            {Remove-EntraServicePrincipalPasswordCredential -ObjectID "" -KeyId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333" } | should -Throw "Cannot bind argument to parameter 'ObjectID'*"
         }  
         It "Should fail when KeyId is empty" {
-            {Remove-EntraServicePrincipalPasswordCredential -ObjectID "1a3d700a-bedb-4e8f-bdda-72979a952a8d" -KeyId   } | should -Throw "Missing an argument for parameter 'KeyId'.*"
+            {Remove-EntraServicePrincipalPasswordCredential -ObjectID "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -KeyId   } | should -Throw "Missing an argument for parameter 'KeyId'.*"
         }   
         It "Should fail when KeyId is invalid" {
-            { Remove-EntraServicePrincipalPasswordCredential -ObjectID "1a3d700a-bedb-4e8f-bdda-72979a952a8d" -KeyId ""} | should -Throw "Cannot bind argument to parameter 'KeyId'*"
+            { Remove-EntraServicePrincipalPasswordCredential -ObjectID "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -KeyId ""} | should -Throw "Cannot bind argument to parameter 'KeyId'*"
         }  
         It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {
             Mock -CommandName Remove-MgServicePrincipalPassword -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraServicePrincipalPasswordCredential -ObjectID "1a3d700a-bedb-4e8f-bdda-72979a952a8d" -KeyId "d1abd143-6d5f-4a82-8e4a-53d690c3eeb6"
+            $result = Remove-EntraServicePrincipalPasswordCredential -ObjectID "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -KeyId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
             $params = Get-Parameters -data $result
-            $params.ServicePrincipalId | Should -Be "1a3d700a-bedb-4e8f-bdda-72979a952a8d"
+            $params.ServicePrincipalId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain 'User-Agent' header" {
             Mock -CommandName Remove-MgServicePrincipalPassword -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraServicePrincipalPasswordCredential"
-            $result =  Remove-EntraServicePrincipalPasswordCredential -ObjectID "1a3d700a-bedb-4e8f-bdda-72979a952a8d" -KeyId "d1abd143-6d5f-4a82-8e4a-53d690c3eeb6"
+            $result =  Remove-EntraServicePrincipalPasswordCredential -ObjectID "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -KeyId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Remove-EntraServicePrincipalPasswordCredential -ObjectID "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -KeyId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         } 
     }
 }
