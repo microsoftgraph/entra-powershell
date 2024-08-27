@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         Import-Module Microsoft.Graph.Entra      
@@ -7,12 +10,12 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-              "Id"                           = "74825acb-c984-4b54-ab65-d38347ea5e90"
+              "Id"                           = "ffffffff-5555-6666-7777-aaaaaaaaaaaa"
               "DeletedDateTime"              = $null
               "AdditionalProperties"         = @{
                                                     "@odata.type"            = "#microsoft.graph.device"
                                                     "accountEnabled"         = $true
-                                                    "deviceId"               = "6e9d44e6-f191-4957-bb31-c52f33817204"
+                                                    "deviceId"               = "00001111-aaaa-2222-bbbb-3333cccc4444"
                                                     "displayName"            = "Mock-App"
                                                     "isCompliant"            = $false
                                                     "isManaged"              = $true
@@ -32,10 +35,10 @@ BeforeAll {
 Describe "Get-EntraUserRegisteredDevice" {
 Context "Test for Get-EntraUserRegisteredDevice" {
         It "Should return specific user registered device" {
-            $result = Get-EntraUserRegisteredDevice -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1"
+            $result = Get-EntraUserRegisteredDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "74825acb-c984-4b54-ab65-d38347ea5e90"
-            $result.AdditionalProperties.deviceId | Should -Be "6e9d44e6-f191-4957-bb31-c52f33817204"
+            $result.Id | Should -Be "ffffffff-5555-6666-7777-aaaaaaaaaaaa"
+            $result.AdditionalProperties.deviceId | Should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result.AdditionalProperties.displayName | Should -Be "Mock-App"
 
             Should -Invoke -CommandName Get-MgUserRegisteredDevice  -ModuleName Microsoft.Graph.Entra -Times 1
@@ -47,48 +50,67 @@ Context "Test for Get-EntraUserRegisteredDevice" {
             { Get-EntraUserRegisteredDevice -ObjectId  ""} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
         It "Should return All user registered devices" {
-            $result = Get-EntraUserRegisteredDevice -ObjectId  "fd560167-ff1f-471a-8d74-3b0070abcea1" -All $true
+            $result = Get-EntraUserRegisteredDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "74825acb-c984-4b54-ab65-d38347ea5e90"
-            $result.AdditionalProperties.deviceId | Should -Be "6e9d44e6-f191-4957-bb31-c52f33817204"
+            $result.Id | Should -Be "ffffffff-5555-6666-7777-aaaaaaaaaaaa"
+            $result.AdditionalProperties.deviceId | Should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result.AdditionalProperties.displayName | Should -Be "Mock-App"
 
             Should -Invoke -CommandName Get-MgUserRegisteredDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when All is empty" {
-            { Get-EntraUserRegisteredDevice -ObjectId  "fd560167-ff1f-471a-8d74-3b0070abcea1" -All  } | Should -Throw "Missing an argument for parameter 'All'*"
-        }
         It "Should fail when All is invalid" {
-            { Get-EntraUserRegisteredDevice -ObjectId  "fd560167-ff1f-471a-8d74-3b0070abcea1" -All xyz } | Should -Throw "Cannot process argument transformation on parameter 'All'*"
+            { Get-EntraUserRegisteredDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
         }
         It "Should return top 1 user registered device" {
-            $result = Get-EntraUserRegisteredDevice -ObjectId  "fd560167-ff1f-471a-8d74-3b0070abcea1" -Top 1
+            $result = Get-EntraUserRegisteredDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 1
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "74825acb-c984-4b54-ab65-d38347ea5e90"
-            $result.AdditionalProperties.deviceId | Should -Be "6e9d44e6-f191-4957-bb31-c52f33817204"
+            $result.Id | Should -Be "ffffffff-5555-6666-7777-aaaaaaaaaaaa"
+            $result.AdditionalProperties.deviceId | Should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result.AdditionalProperties.displayName | Should -Be "Mock-App"
 
             Should -Invoke -CommandName Get-MgUserRegisteredDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Top is empty" {
-            { Get-EntraUserRegisteredDevice -ObjectId  "fd560167-ff1f-471a-8d74-3b0070abcea1" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraUserRegisteredDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
         It "Should fail when Top is invalid" {
-            { Get-EntraUserRegisteredDevice -ObjectId  "fd560167-ff1f-471a-8d74-3b0070abcea1" -Top xyz } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraUserRegisteredDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top xyz } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+        }
+        It "Property parameter should work" {
+            $result = Get-EntraUserRegisteredDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property DisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.AdditionalProperties.displayName | Should -Be "Mock-App"
+
+            Should -Invoke -CommandName Get-MgUserRegisteredDevice -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should fail when Property is empty" {
+             { Get-EntraUserRegisteredDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Should contain UserId in parameters when passed ObjectId to it" {              
-            $result = Get-EntraUserRegisteredDevice -ObjectId  "fd560167-ff1f-471a-8d74-3b0070abcea1"
+            $result = Get-EntraUserRegisteredDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result.Parameters
-            $params.UserId | Should -Be "fd560167-ff1f-471a-8d74-3b0070abcea1"
+            $params.UserId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserRegisteredDevice"
 
-            $result = Get-EntraUserRegisteredDevice -ObjectId  "fd560167-ff1f-471a-8d74-3b0070abcea1"
+            $result = Get-EntraUserRegisteredDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
 
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraUserRegisteredDevice -ObjectId  "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
 
     }
 }
