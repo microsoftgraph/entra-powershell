@@ -115,7 +115,7 @@
                         ]
 
                     },
-                    { "Command" :"Get-EntraGroupURLTest", "URl" :"https://graph.microsoft.com/v1.0/groups", "Method" : "POST", "Parameters" : [
+                    { "Command" :"Get-EntraGroupURLTest", "URl" :"https://graph.microsoft.com/v1.0/groups", "Method" : "GET", "Parameters" : [
                         {
                             "SourceName" : "All",
                             "TargetName" : null,
@@ -132,25 +132,24 @@
                             "TargetName" : null,
                             "ConversionType" : "None",  
                             "SpecialMapping" :null,      
-                            "ParameterSetName":"GetQuery",
+                            "ParameterSetName":"InvokeByDynamicParameters",
                             "Mandatory": false,
                             "ValueFromPipeline":true,
                             "ValueFromPipelineByPropertyName":true,                                
                             "DataType": "System.Nullable`1[System.Int32]"                                
                         },
                         {
-                            "SourceName" : "GroupId",
+                            "SourceName" : "Id",
                             "TargetName" : null,
                             "ConversionType" : "None",  
                             "SpecialMapping" :null,      
-                            "ParameterSetName":"GetById",
-                            "Mandatory": true,
+                            "ParameterSetName":"InvokeByDynamicParameters",
+                            "Mandatory": false,
                             "ValueFromPipeline":true,
                             "ValueFromPipelineByPropertyName":true,                                
                             "DataType": "System.String"                                
                         }            
                     ]
-
                 }
           
                 ]

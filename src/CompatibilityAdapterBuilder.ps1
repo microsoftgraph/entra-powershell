@@ -580,7 +580,7 @@ public $($object.GetType().Name)()
             if (-not $newCmdletData.Old.Contains($item.Command)) {
                $cmdDetails= $this.GetParsedCmd($item.Command,$prefix)
 
-                $cmd += [PSCustomObject]@{
+                $cmd = [PSCustomObject]@{
                     Old = $item.Command
                     New = $item.Command
                     Generate = '{0}-{1}{2}' -f $cmdDetails.Verb, $Prefix, $cmdDetails.Noun
@@ -739,13 +739,20 @@ $parameterDefinitions
     PROCESS {    
     `$params = @{}
     `$customHeaders = $customHeadersCommandName -Command `$MyInvocation.MyCommand
-    $($keyId)
+    $($keyId)    
 $ParamterTransformations
     Write-Debug("============================ TRANSFORMATIONS ============================")
     `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
     Write-Debug("=========================================================================``n")
     
     `$response = $($URLCommand) -Headers `$customHeaders
+    try{
+    `$response = `$response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+
+    }
+catch{
+    `$response = `$response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+}
 $OutputTransformations
     `$response
     }
@@ -758,7 +765,8 @@ $OutputTransformations
 
     hidden [string] GetURLCommand([CommandUrlMap] $URLMapping){
         switch ($URLMapping.Method) {
-            "POST" { return " Invoke-GraphRequest -Uri $($URLMapping.URL) -Method  $($URLMapping.Method) -body `$params"}            
+            "POST" { return " Invoke-GraphRequest -Uri '$($URLMapping.URL)' -Method  $($URLMapping.Method) -body `$params"}  
+            "GET" { return " Invoke-GraphRequest -Uri ('$($URLMapping.URL)' + `$query) -Method  $($URLMapping.Method)"}            
         }
 
         return ""
@@ -794,7 +802,7 @@ $ParamterTransformations
     `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
     Write-Debug("=========================================================================``n")
     
-    `$response = $($Command.New) @params -Headers `$customHeaders
+    `$response = $($Command.New) @params -Headers `$customHeaders    
 $OutputTransformations
     `$response
     }
@@ -969,12 +977,59 @@ $OutputTransformations
     }
 
     hidden [string] GetParametersTransformationsFromUrlMappingNewURL([CommandUrlMap] $URLMapping) {
-       $paramsList = ""
-        foreach ($param in $URLMapping.Parameters){
-            $paramsList += $this.GetCustomParameterTransformation($param.Name)
+       
+       Write-Host("metod " + $URLMapping.Method)
+        $paramsList = ""
+       switch ($URLMapping.Method) {
+            "POST" { 
+                foreach ($param in $URLMapping.Parameters){
+                        $paramsList += $this.GetCustomParameterTransformation($param.Name)
+                    }
+                }
+                  
+            "GET" { 
+                $paramsList += "`$query = ''
+                                `$idQuery =''
+
+                "                
+                
+                foreach ($param in $URLMapping.Parameters){
+                    switch ($param.Name) {
+                        "Top" { 
+                            $paramsList += $this.GetTopParameterTransformation() 
+                            break
+                        }
+                        "Id" {
+                            $paramsList += $this.GetIdParameterTransformation() 
+                            break
+                        }
+                        "Id" {
+                            $paramsList += $this.GetFilterParameterTransformation() 
+                            break
+                        }
+                        Default {
+                            $paramsList += $this.GetCustomParameterTransformation($param.Name)
+                            break
+                        }
+                    }                
+                }
+
+                $paramsList += @"
+    if(`$null -ne `$query)
+    {
+        `$query = "?" + `$query.TrimStart("&")
+        `$query = `$idQuery + `$query
+        `$query = `$query.TrimEnd("?")
+    }
+
+"@
+            }            
         }
+
+        
         return $paramsList
     }
+    
     
 
     hidden [string] GetParametersTransformationsFromUrlMapping([PSCustomObject] $Command,[CommandUrlMap] $URLMapping) {
@@ -1183,6 +1238,51 @@ $OutputTransformations
 "@
         return $paramBlock
     }
+
+    hidden [string] GetTopParameterTransformation (){       
+    
+        $paramBlock = @"
+        if (`$null -ne `$PSBoundParameters["Top"]) 
+        {
+            `$topCount = `$PSBoundParameters["Top"]
+            if (`$topCount -gt 999) {
+                `$query += "&top=999"
+            } else {
+                `$query += "&top=`$topCount"
+            }
+        }
+
+"@
+        return $paramBlock
+    }
+
+    hidden [string] GetFilterParameterTransformation() {        
+        $paramBlock = @"
+        if (`$null -ne `$PSBoundParameters["Filter")"]) 
+        {
+            `$filter = `$PSBoundParameters["Filter"]
+            `$f = '`$filter'
+            `$query += "&`f=`$filter"
+        }
+
+"@
+        return $paramBlock
+    }
+
+    hidden [string] GetIdParameterTransformation() {
+        
+        $paramBlock = @"
+        if (`$null -ne `$PSBoundParameters["Id"]) 
+        {
+            `$logId = `$PSBoundParameters["Id"]
+            `$idQuery = `"/`$(`$logId)`"
+        }
+
+"@
+        return $paramBlock
+    }
+    
+    
     
     hidden [string] GetOutputTransformations([PSCustomObject] $Command) {
         $responseVerbs = @("Get","Add","New")
