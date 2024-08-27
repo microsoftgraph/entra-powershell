@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta       
@@ -48,7 +51,7 @@ Context "Test for Get-EntraBetaAdministrativeUnit" {
             Should -Invoke -CommandName Get-MgBetaAdministrativeUnit -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when All is invalid" {
-            { Get-EntraMSRoleAssignment -All XY } | Should -Throw "A positional parameter cannot be found that accepts argument 'xy'.*"
+            { Get-EntraBetaAdministrativeUnit -All XY } | Should -Throw "A positional parameter cannot be found that accepts argument 'xy'.*"
         }
         It "Should return top administrative unit" {
             $result = Get-EntraBetaAdministrativeUnit -Top 1
@@ -60,7 +63,7 @@ Context "Test for Get-EntraBetaAdministrativeUnit" {
             { Get-EntraBetaAdministrativeUnit -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
         It "Should fail when Top is invalid" {
-            { Get-EntraBetaAdministrativeUnit -Top xy } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraBetaAdministrativeUnit -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
         It "Should return specific administrative unit by filter" {
             $result = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq 'Mock-Administrative-unit'"
@@ -82,6 +85,16 @@ Context "Test for Get-EntraBetaAdministrativeUnit" {
             $params = Get-Parameters -data $result.Parameters
             $params.AdministrativeUnitId | Should -Be "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
         }
+        It "Property parameter should work" {
+            $result = Get-EntraBetaAdministrativeUnit -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Property DisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be 'Mock-Administrative-unit'
+ 
+            Should -Invoke -CommandName Get-MgBetaAdministrativeUnit -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+        It "Should fail when Property is empty" {
+             { Get-EntraBetaAdministrativeUnit -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaAdministrativeUnit"
 
@@ -89,6 +102,19 @@ Context "Test for Get-EntraBetaAdministrativeUnit" {
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraBetaAdministrativeUnit -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        } 
 
     }
 }   

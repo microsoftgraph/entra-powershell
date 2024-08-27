@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta       
@@ -11,33 +14,44 @@ BeforeAll {
 Describe "Add-EntraBetaServicePrincipalPolicy" {
 Context "Test for Add-EntraBetaServicePrincipalPolicy" {
         It "Should return empty object" {
-            $result = Add-EntraBetaServicePrincipalPolicy -Id "pppppppp-b5d0-aaaa-ahbg-35d37154f550" -RefObjectId "abcdabcd-529b-4ffc-bebe-56bbacffface"
+            $result = Add-EntraBetaServicePrincipalPolicy -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "bbbbbbbb-7777-8888-9999-cccccccccccc"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when Id is empty" {
-            { Add-EntraBetaServicePrincipalPolicy -Id  -RefObjectId "abcdabcd-529b-4ffc-bebe-56bbacffface"   } | Should -Throw "Missing an argument for parameter 'Id'*"
+            { Add-EntraBetaServicePrincipalPolicy -Id  -RefObjectId "bbbbbbbb-7777-8888-9999-cccccccccccc"   } | Should -Throw "Missing an argument for parameter 'Id'*"
         }
         It "Should fail when Id is invalid" {
-            { Add-EntraBetaServicePrincipalPolicy -Id "" -RefObjectId "abcdabcd-529b-4ffc-bebe-56bbacffface"} | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
+            { Add-EntraBetaServicePrincipalPolicy -Id "" -RefObjectId "bbbbbbbb-7777-8888-9999-cccccccccccc" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
         }
         It "Should fail when RefObjectId is empty" {
-            { Add-EntraBetaServicePrincipalPolicy -Id "pppppppp-b5d0-aaaa-ahbg-35d37154f550" -RefObjectId  } | Should -Throw "Missing an argument for parameter 'RefObjectId'*"
+            { Add-EntraBetaServicePrincipalPolicy -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId  } | Should -Throw "Missing an argument for parameter 'RefObjectId'*"
         }
         It "Should fail when RefObjectId is invalid" {
-            { Add-EntraBetaServicePrincipalPolicy -Id "pppppppp-b5d0-aaaa-ahbg-35d37154f550" -RefObjectId ""} | Should -Throw "Cannot bind argument to parameter 'RefObjectId' because it is an empty string."
+            { Add-EntraBetaServicePrincipalPolicy -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId ""} | Should -Throw "Cannot bind argument to parameter 'RefObjectId' because it is an empty string."
         }
         It "Should contain 'User-Agent' header" {
             Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaServicePrincipalPolicy"
 
-            $result = Add-EntraBetaServicePrincipalPolicy -Id "pppppppp-b5d0-aaaa-ahbg-35d37154f550" -RefObjectId "abcdabcd-529b-4ffc-bebe-56bbacffface"
+            $result = Add-EntraBetaServicePrincipalPolicy -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "bbbbbbbb-7777-8888-9999-cccccccccccc"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
 
-
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Add-EntraBetaServicePrincipalPolicy -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "bbbbbbbb-7777-8888-9999-cccccccccccc" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        } 
     }
 }
