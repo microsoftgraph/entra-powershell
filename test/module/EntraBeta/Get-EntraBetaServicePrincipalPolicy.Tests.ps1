@@ -20,7 +20,7 @@ $scriptblock = {
                                                                                          }
                                                 }
                     "displayName"                  = "Mock policy"
-                    "type"                         = "HomeRealmDiscoveryPolicy"
+                    "type"                         = "ActivityBasedTimeoutPolicy"
                     "isOrganizationDefault"        = $false 
                     "createdDateTime"              = "16-08-2023 08:25:02"                       
                 }
@@ -38,7 +38,7 @@ Context "Test for Get-EntraBetaServicePrincipalPolicy" {
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "bbbbbbbb-e731-4ec1-a4f6-pepepepa"
             $result.displayName | Should -Be "Mock policy"
-            $result.type | Should -be "HomeRealmDiscoveryPolicy"
+            $result.type | Should -be "ActivityBasedTimeoutPolicy"
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }

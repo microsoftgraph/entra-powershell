@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta       
@@ -9,7 +12,7 @@ $scriptblock = {
         return @{
             value = @(
                 @{
-                    "Id"                           = "pppppppp-b5d0-aaaa-ahbg-aaaaaaaa"
+                    "Id"                           = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
                     "DeletedDateTime"              = $null
                     "@odata.type"                   = "#microsoft.graph.servicePrincipal"
                     "keyCredentials"               = "System.Collections.Hashtable"
@@ -31,9 +34,9 @@ $scriptblock = {
 Describe "Get-EntraBetaPolicyAppliedObject" {
 Context "Test for Get-EntraBetaPolicyAppliedObject" {
         It "Should return policy applied object" {
-            $result = Get-EntraBetaPolicyAppliedObject -Id "pppppppp-b5d0-aaaa-ahbg-aaaaaaaa"  
+            $result = Get-EntraBetaPolicyAppliedObject -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"  
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "pppppppp-b5d0-aaaa-ahbg-aaaaaaaa"
+            $result.Id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result.displayName | Should -Be "Mock policy Object"
             $result.servicePrincipalNames | Should -be "Mock service principal"
 
@@ -46,18 +49,31 @@ Context "Test for Get-EntraBetaPolicyAppliedObject" {
             { Get-EntraBetaPolicyAppliedObject -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
         }
         It "Result should Contain @odata.type" {
-            $result = Get-EntraBetaPolicyAppliedObject -Id "pppppppp-b5d0-aaaa-ahbg-aaaaaaaa" 
+            $result = Get-EntraBetaPolicyAppliedObject -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" 
             $result."@odata.type" | should -Be "#microsoft.graph.servicePrincipal"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaPolicyAppliedObject"
             
-            $result = Get-EntraBetaPolicyAppliedObject -Id "pppppppp-b5d0-aaaa-ahbg-aaaaaaaa" 
+            $result = Get-EntraBetaPolicyAppliedObject -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" 
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
         }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                {  Get-EntraBetaPolicyAppliedObject -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        } 
     }
 }

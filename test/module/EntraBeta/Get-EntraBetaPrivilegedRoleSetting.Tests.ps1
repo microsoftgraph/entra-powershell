@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta       
@@ -8,7 +11,7 @@ BeforeAll {
         return @(
             [PSCustomObject]@{
               "Id"                           = "dddddddd-7902-4be2-a25b-dddddddddddd"
-              "resourceId"                   = "dddddddd-1111-2222-3333-aaaaaaaaaaaa"
+              "resourceId"                   = "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
               "roleDefinitionId"             = "eeeeeeee-c632-46ae-9ee0-dddddddddddd"
               "IsDefault"                    = $False
               "LastUpdatedBy"                = "Mock Administrator"
@@ -60,71 +63,93 @@ BeforeAll {
     Mock -CommandName Get-MgBetaPrivilegedAccessRoleSetting -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
 }
 
-Describe "Get-EntraBetaMSPrivilegedRoleSetting" {
-Context "Test for Get-EntraBetaMSPrivilegedRoleSetting" {
-        It "Should return specific MS privileged role setting" {
-            $result = Get-EntraBetaMSPrivilegedRoleSetting -ProviderId "MockRoles" -Id "dddddddd-7902-4be2-a25b-dddddddddddd"
+Describe "Get-EntraBetaPrivilegedRoleSetting" {
+Context "Test for Get-EntraBetaPrivilegedRoleSetting" {
+        It "Should return specific privileged role setting" {
+            $result = Get-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "dddddddd-7902-4be2-a25b-dddddddddddd"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "dddddddd-7902-4be2-a25b-dddddddddddd"
-            $result.resourceId | Should -Be "dddddddd-1111-2222-3333-aaaaaaaaaaaa"
+            $result.resourceId | Should -Be "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
             $result.roleDefinitionId | Should -Be "eeeeeeee-c632-46ae-9ee0-dddddddddddd"
 
             Should -Invoke -CommandName Get-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when Id is empty" {
-            { Get-EntraBetaMSPrivilegedRoleSetting -ProviderId "MockRoles" -Id  } | Should -Throw "Missing an argument for parameter 'Id'*"
+            { Get-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id  } | Should -Throw "Missing an argument for parameter 'Id'*"
         }
         It "Should fail when Id is invalid" {
-            { Get-EntraBetaMSPrivilegedRoleSetting -ProviderId "MockRoles" -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
+            { Get-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
         }
         It "Should fail when ProviderId is empty" {
-            { Get-EntraBetaMSPrivilegedRoleSetting -ProviderId  -Id "dddddddd-7902-4be2-a25b-dddddddddddd" } | Should -Throw "Missing an argument for parameter 'ProviderId'*"
+            { Get-EntraBetaPrivilegedRoleSetting -ProviderId  -Id "dddddddd-7902-4be2-a25b-dddddddddddd" } | Should -Throw "Missing an argument for parameter 'ProviderId'*"
         }
         It "Should fail when ProviderId is invalid" {
-            { Get-EntraBetaMSPrivilegedRoleSetting -ProviderId "" -Id "dddddddd-7902-4be2-a25b-dddddddddddd" } | Should -Throw "Cannot bind argument to parameter 'ProviderId' because it is an empty string."
+            { Get-EntraBetaPrivilegedRoleSetting -ProviderId "" -Id "dddddddd-7902-4be2-a25b-dddddddddddd" } | Should -Throw "Cannot bind argument to parameter 'ProviderId' because it is an empty string."
         }
-        It "Should return top MS privileged role setting" {
-            $result = Get-EntraBetaMSPrivilegedRoleSetting -ProviderId "MockRoles" -Filter "ResourceId eq 'dddddddd-1111-2222-3333-aaaaaaaaaaaa'" -Top 1
+        It "Should return top privileged role setting" {
+            $result = Get-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Filter "ResourceId eq 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'" -Top 1
             $result | Should -Not -BeNullOrEmpty
-            $result.resourceId | Should -Be "dddddddd-1111-2222-3333-aaaaaaaaaaaa"
+            $result.resourceId | Should -Be "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
 
             Should -Invoke -CommandName Get-MgBetaPrivilegedAccessRoleSetting  -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when Top is empty" {
-            { Get-EntraBetaMSPrivilegedRoleSetting -ProviderId "MockRoles" -Filter "ResourceId eq 'dddddddd-1111-2222-3333-aaaaaaaaaaaa'" -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Filter "ResourceId eq 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'" -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
          It "Should fail when Top is invalid" {
-            { Get-EntraBetaMSPrivilegedRoleSetting -ProviderId "MockRoles" -Filter "ResourceId eq 'dddddddd-1111-2222-3333-aaaaaaaaaaaa'" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Filter "ResourceId eq 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
-        It "Should return MS privileged role setting by filter" {
-            $result = Get-EntraBetaMSPrivilegedRoleSetting -ProviderId "MockRoles" -Filter "ResourceId eq 'dddddddd-1111-2222-3333-aaaaaaaaaaaa'" 
+        It "Should return privileged role setting by filter" {
+            $result = Get-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Filter "ResourceId eq 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'" 
             $result | Should -Not -BeNullOrEmpty
-            $result.resourceId | Should -Be "dddddddd-1111-2222-3333-aaaaaaaaaaaa"
+            $result.resourceId | Should -Be "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
 
             Should -Invoke -CommandName Get-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when filter is empty" {
-            { Get-EntraBetaMSPrivilegedRoleSetting -ProviderId "MockRoles" -Filter  } | Should -Throw "Missing an argument for parameter 'filter'*"
+            { Get-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Filter  } | Should -Throw "Missing an argument for parameter 'filter'*"
         }
         It "Should contain PrivilegedAccessId in parameters when passed ProviderId to it" {    
             
-            $result = Get-EntraBetaMSPrivilegedRoleSetting -ProviderId "MockRoles" -Id "dddddddd-7902-4be2-a25b-dddddddddddd"
+            $result = Get-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "dddddddd-7902-4be2-a25b-dddddddddddd"
             $params = Get-Parameters -data $result.Parameters
             $params.PrivilegedAccessId | Should -Be "MockRoles"
         }
         It "Should contain GovernanceRoleSettingId in parameters when passed Id to it" {    
             
-            $result = Get-EntraBetaMSPrivilegedRoleSetting -ProviderId "MockRoles" -Id "dddddddd-7902-4be2-a25b-dddddddddddd"
+            $result = Get-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "dddddddd-7902-4be2-a25b-dddddddddddd"
             $params = Get-Parameters -data $result.Parameters
             $params.GovernanceRoleSettingId | Should -Be "dddddddd-7902-4be2-a25b-dddddddddddd"
         }
-        It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaMSPrivilegedRoleSetting"
+        It "Property parameter should work" {
+            $result = Get-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "dddddddd-7902-4be2-a25b-dddddddddddd" -Property ResourceId
+            $result | Should -Not -BeNullOrEmpty
+            $result.resourceId | Should -Be 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
 
-            $result = Get-EntraBetaMSPrivilegedRoleSetting -ProviderId "MockRoles" -Id "dddddddd-7902-4be2-a25b-dddddddddddd"
+            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+        It "Should fail when Property is empty" {
+             { Get-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "dddddddd-7902-4be2-a25b-dddddddddddd" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaPrivilegedRoleSetting"
+
+            $result = Get-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "dddddddd-7902-4be2-a25b-dddddddddddd"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
 
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "dddddddd-7902-4be2-a25b-dddddddddddd" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        } 
     }
 }   
