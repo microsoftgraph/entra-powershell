@@ -114,7 +114,45 @@
                             
                         ]
 
-                    }
+                    },
+                    { "Command" :"Get-EntraGroupURLTest", "URl" :"https://graph.microsoft.com/v1.0/groups", "Method" : "POST", "Parameters" : [
+                        {
+                            "SourceName" : "All",
+                            "TargetName" : null,
+                            "ConversionType" : "None",  
+                            "SpecialMapping" :null,      
+                            "ParameterSetName":"InvokeByDynamicParameters",
+                            "Mandatory": false,
+                            "ValueFromPipeline":true,
+                            "ValueFromPipelineByPropertyName":true,                                
+                            "DataType": "switch"                                
+                        },
+                        {
+                            "SourceName" : "Top",
+                            "TargetName" : null,
+                            "ConversionType" : "None",  
+                            "SpecialMapping" :null,      
+                            "ParameterSetName":"GetQuery",
+                            "Mandatory": false,
+                            "ValueFromPipeline":true,
+                            "ValueFromPipelineByPropertyName":true,                                
+                            "DataType": "System.Nullable`1[System.Int32]"                                
+                        },
+                        {
+                            "SourceName" : "GroupId",
+                            "TargetName" : null,
+                            "ConversionType" : "None",  
+                            "SpecialMapping" :null,      
+                            "ParameterSetName":"GetById",
+                            "Mandatory": true,
+                            "ValueFromPipeline":true,
+                            "ValueFromPipelineByPropertyName":true,                                
+                            "DataType": "System.String"                                
+                        }            
+                    ]
+
+                }
           
                 ]
   }
+
