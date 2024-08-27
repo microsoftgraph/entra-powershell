@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta       
@@ -38,6 +41,18 @@ Context "Test for Remove-EntraBetaAdministrativeUnit" {
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
-
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+            
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Remove-EntraBetaAdministrativeUnit -ObjectId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        } 
     }
 }   

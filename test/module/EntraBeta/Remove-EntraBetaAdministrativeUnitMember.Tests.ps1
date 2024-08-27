@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta       
@@ -11,33 +14,45 @@ BeforeAll {
 Describe "Remove-EntraBetaAdministrativeUnitMember" {
 Context "Test for Remove-EntraBetaAdministrativeUnitMember" {
         It "Should return empty object" {
-            $result = Remove-EntraBetaAdministrativeUnitMember -ObjectId "pppppppp-1111-1111-1111-aaaaaaaaaaaa" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Remove-EntraBetaAdministrativeUnitMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "dddddddd-9999-0000-1111-eeeeeeeeeeee"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgBetaDirectoryAdministrativeUnitMemberByRef -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when ObjectId is empty" {
-            { Remove-EntraBetaAdministrativeUnitMember -ObjectId  -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc"   } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+            { Remove-EntraBetaAdministrativeUnitMember -ObjectId  -MemberId "dddddddd-9999-0000-1111-eeeeeeeeeeee"   } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
         }
         It "Should fail when ObjectId is invalid" {
-            { Remove-EntraBetaAdministrativeUnitMember -ObjectId "" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc"} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+            { Remove-EntraBetaAdministrativeUnitMember -ObjectId "" -MemberId "dddddddd-9999-0000-1111-eeeeeeeeeeee"} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
         It "Should fail when MemberId is empty" {
-            { Remove-EntraBetaAdministrativeUnitMember -ObjectId "pppppppp-1111-1111-1111-aaaaaaaaaaaa" -MemberId  } | Should -Throw "Missing an argument for parameter 'MemberId'*"
+            { Remove-EntraBetaAdministrativeUnitMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId  } | Should -Throw "Missing an argument for parameter 'MemberId'*"
         }
         It "Should fail when MemberId is invalid" {
-            { Remove-EntraBetaAdministrativeUnitMember -ObjectId "pppppppp-1111-1111-1111-aaaaaaaaaaaa" -MemberId ""} | Should -Throw "Cannot bind argument to parameter 'MemberId' because it is an empty string."
+            { Remove-EntraBetaAdministrativeUnitMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId ""} | Should -Throw "Cannot bind argument to parameter 'MemberId' because it is an empty string."
         }
         It "Should contain 'User-Agent' header" {
             Mock -CommandName Remove-MgBetaDirectoryAdministrativeUnitMemberByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaAdministrativeUnitMember"
 
-            $result = Remove-EntraBetaAdministrativeUnitMember -ObjectId "pppppppp-1111-1111-1111-aaaaaaaaaaaa" -MemberId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Remove-EntraBetaAdministrativeUnitMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "dddddddd-9999-0000-1111-eeeeeeeeeeee"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
-
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+            
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Remove-EntraBetaAdministrativeUnitMember -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -MemberId "dddddddd-9999-0000-1111-eeeeeeeeeeee" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        } 
 
     }
 }
