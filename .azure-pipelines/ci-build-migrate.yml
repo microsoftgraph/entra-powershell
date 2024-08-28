@@ -51,4 +51,10 @@ jobs:
               publishVstsFeed: $(PROJECT_NAME)/$(PREVIEW_FEED_NAME)
               allowPackageConflicts: true
 
+          - task: CopyFiles@2
+            displayName: 'Copy artifacts to PSGallery folder'
+            inputs:
+              contents: $(Build.ArtifactStagingDirectory)/**/Microsoft.Graph.Entra.*.nupkg
+              targetFolder: '$(Build.ArtifactStagingDirectory)/PSGallery'
+
       - template: ./common-templates/security-post-checks.yml
