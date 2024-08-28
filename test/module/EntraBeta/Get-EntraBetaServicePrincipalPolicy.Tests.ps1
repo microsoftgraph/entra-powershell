@@ -23,7 +23,7 @@ $scriptblock = {
                                                                                          }
                                                 }
                     "displayName"                  = "Mock policy"
-                    "type"                         = "ActivityBasedTimeoutPolicy"
+                    "type"                         = "activityBasedTimeoutPolicy"
                     "isOrganizationDefault"        = $false 
                     "createdDateTime"              = "16-08-2023 08:25:02"                       
                 }
@@ -37,12 +37,11 @@ $scriptblock = {
 Describe "Get-EntraBetaServicePrincipalPolicy" {
 Context "Test for Get-EntraBetaServicePrincipalPolicy" {
         It "Should return specific service principal policy" {
-            $result = Get-EntraBetaServicePrincipalPolicy -Id "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" 
+            $result = Get-EntraBetaServicePrincipalPolicy -Id "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
             $result.displayName | Should -Be "Mock policy"
-            $result.type | Should -be "ActivityBasedTimeoutPolicy"
-
+            $result.ServicePrincipalType | Should -be "activityBasedTimeoutPolicy"
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
         It "Should fail when Id is empty" {
