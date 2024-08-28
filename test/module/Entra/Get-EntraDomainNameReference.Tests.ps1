@@ -1,3 +1,7 @@
+
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {
     if ((Get-Module -Name Microsoft.Graph.Entra) -eq $null) {
         Import-Module Microsoft.Graph.Entra
@@ -8,7 +12,7 @@ BeforeAll {
         return @{
             value = @(
                 @{
-                    "Id"                               = "996d39aa-fdac-4d97-aa3d-c81fb47362ac"
+                    "Id"                               = "22cc22cc-dd33-ee44-ff55-66aa66aa66aa"
                     "onPremisesImmutableId"            = $null
                     "deletedDateTime"                  = $null
                     "onPremisesSyncEnabled"            = $null
@@ -34,7 +38,7 @@ Describe "Get-EntraDomainNameReference" {
         It "Should return specific domain Name Reference" {
             $result = Get-EntraDomainNameReference -Name "M365x99297270.mail.onmicrosoft.com"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be '996d39aa-fdac-4d97-aa3d-c81fb47362ac'
+            $result.Id | should -Be '22cc22cc-dd33-ee44-ff55-66aa66aa66aa'
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -46,7 +50,7 @@ Describe "Get-EntraDomainNameReference" {
         }
         It "Result should Contain Alias property" {
             $result = Get-EntraDomainNameReference -Name "M365x99297270.mail.onmicrosoft.com"
-            $result.ObjectId | should -Be "996d39aa-fdac-4d97-aa3d-c81fb47362ac"
+            $result.ObjectId | should -Be "22cc22cc-dd33-ee44-ff55-66aa66aa66aa"
             $result.DeletionTimestamp | should -Be $null
             $result.DirSyncEnabled | should -Be $null
             $result.ImmutableId | should -Be $null
@@ -64,6 +68,16 @@ Describe "Get-EntraDomainNameReference" {
             $para= $params | ConvertTo-json | ConvertFrom-Json
             $para.Uri -match "M365x99297270.mail.onmicrosoft.com" | Should -BeTrue
         }
+        It "Property parameter should work" {
+            $result = Get-EntraDomainNameReference -Name "M365x99297270.mail.onmicrosoft.com" -Property Id
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be '22cc22cc-dd33-ee44-ff55-66aa66aa66aa'
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should fail when Property is empty" {
+             { Get-EntraDomainNameReference -Name "M365x99297270.mail.onmicrosoft.com" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDomainNameReference"
 
@@ -71,6 +85,19 @@ Describe "Get-EntraDomainNameReference" {
             $params = Get-Parameters -data $result.Parameters
             $para= $params | ConvertTo-json | ConvertFrom-Json
             $para.headers.'User-Agent' | Should -Be $userAgentHeaderValue
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraDomainNameReference -Name "M365x99297270.mail.onmicrosoft.com"  -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         }
 
 
