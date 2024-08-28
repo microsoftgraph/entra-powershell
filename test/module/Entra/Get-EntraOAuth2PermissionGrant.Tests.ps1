@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         Import-Module Microsoft.Graph.Entra      
@@ -7,10 +10,10 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-              "Id"                           = "p9u1ll7Iq0-Gh9M3EERXhffW8XpadQNIoHik9aQxrVE"
-              "ClientId"                     = "96b5dba7-c85e-4fab-8687-d33710445785"
+              "Id"                           = "00001111-aaaa-2222-bbbb-3333cccc4444"
+              "ClientId"                     = "aaaaaaaa-bbbb-cccc-1111-222222222222"
               "PrincipalId"                  = $null
-              "ResourceId"                   = "7af1d6f7-755a-4803-a078-a4f5a431ad51"
+              "ResourceId"                   = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
               "ConsentType"                  = "AllPrincipals"
               "Scope"                        = "Policy.Read.All Policy.ReadWrite.ConditionalAccess User.Read"
               "AdditionalProperties"         = @{}
@@ -27,38 +30,35 @@ Context "Test for Get-EntraOAuth2PermissionGrant" {
         It "Should return OAuth2 Permission Grant" {
             $result = Get-EntraOAuth2PermissionGrant
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "p9u1ll7Iq0-Gh9M3EERXhffW8XpadQNIoHik9aQxrVE"
-            $result.ResourceId | Should -Be "7af1d6f7-755a-4803-a078-a4f5a431ad51"
+            $result.Id | Should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
+            $result.ResourceId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result.PrincipalId | Should -BeNullOrEmpty
-            $result.ClientId | Should -Be "96b5dba7-c85e-4fab-8687-d33710445785"
+            $result.ClientId | Should -Be "aaaaaaaa-bbbb-cccc-1111-222222222222"
 
 
             Should -Invoke -CommandName Get-MgOAuth2PermissionGrant  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should return All Group AppRole Assignment" {
-            $result = Get-EntraOAuth2PermissionGrant -All $true
+            $result = Get-EntraOAuth2PermissionGrant -All
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "p9u1ll7Iq0-Gh9M3EERXhffW8XpadQNIoHik9aQxrVE"
-            $result.ResourceId | Should -Be "7af1d6f7-755a-4803-a078-a4f5a431ad51"
+            $result.Id | Should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
+            $result.ResourceId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result.PrincipalId | Should -BeNullOrEmpty
-            $result.ClientId | Should -Be "96b5dba7-c85e-4fab-8687-d33710445785"
+            $result.ClientId | Should -Be "aaaaaaaa-bbbb-cccc-1111-222222222222"
 
 
             Should -Invoke -CommandName Get-MgOAuth2PermissionGrant  -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when All is empty" {
-            { Get-EntraOAuth2PermissionGrant -All  } | Should -Throw "Missing an argument for parameter 'All'*"
-        }
         It "Should fail when All is invalid" {
-            { Get-EntraOAuth2PermissionGrant -All xyz } | Should -Throw "Cannot process argument transformation on parameter 'All'*"
+            { Get-EntraOAuth2PermissionGrant -All xyz } | Should -Throw "A positional parameter cannot be found that accepts argument 'xyz'.*"
         }
         It "Should return top 1 Group AppRole Assignment" {
             $result = Get-EntraOAuth2PermissionGrant -Top 1
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "p9u1ll7Iq0-Gh9M3EERXhffW8XpadQNIoHik9aQxrVE"
-            $result.ResourceId | Should -Be "7af1d6f7-755a-4803-a078-a4f5a431ad51"
+            $result.Id | Should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
+            $result.ResourceId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result.PrincipalId | Should -BeNullOrEmpty
-            $result.ClientId | Should -Be "96b5dba7-c85e-4fab-8687-d33710445785"
+            $result.ClientId | Should -Be "aaaaaaaa-bbbb-cccc-1111-222222222222"
 
 
             Should -Invoke -CommandName Get-MgOAuth2PermissionGrant  -ModuleName Microsoft.Graph.Entra -Times 1
@@ -71,7 +71,17 @@ Context "Test for Get-EntraOAuth2PermissionGrant" {
         }
         It "Result should Contain ObjectId" {
             $result = Get-EntraOAuth2PermissionGrant -Top 1
-            $result.ObjectId | should -Be "p9u1ll7Iq0-Gh9M3EERXhffW8XpadQNIoHik9aQxrVE"
+            $result.ObjectId | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
+        }
+        It "Property parameter should work" {
+            $result = Get-EntraOAuth2PermissionGrant -Property ConsentType
+            $result | Should -Not -BeNullOrEmpty
+            $result.ConsentType | Should -Be 'AllPrincipals'
+
+            Should -Invoke -CommandName Get-MgOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should fail when Property is empty" {
+             { Get-EntraOAuth2PermissionGrant -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraOAuth2PermissionGrant"
@@ -80,7 +90,19 @@ Context "Test for Get-EntraOAuth2PermissionGrant" {
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
 
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraOAuth2PermissionGrant -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
 
     }
 }
