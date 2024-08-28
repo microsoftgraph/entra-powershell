@@ -6,27 +6,40 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {  
-        `$params = @{}
-        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
-                if (`$null -ne `$PSBoundParameters["Id"]) {
-                    `$params["Id"] = `$PSBoundParameters["Id"]
+        $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        if ($null -ne $PSBoundParameters["Id"]) {
+            $params["Id"] = $PSBoundParameters["Id"]
+        }
+        $Method = "GET"        
+        Write-Debug("============================ TRANSFORMATIONS ============================")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================`n")
+        $URI = "https://graph.microsoft.com/beta/serviceprincipals/$Id/policies"
+        $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method $Method | ConvertTo-Json -Depth 20 | ConvertFrom-Json).value
+               
+        $data = $response 
+        $userList = @()
+        foreach ($res in $data) {
+            $userType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphServicePrincipal
+            $res.PSObject.Properties | ForEach-Object {                
+                $propertyName = $_.Name
+                $propertyValue = $_.Value
+
+                if($_.Name -eq 'type'){
+                    $userType | Add-Member -MemberType NoteProperty -Name 'ServicePrincipalType' -Value $propertyValue -Force
+
+                }else{
+                    $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
                 }
-                `$Method = "GET"
-                if (`$PSBoundParameters.ContainsKey("Debug")) {
-                    `$params["Debug"] = `$Null
-                }
-                if (`$PSBoundParameters.ContainsKey("Verbose")) {
-                    `$params["Verbose"] = `$Null
-                }
-                    Write-Debug("============================ TRANSFORMATIONS ============================")
-                    `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-                    Write-Debug("=========================================================================``n")
-                    `$URI = "https://graph.microsoft.com/beta/serviceprincipals/`$Id/policies"
-                    `$response = (Invoke-GraphRequest -Headers `$customHeaders -Uri `$uri -Method `$Method | ConvertTo-Json | ConvertFrom-Json).value
-                    `$response | Add-Member -MemberType AliasProperty -Value '@odata.type' -Name 'odata.type'
-                    `$response
             }
-"@
+            $userList += $userType
+        }
+        $userList 
+
+
+    }
+'@
 }

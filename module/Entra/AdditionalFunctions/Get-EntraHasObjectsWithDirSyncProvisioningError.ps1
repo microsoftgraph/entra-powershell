@@ -1,6 +1,7 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
+
 function Get-EntraHasObjectsWithDirSyncProvisioningError {
     [CmdletBinding(DefaultParameterSetName = 'GetById')]
     param (
@@ -8,16 +9,10 @@ function Get-EntraHasObjectsWithDirSyncProvisioningError {
     )
     PROCESS {    
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        if ($PSBoundParameters.ContainsKey("Verbose")) {
-            $params["Verbose"] = $Null
-        }
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand        
         if ($null -ne $PSBoundParameters["TenantId"]) {
             $params["TenantId"] = $PSBoundParameters["TenantId"]
-        }
-        if ($PSBoundParameters.ContainsKey("Debug")) {
-            $params["Debug"] = $Null
-        }
+        }        
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")

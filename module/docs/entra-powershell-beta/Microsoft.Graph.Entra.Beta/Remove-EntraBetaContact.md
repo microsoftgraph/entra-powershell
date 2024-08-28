@@ -1,45 +1,59 @@
 ---
+title: Remove-EntraBetaContact
+description: This article provides details on the Remove-EntraBetaContact command.
+
+
+ms.topic: reference
+ms.date: 08/14/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaContact
+
 schema: 2.0.0
 ---
 
 # Remove-EntraBetaContact
 
-## SYNOPSIS
+## Synopsis
+
 Removes a contact.
 
-## SYNTAX
+## Syntax
 
+```powershell
+Remove-EntraBetaContact 
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
-Remove-EntraBetaContact -ObjectId <String> [<CommonParameters>]
-```
 
-## DESCRIPTION
-The Remove-EntraBetaContact removes a contact from Azure Active Directory (AD).
+## Description
 
-## EXAMPLES
+The `Remove-EntraBetaContact` removes a contact from Microsoft Entra ID.
+
+## Examples
 
 ### Example 1: Remove a contact
+
+```powershell
+Connect-Entra -Scopes 'OrgContact.Read.All'
+$Contact = Get-EntraBetaContact -Filter "DisplayName eq 'Contoso Contact'"
+Remove-EntraBetaContact -ObjectId $Contact.ObjectId
 ```
-PS C:\> $Contact = Get-EntraBetaContact -Top 1
-PS C:\> Remove-EntraBetaContact -ObjectId $Contact.ObjectId
-```
 
-The first command gets a contact by using the Get-EntraBetaContact (./Get-EntraBetaContact.md)cmdlet, and then stores it in the $Contact variable.
+The example shows how to remove a contact.
 
-The second command removes the contact in $Contact.
-
-## PARAMETERS
-
-
+## Parameters
 
 ### -ObjectId
-Specifies the object ID of a contact in Azure AD.
+
+Specifies the object ID of a contact in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -51,15 +65,15 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
 
-[Get-EntraBetaContact]()
+## Related Links
 
+[Get-EntraBetaContact](Get-EntraBetaContact.md)

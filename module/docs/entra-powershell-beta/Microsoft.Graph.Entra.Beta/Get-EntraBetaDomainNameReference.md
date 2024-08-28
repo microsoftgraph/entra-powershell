@@ -1,40 +1,67 @@
 ---
+title: Get-EntraBetaDomainNameReference
+description: This article provides details on the Get-EntraBetaDomainNameReference command.
+
+
+ms.topic: reference
+ms.date: 08/08/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaDomainNameReference
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaDomainNameReference
 
-## SYNOPSIS
-This cmdlet retrieves the objects that are referenced by a given domain name
+## Synopsis
 
-## SYNTAX
+Retrieves the objects that are referenced by a given domain name.
 
-```
-Get-EntraBetaDomainNameReference -Name <String> [<CommonParameters>]
-```
+## Syntax
 
-## DESCRIPTION
-This cmdlet retrieves the objects that are referenced by a given domain name
-
-## EXAMPLES
-
-### Example 1
-```
-PS C:\WINDOWS\system32> Get-EntraBetaDomainNameReference -Name drumkit.onmicrosoft.com
+```powershell
+Get-EntraBetaDomainNameReference
+ -Name <String>
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
-This example shows how to retrieve the domain name reference objects for a domain that is specified through the -Name parameter
+## Description
 
-## PARAMETERS
+The `Get-EntraBetaDomainNameReference` cmdlet retrieves the objects that are referenced by a given domain name.
+
+The work or school account needs to belong to at least the Domain Name Administrator or Global Reader Microsoft Entra role.
+
+## Examples
+
+### Example 1: Retrieve the domain name reference objects for a domain
+
+```powershell
+ Connect-Entra -Scopes 'Domain.Read.All'
+ Get-EntraBetaDomainNameReference -Name contoso.com
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+11bb11bb-cc22-dd33-ee44-55ff55ff55ff
+```
+
+This example shows how to retrieve the domain name reference objects for a domain that is specified through the -Name parameter.
+
+## Parameters
 
 ### -Name
-The name of the domain name for which the referenced objects are retrieved
+
+The name of the domain name for which the referenced objects are retrieved.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -45,15 +72,34 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+### -Property
 
-## INPUTS
+Specifies properties to be returned.
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+## Inputs
 
 ### System.String
-## OUTPUTS
+
+## Outputs
 
 ### System.Object
-## NOTES
 
-## RELATED LINKS
+## Notes
+
+## Related Links

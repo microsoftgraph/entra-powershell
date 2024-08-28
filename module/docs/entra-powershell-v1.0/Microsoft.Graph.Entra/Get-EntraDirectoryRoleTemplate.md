@@ -2,42 +2,48 @@
 title: Get-EntraDirectoryRoleTemplate
 description: This article provides details on the Get-EntraDirectoryRoleTemplate command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/16/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraDirectoryRoleTemplate
+
 schema: 2.0.0
 ---
 
 # Get-EntraDirectoryRoleTemplate
 
-## SYNOPSIS
+## Synopsis
+
 Gets directory role templates.
 
-## SYNTAX
+## Syntax
 
 ```powershell
-Get-EntraDirectoryRoleTemplate 
+Get-EntraDirectoryRoleTemplate
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraDirectoryRoleTemplate cmdlet gets directory role templates in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Get-EntraDirectoryRoleTemplate` cmdlet gets directory role templates in Microsoft Entra ID.
+
+## Examples
 
 ### Example 1: Get role templates
+
 ```powershell
-PS C:\>Get-EntraDirectoryRoleTemplate
+Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+Get-EntraDirectoryRoleTemplate
 ```
 
-```output
+```Output
 DeletedDateTime Id                                   Description
 --------------- --                                   -----------
                 62e90394-69f5-4237-9190-012177145e10 Can manage all aspects of Microsoft Entra ID and Microsoft services that use...
@@ -52,15 +58,47 @@ DeletedDateTime Id                                   Description
 
 This command gets the role templates in Microsoft Entra ID.
 
-## PARAMETERS
+### Example 2: Get a specific role template
+
+```powershell
+Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+Get-EntraDirectoryRoleTemplate | Where-Object {$_.DisplayName -eq 'Helpdesk Administrator'}
+```
+
+```Output
+DeletedDateTime Id                                   Description                                                             DisplayName
+--------------- --                                   -----------                                                             -----------
+                729827e3-9c14-49f7-bb1b-9608f156bbb8 Can reset passwords for non-administrators and Helpdesk Administrators. Helpdesk Administrator
+```
+
+This example retrieves a Helpdesk role template.
+
+## Parameters
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links

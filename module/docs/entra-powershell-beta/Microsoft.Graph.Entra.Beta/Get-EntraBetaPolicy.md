@@ -1,48 +1,127 @@
 ---
+title: Get-EntraBetaPolicy
+description: This article provides details on the Get-EntraBetaPolicy command.
+
+
+ms.topic: reference
+ms.date: 07/02/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaPolicy
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaPolicy
 
-## SYNOPSIS
+## Synopsis
+
 Gets a policy.
 
-## SYNTAX
+## Syntax
 
 ### GetQuery (Default)
-```
-Get-EntraBetaPolicy [-Top <Int32>] [-All <Boolean>] [<CommonParameters>]
+
+```powershell
+Get-EntraBetaPolicy 
+ [-Top <Int32>] 
+ [-All] 
+ [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraBetaPolicy -Id <String> [-All <Boolean>] [<CommonParameters>]
-```
 
-## DESCRIPTION
-The Get-EntraBetaPolicy cmdlet gets a policy in Azure Active Directory (AD).
-
-## EXAMPLES
-
-### Example 1
-```
-PS C:\> {{ Add example code here }}
+```powershell
+Get-EntraBetaPolicy 
+ -Id <String> 
+ [-All] 
+ [<CommonParameters>]
 ```
 
-{{ Add example description here }}
+## Description
 
-## PARAMETERS
+The `Get-EntraBetaPolicy` cmdlet gets a policy in Microsoft Entra ID. Specify `Id` parameter to get specific policy.
 
+## Examples
 
+### Example 1: Gets all policy
+
+```powershell
+Connect-Entra -Scopes 'Policy.Read.All'
+Get-EntraBetaPolicy
+```
+
+```Output
+Definition                                                                                       DeletedDateTime Description DisplayName                                 Id
+----------                                                                                       --------------- ----------- -----------                                 --
+{{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                             Activepolicy                            bbbbbbbb-1111-2222-3333-cccccccccccc
+{{"HomeRealmDiscoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                                 PolicyDemo                              aaaaaaaa-1111-1111-1111-000000000000
+```
+
+This example shows how to return all policies.
+
+### Example 2: Get a policy with specific ID
+
+```powershell
+Connect-Entra -Scopes 'Policy.Read.All'
+Get-EntraBetaPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+```
+
+```Output
+Definition                                                                                       DeletedDateTime Description DisplayName                                 Id
+----------                                                                                       --------------- ----------- -----------                                 --
+{{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                             Activepolicy                            bbbbbbbb-1111-2222-3333-cccccccccccc
+```
+
+This example demonstrated how to receive policy with specific ID.
+
+- `Id` parameter specifies the unique policy ID, which you want to receive. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the policy.
+
+### Example 3: Get all policies
+
+```powershell
+Connect-Entra -Scopes 'Policy.Read.All'
+Get-EntraBetaPolicy -All
+```
+
+```Output
+Definition                                                                                       DeletedDateTime Description DisplayName                                 Id
+----------                                                                                       --------------- ----------- -----------                                 --
+{{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                             Activepolicy                            bbbbbbbb-1111-2222-3333-cccccccccccc
+{{"HomeRealmDiscoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                                 PolicyDemo                              aaaaaaaa-1111-1111-1111-000000000000
+```
+
+This example demonstrates how to retrieve all policies in Microsoft Entra ID.
+
+### Example 4: Get top one policies
+
+```powershell
+Connect-Entra -Scopes 'Policy.Read.All'
+Get-EntraBetaPolicy -Top 1
+```
+
+```Output
+Definition                                                                                       DeletedDateTime Description DisplayName                                 Id
+----------                                                                                       --------------- ----------- -----------                                 --
+{{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                             Activepolicy                            bbbbbbbb-1111-2222-3333-cccccccccccc
+
+```
+
+This example demonstrates how to retrieve top one policies in Microsoft Entra ID.
+
+## Parameters
 
 ### -Id
-The Id of the policy you want to retrieve
+
+The Id of the policy you want to retrieve.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -54,25 +133,27 @@ Accept wildcard characters: False
 ```
 
 ### -All
-{{ Fill All Description }}
+
+List all policies.
 
 ```yaml
-Type: Boolean
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -Top
-{{ Fill Top Description }}
+
+Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: GetQuery
 Aliases:
 
@@ -84,19 +165,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
 
-[New-EntraBetaPolicy]()
+## Related Links
 
-[Remove-EntraBetaPolicy]()
+[New-EntraBetaPolicy](New-EntraBetaPolicy.md)
 
-[Set-EntraBetaPolicy]()
+[Remove-EntraBetaPolicy](Remove-EntraBetaPolicy.md)
 
+[Set-EntraBetaPolicy](Set-EntraBetaPolicy.md)

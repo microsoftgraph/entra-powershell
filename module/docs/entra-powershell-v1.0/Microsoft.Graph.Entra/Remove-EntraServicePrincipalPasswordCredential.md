@@ -1,26 +1,28 @@
 ---
-title: Get-EntraBetaAuditSignInLogs.
-description: This article provides details on the Get-EntraBetaAuditSignInLogs command.
+title: Remove-EntraServicePrincipalPasswordCredential
+description: This article provides details on the Remove-EntraServicePrincipalPasswordCredential command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/21/2024
+ms.date: 08/20/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraServicePrincipalPasswordCredential
+
 schema: 2.0.0
 ---
 
 # Remove-EntraServicePrincipalPasswordCredential
 
-## SYNOPSIS
+## Synopsis
+
 Removes a password credential from a service principal.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraServicePrincipalPasswordCredential
@@ -29,27 +31,38 @@ Remove-EntraServicePrincipalPasswordCredential
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Remove-EntraServicePrincipalPasswordCredential cmdlet removes a password credential from a service principal in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Remove-EntraServicePrincipalPasswordCredential` cmdlet removes a password credential from a service principal in Microsoft Entra ID.
 
-### Example 1
+## Examples
+
+### Example 1: Remove a password credential from a service principal
+
 ```powershell
-PS C:\> Remove-AzureADServicePrincipalPasswordCredential -ObjectID 1a3d700a-bedb-4e8f-bdda-72979a952a8d -KeyId a25ad0b5-7537-4b0b-8065-cc1c016bc18e
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+$Params = @{
+    ObjectID = $ServicePrincipal.ObjectId
+    KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
+}
+
+Remove-EntraServicePrincipalPasswordCredential @Params
 ```
 
-This command demonstrates how to remove a password credential from a service principal in Microsoft Entra ID.  
-ObjectId: The ObjectId of the specified Service Principal Password Credential.  
-KeyID: The unique identifier of the Password Credential.  
+This example demonstrates how to remove a password credential from a service principal in Microsoft Entra ID.  
 
-## PARAMETERS
+- `-ObjectId` parameter specifies the ObjectId of a specified Service Principal Password Credential.  
+- `-KeyId` parameter specifies the unique identifier of a Password Credential.
+
+## Parameters
 
 ### -KeyId
+
 Specifies the unique identifier of password credential.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -61,10 +74,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -76,17 +90,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Get-EntraServicePrincipalPasswordCredential](Get-EntraServicePrincipalPasswordCredential.md)
 
 [New-EntraServicePrincipalPasswordCredential](New-EntraServicePrincipalPasswordCredential.md)
-

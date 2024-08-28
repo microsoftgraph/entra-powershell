@@ -1,75 +1,124 @@
 ---
-title:  Get-EntraServicePrincipalOwnedObject.
+title: Get-EntraServicePrincipalOwnedObject
 description: This article provides details on the  Get-EntraServicePrincipalOwnedObject Command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/22/2024
+ms.date: 07/22/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraServicePrincipalOwnedObject
+
 schema: 2.0.0
 ---
 
 # Get-EntraServicePrincipalOwnedObject
 
-## SYNOPSIS
+## Synopsis
+
 Gets an object owned by a service principal.
 
-## SYNTAX
+## Syntax
 
 ```powershell
-Get-EntraServicePrincipalOwnedObject 
- [-All <Boolean>] 
- -ObjectId <String> 
- [-Top <Int32>] 
+Get-EntraServicePrincipalOwnedObject
+ [-All]
+ -ObjectId <String>
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Get-EntraServicePrincipalOwnedObject cmdlet gets an object owned by a service principal in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Get-EntraServicePrincipalOwnedObject` cmdlet retrieves an object owned by a service principal in Microsoft Entra ID.
+
+## Examples
 
 ### Example 1: Retrieve the owned objects of a service principal
 
 ```powershell
-PS C:\> $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
-PS C:\> Get-EntraServicePrincipalOwnedObject -ObjectId $ServicePrincipalId
+Connect-Entra -Scopes 'Application.Read.All'
+$ServicePrincipalId = (Get-EntraServicePrincipal -Filter "DisplayName eq '<user-display-name>'").ObjectId
+Get-EntraServicePrincipalOwnedObject -ObjectId $ServicePrincipalId
 ```
 
-The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md) cmdlet. 
-The command stores the ID in the $ServicePrincipalId variable.
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+```
 
-The second command gets the owned objects of a service principal identified by $ServicePrincipalId.
+This example retrieves an object owned by a service principal.
 
-## PARAMETERS
+- `-ObjectId` specifies the ID of a service principal.
+
+### Example 2: Retrieve all the owned objects of a service principal
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+$ServicePrincipalId = (Get-EntraServicePrincipal -Filter "DisplayName eq '<user-display-name>'").ObjectId
+Get-EntraServicePrincipalOwnedObject -ObjectId $ServicePrincipalId -All 
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+```
+
+This example retrieves the owned objects of a service principal.  
+
+- `-ObjectId` specifies the service principal's ID.
+
+### Example 3: Retrieve top one owned object of a service principal
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+$ServicePrincipalId = (Get-EntraServicePrincipal -Filter "DisplayName eq '<user-display-name>'").ObjectId
+Get-EntraServicePrincipalOwnedObject -ObjectId $ServicePrincipalId -Top 1
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+```
+
+This example retrieves the top one owned objects of a service principal.  
+
+- `-ObjectId` specifies the service principal's ID.
+
+## Parameters
 
 ### -All
-If true, return all objects owned by this service principal.
-If false, return the number of objects specified by the Top parameter.
+
+List all pages.
 
 ```yaml
-Type: Boolean
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -81,10 +130,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -95,16 +145,32 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned.
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
+
+## Related Links
 
 [Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
-

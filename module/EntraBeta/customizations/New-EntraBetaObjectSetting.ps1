@@ -6,35 +6,41 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {  
-        `$params = @{}
-        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
-                if (`$null -ne `$PSBoundParameters["TargetType"]) {
-                    `$params["TargetType"] = `$PSBoundParameters["TargetType"]
-                }
-                if (`$null -ne `$PSBoundParameters["TargetObjectId"]) {
-                    `$params["TargetObjectId"] = `$PSBoundParameters["TargetObjectId"]
-                }
-                if (`$null -ne `$PSBoundParameters["DirectorySetting"]) {
-                    `$params["DirectorySetting"] = `$PSBoundParameters["DirectorySetting"]
-                }
-                if (`$PSBoundParameters.ContainsKey("Debug")) {
-                    `$params["Debug"] = `$Null
-                }
-                if (`$PSBoundParameters.ContainsKey("Verbose")) {
-                    `$params["Verbose"] = `$Null
-                }
-                    Write-Debug("============================ TRANSFORMATIONS ============================")
-                    `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-                    Write-Debug("=========================================================================``n")
-                    `$directorySettingsJson =  `$DirectorySetting| ForEach-Object {
-                        `$NonEmptyProperties = `$_.psobject.Properties | Where-Object {`$_.Value} | Select-Object -ExpandProperty Name
-                        `$propertyValues = `$_ | Select-Object -Property `$NonEmptyProperties | ConvertTo-Json
-                        [regex]::Replace(`$propertyValues,'(?<=")(\w+)(?=":)',{`$args[0].Groups[1].Value.ToLower()})
-                         }
-                    `$response = Invoke-GraphRequest -Headers `$customHeaders -Method POST -Uri https://graph.microsoft.com/beta/`$TargetType/`$TargetObjectId/settings -Body `$directorySettingsJson
-                    `$response | ConvertTo-Json | ConvertFrom-Json
+        $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        if ($null -ne $PSBoundParameters["TargetType"]) {
+            $params["TargetType"] = $PSBoundParameters["TargetType"]
+        }
+        if ($null -ne $PSBoundParameters["TargetObjectId"]) {
+            $params["TargetObjectId"] = $PSBoundParameters["TargetObjectId"]
+        }
+        if ($null -ne $PSBoundParameters["DirectorySetting"]) {
+            $params["DirectorySetting"] = $PSBoundParameters["DirectorySetting"]
+        }        
+        Write-Debug("============================ TRANSFORMATIONS ============================")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================`n")
+        $directorySettingsJson =  $DirectorySetting| ForEach-Object {
+            $NonEmptyProperties = $_.psobject.Properties | Where-Object {$_.Value} | Select-Object -ExpandProperty Name
+            $propertyValues = $_ | Select-Object -Property $NonEmptyProperties | ConvertTo-Json
+            [regex]::Replace($propertyValues,'(?<=")(\w+)(?=":)',{$args[0].Groups[1].Value.ToLower()})
+             }
+        $response = Invoke-GraphRequest -Headers $customHeaders -Method POST -Uri https://graph.microsoft.com/beta/$TargetType/$TargetObjectId/settings -Body $directorySettingsJson
+        $response = $response | ConvertTo-Json | ConvertFrom-Json
+
+        $targetTypeList = @()
+        foreach($data in $response){
+            $target = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectorySetting
+            $data.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                $propertyValue = $_.Value
+                $target | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+            }
+            $targetTypeList += $target
+        }
+        $targetTypeList
     }
-"@
+'@
 }

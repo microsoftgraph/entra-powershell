@@ -1,43 +1,71 @@
 ---
+title: New-EntraBetaTrustedCertificateAuthority
+description: This article provides details on the New-EntraBetaTrustedCertificateAuthority command.
+
+
+ms.topic: reference
+ms.date: 07/04/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaTrustedCertificateAuthority
+
 schema: 2.0.0
 ---
 
 # New-EntraBetaTrustedCertificateAuthority
 
-## SYNOPSIS
+## Synopsis
+
 Creates a trusted certificate authority.
 
-## SYNTAX
+## Syntax
 
-```
-New-EntraBetaTrustedCertificateAuthority -CertificateAuthorityInformation <CertificateAuthorityInformation>
+```powershell
+New-EntraBetaTrustedCertificateAuthority 
+ -CertificateAuthorityInformation <CertificateAuthorityInformation>
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The New-EntraBetaTrustedCertificateAuthority cmdlet creates a trusted certificate authority in Azure Active Directory (AD).
+## Description
 
-## EXAMPLES
+The `New-EntraBetaTrustedCertificateAuthority` cmdlet creates a trusted certificate authority in Microsoft Entra ID.
+
+## Examples
 
 ### Example 1: Creates the trusted certificate authorities in your directory
+
+```powershell
+Connect-Entra -Scopes 'Organization.ReadWrite.All'
+
+$new_ca = New-Object -TypeName Microsoft.Open.AzureAD.Model.CertificateAuthorityInformation #Create CertificateAuthorityInformation object
+$new_ca.AuthorityType = "RootAuthority"
+$new_ca.CrlDistributionPoint = "https://example.crl"
+$new_ca.DeltaCrlDistributionPoint = "https://deltaexample.crl"
+$new_ca.TrustedCertificate = "Path to .cer file(including cer file name)"
+New-EntraBetaTrustedCertificateAuthority -CertificateAuthorityInformation $new_ca
 ```
-PS C:\> $new_ca = New-Object -TypeName Microsoft.Open.AzureAD.Model.CertificateAuthorityInformation #Create CertificateAuthorityInformation object
-		PS C:\> $new_ca.AuthorityType = "RootAuthority"
-		PS C:\> $new_ca.CrlDistributionPoint = "https://example.crl"
-		PS C:\> $new_ca.DeltaCrlDistributionPoint = "https://deltaexample.crl"
-		PS C:\> $new_ca.TrustedCertificate = "Path to .cer file(including cer file name)"
-		PS C:\> New-EntraBetaTrustedCertificateAuthority -CertificateAuthorityInformation $new_ca
+
+```Output
+Id
+--
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This command creates the trusted certificate authorities in your directory.
 
-## PARAMETERS
+- `-CertificateAuthorityInformation` Parameter specifies a CertificateAuthorityInformation object.
+It includes properties like `AuthorityType`, `CrlDistributionPoint`, `DeltaCrlDistributionPoint`, and `TrustedCertificate`.
+
+## Parameters
 
 ### -CertificateAuthorityInformation
-@{Text=}
+
+Specifies a CertificateAuthorityInformation object.
 
 ```yaml
 Type: CertificateAuthorityInformation
@@ -51,22 +79,20 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-
-
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
 
-[Get-EntraBetaTrustedCertificateAuthority]()
+## Related Links
 
-[Remove-EntraBetaTrustedCertificateAuthority]()
+[Get-EntraBetaTrustedCertificateAuthority](Get-EntraBetaTrustedCertificateAuthority.md)
 
-[Set-EntraBetaTrustedCertificateAuthority]()
+[Remove-EntraBetaTrustedCertificateAuthority](Remove-EntraBetaTrustedCertificateAuthority.md)
 
+[Set-EntraBetaTrustedCertificateAuthority](Set-EntraBetaTrustedCertificateAuthority.md)

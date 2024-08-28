@@ -1,6 +1,7 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
+
 function Get-EntraBetaPartnerInformation {
     <#
     .SYNOPSIS
@@ -32,20 +33,14 @@ function Get-EntraBetaPartnerInformation {
         param (
             [Parameter(ParameterSetName = "GetById", ValueFromPipelineByPropertyName = $true)][System.Guid] $TenantId
         )
-    
-        PROCESS {    
+
+        PROCESS {
             $params = @{}
             $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-            if ($PSBoundParameters.ContainsKey("Verbose")) {
-                $params["Verbose"] = $Null
-            }
             if ($null -ne $PSBoundParameters["TenantId"]) {
                 $params["TenantID"] = $PSBoundParameters["TenantId"]
             }
-            if ($PSBoundParameters.ContainsKey("Debug")) {
-                $params["Debug"] = $Null
-            }
-    
+
             Write-Debug("============================ TRANSFORMATIONS ============================")
             $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
             Write-Debug("=========================================================================`n")
@@ -61,8 +56,9 @@ function Get-EntraBetaPartnerInformation {
                 "PartnerSupportEmails"     = $response.supportEmails
                 "PartnerHelpUrl"           = $response.helpUrl
                 "PartnerCommerceUrl"       = $response.commerceUrl
+                "PartnerSupportUrl"        = $response.supportUrl
                 "ObjectID"                 = $response.partnerTenantId
             }
-            $customTable 
+            $customTable
         }
     }

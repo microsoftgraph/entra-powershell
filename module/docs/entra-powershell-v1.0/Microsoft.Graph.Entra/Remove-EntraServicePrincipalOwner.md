@@ -1,26 +1,28 @@
 ---
-title: Remove-EntraServicePrincipalOwner.
+title: Remove-EntraServicePrincipalOwner
 description: This article provides details on the Remove-EntraServicePrincipalOwner command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 03/08/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraServicePrincipalOwner
+
 schema: 2.0.0
 ---
 
 # Remove-EntraServicePrincipalOwner
 
-## SYNOPSIS
+## Synopsis
+
 Removes an owner from a service principal.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 Remove-EntraServicePrincipalOwner 
@@ -29,26 +31,39 @@ Remove-EntraServicePrincipalOwner
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
-The Remove-EntraServicePrincipalOwner cmdlet removes an owner from a service principal in Microsoft Entra ID.
+## Description
 
-## EXAMPLES
+The `Remove-EntraServicePrincipalOwner` cmdlet removes an owner from a service principal in Microsoft Entra ID.
 
-### Example 1: Removes an owner from a service principal.
+## Examples
+
+### Example 1: Removes an owner from a service principal
+
 ```powershell
-PS C:\> Remove-EntraServicePrincipalOwner -ObjectId 4a795157-504b-4473-ae28-1c54592e7702 -OwnerId d67d8b7b-57e1-486e-9361-26a1e2f0e8fe
+Connect-Entra -Scopes 'Application.ReadWrite.All'
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<ServicePrincipal-DisplayName>'"
+$owner = Get-EntraUser -ObjectId 'SawyerM@contoso.com'
+
+$params= @{
+    ObjectId = $servicePrincipal.Id 
+    OwnerId = $owner.Id
+}
+Remove-EntraServicePrincipalOwner @params
 ```
 
-This example demonstrates how to remove entra service principal owner.
+This example demonstrates how to remove an owner from a service principal in Microsoft Entra ID.
 
+- `-ObjectId` parameter specifies the service principal Id.
+- `-OwnerId` parameter specifies the service principal owner Id.
 
-## PARAMETERS
+## Parameters
 
 ### -ObjectId
+
 Specifies the ID of a service principal.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -60,10 +75,11 @@ Accept wildcard characters: False
 ```
 
 ### -OwnerId
+
 Specifies the ID of the owner.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -75,17 +91,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
-## OUTPUTS
+## Outputs
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Add-EntraServicePrincipalOwner](Add-EntraServicePrincipalOwner.md)
 
 [Get-EntraServicePrincipalOwner](Get-EntraServicePrincipalOwner.md)
-

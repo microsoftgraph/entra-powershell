@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 function Get-EntraBetaApplicationProxyConnector {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
@@ -8,7 +12,7 @@ function Get-EntraBetaApplicationProxyConnector {
     [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Id,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Boolean]] $All,
+    [switch] $All,
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Filter
     )
@@ -31,37 +35,40 @@ function Get-EntraBetaApplicationProxyConnector {
         {
             $f = '$' + 'Filter'
             $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectors?$f=$filter"
-        }
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $Null
-        }
+        }        
         if($null -ne $PSBoundParameters["All"])
         {
             $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectors"
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $Null
-        }
+        }        
         if($null -ne $PSBoundParameters["Top"])
         {
             $t = '$' + 'Top'
             $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectors?$t=$top"
-        }
+        }        
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
         $response = Invoke-GraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri 
+        
         try {    
-            $call = $response.value 
-            $call
+            $data = $response.Value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         }
         catch {
-            $response
+            $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         }
-
+        
+        $targetList = @()
+        foreach ($res in $data) {
+            $targetType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectoryObject
+            $res.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                $propertyValue = $_.Value
+                $targetType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+            }
+            $targetList += $targetType
+        }
+        $targetList         
     }        
 }

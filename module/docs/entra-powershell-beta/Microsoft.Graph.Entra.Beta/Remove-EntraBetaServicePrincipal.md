@@ -1,42 +1,61 @@
 ---
+title: Remove-EntraBetaServicePrincipal
+description: This article provides details on the Remove-EntraBetaServicePrincipal command.
+
+
+ms.topic: reference
+ms.date: 07/31/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaServicePrincipal
+
 schema: 2.0.0
 ---
 
 # Remove-EntraBetaServicePrincipal
 
-## SYNOPSIS
+## Synopsis
+
 Removes a service principal.
 
-## SYNTAX
+## Syntax
 
-```
-Remove-EntraBetaServicePrincipal -ObjectId <String> [<CommonParameters>]
-```
-
-## DESCRIPTION
-The Remove-EntraBetaServicePrincipal cmdlet removes a service principal in Azure Active Directory (AD).
-
-## EXAMPLES
-
-### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Remove-EntraBetaServicePrincipal 
+ -ObjectId <String> 
+ [<CommonParameters>]
 ```
 
-{{ Add example description here }}
+## Description
 
-## PARAMETERS
+The `Remove-EntraBetaServicePrincipal` cmdlet removes a service principal in Microsoft Entra ID.
 
+## Examples
 
+### Example 1: Removes a service principal
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+Remove-EntraBetaServicePrincipal -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444'
+```
+
+This example demonstrates how to remove a service principal in Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies the service principal Id.
+
+## Parameters
 
 ### -ObjectId
-Specifies the ID of a service principal in Azure AD.
+
+Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -48,19 +67,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
 
-## NOTES
+## Outputs
 
-## RELATED LINKS
+## Notes
 
-[Get-EntraBetaServicePrincipal]()
+## Related Links
 
-[New-EntraBetaServicePrincipal]()
+[Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)
 
-[Set-EntraBetaServicePrincipal]()
+[New-EntraBetaServicePrincipal](New-EntraBetaServicePrincipal.md)
 
+[Set-EntraBetaServicePrincipal](Set-EntraBetaServicePrincipal.md)

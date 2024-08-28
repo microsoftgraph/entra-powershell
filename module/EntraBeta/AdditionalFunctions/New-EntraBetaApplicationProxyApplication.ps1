@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 function New-EntraBetaApplicationProxyApplication {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
@@ -70,15 +74,7 @@ function New-EntraBetaApplicationProxyApplication {
         if($null -ne $PSBoundParameters["ApplicationServerTimeout"])
         {
             $onPremisesPublishing["applicationServerTimeout"] = $PSBoundParameters["ApplicationServerTimeout"]
-        }
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $Null
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $Null
-        }
+        }        
 
         #Create New App
         $newAppBody = @{
@@ -163,6 +159,17 @@ function New-EntraBetaApplicationProxyApplication {
                 Add-Member -InputObject $_ -MemberType NoteProperty -Name ObjectId -Value $Id
             }
         }
-        $response | Select-Object ObjectId,ExternalAuthenticationType,ApplicationServerTimeout,ExternalUrl,InternalUrl,IsTranslateHostHeaderEnabled,IsTranslateLinksInBodyEnabled,IsOnPremPublishingEnabled,VerifiedCustomDomainCertificatesMetadata,VerifiedCustomDomainKeyCredential,VerifiedCustomDomainPasswordCredential,SingleSignOnSettings,IsHttpOnlyCookieEnabled,IsSecureCookieEnabled,IsPersistentCookieEnabled    
+        
+        $response = $response | Select-Object ObjectId,ExternalAuthenticationType,ApplicationServerTimeout,ExternalUrl,InternalUrl,IsTranslateHostHeaderEnabled,IsTranslateLinksInBodyEnabled,IsOnPremPublishingEnabled,VerifiedCustomDomainCertificatesMetadata,VerifiedCustomDomainKeyCredential,VerifiedCustomDomainPasswordCredential,SingleSignOnSettings,IsHttpOnlyCookieEnabled,IsSecureCookieEnabled,IsPersistentCookieEnabled | ConvertTo-Json -depth 10 | ConvertFrom-Json
+            
+        $respType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphonPremisesPublishing
+            $response.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name
+                $propertyValue = $_.Value
+                $respType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+        
+            }
+        
+        $respType
         }        
 }

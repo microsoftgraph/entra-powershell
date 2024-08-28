@@ -10,11 +10,6 @@
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{ObjectId = "Id"}
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $Null
-        }
         if($null -ne $PSBoundParameters["ObjectId"])
         {
             $params["UserId"] = $PSBoundParameters["ObjectId"]
@@ -33,21 +28,14 @@
                                })
         } | ConvertTo-Json
         
-        $headers = @{
-            'Content-Type' = 'application/json'
-        }
+        $customHeaders['Content-Type'] = 'application/json'
 
-        $graphApiEndpoint = "https://graph.microsoft.com/beta/users/$UserId/microsoft.graph.assignLicense"
-
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $Null
-        }
+        $graphApiEndpoint = "https://graph.microsoft.com/beta/users/$UserId/microsoft.graph.assignLicense"  
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
         
-        $response = Invoke-GraphRequest -Headers $customHeaders -Uri $graphApiEndpoint -Method Post -Headers $headers -Body $jsonBody
+        $response = Invoke-GraphRequest -Headers $customHeaders -Uri $graphApiEndpoint -Method Post -Body $jsonBody
 
         $response | ForEach-Object {
             if($null -ne $_) {

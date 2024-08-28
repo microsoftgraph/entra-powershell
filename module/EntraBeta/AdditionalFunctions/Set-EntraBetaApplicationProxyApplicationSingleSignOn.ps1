@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 function Set-EntraBetaApplicationProxyApplicationSingleSignOn {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
@@ -11,7 +15,7 @@ function Set-EntraBetaApplicationProxyApplicationSingleSignOn {
     [String] $KerberosInternalApplicationServicePrincipalName
     )
 
-    PROCESS {    
+    PROCESS {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params["Method"] = "PATCH"
@@ -35,14 +39,6 @@ function Set-EntraBetaApplicationProxyApplicationSingleSignOn {
             $KerberosInternalApplicationServicePrincipalName = $PSBoundParameters["KerberosInternalApplicationServicePrincipalName"]
             $KerberosInternalApplicationServicePrincipalName = $KerberosInternalApplicationServicePrincipalName.Substring(0, 1).ToLower() + $KerberosInternalApplicationServicePrincipalName.Substring(1)
         }
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $Null
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $Null
-        }
         $body = @{
             onPremisesPublishing = @{
                 singleSignOnSettings = @{
@@ -50,23 +46,23 @@ function Set-EntraBetaApplicationProxyApplicationSingleSignOn {
                 }
             }
         }
-        
+
         if (-not [string]::IsNullOrWhiteSpace($KerberosInternalApplicationServicePrincipalName) -or -not [string]::IsNullOrWhiteSpace($KerberosDelegatedLoginIdentity) -and ($SingleSignOnMode -ne 'none' -and $SingleSignOnMode -ne 'headerbased'))
         {
             if ($KerberosInternalApplicationServicePrincipalName -eq '') {
                 Write-Error "Set-EntraBetaApplicationProxyApplicationSingleSignOn : KerberosInternalApplicationServicePrincipalName is a required field for kerberos mode."
                 break
-            } 
+            }
             elseif ($KerberosDelegatedLoginIdentity -eq '') {
                 Write-Error "Set-EntraBetaApplicationProxyApplicationSingleSignOn : KerberosDelegatedLoginIdentity is a required field for kerberos mode."
                 break
-            } 
+            }
             $body.onPremisesPublishing.singleSignOnSettings.kerberosSignOnSettings = @{
                 kerberosServicePrincipalName = $KerberosInternalApplicationServicePrincipalName
                 kerberosSignOnMappingAttributeType = $KerberosDelegatedLoginIdentity
-            }             
+            }
         }
-        
+
         $body = $body | ConvertTo-Json -Depth 10
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
@@ -74,5 +70,5 @@ function Set-EntraBetaApplicationProxyApplicationSingleSignOn {
         Write-Debug("=========================================================================`n")
 
         Invoke-GraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri -Body $body -ContentType "application/json"
-    }        
+    }
 }

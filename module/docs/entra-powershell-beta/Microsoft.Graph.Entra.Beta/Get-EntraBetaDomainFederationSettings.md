@@ -1,46 +1,73 @@
 ---
+title: Get-EntraBetaDomainFederationSettings
+description: This article provides details on the Get-EntraBetaDomainFederationSettings command.
+
+
+ms.topic: reference
+ms.date: 08/19/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaDomainFederationSettings
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaDomainFederationSettings
 
-## SYNOPSIS
+## Synopsis
+
 Retrieves settings for a federated domain.
 
-## SYNTAX
+## Syntax
 
-```
-Get-EntraBetaDomainFederationSettings [-DomainName] <String> [[-TenantId] <Guid>] [<CommonParameters>]
-```
-
-## DESCRIPTION
-The Get-EntraBetaDomainFederationSettings cmdlet gets key settings from Microsoft Azure Active Directory.
-Use the Get-EntraFederationProperty cmdlet to get settings for both Microsoft Azure Active Directory and the Active Directory Federation Services server.
-
-## EXAMPLES
-
-### EXAMPLE 1
-```
-Get-EntraBetaDomainFederationSettings -DomainName contoso.com
-    
-    Returns the federation settings for contoso.com.
-    Description
-    
-    -----------
-    
-    Returns the federation settings for contoso.com.
+```powershell
+Get-EntraBetaDomainFederationSettings 
+ -DomainName <String> 
+ [-TenantId <String>]
+ [<CommonParameters>]
 ```
 
-## PARAMETERS
+## Description
+
+The `Get-EntraBetaDomainFederationSettings` cmdlet gets key settings from Microsoft Entra ID.
+
+Use the `Get-EntraBetaFederationProperty` cmdlet to get settings for both Microsoft Entra ID and the Entra ID Federation Services server.
+
+For delegated scenarios, the calling user must be assigned at least one of the following Microsoft Entra roles:
+
+- Global Reader
+- Security Reader
+- Domain Name Administrator
+- External Identity Provider Administrator
+- Hybrid Identity Administrator
+- Security Administrator
+
+## Examples
+
+### Example 1: Get federation settings for specified domain
+
+```powershell
+Connect-Entra -Scopes 'Domain.Read.All'
+Get-EntraBetaDomainFederationSettings -DomainName 'contoso.com'
+```
+
+This command gets federation settings for specified domain.
+
+- `-DomainName` parameter specifies the fully qualified domain name to retrieve.
+
+## Parameters
 
 ### -DomainName
+
 The fully qualified domain name to retrieve.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -52,12 +79,13 @@ Accept wildcard characters: False
 ```
 
 ### -TenantId
+
 The unique ID of the tenant to perform the operation on.
-If this is not provided then the value will default to the tenant of the current user.
+If this isn't provided, then the value will default to the tenant of the current user.
 This parameter is only applicable to partner users.
 
 ```yaml
-Type: Guid
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -69,22 +97,35 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## OUTPUTS
+## Inputs
+
+## Outputs
 
 ### Microsoft.Online.Administration.DomainFederationSettings
-### This cmdlet returns the following settings:
-###         ActiveLogOnUri
-###         FederationBrandName
-###         IssuerUri
-###         LogOffUri
-###         MetadataExchangeUri
-###         NextSigningCertificate
-###         PassiveLogOnUri
-###         SigningCertificate
-## NOTES
 
-## RELATED LINKS
+### This cmdlet returns the following settings
+
+### ActiveLogOnUri
+
+### FederationBrandName
+
+### IssuerUri
+
+### LogOffUri
+
+### MetadataExchangeUri
+
+### NextSigningCertificate
+
+### PassiveLogOnUri
+
+### SigningCertificate
+
+## Notes
+
+## Related Links
+
+[Set-EntraBetaDomainFederationSettings](Set-EntraBetaDomainFederationSettings.md)

@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 function Set-EntraBetaApplicationProxyConnector {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
@@ -7,7 +11,7 @@ function Set-EntraBetaApplicationProxyConnector {
     [System.String] $ConnectorGroupId
     )
 
-    PROCESS {    
+    PROCESS {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params["Method"] = "POST"
@@ -20,16 +24,8 @@ function Set-EntraBetaApplicationProxyConnector {
         {
             $body = @{
                 "@odata.id" = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$ConnectorGroupId"
-            } 
+            }
             $body = $body | ConvertTo-Json
-        }
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $Null
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $Null
         }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
@@ -37,5 +33,5 @@ function Set-EntraBetaApplicationProxyConnector {
         Write-Debug("=========================================================================`n")
 
         Invoke-MgGraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri -Body $body -ContentType "application/json"
-    }        
+    }
 }

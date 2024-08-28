@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 function Get-EntraBetaApplicationProxyConnectorGroupMembers {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
@@ -8,7 +12,7 @@ function Get-EntraBetaApplicationProxyConnectorGroupMembers {
     [Parameter( ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $Filter,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.Nullable`1[System.Boolean]] $All
+    [switch] $All
     )
 
     PROCESS {    
@@ -25,19 +29,11 @@ function Get-EntraBetaApplicationProxyConnectorGroupMembers {
         {
             $f = '$' + 'Filter'
             $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members?$f=$filter"
-        }
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $Null
-        }
+        }        
         if($PSBoundParameters.ContainsKey("All"))
         {
             $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members"
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $Null
-        }
+        }        
         if($PSBoundParameters.ContainsKey("top"))
         {
             $t = '$' + 'Top'
@@ -50,12 +46,23 @@ function Get-EntraBetaApplicationProxyConnectorGroupMembers {
 
         $response = Invoke-GraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri 
         try {    
-            $call = $response.value 
-            $call
+            $data = $response.Value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         }
         catch {
-            $response
+            $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
         }
+        
+            $targetList = @()
+            foreach ($res in $data) {
+                $targetType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphConnector
+                $res.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                    $propertyValue = $_.Value
+                    $targetType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                }
+                $targetList += $targetType
+            }
+            $targetList       
 
     }        
 }

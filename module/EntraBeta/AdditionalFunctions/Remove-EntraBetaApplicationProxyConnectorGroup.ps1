@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 function Remove-EntraBetaApplicationProxyConnectorGroup {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
@@ -5,7 +9,7 @@ function Remove-EntraBetaApplicationProxyConnectorGroup {
     [System.String] $Id
     )
 
-    PROCESS {    
+    PROCESS {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params["Method"] = "DELETE"
@@ -13,20 +17,11 @@ function Remove-EntraBetaApplicationProxyConnectorGroup {
         {
             $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id"
         }
-       
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $Null
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $Null
-        }
 
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
 
-        Invoke-GraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri 
-    }        
+        Invoke-GraphRequest -Headers $customHeaders -Method $params.method -Uri $params.uri
+    }
 }

@@ -7,34 +7,48 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
-    PROCESS {    
+    PROCESS {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $body = @{}
         $keysChanged = @{ObjectIds = "Ids"}
-        if($PSBoundParameters.ContainsKey("Debug"))
+        $URI = 'https://graph.microsoft.com/v1.0/directoryObjects/microsoft.graph.getByIds?$select=*'
+        if($null -ne $PSBoundParameters["Property"])
         {
-            $params["Debug"] = $Null
+            $selectProperties = $PSBoundParameters["Property"]
+            $selectProperties = $selectProperties -Join ','
+            $properties = "`$select=$($selectProperties)"
+            $URI = "https://graph.microsoft.com/v1.0/directoryObjects/microsoft.graph.getByIds?$properties"
         }
         if($null -ne $PSBoundParameters["Types"])
         {
             $body["Types"] = $PSBoundParameters["Types"]
         }
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $Null
-        }
         if($null -ne $PSBoundParameters["ObjectIds"])
         {
             $body["Ids"] = $PSBoundParameters["ObjectIds"]
         }
-    
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        
-        $response = Invoke-GraphRequest -Uri 'https://graph.microsoft.com/v1.0/directoryObjects/microsoft.graph.getByIds?$select=*' -Method POST -Body $body -Headers $customHeaders
-        $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-    }    
+        $response = Invoke-GraphRequest -Uri $URI  -Method POST -Body $body -Headers $customHeaders | ConvertTo-Json -depth 10 | ConvertFrom-Json
+        try {
+            $response = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+        }
+        catch {}
+        if($response){
+            $userList = @()
+            foreach ($data in $response) {
+                $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
+                $data.PSObject.Properties | ForEach-Object {
+                    $propertyName = $_.Name
+                    $propertyValue = $_.Value
+                    $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                }
+                $userList += $userType
+            }
+            $userList
+        }
+    }
 '@
 }

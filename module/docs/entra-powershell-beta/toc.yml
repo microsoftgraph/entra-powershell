@@ -18,20 +18,20 @@
     href: Microsoft.Graph.Entra.Beta/Add-EntraBetaGroupMember.md
   - name: Add-EntraBetaGroupOwner
     href: Microsoft.Graph.Entra.Beta/Add-EntraBetaGroupOwner.md
-  - name: Add-EntraBetaMSAdministrativeUnitMember
-    href: Microsoft.Graph.Entra.Beta/Add-EntraBetaMSAdministrativeUnitMember.md
-  - name: Add-EntraBetaMSApplicationOwner
-    href: Microsoft.Graph.Entra.Beta/Add-EntraBetaMSApplicationOwner.md
-  - name: Add-EntraBetaMScustomSecurityAttributeDefinitionAllowedValues
-    href: Microsoft.Graph.Entra.Beta/Add-EntraBetaMScustomSecurityAttributeDefinitionAllowedValues.md
-  - name: Add-EntraBetaMSFeatureRolloutPolicyDirectoryObject
-    href: Microsoft.Graph.Entra.Beta/Add-EntraBetaMSFeatureRolloutPolicyDirectoryObject.md
-  - name: Add-EntraBetaMSLifecyclePolicyGroup
-    href: Microsoft.Graph.Entra.Beta/Add-EntraBetaMSLifecyclePolicyGroup.md
-  - name: Add-EntraBetaMSScopedRoleMembership
-    href: Microsoft.Graph.Entra.Beta/Add-EntraBetaMSScopedRoleMembership.md
-  - name: Add-EntraBetaMSServicePrincipalDelegatedPermissionClassification
-    href: Microsoft.Graph.Entra.Beta/Add-EntraBetaMSServicePrincipalDelegatedPermissionClassification.md
+  - name: Add-EntraBetaAdministrativeUnitMember
+    href: Microsoft.Graph.Entra.Beta/Add-EntraBetaAdministrativeUnitMember.md
+  - name: Add-EntraBetaApplicationOwner
+    href: Microsoft.Graph.Entra.Beta/Add-EntraBetaApplicationOwner.md
+  - name: Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues
+    href: Microsoft.Graph.Entra.Beta/Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues.md
+  - name: Add-EntraBetaFeatureRolloutPolicyDirectoryObject
+    href: Microsoft.Graph.Entra.Beta/Add-EntraBetaFeatureRolloutPolicyDirectoryObject.md
+  - name: Add-EntraBetaLifecyclePolicyGroup
+    href: Microsoft.Graph.Entra.Beta/Add-EntraBetaLifecyclePolicyGroup.md
+  - name: Add-EntraBetaScopedRoleMembership
+    href: Microsoft.Graph.Entra.Beta/Add-EntraBetaScopedRoleMembership.md
+  - name: Add-EntraBetaServicePrincipalDelegatedPermissionClassification
+    href: Microsoft.Graph.Entra.Beta/Add-EntraBetaServicePrincipalDelegatedPermissionClassification.md
   - name: Add-EntraBetaScopedRoleMembership
     href: Microsoft.Graph.Entra.Beta/Add-EntraBetaScopedRoleMembership.md
   - name: Add-EntraBetaServicePrincipalOwner
@@ -82,8 +82,6 @@
     href: Microsoft.Graph.Entra.Beta/Get-EntraBetaContactMembership.md
   - name: Get-EntraBetaContract
     href: Microsoft.Graph.Entra.Beta/Get-EntraBetaContract.md
-  - name: Get-EntraBetaCurrentSessionInfo
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaCurrentSessionInfo.md
   - name: Get-EntraBetaDeletedApplication
     href: Microsoft.Graph.Entra.Beta/Get-EntraBetaDeletedApplication.md
   - name: Get-EntraBetaDevice
@@ -128,76 +126,74 @@
     href: Microsoft.Graph.Entra.Beta/Get-EntraBetaGroupOwner.md
   - name: Get-EntraBetaHasObjectsWithDirSyncProvisioningError
     href: Microsoft.Graph.Entra.Beta/Get-EntraBetaHasObjectsWithDirSyncProvisioningError.md
-  - name: Get-EntraBetaMSAdministrativeUnit
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSAdministrativeUnit.md
-  - name: Get-EntraBetaMSAdministrativeUnitMember
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSAdministrativeUnitMember.md
-  - name: Get-EntraBetaMSApplication
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSApplication.md
-  - name: Get-EntraBetaMSApplicationExtensionProperty
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSApplicationExtensionProperty.md
-  - name: Get-EntraBetaMSApplicationOwner
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSApplicationOwner.md
-  - name: Get-EntraBetaMSApplicationTemplate
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSApplicationTemplate.md
-  - name: Get-EntraBetaMSAttributeSet
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSAttributeSet.md
-  - name: Get-EntraBetaMSAuthorizationPolicy
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSAuthorizationPolicy.md
-  - name: Get-EntraBetaMSConditionalAccessPolicy
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSConditionalAccessPolicy.md
-  - name: Get-EntraBetaMSCustomSecurityAttributeDefinition
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSCustomSecurityAttributeDefinition.md
-  - name: Get-EntraBetaMSCustomSecurityAttributeDefinitionAllowedValue
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSCustomSecurityAttributeDefinitionAllowedValue.md
-  - name: Get-EntraBetaMSDeletedDirectoryObject
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSDeletedDirectoryObject.md
-  - name: Get-EntraBetaMSDeletedGroup
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSDeletedGroup.md
-  - name: Get-EntraBetaMSFeatureRolloutPolicy
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSFeatureRolloutPolicy.md
-  - name: Get-EntraBetaMSGroup
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSGroup.md
-  - name: Get-EntraBetaMSGroupLifecyclePolicy
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSGroupLifecyclePolicy.md
-  - name: Get-EntraBetaMSGroupPermissionGrant
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSGroupPermissionGrant.md
-  - name: Get-EntraBetaMSIdentityProvider
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSIdentityProvider.md
-  - name: Get-EntraBetaMSLifecyclePolicyGroup
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSLifecyclePolicyGroup.md
-  - name: Get-EntraBetaMSNamedLocationPolicy
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSNamedLocationPolicy.md
-  - name: Get-EntraBetaMSPasswordSingleSignOnCredential
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSPasswordSingleSignOnCredential.md
-  - name: Get-EntraBetaMSPermissionGrantConditionSet
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSPermissionGrantConditionSet.md
-  - name: Get-EntraBetaMSPermissionGrantPolicy
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSPermissionGrantPolicy.md
-  - name: Get-EntraBetaMSPrivilegedResource
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSPrivilegedResource.md
-  - name: Get-EntraBetaMSPrivilegedRoleAssignment
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSPrivilegedRoleAssignment.md
-  - name: Get-EntraBetaMSPrivilegedRoleAssignmentRequest
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSPrivilegedRoleAssignmentRequest.md
-  - name: Get-EntraBetaMSPrivilegedRoleDefinition
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSPrivilegedRoleDefinition.md
-  - name: Get-EntraBetaMSPrivilegedRoleSetting
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSPrivilegedRoleSetting.md
-  - name: Get-EntraBetaMSRoleAssignment
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSRoleAssignment.md
-  - name: Get-EntraBetaMSRoleDefinition
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSRoleDefinition.md
-  - name: Get-EntraBetaMSScopedRoleMembership
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSScopedRoleMembership.md
-  - name: Get-EntraBetaMSServicePrincipal
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSServicePrincipal.md
-  - name: Get-EntraBetaMSServicePrincipalDelegatedPermissionClassification
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSServicePrincipalDelegatedPermissionClassification.md
-  - name: Get-EntraBetaMSTrustFrameworkPolicy
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSTrustFrameworkPolicy.md
-  - name: Get-EntraBetaMSUser
-    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaMSUser.md
+  - name: Get-EntraBetaAdministrativeUnit
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaAdministrativeUnit.md
+  - name: Get-EntraBetaAdministrativeUnitMember
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaAdministrativeUnitMember.md
+  - name: Get-EntraBetaApplication
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaApplication.md
+  - name: Get-EntraBetaApplicationExtensionProperty
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaApplicationExtensionProperty.md
+  - name: Get-EntraBetaApplicationOwner
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaApplicationOwner.md
+  - name: Get-EntraBetaApplicationTemplate
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaApplicationTemplate.md
+  - name: Get-EntraBetaAttributeSet
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaAttributeSet.md
+  - name: Get-EntraBetaAuthorizationPolicy
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaAuthorizationPolicy.md
+  - name: Get-EntraBetaConditionalAccessPolicy
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaConditionalAccessPolicy.md
+  - name: Get-EntraBetaCustomSecurityAttributeDefinition
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaCustomSecurityAttributeDefinition.md
+  - name: Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue.md
+  - name: Get-EntraBetaDeletedDirectoryObject
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaDeletedDirectoryObject.md
+  - name: Get-EntraBetaDeletedGroup
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaDeletedGroup.md
+  - name: Get-EntraBetaFeatureRolloutPolicy
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaFeatureRolloutPolicy.md
+  - name: Get-EntraBetaGroup
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaGroup.md
+  - name: Get-EntraBetaGroupLifecyclePolicy
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaGroupLifecyclePolicy.md
+  - name: Get-EntraBetaGroupPermissionGrant
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaGroupPermissionGrant.md
+  - name: Get-EntraBetaIdentityProvider
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaIdentityProvider.md
+  - name: Get-EntraBetaLifecyclePolicyGroup
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaLifecyclePolicyGroup.md
+  - name: Get-EntraBetaNamedLocationPolicy
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaNamedLocationPolicy.md
+  - name: Get-EntraBetaPasswordSingleSignOnCredential
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaPasswordSingleSignOnCredential.md
+  - name: Get-EntraBetaPermissionGrantConditionSet
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaPermissionGrantConditionSet.md
+  - name: Get-EntraBetaPermissionGrantPolicy
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaPermissionGrantPolicy.md
+  - name: Get-EntraBetaPrivilegedResource
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaPrivilegedResource.md
+  - name: Get-EntraBetaPrivilegedRoleAssignmentRequest
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaPrivilegedRoleAssignmentRequest.md
+  - name: Get-EntraBetaPrivilegedRoleDefinition
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaPrivilegedRoleDefinition.md
+  - name: Get-EntraBetaPrivilegedRoleSetting
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaPrivilegedRoleSetting.md
+  - name: Get-EntraBetaRoleAssignment
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaRoleAssignment.md
+  - name: Get-EntraBetaRoleDefinition
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaRoleDefinition.md
+  - name: Get-EntraBetaScopedRoleMembership
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaScopedRoleMembership.md
+  - name: Get-EntraBetaServicePrincipal
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaServicePrincipal.md
+  - name: Get-EntraBetaServicePrincipalDelegatedPermissionClassification
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaServicePrincipalDelegatedPermissionClassification.md
+  - name: Get-EntraBetaTrustFrameworkPolicy
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaTrustFrameworkPolicy.md
+  - name: Get-EntraBetaUser
+    href: Microsoft.Graph.Entra.Beta/Get-EntraBetaUser.md
   - name: Get-EntraBetaOAuth2PermissionGrant
     href: Microsoft.Graph.Entra.Beta/Get-EntraBetaOAuth2PermissionGrant.md
   - name: Get-EntraBetaObjectByObjectId
@@ -292,54 +288,54 @@
     href: Microsoft.Graph.Entra.Beta/New-EntraBetaGroup.md
   - name: New-EntraBetaGroupAppRoleAssignment
     href: Microsoft.Graph.Entra.Beta/New-EntraBetaGroupAppRoleAssignment.md
-  - name: New-EntraBetaMSAdministrativeUnit
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSAdministrativeUnit.md
-  - name: New-EntraBetaMSAdministrativeUnitMember
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSAdministrativeUnitMember.md
-  - name: New-EntraBetaMSApplication
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSApplication.md
-  - name: New-EntraBetaMSApplicationExtensionProperty
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSApplicationExtensionProperty.md
-  - name: New-EntraBetaMSApplicationFromApplicationTemplate
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSApplicationFromApplicationTemplate.md
-  - name: New-EntraBetaMSApplicationKey
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSApplicationKey.md
-  - name: New-EntraBetaMSApplicationPassword
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSApplicationPassword.md
-  - name: New-EntraBetaMSAttributeSet
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSAttributeSet.md
-  - name: New-EntraBetaMSConditionalAccessPolicy
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSConditionalAccessPolicy.md
-  - name: New-EntraBetaMSCustomSecurityAttributeDefinition
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSCustomSecurityAttributeDefinition.md
-  - name: New-EntraBetaMSFeatureRolloutPolicy
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSFeatureRolloutPolicy.md
-  - name: New-EntraBetaMSGroup
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSGroup.md
-  - name: New-EntraBetaMSGroupLifecyclePolicy
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSGroupLifecyclePolicy.md
-  - name: New-EntraBetaMSIdentityProvider
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSIdentityProvider.md
-  - name: New-EntraBetaMSInvitation
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSInvitation.md
-  - name: New-EntraBetaMSNamedLocationPolicy
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSNamedLocationPolicy.md
-  - name: New-EntraBetaMSPasswordSingleSignOnCredential
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSPasswordSingleSignOnCredential.md
-  - name: New-EntraBetaMSPermissionGrantConditionSet
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSPermissionGrantConditionSet.md
-  - name: New-EntraBetaMSPermissionGrantPolicy
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSPermissionGrantPolicy.md
-  - name: New-EntraBetaMSRoleAssignment
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSRoleAssignment.md
-  - name: New-EntraBetaMSRoleDefinition
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSRoleDefinition.md
-  - name: New-EntraBetaMSServicePrincipal
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSServicePrincipal.md
-  - name: New-EntraBetaMSTrustFrameworkPolicy
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSTrustFrameworkPolicy.md
-  - name: New-EntraBetaMSUser
-    href: Microsoft.Graph.Entra.Beta/New-EntraBetaMSUser.md
+  - name: New-EntraBetaAdministrativeUnit
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaAdministrativeUnit.md
+  - name: New-EntraBetaAdministrativeUnitMember
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaAdministrativeUnitMember.md
+  - name: New-EntraBetaApplication
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaApplication.md
+  - name: New-EntraBetaApplicationExtensionProperty
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaApplicationExtensionProperty.md
+  - name: New-EntraBetaApplicationFromApplicationTemplate
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaApplicationFromApplicationTemplate.md
+  - name: New-EntraBetaApplicationKey
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaApplicationKey.md
+  - name: New-EntraBetaApplicationPassword
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaApplicationPassword.md
+  - name: New-EntraBetaAttributeSet
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaAttributeSet.md
+  - name: New-EntraBetaConditionalAccessPolicy
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaConditionalAccessPolicy.md
+  - name: New-EntraBetaCustomSecurityAttributeDefinition
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaCustomSecurityAttributeDefinition.md
+  - name: New-EntraBetaFeatureRolloutPolicy
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaFeatureRolloutPolicy.md
+  - name: New-EntraBetaGroup
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaGroup.md
+  - name: New-EntraBetaGroupLifecyclePolicy
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaGroupLifecyclePolicy.md
+  - name: New-EntraBetaIdentityProvider
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaIdentityProvider.md
+  - name: New-EntraBetaInvitation
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaInvitation.md
+  - name: New-EntraBetaNamedLocationPolicy
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaNamedLocationPolicy.md
+  - name: New-EntraBetaPasswordSingleSignOnCredential
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaPasswordSingleSignOnCredential.md
+  - name: New-EntraBetaPermissionGrantConditionSet
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaPermissionGrantConditionSet.md
+  - name: New-EntraBetaPermissionGrantPolicy
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaPermissionGrantPolicy.md
+  - name: New-EntraBetaRoleAssignment
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaRoleAssignment.md
+  - name: New-EntraBetaRoleDefinition
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaRoleDefinition.md
+  - name: New-EntraBetaServicePrincipal
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaServicePrincipal.md
+  - name: New-EntraBetaTrustFrameworkPolicy
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaTrustFrameworkPolicy.md
+  - name: New-EntraBetaUser
+    href: Microsoft.Graph.Entra.Beta/New-EntraBetaUser.md
   - name: New-EntraBetaObjectSetting
     href: Microsoft.Graph.Entra.Beta/New-EntraBetaObjectSetting.md
   - name: New-EntraBetaPolicy
@@ -396,56 +392,56 @@
     href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaGroupMember.md
   - name: Remove-EntraBetaGroupOwner
     href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaGroupOwner.md
-  - name: Remove-EntraBetaMSAdministrativeUnit
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSAdministrativeUnit.md
-  - name: Remove-EntraBetaMSAdministrativeUnitMember
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSAdministrativeUnitMember.md
-  - name: Remove-EntraBetaMSApplication
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSApplication.md
-  - name: Remove-EntraBetaMSApplicationExtensionProperty
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSApplicationExtensionProperty.md
-  - name: Remove-EntraBetaMSApplicationKey
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSApplicationKey.md
-  - name: Remove-EntraBetaMSApplicationOwner
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSApplicationOwner.md
-  - name: Remove-EntraBetaMSApplicationPassword
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSApplicationPassword.md
-  - name: Remove-EntraBetaMSApplicationVerifiedPublisher
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSApplicationVerifiedPublisher.md
-  - name: Remove-EntraBetaMSConditionalAccessPolicy
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSConditionalAccessPolicy.md
-  - name: Remove-EntraBetaMSDeletedDirectoryObject
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSDeletedDirectoryObject.md
-  - name: Remove-EntraBetaMSFeatureRolloutPolicy
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSFeatureRolloutPolicy.md
-  - name: Remove-EntraBetaMSFeatureRolloutPolicyDirectoryObject
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSFeatureRolloutPolicyDirectoryObject.md
-  - name: Remove-EntraBetaMSGroup
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSGroup.md
-  - name: Remove-EntraBetaMSGroupLifecyclePolicy
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSGroupLifecyclePolicy.md
-  - name: Remove-EntraBetaMSIdentityProvider
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSIdentityProvider.md
-  - name: Remove-EntraBetaMSLifecyclePolicyGroup
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSLifecyclePolicyGroup.md
-  - name: Remove-EntraBetaMSNamedLocationPolicy
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSNamedLocationPolicy.md
-  - name: Remove-EntraBetaMSPasswordSingleSignOnCredential
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSPasswordSingleSignOnCredential.md
-  - name: Remove-EntraBetaMSPermissionGrantConditionSet
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSPermissionGrantConditionSet.md
-  - name: Remove-EntraBetaMSPermissionGrantPolicy
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSPermissionGrantPolicy.md
-  - name: Remove-EntraBetaMSRoleAssignment
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSRoleAssignment.md
-  - name: Remove-EntraBetaMSRoleDefinition
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSRoleDefinition.md
-  - name: Remove-EntraBetaMSScopedRoleMembership
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSScopedRoleMembership.md
-  - name: Remove-EntraBetaMSServicePrincipalDelegatedPermissionClassification
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSServicePrincipalDelegatedPermissionClassification.md
-  - name: Remove-EntraBetaMSTrustFrameworkPolicy
-    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaMSTrustFrameworkPolicy.md
+  - name: Remove-EntraBetaAdministrativeUnit
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaAdministrativeUnit.md
+  - name: Remove-EntraBetaAdministrativeUnitMember
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaAdministrativeUnitMember.md
+  - name: Remove-EntraBetaApplication
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaApplication.md
+  - name: Remove-EntraBetaApplicationExtensionProperty
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaApplicationExtensionProperty.md
+  - name: Remove-EntraBetaApplicationKey
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaApplicationKey.md
+  - name: Remove-EntraBetaApplicationOwner
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaApplicationOwner.md
+  - name: Remove-EntraBetaApplicationPassword
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaApplicationPassword.md
+  - name: Remove-EntraBetaApplicationVerifiedPublisher
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaApplicationVerifiedPublisher.md
+  - name: Remove-EntraBetaConditionalAccessPolicy
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaConditionalAccessPolicy.md
+  - name: Remove-EntraBetaDeletedDirectoryObject
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaDeletedDirectoryObject.md
+  - name: Remove-EntraBetaFeatureRolloutPolicy
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaFeatureRolloutPolicy.md
+  - name: Remove-EntraBetaFeatureRolloutPolicyDirectoryObject
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaFeatureRolloutPolicyDirectoryObject.md
+  - name: Remove-EntraBetaGroup
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaGroup.md
+  - name: Remove-EntraBetaGroupLifecyclePolicy
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaGroupLifecyclePolicy.md
+  - name: Remove-EntraBetaIdentityProvider
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaIdentityProvider.md
+  - name: Remove-EntraBetaLifecyclePolicyGroup
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaLifecyclePolicyGroup.md
+  - name: Remove-EntraBetaNamedLocationPolicy
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaNamedLocationPolicy.md
+  - name: Remove-EntraBetaPasswordSingleSignOnCredential
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaPasswordSingleSignOnCredential.md
+  - name: Remove-EntraBetaPermissionGrantConditionSet
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaPermissionGrantConditionSet.md
+  - name: Remove-EntraBetaPermissionGrantPolicy
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaPermissionGrantPolicy.md
+  - name: Remove-EntraBetaRoleAssignment
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaRoleAssignment.md
+  - name: Remove-EntraBetaRoleDefinition
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaRoleDefinition.md
+  - name: Remove-EntraBetaScopedRoleMembership
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaScopedRoleMembership.md
+  - name: Remove-EntraBetaServicePrincipalDelegatedPermissionClassification
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaServicePrincipalDelegatedPermissionClassification.md
+  - name: Remove-EntraBetaTrustFrameworkPolicy
+    href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaTrustFrameworkPolicy.md
   - name: Remove-EntraBetaOAuth2PermissionGrant
     href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaOAuth2PermissionGrant.md
   - name: Remove-EntraBetaObjectSetting
@@ -472,12 +468,12 @@
     href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaUserExtension.md
   - name: Remove-EntraBetaUserManager
     href: Microsoft.Graph.Entra.Beta/Remove-EntraBetaUserManager.md
-  - name: Reset-EntraBetaMSLifeCycleGroup
-    href: Microsoft.Graph.Entra.Beta/Reset-EntraBetaMSLifeCycleGroup.md
+  - name: Reset-EntraBetaLifeCycleGroup
+    href: Microsoft.Graph.Entra.Beta/Reset-EntraBetaLifeCycleGroup.md
   - name: Restore-EntraBetaDeletedApplication
     href: Microsoft.Graph.Entra.Beta/Restore-EntraBetaDeletedApplication.md
-  - name: Restore-EntraBetaMSDeletedDirectoryObject
-    href: Microsoft.Graph.Entra.Beta/Restore-EntraBetaMSDeletedDirectoryObject.md
+  - name: Restore-EntraBetaDeletedDirectoryObject
+    href: Microsoft.Graph.Entra.Beta/Restore-EntraBetaDeletedDirectoryObject.md
   - name: Revoke-EntraBetaSignedInUserAllRefreshToken
     href: Microsoft.Graph.Entra.Beta/Revoke-EntraBetaSignedInUserAllRefreshToken.md
   - name: Revoke-EntraBetaUserAllRefreshToken
@@ -510,52 +506,52 @@
     href: Microsoft.Graph.Entra.Beta/Set-EntraBetaDomainFederationSettings.md
   - name: Set-EntraBetaGroup
     href: Microsoft.Graph.Entra.Beta/Set-EntraBetaGroup.md
-  - name: Set-EntraBetaMSAdministrativeUnit
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSAdministrativeUnit.md
-  - name: Set-EntraBetaMSApplication
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSApplication.md
-  - name: Set-EntraBetaMSApplicationLogo
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSApplicationLogo.md
-  - name: Set-EntraBetaMSApplicationVerifiedPublisher
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSApplicationVerifiedPublisher.md
-  - name: Set-EntraBetaMSAttributeSet
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSAttributeSet.md
-  - name: Set-EntraBetaMSAuthorizationPolicy
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSAuthorizationPolicy.md
-  - name: Set-EntraBetaMSConditionalAccessPolicy
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSConditionalAccessPolicy.md
-  - name: Set-EntraBetaMSCustomSecurityAttributeDefinition
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSCustomSecurityAttributeDefinition.md
-  - name: Set-EntraBetaMSCustomSecurityAttributeDefinitionAllowedValue
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSCustomSecurityAttributeDefinitionAllowedValue.md
-  - name: Set-EntraBetaMSFeatureRolloutPolicy
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSFeatureRolloutPolicy.md
-  - name: Set-EntraBetaMSGroup
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSGroup.md
-  - name: Set-EntraBetaMSGroupLifecyclePolicy
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSGroupLifecyclePolicy.md
-  - name: Set-EntraBetaMSIdentityProvider
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSIdentityProvider.md
-  - name: Set-EntraBetaMSNamedLocationPolicy
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSNamedLocationPolicy.md
-  - name: Set-EntraBetaMSPasswordSingleSignOnCredential
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSPasswordSingleSignOnCredential.md
-  - name: Set-EntraBetaMSPermissionGrantConditionSet
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSPermissionGrantConditionSet.md
-  - name: Set-EntraBetaMSPermissionGrantPolicy
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSPermissionGrantPolicy.md
-  - name: Set-EntraBetaMSPrivilegedRoleAssignmentRequest
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSPrivilegedRoleAssignmentRequest.md
-  - name: Set-EntraBetaMSPrivilegedRoleSetting
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSPrivilegedRoleSetting.md
-  - name: Set-EntraBetaMSRoleDefinition
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSRoleDefinition.md
-  - name: Set-EntraBetaMSServicePrincipal
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSServicePrincipal.md
-  - name: Set-EntraBetaMSTrustFrameworkPolicy
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSTrustFrameworkPolicy.md
-  - name: Set-EntraBetaMSUser
-    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaMSUser.md
+  - name: Set-EntraBetaAdministrativeUnit
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaAdministrativeUnit.md
+  - name: Set-EntraBetaApplication
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaApplication.md
+  - name: Set-EntraBetaApplicationLogo
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaApplicationLogo.md
+  - name: Set-EntraBetaApplicationVerifiedPublisher
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaApplicationVerifiedPublisher.md
+  - name: Set-EntraBetaAttributeSet
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaAttributeSet.md
+  - name: Set-EntraBetaAuthorizationPolicy
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaAuthorizationPolicy.md
+  - name: Set-EntraBetaConditionalAccessPolicy
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaConditionalAccessPolicy.md
+  - name: Set-EntraBetaCustomSecurityAttributeDefinition
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaCustomSecurityAttributeDefinition.md
+  - name: Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue.md
+  - name: Set-EntraBetaFeatureRolloutPolicy
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaFeatureRolloutPolicy.md
+  - name: Set-EntraBetaGroup
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaGroup.md
+  - name: Set-EntraBetaGroupLifecyclePolicy
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaGroupLifecyclePolicy.md
+  - name: Set-EntraBetaIdentityProvider
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaIdentityProvider.md
+  - name: Set-EntraBetaNamedLocationPolicy
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaNamedLocationPolicy.md
+  - name: Set-EntraBetaPasswordSingleSignOnCredential
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaPasswordSingleSignOnCredential.md
+  - name: Set-EntraBetaPermissionGrantConditionSet
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaPermissionGrantConditionSet.md
+  - name: Set-EntraBetaPermissionGrantPolicy
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaPermissionGrantPolicy.md
+  - name: Set-EntraBetaPrivilegedRoleAssignmentRequest
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaPrivilegedRoleAssignmentRequest.md
+  - name: Set-EntraBetaPrivilegedRoleSetting
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaPrivilegedRoleSetting.md
+  - name: Set-EntraBetaRoleDefinition
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaRoleDefinition.md
+  - name: Set-EntraBetaServicePrincipal
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaServicePrincipal.md
+  - name: Set-EntraBetaTrustFrameworkPolicy
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaTrustFrameworkPolicy.md
+  - name: Set-EntraBetaUser
+    href: Microsoft.Graph.Entra.Beta/Set-EntraBetaUser.md
   - name: Set-EntraBetaObjectSetting
     href: Microsoft.Graph.Entra.Beta/Set-EntraBetaObjectSetting.md
   - name: Set-EntraBetaPolicy

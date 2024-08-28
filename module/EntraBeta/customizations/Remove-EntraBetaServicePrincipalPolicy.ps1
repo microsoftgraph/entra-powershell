@@ -6,30 +6,23 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
+    CustomScript = @'
     PROCESS {  
-        `$params = @{}
-        `$customHeaders = New-EntraBetaCustomHeaders -Command `$MyInvocation.MyCommand
-                if (`$null -ne `$PSBoundParameters["Id"]) {
-                    `$params["Id"] = `$PSBoundParameters["Id"]
-                }
-                if (`$null -ne `$PSBoundParameters["PolicyId"]) {
-                    `$params["PolicyId"] = `$PSBoundParameters["PolicyId"]
-                }
-                `$Method = "DELETE"
-            
-                if (`$PSBoundParameters.ContainsKey("Debug")) {
-                    `$params["Debug"] = `$Null
-                }
-                if (`$PSBoundParameters.ContainsKey("Verbose")) {
-                    `$params["Verbose"] = `$Null
-                }
-                    Write-Debug("============================ TRANSFORMATIONS ============================")
-                    `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-                    Write-Debug("=========================================================================``n")
-                    `$URI = 'https://graph.microsoft.com/beta/serviceprincipals/{0}/policies/{1}/`$ref' -f `$Id,`$PolicyId
-                    `$response = Invoke-GraphRequest -Headers `$customHeaders -Uri `$uri -Method `$Method
-                    `$response
-    }
-"@
+        $params = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        if ($null -ne $PSBoundParameters["Id"]) {
+            $params["Id"] = $PSBoundParameters["Id"]
+        }
+        if ($null -ne $PSBoundParameters["PolicyId"]) {
+            $params["PolicyId"] = $PSBoundParameters["PolicyId"]
+        }
+        $Method = "DELETE"
+        Write-Debug("============================ TRANSFORMATIONS ============================")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================`n")
+        $URI = 'https://graph.microsoft.com/beta/serviceprincipals/{0}/policies/{1}/$ref' -f $Id,$PolicyId
+        $response = Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method $Method
+        $response
+    }    
+'@
 }

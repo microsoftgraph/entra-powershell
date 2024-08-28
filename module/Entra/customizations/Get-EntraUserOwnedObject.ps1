@@ -6,53 +6,68 @@
     TargetName = $null
     Parameters = $null
     Outputs = $null
-    CustomScript = @"
-    PROCESS {  
-        `$params = @{}
-        `$customHeaders = New-EntraCustomHeaders -Command `$MyInvocation.MyCommand
-                if (`$null -ne `$PSBoundParameters["ObjectId"]) {
-                    `$params["UserId"] = `$PSBoundParameters["ObjectId"]
-                }
-                
-                if (`$PSBoundParameters.ContainsKey("Debug")) {
-                    `$params["Debug"] = `$Null
-                }
+    CustomScript = @'
+    PROCESS {
+        $params = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        if ($null -ne $PSBoundParameters["ObjectId"]) {
+            $params["UserId"] = $PSBoundParameters["ObjectId"]
+        }
+        $URI = "/v1.0/users/$($params.UserId)/ownedObjects"
 
-                if (`$PSBoundParameters.ContainsKey("Verbose")) {
-                    `$params["Verbose"] = `$Null
-                }
+        if($null -ne $PSBoundParameters["Property"])
+        {
+            $selectProperties = $PSBoundParameters["Property"]
+            $selectProperties = $selectProperties -Join ','
+            $properties = "`$select=$($selectProperties)"
+            $URI = "/v1.0/users/$($params.UserId)/ownedObjects?$properties"
+        }
 
-                Write-Debug("============================ TRANSFORMATIONS ============================")
-                `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
-                Write-Debug("=========================================================================``n")
-                
-                `$Method = "GET"
-                `$URI = '/v1.0/users/'+`$params["UserId"]+'/ownedObjects'
+        Write-Debug("============================ TRANSFORMATIONS ============================")
+        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        Write-Debug("=========================================================================`n")
 
-                `$response = (Invoke-GraphRequest -Headers `$customHeaders -Uri `$uri -Method `$Method).value;
-                
-                `$Top = `$null
-                if (`$null -ne `$PSBoundParameters["Top"]) {
-                    `$Top = `$PSBoundParameters["Top"]
-                }
+        $Method = "GET"
+        $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).value;
 
-                if(`$Top -ne `$null){
-                    `$response | ForEach-Object {
-                        if (`$null -ne `$_ -and `$Top -gt 0) {
-                            `$_ | ConvertTo-Json | ConvertFrom-Json
-                        }
+        $Top = $null
+        if ($null -ne $PSBoundParameters["Top"]) {
+            $Top = $PSBoundParameters["Top"]
+        }
 
-                        `$Top = `$Top - 1
+        if($null -ne $Top){
+            $userList = @()
+            $response | ForEach-Object {
+                if ($null -ne $_ -and $Top -gt 0) {
+                    $data = $_ | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
+                    $data.PSObject.Properties | ForEach-Object {
+                        $propertyName = $_.Name
+                        $propertyValue = $_.Value
+                        $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
                     }
+                    $userList += $userType
+                    $Top = $Top - 1
                 }
-                else {
-                    `$response | ForEach-Object {
-                        if (`$null -ne `$_) {
-                            `$_ | ConvertTo-Json | ConvertFrom-Json
-                        }
-                    }
-                }
-
             }
-"@
+            $userList
+        }
+        else {
+            $userList = @()
+            $response | ForEach-Object {
+                if ($null -ne $_) {
+                    $data = $_ | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
+                    $data.PSObject.Properties | ForEach-Object {
+                        $propertyName = $_.Name
+                        $propertyValue = $_.Value
+                        $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                    }
+                    $userList += $userType
+                }
+            }
+            $userList
+        }
+    }
+'@
 }
