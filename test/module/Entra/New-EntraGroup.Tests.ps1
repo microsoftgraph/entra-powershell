@@ -55,5 +55,18 @@ Describe "New-EntraGroup" {
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }   
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { New-EntraGroup -DisplayName "demo" -MailEnabled $false -SecurityEnabled $true -MailNickName "demoNickname" } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }  
     }
 }

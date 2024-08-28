@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra) -eq $null){
         Import-Module Microsoft.Graph.Entra      
@@ -10,7 +14,7 @@ BeforeAll {
 Describe "Add-EntraApplicationOwner" {
     Context "Test for Add-EntraApplicationOwner" { 
         It "Should return empty object"{
-            $result = Add-EntraApplicationOwner -ObjectId "c81d387e-d431-43b4-b12e-f07cbb35b771" -RefObjectId "412be9d1-1460-4061-8eed-cca203fcb215"
+            $result = Add-EntraApplicationOwner -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -BeNullOrEmpty           
 
             Should -Invoke -CommandName New-MgApplicationOwnerByRef -ModuleName Microsoft.Graph.Entra -Times 1
@@ -21,18 +25,31 @@ Describe "Add-EntraApplicationOwner" {
         It "Should contain ApplicationId in parameters when passed ObjectId to it" {              
             Mock -CommandName New-MgApplicationOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Add-EntraApplicationOwner -ObjectId "c81d387e-d431-43b4-b12e-f07cbb35b771" -RefObjectId "412be9d1-1460-4061-8eed-cca203fcb215"
+            $result = Add-EntraApplicationOwner -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result
-            $params.ApplicationId | Should -Be "c81d387e-d431-43b4-b12e-f07cbb35b771"
+            $params.ApplicationId | Should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
         }
         It "Should contain 'User-Agent' header" {
             Mock -CommandName New-MgApplicationOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraApplicationOwner"
 
-            $result = Add-EntraApplicationOwner -ObjectId "c81d387e-d431-43b4-b12e-f07cbb35b771" -RefObjectId "412be9d1-1460-4061-8eed-cca203fcb215"
+            $result = Add-EntraApplicationOwner -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Add-EntraApplicationOwner -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         }
     }
 }
