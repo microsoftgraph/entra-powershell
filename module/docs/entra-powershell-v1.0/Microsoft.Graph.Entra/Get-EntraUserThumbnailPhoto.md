@@ -43,9 +43,8 @@ Retrieve the thumbnail photo of a user.
 ### Example 1: Retrieve thumbnail photo by Id
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' #Delegated Permission
-Connect-Entra -Scopes 'User.Read.All' #Application Permission
-Get-EntraUserThumbnailPhoto -ObjectId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
+Connect-Entra -Scopes 'User.Read','User.Read.All'
+Get-EntraUserThumbnailPhoto -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output

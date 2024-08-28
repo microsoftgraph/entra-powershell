@@ -43,7 +43,7 @@ The `Get-EntraBetaUserMembership` cmdlet gets user memberships in Microsoft Entr
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserMembership  -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaUserMembership  -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -63,7 +63,7 @@ This example demonstrates how to retrieve user memberships in Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserMembership  -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
+Get-EntraBetaUserMembership  -ObjectId 'SawyerM@contoso.com' -All
 ```
 
 ```Output
@@ -83,7 +83,7 @@ This example demonstrates how to retrieve users all memberships in Microsoft Ent
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserMembership  -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 3
+Get-EntraBetaUserMembership  -ObjectId 'SawyerM@contoso.com' -Top 3
 ```
 
 ```Output

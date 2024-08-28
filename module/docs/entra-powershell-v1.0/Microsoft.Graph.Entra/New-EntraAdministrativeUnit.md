@@ -4,10 +4,11 @@ description: This article provides details on the New-EntraAdministrativeUnit co
 
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/25/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
+author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
@@ -25,9 +26,9 @@ Creates an administrative unit.
 ## Syntax
 
 ```powershell
-New-EntraAdministrativeUnit 
+New-EntraAdministrativeUnit
+ [-Description <String>] 
  -DisplayName <String> 
- [-Description <String>]
  [<CommonParameters>]
 ```
 
@@ -52,7 +53,9 @@ DeletedDateTime Id                                   Description DisplayName Vis
                 bbbbbbbb-1111-2222-3333-cccccccccccc             TestAU
 ```
 
-This command creates an administrative unit.
+This example demonstrates how to create an administrative unit.
+
+- `-DisplayName` Specifies the display name of the new administrative unit.
 
 ### Example 2: Create an administrative unit using '-Description' parameter
 
@@ -67,12 +70,15 @@ New-EntraAdministrativeUnit @params
 ```
 
 ```Output
-DeletedDateTime Id                                   Description DisplayName Visibility
---------------- --                                   ----------- ----------- ----------
-                dddddddd-3333-4444-5555-eeeeeeeeeeee Administrative Unit for Pacific region     Pacific Administrative Unit
+DeletedDateTime Id                                   Description DisplayName IsMemberManagementRestricted Visibility
+--------------- --                                   ----------- ----------- ---------------------------- ----------
+                bbbbbbbb-1111-2222-3333-cccccccccccc New AdminiatrativeUnit     test111     False
 ```
 
 This command creates an administrative unit.
+
+- `-DisplayName` Specifies the display name of the new administrative unit.
+- `-Description` Specifies a description for the new administrative unit.
 
 ## Parameters
 

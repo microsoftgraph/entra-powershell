@@ -4,7 +4,7 @@ description: This article provides details on the Add-EntraAdministrativeUnitMem
 
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/19/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -28,24 +28,30 @@ Adds an administrative unit member.
 ```powershell
 Add-EntraAdministrativeUnitMember 
  -RefObjectId <String> 
- -Id <String> 
+ -ObjectId <String> 
  [<CommonParameters>]
 ```
 
 ## Description
-The **Add-EntraAdministrativeUnitMember** cmdlet adds a Microsoft Entra ID administrative unit member.
+
+The `Add-EntraAdministrativeUnitMember` cmdlet adds a Microsoft Entra ID administrative unit member.
 
 ## Examples
 
 ### Example 1: Add user as an administrative unit member
 
 ```powershell
-PS C:\>Add-EntraAdministrativeUnitMember -Id f306a126-cf2e-439d-b20f-95ce4bcb7ffa -RefObjectId d6873b36-81d6-4c5e-bec0-9e3ca2c86846
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$params = @{
+    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    RefObjectId = 'dddddddd-3333-4444-5555-eeeeeeeeeeee'
+}
+Add-EntraAdministrativeUnitMember @params
 ```
 
 This command adds a user as an administrative unit member.
 
-`-Id` - specifies the unique identifier (ID) of the administrative unit to which you want to add a member. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the administrative unit.
+`-ObjectId` - specifies the unique identifier (ID) of the administrative unit to which you want to add a member. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the administrative unit.
 
 `-RefObjectId` - specifies the unique identifier (Object ID) of the user or group you want to add as a member of the administrative unit. In this example, `dddddddd-3333-4444-5555-eeeeeeeeeeee` is the Object ID of the user or group being added.
 
@@ -53,7 +59,7 @@ Administrative units can help manage permissions and access in a more granular w
 
 ## Parameters
 
-### -Id
+### -ObjectId
 
 Specifies the ID of a Microsoft Entra ID administrative unit.
 
@@ -100,4 +106,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Get-EntraAdministrativeUnitMember](Get-EntraAdministrativeUnitMember.md)
 
 [Remove-EntraAdministrativeUnitMember](Remove-EntraAdministrativeUnitMember.md)
-
