@@ -10,7 +10,8 @@
                                 "Mandatory": false,
                                 "ValueFromPipeline":false,
                                 "ValueFromPipelineByPropertyName":false,                                
-                                "DataType": null     
+                                "DataType": null,
+                                "IsURLReplaced": false          
                             }
                         ],
                         "outputParameters":[
@@ -32,7 +33,8 @@
                                 "Mandatory": false,
                                 "ValueFromPipeline":false,
                                 "ValueFromPipelineByPropertyName":false,                                
-                                "DataType": "System.Collections.Generic.List`1[System.String]"                                
+                                "DataType": "System.Collections.Generic.List`1[System.String]",   
+                                "IsURLReplaced": true
                             },
                             {
                                 "SourceName" : "Description",
@@ -43,7 +45,8 @@
                                 "Mandatory": false,
                                 "ValueFromPipeline":false,
                                 "ValueFromPipelineByPropertyName":false,                                
-                                "DataType": "System.String"                                
+                                "DataType": "System.String",
+                                "IsURLReplaced": false                                
                             },
                             {
                                 "SourceName" : "DisplayName",
@@ -54,7 +57,8 @@
                                 "Mandatory": true,
                                 "ValueFromPipeline":false,
                                 "ValueFromPipelineByPropertyName":false,                                
-                                "DataType": "System.String"                                
+                                "DataType": "System.String" ,
+                                "IsURLReplaced": false                                    
                             },
                             {
                                 "SourceName" : "IsAssignableToRole",
@@ -65,7 +69,8 @@
                                 "Mandatory": false,
                                 "ValueFromPipeline":false,
                                 "ValueFromPipelineByPropertyName":false,                                
-                                "DataType": "System.Nullable`1[System.Boolean]"                                
+                                "DataType": "System.Nullable`1[System.Boolean]",
+                                "IsURLReplaced": false                                     
                             },
                             {
                                 "SourceName" : "SecurityEnabled",
@@ -76,7 +81,8 @@
                                 "Mandatory": true,
                                 "ValueFromPipeline":false,
                                 "ValueFromPipelineByPropertyName":false,                                
-                                "DataType": "System.Nullable`1[System.Boolean]"                                
+                                "DataType": "System.Nullable`1[System.Boolean]",
+                                "IsURLReplaced": false                                     
                             },
                             {
                                 "SourceName" : "Visibility",
@@ -87,7 +93,8 @@
                                 "Mandatory": false,
                                 "ValueFromPipeline":false,
                                 "ValueFromPipelineByPropertyName":false,                                
-                                "DataType": "System.String"                                
+                                "DataType": "System.String" ,
+                                "IsURLReplaced": false                                    
                             },
                             {
                                 "SourceName" : "MailEnabled",
@@ -98,7 +105,8 @@
                                 "Mandatory": true,
                                 "ValueFromPipeline":false,
                                 "ValueFromPipelineByPropertyName":false,                                
-                                "DataType": "System.Nullable`1[System.Boolean]"                                
+                                "DataType": "System.Nullable`1[System.Boolean]",
+                                "IsURLReplaced": false                                     
                             },
                             {
                                 "SourceName" : "MailNickname",
@@ -109,13 +117,14 @@
                                 "Mandatory": true,
                                 "ValueFromPipeline":false,
                                 "ValueFromPipelineByPropertyName":false,                                
-                                "DataType": "System.String"                                
+                                "DataType": "System.String" ,
+                                "IsURLReplaced": false                                    
                             }
                             
                         ]
 
                     },
-                    { "Command" :"Get-EntraGroupURLTest", "URl" :"https://graph.microsoft.com/v1.0/groups", "Method" : "GET", "Parameters" : [
+                    { "Command" :"Get-EntraGroupURLTest", "URl" :"https://graph.microsoft.com/v1.0/groups/{Id}", "Method" : "GET", "Parameters" : [
                         {
                             "SourceName" : "All",
                             "TargetName" : null,
@@ -125,7 +134,8 @@
                             "Mandatory": false,
                             "ValueFromPipeline":true,
                             "ValueFromPipelineByPropertyName":true,                                
-                            "DataType": "switch"                                
+                            "DataType": "switch",
+                            "IsURLReplaced": false                                     
                         },
                         {
                             "SourceName" : "Top",
@@ -136,7 +146,8 @@
                             "Mandatory": false,
                             "ValueFromPipeline":true,
                             "ValueFromPipelineByPropertyName":true,                                
-                            "DataType": "System.Nullable`1[System.Int32]"                                
+                            "DataType": "System.Nullable`1[System.Int32]",
+                            "IsURLReplaced": false                                     
                         },
                         {
                             "SourceName" : "Id",
@@ -147,10 +158,89 @@
                             "Mandatory": false,
                             "ValueFromPipeline":true,
                             "ValueFromPipelineByPropertyName":true,                                
-                            "DataType": "System.String"                                
+                            "DataType": "System.String" ,
+                            "IsURLReplaced": true                                    
                         }            
                     ]
-                }
+                },
+                { "Command" :"Add-EntraEmailMethods", "URl" :"https://graph.microsoft.com/v1.0/users/{UserId}/authentication/emailMethods", "Method" : "POST", "Parameters" : [
+                    {
+                        "SourceName" : "UserId",
+                        "TargetName" : null,
+                        "ConversionType" : "None",  
+                        "SpecialMapping" :null,      
+                        "ParameterSetName":"InvokeByDynamicParameters",
+                        "Mandatory": true,
+                        "ValueFromPipeline":true,
+                        "ValueFromPipelineByPropertyName":true,                                
+                        "DataType": "System.String",
+                        "IsURLReplaced": true                                     
+                    },
+                    {
+                        "SourceName" : "EmailAddress",
+                        "TargetName" : null,
+                        "ConversionType" : "None",  
+                        "SpecialMapping" :null,      
+                        "ParameterSetName":"InvokeByDynamicParameters",
+                        "Mandatory": false,
+                        "ValueFromPipeline":true,
+                        "ValueFromPipelineByPropertyName":true,                                
+                        "DataType": "System.String",
+                        "IsURLReplaced": false                                     
+                    }        
+                ]
+            },
+            { "Command" :"GET-EntraEmailMethods", "URl" :"https://graph.microsoft.com/v1.0/users/{UserId}/authentication/emailMethods/{EmailAuthenticationMethodId}", "Method" : "GET", "Parameters" : [
+                {
+                    "SourceName" : "UserId",
+                    "TargetName" : null,
+                    "ConversionType" : "None",  
+                    "SpecialMapping" :null,      
+                    "ParameterSetName":"InvokeByDynamicParameters",
+                    "Mandatory": true,
+                    "ValueFromPipeline":true,
+                    "ValueFromPipelineByPropertyName":true,                                
+                    "DataType": "System.String",
+                    "IsURLReplaced": true                                     
+                },
+                {
+                    "SourceName" : "EmailAuthenticationMethodId",
+                    "TargetName" : null,
+                    "ConversionType" : "None",  
+                    "SpecialMapping" :null,      
+                    "ParameterSetName":"InvokeByDynamicParameters",
+                    "Mandatory": true,
+                    "ValueFromPipeline":true,
+                    "ValueFromPipelineByPropertyName":true,                                
+                    "DataType": "System.String",
+                    "IsURLReplaced": true                                     
+                },
+                {
+                    "SourceName" : "All",
+                    "TargetName" : null,
+                    "ConversionType" : "None",  
+                    "SpecialMapping" :null,      
+                    "ParameterSetName":"InvokeByDynamicParameters",
+                    "Mandatory": false,
+                    "ValueFromPipeline":true,
+                    "ValueFromPipelineByPropertyName":true,                                
+                    "DataType": "switch",
+                    "IsURLReplaced": false                                     
+                },
+                {
+                    "SourceName" : "Top",
+                    "TargetName" : null,
+                    "ConversionType" : "None",  
+                    "SpecialMapping" :null,      
+                    "ParameterSetName":"InvokeByDynamicParameters",
+                    "Mandatory": false,
+                    "ValueFromPipeline":true,
+                    "ValueFromPipelineByPropertyName":true,                                
+                    "DataType": "System.Nullable`1[System.Int32]",
+                    "IsURLReplaced": false                                     
+                }        
+            ]
+        }
           
                 ]
   }

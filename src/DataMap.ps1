@@ -25,7 +25,7 @@ class DataMap {
     [bool] $ValueFromPipeline
     [bool] $ValueFromPipelineByPropertyName
     [string] $DataType
-
+    [bool] $IsURLReplaced
 
     DataMap(){        
     }
@@ -43,7 +43,7 @@ class DataMap {
     }
 
     DataMap($Name, $TargetName = $null, $ConversionType = 1, $SpecialMapping = $null,
-     $ParameterSetName=$null, $Mandatory=$false,$ValueFromPipeline=$false,$ValueFromPipelineByPropertyName=$false, $DataType = $null){
+     $ParameterSetName=$null, $Mandatory=$false,$ValueFromPipeline=$false,$ValueFromPipelineByPropertyName=$false, $DataType = $null, $IsURLReplaced = $false){
         $this.Name = $Name
         $this.TargetName = $TargetName
         $this.ConversionType = $ConversionType    
@@ -53,6 +53,7 @@ class DataMap {
         $this.ValueFromPipeline=$ValueFromPipeline
         $this.ValueFromPipelineByPropertyName =$ValueFromPipelineByPropertyName
         $this.DataType =$DataType
+        $this.IsURLReplaced =$IsURLReplaced
         if($Name -ne $TargetName){
             $this.NameChanged = $true
         }

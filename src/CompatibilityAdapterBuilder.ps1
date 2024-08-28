@@ -100,7 +100,7 @@ class CompatibilityAdapterBuilder {
                 # $paramArray += $paramObj
  
                 $paramArray += [DataMap]::New($param.SourceName, $param.TargetName, $param.ConversionType, [Scriptblock]::Create($param.SpecialMapping),
-                                            $param.ParameterSetName, $param.Mandatory, $param.ValueFromPipeline, $param.ValueFromPipelineByPropertyName, $param.DataType)
+                                            $param.ParameterSetName, $param.Mandatory, $param.ValueFromPipeline, $param.ValueFromPipelineByPropertyName, $param.DataType, $param.IsURLReplaced)
             }
             
             $this.ModuleUrlsMapping += [CommandUrlMap]::New($cmd.Command, $cmd.URL, $cmd.Method, $paramArray)
@@ -729,6 +729,8 @@ $($Command.CustomScript)
             $customHeadersCommandName = "New-EntraBetaCustomHeaders"
         }
 
+       
+
         $function = @"
 function $($Command.Generate) {
     [CmdletBinding($($Command.DefaultParameterSet))]
@@ -740,6 +742,8 @@ $parameterDefinitions
     `$params = @{}
     `$customHeaders = $customHeadersCommandName -Command `$MyInvocation.MyCommand
     $($keyId)    
+    `$URL = '$($URLMapping.URL)'
+    $($this.GetRplacedURLByParametersNewURL($URLMapping))
 $ParamterTransformations
     Write-Debug("============================ TRANSFORMATIONS ============================")
     `$params.Keys | ForEach-Object {"`$_ : `$(`$params[`$_])" } | Write-Debug
@@ -763,10 +767,12 @@ $OutputTransformations
         return [CommandTranslation]::New($Command.Generate,$Command.Old,$codeBlock)
     }
 
+    
+
     hidden [string] GetURLCommand([CommandUrlMap] $URLMapping){
         switch ($URLMapping.Method) {
-            "POST" { return " Invoke-GraphRequest -Uri '$($URLMapping.URL)' -Method  $($URLMapping.Method) -body `$params"}  
-            "GET" { return " Invoke-GraphRequest -Uri ('$($URLMapping.URL)' + `$query) -Method  $($URLMapping.Method)"}            
+            "POST" { return " Invoke-GraphRequest -Uri `$URL -Method  $($URLMapping.Method) -body `$params"}  
+            "GET" { return " Invoke-GraphRequest -Uri (`$URL + `$query) -Method  $($URLMapping.Method)"}            
         }
 
         return ""
@@ -976,6 +982,25 @@ $OutputTransformations
         return $attributesString
     }
 
+    hidden [string] GetRplacedURLByParametersNewURL([CommandUrlMap] $URLMapping) {
+        $paramsBlock=''
+        foreach ($param in $URLMapping.Parameters){
+            if($param.IsURLReplaced -eq $True){
+                $paramsBlock += @"
+    if(`$null -ne `$URL)
+    {
+        `$URL = `$URL.Replace("{$($param.Name)}",`$PSBoundParameters["$($param.Name)"])
+        
+    }
+
+"@
+            }
+           
+        }
+
+        return $paramsBlock
+    }
+
     hidden [string] GetParametersTransformationsFromUrlMappingNewURL([CommandUrlMap] $URLMapping) {
        
        Write-Host("metod " + $URLMapping.Method)
@@ -1000,10 +1025,11 @@ $OutputTransformations
                             break
                         }
                         "Id" {
-                            $paramsList += $this.GetIdParameterTransformation() 
+                            #$paramsList += $this.GetIdParameterTransformation() 
+                            $paramsList += $this.GetCustomParameterTransformation($param.Name)
                             break
                         }
-                        "Id" {
+                        "Filter" {
                             $paramsList += $this.GetFilterParameterTransformation() 
                             break
                         }
@@ -1014,12 +1040,22 @@ $OutputTransformations
                     }                
                 }
 
-                $paramsList += @"
+#                 $paramsList += @"
+#     if(`$null -ne `$query)
+#     {
+#         `$query = "?" + `$query.TrimStart("&")
+#         `$query = `$idQuery + `$query
+#         `$query = `$query.TrimEnd("?")
+#     }
+
+# "@
+
+$paramsList += @"
     if(`$null -ne `$query)
     {
         `$query = "?" + `$query.TrimStart("&")
-        `$query = `$idQuery + `$query
-        `$query = `$query.TrimEnd("?")
+        #`$query = `$idQuery + `$query
+        #`$query = `$query.TrimEnd("?")
     }
 
 "@
