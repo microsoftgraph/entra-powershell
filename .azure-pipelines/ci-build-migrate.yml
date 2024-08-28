@@ -54,7 +54,8 @@ jobs:
           - task: CopyFiles@2
             displayName: 'Copy artifacts to PSGallery folder'
             inputs:
-              contents: $(Build.ArtifactStagingDirectory)/**/Microsoft.Graph.Entra.*.nupkg
+              sourceFolder: '$(Build.ArtifactStagingDirectory)'
+              contents: '**/Microsoft.Graph.Entra.*.nupkg'
               targetFolder: '$(Build.ArtifactStagingDirectory)/PSGallery'
 
       - template: ./common-templates/security-post-checks.yml
