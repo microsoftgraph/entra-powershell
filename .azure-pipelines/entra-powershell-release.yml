@@ -44,6 +44,7 @@ extends:
           inputs:
             targetType: inline
             script: |
-              Publish-Module -NuGetApiKey $env:NuGetApiKey -Path $(Build.ArtifactStagingDirectory)/**/Microsoft.Graph.Entra.*.nupkg ErrorAction = 'Stop' -Verbose
+              Publish-Module -NuGetApiKey $env:NuGetApiKey -Path $(Build.ArtifactStagingDirectory)/modules/Microsoft.Graph.Entra -Verbose
+              Publish-Module -NuGetApiKey $env:NuGetApiKey -Path $(Build.ArtifactStagingDirectory)/modules/Microsoft.Graph.Entra.Beta -Verbose
             pwsh: false
         dependsOn: ApprovalService_Job
