@@ -36,6 +36,22 @@ Get-EntraTenantDetail
 
 The `Get-EntraTenantDetail` cmdlet gets the details of a tenant in Microsoft Entra ID.
 
+In delegated scenarios involving work or school accounts, the signed-in user must be assigned either a supported Microsoft Entra role or a custom role with the necessary permissions. The following least-privileged roles are supported for this operation:
+
+- Application Administrator
+- Authentication Administrator
+- Cloud Application Administrator
+- Directory Readers
+- Directory Reviewer
+- Global Reader
+- Helpdesk Administrator
+- Security Administrator
+- Security Operator
+- Security Reader
+- Service Support Administrator
+- User Administrator
+- Privileged Role Administrator
+
 ## Examples
 
 ### Example 1: Get all tenant details

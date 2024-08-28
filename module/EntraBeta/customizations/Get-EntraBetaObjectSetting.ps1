@@ -7,90 +7,73 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
-    PROCESS {  
-        $params = @{}
+    PROCESS {    
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $propertiesQuery = '$select=*'
-        if ($null -ne $PSBoundParameters["TargetType"]) {
-            $params["TargetType"] = $PSBoundParameters["TargetType"]
-        }
-        if ($null -ne $PSBoundParameters["TargetObjectId"]) {
-            $params["TargetObjectId"] = $PSBoundParameters["TargetObjectId"]
-        }
-        if ($null -ne $PSBoundParameters["ID"]) {
-            $params["ID"] = $PSBoundParameters["ID"]
-        }
-        if ($null -ne $PSBoundParameters["Top"]) {
-            $params["Top"] ='?$top=' +$PSBoundParameters["Top"]
-        }
-        if ($PSBoundParameters["All"]) {
-            $params["Top"] ='?$top=999'
-        }
-        if ($PSBoundParameters.ContainsKey("Debug")) {
-            $params["Debug"] = $PSBoundParameters["Debug"]
-        }
-        if ($PSBoundParameters.ContainsKey("Verbose")) {
-            $params["Verbose"] = $PSBoundParameters["Verbose"]
-        }
-        if($null -ne $PSBoundParameters["WarningVariable"])
-        {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationAction"])
-        {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-        }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }
+        $params = @{}
+        $topCount = $null
+        $baseUri = "https://graph.microsoft.com/beta/$TargetType/$TargetObjectId/settings"
+        $params["Method"] = "GET"
+        $params["Uri"] = $baseUri+'?$select=*'
+
         if($null -ne $PSBoundParameters["Property"])
         {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
-            $propertiesQuery = "`$select=$($selectProperties)"
+            $params["Uri"] = $baseUri+"?`$select=$($selectProperties)"
         }
+
+        if($null -ne $PSBoundParameters["Top"] -and  (-not $PSBoundParameters.ContainsKey("All")))
+        {
+            $topCount = $PSBoundParameters["Top"]
+            if ($topCount -gt 999) {
+                $params["Uri"] += "&`$top=999"
+            }
+            else{
+                $params["Uri"] += "&`$top=$topCount"
+            }
+        }
+
+        if($null -ne $PSBoundParameters["Id"])
+        {
+            $Id = $PSBoundParameters["Id"]
+            $params["Uri"] = "$baseUri/$($Id)"
+        }
+
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        $Method = "GET"
-        $URI = 'https://graph.microsoft.com/beta/{0}/{1}/settings?{2}' -f $TargetType,$TargetObjectId,$propertiesQuery
-        if($null -ne $PSBoundParameters["ID"]){
-            $URI = 'https://graph.microsoft.com/beta/{0}/{1}/settings/{2}?{3}' -f $TargetType,$TargetObjectId,$ID,$propertiesQuery
-            $response = (Invoke-GraphRequest -Uri $uri -Method $Method) | ConvertTo-Json | ConvertFrom-Json
-             return $response
+
+        $response = Invoke-GraphRequest @params -Headers $customHeaders
+        $data = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+        try {
+            $data = $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+            $all = $All.IsPresent
+            $increment = $topCount - $data.Count
+            while ($response.'@odata.nextLink' -and (($all) -or ($increment -gt 0 -and -not $all))) {
+                $params["Uri"] = $response.'@odata.nextLink'
+                if (-not $all) {
+                    $topValue = [Math]::Min($increment, 999)
+                    $params["Uri"] = $params["Uri"].Replace('$top=999', "`$top=$topValue")
+                    $increment -= $topValue
+                }
+                $response = Invoke-GraphRequest @params 
+                $data += $response.value | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+            }
+        } catch {}        
+
+        $targetTypeList = @()
+
+        foreach($res in $data){
+            $target = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphDirectorySetting
+            $res.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                $propertyValue = $_.Value
+                $target | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+            }
+            $targetTypeList += $target
         }
-        elseif($null -ne $params["Top"]){
-            $URI = 'https://graph.microsoft.com/beta/{0}/{1}/settings/{2}&{3}' -f $TargetType,$TargetObjectId,$params["Top"],$propertiesQuery
-        }
-        $rawresponse = (Invoke-GraphRequest -Headers $customHeaders -Uri $uri -Method $Method).Value
-        $response = $rawresponse | ConvertTo-Json -Depth 3 | ConvertFrom-Json
-        $response | ForEach-Object {Add-Member -InputObject $_ -NotePropertyName "TargetType" -NotePropertyValue $TargetType; Add-Member -InputObject $_ -NotePropertyName "TargetObjectID" -NotePropertyValue $TargetObjectId}
-        $response
-    } 
+
+        $targetTypeList
+    }
 '@
 }
