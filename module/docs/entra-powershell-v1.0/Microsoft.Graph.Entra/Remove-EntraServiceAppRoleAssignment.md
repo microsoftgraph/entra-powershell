@@ -107,6 +107,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
+`Remove-EntraServicePrincipalAppRoleAssignment` is an alias for `Remove-EntraServiceAppRoleAssignment`.
+
 ## Related Links
 
 [Get-EntraServiceAppRoleAssignment](Get-EntraServiceAppRoleAssignment.md)

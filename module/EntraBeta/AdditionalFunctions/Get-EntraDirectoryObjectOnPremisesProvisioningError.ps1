@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 
-function Get-EntraBetaHasObjectsWithDirSyncProvisioningError {
+function Get-EntraDirectoryObjectOnPremisesProvisioningError {
     [CmdletBinding(DefaultParameterSetName = 'GetById')]
     param (
         [Parameter(ParameterSetName = "GetById")][ValidateNotNullOrEmpty()][ValidateScript({if ($_ -is [System.Guid]) { $true } else {throw "TenantId must be of type [System.Guid]."}})][System.Guid] $TenantId

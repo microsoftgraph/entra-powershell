@@ -1,6 +1,6 @@
 ---
-title: Get-EntraBetaHasObjectsWithDirSyncProvisioningError
-description: This article provides details on the Get-EntraBetaHasObjectsWithDirSyncProvisioningError command.
+title: Get-EntraDirectoryObjectOnPremisesProvisioningError
+description: This article provides details on the Get-EntraDirectoryObjectOnPremisesProvisioningError command.
 
 
 ms.topic: reference
@@ -12,12 +12,12 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaHasObjectsWithDirSyncProvisioningError
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraDirectoryObjectOnPremisesProvisioningError
 
 schema: 2.0.0
 ---
 
-# Get-EntraBetaHasObjectsWithDirSyncProvisioningError
+# Get-EntraDirectoryObjectOnPremisesProvisioningError
 
 ## Synopsis
 
@@ -26,14 +26,14 @@ Returns whether Microsoft Entra ID has objects with DirSync provisioning error.
 ## Syntax
 
 ```powershell
-Get-EntraBetaHasObjectsWithDirSyncProvisioningError 
+Get-EntraDirectoryObjectOnPremisesProvisioningError 
  [-TenantId <String>] 
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Get-EntraBetaHasObjectsWithDirSyncProvisioningError` returns whether Microsoft Entra ID has objects with DirSync provisioning error.
+The `Get-EntraDirectoryObjectOnPremisesProvisioningError` returns whether Microsoft Entra ID has objects with DirSync provisioning error.
 
 ## Examples
 
@@ -42,7 +42,7 @@ The `Get-EntraBetaHasObjectsWithDirSyncProvisioningError` returns whether Micros
 ```powershell
 Connect-Entra -Scopes 'User.Read.All', 'Directory.Read.All', 'Group.Read.All', 'Contacts.Read'
 
-Get-EntraBetaHasObjectsWithDirSyncProvisioningError 
+Get-EntraDirectoryObjectOnPremisesProvisioningError 
 ```
 
 ```Output
@@ -56,7 +56,7 @@ This command returns whether Microsoft Entra ID has objects with DirSync provisi
 ```powershell
 Connect-Entra -Scopes 'User.Read.All', 'Directory.Read.All', 'Group.Read.All', 'Contacts.Read'
 
-Get-EntraBetaHasObjectsWithDirSyncProvisioningError -TenantId '0000aaaa-11bb-cccc-dd22-eeeeee333333'
+Get-EntraDirectoryObjectOnPremisesProvisioningError -TenantId '0000aaaa-11bb-cccc-dd22-eeeeee333333'
 ```
 
 ```Output

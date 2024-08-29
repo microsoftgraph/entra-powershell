@@ -2,7 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 
-function Convert-EntraFederatedUser {
+function Update-EntraBetaUserFromFederated {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)][System.String] $UserPrincipalName,
@@ -13,14 +13,14 @@ function Convert-EntraFederatedUser {
 
     PROCESS {    
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $keysChanged = @{}
         if ($null -ne $PSBoundParameters["UserPrincipalName"]) {
             $UserPrincipalName = $PSBoundParameters.UserPrincipalName
-            $UserId = Get-MgUser -Search "UserPrincipalName:$UserPrincipalName" -ConsistencyLevel eventual
+            $UserId = Get-MgBetaUser -Search "UserPrincipalName:$UserPrincipalName" -ConsistencyLevel eventual
             if ($null -ne $UserId)
             {
-                $AuthenticationMethodId = Get-MgUserAuthenticationMethod -UserId $UserId.Id
+                $AuthenticationMethodId = Get-MgBetaUserAuthenticationMethod -UserId $UserId.Id
                 $params["AuthenticationMethodId"] = $AuthenticationMethodId.Id
                 $params["UserId"] = $UserId.Id
             }
@@ -75,7 +75,7 @@ function Convert-EntraFederatedUser {
         Write-Debug("=========================================================================`n")
         if($null -ne $AuthenticationMethodId)
         {
-            $response = Reset-MgUserAuthenticationMethodPassword @params -Headers $customHeaders
+            $response = Reset-MgBetaUserAuthenticationMethodPassword @params -Headers $customHeaders
         }
         $response
         }

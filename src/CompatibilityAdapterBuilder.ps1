@@ -511,9 +511,22 @@ function Get-EntraUnsupportedCommand {
             foreach ($func in $this.MissingCommandsToMap) {
                 $aliases += "   Set-Alias -Name $($func) -Value Get-EntraUnsupportedCommand -Scope Global -Force`n"
             }
-            #Adding direct aliases for Connect-Entra and Disconnect-Entra
-            $aliases += "   Set-Alias -Name Connect-AzureAD -Value Connect-Entra -Scope Global -Force`n"
-            $aliases += "   Set-Alias -Name Disconnect-AzureAD -Value Disconnect-Entra -Scope Global -Force`n"
+            
+            #Adding direct aliases 
+            $aliasDefinitionsPath =""
+            if($this.ModuleName -eq 'Microsoft.Graph.Entra')
+            {
+                $aliasDefinitionsPath = "$PSScriptRoot/EntraAliasDefinitions.ps1"
+            }
+            elseif ($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta') {
+                $aliasDefinitionsPath = "$PSScriptRoot/EntraBetaAliasDefinitions.ps1"
+            }
+
+            if (Test-Path $aliasDefinitionsPath) {
+                $directAliases = Get-Content $aliasDefinitionsPath -Raw
+                $aliases += $directAliases  # Append the content to $aliases
+            }
+            
     $aliasFunction = @"
 function Enable-EntraAzureADAlias {
 $($aliases)}
