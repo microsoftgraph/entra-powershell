@@ -710,8 +710,9 @@ $($Command.CustomScript)
             $ParamterTransformations = $this.GetParametersTransformationsFromUrlMappingNewURL($URLMapping)
             write-host("ParamterTransformations  " +$ParamterTransformations)
         }else {
-            $parameterDefinitions = $this.GetParametersDefinitions($Command)
-            $ParamterTransformations = $this.GetParametersTransformationsFromUrlMapping($Command,$URLMapping)
+            $parameterDefinitions = $this.GetParametersDefinitionsForNewURLCmd($URLMapping)
+            $ParamterTransformations = $this.GetParametersTransformationsFromUrlMappingNewURL($URLMapping)
+            #$ParamterTransformations = $this.GetParametersTransformationsFromUrlMapping($Command,$URLMapping)
         }
 
         #$ParamterTransformations = $this.GetParametersTransformations($Command)
@@ -763,6 +764,8 @@ $OutputTransformations
 }
 
 "@
+        
+        write-host($function)
         $codeBlock = [Scriptblock]::Create($function)
         return [CommandTranslation]::New($Command.Generate,$Command.Old,$codeBlock)
     }

@@ -1,25 +1,47 @@
-{
+{   
+
       "commands" : [
-                    { "Command" :"New-AzureADDomain", "URl" :"https://graph.microsoft.com/v1.0/domains1", "Method" : "POST", "Parameters" : [
+                    { "Command" :"New-AzureADMSRoleAssignment", "URl" :"https://graph.microsoft.com/v1.0/roleManagement/directory/roleAssignments", "Method" : "POST", "Parameters" : [
                             {
-                                "SourceName" : "Name",
-                                "TargetName" : "Id",
-                                "ConversionType" : "Name",
+                                "SourceName" : "DirectoryScopeId",
+                                "TargetName" : "",
+                                "ConversionType" : "None",
                                 "SpecialMapping" : null,
-                                "ParameterSetName":null,
+                                "ParameterSetName":"InvokeByDynamicParameters",
                                 "Mandatory": false,
                                 "ValueFromPipeline":false,
                                 "ValueFromPipelineByPropertyName":false,                                
-                                "DataType": null,
+                                "DataType": "System.String",
+                                "IsURLReplaced": false          
+                            },
+                            {
+                                "SourceName" : "RoleDefinitionId",
+                                "TargetName" : "",
+                                "ConversionType" : "None",
+                                "SpecialMapping" : null,
+                                "ParameterSetName":"InvokeByDynamicParameters",
+                                "Mandatory": true,
+                                "ValueFromPipeline":false,
+                                "ValueFromPipelineByPropertyName":false,                                
+                                "DataType": "System.String",
+                                "IsURLReplaced": false          
+                            },
+                            {
+                                "SourceName" : "PrincipalId",
+                                "TargetName" : "",
+                                "ConversionType" : "None",
+                                "SpecialMapping" : null,
+                                "ParameterSetName":"InvokeByDynamicParameters",
+                                "Mandatory": true,
+                                "ValueFromPipeline":false,
+                                "ValueFromPipelineByPropertyName":false,                                
+                                "DataType": "System.String",
                                 "IsURLReplaced": false          
                             }
+                            
                         ],
                         "outputParameters":[
-                            {
-                                "SourceName" : "Id",
-                                "TargetName" : "Name",
-                                "ConversionType" : "Name"
-                            }
+                            
                         ]
                     },
 
