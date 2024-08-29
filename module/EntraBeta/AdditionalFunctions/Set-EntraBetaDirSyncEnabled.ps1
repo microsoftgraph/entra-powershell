@@ -1,33 +1,37 @@
 # ------------------------------------------------------------------------------
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
-@{
-    SourceName = "Get-AzureADMSScopedRoleMembership"
-    TargetName = $null
-    Parameters = $null
-    Outputs = $null
-    CustomScript = @'
-    PROCESS {    
+
+function Set-EntraBetaDirSyncEnabled {
+    [CmdletBinding(DefaultParameterSetName = 'All')]
+    param (
+        [Parameter(ParameterSetName = "All", ValueFromPipelineByPropertyName = $true, Mandatory = $true)][System.Boolean] $EnableDirsync,
+        [Parameter(ParameterSetName = "All", ValueFromPipelineByPropertyName = $true)][System.Guid] $TenantId,
+        [switch] $Force
+    )
+
+    PROCESS {
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
+        if ($EnableDirsync -or (-not($EnableDirsync))) {
+            $params["OnPremisesSyncEnabled"] =$PSBoundParameters["EnableDirsync"]
+        }
+        if ($null -ne $PSBoundParameters["TenantId"]) {
+            $params["OrganizationId"] = $PSBoundParameters["TenantId"]
+        }
+        if ([string]::IsNullOrWhiteSpace($TenantId)) {
+            $OnPremisesDirectorySynchronizationId = (Get-MgBetaDirectoryOnPremiseSynchronization).Id
+            $params["OrganizationId"] = $OnPremisesDirectorySynchronizationId
+        }
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
-        if($null -ne $PSBoundParameters["Id"])
-        {
-            $params["AdministrativeUnitId"] = $PSBoundParameters["Id"]
-        }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
             $params["Debug"] = $PSBoundParameters["Debug"]
-        }
-        if($null -ne $PSBoundParameters["ScopedRoleMembershipId"])
-        {
-            $params["ScopedRoleMembershipId"] = $PSBoundParameters["ScopedRoleMembershipId"]
-        }
-        if($null -ne $PSBoundParameters["WarningVariable"])
+        }        
+	    if($null -ne $PSBoundParameters["WarningVariable"])
         {
             $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
         }
@@ -63,27 +67,23 @@
         {
             $params["WarningAction"] = $PSBoundParameters["WarningAction"]
         }
-        if($null -ne $PSBoundParameters["Property"])
-        {
-            $params["Property"] = $PSBoundParameters["Property"]
-        }
-    
         Write-Debug("============================ TRANSFORMATIONS ============================")
-        $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
+        $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-        
-        $response = Get-MgDirectoryAdministrativeUnitScopedRoleMember @params -Headers $customHeaders
-        $response | ForEach-Object {
-            if($null -ne $_) {
-            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id
-            $propsToConvert = @('RoleMemberInfo')
-                foreach ($prop in $propsToConvert) {
-                    $value = $_.$prop | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-                    $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
-                }
-            }
+
+        if ($Force) {
+            $decision = 0
         }
-        $response
+        else {
+            $title = 'Confirm'
+            $question = 'Do you want to continue?'
+            $Suspend = New-Object System.Management.Automation.Host.ChoiceDescription "&Suspend", "S"
+            $Yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Y"
+            $No = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "S"
+            $choices = [System.Management.Automation.Host.ChoiceDescription[]]($Yes, $No, $Suspend)
+            $decision = $Host.UI.PromptForChoice($title, $question, $choices, 1)
         }
-'@
+            $response = Update-MgBetaOrganization @params -Headers $customHeaders
+            $response
+    }
 }

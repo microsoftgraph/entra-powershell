@@ -40,8 +40,9 @@ The `Remove-EntraBetaServicePrincipalPasswordCredential` cmdlet removes a passwo
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
 $Params = @{
-    ObjectId = 'aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb'
+    ObjectId = $ServicePrincipal.ObjectId
     KeyId = 'bbbbbbbb-1c1c-2d2d-3e3e-444444444444'
 }
 Remove-EntraBetaServicePrincipalPasswordCredential @Params
@@ -97,3 +98,9 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)
+
+[Get-EntraBetaServicePrincipalPasswordCredential](Get-EntraBetaServicePrincipalPasswordCredential.md)
+
+[New-EntraBetaServicePrincipalPasswordCredential](New-EntraBetaServicePrincipalPasswordCredential.md)

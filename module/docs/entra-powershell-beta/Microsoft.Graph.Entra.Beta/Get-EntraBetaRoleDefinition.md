@@ -59,20 +59,24 @@ Get-EntraBetaRoleDefinition
 
 The `Get-EntraBetaRoleDefinition` cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the `Id` parameter. Specify the SearchString or Filter parameter to find particular role definition.
 
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role. The least privileged roles supported for this operation are as follows, in the order of least to most privileged:
+
+- Directory Readers
+- Global Reader
+- Privileged Role Administrator
+
 ## Examples
 
 ### Example 1: Get all role definitions
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.Read.Directory' #For the directory (Microsoft Entra ID) provider
- Connect-Entra -Scopes 'EntitlementManagement.Read.All' #For the entitlement management provider
- Get-EntraBetaRoleDefinition
+Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Get-EntraBetaRoleDefinition
 ```
 
 ```Output
 DisplayName                                              Id                                   TemplateId                           Description
 -----------                                              --                                   ----------                           -----------
-Global Administrator                                     00aa00aa-bb11-cc22-dd33-44ee44ee44ee 62e90394-69f5-4237-9190-012177145e10 Can manage all aspects of Microsoft Entra ID and Microsoft services that use M…
 Guest User                                               11bb11bb-cc22-dd33-ee44-55ff55ff55ff 10dae51f-b6af-4016-8d66-8c2a99b929b3 Default role for guest users. Can read a limited set of directory information.
 Restricted Guest User                                    33dd33dd-ee44-ff55-aa66-77bb77bb77bb 2af84b1e-32c8-42b7-82bc-daa82404023b Restricted role for guest users. Can read a limited set of directory informati…
 Guest Inviter                                            44ee44ee-ff55-aa66-bb77-88cc88cc88cc 95e79109-95c0-4d8e-aee3-d01accf2d47b Can invite guest users independent of the 'members can invite guests' setting.
@@ -83,15 +87,14 @@ This command returns all the role definitions present.
 ### Example 2: Get a role definition by ID
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.Read.Directory' #For the directory (Microsoft Entra ID) provider
- Connect-Entra -Scopes 'EntitlementManagement.Read.All' #For the entitlement management provider
- Get-EntraBetaRoleDefinition -Id '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
+Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Get-EntraBetaRoleDefinition -Id '1a327991-10cb-4266-877a-998fb4df78ec'
 ```
 
 ```Output
 DisplayName          Id                                   TemplateId                           Description                                                                                              IsBuiltIn
 -----------          --                                   ----------                           -----------                                                                                              ---------
-Global Administrator 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 62e90394-69f5-4237-9190-012177145e10 Can manage all aspects of Microsoft Entra ID and Microsoft services that use Microsoft Entra identities. True
+Global Administrator 1a327991-10cb-4266-877a-998fb4df78ec 62e90394-69f5-4237-9190-012177145e10 Can manage all aspects of Microsoft Entra ID and Microsoft services that use Microsoft Entra identities. True
 ```
 
 This command returns a specified role definition.
@@ -101,9 +104,8 @@ This command returns a specified role definition.
 ### Example 3: Filter role definitions by display name
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.Read.Directory' #For the directory (Microsoft Entra ID) provider
- Connect-Entra -Scopes 'EntitlementManagement.Read.All' #For the entitlement management provider
- Get-EntraBetaRoleDefinition -Filter "startsWith(displayName, 'Restricted')"
+Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Get-EntraBetaRoleDefinition -Filter "startsWith(displayName, 'Restricted')"
 ```
 
 ```Output
@@ -117,9 +119,8 @@ This command return all the role definitions containing the specified display na
 ### Example 4: Get top two role definition
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.Read.Directory' #For the directory (Microsoft Entra ID) provider
- Connect-Entra -Scopes 'EntitlementManagement.Read.All' #For the entitlement management provider
- Get-EntraBetaRoleDefinition -Top 2
+Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Get-EntraBetaRoleDefinition -Top 2
 ```
 
 ```Output
@@ -133,9 +134,8 @@ This command return top two the role definitions in Microsoft Entra ID.
 ### Example 5: Filter role definitions by display name
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.Read.Directory' #For the directory (Microsoft Entra ID) provider
- Connect-Entra -Scopes 'EntitlementManagement.Read.All' #For the entitlement management provider
- Get-EntraBetaRoleDefinition -SearchString 'Global'
+Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Get-EntraBetaRoleDefinition -SearchString 'Global'
  ```
 
 ```Output

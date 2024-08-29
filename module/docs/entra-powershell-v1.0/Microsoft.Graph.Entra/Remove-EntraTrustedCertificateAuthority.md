@@ -8,6 +8,7 @@ ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
+author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
@@ -32,7 +33,7 @@ Remove-EntraTrustedCertificateAuthority
 
 ## Description
 
-The Remove-EntraTrustedCertificateAuthority cmdlet removes a trusted certificate authority from Microsoft Entra ID.
+The `Remove-EntraTrustedCertificateAuthority` cmdlet removes a trusted certificate authority from Microsoft Entra ID.
 
 ## Examples
 
@@ -45,11 +46,9 @@ Remove-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
 ```
 
 ```output
-Name                           Value
-----                           -----
-@odata.context                 https://graph.microsoft.com/v1.0/$metadata#certificateBasedAuthConfiguration/$entity
-certificateAuthorities         {System.Collections.Hashtable, System.Collections.Hashtable, System.Collections.Hashtable...}
-id                             0a0a0a0a-1111-bbbb-2222-3c3c3c3c3c3c
+Id
+--
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This command deletes the trusted certificate authorities that are defined in your directory.

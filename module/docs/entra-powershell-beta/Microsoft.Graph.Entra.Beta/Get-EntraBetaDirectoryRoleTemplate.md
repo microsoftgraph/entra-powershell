@@ -55,6 +55,21 @@ DeletedDateTime Id                                   Description
 
 This example retrieves the role templates in Microsoft Entra ID.
 
+### Example 2: Get a specific role template
+
+```powershell
+Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+Get-EntraBetaDirectoryRoleTemplate | Where-Object {$_.DisplayName -eq 'Helpdesk Administrator'}
+```
+
+```Output
+DeletedDateTime Id                                   Description                                                             DisplayName
+--------------- --                                   -----------                                                             -----------
+                729827e3-9c14-49f7-bb1b-9608f156bbb8 Can reset passwords for non-administrators and Helpdesk Administrators. Helpdesk Administrator
+```
+
+This example retrieves a Helpdesk role template.
+
 ## Parameters
 
 ### -Property

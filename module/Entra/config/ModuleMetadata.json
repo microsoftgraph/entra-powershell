@@ -12,7 +12,8 @@
       "Microsoft.Graph.Identity.DirectoryManagement", 
       "Microsoft.Graph.Identity.Governance", 
       "Microsoft.Graph.Identity.SignIns",
-      "Microsoft.Graph.Applications"
+      "Microsoft.Graph.Applications",
+      "Microsoft.Graph.Reports"
     ],
     "requiredModulesVersion": "2.15.0",
     "copyright": "© Microsoft Corporation. All rights reserved.",
@@ -29,6 +30,6 @@
       "Entra"
     ],
     "releaseNotes": "See https://github.com/microsoftgraph/entra-powershell.",
-    "version": "0.13.0",
+    "version": "0.14.0",
     "Prerelease": "preview"
   }
