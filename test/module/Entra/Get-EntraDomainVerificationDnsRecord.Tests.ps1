@@ -11,7 +11,7 @@ BeforeAll {
 $scriptblock = {
     return @(
         [PSCustomObject]@{
-           "Id"                               = "aceff52c-06a5-447f-ac5f-256ad243cc5c" 
+           "Id"                               = "0000aaaa-11bb-cccc-dd22-eeeeee333333" 
            "Label"                            = "test.mail.onmicrosoft.com"
            "IsOptional"                       = $False
            "RecordType"                       = "Txt"
@@ -36,7 +36,7 @@ Describe "Get-EntraDomainVerificationDnsRecord" {
         It "Should return specific domain verification Dns record" {
             $result = Get-EntraDomainVerificationDnsRecord -Name "test.mail.onmicrosoft.com"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be 'aceff52c-06a5-447f-ac5f-256ad243cc5c'
+            $result.Id | should -Be '0000aaaa-11bb-cccc-dd22-eeeeee333333'
 
             Should -Invoke -CommandName Get-MgDomainVerificationDnsRecord -ModuleName Microsoft.Graph.Entra -Times 1
 
@@ -49,13 +49,13 @@ Describe "Get-EntraDomainVerificationDnsRecord" {
         }
         It "Result should Contain DnsRecordId" {            
             $result = Get-EntraDomainVerificationDnsRecord -Name "test.mail.onmicrosoft.com"
-            $result.DnsRecordId | should -Be "aceff52c-06a5-447f-ac5f-256ad243cc5c" 
+            $result.DnsRecordId | should -Be "0000aaaa-11bb-cccc-dd22-eeeeee333333" 
 
             Should -Invoke -CommandName Get-MgDomainVerificationDnsRecord -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Result should Contain ObjectId" {            
             $result = Get-EntraDomainVerificationDnsRecord -Name "test.mail.onmicrosoft.com"
-            $result.ObjectId | should -Be "aceff52c-06a5-447f-ac5f-256ad243cc5c" 
+            $result.ObjectId | should -Be "0000aaaa-11bb-cccc-dd22-eeeeee333333" 
 
             Should -Invoke -CommandName Get-MgDomainVerificationDnsRecord -ModuleName Microsoft.Graph.Entra -Times 1 
         }
@@ -63,13 +63,35 @@ Describe "Get-EntraDomainVerificationDnsRecord" {
             $result = Get-EntraDomainVerificationDnsRecord -Name "test.mail.onmicrosoft.com"
             $params = Get-Parameters -data $result.Parameters
             $params.DomainId | Should -Be "test.mail.onmicrosoft.com"
-        } 
+        }
+        It "Property parameter should work" {
+            $result =  Get-EntraDomainVerificationDnsRecord -Name "test.mail.onmicrosoft.com" -Property RecordType
+            $result | Should -Not -BeNullOrEmpty
+            $result.RecordType | Should -Be 'Txt'
+
+            Should -Invoke -CommandName Get-MgDomainVerificationDnsRecord -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should fail when Property is empty" {
+             { Get-EntraDomainVerificationDnsRecord -Name "test.mail.onmicrosoft.com" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDomainVerificationDnsRecord"
             $result = Get-EntraDomainVerificationDnsRecord -Name "test.mail.onmicrosoft.com"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
 
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraDomainVerificationDnsRecord -Name "test.mail.onmicrosoft.com" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }    
 }    

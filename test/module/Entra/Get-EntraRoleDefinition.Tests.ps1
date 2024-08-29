@@ -13,14 +13,14 @@ BeforeAll {
               "RolePermissions"              = @{AllowedResourceActions="System.Object[]"; Condition=""; ExcludedResourceActions=""; AdditionalProperties=""}
               "Description"                  = "Mock-App"
               "DisplayName"                  = "Mock-App"
-              "Id"                           = "54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
+              "Id"                           = "0000aaaa-11bb-cccc-dd22-eeeeee333333"
               "InheritsPermissionsFrom"      = {}
               "IsBuiltIn"                    = $False
               "IsEnabled"                    = $False
               "ResourceScopes"               = {/}
-              "TemplateId"                   = "54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
+              "TemplateId"                   = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
               "Version"                      = "2"
-              "RoleDefinitionId"             = "54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
+              "RoleDefinitionId"             = "00001111-aaaa-2222-bbbb-3333cccc4444"
               "AdditionalProperties"         = @{"@odata.context" = "https://graph.microsoft.com/v1.0/$metadata#roleManagement/directory/roleDefinitions/$entity"
                                                  "inheritsPermissionsFrom@odata.context" = "https://graph.microsoft.com/v1.0/$metadata#roleManagement/directory/roleDefinitions('54d418b2-4cc0-47ee-9b39-e8f84ed8e073')/inheritsPermissionsFrom"
                                                 }
@@ -34,11 +34,11 @@ BeforeAll {
 
 Describe "Get-EntraRoleDefinition" {
     Context "Test for Get-EntraRoleDefinition" {
-        It "Should return specific Ms role Defination" {
-            $result = Get-EntraRoleDefinition -Id "54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
+        It "Should return specificrole Defination" {
+            $result = Get-EntraRoleDefinition -Id "0000aaaa-11bb-cccc-dd22-eeeeee333333"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be "Mock-App"
-            $result.Id | Should -Be "54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
+            $result.Id | Should -Be "0000aaaa-11bb-cccc-dd22-eeeeee333333"
 
             Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition  -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -48,15 +48,16 @@ Describe "Get-EntraRoleDefinition" {
         It "Should fail when Id is invalid" {
             { Get-EntraRoleDefinition -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
         }
-
-        It "Should return all Ms role assignments" {
+        It "Should return all role assignments" {
             $result = Get-EntraRoleDefinition -All 
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Graph.Entra -Times 1
-        }        
-         
-        It "Should return top Ms role assignment" {
+        }
+        It "Should fail when All is invalid" {
+            { Get-EntraRoleDefinition -All XY } | Should -Throw "A positional parameter cannot be found that accepts argument 'xy'.*"
+        }           
+        It "Should return top role assignment" {
             $result = Get-EntraRoleDefinition -Top 1
             $result | Should -Not -BeNullOrEmpty
 
@@ -87,23 +88,45 @@ Describe "Get-EntraRoleDefinition" {
         }
         It "Should fail when filter is empty" {
             { Get-EntraRoleDefinition -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
-        }
-          
+        }         
         It "Result should Contain ObjectId" {
-            $result = Get-EntraRoleDefinition -Id "54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
-            $result.ObjectId | should -Be "54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
+            $result = Get-EntraRoleDefinition -Id "0000aaaa-11bb-cccc-dd22-eeeeee333333"
+            $result.ObjectId | should -Be "0000aaaa-11bb-cccc-dd22-eeeeee333333"
         }     
         It "Should contain Filter in parameters when passed SearchString to it" {              
             $result = Get-EntraRoleDefinition -SearchString 'Mock-App'
             $params = Get-Parameters -data $result.Parameters
             $params.Filter | Should -Match "Mock-App"
         }
+        It "Property parameter should work" {
+            $result = Get-EntraRoleDefinition -Id "0000aaaa-11bb-cccc-dd22-eeeeee333333" -Property DisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be 'Mock-App'
+
+            Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should fail when Property is empty" {
+             { Get-EntraRoleDefinition -Id "0000aaaa-11bb-cccc-dd22-eeeeee333333" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraRoleDefinition"
 
-            $result = Get-EntraRoleDefinition -Id "54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
+            $result = Get-EntraRoleDefinition -Id "0000aaaa-11bb-cccc-dd22-eeeeee333333"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraRoleDefinition -Id "0000aaaa-11bb-cccc-dd22-eeeeee333333" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         }
     }
 }

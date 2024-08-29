@@ -11,7 +11,7 @@ BeforeAll {
 $scriptblock = {
     return @(
         [PSCustomObject]@{
-           "Id"                               = "d5aec55f-2d12-4442-8d2f-ccca95d4390e" 
+           "Id"                               = "00001111-aaaa-2222-bbbb-3333cccc4444" 
            "OnPremisesLastSyncDateTime"       = $null
            "OnPremisesSyncEnabled"            = $null
            "BusinessPhones"                   = {"425-555-0100"}
@@ -46,7 +46,9 @@ Describe "Get-EntraTenantDetail" {
             
             Should -Invoke -CommandName Get-MgOrganization -ModuleName Microsoft.Graph.Entra -Times 1
         }   
-        
+        It "Should fail when All is invalid" {
+            { Get-EntraTenantDetail -All XY } | Should -Throw "A positional parameter cannot be found that accepts argument 'xy'.*"
+        }  
         It "Should return top Tenant Detail" {
             $result = Get-EntraTenantDetail -Top 1
             $result | Should -Not -BeNullOrEmpty
@@ -59,12 +61,34 @@ Describe "Get-EntraTenantDetail" {
         It "Should fail when Top is invalid" {
             { Get-EntraTenantDetail -Top "xyz" } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
+        It "Property parameter should work" {
+            $result = Get-EntraTenantDetail -Property DisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be 'Mock App'
+
+            Should -Invoke -CommandName Get-MgOrganization -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should fail when Property is empty" {
+             { Get-EntraTenantDetail -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraTenantDetail"
             $result = Get-EntraTenantDetail -Top 1
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
 
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraTenantDetail -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }   
 }

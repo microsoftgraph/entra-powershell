@@ -8,7 +8,7 @@ BeforeAll {
 
     $scriptblock = {
     return @{
-         "Id" = "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
+         "Id" = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
     }
 }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
@@ -43,6 +43,19 @@ Describe "Set-EntraTenantDetail" {
             $result = Set-EntraTenantDetail -MarketingNotificationEmails "amy@contoso.com","henry@contoso.com" -SecurityComplianceNotificationMails "john@contoso.com","mary@contoso.com" -SecurityComplianceNotificationPhones "1-555-625-9999", "1-555-233-5544" -TechnicalNotificationMails "peter@contoso.com"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+           
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraTenantDetail -MarketingNotificationEmails "amy@contoso.com","henry@contoso.com" -SecurityComplianceNotificationMails "john@contoso.com","mary@contoso.com" -SecurityComplianceNotificationPhones "1-555-625-9999", "1-555-233-5544" -TechnicalNotificationMails "peter@contoso.com" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         }
     }
 }

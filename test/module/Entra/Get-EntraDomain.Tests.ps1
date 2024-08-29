@@ -66,12 +66,34 @@ Describe "Get-EntraDomain" {
             $params = Get-Parameters -data $result.Parameters
             $params.DomainId | Should -Be "test.mail.onmicrosoft.com"
         }
+        It "Property parameter should work" {
+            $result = Get-EntraDomain -Name "test.mail.onmicrosoft.com" -Property AuthenticationType
+            $result | Should -Not -BeNullOrEmpty
+            $result.AuthenticationType | Should -Be 'Managed'
+
+            Should -Invoke -CommandName Get-MgDomain -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should fail when Property is empty" {
+             {Get-EntraDomain -Name "test.mail.onmicrosoft.com" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDomain"
             $result = Get-EntraDomain -Name "test.mail.onmicrosoft.com"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
 
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                {Get-EntraDomain -Name "test.mail.onmicrosoft.com" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }
 }
