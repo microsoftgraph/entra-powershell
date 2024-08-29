@@ -25,9 +25,9 @@ BeforeAll {
 Describe "Get-EntraGroup" {
     Context "Test for Get-EntraGroup" {
         It "Should return specific group" {
-            $result = Get-EntraGroup -ObjectId "056b2531-005e-4f3e-be78-01a71ea30a04"
+            $result = Get-EntraGroup -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be '056b2531-005e-4f3e-be78-01a71ea30a04'
+            $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 
             Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -64,8 +64,8 @@ Describe "Get-EntraGroup" {
             Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Graph.Entra -Times 1
         }  
         It "Result should Contain ObjectId" {
-            $result = Get-EntraGroup -ObjectId "056b2531-005e-4f3e-be78-01a71ea30a04"
-            $result.ObjectId | should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
+            $result = Get-EntraGroup -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         } 
         It "Should contain GroupId in parameters when passed ObjectId to it" {
             $result = Get-EntraGroup -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"

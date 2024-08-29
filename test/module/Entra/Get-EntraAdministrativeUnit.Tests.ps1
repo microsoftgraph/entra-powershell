@@ -69,4 +69,17 @@ Describe "Tests for Get-EntraAdministrativeUnit"{
         $a= $params | ConvertTo-json | ConvertFrom-Json
         $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue
     }
+    It "Should execute successfully without throwing an error " {
+        # Disable confirmation prompts       
+        $originalDebugPreference = $DebugPreference
+        $DebugPreference = 'Continue'
+
+        try {
+            # Act & Assert: Ensure the function doesn't throw an exception
+            { Get-EntraAdministrativeUnit -Top 1 -Debug } | Should -Not -Throw
+        } finally {
+            # Restore original confirmation preference            
+            $DebugPreference = $originalDebugPreference        
+        }
+    } 
 }

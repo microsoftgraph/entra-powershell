@@ -54,6 +54,19 @@ Describe "Add-EntraCustomSecurityAttributeDefinitionAllowedValues" {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
-        }     
+        }
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Add-EntraCustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Id 'Apline' -IsActive $true -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        } 
     }
 }

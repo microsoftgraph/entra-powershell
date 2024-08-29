@@ -58,7 +58,7 @@ Describe "Get-EntraDevice" {
             { Get-EntraDevice -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
         It "Should return all devices" {
-            $result = Get-EntraDevice -All $true
+            $result = Get-EntraDevice -All
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
