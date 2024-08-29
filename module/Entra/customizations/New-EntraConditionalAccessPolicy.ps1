@@ -33,7 +33,7 @@
             SpecialMapping = @'
             $hash = @{}
             if($TmpValue._Operator) { $hash["Operator"] = $TmpValue._Operator }
-            if($TmpValue.BuiltInControls) { $hash["BuiltInControls"] = $TmpValue.BuiltInControls }
+            if($null -ne $TmpValue.BuiltInControls) { $hash["BuiltInControls"] = $TmpValue.BuiltInControls }
             if($TmpValue.CustomAuthenticationFactors) { $hash["CustomAuthenticationFactors"] = $TmpValue.CustomAuthenticationFactors }
             if($TmpValue.TermsOfUse) { $hash["TermsOfUse"] = $TmpValue.TermsOfUse }
 

@@ -1,8 +1,8 @@
 ---
-title: Remove-EntraDeletedDirectoryObject.
+title: Remove-EntraDeletedDirectoryObject
 description: This article provides details on the Remove-EntraDeletedDirectoryObject command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraDeletedDirectoryObject
+
 schema: 2.0.0
 ---
 
@@ -19,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-This cmdlet is used to permanently delete a previously deleted directory object.
+Permanently delete a previously deleted directory object.
 
 ## Syntax
 
@@ -31,7 +32,7 @@ Remove-EntraDeletedDirectoryObject
 
 ## Description
 
-This cmdlet is used to permanently delete a previously deleted directory object.
+The `Remove-EntraDeletedDirectoryObject` cmdlet is used to permanently delete a previously deleted directory object.
 
 When a directory object is permanently deleted, it can no longer be restored.
 

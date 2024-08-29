@@ -1,53 +1,87 @@
 ---
+title: Get-EntraBetaApplicationTemplate
+description: This article provides details on the Get-EntraBetaApplicationTemplate command.
+
+
+ms.topic: reference
+ms.date: 07/26/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaApplicationTemplate
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaApplicationTemplate
 
 ## Synopsis
-Retrieve a list of applicationTemplate objects
+
+Retrieve a list of applicationTemplate objects.
 
 ## Syntax
 
 ### GetQuery (Default)
-```
-Get-EntraBetaApplicationTemplate [<CommonParameters>]
+
+```powershell
+Get-EntraBetaApplicationTemplate
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ### GetById
-```
-Get-EntraBetaApplicationTemplate -Id <String> [<CommonParameters>]
+
+```powershell
+Get-EntraBetaApplicationTemplate
+ -Id <String>
+ [-Property <String[]>]
+ [<CommonParameters>]
 ```
 
 ## Description
-This cmdlet allows users to get a list of all the application templates or a specific application template.
+
+The `Get-EntraBetaApplicationTemplate` cmdlet allows users to get a list of all the application templates or a specific application template.
 
 ## Examples
 
 ### 1. Gets a list of application template objects
-```
-PS C:\> $all_templates = Get-EntraBetaApplicationTemplate
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraBetaApplicationTemplate
 ```
 
 This command gets all the application template objects
 
 ### 2. Gets an application template object
-```
-PS C:\> $template = Get-EntraBetaApplicationTemplate -Id e8b7b394-057d-4203-a93a-1879c28ece38
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraBetaApplicationTemplate -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-This command gets an application template object for the given id
+```Output
+Id                                   Categories                                      Description
+--                                   ----------                                      -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb {businessMgmt, productivity, projectManagement} Cube is perfect for businesses
+```
+
+This command gets an application template object for the given id.
+
+- `-Id` Specifies the unique identifier of an application template.
 
 ## Parameters
 
 ### -Id
-The unique identifier of an application template
+
+The unique identifier of an application template.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -58,13 +92,32 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned.
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ## Outputs
 
 ### Microsoft.Online.Administration.ApplicationTemplate
+
 ## Notes
+
 ## Related Links

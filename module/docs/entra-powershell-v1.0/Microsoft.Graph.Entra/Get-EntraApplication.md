@@ -1,8 +1,8 @@
 ---
-title: Get-EntraApplication.
+title: Get-EntraApplication
 description: This article provides details on the Get-EntraApplication command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraApplication
+
 schema: 2.0.0
 ---
 
@@ -27,9 +28,10 @@ Gets an application.
 
 ```powershell
 Get-EntraApplication 
- [-Filter <String>] 
- [-All] 
- [-Top <Int32>] 
+ [-Filter <String>]
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -37,8 +39,9 @@ Get-EntraApplication
 
 ```powershell
 Get-EntraApplication 
- [-SearchString <String>] 
- [-All] 
+ [-SearchString <String>]
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -46,8 +49,9 @@ Get-EntraApplication
 
 ```powershell
 Get-EntraApplication 
- -ObjectId <String> 
- [-All] 
+ -ObjectId <String>
+ [-Property <String[]>]
+ [-All]
  [<CommonParameters>]
 ```
 
@@ -92,24 +96,29 @@ test adms2          iiiiiiii-aaaa-bbbb-cccc-jjjjjjjjjjjj jjjjjjjj-bbbb-cccc-dddd
 
 This example demonstrates how to get all applications from Microsoft Entra ID.  
 
-### Example 3: Get top five applications
+### Example 3: Get applications with expiring secrets
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraApplication -Top 5
+Get-EntraApplication |
+    Where-Object {
+        $_.PasswordCredentials.keyId -ne $null -and
+        $_.PasswordCredentials.EndDateTime -lt (Get-Date).AddDays(30)
+    } |
+    ForEach-Object {
+        $_.DisplayName,
+        $_.Id,
+        $_.PasswordCredentials
+    }
 ```
 
-```output
-DisplayName         Id                                   AppId                                SignInAudience                     PublisherDomain
------------         --                                   -----                                --------------                     ---------------
-test app            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADandPersonalMicrosoftAccount contoso.com
-ToGraph_443DEM      cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg                       contoso.com
-test adms           eeeeeeee-6666-7777-8888-ffffffffffff ffffffff-7777-8888-9999-gggggggggggg AzureADandPersonalMicrosoftAccount contoso.com
-test adms app azure gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb-iiiiiiiiiiii AzureADandPersonalMicrosoftAccount contoso.com
-test adms2          iiiiiiii-aaaa-bbbb-cccc-jjjjjjjjjjjj jjjjjjjj-bbbb-cccc-dddd-kkkkkkkkkkkk AzureADandPersonalMicrosoftAccount contoso.com
+```Output
+CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText StartDateTime
+------------------- ----------- -----------          ---- -----                                ---------- -------------
+                    AppOne      8/19/2024 9:00:00 PM 1jQ  aaaaaaaa-0b0b-1c1c-2d2d-333333333333            8/6/2024 6:07:47 PM
 ```
 
-This example demonstrates how to get top five applications from Microsoft Entra ID.
+This example retrieves applications with expiring secrets within 30 days.
 
 ### Example 4: Get an application by display name
 
@@ -170,7 +179,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies an oData v3.0 filter statement.
+Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
@@ -230,6 +239,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

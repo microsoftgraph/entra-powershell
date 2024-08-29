@@ -17,15 +17,15 @@
         if($null -ne $PSBoundParameters["GroupIdsForMembershipCheck"])
         {
             $GroupIds = $PSBoundParameters["GroupIdsForMembershipCheck"]
-            $GroupIdData = Get-EntraGroup -All $true
+            $GroupIdData = Get-EntraGroup -All
         }
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }        
 	    if($null -ne $PSBoundParameters["WarningVariable"])
         {

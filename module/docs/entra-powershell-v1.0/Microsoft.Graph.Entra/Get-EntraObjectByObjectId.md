@@ -1,16 +1,19 @@
 ---
-title: Get-EntraObjectByObjectId.
+title: Get-EntraObjectByObjectId
 description: This article provides details on the Get-EntraObjectByObjectId command.
-ms.service: entra
+
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraObjectByObjectId
+
 schema: 2.0.0
 ---
 
@@ -23,15 +26,16 @@ Retrieves the objects specified by the ObjectIds parameter.
 ## Syntax
 
 ```powershell
-Get-EntraObjectByObjectId 
+Get-EntraObjectByObjectId
  -ObjectIds <System.Collections.Generic.List`1[String]>
  [-Types <System.Collections.Generic.List`1[String]>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-Retrieves the objects specified by the ObjectIds parameter.
+The `Get-EntraObjectByObjectId` cmdlet retrieves the objects specified by the ObjectIds parameter.
 
 ## Examples
 
@@ -39,29 +43,19 @@ Retrieves the objects specified by the ObjectIds parameter.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraObjectByObjectId  -ObjectIds aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb , bbbbbbbb-1111-2222-3333-cccccccccccc
+Get-EntraObjectByObjectId  -ObjectIds 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' , 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 ```Output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {admin@contoso.onmicrosoft.com}
-preferredLanguage               :
-mail                            : admin@contoso.onmicrosoft.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=cccccccc-2222-3333-4444-dddddddddddd}, @{disabledPlans=System.Object[];
-                                  skuId=dddddddd-3333-4444-5555-eeeeeeeeeeee}, @{disabledPlans=System.Object[]; skuId=eeeeeeee-4444-5555-6666-ffffffffffff}}
-department                      : Engineering
-jobTitle                        : Product Manager
-
-
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
 This example two objects are retrieved (a DeviceConfiguration object and an Application object) as specified by the value of the ObjectIds parameter.
+
+- `-ObjectIds` Parameters specify one or more object IDs's, separated by commas, for which the objects are retrieved.
 
 ### Example 2: Get an object by types
 
@@ -71,29 +65,22 @@ Get-EntraObjectByObjectId -ObjectIds aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb -Types
 ```
 
 ```Output
-ageGroup                        :
-onPremisesLastSyncDateTime      :
-creationType                    :
-imAddresses                     : {admin@contoso.onmicrosoft.com}
-preferredLanguage               :
-mail                            : admin@contoso.onmicrosoft.com
-securityIdentifier              : A-1-22-3-4444444444-5555555555-6666666-7777777777
-identities                      : {@{signInType=userPrincipalName; issuer=contoso.onmicrosoft.com; issuerAssignedId=admin@contoso.onmicrosoft.com}}
-consentProvidedForMinor         :
-onPremisesUserPrincipalName     :
-assignedLicenses                : {@{disabledPlans=System.Object[]; skuId=cccccccc-2222-3333-4444-dddddddddddd}, @{disabledPlans=System.Object[];
-                                  skuId=dddddddd-3333-4444-5555-eeeeeeeeeeee}, @{disabledPlans=System.Object[]; skuId=eeeeeeee-4444-5555-6666-ffffffffffff}}
-department                      : Engineering
-jobTitle                        : Product Manager
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This example demonstrates how to retrieve objects for a specified object type.
+
+- `-ObjectIds` Parameters specify one or more object IDs's, separated by commas, for which the objects are retrieved.
+
+- `-Type` Parameter Specifies the type of objects that the cmdlet returns. If not specified, the default is directoryObject, which includes all resource types defined in the directory.
 
 ## Parameters
 
 ### -ObjectIds
 
-One or more object IDs, separated by commas, for which the objects are retrieved.
+One or more object IDs's, separated by commas, for which the objects are retrieved. The IDs are GUIDs, represented as strings. You can specify up to 1,000 IDs.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -109,10 +96,26 @@ Accept wildcard characters: False
 
 ### -Types
 
-Specifies the type of objects that the cmdlet returns.
+Specifies the type of objects that the cmdlet returns. If not specified, the default is directoryObject, which includes all resource types defined in the directory. You can specify any object derived from directoryObject in the collection, such as User, Group, and Device objects.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned.
+
+```yaml
+Type: System.String[]
 Parameter Sets: (All)
 Aliases:
 

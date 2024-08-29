@@ -1,8 +1,8 @@
 ---
-title: New-EntraServicePrincipal.
+title: New-EntraServicePrincipal
 description: This article provides details on the New-EntraServicePrincipal command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraServicePrincipal
+
 schema: 2.0.0
 ---
 
@@ -44,6 +45,13 @@ New-EntraServicePrincipal
 ## Description
 
 Create a new service Principal.
+
+For multitenant apps, the calling user must also be in at least one of the following Microsoft Entra roles:
+
+- Application Administrator
+- Cloud Application Administrator
+
+For single-tenant apps where the calling user is a non-admin user but is the owner of the backing application, the user must have the Application Developer role.
 
 ## Examples
 

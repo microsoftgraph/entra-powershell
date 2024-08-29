@@ -11,13 +11,11 @@
             ConversionType = "ScriptBlock"
             SpecialMapping = @'
             $hash = @{}
-            if($TmpValue.DisplayName) { $hash["DisplayName"] = $TmpValue.DisplayName }
-            if($TmpValue.StartDateTime) { $hash["StartDateTime"] = $TmpValue.StartDateTime }
-            if($TmpValue.EndDateTime) { $hash["EndDateTime"] = $TmpValue.EndDateTime }
-            if($TmpValue.KeyId) { $hash["KeyId"] = $TmpValue.KeyId }
-            if($TmpValue.CustomKeyIdentifier) { $hash["CustomKeyIdentifier"] = $TmpValue.CustomKeyIdentifier }
-            if($TmpValue.SecretText) { $hash["SecretText"] = $TmpValue.SecretText }
-            if($TmpValue.Hint) { $hash["Hint"] = $TmpValue.Hint }
+            $TmpValue.PSObject.Properties | ForEach-Object {
+                if ($_.Value) {
+                    $hash[$_.Name] = $_.Value
+                }
+            }
 
             $Value = $hash
 '@

@@ -1,42 +1,80 @@
 ---
+title: Set-EntraBetaGroupLifecyclePolicy
+description: This article provides details on the Set-EntraBetaGroupLifecyclePolicy command.
+
+
+ms.topic: reference
+ms.date: 07/23/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaGroupLifecyclePolicy
+
 schema: 2.0.0
 ---
 
 # Set-EntraBetaGroupLifecyclePolicy
 
 ## Synopsis
-Updates a specific group Lifecycle Policy in Azure Active Directory
+
+Updates a specific group Lifecycle Policy in Microsoft Entra ID.
 
 ## Syntax
 
-```
-Set-EntraBetaGroupLifecyclePolicy [-AlternateNotificationEmails <String>] -Id <String>
- [-ManagedGroupTypes <String>] [-GroupLifetimeInDays <Int32>] [<CommonParameters>]
+```powershell
+Set-EntraBetaGroupLifecyclePolicy 
+ -Id <String>
+ [-AlternateNotificationEmails <String>] 
+ [-ManagedGroupTypes <String>] 
+ [-GroupLifetimeInDays <Int32>] 
+ [<CommonParameters>]
 ```
 
 ## Description
-The Set-EntraBetaGroupLifecyclePolicy command updates a specific group Lifecycle Policy in Azure Active Directory
+
+The `Set-EntraBetaGroupLifecyclePolicy` command updates a specific group Lifecycle Policy in Microsoft Entra ID.
 
 ## Examples
 
-### Example 1
-```
-PS C:\> Set-EntraBetaGroupLifecyclePolicy -Id "b4c908b0-3595-4add-91b4-c5400b31b57b" -GroupLifetimeInDays 200 -AlternateNotificationEmails "admingroup@contoso.com"
+### Example 1: Updates group lifecycle policy
+
+```powershell
+Connect-Entra -Scopes 'Directory.ReadWrite.All'
+$params = @{
+    Id = 'ffffffff-5555-6666-7777-aaaaaaaaaaaa'
+    GroupLifetimeInDays = 200 
+    AlternateNotificationEmails = 'example@contoso.com' 
+    ManagedGroupTypes = 'All'
+}
+Set-EntraBetaGroupLifecyclePolicy @params
 ```
 
-This command updates the specified groupLifecyclePolicy in Azure Active Directory
+```Output
+Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
+--                                   --------------------------- ------------------- -----------------
+ffffffff-5555-6666-7777-aaaaaaaaaaaa example@contoso.com                     200                 Selected
+```
+
+This example updates the specified groupLifecyclePolicy in Microsoft Entra ID.
+
+- `-Id` parameter specifies the ID of the Lifecycle Policy to be modified.
+- `-GroupLifetimeInDays` parameter specifies the lifetime of the groups in the policy to 200 days. The GroupLifetimeInDays represents the number of days before a group expires and needs to be renewed. Once renewed, the group expiration is extended by the number of days defined.
+- `-AlternateNotificationEmails` parameter specifies the email address that receives notifications about the policy. Multiple email address can be defined by separating email address with a semicolon.
+- `-ManagedGroupTypes` parameter specifies which office 365 groups the policy applies to. Possible values are `All`, `Selected`, or `None`.  
+In this case, 'All' suggests that the policy manages all types of groups.
 
 ## Parameters
 
 ### -AlternateNotificationEmails
+
 Notification emails for groups that have no owners will be sent to these email addresses.
 List of email addresses separated by a ";".
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -48,10 +86,11 @@ Accept wildcard characters: False
 ```
 
 ### -GroupLifetimeInDays
-The number of days a group can exist before it needs to be renewed
+
+The number of days a group can exist before it needs to be renewed.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -63,10 +102,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Specifies the ID of a groupLifecyclePolicies object in Azure Active Directory
+
+Specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -78,13 +118,14 @@ Accept wildcard characters: False
 ```
 
 ### -ManagedGroupTypes
-Allows the admin to select which office 365 groups the policy will apply to.
+
+Allows the admin to select which office 365 groups the policy applies to.
 "None" will create the policy in a disabled state.
 "All" will apply the policy to every Office 365 group in the tenant.
-"Selected" will allow the admin to choose specific Office 365 groups that the policy will apply to.
+"Selected" will allow the admin to choose specific Office 365 groups that the policy applies to.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -96,14 +137,23 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### System.String
+
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
+
+[Get-EntraBetaGroupLifecyclePolicy](Get-EntraBetaGroupLifecyclePolicy.md)
+
+[New-EntraBetaGroupLifecyclePolicy](New-EntraBetaGroupLifecyclePolicy.md)
+
+[Remove-EntraBetaGroupLifecyclePolicy](Remove-EntraBetaGroupLifecyclePolicy.md)

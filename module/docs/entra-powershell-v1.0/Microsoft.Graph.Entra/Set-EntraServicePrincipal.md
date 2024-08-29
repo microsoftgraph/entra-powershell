@@ -1,8 +1,8 @@
 ---
-title: Set-EntraServicePrincipal.
+title: Set-EntraServicePrincipal
 description: This article provides details on the Set-EntraServicePrincipal command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraServicePrincipal
+
 schema: 2.0.0
 ---
 
@@ -19,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-This command updates a service principal.
+Updates a service principal.
 
 ## Syntax
 
@@ -33,6 +34,7 @@ Set-EntraServicePrincipal
  [-ServicePrincipalType <String>]
  [-AlternativeNames <System.Collections.Generic.List`1[System.String]>]
  [-PasswordCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]>]
+ [-PreferredSingleSignOnMode <String>]
  [-Tags <System.Collections.Generic.List`1[System.String]>] 
  [-AccountEnabled <String>]
  [-ServicePrincipalNames <System.Collections.Generic.List`1[System.String]>]
@@ -51,8 +53,7 @@ The `Set-EntraServicePrincipal` cmdlet updates a service principal in Microsoft 
 ### Example 1: Disable the account of a service principal
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $params = @{
     ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
     AccountEnabled = $False
@@ -66,8 +67,7 @@ This example demonstrates how to update `AccountEnabled` of a service principal 
 ### Example 2: Update AppId and Homepage of a service principal
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $params = @{
     ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
     AppId = '22223333-cccc-4444-dddd-5555eeee6666'
@@ -82,8 +82,7 @@ This example demonstrates how to update `AppId` and Homepage of a service princi
 ### Example 3: Update AlternativeNames and DisplayName of a service principal
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $params = @{
     ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
     AlternativeNames = 'Service Principal Demo'
@@ -98,8 +97,7 @@ This example demonstrates how to update AlternativeNames and DisplayName of a se
 ### Example 4: Update LogoutUrl and ReplyUrls of a service principal
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $params = @{
     ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
     LogoutUrl = 'https://securescore.office.com/SignOut'
@@ -114,8 +112,7 @@ This example demonstrates how to update LogoutUrl and ReplyUrls of a service pri
 ### Example 5: Update ServicePrincipalType and AppRoleAssignmentRequired of a service principal
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $params = @{
     ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
     ServicePrincipalType = 'Application'
@@ -130,8 +127,7 @@ This example demonstrates how to update `ServicePrincipalType` and `AppRoleAssig
 ### Example 6: Update KeyCredentials of a service principal
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $creds = New-Object Microsoft.Open.AzureAD.Model.KeyCredential
 $creds.CustomKeyIdentifier = [System.Text.Encoding]::UTF8.GetBytes('Test')
 $startdate = Get-Date -Year 2024 -Month 10 -Day 10
@@ -302,6 +298,22 @@ Specifies password credentials.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PreferredSingleSignOnMode
+
+Specifies the single sign-on mode configured for this application. Microsoft Entra ID uses the preferred single sign-on mode to launch the application from Microsoft 365 or the My Apps portal. The supported values are password, saml, notSupported, and oidc.
+
+```yaml
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 

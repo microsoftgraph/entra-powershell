@@ -2,7 +2,7 @@
 title: New-EntraDevice
 description: This article provides details on the New-EntraDevice command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -12,7 +12,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraDevice
+
 schema: 2.0.0
 ---
 
@@ -48,14 +49,14 @@ New-EntraDevice
 
 The `New-EntraDevice` cmdlet creates a device in Microsoft Entra ID.
 
+The calling user must be in one of the following Microsoft Entra roles: Intune Administrator or Windows 365 Administrator.
+
 ## Examples
 
 ### Example 1: Create a device
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All' #Delegated Permission
-Connect-Entra -Scopes 'Device.ReadWrite.All' #Application Permission
-
+Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
 $params = @{
     AccountEnabled = $true
     DisplayName = 'My new device'

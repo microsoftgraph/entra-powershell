@@ -2,7 +2,7 @@
 title: Get-EntraUser
 description: This article provides details on the Get-EntraUser command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraUser
+
 schema: 2.0.0
 ---
 
@@ -26,34 +27,37 @@ Gets a user.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraUser 
- [-Filter <String>] 
- [-All] 
- [-Top <Int32>] 
+Get-EntraUser
+ [-Filter <String>]
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetByValue
 
 ```powershell
-Get-EntraUser 
- [-SearchString <String>] 
- [-All] 
+Get-EntraUser
+ [-SearchString <String>]
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraUser 
- -ObjectId <String> 
- [-All] 
+Get-EntraUser
+ -ObjectId <String>
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The Get-EntraUser cmdlet gets a user from Microsoft Entra ID.
+The `Get-EntraUser` cmdlet gets a user from Microsoft Entra ID.
 
 ## Examples
 
@@ -64,7 +68,7 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUser -Top 3
 ```
 
-```output
+```Output
 DisplayName      Id                                   Mail                  UserPrincipalName
 -----------      --                                   ----                  -----------------
 Angel Brown      cccccccc-2222-3333-4444-dddddddddddd AngelB@contoso.com    AngelB@contoso.com
@@ -78,10 +82,10 @@ This example demonstrates how to get top three users from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUser -ObjectId 'cccccccc-2222-3333-4444-dddddddddddd'
+Get-EntraUser -ObjectId 'SawyerM@contoso.com'
 ```
 
-```output
+```Output
 DisplayName      Id                                   Mail                  UserPrincipalName
 -----------      --                                   ----                  -----------------
 Angel Brown      cccccccc-2222-3333-4444-dddddddddddd AngelB@contoso.com    AngelB@contoso.com
@@ -96,7 +100,7 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUser -SearchString 'New'
 ```
 
-```output
+```Output
 ObjectId                             DisplayName UserPrincipalName                   UserType
 --------                             ----------- -----------------                   --------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb New user    NewUser@contoso.com     Member
@@ -112,7 +116,7 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUser -Filter "UserPrincipalName eq 'NewUser@contoso.com'"
 ```
 
-```output
+```Output
 ObjectId                             DisplayName UserPrincipalName                   UserType
 --------                             ----------- -----------------                   --------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb New user    NewUser@contoso.com     Member
@@ -127,13 +131,31 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUser -Filter "startswith(MailNickname,'Ada')"
 ```
 
-```output
+```Output
 DisplayName     Id                                   Mail                                UserPrincipalName
 -----------     --                                   ----                                -----------------
 Mark Adams bbbbbbbb-1111-2222-3333-cccccccccccc Adams@contoso.com Adams@contoso.com
 ```
 
 In this example, we retrieve all users whose MailNickname starts with Ada.
+
+### Example 6: Get SignInActivity of a User
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
+Get-EntraUser -ObjectId 'SawyerM@contoso.com' -Property 'SignInActivity' | Select-Object -ExpandProperty 'SignInActivity'
+```
+
+```Output
+lastNonInteractiveSignInRequestId : bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa 
+lastNonInteractiveSignInDateTime  : 7/31/2024 1:20:28 PM
+lastSuccessfulSignInRequestId     : bbbbbbbb-1111-2222-3333-cccccccccccc 
+lastSignInDateTime                : 7/31/2024 8:18:35 AM
+lastSignInRequestId               : bbbbbbbb-1111-2222-3333-dddddddddddd 
+lastSuccessfulSignInDateTime      : 7/31/2024 1:20:28 PM
+```
+
+This example demonstrates how to retrieve the SignInActivity of a specific user by selecting a property.
 
 ## Parameters
 
@@ -155,10 +177,9 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies an oData v3.0 filter statement.
+Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
-Details on querying with oData can be found here.
-<https://www.odata.org/documentation/odata-version-3-0/odata-version-3-0-core-protocol/#queryingcollections>
+Details on querying with OData can be found here: <https://learn.microsoft.com/graph/aad-advanced-queries?tabs=powershell>
 
 ```yaml
 Type: System.String
@@ -217,6 +238,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

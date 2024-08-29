@@ -2,7 +2,7 @@
 title: Select-EntraGroupIdsContactIsMemberOf
 description: This article provides details on the Select-EntraGroupIdsContactIsMemberOf command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Select-EntraGroupIdsContactIsMemberOf
+
 schema: 2.0.0
 ---
 

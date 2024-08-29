@@ -1,8 +1,8 @@
 ---
-title: Get-EntraUserRegisteredDevice.
+title: Get-EntraUserRegisteredDevice
 description: This article provides details on the Get-EntraUserRegisteredDevice command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraUserRegisteredDevice
+
 schema: 2.0.0
 ---
 
@@ -28,6 +29,7 @@ Get-EntraUserRegisteredDevice
  -ObjectId <String>
  [-All]
  [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -41,7 +43,7 @@ The Get-EntraUserRegisteredDevice cmdlet gets devices registered by a user in Mi
 
 ```Powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserRegisteredDevice -ObjectId  'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraUserRegisteredDevice -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -57,7 +59,7 @@ This command gets the devices that are registered to the specified user.
 
 ```Powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserRegisteredDevice -ObjectId  'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All 
+Get-EntraUserRegisteredDevice -ObjectId 'SawyerM@contoso.com' -All 
 ```
 
 ```Output
@@ -73,7 +75,7 @@ This command gets all the devices that are registered to the specified user.
 
 ```Powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserRegisteredDevice -ObjectId  'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 2
+Get-EntraUserRegisteredDevice -ObjectId 'SawyerM@contoso.com' -Top 2
 ```
 
 ```Output
@@ -132,6 +134,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

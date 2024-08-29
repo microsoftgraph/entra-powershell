@@ -2,7 +2,7 @@
 title: Add-EntraBetaApplicationOwner
 description: This article provides details on the Add-EntraBetaApplicationOwner command.
 
-ms.service: active-directory
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Add-EntraBetaApplicationOwner
+
 schema: 2.0.0
 ---
 
@@ -25,8 +26,8 @@ Adds an owner to an application.
 
 ```powershell
 Add-EntraBetaApplicationOwner 
-    -ObjectId <String> 
-    -RefObjectId <String>
+ -ObjectId <String> 
+ -RefObjectId <String>
  [<CommonParameters>]
 ```
 
@@ -40,18 +41,21 @@ The `Add-EntraBetaApplicationOwner` cmdlet adds an owner to a Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-$ApplicationId = (Get-EntraBetaApplication -Top 1).ObjectId
-$UserObjectId = (Get-EntraBetaUser -Top 1).ObjectId
-Add-EntraBetaApplicationOwner -ObjectId $ApplicationId -RefObjectId $UserObjectId
+$ApplicationId = (Get-EntraBetaApplication -SearchString '<application-name>').ObjectId
+$UserObjectId = (Get-EntraBetaUser -SearchString '<user-name>').ObjectId
+$params = @{
+    ObjectId = $ApplicationId 
+    RefObjectId = $UserObjectId
+}
+Add-EntraBetaApplicationOwner @params
 ```
 
-The first command gets an application using [Get-EntraBetaApplication](./Get-EntraBetaApplication.md) cmdlet, and stores the ObjectId property value in $ApplicationId variable.  
+This example demonstrates how to adds an owner to an application in Microsoft Entra ID.
+You can use the command `Get-EntraBetaApplication` to get application Id.
+You can use the command `Get-EntraBetaUser` to get user Id.
 
-The second command gets a user using [Get-EntraBetaUser](./Get-EntraBetaUser.md) cmdlet, and stores the ObjectId property value in $UserObjectId variable.  
-
-This final command adds an owner in $UserObjectId to an application in $ApplicationId.
-
-This command adds an owner to an application.
+- `-ObjectId` parameter specifies the Id of an application.
+- `-RefObjectId` parameter specifies the Id of an user.
 
 ## Parameters
 
@@ -73,7 +77,7 @@ Accept wildcard characters: False
 
 ### -RefObjectId
 
-Specifies the ID of the Active Directory object to assign as owner/manager/member.
+Specifies the ID of the Microsoft Entra ID object to assign as owner/manager/member.
 
 ```yaml
 Type: System.String

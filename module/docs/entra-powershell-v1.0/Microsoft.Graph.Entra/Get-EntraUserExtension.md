@@ -1,8 +1,8 @@
 ---
-title: Get-EntraUserExtension.
+title: Get-EntraUserExtension
 description: This article provides details on the Get-EntraUserExtension command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraUserExtension
+
 schema: 2.0.0
 ---
 
@@ -24,8 +25,9 @@ Gets a user extension.
 ## Syntax
 
 ```powershell
-Get-EntraUserExtension 
- -ObjectId <String> 
+Get-EntraUserExtension
+ -ObjectId <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -39,15 +41,13 @@ The Get-EntraUserExtension cmdlet gets a user extension in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-$UserId = (Get-EntraUser -Top 1).ObjectId
+$UserId = (Get-EntraUser -ObjectId 'SawyerM@contoso.com').ObjectId
 Get-EntraUserExtension -ObjectId $UserId
 ```
 
-This example shows how to retrieve the extension attributes for a specified user.
+This example shows how to retrieve the extension attributes for a specified user. You can use the command `Get-EntraUser` to get user object Id.
 
-- The first command gets the ID of a Microsoft Entra ID user by using the `Get-EntraUser` (./Get-EntraUser.md) cmdlet. The command stores the value in the $UserId variable.  
-
-- The second command retrieves all extension attributes that have a value assigned to them for the user identified by $UserId.
+- `-ObjectId` parameter specifies the user object Id.
 
 ## Parameters
 
@@ -64,6 +64,22 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

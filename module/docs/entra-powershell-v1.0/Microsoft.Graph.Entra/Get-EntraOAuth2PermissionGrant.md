@@ -1,8 +1,8 @@
 ---
-title: Get-EntraOAuth2PermissionGrant.
+title: Get-EntraOAuth2PermissionGrant
 description: This article provides details on the Get-EntraOAuth2PermissionGrant Command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraOAuth2PermissionGrant
+
 schema: 2.0.0
 ---
 
@@ -24,15 +25,27 @@ Gets OAuth2PermissionGrant entities.
 ## Syntax
 
 ```powershell
-Get-EntraOAuth2PermissionGrant 
- [-All] 
- [-Top <Int32>] 
+Get-EntraOAuth2PermissionGrant
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
 
 The `Get-EntraOAuth2PermissionGrant` cmdlet gets OAuth2PermissionGrant entities in Microsoft Entra ID.
+
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles are supported for this operation:
+
+- Application Administrator
+- Application Developer
+- Cloud Application Administrator
+- Directory Writers
+- Privileged Role Administrator
+- User Administrator
+- Directory Readers
+- Global Reader
 
 ## Examples
 
@@ -119,6 +132,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

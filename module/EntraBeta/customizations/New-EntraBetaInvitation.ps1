@@ -13,7 +13,16 @@
         $keysChanged = @{}
         if($null -ne $PSBoundParameters["InvitedUser"])
         {
-            $params["InvitedUser"] = $PSBoundParameters["InvitedUser"]
+            $TmpValue = $PSBoundParameters["InvitedUser"]
+            $Temp = @{}
+            foreach ($property in $TmpValue.PSObject.Properties) {
+                $Temp[$property.Name] = $property.Value
+            }
+            $params["InvitedUser"] = $Temp
+        }
+        if($null -ne $PSBoundParameters["ResetRedemption"])
+        {
+            $params["ResetRedemption"] = $PSBoundParameters["ResetRedemption"]
         }
         if($null -ne $PSBoundParameters["InvitedUserMessageInfo"])
         {
@@ -31,7 +40,7 @@
         }
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($null -ne $PSBoundParameters["SendInvitationMessage"])
         {
@@ -39,7 +48,7 @@
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if($null -ne $PSBoundParameters["InvitedUserEmailAddress"])
         {
@@ -101,7 +110,7 @@
     
             }
         }
-        $response | ConvertTo-Json -Depth 2 | ConvertFrom-Json
-        }
+        $response
+    }
 '@
 }

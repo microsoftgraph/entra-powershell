@@ -90,3 +90,19 @@ The following guidelines must be followed in **every** pull request that is open
 - Changes made have corresponding test coverage.
 - Tests shouldn't include any hardcoded values, such as DisplayName, resource ID, etc.
 - No existing tests should be skipped.
+
+## Microsoft Entra PowerShell documentation contributions
+
+The official Microsoft Entra PowerShell documentation is available on [learn.microsoft.com][entra-powershell-docs].
+
+We welcome public contributions to the Microsoft Entra PowerShell documentation. There are two types of documentation for Microsoft Entra PowerShell, each with a different workflow:
+
+- **Conceptual Documentation:** To submit changes for content in the `conceptual` directory, make a pull request against the [public docs repository][entra-powershell-public-docs-repo]. See more details, [Contributing][entra-powershell-docs-contribution] guide.
+- **Reference Documentation:** To submit changes for command-line help and online documentation for both `beta` and `v1.0` versions of the module, make a pull request against [microsoftgraph/entra-powershell][entra-powershell-source-repo]. Updates are pushed to [learn.microsoft.com][entra-powershell-docs] every **two weeks**.
+
+> **Note:** The Microsoft Entra PowerShell module reference documentation generates both the command-line help and public cmdlet references with the single source of truth being the [microsoftgraph/entra-powershell][entra-powershell-source-repo].
+
+[entra-powershell-docs]: https://learn.microsoft.com/powershell/entra-powershell
+[entra-powershell-source-repo]: https://github.com/microsoftgraph/entra-powershell/tree/main/module/docs
+[entra-powershell-public-docs-repo]: https://github.com/MicrosoftDocs/entra-powershell-docs/tree/main/docs/conceptual
+[entra-powershell-docs-contribution]: https://github.com/MicrosoftDocs/entra-powershell-docs/blob/main/CONTRIBUTING.md

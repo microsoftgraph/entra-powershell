@@ -2,7 +2,7 @@
 title: Get-EntraNamedLocationPolicy
 description: This article provides details on the Get-EntraNamedLocationPolicy command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -12,7 +12,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraNamedLocationPolicy
+
 schema: 2.0.0
 ---
 
@@ -27,21 +28,24 @@ Gets a Microsoft Entra ID named location policy.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraNamedLocationPolicy 
+Get-EntraNamedLocationPolicy
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraNamedLocationPolicy 
- -PolicyId <String> 
+Get-EntraNamedLocationPolicy
+ -PolicyId <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
 
 This cmdlet allows an admin to get the Microsoft Entra ID named location policies.
+
 Named locations are custom rules that define network locations, which can then be used in a Conditional Access policy.
 
 ## Examples
@@ -53,7 +57,7 @@ Connect-Entra -Scopes 'Policy.Read.All'
 Get-EntraNamedLocationPolicy
 ```
 
-```output
+```Output
 Id                                   CreatedDateTime      DisplayName    ModifiedDateTime
 --                                   ---------------      -----------    ----------------
 dddddddd-3333-4444-5555-eeeeeeeeeeee 3/1/2024 9:53:10 AM  NamedLocation  3/1/2024 9:53:10 AM
@@ -71,7 +75,7 @@ Connect-Entra -Scopes 'Policy.Read.All'
 Get-EntraNamedLocationPolicy -PolicyId 'dddddddd-3333-4444-5555-eeeeeeeeeeee'
 ```
 
-```output
+```Output
 Id                                   CreatedDateTime      DisplayName    ModifiedDateTime
 --                                   ---------------      -----------    ----------------
 dddddddd-3333-4444-5555-eeeeeeeeeeee 3/1/2024 9:53:10 AM  NamedLocation  3/1/2024 9:53:10 AM
@@ -97,6 +101,22 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
@@ -114,4 +134,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Set-EntraNamedLocationPolicy](Set-EntraNamedLocationPolicy.md)
 
 [Remove-EntraNamedLocationPolicy](Remove-EntraNamedLocationPolicy.md)
-

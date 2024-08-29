@@ -2,7 +2,7 @@
 title: Get-EntraDirectoryRoleTemplate
 description: This article provides details on the Get-EntraDirectoryRoleTemplate command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraDirectoryRoleTemplate
+
 schema: 2.0.0
 ---
 
@@ -24,7 +25,8 @@ Gets directory role templates.
 ## Syntax
 
 ```powershell
-Get-EntraDirectoryRoleTemplate 
+Get-EntraDirectoryRoleTemplate
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -41,7 +43,7 @@ Connect-Entra -Scopes 'RoleManagement.Read.Directory'
 Get-EntraDirectoryRoleTemplate
 ```
 
-```output
+```Output
 DeletedDateTime Id                                   Description
 --------------- --                                   -----------
                 62e90394-69f5-4237-9190-012177145e10 Can manage all aspects of Microsoft Entra ID and Microsoft services that use...
@@ -56,7 +58,38 @@ DeletedDateTime Id                                   Description
 
 This command gets the role templates in Microsoft Entra ID.
 
+### Example 2: Get a specific role template
+
+```powershell
+Connect-Entra -Scopes 'RoleManagement.Read.Directory'
+Get-EntraDirectoryRoleTemplate | Where-Object {$_.DisplayName -eq 'Helpdesk Administrator'}
+```
+
+```Output
+DeletedDateTime Id                                   Description                                                             DisplayName
+--------------- --                                   -----------                                                             -----------
+                729827e3-9c14-49f7-bb1b-9608f156bbb8 Can reset passwords for non-administrators and Helpdesk Administrators. Helpdesk Administrator
+```
+
+This example retrieves a Helpdesk role template.
+
 ## Parameters
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### CommonParameters
 

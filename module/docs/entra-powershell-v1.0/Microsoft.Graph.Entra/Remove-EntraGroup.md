@@ -2,7 +2,7 @@
 title: Remove-EntraGroup
 description: This article provides details on the Remove-EntraGroup command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -10,7 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraGroup
+
 schema: 2.0.0
 ---
 
@@ -47,7 +48,8 @@ The following conditions apply for apps to delete role-assignable groups:
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Remove-EntraGroup -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq'
+$group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
+Remove-EntraGroup -ObjectId $group.Id
 ```
 
 This command is used to remove a group. The `-ObjectId` parameter specifies the ID of the group to be removed.

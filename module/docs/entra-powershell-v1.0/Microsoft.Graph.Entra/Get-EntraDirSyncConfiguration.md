@@ -2,7 +2,7 @@
 title: Get-EntraDirSyncConfiguration
 description: This article provides details on the Get-EntraDirSyncConfiguration command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -12,7 +12,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraDirSyncConfiguration
+
 schema: 2.0.0
 ---
 
@@ -26,13 +27,15 @@ Gets the directory synchronization settings.
 
 ```powershell
 Get-EntraDirSyncConfiguration 
- [-TenantId <Guid>] 
+ [-TenantId <String>]
  [<CommonParameters>]
 ```
 
 ## Description
 
 The `Get-EntraDirSyncConfiguration` cmdlet gets the directory synchronization settings.
+
+For delegated scenarios, the user needs to be assigned the Global Administrator role.
 
 ## Examples
 
@@ -42,13 +45,13 @@ The `Get-EntraDirSyncConfiguration` cmdlet gets the directory synchronization se
 Get-EntraDirSyncConfiguration 
 ```
 
-```output
+```Output
 AccidentalDeletionThreshold DeletionPreventionType
 --------------------------- ----------------------
                         500 enabledForCount
 ```
 
-This command gets directory synchronization settings.
+This example gets directory synchronization settings.
 
 ### Example 2: Get directory synchronization settings by TenantId
 
@@ -56,20 +59,22 @@ This command gets directory synchronization settings.
 Get-EntraDirSyncConfiguration -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
 ```
 
-```output
+```Output
 AccidentalDeletionThreshold DeletionPreventionType
 --------------------------- ----------------------
                         500 enabledForCount
 ```
 
-This command gets directory synchronization settings by TenantId.
+This example gets directory synchronization settings by TenantId.
+
+- `-TenantId` Specifies the unique ID of the tenant.
 
 ## Parameters
 
 ### -TenantId
 
 The unique ID of the tenant to perform the operation on.
-If this isn't provided then it defaults to the tenant of the current user.
+If TenantId isn't provided, then it defaults to the tenant of the current user.
 This parameter is only applicable to partner users.
 
 ```yaml

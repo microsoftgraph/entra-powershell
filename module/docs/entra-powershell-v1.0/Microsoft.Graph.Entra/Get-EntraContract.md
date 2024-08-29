@@ -2,7 +2,7 @@
 title: Get-EntraContract
 description: This article provides details on the Get-EntraContract command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraContract
+
 schema: 2.0.0
 ---
 
@@ -26,19 +27,21 @@ Gets a contract.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraContract 
- [-Top <Int32>] 
- [-All] 
- [-Filter <String>] 
+Get-EntraContract
+ [-Top <Int32>]
+ [-All]
+ [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraContract 
- -ObjectId <String> 
- [-All] 
+Get-EntraContract
+ -ObjectId <String>
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -52,12 +55,11 @@ The contract object contains the following attributes:
 
 Possible values are:  
 
-++ "SyndicationPartner", which indicates a partner that exclusively resells and manages O365 and Intune for this customer.
+1. SyndicationPartner - indicates a partner that exclusively resells and manages O365 and Intune for this customer.
 They resell and support their customers.
-++ "BreadthPartner", which indicates that the partner has the ability to provide administrative support for this customer.
+1. BreadthPartner - indicates that the partner has the ability to provide administrative support for this customer.
 However the partner isn't allowed to resell to the customer.
-++ "ResellerPartner", which indicates a partner that is similar to a syndication partner, except that it doesn't have exclusive access to a tenant.
-In the syndication case, the customer can't buy additional direct subscriptions from Microsoft or from other partners.
+1. ResellerPartner - indicates a partner that is similar to a syndication partner, except that it doesn't have exclusive access to a tenant. In the syndication case, the customer can't buy additional direct subscriptions from Microsoft or from other partners.
 
 - `customerContextId` - unique identifier for the customer tenant referenced by this partnership.
 
@@ -108,7 +110,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies an oData v3.0 filter statement.
+Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
@@ -152,6 +154,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

@@ -1,8 +1,8 @@
 ---
-title: Remove-EntraDeviceRegisteredUser.
+title: Remove-EntraDeviceRegisteredUser
 description: This article provides details on the Remove-EntraDeviceRegisteredUser command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraDeviceRegisteredUser
+
 schema: 2.0.0
 ---
 
@@ -45,13 +46,7 @@ $User = Get-EntraDeviceRegisteredUser -ObjectId $Device.ObjectId
 Remove-EntraDeviceRegisteredOwner -ObjectId $Device.ObjectId -OwnerId $Owner.ObjectId
 ```
 
-This example shows how to remove the registered user from device.  
-
-- The first command gets a device by using the [Get-EntraDevice](./Get-EntraDevice.md) cmdlet, and then stores it in the `$Device` variable.
-
-- The second command gets the registered user for the device in `$Device` by using the [Get-EntraDeviceRegisteredUser](./Get-EntraDeviceRegisteredUser.md) cmdlet.The command stores it in the `$User` variable.
-
-- The final command removes the user in `$User` from the device in `$Device`.
+This example shows how to remove the registered user from device.
 
 ## Parameters
 

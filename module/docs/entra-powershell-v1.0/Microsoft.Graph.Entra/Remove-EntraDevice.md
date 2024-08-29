@@ -2,7 +2,7 @@
 title: Remove-EntraDevice
 description: This article provides details on the Remove-EntraDevice command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraDevice
+
 schema: 2.0.0
 ---
 
@@ -33,13 +34,14 @@ Remove-EntraDevice
 
 The `Remove-EntraDevice` cmdlet removes a device from Microsoft Entra ID.
 
+The calling user must be in one of the following Microsoft Entra roles: Intune Administrator, Windows 365 Administrator, or Cloud Device Administrator.
+
 ## Examples
 
 ### Example 1: Remove a device
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All' #Delegated Permission
-Connect-Entra -Scopes 'Device.ReadWrite.All' #Application Permission
+Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
 Remove-EntraDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 

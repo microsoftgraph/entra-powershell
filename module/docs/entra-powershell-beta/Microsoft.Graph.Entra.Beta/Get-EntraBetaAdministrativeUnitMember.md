@@ -1,40 +1,123 @@
 ---
+title: Get-EntraBetaAdministrativeUnitMember
+description: This article provides details on the Get-EntraBetaAdministrativeUnitMember command.
+
+
+ms.topic: reference
+ms.date: 07/04/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaAdministrativeUnitMember
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaAdministrativeUnitMember
 
 ## Synopsis
+
 Gets a member of an administrative unit.
 
 ## Syntax
 
-```
-Get-EntraBetaAdministrativeUnitMember -ObjectId <String> [-All] [-Top <Int32>]
+```powershell
+Get-EntraBetaAdministrativeUnitMember
+ -ObjectId <String>
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
-The Get-EntraBetaAdministrativeUnitMember cmdlet gets a member of an Active Directory administrative unit.
+
+The `Get-EntraBetaAdministrativeUnitMember` cmdlet gets a member of a Microsoft Entra ID administrative unit. Specify `ObjectId` parameters to retrieve an administrative unit member.
+
+In delegated scenarios with work or school accounts, the signed-in user must either be a member user or be assigned a supported Microsoft Entra role, or a custom role with the necessary permissions. The following least privileged roles are supported for this operation:
+
+- Directory Readers: Read basic properties on administrative units
+- Global Reader: Read all properties of administrative units, including members
+- Privileged Role Administrator: Create and manage administrative units (including members)
 
 ## Examples
 
-### Example 1 Get an administrative unit member by ID
+### Example 1: Get an administrative unit member by ObjectId
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraBetaAdministrativeUnitMember -ObjectId $AdministrativeUnit.ObjectId
 ```
-PS C:\> Get-EntraBetaAdministrativeUnitMember -ObjectId "ef08b536-9d0a-4f8f-bda5-8b9cd01a9159"
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+eeeeeeee-4444-5555-6666-ffffffffffff
+ffffffff-5555-6666-7777-aaaaaaaaaaaa
 ```
+
+This example returns the list of administrative unit members from specified administrative unit ObjectId.
+
+- `-ObjectId` parameter specifies the ID of an administrative unit.
+
+### Example 2: Get all administrative unit members by ObjectId
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraBetaAdministrativeUnitMember -ObjectId $AdministrativeUnit.ObjectId -All
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+eeeeeeee-4444-5555-6666-ffffffffffff
+ffffffff-5555-6666-7777-aaaaaaaaaaaa
+```
+
+This example returns the list of all administrative unit members from specified administrative unit ObjectId.
+
+- `-ObjectId` parameter specifies the ID of an administrative unit.
+
+### Example 3: Get top three administrative unit members by ObjectId
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraBetaAdministrativeUnitMember -ObjectId $AdministrativeUnit.ObjectId -Top 3
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+```
+
+This example returns top three administrative unit members from specified administrative unit ObjectId.
+
+- `-ObjectId` parameter specifies the ID of an administrative unit.
 
 ## Parameters
 
-
 ### -ObjectId
-Specifies the ID of an administrative unit in Azure Active Directory.
+
+Specifies the ID of an administrative unit in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -46,10 +129,11 @@ Accept wildcard characters: False
 ```
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -61,10 +145,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -75,8 +160,25 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned.
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -86,6 +188,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Add-EntraBetaAdministrativeUnitMember]()
+[Add-EntraBetaAdministrativeUnitMember](Add-EntraBetaAdministrativeUnitMember.md)
 
-[Remove-EntraBetaAdministrativeUnitMember]()
+[New-EntraBetaAdministrativeUnitMember](New-EntraBetaAdministrativeUnitMember.md)
+
+[Remove-EntraBetaAdministrativeUnitMember](Remove-EntraBetaAdministrativeUnitMember.md)

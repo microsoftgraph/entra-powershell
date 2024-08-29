@@ -10,23 +10,15 @@
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{}
         if($null -ne $PSBoundParameters["NewPassword"])
         {
             $params["NewPassword"] = $PSBoundParameters["NewPassword"]
-        }
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $Null
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $Null
-        }
+        }        
         if($null -ne $PSBoundParameters["CurrentPassword"])
         {
             $params["CurrentPassword"] = $PSBoundParameters["CurrentPassword"]
-        } 
+        }
+
         $currsecur = [System.Runtime.InteropServices.Marshal]::SecureStringToGlobalAllocUnicode($params.CurrentPassword)
         $curr = [System.Runtime.InteropServices.Marshal]::PtrToStringUni($currsecur)
     

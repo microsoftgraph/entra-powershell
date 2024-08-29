@@ -1,4 +1,8 @@
-function Add-EntraEnvironment{
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
+function Add-EntraEnvironment {
     [CmdletBinding(DefaultParameterSetName = 'AddQuery')]
       param (
       [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -12,10 +16,10 @@ function Add-EntraEnvironment{
       PROCESS{
         $params=@{}
          if ($PSBoundParameters.ContainsKey("Verbose")) {
-              $params["Verbose"] = $Null
+              $params["Verbose"] = $PSBoundParameters["Verbose"]
           }
          if ($PSBoundParameters.ContainsKey("Debug")) {
-              $params["Debug"] = $Null
+              $params["Debug"] = $PSBoundParameters["Debug"]
          }
          if($null -ne $PSBoundParameters["WarningVariable"])
          {
