@@ -11,11 +11,7 @@
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand        
         $baseUri = 'https://graph.microsoft.com/v1.0/applications'
-        $Method = "GET"
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $PSBoundParameters["Verbose"]
-        }
+        $Method = "GET"        
         if($null -ne $PSBoundParameters["ObjectId"])
         {
             $params["ApplicationId"] = $PSBoundParameters["ObjectId"]

@@ -46,7 +46,7 @@ Connect-Entra -Scopes 'Domain.ReadWrite.All'
 Confirm-EntraDomain -Name Contoso.com
 ```
 
-This command confirms your domain; changing the status to "Verified".
+This example verifies a domain and updates its status to `verified`.
 
 ### Example 2: Confirm the domain with a cross cloud verification code
 
@@ -55,7 +55,7 @@ Connect-Entra -Scopes 'Domain.ReadWrite.All'
 Confirm-EntraDomain -Name Contoso.com -CrossCloudVerificationCode ms84324896
 ```
 
-This command confirms your domain for dual federation scenarios.
+This example confirms a domain in dual federation scenarios.
 
 ## Parameters
 

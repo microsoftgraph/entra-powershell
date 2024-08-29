@@ -7,57 +7,12 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
-    PROCESS {  
+    PROCESS {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         if ($null -ne $PSBoundParameters["ObjectId"]) {
             $params["UserId"] = $PSBoundParameters["ObjectId"]
         }
-
-        if ($PSBoundParameters.ContainsKey("Debug")) {
-            $params["Debug"] = $PSBoundParameters["Debug"]
-        }
-
-        if ($PSBoundParameters.ContainsKey("Verbose")) {
-            $params["Verbose"] = $PSBoundParameters["Verbose"]
-        }
-        if($null -ne $PSBoundParameters["WarningVariable"])
-        {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationAction"])
-        {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-        }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }
-
         $URI = "/v1.0/users/$($params.UserId)/ownedObjects"
 
         if($null -ne $PSBoundParameters["Property"])
@@ -80,23 +35,39 @@
             $Top = $PSBoundParameters["Top"]
         }
 
-        if($Top -ne $null){
+        if($null -ne $Top){
+            $userList = @()
             $response | ForEach-Object {
                 if ($null -ne $_ -and $Top -gt 0) {
-                    $_ | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $data = $_ | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
+                    $data.PSObject.Properties | ForEach-Object {
+                        $propertyName = $_.Name
+                        $propertyValue = $_.Value
+                        $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                    }
+                    $userList += $userType
+                    $Top = $Top - 1
                 }
-
-                $Top = $Top - 1
             }
+            $userList
         }
         else {
+            $userList = @()
             $response | ForEach-Object {
                 if ($null -ne $_) {
-                    $_ | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $data = $_ | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+                    $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject
+                    $data.PSObject.Properties | ForEach-Object {
+                        $propertyName = $_.Name
+                        $propertyValue = $_.Value
+                        $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+                    }
+                    $userList += $userType
                 }
             }
+            $userList
         }
-
     }
 '@
 }

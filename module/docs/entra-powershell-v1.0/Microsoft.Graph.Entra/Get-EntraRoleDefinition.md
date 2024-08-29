@@ -59,14 +59,19 @@ Get-EntraRoleDefinition
 
 The `Get-EntraRoleDefinition` cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the `Id` parameter. Specify the `SearchString` or `Filter` parameter to find particular role definition.
 
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role. The least privileged roles supported for this operation are as follows, in the order of least to most privileged:
+
+- Directory Readers
+- Global Reader
+- Privileged Role Administrator
+
 ## Examples
 
 ### Example 1: Get all role definitions
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.Read.Directory' #For the directory (Microsoft Entra ID) provider
- Connect-Entra -Scopes 'EntitlementManagement.Read.All' #For the entitlement management provider
- Get-EntraRoleDefinition
+Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Get-EntraRoleDefinition
 ```
 
 ```Output
@@ -81,9 +86,8 @@ This command returns all the role definitions present.
 ### Example 2: Get a role definition by ID
 
 ```powershell
- Connect-Entra -Scopes 'RoleManagement.Read.Directory' #For the directory (Microsoft Entra ID) provider
- Connect-Entra -Scopes 'EntitlementManagement.Read.All' #For the entitlement management provider
- Get-EntraRoleDefinition -Id 1a327991-10cb-4266-877a-998fb4df78ec
+Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Get-EntraRoleDefinition -Id '1a327991-10cb-4266-877a-998fb4df78ec'
 ```
 
 ```Output
@@ -97,15 +101,45 @@ This command returns a specified role definition.
 ### Example 3: Filter role definitions by display name
 
 ```powershell
-Connect-Entra -Scopes 'RoleManagement.Read.Directory' #For the directory (Microsoft Entra ID) provider
- Connect-Entra -Scopes 'EntitlementManagement.Read.All' #For the entitlement management provider
- Get-EntraRoleDefinition -Filter "startsWith(displayName, 'Restricted')"
+Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Get-EntraRoleDefinition -Filter "startsWith(displayName, 'Restricted')"
 ```
 
 ```Output
 DisplayName                                   Id                                   TemplateId                           Description
 -----------                                   --                                   ----------                           -----------
 Restricted Guest User                         2af84b1e-32c8-42b7-82bc-daa82404023b 2af84b1e-32c8-42b7-82bc-daa82404023b Restricted role for guest users. Can read a limited set of directory information.
+```
+
+This command return all the role definitions containing the specified display name.
+
+### Example 4: Get top two role definition
+
+```powershell
+Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Get-EntraRoleDefinition -Top 2
+```
+
+```Output
+DisplayName           Id                                   TemplateId                           Description                                                                       IsBuiltIn IsEnabled
+-----------           --                                   ----------                           -----------                                                                       --------- ---------
+Restricted Guest User 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 2af84b1e-32c8-42b7-82bc-daa82404023b Restricted role for guest users. Can read a limited set of directory information. True      True
+```
+
+This command return top two the role definitions in Microsoft Entra ID.
+
+### Example 5: Filter role definitions by display name
+
+```powershell
+Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Get-EntraRoleDefinition -SearchString 'Global'
+ ```
+
+```Output
+DisplayName           Id                                   TemplateId                           Description                                                                       IsBuiltIn IsEnabled
+-----------           --                                   ----------                           -----------                                                                       --------- ---------
+Global Administrator               00aa00aa-bb11-cc22-dd33-44ee44ee44ee 62e90394-69f5-4237-9190-012177145e10 Can manage all aspects of Microsoft Entra ID and Microsoft services that use Microsoft Entra identit…
+Global Reader                      11bb11bb-cc22-dd33-ee44-55ff55ff55ff f2ef992c-3afb-46b9-b7cf-a126ee74c451 Can read everything that a Global Administrator can, but not update anything.
 ```
 
 This command return all the role definitions containing the specified display name.

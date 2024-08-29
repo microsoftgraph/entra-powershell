@@ -13,10 +13,7 @@
             $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand        
             $baseUri = 'https://graph.microsoft.com/beta/applications'
             $Method = "PUT"
-            if($PSBoundParameters.ContainsKey("Verbose"))
-            {
-                $params["Verbose"] = $PSBoundParameters["Verbose"]
-            }
+            
             if($null -ne $PSBoundParameters["ObjectId"])
             {
                 $params["ApplicationId"] = $PSBoundParameters["ObjectId"]
