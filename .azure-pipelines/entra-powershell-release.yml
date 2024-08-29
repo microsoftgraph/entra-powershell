@@ -16,6 +16,8 @@ extends:
     stages:
     - stage: PS_Gallery_Deploy
       displayName: PS Gallery Deploy
+      variables:
+        ob_release_environment: Production
       dependsOn: []
       jobs:
       - job: ApprovalService_Job
