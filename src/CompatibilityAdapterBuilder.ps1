@@ -716,7 +716,7 @@ $($Command.CustomScript)
         }
 
         #$ParamterTransformations = $this.GetParametersTransformations($Command)
-        $OutputTransformations = $this.GetOutputTransformations($Command)
+        $OutputTransformations = $this.GetOutputTransformationsURL($Command)
         $keyId=''
         if($Command.type -ne "new"){
             $keyId = $this.GetKeyIdPair($Command)
@@ -1321,7 +1321,21 @@ $paramsList += @"
         return $paramBlock
     }
     
-    
+    hidden [string] GetOutputTransformationsURL([PSCustomObject] $Command) {
+        $responseVerbs = @("Get","Add","New")
+        $output = ""
+        if("" -ne $output){
+            $transform = @"
+    `$response | ForEach-Object {
+        if(`$null -ne `$_) {
+$($output)
+        }
+    }
+"@
+            return $transform
+        }
+        return ""
+    }
     
     hidden [string] GetOutputTransformations([PSCustomObject] $Command) {
         $responseVerbs = @("Get","Add","New")
@@ -1333,6 +1347,7 @@ $paramsList += @"
                 foreach($key in $cmd.Outputs.GetEnumerator()) {
                     $customOutput =  $cmd.Outputs[$key.Name]
                     if([TransformationTypes]::Name -eq $customOutput.ConversionType){
+                        Write-Host("CmdCustomizations")
                         $output += $this.GetOutputTransformationName($customOutput.Name, $customOutput.TargetName)
                     }
                     elseif([TransformationTypes]::ScriptBlock -eq $customOutput.ConversionType){
@@ -1348,6 +1363,7 @@ $paramsList += @"
         foreach($key in $this.GenericOutputTransformations.GetEnumerator()) {
             $customOutput =  $this.GenericOutputTransformations[$key.Name]
             if(2 -eq $customOutput.ConversionType){
+                Write-Host("GenericOutput")
                 $output += $this.GetOutputTransformationName($customOutput.Name, $customOutput.TargetName)
             }
             elseif([TransformationTypes]::ScriptBlock -eq $customOutput.ConversionType){
