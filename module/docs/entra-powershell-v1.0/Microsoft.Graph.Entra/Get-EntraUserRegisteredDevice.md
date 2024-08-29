@@ -43,7 +43,7 @@ The Get-EntraUserRegisteredDevice cmdlet gets devices registered by a user in Mi
 
 ```Powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserRegisteredDevice -ObjectId  'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraUserRegisteredDevice -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -59,7 +59,7 @@ This command gets the devices that are registered to the specified user.
 
 ```Powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserRegisteredDevice -ObjectId  'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All 
+Get-EntraUserRegisteredDevice -ObjectId 'SawyerM@contoso.com' -All 
 ```
 
 ```Output
@@ -75,7 +75,7 @@ This command gets all the devices that are registered to the specified user.
 
 ```Powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserRegisteredDevice -ObjectId  'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 2
+Get-EntraUserRegisteredDevice -ObjectId 'SawyerM@contoso.com' -Top 2
 ```
 
 ```Output

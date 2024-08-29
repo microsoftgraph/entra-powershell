@@ -37,7 +37,6 @@ Get-EntraBetaUserOwnedObject
 ## Description
 
 The `Get-EntraBetaUserOwnedObject` cmdlet gets objects owned by a user in Microsoft Entra ID.
-Specify `ObjectId` parameter to retrieve objects owned by a user.
 
 ## Examples
 
@@ -45,32 +44,13 @@ Specify `ObjectId` parameter to retrieve objects owned by a user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaUserOwnedObject -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
-description                       :
-id                                : bbbbbbbb-1111-2222-3333-cccccccccccc
-optionalClaims                    :
-verifiedPublisher                 : @{verifiedPublisherId=; displayName=; addedDateTime=}
-isManagementRestricted            :
-keyCredentials                    : {}
-samlMetadataUrl                   :
-deletedDateTime                   :
-web                               : @{homePageUrl=https://localhost/demoapp; implicitGrantSettings=; redirectUriSettings=System.Object[]; redirectUris=System.Object[];
-                                    logoutUrl=}
-groupMembershipClaims             :
-publisherDomain                   : contoso.com
-@odata.type                       : #microsoft.graph.application
-identifierUris                    : {}
-servicePrincipalLockConfiguration :
-migrationStatus                   :
-passwordCredentials               : {}
-tags                              : {}
-notes                             :
-appRoles                          : {@{allowedMemberTypes=Application; value=saml; isPrivate=False; id=ab8b23a1-b912-4134-9f8d-6cb3fddcd890; description=Specifies the
-                                    preferred single sign-on mode for the application; displayName=Preferred Single Sign-On Mode; isEnabled=True; origin=Application;
-                                    isPreAuthorizationRequired=False}}
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
 This example retrieves objects owned by the specified user.
@@ -81,32 +61,15 @@ This example retrieves objects owned by the specified user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
+Get-EntraBetaUserOwnedObject -ObjectId 'SawyerM@contoso.com' -All
 ```
 
 ```Output
-description                       :
-id                                : bbbbbbbb-1111-2222-3333-cccccccccccc
-optionalClaims                    :
-verifiedPublisher                 : @{verifiedPublisherId=; displayName=; addedDateTime=}
-isManagementRestricted            :
-keyCredentials                    : {}
-samlMetadataUrl                   :
-deletedDateTime                   :
-web                               : @{homePageUrl=https://localhost/demoapp; implicitGrantSettings=; redirectUriSettings=System.Object[]; redirectUris=System.Object[];
-                                    logoutUrl=}
-groupMembershipClaims             :
-publisherDomain                   : contoso.com
-@odata.type                       : #microsoft.graph.application
-identifierUris                    : {}
-servicePrincipalLockConfiguration :
-migrationStatus                   :
-passwordCredentials               : {}
-tags                              : {}
-notes                             :
-appRoles                          : {@{allowedMemberTypes=Application; value=saml; isPrivate=False; id=ab8b23a1-b912-4134-9f8d-6cb3fddcd890; description=Specifies the
-                                    preferred single sign-on mode for the application; displayName=Preferred Single Sign-On Mode; isEnabled=True; origin=Application;
-                                    isPreAuthorizationRequired=False}}
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+aaaaaaaa-1111-1111-1111-000000000000
+cccccccc-2222-3333-4444-dddddddddddd
 ```
 
 This example retrieves all the objects owned by the specified user.
@@ -117,32 +80,15 @@ This example retrieves all the objects owned by the specified user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraBetaUserOwnedObject -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 3
+Get-EntraBetaUserOwnedObject -ObjectId 'SawyerM@contoso.com' -Top 3
 ```
 
 ```Output
-description                       :
-id                                : bbbbbbbb-1111-2222-3333-cccccccccccc
-optionalClaims                    :
-verifiedPublisher                 : @{verifiedPublisherId=; displayName=; addedDateTime=}
-isManagementRestricted            :
-keyCredentials                    : {}
-samlMetadataUrl                   :
-deletedDateTime                   :
-web                               : @{homePageUrl=https://localhost/demoapp; implicitGrantSettings=; redirectUriSettings=System.Object[]; redirectUris=System.Object[];
-                                    logoutUrl=}
-groupMembershipClaims             :
-publisherDomain                   : contoso.com
-@odata.type                       : #microsoft.graph.application
-identifierUris                    : {}
-servicePrincipalLockConfiguration :
-migrationStatus                   :
-passwordCredentials               : {}
-tags                              : {}
-notes                             :
-appRoles                          : {@{allowedMemberTypes=Application; value=saml; isPrivate=False; id=ab8b23a1-b912-4134-9f8d-6cb3fddcd890; description=Specifies the
-                                    preferred single sign-on mode for the application; displayName=Preferred Single Sign-On Mode; isEnabled=True; origin=Application;
-                                    isPreAuthorizationRequired=False}}
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+aaaaaaaa-1111-1111-1111-000000000000
+cccccccc-2222-3333-4444-dddddddddddd
 ```
 
 This example retrieves the top three objects owned by the specified user.
@@ -201,7 +147,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
