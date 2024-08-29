@@ -21,7 +21,7 @@ BeforeAll {
 Describe "Set-EntraBetaDirSyncConfiguration" {
     Context "Test for Set-EntraBetaDirSyncConfiguration" {
         It "Should Modifies the directory synchronization settings." {
-            $result = Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold "111" -Force
+            $result = Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold "111" -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Force
             write-host   $result
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Update-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra.Beta -Times 1
@@ -49,7 +49,7 @@ Describe "Set-EntraBetaDirSyncConfiguration" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaDirSyncConfiguration"
 
-            Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold "111" -Force | Out-Null
+            Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold "111" -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Force | Out-Null
             Should -Invoke -CommandName Update-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
@@ -62,7 +62,7 @@ Describe "Set-EntraBetaDirSyncConfiguration" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold "111" -Debug } | Should -Not -Throw
+                { Set-EntraBetaDirSyncConfiguration -AccidentalDeletionThreshold "111" -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

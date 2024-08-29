@@ -101,7 +101,7 @@ Specifies the unique ID of the tenant on which to perform the operation. The def
 
 ```yaml
 Type: System.String
-Parameter Sets: (All)
+Parameter Sets: SetAccidentalDeletionThreshold
 Aliases:
 
 Required: False
