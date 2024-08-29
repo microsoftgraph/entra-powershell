@@ -1,3 +1,4 @@
+<<<<<<< HEAD:.azure-pipelines/onebranch-entra-powershell-release.yml
 trigger: none
 resources:
   repositories:
@@ -35,18 +36,51 @@ extends:
               RolloutSpecType: ' '
               ServiceRootPath: ' '
               RolloutSpecPath: ' '
+=======
+trigger:
+- none
+pool:
+  name: default
+>>>>>>> 584692a0 (Create standard release pipeline):.azure-pipelines/entra-powershell-release.yml
 
-      - job: PsGallery_Push
-        displayName: Push to PS Gallery
-        pool:
-          type: server
-        timeoutInMinutes: 6120
-        steps:
-        - task: powershell@2
-          inputs:
-            targetType: inline
-            script: |
-              Publish-Module -NuGetApiKey $env:NuGetApiKey -Path $(Build.ArtifactStagingDirectory)/modules/Microsoft.Graph.Entra -Verbose
-              Publish-Module -NuGetApiKey $env:NuGetApiKey -Path $(Build.ArtifactStagingDirectory)/modules/Microsoft.Graph.Entra.Beta -Verbose
-            pwsh: false
-        dependsOn: ApprovalService_Job
+stages:
+- stage: PS_Gallery_Deploy
+  displayName: PS Gallery Deploy
+  jobs:
+  - job: Install_Dependencies
+    displayName: Install dependencies
+    steps:
+    - task: PowerShell@2
+      displayName: Version Check
+      inputs:
+        targetType: inline
+        pwsh: true
+        script: |
+          Write-Output $PSVersionTable
+  - job: Release_Approval
+    displayName: Agentless job
+    pool:
+      type: server
+    steps:
+    - task: ManualValidation@0
+      inputs:
+        notifyUsers: ''
+        instructions: 'Please validate the build configuration and resume'
+        onTimeout: reject
+      enabled: false
+      timeoutInMinutes: 6120
+
+  - job: PsGallery_Push
+    displayName: Push to PS Gallery
+    pool:
+      type: server
+    timeoutInMinutes: 6120
+    steps:
+    - task: powershell@2
+      inputs:
+        targetType: inline
+        script: |
+          Publish-Module -NuGetApiKey $env:NuGetApiKey -Path $(Build.ArtifactStagingDirectory)/modules/Microsoft.Graph.Entra -Verbose
+          Publish-Module -NuGetApiKey $env:NuGetApiKey -Path $(Build.ArtifactStagingDirectory)/modules/Microsoft.Graph.Entra.Beta -Verbose
+        pwsh: false
+    dependsOn: Release_Approval
