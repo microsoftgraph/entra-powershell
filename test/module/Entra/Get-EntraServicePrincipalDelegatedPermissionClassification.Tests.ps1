@@ -12,7 +12,7 @@ BeforeAll {
             [PSCustomObject]@{
                 "Id"              = "T2qU_E28O0GgkLLIYRPsTwE"
                 "Classification" = "low"
-                "PermissionId"     = "fc946a4f-bc4d-413b-a090-b2c86113ec4f"
+                "PermissionId"     = "22cc22cc-dd33-ee44-ff55-66aa66aa66aa"
                 "PermissionName"     = "LicenseManager.AccessAsUser"
                 "Parameters"      = $args
             }
@@ -25,9 +25,8 @@ BeforeAll {
 Describe "Get-EntraServicePrincipalDelegatedPermissionClassification" {
     Context "Test for Get-EntraServicePrincipalDelegatedPermissionClassification" {
         It "Should return specific ServicePrincipalDelegatedPermissionClassification" {
-            $result = Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 0008861a-d455-4671-bd24-ce9b3bfce288
+            $result = Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222"
             $result | Should -Not -BeNullOrEmpty
-            Write-Host ($result | convertto-json) 
             $result.Id | should -Be "T2qU_E28O0GgkLLIYRPsTwE"
 
             Should -Invoke -CommandName Get-MgServicePrincipalDelegatedPermissionClassification -ModuleName Microsoft.Graph.Entra -Times 1
@@ -39,30 +38,53 @@ Describe "Get-EntraServicePrincipalDelegatedPermissionClassification" {
             { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'.*"
         }
         It "Should return specific ServicePrincipalDelegatedPermissionClassification when Id passed to it" {
-            $result = Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 0008861a-d455-4671-bd24-ce9b3bfce288 -Id T2qU_E28O0GgkLLIYRPsTwE
+            $result = Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Id 'T2qU_E28O0GgkLLIYRPsTwE'
             $params = Get-Parameters -data $result.Parameters 
             $params.DelegatedPermissionClassificationId | should -Be "T2qU_E28O0GgkLLIYRPsTwE"
         } 
         It "Should fail when Id is invalid" {
-            { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 0008861a-d455-4671-bd24-ce9b3bfce288 -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string.*"
+            { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string.*"
         }  
         It "Should fail when Id is empty" {
-            { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 0008861a-d455-4671-bd24-ce9b3bfce288 -Id } | Should -Throw "Missing an argument for parameter 'Id'.*"
+            { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Id } | Should -Throw "Missing an argument for parameter 'Id'.*"
         } 
         It "Should return specific ServicePrincipalDelegatedPermissionClassification when applied filter to it" {
-            $result = Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 0008861a-d455-4671-bd24-ce9b3bfce288 -Filter "PermissionName eq 'LicenseManager.AccessAsUser'"
+            $result = Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Filter "PermissionName eq 'LicenseManager.AccessAsUser'"
             $result.PermissionName | should -Be "LicenseManager.AccessAsUser"
             $result.ObjectId | should -Be "T2qU_E28O0GgkLLIYRPsTwE"
         }  
         It "Should fail when Filter is empty" {
-            { Get-AzureADMSServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 0008861a-d455-4671-bd24-ce9b3bfce288 -Filter } | Should -Throw "Missing an argument for parameter 'Filter'.*"
-        }   
+            { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Filter } | Should -Throw "Missing an argument for parameter 'Filter'.*"
+        } 
+        It "Property parameter should work" {
+            $result = Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Property PermissionName
+            $result | Should -Not -BeNullOrEmpty
+            $result.PermissionName | Should -Be 'LicenseManager.AccessAsUser'
+
+            Should -Invoke -CommandName Get-MgServicePrincipalDelegatedPermissionClassification -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should fail when Property is empty" {
+             { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }  
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalDelegatedPermissionClassification"
 
-            $result = Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId 0008861a-d455-4671-bd24-ce9b3bfce288
+            $result = Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         }
     }
 }

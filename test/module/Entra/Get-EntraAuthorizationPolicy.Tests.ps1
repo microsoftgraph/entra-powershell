@@ -15,7 +15,7 @@ BeforeAll {
                     AdditionalProperties = ""
                 }
                 "DeletedDateTime"                           = $null
-                "GuestUserRoleId"                           = "111cc9b5-fce9-485e-9566-c68debafac5f"
+                "GuestUserRoleId"                           = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
                 "DisplayName"                               = "AuthorizationPolicy"
                 "Description"                               = "AuthorizationPolicy"
                 "AllowEmailVerifiedUsersToJoinOrganization" = $True
@@ -42,7 +42,7 @@ Describe "Get-EntraAuthorizationPolicy" {
             $result.DisplayName | should -Be 'AuthorizationPolicy'
             $result.Description | should -Be 'AuthorizationPolicy'
             $result.AllowInvitesFrom | should -Be 'everyone'
-            $result.GuestUserRoleId | should -Be '111cc9b5-fce9-485e-9566-c68debafac5f'
+            $result.GuestUserRoleId | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
             $result.AllowEmailVerifiedUsersToJoinOrganization | should -Be $True
             $result.AllowedToSignUpEmailBasedSubscriptions | should -Be $True
             $result.AllowedToUseSspr | should -Be $True
@@ -50,12 +50,35 @@ Describe "Get-EntraAuthorizationPolicy" {
 
             Should -Invoke -CommandName Get-MgPolicyAuthorizationPolicy  -ModuleName Microsoft.Graph.Entra -Times 1
         }
+        It "Property parameter should work" {
+            $result = Get-EntraAuthorizationPolicy -Property DisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be 'AuthorizationPolicy'
+
+            Should -Invoke -CommandName Get-MgPolicyAuthorizationPolicy -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should fail when Property is empty" {
+             { Get-EntraAuthorizationPolicy -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
         It "Should contain 'User-Agent' header" {
            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAuthorizationPolicy"
 
             $result = Get-EntraAuthorizationPolicy
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraAuthorizationPolicy -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         }
     }
 }

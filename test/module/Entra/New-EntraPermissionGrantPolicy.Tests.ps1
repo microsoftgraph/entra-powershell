@@ -15,7 +15,7 @@ BeforeAll {
                 "Description"     = "My new permission grant policy"
                 "DisplayName"     = "My new permission grant policy"
                 "Excludes"        = @{}
-                "Includes"        = @("bddda1ec-0174-44d5-84e2-47fb0ac01595")
+                "Includes"        = @("22cc22cc-dd33-ee44-ff55-66aa66aa66aa")
                 "Parameters"      = $args
             }
         )
@@ -32,7 +32,7 @@ Describe "New-EntraPermissionGrantPolicy" {
             $result.Id | should -Be "my_new_permission_grant_policy_id"
             $result.DisplayName | should -Be "My new permission grant policy"
             $result.Description | should -Be "My new permission grant policy"
-            $result.Includes | should -Be @("bddda1ec-0174-44d5-84e2-47fb0ac01595")
+            $result.Includes | should -Be @("22cc22cc-dd33-ee44-ff55-66aa66aa66aa")
             $result.DeletedDateTime | should -Be "2/8/2024 6:39:16 AM"
 
             Should -Invoke -CommandName New-MgPolicyPermissionGrantPolicy -ModuleName Microsoft.Graph.Entra -Times 1
@@ -56,6 +56,19 @@ Describe "New-EntraPermissionGrantPolicy" {
             $result = New-EntraPermissionGrantPolicy -Id "my_new_permission_grant_policy_id" -DisplayName "MyNewPermissionGrantPolicy" -Description "My new permission grant policy" 
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { New-EntraPermissionGrantPolicy -Id "my_new_permission_grant_policy_id" -DisplayName "MyNewPermissionGrantPolicy" -Description "My new permission grant policy"  -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         }
     }
 }

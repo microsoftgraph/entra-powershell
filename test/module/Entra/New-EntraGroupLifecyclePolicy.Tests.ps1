@@ -10,7 +10,7 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "Id"                          = "a47d4510-08c8-4437-99e9-71ca88e7af0f"
+                "Id"                          = "22cc22cc-dd33-ee44-ff55-66aa66aa66aa"
                 "AlternateNotificationEmails" = "example@contoso.com"
                 "GroupLifetimeInDays"         = "99"
                 "ManagedGroupTypes"           = "Selected"
@@ -27,7 +27,7 @@ Describe "New-EntraGroupLifecyclePolicy " {
         It "Should return created GroupLifecyclePolicy" {
             $result = New-EntraGroupLifecyclePolicy -GroupLifetimeInDays 99 -ManagedGroupTypes "Selected" -AlternateNotificationEmails "example@contoso.com"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be "a47d4510-08c8-4437-99e9-71ca88e7af0f"
+            $result.Id | should -Be "22cc22cc-dd33-ee44-ff55-66aa66aa66aa"
             $result.GroupLifetimeInDays | should -Be "99"
             $result.ManagedGroupTypes | should -Be "Selected"
             $result.AlternateNotificationEmails | should -Be "example@contoso.com"
@@ -54,7 +54,7 @@ Describe "New-EntraGroupLifecyclePolicy " {
         }
         It "Result should Contain ObjectId" {
             $result = New-EntraGroupLifecyclePolicy -GroupLifetimeInDays 99 -ManagedGroupTypes "Selected" -AlternateNotificationEmails "example@contoso.com"
-            $result.ObjectId | should -Be "a47d4510-08c8-4437-99e9-71ca88e7af0f"
+            $result.ObjectId | should -Be "22cc22cc-dd33-ee44-ff55-66aa66aa66aa"
         } 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraGroupLifecyclePolicy"
@@ -62,6 +62,19 @@ Describe "New-EntraGroupLifecyclePolicy " {
             $result = New-EntraGroupLifecyclePolicy -GroupLifetimeInDays 99 -ManagedGroupTypes "Selected" -AlternateNotificationEmails "example@contoso.com"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { New-EntraGroupLifecyclePolicy -GroupLifetimeInDays 99 -ManagedGroupTypes "Selected" -AlternateNotificationEmails "example@contoso.com" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         }
     }
 }

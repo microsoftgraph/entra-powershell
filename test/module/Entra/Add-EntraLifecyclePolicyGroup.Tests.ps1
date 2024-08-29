@@ -23,30 +23,43 @@ BeforeAll {
 Describe "Add-EntraLifecyclePolicyGroup " {
     Context "Test for Add-EntraLifecyclePolicyGroup" {
         It "Should return created LifecyclePolicyGroup" {
-            $result = Add-EntraLifecyclePolicyGroup -Id "a47d4510-08c8-4437-99e9-71ca88e7af0f" -GroupId "0d34b8e3-67ad-4a96-aec6-1c983d2adc5b
+            $result = Add-EntraLifecyclePolicyGroup -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff
             $result | Should -Not -BeNullOrEmpty"
             $result.Value | should -Be "True"
 
             Should -Invoke -CommandName Add-MgGroupToLifecyclePolicy -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Id is invalid" {
-            { Add-EntraLifecyclePolicyGroup -Id "" -GroupId "0d34b8e3-67ad-4a96-aec6-1c983d2adc5b" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string.*"
+            { Add-EntraLifecyclePolicyGroup -Id "" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string.*"
         }
         It "Should fail when Id is empty" {
-            { Add-EntraLifecyclePolicyGroup -Id -GroupId "0d34b8e3-67ad-4a96-aec6-1c983d2adc5b" } | Should -Throw "Missing an argument for parameter 'Id'.*"
+            { Add-EntraLifecyclePolicyGroup -Id -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" } | Should -Throw "Missing an argument for parameter 'Id'.*"
         } 
         It "Should fail when GroupId is invalid" {
-            { Add-EntraLifecyclePolicyGroup -Id "a47d4510-08c8-4437-99e9-71ca88e7af0f" -GroupId "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string.*"
+            { Add-EntraLifecyclePolicyGroup -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string.*"
         }
         It "Should fail when GroupId is empty" {
-            { Add-EntraLifecyclePolicyGroup -Id "a47d4510-08c8-4437-99e9-71ca88e7af0f" -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'.*"
+            { Add-EntraLifecyclePolicyGroup -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'.*"
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraLifecyclePolicyGroup"
 
-            $result = Add-EntraLifecyclePolicyGroup -Id "a47d4510-08c8-4437-99e9-71ca88e7af0f" -GroupId "0d34b8e3-67ad-4a96-aec6-1c983d2adc5b"
+            $result = Add-EntraLifecyclePolicyGroup -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Add-EntraLifecyclePolicyGroup -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -GroupId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         }
     }
 }

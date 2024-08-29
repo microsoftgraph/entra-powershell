@@ -10,7 +10,7 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "Id"                   = "04fee326-10cf-4211-8edd-d2bd3f4a9a9c"
+                "Id"                   = "22cc22cc-dd33-ee44-ff55-66aa66aa66aa"
                 "CreatedDateTime"      = "5/7/2024 10:52:23 AM"
                 "DisplayName"          = "NamedLocation"
                 "ModifiedDateTime"     = "5/7/2024 10:52:23 AM"
@@ -41,7 +41,7 @@ Describe "New-EntraNamedLocationPolicy " {
             $ipRanges2.cidrAddress = "6.5.4.2/30"
             $result = New-EntraNamedLocationPolicy -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "NamedLocation" -IpRanges @($ipRanges1, $ipRanges2) -IsTrusted $false 
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be "04fee326-10cf-4211-8edd-d2bd3f4a9a9c"
+            $result.Id | should -Be "22cc22cc-dd33-ee44-ff55-66aa66aa66aa"
 
             Should -Invoke -CommandName New-MgIdentityConditionalAccessNamedLocation  -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -65,7 +65,7 @@ Describe "New-EntraNamedLocationPolicy " {
         } 
         It "Result should Contain ObjectId" {
             $result = New-EntraNamedLocationPolicy -OdataType "#microsoft.graph.countryNamedLocation" -DisplayName "NamedLocation" -CountriesAndRegions @("US", "ID", "CA") -IncludeUnknownCountriesAndRegions $true
-            $result.ObjectId | should -Be "04fee326-10cf-4211-8edd-d2bd3f4a9a9c"
+            $result.ObjectId | should -Be "22cc22cc-dd33-ee44-ff55-66aa66aa66aa"
         }     
         It "Should contain params inside BodyParameter" {              
             $result = New-EntraNamedLocationPolicy -OdataType "#microsoft.graph.countryNamedLocation" -DisplayName "NamedLocation" -CountriesAndRegions @("US", "ID", "CA") -IncludeUnknownCountriesAndRegions $true
@@ -81,6 +81,19 @@ Describe "New-EntraNamedLocationPolicy " {
             $result = New-EntraNamedLocationPolicy -OdataType "#microsoft.graph.countryNamedLocation" -DisplayName "NamedLocation" -CountriesAndRegions @("US", "ID", "CA") -IncludeUnknownCountriesAndRegions $true
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { New-EntraNamedLocationPolicy -OdataType "#microsoft.graph.countryNamedLocation" -DisplayName "NamedLocation" -CountriesAndRegions @("US", "ID", "CA") -IncludeUnknownCountriesAndRegions $true -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         }
     }
 }

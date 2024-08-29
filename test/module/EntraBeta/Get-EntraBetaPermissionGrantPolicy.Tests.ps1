@@ -13,9 +13,9 @@ BeforeAll {
                 "Id"              = "microsoft-all-application-permissions"
                 "DeletedDateTime" = "2/8/2024 6:39:16 AM"
                 "Description"     = "Includes all application permissions (app roles), for all APIs, for any client application."
-                "DisplayName"     = "All application permissions, for any client app"
+                "DisplayName"     = "All application"
                 "Excludes"        = @{}
-                "Includes"        = @("bddda1ec-0174-44d5-84e2-47fb0ac01595")
+                "Includes"        = @("00aa00aa-bb11-cc22-dd33-44ee44ee44ee")
                 "Parameters"      = $args
             }
         )
@@ -48,12 +48,35 @@ Describe "Get-EntraBetaPermissionGrantPolicy" {
             $params = Get-Parameters -data $result.Parameters
             $params.PermissionGrantPolicyId | Should -Be "microsoft-all-application-permissions"
         }
+        It "Property parameter should work" {
+            $result = Get-EntraBetaPermissionGrantPolicy -Id "microsoft-all-application-permissions" -Property DisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be 'All application'
+
+            Should -Invoke -CommandName Get-MgBetaPolicyPermissionGrantPolicy -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+        It "Should fail when Property is empty" {
+             { Get-EntraBetaPermissionGrantPolicy -Id "microsoft-all-application-permissions" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaPermissionGrantPolicy"
 
             $result = Get-EntraBetaPermissionGrantPolicy -Id "microsoft-all-application-permissions"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraBetaPermissionGrantPolicy -Id "microsoft-all-application-permissions" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         }
     }
 }
