@@ -11,7 +11,7 @@ resources:
     source: EntraPowerShell-Release-Build
     project: One
 extends:
-  template: v2/OneBranch.NonOfficial.CrossPlat.yml@templates
+  template: v2/OneBranch.Official.CrossPlat.yml@templates
   parameters:
     stages:
     - stage: PS_Gallery_Deploy
