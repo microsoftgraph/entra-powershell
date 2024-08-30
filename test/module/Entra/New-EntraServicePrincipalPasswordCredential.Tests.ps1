@@ -15,8 +15,8 @@ BeforeAll {
               "DisplayName"                      = $null
               "EndDateTime"                      = "16/12/2024 13:14:14"
               "Hint"                             = "YWE"
-              "KeyId"                            = "7aa34377-276f-4ea7-a7cb-31c3711f794b"
-              "SecretText"                       = "YWE8Q~~yRXoB42WwGVEP.5csr2gwD10DOPfJWc~o"
+              "KeyId"                            = "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
+              "SecretText"                       = "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
               "StartDateTime"                    = "16/09/2024 14:14:14"
         
             }
@@ -29,7 +29,7 @@ BeforeAll {
 Describe "New-EntraServicePrincipalPasswordCredential"{
     Context "Test for New-EntraServicePrincipalPasswordCredential" {
         It "Should return created password credential for a service principal."{
-            $result =  New-EntraServicePrincipalPasswordCredential -ObjectID "50b6ee9c-563f-402f-9922-c0d7adc86bf0" -StartDate  "2024-09-16T14:14:14Z" -EndDate "2024-12-16T13:14:14Z"
+            $result =  New-EntraServicePrincipalPasswordCredential -ObjectID "bbbbbbbb-1111-2222-3333-cccccccccccc" -StartDate  "2024-09-16T14:14:14Z" -EndDate "2024-12-16T13:14:14Z"
             $result | Should -Not -Be NullOrEmpty
             $result.StartDate | should -Be "16/09/2024 14:14:14"
             $result.EndDate | should -Be "16/12/2024 13:14:14"
@@ -43,19 +43,19 @@ Describe "New-EntraServicePrincipalPasswordCredential"{
             { New-EntraServicePrincipalPasswordCredential -ObjectID "" } | Should -Throw "Cannot bind argument to parameter 'ObjectID' because it is an empty string.*"
         }
         It "Should fail when StartDate is empty" {
-            { New-EntraServicePrincipalPasswordCredential -ObjectID "50b6ee9c-563f-402f-9922-c0d7adc86bf0" -StartDate   } | Should -Throw "Missing an argument for parameter 'StartDate'.*"
+            { New-EntraServicePrincipalPasswordCredential -ObjectID "bbbbbbbb-1111-2222-3333-cccccccccccc" -StartDate   } | Should -Throw "Missing an argument for parameter 'StartDate'.*"
         }
         It "Should fail when StartDate is invalid" {
-            { New-EntraServicePrincipalPasswordCredential -ObjectID "50b6ee9c-563f-402f-9922-c0d7adc86bf0" -StartDate "xyz"  } | Should -Throw "Cannot process argument transformation on parameter 'StartDate'. Cannot convert value*"
+            { New-EntraServicePrincipalPasswordCredential -ObjectID "bbbbbbbb-1111-2222-3333-cccccccccccc" -StartDate "xyz"  } | Should -Throw "Cannot process argument transformation on parameter 'StartDate'. Cannot convert value*"
         }
         It "Should fail when EndDate is empty" {
-            { New-EntraServicePrincipalPasswordCredential -ObjectID "50b6ee9c-563f-402f-9922-c0d7adc86bf0" -EndDate   } | Should -Throw "Missing an argument for parameter 'EndDate'.*"
+            { New-EntraServicePrincipalPasswordCredential -ObjectID "bbbbbbbb-1111-2222-3333-cccccccccccc" -EndDate   } | Should -Throw "Missing an argument for parameter 'EndDate'.*"
         }
         It "Should fail when EndDate is invalid" {
-            { New-EntraServicePrincipalPasswordCredential -ObjectID "50b6ee9c-563f-402f-9922-c0d7adc86bf0" -EndDate "xyz"  } | Should -Throw "Cannot process argument transformation on parameter 'EndDate'. Cannot convert value*"
+            { New-EntraServicePrincipalPasswordCredential -ObjectID "bbbbbbbb-1111-2222-3333-cccccccccccc" -EndDate "xyz"  } | Should -Throw "Cannot process argument transformation on parameter 'EndDate'. Cannot convert value*"
         }
         It "Result should Contain StartDate and EndDate" {
-            $result =  New-EntraServicePrincipalPasswordCredential -ObjectID "50b6ee9c-563f-402f-9922-c0d7adc86bf0" -StartDate  "2024-09-16T14:14:14Z" -EndDate "2024-12-16T13:14:14Z"
+            $result =  New-EntraServicePrincipalPasswordCredential -ObjectID "bbbbbbbb-1111-2222-3333-cccccccccccc" -StartDate  "2024-09-16T14:14:14Z" -EndDate "2024-12-16T13:14:14Z"
             $result.StartDate | should -Be "16/09/2024 14:14:14"
             $result.EndDate | should -Be "16/12/2024 13:14:14"
         } 
@@ -63,9 +63,9 @@ Describe "New-EntraServicePrincipalPasswordCredential"{
             Mock -CommandName Add-MgServicePrincipalPassword -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraServicePrincipalPasswordCredential"
-            $result = New-EntraServicePrincipalPasswordCredential -ObjectID "50b6ee9c-563f-402f-9922-c0d7adc86bf0" -StartDate  "2024-09-16T14:14:14Z" -EndDate "2024-12-16T13:14:14Z"
+            $result = New-EntraServicePrincipalPasswordCredential -ObjectID "bbbbbbbb-1111-2222-3333-cccccccccccc" -StartDate  "2024-09-16T14:14:14Z" -EndDate "2024-12-16T13:14:14Z"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }
+        } 
     }
 }

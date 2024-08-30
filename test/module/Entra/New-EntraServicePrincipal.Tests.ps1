@@ -11,9 +11,9 @@ BeforeAll {
         # Write-Host "Mocking New-MgServicePrincipal with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
-              "AppId"                        = "3ee2fcac-fa2b-4080-a8fe-442c6536ca94"
+              "AppId"                        = "00001111-aaaa-2222-bbbb-3333cccc4444"
               "AccountEnabled"               = $True
-              "Id"                           = "8eb49881-a102-49c0-87ef-4fa85359dc0f"
+              "Id"                           = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
               "AppDisplayName"               = "ToGraph_443DEM"
               "ServicePrincipalType"         = "Application"
               "SignInAudience"               = "AzureADMyOrg"
@@ -24,8 +24,8 @@ BeforeAll {
               "LogoutUrl"                    = "htpp://localhost/logout"
               "ReplyUrls"                    = "http://localhost/redirect"
               "Tags"                         = "{WindowsAzureActiveDirectoryIntegratedApp}"
-              "ServicePrincipalNames"        = "3ee2fcac-fa2b-4080-a8fe-442c6536ca94"
-              "AppOwnerOrganizationId"       = "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
+              "ServicePrincipalNames"        = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
+              "AppOwnerOrganizationId"       = "44445555-eeee-6666-ffff-7777aaaa8888"
               "KeyCredentials"               = @{CustomKeyIdentifier = @(84, 101, 115, 116);DisplayName =""; Key="";KeyId="bf620d66-bd18-4348-94e4-7431d7ad20a6";Type="Symmetric";Usage="Sign"}
               "PasswordCredentials"          = @{}
             }
@@ -38,11 +38,11 @@ BeforeAll {
 Describe "New-EntraServicePrincipal"{
     Context "Test for New-EntraServicePrincipal" {
         It "Should return created service principal"{
-            $result = New-EntraServicePrincipal  -AppId "3ee2fcac-fa2b-4080-a8fe-442c6536ca94" -Homepage 'http://localhost/home' -LogoutUrl 'htpp://localhost/logout' -ReplyUrls 'http://localhost/redirect' -AccountEnabled $true -DisplayName "ToGraph_443DEM"  -AlternativeNames "unitalternative" -Tags {WindowsAzureActiveDirectoryIntegratedApp} -AppRoleAssignmentRequired $true  -ServicePrincipalType "Application" -ServicePrincipalNames "3ee2fcac-fa2b-4080-a8fe-442c6536ca94"
+            $result = New-EntraServicePrincipal  -AppId "00001111-aaaa-2222-bbbb-3333cccc4444" -Homepage 'http://localhost/home' -LogoutUrl 'htpp://localhost/logout' -ReplyUrls 'http://localhost/redirect' -AccountEnabled $true -DisplayName "ToGraph_443DEM"  -AlternativeNames "unitalternative" -Tags {WindowsAzureActiveDirectoryIntegratedApp} -AppRoleAssignmentRequired $true  -ServicePrincipalType "Application" -ServicePrincipalNames "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
             $result | Should -Not -Be NullOrEmpty
             $result.DisplayName | should -Be "ToGraph_443DEM"
             $result.AccountEnabled | should -Be "True"
-            $result.AppId | should -Be "3ee2fcac-fa2b-4080-a8fe-442c6536ca94"
+            $result.AppId | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result.Homepage | should -Be "http://localhost/home" 
             $result.LogoutUrl | should -Be "htpp://localhost/logout"
             $result.AlternativeNames | should -Be "unitalternative"
@@ -50,7 +50,7 @@ Describe "New-EntraServicePrincipal"{
             $result.AppRoleAssignmentRequired | should -Be "True"
             $result.ReplyUrls | should -Be "http://localhost/redirect"
             $result.ServicePrincipalType | should -Be "Application"
-            $result.ServicePrincipalNames | should -Be "3ee2fcac-fa2b-4080-a8fe-442c6536ca94"
+            $result.ServicePrincipalNames | should -Be "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
 
             Should -Invoke -CommandName New-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -61,7 +61,7 @@ Describe "New-EntraServicePrincipal"{
             { New-EntraServicePrincipal  -AppId ""  } | Should -Throw "Cannot bind argument to parameter 'AppId' because it is an empty string.*"
         }
         It "Should fail when non-mandatory is empty" {
-            { New-EntraServicePrincipal  -AppId "3ee2fcac-fa2b-4080-a8fe-442c6536ca94" -Tags  -ReplyUrls -AccountEnabled -AlternativeNames  } | Should -Throw "Missing an argument for parameter*"
+            { New-EntraServicePrincipal  -AppId "00001111-aaaa-2222-bbbb-3333cccc4444" -Tags  -ReplyUrls -AccountEnabled -AlternativeNames  } | Should -Throw "Missing an argument for parameter*"
         }
         It "Should create service principal with KeyCredentials parameter"{
             $creds = New-Object Microsoft.Open.AzureAD.Model.KeyCredential
@@ -72,31 +72,45 @@ Describe "New-EntraServicePrincipal"{
             $creds.Usage = 'Sign'
             $creds.Value = [System.Text.Encoding]::UTF8.GetBytes("123")
             $creds.EndDate = Get-Date -Year 2024 -Month 10 -Day 23
-            $result= New-EntraServicePrincipal -AppId "3ee2fcac-fa2b-4080-a8fe-442c6536ca94" -KeyCredentials $creds
+            $result= New-EntraServicePrincipal -AppId "00001111-aaaa-2222-bbbb-3333cccc4444" -KeyCredentials $creds
             $result | Should -Not -Be NullOrEmpty
-            $result.AppId | should -Be "3ee2fcac-fa2b-4080-a8fe-442c6536ca94"
+            $result.AppId | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
             $keycredentials = @{CustomKeyIdentifier = @(84, 101, 115, 116);DisplayName =""; Key="";KeyId="bf620d66-bd18-4348-94e4-7431d7ad20a6";Type="Symmetric";Usage="Sign"} | ConvertTo-json 
            ($result.KeyCredentials | ConvertTo-json ) | should -Be $keycredentials 
         }
         It "Should fail when KeyCredentials is empty" {
-            { New-EntraServicePrincipal -AppId "3ee2fcac-fa2b-4080-a8fe-442c6536ca94" -KeyCredentials  } | Should -Throw "Missing an argument for parameter 'KeyCredentials'.*"
+            { New-EntraServicePrincipal -AppId "00001111-aaaa-2222-bbbb-3333cccc4444" -KeyCredentials  } | Should -Throw "Missing an argument for parameter 'KeyCredentials'.*"
         }
         It "Should fail when KeyCredentials is Invalid" {
-            { New-EntraServicePrincipal -AppId "3ee2fcac-fa2b-4080-a8fe-442c6536ca94" -KeyCredentials "xyz" } | Should -Throw "Cannot process argument transformation on parameter 'KeyCredentials'.*"
+            { New-EntraServicePrincipal -AppId "00001111-aaaa-2222-bbbb-3333cccc4444" -KeyCredentials "xyz" } | Should -Throw "Cannot process argument transformation on parameter 'KeyCredentials'.*"
         }
         It "Result should Contain ObjectId and AppOwnerTenantId" {
-            $result =  New-EntraServicePrincipal -AppId "3ee2fcac-fa2b-4080-a8fe-442c6536ca94"
-            $result.ObjectId | should -Be "8eb49881-a102-49c0-87ef-4fa85359dc0f"
-            $result.AppOwnerTenantId | should -Be "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
+            $result =  New-EntraServicePrincipal -AppId "00001111-aaaa-2222-bbbb-3333cccc4444"
+            $result.ObjectId | should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result.AppOwnerTenantId | should -Be "44445555-eeee-6666-ffff-7777aaaa8888"
         } 
         It "Should contain 'User-Agent' header" {
             Mock -CommandName New-MgServicePrincipal -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraServicePrincipal"
 
-            $result = New-EntraServicePrincipal  -AppId "3ee2fcac-fa2b-4080-a8fe-442c6536ca94" -Homepage 'http://localhost/home' -LogoutUrl 'htpp://localhost/logout'  -AccountEnabled $true -DisplayName "ToGraph_443DEM"  -AlternativeNames "unitalternative" -Tags {WindowsAzureActiveDirectoryIntegratedApp} -AppRoleAssignmentRequired $true -ReplyUrls 'http://localhost/redirect' -ServicePrincipalType "Application" -ServicePrincipalNames "3ee2fcac-fa2b-4080-a8fe-442c6536ca94"
+            $result = New-EntraServicePrincipal  -AppId "00001111-aaaa-2222-bbbb-3333cccc4444" -Homepage 'http://localhost/home' -LogoutUrl 'htpp://localhost/logout'  -AccountEnabled $true -DisplayName "ToGraph_443DEM"  -AlternativeNames "unitalternative" -Tags {WindowsAzureActiveDirectoryIntegratedApp} -AppRoleAssignmentRequired $true -ReplyUrls 'http://localhost/redirect' -ServicePrincipalType "Application" -ServicePrincipalNames "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
+
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { New-EntraServicePrincipal  -AppId "00001111-aaaa-2222-bbbb-3333cccc4444" -Homepage 'http://localhost/home' -LogoutUrl 'htpp://localhost/logout'  -AccountEnabled $true -DisplayName "ToGraph_443DEM"  -AlternativeNames "unitalternative" -Tags {WindowsAzureActiveDirectoryIntegratedApp} -AppRoleAssignmentRequired $true -ReplyUrls 'http://localhost/redirect' -ServicePrincipalType "Application" -ServicePrincipalNames "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }    
     }
 }
