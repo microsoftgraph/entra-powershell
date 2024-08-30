@@ -113,8 +113,8 @@ Describe "Integration Testing" {
             $global:NewGroup = New-EntraGroup -DisplayName $testGrpName -MailEnabled $false -SecurityEnabled $true -MailNickName "NickName" 
         }
         It "Adding existing user to new group"{
-            $User = Get-EntraUser -top 1
-            Add-EntraGroupMember -ObjectId $NewGroup.ObjectId -RefObjectId $User.ObjectId
+            $ExistUser = Get-EntraUser -top 1
+            Add-EntraGroupMember -ObjectId $NewGroup.ObjectId -RefObjectId $ExistUser.ObjectId
         }
         It "Verification of exixting user's addition to the new group"{
             $User = Get-EntraUser -top 1
@@ -223,6 +223,11 @@ Describe "Integration Testing" {
     }
 
     AfterAll {
+        Remove-EntraGroupMember -ObjectId $ExistGroup.ObjectId -MemberId $NewUser.ObjectId
+        Remove-EntraGroupMember -ObjectId $NewGroup.ObjectId -MemberId $ExistUser.ObjectId
+        Remove-EntraGroupMember -ObjectId $NewGroup1.ObjectId -MemberId $NewUser1.ObjectId
+        Remove-EntraGroupMember -ObjectId $NewGroup2.ObjectId -MemberId $NewUser2.ObjectId
+        
         foreach ($app in (Get-EntraApplication -SearchString "SimpleTestApp")) {
             Remove-EntraApplication -ObjectId $app.Id | Out-Null
         }
