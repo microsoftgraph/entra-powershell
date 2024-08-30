@@ -1000,7 +1000,6 @@ $($output)
             'Confirm' = @('Confirm')
             'Enable' = @('New')
         }
-    
         $targetCmd = $null
         if($this.CmdCustomizations.ContainsKey($SourceCmdName)){
             $targetCmd = $this.CmdCustomizations[$SourceCmdName].TargetName
@@ -1023,10 +1022,19 @@ $($output)
             } else {
                 $prefix = $NewPrefix
             }
+
+            $NewName = ""
+            switch ($SourceCmdlet.Noun) {
+                "RoleDefinition" { $NewName = 'DirectoryRoleDefinition' }
+                "RoleAssignment" { $NewName = 'DirectoryRoleAssignment' }
+                "ServiceAppRoleAssignedTo" { $NewName = 'ServicePrincipalAppRoleAssignedTo' }
+                "ServiceAppRoleAssignment" { $NewName = 'ServicePrincipalAppRoleAssignment' }
+                default { $NewName = $SourceCmdlet.Noun }
+            }
             $cmd = [PSCustomObject]@{
                 Old = '{0}-{1}{2}' -f $SourceCmdlet.Verb, $SourceCmdlet.Prefix, $SourceCmdlet.Noun
                 New = $targetCmd
-                Generate = '{0}-{1}{2}' -f $SourceCmdlet.Verb, $Prefix, $SourceCmdlet.Noun
+                Generate = '{0}-{1}{2}' -f $SourceCmdlet.Verb, $Prefix, $NewName
                 Noun = $SourceCmdlet.Noun
                 Verb = $SourceCmdlet.Verb
                 Parameters = $null
