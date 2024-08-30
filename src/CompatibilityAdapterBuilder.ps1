@@ -90,7 +90,7 @@ class CompatibilityAdapterBuilder {
         foreach ($cmd in $commandList.commands) {  
             
             $paramArray = @()
-        
+        write-host("cmd $cmd")
             foreach ($param in $cmd.Parameters) {
                 # $paramObj = [DataMap]::new()
                 # $paramObj.Name = $param.SourceName
@@ -711,7 +711,7 @@ $($Command.CustomScript)
             write-host("ParamterTransformations  " +$ParamterTransformations)
         }else {
             $parameterDefinitions = $this.GetParametersDefinitionsForNewURLCmd($URLMapping)
-            $ParamterTransformations = $this.GetParametersTransformationsFromUrlMappingNewURL($URLMapping)
+            $ParamterTransformations = $this.GetParametersTransformationsFromUrlMapping($Command,$URLMapping)
             #$ParamterTransformations = $this.GetParametersTransformationsFromUrlMapping($Command,$URLMapping)
         }
 
@@ -1077,16 +1077,16 @@ $paramsList += @"
 
         foreach ($paramKey in $Command.Parameters.Keys) {        
             $param = $Command.Parameters[$paramKey]
+            write-host("pream $($param.Name)")
             $paramBlock = ""
             if($URLMapping.Parameters.Count -gt 0)
             {
+               # write-host(($URLMapping.Parameters | Where-Object { $_.Name -eq $param.Name }).Name)
                 # Find the matching parameter in the URLMapping.Parameters array
                 $matchingParam = $URLMapping.Parameters | Where-Object { $_.Name -eq $param.Name }
-                
-                Write-Host("matching param $($matchingParam)")
-                
+                                
                 if($matchingParam)
-                {
+                {                   
                     if([TransformationTypes]::Name -eq $matchingParam.ConversionType){
                         $paramBlock = $this.GetParameterTransformationName($matchingParam.Name, $matchingParam.TargetName)
                     }
@@ -1101,10 +1101,15 @@ $paramsList += @"
                     }
                     elseif([TransformationTypes]::Remove -eq $matchingParam.ConversionType){
                         $paramBlock = $this.GetParameterException($matchingParam)
+                    }Elseif([TransformationTypes]::None -eq $param.ConversionType){
+                        write-host("asdfads")
+                        $paramBlock = $this.GetParameterTransformationName($param.Name, $param.Name)
                     }
                 }
                 else{
+                    
                     if([TransformationTypes]::None -eq $param.ConversionType){
+                        write-host("asdfads")
                         $paramBlock = $this.GetParameterTransformationName($param.Name, $param.Name)
                     }
                     elseif([TransformationTypes]::Name -eq $param.ConversionType){
@@ -1125,7 +1130,7 @@ $paramsList += @"
                 }
 
             }else {
-                
+                Write-Host("not available")
                 if([TransformationTypes]::None -eq $param.ConversionType){
                     $paramBlock = $this.GetParameterTransformationName($param.Name, $param.Name)
                 }

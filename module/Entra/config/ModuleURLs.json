@@ -4,8 +4,8 @@
                     { "Command" :"New-AzureADMSRoleAssignment", "URl" :"https://graph.microsoft.com/v1.0/roleManagement/directory/roleAssignments", "Method" : "POST", "Parameters" : [
                             {
                                 "SourceName" : "DirectoryScopeId",
-                                "TargetName" : "",
-                                "ConversionType" : "None",
+                                "TargetName" : "Id",
+                                "ConversionType" : "Name",
                                 "SpecialMapping" : null,
                                 "ParameterSetName":"InvokeByDynamicParameters",
                                 "Mandatory": false,
