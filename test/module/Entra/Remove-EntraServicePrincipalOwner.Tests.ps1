@@ -13,45 +13,59 @@ BeforeAll {
 Describe "Remove-EntraServicePrincipalOwner" {
     Context "Test for Remove-EntraServicePrincipalOwner" {
         It "Should return empty object" {
-            $result = Remove-EntraServicePrincipalOwner -ObjectId "0008861a-d455-4671-bd24-ce9b3bfce288" -OwnerId "fd560167-ff1f-471a-8d74-3b0070abcea1"
+            $result = Remove-EntraServicePrincipalOwner -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -OwnerId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Remove-MgServicePrincipalOwnerByRef -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should fail when ObjectId is empty" {
-            { Remove-EntraServicePrincipalOwner -ObjectId  -OwnerId "fd560167-ff1f-471a-8d74-3b0070abcea1" }| Should -Throw "Missing an argument for parameter 'ObjectId'.*"                
+            { Remove-EntraServicePrincipalOwner -ObjectId  -OwnerId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333" }| Should -Throw "Missing an argument for parameter 'ObjectId'.*"                
         } 
         It "Should fail when ObjectId is invalid" {
-            { Remove-EntraServicePrincipalOwner -ObjectId "" -OwnerId "fd560167-ff1f-471a-8d74-3b0070abcea1"} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string.*"
+            { Remove-EntraServicePrincipalOwner -ObjectId "" -OwnerId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string.*"
         }
         It "Should fail when OwnerId is empty" {
-            { Remove-EntraServicePrincipalOwner -ObjectId "0008861a-d455-4671-bd24-ce9b3bfce288" -OwnerId } | Should -Throw "Missing an argument for parameter 'OwnerId'.*"
+            { Remove-EntraServicePrincipalOwner -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -OwnerId } | Should -Throw "Missing an argument for parameter 'OwnerId'.*"
         }
         It "Should fail when OwnerId is invalid" {
-            { Remove-EntraServicePrincipalOwner -ObjectId "0008861a-d455-4671-bd24-ce9b3bfce288" -OwnerId ""} | Should -Throw "Cannot bind argument to parameter 'OwnerId' because it is an empty string."
+            { Remove-EntraServicePrincipalOwner -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -OwnerId ""} | Should -Throw "Cannot bind argument to parameter 'OwnerId' because it is an empty string."
         }
         It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {
             Mock -CommandName Remove-MgServicePrincipalOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraServicePrincipalOwner -ObjectId "0008861a-d455-4671-bd24-ce9b3bfce288" -OwnerId "fd560167-ff1f-471a-8d74-3b0070abcea1"
+            $result = Remove-EntraServicePrincipalOwner -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -OwnerId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
             $params = Get-Parameters -data $result
-            $params.ServicePrincipalId | Should -Be "0008861a-d455-4671-bd24-ce9b3bfce288"
+            $params.ServicePrincipalId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
         It "Should contain DirectoryObjectId in parameters when passed OwnerId to it" {
             Mock -CommandName Remove-MgServicePrincipalOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraServicePrincipalOwner -ObjectId "0008861a-d455-4671-bd24-ce9b3bfce288" -OwnerId "fd560167-ff1f-471a-8d74-3b0070abcea1"
+            $result = Remove-EntraServicePrincipalOwner -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -OwnerId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
             $params = Get-Parameters -data $result
-            $params.DirectoryObjectId | Should -Be "fd560167-ff1f-471a-8d74-3b0070abcea1"
+            $params.DirectoryObjectId | Should -Be "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
         }
         It "Should contain 'User-Agent' header" {
             Mock -CommandName Remove-MgServicePrincipalOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraServicePrincipalOwner"
 
-            $result = Remove-EntraServicePrincipalOwner -ObjectId "0008861a-d455-4671-bd24-ce9b3bfce288" -OwnerId "fd560167-ff1f-471a-8d74-3b0070abcea1"
+            $result = Remove-EntraServicePrincipalOwner -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -OwnerId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         } 
+
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                {  Remove-EntraServicePrincipalOwner -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -OwnerId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }    
     }
 }
