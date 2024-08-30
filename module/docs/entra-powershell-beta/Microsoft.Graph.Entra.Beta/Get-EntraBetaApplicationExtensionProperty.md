@@ -2,7 +2,7 @@
 title: Get-EntraBetaApplicationExtensionProperty
 description: This article provides details on the Get-EntraBetaApplicationExtensionProperty command.
 
-ms.service: active-directory
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaApplicationExtensionProperty
+
 schema: 2.0.0
 ---
 
@@ -24,8 +25,9 @@ Gets application extension properties.
 ## Syntax
 
 ```powershell
-Get-EntraBetaApplicationExtensionProperty 
-    -ObjectId <String>
+Get-EntraBetaApplicationExtensionProperty
+ -ObjectId <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -39,16 +41,19 @@ The `Get-EntraBetaApplicationExtensionProperty` cmdlet gets application extensio
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaApplicationExtensionProperty -ObjectId "3ddd22e7-a150-4bb3-b100-e410dea1cb84"
+$Application = Get-EntraBetaApplication -SearchString '<application-name>'
+Get-EntraBetaApplicationExtensionProperty -ObjectId $Application.ObjectId
 ```
 
-```output
-ObjectId                             Name                                                    TargetObjects
---------                             ----                                                    -------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb extension_36ee4c6c081240a2b820b22ebd02bce3_NewAttribute {}
+```Output
+DeletedDateTime Id                                   AppDisplayName DataType IsMultiValued IsSyncedFromOnPremises Name                                                    TargetObjects
+--------------- --                                   -------------- -------- ------------- ---------------------- ----                                                    -------------
+                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb                Boolean  False         False                  extension_c371a443f6734a3e8982a26357fb7d59_NewAttribute {User}
 ```
 
-This command gets the extension properties for the specified application in Microsoft Entra ID.
+This command gets the extension properties for the specified application in Microsoft Entra ID. You cane use the command `Get-EntraBetaApplication` to get application Id.
+
+- `-ObjectId` parameter specifies the the unique identifier of a application.
 
 ## Parameters
 
@@ -68,9 +73,25 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned.
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

@@ -2,46 +2,52 @@
 title: Get-EntraBetaGroupAppRoleAssignment
 description: This article provides details on the Get-EntraBetaGroupAppRoleAssignment command.
 
-ms.service: active-directory
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/24/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
+author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaGroupAppRoleAssignment
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaGroupAppRoleAssignment
 
 ## Synopsis
+
 Gets a group application role assignment.
 
 ## Syntax
 
 ```powershell
-Get-EntraBetaGroupAppRoleAssignment 
- -ObjectId <String> 
- [-All] 
- [-Top <Int32>] 
+Get-EntraBetaGroupAppRoleAssignment
+ -ObjectId <String>
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
-The Get-EntraBetaGroupAppRoleAssignment cmdlet gets a group application role assignment in Microsoft Entra ID.
+
+The `Get-EntraBetaGroupAppRoleAssignment` cmdlet gets a group application role assignment in Microsoft Entra ID. Specify the `ObjectId` parameter to get a group application role assignment.
 
 ## Examples
 
 ### Example 1: Retrieve application role assignments of a group
+
 ```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
 $GroupId = (Get-EntraBetaGroup -Top 1).ObjectId
 Get-EntraBetaGroupAppRoleAssignment -ObjectId $GroupId
 ```
 
-```output
+```Output
 ObjectId                                    ResourceDisplayName                 PrincipalDisplayName
 --------                                    -------------------                 --------------------
 MSVrBV4APk--eAGnHqMKBLflsQG3rU1EmDFKvgra41I Microsoft Device Management Checkin Ask HR
@@ -49,17 +55,18 @@ MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 
 MSVrBV4APk--eAGnHqMKBDtEqPRvu8xLqWHDSXUhoTE M365 License Manager                Ask HR
 ```
 
-The first command gets the object ID of a group by using the [Get-EntraBetaGroup](./Get-EntraBetaGroup.md) cmdlet.
-The command stores the ID in the $GroupId variable.
+This example retrieves the application role assignments of a group.
 
-The second command gets the application role assignments of the group in $GroupId.
+- `-ObjectId` parameter specifies the ID of a group in Microsoft Entra ID.
 
 ### Example 2: Retrieve all application role assignments of a group
+
 ```powershell
-Get-EntraBetaGroupAppRoleAssignment -ObjectId b220a523-d97c-44c3-a535-b55fe1fa1163 -All
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraBetaGroupAppRoleAssignment -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff' -All
 ```
 
-```output
+```Output
 ObjectId                                    ResourceDisplayName                 PrincipalDisplayName
 --------                                    -------------------                 --------------------
 MSVrBV4APk--eAGnHqMKBLflsQG3rU1EmDFKvgra41I Microsoft Device Management Checkin Ask HR
@@ -67,29 +74,36 @@ MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 
 MSVrBV4APk--eAGnHqMKBDtEqPRvu8xLqWHDSXUhoTE M365 License Manager                Ask HR
 ```
 
-This command gets all application role assignments of the specified group.
+This example retrieves all application role assignments of the specified group.
+
+- `-ObjectId` parameter specifies the ID of a group in Microsoft Entra ID.
 
 ### Example 3: Retrieve top two application role assignments of a group
+
 ```powershell
-Get-EntraBetaGroupAppRoleAssignment -ObjectId b220a523-d97c-44c3-a535-b55fe1fa1163 -Top 2
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraBetaGroupAppRoleAssignment -ObjectId 'cccccccc-8888-9999-0000-dddddddddddd' -Top 2
 ```
 
-```output
+```Output
 ObjectId                                    ResourceDisplayName                 PrincipalDisplayName
 --------                                    -------------------                 --------------------
 MSVrBV4APk--eAGnHqMKBLflsQG3rU1EmDFKvgra41I Microsoft Device Management Checkin Ask HR
 MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 Ask HR
 ```
 
-This command gets top two application role assignments of the specified group.
+This example retrieves top two application role assignments of the specified group.
+
+- `-ObjectId` parameter specifies the ID of a group in Microsoft Entra ID.
 
 ## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -101,10 +115,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
+
 Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -116,10 +131,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -130,8 +146,25 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

@@ -2,7 +2,7 @@
 title: Confirm-EntraDomain
 description: This article provides details on the Confirm-EntraDomain command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Confirm-EntraDomain
+
 schema: 2.0.0
 ---
 
@@ -45,7 +46,7 @@ Connect-Entra -Scopes 'Domain.ReadWrite.All'
 Confirm-EntraDomain -Name Contoso.com
 ```
 
-This command confirms your domain; changing the status to "Verified".
+This example verifies a domain and updates its status to `verified`.
 
 ### Example 2: Confirm the domain with a cross cloud verification code
 
@@ -54,7 +55,7 @@ Connect-Entra -Scopes 'Domain.ReadWrite.All'
 Confirm-EntraDomain -Name Contoso.com -CrossCloudVerificationCode ms84324896
 ```
 
-This command confirms your domain for dual federation scenarios.
+This example confirms a domain in dual federation scenarios.
 
 ## Parameters
 

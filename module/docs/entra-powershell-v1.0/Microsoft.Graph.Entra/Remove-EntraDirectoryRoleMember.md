@@ -2,7 +2,7 @@
 title: Remove-EntraDirectoryRoleMember
 description: This article provides details on the Remove-EntraDirectoryRoleMember command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraDirectoryRoleMember
+
 schema: 2.0.0
 ---
 

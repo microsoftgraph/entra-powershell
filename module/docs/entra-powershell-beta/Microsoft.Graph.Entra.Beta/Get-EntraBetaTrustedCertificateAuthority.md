@@ -1,57 +1,109 @@
 ---
+title: Get-EntraBetaTrustedCertificateAuthority
+description: This article provides details on the Get-EntraBetaTrustedCertificateAuthority command.
+
+
+ms.topic: reference
+ms.date: 08/13/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaTrustedCertificateAuthority
+
 schema: 2.0.0
 ---
 
 # Get-EntraBetaTrustedCertificateAuthority
 
 ## Synopsis
+
 Gets the trusted certificate authority.
 
 ## Syntax
 
-```
-Get-EntraBetaTrustedCertificateAuthority [-TrustedIssuer <String>] [-TrustedIssuerSki <String>]
+```powershell
+Get-EntraBetaTrustedCertificateAuthority
+ [-TrustedIssuer <String>]
+ [-TrustedIssuerSki <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
-The Get-EntraBetaTrustedCertificateAuthority cmdlet gets the trusted certificate authority in Azure Active Directory (AD).
+
+The `Get-EntraBetaTrustedCertificateAuthority` cmdlet gets the trusted certificate authority in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Retrieve the trusted certificate authorities that are defined in your directory
-```
-PS C:\> Get-EntraBetaTrustedCertificateAuthority
+
+```powershell
+Connect-Entra -Scopes 'Organization.Read.All'
+Get-EntraBetaTrustedCertificateAuthority
 ```
 
-This command retrieve the trusted certificate authorities that are defined in your directory.
+```Output
+AuthorityType             : RootAuthority
+CrlDistributionPoint      : https://example3.crl
+DeltaCrlDistributionPoint : https://example3.crl
+TrustedCertificate        : {48, 130, 3, 0…}
+TrustedIssuer             : CN=mscmdlet
+TrustedIssuerSki          : 4BA2D7AC2A5DF47C70E19E61EDFB4E62B3BF67FD
+```
+
+This command retrieves the trusted certificate authorities that are defined in your directory.
 
 ### Example 2: Retrieve the trusted certificate authorities that are defined in your directory based on TrustedIssuer
-```
-PS C:\> Get-EntraBetaTrustedCertificateAuthority -TrustedIssuer "CN=example.azure.com, O=MSIT. Ltd, L=Redmond, C=US"
+
+```powershell
+Connect-Entra -Scopes 'Organization.Read.All'
+Get-EntraBetaTrustedCertificateAuthority -TrustedIssuer 'CN=mscmdlet'
 ```
 
-This command retrieve the trusted certificate authorities that are defined in your directory based on TrustedIssuer.
+```Output
+AuthorityType             : RootAuthority
+CrlDistributionPoint      : https://example3.crl
+DeltaCrlDistributionPoint : https://example3.crl
+TrustedCertificate        : {48, 130, 3, 0…}
+TrustedIssuer             : CN=mscmdlet
+TrustedIssuerSki          : 4BA2D7AC2A5DF47C70E19E61EDFB4E62B3BF67FD
+```
+
+This command retrieves the trusted certificate authorities that are defined in your directory based on TrustedIssuer.
+
+- `-TrustedIssuer` parameter specifies the trusted issuer.
 
 ### Example 3: Retrieve the trusted certificate authorities that are defined in your directory based on TrustedIssuerSki
-```
-PS C:\> Get-EntraBetaTrustedCertificateAuthority -TrustedIssuerSki 4BA2D7AC2A5DF47C70E19E61EDFB4E62B3BF67FD
+
+```powershell
+Connect-Entra -Scopes 'Organization.Read.All'
+Get-EntraBetaTrustedCertificateAuthority -TrustedIssuerSki '4BA2D7AC2A5DF47C70E19E61EDFB4E62B3BF67FD'
 ```
 
-This command retrieve the trusted certificate authorities that are defined in your directory based on TrustedIssuerSki.
+```Output
+AuthorityType             : RootAuthority
+CrlDistributionPoint      : https://example3.crl
+DeltaCrlDistributionPoint : https://example3.crl
+TrustedCertificate        : {48, 130, 3, 0…}
+TrustedIssuer             : CN=mscmdlet
+TrustedIssuerSki          : 4BA2D7AC2A5DF47C70E19E61EDFB4E62B3BF67FD
+```
+
+This command retrieves the trusted certificate authorities that are defined in your directory based on TrustedIssuerSki.
+
+- `-TrustedIssuerSki` parameter specifies the trusted issuer ski.
 
 ## Parameters
 
-
-
 ### -TrustedIssuer
+
 Specifies a trusted issuer.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -63,10 +115,11 @@ Accept wildcard characters: False
 ```
 
 ### -TrustedIssuerSki
-@{Text=}
+
+Specifies a trusted issuer ski.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -77,8 +130,25 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned.
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -88,11 +158,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[New-EntraBetaTrustedCertificateAuthority]()
+[New-EntraBetaTrustedCertificateAuthority](New-EntraBetaTrustedCertificateAuthority.md)
 
-[Remove-EntraBetaTrustedCertificateAuthority]()
+[Set-EntraBetaTrustedCertificateAuthority](Set-EntraBetaTrustedCertificateAuthority.md)
 
-[Set-EntraBetaTrustedCertificateAuthority]()
+[Remove-EntraBetaTrustedCertificateAuthority](Remove-EntraBetaTrustedCertificateAuthority.md)
 
-[Online help and examples for working with certificate authority](https://azure.microsoft.com/en-us/documentation/articles/active-directory-certificate-based-authentication-ios/)
-
+[Online help and examples for working with certificate authority](https://azure.microsoft.com/documentation/articles/active-directory-certificate-based-authentication-ios/)

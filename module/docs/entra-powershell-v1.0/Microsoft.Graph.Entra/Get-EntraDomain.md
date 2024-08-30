@@ -2,7 +2,7 @@
 title: Get-EntraDomain
 description: This article provides details on the Get-EntraDomain command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraDomain
+
 schema: 2.0.0
 ---
 
@@ -26,21 +27,36 @@ Gets a domain.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraDomain 
+Get-EntraDomain
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraDomain 
- -Name <String> 
+Get-EntraDomain
+ -Name <String>
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ## Description
 
 The `Get-EntraDomain` cmdlet gets a domain in Microsoft Entra ID.
+
+The work or school account must be assigned to at least one of the following Microsoft Entra roles:
+
+- User Administrator
+- Helpdesk Administrator
+- Service Support Administrator
+- Directory Readers
+- AdHoc License Administrator
+- Application Administrator
+- Security Reader
+- Security Administrator
+- Privileged Role Administrator
+- Cloud Application Administrator
 
 ## Examples
 
@@ -91,6 +107,22 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

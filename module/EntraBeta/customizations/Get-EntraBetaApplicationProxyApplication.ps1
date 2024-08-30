@@ -11,14 +11,14 @@
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         if ($PSBoundParameters.ContainsKey("Debug")) {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if ($null -ne $PSBoundParameters["ObjectId"]) {
             $params["ApplicationId"] = $PSBoundParameters["ObjectId"]
             $params["Select"] = "onPremisesPublishing"
         }
         if ($PSBoundParameters.ContainsKey("Verbose")) {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($null -ne $PSBoundParameters["WarningVariable"])
         {

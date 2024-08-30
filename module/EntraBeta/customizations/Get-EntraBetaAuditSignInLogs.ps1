@@ -26,7 +26,7 @@
         }
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
-            $params["Verbose"] = $Null
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if($null -ne $PSBoundParameters["All"])
         {
@@ -37,7 +37,7 @@
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
-            $params["Debug"] = $Null
+            $params["Debug"] = $PSBoundParameters["Debug"]
         }
         if($null -ne $PSBoundParameters["WarningVariable"])
         {
@@ -93,7 +93,7 @@
                 $propsToConvert = @('MfaDetail', 'AppliedConditionalAccessPolicies', 'NetworkLocationDetails', 'Location', 'DeviceDetail', 'Status', 'AuthenticationProcessingDetails')
         
                 foreach ($prop in $propsToConvert) {
-                    $value = $_.$prop | ConvertTo-Json | ConvertFrom-Json
+                    $value = $_.$prop | ConvertTo-Json -Depth 10 | ConvertFrom-Json
                     $_ | Add-Member -MemberType NoteProperty -Name $prop -Value ($value) -Force
                 }
             }

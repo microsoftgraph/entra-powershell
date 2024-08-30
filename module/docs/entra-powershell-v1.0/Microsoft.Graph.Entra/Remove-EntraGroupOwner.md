@@ -2,7 +2,7 @@
 title: Remove-EntraGroupOwner
 description: This article provides details on the Remove-EntraGroupOwner command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -10,7 +10,8 @@ ms.reviewer: stevemutungi
 manager: CelesteDG
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraGroupOwner
+
 schema: 2.0.0
 ---
 

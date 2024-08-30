@@ -2,86 +2,113 @@
 title: New-EntraBetaAdministrativeUnit
 description: This article provides details on the New-EntraBetaAdministrativeUnit command.
 
-ms.service: active-directory
+
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 07/03/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaAdministrativeUnit
+
 schema: 2.0.0
 ---
 
 # New-EntraBetaAdministrativeUnit
 
 ## Synopsis
+
 Creates an administrative unit.
 
 ## Syntax
 
 ```powershell
 New-EntraBetaAdministrativeUnit 
-    -DisplayName <String>
-    [-MembershipType <String>] 
-    [-Description <String>] 
-    [-MembershipRule <String>] 
-    [-IsMemberManagementRestricted <Boolean>] 
-    [-MembershipRuleProcessingState <String>]
+ -DisplayName <String>
+ [-Description <String>] 
+ [-IsMemberManagementRestricted <Boolean>] 
  [<CommonParameters>]
 ```
 
 ## Description
-The **New-EntraBetaAdministrativeUnit** cmdlet creates an administrative unit in Microsoft Entra ID.
+
+The `New-EntraBetaAdministrativeUnit` cmdlet creates an administrative unit in Microsoft Entra ID. Specify `DisplayName` parameter to create an administrative unit.
+
+In delegated scenarios, the signed-in user must be assigned a supported Microsoft Entra role or a custom role that includes the `microsoft.directory/administrativeUnits/allProperties/allTasks` permission. The Privileged Role Administrator role is the least privileged role that meets this requirement.
 
 ## Examples
 
 ### Example 1: Create an administrative unit
+
 ```powershell
-PS C:\> New-EntraBetaAdministrativeUnit -DisplayName "TestAU"
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+New-EntraBetaAdministrativeUnit -DisplayName 'TestAU'
 ```
 
-```output
+```Output
 DeletedDateTime Id                                   Description DisplayName IsMemberManagementRestricted Visibility
 --------------- --                                   ----------- ----------- ---------------------------- ----------
-                a30efb43-195c-4544-a754-fcd6df695020             TestAU      False
+                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb             TestAU      False
 ```
 
 This command creates an administrative unit.
+
+- `-DisplayName` parameter specifies the display name for the new administrative unit.
 
 ### Example 2: Create an administrative unit using '-Description' parameter
+
 ```powershell
-PS C:\> New-EntraBetaAdministrativeUnit -DisplayName "test111" -Description "test111"
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$params = @{
+    DisplayName = 'test1'
+    Description = 'New AdministrativeUnit'
+}
+New-EntraBetaAdministrativeUnit @params
 ```
 
-```output
+```Output
 DeletedDateTime Id                                   Description DisplayName IsMemberManagementRestricted Visibility
 --------------- --                                   ----------- ----------- ---------------------------- ----------
-                a30efb43-195c-4544-a754-fcd6df695020 test111     test111     False
-```
-
-### Example 3: Create an administrative unit using '-IsMemberManagementRestricted' parameter
-```powershell
-PS C:\> New-EntraBetaAdministrativeUnit -DisplayName "test111" -IsMemberManagementRestricted $true
-```
-
-```output
-DeletedDateTime Id                                   Description DisplayName IsMemberManagementRestricted Visibility
---------------- --                                   ----------- ----------- ---------------------------- ----------
-                a30efb43-195c-4544-a754-fcd6df695020             test111     True
+                bbbbbbbb-1111-2222-3333-cccccccccccc New AdminiatrativeUnit     test1     False
 ```
 
 This command creates an administrative unit.
+
+- `-DisplayName` parameter specifies the display name for the new administrative unit.
+- `-Description` parameter specifies the description for the new administrative unit.
+
+### Example 3: Create an administrative unit using '-IsMemberManagementRestricted' parameter
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$params = @{
+    DisplayName = 'NewUnit'
+    IsMemberManagementRestricted = $true
+}
+New-EntraBetaAdministrativeUnit @params
+```
+
+```Output
+DeletedDateTime Id                                   Description DisplayName IsMemberManagementRestricted Visibility
+--------------- --                                   ----------- ----------- ---------------------------- ----------
+                cccccccc-2222-3333-4444-dddddddddddd             NewUnit     True
+```
+
+This command creates an administrative unit.
+
+- `-DisplayName` parameter specifies the display name for the new administrative unit.
+- `-IsMemberManagementRestricted` parameter specifies the management rights on resources in the administrative units should be restricted to ONLY the administrators scoped on the administrative unit object.
 
 ## Parameters
 
 ### -Description
+
 Specifies a description for the new administrative unit.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -93,10 +120,11 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayName
+
 Specifies the display name of the new administrative unit.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -108,63 +136,12 @@ Accept wildcard characters: False
 ```
 
 ### -IsMemberManagementRestricted
+
 Indicates whether the management rights on resources in the administrative units should be restricted to ONLY the administrators scoped on the administrative unit object.
 If no value is specified, it defaults to false.
 
 ```yaml
-Type: Boolean
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -MembershipRule
-Specifies the membership rule for a dynamic administrative unit.
-For more information about the rules that you can use for dynamic administrative units and dynamic groups, see [Using attributes to create advanced rules](https://azure.microsoft.com/documentation/articles/active-directory-accessmanagement-groups-with-advanced-rules/).
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -MembershipRuleProcessingState
-Specifies the rule processing state. The acceptable values for this parameter are:
-- "On". Process the group rule.
-- "Paused". Stop processing the group rule.
-Changing the value of the processing state doesn't change the members list of the administrative unit.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -MembershipType
-Specifies whether the membership of this administrative unit is controlled dynamically or by manual assignment.
-The acceptable values for this parameter are:
-- Assigned
-- Dynamic
-
-```yaml
-Type: String
+Type: System.Boolean
 Parameter Sets: (All)
 Aliases:
 
@@ -176,7 +153,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

@@ -2,7 +2,7 @@
 title: Set-EntraApplicationLogo
 description: This article provides details on the Set-EntraApplicationLogo command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -12,7 +12,8 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraApplicationLogo
+
 schema: 2.0.0
 ---
 
@@ -59,7 +60,12 @@ This cmdlet is used to set the logo for an application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Set-EntraApplicationLogo -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -FilePath 'D:\applogo.jpg'
+$params = @{
+    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    FilePath = 'D:\applogo.jpg'
+}
+
+Set-EntraApplicationLogo @params
 ```
 
 This cmdlet sets the application logo for the application specified by the ObjectID parameter to the image specified with the Filepath parameter.

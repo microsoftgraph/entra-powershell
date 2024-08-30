@@ -58,8 +58,6 @@
     href: Microsoft.Graph.Entra/Get-EntraContactMembership.md
   - name: Get-EntraContract
     href: Microsoft.Graph.Entra/Get-EntraContract.md
-  - name: Get-EntraCurrentSessionInfo
-    href: Microsoft.Graph.Entra/Get-EntraCurrentSessionInfo.md
   - name: Get-EntraDeletedApplication
     href: Microsoft.Graph.Entra/Get-EntraDeletedApplication.md
   - name: Get-EntraDevice
@@ -80,7 +78,7 @@
     href: Microsoft.Graph.Entra/Get-EntraDirSyncfeature.md
   - name: Get-EntraDomain
     href: Microsoft.Graph.Entra/Get-EntraDomain.md
-  - name: Get-EntraDomainFedrationSettings
+  - name: Get-EntraDomainFederationSettings
     href: Microsoft.Graph.Entra/Get-EntraDomainFederationSettings.md
   - name: Get-EntraDomainNameReference
     href: Microsoft.Graph.Entra/Get-EntraDomainNameReference.md

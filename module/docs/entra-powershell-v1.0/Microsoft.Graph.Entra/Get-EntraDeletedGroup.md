@@ -2,7 +2,7 @@
 title: Get-EntraDeletedGroup
 description: This article provides details on the Get-EntraDeletedGroup command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraDeletedGroup
+
 schema: 2.0.0
 ---
 
@@ -26,28 +27,31 @@ This cmdlet is used to retrieve the soft deleted groups in a directory.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraDeletedGroup 
- [-Top <Int32>] 
- [-All] 
- [-Filter <String>] 
+Get-EntraDeletedGroup
+ [-Top <Int32>]
+ [-All]
+ [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetByValue
 
 ```powershell
-Get-EntraDeletedGroup 
- [-SearchString <String>] 
- [-All] 
+Get-EntraDeletedGroup
+ [-SearchString <String>]
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraDeletedGroup 
- -Id <String> 
- [-All] 
+Get-EntraDeletedGroup
+ -Id <String>
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -180,7 +184,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies an oData v3.0 filter statement.
+Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
@@ -240,6 +244,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

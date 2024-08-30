@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 function Set-EntraBetaApplicationProxyApplication {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
@@ -26,7 +30,7 @@ function Set-EntraBetaApplicationProxyApplication {
 
     )
 
-    PROCESS {    
+    PROCESS {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $onPremisesPublishing = @{}
@@ -40,7 +44,7 @@ function Set-EntraBetaApplicationProxyApplication {
         }
         if($null -ne $PSBoundParameters["InternalUrl"])
         {
-            $onPremisesPublishing["internalUrl"] = $PSBoundParameters["InternalUrl"]   
+            $onPremisesPublishing["internalUrl"] = $PSBoundParameters["InternalUrl"]
         }
         if($null -ne $PSBoundParameters["ExternalAuthenticationType"])
         {
@@ -71,50 +75,6 @@ function Set-EntraBetaApplicationProxyApplication {
         {
             $onPremisesPublishing["applicationServerTimeout"] = $PSBoundParameters["ApplicationServerTimeout"]
         }
-        if($PSBoundParameters.ContainsKey("Verbose"))
-        {
-            $params["Verbose"] = $Null
-        }
-        if($PSBoundParameters.ContainsKey("Debug"))
-        {
-            $params["Debug"] = $Null
-        }
-        if($null -ne $PSBoundParameters["WarningVariable"])
-        {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-	    if($null -ne $PSBoundParameters["InformationAction"])
-        {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-        }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }
 
         # Update InternalUrl and ExternalUrl
         if ($ExternalUrl.EndsWith("/")) {
@@ -123,21 +83,21 @@ function Set-EntraBetaApplicationProxyApplication {
         else {
             $exUrl = $ExternalUrl
         }
-        $updateUrlBody = @{ 
-            identifierUris = @($exUrl) 
-            web = @{ 
-            redirectUris = @($ExternalUrl) 
+        $updateUrlBody = @{
+            identifierUris = @($exUrl)
+            web = @{
+            redirectUris = @($ExternalUrl)
             homePageUrl = $InternalUrl
             logoutUrl = $ExternalUrl+"?appproxy=logout"
-            } 
+            }
         }
         try {
-            $Application = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ObjectId" -Method PATCH -Body $updateUrlBody
+            Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$ObjectId" -Method PATCH -Body $updateUrlBody
         } catch {
             Write-Error $_
             return
         }
-  
+
         # update onpremises
         $onPremisesPublishingBody = @{onPremisesPublishing = $onPremisesPublishing}
         try {
@@ -146,17 +106,17 @@ function Set-EntraBetaApplicationProxyApplication {
             Write-Error $_
             return
         }
-       
+
         #update connector group
         if($null -ne $PSBoundParameters["ConnectorGroupId"]){
             $ConnectorGroupId = $PSBoundParameters["ConnectorGroupId"]
             $ConnectorGroupBody = @{
                 "@odata.id" = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationproxy/connectorGroups/$ConnectorGroupId"
-            } 
+            }
             $ConnectorGroupBody = $ConnectorGroupBody | ConvertTo-Json
             $ConnectorGroupUri = "https://graph.microsoft.com/beta/applications/$ObjectId/connectorGroup/" + '$ref'
             try {
-                $ConnectorGroup = Invoke-GraphRequest -Method PUT -Uri $ConnectorGroupUri -Body $ConnectorGroupBody -ContentType "application/json"
+                Invoke-GraphRequest -Method PUT -Uri $ConnectorGroupUri -Body $ConnectorGroupBody -ContentType "application/json"
             } catch {
                 Write-Error $_
                 return
@@ -174,6 +134,5 @@ function Set-EntraBetaApplicationProxyApplication {
            }
         }
         $response | Select-Object ObjectId,ExternalAuthenticationType,ApplicationServerTimeout,ExternalUrl,InternalUrl,IsTranslateHostHeaderEnabled,IsTranslateLinksInBodyEnabled,IsOnPremPublishingEnabled,VerifiedCustomDomainCertificatesMetadata,VerifiedCustomDomainKeyCredential,VerifiedCustomDomainPasswordCredential,SingleSignOnSettings,IsHttpOnlyCookieEnabled,IsSecureCookieEnabled,IsPersistentCookieEnabled
-
-    }        
+    }
 }

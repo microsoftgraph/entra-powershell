@@ -2,7 +2,7 @@
 title: Get-EntraUserOAuth2PermissionGrant
 description: This article provides details on the Get-EntraUserOAuth2PermissionGrant command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraUserOAuth2PermissionGrant
+
 schema: 2.0.0
 ---
 
@@ -24,10 +25,11 @@ Gets an oAuth2PermissionGrant object.
 ## Syntax
 
 ```powershell
-Get-EntraUserOAuth2PermissionGrant 
- [-All] 
- -ObjectId <String> 
- [-Top <Int32>] 
+Get-EntraUserOAuth2PermissionGrant
+ [-All]
+ -ObjectId <String>
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -35,23 +37,34 @@ Get-EntraUserOAuth2PermissionGrant
 
 The Get-EntraUserOAuth2PermissionGrant cmdlet gets an oAuth2PermissionGrant object for the specified user in Microsoft Entra ID.
 
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with a supported role permission. The following least privileged roles are supported for this operation.
+
+- Application Administrator
+- Application Developer
+- Cloud Application Administrator
+- Directory Writers
+- Privileged Role Administrator
+- User Administrator
+- Directory Readers
+- Global Reader
+- Guest Inviter
+
 ## Examples
 
 ### Example 1: Retrieve the OAuth2 permission grants for a user
 
 ```powershell
  Connect-Entra -Scopes 'Directory.Read.All'
- $UserId = (Get-EntraUser -Top 1).ObjectId
- Get-EntraUserOAuth2PermissionGrant -ObjectId $UserId
+ Get-EntraUserOAuth2PermissionGrant -ObjectId 'SawyerM@contoso.com'
 ```
 
-The example demonstrates how to retrieve the OAuth2 permission grants for the user.
+This example retrieves the OAuth2 permission grants for a user using the ObjectId parameter. Use the `Get-EntraBetaUser` cmdlet to obtain the `ObjectId` value.
 
 ### Example 2: Retrieve the OAuth2 permission grants for a user using object ID parameter
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraUserOAuth2PermissionGrant -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraUserOAuth2PermissionGrant -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -67,7 +80,7 @@ This example retrieve the OAuth2 permission grants for a user using object ID pa
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraUserOAuth2PermissionGrant -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
+Get-EntraUserOAuth2PermissionGrant -ObjectId 'SawyerM@contoso.com' -All
 ```
 
 ```Output
@@ -126,6 +139,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

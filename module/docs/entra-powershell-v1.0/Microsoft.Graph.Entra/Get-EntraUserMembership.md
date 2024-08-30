@@ -1,8 +1,8 @@
 ---
-title: Get-EntraUserMembership.
+title: Get-EntraUserMembership
 description: This article provides details on the Get-EntraUserMembership command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -11,7 +11,8 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraUserMembership
+
 schema: 2.0.0
 ---
 
@@ -24,10 +25,11 @@ Get user memberships.
 ## Syntax
 
 ```powershell
-Get-EntraUserMembership 
+Get-EntraUserMembership
  -ObjectId <String>
- [-All]  
- [-Top <Int32>] 
+ [-All]
+ [-Top <Int32>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -41,7 +43,7 @@ The Get-EntraUserMembership cmdlet gets user memberships in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserMembership -ObjectId 'dddddddd-9999-0000-1111-eeeeeeeeeeee'
+Get-EntraUserMembership -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -61,7 +63,7 @@ This example demonstrates how to retrieve user memberships in Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserMembership -ObjectId 'dddddddd-9999-0000-1111-eeeeeeeeeeee' -All
+Get-EntraUserMembership -ObjectId 'SawyerM@contoso.com' -All
 ```
 
 ```Output
@@ -81,7 +83,7 @@ This example demonstrates how to retrieve users all memberships in Microsoft Ent
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserMembership -ObjectId 'dddddddd-9999-0000-1111-eeeeeeeeeeee' -Top 5
+Get-EntraUserMembership -ObjectId 'SawyerM@contoso.com' -Top 5
 ```
 
 ```Output
@@ -143,6 +145,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

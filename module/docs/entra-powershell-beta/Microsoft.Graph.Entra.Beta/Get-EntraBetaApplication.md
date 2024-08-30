@@ -1,17 +1,17 @@
 ---
-title: Get-EntraBetaApplication.
+title: Get-EntraBetaApplication
 description: This article provides details on the Get-EntraBetaApplication command.
 
-ms.service: active-directory
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 06/17/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaApplication
+
 schema: 2.0.0
 ---
 
@@ -26,28 +26,31 @@ Gets an application.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraBetaApplication 
- [-Top <Int32>] 
- [-All] 
- [-Filter <String>] 
+Get-EntraBetaApplication
+ [-Top <Int32>]
+ [-All]
+ [-Filter <String>]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetByValue
 
 ```powershell
-Get-EntraBetaApplication 
- [-SearchString <String>] 
- [-All] 
+Get-EntraBetaApplication
+ [-SearchString <String>]
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraBetaApplication 
- -ObjectId <String> 
- [-All] 
+Get-EntraBetaApplication
+ -ObjectId <String>
+ [-All]
+ [-Property <String[]>]
  [<CommonParameters>]
 ```
 
@@ -61,26 +64,25 @@ The `Get-EntraBetaApplication` cmdlet gets a Microsoft Entra ID application.
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaApplication -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+Get-EntraBetaApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-```output
+```Output
 DisplayName         Id                                   AppId                                SignInAudience PublisherDomain
 -----------         --                                   -----                                -------------- ---------------
 ToGraph_443democc3c aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
 ```
 
-This example demonstrates how to retrieve specific application by providing ID.  
-This command gets an application for the specified ObjectId.
+This example demonstrates how to retrieve specific application by providing ID. 
 
 ### Example 2: Get all applications
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get- Get-EntraBetaApplication -All 
+Get-EntraBetaApplication -All 
 ```
 
-```output
+```Output
 DisplayName         Id                                   AppId                                SignInAudience                     PublisherDomain
 -----------         --                                   -----                                --------------                     ---------------
 test app            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADandPersonalMicrosoftAccount contoso.com
@@ -90,28 +92,31 @@ test adms app azure gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb
 test adms2          iiiiiiii-aaaa-bbbb-cccc-jjjjjjjjjjjj jjjjjjjj-bbbb-cccc-dddd-kkkkkkkkkkkk AzureADandPersonalMicrosoftAccount contoso.com
 ```
 
-This example demonstrates how to get all applications from Microsoft Entra ID.  
-This command gets the all applications in Microsoft Entra ID.
+This example demonstrates how to get all applications from Microsoft Entra ID.
 
-### Example 3: Get five applications
+### Example 3: Get applications with expiring secrets
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaApplication -Top 5
+Get-EntraApplication |
+    Where-Object {
+        $_.PasswordCredentials.keyId -ne $null -and
+        $_.PasswordCredentials.EndDateTime -lt (Get-Date).AddDays(30)
+    } |
+    ForEach-Object {
+        $_.DisplayName,
+        $_.Id,
+        $_.PasswordCredentials
+    }
 ```
 
-```output
-DisplayName         Id                                   AppId                                SignInAudience                     PublisherDomain
------------         --                                   -----                                --------------                     ---------------
-test app            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADandPersonalMicrosoftAccount contoso.com
-ToGraph_443DEM      cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg                       contoso.com
-test adms           eeeeeeee-6666-7777-8888-ffffffffffff ffffffff-7777-8888-9999-gggggggggggg AzureADandPersonalMicrosoftAccount contoso.com
-test adms app azure gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb-iiiiiiiiiiii AzureADandPersonalMicrosoftAccount contoso.com
-test adms2          iiiiiiii-aaaa-bbbb-cccc-jjjjjjjjjjjj jjjjjjjj-bbbb-cccc-dddd-kkkkkkkkkkkk AzureADandPersonalMicrosoftAccount contoso.com
+```Output
+CustomKeyIdentifier DisplayName EndDateTime          Hint KeyId                                SecretText StartDateTime
+------------------- ----------- -----------          ---- -----                                ---------- -------------
+                    AppOne      8/19/2024 9:00:00 PM 1jQ  aaaaaaaa-0b0b-1c1c-2d2d-333333333333            8/6/2024 6:07:47 PM
 ```
 
-This example demonstrates how to get top five applications from Microsoft Entra ID.  
-This command gets the top five applications.
+This example retrieves applications with expiring secrets within 30 days.
 
 ### Example 4: Get an application by display name
 
@@ -120,30 +125,28 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaApplication -Filter "DisplayName eq 'ToGraph_443DEMO'"
 ```
 
-```output
+```Output
 DisplayName     Id                                   AppId                                SignInAudience PublisherDomain
 -----------     --                                   -----                                -------------- ---------------
 ToGraph_443DEMO cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg   contoso.com
 ```
 
-In this example, we retrieve application by userPrincipalName from Microsoft Entra ID.  
-This command gets an application by its display name.
+In this example, we retrieve application by userPrincipalName from Microsoft Entra ID. 
 
 ### Example 5: Search among retrieved applications
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraBetaApplication -SearchString "My new application 2"
+Get-EntraBetaApplication -SearchString 'My new application 2'
 ```
 
-```output
+```Output
 DisplayName          Id                                   AppId                                SignInAudience                     PublisherDomain
 -----------          --                                   -----                                --------------                     ---------------
 My new application 2 kkkkkkkk-cccc-dddd-eeee-llllllllllll llllllll-dddd-eeee-ffff-mmmmmmmmmmmm AzureADandPersonalMicrosoftAccount contoso.com
 ```
 
-This example demonstrates how to retrieve applications for specific string from Microsoft Entra ID.  
-This cmdlet gets all applications that match the value of SearchString against the first characters in DisplayName.
+This example demonstrates how to retrieve applications for specific string from Microsoft Entra ID. 
 
 ### Example 6: Retrieve an application by identifierUris
 
@@ -161,7 +164,7 @@ This example demonstrates how to retrieve applications by its identifierUris fro
 List all pages.
 
 ```yaml
-Type: System.SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -174,7 +177,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Specifies an oData v3.0 filter statement.
+Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
 
 ```yaml
@@ -234,6 +237,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

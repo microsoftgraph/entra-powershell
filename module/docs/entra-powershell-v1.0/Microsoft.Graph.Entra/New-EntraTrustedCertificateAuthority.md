@@ -2,16 +2,18 @@
 title: New-EntraTrustedCertificateAuthority
 description: This article provides details on the New-EntraTrustedCertificateAuthority command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
+author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraTrustedCertificateAuthority
+
 schema: 2.0.0
 ---
 
@@ -31,7 +33,7 @@ New-EntraTrustedCertificateAuthority
 
 ## Description
 
-The New-EntraTrustedCertificateAuthority cmdlet creates a trusted certificate authority in Microsoft Entra ID.
+The `New-EntraTrustedCertificateAuthority` cmdlet creates a trusted certificate authority in Microsoft Entra ID.
 
 ## Examples
 
@@ -49,9 +51,9 @@ New-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $new_ca
 ```
 
 ```Output
-Id                                   CertificateAuthorities
---                                   ----------------------
-0a0a0a0a-1111-bbbb-2222-3c3c3c3c3c3c {class CertificateAuthorityInformation {...
+Id
+--
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This command creates the trusted certificate authorities in your directory.

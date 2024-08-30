@@ -2,16 +2,18 @@
 title: Set-EntraTrustedCertificateAuthority
 description: This article provides details on the Set-EntraTrustedCertificateAuthority command.
 
-ms.service: entra
+
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version:
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraTrustedCertificateAuthority
+
 schema: 2.0.0
 ---
 
@@ -30,7 +32,7 @@ Set-EntraTrustedCertificateAuthority
 
 ## Description
 
-The Set-EntraTrustedCertificateAuthority cmdlet updates a trusted certificate authority in Microsoft Entra ID.
+The `Set-EntraTrustedCertificateAuthority` cmdlet updates a trusted certificate authority in Microsoft Entra ID.
 
 ## Examples
 
@@ -39,9 +41,15 @@ The Set-EntraTrustedCertificateAuthority cmdlet updates a trusted certificate au
 ```powershell
 Connect-Entra -Scopes 'Organization.ReadWrite.All'
 
-$cer = Set-EntraTrustedCertificateAuthority #Get the CertificateAuthorityInformation object
+$cer = Get-EntraTrustedCertificateAuthority #Get the CertificateAuthorityInformation object
 $cer[0].CrlDistributionPoint = "https://example.crl"
 Set-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
+```
+
+```Output
+Id
+--
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This command updates the trusted certificate authorities that are defined in your directory.
