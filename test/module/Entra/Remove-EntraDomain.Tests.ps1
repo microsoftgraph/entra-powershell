@@ -13,7 +13,7 @@ BeforeAll {
 Describe "Remove-EntraDomain" {
     Context "Test for Remove-EntraDomain" {
         It "Should return empty domain name" {
-            $result = Remove-EntraDomain -Name Contoso.com
+            $result = Remove-EntraDomain -Name "Contoso.com"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgDomain -ModuleName Microsoft.Graph.Entra -Times 1
@@ -30,18 +30,32 @@ Describe "Remove-EntraDomain" {
         It "Should contain DomainId in parameters when passed Name to it" {
             Mock -CommandName Remove-MgDomain -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraDomain -Name Contoso.com
+            $result = Remove-EntraDomain -Name "Contoso.com"
             $params = Get-Parameters -data $result
-            $params.DomainId | Should -Be Contoso.com
+            $params.DomainId | Should -Be "Contoso.com"
         }
 
         It "Should contain 'User-Agent' header" {
             Mock -CommandName Remove-MgDomain -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraDomain"
-            $result = Remove-EntraDomain -Name Contoso.com
+            $result = Remove-EntraDomain -Name "Contoso.com"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        } 
+        }
+        
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Remove-EntraDomain -Name "Contoso.com" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }   
     }
 }

@@ -11,7 +11,7 @@ BeforeAll {
         return @(
             [PSCustomObject]@{
               "DeletedDateTime"                 = $null
-              "Id"                              = "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c"
+              "Id"                              = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
               "Department"                      = $null
               "GivenName"                       = $null
               "DisplayName"                     = "Bob Kelly (TAILSPIN)"
@@ -48,9 +48,9 @@ BeforeAll {
 Describe "Get-EntraContact" {
     Context "Test for Get-EntraContact" {
         It "Should return specific Contact" {
-            $result = Get-EntraContact -ObjectId "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c"
+            $result = Get-EntraContact -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be 'cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c'
+            $result.Id | Should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
             $result.OnPremisesSyncEnabled | Should -BeNullOrEmpty
             $result.OnPremisesLastSyncDateTime | Should -BeNullOrEmpty
             $result.Phones | Should -BeNullOrEmpty
@@ -74,6 +74,9 @@ Describe "Get-EntraContact" {
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgContact  -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should fail when All is invalid" {
+            { Get-EntraContact -All XY } | Should -Throw "A positional parameter cannot be found that accepts argument 'xy'.*"
         }
 
         It "Should return specific group by filter" {
@@ -100,26 +103,50 @@ Describe "Get-EntraContact" {
         }  
 
         It "Should fail when top is invalid" {
-            { Get-EntraContact -Top HH } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraContact -Top xy } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }  
 
         It "Result should Contain ObjectId" {
-            $result = Get-EntraContact -ObjectId "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c"
-            $result.ObjectId | should -Be "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c"
+            $result = Get-EntraContact -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result.ObjectId | should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         } 
 
         It "Should contain OrgContactId in parameters when passed ObjectId to it" {
-            $result = Get-EntraContact -ObjectId "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c"
+            $result = Get-EntraContact -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $params = Get-Parameters -data $result.Parameters
-            $params.OrgContactId | Should -Match "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c"
+            $params.OrgContactId | Should -Match "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+        }
+        It "Property parameter should work" {
+            $result = Get-EntraContact -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property DisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be 'Bob Kelly (TAILSPIN)'
+
+            Should -Invoke -CommandName Get-MgContact -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        It "Should fail when Property is empty" {
+             { Get-EntraContact -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraContact"
 
-            $result = Get-EntraContact -ObjectId "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c"
+            $result = Get-EntraContact -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        }
+
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraContact -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         }    
     }
 }

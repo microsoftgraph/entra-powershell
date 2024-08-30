@@ -10,7 +10,7 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-              "Id"                              = "69641f6c-41dc-4f63-9c21-cc9c8ed12931"
+              "Id"                              = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
              " DeletedDateTime"                 = $null
               "AdditionalProperties"            = @{"@odata.type" ="#microsoft.graph.group"
                                                     "DisplayName"                     = "All Employees"
@@ -32,9 +32,9 @@ BeforeAll {
 Describe "Get-EntraContactMembership" {
     Context "Test for Get-EntraContactMembership" {
         It "Should return specific Contact Membership" {
-            $result = Get-EntraContactMembership -ObjectId "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c"
+            $result = Get-EntraContactMembership -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be '69641f6c-41dc-4f63-9c21-cc9c8ed12931'
+            $result.Id | Should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
             $result.DeletedDateTime | Should -BeNullOrEmpty
             
             Should -Invoke -CommandName Get-MgContactMemberOf -ModuleName Microsoft.Graph.Entra -Times 1
@@ -45,44 +45,74 @@ Describe "Get-EntraContactMembership" {
         }
 
         It "Should return all Contact Membership" {
-            $result = Get-EntraContactMembership -ObjectId "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c" -All 
+            $result = Get-EntraContactMembership -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -All 
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgContactMemberOf -ModuleName Microsoft.Graph.Entra -Times 1
         }
+        It "Should fail when All is invalid" {
+            { Get-EntraContactMembership -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -All XY } | Should -Throw "A positional parameter cannot be found that accepts argument 'xy'.*"
+        }
 
         It "Should return top Contact Membership" {
-            $result = Get-EntraContactMembership -ObjectId "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c" -Top 1
+            $result = Get-EntraContactMembership -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Top 1
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgContactMemberOf -ModuleName Microsoft.Graph.Entra -Times 1
         }  
 
         It "Should fail when top is empty" {
-            { Get-EntraContactMembership -ObjectId "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraContactMembership -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }  
 
         It "Should fail when top is invalid" {
-            { Get-EntraContactMembership -ObjectId "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c" -Top DF } | Should -Throw  "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraContactMembership -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Top DF } | Should -Throw  "Cannot process argument transformation on parameter 'Top'*"
         }  
 
         It "Result should Contain ObjectId" {
-            $result = Get-EntraContactMembership -ObjectId "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c"
-            $result.ObjectId | should -Be "69641f6c-41dc-4f63-9c21-cc9c8ed12931"
+            $result = Get-EntraContactMembership -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result.ObjectId | should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         } 
 
         It "Should contain OrgContactId in parameters when passed ObjectId to it" {
-            $result = Get-EntraContactMembership -ObjectId "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c"
+            $result = Get-EntraContactMembership -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $params = Get-Parameters -data $result.Parameters
-            $params.OrgContactId | Should -Match "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c"
+            $params.OrgContactId | Should -Match "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+        }
+
+        It "Property parameter should work" {
+            $result = Get-EntraContactMembership -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property Id
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
+
+            Should -Invoke -CommandName Get-MgContactMemberOf -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+        
+        It "Should fail when Property is empty" {
+             { Get-EntraContactMembership -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraContactMembership"
             
-            $result = Get-EntraContactMembership -ObjectId "cb4e4d7f-3cd6-43f2-8d37-b23b04b6417c"
+            $result = Get-EntraContactMembership -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }    
+        }
+
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraContactMembership -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }   
+
     }
 }
