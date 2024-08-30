@@ -56,8 +56,7 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-$UserId = (Get-EntraBetaUser -Top 1).ObjectId
-Get-EntraBetaUserOAuth2PermissionGrant -ObjectId $UserId
+Get-EntraBetaUserOAuth2PermissionGrant -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -73,7 +72,7 @@ This example retrieves the OAuth2 permission grants for a user using the ObjectI
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraUserOAuth2PermissionGrant -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraUserOAuth2PermissionGrant -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -91,7 +90,7 @@ This example retrieves the OAuth2 permission grants for a user using object ID p
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraUserOAuth2PermissionGrant -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
+Get-EntraUserOAuth2PermissionGrant -ObjectId 'SawyerM@contoso.comb' -All
 ```
 
 ```Output
@@ -109,7 +108,7 @@ This example retrieves the OAuth2 permission grants for a user using All paramet
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraUserOAuth2PermissionGrant -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 1
+Get-EntraUserOAuth2PermissionGrant -ObjectId 'SawyerM@contoso.com' -Top 1
 ```
 
 ```Output

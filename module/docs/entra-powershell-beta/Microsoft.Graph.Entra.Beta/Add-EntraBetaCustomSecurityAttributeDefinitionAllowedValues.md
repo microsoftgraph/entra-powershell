@@ -74,7 +74,7 @@ This example adds a predefined value to a custom security attribute definition.
 The unique identifier for a custom security attribute definition in Microsoft Entra ID.
 
 ```yaml
-Type: Sysetm.String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
