@@ -57,8 +57,8 @@ The signed-in user must be assigned one of the following directory roles:
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$CustomSecurityAttributeDefinitionId  = Get-EntraCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>'
-Get-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId $CustomSecurityAttributeDefinitionId
+$CustomSecurityAttributeDefinition  = Get-EntraCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>'
+Get-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId $CustomSecurityAttributeDefinition.Id
 ```
 
 ```Output
@@ -75,9 +75,9 @@ This example retrieves an all predefined values.
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$CustomSecurityAttributeDefinitionId  = Get-EntraCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>'
+$CustomSecurityAttributeDefinition  = Get-EntraCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>'
 $params = @{
-    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinitionId
+    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinition.Id
     Id = 'Alpine'
 }
 Get-EntraCustomSecurityAttributeDefinitionAllowedValue @params
@@ -98,9 +98,9 @@ This example retrieves a specific predefined value.
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$CustomSecurityAttributeDefinitionId  = Get-EntraCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>'
+$CustomSecurityAttributeDefinition  = Get-EntraCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>'
 $params = @{
-    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinitionId
+    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinition.Id
     Filter = "Id eq 'Apline'"
 }
 Get-EntraCustomSecurityAttributeDefinitionAllowedValue @params
