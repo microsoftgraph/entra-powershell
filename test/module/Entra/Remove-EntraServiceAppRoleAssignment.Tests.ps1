@@ -12,38 +12,52 @@ BeforeAll {
 Describe "Remove-EntraServiceAppRoleAssignment" {
     Context "Test for Remove-EntraServiceAppRoleAssignment" {
         It "Should return empty object" {
-            $result =  Remove-EntraServiceAppRoleAssignment -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886"  -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww"
+            $result =  Remove-EntraServiceAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  -AppRoleAssignmentId "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u"
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Remove-MgServicePrincipalAppRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
         It "Should fail when ObjectId is empty" {
-            { Remove-EntraServiceAppRoleAssignment -ObjectId  -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww"}| Should -Throw "Missing an argument for parameter 'ObjectId'.*"                
+            { Remove-EntraServiceAppRoleAssignment -ObjectId  -AppRoleAssignmentId "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u"}| Should -Throw "Missing an argument for parameter 'ObjectId'.*"                
         } 
         It "Should fail when ObjectId is invalid" {
-            { Remove-EntraServiceAppRoleAssignment -ObjectId "" -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string.*"
+            { Remove-EntraServiceAppRoleAssignment -ObjectId "" -AppRoleAssignmentId "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string.*"
         }
         It "Should fail when AppRoleAssignmentId is empty" {
-            { Remove-EntraServiceAppRoleAssignment -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -AppRoleAssignmentId }| Should -Throw "Missing an argument for parameter 'AppRoleAssignmentId'.*"                
+            { Remove-EntraServiceAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId }| Should -Throw "Missing an argument for parameter 'AppRoleAssignmentId'.*"                
         } 
         It "Should fail when AppRoleAssignmentId is invalid" {
-            { Remove-EntraServiceAppRoleAssignment -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -AppRoleAssignmentId "" } | Should -Throw "Cannot bind argument to parameter 'AppRoleAssignmentId' because it is an empty string.*"
+            { Remove-EntraServiceAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "" } | Should -Throw "Cannot bind argument to parameter 'AppRoleAssignmentId' because it is an empty string.*"
         }
         It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {
             Mock -CommandName Remove-MgServicePrincipalAppRoleAssignment -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraServiceAppRoleAssignment -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886"  -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww" 
+            $result = Remove-EntraServiceAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  -AppRoleAssignmentId "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u" 
             $params = Get-Parameters -data $result
-            $params.ServicePrincipalId | Should -Be "cc7fcc82-ac1b-4785-af47-2ca3b7052886"
+            $params.ServicePrincipalId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         
         }
         It "Should contain 'User-Agent' header" {
             Mock -CommandName Remove-MgServicePrincipalAppRoleAssignment -MockWith {$args} -ModuleName Microsoft.Graph.Entra
             
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraServiceAppRoleAssignment"
-            $result = Remove-EntraServiceAppRoleAssignment -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886"  -AppRoleAssignmentId "gsx_zBushUevRyyjtwUohm_RMYjcGsJIjXwKOVMr3ww"
+            $result = Remove-EntraServiceAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  -AppRoleAssignmentId "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        } 
+        }
+
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Remove-EntraServiceAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  -AppRoleAssignmentId "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }   
     }
 }
