@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaContactMembership
+description: This article provides details on the Get-EntraBetaContactMembership command.
+
+
+ms.topic: reference
+ms.date: 08/14/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaContactMembership
@@ -9,6 +19,7 @@ schema: 2.0.0
 # Get-EntraBetaContactMembership
 
 ## Synopsis
+
 Get a contact membership.
 
 ## Syntax
@@ -23,31 +34,74 @@ Get-EntraBetaContactMembership
 ```
 
 ## Description
-The Get-EntraBetaContactMembership cmdlet gets a contact membership in Azure Active Directory.
+
+The `Get-EntraBetaContactMembership` cmdlet gets a contact membership in Microsoft Entra ID.
+
+This command is useful to administrators who need to understand which groups, roles, or administrative units a particular contact belongs to. This can be important for troubleshooting access issues, auditing memberships, and ensuring that contact memberships are correctly configured.
 
 ## Examples
 
 ### Example 1: Get the memberships of a contact
-```
-PS C:\> $Contact = Get-EntraBetaContact -Top 1
-PS C:\> Get-EntraBetaContactMembership -ObjectId $Contact.ObjectId
 
-ObjectId                             ObjectType
---------                             ----------
-0015df25-808e-4715-9c24-a6929c25c201 Group
+```powershell
+Connect-Entra -Scopes 'OrgContact.Read.All'
+$Contact = Get-EntraBetaContact -Filter "DisplayName eq 'Contoso Contact'"
+Get-EntrabetaContactMembership -ObjectId $Contact.ObjectId
 ```
 
-The first command gets a contact by using the Get-EntraBetaContact (./Get-EntraBetaContact.md)cmdlet, and then stores it in the $Contact variable.
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+ffffffff-5555-6666-7777-aaaaaaaaaaaa
+aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb
+bbbbbbbb-7777-8888-9999-cccccccccccc
+```
 
-The second command gets the memberships for $Contact.
+This command gets all the memberships for specified contact.
+
+### Example 2: Get all memberships of a contact
+
+```powershell
+Connect-Entra -Scopes 'OrgContact.Read.All'
+$Contact = Get-EntraBetaContact -Filter "DisplayName eq 'Contoso Contact'"
+Get-EntraBetaContactMembership -ObjectId $Contact.ObjectId -All
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+ffffffff-5555-6666-7777-aaaaaaaaaaaa
+aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb
+bbbbbbbb-7777-8888-9999-cccccccccccc
+```
+
+This command gets all the memberships for specified contact.
+
+### Example 3: Get top two memberships of a contact
+
+```powershell
+Connect-Entra -Scopes 'OrgContact.Read.All'
+$Contact = Get-EntraBetaContact -Filter "DisplayName eq 'Contoso Contact'"
+Get-EntraBetaContactMembership -ObjectId $Contact.ObjectId -Top 2
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+ffffffff-5555-6666-7777-aaaaaaaaaaaa
+aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb
+```
+
+This command gets top two memberships for specified contact.
 
 ## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -57,11 +111,13 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
 ### -ObjectId
-Specifies the ID of a contact in Azure Active Directory.
+
+Specifies the ID of a contact in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -73,10 +129,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -89,7 +146,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -104,7 +161,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -114,5 +172,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaContact]()
-
+[Get-EntraBetaContact](Get-EntraBetaContact.md)
