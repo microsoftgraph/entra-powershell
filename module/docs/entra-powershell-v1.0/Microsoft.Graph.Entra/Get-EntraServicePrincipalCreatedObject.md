@@ -2,7 +2,6 @@
 title: Get-EntraServicePrincipalCreatedObject
 description: This article provides details on the Get-EntraServicePrincipalCreatedObject command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -35,7 +34,7 @@ Get-EntraServicePrincipalCreatedObject
 
 ## Description
 
-The Get-EntraServicePrincipalCreatedObject cmdlet gets an object created by a service principal in Microsoft Entra ID.
+The `Get-EntraServicePrincipalCreatedObject` cmdlet gets an object created by a service principal in Microsoft Entra ID.
 
 ## Examples
 
@@ -47,11 +46,7 @@ $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
 Get-EntraServicePrincipalCreatedObject -ObjectId $ServicePrincipalId
 ```
 
-The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md) cmdlet. 
-The command stores the ID in the $ServicePrincipalId variable.
-
-The second command gets the objects created by the service principal identified by $ServicePrincipalId.
-
+This example shows how to retrieve the objects created by the service principal.
 
 ### Example 2: Retrieve the all objects created by a service principal
 

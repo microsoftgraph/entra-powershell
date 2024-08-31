@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Revoke-EntraSignedInUserAllRefreshToken
@@ -46,6 +47,12 @@ After running this command, there might be a small delay of a few minutes before
 ```powershell
 Connect-Entra -Scopes 'User.RevokeSessions.All'
 Revoke-EntraSignedInUserAllRefreshToken
+```
+
+```Output
+Value
+-----
+True
 ```
 
 This command revokes the tokens for the current user.

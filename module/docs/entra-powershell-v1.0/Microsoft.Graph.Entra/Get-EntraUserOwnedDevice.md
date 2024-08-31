@@ -44,7 +44,7 @@ The Get-EntraUserOwnedDevice cmdlet gets registered devices owned by the specifi
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserOwnedDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraUserOwnedDevice -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -60,7 +60,7 @@ This command gets the registered devices owned by the specified user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserOwnedDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
+Get-EntraUserOwnedDevice -ObjectId 'SawyerM@contoso.com' -All
 ```
 
 ```output
@@ -76,7 +76,7 @@ This command gets all the registered devices owned by the specified user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read'
-Get-EntraUserOwnedDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 1
+Get-EntraUserOwnedDevice -ObjectId 'SawyerM@contoso.com' -Top 1
 ```
 
 ```Output
