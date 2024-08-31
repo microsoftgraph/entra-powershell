@@ -180,6 +180,23 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -AppRoles
+
+The collection of application roles that an application might declare.
+These roles can be assigned to users, groups, or service principals.
+
+```yaml
+Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AppRole]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -DisplayName
 
 Specifies the display name of the application.
@@ -327,6 +344,22 @@ Reserved for future use.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ParentalControlSettings
+
+Specifies parental control settings for an application.
+
+```yaml
+Type: ParentalControlSettings
 Parameter Sets: (All)
 Aliases:
 

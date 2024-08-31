@@ -12,7 +12,8 @@
       "Microsoft.Graph.Identity.DirectoryManagement", 
       "Microsoft.Graph.Identity.Governance", 
       "Microsoft.Graph.Identity.SignIns",
-      "Microsoft.Graph.Applications"
+      "Microsoft.Graph.Applications",
+      "Microsoft.Graph.Reports"
     ],
     "destinationModuleVersion": "2.15.0",
     "sourceModulePrefix" : ["AzureADMS","AzureAD"],

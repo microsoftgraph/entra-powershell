@@ -45,6 +45,19 @@ Get-EntraDomain
 
 The `Get-EntraDomain` cmdlet gets a domain in Microsoft Entra ID.
 
+The work or school account must be assigned to at least one of the following Microsoft Entra roles:
+
+- User Administrator
+- Helpdesk Administrator
+- Service Support Administrator
+- Directory Readers
+- AdHoc License Administrator
+- Application Administrator
+- Security Reader
+- Security Administrator
+- Privileged Role Administrator
+- Cloud Application Administrator
+
 ## Examples
 
 ### Example 1: Get a list of Domains that are created

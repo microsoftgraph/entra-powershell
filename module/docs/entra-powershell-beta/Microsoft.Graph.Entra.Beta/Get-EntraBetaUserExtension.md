@@ -53,7 +53,7 @@ com.contoso.roamingSettings
 
 This example shows how to retrieve the extension attributes for a specified user. You can use the command `Get-EntraBetaUser` to get user object Id.
 
-- `-Objectid` parameter specifies the user object Id.
+- `-ObjectId` parameter specifies the user object Id.
 
 ## Parameters
 

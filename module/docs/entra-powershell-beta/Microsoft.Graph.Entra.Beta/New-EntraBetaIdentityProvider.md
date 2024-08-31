@@ -1,4 +1,15 @@
 ---
+title: New-EntraBetaIdentityProvider
+description: This article provides details on the New-EntraBetaIdentityProvider command.
+
+
+ms.topic: reference
+ms.date: 08/07/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaIdentityProvider
@@ -9,42 +20,77 @@ schema: 2.0.0
 # New-EntraBetaIdentityProvider
 
 ## Synopsis
-This cmdlet is used to configure a new identity provider in the directory.
+
+Configure a new identity provider in the directory.
 
 ## Syntax
 
-```
-New-EntraBetaIdentityProvider -ClientId <String> -Type <String> [-Name <String>] -ClientSecret <String>
+```powershell
+New-EntraBetaIdentityProvider 
+ -ClientId <String> 
+ -Type <String> 
+ -ClientSecret <String>
+ [-Name <String>] 
  [<CommonParameters>]
 ```
 
 ## Description
-This cmdlet is used to configure an identity provider in the directory.
-Adding an identity provider will allow users to sign up for or sign into applications secured by Azure AD B2C using the identity provider.
 
-Configuring an identity provider in your Azure AD tenant also enables future B2B guest scenarios.
-For example, an organization has resources in Office 365 that needs to be shared with a Gmail user.
-The Gmail user will use their Google account credentials to authenticate and access the documents.
+The `New-EntraBetaIdentityProvider` cmdlet is used to configure an identity provider in the directory.
 
-The current set of identity providers can be Microsoft, Google, Facebook, Amazon, or LinkedIn.
+Adding an identity provider will allow users to sign up for or sign into applications secured by Microsoft Entra ID B2C using the identity provider.
+
+Configuring an identity provider in your Microsoft Entra ID tenant also enables future B2B guest scenarios.
+
+For example, an organization has resources in Office 365 that needs to be shared with a Gmail user. The Gmail user will use their Google account credentials to authenticate and access the documents.
+
+The current set of identity providers can be:
+
+- Microsoft
+- Google
+- Facebook
+- Amazon
+- LinkedIn
+
+The work or school account needs to belong to at least the External Identity Provider Administrator Microsoft Entra role.
 
 ## Examples
 
-### Example 1
-```
-PS C:\> New-EntraBetaIdentityProvider -Type LinkedIn -Name LinkedInName -ClientId LinkedInAppClientId -ClientSecret LinkedInAppClientSecret
+### Example 1: Add Google identity provider
+
+```powershell
+Connect-Entra -Scopes 'IdentityProvider.ReadWrite.All'
+$params = @{
+    Type = 'Google'
+    Name = 'GoogleName'
+    ClientId = 'Google123'
+    ClientSecret = 'GoogleClientSecret'
+}
+
+New-EntraBetaIdentityProvider @params
 ```
 
-This example adds a LinkedIn identity provider.
+```Output
+Id             DisplayName
+--             -----------
+Google-OAUTH   GoogleName
+```
+
+This example adds a Google identity provider.
+
+- `-Type` parameter specifies the identity provider type. It must be one of the following values: Microsoft, Google, Facebook, Amazon, or LinkedIn.
+- `-Name` parameter specifies the display name of the identity provider.
+- `-ClientId` parameter specifies the client identifier for the application, obtained during the application's registration with the identity provider.
+- `-ClientSecret` parameter specifies the client secret for the application, obtained during registration with the identity provider.
 
 ## Parameters
 
 ### -ClientId
-The client ID for the application.
-This is the client ID obtained when registering the application with the identity provider.
+
+The client identifier for the application, obtained during the application's registration with the identity provider.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -56,11 +102,11 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSecret
-The client secret for the application.
-This is the client secret obtained when registering the application with the identity provider.
+
+The client secret for the application, obtained during registration with the identity provider, is write-only. A read operation returns `****`.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -72,10 +118,11 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 The display name of the identity provider.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -87,11 +134,13 @@ Accept wildcard characters: False
 ```
 
 ### -Type
-The identity provider type.
-It must be one of the following values: Microsoft, Google, Facebook, Amazon, or LinkedIn.
+
+The identity provider type. It must be one of the following values: Microsoft, Google, Facebook, Amazon, or LinkedIn.
+
+For a B2B scenario, possible values: Google, Facebook. For a B2C scenario, possible values: Microsoft, Google, Amazon, LinkedIn, Facebook, GitHub, Twitter, Weibo, QQ, WeChat.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -103,14 +152,21 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### None
+
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
+
+[Set-EntraBetaIdentityProvider](Set-EntraBetaIdentityProvider.md)
+
+[Remove-EntraBetaIdentityProvider](Remove-EntraBetaIdentityProvider.md)
