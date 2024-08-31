@@ -47,7 +47,7 @@ Remove-EntraFeatureRolloutPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 
 This example removes the policy for cloud authentication roll-out in Microsoft Entra ID.
 
-- `-Id` - Specifies the unique identifier of the cloud authentication roll-out policy.
+- `-Id` - specifies the unique identifier of the cloud authentication roll-out policy. You can use `Get-EntraFeatureRolloutPolicy` to retrieve policy details.
 
 ## Parameters
 
