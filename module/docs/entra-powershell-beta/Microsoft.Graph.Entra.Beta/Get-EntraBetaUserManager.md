@@ -2,6 +2,7 @@
 title: Get-EntraBetaUserManager
 description: This article provides details on the Get-EntraBetaUserManager command.
 
+
 ms.topic: reference
 ms.date: 06/20/2024
 ms.author: eunicewaweru
@@ -41,7 +42,7 @@ The `Get-EntraBetaUserManager` cmdlet gets the manager of a user in Microsoft En
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraBetaUserManager -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaUserManager -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -55,10 +56,12 @@ city                            : San Diego
 createdDateTime                 : 2023-07-07T14:18:05Z
 country                         : United States
 department                      : Sales & Marketing
-displayName                     : Miriam Graham
+displayName                     : Sawyer Miller
 ```
 
 This example demonstrates how to retrieve the manager of a specific user.
+
+- `-ObjectId` Parameter specifies ObjectID or User Principal Name of User.
 
 ## Parameters
 
@@ -80,7 +83,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

@@ -4,7 +4,7 @@ description: This article provides details on Get-EntraBetaPrivilegedResource co
 
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 08/12/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -20,6 +20,7 @@ schema: 2.0.0
 # Get-EntraBetaPrivilegedResource
 
 ## Synopsis
+
 Get Microsoft Entra ID privileged resource.
 
 ## Syntax
@@ -46,81 +47,100 @@ Get-EntraBetaPrivilegedResource
 ```
 
 ## Description
-Get Microsoft Entra ID privileged resource.
+
+The `Get-EntraBetaPrivilegedResource` cmdlet get Microsoft Entra ID privileged resource.
 
 ## Examples
 
 ### Example 1: Get all resources
 
-This example demonstrates how to retrieve all resources from Microsoft Entra ID.
-
-```
-PS C:\> Get-EntraBetaPrivilegedResource -ProviderId aadRoles
+```powershell
+Connect-Entra -Scopes 'PrivilegedAccess.Read.AzureAD', 'PrivilegedAccess.Read.AzureResources' 'PrivilegedAccess.Read.AzureADGroup'
+Get-EntraBetaPrivilegedResource -ProviderId 'aadRoles'
 ```
 
 ```Output
-Id                                   DisplayName                          ExternalId
---                                   -----------                          ----------
-0d626126-a0f3-444c-a025-84c2715389b4 ToGraph_443DEMos1                    /0d626126-a0f3-444c-a025-84c2715389b4
-951691f3-d9e5-4f43-8e48-9b1624f61fe3 MOD Demo Platform UnifiedApiConsumer /951691f3-d9e5-4f43-8e48-9b1624f61fe3
-9c8f84d0-3bd6-4ec4-a753-a6990777f438 "Ahiresh"                            /administrativeUnits/9c8f84d0-3bd6-4ec4-a753-a6990777...
-c4fd2cd1-7902-4be2-a25b-d5cc5ff93517 Pradeep Gupta                        /administrativeUnits/c4fd2cd1-7902-4be2-a25b-d5cc5ff9...
-d40bbf91-9b28-42bb-a42c-f2ada9332fb6 AdminUnitName1                       /administrativeUnits/d40bbf91-9b28-42bb-a42c-f2ada933...
-d5aec55f-2d12-4442-8d2f-ccca95d4390e Contoso                              /
-eb2a1f04-5fb2-44fb-b159-b8989da9a6a8 56544new2$£3                         /eb2a1f04-5fb2-44fb-b159-b8989da9a6a8
+Id                                   DisplayName ExternalId                                                RegisteredDateTime RegisteredRoot Status Type
+--                                   ----------- ----------                                                ------------------ -------------- ------ ----
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb AdminUnitName         /administrativeUnits/aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb                                  Active administrativeUnits
 ```
 
-Get all resources for AzureResource provider.
+This example demonstrates how to retrieve all resources for aadRoles provider.
+
+- `-ProviderId` Parameter specifies the ID of the specific provider.
 
 ### Example 2: Get a specific privileged resource
 
-In this example, we provide the resource ID to retrieve a specific resource.
-
-```
-PS C:\> Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Id 9c8f84d0-3bd6-4ec4-a753-a6990777f438
+```powershell
+Connect-Entra -Scopes 'PrivilegedAccess.Read.AzureAD', 'PrivilegedAccess.Read.AzureResources' 'PrivilegedAccess.Read.AzureADGroup'
+$params = @{
+    ProviderId = 'aadRoles'
+    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+}
+Get-EntraBetaPrivilegedResource @params
 ```
 
 ```Output
-
-Id                                   DisplayName ExternalId
---                                   ----------- ----------
-9c8f84d0-3bd6-4ec4-a753-a6990777f438 "Ahiresh"   /administrativeUnits/9c8f84d0-3bd6-4ec4-a75...
+Id                                   DisplayName ExternalId                                                RegisteredDateTime RegisteredRoot Status Type
+--                                   ----------- ----------                                                ------------------ -------------- ------ ----
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb AdminUnitName         /administrativeUnits/aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb                                  Active administrativeUnits
 ```
 
-Get a resource for AzureResource provider with Id `9c8f84d0-3bd6-4ec4-a753-a6990777f438`.
+This example retrieves a resource for aadRoles provider with ID `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb`.
+
+- `-ProviderId` Parameter specifies the ID of the specific provider.
+- `-Id` Parameter specifies the unique identifier of the specific resource.
 
 ### Example 3: Get a specific privileged resource by filter
 
-```
-PS C:\> Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Filter "DisplayName eq 'AdminUnitName1'"
+```powershell
+Connect-Entra -Scopes 'PrivilegedAccess.Read.AzureAD', 'PrivilegedAccess.Read.AzureResources' 'PrivilegedAccess.Read.AzureADGroup'
+$params = @{
+    ProviderId = 'aadRoles'
+    Filter = "DisplayName eq 'AdminUnitName'"
+}
+Get-EntraBetaPrivilegedResource @params
 ```
 
 ```Output
-Id                                   DisplayName    ExternalId
---                                   -----------    ----------
-d40bbf91-9b28-42bb-a42c-f2ada9332fb6 AdminUnitName1 /administrativeUnits/d40bbf91-9b28-42bb-a42c-f2ada9...
+Id                                   DisplayName ExternalId                                                RegisteredDateTime RegisteredRoot Status Type
+--                                   ----------- ----------                                                ------------------ -------------- ------ ----
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb AdminUnitName         /administrativeUnits/aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb                                  Active administrativeUnits
 ```
-Get a resource for AzureResource provider by Filter
+
+This example retrieves a resource for aadRoles provider Filter.
+
+- `-ProviderId` Parameter specifies the ID of the specific provider.
 
 ### Example 4: Get top privileged resources
-```
-PS C:\> Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Top 1
+
+```powershell
+Connect-Entra -Scopes 'PrivilegedAccess.ReadWrite.AzureAD', 'PrivilegedAccess.Read.AzureResources' 'PrivilegedAccess.Read.AzureADGroup'
+$params = @{
+    ProviderId = 'aadRoles'
+}
+Get-EntraBetaPrivilegedResource @params -Top 1
 ```
 
-```output
-Id                                   DisplayName       ExternalId
---                                   -----------       ----------
-0d626126-a0f3-444c-a025-84c2715389b4 ToGraph_443DEMos1 /0d626126-a0f3-444c-a025-84c271...
+```Output
+Id                                   DisplayName ExternalId                                                RegisteredDateTime RegisteredRoot Status Type
+--                                   ----------- ----------                                                ------------------ -------------- ------ ----
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Test         /administrativeUnits/aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb                                  Active administrativeUnits
 ```
-Get top resources for AzureResource provider.
+
+This example retrieves top resources for aadRoles provider.
+
+- `-ProviderId` Parameter specifies the ID of the specific provider.
 
 ## Parameters
 
 ### -Filter
-The filter for Odata query
+
+Specifies an OData v4.0 filter statement.
+This parameter controls which objects are returned.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetQuery
 Aliases:
 
@@ -132,10 +152,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-The unique identifier of the specific resource
+
+The unique identifier of the specific resource.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: GetById
 Aliases:
 
@@ -147,10 +168,11 @@ Accept wildcard characters: False
 ```
 
 ### -ProviderId
-The unique identifier of the specific provider
+
+The unique identifier of the specific provider.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -162,10 +184,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
-The top result count
+
+The top result count.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: GetQuery
 Aliases:
 
@@ -178,7 +201,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -193,14 +216,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### System.String
+
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links

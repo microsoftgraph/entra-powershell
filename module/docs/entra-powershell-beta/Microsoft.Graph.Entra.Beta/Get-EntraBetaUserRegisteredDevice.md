@@ -44,7 +44,7 @@ The `Get-EntraBetaUserRegisteredDevice` cmdlet gets devices registered by a user
 
 ```Powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraBetaUserRegisteredDevice -ObjectId  'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaUserRegisteredDevice -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -60,7 +60,7 @@ This command gets the devices that are registered to the specified user.
 
 ```Powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraBetaUserRegisteredDevice -ObjectId  'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All 
+Get-EntraBetaUserRegisteredDevice -ObjectId 'SawyerM@contoso.com' -All 
 ```
 
 ```Output
@@ -76,7 +76,7 @@ This command gets all the devices that are registered to the specified user.
 
 ```Powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraBetaUserRegisteredDevice -ObjectId  'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 1
+Get-EntraBetaUserRegisteredDevice -ObjectId 'SawyerM@contoso.com' -Top 1
 ```
 
 ```Output

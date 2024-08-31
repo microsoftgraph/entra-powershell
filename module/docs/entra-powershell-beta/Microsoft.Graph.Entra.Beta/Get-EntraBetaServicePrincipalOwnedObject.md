@@ -1,4 +1,14 @@
 ---
+title: Get-EntraBetaServicePrincipalOwnedObject
+description: This article provides details on the Get-EntraBetaServicePrincipalOwnedObject command.
+
+ms.topic: reference
+ms.date: 08/13/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaServicePrincipalOwnedObject
@@ -9,6 +19,7 @@ schema: 2.0.0
 # Get-EntraBetaServicePrincipalOwnedObject
 
 ## Synopsis
+
 Gets an object owned by a service principal.
 
 ## Syntax
@@ -23,28 +34,93 @@ Get-EntraBetaServicePrincipalOwnedObject
 ```
 
 ## Description
-The Get-EntraBetaServicePrincipalOwnedObject cmdlet gets an object that is owned by a service principal in Azure Active Directory (Azure AD).
+
+The `Get-EntraBetaServicePrincipalOwnedObject` cmdlet gets an object that is owned by a service principal in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Retrieve the owned objects of a service principal
-```
-PS C:\> $ServicePrincipalId = (Get-EntraBetaServicePrincipal -Top 1).ObjectId
-PS C:\> Get-EntraBetaServicePrincipalOwnedObject -ObjectId $ServicePrincipalId
+
+```powershell
+ Connect-Entra -Scopes 'Application.Read.All'
+ $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+ Get-EntraBetaServicePrincipalOwnedObject -ObjectId $ServicePrincipal.ObjectId
 ```
 
-The first command gets the ID of a service principal by using the Get-EntraBetaServicePrincipal (./Get-EntraBetaServicePrincipal.md)cmdlet. 
-The command stores the ID in the $ServicePrincipalId variable.
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+```
 
-The second command gets the owned objects of a service principal identified by $ServicePrincipalId.
+The command retrieves the owned objects of a service principal.
+
+- `-ObjectId` Parameter specifies the ID of a service principal.
+
+### Example 2: Retrieve the all owned objects of a service principal
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+$ServicePrincipalId = (Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<user-display-name>'").ObjectId
+Get-EntraBetaServicePrincipalOwnedObject -ObjectId $ServicePrincipalId -All
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+```
+
+This example retrieves an object owned by a service principal in Microsoft Entra ID. You can use the command `Get-EntraBetaServicePrincipal` to get service principal Id.
+
+- `-ObjectId` parameter specifies the ID of a service principal.
+
+### Example 2: Retrieve all owned objects of a service principal
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServicePrincipalOwnedObject -ObjectId $ServicePrincipal.ObjectId -All 
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+```
+
+The command receives the all owned objects of a service principal.
+
+- `-ObjectId` Parameter specifies the ID of a service principal.
+
+### Example 3: Retrieve top one owned object of a service principal
+
+```powershell
+Connect-Entra -Scopes 'Application.Read.All'
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServicePrincipalOwnedObject -ObjectId $ServicePrincipal.ObjectId -Top 1
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+```
+
+This example retrieves the top one owned object of a specified service principal in Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies the ID of a service principal.
 
 ## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -56,10 +132,11 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectId
-Specifies the ID of a service principal in Azure AD.
+
+Specifies the ID of a service principal in Microsoft Entra ID.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -71,10 +148,11 @@ Accept wildcard characters: False
 ```
 
 ### -Top
+
 Specifies the maximum number of records to return.
 
 ```yaml
-Type: Int32
+Type: System.Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -87,7 +165,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -102,7 +180,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -112,4 +191,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaServicePrincipal]()
+[Get-EntraBetaServicePrincipal](Get-EntraBetaServicePrincipal.md)
