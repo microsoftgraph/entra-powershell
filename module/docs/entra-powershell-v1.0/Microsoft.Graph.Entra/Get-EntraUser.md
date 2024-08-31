@@ -57,7 +57,7 @@ Get-EntraUser
 
 ## Description
 
-The Get-EntraUser cmdlet gets a user from Microsoft Entra ID.
+The `Get-EntraUser` cmdlet gets a user from Microsoft Entra ID.
 
 ## Examples
 
@@ -68,7 +68,7 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUser -Top 3
 ```
 
-```output
+```Output
 DisplayName      Id                                   Mail                  UserPrincipalName
 -----------      --                                   ----                  -----------------
 Angel Brown      cccccccc-2222-3333-4444-dddddddddddd AngelB@contoso.com    AngelB@contoso.com
@@ -82,10 +82,10 @@ This example demonstrates how to get top three users from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUser -ObjectId 'cccccccc-2222-3333-4444-dddddddddddd'
+Get-EntraUser -ObjectId 'SawyerM@contoso.com'
 ```
 
-```output
+```Output
 DisplayName      Id                                   Mail                  UserPrincipalName
 -----------      --                                   ----                  -----------------
 Angel Brown      cccccccc-2222-3333-4444-dddddddddddd AngelB@contoso.com    AngelB@contoso.com
@@ -100,7 +100,7 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUser -SearchString 'New'
 ```
 
-```output
+```Output
 ObjectId                             DisplayName UserPrincipalName                   UserType
 --------                             ----------- -----------------                   --------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb New user    NewUser@contoso.com     Member
@@ -116,7 +116,7 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUser -Filter "UserPrincipalName eq 'NewUser@contoso.com'"
 ```
 
-```output
+```Output
 ObjectId                             DisplayName UserPrincipalName                   UserType
 --------                             ----------- -----------------                   --------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb New user    NewUser@contoso.com     Member
@@ -131,7 +131,7 @@ Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUser -Filter "startswith(MailNickname,'Ada')"
 ```
 
-```output
+```Output
 DisplayName     Id                                   Mail                                UserPrincipalName
 -----------     --                                   ----                                -----------------
 Mark Adams bbbbbbbb-1111-2222-3333-cccccccccccc Adams@contoso.com Adams@contoso.com
@@ -143,10 +143,10 @@ In this example, we retrieve all users whose MailNickname starts with Ada.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
-Get-EntraUser -ObjectId 'cccccccc-2222-3333-4444-dddddddddddd' -Property 'SignInActivity' | Select-Object -ExpandProperty 'SignInActivity'
+Get-EntraUser -ObjectId 'SawyerM@contoso.com' -Property 'SignInActivity' | Select-Object -ExpandProperty 'SignInActivity'
 ```
 
-```output
+```Output
 lastNonInteractiveSignInRequestId : bbbbbbbb-1111-2222-3333-aaaaaaaaaaaa 
 lastNonInteractiveSignInDateTime  : 7/31/2024 1:20:28 PM
 lastSuccessfulSignInRequestId     : bbbbbbbb-1111-2222-3333-cccccccccccc 
@@ -179,7 +179,7 @@ Accept wildcard characters: False
 
 Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
-Details on querying with oData can be found here: <https://learn.microsoft.com/graph/aad-advanced-queries?tabs=powershell>
+Details on querying with OData can be found here: <https://learn.microsoft.com/graph/aad-advanced-queries?tabs=powershell>
 
 ```yaml
 Type: System.String

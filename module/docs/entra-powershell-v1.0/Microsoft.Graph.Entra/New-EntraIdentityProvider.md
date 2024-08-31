@@ -21,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-This cmdlet is used to configure a new identity provider in the directory.
+Configure a new identity provider in the directory.
 
 ## Syntax
 
@@ -36,7 +36,7 @@ New-EntraIdentityProvider
 
 ## Description
 
-This cmdlet is used to configure an identity provider in the directory.
+The `New-EntraIdentityProvider` cmdlet is used to configure an identity provider in the directory.
 
 Adding an identity provider will allow users to sign up for or sign into applications secured by Microsoft Entra ID B2C using the identity provider.
 

@@ -40,32 +40,25 @@ The `Get-EntraBetaServicePrincipalPolicy` cmdlet gets the policy of a service pr
 ### Example 1: Get a policy
 
 ```powershell
-Connect-Entra -Scopes 'Policy.Read.All, Application.ReadWrite.All'
+Connect-Entra -Scopes 'Policy.Read.All', 'Application.ReadWrite.All'
 Get-EntraBetaServicePrincipalPolicy -Id 'bbbbbbbb-1111-1111-1111-cccccccccccc'
 ```
 
 ```Output
-deletedDateTime        :
-isManagementRestricted :
-@odata.type            : #microsoft.graph.policy
-alternativeIdentifier  :
-definition             : {"HomeRealmDisccccoveryPolicy":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}
-keyCredentials         :
-id                     : ffffffff-5555-6666-7777-aaaaaaaaaaaa
-displayName            : ss44$false%%%
-type                   : HomeRealmDiscoveryPolicy
-isOrganizationDefault  : False
-createdDateTime        : 21-08-2023 10:33:27
-odata.type             : #microsoft.graph.policy
+DisplayName Id                                   AppId SignInAudience ServicePrincipalType
+----------- --                                   ----- -------------- --------------------
+demotest2   bbbbbbbb-1111-1111-1111-cccccccccccc                      ActivityBasedTimeoutPolicy
 ```
 
 This command retrieves the policy for a specified service principal in Microsoft Entra ID.
+
+- `-Id` Parameter specifies the ID of the Service Principal.
 
 ## Parameters
 
 ### -Id
 
-The ID of the Service Principal for which you want to retrieve the policy
+The ID of the Service Principal for which you want to retrieve the policy.
 
 ```yaml
 Type: System.String
