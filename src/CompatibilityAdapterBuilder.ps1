@@ -877,15 +877,18 @@ $OutputTransformations
         $addProperty = $true
         if('' -ne $Command.New){
             $addProperty = $false
-            $targetCmdparams = $(Get-Command -Name $Command.New).Parameters.Keys
-            if($null -ne $targetCmdparams){
-                foreach($param in $targetCmdparams) {
-                    if($param -eq 'Property') {
-                        $addProperty = $true
-                        break
-                    }
-                } 
-            }     
+            $targetCmd= $(Get-Command -Name $Command.New)
+            if($targetCmd.PSObject.Properties["Parameters"]){
+                $targetCmdparams =  targetCmd.Parameters.Keys
+                if($null -ne $targetCmdparams){
+                    foreach($param in $targetCmdparams) {
+                        if($param -eq 'Property') {
+                            $addProperty = $true
+                            break
+                        }
+                    } 
+                }     
+            }
         }
 
         if("Get" -eq $Command.Verb -and !$ignorePropertyParameter.Contains($Command.Generate) -and $addProperty){
@@ -1527,6 +1530,7 @@ $($output)
             if('' -eq $targetCmd){
                 $cmd.CustomScript = $this.CmdCustomizations[$SourceCmdName].CustomScript
             }
+            
             $cmd.Parameters = $this.GetCmdletParameters($cmd)
             $defaulParam = $this.GetDefaultParameterSet($SourceCmdName)
             $cmd.DefaultParameterSet = "DefaultParameterSetName = '$defaulParam'"
@@ -1575,22 +1579,24 @@ $($output)
                 $genericParam = $this.GenericParametersTransformations[$param.Name]
                 if(5 -eq $genericParam.ConversionType){
                     $tempName = "$($Cmdlet.Noun)$($genericParam.TargetName)"
-                    if($targetCmd.Parameters.ContainsKey($tempName)){
-                        $paramObj.SetTargetName($tempName)
-                    }
-                    elseif($targetCmd.Parameters.ContainsKey($genericParam.TargetName)){                       
-                        $paramObj.SetTargetName($genericParam.TargetName)
-                    }
-                    else
-                    {
-                        foreach ($key in $targetCmd.Parameters.Keys) {
-                            if($key.EndsWith($genericParam.TargetName)){
-                                $paramObj.SetTargetName($key)
-                                break
+                    if($targetCmd.PSObject.Properties["Parameters"]){
+                        if($targetCmd.Parameters.ContainsKey($tempName)){
+                            $paramObj.SetTargetName($tempName)
+                        }
+                        elseif($targetCmd.Parameters.ContainsKey($genericParam.TargetName)){                       
+                            $paramObj.SetTargetName($genericParam.TargetName)
+                        }
+                        else
+                        {
+                            foreach ($key in $targetCmd.Parameters.Keys) {
+                                if($key.EndsWith($genericParam.TargetName)){
+                                    $paramObj.SetTargetName($key)
+                                    break
+                                }
                             }
                         }
-                    }
-                    $paramsList.Add($paramObj.Name,$paramObj)                    
+                        $paramsList.Add($paramObj.Name,$paramObj)    
+                    }                
                 }else{
                     $paramsList.Add($genericParam.Name, $genericParam)
                 }   
@@ -1608,8 +1614,10 @@ $($output)
             }
             else
             {
-                if($targetCmd.Parameters.ContainsKey($param.Name)){
-                    $paramObj.SetNone()                       
+                if($targetCmd.PSObject.Properties["Parameters"]){
+                    if($targetCmd.Parameters.ContainsKey($param.Name)){
+                        $paramObj.SetNone()                       
+                    }
                 }
             }
         
