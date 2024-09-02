@@ -64,9 +64,9 @@ dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bb
 
 The example shows how to add a user to the specified role within the specified administrative unit.
 
-- `-ObjectId` Paramater specifies the ID of an administrative unit.
-- `-RoleObjectId` Paramater specifies the ID of a directory role.
-- `-RoleMemberInfo` Paramater specifies a RoleMemberInfo object.
+- `-ObjectId` Parameter specifies the ID of an administrative unit.
+- `-RoleObjectId` Parameter specifies the ID of a directory role.
+- `-RoleMemberInfo` Parameter specifies a RoleMemberInfo object.
 
 ## Parameters
 
