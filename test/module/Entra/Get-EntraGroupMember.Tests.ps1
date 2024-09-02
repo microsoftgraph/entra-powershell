@@ -70,9 +70,9 @@ Describe "Get-EntraGroupMember" {
         } 
 
         It "Property parameter should work" {
-            $result =  Get-EntraGroupMember -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Top 1 -Property Id 
+            $result =  Get-EntraGroupMember -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -top 1 -Property Id 
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Contains "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
