@@ -1,22 +1,23 @@
 ---
-title: Add-EntraDeviceRegisteredOwner
-description: This article provides details on the Add-EntraDeviceRegisteredOwner command.
+title: Add-EntraBetaDeviceRegisteredOwner
+description: This article provides details on the Add-EntraBetaDeviceRegisteredOwner command.
 
 
 ms.topic: reference
-ms.date: 06/26/2024
+ms.date: 08/14/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
+author: msewaweru
 
-external help file: Microsoft.Graph.Entra-Help.xml
-Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Add-EntraDeviceRegisteredOwner
+external help file: Microsoft.Graph.Entra.Beta-Help.xml
+Module Name: Microsoft.Graph.Entra.Beta
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Add-EntraBetaDeviceRegisteredOwner
 
 schema: 2.0.0
 ---
 
-# Add-EntraDeviceRegisteredOwner
+# Add-EntraBetaDeviceRegisteredOwner
 
 ## Synopsis
 
@@ -25,7 +26,7 @@ Adds a registered owner for a device.
 ## Syntax
 
 ```powershell
-Add-EntraDeviceRegisteredOwner 
+Add-EntraBetaDeviceRegisteredOwner 
  -ObjectId <String> 
  -RefObjectId <String> 
  [<CommonParameters>]
@@ -33,30 +34,34 @@ Add-EntraDeviceRegisteredOwner
 
 ## Description
 
-The `Add-EntraDeviceRegisteredOwner` cmdlet adds a registered owner for a Microsoft Entra ID device.
+The `Add-EntraBetaDeviceRegisteredOwner` cmdlet adds a registered owner for a Microsoft Entra ID device.
 
 ## Examples
 
-### Example 1
+### Example 1: Add a user as a registered owner
 
 ```powershell
 Connect-Entra -Scopes 'Device.ReadWrite.All'
-$DeviceId = (Get-EntraDevice -top 1).ObjectId
-$UserObjectId = (Get-EntraUser -Top 1).ObjectId
-Add-EntraDeviceRegisteredOwner -ObjectId $DeviceId -RefObjectId $UserObjectId
+$User = Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com'
+$Device = Get-EntraBetaDevice -SearchString '<device-display-name>'
+$params = @{
+    ObjectId = $Device.ObjectId 
+    RefObjectId = $User.ObjectId
+}
+Add-EntraBetaDeviceRegisteredOwner  @params
 ```
 
-This examples shows how to add a registered owner to a device.
+This example shows how to add a registered owner to a device.
 
-`-ObjectId` - specifies the unique identifier (Object ID) of the device to which you want to add a registered owner. The $DeviceId variable should contain the Object ID of the device.
+`-ObjectId` parameter specifies the unique identifier (Object ID) of the device to which you want to add a registered owner. The $Device.ObjectId variable should contain the Object ID of the device. You can use the command `Get-EntraBetaDevice` to get device ID.
 
-`-RefObjectId` - specifies the unique identifier (Object ID) of the user who will be added as a registered owner of the device. The $UserObjectId variable should contain the Object ID of the user.
+`-RefObjectId` parameter specifies the unique identifier (Object ID) of the user to add as a registered owner of the device. The $User.ObjectId variable should contain the Object ID of the user. You can use the command `Get-EntraBetaUser` to get user ID.
 
 ## Parameters
 
 ### -ObjectId
 
-Specifies the object ID.
+Specifies the ID of the device.
 
 ```yaml
 Type: System.String
@@ -72,7 +77,7 @@ Accept wildcard characters: False
 
 ### -RefObjectId
 
-Specifies the ID of the Active Directory object to add.
+Specifies the ID of the Microsoft Entra ID object to add.
 
 ```yaml
 Type: System.String
@@ -98,6 +103,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Get-EntraDeviceRegisteredOwner](Get-EntraDeviceRegisteredOwner.md)
+[Get-EntraBetaDeviceRegisteredOwner](Get-EntraBetaDeviceRegisteredOwner.md)
 
-[Remove-EntraDeviceRegisteredOwner](Remove-EntraDeviceRegisteredOwner.md)
+[Remove-EntraBetaDeviceRegisteredOwner](Remove-EntraBetaDeviceRegisteredOwner.md)
