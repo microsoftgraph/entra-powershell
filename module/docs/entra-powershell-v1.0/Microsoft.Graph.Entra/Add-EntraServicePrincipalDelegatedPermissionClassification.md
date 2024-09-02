@@ -36,7 +36,7 @@ Add-EntraServicePrincipalDelegatedPermissionClassification
 
 ## Description
 
-The Add-EntraServicePrincipalDelegatedPermissionClassification cmdlet creates a delegated permission classification for the given permission on service principal.
+The `Add-EntraServicePrincipalDelegatedPermissionClassification` cmdlet creates a delegated permission classification for the given permission on service principal.
 
 ## Examples
 
