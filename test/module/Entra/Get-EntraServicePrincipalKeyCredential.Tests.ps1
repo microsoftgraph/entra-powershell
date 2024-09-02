@@ -15,7 +15,7 @@ BeforeAll {
                     "DisplayName"                   = ""
                     "EndDateTime"                   = "08-Feb-25 9:57:08 AM"
                     "Key"                           = ""
-                    "KeyId"                         = "68b45e27-fef8-4f0d-bc7a-76bd949c16d1"
+                    "KeyId"                         = "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
                     "StartDateTime"                 = "08-Feb-24 9:57:08 AM"
                     "Type"                          = "Symmetric"
                     "Usage"                         = "Sign"
@@ -31,10 +31,10 @@ BeforeAll {
 Describe "Get-EntraServicePrincipalKeyCredential" {
     Context "Test for Get-EntraServicePrincipalKeyCredential" {
         It "Should return specific principal key credential" {
-            $objectId = "0008861a-d455-4671-bd24-ce9b3bfce288"
+            $objectId = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result = Get-EntraServicePrincipalKeyCredential -ObjectId $objectId
             $result | Should -Not -BeNullOrEmpty
-            $result.KeyId | Should -Be "68b45e27-fef8-4f0d-bc7a-76bd949c16d1"
+            $result.KeyId | Should -Be "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
 
             Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -50,16 +50,16 @@ Describe "Get-EntraServicePrincipalKeyCredential" {
         }
 
         It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {
-            $result = Get-EntraServicePrincipalKeyCredential -ObjectId "0008861a-d455-4671-bd24-ce9b3bfce288"
+            $result = Get-EntraServicePrincipalKeyCredential -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $servicePrincipalKeyCredential = $result | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $params = Get-Parameters -data $servicePrincipalKeyCredential.Parameters
-            $params.ServicePrincipalId | Should -Be "0008861a-d455-4671-bd24-ce9b3bfce288"
+            $params.ServicePrincipalId | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalKeyCredential"
 
-            $result = Get-EntraServicePrincipalKeyCredential -ObjectId "0008861a-d455-4671-bd24-ce9b3bfce288"
+            $result = Get-EntraServicePrincipalKeyCredential -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $servicePrincipalKeyCredentialHeader = $result | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             $params = Get-Parameters -data $servicePrincipalKeyCredentialHeader.Parameters
             $params.Headers."User-Agent" | Should -Be $userAgentHeaderValue

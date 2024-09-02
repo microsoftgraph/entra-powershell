@@ -10,20 +10,20 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-            "Id"                                = "5db7ae5e-425a-4dfa-bd75-68ec06fe3aa9"
+            "Id"                                = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             "DisplayName"                       = "Windows Update for Business Deployment Service"
             "AccountEnabled"                    = $true
             "AddIns"                            = @{}
             "AlternativeNames"                  = @{}
             "AppDescription"                    = ""
             "AppDisplayName"                    = "Windows Update for Business Deployment Service"
-            "AppId"                             = "61ae9cd9-7bca-458c-affc-861e2f24ba3b"
+            "AppId"                             = "00001111-aaaa-2222-bbbb-3333cccc4444"
             "AppManagementPolicies"             = ""
-            "AppOwnerOrganizationId"            = "f8cdef31-a31e-4b4a-93e4-5f571e91255a"
+            "AppOwnerOrganizationId"            = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             "AppRoleAssignedTo"                 = ""
             "AppRoleAssignmentRequired"         = $false
             "AppRoleAssignments"                = @()
-            "AppRoles"                          = @("3fab587f-736d-457e-822a-b3f1427a1296", "02deb410-0188-4e4c-932b-5b4f0ba4780c", "e1112bee-144a-4e8d-bb96-5c78d62e7cc7", "f024c79d-b932-43eb-a013-ecb589ce3379")
+            "AppRoles"                          = @("22223333-cccc-4444-dddd-5555eeee6666", "33334444-dddd-5555-eeee-6666ffff7777", "44445555-eeee-6666-ffff-7777aaaa8888", "55556666-ffff-7777-aaaa-8888bbbb9999")
             "ApplicationTemplateId"             = ""
             "ClaimsMappingPolicies"             = ""
             "CreatedObjects"                    = ""
@@ -43,7 +43,7 @@ BeforeAll {
             "Notes"                             = ""
             "NotificationEmailAddresses"        = @{}
             "Oauth2PermissionGrants"            = ""
-            "Oauth2PermissionScopes"            = @("3fab587f-736d-457e-822a-b3f1427a1296", "02deb410-0188-4e4c-932b-5b4f0ba4780c", "e1112bee-144a-4e8d-bb96-5c78d62e7cc7", "f024c79d-b932-43eb-a013-ecb589ce3379")
+            "Oauth2PermissionScopes"            = @("22223333-cccc-4444-dddd-5555eeee6666", "33334444-dddd-5555-eeee-6666ffff7777", "44445555-eeee-6666-ffff-7777aaaa8888", "55556666-ffff-7777-aaaa-8888bbbb9999")
             "OwnedObjects"                      = ""
             "Owners"                            = ""
             "PasswordCredentials"               = @{}
@@ -77,9 +77,9 @@ BeforeAll {
 Describe "Get-EntraServicePrincipal" {
     Context "Test for Get-EntraServicePrincipal" {
         It "Should return specific service" {
-            $result = Get-EntraServicePrincipal -ObjectId "5db7ae5e-425a-4dfa-bd75-68ec06fe3aa9"
+            $result = Get-EntraServicePrincipal -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be '5db7ae5e-425a-4dfa-bd75-68ec06fe3aa9'
+            $result.Id | should -Be '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
 
             Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -93,19 +93,15 @@ Describe "Get-EntraServicePrincipal" {
         }
 
         It "Should return all service" {
-            $result = Get-EntraServicePrincipal -All $true
+            $result = Get-EntraServicePrincipal -All
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
-        It "Should fail when All is empty" {
-            { Get-EntraServicePrincipal -All } | Should -Throw "Missing an argument for parameter 'All'*"
-        } 
-        
-        It "Should fail when All is invalid" {
-            { Get-EntraServicePrincipal -All XY } | Should -Throw "Cannot process argument transformation on parameter 'All'*"
-        }       
+        It "Should fail when All has an argument" {
+            {  Get-EntraServicePrincipal -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
+        }            
         
         It "Should return top service" {
             $result = Get-EntraServicePrincipal -Top 1
@@ -123,8 +119,8 @@ Describe "Get-EntraServicePrincipal" {
         }  
 
         It "Result should Contain ObjectId" {
-            $result = Get-EntraServicePrincipal -ObjectId "5db7ae5e-425a-4dfa-bd75-68ec06fe3aa9"
-            $result.ObjectId | should -Be "5db7ae5e-425a-4dfa-bd75-68ec06fe3aa9"
+            $result = Get-EntraServicePrincipal -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result.ObjectId | should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         } 
 
         It "Should return specific service by searchstring" {
@@ -152,14 +148,14 @@ Describe "Get-EntraServicePrincipal" {
         } 
 
         It "Result should Contain ObjectId" {
-            $result = Get-EntraServicePrincipal -ObjectId "5db7ae5e-425a-4dfa-bd75-68ec06fe3aa9 "
-            $result.ObjectId | should -Be "5db7ae5e-425a-4dfa-bd75-68ec06fe3aa9"
+            $result = Get-EntraServicePrincipal -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result.ObjectId | should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         } 
 
         It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {
-            $result = Get-EntraServicePrincipal -ObjectId "5db7ae5e-425a-4dfa-bd75-68ec06fe3aa9 "
+            $result = Get-EntraServicePrincipal -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $params = Get-Parameters -data $result.Parameters
-            $params.ServicePrincipalId | Should -Be "5db7ae5e-425a-4dfa-bd75-68ec06fe3aa9 "
+            $params.ServicePrincipalId | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         }
 
         It "Should contain Filter in parameters when passed SearchString to it" {
@@ -167,7 +163,18 @@ Describe "Get-EntraServicePrincipal" {
             $params = Get-Parameters -data $result.Parameters
             $params.Filter | Should -Match "Windows Update for Business Deployment Service"
         }
+        
+        It "Property parameter should work" {
+            $result =   Get-EntraServicePrincipal -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property DisplayName 
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be "Windows Update for Business Deployment Service"
 
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Should fail when Property is empty" {
+             {  Get-EntraServicePrincipal -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipal"
 
@@ -175,5 +182,19 @@ Describe "Get-EntraServicePrincipal" {
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }    
+
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraServicePrincipal -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }  
     }
 }

@@ -11,7 +11,7 @@ BeforeAll {
         return @(
             [PSCustomObject]@{
                 "DeletedDateTime"       = ""
-                "Id"                    = "3da073b9-e731-4ec1-a4f6-6e02865a8c8a"
+                "Id"                    = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
                 "AdditionalProperties"  = @{
                     '@odata.type'       = '#microsoft.graph.administrativeUnit'
                     'displayName'       = "NEW2"
@@ -27,7 +27,7 @@ BeforeAll {
 Describe "Get-EntraUserMembership" {
     Context "Test for Get-EntraUserMembership" {
         It "Should return specific user membership" {
-            $result = Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1"
+            $result = Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
             
             Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra -Times 1
@@ -42,52 +42,74 @@ Describe "Get-EntraUserMembership" {
         }
 
         It "Should return all user membership" {
-            $result = Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -All $true
+            $result = Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All 
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
-        It "Should fail when All is empty" {
-            { Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -All } | Should -Throw "Missing an argument for parameter 'All'*"
+        It "Should fail when All has an argument" {
+            { Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
         }  
         
-        It "Should fail when All is invalid" {
-            { Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -All XY } | Should -Throw "Cannot process argument transformation on parameter 'All'*"
-        }     
-        
         It "Should return top user membership" {
-            $result = Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -Top 5
+            $result = Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 5
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra -Times 1
         }  
 
         It "Should fail when top is empty" {
-            { Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }  
 
         It "Should fail when top is invalid" {
-            { Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }  
 
         It "Result should Contain ObjectId" {
-            $result = Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1"
-            $result.ObjectId | should -Be "3da073b9-e731-4ec1-a4f6-6e02865a8c8a"
+            $result = Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result.ObjectId | should -Be "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
         } 
 
         It "Should contain UserId in parameters when passed ObjectId to it" {
-            $result = Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1"
+            $result = Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result.Parameters
-            $params.UserId | Should -Be "fd560167-ff1f-471a-8d74-3b0070abcea1"
+            $params.UserId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+        }
+
+        It "Property parameter should work" {
+            $result =  Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property Id 
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
+
+            Should -Invoke -CommandName Get-MgUserMemberOf -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Should fail when Property is empty" {
+             {  Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserMembership"
 
-            $result = Get-EntraUserMembership -ObjectId "fd560167-ff1f-471a-8d74-3b0070abcea1"
+            $result = Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Contain $userAgentHeaderValue
         }    
+
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraUserMembership -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }  
     }
 }
