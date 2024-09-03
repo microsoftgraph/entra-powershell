@@ -48,14 +48,14 @@ Enable-EntraBetaDirectoryRole -RoleTemplateId $InviterRole.ObjectId
 ```
 
 ```Output
-DeletedDateTime Id                                   Description                                       DisplayName              RoleTemplateId
---------------- --                                   -----------                                       -----------              --------------
-                aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb Can manage all aspects of the SharePoint service. SharePoint Administrator 0000aaaa-11bb-cccc-dd22-eeeeee333333
+DeletedDateTime Id                                   Description                                      DisplayName   RoleTemplateId
+--------------- --                                   -----------                                      -----------   --------------
+                b5baa59b-86ab-4053-ac3a-0396116d1924 Guest Inviter has access to invite guest users.  Guest Inviter 92ed04bf-c94a-4b82-9729-b799a7a4c178
 ```
 
 The example shows how to enable the directory role.
 
-You can use `Get-EntraDirectoryRoleTemplate` to fetch a specific directory role to activate.
+You can use `Get-EntraBetaDirectoryRoleTemplate` to fetch a specific directory role to activate.
 
 - `RoleTemplateId` parameter specifies the ID of the role template to enable.
 
