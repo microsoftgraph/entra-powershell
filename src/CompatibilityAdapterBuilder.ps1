@@ -707,6 +707,7 @@ $($Command.CustomScript)
             $parameterDefinitions =$this.GetParametersDefinitionsForNewURLCmd($URLMapping)
             write-host("parameterDefinitions  " +$parameterDefinitions)
 
+            #$ParamterTransformations = $this.GetParametersTransformationsFromUrlMapping($Command,$URLMapping)
             $ParamterTransformations = $this.GetParametersTransformationsFromUrlMappingNewURL($URLMapping)
             write-host("ParamterTransformations  " +$ParamterTransformations)
         }else {
@@ -730,7 +731,8 @@ $($Command.CustomScript)
             $customHeadersCommandName = "New-EntraBetaCustomHeaders"
         }
 
-       
+        $function =''
+       if($null -ne $URLCommand.CustomScript){
 
         $function = @"
 function $($Command.Generate) {
@@ -764,6 +766,20 @@ $OutputTransformations
 }
 
 "@
+       }else{
+        $function = @"
+        function $($Command.Generate) {
+            [CmdletBinding($($Command.DefaultParameterSet))]
+            param (
+        $parameterDefinitions
+            )
+        
+        $($URLCommand.CustomScript)    
+        }
+        
+"@
+       
+       }
         
         write-host($function)
         $codeBlock = [Scriptblock]::Create($function)
@@ -1027,8 +1043,26 @@ $OutputTransformations
         $paramsList = ""
        switch ($URLMapping.Method) {
             "POST" { 
-                foreach ($param in $URLMapping.Parameters){
-                        $paramsList += $this.GetCustomParameterTransformation($param.Name)
+                foreach ($param in $URLMapping.Parameters){                        
+                    if([TransformationTypes]::None -eq $param.ConversionType){                        
+                        $paramsList += $this.GetParameterTransformationName($param.Name, $param.Name)
+                    }
+                    elseif([TransformationTypes]::Name -eq $param.ConversionType){
+                        $paramsList += $this.GetParameterTransformationName($param.Name, $param.TargetName)
+                    }
+                    elseif([TransformationTypes]::Bool2Switch -eq $param.ConversionType){
+                        $paramsList += $this.GetParameterTransformationBoolean2Switch($param.Name, $param.TargetName)
+                    }
+                    elseif([TransformationTypes]::SystemSwitch -eq $param.ConversionType){
+                        $paramsList += $this.GetParameterTransformationSystemSwitch($param.Name)
+                    }
+                    elseif([TransformationTypes]::ScriptBlock -eq $param.ConversionType){
+                        $paramsList += $this.GetParameterCustom($param)
+                    }
+                    elseif([TransformationTypes]::Remove -eq $param.ConversionType){
+                        $paramsList += $this.GetParameterException($param)
+                    }
+                       # $paramsList += $this.GetCustomParameterTransformation($param.Name)
                     }
                 }
                   
