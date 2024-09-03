@@ -10,7 +10,7 @@
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{ObjectId = "Id"}
+        
         if($null -ne $PSBoundParameters["Api"])
         {
             $TmpValue = $PSBoundParameters["Api"]

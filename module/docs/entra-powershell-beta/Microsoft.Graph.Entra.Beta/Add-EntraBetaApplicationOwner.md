@@ -50,12 +50,10 @@ $params = @{
 Add-EntraBetaApplicationOwner @params
 ```
 
-This example demonstrates how to adds an owner to an application in Microsoft Entra ID.
-You can use the command `Get-EntraBetaApplication` to get application Id.
-You can use the command `Get-EntraBetaUser` to get user Id.
+This example demonstrates how to add an owner to an application in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the Id of an application.
-- `-RefObjectId` parameter specifies the Id of an user.
+- `-ObjectId` parameter specifies the ID of an application.
+- `-RefObjectId` parameter specifies the ID of a user.
 
 ## Parameters
 

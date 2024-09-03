@@ -21,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Retrieve the logo of an application
+Retrieve the logo of an application.
 
 ## Syntax
 
@@ -69,7 +69,7 @@ Accept wildcard characters: False
 
 ### -FilePath
 
-If provided, the application logo is copied with a random filename to the file path that is specified in this parameter
+If provided, the application logo is copied with a random filename to the file path that is specified in this parameter.
 
 ```yaml
 Type: System.String
@@ -85,7 +85,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-The ObjectID of the application for which the logo is to be retrieved
+The ObjectID of the application for which the logo is to be retrieved.
 
 ```yaml
 Type: System.String
