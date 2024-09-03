@@ -48,7 +48,7 @@ The `Get-EntraBetaApplicationTemplate` cmdlet allows users to get a list of all 
 
 ## Examples
 
-### 1. Gets a list of application template objects
+### Example 1. Gets a list of application template objects
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
@@ -57,7 +57,7 @@ Get-EntraBetaApplicationTemplate
 
 This command gets all the application template objects
 
-### 2. Gets an application template object
+### Example 2. Gets an application template object
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
