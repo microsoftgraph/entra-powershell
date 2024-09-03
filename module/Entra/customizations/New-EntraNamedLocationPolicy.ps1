@@ -10,8 +10,7 @@
     PROCESS {    
         $body = @{}
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand        
         if($null -ne $PSBoundParameters["IncludeUnknownCountriesAndRegions"])
         {
             $body["IncludeUnknownCountriesAndRegions"] = $PSBoundParameters["IncludeUnknownCountriesAndRegions"]

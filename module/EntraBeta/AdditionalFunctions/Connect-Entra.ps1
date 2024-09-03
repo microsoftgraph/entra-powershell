@@ -59,7 +59,7 @@ function Connect-Entra {
 
     PROCESS {    
         $params = @{}
-        $keysChanged = @{}
+        
         if ($null -ne $PSBoundParameters["Scopes"]) {
             $params["Scopes"] = $PSBoundParameters["Scopes"]
         }

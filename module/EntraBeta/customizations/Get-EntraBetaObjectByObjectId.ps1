@@ -10,7 +10,7 @@
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{ObjectIds = "Ids"}
+        
         if($PSBoundParameters.ContainsKey("Debug"))
         {
             $params["Debug"] = $PSBoundParameters["Debug"]
