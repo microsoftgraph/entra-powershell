@@ -69,9 +69,14 @@ Context "Test for Get-EntraIdentityProvider" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraIdentityProvider"
 
-            $result = Get-EntraIdentityProvider -Id "Google-OAUTH"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            Get-EntraIdentityProvider -Id "Google-OAUTH"
+            
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraIdentityProvider"
+
+            Should -Invoke -CommandName Get-MgIdentityProvider -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

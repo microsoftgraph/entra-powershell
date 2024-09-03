@@ -81,10 +81,14 @@ Describe "Get-EntraDomainNameReference" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDomainNameReference"
 
-            $result = Get-EntraDomainNameReference -Name "M365x99297270.mail.onmicrosoft.com"
-            $params = Get-Parameters -data $result.Parameters
-            $para= $params | ConvertTo-json | ConvertFrom-Json
-            $para.headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            Get-EntraDomainNameReference -Name "M365x99297270.mail.onmicrosoft.com"
+            
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDomainNameReference"
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

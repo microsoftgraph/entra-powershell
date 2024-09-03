@@ -33,12 +33,16 @@ Context "Test for Remove-EntraIdentityProvider" {
             $params.IdentityProviderBaseId | Should -Be "Google-OAUTH"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Remove-MgIdentityProvider -MockWith {$args} -ModuleName Microsoft.Graph.Entra
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraIdentityProvider"
 
-            $result = Remove-EntraIdentityProvider -Id "Google-OAUTH"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            Remove-EntraIdentityProvider -Id "Google-OAUTH"
+            
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraIdentityProvider"
+
+            Should -Invoke -CommandName Remove-MgIdentityProvider -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       
