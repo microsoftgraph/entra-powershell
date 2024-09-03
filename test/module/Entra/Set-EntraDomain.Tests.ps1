@@ -47,12 +47,16 @@ Describe "Set-EntraDomain"{
             $params.DomainId | Should -Be "test.mail.onmicrosoft.com"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Update-MgDomain -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDomain"
-            $result = Set-EntraDomain -Name "test.mail.onmicrosoft.com"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+
+            Set-EntraDomain -Name "test.mail.onmicrosoft.com"
+            
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDomain"
+
+            Should -Invoke -CommandName Update-MgDomain -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

@@ -76,10 +76,16 @@ Describe "Get-EntraDomainServiceConfigurationRecord" {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDomainServiceConfigurationRecord"
-            $result = Get-EntraDomainServiceConfigurationRecord -Name "test.mail.onmicrosoft.com"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        } 
+
+            Get-EntraDomainServiceConfigurationRecord -Name "test.mail.onmicrosoft.com"
+            
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDomainServiceConfigurationRecord"
+
+            Should -Invoke -CommandName Get-MgDomainServiceConfigurationRecord -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       
             $originalDebugPreference = $DebugPreference

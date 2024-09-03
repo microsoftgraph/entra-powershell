@@ -32,12 +32,16 @@ Describe "Remove-EntraRoleDefinition" {
             $params.UnifiedRoleDefinitionId | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Remove-MgRoleManagementDirectoryRoleDefinition -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraRoleDefinition"
-            $result = Remove-EntraRoleDefinition -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" 
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+
+            Remove-EntraRoleDefinition -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" 
+            
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraRoleDefinition"
+
+            Should -Invoke -CommandName Remove-MgRoleManagementDirectoryRoleDefinition -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

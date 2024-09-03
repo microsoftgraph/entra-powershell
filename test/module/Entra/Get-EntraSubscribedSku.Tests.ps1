@@ -64,11 +64,17 @@ Describe "Get-EntraSubscribedSku" {
         It "Should fail when Property is empty" {
              { Get-EntraSubscribedSku -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
-         It "Should contain 'User-Agent' header" {
+        It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraSubscribedSku"
-            $result = Get-EntraSubscribedSku -ObjectId "00001111-aaaa-2222-bbbb-3333cccc4444_11112222-bbbb-3333-cccc-4444dddd5555"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+
+            Get-EntraSubscribedSku
+            
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraSubscribedSku"
+
+            Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

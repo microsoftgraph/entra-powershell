@@ -62,9 +62,14 @@ Context "Test for New-EntraRoleAssignment" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraRoleAssignment"
 
-            $result = New-EntraRoleAssignment -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -RoleDefinitionId  "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -DirectoryScopeId "/00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            New-EntraRoleAssignment -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -RoleDefinitionId  "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -DirectoryScopeId "/00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraRoleAssignment"
+
+            Should -Invoke -CommandName New-MgRoleManagementDirectoryRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       
