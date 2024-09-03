@@ -10,7 +10,7 @@
     PROCESS {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{$Id = "ApplicationTemplateId" }
+        
         if ($null -ne $PSBoundParameters["Id"]) {
             $params["ApplicationTemplateId"] = $PSBoundParameters["Id"]
         }

@@ -1,4 +1,15 @@
 ---
+title: Add-EntraBetaDeviceRegisteredOwner
+description: This article provides details on the Add-EntraBetaDeviceRegisteredOwner command.
+
+
+ms.topic: reference
+ms.date: 08/14/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Add-EntraBetaDeviceRegisteredOwner
@@ -9,33 +20,51 @@ schema: 2.0.0
 # Add-EntraBetaDeviceRegisteredOwner
 
 ## Synopsis
+
 Adds a registered owner for a device.
 
 ## Syntax
 
-```
-Add-EntraBetaDeviceRegisteredOwner -ObjectId <String> -RefObjectId <String> [<CommonParameters>]
+```powershell
+Add-EntraBetaDeviceRegisteredOwner 
+ -ObjectId <String> 
+ -RefObjectId <String> 
+ [<CommonParameters>]
 ```
 
 ## Description
-The Add-EntraBetaDeviceRegisteredOwner cmdlet adds a registerd owner for an Azure Active Directory device.
+
+The `Add-EntraBetaDeviceRegisteredOwner` cmdlet adds a registered owner for a Microsoft Entra ID device.
 
 ## Examples
 
-### Example 1
+### Example 1: Add a user as a registered owner
+
 ```powershell
-PS C:\> {{ Add example code here }}
+Connect-Entra -Scopes 'Device.ReadWrite.All'
+$User = Get-EntraBetaUser -SearchString '<user-display-name>'
+$Device = Get-EntraBetaDevice -SearchString '<device-display-name>'
+$params = @{
+    ObjectId = $Device.ObjectId 
+    RefObjectId = $User.ObjectId
+}
+Add-EntraBetaDeviceRegisteredOwner  @params
 ```
 
-{{ Add example description here }}
+This example shows how to add a registered owner to a device.
+
+`-ObjectId` parameter specifies the unique identifier (Object ID) of the device to which you want to add a registered owner. The $Device.ObjectId variable should contain the Object ID of the device. You can use the command `Get-EntraBetaDevice` to get device Id.
+
+`-RefObjectId` parameter specifies the unique identifier (Object ID) of the user who will be added as a registered owner of the device. The $User.ObjectId variable should contain the Object ID of the user. You can use the command `Get-EntraBetaUser` to get user Id.
 
 ## Parameters
 
 ### -ObjectId
-Specifies the object ID.
+
+Specifies the ID of the device.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -47,10 +76,11 @@ Accept wildcard characters: False
 ```
 
 ### -RefObjectId
-Specifies the ID of the Active Directory object to add.
+
+Specifies the ID of the Microsoft Entra ID object to add.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -62,7 +92,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -72,7 +103,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related Links
 
-[Get-EntraBetaDeviceRegisteredOwner]()
+[Get-EntraBetaDeviceRegisteredOwner](Get-EntraBetaDeviceRegisteredOwner.md)
 
-[Remove-EntraBetaDeviceRegisteredOwner]()
-
+[Remove-EntraBetaDeviceRegisteredOwner](Remove-EntraBetaDeviceRegisteredOwner.md)

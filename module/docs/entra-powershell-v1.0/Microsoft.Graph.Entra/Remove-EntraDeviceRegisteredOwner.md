@@ -48,14 +48,6 @@ Remove-EntraDeviceRegisteredOwner -ObjectId $Device.ObjectId -OwnerId $Owner.Obj
 
 This examples shows how to remove the owner of a device.
 
-- The first command gets a device by using the [Get-EntraDevice](./Get-EntraDevice.md) cmdlet, and then stores it in the `$Device` variable.  
-
-- The second command retrieves the registered owner of the device in `$Device` by using the [Get-EntraDeviceRegisteredOwner](./Get-EntraDeviceRegisteredOwner.md) cmdlet.  
-
-- The command stores the details in the `$Owner` variable.  
-
-- The final command removes the owner in `$Owner` from the device in `$Device`.
-
 ## Parameters
 
 ### -ObjectId
