@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta    
@@ -39,6 +43,20 @@ Describe "Remove-EntraBetaApplicationPolicy" {
             $result = Remove-EntraBetaApplicationPolicy -Id "e3108c4d-86ff-4ceb-9429-24e85b4b8cea" -PolicyId "364e07d3-529b-4ffc-96be-56bbacf34ace"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+        } 
+
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Remove-EntraBetaApplicationPolicy -Id "e3108c4d-86ff-4ceb-9429-24e85b4b8cea" -PolicyId "364e07d3-529b-4ffc-96be-56bbacf34ace" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         } 
     }
 }

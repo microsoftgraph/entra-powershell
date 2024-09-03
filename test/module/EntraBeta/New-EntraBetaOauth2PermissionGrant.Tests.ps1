@@ -74,6 +74,22 @@ Describe "New-EntraBetaOauth2PermissionGrant" {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
-        }   
+        }  
+        It "Should execute successfully without throwing an error " {
+            $startTime = Get-Date -Date "2023-06-29T03:26:33"
+            $expiryTime = Get-Date -Date "2024-06-29T03:26:33"
+
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { New-EntraBetaOauth2PermissionGrant -ClientId "bbbbbbbb-1111-2222-3333-cccccccccccc" -ConsentType "AllPrincipals" -ResourceId "bbbbbbbb-1111-2222-3333-rrrrrrrrrrrr" -Scope "DelegatedPermissionGrant.ReadWrite.All" -StartTime $startTime -ExpiryTime $expiryTime -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        } 
     }
 }

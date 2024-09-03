@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta    
@@ -19,7 +23,7 @@ BeforeAll {
                                             "BannedPasswordList" = $null 
                                            }
                 "AdditionalProperties"   = [PSCustomObject]@{
-                                            "@odata.context" = "https://graph.microsoft.com/beta/$metadata#settings/$entity"
+                                            "@odata.context" = 'https://graph.microsoft.com/beta/$metadata#settings/$entity'
                                            }
                 "Parameters"             = $args
             }
@@ -70,5 +74,22 @@ Describe "New-EntraBetaDirectorySetting" {
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }   
+
+        It "Should execute successfully without throwing an error " {
+            $template = Get-EntraBetaDirectorySettingTemplate -Id "5cf42378-d67d-4f36-ba46-e8b86229381d"
+            $settingsCopy = $template.CreateDirectorySetting()
+
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { New-EntraBetaDirectorySetting -DirectorySetting $settingsCopy -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }
 }

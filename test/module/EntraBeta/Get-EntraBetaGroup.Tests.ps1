@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta    
@@ -39,19 +43,15 @@ Describe "Get-EntraBetaGroup" {
         }
 
         It "Should return all group" {
-            $result = Get-EntraBetaGroup -All $true
+            $result = Get-EntraBetaGroup -All
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgBetaGroup -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
-        It "Should fail when All is empty" {
-            { Get-EntraBetaGroup -All } | Should -Throw "Missing an argument for parameter 'All'*"
-        }      
-
-        It "Should fail when All is invalid" {
-            { Get-EntraBetaGroup -All "" } | Should -Throw "Cannot process argument transformation on parameter 'All'*"
-        }      
+        It "Should fail when All has an argument" {
+            { Get-EntraBetaGroup -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
+        }
 
         It "Should return specific group by searchstring" {
             $result = Get-EntraBetaGroup -SearchString 'demo'
@@ -115,5 +115,19 @@ Describe "Get-EntraBetaGroup" {
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }    
+
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraBetaGroup -SearchString 'demo' -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }
 }

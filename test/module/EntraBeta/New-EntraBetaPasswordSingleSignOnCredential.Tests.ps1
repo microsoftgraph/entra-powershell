@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta    
@@ -20,7 +24,7 @@ BeforeAll {
                     }
                 )
                 "Id"                   = "ff6f6a54-189e-4534-8269-e2dec3bc5249"
-                "AdditionalProperties" = @{"@odata.context"="https://graph.microsoft.com/beta/$metadata#microsoft.graph.passwordSingleSignOnCredentialSet"}
+                "AdditionalProperties" = @{"@odata.context"='https://graph.microsoft.com/beta/$metadata#microsoft.graph.passwordSingleSignOnCredentialSet'}
                 "Parameters"           = $args
             }
         )
@@ -28,8 +32,8 @@ BeforeAll {
     Mock -CommandName New-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
 }
 
-Describe "New-EntraBetaMSPasswordSingleSignOnCredential" {
-    Context "Test for New-EntraBetaMSPasswordSingleSignOnCredential" {
+Describe "New-EntraBetaPasswordSingleSignOnCredential" {
+    Context "Test for New-EntraBetaPasswordSingleSignOnCredential" {
         It "Should creates the password sso credentials for the given ObjectId and PasswordSSOObjectId." {
             $params = @{
                 id = "ff6f6a54-189e-4534-8269-e2dec3bc5249"
@@ -46,7 +50,7 @@ Describe "New-EntraBetaMSPasswordSingleSignOnCredential" {
                     }
                 )
             }
-            $result = New-EntraBetaMSPasswordSingleSignOnCredential -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -PasswordSSOCredential $params
+            $result = New-EntraBetaPasswordSingleSignOnCredential -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -PasswordSSOCredential $params
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be "ff6f6a54-189e-4534-8269-e2dec3bc5249"
 
@@ -69,7 +73,7 @@ Describe "New-EntraBetaMSPasswordSingleSignOnCredential" {
                     }
                 )
             }
-            New-EntraBetaMSPasswordSingleSignOnCredential -ObjectId -PasswordSSOCredential $params} | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+            New-EntraBetaPasswordSingleSignOnCredential -ObjectId -PasswordSSOCredential $params} | Should -Throw "Missing an argument for parameter 'ObjectId'*"
         }
 
         It "Should fail when ObjectId is Invalid" {
@@ -88,15 +92,15 @@ Describe "New-EntraBetaMSPasswordSingleSignOnCredential" {
                     }
                 )
             }
-            New-EntraBetaMSPasswordSingleSignOnCredential -ObjectId "" -PasswordSSOCredential $params} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+            New-EntraBetaPasswordSingleSignOnCredential -ObjectId "" -PasswordSSOCredential $params} | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
 
         It "Should fail when PasswordSSOCredential parameter are empty" {
-            { New-EntraBetaMSPasswordSingleSignOnCredential -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -PasswordSSOCredential  } | Should -Throw "Missing an argument for parameter 'PasswordSSOCredential'*"
+            { New-EntraBetaPasswordSingleSignOnCredential -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -PasswordSSOCredential  } | Should -Throw "Missing an argument for parameter 'PasswordSSOCredential'*"
         }
 
         It "Should fail when PasswordSSOCredential parameter are Invalid" {
-            { New-EntraBetaMSPasswordSingleSignOnCredential -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -PasswordSSOCredential "" } | Should -Throw "Cannot process argument transformation on parameter 'PasswordSSOCredential'*"
+            { New-EntraBetaPasswordSingleSignOnCredential -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -PasswordSSOCredential "" } | Should -Throw "Cannot process argument transformation on parameter 'PasswordSSOCredential'*"
         }
 
         It "Should contain ObjectId in result" {
@@ -115,7 +119,7 @@ Describe "New-EntraBetaMSPasswordSingleSignOnCredential" {
                     }
                 )
             }
-            $result = New-EntraBetaMSPasswordSingleSignOnCredential -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -PasswordSSOCredential $params
+            $result = New-EntraBetaPasswordSingleSignOnCredential -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -PasswordSSOCredential $params
             $result.ObjectId | should -Be "ff6f6a54-189e-4534-8269-e2dec3bc5249"
         } 
 
@@ -135,7 +139,7 @@ Describe "New-EntraBetaMSPasswordSingleSignOnCredential" {
                     }
                 )
             }
-            $result = New-EntraBetaMSPasswordSingleSignOnCredential -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -PasswordSSOCredential $params
+            $result = New-EntraBetaPasswordSingleSignOnCredential -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -PasswordSSOCredential $params
             $params = Get-Parameters -data $result.Parameters
             $params.ServicePrincipalId | Should -Be "cc7fcc82-ac1b-4785-af47-2ca3b7052886"
 
@@ -158,7 +162,7 @@ Describe "New-EntraBetaMSPasswordSingleSignOnCredential" {
                     }
                 )
             }
-            $result = New-EntraBetaMSPasswordSingleSignOnCredential -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -PasswordSSOCredential $params
+            $result = New-EntraBetaPasswordSingleSignOnCredential -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -PasswordSSOCredential $params
             $value = $params.credentials | ConvertTo-Json 
             $result | Should -Not -BeNullOrEmpty
             ($result.Credentials | ConvertTo-Json ) | should -Be $value
@@ -167,7 +171,7 @@ Describe "New-EntraBetaMSPasswordSingleSignOnCredential" {
         }
 
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaMSPasswordSingleSignOnCredential"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaPasswordSingleSignOnCredential"
 
             $params = @{
                 id = "ff6f6a54-189e-4534-8269-e2dec3bc5249"
@@ -184,9 +188,39 @@ Describe "New-EntraBetaMSPasswordSingleSignOnCredential" {
                     }
                 )
             }
-            $result = New-EntraBetaMSPasswordSingleSignOnCredential -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -PasswordSSOCredential $params
+            $result = New-EntraBetaPasswordSingleSignOnCredential -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -PasswordSSOCredential $params
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }   
+        }  
+
+        It "Should execute successfully without throwing an error " {
+            $params = @{
+                id = "ff6f6a54-189e-4534-8269-e2dec3bc5249"
+                credentials = @(
+                    @{
+                        fieldId = "param_emailOrUserName"
+                        type = "text"
+                        value = "test1"
+                    }
+                    @{
+                        fieldId = "param_password"
+                        type = "password"
+                        value = "test1"
+                    }
+                )
+            }
+
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { New-EntraBetaPasswordSingleSignOnCredential -ObjectId "cc7fcc82-ac1b-4785-af47-2ca3b7052886" -PasswordSSOCredential $params -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        } 
     }
 }

@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta    
@@ -182,19 +186,14 @@ BeforeAll {
 Describe "Get-EntraBetaAuditSignInLogs" {
     Context "Test for Get-EntraBetaAuditSignInLogs" {
         It "Should get all logs" {
-            $result = Get-EntraBetaAuditSignInLogs -All $true
-            $result | Should -Not -BeNullOrEmpty
-            
+            $result = Get-EntraBetaAuditSignInLogs -All
+            $result | Should -Not -BeNullOrEmpty            
             Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
-        It "Should fail when All is empty" {
-            { Get-EntraBetaAuditSignInLogs -All } | Should -Throw "Missing an argument for parameter 'All'*"
-        }      
-
-        It "Should fail when All is invalid" {
-            { Get-EntraBetaAuditSignInLogs -All "" } | Should -Throw "Cannot process argument transformation on parameter 'All'*"
-        }      
+        It "Should fail when All has an argument" {
+            { Get-EntraBetaAuditSignInLogs -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
+        }  
         
         It "Should get first n logs" {
             $result = Get-EntraBetaAuditSignInLogs -Top 1
@@ -304,9 +303,23 @@ Describe "Get-EntraBetaAuditSignInLogs" {
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaAuditSignInLogs"
-            $result = Get-EntraBetaAuditSignInLogs -All $true
+            $result = Get-EntraBetaAuditSignInLogs -All
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }    
+        }  
+        
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraBetaAuditSignInLogs -Top 1 -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }
 }

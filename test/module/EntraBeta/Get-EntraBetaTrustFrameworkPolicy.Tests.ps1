@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 BeforeAll {
     if ((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null) {
         Import-Module Microsoft.Graph.Entra.Beta    
@@ -27,10 +31,10 @@ BeforeAll {
     $mockResponseScriptBlock = [ScriptBlock]::Create("`$args[0]")
     Mock -CommandName Invoke-GraphRequest -MockWith $mockResponseScriptBlock -ModuleName Microsoft.Graph.Entra.Beta
 }
-Describe "Get-EntraBetaMSTrustFrameworkPolicy" {
-    Context "Test for Get-EntraBetaMSTrustFrameworkPolicy" {
+Describe "Get-EntraBetaTrustFrameworkPolicy" {
+    Context "Test for Get-EntraBetaTrustFrameworkPolicy" {
         It "Should retrieve the created trust framework policies (custom policies) in the directory." {
-            $result = Get-EntraBetaMSTrustFrameworkPolicy -Id "B2C_1A_PROFILEADD"
+            $result = Get-EntraBetaTrustFrameworkPolicy -Id "B2C_1A_PROFILEADD"
             $result | Should -Not -BeNullOrEmpty
             $result | Should -Contain "<PolicyId>B2C_1A_ProfileAdd</PolicyId>"
 
@@ -38,26 +42,40 @@ Describe "Get-EntraBetaMSTrustFrameworkPolicy" {
         }
 
         It "Should fail when Id is empty" {
-            { Get-EntraBetaMSTrustFrameworkPolicy -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
+            { Get-EntraBetaTrustFrameworkPolicy -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
         }
 
         It "Should fail when Id is invalid" {
-            { Get-EntraBetaMSTrustFrameworkPolicy -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
+            { Get-EntraBetaTrustFrameworkPolicy -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
         }
 
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$($PSVersionTable.PSVersion) EntraPowershell/$entraVersion Get-EntraBetaMSTrustFrameworkPolicy"
+            $userAgentHeaderValue = "PowerShell/$($PSVersionTable.PSVersion) EntraPowershell/$entraVersion Get-EntraBetaTrustFrameworkPolicy"
 
-            $result = Get-EntraBetaMSTrustFrameworkPolicy -Id "B2C_1A_PROFILEADD"
+            $result = Get-EntraBetaTrustFrameworkPolicy -Id "B2C_1A_PROFILEADD"
             
             # Assuming Get-Parameters is supposed to fetch the headers from the mocked command
             $params = @{
                 Headers = @{
-                    "User-Agent" = "PowerShell/$($PSVersionTable.PSVersion) EntraPowershell/$entraVersion Get-EntraBetaMSTrustFrameworkPolicy"
+                    "User-Agent" = "PowerShell/$($PSVersionTable.PSVersion) EntraPowershell/$entraVersion Get-EntraBetaTrustFrameworkPolicy"
                 }
             }
             
             $params.Headers["User-Agent"] | Should -Contain $userAgentHeaderValue
-        }    
+        }   
+        
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraBetaTrustFrameworkPolicy -Id "B2C_1A_PROFILEADD" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }
 }

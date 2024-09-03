@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta    
@@ -11,7 +15,7 @@ BeforeAll {
                 "Id"                   = "a658c48f-fd66-498d-8199-27ed3d33c7c3"
                 "TemplateId"           = "4bc7f740-180e-4586-adb6-38b2e9024e6b"
                 "Values"               = @("EnableAccessCheckForPrivilegedApplicationUpdates")
-                "AdditionalProperties" = @{"[@odata.context" = "https://graph.microsoft.com/beta/$metadata#settings/$entity"}
+                "AdditionalProperties" = @{"[@odata.context" = "https://graph.microsoft.com/beta/`$metadata#settings/`$entity"}
                 "Parameters"           = $args
             }
         )
@@ -41,19 +45,15 @@ Describe "Get-EntraBetaDirectorySetting" {
         }
 
         It "Should return all group" {
-            $result = Get-EntraBetaDirectorySetting -All $true
+            $result = Get-EntraBetaDirectorySetting -All
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgBetaDirectorySetting -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
-        It "Should fail when All is empty" {
-            { Get-EntraBetaDirectorySetting -All } | Should -Throw "Missing an argument for parameter 'All'*"
-        }      
-
-        It "Should fail when All is invalid" {
-            { Get-EntraBetaDirectorySetting -All "" } | Should -Throw "Cannot process argument transformation on parameter 'All'*"
-        }      
+        It "Should fail when All has an argument" {
+            { Get-EntraBetaDirectorySetting -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
+        }
         
         It "Should return top group" {
             $result = Get-EntraBetaDirectorySetting -Top 1
@@ -82,5 +82,19 @@ Describe "Get-EntraBetaDirectorySetting" {
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }    
+
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraBetaDirectorySetting -Id "a658c48f-fd66-498d-8199-27ed3d33c7c3" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }
 }

@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta    
@@ -76,32 +80,28 @@ BeforeAll {
     Mock -CommandName Get-MgBetaServicePrincipal -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
 }
 
-Describe "Get-EntraBetaMSServicePrincipal" {
-    Context "Test for Get-EntraBetaMSServicePrincipal" {
+Describe "Get-EntraBetaServicePrincipal" {
+    Context "Test for Get-EntraBetaServicePrincipal" {
         It "Should get all service principal by query" {
-            $result = Get-EntraBetaMSServicePrincipal
+            $result = Get-EntraBetaServicePrincipal
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
         It "Should get all service principal" {
-            $result = Get-EntraBetaMSServicePrincipal -All $true
+            $result = Get-EntraBetaServicePrincipal -All
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
-        It "Should fail when All are empty" {
-            { Get-EntraBetaMSServicePrincipal -All } | Should -Throw "Missing an argument for parameter 'All'*"
+        It "Should fail when All has an argument" {
+            { Get-EntraBetaServicePrincipal -All  $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
         }
 
-        It "Should fail when All is Invalid" {
-            { Get-EntraBetaMSServicePrincipal -All "" } | Should -Throw "Cannot process argument transformation on parameter 'All'*"
-        }
-
-        It "Should get service principal by Id" {
-            $result = Get-EntraBetaMSServicePrincipal -Id "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
+        It "Should get service principal by ObjectId" {
+            $result = Get-EntraBetaServicePrincipal -ObjectId "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
             $result.ServicePrincipalNames | Should -Be @('609d427d-b574-4063-8d19-6ed1c03a80c7')
@@ -114,31 +114,31 @@ Describe "Get-EntraBetaMSServicePrincipal" {
             Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
-        It "Should fail when Id are empty" {
-            { Get-EntraBetaMSServicePrincipal -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
+        It "Should fail when ObjectId is empty" {
+            { Get-EntraBetaServicePrincipal -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
         }
 
-        It "Should fail when Id is Invalid" {
-            { Get-EntraBetaMSServicePrincipal -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
+        It "Should fail when ObjectId is Invalid" {
+            { Get-EntraBetaServicePrincipal -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
 
         It "Should get top service principal" {
-            $result = Get-EntraBetaMSServicePrincipal -Top 1
+            $result = Get-EntraBetaServicePrincipal -Top 1
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
         It "Should fail when Top are empty" {
-            { Get-EntraBetaMSServicePrincipal -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraBetaServicePrincipal -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
 
         It "Should fail when Top is Invalid" {
-            { Get-EntraBetaMSServicePrincipal -Top XYZ } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraBetaServicePrincipal -Top XYZ } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
 
         It "Should get a specific service principal by filter" {
-            $result = Get-EntraBetaMSServicePrincipal -Filter "DisplayName eq 'demo1'"
+            $result = Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'demo1'"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
             $result.ServicePrincipalNames | Should -Be @('609d427d-b574-4063-8d19-6ed1c03a80c7')
@@ -152,22 +152,22 @@ Describe "Get-EntraBetaMSServicePrincipal" {
         }
 
         It "Should fail when Filter are empty" {
-            { Get-EntraBetaMSServicePrincipal -Filter  } | Should -Throw "Missing an argument for parameter 'Filter'*"
+            { Get-EntraBetaServicePrincipal -Filter  } | Should -Throw "Missing an argument for parameter 'Filter'*"
         }
 
         It "Should select all service principal by displayname" {
-            $result = Get-EntraBetaMSServicePrincipal -Select "DisplayName"
+            $result = Get-EntraBetaServicePrincipal -Property "DisplayName"
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
         It "Should fail when Select are empty" {
-            { Get-EntraBetaMSServicePrincipal -Select  } | Should -Throw "Missing an argument for parameter 'Select'*"
+            { Get-EntraBetaServicePrincipal -Property  } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         
         It "Should get a specific service principal by SearchString" {
-            $result = Get-EntraBetaMSServicePrincipal  -SearchString  "demo1"
+            $result = Get-EntraBetaServicePrincipal  -SearchString  "demo1"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | Should -Be "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
             $result.ServicePrincipalNames | Should -Be @('609d427d-b574-4063-8d19-6ed1c03a80c7')
@@ -181,16 +181,16 @@ Describe "Get-EntraBetaMSServicePrincipal" {
         }
 
         It "Should fail when SearchString are empty" {
-            { Get-EntraBetaMSServicePrincipal -SearchString  } | Should -Throw "Missing an argument for parameter 'SearchString'*"
+            { Get-EntraBetaServicePrincipal -SearchString  } | Should -Throw "Missing an argument for parameter 'SearchString'*"
         }
 
         It "Should contain ObjectId in result" {
-            $result = Get-EntraBetaMSServicePrincipal -Id "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
+            $result = Get-EntraBetaServicePrincipal -ObjectId "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
             $result.ObjectId | should -Be "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
         } 
 
-        It "Should contain ServicePrincipalId in parameters when passed Id to it" {
-            $result = Get-EntraBetaMSServicePrincipal -Id "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
+        It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {
+            $result = Get-EntraBetaServicePrincipal -ObjectId "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
             $params = Get-Parameters -data $result.Parameters
             $params.ServicePrincipalId | Should -Be "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
 
@@ -198,19 +198,33 @@ Describe "Get-EntraBetaMSServicePrincipal" {
         }
 
         It "Should contain filter in parameters when passed SearchString to it" {
-            $result = Get-EntraBetaMSServicePrincipal -SearchString  "demo1"
+            $result = Get-EntraBetaServicePrincipal -SearchString  "demo1"
             $params = Get-Parameters -data $result.Parameters
-            $params.Filter | Should -Be "displayName eq 'demo1' or startswith(displayName,'demo1')"
+            $params.Filter | Should -Be "publisherName eq 'demo1' or (displayName eq 'demo1' or startswith(displayName,'demo1'))"
 
             Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaMSServicePrincipal"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaServicePrincipal"
 
-            $result = Get-EntraBetaMSServicePrincipal -Id "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
+            $result = Get-EntraBetaServicePrincipal -ObjectId "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }   
+
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraBetaServicePrincipal -ObjectId "2a07a4ca-7eaf-4f3e-bf67-4460899baf60" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }
 }

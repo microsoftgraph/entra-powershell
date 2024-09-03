@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta    
@@ -167,7 +171,7 @@ BeforeAll {
                 "VirtualEvents"                                   = "Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphUserVirtualEventsRoot"
                 "WindowsInformationProtectionDeviceRegistrations" = $null
                 "AdditionalProperties"                            = @{
-                    '@odata.context' = "https://graph.microsoft.com/beta/$metadata#users/$entity"
+                    '@odata.context' = 'https://graph.microsoft.com/beta/$metadata#users/$entity'
                 }
                 "Parameters"                                      = $args
             }
@@ -176,71 +180,59 @@ BeforeAll {
     Mock -CommandName  Get-MgBetaUser -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
 }
 
-Describe "Get-EntraBetaMSUser" {
-    Context "Test for Get-EntraBetaMSUser" {
+Describe "Get-EntraBetaUser" {
+    Context "Test for Get-EntraBetaUser" {
         It "Should get a user by ID" {
-            $result = Get-EntraBetaMSUser -Id "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
+            $result = Get-EntraBetaUser -ObjectId "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
             $result | Should -Not -BeNullOrEmpty
-            $result.ObjectId | should -Be "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
-            $result.UserState | should -Be $null
-            $result.UserStateChangedOn | should -Be $null
-            $result.Mobile | should -Be $null
-            $result.DeletionTimestamp | should -Be $null
-            $result.TelephoneNumber | should -BeNullOrEmpty
-            $result.ImmutableId | should -Be $null
-            $result.ProvisioningErrors | should -BeNullOrEmpty
-            $result.DirSyncEnabled | should -Be $null
+            $result.ObjectId | should -Be "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"            
             
             Should -Invoke -CommandName Get-MgBetaUser -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
-        It "Should fail when Id is empty" {
-            { Get-EntraBetaMSUser -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
+        It "Should fail when ObjectId is empty" {
+            { Get-EntraBetaUser -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
         }
 
-        It "Should fail when Id is invalid" {
-            { Get-EntraBetaMSUser -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
+        It "Should fail when ObjectId is invalid" {
+            { Get-EntraBetaUser -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
 
         It "Should get all users" {
-            $group = Get-EntraBetaMSUser -All $true
+            $group = Get-EntraBetaUser -All
             $group | Should -Not -BeNullOrEmpty            
 
             Should -Invoke -CommandName Get-MgBetaUser -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
-        It "Should fail when All is empty" {
-            { Get-EntraBetaMSUser -All } | Should -Throw "Missing an argument for parameter 'All'*"
-        }  
-
-        It "Should fail when All is invalid" {
-            { Get-EntraBetaMSUser -All "" } | Should -Throw "Cannot process argument transformation on parameter 'All'*"
-        }     
+        It "Should fail when All has an argument" {
+            { Get-EntraBetaUser -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
+        }
 
         It "Should get top five users" {
-            $top = Get-EntraBetaMSUser -Top 5
+            $top = Get-EntraBetaUser -Top 5
             $top | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgBetaUser -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }  
 
         It "Should fail when top is empty" {
-            { Get-EntraBetaMSUser -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraBetaUser -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }  
 
         It "Should search among retrieved users" {
-            $searchString = Get-EntraBetaMSUser -SearchString "dummy10"
+            $searchString = Get-EntraBetaUser -SearchString "dummy10"
             $searchString | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgBetaUser -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }  
 
         It "Should fail when SearchString is empty" {
-            { Get-EntraBetaMSUser -SearchString } | Should -Throw "Missing an argument for parameter 'SearchString'*"
+            { Get-EntraBetaUser -SearchString } | Should -Throw "Missing an argument for parameter 'SearchString'*"
         }  
 
         It "Should get a user by userPrincipalName" {
-            $userPrincipalName = Get-EntraBetaMSUser -Filter "userPrincipalName eq 'dummy10@M365x99297270.OnMicrosoft.com'"
+            $userPrincipalName = Get-EntraBetaUser -Filter "userPrincipalName eq 'dummy10@M365x99297270.OnMicrosoft.com'"
             $userPrincipalName | Should -Not -BeNullOrEmpty
             $userPrincipalName.Id | should -Be "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
             $userPrincipalName.ObjectId | should -Be "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
@@ -251,39 +243,39 @@ Describe "Get-EntraBetaMSUser" {
         }  
 
         It "Should fail when Filter is empty" {
-            { Get-EntraBetaMSUser -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
+            { Get-EntraBetaUser -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
         }  
 
-        It "Should get userPrincipalName for all users using select parameter" {
-            $select = Get-EntraBetaMSUser -Select "userPrincipalName"
+        It "Should get userPrincipalName for all users using property parameter" {
+            $select = Get-EntraBetaUser -Property "userPrincipalName"
             $select | Should -Not -BeNullOrEmpty
             $select.UserPrincipalName | should -Contain "dummy10@M365x99297270.OnMicrosoft.com"
 
             Should -Invoke -CommandName Get-MgBetaUser -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }  
 
-        It "Should fail when Select is empty" {
-            { Get-EntraBetaMSUser -Select } | Should -Throw "Missing an argument for parameter 'Select'*"
+        It "Should fail when Property is empty" {
+            { Get-EntraBetaUser -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }  
 
         It "Result should get DisplayName property values for a user by ID" {
-            $result = Get-EntraBetaMSUser -Id "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
+            $result = Get-EntraBetaUser -ObjectId "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
             $result.DisplayName | should -Be "dummy10"
         } 
 
         It "Result should Contain ObjectId" {
-            $result = Get-EntraBetaMSUser -Id "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
+            $result = Get-EntraBetaUser -ObjectId "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
             $result.ObjectId | should -Be "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
         } 
 
         It "Should contain Filter in parameters" {
-            $result = Get-EntraBetaMSUser -Filter "userPrincipalName eq 'dummy10@M365x99297270.OnMicrosoft.com'"
+            $result = Get-EntraBetaUser -Filter "userPrincipalName eq 'dummy10@M365x99297270.OnMicrosoft.com'"
             $params = Get-Parameters -data $result.Parameters
             $params.Filter | Should -Be "userPrincipalName eq 'dummy10@M365x99297270.OnMicrosoft.com'"
         }        
 
         It "Should contain Search in parameters when passed SearchString to it" {
-            $result = Get-EntraBetaMSUser -SearchString "dummy10"
+            $result = Get-EntraBetaUser -SearchString "dummy10"
             $params = Get-Parameters -data $result.Parameters
             $expectedString = 'userprincipalname:dummy10 OR state:dummy10 OR mailNickName:dummy10 OR mail:dummy10 OR jobTitle:dummy10 OR displayName:dummy10 OR department:dummy10 OR country:dummy10 OR city:dummy10'
             $actualString = ($params.Search -replace '"', '' -join ' OR ')
@@ -291,17 +283,31 @@ Describe "Get-EntraBetaMSUser" {
         }
 
         It "Should contain UserId in parameters when passed Id to it" {
-            $result = Get-EntraBetaMSUser -Id "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
+            $result = Get-EntraBetaUser -ObjectId "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
             $params = Get-Parameters -data $result.Parameters
             $params.UserId | Should -Be "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
         }
 
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaMSUser"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUser"
 
-            $result = Get-EntraBetaMSUser -Id "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
+            $result = Get-EntraBetaUser -ObjectId "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Contain $userAgentHeaderValue
         }    
+
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraBetaUser -ObjectId "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }
 }

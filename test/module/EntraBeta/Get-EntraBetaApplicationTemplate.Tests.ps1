@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta    
@@ -19,7 +23,7 @@ BeforeAll {
                                                 }
                 "SupportedProvisioningTypes"    = @()
                 "SupportedSingleSignOnModes"    = @("saml", "external")
-                "AdditionalProperties"          = @{"@odata.context" = "https://graph.microsoft.com/beta/$metadata#applicationTemplates/$entity"}
+                "AdditionalProperties"          = @{"@odata.context" = "https://graph.microsoft.com/beta/`$metadata#applicationTemplates/`$entity"}
                 "InformationalUrls"             = [PSCustomObject]@{
                                                     "AppSignUpUrl"                  = "https://go.microsoft.com/fwlink/?linkid=2190589"
                                                     "SingleSignOnDocumentationUrl"   = $null
@@ -31,10 +35,10 @@ BeforeAll {
     Mock -CommandName  Get-MgBetaApplicationTemplate -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
 }
 
-Describe "Get-EntraBetaMSApplicationTemplate" {
-    Context "Test for Get-EntraBetaMSApplicationTemplate" {
+Describe "Get-EntraBetaApplicationTemplate" {
+    Context "Test for Get-EntraBetaApplicationTemplate" {
         It "Should get a specific application template" {
-            $result = Get-EntraBetaMSApplicationTemplate -Id "5979191c-86e6-40f7-87ac-0913dddd1f61"
+            $result = Get-EntraBetaApplicationTemplate -Id "5979191c-86e6-40f7-87ac-0913dddd1f61"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'FigBytes'
             $result.Description | should -Be  "Capture and manage your ESG data from across the organization in an integrated, cloud-based platform that connects organizational strategy, automates reporting, and simplifies stakeholder engagement."
@@ -43,39 +47,52 @@ Describe "Get-EntraBetaMSApplicationTemplate" {
         }
 
         It "Should fail when Id is empty" {
-            { Get-EntraBetaMSApplicationTemplate -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
+            { Get-EntraBetaApplicationTemplate -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
         }
 
         It "Should fail when Id is invalid" {
-            { Get-EntraBetaMSApplicationTemplate -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
+            { Get-EntraBetaApplicationTemplate -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
         }
 
         It "Should get a list of all the application templates" {
-            $result = Get-EntraBetaMSApplicationTemplate 
+            $result = Get-EntraBetaApplicationTemplate 
             $result | Should -Not -BeNullOrEmpty
         
             Should -Invoke -CommandName  Get-MgBetaApplicationTemplate -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
         It "Should contain Id in result" {
-            $result = Get-EntraBetaMSApplicationTemplate -Id "5979191c-86e6-40f7-87ac-0913dddd1f61"
+            $result = Get-EntraBetaApplicationTemplate -Id "5979191c-86e6-40f7-87ac-0913dddd1f61"
             $result.Id | should -Be "5979191c-86e6-40f7-87ac-0913dddd1f61"
 
             Should -Invoke -CommandName Get-MgBetaApplicationTemplate -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         } 
 
         It "Should contain ApplicationTemplateId in parameters when passed Id to it" {
-            $result = Get-EntraBetaMSApplicationTemplate -Id "5979191c-86e6-40f7-87ac-0913dddd1f61"
+            $result = Get-EntraBetaApplicationTemplate -Id "5979191c-86e6-40f7-87ac-0913dddd1f61"
             $params = Get-Parameters -data $result.Parameters
             $params.ApplicationTemplateId | Should -Be "5979191c-86e6-40f7-87ac-0913dddd1f61"
         }
 
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaMSApplicationTemplate"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaApplicationTemplate"
 
-            $result = Get-EntraBetaMSApplicationTemplate -Id "5979191c-86e6-40f7-87ac-0913dddd1f61"
+            $result = Get-EntraBetaApplicationTemplate -Id "5979191c-86e6-40f7-87ac-0913dddd1f61"
             $params = Get-Parameters -data $result.Parameters
             $params.headers.'User-Agent' | Should -Be $userAgentHeaderValue
         }    
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraBetaApplicationTemplate -Id "5979191c-86e6-40f7-87ac-0913dddd1f61" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }
 }

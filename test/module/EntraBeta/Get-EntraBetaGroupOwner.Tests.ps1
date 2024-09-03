@@ -1,3 +1,7 @@
+# ------------------------------------------------------------------------------
+#  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
+# ------------------------------------------------------------------------------
+
 BeforeAll {  
     if((Get-Module -Name Microsoft.Graph.Entra.Beta) -eq $null){
         Import-Module Microsoft.Graph.Entra.Beta    
@@ -48,19 +52,15 @@ Describe "Get-EntraBetaGroupOwner" {
         }
 
         It "Gets all group owners" {
-            $result = Get-EntraBetaGroupOwner -ObjectId "996d39aa-fdac-4d97-aa3d-c81fb47362ac" -All $true
+            $result = Get-EntraBetaGroupOwner -ObjectId "996d39aa-fdac-4d97-aa3d-c81fb47362ac" -All
             $result | Should -Not -BeNullOrEmpty            
 
             Should -Invoke -CommandName Get-MgBetaGroupOwner -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
-        It "Should fail when All is empty" {
-            { Get-EntraBetaGroupOwner -ObjectId "996d39aa-fdac-4d97-aa3d-c81fb47362ac" -All } | Should -Throw "Missing an argument for parameter 'All'*"
-        }  
-
-        It "Should fail when All is invalid" {
-            { Get-EntraBetaGroupOwner -ObjectId "996d39aa-fdac-4d97-aa3d-c81fb47362ac" -All XY } | Should -Throw "Cannot process argument transformation on parameter 'All'*"
-        }       
+        It "Should fail when All has an argument" {
+            { Get-EntraBetaGroupOwner -ObjectId "996d39aa-fdac-4d97-aa3d-c81fb47362ac" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
+        }    
 
         It "Gets two group owners" {
             $result = Get-EntraBetaGroupOwner -ObjectId "996d39aa-fdac-4d97-aa3d-c81fb47362ac" -Top 2
@@ -95,5 +95,19 @@ Describe "Get-EntraBetaGroupOwner" {
             $params = Get-Parameters -data $result.Parameters
             $params.headers.'User-Agent' | Should -Be $userAgentHeaderValue
         }    
+
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraBetaGroupOwner -ObjectId "996d39aa-fdac-4d97-aa3d-c81fb47362ac" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }
 }
