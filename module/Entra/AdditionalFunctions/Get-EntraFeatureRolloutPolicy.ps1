@@ -49,10 +49,6 @@ function Get-EntraFeatureRolloutPolicy {
             $data = $data.value | ConvertTo-Json | ConvertFrom-Json
         }
         catch {}       
-       
-        if($null -ne $PSBoundParameters["Property"]){
-            $data = $data | Select-Object $Property
-        }
 
         if($data)
         {
@@ -66,7 +62,12 @@ function Get-EntraFeatureRolloutPolicy {
                 }
                 $userList += $userType
             }
-            $userList 
+            if($null -ne $PSBoundParameters["Property"]){
+                $userList | Select-Object $PSBoundParameters["Property"]
+            }
+            else {
+                $userList 
+            }
         }
     }
 }
