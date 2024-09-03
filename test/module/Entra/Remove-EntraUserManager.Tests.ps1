@@ -14,7 +14,7 @@ BeforeAll {
 Describe "Remove-EntraUserManager" {
     Context "Test for Remove-EntraUserManager" {
         It "Should return empty object" {
-            $result = Remove-EntraUserManager -ObjectId "199a9eb1-2de2-41f2-91a6-d6444e59afb2"
+            $result = Remove-EntraUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -BeNullOrEmpty
             Should -Invoke -CommandName Remove-MgUserManagerByRef -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -27,18 +27,32 @@ Describe "Remove-EntraUserManager" {
         It "Should contain Id in parameters when passed ObjectId to it" {
             Mock -CommandName Remove-MgUserManagerByRef -MockWith { $args } -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraUserManager -ObjectId "199a9eb1-2de2-41f2-91a6-d6444e59afb2"
+            $result = Remove-EntraUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result
-            $params.userId | Should -Be "199a9eb1-2de2-41f2-91a6-d6444e59afb2"
+            $params.userId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain 'User-Agent' header" {
             Mock -CommandName Remove-MgUserManagerByRef -MockWith { $args } -ModuleName Microsoft.Graph.Entra
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraUserManager"
 
-            $result = Remove-EntraUserManager -ObjectId "199a9eb1-2de2-41f2-91a6-d6444e59afb2"
+            $result = Remove-EntraUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }  
+        
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Remove-EntraUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }   
     }
 }

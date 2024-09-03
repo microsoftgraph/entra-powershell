@@ -10,7 +10,7 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                Id                         = '29728ade-6ae4-4ee9-9103-412912537da5'
+                Id                         = '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
                 Parameters                 = $args
             }
         )
@@ -29,7 +29,7 @@ BeforeAll {
                 DeltaCertificateRevocationListUrl = ""
                 Certificate        = @(48, 130, 3, 0)
                 Issuer             = "CN=mscmdlet"
-                IssuerSki          = "23C98A95721291E474455243BDDB5651FE7BCDE8"
+                IssuerSki          = "66aa66aa-bb77-cc88-dd99-00ee00ee00ee"
             }
                
             }
@@ -42,7 +42,7 @@ BeforeAll {
     $scriptblock3 = {
         return @(
             [PSCustomObject]@{
-                TenantId = "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
+                TenantId = "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             }
         )
 
@@ -71,11 +71,31 @@ Describe "Remove-EntraTrustedCertificateAuthority" {
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraTrustedCertificateAuthority"
-
             $cer = Get-EntraTrustedCertificateAuthority 
             $result = Remove-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }  
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraTrustedCertificateAuthority"
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
+
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+            $cer = Get-EntraTrustedCertificateAuthority 
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Remove-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0] -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }   
     }
 }

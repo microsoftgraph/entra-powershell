@@ -11,14 +11,14 @@ BeforeAll {
         # Write-Host "Mocking Get-EntraUserManager with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
-                Id                         = '412be9d1-1460-4061-8eed-cca203fcb215'
+                Id                         = '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
                 ageGroup                   = $null
                 onPremisesLastSyncDateTime = $null
                 creationType               = $null
                 imAddresses                = @("miriamg@m365x99297270.onmicrosoft.com")
                 preferredLanguage          = $null
                 mail                       = "MiriamG@M365x99297270.OnMicrosoft.com"
-                securityIdentifier         = "S-1-12-1-649798363-1255893902-1277583799-1163042182"
+                securityIdentifier         = "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
                 identities                 = @(
                     @{
                         signInType       = "userPrincipalName"
@@ -38,7 +38,7 @@ BeforeAll {
 Describe "Get-EntraUserManager" {
     Context "Test for Get-EntraUserManager" {
         It "Should return specific User" {
-            $result = Get-EntraUserManager -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215"
+            $result = Get-EntraUserManager -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result | Should -Not -BeNullOrEmpty
             $result.ageGroup | Should -BeNullOrEmpty
             $result.onPremisesLastSyncDateTime | Should -BeNullOrEmpty
@@ -46,7 +46,7 @@ Describe "Get-EntraUserManager" {
             $result.imAddresses | Should -Be @("miriamg@m365x99297270.onmicrosoft.com")
             $result.preferredLanguage | Should -BeNullOrEmpty
             $result.mail | Should -Be "MiriamG@M365x99297270.OnMicrosoft.com"
-            $result.securityIdentifier | Should -Be "S-1-12-1-649798363-1255893902-1277583799-1163042182"
+            $result.securityIdentifier | Should -Be "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
             $result.identities | Should -HaveCount 1
             $result.identities[0].signInType | Should -Be "userPrincipalName"
             $result.identities[0].issuer | Should -Be "M365x99297270.onmicrosoft.com"
@@ -64,17 +64,49 @@ Describe "Get-EntraUserManager" {
         }
 
         It "Should contain UserId in parameters when passed ObjectId to it" {
-            $result = Get-EntraUserManager -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215"
+            $result = Get-EntraUserManager -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $params = Get-Parameters -data $result.Parameters
-            $params.Uri | Should -Match "412be9d1-1460-4061-8eed-cca203fcb215"
+            $params.Uri | Should -Match "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserManager"
-            $result = Get-EntraUserManager -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers."User-Agent" | Should -Be $userAgentHeaderValue
-        }  
 
+            $result = Get-EntraUserManager -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserManager"
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        } 
+
+        It "Property parameter should work" {
+            $result = Get-EntraUserManager -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property Id 
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Should fail when Property is empty" {
+             { Get-EntraUserManager -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
+
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraUserManager -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }   
     }
 }

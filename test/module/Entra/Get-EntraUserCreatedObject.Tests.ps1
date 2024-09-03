@@ -10,20 +10,20 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                Id                                       = "c057711d-e0a2-40a1-b8af-06d96c20c875"
+                Id                                       = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
                 '@odata.type'                            = '#microsoft.graph.servicePrincipal'
                 accountEnabled                           = $true
                 alternativeNames                         = @{}
                 appDisplayName                           = "Microsoft Graph Command Line Tools"
-                appId                                    = "14d82eec-204b-4c2f-b7e8-296a70dab67e"
-                appOwnerOrganizationId                   = "72f988bf-86f1-41af-91ab-2d7cd011db47"
+                appId                                    = "44445555-eeee-6666-ffff-7777aaaa8888"
+                appOwnerOrganizationId                   = "33dd33dd-ee44-ff55-aa66-77bb77bb77bb"
                 appRoleAssignmentRequired                = $false
                 createdDateTime                          = "2023-07-12T10:09:17Z"
                 displayName                              = "Microsoft Graph Command Line Tools"
                 homepage                                 = "https://docs.microsoft.com/en-us/graph/powershell/get-started"
                 notificationEmailAddresses               = @{}
                 replyUrls                                = @("https://login.microsoftonline.com/common/oauth2/nativeclient", "http://localhost", "ms-appx-web://microsoft.aad.brokerplugin/14d82eec-204b-4c2f-b7e8-296a70dab67e")
-                servicePrincipalNames                    = @("14d82eec-204b-4c2f-b7e8-296a70dab67e")
+                servicePrincipalNames                    = @("11112222-bbbb-3333-cccc-4444dddd5555")
                 servicePrincipalType                     = "Application"
                 signInAudience                           = "AzureADandPersonalMicrosoftAccount"
                 tags                                     = @("WindowsAzureActiveDirectoryIntegratedApp")
@@ -55,7 +55,7 @@ BeforeAll {
 Describe "Get-EntraUserCreatedObject" {
     Context "Test for Get-EntraUserCreatedObject" {
         It "Should return specific User" {
-            $result = Get-EntraUserCreatedObject -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215"
+            $result = Get-EntraUserCreatedObject -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
 
             $result | Should -Not -BeNullOrEmpty
 
@@ -70,48 +70,76 @@ Describe "Get-EntraUserCreatedObject" {
             { Get-EntraUserCreatedObject -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'. Specify a parameter of type 'System.String' and try again."
         }
 
-        
-        # It "Should return all contact" {
-        #     $result = Get-EntraUserCreatedObject -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -All $true
-        #     $result | Should -Not -BeNullOrEmpty            
-        #     Should -Invoke -CommandName Get-MgUserCreatedObject  -ModuleName Microsoft.Graph.Entra -Times 1
-        # }
-
-        It "Should fail when All is empty" {
-            { Get-EntraUserCreatedObject -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -All } | Should -Throw "Missing an argument for parameter 'All'*"
+        It "Should return all contact" {
+            $result = Get-EntraUserCreatedObject -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All
+            $result | Should -Not -BeNullOrEmpty            
+            Should -Invoke -CommandName Get-MgUserCreatedObject  -ModuleName Microsoft.Graph.Entra -Times 1
         }
 
-        It "Should fail when All is invalid" {
-            { Get-EntraContact -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -All XY } | Should -Throw  "Cannot process argument transformation on parameter 'All'*"
-        }  
+        It "Should fail when All has an argument" {
+            {  Get-EntraUserCreatedObject -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
+        }
 
-        # It "Should return top user" {
-        #     $result = Get-EntraUserCreatedObject -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -Top 1
-        #     $result | Should -Not -BeNullOrEmpty
+        It "Should return top user" {
+            $result = Get-EntraUserCreatedObject -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 1
+            $result | Should -Not -BeNullOrEmpty
 
-        #     Should -Invoke -CommandName Get-MgUserCreatedObject  -ModuleName Microsoft.Graph.Entra -Times 1
-        # }    
+            Should -Invoke -CommandName Get-MgUserCreatedObject  -ModuleName Microsoft.Graph.Entra -Times 1
+        }    
 
         It "Should fail when top is empty" {
-            { Get-EntraUserCreatedObject -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraUserCreatedObject -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }  
 
         It "Should fail when top is invalid" {
-            { Get-EntraUserCreatedObject -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -Top HH } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraUserCreatedObject -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top HH } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
 
-        # It "Should contain UserId in parameters when passed ObjectId to it" {
-        #     $result = Get-EntraUserCreatedObject -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215"
-        #     $params = Get-Parameters -data $result.Parameters
-        #     $params.UserId | Should -Match "412be9d1-1460-4061-8eed-cca203fcb215"
-        # }
+        It "Should contain UserId in parameters when passed ObjectId to it" {
+            $result = Get-EntraUserCreatedObject -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $params = Get-Parameters -data $result.Parameters
+            $params.UserId | Should -Match "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+        }
 
-        # It "Should contain 'User-Agent' header" {
-        #     $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserCreatedObject"
-        #     $result = Get-EntraUserCreatedObject -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215"
-        #     $params = Get-Parameters -data $result.Parameters
-        #     $params.Headers."User-Agent" | Should -Be $userAgentHeaderValue
-        # }  
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserCreatedObject"
+
+            $result = Get-EntraUserCreatedObject -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserCreatedObject"
+
+            Should -Invoke -CommandName Get-MgUserCreatedObject -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }  
+
+        It "Property parameter should work" {
+            $result =  Get-EntraUserCreatedObject -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property appDisplayName 
+            $result | Should -Not -BeNullOrEmpty
+            $result.appDisplayName | Should -Be "Microsoft Graph Command Line Tools"
+
+            Should -Invoke -CommandName Get-MgUserCreatedObject -ModuleName Microsoft.Graph.Entra -Times 1
+        }
+
+        It "Should fail when Property is empty" {
+             { Get-EntraUserCreatedObject -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
+
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraUserCreatedObject -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }   
 
     }
 }

@@ -11,7 +11,7 @@ BeforeAll {
     $tenantObj = {
         return @(
             [PSCustomObject]@{
-                TenantId = "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
+                TenantId = "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             }
         )
 
@@ -22,7 +22,7 @@ BeforeAll {
     $scriptblock = {
         return @(
             @{
-                Id                         = '29728ade-6ae4-4ee9-9103-412912537da5'
+                Id                         = '00aa00aa-bb11-cc22-dd33-44ee44ee44ee'
                 "@odata.context" = $args
                 certificateAuthorities = @{ 
                     IsRootAuthority              = "RootAuthority"
@@ -30,7 +30,7 @@ BeforeAll {
                     DeltaCertificateRevocationListUrl = ""
                     Certificate        = @(70, 57, 66, 65, 57, 49, 69, 55, 54, 68, 57, 51, 49, 48, 51, 49, 55, 49, 55, 49, 50, 54, 69, 55, 68, 52, 70, 56, 70, 54, 57, 70, 55, 52, 51, 52, 57, 56, 53, 51)
                     Issuer             = "CN=mscmdlet"
-                    IssuerSki          = "23C98A95721291E474455243BDDB5651FE7BCDE8" 
+                    IssuerSki          = "66aa66aa-bb77-cc88-dd99-00ee00ee00ee" 
                 }
                 Parameters                 = $args
             }
@@ -48,7 +48,7 @@ BeforeAll {
                 DeltaCertificateRevocationListUrl = ""
                 Certificate        = @(70, 57, 66, 65, 57, 49, 69, 55, 54, 68, 57, 51, 49, 48, 51, 49, 55, 49, 55, 49, 50, 54, 69, 55, 68, 52, 70, 56, 70, 54, 57, 70, 55, 52, 51, 52, 57, 56, 53, 51)
                 Issuer             = "CN=mscmdlet"
-                IssuerSki          = "23C98A95721291E474455243BDDB5651FE7BCDE8"
+                IssuerSki          = "66aa66aa-bb77-cc88-dd99-00ee00ee00ee"
             }
             }
         )
@@ -72,11 +72,11 @@ Describe "New-EntraTrustedCertificateAuthority" {
             $result = New-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $new_ca
 
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "29728ade-6ae4-4ee9-9103-412912537da5"
+            $result.Id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result.certificateAuthorities.TrustedIssuer| Should -Be "CN=mscmdlet"
             $result.certificateAuthorities.CrlDistributionPoint| Should -Be "https://example.crl"
             $result.certificateAuthorities.AuthorityType| Should -Be "RootAuthority"
-            $result.certificateAuthorities.TrustedIssuerSki| Should -Be "23C98A95721291E474455243BDDB5651FE7BCDE8"
+            $result.certificateAuthorities.TrustedIssuerSki| Should -Be "66aa66aa-bb77-cc88-dd99-00ee00ee00ee"
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -87,7 +87,7 @@ Describe "New-EntraTrustedCertificateAuthority" {
 
         It "Should fail when parameters are Invalid values" {
             { New-EntraTrustedCertificateAuthority -CertificateAuthorityInformation ""  } | Should -Throw "Cannot process argument transformation on parameter 'CertificateAuthorityInformation'*"
-        }
+        } 
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraTrustedCertificateAuthority"
@@ -100,11 +100,16 @@ Describe "New-EntraTrustedCertificateAuthority" {
             $new_ca.DeltaCrlDistributionPoint="https://test.crl"
 
             $result = New-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $new_ca
+            
+            $result | Should -Not -BeNullOrEmpty
 
-            $params = Get-Parameters -data $result."@odata.context"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraTrustedCertificateAuthority"
 
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }   
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
 
         It "Should contain 'TenantId' " {
             $byteData = @(70, 57, 66, 65, 57, 49, 69, 55, 54, 68, 57, 51, 49, 48, 51, 49, 55, 49, 55, 49, 50, 54, 69, 55, 68, 52, 70, 56, 70, 54, 57, 70, 55, 52, 51, 52, 57, 56, 53, 51)
@@ -118,8 +123,27 @@ Describe "New-EntraTrustedCertificateAuthority" {
 
             $params = Get-Parameters -data $result."@odata.context"
 
-            $params.uri | Should -Match "d5aec55f-2d12-4442-8d2f-ccca95d4390e" 
+            $params.uri | Should -Match "aaaabbbb-0000-cccc-1111-dddd2222eeee" 
         }   
 
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+            $byteData = @(70, 57, 66, 65, 57, 49, 69, 55, 54, 68, 57, 51, 49, 48, 51, 49, 55, 49, 55, 49, 50, 54, 69, 55, 68, 52, 70, 56, 70, 54, 57, 70, 55, 52, 51, 52, 57, 56, 53, 51)
+            $new_ca=New-Object -TypeName Microsoft.Open.AzureAD.Model.CertificateAuthorityInformation
+            $new_ca.AuthorityType=0
+            $new_ca.TrustedCertificate= $byteData
+            $new_ca.crlDistributionPoint="https://example.crl"
+            $new_ca.DeltaCrlDistributionPoint="https://test.crl"
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                {New-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $new_ca -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }   
     }
 }
