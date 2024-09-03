@@ -11,7 +11,7 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-                "Id"                   = "sss"
+                "Id"                   = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
                 "IsActive"             = $true
                 "AdditionalProperties" = @{"@odata.context"="https://graph.microsoft.com/beta/`$metadata#directory/customSecurityAttributeDefinitions('Engineering_Projectt')/allowedValues/`$entity"}
                 "Parameters"           = $args
@@ -24,20 +24,20 @@ BeforeAll {
 Describe "Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues" {
     Context "Test for Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues" {
         It "Should update a specific value for the Id" {
-            $result = Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "sss" -IsActive $true
+            $result = Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -IsActive $true
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "sss"
+            $result.Id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result.IsActive | Should -Be $true
 
             Should -Invoke -CommandName New-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
         It "Should fail when CustomSecurityAttributeDefinitionId are empty" {
-            { Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId  -Id "sss" -IsActive $true } | Should -Throw "Missing an argument for parameter 'CustomSecurityAttributeDefinitionId'*"
+            { Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId  -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -IsActive $true } | Should -Throw "Missing an argument for parameter 'CustomSecurityAttributeDefinitionId'*"
         }
 
         It "Should fail when CustomSecurityAttributeDefinitionId is Invalid" {
-            { Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId "" -Id "sss" -IsActive $true } | Should -Throw "Cannot bind argument to parameter 'CustomSecurityAttributeDefinitionId' because it is an empty string."
+            { Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId "" -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -IsActive $true } | Should -Throw "Cannot bind argument to parameter 'CustomSecurityAttributeDefinitionId' because it is an empty string."
         }
 
         It "Should fail when Id are empty" {
@@ -49,22 +49,22 @@ Describe "Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues" {
         }
 
         It "Should fail when IsActive are empty" {
-            { Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "sss" -IsActive } | Should -Throw "Missing an argument for parameter 'IsActive'*"
+            { Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -IsActive } | Should -Throw "Missing an argument for parameter 'IsActive'*"
         }
 
         It "Should fail when IsActive are invalid" {
-            { Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "sss" -IsActive dffg } | Should -Throw "Cannot process argument transformation on parameter 'IsActive'*"
+            { Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -IsActive dffg } | Should -Throw "Cannot process argument transformation on parameter 'IsActive'*"
         }
 
         It "Result should Contain ObjectId" {
-            $result = Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "sss" -IsActive $true
-            $result.ObjectId | should -Be "sss"
+            $result = Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -IsActive $true
+            $result.ObjectId | should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         } 
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues"
             
-            $result = Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "sss" -IsActive $true
+            $result = Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -IsActive $true
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }   
@@ -76,7 +76,7 @@ Describe "Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "sss" -IsActive $true -Debug } | Should -Not -Throw
+                { Add-EntraBetacustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -IsActive $true -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

@@ -11,7 +11,7 @@ BeforeAll {
     $scriptblock = {
         return @(
             [PSCustomObject]@{
-              "Id"                      = "newdemo201"
+              "Id"                      = "bbbbcccc-1111-dddd-2222-eeee3333ffff"
               "Description"             = "new test"
               "MaxAttributesPerSet"     = 22
               "AdditionalProperties"    = @{"[@odata.context" = "https://graph.microsoft.com/beta/`$metadata#directory/attributeSets/`$entity"}
@@ -25,9 +25,9 @@ BeforeAll {
 Describe "Get-EntraBetaAttributeSet" {
     Context "Test for Get-EntraBetaAttributeSet" {
         It "Should get attribute set by Id" {
-            $result = Get-EntraBetaAttributeSet -Id "newdemo201"
+            $result = Get-EntraBetaAttributeSet -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be 'newdemo201'
+            $result.Id | should -Be 'bbbbcccc-1111-dddd-2222-eeee3333ffff'
             $result.Description | should -Be "new test"
             $result.MaxAttributesPerSet | should -Be 22
 
@@ -43,20 +43,20 @@ Describe "Get-EntraBetaAttributeSet" {
         }
 
         It "Result should Contain ObjectId" {
-            $result = Get-EntraBetaAttributeSet -Id "newdemo201"
-            $result.ObjectId | should -Be "newdemo201"
+            $result = Get-EntraBetaAttributeSet -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $result.ObjectId | should -Be "bbbbcccc-1111-dddd-2222-eeee3333ffff"
         } 
 
         It "Should contain AttributeSetId in parameters when passed Id to it" {
-            $result = Get-EntraBetaAttributeSet -Id "newdemo201"
+            $result = Get-EntraBetaAttributeSet -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result.Parameters
-            $params.AttributeSetId | Should -Be "newdemo201"
+            $params.AttributeSetId | Should -Be "bbbbcccc-1111-dddd-2222-eeee3333ffff"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaAttributeSet"
 
-            $result = Get-EntraBetaAttributeSet -Id "newdemo201"
+            $result = Get-EntraBetaAttributeSet -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result.Parameters
             $params.headers.'User-Agent' | Should -Be $userAgentHeaderValue
         }    
@@ -67,7 +67,7 @@ Describe "Get-EntraBetaAttributeSet" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaAttributeSet -Id "newdemo201" -Debug } | Should -Not -Throw
+                { Get-EntraBetaAttributeSet -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

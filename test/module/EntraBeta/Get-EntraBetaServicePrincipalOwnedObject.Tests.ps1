@@ -15,9 +15,9 @@ BeforeAll {
             'alternativeNames'                       = @{}
             'createdDateTime'                        = '2023-09-21T15:31:24Z'
             'appDisplayName'                         = 'ToGraph_443democc3c'
-            'appId'                                  = '7bc6f57b-9014-45de-a73c-5a2b75454305'
-            'applicationTemplateId'                  = '1cdcd90d-0bf2-4bb8-bc20-a3f5b30b251e'
-            'appOwnerOrganizationId'                 = 'd5aec55f-2d12-4442-8d2f-ccca95d4390e'
+            'appId'                                  = 'bbbbbbbb-1111-2222-3333-cccccccccc55'
+            'applicationTemplateId'                  = 'bbbbbbbb-1111-2222-3333-cccccccccc56'
+            'appOwnerOrganizationId'                 = 'bbbbbbbb-1111-2222-3333-cccccccccc57'
             'appRoleAssignmentRequired'              = $true
             'displayName'                            = 'ToGraph_443democc3c'
             'homepage'                               = 'https://*.time2work.com/Security/ADFS.aspx?metadata=nimbus|ISV9.2|primary|z'
@@ -26,7 +26,7 @@ BeforeAll {
             'publisherName'                          = 'Contoso'
             'replyUrls'                              = @{}
             'samlSLOBindingType'                     = 'httpRedirect'
-            'servicePrincipalNames'                  = @('7bc6f57b-9014-45de-a73c-5a2b75454305')
+            'servicePrincipalNames'                  = @('bbbbbbbb-1111-2222-3333-cccccccccc55')
             'servicePrincipalType'                   = 'Application'
             'signInAudience'                         = 'AzureADMyOrg'
             'tags'                                   = @('WindowsAzureActiveDirectoryIntegratedApp')
@@ -50,18 +50,18 @@ BeforeAll {
             'passwordCredentials'                    = @{}
             'resourceSpecificApplicationPermissions' = @{}
             'verifiedPublisher'                      = @{}
-            'ObjectId'                               = '02939955-b5d0-436e-a8b1-35d37154f550'
+            'ObjectId'                               = 'bbbbbbbb-1111-2222-3333-cccccccccc58'
             'DeletedDateTime'                        = $null
-            'Id'                                     = '02939955-b5d0-436e-a8b1-35d37154f550'
+            'Id'                                     = 'bbbbbbbb-1111-2222-3333-cccccccccc58'
             'AdditionalProperties'                   = @{
                 '@odata.type'                            = '#microsoft.graph.servicePrincipal'
                 'accountEnabled'                         = $true
                 'alternativeNames'                       = @{}
                 'createdDateTime'                        = '2023-09-21T15:31:24Z'
                 'appDisplayName'                         = 'ToGraph_443democc3c'
-                'appId'                                  = '7bc6f57b-9014-45de-a73c-5a2b75454305'
-                'applicationTemplateId'                  = '1cdcd90d-0bf2-4bb8-bc20-a3f5b30b251e'
-                'appOwnerOrganizationId'                 = 'd5aec55f-2d12-4442-8d2f-ccca95d4390e'
+                'appId'                                  = 'bbbbbbbb-1111-2222-3333-cccccccccc55'
+                'applicationTemplateId'                  = 'bbbbbbbb-1111-2222-3333-cccccccccc56'
+                'appOwnerOrganizationId'                 = 'bbbbbbbb-1111-2222-3333-cccccccccc57'
                 'appRoleAssignmentRequired'              = $true
                 'displayName'                            = 'ToGraph_443democc3c'
                 'homepage'                               = 'https://*.time2work.com/Security/ADFS.aspx?metadata=nimbus|ISV9.2|primary|z'
@@ -70,7 +70,7 @@ BeforeAll {
                 'publisherName'                          = 'Contoso'
                 'replyUrls'                              = @{}
                 'samlSLOBindingType'                     = 'httpRedirect'
-                'servicePrincipalNames'                  = @('7bc6f57b-9014-45de-a73c-5a2b75454305')
+                'servicePrincipalNames'                  = @('bbbbbbbb-1111-2222-3333-cccccccccc55')
                 'servicePrincipalType'                   = 'Application'
                 'signInAudience'                         = 'AzureADMyOrg'
                 'tags'                                   = @('WindowsAzureActiveDirectoryIntegratedApp')
@@ -93,13 +93,13 @@ BeforeAll {
 Describe "Get-EntraBetaServicePrincipalOwnedObject" {
     Context "Test for Get-EntraBetaServicePrincipalOwnedObject" {
         It "Should retrieve the owned objects of a service principal" {
-            $result = Get-EntraBetaServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3"
+            $result = Get-EntraBetaServicePrincipalOwnedObject -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc40"
             $result | Should -Not -BeNullOrEmpty
             $result.AdditionalProperties | Should -Not -BeNullOrEmpty
             $result.displayName | Should -Be "ToGraph_443democc3c"
             $result.appDisplayName | Should -Be "ToGraph_443democc3c"
-            $result.Id | Should -Be "02939955-b5d0-436e-a8b1-35d37154f550"
-            $result.appId | Should -Be "7bc6f57b-9014-45de-a73c-5a2b75454305"
+            $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc58"
+            $result.appId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result.AdditionalProperties.appDisplayName | Should -Be "ToGraph_443democc3c"
             $result.AdditionalProperties.tags | Should -Be @('WindowsAzureActiveDirectoryIntegratedApp')
 
@@ -115,47 +115,47 @@ Describe "Get-EntraBetaServicePrincipalOwnedObject" {
         }
 
         It "Should return top service principal" {
-            $result = Get-EntraBetaServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3" -Top 1
+            $result = Get-EntraBetaServicePrincipalOwnedObject -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc40" -Top 1
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
         It "Should fail when Top are empty" {
-            { Get-EntraBetaServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3" -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraBetaServicePrincipalOwnedObject -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc40" -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
 
         It "Should fail when Top is Invalid" {
-            { Get-EntraBetaServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3" -Top XYZ } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraBetaServicePrincipalOwnedObject -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc40" -Top XYZ } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
 
         It "Should return all service principal" {
-            $result = Get-EntraBetaServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3" -All
+            $result = Get-EntraBetaServicePrincipalOwnedObject -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc40" -All
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
         It "Should fail when All has an argument" {
-            { Get-EntraBetaServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
+            { Get-EntraBetaServicePrincipalOwnedObject -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc40" -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
         }
 
         It "Should contain Id in result" {
-            $result = Get-EntraBetaServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3"
-            $result.Id | should -Be "02939955-b5d0-436e-a8b1-35d37154f550"
+            $result = Get-EntraBetaServicePrincipalOwnedObject -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc40"
+            $result.Id | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc58"
 
             Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         } 
 
         It "Should contain ServicePrincipalId in parameters when passed Id to it" {
-            $result = Get-EntraBetaServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3"
+            $result = Get-EntraBetaServicePrincipalOwnedObject -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc40"
             $params = Get-Parameters -data $result.Parameters
-            $params.ServicePrincipalId | Should -Be "2d028fff-7e65-4340-80ca-89be16dae0b3"
+            $params.ServicePrincipalId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc40"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaServicePrincipalOwnedObject"
-            $result = Get-EntraBetaServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3"
+            $result = Get-EntraBetaServicePrincipalOwnedObject -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc40"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }  
@@ -167,7 +167,7 @@ Describe "Get-EntraBetaServicePrincipalOwnedObject" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaServicePrincipalOwnedObject -ObjectId "2d028fff-7e65-4340-80ca-89be16dae0b3" -Debug } | Should -Not -Throw
+                { Get-EntraBetaServicePrincipalOwnedObject -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc40" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

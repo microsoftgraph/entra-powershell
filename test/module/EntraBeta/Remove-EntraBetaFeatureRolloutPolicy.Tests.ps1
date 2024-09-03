@@ -14,7 +14,7 @@ BeforeAll {
 Describe "Remove-EntraBetaFeatureRolloutPolicy" {
     Context "Test for Remove-EntraBetaFeatureRolloutPolicy" {
         It "Should removes the policy for cloud authentication roll-out in Azure AD" {
-            $result = Remove-EntraBetaFeatureRolloutPolicy -Id "7b10cf40-bc0e-46b5-9456-4520179eef5d"
+            $result = Remove-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgBetaPolicyFeatureRolloutPolicy -ModuleName Microsoft.Graph.Entra.Beta -Times 1
@@ -31,16 +31,16 @@ Describe "Remove-EntraBetaFeatureRolloutPolicy" {
         It "Should contain FeatureRolloutPolicyId in parameters when passed Id to it" {
             Mock -CommandName Remove-MgBetaPolicyFeatureRolloutPolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
-            $result = Remove-EntraBetaFeatureRolloutPolicy -Id "7b10cf40-bc0e-46b5-9456-4520179eef5d"
+            $result = Remove-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result
-            $params.FeatureRolloutPolicyId | Should -Be "7b10cf40-bc0e-46b5-9456-4520179eef5d"
+            $params.FeatureRolloutPolicyId | Should -Be "bbbbcccc-1111-dddd-2222-eeee3333ffff"
         }
 
         It "Should contain 'User-Agent' header" {
             Mock -CommandName Remove-MgBetaPolicyFeatureRolloutPolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaFeatureRolloutPolicy"
-            $result = Remove-EntraBetaFeatureRolloutPolicy -Id "7b10cf40-bc0e-46b5-9456-4520179eef5d"
+            $result = Remove-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         } 
@@ -52,7 +52,7 @@ Describe "Remove-EntraBetaFeatureRolloutPolicy" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraBetaFeatureRolloutPolicy -Id "7b10cf40-bc0e-46b5-9456-4520179eef5d" -Debug } | Should -Not -Throw
+                { Remove-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

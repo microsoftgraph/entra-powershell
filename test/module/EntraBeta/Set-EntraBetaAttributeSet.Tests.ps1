@@ -14,7 +14,7 @@ BeforeAll {
 Describe "Set-EntraBetaAttributeSet" {
     Context "Test for Set-EntraBetaAttributeSet" {
         It "Should update attribute set" {
-            $result = Set-EntraBetaAttributeSet -Id "May" -Description "Update AttributeSet" -MaxAttributesPerSet 22
+            $result = Set-EntraBetaAttributeSet -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Update AttributeSet" -MaxAttributesPerSet 22
             $result | Should -Be -NullOrEmpty
 
             Should -Invoke -CommandName  Update-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Graph.Entra.Beta -Times 1
@@ -25,32 +25,46 @@ Describe "Set-EntraBetaAttributeSet" {
         }
 
         It "Should fail when Description is empty" {
-            { Set-EntraBetaAttributeSet -Id "May" -Description  -MaxAttributesPerSet 22 } | Should -Throw "Missing an argument for parameter 'Description'*"
+            { Set-EntraBetaAttributeSet -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description  -MaxAttributesPerSet 22 } | Should -Throw "Missing an argument for parameter 'Description'*"
         }
 
         It "Should fail when MaxAttributesPerSet is empty" {
-            { Set-EntraBetaAttributeSet -Id "May" -Description "Update AttributeSet" -MaxAttributesPerSet  } | Should -Throw "Missing an argument for parameter 'MaxAttributesPerSet'*"
+            { Set-EntraBetaAttributeSet -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Update AttributeSet" -MaxAttributesPerSet  } | Should -Throw "Missing an argument for parameter 'MaxAttributesPerSet'*"
         }
 
         It "Should fail when MaxAttributesPerSet is invalid" {
-            { Set-EntraBetaAttributeSet -Id "May" -Description "Update AttributeSet" -MaxAttributesPerSet "XYZ" } | Should -Throw "Cannot process argument transformation on parameter 'MaxAttributesPerSet'*"
+            { Set-EntraBetaAttributeSet -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Update AttributeSet" -MaxAttributesPerSet "XYZ" } | Should -Throw "Cannot process argument transformation on parameter 'MaxAttributesPerSet'*"
         }
 
         It "Should contain AttributeSetId in parameters when passed Id to it" {
             Mock -CommandName Update-MgBetaDirectoryAttributeSet -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
-            $result = Set-EntraBetaAttributeSet -Id "May" -Description "Update AttributeSet" -MaxAttributesPerSet 22
+            $result = Set-EntraBetaAttributeSet -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Update AttributeSet" -MaxAttributesPerSet 22
             $params = Get-Parameters -data $result
-            $params.AttributeSetId | Should -Be "May"
+            $params.AttributeSetId | Should -Be "aaaabbbb-0000-cccc-1111-dddd2222eeee"
         }
 
         It "Should contain 'User-Agent' header" {
             Mock -CommandName Update-MgBetaDirectoryAttributeSet -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaAttributeSet"
-            $result = Set-EntraBetaAttributeSet -Id "May" -Description "Update AttributeSet" -MaxAttributesPerSet 22
+            $result = Set-EntraBetaAttributeSet -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Update AttributeSet" -MaxAttributesPerSet 22
             $params = Get-Parameters -data $result
             $params.headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }    
+        } 
+        
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraBetaAttributeSet -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Update AttributeSet" -MaxAttributesPerSet 22 -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        } 
     }
 }

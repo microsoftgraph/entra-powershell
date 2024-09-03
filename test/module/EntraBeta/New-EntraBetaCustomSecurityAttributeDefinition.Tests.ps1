@@ -14,7 +14,7 @@ BeforeAll {
                 "AllowedValues"             = ""
                 "AttributeSet"              = "Test"
                 "Description"               = "Target completion date"
-                "Id"                        = "Test_Date"
+                "Id"                        = "bbbbbbbb-1111-2222-3333-cccccccccc55"
                 "IsCollection"              = $false
                 "IsSearchable"              = $true 
                 "Name"                      = "Date"
@@ -35,7 +35,7 @@ Describe "New-EntraBetaCustomSecurityAttributeDefinition" {
             $result = New-EntraBetaCustomSecurityAttributeDefinition -AttributeSet "Test" -Name "Date" -Description "Target completion date" -Type "String" -Status "Available" -IsCollection $false -IsSearchable $true -UsePreDefinedValuesOnly $true
             $result | Should -Not -BeNullOrEmpty
             $result.AllowedValues | should -BeNullOrEmpty
-            $result.Id | should -Be 'Test_Date'
+            $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccc55'
             $result.AttributeSet | should -Be 'Test'
             $result.Description | should -Be 'Target completion date'
             $result.Name | should -Be 'Date'
@@ -110,7 +110,7 @@ Describe "New-EntraBetaCustomSecurityAttributeDefinition" {
 
         It "Result should Contain ObjectId" {
             $result = New-EntraBetaCustomSecurityAttributeDefinition -AttributeSet "Test" -Name "Date" -Description "Target completion date" -Type "String" -Status "Available" -IsCollection $false -IsSearchable $true -UsePreDefinedValuesOnly $true
-            $result.ObjectId | should -Be "Test_Date"
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
         } 
 
         It "Should contain 'User-Agent' header" {

@@ -34,5 +34,18 @@ Describe "Set-EntraBetaServicePrincipal"{
                 $true
             }
         }
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraBetaServicePrincipal -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        } 
     }
 }

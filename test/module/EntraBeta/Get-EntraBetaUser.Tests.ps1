@@ -75,7 +75,7 @@ BeforeAll {
                 "FollowedSites"                                   = $null
                 "GivenName"                                       = $null
                 "HireDate"                                        = $null
-                "Id"                                              = "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
+                "Id"                                              = "bbbbbbbb-1111-2222-3333-cccccccccc55"
                 "Identities"                                      = @("dummy10@M365x99297270.OnMicrosoft.com")
                 "ImAddresses"                                     = @{}
                 "InferenceClassification"                         = "Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphInferenceClassification"
@@ -183,9 +183,9 @@ BeforeAll {
 Describe "Get-EntraBetaUser" {
     Context "Test for Get-EntraBetaUser" {
         It "Should get a user by ID" {
-            $result = Get-EntraBetaUser -ObjectId "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
+            $result = Get-EntraBetaUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result | Should -Not -BeNullOrEmpty
-            $result.ObjectId | should -Be "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"            
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"            
             
             Should -Invoke -CommandName Get-MgBetaUser -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
@@ -234,8 +234,8 @@ Describe "Get-EntraBetaUser" {
         It "Should get a user by userPrincipalName" {
             $userPrincipalName = Get-EntraBetaUser -Filter "userPrincipalName eq 'dummy10@M365x99297270.OnMicrosoft.com'"
             $userPrincipalName | Should -Not -BeNullOrEmpty
-            $userPrincipalName.Id | should -Be "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
-            $userPrincipalName.ObjectId | should -Be "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
+            $userPrincipalName.Id | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
+            $userPrincipalName.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $userPrincipalName.DisplayName | should -Be "dummy10"
             $userPrincipalName.UserPrincipalName | should -Be "dummy10@M365x99297270.OnMicrosoft.com"
 
@@ -259,13 +259,13 @@ Describe "Get-EntraBetaUser" {
         }  
 
         It "Result should get DisplayName property values for a user by ID" {
-            $result = Get-EntraBetaUser -ObjectId "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
+            $result = Get-EntraBetaUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result.DisplayName | should -Be "dummy10"
         } 
 
         It "Result should Contain ObjectId" {
-            $result = Get-EntraBetaUser -ObjectId "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
-            $result.ObjectId | should -Be "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
+            $result = Get-EntraBetaUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc55"
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
         } 
 
         It "Should contain Filter in parameters" {
@@ -283,15 +283,15 @@ Describe "Get-EntraBetaUser" {
         }
 
         It "Should contain UserId in parameters when passed Id to it" {
-            $result = Get-EntraBetaUser -ObjectId "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
+            $result = Get-EntraBetaUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $params = Get-Parameters -data $result.Parameters
-            $params.UserId | Should -Be "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
+            $params.UserId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUser"
 
-            $result = Get-EntraBetaUser -ObjectId "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63"
+            $result = Get-EntraBetaUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Contain $userAgentHeaderValue
         }    
@@ -303,7 +303,7 @@ Describe "Get-EntraBetaUser" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaUser -ObjectId "9a887cbb-706d-4bfd-a3e4-25a6ecdd0b63" -Debug } | Should -Not -Throw
+                { Get-EntraBetaUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

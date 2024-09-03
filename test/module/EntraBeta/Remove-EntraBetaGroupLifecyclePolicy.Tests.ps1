@@ -14,7 +14,7 @@ BeforeAll {
 Describe "Remove-EntraBetaGroupLifecyclePolicy" {
     Context "Test for Remove-EntraBetaGroupLifecyclePolicy" {
         It "Should return empty Id" {
-            $result = Remove-EntraBetaGroupLifecyclePolicy -Id "a47d4510-08c8-4437-99e9-71ca88e7af0f"
+            $result = Remove-EntraBetaGroupLifecyclePolicy -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgBetaGroupLifecyclePolicy -ModuleName Microsoft.Graph.Entra.Beta -Times 1
@@ -31,32 +31,32 @@ Describe "Remove-EntraBetaGroupLifecyclePolicy" {
         It "Should contain GroupLifecyclePolicyId in parameters when passed Id to it" {
             Mock -CommandName Remove-MgBetaGroupLifecyclePolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
-            $result = Remove-EntraBetaGroupLifecyclePolicy -Id "a47d4510-08c8-4437-99e9-71ca88e7af0f"
+            $result = Remove-EntraBetaGroupLifecyclePolicy -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $params = Get-Parameters -data $result
-            $params.GroupLifecyclePolicyId | Should -Be "a47d4510-08c8-4437-99e9-71ca88e7af0f"
+            $params.GroupLifecyclePolicyId | Should -Be "aaaabbbb-0000-cccc-1111-dddd2222eeee"
         }
 
         It "Should contain 'User-Agent' header" {
             Mock -CommandName Remove-MgBetaGroupLifecyclePolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaGroupLifecyclePolicy"
-            $result = Remove-EntraBetaGroupLifecyclePolicy -Id "a47d4510-08c8-4437-99e9-71ca88e7af0f"
+            $result = Remove-EntraBetaGroupLifecyclePolicy -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         } 
 
-        # It "Should execute successfully without throwing an error " {
-        #     # Disable confirmation prompts       
-        #     $originalDebugPreference = $DebugPreference
-        #     $DebugPreference = 'Continue'
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
     
-        #     try {
-        #         # Act & Assert: Ensure the function doesn't throw an exception
-        #         { Get-EntraBetaAuditSignInLogs -Top 1 -Debug } | Should -Not -Throw
-        #     } finally {
-        #         # Restore original confirmation preference            
-        #         $DebugPreference = $originalDebugPreference        
-        #     }
-        # } 
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Remove-EntraBetaGroupLifecyclePolicy -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        } 
     }
 }

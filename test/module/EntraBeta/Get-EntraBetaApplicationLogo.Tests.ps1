@@ -23,7 +23,7 @@ BeforeAll {
   
 Describe "Get-EntraBetaApplicationLogo" {
     It "Should return empty" {
-        $result = Get-EntraBetaApplicationLogo -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32" -FilePath "D:\image.jpg"        
+        $result = Get-EntraBetaApplicationLogo -ObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -FilePath "D:\image.jpg"        
         $result | Should -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
     }
@@ -35,7 +35,7 @@ Describe "Get-EntraBetaApplicationLogo" {
     }
     It "Should contain 'User-Agent' header" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaApplicationLogo"
-        $result = Get-EntraBetaApplicationLogo -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32" -FilePath "D:\image.jpg"
+        $result = Get-EntraBetaApplicationLogo -ObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -FilePath "D:\image.jpg"
         $result | Should -BeNullOrEmpty
 
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
@@ -50,7 +50,7 @@ Describe "Get-EntraBetaApplicationLogo" {
 
         try {
             # Act & Assert: Ensure the function doesn't throw an exception
-            { Get-EntraBetaApplicationLogo -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32" -FilePath "D:\image.jpg" -Debug } | Should -Not -Throw
+            { Get-EntraBetaApplicationLogo -ObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -FilePath "D:\image.jpg" -Debug } | Should -Not -Throw
         } finally {
             # Restore original confirmation preference            
             $DebugPreference = $originalDebugPreference        

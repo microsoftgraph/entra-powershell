@@ -12,8 +12,8 @@ BeforeAll {
         return @(
             [PSCustomObject]@{
                 "DisplayName"          = "new"
-                "ExternalId"           = "/administrativeUnits/5bea6c93-5803-42bc-b236-7fd11570ade1"
-                "Id"                   = "5bea6c93-5803-42bc-b236-7fd11570ade1"
+                "ExternalId"           = "/administrativeUnits/bbbbbbbb-1111-2222-3333-cccccccccc55"
+                "Id"                   = "bbbbbbbb-1111-2222-3333-cccccccccc55"
                 "Parent"               = "Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphGovernanceResource"
                 "RegisteredDateTime"   = $null
                 "RegisteredRoot"       = $null
@@ -49,12 +49,12 @@ Describe "Get-EntraBetaPrivilegedResource" {
         }
 
         It "Should get a specific privileged resource" {
-            $result = Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Id "5bea6c93-5803-42bc-b236-7fd11570ade1"
+            $result = Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "5bea6c93-5803-42bc-b236-7fd11570ade1"
+            $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result.Status | Should -Be "Active"
             $result.Type | Should -Be "administrativeUnits"
-            $result.ExternalId | Should -Be "/administrativeUnits/5bea6c93-5803-42bc-b236-7fd11570ade1"
+            $result.ExternalId | Should -Be "/administrativeUnits/bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result.DisplayName | Should -Be "new"
 
             Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Graph.Entra.Beta -Times 1
@@ -86,10 +86,10 @@ Describe "Get-EntraBetaPrivilegedResource" {
         It "Should get a specific privileged resource by filter" {
             $result = Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Filter "DisplayName eq 'new'"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "5bea6c93-5803-42bc-b236-7fd11570ade1"
+            $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result.Status | Should -Be "Active"
             $result.Type | Should -Be "administrativeUnits"
-            $result.ExternalId | Should -Be "/administrativeUnits/5bea6c93-5803-42bc-b236-7fd11570ade1"
+            $result.ExternalId | Should -Be "/administrativeUnits/bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result.DisplayName | Should -Be "new"
 
             Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Graph.Entra.Beta -Times 1
@@ -100,20 +100,20 @@ Describe "Get-EntraBetaPrivilegedResource" {
         }
 
         It "Should contain ObjectId in result" {
-            $result = Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Id "5bea6c93-5803-42bc-b236-7fd11570ade1"
-            $result.ObjectId | should -Be "5bea6c93-5803-42bc-b236-7fd11570ade1"
+            $result = Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
         } 
 
         It "Should contain GovernanceResourceId in parameters when passed Id to it" {
-            $result = Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Id "5bea6c93-5803-42bc-b236-7fd11570ade1"
+            $result = Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $params = Get-Parameters -data $result.Parameters
-            $params.GovernanceResourceId | Should -Be "5bea6c93-5803-42bc-b236-7fd11570ade1"
+            $params.GovernanceResourceId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
 
             Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
         It "Should contain PrivilegedAccessId in parameters when passed ProviderId to it" {
-            $result = Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Id "5bea6c93-5803-42bc-b236-7fd11570ade1"
+            $result = Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $params = Get-Parameters -data $result.Parameters
             $params.PrivilegedAccessId | Should -Be "aadRoles"
 

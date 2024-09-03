@@ -55,5 +55,21 @@ Describe "Tests for Update-EntraBetaSignedInUserPassword"{
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
+
+        It "Should execute successfully without throwing an error " {
+            $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
+            $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Update-EntraBetaSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        } 
     }
 }

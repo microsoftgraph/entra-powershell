@@ -15,7 +15,7 @@ BeforeAll {
                 "Description"                   = "Capture and manage your ESG data from across the organization in an integrated, cloud-based platform that connects organizational strategy, automates reporting, and simplifies stakeholder engagement."
                 "DisplayName"                   = "FigBytes"
                 "HomePageUrl"                   = "https://figbytes.biz/"
-                "Id"                            = "5979191c-86e6-40f7-87ac-0913dddd1f61"
+                "Id"                            = "bbbbcccc-1111-dddd-2222-eeee3333ffff"
                 "LogoUrl"                       = "https://galleryapplogos1.azureedge.net/app-logo/figbytes_AAA12D0E_215.png"
                 "Publisher"                     = "Figbytes"
                 "SupportedClaimConfiguration"   = [PSCustomObject]@{
@@ -38,7 +38,7 @@ BeforeAll {
 Describe "Get-EntraBetaApplicationTemplate" {
     Context "Test for Get-EntraBetaApplicationTemplate" {
         It "Should get a specific application template" {
-            $result = Get-EntraBetaApplicationTemplate -Id "5979191c-86e6-40f7-87ac-0913dddd1f61"
+            $result = Get-EntraBetaApplicationTemplate -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be 'FigBytes'
             $result.Description | should -Be  "Capture and manage your ESG data from across the organization in an integrated, cloud-based platform that connects organizational strategy, automates reporting, and simplifies stakeholder engagement."
@@ -62,22 +62,22 @@ Describe "Get-EntraBetaApplicationTemplate" {
         }
 
         It "Should contain Id in result" {
-            $result = Get-EntraBetaApplicationTemplate -Id "5979191c-86e6-40f7-87ac-0913dddd1f61"
-            $result.Id | should -Be "5979191c-86e6-40f7-87ac-0913dddd1f61"
+            $result = Get-EntraBetaApplicationTemplate -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $result.Id | should -Be "bbbbcccc-1111-dddd-2222-eeee3333ffff"
 
             Should -Invoke -CommandName Get-MgBetaApplicationTemplate -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         } 
 
         It "Should contain ApplicationTemplateId in parameters when passed Id to it" {
-            $result = Get-EntraBetaApplicationTemplate -Id "5979191c-86e6-40f7-87ac-0913dddd1f61"
+            $result = Get-EntraBetaApplicationTemplate -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result.Parameters
-            $params.ApplicationTemplateId | Should -Be "5979191c-86e6-40f7-87ac-0913dddd1f61"
+            $params.ApplicationTemplateId | Should -Be "bbbbcccc-1111-dddd-2222-eeee3333ffff"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaApplicationTemplate"
 
-            $result = Get-EntraBetaApplicationTemplate -Id "5979191c-86e6-40f7-87ac-0913dddd1f61"
+            $result = Get-EntraBetaApplicationTemplate -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result.Parameters
             $params.headers.'User-Agent' | Should -Be $userAgentHeaderValue
         }    
@@ -88,7 +88,7 @@ Describe "Get-EntraBetaApplicationTemplate" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaApplicationTemplate -Id "5979191c-86e6-40f7-87ac-0913dddd1f61" -Debug } | Should -Not -Throw
+                { Get-EntraBetaApplicationTemplate -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

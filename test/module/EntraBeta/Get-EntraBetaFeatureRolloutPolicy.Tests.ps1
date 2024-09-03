@@ -15,7 +15,7 @@ BeforeAll {
                 "Description"                       = "Feature-Rollout-test"
                 "DisplayName"                       = "Feature-Rollout-Policytest"
                 "Feature"                           = "passwordHashSync"
-                "Id"                                = "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e"
+                "Id"                                = "bbbbbbbb-1111-2222-3333-cccccccccc55"
                 "IsAppliedToOrganization"           = $false
                 "IsEnabled"                         = $true
                 "AdditionalProperties"              = @{
@@ -31,7 +31,7 @@ BeforeAll {
 Describe "Get-EntraBetaFeatureRolloutPolicy" {
     Context "Test for Get-EntraBetaFeatureRolloutPolicy" {
         It "Should retrieves cloud authentication roll-out in Azure AD with given Id" {
-            $result = Get-EntraBetaFeatureRolloutPolicy -Id "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e"
+            $result = Get-EntraBetaFeatureRolloutPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be "Feature-Rollout-Policytest"
             $result.Description | should -Be "Feature-Rollout-test"
@@ -39,7 +39,7 @@ Describe "Get-EntraBetaFeatureRolloutPolicy" {
             $result.Feature | should -Be "passwordHashSync"
             $result.IsAppliedToOrganization | should -Be $false
             $result.AppliesTo | should -BeNullOrEmpty
-            $result.ObjectId | should -Be "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e"
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
 
             Should -Invoke -CommandName Get-MgBetaPolicyFeatureRolloutPolicy -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
@@ -75,8 +75,8 @@ Describe "Get-EntraBetaFeatureRolloutPolicy" {
         }  
 
         It "Result should Contain ObjectId" {
-            $result = Get-EntraBetaFeatureRolloutPolicy -Id "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e"
-            $result.ObjectId | should -Be "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e"
+            $result = Get-EntraBetaFeatureRolloutPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
         } 
 
         It "Should contain Filter in parameters when SearchString passed to it" {
@@ -87,15 +87,15 @@ Describe "Get-EntraBetaFeatureRolloutPolicy" {
         }
         
         It "Should contain FeatureRolloutPolicyId in parameters when passed Id to it" {
-            $result = Get-EntraBetaFeatureRolloutPolicy -Id "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e"
+            $result = Get-EntraBetaFeatureRolloutPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $params = Get-Parameters -data $result.Parameters
-            $params.FeatureRolloutPolicyId | Should -Be "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e"
+            $params.FeatureRolloutPolicyId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaFeatureRolloutPolicy"
 
-            $result = Get-EntraBetaFeatureRolloutPolicy -Id "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e"
+            $result = Get-EntraBetaFeatureRolloutPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Contain $userAgentHeaderValue
         }    
@@ -107,7 +107,7 @@ Describe "Get-EntraBetaFeatureRolloutPolicy" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaFeatureRolloutPolicy -Id "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e" -Debug } | Should -Not -Throw
+                { Get-EntraBetaFeatureRolloutPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

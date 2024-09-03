@@ -55,5 +55,18 @@ Describe "Set-EntraBetaDirSyncEnabled" {
                 $true
             }
         } 
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraBetaDirSyncEnabled -EnableDirsync $True -TenantId 'aaaaaaaa-1111-1111-1111-000000000000' -Force -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        } 
     }
 }   

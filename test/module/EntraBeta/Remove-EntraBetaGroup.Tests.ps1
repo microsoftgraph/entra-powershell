@@ -14,7 +14,7 @@ BeforeAll {
 Describe "Remove-EntraBetaGroup" {
     Context "Test for Remove-EntraBetaGroup" {
         It "Should return empty Id" {
-            $result = Remove-EntraBetaGroup -ObjectId "fe4619d9-9ce7-4141-a367-ec10f3fb8af4"
+            $result = Remove-EntraBetaGroup -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgBetaGroup -ModuleName Microsoft.Graph.Entra.Beta -Times 1
@@ -31,16 +31,16 @@ Describe "Remove-EntraBetaGroup" {
         It "Should contain GroupId in parameters when passed ObjectId to it" {
             Mock -CommandName Remove-MgBetaGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
-            $result = Remove-EntraBetaGroup -ObjectId "fe4619d9-9ce7-4141-a367-ec10f3fb8af4"
+            $result = Remove-EntraBetaGroup -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $params = Get-Parameters -data $result
-            $params.GroupId | Should -Be "fe4619d9-9ce7-4141-a367-ec10f3fb8af4"
+            $params.GroupId | Should -Be "aaaabbbb-0000-cccc-1111-dddd2222eeee"
         }
 
         It "Should contain 'User-Agent' header" {
             Mock -CommandName Remove-MgBetaGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaGroup"
-            $result = Remove-EntraBetaGroup -ObjectId "fe4619d9-9ce7-4141-a367-ec10f3fb8af4"
+            $result = Remove-EntraBetaGroup -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         } 
@@ -52,7 +52,7 @@ Describe "Remove-EntraBetaGroup" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraBetaGroup -ObjectId "fe4619d9-9ce7-4141-a367-ec10f3fb8af4" -Debug } | Should -Not -Throw
+                { Remove-EntraBetaGroup -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

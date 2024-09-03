@@ -14,40 +14,40 @@ BeforeAll {
 Describe "Add-EntraBetaGroupOwner" {
     Context "Test for Add-EntraBetaGroupOwner" {
         It "Should return empty object" {
-            $result = Add-EntraBetaGroupOwner -ObjectId "fe4619d9-9ce7-4141-a367-ec10f3fb8af4" -RefObjectId "3015621f-bfb5-40ca-923d-8439ff7db286"
+            $result = Add-EntraBetaGroupOwner -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName New-MgBetaGroupOwnerByRef -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
         It "Should fail when ObjectId is empty" {
-            { Add-EntraBetaGroupOwner -ObjectId  -RefObjectId "3015621f-bfb5-40ca-923d-8439ff7db286"  } | Should -Throw "Missing an argument for parameter 'ObjectId'.*"
+            { Add-EntraBetaGroupOwner -ObjectId  -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"  } | Should -Throw "Missing an argument for parameter 'ObjectId'.*"
         }
 
         It "Should fail when ObjectId is invalid" {
-            { Add-EntraBetaGroupOwner -ObjectId "" -RefObjectId "3015621f-bfb5-40ca-923d-8439ff7db286"  } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+            { Add-EntraBetaGroupOwner -ObjectId "" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"  } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
 
         It "Should fail when RefObjectId is empty" {
-            { Add-EntraBetaGroupOwner -ObjectId "fe4619d9-9ce7-4141-a367-ec10f3fb8af4" -RefObjectId   } | Should -Throw "Missing an argument for parameter 'RefObjectId'.*"
+            { Add-EntraBetaGroupOwner -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId   } | Should -Throw "Missing an argument for parameter 'RefObjectId'.*"
         }
 
         It "Should fail when RefObjectId is invalid" {
-            { Add-EntraBetaGroupOwner -ObjectId "fe4619d9-9ce7-4141-a367-ec10f3fb8af4" -RefObjectId ""  } | Should -Throw "Cannot bind argument to parameter 'RefObjectId' because it is an empty string."
+            { Add-EntraBetaGroupOwner -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId ""  } | Should -Throw "Cannot bind argument to parameter 'RefObjectId' because it is an empty string."
         }
 
         It "Should contain GroupId in parameters when passed ObjectId to it" {
             Mock -CommandName New-MgBetaGroupOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
-            $result = Add-EntraBetaGroupOwner -ObjectId "fe4619d9-9ce7-4141-a367-ec10f3fb8af4" -RefObjectId "3015621f-bfb5-40ca-923d-8439ff7db286"
+            $result = Add-EntraBetaGroupOwner -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result
-            $params.GroupId | Should -Be "fe4619d9-9ce7-4141-a367-ec10f3fb8af4"
+            $params.GroupId | Should -Be "aaaabbbb-0000-cccc-1111-dddd2222eeee"
         }
 
         It "Should contain BodyParameter in parameters when passed RefObjectId to it" {
             Mock -CommandName New-MgBetaGroupOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
-            $result = Add-EntraBetaGroupOwner -ObjectId "fe4619d9-9ce7-4141-a367-ec10f3fb8af4" -RefObjectId "3015621f-bfb5-40ca-923d-8439ff7db286"
+            $result = Add-EntraBetaGroupOwner -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $value = @{
-                "@odata.id" = "https://graph.microsoft.com/beta/users/3015621f-bfb5-40ca-923d-8439ff7db286"
+                "@odata.id" = "https://graph.microsoft.com/beta/users/bbbbcccc-1111-dddd-2222-eeee3333ffff"
             } | ConvertTo-Json -Depth 5
             $params= $result | Convertto-json -Depth 10 | Convertfrom-json 
             $additionalProperties = $params[-1].AdditionalProperties | ConvertTo-Json -Depth 5
@@ -57,7 +57,7 @@ Describe "Add-EntraBetaGroupOwner" {
         It "Should contain 'User-Agent' header" {
             Mock -CommandName New-MgBetaGroupOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaGroupOwner"
-            $result = Add-EntraBetaGroupOwner -ObjectId "fe4619d9-9ce7-4141-a367-ec10f3fb8af4" -RefObjectId "3015621f-bfb5-40ca-923d-8439ff7db286"
+            $result = Add-EntraBetaGroupOwner -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
@@ -69,7 +69,7 @@ Describe "Add-EntraBetaGroupOwner" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Add-EntraBetaGroupOwner -ObjectId "fe4619d9-9ce7-4141-a367-ec10f3fb8af4" -RefObjectId "3015621f-bfb5-40ca-923d-8439ff7db286" } | Should -Not -Throw
+                { Add-EntraBetaGroupOwner -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff" } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

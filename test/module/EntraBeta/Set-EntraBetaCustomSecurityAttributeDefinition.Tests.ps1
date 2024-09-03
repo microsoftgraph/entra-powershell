@@ -14,7 +14,7 @@ BeforeAll {
 Describe "Set-EntraBetaCustomSecurityAttributeDefinition" {
     Context "Test for Set-EntraBetaCustomSecurityAttributeDefinition" {
         It "Should update custom security attribute definition" {
-            $result = Set-EntraBetaCustomSecurityAttributeDefinition -Id "Test_Date" -Description "Target completion date" -Status "Available" -UsePreDefinedValuesOnly $true
+            $result = Set-EntraBetaCustomSecurityAttributeDefinition -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Target completion date" -Status "Available" -UsePreDefinedValuesOnly $true
             $result | Should -BeNullOrEmpty
             
             Should -Invoke -CommandName Update-MgBetaDirectoryCustomSecurityAttributeDefinition -ModuleName Microsoft.Graph.Entra.Beta -Times 1
@@ -25,15 +25,15 @@ Describe "Set-EntraBetaCustomSecurityAttributeDefinition" {
         }
 
         It "Should fail when Description is empty" {
-            { Set-EntraBetaCustomSecurityAttributeDefinition -Id "Test_Date" -Description  -Status "Available" -UsePreDefinedValuesOnly $true } | Should -Throw "Missing an argument for parameter 'Description'*"
+            { Set-EntraBetaCustomSecurityAttributeDefinition -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description  -Status "Available" -UsePreDefinedValuesOnly $true } | Should -Throw "Missing an argument for parameter 'Description'*"
         }
 
         It "Should fail when Status is empty" {
-            { Set-EntraBetaCustomSecurityAttributeDefinition -Id "Test_Date" -Description "Target completion date" -Status  -UsePreDefinedValuesOnly $true } | Should -Throw "Missing an argument for parameter 'Status'*"
+            { Set-EntraBetaCustomSecurityAttributeDefinition -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Target completion date" -Status  -UsePreDefinedValuesOnly $true } | Should -Throw "Missing an argument for parameter 'Status'*"
         }
 
         It "Should fail when UsePreDefinedValuesOnly is empty" {
-            { Set-EntraBetaCustomSecurityAttributeDefinition -Id "Test_Date" -Description "Target completion date" -Status "Available" -UsePreDefinedValuesOnly  } | Should -Throw "Missing an argument for parameter 'UsePreDefinedValuesOnly'*"
+            { Set-EntraBetaCustomSecurityAttributeDefinition -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Target completion date" -Status "Available" -UsePreDefinedValuesOnly  } | Should -Throw "Missing an argument for parameter 'UsePreDefinedValuesOnly'*"
         }
 
         It "Should fail when Id is invalid" {
@@ -41,24 +41,38 @@ Describe "Set-EntraBetaCustomSecurityAttributeDefinition" {
         }
 
         It "Should fail when UsePreDefinedValuesOnly is invalid" {
-            { Set-EntraBetaCustomSecurityAttributeDefinition -Id "Test_Date" -Description "Target completion date" -Status "Available" -UsePreDefinedValuesOnly "" } | Should -Throw "Cannot process argument transformation on parameter 'UsePreDefinedValuesOnly'*"
+            { Set-EntraBetaCustomSecurityAttributeDefinition -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Target completion date" -Status "Available" -UsePreDefinedValuesOnly "" } | Should -Throw "Cannot process argument transformation on parameter 'UsePreDefinedValuesOnly'*"
         }
 
         It "Should contain CustomSecurityAttributeDefinitionId in parameters when passed Id to it" {
             Mock -CommandName Update-MgBetaDirectoryCustomSecurityAttributeDefinition -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
-            $result = Set-EntraBetaCustomSecurityAttributeDefinition -Id "Test_Date" -Description "Target completion date" -Status "Available" -UsePreDefinedValuesOnly $true
+            $result = Set-EntraBetaCustomSecurityAttributeDefinition -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Target completion date" -Status "Available" -UsePreDefinedValuesOnly $true
             $params = Get-Parameters -data $result
-            $params.CustomSecurityAttributeDefinitionId  | Should -Be "Test_Date"
+            $params.CustomSecurityAttributeDefinitionId  | Should -Be "aaaabbbb-0000-cccc-1111-dddd2222eeee"
         }
 
         It "Should contain 'User-Agent' header" {
             Mock -CommandName Update-MgBetaDirectoryCustomSecurityAttributeDefinition -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaCustomSecurityAttributeDefinition"
-            $result = Set-EntraBetaCustomSecurityAttributeDefinition -Id "Test_Date" -Description "Target completion date" -Status "Available" -UsePreDefinedValuesOnly $true
+            $result = Set-EntraBetaCustomSecurityAttributeDefinition -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Target completion date" -Status "Available" -UsePreDefinedValuesOnly $true
             $params = Get-Parameters -data $result
             $params.headers.'User-Agent' | Should -Be $userAgentHeaderValue
-        }    
+        }   
+        
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraBetaCustomSecurityAttributeDefinition -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Target completion date" -Status "Available" -UsePreDefinedValuesOnly $true -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        } 
     }
 }

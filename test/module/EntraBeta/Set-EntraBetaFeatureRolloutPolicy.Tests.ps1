@@ -14,67 +14,80 @@ BeforeAll {
 Describe "Set-EntraBetaFeatureRolloutPolicy" {
     Context "Test for Set-EntraBetaFeatureRolloutPolicy" {
         It "Should creates the policy for cloud authentication roll-out in Azure AD." {
-            $result = Set-EntraBetaFeatureRolloutPolicy -Id "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test"
+            $result = Set-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Update-MgBetaPolicyFeatureRolloutPolicy -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
         It "Should fail when Feature is empty" {
-            { Set-EntraBetaFeatureRolloutPolicy -Id "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e" -Feature  -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test" } | Should -Throw "Missing an argument for parameter 'Feature'*"
+            { Set-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Feature  -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test" } | Should -Throw "Missing an argument for parameter 'Feature'*"
         }
 
         It "Should fail when Feature is invalid" {
-            { Set-EntraBetaFeatureRolloutPolicy -Id "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e" -Feature "" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test" } | Should -Throw "Cannot process argument transformation on parameter 'Feature'*"
+            { Set-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Feature "" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test" } | Should -Throw "Cannot process argument transformation on parameter 'Feature'*"
         }
 
         It "Should fail when DisplayName is empty" {
-            { Set-EntraBetaFeatureRolloutPolicy -Id "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e" -Feature "passwordHashSync" -DisplayName -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test" } | Should -Throw "Missing an argument for parameter 'DisplayName'*"
+            { Set-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Feature "passwordHashSync" -DisplayName -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test" } | Should -Throw "Missing an argument for parameter 'DisplayName'*"
         }
 
         It "Should fail when IsEnabled is empty" {
-            { Set-EntraBetaFeatureRolloutPolicy -Id "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled -IsAppliedToOrganization $false -Description "Feature-Rollout-test" } | Should -Throw "Missing an argument for parameter 'IsEnabled'*"
+            { Set-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled -IsAppliedToOrganization $false -Description "Feature-Rollout-test" } | Should -Throw "Missing an argument for parameter 'IsEnabled'*"
         }
 
         It "Should fail when IsEnabled is invalid" {
-            { Set-EntraBetaFeatureRolloutPolicy -Id "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled "" -IsAppliedToOrganization $false -Description "Feature-Rollout-test" } | Should -Throw "Cannot process argument transformation on parameter 'IsEnabled'*"
+            { Set-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled "" -IsAppliedToOrganization $false -Description "Feature-Rollout-test" } | Should -Throw "Cannot process argument transformation on parameter 'IsEnabled'*"
         }
 
         It "Should fail when IsAppliedToOrganization is empty" {
-            { Set-EntraBetaFeatureRolloutPolicy -Id "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization -Description "Feature-Rollout-test" } | Should -Throw "Missing an argument for parameter 'IsAppliedToOrganization'*"
+            { Set-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization -Description "Feature-Rollout-test" } | Should -Throw "Missing an argument for parameter 'IsAppliedToOrganization'*"
         }
 
         It "Should fail when IsAppliedToOrganization is invalid" {
-            { Set-EntraBetaFeatureRolloutPolicy -Id "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization "" -Description "Feature-Rollout-test" } | Should -Throw "Cannot process argument transformation on parameter 'IsAppliedToOrganization'*"
+            { Set-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization "" -Description "Feature-Rollout-test" } | Should -Throw "Cannot process argument transformation on parameter 'IsAppliedToOrganization'*"
         }
 
         It "Should fail when Description is empty" {
-            { Set-EntraBetaFeatureRolloutPolicy -Id "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description } | Should -Throw "Missing an argument for parameter 'Description'*"
+            { Set-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description } | Should -Throw "Missing an argument for parameter 'Description'*"
         }
 
         It "Should fail when AppliesTo is empty" {
-            { Set-EntraBetaFeatureRolloutPolicy -Id "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test" -AppliesTo  } | Should -Throw "Missing an argument for parameter 'AppliesTo'*"
+            { Set-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test" -AppliesTo  } | Should -Throw "Missing an argument for parameter 'AppliesTo'*"
         }
 
         It "Should fail when AppliesTo is invalid" {
-            { Set-EntraBetaFeatureRolloutPolicy -Id "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test" -AppliesTo ""} | Should -Throw "Cannot process argument transformation on parameter 'AppliesTo'*"
+            { Set-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test" -AppliesTo ""} | Should -Throw "Cannot process argument transformation on parameter 'AppliesTo'*"
         }
 
         It "Should contain FeatureRolloutPolicyId in parameters when passed Id to it" {
             Mock -CommandName  Update-MgBetaPolicyFeatureRolloutPolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
-            $result = Set-EntraBetaFeatureRolloutPolicy -Id "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test"
+            $result = Set-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test"
             $params = Get-Parameters -data $result
-            $params.FeatureRolloutPolicyId | Should -Be "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e"
+            $params.FeatureRolloutPolicyId | Should -Be "bbbbcccc-1111-dddd-2222-eeee3333ffff"
         }
 
         It "Should contain 'User-Agent' header" {
             Mock -CommandName  Update-MgBetaPolicyFeatureRolloutPolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaFeatureRolloutPolicy"
-            $result = Set-EntraBetaFeatureRolloutPolicy -Id "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test"
+            $result = Set-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Contain $userAgentHeaderValue
-        }    
+        }  
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }   
     }
 }

@@ -12,8 +12,8 @@ BeforeAll {
         return @(
             [PSCustomObject]@{
                 "DisplayName"          = "Application"
-                "Id"                   = "a658c48f-fd66-498d-8199-27ed3d33c7c3"
-                "TemplateId"           = "4bc7f740-180e-4586-adb6-38b2e9024e6b"
+                "Id"                   = "bbbbbbbb-1111-2222-3333-cccccccccc55"
+                "TemplateId"           = "bbbbbbbb-1111-2222-3333-cccccccccc56"
                 "Values"               = @("EnableAccessCheckForPrivilegedApplicationUpdates")
                 "AdditionalProperties" = @{"[@odata.context" = "https://graph.microsoft.com/beta/`$metadata#settings/`$entity"}
                 "Parameters"           = $args
@@ -26,11 +26,11 @@ BeforeAll {
 Describe "Get-EntraBetaDirectorySetting" {
     Context "Test for Get-EntraBetaDirectorySetting" {
         It "Should gets a directory setting from Azure Active Directory (AD)" {
-            $result = Get-EntraBetaDirectorySetting -Id "a658c48f-fd66-498d-8199-27ed3d33c7c3"
+            $result = Get-EntraBetaDirectorySetting -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be 'a658c48f-fd66-498d-8199-27ed3d33c7c3'
+            $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccc55'
             $result.DisplayName | should -Be "Application"
-            $result.TemplateId | should -Be "4bc7f740-180e-4586-adb6-38b2e9024e6b"
+            $result.TemplateId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc56"
             $result.Values | should -Be @("EnableAccessCheckForPrivilegedApplicationUpdates")
 
             Should -Invoke -CommandName Get-MgBetaDirectorySetting -ModuleName Microsoft.Graph.Entra.Beta -Times 1
@@ -71,14 +71,14 @@ Describe "Get-EntraBetaDirectorySetting" {
         }  
 
         It "Should contain DirectorySettingId in parameters when passed Id to it" {
-            $result = Get-EntraBetaDirectorySetting -Id "a658c48f-fd66-498d-8199-27ed3d33c7c3"
+            $result = Get-EntraBetaDirectorySetting -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $params = Get-Parameters -data $result.Parameters
-            $params.DirectorySettingId | Should -Be "a658c48f-fd66-498d-8199-27ed3d33c7c3"
+            $params.DirectorySettingId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDirectorySetting"
-            $result = Get-EntraBetaDirectorySetting -Id "a658c48f-fd66-498d-8199-27ed3d33c7c3"
+            $result = Get-EntraBetaDirectorySetting -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }    
@@ -90,7 +90,7 @@ Describe "Get-EntraBetaDirectorySetting" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaDirectorySetting -Id "a658c48f-fd66-498d-8199-27ed3d33c7c3" -Debug } | Should -Not -Throw
+                { Get-EntraBetaDirectorySetting -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

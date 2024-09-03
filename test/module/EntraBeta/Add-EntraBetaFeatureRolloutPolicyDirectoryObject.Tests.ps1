@@ -14,41 +14,41 @@ BeforeAll {
 Describe "Add-EntraBetaFeatureRolloutPolicyDirectoryObject" {
     Context "Test for Add-EntraBetaFeatureRolloutPolicyDirectoryObject" {
         It "Should adds a group to the cloud authentication roll-out policy in Azure AD." {
-            $result = Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "a03b6d9e-6654-46e6-8d0a-8ed83c675ca9" -RefObjectId "0a1068c0-dbb6-4537-9db3-b48f3e31dd76"
+            $result = Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName New-MgBetaDirectoryFeatureRolloutPolicyApplyToByRef -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
         It "Should fail when Id is empty" {
-            { Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id  -RefObjectId "0a1068c0-dbb6-4537-9db3-b48f3e31dd76"  } | Should -Throw "Missing an argument for parameter 'Id'.*"
+            { Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id  -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"  } | Should -Throw "Missing an argument for parameter 'Id'.*"
         }
 
         It "Should fail when Id is invalid" {
-            { Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "" -RefObjectId "0a1068c0-dbb6-4537-9db3-b48f3e31dd76"  } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
+            { Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"  } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
         }
 
         It "Should fail when RefObjectId is empty" {
-            { Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "a03b6d9e-6654-46e6-8d0a-8ed83c675ca9" -RefObjectId   } | Should -Throw "Missing an argument for parameter 'RefObjectId'.*"
+            { Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId   } | Should -Throw "Missing an argument for parameter 'RefObjectId'.*"
         }
 
         It "Should fail when RefObjectId is invalid" {
-            { Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "a03b6d9e-6654-46e6-8d0a-8ed83c675ca9" -RefObjectId ""  } | Should -Throw "Cannot bind argument to parameter 'RefObjectId' because it is an empty string."
+            { Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId ""  } | Should -Throw "Cannot bind argument to parameter 'RefObjectId' because it is an empty string."
         }
 
         It "Should contain FeatureRolloutPolicyId in parameters when passed Id to it" {
             Mock -CommandName New-MgBetaDirectoryFeatureRolloutPolicyApplyToByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
-            $result = Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "a03b6d9e-6654-46e6-8d0a-8ed83c675ca9" -RefObjectId "0a1068c0-dbb6-4537-9db3-b48f3e31dd76"
+            $result = Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result
-            $params.FeatureRolloutPolicyId | Should -Be "a03b6d9e-6654-46e6-8d0a-8ed83c675ca9"
+            $params.FeatureRolloutPolicyId | Should -Be "aaaabbbb-0000-cccc-1111-dddd2222eeee"
         }
 
         It "Should contain OdataId in parameters when passed RefObjectId to it" {
             Mock -CommandName New-MgBetaDirectoryFeatureRolloutPolicyApplyToByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
-            $result = Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "a03b6d9e-6654-46e6-8d0a-8ed83c675ca9" -RefObjectId "0a1068c0-dbb6-4537-9db3-b48f3e31dd76"
-            $value = "https://graph.microsoft.com/v1.0/directoryObjects/0a1068c0-dbb6-4537-9db3-b48f3e31dd76" 
+            $result = Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $value = "https://graph.microsoft.com/v1.0/directoryObjects/bbbbcccc-1111-dddd-2222-eeee3333ffff" 
             $params= Get-Parameters -data $result
             $params.OdataId | Should -Be $value
         }
@@ -57,7 +57,7 @@ Describe "Add-EntraBetaFeatureRolloutPolicyDirectoryObject" {
             Mock -CommandName New-MgBetaDirectoryFeatureRolloutPolicyApplyToByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaFeatureRolloutPolicyDirectoryObject"
-            $result = Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "a03b6d9e-6654-46e6-8d0a-8ed83c675ca9" -RefObjectId "0a1068c0-dbb6-4537-9db3-b48f3e31dd76"
+            $result = Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
@@ -69,7 +69,7 @@ Describe "Add-EntraBetaFeatureRolloutPolicyDirectoryObject" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "a03b6d9e-6654-46e6-8d0a-8ed83c675ca9" -RefObjectId "0a1068c0-dbb6-4537-9db3-b48f3e31dd76" } | Should -Not -Throw
+                { Add-EntraBetaFeatureRolloutPolicyDirectoryObject -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff" } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

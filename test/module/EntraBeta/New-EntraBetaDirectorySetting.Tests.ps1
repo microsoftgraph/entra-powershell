@@ -12,8 +12,8 @@ BeforeAll {
         return @(
             [PSCustomObject]@{
                 "DisplayName"            = "Password Rule Settings"
-                "Id"                     = "9dd37102-c7e0-4176-acf4-84294fcf293c"
-                "TemplateId"             = "5cf42378-d67d-4f36-ba46-e8b86229381d"
+                "Id"                     = "bbbbbbbb-1111-2222-3333-cccccccccc55"
+                "TemplateId"             = "bbbbbbbb-1111-2222-3333-cccccccccc56"
                 "Values"                 = [PSCustomObject]@{
                                             "BannedPasswordCheckOnPremisesMode" = "Audit"
                                             "EnableBannedPasswordCheckOnPremises" = $true
@@ -35,13 +35,13 @@ BeforeAll {
 Describe "New-EntraBetaDirectorySetting" {
     Context "Test for New-EntraBetaDirectorySetting" {
         It "Should creates a directory settings object in Azure Active Directory (AD)" {
-            $template = Get-EntraBetaDirectorySettingTemplate -Id "5cf42378-d67d-4f36-ba46-e8b86229381d"
+            $template = Get-EntraBetaDirectorySettingTemplate -Id "bbbbbbbb-1111-2222-3333-cccccccccc56"
             $settingsCopy = $template.CreateDirectorySetting()
             $result = New-EntraBetaDirectorySetting -DirectorySetting $settingsCopy
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | should -Be "Password Rule Settings"
-            $result.TemplateId | should -Be "5cf42378-d67d-4f36-ba46-e8b86229381d"
-            $result.Id | should -Be "9dd37102-c7e0-4176-acf4-84294fcf293c"
+            $result.TemplateId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc56"
+            $result.Id | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
 
             Should -Invoke -CommandName New-MgBetaDirectorySetting -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
@@ -52,13 +52,13 @@ Describe "New-EntraBetaDirectorySetting" {
     
         It "Should fail when DirectorySetting is Invalid" {
             {
-                $template = Get-EntraBetaDirectorySettingTemplate -Id "5cf42378-d67d-4f36-ba46-e8b86229381d"
+                $template = Get-EntraBetaDirectorySettingTemplate -Id "bbbbbbbb-1111-2222-3333-cccccccccc56"
                 $settingsCopy = $template
                 New-EntraBetaDirectorySetting -DirectorySetting $settingsCopy } | Should -Throw "Cannot process argument transformation on parameter 'DirectorySetting'*"
         }
         
         It "Should contain BodyParameter in parameters when passed DirectorySetting to it" {
-            $template = Get-EntraBetaDirectorySettingTemplate -Id "5cf42378-d67d-4f36-ba46-e8b86229381d"
+            $template = Get-EntraBetaDirectorySettingTemplate -Id "bbbbbbbb-1111-2222-3333-cccccccccc56"
             $settingsCopy = $template.CreateDirectorySetting()
             $result = New-EntraBetaDirectorySetting -DirectorySetting $settingsCopy
             $params = Get-Parameters -data $result.Parameters
@@ -68,7 +68,7 @@ Describe "New-EntraBetaDirectorySetting" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaDirectorySetting"
 
-            $template = Get-EntraBetaDirectorySettingTemplate -Id "5cf42378-d67d-4f36-ba46-e8b86229381d"
+            $template = Get-EntraBetaDirectorySettingTemplate -Id "bbbbbbbb-1111-2222-3333-cccccccccc56"
             $settingsCopy = $template.CreateDirectorySetting()
             $result = New-EntraBetaDirectorySetting -DirectorySetting $settingsCopy
             $params = Get-Parameters -data $result.Parameters
@@ -76,7 +76,7 @@ Describe "New-EntraBetaDirectorySetting" {
         }   
 
         It "Should execute successfully without throwing an error " {
-            $template = Get-EntraBetaDirectorySettingTemplate -Id "5cf42378-d67d-4f36-ba46-e8b86229381d"
+            $template = Get-EntraBetaDirectorySettingTemplate -Id "bbbbbbbb-1111-2222-3333-cccccccccc56"
             $settingsCopy = $template.CreateDirectorySetting()
 
             # Disable confirmation prompts       

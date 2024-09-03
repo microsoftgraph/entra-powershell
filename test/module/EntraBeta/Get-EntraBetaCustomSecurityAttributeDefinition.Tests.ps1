@@ -14,7 +14,7 @@ BeforeAll {
                 "AllowedValues"             = ""
                 "AttributeSet"              = "Test"
                 "Description"               = "Target completion date"
-                "Id"                        = "Test_Date"
+                "Id"                        = "bbbbbbbb-1111-2222-3333-cccccccccc55"
                 "IsCollection"              = $false
                 "IsSearchable"              = $true 
                 "Name"                      = "Date"
@@ -32,10 +32,10 @@ BeforeAll {
 Describe "Get-EntraBetaCustomSecurityAttributeDefinition" {
     Context "Test for Get-EntraBetaCustomSecurityAttributeDefinition" {
         It "Should get custom security attribute definition by Id" {
-            $result = Get-EntraBetaCustomSecurityAttributeDefinition -Id "Test_Date"
+            $result = Get-EntraBetaCustomSecurityAttributeDefinition -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result | Should -Not -BeNullOrEmpty
             $result.AllowedValues | should -BeNullOrEmpty
-            $result.Id | should -Be 'Test_Date'
+            $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccc55'
             $result.AttributeSet | should -Be 'Test'
             $result.Description | should -Be 'Target completion date'
             $result.Name | should -Be 'Date'
@@ -57,20 +57,20 @@ Describe "Get-EntraBetaCustomSecurityAttributeDefinition" {
         }
 
         It "Result should Contain ObjectId" {
-            $result = Get-EntraBetaCustomSecurityAttributeDefinition -Id "Test_Date"
-            $result.ObjectId | should -Be "Test_Date"
+            $result = Get-EntraBetaCustomSecurityAttributeDefinition -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
         } 
 
         It "Should contain CustomSecurityAttributeDefinitionId in parameters when passed Id to it" {
-            $result = Get-EntraBetaCustomSecurityAttributeDefinition -Id "Test_Date"
+            $result = Get-EntraBetaCustomSecurityAttributeDefinition -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $params = Get-Parameters -data $result.Parameters
-            $params.CustomSecurityAttributeDefinitionId | Should -Be "Test_Date"
+            $params.CustomSecurityAttributeDefinitionId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaCustomSecurityAttributeDefinition"
 
-            $result = Get-EntraBetaCustomSecurityAttributeDefinition -Id "Test_Date"
+            $result = Get-EntraBetaCustomSecurityAttributeDefinition -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $params = Get-Parameters -data $result.Parameters
             $params.headers.'User-Agent' | Should -Be $userAgentHeaderValue
         }  
@@ -82,7 +82,7 @@ Describe "Get-EntraBetaCustomSecurityAttributeDefinition" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaCustomSecurityAttributeDefinition -Id "Test_Date" -Debug } | Should -Not -Throw
+                { Get-EntraBetaCustomSecurityAttributeDefinition -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

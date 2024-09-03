@@ -14,51 +14,57 @@ BeforeAll {
 Describe "Set-EntraBetaUser" {
     Context "Test for Set-EntraBetaUser" {
         It "Should update a user" {
-            $result = Set-EntraBetaUser -Id "900f2cdd-7fd5-42c1-9b12-3e8511dd36ee" -Displayname "dummy1"
+            $result = Set-EntraBetaUser -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Displayname "dummy1"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Update-MgBetaUser -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
-        It "Should fail when Id is empty" {
-            { Set-EntraBetaUser -Id   } | Should -Throw "Missing an argument for parameter 'Id'*"
+        It "Should fail when ObjectId is empty" {
+            { Set-EntraBetaUser -ObjectId   } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
         } 
 
-        It "Should fail when Id is invalid" {
-            { Set-EntraBetaUser -Id ""  } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string.*"
+        It "Should fail when ObjectId is invalid" {
+            { Set-EntraBetaUser -ObjectId ""  } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string.*"
         } 
 
         It "Should fail when DisplayName is empty" {
-            { Set-EntraBetaUser -Id "900f2cdd-7fd5-42c1-9b12-3e8511dd36ee" -Displayname  } | Should -Throw "Missing an argument for parameter 'DisplayName'.*"
-        } 
-
-        It "Should fail when CustomSecurityAttributes is empty" {
-            { Set-EntraBetaUser -Id "900f2cdd-7fd5-42c1-9b12-3e8511dd36ee" -CustomSecurityAttributes  } | Should -Throw "Missing an argument for parameter 'CustomSecurityAttributes'.*"
-        } 
-
-        It "Should fail when CustomSecurityAttributes is invalid" {
-            { Set-EntraBetaUser -Id "900f2cdd-7fd5-42c1-9b12-3e8511dd36ee" -CustomSecurityAttributes "" } | Should -Throw "Cannot process argument transformation on parameter 'CustomSecurityAttributes'.*"
-        } 
+            { Set-EntraBetaUser -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Displayname  } | Should -Throw "Missing an argument for parameter 'DisplayName'.*"
+        }
 
         It "Should fail when UserPrincipalName is empty" {
-            { Set-EntraBetaUser -Id "900f2cdd-7fd5-42c1-9b12-3e8511dd36ee" -UserPrincipalName } | Should -Throw "Missing an argument for parameter 'UserPrincipalName'*"
+            { Set-EntraBetaUser -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -UserPrincipalName } | Should -Throw "Missing an argument for parameter 'UserPrincipalName'*"
         } 
         
         It "Should contain UserId in parameters when passed Id to it" {
             Mock -CommandName Update-MgBetaUser -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
-            $result = Set-EntraBetaUser -Id "900f2cdd-7fd5-42c1-9b12-3e8511dd36ee" -Displayname "dummy1"
+            $result = Set-EntraBetaUser -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Displayname "dummy1"
             $params = Get-Parameters -data $result
-            $params.UserId | Should -Be "900f2cdd-7fd5-42c1-9b12-3e8511dd36ee"
+            $params.UserId | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         }        
 
         It "Should contain 'User-Agent' header" {
             Mock -CommandName Update-MgBetaUser -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaUser"
-            $result = Set-EntraBetaUser -Id "900f2cdd-7fd5-42c1-9b12-3e8511dd36ee" -Displayname "dummy1"
+            $result = Set-EntraBetaUser -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Displayname "dummy1"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }
+
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraBetaUser -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Displayname "dummy1" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        } 
     }
 }

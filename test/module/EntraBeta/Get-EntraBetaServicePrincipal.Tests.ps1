@@ -16,14 +16,14 @@ BeforeAll {
                 "AlternativeNames"                    = @()
                 "AppDescription"                      = ''
                 "AppDisplayName"                      = 'demo1'
-                "AppId"                               = '609d427d-b574-4063-8d19-6ed1c03a80c7'
+                "AppId"                               = 'bbbbbbbb-1111-2222-3333-cccccccccc55'
                 "AppManagementPolicies"               = @()
-                "AppOwnerOrganizationId"              = 'd5aec55f-2d12-4442-8d2f-ccca95d4390e'
+                "AppOwnerOrganizationId"              = 'bbbbbbbb-1111-2222-3333-cccccccccc56'
                 "AppRoleAssignedTo"                   = @()
                 "AppRoleAssignmentRequired"           = $true
                 "AppRoleAssignments"                  = @()
-                "AppRoles"                            = @('d0d7e4e4-96be-41c9-805a-08e0526868ad')
-                "ApplicationTemplateId"               = '2b80826f-df72-4e85-8808-117254f20c24'
+                "AppRoles"                            = @('bbbbbbbb-1111-2222-3333-cccccccccc57')
+                "ApplicationTemplateId"               = 'bbbbbbbb-1111-2222-3333-cccccccccc58'
                 "ClaimsMappingPolicies"               = @()
                 "CreatedObjects"                      = @()
                 "DelegatedPermissionClassifications"  = @()
@@ -36,7 +36,7 @@ BeforeAll {
                 "FederatedIdentityCredentials"        = ''
                 "HomeRealmDiscoveryPolicies"          = @()
                 "Homepage"                            = 'https://*.e-days.com/SSO/SAML2/SP/AssertionConsumer.aspx?metadata=e-days|ISV9.2|primary|z'
-                "Id"                                  = '2a07a4ca-7eaf-4f3e-bf67-4460899baf60'
+                "Id"                                  = 'bbbbbbbb-1111-2222-3333-cccccccccc59'
                 "KeyCredentials"                      = @()
                 "LicenseDetails"                      = ''
                 "LoginUrl"                            = ''
@@ -51,11 +51,11 @@ BeforeAll {
                 "PreferredSingleSignOnMode"           = ''
                 "PreferredTokenSigningKeyEndDateTime" = ''
                 "PreferredTokenSigningKeyThumbprint"  = ''
-                "PublishedPermissionScopes"           = @('8593fd1b-c862-420c-bae0-433e1990f2d9')
+                "PublishedPermissionScopes"           = @('bbbbbbbb-1111-2222-3333-cccccccccc60')
                 "PublisherName"                       = 'Contoso'
                 "ReplyUrls"                           = @()
                 "SamlMetadataUrl"                     = ''
-                "ServicePrincipalNames"               = @('609d427d-b574-4063-8d19-6ed1c03a80c7')
+                "ServicePrincipalNames"               = @('bbbbbbbb-1111-2222-3333-cccccccccc55')
                 "ServicePrincipalType"                = 'Application'
                 "SignInAudience"                      = 'AzureADMyOrg'
                 "Tags"                                = @('WindowsAzureActiveDirectoryIntegratedApp')
@@ -101,13 +101,13 @@ Describe "Get-EntraBetaServicePrincipal" {
         }
 
         It "Should get service principal by ObjectId" {
-            $result = Get-EntraBetaServicePrincipal -ObjectId "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
+            $result = Get-EntraBetaServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc59"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
-            $result.ServicePrincipalNames | Should -Be @('609d427d-b574-4063-8d19-6ed1c03a80c7')
+            $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc59"
+            $result.ServicePrincipalNames | Should -Be @('bbbbbbbb-1111-2222-3333-cccccccccc55')
             $result.DisplayName | Should -Be "demo1"
-            $result.AppId | Should -Be "609d427d-b574-4063-8d19-6ed1c03a80c7"
-            $result.AppOwnerOrganizationId | Should -Be "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
+            $result.AppId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
+            $result.AppOwnerOrganizationId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc56"
             $result.SignInAudience | Should -Be "AzureADMyOrg"
             $result.ServicePrincipalType | Should -Be "Application"
            
@@ -140,11 +140,11 @@ Describe "Get-EntraBetaServicePrincipal" {
         It "Should get a specific service principal by filter" {
             $result = Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'demo1'"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
-            $result.ServicePrincipalNames | Should -Be @('609d427d-b574-4063-8d19-6ed1c03a80c7')
+            $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc59"
+            $result.ServicePrincipalNames | Should -Be @('bbbbbbbb-1111-2222-3333-cccccccccc55')
             $result.DisplayName | Should -Be "demo1"
-            $result.AppId | Should -Be "609d427d-b574-4063-8d19-6ed1c03a80c7"
-            $result.AppOwnerOrganizationId | Should -Be "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
+            $result.AppId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
+            $result.AppOwnerOrganizationId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc56"
             $result.SignInAudience | Should -Be "AzureADMyOrg"
             $result.ServicePrincipalType | Should -Be "Application"
 
@@ -169,11 +169,11 @@ Describe "Get-EntraBetaServicePrincipal" {
         It "Should get a specific service principal by SearchString" {
             $result = Get-EntraBetaServicePrincipal  -SearchString  "demo1"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
-            $result.ServicePrincipalNames | Should -Be @('609d427d-b574-4063-8d19-6ed1c03a80c7')
+            $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc59"
+            $result.ServicePrincipalNames | Should -Be @('bbbbbbbb-1111-2222-3333-cccccccccc55')
             $result.DisplayName | Should -Be "demo1"
-            $result.AppId | Should -Be "609d427d-b574-4063-8d19-6ed1c03a80c7"
-            $result.AppOwnerOrganizationId | Should -Be "d5aec55f-2d12-4442-8d2f-ccca95d4390e"
+            $result.AppId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
+            $result.AppOwnerOrganizationId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc56"
             $result.SignInAudience | Should -Be "AzureADMyOrg"
             $result.ServicePrincipalType | Should -Be "Application"
 
@@ -185,14 +185,14 @@ Describe "Get-EntraBetaServicePrincipal" {
         }
 
         It "Should contain ObjectId in result" {
-            $result = Get-EntraBetaServicePrincipal -ObjectId "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
-            $result.ObjectId | should -Be "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
+            $result = Get-EntraBetaServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc59"
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc59"
         } 
 
         It "Should contain ServicePrincipalId in parameters when passed ObjectId to it" {
-            $result = Get-EntraBetaServicePrincipal -ObjectId "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
+            $result = Get-EntraBetaServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc59"
             $params = Get-Parameters -data $result.Parameters
-            $params.ServicePrincipalId | Should -Be "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
+            $params.ServicePrincipalId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc59"
 
             Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
@@ -208,7 +208,7 @@ Describe "Get-EntraBetaServicePrincipal" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaServicePrincipal"
 
-            $result = Get-EntraBetaServicePrincipal -ObjectId "2a07a4ca-7eaf-4f3e-bf67-4460899baf60"
+            $result = Get-EntraBetaServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc59"
             $params = Get-Parameters -data $result.Parameters
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }   
@@ -220,7 +220,7 @@ Describe "Get-EntraBetaServicePrincipal" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaServicePrincipal -ObjectId "2a07a4ca-7eaf-4f3e-bf67-4460899baf60" -Debug } | Should -Not -Throw
+                { Get-EntraBetaServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc59" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

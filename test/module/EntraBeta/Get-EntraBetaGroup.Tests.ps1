@@ -12,7 +12,7 @@ BeforeAll {
         return @(
             [PSCustomObject]@{
               "DisplayName"     = "demo"
-              "Id"              = "056b2531-005e-4f3e-be78-01a71ea30a04"
+              "Id"              = "bbbbbbbb-1111-2222-3333-cccccccccc55"
               "MailEnabled"     = "False"
               "Description"     = "test"
               "MailNickname"    = "demoNickname"
@@ -27,9 +27,9 @@ BeforeAll {
 Describe "Get-EntraBetaGroup" {
     Context "Test for Get-EntraBetaGroup" {
         It "Should return specific group" {
-            $result = Get-EntraBetaGroup -ObjectId "056b2531-005e-4f3e-be78-01a71ea30a04"
+            $result = Get-EntraBetaGroup -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be '056b2531-005e-4f3e-be78-01a71ea30a04'
+            $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccc55'
 
             Should -Invoke -CommandName Get-MgBetaGroup -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
@@ -92,14 +92,14 @@ Describe "Get-EntraBetaGroup" {
         }  
         
         It "Result should Contain ObjectId" {
-            $result = Get-EntraBetaGroup -ObjectId "056b2531-005e-4f3e-be78-01a71ea30a04"
-            $result.ObjectId | should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
+            $result = Get-EntraBetaGroup -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc55"
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
         } 
 
         It "Should contain GroupId in parameters when passed ObjectId to it" {
-            $result = Get-EntraBetaGroup -ObjectId "056b2531-005e-4f3e-be78-01a71ea30a04"
+            $result = Get-EntraBetaGroup -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $params = Get-Parameters -data $result.Parameters
-            $params.GroupId | Should -Be "056b2531-005e-4f3e-be78-01a71ea30a04"
+            $params.GroupId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
         }
 
         It "Should contain Filter in parameters when passed SearchString to it" {

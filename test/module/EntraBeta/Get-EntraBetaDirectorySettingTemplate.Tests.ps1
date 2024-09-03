@@ -12,7 +12,7 @@ BeforeAll {
         return @(
             [PSCustomObject]@{
                 "DisplayName"     = "Group.Unified.Guest"
-                "Id"              = "08d542b9-071f-4e16-94b0-74abb372e3d9"
+                "Id"              = "bbbbbbbb-1111-2222-3333-cccccccccc55"
                 "Description"     = "Settings for a specific Unified Group"
                 "Parameters"      = $args
                 "Values"          = @(
@@ -32,9 +32,9 @@ BeforeAll {
 Describe "Get-EntraBetaDirectorySettingTemplate" {
     Context "Test for Get-EntraBetaDirectorySettingTemplate" {
         It "Should gets a directory setting template from Azure Active Directory (AD)." {
-            $result = Get-EntraBetaDirectorySettingTemplate -Id "08d542b9-071f-4e16-94b0-74abb372e3d9"
+            $result = Get-EntraBetaDirectorySettingTemplate -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be '08d542b9-071f-4e16-94b0-74abb372e3d9'
+            $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccc55'
             $result.DisplayName | should -Be "Group.Unified.Guest"
             $result.Description | should -Be "Settings for a specific Unified Group"
 
@@ -50,17 +50,17 @@ Describe "Get-EntraBetaDirectorySettingTemplate" {
         }
 
         It "Should contain DirectorySettingTemplateId in parameters when passed Id to it" {
-            $result = Get-EntraBetaDirectorySettingTemplate -Id "08d542b9-071f-4e16-94b0-74abb372e3d9"
+            $result = Get-EntraBetaDirectorySettingTemplate -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Get-MgBetaDirectorySettingTemplate -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
-            $DirectorySettingTemplateId | Should -Be "08d542b9-071f-4e16-94b0-74abb372e3d9" 
+            $DirectorySettingTemplateId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55" 
             $true
             }
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDirectorySettingTemplate"
-            $result = Get-EntraBetaDirectorySettingTemplate -Id "08d542b9-071f-4e16-94b0-74abb372e3d9"
+            $result = Get-EntraBetaDirectorySettingTemplate -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Get-MgBetaDirectorySettingTemplate -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue 
@@ -75,7 +75,7 @@ Describe "Get-EntraBetaDirectorySettingTemplate" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaDirectorySettingTemplate -Id "08d542b9-071f-4e16-94b0-74abb372e3d9" -Debug } | Should -Not -Throw
+                { Get-EntraBetaDirectorySettingTemplate -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

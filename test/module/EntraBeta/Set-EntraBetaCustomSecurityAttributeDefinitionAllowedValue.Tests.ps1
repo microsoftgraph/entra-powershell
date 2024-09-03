@@ -14,18 +14,18 @@ BeforeAll {
 Describe "Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue" {
     Context "Test for Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue" {
         It "Should update a specific value for the Id" {
-            $result = Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "wasssup snehal" -IsActive $false
+            $result = Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -IsActive $false
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Update-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
         It "Should fail when CustomSecurityAttributeDefinitionId are empty" {
-            { Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId  -Id "wasssup snehal"  -IsActive $false } | Should -Throw "Missing an argument for parameter 'CustomSecurityAttributeDefinitionId'*"
+            { Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId  -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -IsActive $false } | Should -Throw "Missing an argument for parameter 'CustomSecurityAttributeDefinitionId'*"
         }
 
         It "Should fail when CustomSecurityAttributeDefinitionId is Invalid" {
-            { Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId "" -Id "wasssup snehal"  -IsActive $false } | Should -Throw "Cannot bind argument to parameter 'CustomSecurityAttributeDefinitionId' because it is an empty string."
+            { Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId "" -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -IsActive $false } | Should -Throw "Cannot bind argument to parameter 'CustomSecurityAttributeDefinitionId' because it is an empty string."
         }
 
         It "Should fail when Id are empty" {
@@ -37,28 +37,42 @@ Describe "Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue" {
         }
 
         It "Should fail when IsActive are empty" {
-            { Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "wasssup snehal" -IsActive } | Should -Throw "Missing an argument for parameter 'IsActive'*"
+            { Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -IsActive } | Should -Throw "Missing an argument for parameter 'IsActive'*"
         }
 
         It "Should fail when IsActive are invalid" {
-            { Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "wasssup snehal" -IsActive dffg } | Should -Throw "Cannot process argument transformation on parameter 'IsActive'*"
+            { Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -IsActive dffg } | Should -Throw "Cannot process argument transformation on parameter 'IsActive'*"
         }
 
         It "Should contain AllowedValueId in parameters when passed Id to it" {
             Mock -CommandName Update-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
-            $result = Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "wasssup snehal" -IsActive $false
+            $result = Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -IsActive $false
             $params = Get-Parameters -data $result
-            $params.AllowedValueId | Should -Be "wasssup snehal"
+            $params.AllowedValueId | Should -Be "aaaabbbb-0000-cccc-1111-dddd2222eeee"
         }
 
         It "Should contain 'User-Agent' header" {
             Mock -CommandName Update-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue"
-            $result = Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "wasssup snehal" -IsActive $false
+            $result = Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -IsActive $false
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         }   
+
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -IsActive $false -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        } 
     }
 }

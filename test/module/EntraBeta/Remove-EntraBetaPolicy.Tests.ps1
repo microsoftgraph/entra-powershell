@@ -34,7 +34,7 @@ BeforeAll {
 Describe "Remove-EntraBetaPolicy" {
     Context "Test for Remove-EntraBetaPolicy" {
         It "Should remove policy" {
-            $result = Remove-EntraBetaPolicy -Id "834fbb5a-f6f9-4539-87e8-076583763504"
+            $result = Remove-EntraBetaPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
@@ -51,7 +51,7 @@ Describe "Remove-EntraBetaPolicy" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaPolicy"
             
-            Remove-EntraBetaPolicy -Id "834fbb5a-f6f9-4539-87e8-076583763504"
+            Remove-EntraBetaPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' -eq $userAgentHeaderValue -and $global:InvokeGraphRequestCounter -eq 2
             }
@@ -59,5 +59,19 @@ Describe "Remove-EntraBetaPolicy" {
         AfterEach {
             $global:InvokeGraphRequestCounter = 0
         }
+
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Remove-EntraBetaPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        } 
     }
 }

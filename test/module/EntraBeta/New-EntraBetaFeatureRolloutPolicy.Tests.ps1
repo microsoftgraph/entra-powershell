@@ -15,7 +15,7 @@ BeforeAll {
                 "Description"                       = "Feature-Rollout-test"
                 "DisplayName"                       = "Feature-Rollout-Policytest"
                 "Feature"                           = "passwordHashSync"
-                "Id"                                = "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e"
+                "Id"                                = "bbbbbbbb-1111-2222-3333-cccccccccc55"
                 "IsAppliedToOrganization"           = $false
                 "IsEnabled"                         = $true
                 "AdditionalProperties"              = @{
@@ -39,7 +39,7 @@ Describe "New-EntraBetaFeatureRolloutPolicy" {
             $result.Feature | should -Be "passwordHashSync"
             $result.IsAppliedToOrganization | should -Be $false
             $result.AppliesTo | should -BeNullOrEmpty
-            $result.ObjectId | should -Be "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e"
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
 
             Should -Invoke -CommandName New-MgBetaPolicyFeatureRolloutPolicy -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
@@ -90,7 +90,7 @@ Describe "New-EntraBetaFeatureRolloutPolicy" {
 
         It "Result should Contain ObjectId" {
             $result = New-EntraBetaFeatureRolloutPolicy -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test"
-            $result.ObjectId | should -Be "60184e48-569b-4ba5-a3bb-1d74cb9c2e5e"
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
         } 
 
         It "Should contain 'User-Agent' header" {

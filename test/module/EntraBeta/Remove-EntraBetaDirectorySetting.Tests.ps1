@@ -14,7 +14,7 @@ BeforeAll {
 Describe "Remove-EntraBetaDirectorySetting" {
     Context "Test for Remove-EntraBetaDirectorySetting" {
         It "Should removes a directory setting from Azure Active Directory (AD)" {
-            $result = Remove-EntraBetaDirectorySetting -Id "a658c48f-fd66-498d-8199-27ed3d33c7c3"
+            $result = Remove-EntraBetaDirectorySetting -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgBetaDirectorySetting -ModuleName Microsoft.Graph.Entra.Beta -Times 1
@@ -31,16 +31,16 @@ Describe "Remove-EntraBetaDirectorySetting" {
         It "Should contain DirectorySettingId in parameters when passed Id to it" {
             Mock -CommandName Remove-MgBetaDirectorySetting -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
-            $result = Remove-EntraBetaDirectorySetting -Id "a658c48f-fd66-498d-8199-27ed3d33c7c3"
+            $result = Remove-EntraBetaDirectorySetting -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result
-            $params.DirectorySettingId | Should -Be "a658c48f-fd66-498d-8199-27ed3d33c7c3"
+            $params.DirectorySettingId | Should -Be "bbbbcccc-1111-dddd-2222-eeee3333ffff"
         }
 
         It "Should contain 'User-Agent' header" {
             Mock -CommandName Remove-MgBetaDirectorySetting -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaDirectorySetting"
-            $result = Remove-EntraBetaDirectorySetting -Id "a658c48f-fd66-498d-8199-27ed3d33c7c3"
+            $result = Remove-EntraBetaDirectorySetting -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $params = Get-Parameters -data $result
             $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
         } 
@@ -52,7 +52,7 @@ Describe "Remove-EntraBetaDirectorySetting" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraBetaDirectorySetting -Id "a658c48f-fd66-498d-8199-27ed3d33c7c3" -Debug } | Should -Not -Throw
+                { Remove-EntraBetaDirectorySetting -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

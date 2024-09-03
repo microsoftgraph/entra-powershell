@@ -12,10 +12,10 @@ BeforeAll {
         return @(
             [PSCustomObject]@{
               "DisplayName"                     = "My Test san"
-              "Id"                              = "1a344543-ce01-4eee-a6bf-70ce848e08cb"
+              "Id"                              = "bbbbbbbb-1111-2222-3333-cccccccccc55"
               "MailEnabled"                     = $false
               "Description"                     = ""
-              "CreatedByAppId"                  = "8886ad7b-1795-4542-9808-c85859d97f23"
+              "CreatedByAppId"                  = "bbbbbbbb-1111-2222-3333-cccccccccc56"
               "Mail"                            = ""
               "MailNickname"                    = "NotSet"
               "SecurityEnabled"                 = $true
@@ -48,8 +48,8 @@ Describe "New-EntraBetaGroup" {
             $result.Mail | should -BeNullOrEmpty
             $result.MembershipRule | should -BeNullOrEmpty
             $result.MembershipRuleProcessingState | should -BeNullOrEmpty
-            $result.CreatedByAppId | should -Be "8886ad7b-1795-4542-9808-c85859d97f23"
-            $result.Id | should -Be "1a344543-ce01-4eee-a6bf-70ce848e08cb"
+            $result.CreatedByAppId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc56"
+            $result.Id | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
 
             Should -Invoke -CommandName New-MgBetaGroup -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
@@ -68,7 +68,7 @@ Describe "New-EntraBetaGroup" {
 
         It "Should contain ObjectId in result" {
             $result = New-EntraBetaGroup -DisplayName "My Test san" -MailEnabled $false -SecurityEnabled $true -MailNickName "NotSet"
-            $result.ObjectId | should -Be "1a344543-ce01-4eee-a6bf-70ce848e08cb"
+            $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
         } 
 
         It "Should contain 'User-Agent' header" {

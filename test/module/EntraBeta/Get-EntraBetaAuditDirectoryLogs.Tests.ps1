@@ -29,8 +29,8 @@ BeforeAll {
                 "ActivityDateTime"     = "28-May-24 11:49:02 AM"
                 "ActivityDisplayName"  = "GroupsODataV4_GetgroupLifecyclePolicies"
                 "Category"             = "GroupManagement"
-                "CorrelationId"        = "267fe77d-a734-48e2-9b5f-9f60c8e0d787"
-                "Id"                   = "SSGM_267fe77d-a734-48e2-9b5f-9f60c8e0d787_2WRBW_14273785"
+                "CorrelationId"        = "aaaabbbb-0000-cccc-1111-dddd2222eeee"
+                "Id"                   = "bbbbcccc-1111-dddd-2222-eeee3333ffff"
                 "LoggedByService"      = "Self-service Group Management"
                 "OperationType"        = "Update"
                 "Result"               = "success"
@@ -62,8 +62,8 @@ Describe "Get-EntraBetaAuditDirectoryLogs" {
             $result.ActivityDateTime | Should -Be "28-May-24 11:49:02 AM"
             $result.ActivityDisplayName | Should -Be "GroupsODataV4_GetgroupLifecyclePolicies"
             $result.Category | Should -Be "GroupManagement"
-            $result.CorrelationId | Should -Be "267fe77d-a734-48e2-9b5f-9f60c8e0d787"
-            $result.Id | Should -Be "SSGM_267fe77d-a734-48e2-9b5f-9f60c8e0d787_2WRBW_14273785"
+            $result.CorrelationId | Should -Be "aaaabbbb-0000-cccc-1111-dddd2222eeee"
+            $result.Id | Should -Be "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result.LoggedByService | Should -Be "Self-service Group Management"
 
             Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Graph.Entra.Beta -Times 1
@@ -83,8 +83,8 @@ Describe "Get-EntraBetaAuditDirectoryLogs" {
             $result.ActivityDateTime | Should -Be "28-May-24 11:49:02 AM"
             $result.ActivityDisplayName | Should -Be "GroupsODataV4_GetgroupLifecyclePolicies"
             $result.Category | Should -Be "GroupManagement"
-            $result.CorrelationId | Should -Be "267fe77d-a734-48e2-9b5f-9f60c8e0d787"
-            $result.Id | Should -Be "SSGM_267fe77d-a734-48e2-9b5f-9f60c8e0d787_2WRBW_14273785"
+            $result.CorrelationId | Should -Be "aaaabbbb-0000-cccc-1111-dddd2222eeee"
+            $result.Id | Should -Be "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $result.LoggedByService | Should -Be "Self-service Group Management"
 
             Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Graph.Entra.Beta -Times 1
