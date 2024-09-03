@@ -37,6 +37,7 @@ Get-EntraBetaAuditDirectoryLogs
 ## Description
 
 The `Get-EntraBetaAuditDirectoryLogs` cmdlet gets a Microsoft Entra ID audit log.
+
 Retrieve audit logs from Microsoft Entra ID, covering logs from various services such as user, app, device, and group management, privileged identity management (PIM), access reviews, terms of use, identity protection, password management (SSPR and admin resets), and self-service group management.
 
 ## Examples
@@ -81,7 +82,6 @@ This example returns the first N logs.
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All, Directory.Read.All'
-Get-EntraBetaAuditDirectoryLogs -Filter "ActivityDisplayName eq 'Update rollout policy of feature'" 
 Get-EntraBetaAuditDirectoryLogs -Filter "ActivityDisplayName eq 'Update rollout policy of feature'" -Top 1
 ```
 
@@ -97,7 +97,6 @@ This command shows how to get audit logs by ActivityDisplayName.
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All, Directory.Read.All'
-Get-EntraBetaAuditDirectoryLogs -Filter "result eq 'success'"
 Get-EntraBetaAuditDirectoryLogs -Filter "result eq 'failure'" -All
 ```
 
@@ -110,7 +109,7 @@ This command shows how to get audit logs by the result.
 List all pages.
 
 ```yaml
-Type:  System.Management.Automation.SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
