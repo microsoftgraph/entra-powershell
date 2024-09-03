@@ -160,7 +160,7 @@ Describe "New-EntraBetaUser" {
 
             $requestBody = $params.Body | ConvertFrom-Json
 
-            $requestBody.BusinessPhones[0] | Should -Be "1234567890"
+            $requestBody.BusinessPhones | Should -Be "1234567890"
 
             $requestBody.ExternalUserState | Should -Be "PendingAcceptance"
 
