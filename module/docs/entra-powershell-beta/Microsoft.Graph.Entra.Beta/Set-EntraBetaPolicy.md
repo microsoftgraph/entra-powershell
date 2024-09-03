@@ -1,10 +1,9 @@
 ---
-title: Set-EntraBetaPolicy.
+title: Set-EntraBetaPolicy
 description: This article provides details on the Set-EntraBetaPolicy command.
 
-
 ms.topic: reference
-ms.date: 07/02/2024
+ms.date: 08/07/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
@@ -28,11 +27,9 @@ Updates a policy.
 ```powershell
 Set-EntraBetaPolicy 
  -Id <String>
- [-AlternativeIdentifier <String>] 
  [-Definition <System.Collections.Generic.List`1[System.String]>] 
  [-DisplayName <String>] 
  [-Type <String>]
- [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]>]
  [-IsOrganizationDefault <Boolean>] 
  [<CommonParameters>]
 ```
@@ -56,6 +53,10 @@ Set-EntraBetaPolicy @params
 
 This command updates display name of the specified policy in Microsoft Entra ID.
 
+- `-Id` - Specifies the ID of the policy for which you want to set values.
+
+- `DisplayName` - Specifies the display name.
+
 ### Example 2: Update a policy definition
 
 ```powershell
@@ -68,6 +69,11 @@ Set-EntraBetaPolicy @params
 ```
 
 This command updates definition of the specified policy in Microsoft Entra ID.
+
+- `-Id` - Specifies the ID of the policy for which you want to set values.
+
+- `Definition` - Specifies the array of stringified JSON that contains all the rules of the policy.
+In this example, `@('{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')` represents definition of the activityBasedTimeoutPolicy.
 
 ### Example 3: Update a policy organization default
 
@@ -82,54 +88,33 @@ Set-EntraBetaPolicy @params
 
 This command updates organization default of the specified policy in Microsoft Entra ID.
 
+- `-Id` - Specifies the ID of the policy for which you want to set values.
+
+- `-IsOrganizationDefault` If true, activates this policy. Only one policy of the same type can be the organization default. Optional, default is false.
+
 ### Example 4: Update policy type
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
 $params = @{
     Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-    Type = 'homeRealmDiscoveryPolicies'
+    Type = 'ActivityBasedTimeoutPolicy'
 }
 Set-EntraBetaPolicy @params
 ```
 
 This example demonstrates how to update the `type` property of a specified policy in Microsoft Entra ID.
 
-### Example 5: Update policy alternative Identifier
+- `-Id` - Specifies the ID of the policy for which you want to set values.
 
-```powershell
-Connect-Entra -Scopes 'Policy.ReadWrite.ApplicationConfiguration'
-$params = @{
-    Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-    AlternativeIdentifier = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
-}
-Set-EntraBetaPolicy @params
-```
-
-This example demonstrates how to update the `AlternativeIdentifier` property of a specified policy in Microsoft Entra ID.
+- `-Type` - Specifies the type of policy. In this example, `ActivityBasedTimeoutPolicy` represents the type of policy.
 
 ## Parameters
-
-### -AlternativeIdentifier
-
-Specifies an alternative ID for the policy.
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Definition
 
 Specifies the array of stringified JSON that contains all the rules of the policy.
-For example -Definition @("{"TokenLifetimePolicy":{"Version":1,"MaxInactiveTime":"20:00:00"}}").
+For example -Definition @('{"TokenLifetimePolicy":{"Version":1,"MaxInactiveTime":"20:00:00"}}').
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -175,26 +160,10 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -KeyCredentials
-
-Specifies the key credentials.
-
-```yaml
-Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.KeyCredential]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Type
 
 Specifies the type of policy.
-For token lifetimes, use "TokenLifetimePolicy".
+For token lifetimes, use "TokenLifetimePolicy."
 
 ```yaml
 Type: System.String
@@ -210,7 +179,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-The Id of the policy for which you want to set values.
+The ID of the policy for which you want to set values.
 
 ```yaml
 Type: System.String

@@ -1,5 +1,5 @@
 ---
-title: New-EntraServiceAppRoleAssignment.
+title: New-EntraServiceAppRoleAssignment
 description: This article provides details on the New-EntraServiceAppRoleAssignment command.
 
 

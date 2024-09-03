@@ -11,7 +11,6 @@
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $body = @{}
-        $keysChanged = @{}
         if($null -ne $PSBoundParameters["Id"])
         {
             $params["IdentityProviderBaseId"] = $PSBoundParameters["Id"]

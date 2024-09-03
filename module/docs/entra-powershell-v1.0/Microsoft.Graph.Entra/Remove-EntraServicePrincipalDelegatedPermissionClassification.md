@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraServicePrincipalDelegatedPermissionClassification.
+title: Remove-EntraServicePrincipalDelegatedPermissionClassification
 description: This article provides details on the Remove-EntraServicePrincipalDelegatedPermissionClassification command.
 
 

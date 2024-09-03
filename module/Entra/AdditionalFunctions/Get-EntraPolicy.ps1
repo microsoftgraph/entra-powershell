@@ -36,63 +36,11 @@ function Get-EntraPolicy {
                 }
             }
         }
-
-        if ($PSBoundParameters.ContainsKey("Debug")) {
-            $params["Debug"] = $Null
-        }
-        if ($PSBoundParameters.ContainsKey("Verbose")) {
-            $params["Verbose"] = $Null
-        }
-        if($null -ne $PSBoundParameters["WarningVariable"])
-        {
-            $params["WarningVariable"] = $PSBoundParameters["WarningVariable"]
-        }
-        if($null -ne $PSBoundParameters["InformationVariable"])
-        {
-            $params["InformationVariable"] = $PSBoundParameters["InformationVariable"]
-        }
-	    if($null -ne $PSBoundParameters["InformationAction"])
-        {
-            $params["InformationAction"] = $PSBoundParameters["InformationAction"]
-        }
-        if($null -ne $PSBoundParameters["OutVariable"])
-        {
-            $params["OutVariable"] = $PSBoundParameters["OutVariable"]
-        }
-        if($null -ne $PSBoundParameters["OutBuffer"])
-        {
-            $params["OutBuffer"] = $PSBoundParameters["OutBuffer"]
-        }
-        if($null -ne $PSBoundParameters["ErrorVariable"])
-        {
-            $params["ErrorVariable"] = $PSBoundParameters["ErrorVariable"]
-        }
-        if($null -ne $PSBoundParameters["PipelineVariable"])
-        {
-            $params["PipelineVariable"] = $PSBoundParameters["PipelineVariable"]
-        }
-        if($null -ne $PSBoundParameters["ErrorAction"])
-        {
-            $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]
-        }
-        if($null -ne $PSBoundParameters["WarningAction"])
-        {
-            $params["WarningAction"] = $PSBoundParameters["WarningAction"]
-        }
+        
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
-        Write-Debug("=========================================================================
-")
+        Write-Debug("=========================================================================")
 
-        $response | ForEach-Object {
-            if ($null -ne $_) {
-                foreach ($Keys in $_.Keys) { 
-                    $Keys=$Keys.SubString(0, 1).ToUpper() + $Keys.Substring(1)
-                    $_ | Add-Member -MemberType NoteProperty -Name $Keys -Value ($_.$Keys) -Force
-                }
-            }
-        }
-        
         if ($PSBoundParameters.ContainsKey("ID")) {
             $response = $response | Where-Object { $_.id -eq $Id }
             if($Null -eq $response ) {
@@ -104,6 +52,32 @@ function Get-EntraPolicy {
             $response = $response | Select-Object -First $Top
         }
         
-        $response  
+        $data = $response | ConvertTo-Json -Depth 50 | ConvertFrom-Json
+        $respList = @()
+       
+        foreach ($res in $data) {                                  
+            switch ($res.type) {
+                "ActivityBasedTimeoutPolicy" { $respType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphActivityBasedTimeoutPolicy }
+                "AppManagementPolicy" { $respType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphAppManagementPolicy }
+                "ClaimsMappingPolicy" { $respType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphClaimsMappingPolicy }
+                "FeatureRolloutPolicy" { $respType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphFeatureRolloutPolicy }
+                "HomeRealmDiscoveryPolicy" { $respType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphHomeRealmDiscoveryPolicy }
+                "TokenIssuancePolicy" { $respType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphTokenIssuancePolicy }
+                "TokenLifetimePolicy" { $respType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphTokenLifetimePolicy }
+                "PermissionGrantPolicy" { $respType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphPermissionGrantPolicy }
+                "DefaultAppManagementPolicy" { $respType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphappManagementPolicy }
+                "AuthenticationFlowsPolicy" { $respType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphauthenticationFlowsPolicy }
+                "AuthenticationMethodsPolicy" { $respType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphauthenticationMethodsPolicy}
+                default { Write-Error "Unknown type: " + $res.type}
+            }
+
+            $res.PSObject.Properties | ForEach-Object {
+                $propertyName = $_.Name.Substring(0,1).ToUpper() + $_.Name.Substring(1)
+                $propertyValue = $_.Value
+                $respType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force
+            }
+            $respList += $respType
+        }
+        $respList  
     }     
 }

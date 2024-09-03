@@ -1,5 +1,5 @@
 ---
-title: New-EntraBetaGroupLifecyclePolicy.
+title: New-EntraBetaGroupLifecyclePolicy
 description: This article provides details on the New-EntraBetaGroupLifecyclePolicy command.
 
 

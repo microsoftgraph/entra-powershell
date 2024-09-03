@@ -57,7 +57,7 @@ Get-EntraServicePrincipal
 
 ## Description
 
-The Get-EntraServicePrincipal cmdlet gets a service principal in Microsoft Entra ID.
+The `Get-EntraServicePrincipal` cmdlet gets a service principal in Microsoft Entra ID.
 
 ## Examples
 
@@ -68,7 +68,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraServicePrincipal
 ```
 
-```output
+```Output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 Demo App
@@ -76,7 +76,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 22223333-cccc-4444-dddd-5555eeee6666 Demo T
 dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
 ```
 
-This command retrieves all service principal from the directory.
+This example retrieves all service principal from the directory.
 
 ### Example 2: Retrieve a service principal by ID
 
@@ -86,17 +86,13 @@ $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
 Get-EntraServicePrincipal $ServicePrincipalId
 ```
 
-```output
+```Output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 Demo App
 ```
 
-The first command gets the ID of a service principal by using the [Get-EntraServicePrincipal](./Get-EntraServicePrincipal.md) cmdlet.  
-
-The command stores the ID in the $ServicePrincipalId variable.  
-
-The second command gets the service principal identified by $ServicePrincipalId.
+This example retrieves a specific service principal.
 
 ### Example 3: Retrieve all service principals from the directory
 
@@ -105,7 +101,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraServicePrincipal -All 
 ```
 
-```output
+```Output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 Demo App
@@ -114,7 +110,7 @@ dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 Projec
 ffffffff-5555-6666-7777-aaaaaaaaaaaa 44445555-eeee-6666-ffff-7777aaaa8888 Reports App
 ```
 
-This command retrieves all service principals from the directory.
+This example retrieves all service principals from the directory.
 
 ### Example 4: Retrieve top three service principal from the directory
 
@@ -123,7 +119,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraServicePrincipal -Top 3
 ```
 
-```output
+```Output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 bbbbbbbb-1111-2222-3333-cccccccccccc 00001111-aaaa-2222-bbbb-3333cccc4444 Demo App
@@ -131,7 +127,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 22223333-cccc-4444-dddd-5555eeee6666 Demo T
 dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
 ```
 
-This command retrieves top three service principals from the directory.
+This example retrieves top three service principals from the directory.
 
 ### Example 5: Get a service principal by display name
 
@@ -140,13 +136,13 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraServicePrincipal -Filter "DisplayName eq 'ProjectWorkManagement'"
 ```
 
-```output
+```Output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
 ```
 
-This command gets a service principal by its display name.
+This example gets a service principal by its display name.
 
 ### Example 6: Retrieve a list of all service principal that have a display name that contains "ProjectWorkManagement"
 
@@ -155,13 +151,71 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraServicePrincipal -SearchString "ProjectWorkManagement"
 ```
 
-```output
+```Output
 ObjectId                             AppId                                DisplayName
 --------                             -----                                -----------
 dddddddd-3333-4444-5555-eeeeeeeeeeee 33334444-dddd-5555-eeee-6666ffff7777 ProjectWorkManagement
 ```
 
-This command gets a list of service principal, which has the specified display name.
+This example gets a list of service principal, which has the specified display name.
+
+### Example 7: Retrieve all Enterprise apps
+
+```powershell
+Get-EntraServicePrincipal -Filter "tags/Any(x: x eq 'WindowsAzureActiveDirectoryIntegratedApp')"
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience         ServicePrincipalType
+-----------         --                                   -----                                --------------         --------------------
+Enterprise App1     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-5555-eeee-6666ffff7777                         Application
+Enterprise App2     11112222-bbbb-3333-cccc-4444dddd5555 22223333-cccc-4444-dddd-5555eeee6666 AzureADMultipleOrgs    Application
+```
+
+This example demonstrates how to retrieve all enterprise apps.
+
+### Example 8: Retrieve all App proxy apps
+
+```powershell
+Get-EntraServicePrincipal -Filter "tags/Any(x: x eq 'WindowsAzureActiveDirectoryOnPremApp')"
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience         ServicePrincipalType
+-----------         --                                   -----                                --------------         --------------------
+App proxy 1     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-5555-eeee-6666ffff7777                         Application
+App proxy 2     11112222-bbbb-3333-cccc-4444dddd5555 22223333-cccc-4444-dddd-5555eeee6666 AzureADMultipleOrgs    Application
+```
+
+This example demonstrates how to retrieve all app proxy apps.
+
+### Example 9: Retrieve all disabled apps
+
+```powershell
+Get-EntraServicePrincipal -Filter "accountEnabled eq false"
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience         ServicePrincipalType
+-----------         --                                   -----                                --------------         --------------------
+Disabled App1     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-5555-eeee-6666ffff7777                         Application
+```
+
+This example demonstrates how to retrieve all disabled apps.
+
+### Example 10: Retrieve all Global Secure Access apps
+
+```powershell
+Get-EntraServicePrincipal -Filter "tags/Any(x: x eq 'PrivateAccessNonWebApplication') or tags/Any(x: x eq 'NetworkAccessManagedApplication')"
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience         ServicePrincipalType
+-----------         --                                   -----                                --------------         --------------------
+Global secure access app     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-5555-eeee-6666ffff7777                         Application
+```
+
+This example demonstrates how to retrieve all Global secure access apps.
 
 ## Parameters
 

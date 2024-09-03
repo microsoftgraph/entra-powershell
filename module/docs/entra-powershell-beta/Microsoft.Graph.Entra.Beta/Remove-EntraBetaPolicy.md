@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaPolicy.
+title: Remove-EntraBetaPolicy
 description: This article provides details on the Remove-EntraBetaPolicy command.
 
 

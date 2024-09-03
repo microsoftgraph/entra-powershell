@@ -1,4 +1,15 @@
 ---
+title: Set-EntraBetaPrivilegedRoleSetting
+description: This article provides details on Set-EntraBetaPrivilegedRoleSetting command.
+
+
+ms.topic: reference
+ms.date: 08/12/2024
+ms.author: eunicewaweru
+ms.reviewer: stevemutungi
+manager: CelesteDG
+author: msewaweru
+
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaPrivilegedRoleSetting
@@ -9,12 +20,14 @@ schema: 2.0.0
 # Set-EntraBetaPrivilegedRoleSetting
 
 ## Synopsis
-Update role setting
+
+Update role setting.
 
 ## Syntax
 
-```
-Set-EntraBetaPrivilegedRoleSetting [-ResourceId <String>]
+```powershell
+Set-EntraBetaPrivilegedRoleSetting 
+ [-ResourceId <String>]
  [-UserEligibleSettings <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting]>]
  -Id <String>
  [-AdminEligibleSettings <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting]>]
@@ -25,23 +38,136 @@ Set-EntraBetaPrivilegedRoleSetting [-ResourceId <String>]
 ```
 
 ## Description
-Update role setting
+
+The `Set-EntraBetaPrivilegedRoleSetting` cmdlet update role setting.
 
 ## Examples
 
-### Example 1
-```
-PS C:\> $setting = New-Object Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting
-				  PS C:\> $setting.RuleIdentifier = "JustificationRule"
-				  PS C:\> $setting.Setting = "{'required':false}"
-				  PS C:\> Set-EntraBetaPrivilegedRoleSetting -ProviderId AzureResources -Id ff518d09-47f5-45a9-bb32-71916d9aeadf -ResourceId 3f5887ed-dd6e-4821-8bde-c813ec508cf9 -RoleDefinitionId 2387ced3-4e95-4c36-a915-73d803f93702 -UserMemberSettings $setting
+### Example 1: Update a UserMember Settings by setting the justification to be false
+
+```powershell
+Connect-Entra -Scopes 'PrivilegedAccess.ReadWrite.AzureAD', 'PrivilegedAccess.ReadWrite.AzureResources', 'PrivilegedAccess.ReadWrite.AzureADGroup'
+
+$setting1 = New-Object Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting
+$setting1.RuleIdentifier = "JustificationRule"
+$setting1.Setting = "{`"required`":false}"
+$params = @{
+    ProviderId = 'aadRoles'
+    Id = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    UserMemberSettings = $setting1
+}
+Set-EntraBetaPrivilegedRoleSetting @params
 ```
 
-Update a role setting by setting the justification to be false
+This command update a role setting by setting the justification to be false.
+
+- `-ProviderId` Parameter specifies the ID of the specific provider.
+- `-Id` Parameter specifies the ID of the specific role setting.
+- `-UserMemberSettings` Parameter rule settings that are evaluated when a user tries to activate his role assignment.
+
+### Example 2: Update a AdminEligible Settings by setting the MfaRule to be true
+
+```powershell
+Connect-Entra -Scopes 'PrivilegedAccess.ReadWrite.AzureAD', 'PrivilegedAccess.ReadWrite.AzureResources', 'PrivilegedAccess.ReadWrite.AzureADGroup'
+
+$setting = New-Object Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting
+$setting.RuleIdentifier =  "MfaRule"
+$setting.Setting = "{`"mfaRequired`": true}"
+$params = @{
+       ProviderId = 'aadRoles'
+       Id = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+       AdminEligibleSettings = $setting
+}
+Set-EntraBetaPrivilegedRoleSetting @params
+```
+
+This command update a AdminEligible Settings by setting the MfaRule to be true.
+
+- `-ProviderId` Parameter specifies the ID of the specific provider.
+- `-Id` Parameter specifies the ID of the specific role setting.
+- `-AdminEligibleSettings` Parameter rule settings that are evaluated when an administrator tries to add an eligible role assignment.
+
+### Example 3: Update a UserEligibleSettings Settings
+
+```powershell
+Connect-Entra -Scopes 'PrivilegedAccess.ReadWrite.AzureAD', 'PrivilegedAccess.ReadWrite.AzureResources', 'PrivilegedAccess.ReadWrite.AzureADGroup'
+
+$setting = New-Object Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting
+$setting.RuleIdentifier = "AttributeConditionRule"
+$setting.Setting = "{
+ `"condition`": null,
+ `"conditionVersion`": null,
+ `"conditionDescription`": null,
+ `"enableEnforcement`": true
+ }"
+$params = @{
+       ProviderId = 'aadRoles'
+       Id = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+       UserEligibleSettings = $setting
+}
+Set-EntraBetaPrivilegedRoleSetting @params
+```
+
+This command update a UserEligible Settings.
+
+- `-ProviderId` Parameter specifies the ID of the specific provider.
+- `-Id` Parameter specifies the ID of the specific role setting.
+- `-UserEligibleSettings` Parameter rule settings that are evaluated when a user tries to add an eligible role assignment.
+
+### Example 4: Update a AdminMemberSettings Settings
+
+```powershell
+Connect-Entra -Scopes 'PrivilegedAccess.ReadWrite.AzureAD', 'PrivilegedAccess.ReadWrite.AzureResources', 'PrivilegedAccess.ReadWrite.AzureADGroup'
+
+$setting = New-Object Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting  
+$setting.RuleIdentifier = "JustificationRule"
+$setting.Setting = "{`"required`":true}"
+$temp = New-Object System.Collections.Generic.List[Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting]
+$temp.Add($setting)
+$params = @{
+       ProviderId = 'aadRoles'
+       Id = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+       AdminMemberSettings = $temp
+}
+Set-EntraBetaPrivilegedRoleSetting @params
+```
+
+This command update a AdminMember Settings.
+
+- `-ProviderId` Parameter specifies the ID of the specific provider.
+- `-Id` Parameter specifies the ID of the specific role setting.
+- `-AdminMemberSettings` Parameter rule settings that are evaluated when an administrator tries to add an activate role assignment.
+
+### Example 5: Update a AdminEligible Settings
+
+```powershell
+Connect-Entra -Scopes 'PrivilegedAccess.ReadWrite.AzureAD', 'PrivilegedAccess.ReadWrite.AzureResources', 'PrivilegedAccess.ReadWrite.AzureADGroup'
+
+$setting = New-Object Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting  
+$setting.RuleIdentifier =  "MfaRule"
+$setting.Setting = "{`"mfaRequired`": true}"
+$params = @{
+       ProviderId = 'aadRoles'
+       Id = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+       RoleDefinitionId = 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
+       ResourceId = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
+       AdminEligibleSettings = $setting
+}
+Set-EntraBetaPrivilegedRoleSetting @params
+```
+
+This command update a AdminEligible Settings.
+
+- `-ProviderId` Parameter specifies the ID of the specific provider.
+- `-Id` Parameter specifies the ID of the specific role setting.
+- `-AdminEligibleSettings` Parameter rule settings that are evaluated when an administrator tries to add an eligible role assignment.
+- `-ResourceId` Parameter specifies the ID of the specific resource.
+- `-RoleDefinitionId` Parameter specifies the ID of the specific role definition
 
 ## Parameters
 
 ### -AdminEligibleSettings
+
 The rule settings that are evaluated when an administrator tries to add an eligible role assignment.
 
 ```yaml
@@ -57,6 +183,7 @@ Accept wildcard characters: False
 ```
 
 ### -AdminMemberSettings
+
 The rule settings that are evaluated when an administrator tries to add an activate role assignment.
 
 ```yaml
@@ -72,10 +199,11 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-The unique identifier of the specific role setting
+
+The unique identifier of the specific role setting.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -87,10 +215,11 @@ Accept wildcard characters: False
 ```
 
 ### -ProviderId
-The unique identifier of the specific provider
+
+The unique identifier of the specific provider.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -102,10 +231,11 @@ Accept wildcard characters: False
 ```
 
 ### -ResourceId
-The unique identifier of the specific resource
+
+The unique identifier of the specific resource.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -117,10 +247,11 @@ Accept wildcard characters: False
 ```
 
 ### -RoleDefinitionId
-The unique identifier of the specific role definition
+
+The unique identifier of the specific role definition.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -132,8 +263,9 @@ Accept wildcard characters: False
 ```
 
 ### -UserEligibleSettings
+
 The rule settings that are evaluated when a user tries to add an eligible role assignment.
-This is not supported for pimforazurerbac scenario for now, and may be available in the future scenarios.
+This isn't supported for pimforazurerbac scenario for now, and may be available in the future scenarios.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting]
@@ -148,7 +280,8 @@ Accept wildcard characters: False
 ```
 
 ### -UserMemberSettings
-The rule settings that are evaluated when a user tries to activate his role assignment.
+
+The rule settings that are evaluated when a user tries to activate their role assignment.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AzureADMSPrivilegedRuleSetting]
@@ -163,14 +296,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
 ### System.String
+
 ## Outputs
 
 ### System.Object
+
 ## Notes
 
 ## Related Links
+
+[Get-EntraBetaPrivilegedRoleSetting](Get-EntraBetaPrivilegedRoleSetting.md)
