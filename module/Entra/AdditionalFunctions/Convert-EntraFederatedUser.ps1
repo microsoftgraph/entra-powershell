@@ -13,8 +13,7 @@ function Convert-EntraFederatedUser {
 
     PROCESS {    
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand        
         if ($null -ne $PSBoundParameters["UserPrincipalName"]) {
             $UserPrincipalName = $PSBoundParameters.UserPrincipalName
             $UserId = Get-MgUser -Search "UserPrincipalName:$UserPrincipalName" -ConsistencyLevel eventual

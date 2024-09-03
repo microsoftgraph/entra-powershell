@@ -15,7 +15,7 @@ function Set-EntraBetaDirSyncFeature {
             $params = @{}
             $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
             if ($PSBoundParameters.ContainsKey("Verbose")) {
-                $Verbose = $Null
+                $params["Verbose"] = $Null
             }
             if ($null -ne $PSBoundParameters["Feature"]) {
                 $Feature = $PSBoundParameters["Feature"] + "Enabled"
