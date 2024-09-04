@@ -43,6 +43,12 @@ jobs:
               ArtifactName: "drop"
               publishLocation: "Container"
 
+          - task: PublishPipelineArtifact@1
+            inputs:
+              targetPath: '$(Pipeline.Workspace)'
+              artifact: 'symbols'
+              publishLocation: 'pipeline'
+
           - task: NuGetCommand@2
             displayName: Publish NuGet to preview feed
             inputs:
