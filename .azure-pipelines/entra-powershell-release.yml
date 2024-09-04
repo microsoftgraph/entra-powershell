@@ -1,6 +1,13 @@
 trigger:
 - none
 
+resources:
+  pipelines:
+  - pipeline: _EntraPowerShell-Release-Build
+    trigger: none
+    source: EntraPowerShell-Release-Build
+    project: One
+
 stages:
 - stage: PS_Gallery_Deploy
   displayName: PS Gallery Deploy
