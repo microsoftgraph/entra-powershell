@@ -1,7 +1,5 @@
 trigger:
 - none
-pool:
-  vmImage: windows-latest
 
 stages:
 - stage: PS_Gallery_Deploy
@@ -9,6 +7,8 @@ stages:
   jobs:
   - job: Install_Dependencies
     displayName: Install dependencies
+    pool:
+      vmImage: windows-latest
     steps:
     - task: PowerShell@2
       displayName: Version Check
@@ -17,19 +17,23 @@ stages:
         pwsh: true
         script: |
           Write-Output $PSVersionTable
+
   - job: Release_Approval
     displayName: Agentless job
+    pool: server
+    timeoutInMinutes: 1440 # job times out in 1 days
     steps:
-    - task: ManualValidation@0
+    - task: ManualValidation@1
+      timeoutInMinutes: 1440 # task times out in 1 day
       inputs:
         notifyUsers: ''
         instructions: 'Please validate the build configuration and resume'
-        onTimeout: reject
-      enabled: false
-      timeoutInMinutes: 6120
+        onTimeout: 'resume'
 
   - job: PsGallery_Push
     displayName: Push to PS Gallery
+    pool:
+      vmImage: windows-latest
     timeoutInMinutes: 6120
     steps:
     - task: powershell@2
