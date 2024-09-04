@@ -40,7 +40,7 @@ Retrieves a list of permission grants that have been consented for this group.
 ### Example 1: List existing permission grants for the group
 
 ```powershell
-Connect-Entra -Scopes 'GroupMember.Read.All' 
+Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraGroupPermissionGrant -Id 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
 ```
 
