@@ -64,10 +64,17 @@ Describe "Get-EntraUserLicenseDetail" {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserLicenseDetail"
+
             $result = Get-EntraUserLicenseDetail -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        } 
+            $result | Should -Not -BeNullOrEmpty
+            
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserLicenseDetail"
+
+            Should -Invoke -CommandName Get-MgUserLicenseDetail -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       
             $originalDebugPreference = $DebugPreference
