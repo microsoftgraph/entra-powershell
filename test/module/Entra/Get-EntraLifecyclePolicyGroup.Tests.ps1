@@ -66,9 +66,15 @@ Describe "Get-EntraLifecyclePolicyGroup" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraLifecyclePolicyGroup"
 
             $result = Get-EntraLifecyclePolicyGroup -Id "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }    
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraLifecyclePolicyGroup"
+
+            Should -Invoke -CommandName Get-MgGroupLifecyclePolicyByGroup -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
 
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

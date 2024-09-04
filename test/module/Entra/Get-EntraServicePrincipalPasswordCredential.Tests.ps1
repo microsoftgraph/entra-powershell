@@ -62,9 +62,14 @@ Describe "Get-EntraServicePrincipalPasswordCredential" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalPasswordCredential"
 
             $result = Get-EntraServicePrincipalPasswordCredential -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-            $servicePrincipalPasswordCredentialHeader = $result | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-            $params = Get-Parameters -data $servicePrincipalPasswordCredentialHeader.Parameters
-            $params.Headers."User-Agent" | Should -Be $userAgentHeaderValue
-        }    
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalPasswordCredential"
+
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        } 
     }
 }

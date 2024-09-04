@@ -105,10 +105,15 @@ Describe "Get-EntraGroupOwner" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraGroupOwner"
 
             $result = Get-EntraGroupOwner -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
-            $params = Get-Parameters -data $result.Parameters
-            $userAgent= $params | ConvertTo-json | ConvertFrom-Json
-            $userAgent.headers.'User-Agent' | Should -Be $userAgentHeaderValue
-        }  
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraGroupOwner"
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
         
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       
