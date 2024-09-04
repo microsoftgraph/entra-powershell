@@ -34,7 +34,7 @@ Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues
 
 ## Description
 
-Adds a predefined value for a Microsoft Entra ID custom security attribute definition.
+The `Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues` adds a predefined value for a Microsoft Entra ID custom security attribute definition.
 
 In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
 
@@ -44,7 +44,7 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$CustomSecurityAttributeDefinitionId = (Get-EntraBetaCustomSecurityAttributeDefinition -Id <attributename_attributedefinition>).Id
+$CustomSecurityAttributeDefinitionId = (Get-EntraBetaCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>').Id
 $params = @{
     CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinitionId
     Id = 'Alpine'
@@ -54,16 +54,14 @@ Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues @params
 ```
 
 ```Output
-Name                           Value
-----                           -----
-@odata.context                 https://graph.microsoft.com/v1.0/$metadata#directory/customSecurityAttributeDefinitions('Engineering_Project')/allowedValues/$entity
-id                             Alpine
-isActive                       True
+Id   IsActive
+--   --------
+Alpine True
 ```
 
 This example adds a predefined value to a custom security attribute definition.
 
-- `-CustomSecurityAttributeDefinitionId` parameter specifies the custom security attribute definition ID. You can use the command `Get-EntraBetaCustomSecurityAttributeDefinition` to get the Id.
+- `-CustomSecurityAttributeDefinitionId` parameter specifies the custom security attribute definition ID. You can use the command `Get-EntraBetaCustomSecurityAttributeDefinition` to get the ID.
 - `-Id` parameter specifies the identifier for the predefined value.
 - `-IsActive` parameter specifies the predefined value is active or deactivated.
 
@@ -87,7 +85,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-The unique identifier for the predefined value, which can be up to 64 characters long and include Unicode characters. Spaces are allowed, but some special characters are not. This identifier is case sensitive, cannot be changed later, and is required.
+The unique identifier for the predefined value, which can be up to 64 characters long and include Unicode characters. Spaces are allowed, but some special characters aren't. This identifier is case sensitive, can't be changed later, and is required.
 
 ```yaml
 Type: System.String

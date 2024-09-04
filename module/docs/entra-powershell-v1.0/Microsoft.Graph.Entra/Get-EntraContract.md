@@ -81,7 +81,7 @@ It isn't automatically updated if the customer tenant's display name changes.
 
 ## Examples
 
-### Example 1: Get all contracts
+### Example 1: Get all contracts in the directory
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
@@ -89,6 +89,15 @@ Get-EntraContract
 ```
 
 This command gets all contracts in the Microsoft Entra ID.
+
+### Example 2: Get top two contracts in the directory
+
+```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraContract -Top 2
+```
+
+This command gets top two contracts in the Microsoft Entra ID.
 
 ## Parameters
 
@@ -159,7 +168,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
