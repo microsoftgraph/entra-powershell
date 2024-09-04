@@ -56,7 +56,10 @@ Describe "Set-EntraDirSyncFeature" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDirSyncFeature"
 
-            Set-EntraDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable $false -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Force | Out-Null
+            Set-EntraDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable $false -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Force
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDirSyncFeature"
+
             Should -Invoke -CommandName Update-MgDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
@@ -69,7 +72,7 @@ Describe "Set-EntraDirSyncFeature" {
         
                 try {
                     # Act & Assert: Ensure the function doesn't throw an exception
-                    { Set-EntraDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable $false -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
+                    { Set-EntraDirSyncFeature -Feature "BypassDirSyncOverrides" -Enable $false -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Force -Debug } | Should -Not -Throw
                 } finally {
                     # Restore original confirmation preference            
                     $DebugPreference = $originalDebugPreference        

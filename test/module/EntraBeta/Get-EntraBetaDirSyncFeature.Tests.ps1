@@ -69,7 +69,11 @@ Describe "Get-EntraDirSyncFeature" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDirSyncFeature"
 
-            Get-EntraBetaDirSyncFeature -Feature PasswordSync | Out-Null
+            $result  = Get-EntraBetaDirSyncFeature -Feature PasswordSync
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDirSyncFeature"
+            
             Should -Invoke -CommandName Get-MgBetaDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

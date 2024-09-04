@@ -47,9 +47,16 @@ Describe "Get-EntraAccountSku" {
        
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAccountSku"
-            $result = Get-EntraAccountSku -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+
+            $result =  Get-EntraAccountSku -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAccountSku"
+
+            Should -Invoke -CommandName Get-MgSubscribedSku -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

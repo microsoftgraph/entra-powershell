@@ -61,7 +61,11 @@ Describe "Get-EntraBetaDomainFederationSettings" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDomainFederationSettings"
 
-            Get-EntraBetaDomainFederationSettings -DomainName "test.com" | Out-Null
+            $result = Get-EntraBetaDomainFederationSettings -DomainName "test.com"
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDomainFederationSettings"
+
             Should -Invoke -CommandName Get-MgBetaDomainFederationConfiguration -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

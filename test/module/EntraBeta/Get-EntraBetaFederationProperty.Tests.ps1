@@ -52,11 +52,17 @@ Describe "Get-EntraFederationProperty" {
         }
 
         It "Should contain 'User-Agent' header" {
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaFederationProperty"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaFederationProperty"
 
-        $result = Get-EntraBetaFederationProperty -DomainName "anmaji.myworkspace.microsoft.com"
-        $params = Get-Parameters -data $result.Parameters
-        $params.Headers["User-Agent"] | Should -Contain $userAgentHeaderValue
+            $result = Get-EntraBetaFederationProperty -DomainName "anmaji.myworkspace.microsoft.com"
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaFederationProperty"
+
+            Should -Invoke -CommandName Get-MgBetaDomainFederationConfiguration -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

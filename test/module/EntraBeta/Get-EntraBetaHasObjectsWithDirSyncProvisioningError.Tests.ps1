@@ -31,7 +31,10 @@ Describe "Get-EntraBetaHasObjectsWithDirSyncProvisioningError" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaHasObjectsWithDirSyncProvisioningError"
 
-            Get-EntraBetaHasObjectsWithDirSyncProvisioningError -TenantId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" | Out-Null
+            Get-EntraBetaHasObjectsWithDirSyncProvisioningError
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaHasObjectsWithDirSyncProvisioningError"
+
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

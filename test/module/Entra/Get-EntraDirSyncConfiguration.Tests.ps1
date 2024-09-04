@@ -41,7 +41,11 @@ Describe "Get-EntraDirSyncConfiguration" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirSyncConfiguration"
     
-            Get-EntraDirSyncConfiguration -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee" | Out-Null
+            $result = Get-EntraDirSyncConfiguration -TenantId "aaaabbbb-0000-cccc-1111-dddd2222eeee" 
+            $result | Should -Not -BeNullOrEmpty
+            
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirSyncConfiguration"
+
             Should -Invoke -CommandName Get-MgDirectoryOnPremiseSynchronization -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

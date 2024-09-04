@@ -63,13 +63,16 @@ Describe "Set-EntraDomainFederationSettings" {
             $a.DomainId | Should -Be "manan.lab.myworkspace.microsoft.com"         
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Update-MgDomainFederationConfiguration -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDomainFederationSettings"
+    
+            Set-EntraDomainFederationSettings -DomainName "manan.lab.myworkspace.microsoft.com" 
+            
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraDomainFederationSettings"
 
-            $result = Set-EntraDomainFederationSettings -DomainName "manan.lab.myworkspace.microsoft.com"
-            $params = Get-Parameters -data $result
-            $a= $params | ConvertTo-json | ConvertFrom-Json
-            $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            Should -Invoke -CommandName Update-MgDomainFederationConfiguration -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

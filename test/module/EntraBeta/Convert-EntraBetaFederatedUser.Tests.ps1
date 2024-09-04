@@ -43,13 +43,16 @@ BeforeAll {
             { Convert-EntraBetaFederatedUser -UserPrincipalName "xyz.onmicrosoft.com" -NewPassword  } | Should -Throw "Missing an argument for parameter 'NewPassword'. Specify a parameter*"
         }
         It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Convert-EntraBetaFederatedUser"
+
+            Convert-EntraBetaFederatedUser -UserPrincipalName "xyz.onmicrosoft.com" -NewPassword "Pass1234"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Convert-EntraBetaFederatedUser"
-            Mock -CommandName Reset-MgBetaUserAuthenticationMethodPassword -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
-        
-            $result =Convert-EntraBetaFederatedUser -UserPrincipalName "xyz.onmicrosoft.com" -NewPassword "Pass1234"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+
+            Should -Invoke -CommandName Reset-MgBetaUserAuthenticationMethodPassword -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       
