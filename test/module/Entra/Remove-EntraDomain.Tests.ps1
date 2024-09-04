@@ -36,13 +36,17 @@ Describe "Remove-EntraDomain" {
         }
 
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Remove-MgDomain -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraDomain"
+
+            Remove-EntraDomain -Name "Contoso.com"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraDomain"
-            $result = Remove-EntraDomain -Name "Contoso.com"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }
+
+            Should -Invoke -CommandName Remove-MgDomain -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        } 
         
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

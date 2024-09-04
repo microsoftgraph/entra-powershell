@@ -82,11 +82,17 @@ Describe "New-EntraDomain" {
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraDomain"
-            
+
             $result = New-EntraDomain -Name "lala.uk"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraDomain"
+
+            Should -Invoke -CommandName New-MgDomain -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        } 
 
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

@@ -54,18 +54,20 @@ Describe "Select-EntraGroupIdsContactIsMemberOf" {
         }
 
         It "Should contain 'User-Agent' header" {
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Select-EntraGroupIdsContactIsMemberOf"
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
             $Groups.GroupIds = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $UserID = "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
             $result = Select-EntraGroupIdsContactIsMemberOf -ObjectId $UserID -GroupIdsForMembershipCheck $Groups
             $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Select-EntraGroupIdsContactIsMemberOf"
+
             Should -Invoke -CommandName Get-MgContactMemberOfAsGroup -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
-        }
+        } 
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       
             $originalDebugPreference = $DebugPreference
