@@ -26,6 +26,7 @@ Get audit logs of sign-ins.
 
 ```powershell
 Get-EntraAuditSignInLogs 
+ [-SignInId]
  [-All]
  [-Top <Int32>] 
  [-Filter <String>] 
@@ -45,6 +46,21 @@ In addition to delegated permissions, the signed-in user must belong to at least
 - Security Reader
 
 ## Examples
+
+### Example 1: Get all logs
+
+```powershell
+Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
+Get-EntraAuditSignInLogs -SignInId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+```
+
+```Output
+Id                                   AppDisplayName                     AppId                                AppTokenProtectionStatus AuthenticationMethodsUsed AuthenticationProtocol
+--                                   --------------                     -----                                ------------------------ ------------------------- ----------------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Azure Active Directory PowerShell  00001111-aaaa-2222-bbbb-3333cccc4444                              {}                     none
+```
+
+This example returns audit log of sign-in with the specified `-SignInId` .
 
 ### Example 1: Get all logs
 
@@ -105,6 +121,22 @@ Get-EntraAuditSignInLogs -Filter "createdDateTime ge 2024-07-01T00:00:00Z and cr
 This example shows how to retrieve sign-in logs between dates.
 
 ## Parameters
+
+### -SignInId
+
+The unique identifier of a sign-in log.
+
+```yaml
+Type: System.String
+Parameter Sets: GetById
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
 
 ### -All
 

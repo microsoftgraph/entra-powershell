@@ -26,7 +26,7 @@ Updates an existing attribute set.
 
 ```powershell
 Set-EntraAttributeSet 
- -Id <String> 
+ -AttributeSetId <String> 
  [-Description <String>] 
  [-MaxAttributesPerSet <Int32>]
  [<CommonParameters>]
@@ -34,7 +34,7 @@ Set-EntraAttributeSet
 
 ## DESCRIPTION
 
-The `Set-EntraAttributeSet` cmdlet updates a Microsoft Entra ID attribute set object specified by its ID. Specify `Id` parameter to Update a Microsoft Entra ID attribute set object.
+The `Set-EntraAttributeSet` cmdlet updates a Microsoft Entra ID attribute set object specified by its ID. Specify `AttributeSetId` parameter to Update a Microsoft Entra ID attribute set object.
 
 In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with a supported role permission.
 
@@ -49,7 +49,7 @@ You can only update the `description` and `maxAttributesPerSet` properties.
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
 $params = @{
-    Id = 'Engineering'
+    AttributeSetId = 'Engineering'
     Description = 'Attributes for cloud engineering team'
 }
 Set-EntraAttributeSet @params
@@ -64,7 +64,7 @@ This example Update an attribute set.
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
 $params = @{
-    Id = 'Engineering' 
+    AttributeSetId = 'Engineering' 
     MaxAttributesPerSet = 10    
 }
 Set-EntraAttributeSet @params
@@ -92,7 +92,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Id
+### -AttributeSetId
 
 Name of the attribute set.
 

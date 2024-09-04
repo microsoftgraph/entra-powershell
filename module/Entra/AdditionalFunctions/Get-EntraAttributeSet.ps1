@@ -6,7 +6,7 @@ function Get-EntraAttributeSet {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
         [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-        [System.String] $Id
+        [System.String] $AttributeSetId
     )
 
     PROCESS {
@@ -14,8 +14,8 @@ function Get-EntraAttributeSet {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params["Uri"] = "https://graph.microsoft.com/v1.0/directory/attributeSets/"
         $params["Method"] = "GET"
-        if ($null -ne $PSBoundParameters["Id"]) {
-            $params["Uri"] += $Id
+        if ($null -ne $PSBoundParameters["AttributeSetId"]) {
+            $params["Uri"] += $AttributeSetId
         }
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object { "$_ : $($params[$_])" } | Write-Debug

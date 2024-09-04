@@ -6,7 +6,7 @@ function New-EntraAttributeSet {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
         [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-        [System.String] $Id,
+        [System.String] $AttributeSetId,
         [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
         [System.String] $Description,
         [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
@@ -20,8 +20,8 @@ function New-EntraAttributeSet {
         $params["Uri"] = "https://graph.microsoft.com/v1.0/directory/attributeSets"
         $params["Method"] = "POST"
         
-        if ($null -ne $PSBoundParameters["Id"]) {
-            $body["id"] = $PSBoundParameters["Id"]
+        if ($null -ne $PSBoundParameters["AttributeSetId"]) {
+            $body["id"] = $PSBoundParameters["AttributeSetId"]
         }
         if ($null -ne $PSBoundParameters["Description"]) {
             $body["description"] = $PSBoundParameters["Description"]

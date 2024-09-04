@@ -6,7 +6,7 @@ function Set-EntraAttributeSet {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
-    [System.String] $Id,
+    [System.String] $AttributeSetId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $Description,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
@@ -19,9 +19,9 @@ function Set-EntraAttributeSet {
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     $params["Uri"] = "https://graph.microsoft.com/v1.0/directory/attributeSets/"
     $params["Method"] = "PATCH"    
-    if($null -ne $PSBoundParameters["Id"])
+    if($null -ne $PSBoundParameters["AttributeSetId"])
     {
-        $params["Uri"] += $Id
+        $params["Uri"] += $AttributeSetId
     }    
     if($null -ne $PSBoundParameters["Description"])
     {
