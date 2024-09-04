@@ -37,13 +37,18 @@ Describe "Remove-EntraServiceAppRoleAssignment" {
             $params.ServicePrincipalId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         
         }
+        
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Remove-MgServicePrincipalAppRoleAssignment -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-            
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraServiceAppRoleAssignment"
-            $result = Remove-EntraServiceAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  -AppRoleAssignmentId "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+
+            Remove-EntraServiceAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -AppRoleAssignmentId "A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u" 
+      
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraServiceAppRoleAssignment"
+
+            Should -Invoke -CommandName Remove-MgServicePrincipalAppRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
 
         It "Should execute successfully without throwing an error" {

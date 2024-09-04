@@ -89,14 +89,19 @@ Describe "Get-EntraServiceAppRoleAssigned" {
         }
         
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Get-MgServicePrincipalAppRoleAssignedTo -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServiceAppRoleAssignment"
 
             $result = Get-EntraServiceAppRoleAssignment -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        } 
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServiceAppRoleAssignment"
+
+            Should -Invoke -CommandName Get-MgServicePrincipalAppRoleAssignedTo -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
+
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       
             $originalDebugPreference = $DebugPreference
