@@ -61,8 +61,69 @@
                 "ConversionType" : "none"
             }
         ],
-        "CustomScript" : "$params = @{}\n$customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand\nif ($null -ne $PSBoundParameters[\"ObjectId\"])\n{\n    $params[\"ApplicationId\"] = $PSBoundParameters[\"ObjectId\"]\n}\n\n$newOwner = @{}\n\nif ($null -ne $PSBoundParameters[\"RefObjectId\"])\n{\n    $newOwner[\"@odata.id\"] = \"https://graph.microsoft.com/v1.0/directoryObjects/\" + $PSBoundParameters[\"RefObjectId\"]\n    $params[\"BodyParameter\"] = $newOwner\n}\n"
+        "CustomScript" : null
     },
+    { "Command" :"Get-AzureADDeviceRegisteredOwner", "URl" :"", "Method" : "",         
+    "Parameters" : [
+        {
+            "SourceName" : "ObjectId",
+            "TargetName" : "ObjectId",
+            "ConversionType" : "None",
+            "SpecialMapping" : null,
+            "ParameterSetName":"",
+            "Mandatory": true,
+            "ValueFromPipeline":false,
+            "ValueFromPipelineByPropertyName":false,                                
+            "DataType": "System.String",
+            "IsURLReplaced": false          
+        },
+        {
+            "SourceName" : "All",
+            "TargetName" : null,
+            "ConversionType" : "None",  
+            "SpecialMapping" :null,      
+            "ParameterSetName":"GetQuery",
+            "Mandatory": false,
+            "ValueFromPipeline":true,
+            "ValueFromPipelineByPropertyName":true,                                
+            "DataType": "switch",
+            "IsURLReplaced": false                                     
+        },
+        {
+            "SourceName" : "Top",
+            "TargetName" : null,
+            "ConversionType" : "None",  
+            "SpecialMapping" :null,      
+            "ParameterSetName":"",
+            "Mandatory": false,
+            "ValueFromPipeline":true,
+            "ValueFromPipelineByPropertyName":true,                                
+            "DataType": "System.Nullable`1[System.Int32]",
+            "IsURLReplaced": false                                     
+        },
+        {
+            "SourceName" : "Property",
+            "TargetName" : "Property",
+            "ConversionType" : "None",
+            "SpecialMapping" : null,
+            "ParameterSetName":"",
+            "Mandatory": false,
+            "ValueFromPipeline":false,
+            "ValueFromPipelineByPropertyName":false,                                
+            "DataType": "System.String[]",
+            "IsURLReplaced": false          
+        }
+        
+    ],
+    "outputParameters":[
+        {
+            "SourceName" : "Id",
+            "TargetName" : "Id",
+            "ConversionType" : "none"
+        }
+    ],
+    "CustomScript" : "'PROCESS {\n    $params = @{}\n    $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand\n    $topCount = $null\n    $baseUri = 'https://graph.microsoft.com/v1.0/devices'\n    $properties = '$select=*'\n    $Method = \"GET\"\n    $keysChanged = @{ObjectId = \"Id\"}\n    if($null -ne $PSBoundParameters[\"Property\"])\n    {\n        $selectProperties = $PSBoundParameters[\"Property\"]\n        $selectProperties = $selectProperties -Join ','\n        $properties = \"`$select=$($selectProperties)\"\n    }\n    if($null -ne $PSBoundParameters[\"ObjectId\"])\n    {\n        $params[\"DeviceId\"] = $PSBoundParameters[\"ObjectId\"]\n        $URI = \"$baseUri/$($params.DeviceId)/registeredOwners?$properties\"\n    }\n    if($null -ne $PSBoundParameters[\"All\"])\n    {\n        $URI = \"$baseUri/$($params.DeviceId)/registeredOwners?$properties\"\n    }\n    if($null -ne $PSBoundParameters[\"Top\"])\n    {\n        $topCount = $PSBoundParameters[\"Top\"]\n        $URI = \"$baseUri/$($params.DeviceId)/registeredOwners?`$top=$topCount&$properties\"\n    }\n    Write-Debug(\"============================ TRANSFORMATIONS ============================\")\n    $params.Keys | ForEach-Object {\"$_ : $($params[$_])\" } | Write-Debug\n    Write-Debug(\"=========================================================================`n\")\n    $response = (Invoke-GraphRequest -Headers $customHeaders -Uri $URI -Method $Method).value\n    $response = $response | ConvertTo-Json -Depth 10 | ConvertFrom-Json\n    $response | ForEach-Object {\n        if($null -ne $_) {\n            Add-Member -InputObject $_ -MemberType AliasProperty -Name ObjectId -Value Id\n            Add-Member -InputObject $_ -MemberType AliasProperty -Name DeletionTimestamp -Value DeletedDateTime\n            Add-Member -InputObject $_ -MemberType AliasProperty -Name DirSyncEnabled -Value OnPremisesSyncEnabled\n            Add-Member -InputObject $_ -MemberType AliasProperty -Name ImmutableId -Value onPremisesImmutableId\n            Add-Member -InputObject $_ -MemberType AliasProperty -Name LastDirSyncTime -Value OnPremisesLastSyncDateTime\n            Add-Member -InputObject $_ -MemberType AliasProperty -Name Mobile -Value mobilePhone\n            Add-Member -InputObject $_ -MemberType AliasProperty -Name ProvisioningErrors -Value onPremisesProvisioningErrors\n            Add-Member -InputObject $_ -MemberType AliasProperty -Name TelephoneNumber -Value BusinessPhones\n            Add-Member -InputObject $_ -MemberType AliasProperty -Name UserState -Value ExternalUserState\n            Add-Member -InputObject $_ -MemberType AliasProperty -Name UserStateChangedOn -Value ExternalUserStateChangeDateTime\n        }\n    }\n    if($response){\n        $userList = @()\n        foreach ($data in $response) {\n            $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphDirectoryObject\n            $data.PSObject.Properties | ForEach-Object {\n                $propertyName = $_.Name\n                $propertyValue = $_.Value\n                $userType | Add-Member -MemberType NoteProperty -Name $propertyName -Value $propertyValue -Force\n            }\n            $userList += $userType\n        }\n        $userList\n    }\n}'"
+},
                     { "Command" :"New-AzureADMSRoleAssignment", "URl" :"https://graph.microsoft.com/v1.0/roleManagement/directory/roleAssignments", "Method" : "POST", "Parameters" : [
                             {
                                 "SourceName" : "DirectoryScopeId",

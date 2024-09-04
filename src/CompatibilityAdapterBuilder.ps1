@@ -7,13 +7,15 @@ class CommandUrlMap {
     [string] $URL = $null   
     [string] $Method = $null
     [DataMap[]] $Parameters = @()
+    [string] $CustomScript = $null
 
 
-    CommandUrlMap($Command, $URL, $Method, [DataMap[]]$Parameters){
+    CommandUrlMap($Command, $URL, $Method, [DataMap[]]$Parameters, $CustomScript){
         $this.Command = $Command
         $this.URL = $URL
         $this.Method = $Method
         $this.Parameters = $Parameters
+        $this.CustomScript=$CustomScript
     }
 
 }
@@ -103,7 +105,7 @@ class CompatibilityAdapterBuilder {
                                             $param.ParameterSetName, $param.Mandatory, $param.ValueFromPipeline, $param.ValueFromPipelineByPropertyName, $param.DataType, $param.IsURLReplaced)
             }
             
-            $this.ModuleUrlsMapping += [CommandUrlMap]::New($cmd.Command, $cmd.URL, $cmd.Method, $paramArray)
+            $this.ModuleUrlsMapping += [CommandUrlMap]::New($cmd.Command, $cmd.URL, $cmd.Method, $paramArray, $cmd.CustomScript)
         }
         
     }
@@ -725,6 +727,7 @@ $($Command.CustomScript)
         $customHeadersCommandName = "New-EntraCustomHeaders"
         $URLCommand = $this.GetURLCommand($URLMapping)
 
+        write-host($URLMapping)
 
         if($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta')
         {
@@ -732,7 +735,7 @@ $($Command.CustomScript)
         }
 
         $function =''
-       if($null -ne $URLCommand.CustomScript){
+       if($null -eq $URLMapping.CustomScript){
 
         $function = @"
 function $($Command.Generate) {
@@ -774,7 +777,7 @@ $OutputTransformations
         $parameterDefinitions
             )
         
-        $($URLCommand.CustomScript)    
+        $($URLMapping.CustomScript)    
         }
         
 "@
