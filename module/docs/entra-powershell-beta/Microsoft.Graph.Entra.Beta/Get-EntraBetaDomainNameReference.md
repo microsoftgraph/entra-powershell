@@ -49,7 +49,12 @@ Get-EntraBetaDomainNameReference -Name contoso.com
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-11bb11bb-cc22-dd33-ee44-55ff55ff55ff
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+ffffffff-4444-5555-6666-gggggggggggg
+hhhhhhhh-5555-6666-7777-iiiiiiiiiiii
 ```
 
 This example shows how to retrieve the domain name reference objects for a domain that is specified through the -Name parameter.
