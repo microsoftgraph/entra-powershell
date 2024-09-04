@@ -61,7 +61,7 @@ This example demonstrates how to retrieve objects for a specified object Ids.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraObjectByObjectId -ObjectIds aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb -Types User
+Get-EntraObjectByObjectId -ObjectIds 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Types User
 ```
 
 ```Output
