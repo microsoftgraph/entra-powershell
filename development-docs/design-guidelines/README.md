@@ -11,7 +11,7 @@ This article provides best practices and design guidelines for various component
     - [Parameter Naming Conventions](./parameter-best-practices.md#parameter-naming-conventions)
     - [Parameter Types](./parameter-best-practices.md#parameter-types)
   - [Parameter Set Guidelines](./parameter-best-practices.md#parameter-sets-guidelines)
-    - [Parameter Set Naming Conventions](./parameter-best-practices.md#parameter-set-naming-conventions)
+    - [Parameter Set Naming Conventions](./parameter-best-practices.md#parameter-sets-naming-conventions)
     - [Attribute Guidelines](./parameter-best-practices.md#attribute-guidelines)
 - [Piping Best Practices](./piping-best-practices.md)
   - [Piping in PowerShell](./piping-best-practices.md#piping-in-powershell)
