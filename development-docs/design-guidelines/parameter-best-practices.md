@@ -127,7 +127,7 @@ Using `New-Alias` cmdlet as an example:
 
 ```powershell
 New-Alias 
-    [-Name] <string>                                                     -required 'positional' parameter
+    -Name <string>                                                     -required 'positional' parameter
     [-Value] <string>                                                 
     [-Description <string>]                                              -optional parameter
     [-Force]                                                             -optional switch parameter (all switch parameters are optional, non-positional)
