@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaFeatureRolloutPolicy.
+title: Remove-EntraBetaFeatureRolloutPolicy
 description: This article provides details on the Remove-EntraBetaFeatureRolloutPolicy command.
 
 
@@ -46,6 +46,8 @@ Remove-EntraBetaFeatureRolloutPolicy -Id '11bb11bb-cc22-dd33-ee44-55ff55ff55ff'
 ```
 
 This command removes the policy for cloud authentication roll-out in Microsoft Entra ID.
+
+- `-Id` Parameter specifies the ID of the cloud authentication roll-out policy.
 
 ## Parameters
 

@@ -1,5 +1,5 @@
 ---
-title: New-EntraBetaApplicationProxyApplication.
+title: New-EntraBetaApplicationProxyApplication
 description: This article provides details on the New-EntraBetaApplicationProxyApplication command.
 
 ms.topic: reference

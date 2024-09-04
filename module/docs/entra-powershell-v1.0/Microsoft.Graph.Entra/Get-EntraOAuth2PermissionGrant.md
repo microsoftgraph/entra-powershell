@@ -1,5 +1,5 @@
 ---
-title: Get-EntraOAuth2PermissionGrant.
+title: Get-EntraOAuth2PermissionGrant
 description: This article provides details on the Get-EntraOAuth2PermissionGrant Command.
 
 
@@ -35,6 +35,17 @@ Get-EntraOAuth2PermissionGrant
 ## Description
 
 The `Get-EntraOAuth2PermissionGrant` cmdlet gets OAuth2PermissionGrant entities in Microsoft Entra ID.
+
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The following least privileged roles are supported for this operation:
+
+- Application Administrator
+- Application Developer
+- Cloud Application Administrator
+- Directory Writers
+- Privileged Role Administrator
+- User Administrator
+- Directory Readers
+- Global Reader
 
 ## Examples
 

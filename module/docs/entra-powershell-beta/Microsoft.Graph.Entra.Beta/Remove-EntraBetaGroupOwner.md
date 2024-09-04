@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaGroupOwner.
+title: Remove-EntraBetaGroupOwner
 description: This article provides details on the Remove-EntraBetaGroupOwner command.
 
 

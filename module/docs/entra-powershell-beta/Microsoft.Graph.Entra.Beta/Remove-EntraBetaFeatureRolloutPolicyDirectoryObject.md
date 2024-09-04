@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraBetaFeatureRolloutPolicyDirectoryObject.
+title: Remove-EntraBetaFeatureRolloutPolicyDirectoryObject
 description: This article provides details on the Remove-EntraBetaFeatureRolloutPolicyDirectoryObject command.
 
 
@@ -53,6 +53,9 @@ Remove-EntraBetaFeatureRolloutPolicyDirectoryObject @params
 ```
 
 This command removes a group from the cloud authentication roll-out policy from Microsoft Entra ID.
+
+- `-Id` Parameter specifies the ID of the cloud authentication roll-out policy.
+- `-ObjectId` Parameter specifies the ID of the specific Microsoft Entra ID object that assigned to the cloud authentication roll-out policy.
 
 ## Parameters
 

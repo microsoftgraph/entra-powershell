@@ -1,5 +1,5 @@
 ---
-title: Remove-EntraAdministrativeUnit.
+title: Remove-EntraAdministrativeUnit
 description: This article provides details on the Remove-EntraAdministrativeUnit command.
 
 ms.topic: reference
@@ -32,6 +32,8 @@ Remove-EntraAdministrativeUnit
 ## DESCRIPTION
 
 The `Remove-EntraAdministrativeUnit` cmdlet removes an administrative unit from Microsoft Entra ID. Specify the `ObjectId` parameter to remove of administrative unit.
+
+To delete an administrative unit, the calling principal must have at least the Privileged Role Administrator role in Microsoft Entra.
 
 ## EXAMPLES
 

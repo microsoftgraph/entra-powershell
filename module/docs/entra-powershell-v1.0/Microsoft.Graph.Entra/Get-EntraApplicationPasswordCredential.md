@@ -33,7 +33,7 @@ Get-EntraApplicationPasswordCredential
 
 ## Description
 
-The `Get-EntraApplicationPasswordCredential` cmdlet gets the password credentials for a Microsoft Entra ID application.
+The `Get-EntraApplicationPasswordCredential` cmdlet receives the password credentials for a Microsoft Entra ID application. Specify `ObjectId` parameter to cmdlet receives the password credentials.
 
 ## Examples
 
@@ -41,22 +41,25 @@ The `Get-EntraApplicationPasswordCredential` cmdlet gets the password credential
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-New-EntraApplicationPasswordCredential -ObjectId aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+Get-EntraApplicationPasswordCredential -ObjectId $application.ObjectId
 ```
 
-```output
-CustomKeyIdentifier  DisplayName EndDateTime           Hint KeyId                                SecretText StartDateTime
--------------------  ----------- -----------           ---- -----                                ---------- -------------
-{116, 101, 115, 116}             11/24/2024 6:28:39 AM 123  bbbbbbbb-1111-2222-3333-cccccccccccc            11/24/2023 6:28:39 AM
+```Output
+CustomKeyIdentifier  DisplayName EndDateTime         Hint KeyId                                SecretText StartDateTime
+-------------------  ----------- -----------         ---- -----                                ---------- -------------
+{100, 101, 109, 111} demo        26/07/2025 10:34:40 Ap6  bbbbbbbb-1111-2222-3333-cccccccccccc             26/07/2024 10:34:40
 ```
 
-This command gets the password credential for specified application.
+This example shows how to retrieve the password credential for specified application.
+
+- `-ObjectId` specifies the ID of an application object in Microsoft Entra ID.
 
 ## Parameters
 
 ### -ObjectId
 
-The objectID of the application for which to get the password credential.
+The objectID of the application for which to get the password credential. Use `Get-EntraApplication` for more details.
 
 ```yaml
 Type: System.String
@@ -72,7 +75,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -97,3 +100,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[Get-EntraApplication](Get-EntraApplication.md)
