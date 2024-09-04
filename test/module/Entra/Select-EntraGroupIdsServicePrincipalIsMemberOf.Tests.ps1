@@ -35,20 +35,21 @@ Describe "Select-EntraGroupIdsServicePrincipalIsMemberOf" {
             { Select-EntraGroupIdsServicePrincipalIsMemberOf -ObjectId "" -GroupIdsForMembershipCheck "22cc22cc-dd33-ee44-ff55-66aa66aa66aa" } | Should -Throw "Cannot bind argument to parameter*"
         }  
         It "Should fail when GroupIdsForMembershipCheck parameter is empty" {
-            {$result = Select-EntraGroupIdsServicePrincipalIsMemberOf -ObjectId $SPId -GroupIdsForMembershipCheck  } | Should -Throw "Missing an argument for parameter 'GroupIdsForMembershipCheck'.*"
+            {Select-EntraGroupIdsServicePrincipalIsMemberOf -ObjectId $SPId -GroupIdsForMembershipCheck  } | Should -Throw "Missing an argument for parameter 'GroupIdsForMembershipCheck'.*"
         }
         It "Should fail when GroupIdsForMembershipCheck parameter is invalid" {
-            {$result = Select-EntraGroupIdsServicePrincipalIsMemberOf -ObjectId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -GroupIdsForMembershipCheck "" } | Should -Throw "Cannot process argument transformation on parameter 'GroupIdsForMembershipCheck'*"
+            {Select-EntraGroupIdsServicePrincipalIsMemberOf -ObjectId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -GroupIdsForMembershipCheck "" } | Should -Throw "Cannot process argument transformation on parameter 'GroupIdsForMembershipCheck'*"
         } 
         It "Should contain 'User-Agent' header" {
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Select-EntraGroupIdsServicePrincipalIsMemberOf"
             $Groups = New-Object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
             $Groups.GroupIds = @("22cc22cc-dd33-ee44-ff55-66aa66aa66aa","33dd33dd-ee44-ff55-aa66-77bb77bb77bb","44ee44ee-ff55-aa66-bb77-88cc88cc88cc")
             $SPId = "22cc22cc-dd33-ee44-ff55-66aa66aa66aa"
-
-            $result = Select-EntraGroupIdsServicePrincipalIsMemberOf -ObjectId $SPId -GroupIdsForMembershipCheck $Groups 
+            $result = Select-EntraGroupIdsServicePrincipalIsMemberOf -ObjectId $SPId -GroupIdsForMembershipCheck $Groups
             $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Select-EntraGroupIdsServicePrincipalIsMemberOf"
+
             Should -Invoke -CommandName Get-MgServicePrincipalMemberOf -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

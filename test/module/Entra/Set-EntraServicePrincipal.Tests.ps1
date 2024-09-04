@@ -55,14 +55,16 @@ Describe "Set-EntraServicePrincipal"{
             { Set-EntraServicePrincipal -ObjectId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -AppId  -Tags  -ReplyUrls -AccountEnabled -AlternativeNames -KeyCredentials -Homepage} | Should -Throw "Missing an argument for parameter*"
         }  
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraServicePrincipal"
+
+            Set-EntraServicePrincipal -ObjectId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -LogoutUrl 'https://securescore.office.com/SignOut' -ServicePrincipalType "Application"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraServicePrincipal"
 
-            $tags = @("Environment=Production", "Department=Finance", "Project=MNO")
-            $result= Set-EntraServicePrincipal -ObjectId "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -AccountEnabled $false -AppId "00001111-aaaa-2222-bbbb-3333cccc4444" -AppRoleAssignmentRequired $true -DisplayName "test11" -ServicePrincipalNames "11bb11bb-cc22-dd33-ee44-55ff55ff55ff" -Tags $tags
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       
