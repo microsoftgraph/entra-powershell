@@ -6,9 +6,6 @@ This article provides best practices and design guidelines for various component
 
 - [Cmdlet Best Practices](./cmdlet-best-practices.md)
   - [Cmdlet Naming Conventions](./cmdlet-best-practices.md#cmdlet-naming-conventions)
-- [Module Best Practices](./module-best-practices.md)
-  - [Module Metadata](./module-best-practices.md#module-metadata)
-  - [Module Dependencies](./module-best-practices.md#module-dependencies)
 - [Parameter Best Practices](./parameter-best-practices.md)
   - [Parameter Guidelines](./parameter-best-practices.md#parameter-guidelines)
     - [Parameter Naming Conventions](./parameter-best-practices.md#parameter-naming-conventions)
