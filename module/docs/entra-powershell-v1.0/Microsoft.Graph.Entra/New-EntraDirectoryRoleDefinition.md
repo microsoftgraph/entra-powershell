@@ -1,6 +1,6 @@
 ---
-title: New-EntraRoleDefinition
-description: This article provides details on the New-EntraRoleDefinition command.
+title: New-EntraDirectoryRoleDefinition
+description: This article provides details on the New-EntraDirectoryRoleDefinition command.
 
 
 ms.topic: reference
@@ -11,21 +11,21 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraRoleDefinition
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraDirectoryRoleDefinition
 
 schema: 2.0.0
 ---
 
-# New-EntraRoleDefinition
+# New-EntraDirectoryRoleDefinition
 
 ## Synopsis
 
-Create a new Microsoft Entra ID roleDefinition.
+Create a new Microsoft Entra ID DirectoryRoleDefinition.
 
 ## Syntax
 
 ```powershell
-New-EntraRoleDefinition 
+New-EntraDirectoryRoleDefinition 
  [-TemplateId <String>] 
  -DisplayName <String>
  -RolePermissions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RolePermission]>
@@ -38,7 +38,7 @@ New-EntraRoleDefinition
 
 ## Description
 
-Create a new Microsoft Entra ID `roleDefinition` object.
+Create a new Microsoft Entra ID `directoryRoleDefinition` object.
 
 ## Examples
 
@@ -55,7 +55,7 @@ Create a new Microsoft Entra ID `roleDefinition` object.
     DisplayName = 'MyRoleDefinition'
  }
 
- New-EntraRoleDefinition @params
+ New-EntraDirectoryRoleDefinition @params
 ```
 
 ```Output
@@ -81,7 +81,7 @@ This command creates a new role definition in Microsoft Entra ID.
     Description = 'Role Definition demo'
  }
 
- New-EntraRoleDefinition @params
+ New-EntraDirectoryRoleDefinition @params
 ```
 
 ```Output
@@ -107,7 +107,7 @@ This command creates a new role definition with Description parameter.
     ResourceScopes = '/'
  }
 
- New-EntraRoleDefinition @params
+ New-EntraDirectoryRoleDefinition @params
 ```
 
 ```Output
@@ -132,7 +132,7 @@ This command creates a new role definition with ResourceScopes parameter.
     TemplateId = '4dd5aa9c-cf4d-4895-a993-740d342802b9'
  }
 
- New-EntraRoleDefinition @params
+ New-EntraDirectoryRoleDefinition @params
 ```
 
 ```Output
@@ -157,7 +157,7 @@ This command creates a new role definition with TemplateId parameter.
     Version = '2'
  }
 
- New-EntraRoleDefinition @params
+ New-EntraDirectoryRoleDefinition @params
 ```
 
 ```Output
@@ -295,12 +295,10 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-`New-EntraDirectoryRoleDefinition` is an alias for `New-EntraRoleDefinition`.
-
 ## Related Links
 
-[Get-EntraRoleDefinition](Get-EntraRoleDefinition.md)
+[Get-EntraDirectoryRoleDefinition](Get-EntraDirectoryRoleDefinition.md)
 
-[Remove-EntraRoleDefinition](Remove-EntraRoleDefinition.md)
+[Remove-EntraDirectoryRoleDefinition](Remove-EntraDirectoryRoleDefinition.md)
 
-[Set-EntraRoleDefinition](Set-EntraRoleDefinition.md)
+[Set-EntraDirectoryRoleDefinition](Set-EntraDirectoryRoleDefinition.md)

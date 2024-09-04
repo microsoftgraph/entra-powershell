@@ -1,6 +1,6 @@
 ---
-title: Set-EntraRoleDefinition
-description: This article provides details on the Set-EntraRoleDefinition command.
+title: Set-EntraDirectoryRoleDefinition
+description: This article provides details on the Set-EntraDirectoryRoleDefinition command.
 
 
 ms.topic: reference
@@ -11,21 +11,21 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraRoleDefinition
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraDirectoryRoleDefinition
 
 schema: 2.0.0
 ---
 
-# Set-EntraRoleDefinition
+# Set-EntraDirectoryRoleDefinition
 
 ## Synopsis
 
-Update an existing Microsoft Entra ID roleDefinition.
+Update an existing Microsoft Entra ID DirectoryRoleDefinition.
 
 ## Syntax
 
 ```powershell
-Set-EntraRoleDefinition 
+Set-EntraDirectoryRoleDefinition 
 [-TemplateId <String>] 
 [-DisplayName <String>]
 [-RolePermissions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RolePermission]>]
@@ -39,38 +39,38 @@ Set-EntraRoleDefinition
 
 ## Description
 
-Updates a Microsoft Entra roleDefinition object identified by ID. You cannot update built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
+Updates a Microsoft Entra DirectoryRoleDefinition object identified by ID. You cannot update built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
 
 ## Examples
 
-### Example 1: Update an roleDefinition
+### Example 1: Update an DirectoryRoleDefinition
 
 ```powershell
  Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
- Set-EntraRoleDefinition -ID a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 -DisplayName 'UpdatedDisplayName'
+ Set-EntraDirectoryRoleDefinition -ID a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 -DisplayName 'UpdatedDisplayName'
 ```
 
 This example updates the specified role definition in Microsoft Entra ID.
 
-### Example 2: Update an roleDefinition with Description
+### Example 2: Update an DirectoryRoleDefinition with Description
 
 ```powershell
  Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
- Set-EntraRoleDefinition -Id a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 -Description 'MYROLEUPDATE1S'
+ Set-EntraDirectoryRoleDefinition -Id a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 -Description 'MYROLEUPDATE1S'
 ```
 
 This example updates the Description of specified role definition in Microsoft Entra ID.
 
-### Example 3: Update an roleDefinition with IsEnabled
+### Example 3: Update an DirectoryRoleDefinition with IsEnabled
 
 ```powershell
  Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
- Set-EntraRoleDefinition -Id a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 -IsEnabled $true
+ Set-EntraDirectoryRoleDefinition -Id a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 -IsEnabled $true
 ```
 
 This example updates the IsEnabled of specified role definition in Microsoft Entra ID.
 
-### Example 4: Update an roleDefinition
+### Example 4: Update an DirectoryRoleDefinition
 
 ```powershell
  Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
@@ -87,7 +87,7 @@ This example updates the IsEnabled of specified role definition in Microsoft Ent
     Version = 2
  }
 
- Set-EntraRoleDefinition @params
+ Set-EntraDirectoryRoleDefinition @params
 ```
 
 This example updates the RolePermissions, TemplateId, TemplateId, ResourceScopes  of specified role definition in Microsoft Entra ID.
@@ -234,10 +234,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-`Set-EntraDirectoryRoleDefinition` is an alias for `Set-EntraRoleDefinition`.
-
 ## Related Links
 
-[Get-EntraRoleDefinition](Get-EntraRoleDefinition.md)
+[Get-EntraDirectoryRoleDefinition](Get-EntraDirectoryRoleDefinition.md)
 
-[New-EntraRoleDefinition](New-EntraRoleDefinition.md)
+[New-EntraDirectoryRoleDefinition](New-EntraDirectoryRoleDefinition.md)

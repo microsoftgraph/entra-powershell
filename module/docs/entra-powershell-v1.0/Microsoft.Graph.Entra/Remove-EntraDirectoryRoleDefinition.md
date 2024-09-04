@@ -1,6 +1,6 @@
 ---
-title: Remove-EntraRoleDefinition
-description: This article provides details on the Remove-EntraRoleDefinition command.
+title: Remove-EntraDirectoryRoleDefinition
+description: This article provides details on the Remove-EntraDirectoryRoleDefinition command.
 
 
 ms.topic: reference
@@ -12,28 +12,28 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraRoleDefinition
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraDirectoryRoleDefinition
 
 schema: 2.0.0
 ---
 
-# Remove-EntraRoleDefinition
+# Remove-EntraDirectoryRoleDefinition
 
 ## Synopsis
 
-Delete a Microsoft Entra ID roleDefinition by ObjectId.
+Delete a Microsoft Entra ID DirectoryRoleDefinition by ObjectId.
 
 ## Syntax
 
 ```powershell
-Remove-EntraRoleDefinition 
+Remove-EntraDirectoryRoleDefinition 
  -Id <String> 
  [<CommonParameters>]
 ```
 
 ## Description
 
-Delete a Microsoft Entra ID roleDefinition object by ID.
+Delete a Microsoft Entra ID DirectoryRoleDefinition object by ID.
 
 You can't delete built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
 
@@ -43,7 +43,7 @@ You can't delete built-in roles. This feature requires a Microsoft Entra ID P1 o
 
 ```powershell
  Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
- Remove-EntraRoleDefinition -Id a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1
+ Remove-EntraDirectoryRoleDefinition -Id a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1
 ```
 
 This example demonstrates how to remove the specified role definition from Microsoft Entra ID.
@@ -78,12 +78,10 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-`Remove-EntraDirectoryRoleDefinition` is an alias for `Remove-EntraRoleDefinition`.
-
 ## Related Links
 
-[Get-EntraRoleDefinition](Get-EntraRoleDefinition.md)
+[Get-EntraDirectoryRoleDefinition](Get-EntraDirectoryRoleDefinition.md)
 
-[New-EntraRoleDefinition](New-EntraRoleDefinition.md)
+[New-EntraDirectoryRoleDefinition](New-EntraDirectoryRoleDefinition.md)
 
-[Set-EntraRoleDefinition](Set-EntraRoleDefinition.md)
+[Set-EntraDirectoryRoleDefinition](Set-EntraDirectoryRoleDefinition.md)
