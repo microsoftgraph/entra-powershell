@@ -15,7 +15,7 @@ stages:
   - job: Download_Artifacts
     steps:
     - download: _EntraPowerShell-Release-Build
-      artifact: 'Module Nuget'
+      artifact: 'Module Files'
   - job: Install_Dependencies
     displayName: Install dependencies
     pool:
@@ -28,6 +28,7 @@ stages:
         pwsh: true
         script: |
           Write-Output $PSVersionTable
+    dependsOn: Download_Artifacts
 
   - job: Release_Approval
     displayName: Agentless job
@@ -39,6 +40,7 @@ stages:
         notifyUsers: ''
         instructions: 'Please validate the build configuration and resume'
         onTimeout: 'resume'
+    dependsOn: Install_Dependencies
 
   - job: PsGallery_Push
     displayName: Push to PS Gallery
