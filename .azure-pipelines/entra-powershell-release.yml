@@ -12,6 +12,10 @@ stages:
 - stage: PS_Gallery_Deploy
   displayName: PS Gallery Deploy
   jobs:
+  - job: Download_Artifacts
+    steps:
+    - download: _EntraPowerShell-Release-Build
+      artifact: 'Module Nuget'
   - job: Install_Dependencies
     displayName: Install dependencies
     pool:
