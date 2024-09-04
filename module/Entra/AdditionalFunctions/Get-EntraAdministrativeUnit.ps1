@@ -5,7 +5,7 @@ function Get-EntraAdministrativeUnit {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
     [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId,
+    [System.String] $AdministrativeUnitId,
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Nullable`1[System.Int32]] $Top,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -20,9 +20,9 @@ function Get-EntraAdministrativeUnit {
     $baseUri = "/v1.0/directory/administrativeUnits"
     $properties = '$select=*'
     $params["Uri"] = "$baseUri/?$properties"    
-    if($null -ne $PSBoundParameters["ObjectId"])
+    if($null -ne $PSBoundParameters["AdministrativeUnitId"])
     {
-        $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]
+        $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]
         $params["Uri"] = "$baseUri/$($params.AdministrativeUnitId)?$properties"
     }    
     if($null -ne $PSBoundParameters["All"])

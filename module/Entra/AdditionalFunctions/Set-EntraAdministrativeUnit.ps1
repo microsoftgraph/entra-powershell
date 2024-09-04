@@ -5,7 +5,7 @@ function Set-EntraAdministrativeUnit {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId,
+    [System.String] $AdministrativeUnitId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $Description,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
@@ -17,9 +17,9 @@ function Set-EntraAdministrativeUnit {
     $body = @{}
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
     
-    if($null -ne $PSBoundParameters["ObjectId"])
+    if($null -ne $PSBoundParameters["AdministrativeUnitId"])
     {
-        $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]
+        $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]
     }
     if($null -ne $PSBoundParameters["DisplayName"])
     {
