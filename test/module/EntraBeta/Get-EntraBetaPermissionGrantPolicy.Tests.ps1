@@ -62,8 +62,14 @@ Describe "Get-EntraBetaPermissionGrantPolicy" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaPermissionGrantPolicy"
 
             $result = Get-EntraBetaPermissionGrantPolicy -Id "microsoft-all-application-permissions"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaPermissionGrantPolicy"
+
+            Should -Invoke -CommandName Get-MgBetaPolicyPermissionGrantPolicy -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

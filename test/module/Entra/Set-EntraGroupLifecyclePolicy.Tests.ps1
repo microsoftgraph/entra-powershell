@@ -25,7 +25,7 @@ BeforeAll {
 Describe "Set-EntraGroupLifecyclePolicy " {
     Context "Test for Set-EntraGroupLifecyclePolicy" {
         It "Should return updated GroupLifecyclePolicy" {
-            $result = Set-EntraGroupLifecyclePolicy -Id a47d4510-08c8-4437-99e9-71ca88e7af0f -GroupLifetimeInDays 200 -AlternateNotificationEmails "admingroup@contoso.com" -ManagedGroupTypes "All"
+            $result = Set-EntraGroupLifecyclePolicy -Id "a47d4510-08c8-4437-99e9-71ca88e7af0f" -GroupLifetimeInDays 200 -AlternateNotificationEmails "admingroup@contoso.com" -ManagedGroupTypes "All"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be "22cc22cc-dd33-ee44-ff55-66aa66aa66aa"
             $result.GroupLifetimeInDays | should -Be "100"
@@ -59,9 +59,15 @@ Describe "Set-EntraGroupLifecyclePolicy " {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraGroupLifecyclePolicy"
 
-            $result = Set-EntraGroupLifecyclePolicy -Id "22cc22cc-dd33-ee44-ff55-66aa66aa66aa" -GroupLifetimeInDays 200 -AlternateNotificationEmails "admingroup@contoso.com" -ManagedGroupTypes "All"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $result = Set-EntraGroupLifecyclePolicy -Id "a47d4510-08c8-4437-99e9-71ca88e7af0f" -GroupLifetimeInDays 200 -AlternateNotificationEmails "admingroup@contoso.com" -ManagedGroupTypes "All"
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraGroupLifecyclePolicy"
+
+            Should -Invoke -CommandName Update-MgGroupLifecyclePolicy -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

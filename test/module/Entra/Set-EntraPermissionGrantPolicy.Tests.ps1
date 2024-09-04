@@ -31,12 +31,16 @@ Describe "Set-EntraPermissionGrantPolicy" {
             { Set-EntraPermissionGrantPolicy -Id "permission_grant_policy" -Description "test" -DisplayName  } | Should -Throw "Missing an argument for parameter 'DisplayName'.*"
         } 
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Update-MgPolicyPermissionGrantPolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraPermissionGrantPolicy"
 
-            $result = Set-EntraPermissionGrantPolicy -Id "permission_grant_policy" -Description "test" -DisplayName "Test" 
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            Set-EntraPermissionGrantPolicy -Id "permission_grant_policy" -Description "test" -DisplayName "Test" 
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraPermissionGrantPolicy"
+
+            Should -Invoke -CommandName Update-MgPolicyPermissionGrantPolicy -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

@@ -70,8 +70,14 @@ Describe "Get-EntraServicePrincipalDelegatedPermissionClassification" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalDelegatedPermissionClassification"
 
             $result = Get-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalDelegatedPermissionClassification"
+
+            Should -Invoke -CommandName Get-MgServicePrincipalDelegatedPermissionClassification -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

@@ -79,8 +79,14 @@ Describe "New-EntraNamedLocationPolicy " {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraNamedLocationPolicy"
 
             $result = New-EntraNamedLocationPolicy -OdataType "#microsoft.graph.countryNamedLocation" -DisplayName "NamedLocation" -CountriesAndRegions @("US", "ID", "CA") -IncludeUnknownCountriesAndRegions $true
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraNamedLocationPolicy"
+
+            Should -Invoke -CommandName New-MgIdentityConditionalAccessNamedLocation -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       
