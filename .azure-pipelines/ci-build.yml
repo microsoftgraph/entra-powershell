@@ -62,7 +62,7 @@ jobs:
             displayName: Publish Symbols
             inputs:
               SymbolsFolder: '$(Build.ArtifactStagingDirectory)'
-              SearchPattern: '**//Microsoft.Graph.Entra.*.nupkg'
+              SearchPattern: '**/Microsoft.Graph.Entra.*.snupkg'
               IndexSources: true
               PublishSymbols: true
               SymbolServerType: 'TeamServices'

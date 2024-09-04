@@ -51,4 +51,17 @@ jobs:
               publishVstsFeed: $(PROJECT_NAME)/$(PREVIEW_FEED_NAME)
               allowPackageConflicts: true
 
+          - task: PublishSymbols@2
+            displayName: Publish Symbols
+            inputs:
+              SymbolsFolder: '$(Build.ArtifactStagingDirectory)'
+              SearchPattern: '**/Microsoft.Graph.Entra.*.snupkg'
+              IndexSources: true
+              PublishSymbols: true
+              SymbolServerType: 'TeamServices'
+              SymbolExpirationInDays: '36530'
+              IndexableFileFormats: 'Default'
+              DetailedLog: true
+              SymbolsArtifactName: 'Symbols_$(BuildConfiguration)'
+
       - template: ./common-templates/security-post-checks.yml
