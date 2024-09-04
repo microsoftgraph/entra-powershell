@@ -40,22 +40,27 @@ Describe "Add-EntraDeviceRegisteredOwner" {
         It "Should contain BodyParameter in parameters when passed RefObjectId to it" {
             Mock -CommandName New-MgDeviceRegisteredOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Add-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            Add-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
              $value = @{
-                "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/bbbbbbbb-1111-2222-3333-cccccccccccc"
-            } | ConvertTo-Json -Depth 5
-            $params= $result | Convertto-json -Depth 10 | Convertfrom-json 
-            $additionalProperties = $params[-1].AdditionalProperties | ConvertTo-Json -Depth 5
-            $additionalProperties | Should -Be $value
+                "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/bbbbbbbb-1111-2222-3333-cccccccccccc"}
+                Should -Invoke -CommandName New-MgDeviceRegisteredOwnerByRef -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                    $BodyParameter.AdditionalProperties.'@odata.id' | Should -Be $value.'@odata.id'
+                    Write-Host $BodyParameter.AdditionalProperties.'@odata.id'
+                    $true
+           }
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName New-MgDeviceRegisteredOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraDeviceRegisteredOwner"
-            $result = Add-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }
+
+            Add-EntraDeviceRegisteredOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraDeviceRegisteredOwner"
+
+            Should -Invoke -CommandName New-MgDeviceRegisteredOwnerByRef -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+       }
 
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

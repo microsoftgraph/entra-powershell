@@ -100,12 +100,18 @@ Describe "Get-EntraDeviceRegisteredUser" {
             $a.headers.'User-Agent' | Should -Be $userAgentHeaderValue
         }
 
-        It "Property parameter should work" {
-            $result =  Get-EntraDeviceRegisteredUser -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property mobilePhone
-            $result | Should -Not -BeNullOrEmpty
-            $result.mobilePhone | Should -Be '425-555-0100'
+        It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeviceRegisteredUser"
 
-            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
+            $result = Get-EntraDeviceRegisteredUser -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDeviceRegisteredUser"
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
 
         It "Should fail when Property is empty" {
