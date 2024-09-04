@@ -66,14 +66,19 @@ Describe "Get-EntraFeatureRolloutPolicy" {
 
             Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
         }  
+        
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraFeatureRolloutPolicy"
 
-            Get-EntraFeatureRolloutPolicy -SearchString 'Feature-Rollout-Policy' | Out-Null
+            $result = Get-EntraFeatureRolloutPolicy
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraFeatureRolloutPolicy"
+
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
-        }    
+        }
     }
 }
