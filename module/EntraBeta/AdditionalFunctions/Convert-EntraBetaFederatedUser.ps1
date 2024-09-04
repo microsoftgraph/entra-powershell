@@ -14,7 +14,7 @@ function Convert-EntraBetaFederatedUser {
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{}
+       
         if ($null -ne $PSBoundParameters["UserPrincipalName"]) {
             $UserPrincipalName = $PSBoundParameters.UserPrincipalName
             $UserId = Get-MgBetaUser -Search "UserPrincipalName:$UserPrincipalName" -ConsistencyLevel eventual

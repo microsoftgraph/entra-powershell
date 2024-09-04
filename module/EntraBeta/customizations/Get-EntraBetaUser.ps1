@@ -113,7 +113,7 @@ ErrorCode: Request_ResourceNotFound"
         }
         $userList = @()
         foreach ($response in $data) {
-            $userType = New-Object Microsoft.Graph.PowerShell.Models.MicrosoftGraphUser
+            $userType = New-Object Microsoft.Graph.Beta.PowerShell.Models.MicrosoftGraphUser
             $response.PSObject.Properties | ForEach-Object {
                 $propertyName = $_.Name
                 $propertyValue = $_.Value

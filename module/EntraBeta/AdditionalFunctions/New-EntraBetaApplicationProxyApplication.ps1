@@ -104,7 +104,7 @@ function New-EntraBetaApplicationProxyApplication {
                 } 
             } 
             try {
-                $Application = Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$Id" -Method PATCH -Body $updateUrlBody    
+                Invoke-GraphRequest -Uri "https://graph.microsoft.com/beta/applications/$Id" -Method PATCH -Body $updateUrlBody    
             } catch {
                 Write-Error $_
                 return
@@ -144,7 +144,7 @@ function New-EntraBetaApplicationProxyApplication {
             $ConnectorGroupBody = $ConnectorGroupBody | ConvertTo-Json
             $ConnectorGroupUri = "https://graph.microsoft.com/beta/applications/$Id/connectorGroup/" + '$ref'
             try {
-                $ConnectorGroup = Invoke-GraphRequest -Method PUT -Uri $ConnectorGroupUri -Body $ConnectorGroupBody -ContentType "application/json" 
+                Invoke-GraphRequest -Method PUT -Uri $ConnectorGroupUri -Body $ConnectorGroupBody -ContentType "application/json" 
             } catch {
                 Write-Error $_
                 return
