@@ -35,7 +35,6 @@ Context "Test for Get-EntraOAuth2PermissionGrant" {
             $result.PrincipalId | Should -BeNullOrEmpty
             $result.ClientId | Should -Be "aaaaaaaa-bbbb-cccc-1111-222222222222"
 
-
             Should -Invoke -CommandName Get-MgOAuth2PermissionGrant  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should return All Group AppRole Assignment" {
@@ -87,9 +86,15 @@ Context "Test for Get-EntraOAuth2PermissionGrant" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraOAuth2PermissionGrant"
 
             $result = Get-EntraOAuth2PermissionGrant -Top 1
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraOAuth2PermissionGrant"
+
+            Should -Invoke -CommandName Get-MgOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }  
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       
             $originalDebugPreference = $DebugPreference
