@@ -68,11 +68,11 @@ Get-EntraDomain
 ```
 
 ```Output
-Id         AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified Manufacturer Model PasswordNotificationWindowInDays PasswordValidityPeriodInDays SupportedServices
---         ------------------ ------------------ -------------- --------- --------- ------ ---------- ------------ ----- -------------------------------- ---------------------------- -----------------
-TEST22.com Managed                               True           False     False     False  False                                                                                       {}
-test26.com Managed                               True           False     False     False  False                                                                                       {}
-test25.com Managed                               True           False     False     False  False                                                                                       {}
+Id          AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified PasswordNotificationWindowInDays
+--          ------------------ ------------------ -------------- --------- --------- ------ ---------- --------------------------------
+test22.com  Managed                               True           False     False     False  False      13
+test33.com  Managed                               True           False     False     False  False      15
+test44.com  Managed                               True           False     False     False  False      17
 ```
 
 This command retrieves a list of domains.
@@ -85,9 +85,9 @@ Get-EntraDomain -Name TEST22.com
 ```
 
 ```Output
-Id         AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified Manufacturer Model PasswordNotificationWindowInDays PasswordValidityPeriodInDays SupportedServices
---         ------------------ ------------------ -------------- --------- --------- ------ ---------- ------------ ----- -------------------------------- ---------------------------- -----------------
-TEST22.com Managed                               True           False     False     False  False                                                                                       {}
+Id          AuthenticationType AvailabilityStatus IsAdminManaged IsDefault IsInitial IsRoot IsVerified PasswordNotificationWindowInDays
+--          ------------------ ------------------ -------------- --------- --------- ------ ---------- --------------------------------
+test22.com  Managed                               True           False     False     False  False      13
 ```
 
 This command retrieves a domain with the specified name.
@@ -112,7 +112,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
