@@ -5,7 +5,7 @@ The Microsoft Entra PowerShell Developer Guide helps you develop and test Entra 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Process-Overview](#process-overview)
+- [Development Workflow](#development-workflow)
 - [Prerequisites](#prerequisites)
 - [Environment Setup](#environment-setup)
   - [GitHub Basics](#github-basics)
