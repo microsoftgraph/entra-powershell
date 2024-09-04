@@ -49,80 +49,31 @@ The `Get-EntraApplicationTemplate` cmdlet allows users to get a list of all the 
 
 ## Examples
 
-### Example 1: Gets a list of application template objects
+### Example 1. Gets a list of application template objects
 
 ```powershell
-Connect-Entra
-$all_templates = Get-EntraApplicationTemplate
+Connect-Entra -Scopes 'Application.Read.All'
+Get-EntraApplicationTemplate
 ```
 
-This command gets all the application template objects.
+This command gets all the application template objects
 
-### Example 2: Gets an application template object
+### Example 2. Gets an application template object
 
 ```powershell
-Connect-Entra
+Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraApplicationTemplate -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
-Id                                   Categories                                       Description DisplayName         HomePageUrl                           LogoUrl
---                                   ----------                                       ----------- -----------         -----------                           -------
-00000007-0000-0000-c000-000000000000 {crm, productivity, collaboration, businessMgmt}             Dynamics CRM Online http://www.microsoft.com/dynamics/crm https://az4950…
+Id                                   Categories                                      Description
+--                                   ----------                                      -----------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb {businessMgmt, productivity, projectManagement} Cube is perfect for businesses
 ```
 
-This command gets an application template object for the given ID.
+This command gets an application template object for the given id.
 
-- `-Id` Specify unique identifier of an application template.
-
-### Example 3: Gets top one application template object
-
-```powershell
-Connect-Entra
-Get-EntraApplicationTemplate -Top 1
-```
-
-```Output
-Id                                   Categories                                       Description DisplayName         HomePageUrl                           LogoUrl
---                                   ----------                                       ----------- -----------         -----------                           -------
-00000007-0000-0000-c000-000000000000 {crm, productivity, collaboration, businessMgmt}             Dynamics CRM Online http://www.microsoft.com/dynamics/crm https://az4950…
-
-```
-
-This example demonstrates how to gets Top one application template object.
-
-### Example 4: Gets all application template object
-
-```powershell
-Connect-Entra
-Get-EntraApplicationTemplate -All
-```
-
-```Output
-Id                                   Categories                                       Description DisplayName         HomePageUrl                           LogoUrl
---                                   ----------                                       ----------- -----------         -----------                           -------
-00000007-0000-0000-c000-000000000000 {crm, productivity, collaboration, businessMgmt}             Dynamics CRM Online http://www.microsoft.com/dynamics/crm https://az4950…
-00001111-aaaa-2222-bbbb-3333cccc4444 {businessMgmt, erp, finance}                     Xledger True Cloud ERP System. Xledger supports your ambition with three value pilla…
-11112222-bbbb-3333-cccc-4444dddd5555 {businessMgmt}                                   Capture and manage your ESG data from across the organization in an integrated, clou…
-
-```
-
-This example demonstrates how to get all application template object.
-
-### Example 5: Gets application template object With Filter
-
-```powershell
-Connect-Entra
-Get-EntraApplicationTemplate -Filter "DisplayName eq 'Dynamics CRM Online'"
-```
-
-```Output
-Id                                   Categories                                       Description DisplayName         HomePageUrl                           LogoUrl
---                                   ----------                                       ----------- -----------         -----------                           -------
-00001111-aaaa-2222-bbbb-3333cccc4444 {crm, productivity, collaboration, businessMgmt}             Dynamics CRM Online http://www.microsoft.com/dynamics/crm https://az4950…
-```
-
-This example demonstrates how to retrieve application template by DisplayName.
+- `-Id` Specifies the unique identifier of an application template.
 
 ## Parameters
 

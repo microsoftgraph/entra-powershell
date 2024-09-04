@@ -81,8 +81,7 @@ This example returns the first N logs.
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All, Directory.Read.All'
-Get-EntraBetaAuditDirectoryLog -Filter "ActivityDisplayName eq 'Update rollout policy of feature'" 
-Get-EntraBetaAuditDirectoryLog -Filter "ActivityDisplayName eq 'Update rollout policy of feature'" -Top 1
+Get-EntraBetaAuditDirectoryLogs -Filter "ActivityDisplayName eq 'Update rollout policy of feature'" -Top 1
 ```
 
 ```Output
@@ -97,8 +96,7 @@ This command shows how to get audit logs by ActivityDisplayName.
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All, Directory.Read.All'
-Get-EntraBetaAuditDirectoryLog -Filter "result eq 'success'"
-Get-EntraBetaAuditDirectoryLog -Filter "result eq 'failure'" -All
+Get-EntraBetaAuditDirectoryLogs -Filter "result eq 'failure'" -All
 ```
 
 This command shows how to get audit logs by the result.
@@ -110,7 +108,7 @@ This command shows how to get audit logs by the result.
 List all pages.
 
 ```yaml
-Type:  System.Management.Automation.SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
