@@ -178,10 +178,16 @@ Describe "Get-EntraServicePrincipal" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipal"
 
-            $result = Get-EntraServicePrincipal -SearchString 'Windows Update for Business Deployment Service'
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }    
+            $result = Get-EntraServicePrincipal -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipal"
+
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        } 
 
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

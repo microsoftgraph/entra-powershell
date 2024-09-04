@@ -84,7 +84,11 @@ Describe "Get-EntraGroupMember" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraGroupMember"
 
-            Get-EntraGroupMember -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" | Out-Null
+            $result = Get-EntraGroupMember -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraGroupMember"
+
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

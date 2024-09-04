@@ -97,8 +97,14 @@ Describe "Get-EntraUserOAuth2PermissionGrant" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserOAuth2PermissionGrant"
 
             $result = Get-EntraUserOAuth2PermissionGrant -ObjectId "aaaaaaaa-bbbb-cccc-1111-222222222222"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Contain $userAgentHeaderValue
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserOAuth2PermissionGrant"
+
+            Should -Invoke -CommandName Get-MgUserOAuth2PermissionGrant -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         } 
 
         It "Should execute successfully without throwing an error" {

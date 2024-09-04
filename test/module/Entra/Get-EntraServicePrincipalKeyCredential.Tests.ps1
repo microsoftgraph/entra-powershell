@@ -60,9 +60,14 @@ Describe "Get-EntraServicePrincipalKeyCredential" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalKeyCredential"
 
             $result = Get-EntraServicePrincipalKeyCredential -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
-            $servicePrincipalKeyCredentialHeader = $result | ConvertTo-Json -Depth 10 | ConvertFrom-Json
-            $params = Get-Parameters -data $servicePrincipalKeyCredentialHeader.Parameters
-            $params.Headers."User-Agent" | Should -Be $userAgentHeaderValue
-        }    
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraServicePrincipalKeyCredential"
+
+            Should -Invoke -CommandName Get-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }   
     }
 }
