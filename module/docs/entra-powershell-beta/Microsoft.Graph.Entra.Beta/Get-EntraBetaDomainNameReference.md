@@ -33,7 +33,7 @@ Get-EntraBetaDomainNameReference
 
 ## Description
 
-The `Get-EntraBetaDomainNameReference` cmdlet retrieves the objects that are referenced by a given domain name.
+The `Get-EntraBetaDomainNameReference` cmdlet retrieves the objects that are referenced with a given domain name. Specify `Name` parameter retrieve the objects.
 
 The work or school account needs to belong to at least the Domain Name Administrator or Global Reader Microsoft Entra role.
 
@@ -42,8 +42,8 @@ The work or school account needs to belong to at least the Domain Name Administr
 ### Example 1: Retrieve the domain name reference objects for a domain
 
 ```powershell
- Connect-Entra -Scopes 'Domain.Read.All'
- Get-EntraBetaDomainNameReference -Name contoso.com
+Connect-Entra -Scopes 'Domain.Read.All'
+Get-EntraBetaDomainNameReference -Name contoso.com
 ```
 
 ```Output
@@ -53,6 +53,8 @@ Id                                   DeletedDateTime
 ```
 
 This example shows how to retrieve the domain name reference objects for a domain that is specified through the -Name parameter.
+
+- `-Name` parameter specifies the name of the domain name for which the referenced objects are retrieved.
 
 ## Parameters
 
