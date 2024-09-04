@@ -25,6 +25,7 @@ stages:
         notifyUsers: ''
         instructions: 'Please validate the build configuration and resume'
         onTimeout: reject
+      enabled: false
       timeoutInMinutes: 6120
 
   - job: PsGallery_Push
