@@ -1,23 +1,22 @@
 ---
-title: Remove-EntraBetaServiceAppRoleAssignment
-description: This article provides details on the Remove-EntraBetaServiceAppRoleAssignment command.
+title: Remove-EntraServicePrincipalAppRoleAssignment
+description: This article provides details on the Remove-EntraServicePrincipalAppRoleAssignment command.
 
 
 ms.topic: reference
-ms.date: 07/30/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
-
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
-Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaServiceAppRoleAssignment
+external help file: Microsoft.Graph.Entra-Help.xml
+Module Name: Microsoft.Graph.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraServicePrincipalAppRoleAssignment
 
 schema: 2.0.0
 ---
 
-# Remove-EntraBetaServiceAppRoleAssignment
+# Remove-EntraServicePrincipalAppRoleAssignment
 
 ## Synopsis
 
@@ -26,15 +25,15 @@ Removes a service principal application role assignment.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaServiceAppRoleAssignment 
- -ObjectId <String> 
- -AppRoleAssignmentId <String>
+Remove-EntraServicePrincipalAppRoleAssignment 
+ -AppRoleAssignmentId <String> 
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Remove-EntraBetaServiceAppRoleAssignment` cmdlet removes a service principal application role assignment in Microsoft Entra ID.
+The `Remove-EntraServicePrincipalAppRoleAssignment` cmdlet removes a service principal application role assignment in Microsoft Entra ID.
 
 App roles which are assigned to service principals are also known as application permissions. Deleting an app role assignment for a service principal is equivalent to revoking the app-only permission grant.
 
@@ -55,18 +54,12 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 
 ```powershell
 Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
-$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-$params = @{
- ObjectId = $ServicePrincipal.ObjectId  
- AppRoleAssignmentId = '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6'
-}
-
-Remove-EntraBetaServiceAppRoleAssignment @params
+Remove-EntraServicePrincipalAppRoleAssignment -ObjectId '11112222-bbbb-3333-cccc-4444dddd5555'  -AppRoleAssignmentId '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6'
 ```
 
 This example demonstrates how to remove a service principal application role assignment in Microsoft Entra ID.
 
-- `-ObjectId` - specifies the unique identifier (Object ID) of the service principal or user from which you want to remove an app role assignment.
+- `-ObjectId` - specifies the unique identifier (Object ID) of the service principal or user from which you want to remove an app role assignment. In this example, `11112222-bbbb-3333-cccc-4444dddd5555` is the Object ID of the target service principal or user.
 
 - `-AppRoleAssignmentId` - specifies the unique identifier (ID) of the app role assignment that you want to remove. The value `2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6` represents the ID of the specific app role assignment to be removed.
 
@@ -116,6 +109,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Get-EntraBetaServiceAppRoleAssignment](Get-EntraBetaServiceAppRoleAssignment.md)
+[Get-EntraServicePrincipalAppRoleAssignment](Get-EntraServicePrincipalAppRoleAssignment.md)
 
-[New-EntraBetaServiceAppRoleAssignment](New-EntraBetaServiceAppRoleAssignment.md)
+[New-EntraServicePrincipalAppRoleAssignment](New-EntraServicePrincipalAppRoleAssignment.md)

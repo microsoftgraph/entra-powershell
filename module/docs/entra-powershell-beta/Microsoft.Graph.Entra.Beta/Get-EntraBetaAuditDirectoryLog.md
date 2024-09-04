@@ -1,6 +1,6 @@
 ---
-title: Get-EntraBetaAuditDirectoryLogs
-description: This article provides details on the Get-EntraBetaAuditDirectoryLogs command.
+title: Get-EntraBetaAuditDirectoryLog
+description: This article provides details on the Get-EntraBetaAuditDirectoryLog command.
 
 
 ms.topic: reference
@@ -12,12 +12,12 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaAuditDirectoryLogs
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaAuditDirectoryLog
 
 schema: 2.0.0
 ---
 
-# Get-EntraBetaAuditDirectoryLogs
+# Get-EntraBetaAuditDirectoryLog
 
 ## Synopsis
 
@@ -26,7 +26,7 @@ Get directory audit logs.
 ## Syntax
 
 ```powershell
-Get-EntraBetaAuditDirectoryLogs
+Get-EntraBetaAuditDirectoryLog
  [-All]
  [-Top <Int32>]
  [-Filter <String>]
@@ -36,7 +36,7 @@ Get-EntraBetaAuditDirectoryLogs
 
 ## Description
 
-The `Get-EntraBetaAuditDirectoryLogs` cmdlet gets a Microsoft Entra ID audit log.
+The `Get-EntraBetaAuditDirectoryLog` cmdlet gets a Microsoft Entra ID audit log.
 Retrieve audit logs from Microsoft Entra ID, covering logs from various services such as user, app, device, and group management, privileged identity management (PIM), access reviews, terms of use, identity protection, password management (SSPR and admin resets), and self-service group management.
 
 ## Examples
@@ -45,7 +45,7 @@ Retrieve audit logs from Microsoft Entra ID, covering logs from various services
 
 ```powershell
  Connect-Entra -Scopes 'AuditLog.Read.All, Directory.Read.All'
- Get-EntraBetaAuditDirectoryLogs -All  
+ Get-EntraBetaAuditDirectoryLog -All  
 ```
 
 ```Output
@@ -63,7 +63,7 @@ This command gets all audit logs.
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All, Directory.Read.All'
-Get-EntraBetaAuditDirectoryLogs -Top 1
+Get-EntraBetaAuditDirectoryLog -Top 1
 ```
 
 ```Output
@@ -81,8 +81,8 @@ This example returns the first N logs.
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All, Directory.Read.All'
-Get-EntraBetaAuditDirectoryLogs -Filter "ActivityDisplayName eq 'Update rollout policy of feature'" 
-Get-EntraBetaAuditDirectoryLogs -Filter "ActivityDisplayName eq 'Update rollout policy of feature'" -Top 1
+Get-EntraBetaAuditDirectoryLog -Filter "ActivityDisplayName eq 'Update rollout policy of feature'" 
+Get-EntraBetaAuditDirectoryLog -Filter "ActivityDisplayName eq 'Update rollout policy of feature'" -Top 1
 ```
 
 ```Output
@@ -97,8 +97,8 @@ This command shows how to get audit logs by ActivityDisplayName.
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All, Directory.Read.All'
-Get-EntraBetaAuditDirectoryLogs -Filter "result eq 'success'"
-Get-EntraBetaAuditDirectoryLogs -Filter "result eq 'failure'" -All
+Get-EntraBetaAuditDirectoryLog -Filter "result eq 'success'"
+Get-EntraBetaAuditDirectoryLog -Filter "result eq 'failure'" -All
 ```
 
 This command shows how to get audit logs by the result.

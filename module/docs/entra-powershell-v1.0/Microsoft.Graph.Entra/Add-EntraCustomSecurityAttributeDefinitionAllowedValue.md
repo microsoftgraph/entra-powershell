@@ -1,6 +1,6 @@
 ---
-title: Add-EntraCustomSecurityAttributeDefinitionAllowedValues
-description: This article provides details on the Add-EntraCustomSecurityAttributeDefinitionAllowedValues command.
+title: Add-EntraCustomSecurityAttributeDefinitionAllowedValue
+description: This article provides details on the Add-EntraCustomSecurityAttributeDefinitionAllowedValue command.
 
 
 ms.topic: reference
@@ -12,11 +12,11 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Add-EntraCustomSecurityAttributeDefinitionAllowedValues
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Add-EntraCustomSecurityAttributeDefinitionAllowedValue
 schema: 2.0.0
 ---
 
-# Add-EntraCustomSecurityAttributeDefinitionAllowedValues
+# Add-EntraCustomSecurityAttributeDefinitionAllowedValue
 
 ## Synopsis
 
@@ -25,7 +25,7 @@ Adds a predefined value for a custom security attribute definition.
 ## Syntax
 
 ```powershell
-Add-EntraCustomSecurityAttributeDefinitionAllowedValues 
+Add-EntraCustomSecurityAttributeDefinitionAllowedValue 
  -CustomSecurityAttributeDefinitionId <String>
  -Id <String> 
  -IsActive <Boolean> 
@@ -34,7 +34,7 @@ Add-EntraCustomSecurityAttributeDefinitionAllowedValues
 
 ## Description
 
-The `Add-EntraCustomSecurityAttributeDefinitionAllowedValues` adds a predefined value for a Microsoft Entra ID custom security attribute definition.
+The `Add-EntraCustomSecurityAttributeDefinitionAllowedValue` adds a predefined value for a Microsoft Entra ID custom security attribute definition.
 
 In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
 
@@ -50,7 +50,7 @@ $params = @{
     Id = 'Alpine'
     IsActive = $true
 }
-Add-EntraCustomSecurityAttributeDefinitionAllowedValues @params
+Add-EntraCustomSecurityAttributeDefinitionAllowedValue @params
 ```
 
 ```Output
@@ -132,6 +132,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Get-EntraCustomSecurityAttributeDefinitionAllowedValues](Get-EntraCustomSecurityAttributeDefinitionAllowedValues.md)
+[Get-EntraCustomSecurityAttributeDefinitionAllowedValue](Get-EntraCustomSecurityAttributeDefinitionAllowedValue.md)
 
-[Set-EntraCustomSecurityAttributeDefinitionAllowedValues](Set-EntraCustomSecurityAttributeDefinitionAllowedValues.md)
+[Set-EntraCustomSecurityAttributeDefinitionAllowedValue](Set-EntraCustomSecurityAttributeDefinitionAllowedValue.md)

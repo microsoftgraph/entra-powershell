@@ -1,6 +1,6 @@
 ---
-title: Get-EntraServiceAppRoleAssignment
-description: This article provides details on the Get-EntraServiceAppRoleAssignment command.
+title: Get-EntraServicePrincipalAppRoleAssignedTo
+description: This article provides details on the Get-EntraServicePrincipalAppRoleAssignedTo command.
 
 
 ms.topic: reference
@@ -11,23 +11,23 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraServiceAppRoleAssignment
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraServicePrincipalAppRoleAssignedTo
 
 schema: 2.0.0
 ---
 
-# Get-EntraServiceAppRoleAssignment
+# Get-EntraServicePrincipalAppRoleAssignedTo
 
 ## Synopsis
 
-Gets a service principal application role assignment.
+Gets app role assignments for this app or service, granted to users, groups and other service principals.
 
 ## Syntax
 
 ```powershell
-Get-EntraServiceAppRoleAssignment
+Get-EntraServicePrincipalAppRoleAssignedTo
  -ObjectId <String>
- [-All]
+ [-All ]
  [-Top <Int32>]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -35,35 +35,58 @@ Get-EntraServiceAppRoleAssignment
 
 ## Description
 
-The `Get-EntraServiceAppRoleAssignment` cmdlet gets a role assignment for a service principal application in Microsoft Entra ID.
+The `Get-EntraServicePrincipalAppRoleAssignedTo` cmdlet gets app role assignments for this app or service, granted to users, groups and other service principals.
+
+For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
+
+- Directory Synchronization Accounts
+- Directory Writer
+- Hybrid Identity Administrator
+- Identity Governance Administrator
+- Privileged Role Administrator
+- User Administrator
+- Application Administrator
+- Cloud Application Administrator
 
 ## Examples
 
-### Example 1: Retrieve the application role assignments for a service principal
+### Example 1: Retrieve the app role assignments
 
 ```powershell
  Connect-Entra -Scopes 'Application.Read.All'
  $ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
- Get-EntraServiceAppRoleAssignment -ObjectId $ServicePrincipalId
+ Get-EntraServicePrincipalAppRoleAssignedTo -ObjectId $ServicePrincipalId
 ```
 
-```Output
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId                          PrincipalType ResourceDisplayName
---------------- --                                          ---------                            ---------------     -------------------- -----------                          ------------- -------------------
-                2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 29-02-2024 05:53:00 Ask HR               aaaaaaaa-bbbb-cccc-1111-222222222222 Group         M365 License Manager
-```
+This example shows how to get app role assignments for an app or service, granted to users, groups and other service principals.
 
-This command gets application role assignments for specified service principal.
+- The first command gets the ID of a service principal and stores it in the $ServicePrincipalId variable.
 
-- The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md) cmdlet. The command stores the ID in the $ServicePrincipalId variable.
+- The second command gets the app role assignments for the service principal granted to users, groups and other service principals.
 
-- The second command gets the application role assignments for the service principal in identified by $ServicePrincipalId.
-
-### Example 2: Retrieve all application role assignments for a service principal
+### Example 2: Get all app role assignments
 
 ```powershell
  Connect-Entra -Scopes 'Application.Read.All'
- Get-EntraServiceAppRoleAssignment -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -All
+ Get-EntraServicePrincipalAppRoleAssignedTo -ObjectId 00001111-aaaa-2222-bbbb-3333cccc4444 -All 
+```
+
+```output
+DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId
+--------------- --                                          ---------                            ---------------     -------------------- -----------
+                1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:41 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
+                2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:38 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
+                3cccccc3-4dd4-5ee5-6ff6-7aaaaaaaaaa7 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:37 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
+                4dddddd4-5ee5-6ff6-7aa7-8bbbbbbbbbb8 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:39 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
+                5eeeeee5-6ff6-7aa7-8bb8-9cccccccccc9 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:39 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
+```
+
+This command gets the all app role assignments for the service principal granted to users, groups and other service principals.
+
+### Example 3: Get five app role assignments
+
+```powershell
+ Get-EntraServicePrincipalAppRoleAssignedTo -ObjectId 00001111-aaaa-2222-bbbb-3333cccc4444 -Top 5
 ```
 
 ```Output
@@ -76,24 +99,7 @@ DeletedDateTime Id                                          AppRoleId           
                 5eeeeee5-6ff6-7aa7-8bb8-9cccccccccc9 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:39 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
 ```
 
-This command gets all application role assignments for specified service principal.
-
-### Example 3: Retrieve the top five application role assignments for a service principal
-
-```powershell
- Connect-Entra -Scopes 'Application.Read.All'
- Get-EntraServiceAppRoleAssignment -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -Top 3
-```
-
-```Output
-DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName PrincipalId
---------------- --                                          ---------                            ---------------     -------------------- -----------
-                1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:41 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
-                2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:38 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
-                3cccccc3-4dd4-5ee5-6ff6-7aaaaaaaaaa7 00000000-0000-0000-0000-000000000000 20/10/2023 17:03:37 Entra-App-Testing    aaaaaaaa-bbbb-cccc-1111-222222222222
-```
-
-This command gets three application role assignments for specified service principal.
+This command gets the five app role assignments for the service principal granted to users, groups and other service principals.
 
 ## Parameters
 
@@ -131,7 +137,7 @@ Accept wildcard characters: False
 
 ### -Top
 
-The maximum number of records to return.
+Specifies the maximum number of records to return.
 
 ```yaml
 Type: System.Int32
@@ -167,16 +173,14 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Inputs
 
+### System.String
+
+System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\] System.Nullable\`1\[\[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\]\]
+
 ## Outputs
+
+### System.Object
 
 ## Notes
 
-`Get-EntraServicePrincipalAppRoleAssignment` is an alias for `Get-EntraServiceAppRoleAssignment`.
-
 ## Related Links
-
-[Get-EntraServicePrincipal](Get-EntraServicePrincipal.md)
-
-[New-EntraServiceAppRoleAssignment](New-EntraServiceAppRoleAssignment.md)
-
-[Remove-EntraServiceAppRoleAssignment](Remove-EntraServiceAppRoleAssignment.md)

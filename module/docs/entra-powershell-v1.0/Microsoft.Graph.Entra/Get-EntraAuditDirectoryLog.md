@@ -1,6 +1,6 @@
 ---
-title: Get-EntraAuditDirectoryLogs
-description: This article provides details on the Get-EntraAuditDirectoryLogs command.
+title: Get-EntraAuditDirectoryLog
+description: This article provides details on the Get-EntraAuditDirectoryLog command.
 
 
 ms.topic: reference
@@ -16,7 +16,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-EntraAuditDirectoryLogs
+# Get-EntraAuditDirectoryLog
 
 ## Synopsis
 
@@ -25,7 +25,7 @@ Get directory audit logs.
 ## Syntax
 
 ```powershell
-Get-EntraAuditDirectoryLogs 
+Get-EntraAuditDirectoryLog 
 [-All] 
 [-Top <Int32>] 
 [-Filter <String>] 
@@ -34,7 +34,7 @@ Get-EntraAuditDirectoryLogs
 
 ## Description
 
-The `Get-EntraAuditDirectoryLogs` cmdlet gets a Microsoft Entra ID audit log.
+The `Get-EntraAuditDirectoryLog` cmdlet gets a Microsoft Entra ID audit log.
 
 ## Examples
 
@@ -42,7 +42,7 @@ The `Get-EntraAuditDirectoryLogs` cmdlet gets a Microsoft Entra ID audit log.
 
 ```powershell
  Connect-Entra -Scopes 'AuditLog.Read.All', 'Directory.Read.All'
- Get-EntraAuditDirectoryLogs -All  
+ Get-EntraAuditDirectoryLog -All  
 ```
 
 ```Output
@@ -60,7 +60,7 @@ This command gets all audit logs.
 
 ```powershell
  Connect-Entra -Scopes 'AuditLog.Read.All', 'Directory.Read.All'
- Get-EntraAuditDirectoryLogs -Top 1
+ Get-EntraAuditDirectoryLog -Top 1
 ```
 
 ```Output
@@ -75,7 +75,7 @@ This example returns the first N logs.
 
 ```powershell
  Connect-Entra -Scopes 'AuditLog.Read.All', 'Directory.Read.All'
- Get-EntraAuditDirectoryLogs -Filter "ActivityDisplayName eq 'GroupsODataV4_Get'" -Top 1
+ Get-EntraAuditDirectoryLog -Filter "ActivityDisplayName eq 'GroupsODataV4_Get'" -Top 1
 ```
 
 ```Output
@@ -90,8 +90,8 @@ This command shows how to get audit logs by ActivityDisplayName.
 
 ```powershell
  Connect-Entra -Scopes 'AuditLog.Read.All', 'Directory.Read.All'
- Get-EntraAuditDirectoryLogs -Filter "result eq 'success'"
- Get-EntraAuditDirectoryLogs -Filter "result eq 'failure'" -All
+ Get-EntraAuditDirectoryLog -Filter "result eq 'success'"
+ Get-EntraAuditDirectoryLog -Filter "result eq 'failure'" -All
 ```
 
 This command shows how to get audit logs by the result.

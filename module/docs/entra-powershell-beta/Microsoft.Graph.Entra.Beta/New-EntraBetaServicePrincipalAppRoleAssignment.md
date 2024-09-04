@@ -1,6 +1,6 @@
 ---
-title: New-EntraBetaServiceAppRoleAssignment
-description: This article provides details on the New-EntraBetaServiceAppRoleAssignment command.
+title: New-EntraBetaServicePrincipalAppRoleAssignment
+description: This article provides details on the New-EntraBetaServicePrincipalAppRoleAssignment command.
 
 
 ms.topic: reference
@@ -12,12 +12,12 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaServiceAppRoleAssignment
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaServicePrincipalAppRoleAssignment
 
 schema: 2.0.0
 ---
 
-# New-EntraBetaServiceAppRoleAssignment
+# New-EntraBetaServicePrincipalAppRoleAssignment
 
 ## Synopsis
 
@@ -26,7 +26,7 @@ Assigns a service principal to an application role.
 ## Syntax
 
 ```powershell
-New-EntraBetaServiceAppRoleAssignment 
+New-EntraBetaServicePrincipalAppRoleAssignment 
  -ResourceId <String> 
  -Id <String> 
  -ObjectId <String>
@@ -36,7 +36,7 @@ New-EntraBetaServiceAppRoleAssignment
 
 ## Description
 
-The `New-EntraBetaServiceAppRoleAssignment` cmdlet assigns a service principal to an application role in Microsoft Entra ID.
+The `New-EntraBetaServicePrincipalAppRoleAssignment` cmdlet assigns a service principal to an application role in Microsoft Entra ID.
 
 For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
 
@@ -64,7 +64,7 @@ For delegated scenarios, the calling user needs at least one of the following Mi
     PrincipalId = $spo.ObjectId
 }
 
-New-EntraBetaServiceAppRoleAssignment @params
+New-EntraBetaServicePrincipalAppRoleAssignment @params
 ```
 
 ```Output
@@ -95,7 +95,7 @@ This example demonstrates how to assign an app role to another service principal
     PrincipalId = $user.ObjectId
 }
 
-New-EntraBetaServiceAppRoleAssignment @params
+New-EntraBetaServicePrincipalAppRoleAssignment @params
 ```
 
 ```Output
@@ -128,7 +128,7 @@ You can use the command `Get-EntraBetaUser` to get a user Id.
     PrincipalId = $group.ObjectId
  }
 
- New-EntraBetaServiceAppRoleAssignment @params
+ New-EntraBetaServicePrincipalAppRoleAssignment @params
 ```
 
 ```Output
@@ -224,6 +224,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Get-EntraBetaServiceAppRoleAssignment](Get-EntraBetaServiceAppRoleAssignment.md)
+[Get-EntraBetaServicePrincipalAppRoleAssignment](Get-EntraBetaServicePrincipalAppRoleAssignment.md)
 
-[Remove-EntraBetaServiceAppRoleAssignment](Remove-EntraBetaServiceAppRoleAssignment.md)
+[Remove-EntraBetaServicePrincipalAppRoleAssignment](Remove-EntraBetaServicePrincipalAppRoleAssignment.md)

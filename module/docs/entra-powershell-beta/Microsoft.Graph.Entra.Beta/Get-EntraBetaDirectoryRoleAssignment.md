@@ -1,6 +1,6 @@
 ---
-title: Get-EntraBetaRoleAssignment
-description: This article provides details on the Get-EntraBetaRoleAssignment command.
+title: Get-EntraBetaDirectoryRoleAssignment
+description: This article provides details on the Get-EntraBetaDirectoryRoleAssignment command.
 
 
 ms.topic: reference
@@ -11,12 +11,12 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaRoleAssignment
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaDirectoryRoleAssignment
 
 schema: 2.0.0
 ---
 
-# Get-EntraBetaRoleAssignment
+# Get-EntraBetaDirectoryRoleAssignment
 
 ## Synopsis
 
@@ -27,7 +27,7 @@ Get a Microsoft Entra ID roleAssignment.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraBetaRoleAssignment
+Get-EntraBetaDirectoryRoleAssignment
  [-Filter <String>]
  [-All]
  [-Top <Int32>]
@@ -38,7 +38,7 @@ Get-EntraBetaRoleAssignment
 ### GetById
 
 ```powershell
-Get-EntraBetaRoleAssignment
+Get-EntraBetaDirectoryRoleAssignment
  -Id <String>
  [-All]
  [-Property <String[]>]
@@ -48,7 +48,7 @@ Get-EntraBetaRoleAssignment
 ### GetVague
 
 ```powershell
-Get-EntraBetaRoleAssignment
+Get-EntraBetaDirectoryRoleAssignment
  [-All]
  [-SearchString <String>]
  [-Property <String[]>]
@@ -57,7 +57,7 @@ Get-EntraBetaRoleAssignment
 
 ## Description
 
-The `Get-EntraBetaRoleAssignment` cmdlet gets information about role assignments in Microsoft Entra ID. To get a role assignment, specify the `Id` parameter. Specify the `SearchString` or `Filter` parameter to find a particular role assignment.
+The `Get-EntraBetaDirectoryRoleAssignment` cmdlet gets information about role assignments in Microsoft Entra ID. To get a role assignment, specify the `Id` parameter. Specify the `SearchString` or `Filter` parameter to find a particular role assignment.
 
 In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role. The least privileged roles supported for this operation are as follows, in the order of least to most privileged:
 
@@ -71,7 +71,7 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraBetaRoleAssignment
+Get-EntraBetaDirectoryRoleAssignment
 ```
 
 ```Output
@@ -90,7 +90,7 @@ This command gets the role assignments in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraBetaRoleAssignment -All 
+Get-EntraBetaDirectoryRoleAssignment -All 
 ```
 
 ```Output
@@ -109,7 +109,7 @@ This command gets all the role assignments in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraBetaRoleAssignment -Id '00001111-aaaa-2222-bbbb-3333cccc4444'
+Get-EntraBetaDirectoryRoleAssignment -Id '00001111-aaaa-2222-bbbb-3333cccc4444'
 ```
 
 ```Output
@@ -126,7 +126,7 @@ This command gets the role assignments using specified roleAssignment Id.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraBetaRoleAssignment -Filter "principalId eq 'aaaaaaaa-bbbb-cccc-1111-222222222222'"
+Get-EntraBetaDirectoryRoleAssignment -Filter "principalId eq 'aaaaaaaa-bbbb-cccc-1111-222222222222'"
 ```
 
 ```Output
@@ -142,7 +142,7 @@ This command gets the role assignments containing the specified principalId.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraBetaRoleAssignment -Filter "roleDefinitionId eq 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'"
+Get-EntraBetaDirectoryRoleAssignment -Filter "roleDefinitionId eq 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'"
 ```
 
 ```Output
@@ -161,7 +161,7 @@ This command gets the role assignments containing the specified roleDefinitionId
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraBetaRoleAssignment -Top 2
+Get-EntraBetaDirectoryRoleAssignment -Top 2
 ```
 
 ```Output
@@ -292,6 +292,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[New-EntraBetaRoleAssignment](New-EntraBetaRoleAssignment.md)
+[New-EntraBetaDirectoryRoleAssignment](New-EntraBetaDirectoryRoleAssignment.md)
 
-[Remove-EntraBetaRoleAssignment](Remove-EntraBetaRoleAssignment.md)
+[Remove-EntraBetaDirectoryRoleAssignment](Remove-EntraBetaDirectoryRoleAssignment.md)

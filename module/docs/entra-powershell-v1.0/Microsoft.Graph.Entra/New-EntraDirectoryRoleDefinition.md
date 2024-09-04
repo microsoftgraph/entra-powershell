@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Create a new Microsoft Entra ID DirectoryRoleDefinition.
+Create a new Microsoft Entra ID roleDefinition.
 
 ## Syntax
 
@@ -38,7 +38,7 @@ New-EntraDirectoryRoleDefinition
 
 ## Description
 
-Create a new Microsoft Entra ID `directoryRoleDefinition` object.
+Create a new Microsoft Entra ID `roleDefinition` object.
 
 ## Examples
 

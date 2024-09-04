@@ -521,12 +521,9 @@ function Get-EntraUnsupportedCommand {
             elseif ($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta') {
                 $aliasDefinitionsPath = "$PSScriptRoot/EntraBetaAliasDefinitions.ps1"
             }
-
-            if (Test-Path $aliasDefinitionsPath) {
-                $directAliases = Get-Content $aliasDefinitionsPath -Raw
-                $aliases += $directAliases  # Append the content to $aliases
-            }
-            
+            #Adding direct aliases for Connect-Entra and Disconnect-Entra
+            $aliases += "   Set-Alias -Name Connect-AzureAD -Value Connect-Entra -Scope Global -Force`n"
+            $aliases += "   Set-Alias -Name Disconnect-AzureAD -Value Disconnect-Entra -Scope Global -Force`n"
     $aliasFunction = @"
 function Enable-EntraAzureADAlias {
 $($aliases)}
@@ -1055,6 +1052,9 @@ $($output)
                 "RoleAssignment" { $NewName = 'DirectoryRoleAssignment' }
                 "ServiceAppRoleAssignedTo" { $NewName = 'ServicePrincipalAppRoleAssignedTo' }
                 "ServiceAppRoleAssignment" { $NewName = 'ServicePrincipalAppRoleAssignment' }
+                "CustomSecurityAttributeDefinitionAllowedValues" { $NewName = 'CustomSecurityAttributeDefinitionAllowedValue' }
+                "AuditSignInLogs" { $NewName = 'AuditSignInLog' }
+                "AuditDirectoryLogs" { $NewName = 'AuditDirectoryLog' }
                 default { $NewName = $SourceCmdlet.Noun }
             }
             $cmd = [PSCustomObject]@{

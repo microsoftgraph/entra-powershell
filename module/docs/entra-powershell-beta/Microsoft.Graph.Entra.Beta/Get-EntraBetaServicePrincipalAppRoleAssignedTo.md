@@ -1,6 +1,6 @@
 ---
-title: Get-EntraBetaServiceAppRoleAssignedTo
-description: This article provides details on the Get-EntraBetaServiceAppRoleAssignedTo command.
+title: Get-EntraBetaServicePrincipalAppRoleAssignedTo
+description: This article provides details on the Get-EntraBetaServicePrincipalAppRoleAssignedTo command.
 
 
 ms.topic: reference
@@ -12,12 +12,12 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaServiceAppRoleAssignedTo
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaServicePrincipalAppRoleAssignedTo
 
 schema: 2.0.0
 ---
 
-# Get-EntraBetaServiceAppRoleAssignedTo
+# Get-EntraBetaServicePrincipalAppRoleAssignedTo
 
 ## Synopsis
 
@@ -26,7 +26,7 @@ Gets app role assignments for this app or service, granted to users, groups and 
 ## Syntax
 
 ```powershell
-Get-EntraBetaServiceAppRoleAssignedTo
+Get-EntraBetaServicePrincipalAppRoleAssignedTo
  -ObjectId <String>
  [-All]
  [-Top <Int32>]
@@ -36,7 +36,7 @@ Get-EntraBetaServiceAppRoleAssignedTo
 
 ## Description
 
-The `Get-EntraBetaServiceAppRoleAssignedTo` cmdlet gets app role assignments for this app or service, granted to users, groups and other service principals.
+The `Get-EntraBetaServicePrincipalAppRoleAssignedTo` cmdlet gets app role assignments for this app or service, granted to users, groups and other service principals.
 
 For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
 
@@ -56,7 +56,7 @@ For delegated scenarios, the calling user needs at least one of the following Mi
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServiceAppRoleAssignedTo -ObjectId $ServicePrincipal.ObjectId
+Get-EntraBetaServicePrincipalAppRoleAssignedTo -ObjectId $ServicePrincipal.ObjectId
 ```
 
 ```Output
@@ -74,7 +74,7 @@ This example shows how to get app role assignments for an app or service, grante
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
- Get-EntraBetaServiceAppRoleAssignedTo -ObjectId $ServicePrincipal.ObjectId -All 
+ Get-EntraBetaServicePrincipalAppRoleAssignedTo -ObjectId $ServicePrincipal.ObjectId -All 
 ```
 
 ```Output
@@ -96,7 +96,7 @@ This command gets the all app role assignments for the service principal granted
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
 $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-Get-EntraBetaServiceAppRoleAssignedTo -ObjectId $ServicePrincipal.ObjectId -Top 5
+Get-EntraBetaServicePrincipalAppRoleAssignedTo -ObjectId $ServicePrincipal.ObjectId -Top 5
 ```
 
 ```Output

@@ -1,6 +1,6 @@
 ---
-title: Set-EntraBetaRoleDefinition
-description: This article provides details on the Set-EntraBetaRoleDefinition command.
+title: Set-EntraBetaDirectoryRoleDefinition
+description: This article provides details on the Set-EntraBetaDirectoryRoleDefinition command.
 
 
 ms.topic: reference
@@ -12,12 +12,12 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaRoleDefinition
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Set-EntraBetaDirectoryRoleDefinition
 
 schema: 2.0.0
 ---
 
-# Set-EntraBetaRoleDefinition
+# Set-EntraBetaDirectoryRoleDefinition
 
 ## Synopsis
 
@@ -26,7 +26,7 @@ Update an existing Microsoft Entra ID roleDefinition.
 ## Syntax
 
 ```powershell
-Set-EntraBetaRoleDefinition 
+Set-EntraBetaDirectoryRoleDefinition 
  -Id <String>
  [-IsEnabled <Boolean>] 
  [-InheritsPermissionsFrom <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.DirectoryRoleDefinition]>]
@@ -53,7 +53,7 @@ Updates a Microsoft Entra roleDefinition object identified by ID. You can't upda
     Id = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
     DisplayName = 'UpdatedDisplayName'
  }
- Set-EntraBetaRoleDefinition @params
+ Set-EntraBetaDirectoryRoleDefinition @params
 ```
 
 This example updates the specified role definition in Microsoft Entra ID.
@@ -69,7 +69,7 @@ This example updates the specified role definition in Microsoft Entra ID.
     Id = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
     Description = 'MYROLEUPDATE1S'
  }
- Set-EntraBetaRoleDefinition @params
+ Set-EntraBetaDirectoryRoleDefinition @params
 ```
 
 This example updates the Description of specified role definition in Microsoft Entra ID.
@@ -85,7 +85,7 @@ This example updates the Description of specified role definition in Microsoft E
     Id = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
     IsEnabled = $true
  }
- Set-EntraBetaRoleDefinition @params
+ Set-EntraBetaDirectoryRoleDefinition @params
 ```
 
 This example updates the IsEnabled of specified role definition in Microsoft Entra ID.
@@ -110,7 +110,7 @@ This example updates the IsEnabled of specified role definition in Microsoft Ent
     Version = 2
  }
 
- Set-EntraBetaRoleDefinition @params
+ Set-EntraBetaDirectoryRoleDefinition @params
 ```
 
 This example updates the RolePermissions, TemplateId, TemplateId, ResourceScopes  of specified role definition in Microsoft Entra ID.
@@ -286,8 +286,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[New-EntraBetaRoleDefinition](New-EntraBetaRoleDefinition.md)
+[New-EntraBetaDirectoryRoleDefinition](New-EntraBetaDirectoryRoleDefinition.md)
 
-[Remove-EntraBetaRoleDefinition](Remove-EntraBetaRoleDefinition.md)
+[Remove-EntraBetaDirectoryRoleDefinition](Remove-EntraBetaDirectoryRoleDefinition.md)
 
-[Get-EntraBetaRoleDefinition](Get-EntraBetaRoleDefinition.md)
+[Get-EntraBetaDirectoryRoleDefinition](Get-EntraBetaDirectoryRoleDefinition.md)

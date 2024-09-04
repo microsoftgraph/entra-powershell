@@ -1,6 +1,6 @@
 ---
-title: New-EntraServiceAppRoleAssignment
-description: This article provides details on the New-EntraServiceAppRoleAssignment command.
+title: New-EntraServicePrincipalAppRoleAssignment
+description: This article provides details on the New-EntraServicePrincipalAppRoleAssignment command.
 
 
 ms.topic: reference
@@ -11,12 +11,12 @@ manager: CelesteDG
 author: msewaweru
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraServiceAppRoleAssignment
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraServicePrincipalAppRoleAssignment
 
 schema: 2.0.0
 ---
 
-# New-EntraServiceAppRoleAssignment
+# New-EntraServicePrincipalAppRoleAssignment
 
 ## Synopsis
 
@@ -25,7 +25,7 @@ Assigns a service principal to an application role.
 ## Syntax
 
 ```powershell
-New-EntraServiceAppRoleAssignment 
+New-EntraServicePrincipalAppRoleAssignment 
  -ObjectId <String> 
  -PrincipalId <String> 
  -Id <String> 
@@ -35,7 +35,7 @@ New-EntraServiceAppRoleAssignment
 
 ## Description
 
-The `New-EntraServiceAppRoleAssignment` cmdlet assigns a service principal to an application role in Microsoft Entra ID.
+The `New-EntraServicePrincipalAppRoleAssignment` cmdlet assigns a service principal to an application role in Microsoft Entra ID.
 
 For delegated scenarios, the calling user needs at least one of the following Microsoft Entra roles.
 
@@ -63,7 +63,7 @@ For delegated scenarios, the calling user needs at least one of the following Mi
     PrincipalId = $spo.ObjectId
 }
 
-New-EntraServiceAppRoleAssignment @params
+New-EntraServicePrincipalAppRoleAssignment @params
 ```
 
 ```Output
@@ -94,7 +94,7 @@ This example demonstrates how to assign an app role to another service principal
     PrincipalId = $user.ObjectId
 }
 
-New-EntraServiceAppRoleAssignment @params
+New-EntraServicePrincipalAppRoleAssignment @params
 ```
 
 ```Output
@@ -125,7 +125,7 @@ This example demonstrates how to assign an app role to a user in Microsoft Entra
     PrincipalId = $group.ObjectId
  }
 
- New-EntraServiceAppRoleAssignment @params
+ New-EntraServicePrincipalAppRoleAssignment @params
 ```
 
 ```Output
@@ -217,10 +217,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-`New-EntraServicePrincipalAppRoleAssignment` is an alias for `New-EntraServiceAppRoleAssignment`.
-
 ## Related Links
 
-[Get-EntraServiceAppRoleAssignment](Get-EntraServiceAppRoleAssignment.md)
+[Get-EntraServicePrincipalAppRoleAssignment](Get-EntraServicePrincipalAppRoleAssignment.md)
 
-[Remove-EntraServiceAppRoleAssignment](Remove-EntraServiceAppRoleAssignment.md)
+[Remove-EntraServicePrincipalAppRoleAssignment](Remove-EntraServicePrincipalAppRoleAssignment.md)

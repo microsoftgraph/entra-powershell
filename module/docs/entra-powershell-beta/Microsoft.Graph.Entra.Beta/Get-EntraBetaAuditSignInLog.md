@@ -1,6 +1,6 @@
 ---
-title: Get-EntraBetaAuditSignInLogs
-description: This article provides details on the Get-EntraBetaAuditSignInLogs command.
+title: Get-EntraBetaAuditSignInLog
+description: This article provides details on the Get-EntraBetaAuditSignInLog command.
 
 ms.topic: reference
 ms.date: 07/15/2024
@@ -11,12 +11,12 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaAuditSignInLogs
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaAuditSignInLog
 
 schema: 2.0.0
 ---
 
-# Get-EntraBetaAuditSignInLogs
+# Get-EntraBetaAuditSignInLog
 
 ## Synopsis
 
@@ -25,7 +25,7 @@ Get audit logs of sign-ins.
 ## Syntax
 
 ```powershell
-Get-EntraBetaAuditSignInLogs
+Get-EntraBetaAuditSignInLog
  [-All]
  [-Top <Int32>]
  [-Filter <String>]
@@ -35,7 +35,7 @@ Get-EntraBetaAuditSignInLogs
 
 ## Description
 
-The `Get-EntraBetaAuditSignInLogs` cmdlet gets the Microsoft Entra ID sign-in log.
+The `Get-EntraBetaAuditSignInLog` cmdlet gets the Microsoft Entra ID sign-in log.
 
 In addition to delegated permissions, the signed-in user must belong to at least one of the following Microsoft Entra roles to read sign-in reports:
 
@@ -51,7 +51,7 @@ In addition to delegated permissions, the signed-in user must belong to at least
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
-Get-EntraBetaAuditSignInLogs -All  
+Get-EntraBetaAuditSignInLog -All  
 ```
 
 ```Output
@@ -69,7 +69,7 @@ This example returns all audit logs of sign-ins.
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
-Get-EntraBetaAuditSignInLogs -Top 2
+Get-EntraBetaAuditSignInLog -Top 2
 ```
 
 ```Output
@@ -85,8 +85,8 @@ This example returns the first two audit logs of sign-ins.
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
-Get-EntraBetaAuditSignInLogs -Filter "AppDisplayName eq 'Graph Explorer'" 
-Get-EntraBetaAuditSignInLogs -Filter "AppDisplayName eq 'Graph Explorer'" -Top 1
+Get-EntraBetaAuditSignInLog -Filter "AppDisplayName eq 'Graph Explorer'" 
+Get-EntraBetaAuditSignInLog -Filter "AppDisplayName eq 'Graph Explorer'" -Top 1
 ```
 
 ```Output
@@ -101,7 +101,7 @@ This example demonstrates how to retrieve sign-in logs by AppDisplayName.
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
-Get-EntraBetaAuditSignInLogs -Filter "createdDateTime ge 2024-07-01T00:00:00Z and createdDateTime le 2024-07-14T23:59:59Z"
+Get-EntraBetaAuditSignInLog -Filter "createdDateTime ge 2024-07-01T00:00:00Z and createdDateTime le 2024-07-14T23:59:59Z"
 ```
 
 This example shows how to retrieve sign-in logs between dates.

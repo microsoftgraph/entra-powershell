@@ -1,6 +1,6 @@
 ---
-title: Get-EntraRoleAssignment
-description: This article provides details on the Get-EntraRoleAssignment command.
+title: Get-EntraDirectoryRoleAssignment
+description: This article provides details on the Get-EntraDirectoryRoleAssignment command.
 
 
 ms.topic: reference
@@ -11,12 +11,12 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraRoleAssignment
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraDirectoryRoleAssignment
 
 schema: 2.0.0
 ---
 
-# Get-EntraRoleAssignment
+# Get-EntraDirectoryRoleAssignment
 
 ## Synopsis
 
@@ -27,7 +27,7 @@ Get a Microsoft Entra ID roleAssignment.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraRoleAssignment
+Get-EntraDirectoryRoleAssignment
  [-Top <Int32>]
  [-All]
  [-Filter <String>]
@@ -38,7 +38,7 @@ Get-EntraRoleAssignment
 ### GetValue
 
 ```powershell
-Get-EntraRoleAssignment
+Get-EntraDirectoryRoleAssignment
  [-SearchString <String>]
  [-All]
  [-Property <String[]>]
@@ -48,7 +48,7 @@ Get-EntraRoleAssignment
 ### GetById
 
 ```powershell
-Get-EntraRoleAssignment
+Get-EntraDirectoryRoleAssignment
  -Id <String>
  [-All]
  [-Property <String[]>]
@@ -57,7 +57,7 @@ Get-EntraRoleAssignment
 
 ## Description
 
-The `Get-EntraRoleAssignment` cmdlet gets information about role assignments in Microsoft Entra ID. To get a role assignment, specify the `Id` parameter. Specify the `SearchString` or `Filter` parameter to find a particular role assignment.
+The `Get-EntraDirectoryRoleAssignment` cmdlet gets information about role assignments in Microsoft Entra ID. To get a role assignment, specify the `Id` parameter. Specify the `SearchString` or `Filter` parameter to find a particular role assignment.
 
 In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role. The least privileged roles supported for this operation are as follows, in the order of least to most privileged:
 
@@ -71,7 +71,7 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraRoleAssignment
+Get-EntraDirectoryRoleAssignment
 ```
 
 ```Output
@@ -90,7 +90,7 @@ This command gets the role assignments in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraRoleAssignment -All 
+Get-EntraDirectoryRoleAssignment -All 
 ```
 
 ```Output
@@ -109,7 +109,7 @@ This command gets all the role assignments in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraRoleAssignment -Filter "principalId eq 'aaaaaaaa-bbbb-cccc-1111-222222222222'"
+Get-EntraDirectoryRoleAssignment -Filter "principalId eq 'aaaaaaaa-bbbb-cccc-1111-222222222222'"
 ```
 
 ```Output
@@ -125,7 +125,7 @@ This command gets the role assignments containing the specified principalId.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraRoleAssignment -Filter "roleDefinitionId eq 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'"
+Get-EntraDirectoryRoleAssignment -Filter "roleDefinitionId eq 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'"
 ```
 
 ```Output
@@ -144,7 +144,7 @@ This command gets the role assignments containing the specified roleDefinitionId
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraRoleAssignment -Top 2
+Get-EntraDirectoryRoleAssignment -Top 2
 ```
 
 ```Output
@@ -269,10 +269,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-`Get-EntraDirectoryRoleAssignment` is an alias for `Get-EntraRoleAssignment`.
-
 ## Related Links
 
-[New-EntraRoleAssignment](New-EntraRoleAssignment.md)
+[New-EntraDirectoryRoleAssignment](New-EntraDirectoryRoleAssignment.md)
 
-[Remove-EntraRoleAssignment](Remove-EntraRoleAssignment.md)
+[Remove-EntraDirectoryRoleAssignment](Remove-EntraDirectoryRoleAssignment.md)

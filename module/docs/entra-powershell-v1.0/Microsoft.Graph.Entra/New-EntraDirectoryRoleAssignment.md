@@ -1,6 +1,6 @@
 ---
-title: New-EntraRoleAssignment
-description: This article provides details on the New-EntraRoleAssignment command.
+title: New-EntraDirectoryRoleAssignment
+description: This article provides details on the New-EntraDirectoryRoleAssignment command.
 
 
 ms.topic: reference
@@ -11,12 +11,12 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraRoleAssignment
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/New-EntraDirectoryRoleAssignment
 
 schema: 2.0.0
 ---
 
-# New-EntraRoleAssignment
+# New-EntraDirectoryRoleAssignment
 
 ## Synopsis
 
@@ -25,7 +25,7 @@ Create a new Microsoft Entra ID roleAssignment.
 ## Syntax
 
 ```powershell
-New-EntraRoleAssignment 
+New-EntraDirectoryRoleAssignment 
  -PrincipalId <String>     
  -RoleDefinitionId <String>
  [-DirectoryScopeId <String>]
@@ -34,7 +34,7 @@ New-EntraRoleAssignment
 
 ## Description
 
-The `New-EntraRoleAssignment` cmdlet creates a new Microsoft Entra role assignment.
+The `New-EntraDirectoryRoleAssignment` cmdlet creates a new Microsoft Entra role assignment.
 
 ## Examples
 
@@ -49,7 +49,7 @@ The `New-EntraRoleAssignment` cmdlet creates a new Microsoft Entra role assignme
     DirectoryScopeId = '/'
  }
 
- New-EntraRoleAssignment @params
+ New-EntraDirectoryRoleAssignment @params
 ```
 
 ```Output
@@ -128,10 +128,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-`New-EntraDirectoryRoleAssignment` is an alias for `New-EntraRoleAssignment`.
-
 ## Related Links
 
-[Get-EntraRoleAssignment](Get-EntraRoleAssignment.md)
+[Get-EntraDirectoryRoleAssignment](Get-EntraDirectoryRoleAssignment.md)
 
-[Remove-EntraRoleAssignment](Remove-EntraRoleAssignment.md)
+[Remove-EntraDirectoryRoleAssignment](Remove-EntraDirectoryRoleAssignment.md)

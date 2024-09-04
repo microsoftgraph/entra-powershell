@@ -1,6 +1,6 @@
 ---
-title: New-EntraBetaRoleDefinition
-description: This article provides details on the New-EntraBetaRoleDefinition command.
+title: New-EntraBetaDirectoryRoleDefinition
+description: This article provides details on the New-EntraBetaDirectoryRoleDefinition command.
 
 
 ms.topic: reference
@@ -11,12 +11,12 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaRoleDefinition
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaDirectoryRoleDefinition
 
 schema: 2.0.0
 ---
 
-# New-EntraBetaRoleDefinition
+# New-EntraBetaDirectoryRoleDefinition
 
 ## Synopsis
 
@@ -25,7 +25,7 @@ Create a new Microsoft Entra ID roleDefinition.
 ## Syntax
 
 ```powershell
-New-EntraBetaRoleDefinition 
+New-EntraBetaDirectoryRoleDefinition 
  -IsEnabled <Boolean> 
  -DisplayName <String>
  -RolePermissions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RolePermission]>
@@ -56,7 +56,7 @@ Create a new Microsoft Entra ID roleDefinition object.
     DisplayName = 'MyRoleDefinition'
  }
 
- New-EntraBetaRoleDefinition @params
+ New-EntraBetaDirectoryRoleDefinition @params
 ```
 
 ```Output
@@ -86,7 +86,7 @@ This command creates a new role definition in Microsoft Entra ID.
     Description = 'Role Definition demo'
  }
 
- New-EntraRoleDefinition @params
+ New-EntraBetaDirectoryRoleDefinition @params
 ```
 
 ```Output
@@ -117,7 +117,7 @@ This command creates a new role definition with Description parameter.
     ResourceScopes = '/'
  }
 
- New-EntraRoleDefinition @params
+ New-EntraBetaDirectoryRoleDefinition @params
 ```
 
 ```Output
@@ -147,7 +147,7 @@ This command creates a new role definition with ResourceScopes parameter.
     TemplateId = '4dd5aa9c-cf4d-4895-a993-740d342802b9'
  }
 
- New-EntraRoleDefinition @params
+ New-EntraBetaDirectoryRoleDefinition @params
 ```
 
 ```Output
@@ -177,7 +177,7 @@ This command creates a new role definition with TemplateId parameter.
     Version = '2'
  }
 
- New-EntraRoleDefinition @params
+ New-EntraBetaDirectoryRoleDefinition @params
 ```
 
 ```Output
@@ -338,8 +338,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Get-EntraBetaRoleDefinition](Get-EntraBetaRoleDefinition.md)
+[Get-EntraBetaDirectoryRoleDefinition](Get-EntraBetaDirectoryRoleDefinition.md)
 
-[Remove-EntraBetaRoleDefinition](Remove-EntraBetaRoleDefinition.md)
+[Remove-EntraBetaDirectoryRoleDefinition](Remove-EntraBetaDirectoryRoleDefinition.md)
 
-[Set-EntraBetaRoleDefinition](Set-EntraBetaRoleDefinition.md)
+[Set-EntraBetaDirectoryRoleDefinition](Set-EntraBetaDirectoryRoleDefinition.md)

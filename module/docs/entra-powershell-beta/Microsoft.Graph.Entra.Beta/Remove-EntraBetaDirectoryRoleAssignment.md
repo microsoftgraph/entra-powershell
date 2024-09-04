@@ -1,6 +1,6 @@
 ---
-title: Remove-EntraBetaRoleAssignment
-description: This article provides details on the Remove-EntraBetaRoleAssignment command.
+title: Remove-EntraBetaDirectoryRoleAssignment
+description: This article provides details on the Remove-EntraBetaDirectoryRoleAssignment command.
 
 
 ms.topic: reference
@@ -11,12 +11,12 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaRoleAssignment
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaDirectoryRoleAssignment
 
 schema: 2.0.0
 ---
 
-# Remove-EntraBetaRoleAssignment
+# Remove-EntraBetaDirectoryRoleAssignment
 
 ## Synopsis
 
@@ -25,14 +25,14 @@ Delete a Microsoft Entra ID roleAssignment.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaRoleAssignment 
+Remove-EntraBetaDirectoryRoleAssignment 
  -Id <String> 
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Remove-EntraBetaRoleAssignment` cmdlet removes a role assignment from Microsoft Entra ID.
+The `Remove-EntraBetaDirectoryRoleAssignment` cmdlet removes a role assignment from Microsoft Entra ID.
 
 ## Examples
 
@@ -41,7 +41,7 @@ The `Remove-EntraBetaRoleAssignment` cmdlet removes a role assignment from Micro
 ```powershell
  Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory' #For the directory (Microsoft Entra ID) provider
  Connect-Entra -Scopes 'EntitlementManagement.ReadWrite.All' #For the entitlement management provider
- Remove-EntraBetaRoleAssignment -Id 'Y1vFBcN4i0e3ngdNDocmngJAWGnAbFVAnJQyBBLv1lM-1'
+ Remove-EntraBetaDirectoryRoleAssignment -Id 'Y1vFBcN4i0e3ngdNDocmngJAWGnAbFVAnJQyBBLv1lM-1'
 ```
 
 This example removes the specified role assignment from Microsoft Entra ID.
@@ -82,6 +82,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[New-EntraBetaRoleAssignment](New-EntraBetaRoleAssignment.md)
+[New-EntraBetaDirectoryRoleAssignment](New-EntraBetaDirectoryRoleAssignment.md)
 
-[Get-EntraBetaRoleAssignment](Get-EntraBetaRoleAssignment.md)
+[Get-EntraBetaDirectoryRoleAssignment](Get-EntraBetaDirectoryRoleAssignment.md)

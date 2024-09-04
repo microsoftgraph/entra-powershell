@@ -1,6 +1,6 @@
 ---
-title: Get-EntraBetaRoleDefinition
-description: This article provides details on the Get-EntraBetaRoleDefinition command.
+title: Get-EntraBetaDirectoryRoleDefinition
+description: This article provides details on the Get-EntraBetaDirectoryRoleDefinition command.
 
 
 ms.topic: reference
@@ -11,12 +11,12 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaRoleDefinition
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaDirectoryRoleDefinition
 
 schema: 2.0.0
 ---
 
-# Get-EntraBetaRoleDefinition
+# Get-EntraBetaDirectoryRoleDefinition
 
 ## Synopsis
 
@@ -27,7 +27,7 @@ Gets information about role definitions in Microsoft Entra ID.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraBetaRoleDefinition
+Get-EntraBetaDirectoryRoleDefinition
  [-All]
  [-Top <Int32>]
  [-Filter <String>]
@@ -38,7 +38,7 @@ Get-EntraBetaRoleDefinition
 ### GetVague
 
 ```powershell
-Get-EntraBetaRoleDefinition
+Get-EntraBetaDirectoryRoleDefinition
  [-SearchString <String>]
  [-All]
  [-Property <String[]>]
@@ -48,7 +48,7 @@ Get-EntraBetaRoleDefinition
 ### GetById
 
 ```powershell
-Get-EntraBetaRoleDefinition
+Get-EntraBetaDirectoryRoleDefinition
  -Id <String>
  [-All]
  [-Property <String[]>]
@@ -57,7 +57,7 @@ Get-EntraBetaRoleDefinition
 
 ## Description
 
-The `Get-EntraBetaRoleDefinition` cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the `Id` parameter. Specify the SearchString or Filter parameter to find particular role definition.
+The `Get-EntraBetaDirectoryRoleDefinition` cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the `Id` parameter. Specify the SearchString or Filter parameter to find particular role definition.
 
 In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role. The least privileged roles supported for this operation are as follows, in the order of least to most privileged:
 
@@ -71,7 +71,7 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraBetaRoleDefinition
+Get-EntraBetaDirectoryRoleDefinition
 ```
 
 ```Output
@@ -88,7 +88,7 @@ This command returns all the role definitions present.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraBetaRoleDefinition -Id '1a327991-10cb-4266-877a-998fb4df78ec'
+Get-EntraBetaDirectoryRoleDefinition -Id '1a327991-10cb-4266-877a-998fb4df78ec'
 ```
 
 ```Output
@@ -105,7 +105,7 @@ This command returns a specified role definition.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraBetaRoleDefinition -Filter "startsWith(displayName, 'Restricted')"
+Get-EntraBetaDirectoryRoleDefinition -Filter "startsWith(displayName, 'Restricted')"
 ```
 
 ```Output
@@ -120,7 +120,7 @@ This command return all the role definitions containing the specified display na
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraBetaRoleDefinition -Top 2
+Get-EntraBetaDirectoryRoleDefinition -Top 2
 ```
 
 ```Output
@@ -135,7 +135,7 @@ This command return top two the role definitions in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraBetaRoleDefinition -SearchString 'Global'
+Get-EntraBetaDirectoryRoleDefinition -SearchString 'Global'
  ```
 
 ```Output
@@ -263,8 +263,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[New-EntraBetaRoleDefinition](New-EntraBetaRoleDefinition.md)
+[New-EntraBetaDirectoryRoleDefinition](New-EntraBetaDirectoryRoleDefinition.md)
 
-[Remove-EntraBetaRoleDefinition](Remove-EntraBetaRoleDefinition.md)
+[Remove-EntraBetaDirectoryRoleDefinition](Remove-EntraBetaDirectoryRoleDefinition.md)
 
-[Set-EntraBetaRoleDefinition](Set-EntraBetaRoleDefinition.md)
+[Set-EntraBetaDirectoryRoleDefinition](Set-EntraBetaDirectoryRoleDefinition.md)

@@ -1,6 +1,6 @@
 ---
-title: Remove-EntraBetaRoleDefinition
-description: This article provides details on the Remove-EntraBetaRoleDefinition command.
+title: Remove-EntraBetaDirectoryRoleDefinition
+description: This article provides details on the Remove-EntraBetaDirectoryRoleDefinition command.
 
 
 ms.topic: reference
@@ -11,12 +11,12 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaRoleDefinition
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Remove-EntraBetaDirectoryRoleDefinition
 
 schema: 2.0.0
 ---
 
-# Remove-EntraBetaRoleDefinition
+# Remove-EntraBetaDirectoryRoleDefinition
 
 ## Synopsis
 
@@ -25,7 +25,7 @@ Delete a Microsoft Entra ID roleDefinition by ObjectId.
 ## Syntax
 
 ```powershell
-Remove-EntraBetaRoleDefinition 
+Remove-EntraBetaDirectoryRoleDefinition 
  -Id <String> 
  [<CommonParameters>]
 ```
@@ -42,7 +42,7 @@ You can't delete built-in roles. This feature requires a Microsoft Entra ID P1 o
 
 ```powershell
  Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
- Remove-EntraBetaRoleDefinition -Id 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
+ Remove-EntraBetaDirectoryRoleDefinition -Id 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
 ```
 
 This example demonstrates how to remove the specified role definition from Microsoft Entra ID.
@@ -83,8 +83,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[New-EntraBetaRoleDefinition](New-EntraBetaRoleDefinition.md)
+[New-EntraBetaDirectoryRoleDefinition](New-EntraBetaDirectoryRoleDefinition.md)
 
-[Set-EntraBetaRoleDefinition](Set-EntraBetaRoleDefinition.md)
+[Set-EntraBetaDirectoryRoleDefinition](Set-EntraBetaDirectoryRoleDefinition.md)
 
-[Get-EntraBetaRoleDefinition](Get-EntraBetaRoleDefinition.md)
+[Get-EntraBetaDirectoryRoleDefinition](Get-EntraBetaDirectoryRoleDefinition.md)

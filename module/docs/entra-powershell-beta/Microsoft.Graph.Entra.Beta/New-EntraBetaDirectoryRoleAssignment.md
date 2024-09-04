@@ -1,6 +1,6 @@
 ---
-title: New-EntraBetaRoleAssignment
-description: This article provides details on the New-EntraBetaRoleAssignment command.
+title: New-EntraBetaDirectoryRoleAssignment
+description: This article provides details on the New-EntraBetaDirectoryRoleAssignment command.
 
 
 ms.topic: reference
@@ -11,12 +11,12 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra.Beta-Help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaRoleAssignment
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/New-EntraBetaDirectoryRoleAssignment
 
 schema: 2.0.0
 ---
 
-# New-EntraBetaRoleAssignment
+# New-EntraBetaDirectoryRoleAssignment
 
 ## Synopsis
 
@@ -25,7 +25,7 @@ Create a new Microsoft Entra ID roleAssignment.
 ## Syntax
 
 ```powershell
-New-EntraBetaRoleAssignment 
+New-EntraBetaDirectoryRoleAssignment 
  -RoleDefinitionId <String> 
  -DirectoryScopeId <String> 
  -PrincipalId <String>
@@ -49,7 +49,7 @@ The `New-EntraRoleAssignment` cmdlet creates a new Microsoft Entra role assignme
     DirectoryScopeId = '/'
  }
 
- New-EntraBetaRoleAssignment @params
+ New-EntraBetaDirectoryRoleAssignment @params
 ```
 
 ```Output
@@ -130,6 +130,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Get-EntraBetaRoleAssignment](Get-EntraBetaRoleAssignment.md)
+[Get-EntraBetaDirectoryRoleAssignment](Get-EntraBetaDirectoryRoleAssignment.md)
 
-[Remove-EntraBetaRoleAssignment](Remove-EntraBetaRoleAssignment.md)
+[Remove-EntraBetaDirectoryRoleAssignment](Remove-EntraBetaDirectoryRoleAssignment.md)

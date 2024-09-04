@@ -1,6 +1,6 @@
 ---
-title: Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues
-description: This article provides details on the Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues command.
+title: Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
+description: This article provides details on the Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue command.
 
 ms.topic: reference
 ms.date: 07/12/2024
@@ -11,12 +11,12 @@ author: msewaweru
 
 external help file: Microsoft.Graph.Entra.Beta-help.xml
 Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
 
 schema: 2.0.0
 ---
 
-# Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues
+# Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue
 
 ## Synopsis
 
@@ -25,7 +25,7 @@ Adds a predefined value for a custom security attribute definition.
 ## Syntax
 
 ```powershell
-Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues 
+Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue 
  -IsActive <Boolean>
  -CustomSecurityAttributeDefinitionId <String> 
  -Id <String> 
@@ -34,7 +34,7 @@ Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues
 
 ## Description
 
-The `Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues` adds a predefined value for a Microsoft Entra ID custom security attribute definition.
+The `Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue` adds a predefined value for a Microsoft Entra ID custom security attribute definition.
 
 In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
 
@@ -50,7 +50,7 @@ $params = @{
     Id = 'Alpine'
     IsActive = $true
 }
-Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues @params
+Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue @params
 ```
 
 ```Output

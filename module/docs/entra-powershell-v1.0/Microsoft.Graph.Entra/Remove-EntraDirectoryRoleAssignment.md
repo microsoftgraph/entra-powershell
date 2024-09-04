@@ -1,6 +1,6 @@
 ---
-title: Remove-EntraRoleAssignment
-description: This article provides details on the Remove-EntraRoleAssignment command.
+title: Remove-EntraDirectoryRoleAssignment
+description: This article provides details on the Remove-EntraDirectoryRoleAssignment command.
 
 
 ms.topic: reference
@@ -11,12 +11,12 @@ manager: CelesteDG
 
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraRoleAssignment
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraDirectoryRoleAssignment
 
 schema: 2.0.0
 ---
 
-# Remove-EntraRoleAssignment
+# Remove-EntraDirectoryRoleAssignment
 
 ## Synopsis
 
@@ -25,14 +25,14 @@ Delete a Microsoft Entra ID roleAssignment.
 ## Syntax
 
 ```powershell
-Remove-EntraRoleAssignment 
+Remove-EntraDirectoryRoleAssignment 
  -Id <String> 
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Remove-EntraRoleAssignment` cmdlet removes a role assignment from Microsoft Entra ID.
+The `Remove-EntraDirectoryRoleAssignment` cmdlet removes a role assignment from Microsoft Entra ID.
 
 ## Examples
 
@@ -41,7 +41,7 @@ The `Remove-EntraRoleAssignment` cmdlet removes a role assignment from Microsoft
 ```powershell
  Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory' #For the directory (Microsoft Entra ID) provider
  Connect-Entra -Scopes 'EntitlementManagement.ReadWrite.All' #For the entitlement management provider
- Remove-EntraRoleAssignment -Id Y1vFBcN4i0e3ngdNDocmngJAWGnAbFVAnJQyBBLv1lM-1
+ Remove-EntraDirectoryRoleAssignment -Id Y1vFBcN4i0e3ngdNDocmngJAWGnAbFVAnJQyBBLv1lM-1
 ```
 
 Removes the specified role assignment from Microsoft Entra ID.
@@ -74,10 +74,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-`Remove-EntraDirectoryRoleAssignment` is an alias for `Remove-EntraRoleAssignment`.
-
 ## Related Links
 
-[Get-EntraRoleAssignment](Get-EntraRoleAssignment.md)
+[Get-EntraDirectoryRoleAssignment](Get-EntraDirectoryRoleAssignment.md)
 
-[New-EntraRoleAssignment](New-EntraRoleAssignment.md)
+[New-EntraDirectoryRoleAssignment](New-EntraDirectoryRoleAssignment.md)

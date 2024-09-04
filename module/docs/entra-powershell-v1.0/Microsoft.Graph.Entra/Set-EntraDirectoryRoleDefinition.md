@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Update an existing Microsoft Entra ID DirectoryRoleDefinition.
+Update an existing Microsoft Entra ID roleDefinition.
 
 ## Syntax
 
@@ -39,11 +39,11 @@ Set-EntraDirectoryRoleDefinition
 
 ## Description
 
-Updates a Microsoft Entra DirectoryRoleDefinition object identified by ID. You cannot update built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
+Updates a Microsoft Entra roleDefinition object identified by ID. You cannot update built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
 
 ## Examples
 
-### Example 1: Update an DirectoryRoleDefinition
+### Example 1: Update an roleDefinition
 
 ```powershell
  Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
@@ -52,7 +52,7 @@ Updates a Microsoft Entra DirectoryRoleDefinition object identified by ID. You c
 
 This example updates the specified role definition in Microsoft Entra ID.
 
-### Example 2: Update an DirectoryRoleDefinition with Description
+### Example 2: Update an roleDefinition with Description
 
 ```powershell
  Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
@@ -61,7 +61,7 @@ This example updates the specified role definition in Microsoft Entra ID.
 
 This example updates the Description of specified role definition in Microsoft Entra ID.
 
-### Example 3: Update an DirectoryRoleDefinition with IsEnabled
+### Example 3: Update an roleDefinition with IsEnabled
 
 ```powershell
  Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
@@ -70,7 +70,7 @@ This example updates the Description of specified role definition in Microsoft E
 
 This example updates the IsEnabled of specified role definition in Microsoft Entra ID.
 
-### Example 4: Update an DirectoryRoleDefinition
+### Example 4: Update an roleDefinition
 
 ```powershell
  Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'

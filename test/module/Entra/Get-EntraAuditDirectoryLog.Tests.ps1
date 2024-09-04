@@ -9,7 +9,7 @@ BeforeAll {
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
     
     $scriptblock = {
-        # Write-Host "Mocking Get-EntraAuditDirectoryLogs with parameters: $($args | ConvertTo-Json -Depth 3)"
+        # Write-Host "Mocking Get-EntraAuditDirectoryLog with parameters: $($args | ConvertTo-Json -Depth 3)"
         return @(
             [PSCustomObject]@{
                 category            = 'DirectoryManagement'
@@ -40,56 +40,56 @@ BeforeAll {
     Mock -CommandName Invoke-GraphRequest -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
   
-Describe "Get-EntraAuditDirectoryLogs" {
-    Context "Test for Get-EntraAuditDirectoryLogs" {
+Describe "Get-EntraAuditDirectoryLog" {
+    Context "Test for Get-EntraAuditDirectoryLog" {
         It "Should return specific Audit Directory Logs" {
-            $result = Get-EntraAuditDirectoryLogs -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraAuditDirectoryLog -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }        
         It "Should fail when Id is empty" {
-            { Get-EntraAuditDirectoryLogs -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
+            { Get-EntraAuditDirectoryLog -Id } | Should -Throw "Missing an argument for parameter 'Id'*"
         }       
         It "Should fail when filter is empty" {
-            { Get-EntraAuditDirectoryLogs -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
+            { Get-EntraAuditDirectoryLog -Filter } | Should -Throw "Missing an argument for parameter 'Filter'*"
         }
         It "Should fail when Top is empty" {
-            { Get-EntraAuditDirectoryLogs -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraAuditDirectoryLog -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
         It "Should fail when Top is invalid" {
-            { Get-EntraAuditDirectoryLogs -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraAuditDirectoryLog -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }
         It "Should return all Audit Directory Logs" {
-            $result = Get-EntraAuditDirectoryLogs -All 
+            $result = Get-EntraAuditDirectoryLog -All 
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when All has an argument" {
-            { Get-EntraAuditDirectoryLogs -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
+            { Get-EntraAuditDirectoryLog -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'.*"
         }           
         
         It "Should return specific Audit Directory Logs by filter" {
-            $result = Get-EntraAuditDirectoryLogs -Filter "correlationId eq 'bbbbbbbb-1111-2222-3333-cccccccccrrr'"
+            $result = Get-EntraAuditDirectoryLog -Filter "correlationId eq 'bbbbbbbb-1111-2222-3333-cccccccccrrr'"
             $result | Should -Not -BeNullOrEmpty
             $result.id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }  
         It "Should return top Audit Directory Logs" {
-            $result = @(Get-EntraAuditDirectoryLogs -Top 1)
+            $result = @(Get-EntraAuditDirectoryLog -Top 1)
             $result | Should -Not -BeNullOrEmpty
             $result | Should -HaveCount 1
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }        
         It "Should contain ID in parameters when passed Id to it" {
-            $result = Get-EntraAuditDirectoryLogs -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"            
+            $result = Get-EntraAuditDirectoryLog -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"            
             $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
 
         It "Should contain 'User-Agent' header" { 
             Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAuditDirectoryLogs"
-            $result =  Get-EntraAuditDirectoryLogs -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraAuditDirectoryLog"
+            $result =  Get-EntraAuditDirectoryLog -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
@@ -104,7 +104,7 @@ Describe "Get-EntraAuditDirectoryLogs" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraAuditDirectoryLogs -Id "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+                { Get-EntraAuditDirectoryLog -Id "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
