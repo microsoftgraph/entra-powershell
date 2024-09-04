@@ -44,15 +44,19 @@ Describe "Remove-EntraServicePrincipalOwner" {
             $params = Get-Parameters -data $result
             $params.DirectoryObjectId | Should -Be "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
         }
-        It "Should contain 'User-Agent' header" {
-            Mock -CommandName Remove-MgServicePrincipalOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
+        It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraServicePrincipalOwner"
 
-            $result = Remove-EntraServicePrincipalOwner -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -OwnerId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        } 
+            Remove-EntraServicePrincipalOwner -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -OwnerId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
+            
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraServicePrincipalOwner"
+
+            Should -Invoke -CommandName Remove-MgServicePrincipalOwnerByRef -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
 
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       
