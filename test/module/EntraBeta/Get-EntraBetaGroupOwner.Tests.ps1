@@ -12,7 +12,7 @@ BeforeAll {
                 value = @(
                     @{
                     "DeletedDateTime"       = $null
-                    "Id"                    = "996d39aa-fdac-4d97-aa3d-c81fb47362ac"
+                    "Id"                    = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
                     "AdditionalProperties"  = @{
                         "@odata.type"       = "#microsoft.graph.user"
                         "businessPhones"    = @("425-555-0100")
@@ -35,9 +35,9 @@ BeforeAll {
 Describe "Get-EntraBetaGroupOwner" {
     Context "Test for Get-EntraBetaGroupOwner" {
         It "Get a group owner by Id" {
-            $result = Get-EntraBetaGroupOwner -ObjectId "996d39aa-fdac-4d97-aa3d-c81fb47362ac"
+            $result = Get-EntraBetaGroupOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be '996d39aa-fdac-4d97-aa3d-c81fb47362ac'
+            $result.Id | should -Be 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
             $result.DeletedDateTime | should -BeNullOrEmpty
 
             Should -Invoke -CommandName  Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
@@ -52,46 +52,81 @@ Describe "Get-EntraBetaGroupOwner" {
         }
 
         It "Gets all group owners" {
-            $result = Get-EntraBetaGroupOwner -ObjectId "996d39aa-fdac-4d97-aa3d-c81fb47362ac" -All 
+            $result = Get-EntraBetaGroupOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -All 
             $result | Should -Not -BeNullOrEmpty            
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
-        }        
+        }
+
+        It "Should fail when All has an argument" {
+            { Get-EntraBetaGroupOwner -All $true} | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
+        }
 
         It "Gets two group owners" {
-            $result = Get-EntraBetaGroupOwner -ObjectId "996d39aa-fdac-4d97-aa3d-c81fb47362ac" -Top 2
+            $result = Get-EntraBetaGroupOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top 2
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }  
 
         It "Should fail when top is empty" {
-            { Get-EntraBetaGroupOwner -ObjectId "996d39aa-fdac-4d97-aa3d-c81fb47362ac" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraBetaGroupOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }  
 
         It "Should fail when top is invalid" {
-            { Get-EntraBetaGroupOwner -ObjectId "996d39aa-fdac-4d97-aa3d-c81fb47362ac" -Top XY} | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraBetaGroupOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Top XY} | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }  
 
         It "Result should Contain ObjectId" {
-            $result = Get-EntraBetaGroupOwner -ObjectId "996d39aa-fdac-4d97-aa3d-c81fb47362ac"
-            $result.ObjectId | should -Be "996d39aa-fdac-4d97-aa3d-c81fb47362ac"
+            $result = Get-EntraBetaGroupOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result.ObjectId | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         } 
 
         It "Should contain GroupId in parameters when passed ObjectId to it" {
-            $result = Get-EntraBetaGroupOwner -ObjectId "996d39aa-fdac-4d97-aa3d-c81fb47362ac"
+            $result = Get-EntraBetaGroupOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $params = Get-Parameters -data $result.Parameters
             $groupId= $params | ConvertTo-json | ConvertFrom-Json
-            $groupId.Uri -match "996d39aa-fdac-4d97-aa3d-c81fb47362ac" | Should -BeTrue
+            $groupId.Uri -match "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" | Should -BeTrue
         }
 
         It "Should contain 'User-Agent' header" {
+        
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaGroupOwner"
 
-            $result = Get-EntraBetaGroupOwner -ObjectId "996d39aa-fdac-4d97-aa3d-c81fb47362ac"
-            $params = Get-Parameters -data $result.Parameters
-            $userAgent= $params | ConvertTo-json | ConvertFrom-Json
-            $userAgent.headers.'User-Agent' | Should -Be $userAgentHeaderValue
-        }    
+            $result = Get-EntraBetaGroupOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result | Should -Not -BeNullOrEmpty
+
+           $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaGroupOwner"
+
+           Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+               $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+               $true
+           }
+       } 
+       It "Property parameter should work" {
+        $result = Get-EntraBetaGroupOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property Id
+        $result | Should -Not -BeNullOrEmpty
+        $result.Id | Should -Be 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+
+        Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+       }
+
+       It "Should fail when Property is empty" {
+        { Get-EntraBetaGroupOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'.*"
+       }
+
+       It "Should execute successfully without throwing an error" {
+        # Disable confirmation prompts       
+        $originalDebugPreference = $DebugPreference
+        $DebugPreference = 'Continue'
+
+        try {
+            # Act & Assert: Ensure the function doesn't throw an exception
+            { Get-EntraBetaGroupOwner -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Debug } | Should -Not -Throw
+        } finally {
+            # Restore original confirmation preference            
+            $DebugPreference = $originalDebugPreference        
+        }
+    }
     }
 }

@@ -119,15 +119,21 @@ Describe "New-EntraBetaUser" {
         }
 
         It "Should contain 'User-Agent' header" {
-            # Define Password Profile
-            $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-            $PasswordProfile.Password = "test@1234"
+             # Define Password Profile
+             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+             $PasswordProfile.Password = "test@1234"
+             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaUser"
+
+             $result = New-EntraBetaUser -DisplayName "demo002" -PasswordProfile $PasswordProfile -UserPrincipalName "demo001@M365x99297270.OnMicrosoft.com" -AccountEnabled $true -MailNickName "demo002NickName" -AgeGroup "adult"
+             $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaUser"
-            $result = New-EntraBetaUser -DisplayName "demo002" -PasswordProfile $PasswordProfile -UserPrincipalName "demo001@M365x99297270.OnMicrosoft.com" -AccountEnabled $true -MailNickName "demo002NickName" -AgeGroup "adult"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers."User-Agent" | Should -Be $userAgentHeaderValue
-        }  
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
 
         It "Should contain MobilePhone in parameters when passed Mobile to it" {
             # Define Password Profile
@@ -168,5 +174,22 @@ Describe "New-EntraBetaUser" {
 
             $requestBody.ExternalUserStateChangeDateTime | Should -Be $userStateChangedOn
         }  
+
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+            # Define Password Profile
+            $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+            $PasswordProfile.Password = "test@1234"
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { New-EntraBetaUser -DisplayName "demo002" -PasswordProfile $PasswordProfile -UserPrincipalName "demo001@M365x99297270.OnMicrosoft.com" -AccountEnabled $true -MailNickName "demo002NickName" -AgeGroup "adult" -Mobile "1234567890" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }
 }

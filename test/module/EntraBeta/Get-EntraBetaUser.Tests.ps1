@@ -147,14 +147,27 @@ Describe "Get-EntraBetaUser" {
             { Get-EntraBetaUser -Property } | Should -Throw "Missing an argument for parameter 'Property'.*"
         }
 
-        # It "Should contain UserId in parameters when passed ObjectId to it" {
-        #     $result = Get-EntraUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
-        #     $result | Should -Not -BeNullOrEmpty
+        It "Should contain UserId in parameters when passed ObjectId to it" {
+            $result = Get-EntraBetaUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result | Should -Not -BeNullOrEmpty
 
-        #     Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
-        #         $UserId | Should -Be $null
-        #         $true
-        #     }
-        # }
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $UserId | Should -Be $null
+                $true
+            }
+        }
+        It "Should execute successfully without throwing an error" {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Get-EntraBetaUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }
 }
