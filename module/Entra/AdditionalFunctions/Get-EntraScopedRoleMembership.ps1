@@ -5,7 +5,7 @@ function Get-EntraScopedRoleMembership {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId,
+    [System.String] $AdministrativeUnitId,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $ScopedRoleMembershipId
     )
@@ -15,9 +15,9 @@ function Get-EntraScopedRoleMembership {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $isList = $false
         $baseUri = "https://graph.microsoft.com/v1.0/directory/administrativeUnits"
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["AdministrativeUnitId"])
         {
-            $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]
+            $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]
             $uri = $baseUri + "/$($params.AdministrativeUnitId)/scopedRoleMembers"
             $params["Uri"] = $uri
             $isList = $true

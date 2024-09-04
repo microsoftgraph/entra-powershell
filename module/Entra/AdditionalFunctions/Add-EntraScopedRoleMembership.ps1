@@ -5,7 +5,7 @@ function Add-EntraScopedRoleMembership {
     [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
     param (    
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId,
+    [System.String] $AdministrativeUnitId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.String] $RoleObjectId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
@@ -17,9 +17,9 @@ function Add-EntraScopedRoleMembership {
     $body = @{}
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
 
-    if($null -ne $PSBoundParameters["ObjectId"])
+    if($null -ne $PSBoundParameters["AdministrativeUnitId"])
     {
-        $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]
+        $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]
         $Uri = "/v1.0/directory/administrativeUnits/$($params.AdministrativeUnitId)/scopedRoleMembers"     
     }    
     if($null -ne $PSBoundParameters["RoleObjectId"])

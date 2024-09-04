@@ -5,7 +5,7 @@ function Remove-EntraScopedRoleMembership {
     [CmdletBinding(DefaultParameterSetName = '')]
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId,
+    [System.String] $AdministrativeUnitId,
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.String] $ScopedRoleMembershipId
     )
@@ -13,9 +13,9 @@ function Remove-EntraScopedRoleMembership {
     PROCESS {    
     $params = @{}
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand    
-    if($null -ne $PSBoundParameters["ObjectId"])
+    if($null -ne $PSBoundParameters["AdministrativeUnitId"])
     {
-        $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]
+        $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]
     }    
     if($null -ne $PSBoundParameters["ScopedRoleMembershipId"])
     {

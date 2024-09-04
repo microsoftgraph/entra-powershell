@@ -12,15 +12,15 @@ BeforeAll {
 
 Describe "Test for Remove-EntraScopedRoleMembership" {
     It "Should return empty object" {
-        $result = Remove-EntraScopedRoleMembership -ObjectId bbbbbbbb-1111-1111-1111-cccccccccccc -ScopedRoleMembershipId bbbbbbbb-2222-2222-2222-cccccccccccc
+        $result = Remove-EntraScopedRoleMembership -AdministrativeUnitId bbbbbbbb-1111-1111-1111-cccccccccccc -ScopedRoleMembershipId bbbbbbbb-2222-2222-2222-cccccccccccc
         $result | Should -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
-    It "Should fail when ObjectId is empty" {
-        { Remove-EntraScopedRoleMembership -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId'*"
+    It "Should fail when AdministrativeUnitId is empty" {
+        { Remove-EntraScopedRoleMembership -AdministrativeUnitId "" } | Should -Throw "Cannot bind argument to parameter 'AdministrativeUnitId'*"
     }
-    It "Should fail when ObjectId is null" {
-        { Remove-EntraScopedRoleMembership -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+    It "Should fail when AdministrativeUnitId is null" {
+        { Remove-EntraScopedRoleMembership -AdministrativeUnitId } | Should -Throw "Missing an argument for parameter 'AdministrativeUnitId'*"
     }
     It "Should fail when ScopedRoleMembershipId is empty" {
         { Remove-EntraScopedRoleMembership -ScopedRoleMembershipId "" } | Should -Throw "Cannot bind argument to parameter 'ScopedRoleMembershipId'*"
@@ -34,7 +34,7 @@ Describe "Test for Remove-EntraScopedRoleMembership" {
     It "Should contain 'User-Agent' header" {
         Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraScopedRoleMembership"
-        $result = Remove-EntraScopedRoleMembership -ObjectId bbbbbbbb-1111-1111-1111-cccccccccccc -ScopedRoleMembershipId bbbbbbbb-2222-2222-2222-cccccccccccc
+        $result = Remove-EntraScopedRoleMembership -AdministrativeUnitId bbbbbbbb-1111-1111-1111-cccccccccccc -ScopedRoleMembershipId bbbbbbbb-2222-2222-2222-cccccccccccc
         $params = Get-Parameters -data $result
         $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
     } 
