@@ -36,6 +36,23 @@ Get-EntraGroupMember
 
 The `Get-EntraGroupMember` cmdlet gets a member of a group in Microsoft Entra ID. Specify the `ObjectId` parameter to get a member of a group.
 
+In delegated scenarios, the signed-in user must have a supported Microsoft Entra role or a custom role with one of the following permissions: `microsoft.directory/groups/members/read`, `microsoft.directory/groups/members/limitedRead`, or `microsoft.directory/groups/hiddenMembers/read` (for hidden members). The following least privileged roles support this operation:
+
+- Group owners
+- "Member" users
+- "Guest" users (with limited read permissions)
+- Directory Readers
+- Directory Writers
+- Groups Administrator
+- User Administrator (includes hidden members)
+- Exchange Administrator (includes hidden members)
+- SharePoint Administrator (includes hidden members)
+- Intune Administrator (includes hidden members)
+- Teams Administrator (includes hidden members)
+- Yammer Administrator (includes hidden members)
+
+To list members of a hidden group, the `Member.Read.Hidden` permission is also required.
+
 ## Examples
 
 ### Example 1: Get a group member by ID
