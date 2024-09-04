@@ -46,12 +46,17 @@ Describe "Add-EntraServicePrincipalDelegatedPermissionClassification"{
             $result.ObjectId | should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
         }   
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName New-MgServicePrincipalDelegatedPermissionClassification -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraServicePrincipalDelegatedPermissionClassification"
+
+            $result = Add-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -PermissionId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Classification "low" -PermissionName "access_microsoftstream_embed"
+            $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraServicePrincipalDelegatedPermissionClassification"
-            $result = Add-EntraServicePrincipalDelegatedPermissionClassification -ServicePrincipalId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -PermissionId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Classification "low" -PermissionName "access_microsoftstream_embed"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+
+            Should -Invoke -CommandName New-MgServicePrincipalDelegatedPermissionClassification -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       

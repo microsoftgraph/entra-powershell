@@ -38,25 +38,16 @@ Describe "Remove-EntraServicePrincipalPasswordCredential" {
             $params.ServicePrincipalId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Remove-MgServicePrincipalPassword -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraServicePrincipalPasswordCredential"
+
+            Remove-EntraServicePrincipalPasswordCredential -ObjectID "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -KeyId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraServicePrincipalPasswordCredential"
-            $result =  Remove-EntraServicePrincipalPasswordCredential -ObjectID "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -KeyId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }
-        It "Should execute successfully without throwing an error " {
-            # Disable confirmation prompts       
-            $originalDebugPreference = $DebugPreference
-            $DebugPreference = 'Continue'
 
-            try {
-                # Act & Assert: Ensure the function doesn't throw an exception
-                { Remove-EntraServicePrincipalPasswordCredential -ObjectID "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -KeyId "aaaaaaaa-0b0b-1c1c-2d2d-333333333333" -Debug } | Should -Not -Throw
-            } finally {
-                # Restore original confirmation preference            
-                $DebugPreference = $originalDebugPreference        
+            Should -Invoke -CommandName Remove-MgServicePrincipalPassword -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
             }
-        } 
+        }
     }
 }
