@@ -10,8 +10,7 @@ function Get-EntraPasswordPolicy {
 
     PROCESS {    
         $params = @{}
-        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{}
+        $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand        
         if ($PSBoundParameters.ContainsKey("Verbose")) {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
