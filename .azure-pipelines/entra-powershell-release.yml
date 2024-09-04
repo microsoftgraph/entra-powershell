@@ -15,7 +15,6 @@ stages:
   - job: Download_Artifacts
     steps:
     - download: _EntraPowerShell-Release-Build
-      artifact: 'Module Files'
   - job: Install_Dependencies
     displayName: Install dependencies
     pool:
