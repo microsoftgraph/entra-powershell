@@ -39,11 +39,11 @@ After you have successfully verified the ownership of a domain and you have indi
 
 ## Examples
 
-### Example 1: Retrieve domain service configuration records by name
+### Example 1: Retrieve domain service configuration records by Name
 
 ```powershell
 Connect-Entra -Scopes 'Domain.Read.All'
-Get-EntraDomainServiceConfigurationRecord -name test.mail.contoso.com
+Get-EntraDomainServiceConfigurationRecord -Name 'test.mail.contoso.com'
 ```
 
 ```Output
@@ -58,6 +58,8 @@ ffff5555-aa66-7777-88bb-999999cccccc False      enterpriseenrollment.test.mail.c
 ```
 
 This example shows how to retrieve the Domain service configuration records for a domain with the given name.
+
+- `-Name` parameter specifies domain name for which the domain service configuration records are to be retrieved.
 
 ## Parameters
 
@@ -79,7 +81,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
