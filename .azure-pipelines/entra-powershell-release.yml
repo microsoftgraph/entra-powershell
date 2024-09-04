@@ -14,8 +14,7 @@ stages:
   jobs:
   - job: Download_Artifacts
     steps:
-    #- download: _EntraPowerShell-Release-Build
-    - download: none
+    - download: _EntraPowerShell-Release-Build
   - job: Install_Dependencies
     displayName: Install dependencies
     pool:
