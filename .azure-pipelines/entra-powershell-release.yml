@@ -21,10 +21,9 @@ stages:
   - job: Release_Approval
     displayName: Agentless job
     pool: server
-    timeoutInMinutes: 1440 # job times out in 1 days
     steps:
     - task: ManualValidation@1
-      timeoutInMinutes: 1440 # task times out in 1 day
+      timeoutInMinutes: 1440
       inputs:
         notifyUsers: ''
         instructions: 'Please validate the build configuration and resume'
@@ -34,7 +33,7 @@ stages:
     displayName: Push to PS Gallery
     pool:
       vmImage: windows-latest
-    timeoutInMinutes: 6120
+    timeoutInMinutes: 1440
     steps:
     - task: powershell@2
       inputs:
