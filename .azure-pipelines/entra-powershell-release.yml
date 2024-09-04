@@ -1,7 +1,7 @@
 trigger:
 - none
 pool:
-  name: default
+  vmImage: windows-latest
 
 stages:
 - stage: PS_Gallery_Deploy
