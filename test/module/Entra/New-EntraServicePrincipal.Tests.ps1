@@ -89,14 +89,19 @@ Describe "New-EntraServicePrincipal"{
             $result.ObjectId | should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result.AppOwnerTenantId | should -Be "44445555-eeee-6666-ffff-7777aaaa8888"
         } 
+        
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName New-MgServicePrincipal -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraServicePrincipal"
+
+            $result = New-EntraServicePrincipal -AppId "00001111-aaaa-2222-bbbb-3333cccc4444"
+            $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraServicePrincipal"
 
-            $result = New-EntraServicePrincipal  -AppId "00001111-aaaa-2222-bbbb-3333cccc4444" -Homepage 'http://localhost/home' -LogoutUrl 'htpp://localhost/logout'  -AccountEnabled $true -DisplayName "ToGraph_443DEM"  -AlternativeNames "unitalternative" -Tags {WindowsAzureActiveDirectoryIntegratedApp} -AppRoleAssignmentRequired $true -ReplyUrls 'http://localhost/redirect' -ServicePrincipalType "Application" -ServicePrincipalNames "11bb11bb-cc22-dd33-ee44-55ff55ff55ff"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            Should -Invoke -CommandName New-MgServicePrincipal -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
 
         It "Should execute successfully without throwing an error" {

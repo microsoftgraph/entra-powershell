@@ -60,12 +60,17 @@ Describe "New-EntraServicePrincipalPasswordCredential"{
             $result.EndDate | should -Be "16/12/2024 13:14:14"
         } 
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Add-MgServicePrincipalPassword -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraServicePrincipalPasswordCredential"
+
+            $result = New-EntraServicePrincipalPasswordCredential -ObjectID "bbbbbbbb-1111-2222-3333-cccccccccccc" -StartDate  "2024-09-16T14:14:14Z" -EndDate "2024-12-16T13:14:14Z"
+            $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraServicePrincipalPasswordCredential"
-            $result = New-EntraServicePrincipalPasswordCredential -ObjectID "bbbbbbbb-1111-2222-3333-cccccccccccc" -StartDate  "2024-09-16T14:14:14Z" -EndDate "2024-12-16T13:14:14Z"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+
+            Should -Invoke -CommandName Add-MgServicePrincipalPassword -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         } 
     }
 }
