@@ -20,7 +20,7 @@ stages:
   - job: Release_Approval
     displayName: Agentless job
     steps:
-    - task: ManualValidation@1
+    - task: ManualValidation@0
       inputs:
         notifyUsers: ''
         instructions: 'Please validate the build configuration and resume'
