@@ -19,8 +19,6 @@ stages:
           Write-Output $PSVersionTable
   - job: Release_Approval
     displayName: Agentless job
-    pool:
-      type: server
     steps:
     - task: ManualValidation@0
       inputs:
@@ -32,8 +30,6 @@ stages:
 
   - job: PsGallery_Push
     displayName: Push to PS Gallery
-    pool:
-      type: server
     timeoutInMinutes: 6120
     steps:
     - task: powershell@2
