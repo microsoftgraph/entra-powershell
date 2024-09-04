@@ -33,7 +33,11 @@ Add-EntraGroupOwner
 
 ## Description
 
-The Add-EntraGroupOwner cmdlet adds an owner to a Microsoft Entra ID group.
+The `Add-EntraGroupOwner` cmdlet adds an owner to a Microsoft Entra ID group. Specify the `ObjectId` and `RefObjectId` parameters to add an owner to a group.
+
+`-ObjectId` - specifies the unique identifier (Object ID) of the group to which you want to add an owner.
+
+`-RefObjectId` - specifies the unique identifier (Object ID) of the owner to be added to the group.
 
 ## Examples
 
@@ -41,10 +45,17 @@ The Add-EntraGroupOwner cmdlet adds an owner to a Microsoft Entra ID group.
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Add-EntraGroupOwner -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq' -RefObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+$group = Get-EntraGroup -Filter "DisplayName eq 'HelpDesk Team Leaders'"
+$user = Get-EntraUser -ObjectId 'SawyerM@contoso.com'
+$params = @{
+    ObjectId = $group.ObjectId
+    RefObjectId = $user.ObjectId
+}
+
+Add-EntraGroupOwner @params
 ```
 
-This command is used to add an owner to a group. The `-ObjectId` parameter specifies the ID of the group to which the owner should be added. The `-RefObjectId` parameter specifies the ID of the owner to be added to the group.
+This example demonstrates how to add an owner to a group.
 
 ## Parameters
 
@@ -82,7 +93,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

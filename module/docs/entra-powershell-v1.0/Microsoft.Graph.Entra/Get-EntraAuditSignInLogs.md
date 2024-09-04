@@ -36,59 +36,61 @@ Get-EntraAuditSignInLogs
 
 The `Get-EntraAuditSignInLogs` cmdlet gets the Microsoft Entra ID sign-in log.
 
+In addition to delegated permissions, the signed-in user must belong to at least one of the following Microsoft Entra roles to read sign-in reports:
+
+- Global Reader
+- Reports Reader
+- Security Administrator
+- Security Operator
+- Security Reader
+
 ## Examples
 
 ### Example 1: Get all logs
 
 ```powershell
- Connect-Entra -Scopes 'AuditLog.Read.All', 'Directory.Read.All'
- Get-EntraAuditSignInLogs -All  
+Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
+Get-EntraAuditSignInLogs -All   
 ```
 
 ```Output
-Id                                   AppDisplayName AppId                                ClientAppUsed ConditionalAccessStatus CorrelationId                        Created
-                                                                                                                                                                    DateTim
-                                                                                                                                                                    e
---                                   -------------- -----                                ------------- ----------------------- -------------                        -------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Azure Portal   00001111-aaaa-2222-bbbb-3333cccc4444 Browser       success                 aaaa0000-bb11-2222-33cc-444444dddddd 16/08/…
-bbbbbbbb-1111-2222-3333-cccccccccccc Azure Portal   00001111-aaaa-2222-bbbb-3333cccc4444 Browser       notApplied              dddd3333-ee44-5555-66ff-777777aaaaaa16/08/…
-cccccccc-2222-3333-4444-dddddddddddd Azure Portal   00001111-aaaa-2222-bbbb-3333cccc4444 Browser       notApplied              cccc2222-dd33-4444-55ee-666666ffffff 16/08/…
-dddddddd-3333-4444-5555-eeeeeeeeeeee Azure Portal   00001111-aaaa-2222-bbbb-3333cccc4444 Browser       notApplied              bbbb1111-cc22-3333-44dd-555555eeeeee 16/08/…
+Id                                   AppDisplayName                     AppId                                AppTokenProtectionStatus AuthenticationMethodsUsed AuthenticationProtocol
+--                                   --------------                     -----                                ------------------------ ------------------------- ----------------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Azure Active Directory PowerShell  00001111-aaaa-2222-bbbb-3333cccc4444                              {}                     none
+bbbbbbbb-1111-2222-3333-cccccccccccc Azure Portal                       11112222-bbbb-3333-cccc-4444dddd5555                              {}                     none
+cccccccc-2222-3333-4444-dddddddddddd Azure Active Directory PowerShell  22223333-cccc-4444-dddd-5555eeee6666                              {}                     none
+dddddddd-3333-4444-5555-eeeeeeeeeeee Azure Active Directory PowerShell  33334444-dddd-5555-eeee-6666ffff7777                              {}                     none
 ```
 
 This example returns all audit logs of sign-ins.
 
-### Example 2: Get the first n logs
+### Example 2: Get the first two logs
 
 ```powershell
- Connect-Entra -Scopes 'AuditLog.Read.All', 'Directory.Read.All'
- Get-EntraAuditSignInLogs -Top 1
+Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
+Get-EntraAuditSignInLogs -Top 2
 ```
 
 ```Output
-Id                                   AppDisplayName AppId                                ClientAppUsed ConditionalAccessStatus CorrelationId                        Created
-                                                                                                                                                                    DateTim
-                                                                                                                                                                    e
---                                   -------------- -----                                ------------- ----------------------- -------------                        -------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Azure Portal   00001111-aaaa-2222-bbbb-3333cccc4444 Browser       success                 aaaa0000-bb11-2222-33cc-444444dddddd 16/08/…
+Id                                   AppDisplayName                     AppId                                AppTokenProtectionStatus AuthenticationMethodsUsed AuthenticationProtocol
+--                                   --------------                     -----                                ------------------------ ------------------------- ----------------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Azure Active Directory PowerShell  00001111-aaaa-2222-bbbb-3333cccc4444                               {}                     none                                   
+bbbbbbbb-1111-2222-3333-cccccccccccc Azure Portal                       11112222-bbbb-3333-cccc-4444dddd5555                               {}                     none
 ```
 
-This example returns the first n logs.
+This example returns the first two audit logs of sign-ins.
 
 ### Example 3: Get audit logs containing a given AppDisplayName
 
 ```powershell
- Connect-Entra -Scopes 'AuditLog.Read.All', 'Directory.Read.All'
- Get-EntraAuditSignInLogs -Filter  "AppDisplayName eq 'Azure Portal'"
- Get-EntraAuditSignInLogs -Filter "AppDisplayName eq 'Azure Portal'" -Top 1
+Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
+Get-EntraAuditSignInLogs -Filter "AppDisplayName eq 'Graph Explorer'" -Top 1
 ```
 
 ```Output
-Id                                   AppDisplayName AppId                                ClientAppUsed ConditionalAccessStatus CorrelationId                        Created
-                                                                                                                                                                    DateTim
-                                                                                                                                                                    e
---                                   -------------- -----                                ------------- ----------------------- -------------                        -------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Azure Portal   00001111-aaaa-2222-bbbb-3333cccc4444 Browser       success                 aaaa0000-bb11-2222-33cc-444444dddddd 16/08/…
+Id                                   AppDisplayName                                                 AppId                                AppTokenProtectionStatus AuthenticationMethodsUsed AuthenticationProtocol
+--                                   --------------                                                 -----                                ------------------------ ------------------------- ----------------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Graph Explorer PowerShell  00001111-aaaa-2222-bbbb-3333cccc4444   
 ```
 
 This example demonstrates how to retrieve sign-in logs by AppDisplayName.
@@ -96,8 +98,8 @@ This example demonstrates how to retrieve sign-in logs by AppDisplayName.
 ### Example 4: Get all sign-in logs between dates
 
 ```powershell
- Connect-Entra -Scopes 'AuditLog.Read.All', 'Directory.Read.All'
- Get-EntraAuditSignInLogs -Filter "createdDateTime ge 2024-08-01T00:00:00Z and createdDateTime le 2024-08-16T23:59:59Z"
+Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
+Get-EntraAuditSignInLogs -Filter "createdDateTime ge 2024-07-01T00:00:00Z and createdDateTime le 2024-07-14T23:59:59Z"
 ```
 
 This example shows how to retrieve sign-in logs between dates.
@@ -150,6 +152,22 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Property
+
+Specifies properties to be returned
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
