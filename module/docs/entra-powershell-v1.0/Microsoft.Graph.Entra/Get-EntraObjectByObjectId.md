@@ -53,15 +53,15 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
-This example two objects are retrieved (a DeviceConfiguration object and an Application object) as specified by the value of the ObjectIds parameter.
+This example demonstrates how to retrieve objects for a specified object Ids.
 
-- `-ObjectIds` Parameters specify one or more object IDs's, separated by commas, for which the objects are retrieved.
+- `ObjectIds` parameter specifies the One or more object IDs.
 
 ### Example 2: Get an object by types
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraObjectByObjectId -ObjectIds aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb -Types User
+Get-EntraObjectByObjectId -ObjectIds 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Types User
 ```
 
 ```Output
@@ -72,9 +72,8 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 
 This example demonstrates how to retrieve objects for a specified object type.
 
-- `-ObjectIds` Parameters specify one or more object IDs's, separated by commas, for which the objects are retrieved.
-
-- `-Type` Parameter Specifies the type of objects that the cmdlet returns. If not specified, the default is directoryObject, which includes all resource types defined in the directory.
+- `-ObjectIds` parameter specifies the One or more object IDs.
+- `-Types` parameter specifies the type of object ID.
 
 ## Parameters
 
@@ -96,7 +95,7 @@ Accept wildcard characters: False
 
 ### -Types
 
-Specifies the type of objects that the cmdlet returns. If not specified, the default is directoryObject, which includes all resource types defined in the directory. You can specify any object derived from directoryObject in the collection, such as User, Group, and Device objects.
+Specifies the type of objects that the cmdlet returns. If not specified, the default is directoryObject, which includes all resource types defined in the directory. You can specify any object derived from directoryObject in the collection, such as user, group, and device objects.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
