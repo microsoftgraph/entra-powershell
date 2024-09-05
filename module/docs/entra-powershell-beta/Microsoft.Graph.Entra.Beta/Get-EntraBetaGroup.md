@@ -68,7 +68,6 @@ Get-EntraBetaGroup
 ```
 
 ```Output
-
 DisplayName                                       Id                                   MailNickname                                   Description
 -----------                                       --                                   ------------                                   -----------
 SimpleTestGrp                                     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb NickName
@@ -78,7 +77,7 @@ My new group                                      dddddddd-3333-4444-5555-eeeeee
 SimpleGroup                                       eeeeeeee-4444-5555-6666-ffffffffffff NickName
 ```
 
-This example demonstrates how to get all groups from Microsoft Entra ID.  
+This example demonstrates how to get all groups from Microsoft Entra ID.
 
 ### Example 2: Get a specific group by using an ObjectId
 
@@ -93,7 +92,7 @@ DisplayName                                       Id                            
 SimpleTestGrp                   eeeeeeee-4444-5555-6666-ffffffffffff NickName                 {}
 ```
 
-This example demonstrates how to retrieve specific group by providing ID. This command gets information for the group that has the specified ID.
+This example demonstrates how to retrieve specific group by providing ID.
 
 ### Example 3: Get top five groups
 
@@ -125,7 +124,7 @@ Get-EntraBetaGroup -Filter "DisplayName eq 'Parents of Contoso'"
 DisplayName        Id                                   MailNickname     Description        GroupTypes
 -----------        --                                   ------------     -----------        ----------
 Parents of Contoso aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb parentsofcontoso Parents of Contoso {Unified}
-```  
+```
 
 In this example, we retrieve group using the Display Name.
 
@@ -182,7 +181,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-The unique identifier of a group in Microsoft Entra ID. (ObjectId)
+The unique identifier of a group in Microsoft Entra ID. (ObjectId).
 
 ```yaml
 Type: System.String

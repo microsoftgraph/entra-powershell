@@ -56,7 +56,7 @@ For delegated scenarios, the user needs to be assigned the Global Administrator 
 
 ### Example 1: Return a list of all directory synchronization features
 
-```Powershell
+```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.Read.All'
 Get-EntraBetaDirSyncFeature
 ```
