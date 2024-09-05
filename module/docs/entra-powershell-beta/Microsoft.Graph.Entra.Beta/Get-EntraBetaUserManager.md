@@ -34,7 +34,8 @@ Get-EntraBetaUserManager
 
 ## Description
 
-The `Get-EntraBetaUserManager` cmdlet gets the manager of a user in Microsoft Entra ID.
+The `Get-EntraBetaUserManager` cmdlet gets the manager of a user in Microsoft Entra ID. Specify
+`ObjectId` parameter to get the specific manager of user.
 
 ## Examples
 
