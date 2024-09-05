@@ -36,7 +36,6 @@ Describe 'Checking Files'{
             $name = $_.Name -ireplace ".ps1",""
             $name = $name -ireplace "EntraBeta","AzureAD"
             if(("Generic" -ne $name) -and ("Types" -ne $name)){
-                # Write-Host "Checking nc $name"
                 $value = . $_.FullName
                 if ($sourceNameMappings.ContainsKey($value.SourceName)) {
                     $value.SourceName = $sourceNameMappings[$value.SourceName]
@@ -53,13 +52,10 @@ Describe 'Checking Files'{
             $newKey = $key -replace 'AzureADMS', 'AzureAD'
             $modifiedCommands[$newKey] = $module.ExportedCommands[$key]
         }
-        # Write-Host $modifiedCommands.Keys
         $files | ForEach-Object {
             $name = $_.Name -ireplace ".ps1",""
             $name = $name -ireplace "AzureAD","EntraBeta"
             if(("Generic" -ne $name) -and ("Types" -ne $name)){
-                Write-Host "-----------"$name
-                
                 $modifiedCommands.ContainsKey($name) | Should -BeTrue
             }
         }

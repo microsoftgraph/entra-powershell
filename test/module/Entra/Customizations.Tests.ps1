@@ -38,43 +38,6 @@ Describe 'Checking Files'{
                 if ($sourceNameMappings.ContainsKey($value.SourceName)) {
                     $value.SourceName = $sourceNameMappings[$value.SourceName]
                 }
-                # if($value.SourceName -eq "Get-AzureADMSRoleAssignment"){
-                #     $value.SourceName = "Get-AzureADMSDirectoryRoleAssignment"
-                # }
-                # if($value.SourceName -eq "New-AzureADMSRoleAssignment"){
-                #     $value.SourceName = "New-AzureADMSDirectoryRoleAssignment"
-                # }
-                # if($value.SourceName -eq "Remove-AzureADMSRoleAssignment"){
-                #     $value.SourceName = "Remove-AzureADMSDirectoryRoleAssignment"
-                # }
-                # if($value.SourceName -eq "Remove-AzureADMSRoleAssignment"){
-                #     $value.SourceName = "Remove-AzureADMSDirectoryRoleAssignment"
-                # }
-                # if($value.SourceName -eq "Get-AzureADMSRoleDefinition"){
-                #     $value.SourceName = "Get-AzureADMSDirectoryRoleDefinition"
-                # }
-                # if($value.SourceName -eq "New-AzureADMSRoleDefinition"){
-                #     $value.SourceName = "New-AzureADMSDirectoryRoleDefinition"
-                # }
-                # if($value.SourceName -eq "Set-AzureADMSRoleDefinition"){
-                #     $value.SourceName = "Set-AzureADMSDirectoryRoleDefinition"
-                # }
-                # if($value.SourceName -eq "Remove-AzureADMSRoleDefinition"){
-                #     $value.SourceName = "Remove-AzureADMSDirectoryRoleDefinition"
-                # }
-                # if($value.SourceName -eq "Get-AzureADServiceAppRoleAssignedTo"){
-                #     $value.SourceName = "Get-AzureADServicePrincipalAppRoleAssignedTo"
-                # }
-                # if($value.SourceName -eq "Get-AzureADServiceAppRoleAssignment"){
-                #     $value.SourceName = "Get-AzureADServicePrincipalAppRoleAssignment"
-                # }
-                # if($value.SourceName -eq "New-AzureADServiceAppRoleAssignment"){
-                #     $value.SourceName = "New-AzureADServicePrincipalAppRoleAssignment"
-                # }
-                # if($value.SourceName -eq "Remove-AzureADServiceAppRoleAssignment"){
-                #     $value.SourceName = "Remove-AzureADServicePrincipalAppRoleAssignment"
-                # }
-                
 
                 $name | Should -Be ($value.SourceName -ireplace "AzureADMS","AzureAD")  
             }            
