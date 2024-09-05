@@ -39,6 +39,21 @@ Describe "Set-EntraAttributeSet" {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
-        }   
+        }
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { 
+                    Set-EntraAttributeSet -AttributeSetId "NewCustomAttributeSet" -Description "CustomAttributeSet" -MaxAttributesPerSet 125 -Debug 
+                } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference
+                $DebugPreference = $originalDebugPreference
+            }
+        } 
     }
 }
