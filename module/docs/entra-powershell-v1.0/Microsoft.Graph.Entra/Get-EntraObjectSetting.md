@@ -250,9 +250,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
-
-[New-EntraObjectSetting](New-EntraObjectSetting.md)
-
-[Remove-EntraObjectSetting](Remove-EntraObjectSetting.md)
-
-[Set-EntraObjectSetting](Set-EntraObjectSetting.md)
