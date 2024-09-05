@@ -58,7 +58,7 @@ ffffffff-4444-5555-6666-gggggggggggg
 hhhhhhhh-5555-6666-7777-iiiiiiiiiiii
 ```
 
-This command gets objects owned by the specified user.
+This example retrieves objects owned by the specified user.
 
 - `-ObjectId` Parameter specifies the ID of a user as a UserPrincipalName or ObjectId.
 
@@ -80,9 +80,9 @@ ffffffff-4444-5555-6666-gggggggggggg
 hhhhhhhh-5555-6666-7777-iiiiiiiiiiii
 ```
 
-This command gets all the objects owned by the specified user.
+This example retrieves all the objects owned by the specified user.
 
-- `-ObjectId` Parameter specifies the ID of a user as a UserPrincipalName or ObjectId.
+- `-ObjectId` parameter specifies the ID of a user as a UserPrincipalName or ObjectId.
 
 ### Example 3: Get top three objects owned by a user
 
@@ -99,9 +99,9 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 cccccccc-2222-3333-4444-dddddddddddd
 ```
 
-This command gets the top three objects owned by the specified user.
+This example retrieves the top three objects owned by the specified user.
 
-- `-ObjectId` Parameter specifies the ID of a user as a UserPrincipalName or ObjectId.
+- `-ObjectId` parameter specifies the ID of a user as a UserPrincipalName or ObjectId.
 
 ## Parameters
 
@@ -123,7 +123,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-Specifies the ID of a user (as a UserPrincipalName or ObjectId) in Microsoft Entra ID.
+Specifies the ID of a user (as a User Principal Name or ObjectId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
