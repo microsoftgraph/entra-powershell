@@ -28,7 +28,7 @@ Describe 'Checking Files'{
             "Get-AzureADServiceAppRoleAssignment"    = "Get-AzureADServicePrincipalAppRoleAssignment"
             "New-AzureADServiceAppRoleAssignment"    = "New-AzureADServicePrincipalAppRoleAssignment"
             "Remove-AzureADServiceAppRoleAssignment" = "Remove-AzureADServicePrincipalAppRoleAssignment"
-            "Add-AzureADMScustomSecurityAttributeDefinitionAllowedValues" = "Add-AzureADMScustomSecurityAttributeDefinitionAllowedValue"
+            "Add-AzureADMSCustomSecurityAttributeDefinitionAllowedValues" = "Add-AzureADMSCustomSecurityAttributeDefinitionAllowedValue"
             "Get-AzureADAuditDirectoryLogs" = "Get-AzureADAuditDirectoryLog"
             "Get-AzureADAuditSignInLogs" = "Get-AzureADAuditSignInLog"
         }
