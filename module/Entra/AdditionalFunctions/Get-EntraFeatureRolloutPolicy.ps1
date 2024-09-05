@@ -17,28 +17,34 @@ function Get-EntraFeatureRolloutPolicy {
     PROCESS {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
-        $baseUri = 'https://graph.microsoft.com/v1.0/policies/featureRolloutPolicies/'
+        $baseUri = 'https://graph.microsoft.com/v1.0/policies/featureRolloutPolicies/?'
         $params["Method"] = "GET"
         $params["Uri"] = "$baseUri"
         
         if($null -ne $PSBoundParameters["Id"])
         {
             $Id = $PSBoundParameters["Id"]
-            $params["Uri"] += "$($Id)/?"
+            $params["Uri"] = "https://graph.microsoft.com/v1.0/policies/featureRolloutPolicies/$Id/?"
         }
         if($null -ne $PSBoundParameters["SearchString"])
         {
             $FilterValue = $PSBoundParameters["SearchString"]
             $filter="displayName eq '$FilterValue' or startswith(displayName,'$FilterValue')"
             $f = '$' + 'Filter'
-            $params["Uri"] += "?$f=$filter"
+            $params["Uri"] += "$f=$filter"
         }
         if($null -ne $PSBoundParameters["Filter"])
         {
             $Filter = $PSBoundParameters["Filter"]
             $f = '$' + 'Filter'
-            $params["Uri"] += "?$f=$Filter"
+            $params["Uri"] += "$f=$Filter"
         } 
+        if($null -ne $PSBoundParameters["Property"])
+        {
+            $selectProperties = $PSBoundParameters["Property"]
+            $selectProperties = $selectProperties -Join ','
+            $params["Uri"] += "&`$select=$($selectProperties)"
+        }
 	    
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
@@ -62,12 +68,7 @@ function Get-EntraFeatureRolloutPolicy {
                 }
                 $userList += $userType
             }
-            if($null -ne $PSBoundParameters["Property"]){
-                $userList | Select-Object $PSBoundParameters["Property"]
-            }
-            else {
-                $userList 
-            }
+            $userList
         }
     }
 }
