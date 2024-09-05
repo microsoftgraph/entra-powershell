@@ -40,11 +40,17 @@ Describe "Get-EntraBetaPasswordPolicy" {
         } 
        
         It "Should contain 'User-Agent' header" {
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaPasswordPolicy"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaPasswordPolicy"
 
-        $result = Get-EntraBetaPasswordPolicy -DomainName "M365x99297270.onmicrosoft.com"
-        $params = Get-Parameters -data $result.NotificationDays.Parameters
-        $params.Headers["User-Agent"] | Should -Contain $userAgentHeaderValue
+            $result = Get-EntraBetaPasswordPolicy -DomainName "M365x99297270.onmicrosoft.com"
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaPasswordPolicy"
+
+            Should -Invoke -CommandName Get-MgBetaDomain -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       
