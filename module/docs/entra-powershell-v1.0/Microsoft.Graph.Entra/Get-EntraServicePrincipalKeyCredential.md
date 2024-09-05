@@ -32,7 +32,7 @@ Get-EntraServicePrincipalKeyCredential
 
 ## Description
 
-The Get-EntraServicePrincipalKeyCredential cmdlet gets the key credentials for a service principal in Microsoft Entra ID.
+The `Get-EntraServicePrincipalKeyCredential` cmdlet gets the key credentials for a service principal in Microsoft Entra ID.
 
 ## Examples
 
@@ -40,20 +40,19 @@ The Get-EntraServicePrincipalKeyCredential cmdlet gets the key credentials for a
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
-Get-EntraServicePrincipalKeyCredential -ObjectId $ServicePrincipalId
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraServicePrincipalKeyCredential -ObjectId $ServicePrincipal.ObjectId
 ```
 
-```output
+```Output
 CustomKeyIdentifier DisplayName EndDateTime         Key KeyId                                StartDateTime       Type      Usage
 ------------------- ----------- -----------         --- -----                                -------------       ----      -----
-                                08/02/2025 09:57:08     aaaaaaaa-0b0b-1c1c-2d2d-333333333333 08/02/2024 09:57:08 Symmetric Sign
+                                08-02-2025 09:57:08     68b45e27-fef8-4f0d-bc7a-76bd949c16d1 08-02-2024 09:57:08 Symmetric Sign
 ```
 
-The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md) cmdlet.
-The command stores the ID in the $ServicePrincipalId variable.
+This example retrieves the key credentials for specified service principal in Microsoft Entra ID. You can use the command `Get-EntraServicePrincipal` to get a service principal object Id.
 
-The second command gets the key credential for the service principal identified by $ServicePrincipalId.
+- `-ObjectId` parameter specifies the service principal Id.
 
 ## Parameters
 
@@ -75,7 +74,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
