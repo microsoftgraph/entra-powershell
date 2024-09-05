@@ -24,10 +24,10 @@ Microsoft Entra PowerShell supports PowerShell version 5.1 and version 7+. We re
 
 The following table contains a list of the Microsoft Entra PowerShell modules.
 
-Description       | Module Name  | PowerShell Gallery Link
------------------ | ------------ | -----------------------
-v1.0 Module  | `Microsoft.Graph.Entra`         | [Gallery](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra)
-Beta Module | `Microsoft.Graph.Entra.Beta`     | [Gallery](https://www.powershellgallery.com/packages/Microsoft.Graph.Entra.Beta)
+| Module                                             | Latest                          | Description |
+| -------------------------------------------------- | ------------------------------- | ----------- |
+| [`Microsoft.Graph.Entra`][entrapsgallery]          | [![mg]][entrapsgallery]         | v1.0 Module |
+| [`Microsoft.Graph.Entra.Beta`][entrapsgallerybeta] | [![mgbeta]][entrapsgallerybeta] | Beta Module |
 
 ## Learn more
 
@@ -67,6 +67,13 @@ This project adopted the [Microsoft Open Source Code of Conduct](https://opensou
 ## License
 
 Copyright (c) Microsoft Corporation. All Rights Reserved. Licensed under the MIT [license](LICENSE).
+
+<!-- PS Gallery -->
+[entrapsgallery]: https://www.powershellgallery.com/packages/Microsoft.Graph.Entra/
+[entrapsgallerybeta]: https://www.powershellgallery.com/packages/Microsoft.Graph.Entra.Beta/
+
+[mg]: https://img.shields.io/powershellgallery/v/Microsoft.Graph.Entra.svg?style=flat-square&label=Microsoft.Graph.Entra
+[mgbeta]: https://img.shields.io/powershellgallery/v/Microsoft.Graph.Entra.Beta.svg?style=flat-square&label=Microsoft.Graph.Entra.Beta
 
 [entraPowershellIssues]: https://github.com/microsoftgraph/entra-powershell/issues
 [azureADDeprecationArticle]: https://techcommunity.microsoft.com/t5/microsoft-entra-blog/important-update-deprecation-of-azure-ad-powershell-and-msonline/ba-p/4094536
