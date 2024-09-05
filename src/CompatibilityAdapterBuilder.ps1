@@ -606,7 +606,8 @@ $($Command.CustomScript)
             "Get-EntraDevice",
             "Get-EntraDirectoryRole",
             "Get-EntraServicePrincipal",
-            "Get-EntraAdministrativeUnit"
+            "Get-EntraAdministrativeUnit",
+            "Get-EntraDirectoryRoleAssignment"
         )
         
         
