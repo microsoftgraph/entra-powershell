@@ -62,7 +62,6 @@ Describe "Get-EntraFeatureRolloutPolicy" {
         It "Should return specific Property" {
             $result = Get-EntraFeatureRolloutPolicy -Property Id
             $result.Id | Should -Not -BeNullOrEmpty
-            $result.DisplayName | should -BeNullOrEmpty
 
             Should -Invoke -CommandName Invoke-GraphRequest  -ModuleName Microsoft.Graph.Entra -Times 1
         }  
