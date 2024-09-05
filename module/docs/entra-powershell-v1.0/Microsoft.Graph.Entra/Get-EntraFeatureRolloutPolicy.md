@@ -1,22 +1,22 @@
 ---
-title: Get-EntraBetaFeatureRolloutPolicy
-description: This article provides details on the Get-EntraBetaFeatureRolloutPolicy command.
+title: Get-EntraFeatureRolloutPolicy
+description: This article provides details on the Get-EntraFeatureRolloutPolicy command.
 
 
 ms.topic: reference
-ms.date: 07/04/2024
+ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
-external help file: Microsoft.Graph.Entra.Beta-Help.xml
-Module Name: Microsoft.Graph.Entra.Beta
-online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra.Beta/Get-EntraBetaFeatureRolloutPolicy
 
+external help file: Microsoft.Graph.Entra-Help.xml
+Module Name: Microsoft.Graph.Entra
+online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Get-EntraFeatureRolloutPolicy
 schema: 2.0.0
 ---
 
-# Get-EntraBetaFeatureRolloutPolicy
+# Get-EntraFeatureRolloutPolicy
 
 ## Synopsis
 
@@ -27,8 +27,8 @@ Gets the policy for cloud authentication roll-out in Microsoft Entra ID.
 ### GetQuery (Default)
 
 ```powershell
-Get-EntraBetaFeatureRolloutPolicy
- [-Filter <String>]
+Get-EntraFeatureRolloutPolicy 
+ [-Filter <String>] 
  [-Property <String[]>]
  [<CommonParameters>]
 ```
@@ -36,24 +36,23 @@ Get-EntraBetaFeatureRolloutPolicy
 ### GetVague
 
 ```powershell
-Get-EntraBetaFeatureRolloutPolicy
- [-SearchString <String>]
- [-Property <String[]>]
+Get-EntraFeatureRolloutPolicy 
+ [-SearchString <String>] 
  [<CommonParameters>]
 ```
 
 ### GetById
 
 ```powershell
-Get-EntraBetaFeatureRolloutPolicy
- -Id <String>
- [-Property <String[]>]
+Get-EntraFeatureRolloutPolicy 
+ -Id <String> 
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Get-EntraBetaFeatureRolloutPolicy` cmdlet allows an admin to get the policy for cloud authentication rollout (users moving from federation to cloud auth) in Microsoft Entra ID.
+The `Get-EntraFeatureRolloutPolicy` cmdlet allows an admin to get the policy for cloud authentication rollout (users moving from federation to cloud auth) in Microsoft Entra ID.
+
 This policy consists of one or two FeatureRolloutPolicy objects. These objects hold the groups assigned for cloud authentication (Pass-through authentication or Password Hash Sync) and groups assigned for Seamless single sign-on.
 
 ## Examples
@@ -62,14 +61,14 @@ This policy consists of one or two FeatureRolloutPolicy objects. These objects h
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraBetaFeatureRolloutPolicy
+Get-EntraFeatureRolloutPolicy
 ```
 
 ```Output
 Id                                   Description            DisplayName                Feature            IsAppliedToOrganization IsEnabled
 --                                   -----------            -----------                -------            ----------------------- ---------
-00aa00aa-bb11-cc22-dd33-44ee44ee44ee Feature-Rollout-test   Feature-Rollout-Policytest passwordHashSync   False                   True
-11bb11bb-cc22-dd33-ee44-55ff55ff55ff Feature-Rollout-Policy change                     emailAsAlternateId False                   False
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Feature-Rollout-test   Feature-Rollout-Policytest passwordHashSync   False                   True
+bbbbbbbb-1111-2222-3333-cccccccccccc Feature-Rollout-Policy change                     emailAsAlternateId False                   False
 ```
 
 This command retrieves a list of all cloud authentication roll-out policies in Microsoft Entra ID.
@@ -78,13 +77,15 @@ This command retrieves a list of all cloud authentication roll-out policies in M
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraBetaFeatureRolloutPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraFeatureRolloutPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
-Id                                   Description          DisplayName                Feature          IsAppliedToOrganization IsEnabled
---                                   -----------          -----------                -------          ----------------------- ---------
-11bb11bb-cc22-dd33-ee44-55ff55ff55ff Feature-Rollout-test Feature-Rollout-Policytest passwordHashSync False                   True
+
+Id                                   Description            DisplayName Feature            IsAppliedToOrganization IsEnabled
+--                                   -----------            ----------- -------            ----------------------- ---------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Feature-Rollout-Policy change      emailAsAlternateId False                   False
+
 ```
 
 This example retrieves the policy for cloud authentication roll-out policy in Microsoft Entra ID.
@@ -95,13 +96,13 @@ This example retrieves the policy for cloud authentication roll-out policy in Mi
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraBetaFeatureRolloutPolicy -SearchString 'Feature-Rollout-Policytest'
+Get-EntraFeatureRolloutPolicy -SearchString 'Feature-Rollout-Policy'
 ```
 
 ```Output
-Id                                   Description          DisplayName                Feature          IsAppliedToOrganization IsEnabled
---                                   -----------          -----------                -------          ----------------------- ---------
-11bb11bb-cc22-dd33-ee44-55ff55ff55ff Feature-Rollout-test Feature-Rollout-Policytest passwordHashSync False      
+Id                                   Description            DisplayName Feature            IsAppliedToOrganization IsEnabled
+--                                   -----------            ----------- -------            ----------------------- ---------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Feature-Rollout-Policy change      emailAsAlternateId False                   False
 ```
 
 This command retrieves the policy for cloud authentication roll-out policy in Microsoft Entra ID.
@@ -110,13 +111,15 @@ This command retrieves the policy for cloud authentication roll-out policy in Mi
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraBetaFeatureRolloutPolicy -Filter "DisplayName eq 'Feature-Rollout-Policytest'"
+Get-EntraFeatureRolloutPolicy -Filter "Description eq 'Feature-Rollout-Policy'"
 ```
 
 ```Output
-Id                                   Description          DisplayName                Feature          IsAppliedToOrganization IsEnabled
---                                   -----------          -----------                -------          ----------------------- ---------
-11bb11bb-cc22-dd33-ee44-55ff55ff55ff Feature-Rollout-test Feature-Rollout-Policytest passwordHashSync False      
+
+Id                                   Description            DisplayName Feature            IsAppliedToOrganization IsEnabled
+--                                   -----------            ----------- -------            ----------------------- ---------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb  Feature-Rollout-Policy change      emailAsAlternateId False                   False
+
 ```
 
 This command retrieves the policy for cloud authentication roll-out policy in Microsoft Entra ID.
@@ -202,8 +205,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[New-EntraBetaFeatureRolloutPolicy](New-EntraBetaFeatureRolloutPolicy.md)
+[New-EntraFeatureRolloutPolicy](New-EntraFeatureRolloutPolicy.md)
 
-[Set-EntraBetaFeatureRolloutPolicy](Set-EntraBetaFeatureRolloutPolicy.md)
+[Set-EntraFeatureRolloutPolicy](Set-EntraFeatureRolloutPolicy.md)
 
-[Remove-EntraBetaFeatureRolloutPolicy](Remove-EntraBetaFeatureRolloutPolicy.md)
+[Remove-EntraFeatureRolloutPolicy](Remove-EntraFeatureRolloutPolicy.md)
