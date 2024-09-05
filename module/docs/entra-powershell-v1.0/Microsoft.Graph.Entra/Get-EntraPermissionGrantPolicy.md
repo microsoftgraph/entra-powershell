@@ -54,7 +54,7 @@ Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
 Get-EntraPermissionGrantPolicy
 ```
 
-```output
+```Output
 DeletedDateTime Description
 --------------- -----------
                 Includes all application permissions (app roles), for all APIs, for any client application.
@@ -62,7 +62,7 @@ DeletedDateTime Description
                 (Deprecated) Includes all team resource-specific application permissions, for all APIs, for any client application.
 ```
 
-This command gets all the permission grant policies.  
+This command gets all the permission grant policies.
 
 ### Example 2: Get a permission grant policy by ID
 
@@ -71,13 +71,15 @@ Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
 Get-EntraPermissionGrantPolicy -Id 'testtenant-sampleapp-permissions'
 ```
 
-```output
+```Output
 DeletedDateTime Description                               DisplayName            Id
 --------------- -----------                               -----------            --
                 Permissions for sample app in test tenant Sample app permissions testtenant-sampleapp-permissions
 ```
 
 This command gets the specified permission grant policy.
+
+- `Id` parameter specifies the permission grant policy ID.
 
 ## Parameters
 
@@ -99,7 +101,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

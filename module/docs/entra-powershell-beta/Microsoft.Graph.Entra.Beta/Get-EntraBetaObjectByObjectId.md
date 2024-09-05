@@ -34,7 +34,7 @@ Get-EntraBetaObjectByObjectId
 
 ## Description
 
-Retrieves the objects specified by the ObjectIds parameter.
+The `Get-EntraBetaObjectByObjectId` cmdlet retrieves the objects specified by the ObjectIds parameter.
 
 ## Examples
 
@@ -51,7 +51,7 @@ Id                                   DeletedDateTime
 cccccccc-2222-3333-4444-dddddddddddd
 ```
 
- This example demonstrates how to retrieve objects for a specified object Ids.
+This example demonstrates how to retrieve objects for a specified object Ids.
 
 - `ObjectIds` parameter specifies the One or more object IDs.
 
@@ -77,7 +77,7 @@ This example demonstrates how to retrieve objects for a specified object type.
 
 ### -ObjectIds
 
-One or more object IDs's, separated by commas, for which the objects are retrieved. The IDs are GUIDs, represented as strings. You can specify up to 1000 IDs.
+One or more object IDs's, separated by commas, for which the objects are retrieved. The IDs are GUIDs, represented as strings. You can specify up to 1,000 IDs.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -109,7 +109,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
