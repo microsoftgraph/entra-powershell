@@ -35,7 +35,7 @@ Get-EntraServicePrincipalOwner
 
 ## Description
 
-The `Get-EntraServicePrincipalOwner` command gets the owners of a service principal in Microsoft Entra ID.
+The `Get-EntraServicePrincipalOwner` cmdlet gets the owners of a service principal in Microsoft Entra ID.
 
 ## Examples
 
@@ -48,16 +48,16 @@ Get-EntraServicePrincipalOwner -ObjectId $servicePrincipal.ObjectId
 ```
 
 ```Output
-ObjectId                             DisplayName    UserPrincipalName   UserType
---------                             -----------    -----------------   --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adams Smith    Adams@contoso.com   Member
-bbbbbbbb-1111-2222-3333-cccccccccccc Peter Kons     Peter@contoso.com   Member
-cccccccc-2222-3333-4444-dddddddddddd Mary Kom       Mary@contoso.com    Member
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
 ```
 
 This example gets the owners of a specified service principal. You can use the comand `Get-EntraServicePrincipal` to get service principal object Id.
 
-- `ObjectId` parameter specifies the unique identifier of a service principal.
+- `-ObjectId` parameter specifies the unique identifier of a service principal.
 
 ### Example 2: Retrieve all the owners of a service principal
 
@@ -68,16 +68,16 @@ Get-EntraServicePrincipalOwner -ObjectId $servicePrincipal.ObjectId -All
 ```
 
 ```Output
-ObjectId                             DisplayName    UserPrincipalName   UserType
---------                             -----------    -----------------   --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adams Smith    Adams@contoso.com   Member
-bbbbbbbb-1111-2222-3333-cccccccccccc Peter Kons     Peter@contoso.com   Member
-cccccccc-2222-3333-4444-dddddddddddd Mary Kom       Mary@contoso.com    Member
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
 ```
 
-This example retrieves all the owners of a service principal. You can use the comand `Get-EntraServicePrincipal` to get service principal object Id.
+This command gets all the owners of a service principal. You can use the comand `Get-EntraServicePrincipal` to get service principal object Id.
 
-- `ObjectId` parameter specifies the unique identifier of a service principal.
+- `-ObjectId` parameter specifies the unique identifier of a service principal.
 
 ### Example 3: Retrieve top two owners of a service principal
 
@@ -88,13 +88,13 @@ Get-EntraServicePrincipalOwner -ObjectId $servicePrincipal.ObjectId -Top 2
 ```
 
 ```Output
-ObjectId                             DisplayName    UserPrincipalName   UserType
---------                             -----------    -----------------   --------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adams Smith    Adams@contoso.com   Member
-bbbbbbbb-1111-2222-3333-cccccccccccc Peter Kons     Peter@contoso.com   Member
+Id                                   DeletedDateTime
+--                                   ---------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
+bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
-This example retrieves the top two owners of a service principal. You can use the comand `Get-EntraServicePrincipal` to get service principal object Id.
+This command gets top two owners of a service principal. You can use the comand `Get-EntraServicePrincipal` to get service principal object Id.
 
 - `-ObjectId` parameter specifies the unique identifier of a service principal.
 
@@ -130,7 +130,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb AlexW@contoso.com  Alex Wilber
 bbbbbbbb-1111-2222-3333-cccccccccccc AdeleV@contoso.com Adele Vance
 ```
 
-This example retrieve additional details of a service principal owners such as displayName, userPrincipalName.
+This example shows how to retrieve additional details of a service principal owner such as displayName, userPrincipalName.
 
 ## Parameters
 
@@ -184,7 +184,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -200,7 +200,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
