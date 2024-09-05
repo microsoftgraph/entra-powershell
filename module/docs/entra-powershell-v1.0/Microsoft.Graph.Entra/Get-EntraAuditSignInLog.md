@@ -34,7 +34,7 @@ Get-EntraAuditSignInLog
 
 ## Description
 
-The `Get-EntraAuditSignInLogs` cmdlet gets the Microsoft Entra ID sign-in log.
+The `Get-EntraAuditSignInLog` cmdlet gets the Microsoft Entra ID sign-in log.
 
 In addition to delegated permissions, the signed-in user must belong to at least one of the following Microsoft Entra roles to read sign-in reports:
 
@@ -50,7 +50,7 @@ In addition to delegated permissions, the signed-in user must belong to at least
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
-Get-EntraAuditSignInLogs -All   
+Get-EntraAuditSignInLog -All   
 ```
 
 ```Output
@@ -68,7 +68,7 @@ This example returns all audit logs of sign-ins.
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
-Get-EntraAuditSignInLogs -Top 2
+Get-EntraAuditSignInLog -Top 2
 ```
 
 ```Output
@@ -84,7 +84,7 @@ This example returns the first two audit logs of sign-ins.
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
-Get-EntraAuditSignInLogs -Filter "AppDisplayName eq 'Graph Explorer'" -Top 1
+Get-EntraAuditSignInLog -Filter "AppDisplayName eq 'Graph Explorer'" -Top 1
 ```
 
 ```Output
@@ -99,7 +99,7 @@ This example demonstrates how to retrieve sign-in logs by AppDisplayName.
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
-Get-EntraAuditSignInLogs -Filter "createdDateTime ge 2024-07-01T00:00:00Z and createdDateTime le 2024-07-14T23:59:59Z"
+Get-EntraAuditSignInLog -Filter "createdDateTime ge 2024-07-01T00:00:00Z and createdDateTime le 2024-07-14T23:59:59Z"
 ```
 
 This example shows how to retrieve sign-in logs between dates.

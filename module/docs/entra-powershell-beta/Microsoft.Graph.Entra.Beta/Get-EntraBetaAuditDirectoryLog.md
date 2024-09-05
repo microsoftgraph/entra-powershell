@@ -81,7 +81,7 @@ This example returns the first N logs.
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All, Directory.Read.All'
-Get-EntraBetaAuditDirectoryLogs -Filter "ActivityDisplayName eq 'Update rollout policy of feature'" -Top 1
+Get-EntraBetaAuditDirectoryLog -Filter "ActivityDisplayName eq 'Update rollout policy of feature'" -Top 1
 ```
 
 ```Output
@@ -96,7 +96,7 @@ This command shows how to get audit logs by ActivityDisplayName.
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All, Directory.Read.All'
-Get-EntraBetaAuditDirectoryLogs -Filter "result eq 'failure'" -All
+Get-EntraBetaAuditDirectoryLog -Filter "result eq 'failure'" -All
 ```
 
 This command shows how to get audit logs by the result.

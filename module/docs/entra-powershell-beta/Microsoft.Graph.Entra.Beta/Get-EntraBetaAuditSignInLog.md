@@ -85,7 +85,7 @@ This example returns the first two audit logs of sign-ins.
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All','Directory.Read.All'
-Get-EntraBetaAuditSignInLogs -Filter "AppDisplayName eq 'Graph Explorer'" -Top 1
+Get-EntraBetaAuditSignInLog -Filter "AppDisplayName eq 'Graph Explorer'" -Top 1
 ```
 
 ```Output

@@ -34,7 +34,7 @@ Get-EntraAuditDirectoryLog
 
 ## Description
 
-The `Get-EntraAuditDirectoryLogs` cmdlet gets a Microsoft Entra ID audit log.
+The `Get-EntraAuditDirectoryLog` cmdlet gets a Microsoft Entra ID audit log.
 
 Retrieve audit logs from Microsoft Entra ID, covering logs from various services such as user, app, device, and group management, privileged identity management (PIM), access reviews, terms of use, identity protection, password management (SSPR and admin resets), and self-service group management.
 
@@ -44,7 +44,7 @@ Retrieve audit logs from Microsoft Entra ID, covering logs from various services
 
 ```powershell
  Connect-Entra -Scopes 'AuditLog.Read.All, Directory.Read.All'
- Get-EntraAuditDirectoryLogs -All  
+ Get-EntraAuditDirectoryLog -All  
 ```
 
 ```Output
@@ -62,7 +62,7 @@ This command gets all audit logs.
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All, Directory.Read.All'
-Get-EntraAuditDirectoryLogs -Top 1
+Get-EntraAuditDirectoryLog -Top 1
 ```
 
 ```Output
@@ -80,7 +80,7 @@ This example returns the first N logs.
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All, Directory.Read.All'
-Get-EntraAuditDirectoryLogs -Filter "ActivityDisplayName eq 'Update rollout policy of feature'" -Top 1
+Get-EntraAuditDirectoryLog -Filter "ActivityDisplayName eq 'Update rollout policy of feature'" -Top 1
 ```
 
 ```Output
@@ -95,7 +95,7 @@ This command shows how to get audit logs by ActivityDisplayName.
 
 ```powershell
 Connect-Entra -Scopes 'AuditLog.Read.All, Directory.Read.All'
-Get-EntraAuditDirectoryLogs -Filter "result eq 'failure'" -All
+Get-EntraAuditDirectoryLog -Filter "result eq 'failure'" -All
 ```
 
 This command shows how to get audit logs by the result.
