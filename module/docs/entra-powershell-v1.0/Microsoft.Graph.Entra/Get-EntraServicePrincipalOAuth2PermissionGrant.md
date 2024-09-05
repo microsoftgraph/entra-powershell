@@ -57,7 +57,7 @@ This cmdlet retrieves a OAuth2PermissionGrant object for a service principal in 
 
 `-ObjectId` parameter specifies the ID of a service principal.
 
-### Example 2: Get OAuth2 permission grants of a specific service principal
+### Example 2: Get all OAuth2 permission grants
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
