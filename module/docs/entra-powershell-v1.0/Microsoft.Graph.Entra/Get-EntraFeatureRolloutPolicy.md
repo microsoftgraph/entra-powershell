@@ -53,7 +53,7 @@ Get-EntraFeatureRolloutPolicy
 
 The `Get-EntraFeatureRolloutPolicy` cmdlet allows an admin to get the policy for cloud authentication rollout (users moving from federation to cloud auth) in Microsoft Entra ID.
 
-This policy is in the form of one or two FeatureRolloutPolicy objects holding groups that are assigned for cloud auth (Pass-through auth or Password hash-sync) and groups that are assigned for Seamless single sign-on.
+This policy consists of one or two FeatureRolloutPolicy objects. These objects hold the groups assigned for cloud authentication (Pass-through authentication or Password Hash Sync) and groups assigned for Seamless single sign-on.
 
 ## Examples
 
@@ -126,7 +126,7 @@ This command retrieves the policy for cloud authentication roll-out policy in Mi
 
 ## Parameters
 
-### -ID
+### -Id
 
 The unique identifier of the cloud authentication roll-out policy in Microsoft Entra ID.
 
@@ -160,7 +160,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-The oData v3.0 filter statement.
+Specifies an OData v4.0 filter statement.
 Controls which objects are returned.
 
 ```yaml
