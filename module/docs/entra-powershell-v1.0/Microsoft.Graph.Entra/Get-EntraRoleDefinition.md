@@ -264,8 +264,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[New-EntraRoleDefinition](New-EntraBetaRoleDefinition.md)
+[New-EntraRoleDefinition](New-EntraRoleDefinition.md)
 
-[Remove-EntraRoleDefinition](Remove-EntraBetaRoleDefinition.md)
+[Remove-EntraRoleDefinition](Remove-EntraRoleDefinition.md)
 
-[Set-EntraRoleDefinition](Set-EntraBetaRoleDefinition.md)
+[Set-EntraRoleDefinition](Set-EntraRoleDefinition.md)
