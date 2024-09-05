@@ -59,7 +59,13 @@ Get-EntraBetaRoleAssignment
 
 The `Get-EntraBetaRoleAssignment` cmdlet gets information about role assignments in Microsoft Entra ID. To get a role assignment, specify the `Id` parameter. Specify the `SearchString` or `Filter` parameter to find a particular role assignment.
 
-In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role. The least privileged roles supported for this operation are as follows, in the order of least to most privileged:
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with one of the following permissions:
+
+- microsoft.directory/roleAssignments/standard/read (least privileged)
+- microsoft.directory/roleAssignments/allProperties/read
+- microsoft.directory/roleAssignments/allProperties/allTasks
+
+The least privileged roles for this operation, from least to most privileged, are:
 
 - Directory Readers
 - Global Reader
@@ -193,7 +199,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-The oData v3.0 filter statement.
+The OData v4.0 filter statement.
 Controls which objects are returned.
 
 ```yaml
@@ -230,7 +236,7 @@ Specifies a search string.
 
 ```yaml
 Type: System.String
-Parameter Sets: GetVague
+Parameter Sets: GetValue
 Aliases:
 
 Required: False
@@ -278,15 +284,9 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Inputs
 
-### System.String
-
-### System.Nullable`1[[System.Boolean, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]
-
-### System.Nullable`1[[System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]
-
 ## Outputs
 
-### System.Object
+### Microsoft.Open.MSGraph.Model.DirectoryRoleAssignment
 
 ## Notes
 

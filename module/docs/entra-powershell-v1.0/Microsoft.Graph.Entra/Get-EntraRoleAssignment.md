@@ -59,7 +59,13 @@ Get-EntraRoleAssignment
 
 The `Get-EntraRoleAssignment` cmdlet gets information about role assignments in Microsoft Entra ID. To get a role assignment, specify the `Id` parameter. Specify the `SearchString` or `Filter` parameter to find a particular role assignment.
 
-In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role. The least privileged roles supported for this operation are as follows, in the order of least to most privileged:
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with one of the following permissions:
+
+- microsoft.directory/roleAssignments/standard/read (least privileged)
+- microsoft.directory/roleAssignments/allProperties/read
+- microsoft.directory/roleAssignments/allProperties/allTasks
+
+The least privileged roles for this operation, from least to most privileged, are:
 
 - Directory Readers
 - Global Reader
@@ -77,11 +83,11 @@ Get-EntraRoleAssignment
 ```Output
 Id                                      PrincipalId                           RoleDefinitionId                    DirectoryScopeId AppScopeId
 --                                      -----------                           ----------------                    ---------------- ----------
-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u           aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w           bbbbbbbb-cccc-dddd-2222-333333333333  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-E3fH4iJ5kL6mN7oP8qR9sT0uV1wX2y           cccccccc-dddd-eeee-3333-444444444444  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-H4iJ5kL6mN7oP8qR9sT0uV1wX2yZ3a           dddddddd-eeee-ffff-4444-555555555555  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-J5kL6mN7oP8qR9sT0uV1wX2yZ3aB4c           eeeeeeee-ffff-aaaa-5555-666666666666  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
+00001111-aaaa-2222-bbbb-3333cccc4444          aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
+11112222-bbbb-3333-cccc-4444dddd5555          bbbbbbbb-cccc-dddd-2222-333333333333  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
+22223333-cccc-4444-dddd-5555eeee6666          cccccccc-dddd-eeee-3333-444444444444  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
+33334444-dddd-5555-eeee-6666ffff7777          dddddddd-eeee-ffff-4444-555555555555  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
+44445555-eeee-6666-ffff-7777aaaa8888          eeeeeeee-ffff-aaaa-5555-666666666666  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
 ```
 
 This command gets the role assignments in Microsoft Entra ID.  
@@ -96,16 +102,33 @@ Get-EntraRoleAssignment -All
 ```Output
 Id                                      PrincipalId                           RoleDefinitionId                    DirectoryScopeId AppScopeId
 --                                      -----------                           ----------------                    ---------------- ----------
-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u           aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w           bbbbbbbb-cccc-dddd-2222-333333333333  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-E3fH4iJ5kL6mN7oP8qR9sT0uV1wX2y           cccccccc-dddd-eeee-3333-444444444444  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-H4iJ5kL6mN7oP8qR9sT0uV1wX2yZ3a           dddddddd-eeee-ffff-4444-555555555555  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-J5kL6mN7oP8qR9sT0uV1wX2yZ3aB4c           eeeeeeee-ffff-aaaa-5555-666666666666  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
+00001111-aaaa-2222-bbbb-3333cccc4444          aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
+11112222-bbbb-3333-cccc-4444dddd5555          bbbbbbbb-cccc-dddd-2222-333333333333  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
+22223333-cccc-4444-dddd-5555eeee6666          cccccccc-dddd-eeee-3333-444444444444  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
+33334444-dddd-5555-eeee-6666ffff7777          dddddddd-eeee-ffff-4444-555555555555  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
+44445555-eeee-6666-ffff-7777aaaa8888          eeeeeeee-ffff-aaaa-5555-666666666666  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                 
 ```
 
 This command gets all the role assignments in Microsoft Entra ID.  
 
-### Example 3: Get role assignments filter by principalId
+### Example 3: Get role assignments by Id
+
+```powershell
+Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
+Get-EntraRoleAssignment -Id '00001111-aaaa-2222-bbbb-3333cccc4444'
+```
+
+```Output
+Id                                      PrincipalId                           RoleDefinitionId                    DirectoryScopeId AppScopeId
+--                                      -----------                           ----------------                    ---------------- ----------
+00001111-aaaa-2222-bbbb-3333cccc4444           aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                       
+```
+
+This command gets the role assignments using specified roleAssignment Id.
+
+- `Id` parameter specifies the roleAssignment object ID.
+
+### Example 4: Get role assignments filter by principalId
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
@@ -115,13 +138,13 @@ Get-EntraRoleAssignment -Filter "principalId eq 'aaaaaaaa-bbbb-cccc-1111-2222222
 ```Output
 Id                                      PrincipalId                           RoleDefinitionId                    DirectoryScopeId AppScopeId
 --                                      -----------                           ----------------                    ---------------- ----------
-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u           aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w           aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /        
+00001111-aaaa-2222-bbbb-3333cccc4444           aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
+11112222-bbbb-3333-cccc-4444dddd5555           aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /        
 ```
 
 This command gets the role assignments containing the specified principalId.  
 
-### Example 4: Get role assignments filter by roleDefinitionId
+### Example 5: Get role assignments filter by roleDefinitionId
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
@@ -131,16 +154,16 @@ Get-EntraRoleAssignment -Filter "roleDefinitionId eq 'a0a0a0a0-bbbb-cccc-dddd-e1
 ```Output
 Id                                      PrincipalId                           RoleDefinitionId                    DirectoryScopeId AppScopeId
 --                                      -----------                           ----------------                    ---------------- ----------
-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u           aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w           bbbbbbbb-cccc-dddd-2222-333333333333  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-E3fH4iJ5kL6mN7oP8qR9sT0uV1wX2y           cccccccc-dddd-eeee-3333-444444444444  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-H4iJ5kL6mN7oP8qR9sT0uV1wX2yZ3a           dddddddd-eeee-ffff-4444-555555555555  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-J5kL6mN7oP8qR9sT0uV1wX2yZ3aB4c           eeeeeeee-ffff-aaaa-5555-666666666666  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /            
+00001111-aaaa-2222-bbbb-3333cccc4444          aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
+11112222-bbbb-3333-cccc-4444dddd5555          bbbbbbbb-cccc-dddd-2222-333333333333  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
+22223333-cccc-4444-dddd-5555eeee6666          cccccccc-dddd-eeee-3333-444444444444  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
+33334444-dddd-5555-eeee-6666ffff7777          dddddddd-eeee-ffff-4444-555555555555  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
+44445555-eeee-6666-ffff-7777aaaa8888          eeeeeeee-ffff-aaaa-5555-666666666666  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /            
 ```
 
 This command gets the role assignments containing the specified roleDefinitionId.  
 
-### Example 5: Get top two role assignments
+### Example 6: Get top two role assignments
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
@@ -150,8 +173,8 @@ Get-EntraRoleAssignment -Top 2
 ```Output
 Id                                      PrincipalId                           RoleDefinitionId                    DirectoryScopeId AppScopeId
 --                                      -----------                           ----------------                    ---------------- ----------
-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u           aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
-C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w           aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /    
+00001111-aaaa-2222-bbbb-3333cccc4444          aaaaaaaa-bbbb-cccc-1111-222222222222  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /                
+11112222-bbbb-3333-cccc-4444dddd5555           bbbbbbbb-cccc-dddd-2222-333333333333  a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1  /   
 ```
 
 This command gets top two role assignments.
@@ -260,8 +283,6 @@ Accept wildcard characters: False
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
-
-### string
 
 ## Outputs
 

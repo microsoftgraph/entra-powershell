@@ -59,7 +59,13 @@ Get-EntraRoleDefinition
 
 The `Get-EntraRoleDefinition` cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the `Id` parameter. Specify the `SearchString` or `Filter` parameter to find particular role definition.
 
-In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role. The least privileged roles supported for this operation are as follows, in the order of least to most privileged:
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with one of the following permissions:
+
+- microsoft.directory/roleAssignments/standard/read (least privileged)
+- microsoft.directory/roleAssignments/allProperties/read
+- microsoft.directory/roleAssignments/allProperties/allTasks
+
+The least privileged roles for this operation, from least to most privileged, are:
 
 - Directory Readers
 - Global Reader
@@ -97,6 +103,8 @@ Restricted Guest User                         2af84b1e-32c8-42b7-82bc-daa8240402
 ```
 
 This command returns a specified role definition.
+
+- `-Id` parameter specifies the roleDefinition object ID.
 
 ### Example 3: Filter role definitions by display name
 
@@ -255,3 +263,9 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ### Microsoft.Open.MSGraph.Model.DirectoryRoleDefinition
 
 ## Related Links
+
+[New-EntraRoleDefinition](New-EntraRoleDefinition.md)
+
+[Remove-EntraRoleDefinition](Remove-EntraRoleDefinition.md)
+
+[Set-EntraRoleDefinition](Set-EntraRoleDefinition.md)
