@@ -565,7 +565,16 @@ Set-Variable -name MISSING_CMDS -value @('$($this.ModuleMap.MissingCommandsList 
         $parameterDefinitions = $this.GetParametersDefinitions($Command)
         $ParamterTransformations = $this.GetParametersTransformations($Command)
         $OutputTransformations = $this.GetOutputTransformations($Command)
-        $function = @"
+        if ($parameterDefinitions.Contains('$ObjectId') -or $parameterDefinitions.Contains('$Id')) {
+            $function = @"
+function $($Command.Generate) {
+$($Command.CustomScript)    
+}
+
+"@
+        }
+        else {
+            $function = @"
 function $($Command.Generate) {
     [CmdletBinding($($Command.DefaultParameterSet))]
     param (
@@ -575,7 +584,8 @@ $parameterDefinitions
 $($Command.CustomScript)    
 }
 
-"@
+"@   
+        }
         $codeBlock = [Scriptblock]::Create($function)
         return [CommandTranslation]::New($Command.Generate,$Command.Old,$codeBlock)
     }
@@ -655,12 +665,18 @@ $OutputTransformations
             if($commonParameterNames.Contains($paramKey)) {
                 continue
             }
+            $targetParam = $Command.Parameters[$paramKey]
             $param = $params[$paramKey]
             $paramType = $param.ParameterType.ToString()
             $paramtypeToCreate = $param.ParameterType.ToString()
             if($param.Name -eq 'All'){
                 $paramType = "switch"
             }
+            if(($param.Name -eq 'ObjectId' -or $param.Name -eq 'Id') -and $null -ne $targetParam.TargetName){
+                if ($targetParam.TargetName) {
+                    $param.Name = $targetParam.TargetName
+                }                
+            }  
             if(($null -ne $this.TypePrefix) -and ($paramType -like "*$($this.TypePrefix)*")){
                 if($paramType -like "*List*"){
                     $paramType = "System.Collections.Generic.List``1[$($param.ParameterType.GenericTypeArguments.FullName)]"
@@ -771,7 +787,9 @@ $OutputTransformations
                 $paramBlock = $this.GetParameterTransformationName($param.Name, $param.Name)
             }
             elseif([TransformationTypes]::Name -eq $param.ConversionType){
-                $paramBlock = $this.GetParameterTransformationName($param.Name, $param.TargetName)
+                if(($param.Name -eq 'ObjectId' -or $param.Name -eq 'Id') -and $null -ne $param.TargetName){
+                    $paramBlock = $this.GetParameterTransformationName($param.TargetName, $param.TargetName)
+                } 
             }
             elseif([TransformationTypes]::Bool2Switch -eq $param.ConversionType){
                 $paramBlock = $this.GetParameterTransformationBoolean2Switch($param.Name, $param.TargetName)
