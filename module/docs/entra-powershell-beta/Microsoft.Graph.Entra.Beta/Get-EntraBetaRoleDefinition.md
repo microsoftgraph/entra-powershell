@@ -59,7 +59,13 @@ Get-EntraBetaRoleDefinition
 
 The `Get-EntraBetaRoleDefinition` cmdlet gets information about role definitions in Microsoft Entra ID. To get a role definition, specify the `Id` parameter. Specify the SearchString or Filter parameter to find particular role definition.
 
-In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role. The least privileged roles supported for this operation are as follows, in the order of least to most privileged:
+In delegated scenarios with work or school accounts, the signed-in user must have a supported Microsoft Entra role or a custom role with one of the following permissions:
+
+- microsoft.directory/roleAssignments/standard/read (least privileged)
+- microsoft.directory/roleAssignments/allProperties/read
+- microsoft.directory/roleAssignments/allProperties/allTasks
+
+The least privileged roles for this operation, from least to most privileged, are:
 
 - Directory Readers
 - Global Reader
@@ -92,9 +98,9 @@ Get-EntraBetaRoleDefinition -Id '1a327991-10cb-4266-877a-998fb4df78ec'
 ```
 
 ```Output
-DisplayName          Id                                   TemplateId                           Description                                                                                              IsBuiltIn
------------          --                                   ----------                           -----------                                                                                              ---------
-Global Administrator 1a327991-10cb-4266-877a-998fb4df78ec 62e90394-69f5-4237-9190-012177145e10 Can manage all aspects of Microsoft Entra ID and Microsoft services that use Microsoft Entra identities. True
+DisplayName                                   Id                                   TemplateId                           Description
+-----------                                   --                                   ----------                           -----------
+Restricted Guest User                         2af84b1e-32c8-42b7-82bc-daa82404023b 2af84b1e-32c8-42b7-82bc-daa82404023b Restricted role for guest users. Can read a limited set of directory information.
 ```
 
 This command returns a specified role definition.
@@ -109,9 +115,9 @@ Get-EntraBetaRoleDefinition -Filter "startsWith(displayName, 'Restricted')"
 ```
 
 ```Output
-DisplayName           Id                                   TemplateId                           Description                                                                       IsBuiltIn IsEnabled
------------           --                                   ----------                           -----------                                                                       --------- ---------
-Restricted Guest User 00aa00aa-bb11-cc22-dd33-44ee44ee44ee 2af84b1e-32c8-42b7-82bc-daa82404023b Restricted role for guest users. Can read a limited set of directory information. True      True
+DisplayName                                   Id                                   TemplateId                           Description
+-----------                                   --                                   ----------                           -----------
+Restricted Guest User                         2af84b1e-32c8-42b7-82bc-daa82404023b 2af84b1e-32c8-42b7-82bc-daa82404023b Restricted role for guest users. Can read a limited set of directory information.
 ```
 
 This command return all the role definitions containing the specified display name.
@@ -252,10 +258,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Inputs
 
 ### String
-
-### Bool?
-
-### Int?
 
 ## Outputs
 

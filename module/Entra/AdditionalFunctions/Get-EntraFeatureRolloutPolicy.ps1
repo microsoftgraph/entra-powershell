@@ -17,33 +17,39 @@ function Get-EntraFeatureRolloutPolicy {
     PROCESS {
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $params = @{}
-        $baseUri = 'https://graph.microsoft.com/v1.0/policies/featureRolloutPolicies/?'
+        $baseUri = 'https://graph.microsoft.com/v1.0/policies/featureRolloutPolicies'
         $params["Method"] = "GET"
         $params["Uri"] = "$baseUri"
+        $query = $null
         
         if($null -ne $PSBoundParameters["Id"])
         {
             $Id = $PSBoundParameters["Id"]
-            $params["Uri"] = "https://graph.microsoft.com/v1.0/policies/featureRolloutPolicies/$Id/?"
+            $params["Uri"] = "https://graph.microsoft.com/v1.0/policies/featureRolloutPolicies/$Id"
         }
         if($null -ne $PSBoundParameters["SearchString"])
         {
             $FilterValue = $PSBoundParameters["SearchString"]
             $filter="displayName eq '$FilterValue' or startswith(displayName,'$FilterValue')"
             $f = '$' + 'Filter'
-            $params["Uri"] += "$f=$filter"
+            $query += "&$f=$Filter"
         }
         if($null -ne $PSBoundParameters["Filter"])
         {
             $Filter = $PSBoundParameters["Filter"]
             $f = '$' + 'Filter'
-            $params["Uri"] += "$f=$Filter"
+            $query += "&$f=$Filter"
         } 
         if($null -ne $PSBoundParameters["Property"])
         {
             $selectProperties = $PSBoundParameters["Property"]
             $selectProperties = $selectProperties -Join ','
-            $params["Uri"] += "&`$select=$($selectProperties)"
+            $query += "&`$select=$($selectProperties)"
+        }
+        if($null -ne $query)
+        {
+            $query = "?" + $query.TrimStart("&")
+            $params["Uri"] += $query
         }
 	    
         Write-Debug("============================ TRANSFORMATIONS ============================")

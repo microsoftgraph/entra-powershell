@@ -45,7 +45,7 @@ Get-EntraBetaPolicy
 
 ## Description
 
-The `Get-EntraBetaPolicy` cmdlet gets a policy in Microsoft Entra ID. Specify `Id` parameter to get specific policy.
+The `Get-EntraBetaPolicy` cmdlet gets a policy in Microsoft Entra ID. Specify `Id` parameter to get a specific policy.
 
 ## Examples
 
@@ -98,7 +98,7 @@ Definition                                                                      
 
 This example demonstrates how to retrieve all policies in Microsoft Entra ID.
 
-### Example 4: Get top one policies
+### Example 4: Get the top one policy
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'
@@ -109,7 +109,6 @@ Get-EntraBetaPolicy -Top 1
 Definition                                                                                       DeletedDateTime Description DisplayName                                 Id
 ----------                                                                                       --------------- ----------- -----------                                 --
 {{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}}                             Activepolicy                            bbbbbbbb-1111-2222-3333-cccccccccccc
-
 ```
 
 This example demonstrates how to retrieve top one policies in Microsoft Entra ID.
