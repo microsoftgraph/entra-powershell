@@ -6,7 +6,7 @@ function Get-EntraBetaApplicationProxyConnectorGroupMembers {
     [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
     param (
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id,
+    [System.String] $OnPremisesPublishingProfileId,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Nullable`1[System.Int32]] $Top,
     [Parameter( ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -19,9 +19,9 @@ function Get-EntraBetaApplicationProxyConnectorGroupMembers {
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
         $params["Method"] = "GET"
-        $Id = $PSBoundParameters["Id"]
+        $Id = $PSBoundParameters["OnPremisesPublishingProfileId"]
         $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members"
-        if($PSBoundParameters.ContainsKey("Id"))
+        if($PSBoundParameters.ContainsKey("OnPremisesPublishingProfileId"))
         {
             $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectorGroups/$Id/members"
         }

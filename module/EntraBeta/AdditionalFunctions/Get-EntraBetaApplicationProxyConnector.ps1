@@ -10,7 +10,7 @@ function Get-EntraBetaApplicationProxyConnector {
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [System.Nullable`1[System.Int32]] $Top,
     [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $Id,
+    [System.String] $OnPremisesPublishingProfileId,
     [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
     [switch] $All,
     [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -27,9 +27,9 @@ function Get-EntraBetaApplicationProxyConnector {
             $f = '$' + 'Filter'
             $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectors?$f=machineName eq '$SearchString' OR startswith(machineName,'$SearchString')"    
         }
-        if($null -ne $PSBoundParameters["Id"])
+        if($null -ne $PSBoundParameters["OnPremisesPublishingProfileId"])
         {
-            $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectors/$Id"
+            $params["Uri"] = "https://graph.microsoft.com/beta/onPremisesPublishingProfiles/applicationProxy/connectors/$OnPremisesPublishingProfileId"
         }
         if($null -ne $PSBoundParameters["Filter"])
         {
