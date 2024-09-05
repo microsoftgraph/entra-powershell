@@ -55,9 +55,9 @@ A1bC2dE3f...                      00001111-aaaa-2222-bbbb-3333cccc4444 AllPrinci
 
 This cmdlet retrieves a OAuth2PermissionGrant object for a service principal in Microsoft Entra ID. You can use the command `Get-EntraServicePrincipal` to get service principal Id.
 
-- `-ObjectId` parameter specifies the ID of a service principal.
+`-ObjectId` parameter specifies the ID of a service principal.
 
-### Example 2: Get all OAuth2 permission grants of a service principal
+### Example 2: Get OAuth2 permission grants of a specific service principal
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
@@ -75,7 +75,7 @@ A1bC2dE3f                     00001111-aaaa-2222-bbbb-3333cccc4444 Principal    
 
 This example demonstrates how to get all OAuth2PermissionGrant objects for a service principal in Microsoft Entra ID.  
 
-- `-ObjectId` parameter specifies the ID of a service principal.
+`-ObjectId` parameter specifies the ID of a service principal.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
