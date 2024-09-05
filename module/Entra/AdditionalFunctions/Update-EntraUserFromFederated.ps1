@@ -79,5 +79,3 @@ function Update-EntraUserFromFederated {
         $response
         }
 }
-
-

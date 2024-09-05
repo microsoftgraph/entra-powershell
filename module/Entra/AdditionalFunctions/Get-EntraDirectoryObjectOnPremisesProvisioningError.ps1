@@ -36,5 +36,3 @@ function Get-EntraDirectoryObjectOnPremisesProvisioningError {
         
     }
 }
-
-
