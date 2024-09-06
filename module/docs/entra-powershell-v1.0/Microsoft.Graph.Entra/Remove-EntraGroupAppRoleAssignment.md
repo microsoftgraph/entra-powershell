@@ -26,7 +26,7 @@ Delete a group application role assignment.
 ```powershell
 Remove-EntraGroupAppRoleAssignment 
  -AppRoleAssignmentId <String> 
- -ObjectId <String>
+ -GroupId <String>
 [<CommonParameters>]
 ```
 
@@ -40,11 +40,11 @@ The Remove-EntraGroupAppRoleAssignment cmdlet removes a group application role a
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Remove-AzureADGroupAppRoleAssignment -ObjectId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq' -AppRoleAssignmentId 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
+Remove-AzureADGroupAppRoleAssignment -GroupId 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq' -AppRoleAssignmentId 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
 ```
 
 This example demonstrates how to remove the specified group application role assignment.
-ObjectId - Specifies the object ID of a group.
+GroupId - Specifies the object ID of a group.
 AppRoleAssignmentId - Specifies the object ID of the group application role assignment.
 
 ## Parameters
@@ -65,7 +65,7 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -GroupId
 
 Specifies the object ID of a group in Microsoft Entra ID.
 

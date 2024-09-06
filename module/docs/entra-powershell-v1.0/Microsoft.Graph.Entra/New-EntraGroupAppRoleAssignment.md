@@ -26,7 +26,7 @@ Assign a group of users to an application role.
 
 ```powershell
 New-EntraGroupAppRoleAssignment 
- -ObjectId <String> 
+ -GroupId <String> 
  -PrincipalId <String> 
  -Id <String> 
  -ResourceId <String>
@@ -46,7 +46,7 @@ Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
 $appname = 'Box'
 $spo = Get-EntraServicePrincipal -Filter "Displayname eq '$appname'"
 $group = Get-EntraGroup -SearchString 'Contoso Team'
-New-EntraGroupAppRoleAssignment -ObjectId $group.ObjectId -PrincipalId $group.ObjectId -ResourceId $spo.ObjectId -Id $spo.Approles[1].id
+New-EntraGroupAppRoleAssignment -GroupId $group.ObjectId -PrincipalId $group.ObjectId -ResourceId $spo.ObjectId -Id $spo.Approles[1].id
 ```
 
 ```output
@@ -58,17 +58,17 @@ DeletedDateTime        Id                                          AppRoleId    
 
 This example demonstrates how to assign a group of users to an application role in Microsoft Entra ID.  
 
-- `ObjectId`: The ID of the group to which you're assigning the app role.
+- `GroupId`: The ID of the group to which you're assigning the app role.
 
 - `PrincipalId`: The ID of the group to which you're assigning the app role.
 
 - `ResourceId`: The ID of the resource service Principal, which has defined the app role.
 
-- `Id`: The ID of the appRole (defined on the resource service principal) to assign to the group.
+- `AppRoleId`: The ID of the appRole (defined on the resource service principal) to assign to the group.
 
 ## Parameters
 
-### -Id
+### -AppRoleId
 
 Specifies the ID of the app role (defined on the resource service principal) to assign.
 
@@ -84,7 +84,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -GroupId
 
 Specifies the unique identifier of group to which the new app role is to be assigned.
 

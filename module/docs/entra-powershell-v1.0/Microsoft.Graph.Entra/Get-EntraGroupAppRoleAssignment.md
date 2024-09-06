@@ -26,7 +26,7 @@ Gets a group application role assignment.
 
 ```powershell
 Get-EntraGroupAppRoleAssignment
- -ObjectId <String>
+ -GroupId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -44,7 +44,7 @@ The Get-EntraGroupAppRoleAssignment cmdlet gets a group application role assignm
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
 $GroupId = (Get-EntraGroup -Top 1).ObjectId
-Get-EntraGroupAppRoleAssignment -ObjectId $GroupId
+Get-EntraGroupAppRoleAssignment -GroupId $GroupId
 ```
 
 ```output
@@ -64,7 +64,7 @@ The second command gets the application role assignments of the group in $GroupI
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraGroupAppRoleAssignment -ObjectId 'ffffffffff-7777-9999-7777-vvvvvvvvvvv' -All
+Get-EntraGroupAppRoleAssignment -GroupId 'ffffffffff-7777-9999-7777-vvvvvvvvvvv' -All
 ```
 
 ```output
@@ -81,7 +81,7 @@ This command gets all application role assignments of the specified group.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraGroupAppRoleAssignment -ObjectId 'ffffffffff-7777-9999-7777-vvvvvvvvvvv' -Top 2
+Get-EntraGroupAppRoleAssignment -GroupId 'ffffffffff-7777-9999-7777-vvvvvvvvvvv' -Top 2
 ```
 
 ```output
@@ -110,7 +110,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -GroupId
 
 Specifies the ID of a group in Microsoft Entra ID.
 
