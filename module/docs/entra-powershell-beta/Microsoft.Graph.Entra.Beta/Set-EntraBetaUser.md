@@ -26,7 +26,7 @@ Updates a user.
 
 ```powershell
 Set-EntraBetaUser 
- -ObjectId <String> 
+ -UserId <String> 
  [-PostalCode <String>] 
  [-MailNickName <String>] 
  [-ShowInAddressList <Boolean>]
@@ -61,7 +61,7 @@ Set-EntraBetaUser
 
 ## Description
 
-The `Set-EntraBetaUser` cmdlet updates a user in Microsoft Entra ID. Specify the `ObjectId` parameter to update a user in Microsoft Entra ID.
+The `Set-EntraBetaUser` cmdlet updates a user in Microsoft Entra ID. Specify the `UserId` parameter to update a user in Microsoft Entra ID.
 
 ## Examples
 
@@ -71,7 +71,7 @@ The `Set-EntraBetaUser` cmdlet updates a user in Microsoft Entra ID. Specify the
 Connect-Entra -Scopes 'User.ReadWrite.All'
 $user = Get-EntraBetaUser -SearchString '<user-display-name>'
 $params = @{
-   ObjectId = $user.ObjectId
+   UserId = $user.ObjectId
    DisplayName = 'Updated user Name'
 }
 Set-EntraBetaUser @params
@@ -79,14 +79,14 @@ Set-EntraBetaUser @params
 
 This example updates the specified user's Display name parameter.
 
-- `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 
 ### Example 2: Set the specified user's AccountEnabled parameter
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
 $params = @{
-   ObjectId = 'SawyerM@contoso.com'
+   UserId = 'SawyerM@contoso.com'
    AccountEnabled = $true
 }
 Set-EntraBetaUser @params
@@ -94,7 +94,7 @@ Set-EntraBetaUser @params
 
 This example updates the specified user's AccountEnabled parameter.
 
-- `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 - `-AccountEnabled` Specifies whether the account is enabled.
 
 ### Example 3: Set all but specified users as minors with parental consent
@@ -102,12 +102,12 @@ This example updates the specified user's AccountEnabled parameter.
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
 Get-EntraBetaUser -All  | Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } | 
-ForEach-Object  { Set-EntraBetaUser -ObjectId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
+ForEach-Object  { Set-EntraBetaUser -UserId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
 ```
 
 This example updates the specified user's as minors with parental consent.
 
-- `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 - `-ConsentProvidedForMinor` Sets whether consent has to obtained for minors. Allowed values: null, granted, denied, and notRequired.
 
 ### Example 4: Set the specified user's property
@@ -115,7 +115,7 @@ This example updates the specified user's as minors with parental consent.
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
 $params = @{
-   ObjectId = 'SawyerM@contoso.com'
+   UserId = 'SawyerM@contoso.com'
    City = 'Add city name'
    CompanyName = 'Microsoft'
    Country = 'Add country name'
@@ -136,7 +136,7 @@ Set-EntraBetaUser @params
 
 This example updates the specified user's property.
 
-- `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 - `-UserType` classify user types in your directory, such as "Member" and "Guest."
 - `-PasswordPolicies` Specifies password policies for the user.
 - `-OtherMails` Specifies other email addresses for the user
@@ -147,7 +147,7 @@ This example updates the specified user's property.
 Connect-Entra -Scopes 'User.ReadWrite.All'
 $user = Get-EntraBetaUser -SearchString '<user-display-name>'
 $params= @{
-ObjectId = $user.ObjectId
+UserId = $user.UserId
 PasswordProfile  = @{
    Password= '*****'
    ForceChangePasswordNextLogin = $true
@@ -159,7 +159,7 @@ Set-EntraBetaUser @params
 
 This example updates the specified user's PasswordProfile parameter.
 
-- `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 - `-PasswordProfile` specifies the user's password profile.
 
 ## Parameters
@@ -359,9 +359,9 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
-Specifies the ID of a user (as a User Principle Name or ObjectId) in Microsoft Entra ID.
+Specifies the ID of a user (as a User Principle Name or UserId) in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
