@@ -90,7 +90,7 @@ This example retrieves the OAuth2 permission grants for a user using object ID p
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraUserOAuth2PermissionGrant -ObjectId 'SawyerM@contoso.comb' -All
+Get-EntraBetaUserOAuth2PermissionGrant -ObjectId 'SawyerM@contoso.com' -All
 ```
 
 ```Output
@@ -108,7 +108,7 @@ This example retrieves the OAuth2 permission grants for a user using All paramet
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
-Get-EntraUserOAuth2PermissionGrant -ObjectId 'SawyerM@contoso.com' -Top 1
+Get-EntraBetaUserOAuth2PermissionGrant -ObjectId 'SawyerM@contoso.com' -Top 1
 ```
 
 ```Output

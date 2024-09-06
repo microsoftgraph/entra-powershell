@@ -42,8 +42,7 @@ The `Get-EntraBetaUserAppRoleAssignment` cmdlet gets a user application role ass
 ### Example 1: Get a user application role assignment
 
 ```powershell
-Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Directory.Read.All' #Application Permission
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All','Directory.Read.All'
 $UserId = (Get-EntraBetaUser -Top 1).ObjectId
 Get-EntraBetaUserAppRoleAssignment -ObjectId $UserId
 ```
@@ -58,15 +57,14 @@ DeletedDateTime Id                                          AppRoleId           
 
 ```
 
-This example retrieves a user application role assignment for the user in $UserId. You can use the comand `Get-EntraBetaUser` to get service principal object Id.
+This example retrieves a user application role assignment for the user in $UserId. You can use the comand `Get-EntraBetaUser` to get Service principal Object ID.
 
 - `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 
 ### Example 2: Get all application role assignments
 
 ```powershell
-Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Directory.Read.All' #Application Permission
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All','Directory.Read.All'
 Get-EntraBetaUserAppRoleAssignment -ObjectId 'aaaaaaaa-bbbb-cccc-1111-222222222222' -All 
 ```
 
@@ -86,8 +84,7 @@ This example demonstrates how to retrieve all application role assignment for th
 ### Example 3: Get top two application role assignments
 
 ```powershell
-Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Directory.Read.All' #Application Permission
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All','Directory.Read.All'
 Get-EntraBetaUserAppRoleAssignment -ObjectId 'aaaaaaaa-bbbb-cccc-1111-222222222222' -Top 2
 ```
 
