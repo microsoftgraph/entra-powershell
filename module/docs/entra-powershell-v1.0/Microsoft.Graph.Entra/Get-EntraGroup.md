@@ -49,7 +49,7 @@ Get-EntraGroup
 
 ```powershell
 Get-EntraGroup
- -ObjectId <String>
+ -GroupId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -78,11 +78,11 @@ tttttttt-0000-3333-9999-mmmmmmmmmmmm  Bold Falcon                         Bold F
 
 This example demonstrates how to get all groups from Microsoft Entra ID.
 
-### Example 2: Get a specific group by using an ObjectId
+### Example 2: Get a specific group by using an GroupId
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraGroup -ObjectId 'pppppppp-4444-0000-8888-yyyyyyyyyyyy'
+Get-EntraGroup -GroupId 'pppppppp-4444-0000-8888-yyyyyyyyyyyy'
 ```
 
 ```output
@@ -179,9 +179,9 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -GroupId
 
-The unique identifier of a group in Microsoft Entra ID (ObjectId)
+The unique identifier of a group in Microsoft Entra ID (GroupId)
 
 ```yaml
 Type: System.String

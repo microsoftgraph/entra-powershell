@@ -29,17 +29,17 @@ BeforeAll {
 Describe "Get-EntraGroup" {
     Context "Test for Get-EntraGroup" {
         It "Should return specific group" {
-            $result = Get-EntraGroup -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 
             Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is invalid" {
-            { Get-EntraGroup -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when GroupId is invalid" {
+            { Get-EntraGroup -GroupId "" } | Should -Throw "Cannot bind argument to parameter 'GroupId' because it is an empty string."
         }
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraGroup -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when GroupId is empty" {
+            { Get-EntraGroup -GroupId } | Should -Throw "Missing an argument for parameter 'GroupId'*"
         }
         It "Should fail when searchstring is empty" {
             { Get-EntraGroup -SearchString } | Should -Throw "Missing an argument for parameter 'SearchString'*"
@@ -84,11 +84,11 @@ Describe "Get-EntraGroup" {
             Should -Invoke -CommandName Get-MgGroup  -ModuleName Microsoft.Graph.Entra -Times 1
         }  
         It "Result should Contain ObjectId" {
-            $result = Get-EntraGroup -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         } 
-        It "Should contain GroupId in parameters when passed ObjectId to it" {
-            $result = Get-EntraGroup -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+        It "Should contain GroupId in parameters when passed GroupId to it" {
+            $result = Get-EntraGroup -GroupId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
             $params.GroupId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
