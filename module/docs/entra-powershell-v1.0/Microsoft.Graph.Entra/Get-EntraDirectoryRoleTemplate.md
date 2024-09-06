@@ -46,7 +46,6 @@ Get-EntraDirectoryRoleTemplate
 ```Output
 DeletedDateTime Id                                   Description
 --------------- --                                   -----------
-                62e90394-69f5-4237-9190-012177145e10 Can manage all aspects of Microsoft Entra ID and Microsoft services that use Microsoft Entra identities.
                 10dae51f-b6af-4016-8d66-8c2a99b929b3 Default role for guest users. Can read a limited set of directory information.
                 2af84b1e-32c8-42b7-82bc-daa82404023b Default role for guest users with restricted access. Can read a limited set of directory information.
                 95e79109-95c0-4d8e-aee3-d01accf2d47b Can invite guest users independent of the 'members can invite guests' setting.
