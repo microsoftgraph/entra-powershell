@@ -28,23 +28,23 @@ BeforeAll {
 Describe "Get-EntraBetaApplicationPasswordCredential" {
     Context "Test for Get-EntraBetaApplicationPasswordCredential" {
         It "Should return specific Policy" {
-            $result = Get-EntraBetaApplicationPasswordCredential -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraBetaApplicationPasswordCredential -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result.keyId | Should -Be "bbbbbbbb-1111-2222-3333-rrrrrrrrrrrr"
             $result.DisplayName | Should -Be "test"
             $result.CustomKeyIdentifier.gettype().name | Should -Be 'Byte[]'
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
-        It "Should fail when ObjectId is invalObjectId" {
-            { Get-EntraBetaApplicationPasswordCredential -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when ApplicationId is invalid" {
+            { Get-EntraBetaApplicationPasswordCredential -ApplicationId "" } | Should -Throw "Cannot bind argument to parameter 'ApplicationId' because it is an empty string."
         }
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraBetaApplicationPasswordCredential -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when ApplicationId is empty" {
+            { Get-EntraBetaApplicationPasswordCredential -ApplicationId } | Should -Throw "Missing an argument for parameter 'ApplicationId'*"
         }            
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaApplicationPasswordCredential"
 
-            $result = Get-EntraBetaApplicationPasswordCredential -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraBetaApplicationPasswordCredential -ApplicationId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
