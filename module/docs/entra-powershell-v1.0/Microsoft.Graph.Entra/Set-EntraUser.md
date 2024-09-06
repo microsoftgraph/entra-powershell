@@ -25,7 +25,7 @@ Updates a user.
 
 ```powershell
 Set-EntraUser 
- -ObjectId <String> 
+ -UserId <String> 
  [-PostalCode <String>] 
  [-CompanyName <String>]
  [-GivenName <String>] 
@@ -66,9 +66,9 @@ The Set-EntraUser cmdlet updates a user in Microsoft Entra ID.
 ### Example 1: Update a user
 
 ```powershell
-PS C:\> $user = Get-EntraUser -ObjectId TestUser@example.com 
+PS C:\> $user = Get-EntraUser -UserId TestUser@example.com 
 PS C:\> $user.DisplayName = 'YetAnotherTestUser' 
-PS C:\> Set-EntraUser -ObjectId TestUser@example.com -Displayname $user.Displayname
+PS C:\> Set-EntraUser -UserId TestUser@example.com -Displayname $user.Displayname
 ```
 
 This example updates the specified user's Display name property.
@@ -76,7 +76,7 @@ This example updates the specified user's Display name property.
 ### Example 2: Set the specified user's AccountEnabled property
 
 ```powershell
-PS C:\> Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -AccountEnabled $true
+PS C:\> Set-EntraUser -UserId 1139c016-f606-45f0-83f7-40eb2a552a6f -AccountEnabled $true
 ```
 
 This example updates the specified user's AccountEnabled property.
@@ -86,14 +86,14 @@ This example updates the specified user's AccountEnabled property.
 ```powershell
 PS C:\>Get-EntraUser -All  | 
 Where-Object -FilterScript { $_.DisplayName -notmatch '(George|James|Education)' } | 
-ForEach-Object  { Set-EntraUser -ObjectId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
+ForEach-Object  { Set-EntraUser -UserId $($_.ObjectId) -AgeGroup 'minor' -ConsentProvidedForMinor 'granted' }
 ```
 This example updates the specified user's property.
 
 ### Example 4: Set the specified user's property
 
 ```powershell
-PS C:\>Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -City "Add city name" -CompanyName "Microsoft" -ConsentProvidedForMinor Granted -Country 'Add country name' -Department "Add department name" -GivenName "Mircosoft" -ImmutableId "#1" -JobTitle "Manager" -MailNickName "Add mailnickname" -Mobile "9984534564" -OtherMails "test12@M365x99297270.OnMicrosoft.com" -PasswordPolicies "DisableStrongPassword" -State "UP" -StreetAddress "Add address" -UserType "Member"
+PS C:\>Set-EntraUser -UserId 1139c016-f606-45f0-83f7-40eb2a552a6f -City "Add city name" -CompanyName "Microsoft" -ConsentProvidedForMinor Granted -Country 'Add country name' -Department "Add department name" -GivenName "Mircosoft" -ImmutableId "#1" -JobTitle "Manager" -MailNickName "Add mailnickname" -Mobile "9984534564" -OtherMails "test12@M365x99297270.OnMicrosoft.com" -PasswordPolicies "DisableStrongPassword" -State "UP" -StreetAddress "Add address" -UserType "Member"
 ```
 This example updates the specified user's City property.
 
@@ -105,7 +105,7 @@ PS C:\> $a = @{
    ForceChangePasswordNextLogin = $true
    EnforceChangePasswordPolicy = $false
    }
-PS C:\> Set-EntraUser -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -PasswordProfile $a
+PS C:\> Set-EntraUser -UserId 1139c016-f606-45f0-83f7-40eb2a552a6f -PasswordProfile $a
 ```
 This example updates the specified user's PasswordProfile property.
 
@@ -294,8 +294,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
-Specifies the ID of a user (as a UPN or ObjectId) in Microsoft Entra ID.
+### -UserId
+Specifies the ID of a user (as a UPN or UserId) in Microsoft Entra ID.
 
 ```yaml
 Type: String
