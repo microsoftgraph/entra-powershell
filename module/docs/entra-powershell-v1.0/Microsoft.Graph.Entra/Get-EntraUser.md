@@ -49,7 +49,7 @@ Get-EntraUser
 
 ```powershell
 Get-EntraUser
- -ObjectId <String>
+ -UserId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -82,7 +82,7 @@ This example demonstrates how to get top three users from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraUser -ObjectId 'SawyerM@contoso.com'
+Get-EntraUser -UserId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -143,7 +143,7 @@ In this example, we retrieve all users whose MailNickname starts with Ada.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
-Get-EntraUser -ObjectId 'SawyerM@contoso.com' -Property 'SignInActivity' | Select-Object -ExpandProperty 'SignInActivity'
+Get-EntraUser -UserId 'SawyerM@contoso.com' -Property 'SignInActivity' | Select-Object -ExpandProperty 'SignInActivity'
 ```
 
 ```Output
@@ -193,9 +193,9 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
-Specifies the ID (as a UserPrincipalName or ObjectId) of a user in Microsoft Entra ID.
+Specifies the ID (as a UserPrincipalName or UserId) of a user in Microsoft Entra ID.
 
 ```yaml
 Type: System.String

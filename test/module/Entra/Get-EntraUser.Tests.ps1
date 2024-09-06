@@ -61,7 +61,7 @@ BeforeAll {
 Describe "Get-EntraUser" {
     Context "Test for Get-EntraUser" {
         It "Should return specific user" {
-            $result = Get-EntraUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraUser -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             Write-Verbose "Result : {$result}" -Verbose
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
@@ -84,11 +84,11 @@ Describe "Get-EntraUser" {
         }
 
         It "Should fail when ObjectId is empty string value" {
-            { Get-EntraUser -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+            { Get-EntraUser -UserId "" } | Should -Throw "Cannot bind argument to parameter 'UserId' because it is an empty string."
         }
 
         It "Should fail when ObjectId is empty" {
-            { Get-EntraUser -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'. Specify a parameter of type 'System.String' and try again."
+            { Get-EntraUser -UserId } | Should -Throw "Missing an argument for parameter 'UserId'. Specify a parameter of type 'System.String' and try again."
         }
 
         It "Should return all contact" {
@@ -161,7 +161,7 @@ Describe "Get-EntraUser" {
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
                 { 
-                    Get-EntraUser -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug 
+                    Get-EntraUser -UserId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug 
                 } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference
