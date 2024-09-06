@@ -20,13 +20,13 @@ schema: 2.0.0
 
 ## Synopsis
 
-Delete an application by ObjectId.
+Delete an application by ApplicationId.
 
 ## Syntax
 
 ```powershell
 Remove-EntraApplication 
- -ObjectId <String>
+ -ApplicationId <String>
  [<CommonParameters>]
 ```
 
@@ -40,14 +40,14 @@ The `Remove-EntraApplication` cmdlet removes the specified application from Micr
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
-Remove-EntraApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Remove-EntraApplication -ApplicationId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 This command removes the specified application.
 
 ## Parameters
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the ID of an application in Microsoft Entra ID.
 

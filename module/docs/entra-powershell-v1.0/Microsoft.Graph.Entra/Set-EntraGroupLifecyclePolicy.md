@@ -26,7 +26,7 @@ Updates a specific group Lifecycle Policy in Microsoft Entra ID.
 
 ```powershell
 Set-EntraGroupLifecyclePolicy 
- -Id <String>
+ -GroupLifecyclePolicyId <String>
  [-AlternateNotificationEmails <String>] 
  [-GroupLifetimeInDays <Int32>]
  [-ManagedGroupTypes <String>] 
@@ -43,7 +43,7 @@ The Set-EntraGroupLifecyclePolicy command updates a specific group Lifecycle Pol
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Set-EntraGroupLifecyclePolicy -Id '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5' -GroupLifetimeInDays 200 -AlternateNotificationEmails 'admingroup@contoso.com' -ManagedGroupTypes 'All'
+Set-EntraGroupLifecyclePolicy -GroupLifecyclePolicyId '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5' -GroupLifetimeInDays 200 -AlternateNotificationEmails 'admingroup@contoso.com' -ManagedGroupTypes 'All'
 ```
 
 ```output
@@ -54,7 +54,7 @@ Id                                   AlternateNotificationEmails GroupLifetimeIn
 
 This command is used to set the properties of a specific Microsoft Group Lifecycle Policy.
 
-- The `-Id` parameter specifies the ID of the Lifecycle Policy to be modified.
+- The `-GroupLifecyclePolicyId` parameter specifies the ID of the Lifecycle Policy to be modified.
 - The `-GroupLifetimeInDays` parameter sets the lifetime of the groups in the policy to 200 days. The GroupLifetimeInDays represents the number of days before a group expires and needs to be renewed. Once renewed, the group expiration is extended by the number of days defined.
 - The `-AlternateNotificationEmails` parameter sets the email address that receives notifications about the policy. Multiple email address can be defined by separating email address with a semicolon.
 - The `-ManagedGroupTypes` parameter sets the types of groups that the policy manages. Possible values are `All`, `Selected`, or `None`.
@@ -96,7 +96,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Id
+### -GroupLifecyclePolicyId
 
 Specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID.
 
