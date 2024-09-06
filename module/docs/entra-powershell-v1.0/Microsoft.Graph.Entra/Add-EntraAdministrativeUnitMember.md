@@ -47,9 +47,9 @@ To add a user, group, or device to an administrative unit, the calling principal
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
-$User = Get-EntraUser -AdministrativeUnitId 'SawyerM@contoso.com'
+$User = Get-EntraUser -UserId 'SawyerM@contoso.com'
 $params = @{
-    AdministrativeUnitId = $AdministrativeUnit.AdministrativeUnitId
+    AdministrativeUnitId = $AdministrativeUnit.ObjectId
     RefObjectId = $User.ObjectId
 }
 Add-EntraAdministrativeUnitMember @params
