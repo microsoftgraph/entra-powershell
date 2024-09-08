@@ -34,7 +34,15 @@ Get-EntraBetaGroupOwner
 
 ## Description
 
-The `Get-EntraBetaGroupOwner` cmdlet gets an owner of a group in Microsoft Entra ID. Specify the `ObjectId` parameter to get a specific group owner.
+The `Get-EntraBetaGroupOwner` cmdlet gets an owner of a group in Microsoft Entra ID. Specify `ObjectId` parameter gets an owner of a group.
+
+In delegated scenarios, the signed-in user must have a supported Microsoft Entra role or a custom role with the `microsoft.directory/groups/owners/read` permission. The following least privileged roles support this operation:
+
+- Group owners
+- Directory Readers
+- Directory Writers
+- Groups Administrator
+- User Administrator
 
 ## Examples
 
@@ -53,6 +61,8 @@ cccccccc-2222-3333-4444-dddddddddddd
 
 This example demonstrates how to retrieve the owner of a specific group.
 
+- `-ObjectId` parameter specifies the ID of a group.
+
 ### Example 2: Gets all group owners
 
 ```powershell
@@ -70,6 +80,8 @@ bbbbbbbb-1111-2222-3333-cccccccccccc
 
 This example demonstrates how to retrieve the all owner of a specific group.  
 
+- `-ObjectId` parameter specifies the ID of a group.  
+
 ### Example 3: Gets two group owners
 
 ```powershell
@@ -77,14 +89,16 @@ Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraBetaGroupOwner -ObjectId 'bbbbbbbb-7777-8888-9999-cccccccccccc' -Top 2
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 dddddddd-9999-0000-1111-eeeeeeeeeeee
 eeeeeeee-4444-5555-6666-ffffffffffff
 ```
 
-This example demonstrates how to retrieve the top two owners of a specific group. 
+This example demonstrates how to retrieve the top two owners of a specific group.
+
+- `-ObjectId` parameter specifies the ID of a group.
 
 ## Parameters
 
@@ -138,7 +152,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

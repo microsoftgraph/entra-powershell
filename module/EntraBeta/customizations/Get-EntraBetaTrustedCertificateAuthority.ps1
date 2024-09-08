@@ -75,7 +75,8 @@
         
         $responseData = Get-MgBetaOrganizationCertificateBasedAuthConfiguration @params -Headers $customHeaders
         $response= @()
-        $responseData.CertificateAuthorities | ForEach-Object {
+        if($responseData){
+            $responseData.CertificateAuthorities | ForEach-Object {
             if (
                 ([string]::IsNullOrEmpty($TrustedIssuer) -and [string]::IsNullOrEmpty($TrustedIssuerSki)) -or
                 (![string]::IsNullOrEmpty($TrustedIssuer) -and ![string]::IsNullOrEmpty($TrustedIssuerSki) -and $_.Issuer -eq $TrustedIssuer -and $_.IssuerSki -eq $TrustedIssuerSki) -or
@@ -97,6 +98,7 @@
                     $dataJson = ConvertTo-Json $data
                     $response += [Newtonsoft.Json.JsonConvert]::DeserializeObject($dataJson, [Microsoft.Open.AzureAD.Model.CertificateAuthorityInformation])
                 }
+            }
         }
         $response
     }  

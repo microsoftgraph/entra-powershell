@@ -12,7 +12,7 @@ function Get-EntraDomainFederationSettings {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         if ($PSBoundParameters.ContainsKey("Verbose")) {
-            $Verbose = $PSBoundParameters["Verbose"]
+            $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
         if ($PSBoundParameters.ContainsKey("TenantId")) {
             $params["TenantId"] = $TenantId

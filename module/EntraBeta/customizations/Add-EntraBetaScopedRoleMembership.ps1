@@ -10,7 +10,7 @@
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{RoleObjectId = "RoleId"; ObjectId = "Id"; AdministrativeUnitObjectId = "AdministrativeUnitId1"}
+        
         if($null -ne $PSBoundParameters["ErrorAction"])
         {
             $params["ErrorAction"] = $PSBoundParameters["ErrorAction"]

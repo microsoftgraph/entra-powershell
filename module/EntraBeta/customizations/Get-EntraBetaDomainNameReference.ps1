@@ -10,7 +10,7 @@
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{Name = "DomainId"}
+        
         if($PSBoundParameters.ContainsKey("Verbose"))
         {
             $params["Verbose"] = $PSBoundParameters["Verbose"]

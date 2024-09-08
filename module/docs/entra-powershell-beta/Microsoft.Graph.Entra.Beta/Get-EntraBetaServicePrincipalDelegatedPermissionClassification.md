@@ -54,7 +54,7 @@ The `Get-EntraBetaServicePrincipalDelegatedPermissionClassification` cmdlet retr
 ### Example 1: Get a list of delegated permission classifications
 
 ```powershell
- Connect-Entra -Scopes 'Application.Read.All'
+Connect-Entra -Scopes 'Application.Read.All'
 $servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-displayName>'"
 $params = @{
   ServicePrincipalId = $servicePrincipal.ObjectId
@@ -139,7 +139,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-The unique identifier of a delegated permission classification object Id.
+The unique identifier of a delegated permission classification object ID.
 
 ```yaml
 Type: System.String

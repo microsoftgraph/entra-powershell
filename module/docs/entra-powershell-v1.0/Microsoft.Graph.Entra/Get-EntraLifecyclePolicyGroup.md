@@ -33,7 +33,7 @@ Get-EntraLifecyclePolicyGroup
 
 ## Description
 
-The Get-EntraLifecyclePolicyGroup retrieves the lifecycle policy object to which a group belongs.
+The `Get-EntraLifecyclePolicyGroup` retrieves the lifecycle policy object to which a group belongs. Specify the `-Id` parameter to get the lifecycle policy object to which a group belongs.
 
 ## Examples
 
@@ -44,14 +44,15 @@ Connect-Entra -Scopes 'Directory.Read.All'
 Get-EntraLifecyclePolicyGroup -Id 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
-```output
+```Output
 Id                                   AlternateNotificationEmails GroupLifetimeInDays ManagedGroupTypes
 --                                   --------------------------- ------------------- -----------------
 bbbbbbbb-1111-2222-3333-cccccccccccc admingroup@contoso.com      200                 All
 ```
 
-This example demonstrates how to retrieve lifecycle policy object by Id in Microsoft Entra ID.  
-This command retrieves the lifecycle policy object to which a group belongs.
+This example demonstrates how to retrieve lifecycle policy object by Id in Microsoft Entra ID.
+
+- `-Id` - specifies the ID of a group.
 
 ## Parameters
 
@@ -89,7 +90,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

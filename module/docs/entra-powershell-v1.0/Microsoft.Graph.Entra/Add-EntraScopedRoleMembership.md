@@ -19,7 +19,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Adds a scoped role membership to an administrative unit.
+Assign a Microsoft Entra role with an administrative unit scope.
 
 ## Syntax
 
@@ -33,7 +33,7 @@ Add-EntraScopedRoleMembership
 
 ## Description
 
-The `Add-EntraScopedRoleMembership` cmdlet adds a scoped role membership to an administrative unit. Specify `-ObjectId` parameter to add a scoped role membership.
+The `Add-EntraScopedRoleMembership` cmdlet adds a scoped role membership to an administrative unit. Specify `ObjectId` parameter to add a scoped role membership.
 
 For delegated scenarios, the calling user needs at least the Privileged Role Administrator Microsoft Entra role.
 
@@ -44,12 +44,12 @@ For delegated scenarios, the calling user needs at least the Privileged Role Adm
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
 $User = Get-EntraUser -SearchString 'MarkWood'
-$Role = Get-EntraDirectoryRole -Filter "DisplayName eq 'User Administrator'"
-$Unit = Get-EntraAdministrativeUnit -Filter "DisplayName eq 'New MSAdmin unit'"
-$RoleMember = New-Object -TypeName Microsoft.Open.MSGraph.Model.MsRolememberinfo
-$RoleMember.Id = $User.ObjectID
+$Role = Get-EntraDirectoryRole -Filter "DisplayName eq '<directory-role-display-name>'" 
+$Unit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+$RoleMember = New-Object -TypeName Microsoft.Open.AzureAD.Model.RoleMemberInfo
+$RoleMember.ObjectId = $User.ObjectId
 $params = @{
-    ObjectId = $unit.ObjectId
+    ObjectId = $Unit.ObjectId
     RoleObjectId = $Role.ObjectId
     RoleMemberInfo = $RoleMember
 }
@@ -64,9 +64,9 @@ dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bb
 
 The example shows how to add a user to the specified role within the specified administrative unit.
 
-- `-ObjectId` Paramater specifies the ID of an administrative unit.
-- `-RoleObjectId` Paramater specifies the ID of a directory role.
-- `-RoleMemberInfo` Paramater specifies a RoleMemberInfo object.
+- `-ObjectId` Parameter specifies the ID of an administrative unit.
+- `-RoleObjectId` Parameter specifies the ID of a directory role.
+- `-RoleMemberInfo` Parameter specifies a RoleMemberInfo object.
 
 ## Parameters
 
@@ -91,7 +91,7 @@ Accept wildcard characters: False
 Specifies a RoleMemberInfo object.
 
 ```yaml
-Type: System.MsRoleMemberInfo
+Type: System.RoleMemberInfo
 Parameter Sets: (All)
 Aliases:
 

@@ -49,9 +49,7 @@ $Params = @{
 Add-EntraBetaServicePrincipalOwner @Params
 ```
 
-This example demonstrates how to add an owner to a service principal.  
-You can use the command `Get-EntraBetaServicePrincipal` to get service principal Id.
-You can use the command `Get-EntraBetUser` to get user Id.
+This example demonstrates how to add an owner to a service principal.
 
 - `-ObjectId` parameter specifies the service principal Id.
 - `-RefObjectId` parameter specifies the user object Id.

@@ -9,8 +9,7 @@
     CustomScript = @'   
     PROCESS {    
         $params = @{}
-        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{ObjectId = "Id"}
+        $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand        
 
         if($null -ne $PSBoundParameters["ObjectId"])
         {

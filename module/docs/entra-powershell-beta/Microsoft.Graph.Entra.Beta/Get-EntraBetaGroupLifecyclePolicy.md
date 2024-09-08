@@ -83,7 +83,7 @@ This command is used to retrieve a specific Microsoft Group Lifecycle Policy.
 
 ## Parameters
 
-### -ID
+### -Id
 
 Specifies the ID of a groupLifecyclePolicies object in Microsoft Entra ID.
 

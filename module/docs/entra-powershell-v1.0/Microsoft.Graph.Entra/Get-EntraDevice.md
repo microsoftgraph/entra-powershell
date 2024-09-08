@@ -57,7 +57,7 @@ Get-EntraDevice
 
 ## Description
 
-The Get-EntraDevice cmdlet gets a device from Microsoft Entra ID.
+The `Get-EntraDevice` cmdlet gets a device from Microsoft Entra ID. Specify the `ObjectId` parameter to get a specific device.
 
 ## Examples
 
@@ -74,7 +74,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
                 bbbbbbbb-1111-2222-3333-cccccccccccc True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
 ```
 
-This example demonstrates how to retrieve specific device by providing ID.
+This example shows how to retrieve a device using its ID.
 
 ### Example 2: Get all devices
 
@@ -121,9 +121,9 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
                 bbbbbbbb-1111-2222-3333-cccccccccccc True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
 ```
 
-This example demonstrates how to retrieve device by display name from Microsoft Entra ID.
+This example demonstrates how to retrieve device using the display name.
 
-### Example 5: Get a device by display name
+### Example 5: Get a device using display name
 
 ```powershell
 Connect-Entra -Scopes 'Device.Read.All'
@@ -136,7 +136,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
                 bbbbbbbb-1111-2222-3333-cccccccccccc True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
 ```
 
-This example demonstrates how to retrieve all the devices whose display name starts with Woodgrove from Microsoft Entra ID.  
+This example demonstrates how to retrieve all the devices whose display name starts with the word `Woodgrove`.
 
 ### Example 6: Search among retrieved devices
 
@@ -151,7 +151,7 @@ DeletedDateTime Id                                   AccountEnabled ApproximateL
                 bbbbbbbb-1111-2222-3333-cccccccccccc True                                                                                     eeeeeeee-4444-5555-6666-ffffffffffff MetaData
 ```
 
-This example demonstrates how to retrieve devices by search string from Microsoft Entra ID.
+This example shows how to retrieve devices containing the word 'DESKTOP.'
 
 ## Parameters
 
@@ -210,7 +210,7 @@ Specifies a search string.
 
 ```yaml
 Type: System.String
-Parameter Sets: GetVague
+Parameter Sets: GetValue
 Aliases:
 
 Required: False

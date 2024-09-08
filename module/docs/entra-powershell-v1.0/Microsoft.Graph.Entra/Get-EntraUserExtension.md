@@ -45,6 +45,12 @@ $UserId = (Get-EntraUser -ObjectId 'SawyerM@contoso.com').ObjectId
 Get-EntraUserExtension -ObjectId $UserId
 ```
 
+```Output
+Id
+--
+com.contoso.roamingSettings
+```
+
 This example shows how to retrieve the extension attributes for a specified user. You can use the command `Get-EntraUser` to get user object Id.
 
 - `-ObjectId` parameter specifies the user object Id.
@@ -69,7 +75,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

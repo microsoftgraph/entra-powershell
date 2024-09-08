@@ -103,7 +103,7 @@ DeletedDateTime Id                                   Description            Disp
 
 This example returns the details of the specified administrative unit.
 
-- `-ObjectId` Specifies the ID of an administrative unit.
+- `-ObjectId` parameter specifies the ID of an administrative unit.
 
 ### Example 4: Get administrative units filter by display name
 
@@ -155,7 +155,8 @@ Accept wildcard characters: False
 
 ### -Filter
 
-Filter items by property values.
+Specifies an OData v4.0 filter statement.
+This parameter filters which objects are returned.
 
 ```yaml
 Type: System.String

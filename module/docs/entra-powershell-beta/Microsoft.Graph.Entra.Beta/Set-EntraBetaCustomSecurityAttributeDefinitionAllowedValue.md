@@ -122,6 +122,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues](Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues.md)
+[Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue](Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue.md)
 
 [Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue](Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue.md)

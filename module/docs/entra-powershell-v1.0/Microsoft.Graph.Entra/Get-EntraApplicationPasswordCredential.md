@@ -33,7 +33,7 @@ Get-EntraApplicationPasswordCredential
 
 ## Description
 
-The `Get-EntraApplicationPasswordCredential` cmdlet gets the password credentials for a Microsoft Entra ID application.
+The `Get-EntraApplicationPasswordCredential` cmdlet receives the password credentials for a Microsoft Entra ID application. Specify `ObjectId` parameter to cmdlet receives the password credentials.
 
 ## Examples
 
@@ -46,20 +46,20 @@ Get-EntraApplicationPasswordCredential -ObjectId $application.ObjectId
 ```
 
 ```Output
-CustomKeyIdentifier  DisplayName EndDateTime           Hint KeyId                                SecretText StartDateTime
--------------------  ----------- -----------           ---- -----                                ---------- -------------
-{116, 101, 115, 116}             11/24/2024 6:28:39 AM 123  bbbbbbbb-1111-2222-3333-cccccccccccc            11/24/2023 6:28:39 AM
+CustomKeyIdentifier  DisplayName EndDateTime         Hint KeyId                                SecretText StartDateTime
+-------------------  ----------- -----------         ---- -----                                ---------- -------------
+{100, 101, 109, 111} demo        26/07/2025 10:34:40 Ap6  bbbbbbbb-1111-2222-3333-cccccccccccc             26/07/2024 10:34:40
 ```
 
-This examples shows how to retrieve the password credential for specified application.
+This example shows how to retrieve the password credential for specified application.
 
-- `-ObjectId` specifies The objectID of the application.
+- `-ObjectId` specifies the ID of an application object in Microsoft Entra ID.
 
 ## Parameters
 
 ### -ObjectId
 
-The objectID of the application for which to get the password credential.
+The objectID of the application for which to get the password credential. Use `Get-EntraApplication` for more details.
 
 ```yaml
 Type: System.String

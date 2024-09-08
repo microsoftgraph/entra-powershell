@@ -40,15 +40,16 @@ This cmdlet retrieves license details for a user.
 ### Example 1: Retrieve user license details
 
 ```powershell
-Connect-Entra -Scopes 'User.Read'
+Connect-Entra -Scopes 'User.Read.All'
 Get-EntraUserLicenseDetail -ObjectId 'SawyerM@contoso.com'
 ```
 
-```output
-ObjectId                                    ServicePlans
---------                                    ------------
-Hv-1hQIEDECePA-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u {class ServicePlanInfo {...
-Hv-1hQIEDECePA-C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w {class ServicePlanInfo {...
+```Output
+Id                                          SkuId                                SkuPartNumber
+--                                          -----                                -------------
+X8Wu1RItQkSNL8zKldQ5DiH6ThjDmF1OlavQcFOpbmc aaaaaaaa-0b0b-1c1c-2d2d-333333333333 INFORMATION_PROTECTION_COMPLIANCE
+X8Wu1RItQkSNL8zKldQ5Dk8SXrDMx6BFpqqM94yUaWg bbbbbbbb-1c1c-2d2d-3e3e-444444444444 EMSPREMIUM
+X8Wu1RItQkSNL8zKldQ5DmAn38eBLPdOtXhbU5K1cd8 cccccccc-2d2d-3e3e-4f4f-555555555555 ENTERPRISEPREMIUM
 ```
 
 This example demonstrates how to retrieve license details for a user from Microsoft Entra ID.

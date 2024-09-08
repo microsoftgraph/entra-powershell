@@ -35,16 +35,16 @@ Get-EntraBetaServicePrincipalOwnedObject
 
 ## Description
 
-The `Get-EntraBetaServicePrincipalOwnedObject` cmdlet gets an object that is owned by a service principal in Microsoft Entra ID.
+The `Get-EntraBetaServicePrincipalOwnedObject` cmdlet retrieves an object owned by a service principal in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Retrieve the owned objects of a service principal
 
 ```powershell
- Connect-Entra -Scopes 'Application.Read.All'
- $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
- Get-EntraBetaServicePrincipalOwnedObject -ObjectId $ServicePrincipal.ObjectId
+Connect-Entra -Scopes 'Application.Read.All'
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServicePrincipalOwnedObject -ObjectId $ServicePrincipal.ObjectId
 ```
 
 ```Output

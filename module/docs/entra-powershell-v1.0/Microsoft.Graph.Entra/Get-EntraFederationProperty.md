@@ -57,6 +57,8 @@ Get-EntraFederationProperty -DomainName contoso.com
 
 This command displays properties for specified domain.
 
+- `-DomainName` Specifies the domain name.
+
 ## Parameters
 
 ### -DomainName

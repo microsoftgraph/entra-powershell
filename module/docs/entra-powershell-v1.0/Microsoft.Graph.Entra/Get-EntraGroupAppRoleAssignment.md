@@ -35,7 +35,7 @@ Get-EntraGroupAppRoleAssignment
 
 ## Description
 
-The Get-EntraGroupAppRoleAssignment cmdlet gets a group application role assignment in Microsoft Entra ID.
+The `Get-EntraGroupAppRoleAssignment` cmdlet gets a group application role assignment in Microsoft Entra ID. Specify the `ObjectId` parameter to get a group application role assignment.
 
 ## Examples
 
@@ -47,18 +47,17 @@ $GroupId = (Get-EntraGroup -Top 1).ObjectId
 Get-EntraGroupAppRoleAssignment -ObjectId $GroupId
 ```
 
-```output
+```Output
 ObjectId                                    ResourceDisplayName                 PrincipalDisplayName
 --------                                    -------------------                 --------------------
-AaBbCcDdEeFfGgHhIiJjKkLlMmNnOo1 Microsoft Resource One             Ask HR
-BbCcDdEeFfGgHhIiJjKkLlMmNnOoPp2 Microsoft Resource Two             Ask HR
-CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3 Microsoft Resource Three           Ask HR
+MSVrBV4APk--eAGnHqMKBLflsQG3rU1EmDFKvgra41I Microsoft Device Management Checkin Ask HR
+MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 Ask HR
+MSVrBV4APk--eAGnHqMKBDtEqPRvu8xLqWHDSXUhoTE M365 License Manager                Ask HR
 ```
 
-The first command gets the object ID of a group by using the [Get-EntraGroup](./Get-EntraGroup.md) cmdlet.
-The command stores the ID in the $GroupId variable.
+This example retrieves the application role assignments of a group.
 
-The second command gets the application role assignments of the group in $GroupId.
+- `-ObjectId` parameter specifies the ID of a group in Microsoft Entra ID.
 
 ### Example 2: Retrieve all application role assignments of a group
 
@@ -67,15 +66,17 @@ Connect-Entra -Scopes 'Directory.Read.All'
 Get-EntraGroupAppRoleAssignment -ObjectId 'ffffffffff-7777-9999-7777-vvvvvvvvvvv' -All
 ```
 
-```output
+```Output
 ObjectId                                    ResourceDisplayName                 PrincipalDisplayName
 --------                                    -------------------                 --------------------
-AaBbCcDdEeFfGgHhIiJjKkLlMmNnOo1 Microsoft Resource One             Ask HR
-BbCcDdEeFfGgHhIiJjKkLlMmNnOoPp2 Microsoft Resource Two             Ask HR
-CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3 Microsoft Resource Three           Ask HR
+MSVrBV4APk--eAGnHqMKBLflsQG3rU1EmDFKvgra41I Microsoft Device Management Checkin Ask HR
+MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 Ask HR
+MSVrBV4APk--eAGnHqMKBDtEqPRvu8xLqWHDSXUhoTE M365 License Manager                Ask HR
 ```
 
-This command gets all application role assignments of the specified group.
+This example retrieves all application role assignments of the specified group.
+
+- `-ObjectId` parameter specifies the ID of a group in Microsoft Entra ID.
 
 ### Example 3: Retrieve top two application role assignments of a group
 
@@ -84,22 +85,25 @@ Connect-Entra -Scopes 'Directory.Read.All'
 Get-EntraGroupAppRoleAssignment -ObjectId 'ffffffffff-7777-9999-7777-vvvvvvvvvvv' -Top 2
 ```
 
-```output
+```Output
 ObjectId                                    ResourceDisplayName                 PrincipalDisplayName
 --------                                    -------------------                 --------------------
-AaBbCcDdEeFfGgHhIiJjKkLlMmNnOo1 Microsoft Resource One             Ask HR
-BbCcDdEeFfGgHhIiJjKkLlMmNnOoPp2 Microsoft Resource Two             Ask HR
+MSVrBV4APk--eAGnHqMKBLflsQG3rU1EmDFKvgra41I Microsoft Device Management Checkin Ask HR
+MSVrBV4APk--eAGnHqMKBExhQK4StEFHidLvUymzo4I ProvisioningPowerBi                 Ask HR
 ```
 
-This command gets top two application role assignments of the specified group.
+This example retrieves top two application role assignments of the specified group.
+
+- `-ObjectId` parameter specifies the ID of a group in Microsoft Entra ID.
 
 ## Parameters
 
 ### -All
+
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -160,7 +164,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

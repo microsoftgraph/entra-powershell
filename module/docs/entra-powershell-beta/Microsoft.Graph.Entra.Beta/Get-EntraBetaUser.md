@@ -62,21 +62,22 @@ The `Get-EntraBetaUser` cmdlet gets a user from Microsoft Entra ID.
 
 ## Examples
 
-### Example 1: Get two users
+### Example 1: Get top three users
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraBetaUser -Top 2
+Get-EntraBetaUser -Top 3
 ```
 
 ```Output
-DisplayName     Id                                   Mail                                 UserPrincipalName
------------     --                                   ----                                 -----------------
-Conf Room Adams aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Adams@M365x99297270.OnMicrosoft.com  Adams@M365x99297270.OnMicrosoft.com
-Adele Vance     bbbbbbbb-1111-2222-3333-cccccccccccc AdeleV@M365x99297270.OnMicrosoft.com AdeleV@M365x99297270.OnMicrosoft.com
+DisplayName      Id                                   Mail                  UserPrincipalName
+-----------      --                                   ----                  -----------------
+Angel Brown      cccccccc-2222-3333-4444-dddddddddddd AngelB@contoso.com    AngelB@contoso.com
+Avery Smith      dddddddd-3333-4444-5555-eeeeeeeeeeee AveryS@contoso.com    AveryS@contoso.com
+Sawyer Miller    eeeeeeee-4444-5555-6666-ffffffffffff SawyerM@contoso.com   SawyerM@contoso.com
 ```
 
-This command gets two users.
+This example demonstrates how to get top three users from Microsoft Entra ID.
 
 ### Example 2: Get a user by ID
 
@@ -88,7 +89,7 @@ Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com'
 ```Output
 DisplayName Id                                   Mail                                 UserPrincipalName
 ----------- --                                   ----                                 -----------------
-Adele Vance bbbbbbbb-1111-2222-3333-cccccccccccc testUpn@tenant.com testUpn@tenant.com
+Sawyer Miller bbbbbbbb-1111-2222-3333-cccccccccccc sawyerm@tenant.com sawyerm@tenant.com
 ```
 
 This command gets the specified user.
@@ -115,38 +116,37 @@ This cmdlet gets all users that match the value of SearchString against the firs
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraBetaUser -Filter "userPrincipalName eq 'jondoe@contoso.com'"
+Get-EntraBetaUser -Filter "userPrincipalName eq 'SawyerM@contoso.com'"
 ```
 
 ```Output
 DisplayName Id                                   Mail UserPrincipalName
 ----------- --                                   ---- -----------------
-New User    cccccccc-2222-3333-4444-dddddddddddd      jondoe@contoso.com
+Sawyer Miller    cccccccc-2222-3333-4444-dddddddddddd      SawyerM@contoso.com
 ```
 
 This command gets the specified user.
 
-### Example 5: Get a user by userPrincipalName
+### Example 5: Get a user by MailNickname
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraBetaUser -Filter "startswith(DisplayName,'New')"
+Get-EntraBetaUser -Filter "startswith(MailNickname,'Ada')"
 ```
 
 ```Output
-DisplayName Id                                   Mail UserPrincipalName
------------ --                                   ---- -----------------
-New User    cccccccc-2222-3333-4444-dddddddddddd      NewUser@contoso.com
-New User88  dddddddd-3333-4444-5555-eeeeeeeeeeee      demo99@contoso.com
+DisplayName     Id                                   Mail                                UserPrincipalName
+-----------     --                                   ----                                -----------------
+Mark Adams bbbbbbbb-1111-2222-3333-cccccccccccc Adams@contoso.com Adams@contoso.com
 ```
 
-This command gets all the users whose displayName starts with the word `New`.
+In this example, we retrieve all users whose MailNickname starts with Ada.
 
 ### Example 6: Get SignInActivity of a User
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
-Get-EntraBetaUser -ObjectId 'cccccccc-2222-3333-4444-dddddddddddd' -Property 'SignInActivity' | Select-Object -ExpandProperty 'SignInActivity'
+Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com' -Property 'SignInActivity' | Select-Object -ExpandProperty 'SignInActivity'
 ```
 
 ```Output
@@ -179,7 +179,7 @@ Accept wildcard characters: False
 
 Specifies an OData v4.0 filter statement.
 This parameter controls which objects are returned.
-Details on querying with oData can be [found here](https://learn.microsoft.com/graph/aad-advanced-queries?tabs=powershell).
+Details on querying with OData can be [found here](https://learn.microsoft.com/graph/aad-advanced-queries?tabs=powershell).
 
 ```yaml
 Type: System.String
@@ -195,7 +195,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-Specifies the ID (as a user principal name (UPN) or ObjectId) of a user in Microsoft Entra ID.
+Specifies the ID (as a User Principal Name (UPN) or ObjectId) of a user in Microsoft Entra ID.
 
 ```yaml
 Type: System.String

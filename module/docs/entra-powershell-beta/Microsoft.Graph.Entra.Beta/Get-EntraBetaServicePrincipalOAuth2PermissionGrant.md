@@ -43,9 +43,9 @@ The `Get-EntraBetaServicePrincipalOAuth2PermissionGrant` cmdlet gets an OAuth2Pe
 ### Example 1: Retrieve the OAuth2 permission grants of a service principal
 
 ```powershell
- Connect-Entra -Scopes 'Directory.Read.All'
- $ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
- Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ObjectId $ServicePrincipal.ObjectId
+Connect-Entra -Scopes 'Directory.Read.All'
+$ServicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraBetaServicePrincipalOAuth2PermissionGrant -ObjectId $ServicePrincipal.ObjectId
 ```
 
 ```Output

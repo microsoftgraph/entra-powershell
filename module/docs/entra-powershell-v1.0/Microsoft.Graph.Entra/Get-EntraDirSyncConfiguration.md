@@ -42,7 +42,8 @@ For delegated scenarios, the user needs to be assigned the Global Administrator 
 ### Example 1: Get directory synchronization settings
 
 ```powershell
-Get-EntraDirSyncConfiguration 
+Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
+Get-EntraDirSyncConfiguration
 ```
 
 ```Output
@@ -56,6 +57,7 @@ This example gets directory synchronization settings.
 ### Example 2: Get directory synchronization settings by TenantId
 
 ```powershell
+Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
 Get-EntraDirSyncConfiguration -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
 ```
 
@@ -73,9 +75,7 @@ This example gets directory synchronization settings by TenantId.
 
 ### -TenantId
 
-The unique ID of the tenant to perform the operation on.
-If TenantId isn't provided, then it defaults to the tenant of the current user.
-This parameter is only applicable to partner users.
+The unique ID of the tenant for the operation. If TenantId isn't provided, it defaults to the current user's tenant. This parameter applies only to partner users.
 
 ```yaml
 Type: System.String

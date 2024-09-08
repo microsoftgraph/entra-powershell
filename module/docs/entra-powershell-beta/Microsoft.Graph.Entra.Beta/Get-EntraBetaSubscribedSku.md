@@ -63,7 +63,7 @@ bbbb1111-cc22-3333-44dd-555555eeeeee 1111bbbb-22cc-dddd-ee33-ffffff444444 M365x9
 cccc2222-dd33-4444-55ee-666666ffffff 2222cccc-33dd-eeee-ff44-aaaaaa555555 M365x99297270 User      Enabled          2             cccccccc-2d2d-3e3e-4f4f-555555555555 ENTE...
 ```
 
-This example demonstrates how to retrieve subscribed SKUs to Microsoft services.  
+This example demonstrates how to retrieve subscribed SKUs to Microsoft services.
 
 ### Example 2: Get subscribed SKUs by ObjectId
 

@@ -38,7 +38,13 @@ Get-EntraGroupOwner
 
 The `Get-EntraGroupOwner` cmdlet gets an owner of a group in Microsoft Entra ID. Specify `ObjectId` parameter gets an owner of a group.
 
-In delegated scenarios, the signed-in user must also be assigned a supported Microsoft Entra role or a custom role with the necessary permissions.
+In delegated scenarios, the signed-in user must have a supported Microsoft Entra role or a custom role with the `microsoft.directory/groups/owners/read` permission. The following least privileged roles support this operation:
+
+- Group owners
+- Directory Readers
+- Directory Writers
+- Groups Administrator
+- User Administrator
 
 ## Examples
 
@@ -96,9 +102,9 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
-This example demonstrates how to retrieve the top two owners of a specific group.  
+This example demonstrates how to retrieve the top two owners of a specific group.
 
-- `-ObjectId` Parameter specifies the ID of a group.
+- `-ObjectId` parameter specifies the ID of a group.
 
 ## Parameters
 
@@ -107,7 +113,7 @@ This example demonstrates how to retrieve the top two owners of a specific group
 List all pages.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 

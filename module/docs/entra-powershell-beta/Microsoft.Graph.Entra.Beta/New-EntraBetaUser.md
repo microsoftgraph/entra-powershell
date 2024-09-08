@@ -87,22 +87,9 @@ New-EntraBetaUser @params
 ```
 
 ```Output
-AboutMe                                         :
-AccountEnabled                                  : True
-Activities                                      :
-AgeGroup                                        :
-AgreementAcceptances                            :
-Analytics                                       : @{ActivityStatistics=; Id=; Settings=}
-AppConsentRequestsForApproval                   :
-AppRoleAssignedResources                        :
-AppRoleAssignments                              :
-Approvals                                       :
-AssignedLicenses                                : {}
-AssignedPlans                                   : {}
-Authentication                                  : @{EmailMethods=; Fido2Methods=; Id=; Methods=; MicrosoftAuthenticatorMethods=; Operations=; PasswordMethods=;
-                                                  PasswordlessMicrosoftAuthenticatorMethods=; PhoneMethods=; PlatformCredentialMethods=; SignInPreferences=; SoftwareOathMethods=;
-                                                  TemporaryAccessPassMethods=; WindowsHelloForBusinessMethods=}
-AuthorizationInfo                               : @{CertificateUserIds=System.Object[]}
+DisplayName Id                                   Mail UserPrincipalName
+----------- --                                   ---- -----------------
+New User 00aa00aa-bb11-cc22-dd33-44ee44ee44ee      NewUser@contoso.com
 ```
 
 This command creates a new user.
@@ -126,22 +113,9 @@ New-EntraBetaUser @params
 ```
 
 ```Output
-AboutMe                                         :
-AccountEnabled                                  : True
-Activities                                      :
-AgeGroup                                        : Adult
-AgreementAcceptances                            :
-Analytics                                       : @{ActivityStatistics=; Id=; Settings=}
-AppConsentRequestsForApproval                   :
-AppRoleAssignedResources                        :
-AppRoleAssignments                              :
-Approvals                                       :
-AssignedLicenses                                : {}
-AssignedPlans                                   : {}
-Authentication                                  : @{EmailMethods=; Fido2Methods=; Id=; Methods=; MicrosoftAuthenticatorMethods=; Operations=; PasswordMethods=;
-                                                  PasswordlessMicrosoftAuthenticatorMethods=; PhoneMethods=; PlatformCredentialMethods=; SignInPreferences=; SoftwareOathMethods=;
-                                                  TemporaryAccessPassMethods=; WindowsHelloForBusinessMethods=}
-AuthorizationInfo                               : @{CertificateUserIds=System.Object[]}
+DisplayName Id                                   Mail UserPrincipalName
+----------- --                                   ---- -----------------
+New User 00aa00aa-bb11-cc22-dd33-44ee44ee44ee      NewUser@contoso.com
 ```
 
 This command creates a new user.
@@ -165,22 +139,9 @@ New-EntraBetaUser @params
 ```
 
 ```Output
-AboutMe                                         :
-AccountEnabled                                  : True
-Activities                                      :
-AgeGroup                                        :
-AgreementAcceptances                            :
-Analytics                                       : @{ActivityStatistics=; Id=; Settings=}
-AppConsentRequestsForApproval                   :
-AppRoleAssignedResources                        :
-AppRoleAssignments                              :
-Approvals                                       :
-AssignedLicenses                                : {}
-AssignedPlans                                   : {}
-Authentication                                  : @{EmailMethods=; Fido2Methods=; Id=; Methods=; MicrosoftAuthenticatorMethods=; Operations=; PasswordMethods=;
-                                                  PasswordlessMicrosoftAuthenticatorMethods=; PhoneMethods=; PlatformCredentialMethods=; SignInPreferences=; SoftwareOathMethods=;
-                                                  TemporaryAccessPassMethods=; WindowsHelloForBusinessMethods=}
-AuthorizationInfo                               : @{CertificateUserIds=System.Object[]}
+DisplayName Id                                   Mail UserPrincipalName
+----------- --                                   ---- -----------------
+New User 00aa00aa-bb11-cc22-dd33-44ee44ee44ee      NewUser@contoso.com
 ```
 
 This command creates a new user.
@@ -204,22 +165,9 @@ New-EntraBetaUser @params
 ```
 
 ```Output
-AboutMe                                         :
-AccountEnabled                                  : True
-Activities                                      :
-AgeGroup                                        :
-AgreementAcceptances                            :
-Analytics                                       : @{ActivityStatistics=; Id=; Settings=}
-AppConsentRequestsForApproval                   :
-AppRoleAssignedResources                        :
-AppRoleAssignments                              :
-Approvals                                       :
-AssignedLicenses                                : {}
-AssignedPlans                                   : {}
-Authentication                                  : @{EmailMethods=; Fido2Methods=; Id=; Methods=; MicrosoftAuthenticatorMethods=; Operations=; PasswordMethods=;
-                                                  PasswordlessMicrosoftAuthenticatorMethods=; PhoneMethods=; PlatformCredentialMethods=; SignInPreferences=; SoftwareOathMethods=;
-                                                  TemporaryAccessPassMethods=; WindowsHelloForBusinessMethods=}
-AuthorizationInfo                               : @{CertificateUserIds=System.Object[]}
+DisplayName Id                                   Mail UserPrincipalName
+----------- --                                   ---- -----------------
+New User 00aa00aa-bb11-cc22-dd33-44ee44ee44ee      NewUser@contoso.com
 ```
 
 This command creates a new user.
@@ -243,22 +191,9 @@ New-EntraBetaUser @params
 ```
 
 ```Output
-AboutMe                                         :
-AccountEnabled                                  : True
-Activities                                      :
-AgeGroup                                        :
-AgreementAcceptances                            :
-Analytics                                       : @{ActivityStatistics=; Id=; Settings=}
-AppConsentRequestsForApproval                   :
-AppRoleAssignedResources                        :
-AppRoleAssignments                              :
-Approvals                                       :
-AssignedLicenses                                : {}
-AssignedPlans                                   : {}
-Authentication                                  : @{EmailMethods=; Fido2Methods=; Id=; Methods=; MicrosoftAuthenticatorMethods=; Operations=; PasswordMethods=;
-                                                  PasswordlessMicrosoftAuthenticatorMethods=; PhoneMethods=; PlatformCredentialMethods=; SignInPreferences=; SoftwareOathMethods=;
-                                                  TemporaryAccessPassMethods=; WindowsHelloForBusinessMethods=}
-AuthorizationInfo                               : @{CertificateUserIds=System.Object[]}
+DisplayName Id                                   Mail UserPrincipalName
+----------- --                                   ---- -----------------
+New User 00aa00aa-bb11-cc22-dd33-44ee44ee44ee      NewUser@contoso.com
 ```
 
 This command creates a new user.

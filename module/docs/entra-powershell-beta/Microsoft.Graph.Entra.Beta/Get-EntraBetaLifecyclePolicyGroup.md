@@ -51,14 +51,13 @@ Id                                   AlternateNotificationEmails GroupLifetimeIn
 bbbbbbbb-1111-2222-3333-cccccccccccc admingroup@contoso.com      200                 All
 ```
 
-This example demonstrates how to retrieve lifecycle policy object by Id in Microsoft Entra ID.  
-This example retrieves the lifecycle policy object to which a group belongs.
+This example demonstrates how to retrieve lifecycle policy object by Id in Microsoft Entra ID.
 
-- `-Id` - Specifies the ID of a group.  
+- `-Id` - specifies the ID of a group.
 
 ## Parameters
 
-### -ID
+### -Id
 
 Specifies the ID of a group in Microsoft Entra ID.
 

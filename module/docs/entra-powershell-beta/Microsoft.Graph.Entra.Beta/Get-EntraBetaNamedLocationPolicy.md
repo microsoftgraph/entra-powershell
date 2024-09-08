@@ -44,7 +44,7 @@ Get-EntraBetaNamedLocationPolicy
 
 ## Description
 
-This cmdlet allows an admin to get the Microsoft Entra ID named location policy.
+This cmdlet allows an admin to get the Microsoft Entra ID named location policies.
 
 Named locations are custom rules that define network locations, which can then be used in a Conditional Access policy.
 

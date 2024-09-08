@@ -1,5 +1,5 @@
 ---
-title:  Get-EntraBetaUserCreatedObject
+title: Get-EntraBetaUserCreatedObject
 description: This article provides details on the  Get-EntraBetaUserCreatedObject Command.
 
 ms.topic: reference
@@ -25,10 +25,10 @@ Get objects created by the user.
 ## Syntax
 
 ```powershell
-Get-EntraBetaUserCreatedObject 
- -ObjectId <String> 
- [-All] 
- [-Top <Int32>] 
+Get-EntraBetaUserCreatedObject
+ -ObjectId <String>
+ [-All]
+ [-Top <Int32>]
  [<CommonParameters>]
 ```
 

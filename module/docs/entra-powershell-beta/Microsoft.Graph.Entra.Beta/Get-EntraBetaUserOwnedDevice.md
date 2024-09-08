@@ -27,8 +27,8 @@ Get registered devices owned by a user.
 ```powershell
 Get-EntraBetaUserOwnedDevice
  -ObjectId <String>
- [-Top <Int32>]
  [-All]
+ [-Top <Int32>]
  [-Property <String[]>]
  [<CommonParameters>]
 ```

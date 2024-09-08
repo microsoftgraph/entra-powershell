@@ -51,9 +51,9 @@ Id                                   DeletedDateTime
 bbbbbbbb-7777-8888-9999-cccccccccccc
 ```
 
-This command demonstrates how to get the members of the specified role.
+This example retrieves the members of the specified role.
 
-- `-ObjectId` parameter specifies the ID of a directory role.
+- `-ObjectId` parameter specifies directory role ID.
 
 ## Parameters
 

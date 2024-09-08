@@ -61,10 +61,10 @@ The `Get-EntraBetaServicePrincipal` cmdlet gets a service principal in Microsoft
 
 ## Examples
 
-### Example 1: Retrieve service principal from the directory
+### Example 1: Retrieve all service principal from the directory
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaServicePrincipal
 ```
 
@@ -76,12 +76,12 @@ Microsoft Device Management Checkin bbbbbbbb-1111-2222-3333-cccccccccccc 1111222
 ProvisioningPowerBi                 cccccccc-2222-3333-4444-dddddddddddd 22223333-cccc-4444-dddd-5555eeee6666                     Application
 ```
 
-This command retrieves service principal from the directory.
+This example retrieves all service principals from the directory.
 
 ### Example 2: Retrieve a service principal by ObjectId
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaServicePrincipal -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
@@ -115,7 +115,7 @@ This example retrieves all service principals from the directory.
 ### Example 4: Retrieve top two service principal from the directory
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaServicePrincipal -Top 2
 ```
 
@@ -131,7 +131,7 @@ This command retrieves top two service principals from the directory.
 ### Example 5: Get a service principal by display name
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
+Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraBetaServicePrincipal -Filter "DisplayName eq 'M365 License Manager'"
 ```
 
@@ -156,41 +156,11 @@ DisplayName                         Id                                   AppId  
 M365 License Manager                aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb 00001111-aaaa-2222-bbbb-3333cccc4444 AzureADMultipleOrgs Application
 ```
 
-### Example 7: Retrieve all disabled apps
+This example gets a list of service principal, which has the specified display name.
+
+### Example 7: Retrieve all Enterprise apps
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
-Get-EntraBetaServicePrincipal -Filter "accountEnabled eq false"
-```
-
-```Output
-DisplayName         Id                                   AppId                                SignInAudience         ServicePrincipalType
------------         --                                   -----                                --------------         --------------------
-Disabled App1     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-5555-eeee-6666ffff7777                         Application
-```
-
-This example demonstrates how to retrieve all disabled apps.
-
-### Example 8: Retrieve all App proxy apps
-
-```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
-Get-EntraBetaServicePrincipal  -Filter "tags/Any(x: x eq 'WindowsAzureActiveDirectoryOnPremApp')"
-```
-
-```Output
-DisplayName         Id                                   AppId                                SignInAudience         ServicePrincipalType
------------         --                                   -----                                --------------         --------------------
-App proxy 1     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-5555-eeee-6666ffff7777                         Application
-App proxy 2     11112222-bbbb-3333-cccc-4444dddd5555 22223333-cccc-4444-dddd-5555eeee6666 AzureADMultipleOrgs    Application
-```
-
-This example demonstrates how to retrieve all app proxy apps.
-
-### Example 9: Retrieve all Enterprise apps
-
-```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
 Get-EntraBetaServicePrincipal -Filter "tags/Any(x: x eq 'WindowsAzureActiveDirectoryIntegratedApp')"
 ```
 
@@ -203,10 +173,38 @@ Enterprise App2     11112222-bbbb-3333-cccc-4444dddd5555 22223333-cccc-4444-dddd
 
 This example demonstrates how to retrieve all enterprise apps.
 
+### Example 8: Retrieve all App proxy apps
+
+```powershell
+Get-EntraBetaServicePrincipal -Filter "tags/Any(x: x eq 'WindowsAzureActiveDirectoryOnPremApp')"
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience         ServicePrincipalType
+-----------         --                                   -----                                --------------         --------------------
+App proxy 1     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-5555-eeee-6666ffff7777                         Application
+App proxy 2     11112222-bbbb-3333-cccc-4444dddd5555 22223333-cccc-4444-dddd-5555eeee6666 AzureADMultipleOrgs    Application
+```
+
+This example demonstrates how to retrieve all app proxy apps.
+
+### Example 9: Retrieve all disabled apps
+
+```powershell
+Get-EntraBetaServicePrincipal -Filter "accountEnabled eq false"
+```
+
+```Output
+DisplayName         Id                                   AppId                                SignInAudience         ServicePrincipalType
+-----------         --                                   -----                                --------------         --------------------
+Disabled App1     00001111-aaaa-2222-bbbb-3333cccc4444 33334444-dddd-5555-eeee-6666ffff7777                         Application
+```
+
+This example demonstrates how to retrieve all disabled apps.
+
 ### Example 10: Retrieve all Global Secure Access apps
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All'
 Get-EntraBetaServicePrincipal -Filter "tags/Any(x: x eq 'PrivateAccessNonWebApplication') or tags/Any(x: x eq 'NetworkAccessManagedApplication')"
 ```
 

@@ -97,7 +97,7 @@ Definition                                                                      
 
 This example demonstrates how to retrieve all policies in Microsoft Entra ID.
 
-### Example 4: Get a top one policy
+### Example 4: Get the top one policy
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'
@@ -116,7 +116,7 @@ This example demonstrates how to retrieve top one policies in Microsoft Entra ID
 
 ### -Id
 
-The ID of the policy you want to retrieve.
+The Id of the policy you want to retrieve.
 
 ```yaml
 Type: System.String

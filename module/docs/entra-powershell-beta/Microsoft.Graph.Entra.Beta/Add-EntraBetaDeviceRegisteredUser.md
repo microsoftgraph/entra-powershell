@@ -42,7 +42,7 @@ The `Add-EntraBetaDeviceRegisteredUser` cmdlet adds a registered user for a Micr
 
 ```powershell
 Connect-Entra -Scopes 'Device.ReadWrite.All'
-$User = Get-EntraBetaUser -SearchString '<user-display-name>'
+$User = Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com'
 $Device = Get-EntraBetaDevice -SearchString '<device-display-name>'
 $params = @{
     ObjectId = $Device.ObjectId 

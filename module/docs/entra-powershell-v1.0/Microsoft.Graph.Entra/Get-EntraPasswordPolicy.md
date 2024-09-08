@@ -42,7 +42,8 @@ Get-EntraPasswordPolicy
 
 ## Description
 
-The `Get-EntraPasswordPolicy` cmdlet can be used to retrieve the values associated with the Password Expiry window or Password Expiry Notification window for a tenant or specified domain.
+The `Get-EntraPasswordPolicy` cmdlet can be used to retrieve the values associated with the Password Expiry
+window or Password Expiry Notification window for a tenant or specified domain.
 
 When a domain name is specified, it must be a verified domain for the company.
 
@@ -52,11 +53,11 @@ The work or school account needs to belong to one of the following Microsoft Ent
 
 ## Examples
 
-### EXAMPLE 1: Get password policy for a specified domain
+### Example 1: Get password policy for a specified domain
 
 ```powershell
 Connect-Entra -Scopes 'Domain.Read.All'
-Get-EntraPasswordPolicy -DomainName contoso.com
+Get-EntraPasswordPolicy -DomainName 'contoso.com'
 ```
 
 ```Output
@@ -65,7 +66,9 @@ NotificationDays ValidityPeriod
             90             180
 ```
 
-Returns the password policy for the domain contoso.com.
+Returns the password policy for the specified domain.
+
+- `-DomainName` parameter specifies the fully qualified domain name to retrieve.
 
 ## Parameters
 

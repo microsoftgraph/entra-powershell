@@ -41,7 +41,7 @@ For delegated scenarios, the calling user needs at least the Privileged Role Adm
 
 ## Examples
 
-### Example 1: Adds a scoped role membership to an administrative unit
+### Example 1: Add a scoped role membership to an administrative unit
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
@@ -64,14 +64,11 @@ Id                                                                Administrative
 dddddddddddd-bbbb-aaaa-bbbb-cccccccccccc aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc bbbbbbbb-1111-2222-3333-cccccccccccc
 ```
 
-This example adds a scoped role membership to an administrative unit.  
-You can use the command `Get-EntraBetaAdministrativeUnit` to get administrativeunit Id.  
-You can use the command `Get-EntraBetaUser` to get user Id.  
-You can use the command `Get-EntraBetaDirectoryRole` to get directory role Id.  
+The example shows how to add a user to the specified role within the specified administrative unit.
 
-- `-ObjectId` parameter specifies the Id of an administrative unit.
-- `-RoleObjectId` parameter specifies the Id of the DirectoryRole.
-- `-RoleMemberInfo` parameter specifies the RoleMemberInfo object Id.
+- `-ObjectId` Parameter specifies the ID of an administrative unit.
+- `-RoleObjectId` Parameter specifies the ID of a directory role.
+- `-RoleMemberInfo` Parameter specifies a RoleMemberInfo object.
 
 ## Parameters
 

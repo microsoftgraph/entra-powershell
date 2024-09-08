@@ -50,7 +50,7 @@ The `Get-EntraBetaContact` cmdlet gets a contact from Microsoft Entra ID.
 
 ## Examples
 
-### Example 1 Retrieve all contact objects in the directory
+### Example 1: Retrieve all contact objects in the directory
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'

@@ -27,7 +27,7 @@ Retrieves settings for a federated domain.
 
 ```powershell
 Get-EntraBetaDomainFederationSettings 
- -DomainName <String> 
+ -DomainName <String>
  [-TenantId <String>]
  [<CommonParameters>]
 ```

@@ -70,35 +70,31 @@ Get-EntraUserDirectReport -ObjectId 'SawyerM@contoso.com' -All
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
-dddddddd-3333-4444-5555-eeeeeeeeeeee
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This example demonstrates how to retrieve all direct reports for a user in Microsoft Entra ID.
 
-- `-ObjectId` Parameter specifies the ID of a user (UserPrincipalName or ObjectId).
+- `-ObjectId` parameter specifies the ID of a user (UserPrincipalName or ObjectId).
 
-### Example 3: Get a top five direct reports
+### Example 3: Get a top two direct reports
 
 ```powershell
-Connect-Entra -Scopes 'User.Read' #Delegated Permission
-Connect-Entra -Scopes 'User.Read.All' #Application Permission
-Get-EntraUserDirectReport -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 3
+Connect-Entra -Scopes 'User.Read','User.Read.All'
+Get-EntraUserDirectReport -ObjectId 'SawyerM@contoso.com' -Top 2
 ```
 
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 bbbbbbbb-1111-2222-3333-cccccccccccc
-cccccccc-2222-3333-4444-dddddddddddd
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This example demonstrates how to retrieve top five direct reports for a user in Microsoft Entra ID.
 
-- `-ObjectId` Parameter specifies the ID of a user (UserPrincipalName or ObjectId).
+- `-ObjectId` parameter specifies the ID of a user (UserPrincipalName or ObjectId).
 
 ## Parameters
 
@@ -120,7 +116,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-Specifies the ID of a user in Microsoft Entra ID (UserPrincipalName or ObjectId).
+Specifies the ID of a user's UserPrincipalName or ObjectId in Microsoft Entra ID.
 
 ```yaml
 Type: System.String

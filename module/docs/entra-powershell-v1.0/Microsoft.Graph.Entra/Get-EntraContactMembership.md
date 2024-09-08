@@ -45,11 +45,11 @@ This command is useful to administrators who need to understand which groups, ro
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-$Contact = Get-EntraContact -Top 1
+$Contact = Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
 Get-EntraContactMembership -ObjectId $Contact.ObjectId
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 ffffffff-5555-6666-7777-aaaaaaaaaaaa
@@ -63,10 +63,11 @@ This command gets all the memberships for specified contact.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-Get-EntraContactMembership -ObjectId 'dddddddd-3333-4444-5555-eeeeeeeeeeee' -All
+$Contact = Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
+Get-EntraContactMembership -ObjectId $Contact.ObjectId -All
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 ffffffff-5555-6666-7777-aaaaaaaaaaaa
@@ -80,10 +81,11 @@ This command gets all the memberships for specified contact.
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-Get-EntraContactMembership -ObjectId 'dddddddd-3333-4444-5555-eeeeeeeeeeee' -Top 2
+$Contact = Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
+Get-EntraContactMembership -ObjectId $Contact.ObjectId -Top 2
 ```
 
-```output
+```Output
 Id                                   DeletedDateTime
 --                                   ---------------
 ffffffff-5555-6666-7777-aaaaaaaaaaaa
@@ -144,7 +146,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

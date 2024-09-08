@@ -53,12 +53,12 @@ Get-EntraBetaFeatureRolloutPolicy
 
 ## Description
 
-This `Get-EntraBetaFeatureRolloutPolicy` cmdlet allows an admin to get the policy for cloud authentication rollout (users moving from federation to cloud auth) in Microsoft Entra ID.
-This policy is in the form of one or two FeatureRolloutPolicy objects holding groups that are assigned for cloud auth (Pass-through auth or Password hash-sync) and groups that are assigned for Seamless single sign-on (feature on top of PTA or PHS). Specify `Id` parameter to get the policy for cloud authentication roll-out.
+The `Get-EntraBetaFeatureRolloutPolicy` cmdlet allows an admin to get the policy for cloud authentication rollout (users moving from federation to cloud auth) in Microsoft Entra ID.
+This policy consists of one or two FeatureRolloutPolicy objects. These objects hold the groups assigned for cloud authentication (Pass-through authentication or Password Hash Sync) and groups assigned for Seamless single sign-on.
 
 ## Examples
 
-### Example 1: Retrieves a list of all cloud authentication roll-out Microsoft Entra ID
+### Example 1: Retrieves a list of all cloud authentication roll-out in Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
@@ -78,7 +78,7 @@ This command retrieves a list of all cloud authentication roll-out policies in M
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
-Get-EntraBetaFeatureRolloutPolicy -Id '11bb11bb-cc22-dd33-ee44-55ff55ff55ff'
+Get-EntraBetaFeatureRolloutPolicy -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -87,9 +87,9 @@ Id                                   Description          DisplayName           
 11bb11bb-cc22-dd33-ee44-55ff55ff55ff Feature-Rollout-test Feature-Rollout-Policytest passwordHashSync False                   True
 ```
 
-This command retrieves the policy for cloud authentication roll-out policy in Microsoft Entra ID.
+This example retrieves the policy for cloud authentication roll-out policy in Microsoft Entra ID.
 
-- `-Id` Parameter specifies the ID of the cloud authentication roll-out policy.
+- `-Id` - Specify The unique identifier of the cloud authentication roll-out policy in Microsoft Entra ID.
 
 ### Example 3: Retrieves cloud authentication roll-out in Microsoft Entra ID with given Search String
 
@@ -106,7 +106,7 @@ Id                                   Description          DisplayName           
 
 This command retrieves the policy for cloud authentication roll-out policy in Microsoft Entra ID.
 
-### Example 4: Retrieves cloud authentication roll-out in Microsoft Entra ID with given Filter
+### Example 4: Retrieves cloud authentication roll-out in Microsoft Entra ID with given Filter parameter
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
@@ -123,7 +123,7 @@ This command retrieves the policy for cloud authentication roll-out policy in Mi
 
 ## Parameters
 
-### -ID
+### -Id
 
 The unique identifier of the cloud authentication roll-out policy in Microsoft Entra ID.
 
@@ -157,7 +157,7 @@ Accept wildcard characters: False
 
 ### -Filter
 
-The OData v4.0 filter statement.
+Specifies an OData v4.0 filter statement.
 Controls which objects are returned.
 
 ```yaml

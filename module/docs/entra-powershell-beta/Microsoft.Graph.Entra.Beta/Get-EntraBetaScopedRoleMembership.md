@@ -66,7 +66,8 @@ This example gets scoped role administrator. You cane use the command `Get-Entra
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory'
-Get-EntraBetaScopedRoleMembership -ObjectId 'aaaaaaaa-bbbb-aaaa-bbbb-cccccccccccc'
+$AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraBetaScopedRoleMembership -ObjectId $AdministrativeUnit.ObjectId
 ```
 
 ```Output

@@ -26,8 +26,8 @@ Gets an oAuth2PermissionGrant object.
 
 ```powershell
 Get-EntraUserOAuth2PermissionGrant
- [-All]
  -ObjectId <String>
+ [-All]
  [-Top <Int32>]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -35,7 +35,7 @@ Get-EntraUserOAuth2PermissionGrant
 
 ## Description
 
-The Get-EntraUserOAuth2PermissionGrant cmdlet gets an oAuth2PermissionGrant object for the specified user in Microsoft Entra ID.
+The `Get-EntraUserOAuth2PermissionGrant` cmdlet gets an oAuth2PermissionGrant object for the specified user in Microsoft Entra ID. Specify `ObjectId` parameter to retrieve an oAuth2PermissionGrant object.
 
 In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with a supported role permission. The following least privileged roles are supported for this operation.
 
@@ -54,8 +54,15 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 ### Example 1: Retrieve the OAuth2 permission grants for a user
 
 ```powershell
- Connect-Entra -Scopes 'Directory.Read.All'
- Get-EntraUserOAuth2PermissionGrant -ObjectId 'SawyerM@contoso.com'
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraUserOAuth2PermissionGrant -ObjectId 'SawyerM@contoso.com'
+```
+
+```Output
+Id                                                               ClientId                             ConsentType ExpiryTime
+--                                                               --------                             ----------- ----------
+HXFXwKLgoUC4rwbZbCDIdffW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 00001111-aaaa-2222-bbbb-3333cccc4444 Principal   08-01-2024 10:0...
+9uBzRwC0s0CFCDQN6O4Ik_fW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 11112222-bbbb-3333-cccc-4444dddd5555 Principal   13-01-2024 08:0...
 ```
 
 This example retrieves the OAuth2 permission grants for a user using the ObjectId parameter. Use the `Get-EntraBetaUser` cmdlet to obtain the `ObjectId` value.
@@ -68,13 +75,15 @@ Get-EntraUserOAuth2PermissionGrant -ObjectId 'SawyerM@contoso.com'
 ```
 
 ```Output
-Id                                ClientId                             ConsentType PrincipalId                          ResourceId
---                                --------                             ----------- -----------                          ----------
-C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w    00001111-aaaa-2222-bbbb-3333cccc4444 Principal   aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1
-E3fH4iJ5kL6mN7oP8qR9sT0uV1wX2y    11112222-bbbb-3333-cccc-4444dddd5555 Principal   aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1
+Id                                                               ClientId                             ConsentType ExpiryTime
+--                                                               --------                             ----------- ----------
+HXFXwKLgoUC4rwbZbCDIdffW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 00001111-aaaa-2222-bbbb-3333cccc4444 Principal   08-01-2024 10:0...
+9uBzRwC0s0CFCDQN6O4Ik_fW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 11112222-bbbb-3333-cccc-4444dddd5555 Principal   13-01-2024 08:0...
 ```
 
-This example retrieve the OAuth2 permission grants for a user using object ID parameter.
+This example retrieves the OAuth2 permission grants for a user using object ID parameter.
+
+- `-ObjectId` parameter specifies the user ID.
 
 ### Example 3: Retrieve the OAuth2 permission grants for a user using All parameter
 
@@ -84,13 +93,32 @@ Get-EntraUserOAuth2PermissionGrant -ObjectId 'SawyerM@contoso.com' -All
 ```
 
 ```Output
-Id                                ClientId                             ConsentType PrincipalId                          ResourceId
---                                --------                             ----------- -----------                          ----------
-C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w    00001111-aaaa-2222-bbbb-3333cccc4444 Principal   aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1
-E3fH4iJ5kL6mN7oP8qR9sT0uV1wX2y    11112222-bbbb-3333-cccc-4444dddd5555 Principal   aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1
+Id                                                               ClientId                             ConsentType ExpiryTime
+--                                                               --------                             ----------- ----------
+HXFXwKLgoUC4rwbZbCDIdffW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 00001111-aaaa-2222-bbbb-3333cccc4444 Principal   08-01-2024 10:0...
+9uBzRwC0s0CFCDQN6O4Ik_fW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 11112222-bbbb-3333-cccc-4444dddd5555 Principal   13-01-2024 08:0...
 ```
 
-This Example Retrieve the OAuth2 permission grants for a user using All parameter.
+This example retrieves the OAuth2 permission grants for a user using All parameter.
+
+- `-ObjectId` parameter specifies the user ID.
+
+### Example 4: Retrieve top one OAuth2 permission grant
+
+```powershell
+Connect-Entra -Scopes 'Directory.Read.All'
+Get-EntraUserOAuth2PermissionGrant -ObjectId 'SawyerM@contoso.com' -Top 1
+```
+
+```Output
+Id                                                               ClientId                             ConsentType ExpiryTime
+--                                                               --------                             ----------- ----------
+HXFXwKLgoUC4rwbZbCDIdffW8XpadQNIoHik9aQxrVHR6StBYBRhQI7tzKID_LIV 00001111-aaaa-2222-bbbb-3333cccc4444 Principal   08-01-2024 10:0...
+```
+
+This Example Retrieve top one the OAuth2 permission grant in Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies the user ID.
 
 ## Parameters
 
@@ -112,7 +140,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-Specifies the ID (as a UPN or ObjectId) of a user in Microsoft Entra ID.
+Specifies the ID (as a User Principal Name or ObjectId) of a user in Microsoft Entra ID.
 
 ```yaml
 Type: System.String

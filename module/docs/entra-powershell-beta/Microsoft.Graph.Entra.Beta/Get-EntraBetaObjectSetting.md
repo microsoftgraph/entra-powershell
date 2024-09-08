@@ -67,7 +67,6 @@ Get-EntraBetaObjectSetting @params
 ```
 
 ```Output
-
 Id                                   DisplayName         TemplateId
 --                                   -----------         ----------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Group.Unified.Guest 22cc22cc-dd33-ee44-ff55-66aa66aa66aa
@@ -78,7 +77,7 @@ This command retrieves  object setting from Microsoft Entra ID.
 - `-TargetType` Parameter specifies the target type.
 - `-TargetObjectId` Parameter specifies the ID of the target object.
 
-### Example 2: Retrieve Specific object setting from Microsoft Entra ID
+### Example 2: Retrieve a specific object setting from Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
@@ -86,13 +85,11 @@ $params = @{
     TargetType = 'Groups'
     TargetObjectId = 'aaaaaaaa-1111-1111-1111-000000000000'
     Id ='aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-
 }
 Get-EntraBetaObjectSetting @params
 ```
 
 ```Output
-
 Id                                   DisplayName         TemplateId
 --                                   -----------         ----------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Group.Unified.Guest 22cc22cc-dd33-ee44-ff55-66aa66aa66aa
@@ -116,7 +113,6 @@ Get-EntraBetaObjectSetting @params -Top 1
 ```
 
 ```Output
-
 Id                                   DisplayName         TemplateId
 --                                   -----------         ----------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Group.Unified.Guest 22cc22cc-dd33-ee44-ff55-66aa66aa66aa
@@ -139,7 +135,6 @@ Get-EntraBetaObjectSetting @params -All
 ```
 
 ```Output
-
 Id                                   DisplayName         TemplateId
 --                                   -----------         ----------
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb Group.Unified.Guest 22cc22cc-dd33-ee44-ff55-66aa66aa66aa

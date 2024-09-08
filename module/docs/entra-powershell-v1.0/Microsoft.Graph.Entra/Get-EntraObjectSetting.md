@@ -47,7 +47,7 @@ Get-EntraObjectSetting
 
 ## Description
 
-The `Get-EntraObjectSetting` cmdlet Retrieve an object setting from Microsoft Entra ID.
+The `Get-EntraObjectSetting` cmdlet retrieves an object setting from Microsoft Entra ID.
 
 ## Examples
 
@@ -73,7 +73,7 @@ This command retrieves  object setting from Microsoft Entra ID.
 - `-TargetType` Parameter specifies the target type.
 - `-TargetObjectId` Parameter specifies the ID of the target object.
 
-### Example 2: Retrieve an object setting with ID parameter
+### Example 2: Retrieve a specific object setting from Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
@@ -97,7 +97,7 @@ This command retrieves Specific object setting from Microsoft Entra ID.
 - `-TargetObjectId` Parameter specifies the ID of the target object.
 - `-Id` Parameter specifies the ID of a settings object.
 
-### Example 3: Retrieve a top one object setting
+### Example 3: Retrieve top one object setting from Microsoft Entra ID
 
 ```powershell
 Connect-Entra -Scopes 'Directory.Read.All'
@@ -223,6 +223,22 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
+### -Property
+
+Specifies properties to be returned.
+
+```yaml
+Type: System.String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
@@ -234,9 +250,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
-
-[New-EntraObjectSetting](New-EntraObjectSetting.md)
-
-[Remove-EntraObjectSetting](Remove-EntraObjectSetting.md)
-
-[Set-EntraObjectSetting](Set-EntraObjectSetting.md)

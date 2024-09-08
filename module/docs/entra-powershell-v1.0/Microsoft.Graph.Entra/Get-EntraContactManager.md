@@ -45,7 +45,9 @@ $Contact = Get-EntraContact -Top 1
 Get-EntraContactManager -ObjectId $Contact.ObjectId
 ```
 
-The example demonstrates how to retrieve the manager of a contact.
+The example demonstrates how to retrieve the manager of a contact. You can use the command `Get-EntraContact` to get organizational contact.
+
+- `-ObjectId` parameter specifies the contact Id.
 
 ## Parameters
 
@@ -67,7 +69,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

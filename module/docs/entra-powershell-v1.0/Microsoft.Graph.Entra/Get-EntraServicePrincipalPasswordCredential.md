@@ -1,5 +1,5 @@
 ---
-title:  Get-EntraServicePrincipalPasswordCredential
+title: Get-EntraServicePrincipalPasswordCredential
 description: This article provides details on the  Get-EntraServicePrincipalPasswordCredential Command.
 
 
@@ -32,7 +32,7 @@ Get-EntraServicePrincipalPasswordCredential
 
 ## Description
 
-The Get-EntraServicePrincipalPasswordCredential cmdlet gets the password credentials for a service principal in Microsoft Entra ID.
+The `Get-EntraServicePrincipalPasswordCredential` cmdlet gets the password credentials for a service principal in Microsoft Entra ID.
 
 ## Examples
 
@@ -40,21 +40,21 @@ The Get-EntraServicePrincipalPasswordCredential cmdlet gets the password credent
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
-Get-EntraServicePrincipalPasswordCredential -ObjectId $ServicePrincipalId
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraServicePrincipalPasswordCredential -ObjectId $ServicePrincipal.ObjectId
 ```
 
-```output
+```Output
 CustomKeyIdentifier DisplayName EndDateTime         Hint KeyId                                SecretText StartDateTime
 ------------------- ----------- -----------         ---- -----                                ---------- -------------
-                                21/03/2025 08:12:08 333  aaaaaaaa-0b0b-1c1c-2d2d-333333333333            21/03/2024 08:12:08
-                                12/12/2024 08:39:07 444  bbbbbbbb-1c1c-2d2d-3e3e-444444444444            12/12/2023 08:39:10
+                                17-04-2025 07:32:41 gjW  bdf6a3df-cc9b-4612-b948-e32804ee88f7            17-04-2024 07:32:41
+                                21-03-2025 08:12:08 4fl  7f4414ec-8f72-49a8-b949-70d635899656            21-03-2024 08:12:08
+                                12-12-2024 08:39:07 mjl  0fff6b21-0a20-4f7c-93ba-26ed9b648344            12-12-2023 08:39:10
 ```
 
-The first command gets the ID of a service principal by using the Get-EntraServicePrincipal (./Get-EntraServicePrincipal.md) cmdlet. 
-The command stores the ID in the $ServicePrincipalId variable.
+This example retrieves the password credentials for specified service principal in Microsoft Entra ID.
 
-The second command gets the password credential of a service principal identified by $ServicePrincipalId.
+- `-ObjectId` parameter specifies the object ID of a service principal. You can use the command `Get-EntraServicePrincipal` to get a service principal Id.
 
 ## Parameters
 
@@ -76,7 +76,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

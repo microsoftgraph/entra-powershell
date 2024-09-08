@@ -59,8 +59,8 @@ The signed-in user must be assigned one of the following directory roles:
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$CustomSecurityAttributeDefinitionId  = Get-EntraBetaCustomSecurityAttributeDefinition -Id <attributename_attributedefinition>
-Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId $CustomSecurityAttributeDefinitionId.Id
+$CustomSecurityAttributeDefinition  = Get-EntraBetaCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>'
+Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId $CustomSecurityAttributeDefinition.Id
 ```
 
 ```Output
@@ -77,9 +77,9 @@ This example retrieves an all predefined values.
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$CustomSecurityAttributeDefinitionId  = Get-EntraBetaCustomSecurityAttributeDefinition -Id <attributename_attributedefinition>
+$CustomSecurityAttributeDefinition  = Get-EntraBetaCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>'
 $params = @{
-    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinitionId.Id
+    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinition.Id
     Id = 'Alpine'
 }
 Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue @params
@@ -100,9 +100,9 @@ This example retrieves a specific predefined value.
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
-$CustomSecurityAttributeDefinitionId  = Get-EntraBetaCustomSecurityAttributeDefinition -Id <attributename_attributedefinition>
+$CustomSecurityAttributeDefinition  = Get-EntraBetaCustomSecurityAttributeDefinition -Id '<attributename_attributedefinition>'
 $params = @{
-    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinitionId.Id
+    CustomSecurityAttributeDefinitionId = $CustomSecurityAttributeDefinition.Id
     Filter = "Id eq 'Apline'"
 }
 Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue @params
@@ -200,6 +200,6 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues](Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValues.md)
+[Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue](Add-EntraBetaCustomSecurityAttributeDefinitionAllowedValue.md)
 
 [Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue](Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue.md)

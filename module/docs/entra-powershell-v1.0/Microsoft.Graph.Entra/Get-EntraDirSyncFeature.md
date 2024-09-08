@@ -91,7 +91,7 @@ This example gets a list of all directory synchronization features and shows if 
 
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.Read.All'
-Get-EntraDirSyncFeature -Feature PasswordSync
+Get-EntraDirSyncFeature -Feature 'PasswordSync'
 ```
 
 ```Output

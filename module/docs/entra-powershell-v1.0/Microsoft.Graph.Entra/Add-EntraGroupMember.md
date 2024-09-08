@@ -41,10 +41,15 @@ The Add-EntraGroupMember cmdlet adds a member to a group.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
-Add-EntraGroupMember -ObjectId 'dddddddd-2222-3333-5555-rrrrrrrrrrrr' -RefObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+$params = @{
+    ObjectId = 'dddddddd-2222-3333-5555-rrrrrrrrrrrr'
+    RefObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+}
+
+Add-EntraGroupMember @params
 ```
 
-This command is used to add a member to a group. The `-ObjectId` parameter specifies the ID of the group to which the member should be added. The `-RefObjectId` parameter specifies the ID of the member to be added to the group.
+This example demonstrates how to add a member to a group.
 
 ## Parameters
 
@@ -66,7 +71,7 @@ Accept wildcard characters: False
 
 ### -RefObjectId
 
-Specifies the ID of the Microsoft Entra ID object that assign as owner/manager/member.
+Specifies the ID of the Microsoft Entra ID object that is assigned as an owner, manager, or member.
 
 ```yaml
 Type: System.String
@@ -82,7 +87,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

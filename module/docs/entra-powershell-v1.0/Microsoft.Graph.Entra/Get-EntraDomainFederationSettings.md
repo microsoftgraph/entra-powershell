@@ -21,14 +21,14 @@ schema: 2.0.0
 
 ## Synopsis
 
-Gets key settings for a federated domain.
+Retrieves settings for a federated domain.
 
 ## Syntax
 
 ```powershell
 Get-EntraDomainFederationSettings 
  -DomainName <String>
- [-TenantId <Guid>]
+ [-TenantId <String>]
  [<CommonParameters>]
 ```
 
@@ -36,7 +36,7 @@ Get-EntraDomainFederationSettings
 
 The `Get-EntraDomainFederationSettings` cmdlet gets key settings from Microsoft Entra ID.
 
-Use the [Get-EntraFederationProperty](./Get-EntraFederationProperty.md) cmdlet to get settings for both Microsoft Entra ID and the Entra ID Federation Services server.
+Use the `Get-EntraFederationProperty` cmdlet to get settings for both Microsoft Entra ID and the Entra ID Federation Services server.
 
 For delegated scenarios, the calling user must be assigned at least one of the following Microsoft Entra roles:
 
@@ -49,14 +49,16 @@ For delegated scenarios, the calling user must be assigned at least one of the f
 
 ## Examples
 
-### EXAMPLE 1: Get federation settings for specified domain
+### Example 1: Get federation settings for specified domain
 
 ```powershell
- Connect-Entra -Scopes 'Domain.Read.All'
- Get-EntraDomainFederationSettings -DomainName contoso.com
+Connect-Entra -Scopes 'Domain.Read.All'
+Get-EntraDomainFederationSettings -DomainName 'contoso.com'
 ```
 
 This command gets federation settings for specified domain.
+
+- `-DomainName` parameter specifies the fully qualified domain name to retrieve.
 
 ## Parameters
 
@@ -79,11 +81,11 @@ Accept wildcard characters: False
 ### -TenantId
 
 The unique ID of the tenant to perform the operation on.
-If this isn't provided then the value defaults to the tenant of the current user.
+If this isn't provided, then the value will default to the tenant of the current user.
 This parameter is only applicable to partner users.
 
 ```yaml
-Type: System.Guid
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 

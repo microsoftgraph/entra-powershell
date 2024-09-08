@@ -43,11 +43,12 @@ Get-EntraIdentityProvider
 
 ## Description
 
-This cmdlet is used to retrieve the identity providers that are configured in the directory.
+The `Get-EntraIdentityProvider` cmdlet is used to retrieve the identity providers that have been configured in the directory.
 These identity providers can be used to allow users to sign up for or sign into applications secured by Microsoft Entra ID B2C.
 
 Configuring an identity provider in your Microsoft Entra ID tenant also enables future B2B guest scenarios.
-For example, for an organization that has resources in Office 365 that need to be shared with a Gmail user, the Gmail user can use their Google account credentials to authenticate and access the documents.
+For example, an organization has resources in Office 365 that needs to be shared with a Gmail user.
+The Gmail user will use their Google account credentials to authenticate and access the documents.
 
 The current set of identity providers can be Microsoft, Google, Facebook, Amazon, or LinkedIn.
 
@@ -60,10 +61,10 @@ Connect-Entra -Scopes 'IdentityProvider.Read.All'
 Get-EntraIdentityProvider
 ```
 
-```output
+```Output
 Id                   DisplayName
 --                   -----------
-AADSignup-OAUTH      Azure Active Directory Sign up
+AADSignup-OAUTH      Directory Sign up
 Google-OAUTH         Test
 EmailOtpSignup-OAUTH Email One Time Passcode
 MSASignup-OAUTH      Microsoft Account
@@ -78,13 +79,15 @@ Connect-Entra -Scopes 'IdentityProvider.Read.All'
 Get-EntraIdentityProvider -Id Google-OAUTH
 ```
 
-```output
+```Output
 Id           DisplayName
 --           -----------
-Google-OAUTH Test
+Google-OAUTH GoogleName
 ```
 
 This example retrieves the properties for the specified identity provider.
+
+- `-Id` parameter specifies the unique identifier of the identity provider.
 
 ## Parameters
 
@@ -106,7 +109,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

@@ -35,20 +35,19 @@ Get-EntraUserAppRoleAssignment
 
 ## Description
 
-The Get-EntraUserAppRoleAssignment cmdlet gets a user application role assignment.
+The `Get-EntraUserAppRoleAssignment` cmdlet gets a user application role assignment.
 
 ## Examples
 
 ### Example 1: Get a user application role assignment
 
 ```powershell
-Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Directory.Read.All' #Application Permission
- $UserId = (Get-EntraUser -Top 1).ObjectId
- Get-EntraUserAppRoleAssignment -ObjectId $UserId
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All','Directory.Read.All'
+$UserId = (Get-EntraUser -Top 1).ObjectId
+Get-EntraUserAppRoleAssignment -ObjectId $UserId
 ```
 
-```output
+```Output
 DeletedDateTime Id                                          AppRoleId                            CreatedDateTime     PrincipalDisplayName   PrincipalId                          PrincipalType ResourceDisplayName
 --------------- --                                          ---------                            ---------------     --------------------   -----------                          ------------- -------------------
                 0ekrQWAUYUCO7cyiA_A1bC2dE3fH4i             00001111-aaaa-2222-bbbb-3333cccc4444 31-07-2023 04:29:57 Avery Smith            aaaaaaaa-bbbb-cccc-1111-222222222222 User          Test-App-1
@@ -58,17 +57,14 @@ DeletedDateTime Id                                          AppRoleId           
 
 ```
 
-This example demonstrates how to retrieve user application role assignment by providing ID.
-  
-- The first command gets the ID of a Microsoft Entra ID user by using the [Get-EntraUser](./Get-EntraUser.md) cmdlet and stores the value in the $UserId variable.  
+This example retrieves a user application role assignment for the user in $UserId. You can use the comand `Get-EntraUser` to get Service principal Object ID.
 
-- The second command gets a user application role assignment for the user in $UserId.
+- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 
 ### Example 2: Get all application role assignments
 
 ```powershell
-Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Directory.Read.All' #Application Permission
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All','Directory.Read.All'
 Get-EntraUserAppRoleAssignment -ObjectId 'aaaaaaaa-bbbb-cccc-1111-222222222222' -All 
 ```
 
@@ -83,11 +79,12 @@ DeletedDateTime Id                                          AppRoleId           
 
 This example demonstrates how to retrieve all application role assignment for the specified user.
 
+- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
+
 ### Example 3: Get top two application role assignments
 
 ```powershell
-Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Directory.Read.All' #Application Permission
+Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All','Directory.Read.All'
 Get-EntraUserAppRoleAssignment -ObjectId 'aaaaaaaa-bbbb-cccc-1111-222222222222' -Top 2
 ```
 
@@ -99,6 +96,8 @@ DeletedDateTime Id                                          AppRoleId           
 ```
 
 This example demonstrates how to retrieve top two application role assignment for the specified user.
+
+- `-ObjectId` parameter specifies the object Id of a user(as a UserPrincipalName or ObjectId).
 
 ## Parameters
 
@@ -152,7 +151,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

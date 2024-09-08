@@ -36,34 +36,16 @@ Get-EntraApplicationOwner
 
 ## Description
 
-The `Get-EntraApplicationOwner` cmdlet gets an owner of a Microsoft Entra application. Specify `ObjectId` parameter to get a specific owner.
+The `Get-EntraApplicationOwner` cmdlet get an owner of an Microsoft Entra ID application.
 
 ## Examples
 
 ### Example 1: Get the owner of an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-Get-EntraApplicationOwner -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-```
-
-```Output
-Id                                   DeletedDateTime
---                                   ---------------
-bbbbbbbb-1111-2222-3333-cccccccccccc
-```
-
-This example demonstrates how to get the owners of an application in Microsoft Entra ID.
-
-- `-ObjectId` Parameter specifies the ID of an application.
-
-### Example 2: Get all owners of an application
-
-```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-Get-EntraApplicationOwner -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$Application = Get-EntraApplication -SearchString '<application-name>'
+Get-EntraApplicationOwner -ObjectId $Application.ObjectId
 ```
 
 ```Output
@@ -72,18 +54,40 @@ Id                                   DeletedDateTime
 bbbbbbbb-1111-2222-3333-cccccccccccc
 cccccccc-2222-3333-4444-dddddddddddd
 dddddddd-3333-4444-5555-eeeeeeeeeeee
+eeeeeeee-4444-5555-6666-ffffffffffff
+```
+
+This example demonstrates how to get the owners of an application in Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies the unique identifier of an application.
+
+### Example 2: Get all owners of an application
+
+```powershell
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$Application = Get-EntraApplication -SearchString '<application-name>'
+Get-EntraApplicationOwner -ObjectId $Application.ObjectId -All
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+eeeeeeee-4444-5555-6666-ffffffffffff
 ```
 
 This example demonstrates how to get the all owners of a specified application in Microsoft Entra ID.
 
-- `-ObjectId` Parameter specifies the ID of an application.
+- `-ObjectId` parameter specifies the unique identifier of an application.
 
 ### Example 3: Get top two owners of an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-Get-EntraApplicationOwner -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 2
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$Application = Get-EntraApplication -SearchString '<application-name>'
+Get-EntraApplicationOwner -ObjectId $Application.ObjectId -Top 2
 ```
 
 ```Output
@@ -95,7 +99,7 @@ cccccccc-2222-3333-4444-dddddddddddd
 
 This example demonstrates how to get the two owners of a specified application in Microsoft Entra ID.
 
-- `-ObjectId` Parameter specifies the ID of an application.
+- `-ObjectId` parameter specifies the unique identifier of an application.
 
 ## Parameters
 

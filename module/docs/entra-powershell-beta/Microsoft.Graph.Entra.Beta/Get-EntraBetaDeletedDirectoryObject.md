@@ -34,6 +34,7 @@ Get-EntraBetaDeletedDirectoryObject
 ## Description
 
 The `Get-EntraBetaDeletedDirectoryObject` cmdlet retrieves a soft deleted directory object from the directory.
+
 Note that soft delete for groups is currently only implemented for Unified Groups (also known as
 Office 365 Groups).
 

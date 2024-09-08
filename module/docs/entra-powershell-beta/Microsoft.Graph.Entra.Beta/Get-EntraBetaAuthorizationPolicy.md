@@ -46,7 +46,14 @@ The `Get-EntraBetaAuthorizationPolicy` cmdlet gets a Microsoft Entra ID authoriz
 
 ## Examples
 
-### Example 1: Get an authorization policy by ID
+### Example 1: Get all policies
+
+```powershell
+Connect-Entra -Scopes 'Policy.Read.All'
+Get-EntraBetaAuthorizationPolicy
+```
+
+### Example 2: Get an authorization policy by ID
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.All'

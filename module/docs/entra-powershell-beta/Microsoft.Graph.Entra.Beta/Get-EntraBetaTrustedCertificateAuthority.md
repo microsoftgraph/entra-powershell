@@ -163,5 +163,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Set-EntraBetaTrustedCertificateAuthority](Set-EntraBetaTrustedCertificateAuthority.md)
 
 [Remove-EntraBetaTrustedCertificateAuthority](Remove-EntraBetaTrustedCertificateAuthority.md)
-
-[Online help and examples for working with certificate authority](https://azure.microsoft.com/documentation/articles/active-directory-certificate-based-authentication-ios/)

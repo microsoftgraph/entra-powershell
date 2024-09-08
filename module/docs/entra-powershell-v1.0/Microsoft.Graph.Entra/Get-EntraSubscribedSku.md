@@ -55,18 +55,14 @@ Get-EntraSubscribedSku
 ```
 
 ```Output
-Id                                                                        AccountId                            AccountName   AppliesTo CapabilityStatus ConsumedUnits SkuId                                SkuPart
-                                                                                                                                                                                                           Number
+Id                                                                        AccountId                            AccountName   AppliesTo CapabilityStatus ConsumedUnits SkuId                                SkuPartNumber
 --                                                                        ---------                            -----------   --------- ---------------- ------------- -----                                -------
-abcdefgh-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 00aa00aa-bb11-cc22-dd33-44ee44ee44ee Contoso User      Enabled          20            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb EMSP...
-ijklmnop-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 11bb11bb-cc22-dd33-ee44-55ff55ff55ff Contoso User      Enabled          20            bbbbbbbb-1111-2222-3333-cccccccccccc ENTE...
-qrstuvwx-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 22cc22cc-dd33-ee44-ff55-66aa66aa66aa Contoso User      Enabled          2             cccccccc-2222-3333-4444-dddddddddddd ENTE...
-yzabcdef-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 33dd33dd-ee44-ff55-aa66-77bb77bb77bb Contoso User      Enabled          3             dddddddd-3333-4444-5555-eeeeeeeeeeee FLOW...
-ghijklmn-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 44ee44ee-ff55-aa66-bb77-88cc88cc88cc Contoso User      Enabled          3             eeeeeeee-4444-5555-6666-ffffffffffff Win1...
-opqrstuv-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 55ff55ff-gg66-bb77-cc88-99dd99dd99dd Contoso User      Enabled          20            ffffffff-7777-8888-9999-gggggggggggg INFO...
+aaaa0000-bb11-2222-33cc-444444dddddd 0000aaaa-11bb-cccc-dd22-eeeeee333333 M365x99297270 User      Enabled          20            aaaaaaaa-0b0b-1c1c-2d2d-333333333333 EMSP...
+bbbb1111-cc22-3333-44dd-555555eeeeee 1111bbbb-22cc-dddd-ee33-ffffff444444 M365x99297270 User      Enabled          20            bbbbbbbb-1c1c-2d2d-3e3e-444444444444 ENTE...
+cccc2222-dd33-4444-55ee-666666ffffff 2222cccc-33dd-eeee-ff44-aaaaaa555555 M365x99297270 User      Enabled          2             cccccccc-2d2d-3e3e-4f4f-555555555555 ENTE...
 ```
 
-This example shows how to retrieve subscribed SKUs.
+This example demonstrates how to retrieve subscribed SKUs to Microsoft services.
 
 ### Example 2: Get subscribed SKUs by ObjectId
 
@@ -76,13 +72,14 @@ Get-EntraSubscribedSku -ObjectId 'abcdefgh-1111-2222-bbbb-cccc33333333_dddddddd-
 ```
 
 ```Output
-Id                                                                        AccountId                            AccountName   AppliesTo CapabilityStatus ConsumedUnits SkuId                                SkuPart
-                                                                                                                                                                                                           Number
+Id                                                                        AccountId                            AccountName   AppliesTo CapabilityStatus ConsumedUnits SkuId                                SkuPartNumber
 --                                                                        ---------                            -----------   --------- ---------------- ------------- -----                                -------
-abcdefgh-1111-2222-bbbb-cccc33333333_dddddddd-4444-5555-eeee-666666666666 00aa00aa-bb11-cc22-dd33-44ee44ee44ee Contoso User      Enabled          20            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb EMSP...
+aaaa0000-bb11-2222-33cc-444444dddddd 0000aaaa-11bb-cccc-dd22-eeeeee333333 M365x99297270 User      Enabled          20            aaaaaaaa-0b0b-1c1c-2d2d-333333333333 EMSP...
 ```
 
-This example shows how to retrieve specified subscribed SKUs.
+This example demonstrates how to retrieve specified subscribed SKUs to Microsoft services.
+
+- `-ObjectId` parameter specifies the ID of the SKU (Stock Keeping Unit).
 
 ### Example 3: Get a list of users, their assigned licenses, and licensing source
 
@@ -162,7 +159,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

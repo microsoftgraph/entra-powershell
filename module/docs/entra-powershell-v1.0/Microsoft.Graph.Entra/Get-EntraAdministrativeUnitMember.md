@@ -36,61 +36,79 @@ Get-EntraAdministrativeUnitMember
 
 ## Description
 
-The `Get-EntraAdministrativeUnitMember` cmdlet gets a member of a Microsoft Entra ID administrative unit. Specify `ObjectId` parameter to get a member.
+The `Get-EntraAdministrativeUnitMember` cmdlet gets a member of a Microsoft Entra ID administrative unit. Specify `ObjectId` parameters to retrieve an administrative unit member.
+
+In delegated scenarios with work or school accounts, the signed-in user must either be a member user or be assigned a supported Microsoft Entra role, or a custom role with the necessary permissions. The following least privileged roles are supported for this operation:
+
+- Directory Readers: Read basic properties on administrative units
+- Global Reader: Read all properties of administrative units, including members
+- Privileged Role Administrator: Create and manage administrative units (including members)
 
 ## Examples
 
 ### Example 1: Get an administrative unit member by ObjectId
 
 ```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-Get-EntraAdministrativeUnitMember -ObjectId 'bbbbbbbb-1111-1111-1111-cccccccccccc'
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraAdministrativeUnitMember -ObjectId $AdministrativeUnit.ObjectId
 ```
 
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-bbbbbbbb-1111-1111-1111-cccccccccccc
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+eeeeeeee-4444-5555-6666-ffffffffffff
+ffffffff-5555-6666-7777-aaaaaaaaaaaa
 ```
 
-This example returns the list of administrative unit members from specified administrative unit ObjectID.
+This example returns the list of administrative unit members from specified administrative unit ObjectId.
 
-- `-ObjectId` Specifies the ID of an administrative unit.
+- `-ObjectId` parameter specifies the ID of an administrative unit.
 
 ### Example 2: Get all administrative unit members by ObjectId
 
 ```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-Get-EntraAdministrativeUnitMember -ObjectId 'bbbbbbbb-1111-1111-1111-cccccccccccc' -All
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraAdministrativeUnitMember -ObjectId $AdministrativeUnit.ObjectId -All
 ```
 
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-bbbbbbbb-1111-1111-1111-cccccccccccc
-aaaabbbb-0000-cccc-1111-dddd2222eeee
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+eeeeeeee-4444-5555-6666-ffffffffffff
+ffffffff-5555-6666-7777-aaaaaaaaaaaa
 ```
 
-This example returns the list of administrative unit members from specified administrative unit ObjectID.
+This example returns the list of all administrative unit members from specified administrative unit ObjectId.
 
-`-ObjectId` Specifies the ID of an administrative unit.
+- `-ObjectId` parameter specifies the ID of an administrative unit.
 
-### Example 3: Get top one administrative unit member by ObjectId
+### Example 3: Get top three administrative unit members by ObjectId
 
 ```powershell
-Connect-Entra -Scopes 'AdministrativeUnit.Read.All'
-Get-EntraAdministrativeUnitMember -ObjectId 'bbbbbbbb-1111-1111-1111-cccccccccccc' -Top 1
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+Get-EntraAdministrativeUnitMember -ObjectId $AdministrativeUnit.ObjectId -Top 3
 ```
 
 ```Output
 Id                                   DeletedDateTime
 --                                   ---------------
-bbbbbbbb-1111-1111-1111-cccccccccccc
+bbbbbbbb-1111-2222-3333-cccccccccccc
+cccccccc-2222-3333-4444-dddddddddddd
+dddddddd-3333-4444-5555-eeeeeeeeeeee
 ```
 
-This example returns top specified administrative unit members from specified administrative unit ObjectID.
+This example returns top three administrative unit members from specified administrative unit ObjectId.
 
-`-ObjectId` Specifies the ID of an administrative unit.
+- `-ObjectId` parameter specifies the ID of an administrative unit.
 
 ## Parameters
 

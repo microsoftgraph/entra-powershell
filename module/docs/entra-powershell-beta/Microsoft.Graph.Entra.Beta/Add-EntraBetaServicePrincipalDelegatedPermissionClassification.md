@@ -64,10 +64,10 @@ Id                      Classification PermissionId                         Perm
 T2qU_E28O0GgkLLIYRPsTwE low            fc946a4f-bc4d-413b-a090-b2c86113ec4f LicenseManager.AccessAsUser
 ```
 
-This command creates a delegated permission classification for the given permission on the service principal. You can use the command `Get-EntraBetaServicePrincipal` to get service principal Id.
+This command creates a delegated permission classification for the given permission on the service principal. You can use the command `Get-EntraBetaServicePrincipal` to get service principal ID.
 
 - `-ServicePrincipalId` parameter specifies the unique identifier of a service principal.
-- `-PermissionId` parameter specifies the Id for a delegated permission.
+- `-PermissionId` parameter specifies the ID for a delegated permission.
 - `-Classification` parameter specifies the classification for a delegated permission.
 - `-PermissionName` parameter specifies the name for a delegated permission.
 
@@ -91,7 +91,7 @@ Accept wildcard characters: False
 
 ### -PermissionId
 
-The Id for a delegated permission.
+The ID for a delegated permission.
 
 ```yaml
 Type: System.String

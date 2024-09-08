@@ -21,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Get a Microsoft Entra ID permission grant condition set by id.
+Get a Microsoft Entra ID permission grant condition set by ID.
 
 ## Syntax
 
@@ -48,7 +48,7 @@ Get-EntraPermissionGrantConditionSet
 
 ## Description
 
-Get a Microsoft Entra ID permission grant condition set object by id.
+Get a Microsoft Entra ID permission grant condition set object by ID.
 
 ## Examples
 
@@ -56,49 +56,58 @@ Get a Microsoft Entra ID permission grant condition set object by id.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
+$permissionGrantPolicyId = 'policy1'
 $params = @{
-    PolicyId = 'policy1'
+    PolicyId = $permissionGrantPolicyId
     ConditionSetType = 'includes'
 }
 
 Get-EntraPermissionGrantConditionSet @params
 ```
 
-```output
-Id                                   ClientApplicationIds                   ClientApplicationPublisherIds          ClientApplicationTenantIds             ClientApplicationsFromVerifiedPublisherOnly
---                                   --------------------                   -----------------------------          --------------------------             -------------------------------------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb {00001111-aaaa-2222-bbbb-3333cccc4444} {all}                                  {aaaabbbb-0000-cccc-1111-dddd2222eeee} True
+```Output
+Id                                   CertifiedClientApplicationsOnly ClientApplicationIds                                                         ClientApplicationPublisherIds          ClientApplicationTenantIds
+--                                   ------------------------------- --------------------                                                         -----------------------------          --------------------
+aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb False                           {33334444-dddd-5555-eeee-6666ffff7777} {d5aec55f-2d12-4442-8d2f-ccca95d4390e} {aaaabbbb-0000-cccc-1111-dddd2222eeee}
 ```
 
 This command gets all permission grant condition sets that are included in the policy.
+
+- `-PolicyId` parameter specifies the unique identifier of a permission grant policy.
+- `-ConditionSetType` parameter indicates whether the condition sets are included in the policy or excluded.
 
 ### Example 2: Get all permission grant condition sets that are excluded in the permission grant policy
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
+$permissionGrantPolicyId = 'policy1'
 $params = @{
-    PolicyId = 'policy1'
+    PolicyId = $permissionGrantPolicyId
     ConditionSetType = 'excludes'
 }
 
 Get-EntraPermissionGrantConditionSet @params
 ```
 
-```output
-Id                                   ClientApplicationIds                   ClientApplicationPublisherIds          ClientApplicationTenantIds             ClientApplicationsFromVerifiedPublisherOnly
---                                   --------------------                   -----------------------------          --------------------------             -------------------------------------------
-cccccccc-2222-3333-4444-dddddddddddd {33334444-dddd-5555-eeee-6666ffff7777} {all}                                  {aaaabbbb-0000-cccc-1111-dddd2222eeee} True
-bbbbbbbb-1111-2222-3333-cccccccccccc {11112222-bbbb-3333-cccc-4444dddd5555} {all}                                  {aaaabbbb-0000-cccc-1111-dddd2222eeee} True
+```Output
+Id                                   CertifiedClientApplicationsOnly ClientApplicationIds                                                         ClientApplicationPublisherIds          ClientApplicationTenantIds
+--                                   ------------------------------- --------------------                                                         -----------------------------          --------------------
+bbbbbbbb-1111-2222-3333-cccccccccccc False                           {33334444-dddd-5555-eeee-6666ffff7777} {d5aec55f-2d12-4442-8d2f-ccca95d4390e} {aaaabbbb-0000-cccc-1111-dddd2222eeee}
+cccccccc-2222-3333-4444-dddddddddddd False                           {44445555-eeee-6666-ffff-7777gggg8888} {d5aec55f-2d12-4442-8d2f-ccca95d4390e} {aaaabbbb-0000-cccc-1111-dddd2222eeee}
 ```
 
 This command gets all permission grant condition sets that are excluded in the policy.
+
+- `-PolicyId` parameter specifies the unique identifier of a permission grant policy.
+- `-ConditionSetType` parameter indicates whether the condition sets are included in the policy or excluded.
 
 ### Example 3: Get a permission grant condition set
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
+$permissionGrantPolicyId = 'policy1'
 $params = @{
-    PolicyId = 'policy1'
+    PolicyId = $permissionGrantPolicyId
     ConditionSetType = 'includes'
     Id = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 }
@@ -106,13 +115,17 @@ $params = @{
 Get-EntraPermissionGrantConditionSet @params
 ```
 
-```output
-Id                                   ClientApplicationIds                   ClientApplicationPublisherIds          ClientApplicationTenantIds             ClientApplicationsFromVerifiedPublisherOnly
---                                   --------------------                   -----------------------------          --------------------------             -------------------------------------------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb {00001111-aaaa-2222-bbbb-3333cccc4444} {all}                                  {aaaabbbb-0000-cccc-1111-dddd2222eeee} True
+```Output
+Id                                   CertifiedClientApplicationsOnly ClientApplicationIds                                                         ClientApplicationPublisherIds          ClientApplicationTenantIds
+--                                   ------------------------------- --------------------                                                         -----------------------------          --------------------
+dddddddd-3333-4444-5555-eeeeeeeeeeee False                           {33334444-dddd-5555-eeee-6666ffff7777} {d5aec55f-2d12-4442-8d2f-ccca95d4390e} {aaaabbbb-0000-cccc-1111-dddd2222eeee}
 ```
 
-This command gets a permission grant condition set specified by `Id`.
+This command gets a permission grant condition set specified by Id.
+
+- `-PolicyId` parameter specifies the unique identifier of a permission grant policy.
+- `-ConditionSetType` parameter indicates whether the condition sets are included in the policy or excluded.
+- `-Id` parameter specifies the unique identifier of the permission grant condition set object.
 
 ## Parameters
 
@@ -166,7 +179,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

@@ -56,11 +56,11 @@ Get-EntraAccountSku
 ```
 
 ```Output
-Id                                            AccountId                            AccountName   AppliesTo
---                                            ---------                            -----------   -------
-eeeeeeee-4444-5555-6666-ffffffffffff aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso User
-ffffffff-5555-6666-7777-aaaaaaaaaaaa aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso User
-dddddddd-3333-4444-5555-eeeeeeeeeeee aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso User
+Id                                                                        AccountId                            AccountName   AppliesTo CapabilityStatus ConsumedUnits SkuId                                SkuPartNumber
+--                                                                        ---------                            -----------   --------- ---------------- ------------- -----                                -------
+eeeeeeee-4444-5555-6666-ffffffffffff aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso-User  User      Suspended        20            aaaaaaaa-0b0b-1c1c-2d2d-333333333333 EMSPRE…
+ffffffff-5555-6666-7777-aaaaaaaaaaaa aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso-User  User      Suspended        20            bbbbbbbb-1c1c-2d2d-3e3e-444444444444 ENTERP…
+dddddddd-3333-4444-5555-eeeeeeeeeeee aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso-User  User      Suspended        2             cccccccc-2d2d-3e3e-4f4f-555555555555 ENTERP…
 ```
 
 This command returns a list of SKUs.
@@ -73,11 +73,11 @@ Get-EntraAccountSku -TenantId 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
 ```
 
 ```Output
-Id                                            AccountId                            AccountName   AppliesTo
---                                            ---------                            -----------   -------
-eeeeeeee-4444-5555-6666-ffffffffffff aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso User
-ffffffff-5555-6666-7777-aaaaaaaaaaaa aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso User
-dddddddd-3333-4444-5555-eeeeeeeeeeee aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso User
+Id                                                                        AccountId                            AccountName   AppliesTo CapabilityStatus ConsumedUnits SkuId                                SkuPartNumber
+--                                                                        ---------                            -----------   --------- ---------------- ------------- -----                                -------
+eeeeeeee-4444-5555-6666-ffffffffffff aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso-User  User      Suspended        20            aaaaaaaa-0b0b-1c1c-2d2d-333333333333 EMSPRE…
+ffffffff-5555-6666-7777-aaaaaaaaaaaa aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso-User  User      Suspended        20            bbbbbbbb-1c1c-2d2d-3e3e-444444444444 ENTERP…
+dddddddd-3333-4444-5555-eeeeeeeeeeee aaaabbbb-0000-cccc-1111-dddd2222eeee Contoso-User  User      Suspended        2             cccccccc-2d2d-3e3e-4f4f-555555555555 ENTERP…
 ```
 
 This command returns a list of SKUs for a specified tenant.

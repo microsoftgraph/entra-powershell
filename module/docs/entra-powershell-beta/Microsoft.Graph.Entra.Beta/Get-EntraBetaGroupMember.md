@@ -36,11 +36,28 @@ Get-EntraBetaGroupMember
 
 The `Get-EntraBetaGroupMember` cmdlet gets a member of a group in Microsoft Entra ID. Specify the `ObjectId` parameter to get a member of a group.
 
+In delegated scenarios, the signed-in user must have a supported Microsoft Entra role or a custom role with one of the following permissions: `microsoft.directory/groups/members/read`, `microsoft.directory/groups/members/limitedRead`, or `microsoft.directory/groups/hiddenMembers/read` (for hidden members). The following least privileged roles support this operation:
+
+- Group owners
+- "Member" users
+- "Guest" users (with limited read permissions)
+- Directory Readers
+- Directory Writers
+- Groups Administrator
+- User Administrator (includes hidden members)
+- Exchange Administrator (includes hidden members)
+- SharePoint Administrator (includes hidden members)
+- Intune Administrator (includes hidden members)
+- Teams Administrator (includes hidden members)
+- Yammer Administrator (includes hidden members)
+
+To list members of a hidden group, the `Member.Read.Hidden` permission is also required.
+
 ## Examples
 
 ### Example 1: Get a group member by ID
 
-```Powershell
+```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraBetaGroupMember -ObjectId 'eeeeeeee-4444-5555-6666-ffffffffffff'
 ```
@@ -51,7 +68,9 @@ Id                                   DeletedDateTime
 bbbbbbbb-7777-8888-9999-cccccccccccc
 ```
 
-This example demonstrates how to retrieve group member by ID.  
+This example demonstrates how to retrieve group member by ID.
+
+- `-ObjectId` Specifies the ID of a group.
 
 ### Example 2: Get two group member
 
@@ -68,6 +87,8 @@ dddddddd-9999-0000-1111-eeeeeeeeeeee
 ```
 
 This example demonstrates how to retrieve top two groups from Microsoft Entra ID.  
+
+- `-ObjectId` specifies the ID of a group. 
 
 ### Example 3: Get all members within a group by group ID
 
@@ -86,7 +107,29 @@ bbbbbbbb-7777-8888-9999-cccccccccccc
 cccccccc-8888-9999-0000-dddddddddddd
 ```
 
-This example retrieves all members within a group by group ID.  
+This example retrieves all members within a group by group ID.
+
+- `-ObjectId` specifies the ID of a group.
+
+### Example 4: Retrieve and Select Group Member Properties
+
+```powershell
+Connect-Entra -Scopes 'GroupMember.Read.All'
+Get-EntraGroupMember -ObjectId 'tttttttt-0000-2222-0000-aaaaaaaaaaaa' | Select-Object DisplayName, '@odata.type' 
+```
+
+```Output
+displayName                          @odata.type
+-----------                          -----------
+test1                                #microsoft.graph.user
+test2                                #microsoft.graph.user
+test2                                #microsoft.graph.servicePrincipal
+test3                                #microsoft.graph.servicePrincipal
+```
+
+This example retrieves the members of a specified group by its `ObjectId` and selects only the `DisplayName` and `@odata.type` properties for each member.
+
+- `-ObjectId` specifies the ID of a group.
 
 ## Parameters
 

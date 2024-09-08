@@ -63,7 +63,7 @@ ffffffff-5555-6666-7777-aaaaaaaaaaaa 2/27/2024 6:26:00 AM             Conditiona
 aaaaaaaa-6666-7777-8888-bbbbbbbbbbbb 2/27/2024 6:30:48 AM             ConditionalAccessPolicy    2/29/2024 2:43:53 PM disabled
 ```
 
-This command retrieves a list of all conditional access policies in Microsoft Entra ID.
+This example retrieves a list of all conditional access policies in Microsoft Entra ID.
 
 ### Example 2: Retrieves a conditional access policy in Microsoft Entra ID with given ID
 
@@ -78,7 +78,9 @@ Id                                   CreatedDateTime      Description DisplayNam
 eeeeeeee-4444-5555-6666-ffffffffffff 2/27/2024 6:23:21 AM             ConditionalAccessPolicy    2/29/2024 2:41:17 PM disabled
 ```
 
-This command retrieves the conditional access policy in Microsoft Entra ID specified by the `-PolicyID`.
+This example retrieves a specified conditional access policy in Microsoft Entra ID.
+
+- `-PolicyId` parameter specifies the Id of a conditional access policy.
 
 ## Parameters
 
@@ -100,7 +102,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

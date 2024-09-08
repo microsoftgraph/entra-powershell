@@ -120,7 +120,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-Specifes the ID of an application in Microsoft Entra ID.
+Specifies the ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String

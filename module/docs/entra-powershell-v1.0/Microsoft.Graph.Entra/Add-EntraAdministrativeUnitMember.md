@@ -36,26 +36,29 @@ Add-EntraAdministrativeUnitMember
 
 The `Add-EntraAdministrativeUnitMember` cmdlet adds a Microsoft Entra ID administrative unit member.
 
+Administrative units enable more granular management of permissions and access, particularly in large organizations or where administrative responsibilities are divided across departments or regions.
+
+To add a user, group, or device to an administrative unit, the calling principal must be assigned at least the Privileged Role Administrator Microsoft Entra role.
+
 ## Examples
 
 ### Example 1: Add user as an administrative unit member
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
+$AdministrativeUnit = Get-EntraAdministrativeUnit -Filter "DisplayName eq '<administrativeunit-display-name>'"
+$User = Get-EntraUser -ObjectId 'SawyerM@contoso.com'
 $params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
-    RefObjectId = 'dddddddd-3333-4444-5555-eeeeeeeeeeee'
+    ObjectId = $AdministrativeUnit.ObjectId
+    RefObjectId = $User.ObjectId
 }
 Add-EntraAdministrativeUnitMember @params
 ```
 
-This command adds a user as an administrative unit member.
+This example shows how to add an administrative unit member. You can use the command `Get-EntraAdministrativeUnit` to get administrative unit ID. You can use the command `Get-EntraUser` to get user ID.
 
-`-ObjectId` - specifies the unique identifier (ID) of the administrative unit to which you want to add a member. In this example, `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb` represents the ID of the administrative unit.
-
-`-RefObjectId` - specifies the unique identifier (Object ID) of the user or group you want to add as a member of the administrative unit. In this example, `dddddddd-3333-4444-5555-eeeeeeeeeeee` is the Object ID of the user or group being added.
-
-Administrative units can help manage permissions and access in a more granular way, especially in large organizations or in scenarios where administrative responsibilities are divided among different departments or regions.
+- `ObjectId` parameter specifies the ID of an administrative unit.
+- `RefObjectId` parameter specifies the ID of the user or group you want to add as a member of the administrative unit.
 
 ## Parameters
 
