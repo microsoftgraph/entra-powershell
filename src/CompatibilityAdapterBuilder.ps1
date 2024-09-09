@@ -8,14 +8,16 @@ class CommandUrlMap {
     [string] $Method = $null
     [DataMap[]] $Parameters = @()
     [string] $CustomScript = $null
+    [string] $OutputType =''
 
 
-    CommandUrlMap($Command, $URL, $Method, [DataMap[]]$Parameters, $CustomScript){
+    CommandUrlMap($Command, $URL, $Method, [DataMap[]]$Parameters, $CustomScript,$OutputType){
         $this.Command = $Command
         $this.URL = $URL
         $this.Method = $Method
         $this.Parameters = $Parameters
         $this.CustomScript=$CustomScript
+        $this.OutputType=$OutputType
     }
 
 }
@@ -105,7 +107,7 @@ class CompatibilityAdapterBuilder {
                                             $param.ParameterSetName, $param.Mandatory, $param.ValueFromPipeline, $param.ValueFromPipelineByPropertyName, $param.DataType, $param.IsURLReplaced)
             }
             
-            $this.ModuleUrlsMapping += [CommandUrlMap]::New($cmd.Command, $cmd.URL, $cmd.Method, $paramArray, $cmd.CustomScript)
+            $this.ModuleUrlsMapping += [CommandUrlMap]::New($cmd.Command, $cmd.URL, $cmd.Method, $paramArray, $cmd.CustomScript, $cmd.OutputType)
         }
         
     }
@@ -719,7 +721,7 @@ $($Command.CustomScript)
         }
 
         #$ParamterTransformations = $this.GetParametersTransformations($Command)
-        $OutputTransformations = $this.GetOutputTransformationsURL($Command)
+        $OutputTransformations = $this.GetOutputTransformationsURL($Command,$URLMapping)
         $keyId=''
         if($Command.type -ne "new"){
             $keyId = $this.GetKeyIdPair($Command)
@@ -728,14 +730,13 @@ $($Command.CustomScript)
         $URLCommand = $this.GetURLCommand($URLMapping)
 
         write-host($URLMapping)
-
         if($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta')
         {
             $customHeadersCommandName = "New-EntraBetaCustomHeaders"
         }
 
         $function =''
-       if($null -eq $URLMapping.CustomScript){
+       if($null -eq $URLMapping.CustomScript -or '' -eq $URLMapping.CustomScript){
 
         $function = @"
 function $($Command.Generate) {
@@ -898,7 +899,7 @@ $OutputTransformations
             $addProperty = $false
             $targetCmd= $(Get-Command -Name $Command.New)
             if($targetCmd.PSObject.Properties["Parameters"]){
-                $targetCmdparams =  targetCmd.Parameters.Keys
+                $targetCmdparams =  $targetCmd.Parameters.Keys
                 if($null -ne $targetCmdparams){
                     foreach($param in $targetCmdparams) {
                         if($param -eq 'Property') {
@@ -1380,7 +1381,33 @@ $paramsList += @"
         return $paramBlock
     }
     
-    hidden [string] GetOutputTransformationsURL([PSCustomObject] $Command) {
+    hidden [string] GetOutputTransformationsURL([PSCustomObject] $Command, [CommandUrlMap] $URLMapping) {
+        
+        if ('' -ne $URLMapping.OutputType) {
+            <# Action to perform if the condition is true #>
+            $transform=@"
+            if (`$response) {
+            `$userResponse=`$response
+
+            `$response = @()
+            foreach (`$data in `$userResponse) {
+                `$userType = New-Object $($URLMapping.OutputType)
+                `$data.PSObject.Properties | ForEach-Object {
+                    `$propertyName = `$_.Name.Substring(0, 1).ToUpper() + `$_.Name.Substring(1)
+                    `$propertyValue = `$_.Value
+                    `$userType | Add-Member -MemberType NoteProperty -Name `$propertyName -Value `$propertyValue -Force
+                }
+                `$response += `$userType
+            }           
+            
+        } 
+"@
+
+            return $transform
+        }
+        
+        
+        
         $responseVerbs = @("Get","Add","New")
         $output = ""
         if("" -ne $output){
