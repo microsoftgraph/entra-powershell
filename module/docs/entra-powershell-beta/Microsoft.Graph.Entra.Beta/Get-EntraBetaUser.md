@@ -50,7 +50,7 @@ Get-EntraBetaUser
 
 ```powershell
 Get-EntraBetaUser
- -ObjectId <String>
+ -UserId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -83,7 +83,7 @@ This example demonstrates how to get top three users from Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All'
-Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com'
+Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -94,7 +94,7 @@ Sawyer Miller bbbbbbbb-1111-2222-3333-cccccccccccc sawyerm@tenant.com sawyerm@te
 
 This command gets the specified user.
 
-- `-ObjectId` Specifies the ID as a user principal name (UPN) or ObjectId.
+- `-UserId` Specifies the ID as a user principal name (UPN) or UserId.
 
 ### Example 3: Search among retrieved users
 
@@ -146,7 +146,7 @@ In this example, we retrieve all users whose MailNickname starts with Ada.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read.All','AuditLog.Read.All'
-Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com' -Property 'SignInActivity' | Select-Object -ExpandProperty 'SignInActivity'
+Get-EntraBetaUser -UserId 'SawyerM@contoso.com' -Property 'SignInActivity' | Select-Object -ExpandProperty 'SignInActivity'
 ```
 
 ```Output
@@ -193,9 +193,9 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
-Specifies the ID (as a User Principal Name (UPN) or ObjectId) of a user in Microsoft Entra ID.
+Specifies the ID (as a User Principal Name (UPN) or UserId) of a user in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
