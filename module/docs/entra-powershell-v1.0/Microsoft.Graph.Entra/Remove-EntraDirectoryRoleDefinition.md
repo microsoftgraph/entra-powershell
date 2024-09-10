@@ -78,6 +78,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
+`Remove-EntraRoleDefinition` is an alias for `Remove-EntraDirectoryRoleDefintion`.
+
 ## Related Links
 
 [Get-EntraDirectoryRoleDefinition](Get-EntraDirectoryRoleDefinition.md)

@@ -290,6 +290,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
+`Get-EntraRoleAssignment` is an alias for `Get-EntraDirectoryRoleAssignment`.
+
 ## Related Links
 
 [New-EntraDirectoryRoleAssignment](New-EntraDirectoryRoleAssignment.md)
