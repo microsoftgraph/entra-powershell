@@ -157,6 +157,21 @@ LastNonInteractiveSignInDateTime LastNonInteractiveSignInRequestId    LastSignIn
 
 This example demonstrates how to retrieve the SignInActivity of a specific user by selecting a property.
 
+### Example 7: List users with disabled accounts
+
+```powershell
+Connect-Entra -Scopes 'User.Read.All'
+Get-EntraBetaUser -Filter "accountEnabled eq false" | Select-Object DisplayName, Id, Mail, UserPrincipalName
+```
+
+```Output
+DisplayName        Id                                   Mail UserPrincipalName
+-----------        --                                   ---- -----------------
+New User           cccccccc-2222-3333-4444-dddddddddddd      NewUser@tenant.com
+```
+
+This example demonstrates how to retrieve all users with disabled accounts.
+
 ## Parameters
 
 ### -All
