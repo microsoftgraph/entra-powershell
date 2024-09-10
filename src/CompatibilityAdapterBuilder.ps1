@@ -2,6 +2,7 @@
 #  Copyright (c) Microsoft Corporation.  All Rights Reserved.  Licensed under the MIT License.  See License in the project root for license information.
 # ------------------------------------------------------------------------------
 Set-StrictMode -Version 5
+
 class CommandUrlMap {
     [string] $Command = $null
     [string] $URL = $null   
@@ -235,6 +236,11 @@ class CompatibilityAdapterBuilder {
 </helpItems>
 "@
         return $helpHeader
+    }
+
+    hidden WriteTypeModuleFile([string] $data,[string] $psmName){
+        $filePath = Join-Path $this.OutputFolder "$($this.ModuleName + $psmName).psm1"
+        $data | Out-File -FilePath $filePath
     }
     
     hidden WriteModuleFile() {       

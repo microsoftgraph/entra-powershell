@@ -152,20 +152,20 @@
         { "Command" :"New-EntraAttributeSetTest", "URl" :"https://graph.microsoft.com/v1.0/directory/attributeSets", "Method" : "POST", "Parameters" : [
             {
                 "SourceName" : "Id",
-                "TargetName" : "Id",
-                "ConversionType" : "None",  
+                "TargetName" : "id",
+                "ConversionType" : "Name",  
                 "SpecialMapping" :null,      
                 "ParameterSetName":"InvokeByDynamicParameters",
                 "Mandatory": false,
                 "ValueFromPipeline":false,
                 "ValueFromPipelineByPropertyName":false,                                
-                "DataType": "System.Collections.Generic.List`1[System.String]",   
+                "DataType": "System.String",   
                 "IsURLReplaced": false
             },
             {
                 "SourceName" : "Description",
-                "TargetName" : "Description",
-                "ConversionType" : "None",  
+                "TargetName" : "description",
+                "ConversionType" : "Name",  
                 "SpecialMapping" : null,      
                 "ParameterSetName":"InvokeByDynamicParameters",
                 "Mandatory": false,
@@ -176,20 +176,21 @@
             },
             {
                 "SourceName" : "MaxAttributesPerSet",
-                "TargetName" : "MaxAttributesPerSet",
-                "ConversionType" : "None",  
+                "TargetName" : "maxAttributesPerSet",
+                "ConversionType" : "Name",  
                 "SpecialMapping" :null,      
                 "ParameterSetName":"InvokeByDynamicParameters",
                 "Mandatory": false,
                 "ValueFromPipeline":false,
                 "ValueFromPipelineByPropertyName":false,                                
-                "DataType": "System.String" ,
+                "DataType": "System.Nullable`1[System.Int32]" ,
                 "IsURLReplaced": false                                    
             }
             
         ],
         "CustomScript" :null,
-        "OutputType" : "Microsoft.Graph.PowerShell.Models.MicrosoftGraphAttributeSetTest"
+        "OutputType" : "EntraNewType"
+        
 
     }
           

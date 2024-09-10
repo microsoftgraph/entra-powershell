@@ -19,8 +19,5 @@
         public System.String Id;
         public System.String OdataType;
 "@
-"Microsoft.Open.MSGraph.Model.MicrosoftGraphAttributeSet" = @"
-        public System.String Id;              
-"@
 }
 
