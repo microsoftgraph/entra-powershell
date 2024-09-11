@@ -35,6 +35,8 @@ extends:
       - job: EntraPowerShellCIBuild
         displayName: Entra PowerShell CI Build
         timeoutInMinutes: 840
+        pool:
+          type: windows
         steps:
           - template: .azure-pipelines/common-templates/install-tools.yml@self
           - template: .azure-pipelines/common-templates/security-pre-checks.yml@self
