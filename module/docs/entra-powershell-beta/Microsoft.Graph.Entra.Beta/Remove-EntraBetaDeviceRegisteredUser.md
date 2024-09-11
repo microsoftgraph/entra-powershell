@@ -27,7 +27,7 @@ Removes a registered user from a device.
 
 ```powershell
 Remove-EntraBetaDeviceRegisteredUser 
- -ObjectId <String> 
+ -DeviceId <String> 
  -UserId <String> 
  [<CommonParameters>]
 ```
@@ -43,15 +43,15 @@ The `Remove-EntraBetaDeviceRegisteredUser` cmdlet removes a registered user from
 ```Powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $Device = Get-EntraBetaDevice -Top 1
-$User = Get-EntraBetaDeviceRegisteredUser -ObjectId $Device.ObjectId
-Remove-EntraBetaDeviceRegisteredUser -ObjectId $Device.ObjectId -OwnerId $Owner.ObjectId
+$User = Get-EntraBetaDeviceRegisteredUser -DeviceId $Device.ObjectId
+Remove-EntraBetaDeviceRegisteredUser -DeviceId $Device.ObjectId -OwnerId $Owner.ObjectId
 ```
 
 This example shows how to remove the registered user from device.
 
 ## Parameters
 
-### -ObjectId
+### -DeviceId
 
 Specifies the ID of an object.
 

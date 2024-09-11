@@ -12,7 +12,7 @@
             SpecialMapping = $null
         }
         @{
-            SourceName = "ObjectId"
+            SourceName = "DeviceId"
             TargetName = "DeviceId"
             ConversionType = "Name"
             SpecialMapping = $null
