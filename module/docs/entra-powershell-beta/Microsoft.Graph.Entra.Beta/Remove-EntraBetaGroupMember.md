@@ -26,14 +26,14 @@ Removes a member from a group.
 
 ```powershell
 Remove-EntraBetaGroupMember 
- -ObjectId <String> 
+ -GroupId <String> 
  -MemberId <String> 
  [<CommonParameters>]
 ```
 
 ## Description
 
-The `Remove-EntraBetaGroupMember` cmdlet removes a member from a group in Microsoft Entra ID. Specify the `ObjectId` and `MemberId` parameters to remove a member from a group.
+The `Remove-EntraBetaGroupMember` cmdlet removes a member from a group in Microsoft Entra ID. Specify the `GroupId` and `MemberId` parameters to remove a member from a group.
 
 ## Examples
 
@@ -42,7 +42,7 @@ The `Remove-EntraBetaGroupMember` cmdlet removes a member from a group in Micros
 ```powershell
 Connect-Entra -Scopes 'GroupMember.ReadWrite.All'
 $params = @{
-    ObjectId = 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq'
+    GroupId = 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq'
     MemberId = 'zzzzzzzz-6666-8888-9999-pppppppppppp'
 }
 
@@ -69,7 +69,7 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -GroupId
 
 Specifies the object ID of a group in Microsoft Entra ID.
 

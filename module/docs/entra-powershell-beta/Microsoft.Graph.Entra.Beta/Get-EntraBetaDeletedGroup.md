@@ -39,7 +39,7 @@ Get-EntraBetaDeletedGroup
 
 ```powershell
 Get-EntraBetaDeletedGroup
- -Id <String>
+ -GroupId <String>
  [-All]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -79,7 +79,7 @@ test23      cccccccc-2222-3333-4444-dddddddddddd test23       desc3       {Unifi
 test24      dddddddd-3333-4444-5555-eeeeeeeeeeee test24       desc4       {Unified, DynamicMembership}
 ```
 
-This cmdlet retrieves all recoverable deleted groups in the Microsoft Entra ID.  
+This cmdlet retrieves all recoverable deleted groups in the Microsoft Entra GroupId.  
 
 ### Example 2: Get deleted groups in the directory using All parameter
 
@@ -148,11 +148,11 @@ test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unifi
 
 This cmdlet retrieves deleted groups in the directory, having the specified display name.  
 
-### Example 6: Get deleted group by Id
+### Example 6: Get deleted group by GroupId
 
 ```powershell
 Connect-Entra -Scopes 'Group.Read.All'
-Get-EntraBetaDeletedGroup -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+Get-EntraBetaDeletedGroup -GroupId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 ```Output
@@ -161,9 +161,9 @@ DisplayName Id                                   MailNickname Description GroupT
 test21      aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb test21       desc1       {Unified, DynamicMembership}
 ```
 
-This cmdlet retrieves the deleted group specified by Id.
+This cmdlet retrieves the deleted group specified by GroupId.
 
-- `-Id` parameter specifies the deleted group ID.
+- `-GroupId` parameter specifies the deleted group ID.
 
 ## Parameters
 
@@ -200,9 +200,9 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -Id
+### -GroupId
 
-The Id of the deleted group to be retrieved.
+The GroupId of the deleted group to be retrieved.
 
 ```yaml
 Type: System.String

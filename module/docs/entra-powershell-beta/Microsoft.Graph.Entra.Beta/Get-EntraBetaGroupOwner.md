@@ -25,7 +25,7 @@ Gets an owner of a group.
 
 ```powershell
 Get-EntraBetaGroupOwner
- -ObjectId <String>
+ -GroupId <String>
  [-All]
  [-Top <Int32>]
  [-Property <String[]>]
@@ -34,7 +34,7 @@ Get-EntraBetaGroupOwner
 
 ## Description
 
-The `Get-EntraBetaGroupOwner` cmdlet gets an owner of a group in Microsoft Entra ID. Specify the `ObjectId` parameter to get a specific group owner.
+The `Get-EntraBetaGroupOwner` cmdlet gets an owner of a group in Microsoft Entra ID. Specify the `GroupId` parameter to get a specific group owner.
 
 ## Examples
 
@@ -42,7 +42,7 @@ The `Get-EntraBetaGroupOwner` cmdlet gets an owner of a group in Microsoft Entra
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroupOwner -ObjectId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+Get-EntraBetaGroupOwner -GroupId 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 ```
 
 ```Output
@@ -57,7 +57,7 @@ This example demonstrates how to retrieve the owner of a specific group.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroupOwner -ObjectId 'ffffffff-5555-6666-7777-aaaaaaaaaaaa' -All
+Get-EntraBetaGroupOwner -GroupId 'ffffffff-5555-6666-7777-aaaaaaaaaaaa' -All
 ```
 
 ```Output
@@ -74,7 +74,7 @@ This example demonstrates how to retrieve the all owner of a specific group.
 
 ```powershell
 Connect-Entra -Scopes 'GroupMember.Read.All'
-Get-EntraBetaGroupOwner -ObjectId 'bbbbbbbb-7777-8888-9999-cccccccccccc' -Top 2
+Get-EntraBetaGroupOwner -GroupId 'bbbbbbbb-7777-8888-9999-cccccccccccc' -Top 2
 ```
 
 ```output
@@ -104,7 +104,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -GroupId
 
 Specifies the ID of a group in Microsoft Entra ID.
 
