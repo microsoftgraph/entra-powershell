@@ -13,6 +13,8 @@ resources:
 extends:
   template: v2/OneBranch.Official.CrossPlat.yml@templates
   parameters:
+    release:
+      category: NonAzure
     stages:
     - stage: Prod_PS_Gallery_Deploy
       displayName: PS Gallery Deploy
