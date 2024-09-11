@@ -7,6 +7,38 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
+    [CmdletBinding(DefaultParameterSetName = 'InvokeByDynamicParameters')]
+    param (
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [System.Nullable`1[System.Boolean]] $MailEnabled,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[System.String]] $GroupTypes,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [System.String] $DisplayName,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $Description,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $MembershipRule,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Nullable`1[System.Boolean]] $IsAssignableToRole,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [System.Nullable`1[System.Boolean]] $SecurityEnabled,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[System.String]] $ProxyAddresses,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $Visibility,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $MembershipRuleProcessingState,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters", Mandatory = $true)]
+    [System.String] $MailNickname,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.String] $OdataType,
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $AdministrativeUnitId,
+    [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
+    [System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.AssignedLabel]] $AssignedLabels
+    )
+
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
@@ -107,7 +139,7 @@
         Write-Debug("============================ TRANSFORMATIONS ============================")
         $params.Keys | ForEach-Object {"$_ : $($params[$_])" } | Write-Debug
         Write-Debug("=========================================================================`n")
-            $response = New-MGBetaAdministrativeUnitMember -Headers $customHeaders -AdministrativeUnitId $ID -BodyParameter $params
+            $response = New-MGBetaAdministrativeUnitMember -Headers $customHeaders -AdministrativeUnitId $AdministrativeUnitId -BodyParameter $params
         $response
     } 
 '@

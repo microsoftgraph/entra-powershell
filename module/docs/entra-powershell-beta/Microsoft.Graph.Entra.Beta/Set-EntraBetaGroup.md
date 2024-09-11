@@ -26,7 +26,7 @@ Sets the properties for an existing Microsoft Entra ID group.
 
 ```powershell
 Set-EntraBetaGroup 
- -Id <String>
+ -GroupId <String>
  [-GroupTypes <System.Collections.Generic.List`1[System.String]>] 
  [-DisplayName <String>] 
  [-Description <String>] 
@@ -42,7 +42,7 @@ Set-EntraBetaGroup
 
 ## Description
 
-The `Set-EntraBetaGroup` cmdlet sets the properties for an existing Microsoft Entra ID group. Specify the `Id` parameter to set the properties for an existing Microsoft Entra ID group.
+The `Set-EntraBetaGroup` cmdlet sets the properties for an existing Microsoft Entra ID group. Specify the `GroupId` parameter to set the properties for an existing Microsoft Entra ID group.
 
 ## Examples
 
@@ -51,7 +51,7 @@ The `Set-EntraBetaGroup` cmdlet sets the properties for an existing Microsoft En
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $params = @{
-    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    GroupId = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
     DisplayName = 'UPDATE helpdesk'
 }
 
@@ -65,7 +65,7 @@ This command updates the display name of a specified group in Microsoft Entra ID
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $params = @{
-    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    GroupId = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
     Description = 'This is my new group'
 }
 
@@ -79,7 +79,7 @@ This example demonstrates how to update a group description.
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $params = @{
-    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    GroupId = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
     MailNickName = 'newnickname'
 }
 
@@ -93,7 +93,7 @@ This command updates the mail nickname of a specified group in Microsoft Entra I
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $params = @{
-    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    GroupId = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
     SecurityEnabled = $true
 }
 
@@ -107,7 +107,7 @@ This command updates the security enabled of a specified group in Microsoft Entr
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $params = @{
-    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    GroupId = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
     MailEnabled = $false
 }
 
@@ -121,7 +121,7 @@ This example demonstrates how to update a group main enabled.
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $params = @{
-    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    GroupId = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
     Visibility = 'Private'
     GroupTypes = 'DynamicMembership'
     IsAssignableToRole = $true
@@ -137,7 +137,7 @@ This example demonstrates how to update a property for an existing Microsoft Ent
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
 $params = @{
-    Id = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
+    GroupId = 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn'
     MembershipRule = '(user.UserType -contains "Member")'
 }
 
@@ -150,7 +150,7 @@ This example demonstrates how to update the membership rule of a specified group
 
 ```powershell
 Connect-Entra -Scopes 'Group.ReadWrite.All'
-Set-EntraBetaGroup -Id 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MembershipRuleProcessingState 'On'
+Set-EntraBetaGroup -GroupId 'kkkkkkkk-3333-5555-1111-nnnnnnnnnnnn' -MembershipRuleProcessingState 'On'
 ```
 
 This example demonstrates how to update the membership rule processing state of a specified group in Microsoft Entra ID.
@@ -206,7 +206,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Id
+### -GroupId
 
 Specifies the object ID of a group.
 
