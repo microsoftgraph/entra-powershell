@@ -1,2 +1,67 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
+name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+trigger:
+  branches:
+    include:
+      - main
+pr: none
+
+variables:
+  WindowsContainerImage: 'onebranch.azurecr.io/windows/ltsc2022/vse2022:latest' # for Windows jobs https://aka.ms/obpipelines/containers
+  # LinuxContainerImage: 'mcr.microsoft.com/onebranch/cbl-mariner/build:2.0' # for Linux jobs
+parameters:
+  - name: Pack
+    type: boolean
+    default: true
+  - name: Sign
+    type: boolean
+    default: true
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: OneBranch.Pipelines/GovernedTemplates
+      ref: refs/heads/main
+
+extends:
+  template: v2/OneBranch.Official.CrossPlat.yml@templates
+  parameters:
+    featureFlags:
+      WindowsHostVersion: 1ESWindows2022
+    stages:
+    - stage: build
+      jobs:
+      - job: EntraPowerShellCIBuild
+        displayName: Entra PowerShell CI Build
+        timeoutInMinutes: 840
+        steps:
+          - template: ./common-templates/install-tools.yml
+          - template: ./common-templates/security-pre-checks.yml
+
+          - template: ./generation-templates/generate_adapter-migrate.yml
+            parameters:
+              Sign: ${{ parameters.Sign }}
+
+          - ${{ if and(eq(parameters.Pack, true), eq(parameters.Sign, true)) }}:
+              - template: ./common-templates/esrp/codesign-nuget-migrate.yml
+                parameters:
+                  FolderPath: "$(Build.ArtifactStagingDirectory)"
+                  Pattern: "Microsoft.Graph.Entra.*.nupkg"
+
+              - task: PublishBuildArtifacts@1
+                displayName: Publish Module Artifacts
+                inputs:
+                  PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+                  ArtifactName: "drop"
+                  publishLocation: "Container"
+
+              - task: NuGetCommand@2
+                displayName: Publish NuGet to preview feed
+                inputs:
+                  command: push
+                  packagesToPush: $(Build.ArtifactStagingDirectory)/**/Microsoft.Graph.Entra.*.nupkg
+                  publishVstsFeed: $(PROJECT_NAME)/$(PREVIEW_FEED_NAME)
+                  allowPackageConflicts: true
+
+          - template: ./common-templates/security-post-checks.yml
