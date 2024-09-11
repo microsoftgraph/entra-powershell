@@ -36,15 +36,15 @@ extends:
         displayName: Entra PowerShell CI Build
         timeoutInMinutes: 840
         steps:
-          - template: ./common-templates/install-tools.yml@self
-          - template: ./common-templates/security-pre-checks.yml@self
+          - template: .azure-pipelines/common-templates/install-tools.yml@self
+          - template: .azure-pipelines/common-templates/security-pre-checks.yml@self
 
-          - template: ./generation-templates/generate_adapter-migrate.yml@self
+          - template: .azure-pipelines/generation-templates/generate_adapter-migrate.yml@self
             parameters:
               Sign: ${{ parameters.Sign }}
 
           - ${{ if and(eq(parameters.Pack, true), eq(parameters.Sign, true)) }}:
-              - template: ./common-templates/esrp/codesign-nuget-migrate.yml@self
+              - template: .azure-pipelines/common-templates/esrp/codesign-nuget-migrate.yml@self
                 parameters:
                   FolderPath: "$(Build.ArtifactStagingDirectory)"
                   Pattern: "Microsoft.Graph.Entra.*.nupkg"
@@ -64,4 +64,4 @@ extends:
                   publishVstsFeed: $(PROJECT_NAME)/$(PREVIEW_FEED_NAME)
                   allowPackageConflicts: true
 
-          - template: ./common-templates/security-post-checks.yml@self
+          - template: .azure-pipelines/common-templates/security-post-checks.yml@self
