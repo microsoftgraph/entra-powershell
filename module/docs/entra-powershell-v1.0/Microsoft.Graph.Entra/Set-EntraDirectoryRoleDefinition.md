@@ -29,7 +29,7 @@ Set-EntraDirectoryRoleDefinition
 [-TemplateId <String>] 
 [-DisplayName <String>]
 [-RolePermissions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.RolePermission]>]
--Id <String> 
+-UnifiedRoleDefinitionId <String> 
 [-Description <String>] 
 [-Version <String>] 
 [-IsEnabled <Boolean>]
@@ -47,7 +47,7 @@ Updates a Microsoft Entra roleDefinition object identified by ID. You cannot upd
 
 ```powershell
  Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
- Set-EntraDirectoryRoleDefinition -ID a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 -DisplayName 'UpdatedDisplayName'
+ Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 -DisplayName 'UpdatedDisplayName'
 ```
 
 This example updates the specified role definition in Microsoft Entra ID.
@@ -56,7 +56,7 @@ This example updates the specified role definition in Microsoft Entra ID.
 
 ```powershell
  Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
- Set-EntraDirectoryRoleDefinition -Id a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 -Description 'MYROLEUPDATE1S'
+ Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 -Description 'MYROLEUPDATE1S'
 ```
 
 This example updates the Description of specified role definition in Microsoft Entra ID.
@@ -65,7 +65,7 @@ This example updates the Description of specified role definition in Microsoft E
 
 ```powershell
  Connect-Entra -Scopes 'RoleManagement.ReadWrite.Directory'
- Set-EntraDirectoryRoleDefinition -Id a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 -IsEnabled $true
+ Set-EntraDirectoryRoleDefinition -UnifiedRoleDefinitionId a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 -IsEnabled $true
 ```
 
 This example updates the IsEnabled of specified role definition in Microsoft Entra ID.
@@ -77,7 +77,7 @@ This example updates the IsEnabled of specified role definition in Microsoft Ent
  $RolePermissions = New-object Microsoft.Open.MSGraph.Model.RolePermission
  $RolePermissions.AllowedResourceActions = @("microsoft.directory/applications/standard/read")
  $params = @{
-    Id = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
+    UnifiedRoleDefinitionId = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
     Description = 'Update'
     DisplayName = 'Update'
     ResourceScopes = '/'
@@ -94,7 +94,7 @@ This example updates the RolePermissions, TemplateId, TemplateId, ResourceScopes
 
 ## Parameters
 
-### -Id
+### -UnifiedRoleDefinitionId
 
 The unique identifier of an object in Microsoft Entra ID
 

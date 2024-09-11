@@ -6,7 +6,7 @@
     TargetName = "Get-MgBetaServicePrincipalAppRoleAssignment"
     Parameters =  @(
         @{
-            SourceName = "ObjectId"
+            SourceName = "ServicePrincipalId"
             TargetName = "ServicePrincipalId"
             ConversionType = "Name"
             SpecialMapping = $null
