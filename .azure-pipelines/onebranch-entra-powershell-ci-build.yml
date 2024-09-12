@@ -37,6 +37,8 @@ extends:
         timeoutInMinutes: 840
         pool:
           type: windows
+        variables:
+          ob_outputDirectory: '$(Build.SourcesDirectory)\out'
         steps:
           - template: .azure-pipelines/common-templates/install-tools.yml@self
           - template: .azure-pipelines/common-templates/security-pre-checks.yml@self
