@@ -1,16 +1,14 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
-# trigger:
-#   branches:
-#     include:
-#       - main
-trigger: none
+trigger:
+  branches:
+    include:
+      - main
 pr: none
 
 variables:
-  WindowsContainerImage: 'onebranch.azurecr.io/windows/ltsc2022/vse2022:latest' # for Windows jobs https://aka.ms/obpipelines/containers
-  # LinuxContainerImage: 'mcr.microsoft.com/onebranch/cbl-mariner/build:2.0' # for Linux jobs
+  WindowsContainerImage: 'onebranch.azurecr.io/windows/ltsc2022/vse2022:latest'
 parameters:
   - name: Pack
     type: boolean
@@ -26,7 +24,7 @@ resources:
       ref: refs/heads/main
 
 extends:
-  template: v2/OneBranch.NonOfficial.CrossPlat.yml@templates
+  template: v2/OneBranch.Official.CrossPlat.yml@templates
   parameters:
     featureFlags:
       WindowsHostVersion: 1ESWindows2022
@@ -39,7 +37,7 @@ extends:
         pool:
           type: windows
         variables:
-          ob_outputDirectory: '$(Build.SourcesDirectory)\out'
+          ob_outputDirectory: '$(Build.SourcesDirectory)/out'
         steps:
           - template: .azure-pipelines/common-templates/install-tools.yml@self
           - template: .azure-pipelines/common-templates/security-pre-checks.yml@self
