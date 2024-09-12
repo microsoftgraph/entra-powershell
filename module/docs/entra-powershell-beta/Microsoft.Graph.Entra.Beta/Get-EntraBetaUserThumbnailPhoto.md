@@ -25,10 +25,10 @@ Retrieve the thumbnail photo of a user.
 ## Syntax
 
 ```powershell
-Get-EntraBetaUserThumbnailPhoto 
- -ObjectId <String> 
- [-FileName <String>] 
- [-FilePath <String>] 
+Get-EntraBetaUserThumbnailPhoto
+ -ObjectId <String>
+ [-FileName <String>]
+ [-FilePath <String>]
  [-View <Boolean>]
  [<CommonParameters>]
 ```
