@@ -52,17 +52,17 @@ BeforeAll {
 Describe "Get-EntraDevice" {
     Context "Test for Get-EntraDevice" {
         It "Should return specific device" {
-            $result = Get-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraDevice -DeviceId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be @('bbbbbbbb-1111-2222-3333-cccccccccccc')
 
             Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is invalid" {
-            { Get-EntraDevice -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when DeviceId is invalid" {
+            { Get-EntraDevice -DeviceId "" } | Should -Throw "Cannot bind argument to parameter 'DeviceId' because it is an empty string."
         }
-        It "Should fail when ObjectId is empty" {
-            { Get-EntraDevice -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when DeviceId is empty" {
+            { Get-EntraDevice -DeviceId } | Should -Throw "Missing an argument for parameter 'DeviceId'*"
         }
         It "Should fail when searchstring is empty" {
             { Get-EntraDevice -SearchString } | Should -Throw "Missing an argument for parameter 'SearchString'*"
@@ -107,11 +107,11 @@ Describe "Get-EntraDevice" {
             Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }  
         It "Result should Contain ObjectId" {
-            $result = Get-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraDevice -DeviceId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result.ObjectId | should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }     
         It "Should contain DeviceId in parameters when passed ObjectId to it" {              
-            $result = Get-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result = Get-EntraDevice -DeviceId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
             $params.DeviceId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
