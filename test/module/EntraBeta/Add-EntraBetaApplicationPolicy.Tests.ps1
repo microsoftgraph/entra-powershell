@@ -32,13 +32,16 @@ Context "Test for Add-EntraBetaApplicationPolicy" {
             { Add-EntraBetaApplicationPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -RefObjectId "" } | Should -Throw "Cannot bind argument to parameter 'RefObjectId' because it is an empty string."
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaApplicationPolicy"
+
+            Add-EntraBetaApplicationPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaApplicationPolicy"
 
-            $result = Add-EntraBetaApplicationPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -RefObjectId "eeeeeeee-4444-5555-6666-ffffffffffff"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

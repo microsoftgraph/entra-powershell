@@ -93,10 +93,15 @@ Context "Test for Get-EntraBetaUserRegisteredDevice" {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserRegisteredDevice"
+            
+            $result =  Get-EntraBetaUserRegisteredDevice -ObjectId  "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result | Should -Not -BeNullOrEmpty
 
-            $result = Get-EntraBetaUserRegisteredDevice -ObjectId  "bbbbbbbb-1111-2222-3333-cccccccccccc"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaUserRegisteredDevice"
+            Should -Invoke -CommandName Get-MgBetaUserRegisteredDevice -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

@@ -36,18 +36,16 @@ Context "Test for Remove-EntraBetaObjectSetting" {
             { Remove-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "aaaaaaaa-5a8c-4f5a-a368-cccccccccccc" -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string*"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaAdministrativeUnit"
+            
+            Remove-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "aaaaaaaa-5a8c-4f5a-a368-cccccccccccc" -Id "Remove-EntraBetaObjectSetting" 
+           
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaObjectSetting"
-
-            $template = Get-EntraBetaDirectorySettingTemplate | ? {$_.displayname -eq "group.unified.guest"}
-            $settingsCopy = $template.CreateDirectorySetting()
-            $settingsCopy["AllowToAddGuests"]=$False
-
-            $result = Remove-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "aaaaaaaa-5a8c-4f5a-a368-cccccccccccc" -Id "dddddddd-7902-4be2-a25b-dddddddddddd" 
-            $params = Get-Parameters -data $result
-            $para = $params | ConvertTo-json | ConvertFrom-json
-            $para.Headers."User-Agent" | Should -Be $userAgentHeaderValue
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

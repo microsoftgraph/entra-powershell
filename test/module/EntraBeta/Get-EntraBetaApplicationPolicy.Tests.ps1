@@ -56,11 +56,13 @@ Context "Test for Get-EntraBetaApplicationPolicy" {
             $result."@odata.type" | should -Be "#microsoft.graph.policy"
         }
         It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaApplicationPolicy"
+
+            $result = Get-EntraBetaApplicationPolicy -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" 
+            $result | Should -Not -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaApplicationPolicy"
-            
-            $result = Get-EntraBetaApplicationPolicy -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $result | Should -Not -BeNullOrEmpty
+
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

@@ -71,17 +71,20 @@ Describe "Set-EntraNamedLocationPolicy" {
 
             $result = Set-EntraNamedLocationPolicy -PolicyId "1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5" -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies"
             $params= $result | Convertto-json -Depth 10 | Convertfrom-json 
-            $additionalProperties = $params[-1].AdditionalProperties 
+            $additionalProperties = $params[1].AdditionalProperties 
             $additionalProperties."@odata.type" | Should -Be "#microsoft.graph.ipNamedLocation"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Update-MgIdentityConditionalAccessNamedLocation -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraNamedLocationPolicy"
+
+            Set-EntraNamedLocationPolicy -PolicyId "1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5" -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies"
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraNamedLocationPolicy"
 
-            $result = Set-EntraNamedLocationPolicy -PolicyId "1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5" -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            Should -Invoke -CommandName Update-MgIdentityConditionalAccessNamedLocation -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

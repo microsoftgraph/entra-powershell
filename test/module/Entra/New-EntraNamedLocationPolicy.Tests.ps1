@@ -93,11 +93,15 @@ Context "Test for New-EntraNamedLocationPolicy" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraNamedLocationPolicy"
 
-            $ipRanges = New-Object -TypeName Microsoft.Open.MSGraph.Model.IpRange
-            $ipRanges.cidrAddress = "6.5.4.1/30"
-            $result = New-EntraNamedLocationPolicy -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies" -IpRanges $ipRanges -IsTrusted $true  -CountriesAndRegions @("US","ID","CA") -IncludeUnknownCountriesAndRegions $true
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $result = New-EntraNamedLocationPolicy  -OdataType "#microsoft.graph.ipNamedLocation" -DisplayName "Mock-App policies" -IpRanges $ipRanges -IsTrusted $true  -CountriesAndRegions @("US","ID","CA") -IncludeUnknownCountriesAndRegions $true
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraNamedLocationPolicy"
+
+            Should -Invoke -CommandName New-MgIdentityConditionalAccessNamedLocation -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

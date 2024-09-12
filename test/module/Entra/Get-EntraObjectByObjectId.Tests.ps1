@@ -67,10 +67,15 @@ Describe "Get-EntraObjectByObjectId" {
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraObjectByObjectId"
 
-            $result = Get-EntraObjectByObjectId -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" 
-            $params = Get-Parameters -data $result.Parameters
-            $para= $params | ConvertTo-json | ConvertFrom-Json
-            $para.headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $result = Get-EntraObjectByObjectId -ObjectId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraObjectByObjectId"
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

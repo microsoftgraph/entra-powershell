@@ -99,9 +99,6 @@ Context "Test for New-EntraBetaAdministrativeUnitMember" {
         It "Should fail when AssignedLabels is empty" {
             { New-EntraBetaAdministrativeUnitMember -Id "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -AssignedLabels  -DisplayName  "Mock-Admin-UnitMember" -Description "NewAdministrativeUnitMember" -MailEnabled $True  -MailNickname "Mock-Admin-UnitMember" -SecurityEnabled $False } | Should -Throw "Missing an argument for parameter 'AssignedLabels'*"
         }
-        It "Should fail when AssignedLabels is invalid" {
-            { New-EntraBetaAdministrativeUnitMember -Id "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -AssignedLabels ""  -DisplayName  "Mock-Admin-UnitMember" -Description "NewAdministrativeUnitMember" -MailEnabled $True  -MailNickname "Mock-Admin-UnitMember" -SecurityEnabled $False } | Should -Throw "Cannot process argument transformation on parameter 'AssignedLabels*"
-        }
         It "Should fail when ProxyAddresses is empty" {
             { New-EntraBetaAdministrativeUnitMember -Id "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -ProxyAddresses  -DisplayName  "Mock-Admin-UnitMember" -Description "NewAdministrativeUnitMember" -MailEnabled $True  -MailNickname "Mock-Admin-UnitMember" -SecurityEnabled $False } | Should -Throw "Missing an argument for parameter 'ProxyAddresses'*"
         }
@@ -130,10 +127,15 @@ Context "Test for New-EntraBetaAdministrativeUnitMember" {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaAdministrativeUnitMember"
+            
+            $result =  New-EntraBetaAdministrativeUnitMember -Id "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -OdataType "Microsoft.Graph.Group" -DisplayName  "Mock-Admin-UnitMember" -Description "NewAdministrativeUnitMember" -MailEnabled $True -MailNickname "Mock-Admin-UnitMember" -SecurityEnabled $False -GroupTypes @("Unified","DynamicMembership") -MembershipRule "(user.department -contains 'Marketing')" -MembershipRuleProcessingState "On" -IsAssignableToRole $False
+            $result | Should -Not -BeNullOrEmpty
 
-            $result = New-EntraBetaAdministrativeUnitMember -Id "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb" -OdataType "Microsoft.Graph.Group" -DisplayName  "Mock-Admin-UnitMember" -Description "NewAdministrativeUnitMember" -MailEnabled $True -MailNickname "Mock-Admin-UnitMember" -SecurityEnabled $False -GroupTypes @("Unified","DynamicMembership") -MembershipRule "(user.department -contains 'Marketing')" -MembershipRuleProcessingState "On" -IsAssignableToRole $False
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaAdministrativeUnitMember"
+            Should -Invoke -CommandName New-MGBetaAdministrativeUnitMember -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

@@ -59,15 +59,20 @@ Context "Test for New-EntraBetaObjectSetting" {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaObjectSetting"
-
+            
             $template = Get-EntraBetaDirectorySettingTemplate | Where-Object {$_.displayname -eq "group.unified.guest"}
             $settingsCopy = $template.CreateDirectorySetting()
             $settingsCopy["AllowToAddGuests"]=$False
 
-            $result = New-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -DirectorySetting $settingsCopy 
-            $params = Get-Parameters -data $result.Parameters
-            $para = $params | ConvertTo-json | ConvertFrom-json
-            $para.Headers."User-Agent" | Should -Be $userAgentHeaderValue
+            $result =  New-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "aaaaaaaa-5a8c-4f5a-a368-cccccccccccc" -DirectorySetting $settingsCopy 
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaObjectSetting"
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

@@ -110,8 +110,14 @@ Context "Test for Get-EntraBetaPrivilegedRoleDefinition" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaPrivilegedRoleDefinition"
 
             $result = Get-EntraBetaPrivilegedRoleDefinition -ProviderId "MockRoles" -ResourceId "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaPrivilegedRoleDefinition"
+
+            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResourceRoleDefinition -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       
