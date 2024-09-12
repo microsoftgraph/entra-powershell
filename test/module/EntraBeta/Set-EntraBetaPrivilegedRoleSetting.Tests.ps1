@@ -113,13 +113,15 @@ Context "Test for Set-EntraBetaPrivilegedRoleSetting" {
         }
 
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Update-MgBetaPrivilegedAccessRoleSetting -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
-            
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaPrivilegedRoleSetting"
+            
+            Set-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ResourceId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
 
-            $result = Set-EntraBetaPrivilegedRoleSetting -ProviderId "MockRoles" -Id "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -ResourceId "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaPrivilegedRoleSetting"
+            Should -Invoke -CommandName Update-MgBetaPrivilegedAccessRoleSetting -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       

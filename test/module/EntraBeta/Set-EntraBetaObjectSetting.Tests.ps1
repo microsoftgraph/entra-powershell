@@ -46,18 +46,19 @@ Context "Test for Set-EntraBetaObjectSetting" {
             { Set-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -DirectorySetting "" } | Should -Throw "Cannot process argument transformation on parameter 'DirectorySetting*"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaObjectSetting"
-
             $template = Get-EntraBetaDirectorySettingTemplate | Where-Object {$_.displayname -eq "group.unified.guest"}
             $settingsCopy = $template.CreateDirectorySetting()
             $settingsCopy["AllowToAddGuests"]=$False
 
-            $result = Set-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -DirectorySetting $settingsCopy 
-            $params = Get-Parameters -data $result
-            $para = $params | ConvertTo-json | ConvertFrom-json
-            $para.Headers."User-Agent" | Should -Be $userAgentHeaderValue
+            Set-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -DirectorySetting $settingsCopy 
+           
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaObjectSetting"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error" {
             # Disable confirmation prompts       
