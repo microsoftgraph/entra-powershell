@@ -1,10 +1,11 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
-trigger:
-  branches:
-    include:
-      - main
+# trigger:
+#   branches:
+#     include:
+#       - main
+trigger: none
 pr: none
 
 variables:
