@@ -58,7 +58,7 @@ This example adds a group to the lifecycle policy.
 
 ### -GroupId
 
-Specifies the ID of a group in  Microsoft Entra ID.
+Specifies the ID of a group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -74,7 +74,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-Specifies the ID of the lifecycle policy object in  Microsoft Entra ID.
+Specifies the ID of the lifecycle policy object in Microsoft Entra ID.
 
 ```yaml
 Type: System.String

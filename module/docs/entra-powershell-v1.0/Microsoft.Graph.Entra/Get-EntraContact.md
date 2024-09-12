@@ -58,15 +58,16 @@ Connect-Entra -Scopes 'OrgContact.Read.All'
 Get-EntraContact
 ```
 
-```output
-ObjectId                             Mail                 DisplayName
---------                             ----                 -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com  Contoso Contact
-bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com Contoso Contact1
-cccccccc-2222-3333-4444-dddddddddddd contact2@contoso.com Contoso Contact2
+```Output
+DisplayName          Id                                   Mail                         MailNickname
+-----------          --                                   ----                         ------------
+Contoso Contact     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com         Contoso Contact
+Contoso Contact1    bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com        Contoso Contact 1
+Contoso Contact2    cccccccc-2222-3333-4444-dddddddddddd contact2@contoso.com        Contoso Contact 2
+Contoso Contact3    dddddddd-3333-4444-5555-eeeeeeeeeeee contact3@contoso.com        Contoso Contact 3
 ```
 
-This command retrieves all contact objects in the directory.  
+This example retrieves all contact objects in the directory.
 
 ### Example 2: Retrieve specific contact object in the directory
 
@@ -75,13 +76,15 @@ Connect-Entra -Scopes 'OrgContact.Read.All'
 Get-EntraContact -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-```output
-ObjectId                             Mail                 DisplayName
---------                             ----                 -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com  Contoso Contact
+```Output
+DisplayName          Id                                   Mail                         MailNickname
+-----------          --                                   ----                         ------------
+Contoso Contact     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com         Contoso Contact
 ```
 
-This command retrieves specified contact in the directory.  
+This example retrieves specified contact in the directory.
+
+- `-ObjectId` parameter specifies the contact Id.
 
 ### Example 3: Retrieve all contacts objects in the directory
 
@@ -90,15 +93,16 @@ Connect-Entra -Scopes 'OrgContact.Read.All'
 Get-EntraContact -All 
 ```
 
-```output
-ObjectId                             Mail                 DisplayName
---------                             ----                 -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com  Contoso Contact
-bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com Contoso Contact1
-cccccccc-2222-3333-4444-dddddddddddd contact2@contoso.com Contoso Contact2
+```Output
+DisplayName          Id                                   Mail                         MailNickname
+-----------          --                                   ----                         ------------
+Contoso Contact     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com         Contoso Contact
+Contoso Contact1    bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com        Contoso Contact 1
+Contoso Contact2    cccccccc-2222-3333-4444-dddddddddddd contact2@contoso.com        Contoso Contact 2
+Contoso Contact3    dddddddd-3333-4444-5555-eeeeeeeeeeee contact3@contoso.com        Contoso Contact 3
 ```
 
-This command retrieves all the contacts in the directory.
+This example retrieves all the contacts in the directory.
 
 ### Example 4: Retrieve top two contacts objects in the directory
 
@@ -107,14 +111,14 @@ Connect-Entra -Scopes 'OrgContact.Read.All'
 Get-EntraContact -Top 2
 ```
 
-```output
-ObjectId                             Mail                 DisplayName
---------                             ----                 -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com  Contoso Contact
-bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com Contoso Contact1
+```Output
+DisplayName          Id                                   Mail                         MailNickname
+-----------          --                                   ----                         ------------
+Contoso Contact     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com         Contoso Contact
+Contoso Contact1    bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com        Contoso Contact 1
 ```
 
-This command retrieves top two contacts in the directory.
+This example retrieves top two contacts in the directory.
 
 ### Example 5: Retrieve all contacts objects in the directory filter by DisplayName
 
@@ -123,14 +127,16 @@ Connect-Entra -Scopes 'OrgContact.Read.All'
 Get-EntraContact -Filter "DisplayName eq 'Contoso Contact'"
 ```
 
-```output
-ObjectId                             Mail                 DisplayName
---------                             ----                 -----------
-aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com  Contoso Contact
-bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com Contoso Contact1
+```Output
+DisplayName          Id                                   Mail                         MailNickname
+-----------          --                                   ----                         ------------
+Contoso Contact     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb contact@contoso.com         Contoso Contact
+Contoso Contact1    bbbbbbbb-1111-2222-3333-cccccccccccc contact1@contoso.com        Contoso Contact 1
+Contoso Contact2    cccccccc-2222-3333-4444-dddddddddddd contact2@contoso.com        Contoso Contact 2
+Contoso Contact3    dddddddd-3333-4444-5555-eeeeeeeeeeee contact3@contoso.com        Contoso Contact 3
 ```
 
-This command retrieves contacts having the specified display name.
+This example retrieves contacts having the specified display name.
 
 ## Parameters
 
@@ -201,7 +207,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

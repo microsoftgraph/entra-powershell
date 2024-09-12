@@ -36,7 +36,7 @@ Get-EntraContactDirectReport
 
 ## Description
 
-The `Get-EntraContactDirectReport` cmdlet gets the direct reports for an organizational contact.
+The `Get-EntraContactDirectReport` cmdlet gets the direct reports for a contact.
 
 ## Examples
 
@@ -44,13 +44,39 @@ The `Get-EntraContactDirectReport` cmdlet gets the direct reports for an organiz
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All'
-$Contact = Get-EntraContact -Top 1
+$Contact = Get-EntraBetaContact -Top 1
 Get-EntraContactDirectReport -ObjectId $Contact.ObjectId
 ```
 
 This example shows how to retrieve direct reports for an organizational contact.
 
-You can use `Get-EntraContact` cmdlet to retrieve an organizational contact.
+You can use the command `Get-EntraBetaContact` to get organizational contact.
+
+- `-ObjectId` parameter specifies the contact Id.
+
+### Example 2: Get all direct reports of a contact
+
+```powershell
+Connect-Entra -Scopes 'OrgContact.Read.All'
+$Contact = Get-EntraBetaContact -Top 1
+Get-EntraContactDirectReport -ObjectId $Contact.ObjectId -All
+```
+
+This example shows how to retrieve all direct reports for an organizational contact.
+
+- `-ObjectId` parameter specifies the contact Id.
+
+### Example 3: Get top two direct reports of a contact
+
+```powershell
+Connect-Entra -Scopes 'OrgContact.Read.All'
+$Contact = Get-EntraBetaContact -Top 1
+Get-EntraContactDirectReport -ObjectId $Contact.ObjectId -Top 2
+```
+
+This example shows how to retrieve top two direct reports for an organizational contact.
+
+- `-ObjectId` parameter specifies the contact Id.
 
 ## Parameters
 
@@ -104,7 +130,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

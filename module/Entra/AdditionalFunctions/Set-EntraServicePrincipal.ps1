@@ -48,9 +48,7 @@ function Set-EntraServicePrincipal {
         $params["Uri"] = "https://graph.microsoft.com/v1.0/servicePrincipals"
         $params["Method"] = "PATCH"
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $body = @{}
-        $Web = @{}
-        $keysChanged = @{ObjectId = "Id"}
+        $body = @{}        
         if($null -ne $PSBoundParameters["AccountEnabled"])
         {
             $body["accountEnabled"] = $PSBoundParameters["AccountEnabled"] 

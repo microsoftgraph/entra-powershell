@@ -40,11 +40,11 @@ Retrieves a list of permission grants that have been consented for this group.
 ### Example 1: List existing permission grants for the group
 
 ```powershell
-Connect-Entra -Scopes 'GroupMember.Read.All' 
+Connect-Entra -Scopes 'GroupMember.Read.All'
 Get-EntraGroupPermissionGrant -Id 'CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3'
 ```
 
-```output
+```Output
   Id             : CcDdEeFfGgHhIiJjKkLlMmNnOoPpQq3
   ClientId       : 00001111-aaaa-2222-bbbb-3333cccc4444
   ClientAppId    : 44445555-eeee-6666-ffff-7777aaaa8888
@@ -91,7 +91,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

@@ -56,7 +56,7 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 
 This example shows how to find the registered owner of a device..
 
-- `-ObjectId` Parameter specifies the ID of a device.
+- `-ObjectId` parameter specifies the device's ID.
 
 ### Example 2: Retrieve the registered owner of a device
 
@@ -74,7 +74,7 @@ cccccccc-2222-3333-4444-dddddddddddd
 
 This command gets the registered owner of a device.
 
-- `-ObjectId` Parameter specifies the ID of a device.
+- `-ObjectId` parameter specifies the device's ID
 
 ### Example 3: Retrieve all the registered owners of a device
 
@@ -92,7 +92,7 @@ cccccccc-2222-3333-4444-dddddddddddd
 
 This command retrieves all the registered owners of a device.
 
-- `-ObjectId` Parameter specifies the ID of a device.
+- `-ObjectId` parameter specifies the device's ID.
 
 ### Example 4: Retrieve top one registered owner of a device
 
@@ -107,9 +107,9 @@ Id                                   DeletedDateTime
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
-This command retrieves top one registered owner of a device.
+This command retrieves all the registered owners of a device.
 
-- `-ObjectId` Parameter specifies the ID of a device.
+- `-ObjectId` parameter specifies the device's ID.
 
 ## Parameters
 

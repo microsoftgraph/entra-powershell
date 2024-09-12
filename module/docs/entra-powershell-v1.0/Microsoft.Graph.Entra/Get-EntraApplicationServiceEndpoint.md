@@ -35,9 +35,10 @@ Get-EntraApplicationServiceEndpoint
 
 ## Description
 
-This cmdlet retrieves the service endpoint(s) of an application.
-The service endpoint entity contains service discovery information.
-The serviceEndpoints property of the Application entity is of type ServiceEndpoint.
+The `Get-EntraApplicationServiceEndpoint` cmdlet retrieves the service endpoint(s) of an application.
+
+The service endpoint entity contains service discovery information. The serviceEndpoints property of the Application entity is of type ServiceEndpoint.
+
 Other services can use the information stored in the ServiceEndpoint entity to find this service and its addressable endpoints.
 
 ## Examples
@@ -46,28 +47,37 @@ Other services can use the information stored in the ServiceEndpoint entity to f
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraApplicationServiceEndpoint -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+Get-EntraApplicationServiceEndpoint -ObjectId $application.ObjectId
 ```
 
 This example demonstrates how to retrieve service endpoint of the application that is specified through the Object ID parameter.
+
+`-ObjectId` parameter specifies the ID of an application object in Microsoft Entra ID.
 
 ### Example 2: Get all service endpoints
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraApplicationServiceEndpoint -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -All 
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+Get-EntraApplicationServiceEndpoint -ObjectId $application.ObjectId -All 
 ```
 
 This example demonstrates how to retrieve all service endpoints of a specified application.
 
-### Example 2: Get top five service endpoints
+`-ObjectId` parameter specifies the ID of an application object in Microsoft Entra ID.
+
+### Example 3: Get top five service endpoints
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraApplicationServiceEndpoint -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' -Top 5
+$application = Get-EntraApplication -Filter "DisplayName eq 'Contoso Helpdesk Application'"
+Get-EntraApplicationServiceEndpoint -ObjectId $application.ObjectId -Top 5
 ```
 
 This example demonstrates how to retrieve five service endpoints of a specified application.
+
+`-ObjectId` parameter specifies the ID of an application object in Microsoft Entra ID.
 
 ## Parameters
 
@@ -153,3 +163,5 @@ System.Nullable\`1\[\[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral
 ## Notes
 
 ## Related Links
+
+[Get-EntraApplication](Get-EntraApplication.md)
