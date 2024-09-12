@@ -44,11 +44,28 @@ Get-EntraBetaPermissionGrantPolicy
 
 ## Description
 
-The `Get-EntraBetaPermissionGrantPolicy` cmdlet gets an Microsoft Entra ID permission grant policy.
+The `Get-EntraBetaPermissionGrantPolicy` cmdlet gets a Microsoft Entra ID permission grant policy.
 
 ## Examples
 
-### Example 1: Get a permission grant policy by ID
+### Example 1: Get all permission grant policies
+
+```powershell
+Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
+Get-EntraBetaPermissionGrantPolicy
+```
+
+```Output
+DeletedDateTime Description
+--------------- -----------
+                Includes all application permissions (app roles), for all APIs, for any client application.
+                Includes all chat resoruce-specific application permissions, for all APIs, for any client application.
+                (Deprecated) Includes all team resource-specific application permissions, for all APIs, for any client application.
+```
+
+This command gets all the permission grant policies.
+
+### Example 2: Get a permission grant policy by ID
 
 ```powershell
 Connect-Entra -Scopes 'Policy.Read.PermissionGrant'
