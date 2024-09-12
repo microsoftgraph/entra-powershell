@@ -42,7 +42,7 @@ The `Add-EntraBetaDeviceRegisteredOwner` cmdlet adds a registered owner for a Mi
 
 ```powershell
 Connect-Entra -Scopes 'Device.ReadWrite.All'
-$User = Get-EntraBetaUser -DeviceId 'SawyerM@contoso.com'
+$User = Get-EntraBetaUser -UserId 'SawyerM@contoso.com'
 $Device = Get-EntraBetaDevice -SearchString '<device-display-name>'
 $params = @{
     DeviceId = $Device.ObjectId 

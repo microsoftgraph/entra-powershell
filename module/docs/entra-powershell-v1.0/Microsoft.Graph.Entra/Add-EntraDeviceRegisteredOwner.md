@@ -41,7 +41,7 @@ The `Add-EntraDeviceRegisteredOwner` cmdlet adds a registered owner for a Micros
 
 ```powershell
 Connect-Entra -Scopes 'Device.ReadWrite.All'
-$User = Get-EntraUser -ObjectId 'SawyerM@contoso.com'
+$User = Get-EntraUser -UserId 'SawyerM@contoso.com'
 $Device = Get-EntraDevice -SearchString '<device-display-name>'
 $params = @{
     DeviceId = $Device.ObjectId 
