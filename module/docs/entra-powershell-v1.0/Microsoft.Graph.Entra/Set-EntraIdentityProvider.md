@@ -26,7 +26,7 @@ This cmdlet is used to update the properties of an existing identity provider co
 
 ```powershell
 Set-EntraIdentityProvider 
- -Id <String> 
+ -IdentityProviderBaseId <String> 
  [-Type <String>] 
  [-ClientSecret <String>] 
  [-ClientId <String>]
@@ -42,21 +42,21 @@ The type of the identity provider can't be modified.
 
 ### Example 1: Update client id of an identity provider
 ```powershell
-PS C:\> Set-EntraIdentityProvider -Id LinkedIn-OAUTH -ClientId NewClientId
+PS C:\> Set-EntraIdentityProvider -IdentityProviderBaseId LinkedIn-OAUTH -ClientId NewClientId
 ```
 
 This example updates the client ID for the specified identity provider.
 
 ### Example 2: Update client secret of an identity provider
 ```powershell
-PS C:\> Set-EntraIdentityProvider -Id LinkedIn-OAUTH -ClientSecret NewClientSecret
+PS C:\> Set-EntraIdentityProvider -IdentityProviderBaseId LinkedIn-OAUTH -ClientSecret NewClientSecret
 ```
 
 This example updates the client secret for the specified identity provider.
 
 ### Example 3: Update display name of an identity provider
 ```powershell
-PS C:\> Set-EntraIdentityProvider -Id LinkedIn-OAUTH -Name NewName
+PS C:\> Set-EntraIdentityProvider -IdentityProviderBaseId LinkedIn-OAUTH -Name NewName
 ```
 
 This example updates the display name for the specified identity provider.
@@ -95,7 +95,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Id
+### -IdentityProviderBaseId
 The unique identifier for an identity provider.
 
 ```yaml

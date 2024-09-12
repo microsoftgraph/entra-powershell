@@ -7,14 +7,21 @@
     Parameters = $null
     outputs = $null
     CustomScript = @'
+     [CmdletBinding(DefaultParameterSetName = '')]
+    param (
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $UserId,
+    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+    [System.String[]] $Property
+    )
     PROCESS {
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
         $Method = "GET"
-        $keysChanged = @{ObjectId = "Id"}
-        if($null -ne $PSBoundParameters["ObjectId"])
+        $keysChanged = @{UserId = "Id"}
+        if($null -ne $PSBoundParameters["UserId"])
         {
-            $params["UserId"] = $PSBoundParameters["ObjectId"]
+            $params["UserId"] = $PSBoundParameters["UserId"]
         }
         $URI = "https://graph.microsoft.com/v1.0/users/$($params.UserId)/manager?`$select=*"
 
