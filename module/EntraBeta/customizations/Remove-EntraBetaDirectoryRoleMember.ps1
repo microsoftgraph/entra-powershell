@@ -12,7 +12,7 @@
             SpecialMapping = $null
         }
         @{
-            SourceName = "ObjectId"
+            SourceName = "DirectoryRoleId"
             TargetName = "DirectoryRoleId"
             ConversionType = "Name"
             SpecialMapping = $null

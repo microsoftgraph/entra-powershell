@@ -6,7 +6,7 @@
     TargetName = "Get-MgUserLicenseDetail"
     Parameters = @(
         @{
-            SourceName = "ObjectId"
+            SourceName = "UserId"
             TargetName = "UserId"
             ConversionType = "Name"
             SpecialMapping = $null
