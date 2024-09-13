@@ -6,12 +6,6 @@ trigger:
     include:
       - main
 pr: none
-
-pool:
-  os: windows
-sdl:
-  sourceAnalysisPool:
-    os: windows
 # variables:
 #   WindowsContainerImage: 'onebranch.azurecr.io/windows/ltsc2022/vse2022:latest'
 parameters:
@@ -31,6 +25,11 @@ resources:
 extends:
   template: v1/1ES.Unofficial.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:
+  pool:
+    os: windows
+  sdl:
+    sourceAnalysisPool:
+      os: windows
     # featureFlags:
     #   WindowsHostVersion: 1ESWindows2022
     stages:
