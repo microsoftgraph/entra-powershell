@@ -15,30 +15,12 @@ function Reset-EntraBetaStrongAuthenticationMethodByUpn {
         }
         function DeleteAuthMethod($uid, $method){
             switch ($method.AdditionalProperties['@odata.type']) {
-                '#microsoft.graph.fido2AuthenticationMethod' { 
-                    Remove-MgBetaUserAuthenticationFido2Method -UserId $uid -Fido2AuthenticationMethodId $method.Id
-                }
                 '#microsoft.graph.emailAuthenticationMethod' { 
                     Remove-MgBetaUserAuthenticationEmailMethod -UserId $uid -EmailAuthenticationMethodId $method.Id
                 }
-                '#microsoft.graph.microsoftAuthenticatorAuthenticationMethod' { 
-                    Remove-MgBetaUserAuthenticationMicrosoftAuthenticatorMethod -UserId $uid -MicrosoftAuthenticatorAuthenticationMethodId $method.Id
-                }
                 '#microsoft.graph.phoneAuthenticationMethod' { 
                     Remove-MgBetaUserAuthenticationPhoneMethod -UserId $uid -PhoneAuthenticationMethodId $method.Id
-                }
-                '#microsoft.graph.softwareOathAuthenticationMethod' { 
-                    Remove-MgBetaUserAuthenticationSoftwareOathMethod -UserId $uid -SoftwareOathAuthenticationMethodId $method.Id
-                }
-                '#microsoft.graph.temporaryAccessPassAuthenticationMethod' { 
-                    Remove-MgBetaUserAuthenticationTemporaryAccessPassMethod -UserId $uid -TemporaryAccessPassAuthenticationMethodId $method.Id
-                }
-                '#microsoft.graph.windowsHelloForBusinessAuthenticationMethod' { 
-                    Remove-MgBetaUserAuthenticationWindowsHelloForBusinessMethod -UserId $uid -WindowsHelloForBusinessAuthenticationMethodId $method.Id
-                }
-                '#microsoft.graph.passwordAuthenticationMethod' { 
-                    # Password cannot be removed currently
-                }        
+                }       
                 Default {
                     
                 }

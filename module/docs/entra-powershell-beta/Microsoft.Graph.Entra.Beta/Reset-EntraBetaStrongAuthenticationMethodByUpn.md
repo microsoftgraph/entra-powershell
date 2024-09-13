@@ -40,7 +40,8 @@ The `Reset-EntraBetaStrongAuthenticationMethodByUpn` cmdlet resets the strong au
 ### Example 1: Resets the strong authentication method by using a user principal name
 
 ```powershell
-Connect-Entra -Scopes
+Connect-Entra -Scopes 'UserAuthenticationMethod.ReadWrite', 'UserAuthenticationMethod.ReadWrite.All'
+
 Reset-EntraBetaStrongAuthenticationMethodByUpn  -UserPrincipalName 'Test_contoso.com#EXT#@M365x99297270.onmicrosoft.com'
 ```
 
