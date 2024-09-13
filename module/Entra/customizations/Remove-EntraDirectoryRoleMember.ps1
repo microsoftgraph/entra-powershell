@@ -11,12 +11,6 @@
             ConversionType = "Name"
             SpecialMapping = $null
         }
-        @{
-            SourceName = "DirectoryRoleId"
-            TargetName = "DirectoryRoleId"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        }
     )
     Outputs = $null
 }

@@ -4,13 +4,6 @@
 @{
     SourceName = "Get-AzureADUserLicenseDetail"
     TargetName = "Get-MgBetaUserLicenseDetail"
-    Parameters = @(
-        @{
-            SourceName = "UserId"
-            TargetName = "UserId"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        }
-    )
+    Parameters = $null
     Outputs = $null
 }
