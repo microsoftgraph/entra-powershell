@@ -24,10 +24,10 @@ Creates a Microsoft Entra ID group.
 ## Syntax
 
 ```powershell
-New-EntraGroup 
- -DisplayName <String> 
+New-EntraGroup
+ -DisplayName <String>
  [-GroupTypes <System.Collections.Generic.List`1[System.String]>]
- -SecurityEnabled <Boolean> 
+ -SecurityEnabled <Boolean>
  [-Description <String>] 
  -MailEnabled <Boolean> 
  -MailNickname <String>
