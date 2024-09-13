@@ -33,13 +33,29 @@ Describe "Remove-EntraUser" {
             $params.userId | Should -Be "199a9eb1-2de2-41f2-91a6-d6444e59afb2"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Remove-MgUser -MockWith { $args } -ModuleName Microsoft.Graph.Entra
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraUser"
-
-            $result = Remove-EntraUser -ObjectId "199a9eb1-2de2-41f2-91a6-d6444e59afb2"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }  
+    
+            Remove-EntraUser -ObjectId "199a9eb1-2de2-41f2-91a6-d6444e59afb2"
+    
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraUser"
+    
+            Should -Invoke -CommandName Remove-MgUser -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Remove-EntraUser -ObjectId "199a9eb1-2de2-41f2-91a6-d6444e59afb2" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
     }
 }

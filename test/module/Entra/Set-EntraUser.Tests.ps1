@@ -45,14 +45,30 @@ Describe "Set-EntraUser" {
         }
 
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Update-MgUser -MockWith { $args } -ModuleName Microsoft.Graph.Entra
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUser"
-            $result = Set-EntraUser -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+    
+            Set-EntraUser -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04 -Mobile "1234567890"
+    
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUser"
+    
+            Should -Invoke -CommandName Update-MgUser -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
- 
-        
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraUser -ObjectId 056b2531-005e-4f3e-be78-01a71ea30a04 -Mobile "1234567890" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
         It "Should contain ExternalUserState, OnPremisesImmutableId, ExternalUserStateChangeDateTime, BusinessPhones" {
             Mock -CommandName Update-MgUser -MockWith { $args } -ModuleName Microsoft.Graph.Entra
 
