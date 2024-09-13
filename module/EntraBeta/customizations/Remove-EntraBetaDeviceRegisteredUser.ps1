@@ -11,12 +11,6 @@
             ConversionType = "Name"
             SpecialMapping = $null
         }
-        @{
-            SourceName = "DeviceId"
-            TargetName = "DeviceId"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        }
     )
     Outputs = $null
 }

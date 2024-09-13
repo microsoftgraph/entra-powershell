@@ -6,12 +6,6 @@
     TargetName = "Update-MgRoleManagementDirectoryRoleDefinition"
     Parameters = @(
         @{
-            SourceName = "UnifiedRoleDefinitionId"
-            TargetName = "UnifiedRoleDefinitionId"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        }
-        @{
             SourceName = "RolePermissions"
             TargetName = "RolePermissions"
             ConversionType = "ScriptBlock"
