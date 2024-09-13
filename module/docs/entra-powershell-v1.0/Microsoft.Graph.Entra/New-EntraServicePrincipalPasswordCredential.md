@@ -34,19 +34,19 @@ New-EntraServicePrincipalPasswordCredential
 
 ## Description
 
-The New-EntraServicePrincipalPasswordCredential cmdlet creates a password credential for a service principal in Microsoft Entra ID.
+The `New-EntraServicePrincipalPasswordCredential` cmdlet creates a password credential for a service principal in Microsoft Entra ID.
 
 ## Examples
 
 ### Example 1: Create a password credential with StartDate
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-New-EntraServicePrincipalPasswordCredential -ObjectID '00001111-aaaa-2222-bbbb-3333cccc4444' -StartDate 2024-03-21T14:14:14Z
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+New-EntraServicePrincipalPasswordCredential -ObjectID $ServicePrincipal.ObjectId -StartDate 2024-03-21T14:14:14Z
 ```
 
-```output
+```Output
 CustomKeyIdentifier DisplayName EndDateTime         Hint KeyId                                SecretText                               StartDateTime
 ------------------- ----------- -----------         ---- -----                                ----------                               -------------
                                 21-03-2026 12:12:13 333  aaaaaaaa-0b0b-1c1c-2d2d-333333333333 Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2 21-03-2024 14:14:14
@@ -57,12 +57,12 @@ This example demonstrates how to create a password credential with StartDate for
 ### Example 2: Create a password credential with EndtDate
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-New-EntraServicePrincipalPasswordCredential -ObjectID '00001111-aaaa-2222-bbbb-3333cccc4444' -EndDate 2030-03-21T14:14:14Z
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+New-EntraServicePrincipalPasswordCredential -ObjectID $ServicePrincipal.ObjectId -EndDate 2030-03-21T14:14:14Z
 ```
 
-```output
+```Output
 CustomKeyIdentifier DisplayName EndDateTime         Hint KeyId                                SecretText                               StartDateTime
 ------------------- ----------- -----------         ---- -----                                ----------                               -------------
                                 21-03-2030 14:14:14 333  aaaaaaaa-0b0b-1c1c-2d2d-333333333333 Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2 21-03-2024 12:15:10
@@ -122,7 +122,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

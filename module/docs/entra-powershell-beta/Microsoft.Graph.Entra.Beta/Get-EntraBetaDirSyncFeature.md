@@ -27,7 +27,7 @@ Checks the status of directory synchronization features for a tenant.
 
 ```powershell
 Get-EntraBetaDirSyncFeature 
- [-TenantId <Guid>] 
+ [-TenantId <String>] 
  [-Feature <String>] 
  [<CommonParameters>]
 ```
@@ -50,11 +50,13 @@ Some of the features that can be used with this cmdlet include:
 
 The cmdlet can be run without specifying any features, in which case it returns a list of all features and their enabled or disabled status.
 
+For delegated scenarios, the user needs to be assigned the Global Administrator role.
+
 ## Examples
 
 ### Example 1: Return a list of all directory synchronization features
 
-```Powershell
+```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.Read.All'
 Get-EntraBetaDirSyncFeature
 ```
@@ -100,7 +102,7 @@ Enabled DirSyncFeature
 
 This example shows if PasswordSync is enabled (True) or disabled (False) for the tenant.
 
-- `Feature` specifies the directory synchronization feature to check the status of.
+- `-Feature` specifies the directory synchronization feature to check the status of.
 
 ## Parameters
 

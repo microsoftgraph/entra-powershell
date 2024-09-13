@@ -10,7 +10,6 @@
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{Mobile = "MobilePhone"; SignInNames = "Identities"; UserState = "ExternalUserState"; ImmutableId = "OnPremisesImmutableId"; UserStateChangedOn = "ExternalUserStateChangeDateTime"; TelephoneNumber = "BusinessPhones"}
         if($null -ne $PSBoundParameters["PostalCode"])
         {
             $params["PostalCode"] = $PSBoundParameters["PostalCode"]
