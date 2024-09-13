@@ -7,11 +7,19 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
+    [CmdletBinding(DefaultParameterSetName = '')]
+    param (
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $ApplicationId,
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $RefObjectId
+    )
+    PROCESS {
     $params = @{}
     $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand
-    if($null -ne $PSBoundParameters["ObjectId"])
+    if($null -ne $PSBoundParameters["ApplicationId"])
     {
-        $params["ApplicationId"] = $PSBoundParameters["ObjectId"]
+        $params["ApplicationId"] = $PSBoundParameters["ApplicationId"]
     }
 
     $newOwner = @{}
@@ -71,5 +79,6 @@
     Write-Debug("=========================================================================`n")
     
     New-MgApplicationOwnerByRef @params -Headers $customHeaders    
+}
 '@
 }

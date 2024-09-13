@@ -29,7 +29,7 @@ Sets the logo for an Application
 
 ```powershell
 Set-EntraApplicationLogo 
- -ObjectId <String> 
+ -ApplicationId <String> 
  -FilePath <String> 
  [<CommonParameters>]
 ```
@@ -38,7 +38,7 @@ Set-EntraApplicationLogo
 
 ```powershell
 Set-EntraApplicationLogo 
- -ObjectId <String> 
+ -ApplicationId <String> 
  [<CommonParameters>]
 ```
 
@@ -46,7 +46,7 @@ Set-EntraApplicationLogo
 
 ```powershell
 Set-EntraApplicationLogo 
- -ObjectId <String> 
+ -ApplicationId <String> 
  [<CommonParameters>]
 ```
 
@@ -56,19 +56,19 @@ This cmdlet is used to set the logo for an application.
 
 ## Examples
 
-### Example 1: Sets the application logo for the application specified by the ObjectID parameter
+### Example 1: Sets the application logo for the application specified by the ApplicationId parameter
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All'
 $params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    ApplicationId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
     FilePath = 'D:\applogo.jpg'
 }
 
 Set-EntraApplicationLogo @params
 ```
 
-This cmdlet sets the application logo for the application specified by the ObjectID parameter to the image specified with the Filepath parameter.
+This cmdlet sets the application logo for the application specified by the ApplicationId parameter to the image specified with the Filepath parameter.
 
 ## Parameters
 
@@ -76,7 +76,7 @@ This cmdlet sets the application logo for the application specified by the Objec
 
 The file path of the file that is to be uploaded as the application logo.
 
-```yaml
+```yamlset-EntraApplicationLogo
 Type: System.String
 Parameter Sets: File
 Aliases:
@@ -88,9 +88,9 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
-The ObjectID of the Application for which the logo is set.
+The ApplicationId of the Application for which the logo is set.
 
 ```yaml
 Type: System.String

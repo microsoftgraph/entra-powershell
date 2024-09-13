@@ -7,14 +7,25 @@
     Parameters = $null
     outputs = $null
     CustomScript = @'   
+    [CmdletBinding(DefaultParameterSetName = '')]
+    param (
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $ApplicationId,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Boolean] $View,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $FileName,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $FilePath
+    )
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraCustomHeaders -Command $MyInvocation.MyCommand        
         $baseUri = 'https://graph.microsoft.com/v1.0/applications'
         $Method = "GET"        
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["ApplicationId"])
         {
-            $params["ApplicationId"] = $PSBoundParameters["ObjectId"]
+            $params["ApplicationId"] = $PSBoundParameters["ApplicationId"]
             $URI = "$baseUri/$($params.ApplicationId)"
         }
 
