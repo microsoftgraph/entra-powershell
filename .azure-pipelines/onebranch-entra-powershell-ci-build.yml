@@ -26,13 +26,12 @@ extends:
   template: v1/1ES.Unofficial.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:
     pool:
-      vmImage: 'windows-latest'
-    # pool:
-    #   name: MSSecurity-1ES-Build-Agents-Pool
-    #   image: MSSecurity-1ES-Windows-2022
-    #   os: windows
+      name: 1es-msgo-hosted-pool-1
+      # image: MSSecurity-1ES-Windows-2022
+      os: windows
     sdl:
       sourceAnalysisPool:
+        name: 1es-msgo-hosted-pool-1
         os: windows
     # featureFlags:
     #   WindowsHostVersion: 1ESWindows2022
