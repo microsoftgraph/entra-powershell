@@ -36,6 +36,9 @@ extends:
         timeoutInMinutes: 840
         pool:
           os: windows
+        sdl:
+          sourceAnalysisPool:
+            os: windows
         # variables:
         #   ob_outputDirectory: '$(Build.SourcesDirectory)/out'
         templateContext:
