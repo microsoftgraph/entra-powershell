@@ -30,7 +30,7 @@ New-EntraBetaIdentityProvider
  -ClientId <String> 
  -Type <String> 
  -ClientSecret <String>
- [-Name <String>] 
+ [-Name <String>]
  [<CommonParameters>]
 ```
 

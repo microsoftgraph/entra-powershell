@@ -28,7 +28,7 @@ Configure a new identity provider in the directory.
 ```powershell
 New-EntraIdentityProvider 
  -Type <String> 
- -ClientSecret <String> 
+ -ClientSecret <String>
  -ClientId <String> 
  [-Name <String>]
  [<CommonParameters>]
@@ -77,6 +77,11 @@ LinkedIn-OAUTH LinkedInName
 ```
 
 This example adds a LinkedIn identity provider.
+
+- `-Type` parameter specifies the identity provider type. It must be one of the following values: Microsoft, Google, Facebook, Amazon, or LinkedIn.
+- `-Name` parameter specifies the display name of the identity provider.
+- `-ClientId` parameter specifies the client identifier for the application, obtained during the application's registration with the identity provider.
+- `-ClientSecret` parameter specifies the client secret for the application, obtained during registration with the identity provider.
 
 ## Parameters
 
