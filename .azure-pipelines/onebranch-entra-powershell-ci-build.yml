@@ -57,19 +57,34 @@ extends:
                   FolderPath: "$(Build.ArtifactStagingDirectory)"
                   Pattern: "Microsoft.Graph.Entra.*.nupkg"
 
-              - task: PublishBuildArtifacts@1
+              # - task: PublishBuildArtifacts@1
+              #   displayName: Publish Module Artifacts
+              #   inputs:
+              #     PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+              #     ArtifactName: "drop"
+              #     publishLocation: "Container"
+              - task: 1ES.PublishBuildArtifacts@1
                 displayName: Publish Module Artifacts
                 inputs:
-                  PathtoPublish: "$(Build.ArtifactStagingDirectory)"
-                  ArtifactName: "drop"
-                  publishLocation: "Container"
+                  PathtoPublish: $(Build.ArtifactStagingDirectory)
+                  ArtifactName: drop
 
-              - task: NuGetCommand@2
+              # - task: NuGetCommand@2
+              #   displayName: Publish NuGet to preview feed
+              #   inputs:
+              #     command: push
+              #     packagesToPush: $(Build.ArtifactStagingDirectory)/**/Microsoft.Graph.Entra.*.nupkg
+              #     publishVstsFeed: $(PROJECT_NAME)/$(PREVIEW_FEED_NAME)
+              #     allowPackageConflicts: true
+
+              - task: 1ES.PublishNuget@1
                 displayName: Publish NuGet to preview feed
                 inputs:
-                  command: push
+                  useDotNetTask: false
                   packagesToPush: $(Build.ArtifactStagingDirectory)/**/Microsoft.Graph.Entra.*.nupkg
+                  packageParentPath: '$(Build.ArtifactStagingDirectory)'
                   publishVstsFeed: $(PROJECT_NAME)/$(PREVIEW_FEED_NAME)
+                  nuGetFeedType: internal
                   allowPackageConflicts: true
 
           - template: .azure-pipelines/common-templates/security-post-checks.yml@self

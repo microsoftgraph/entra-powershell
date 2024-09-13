@@ -71,11 +71,16 @@ steps:
       . ./build/common-functions.ps1
       Create-ModuleFolder
     pwsh: false
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Module Files Entra'
+# - task: PublishBuildArtifacts@1
+#   displayName: 'Publish Module Files Entra'
+#   inputs:
+#     ArtifactName: 'Module Files'
+#     PathtoPublish: 'bin'
+- task: 1ES.PublishBuildArtifacts@1
+  displayName: 'Publish Module Files EntraBeta'
   inputs:
-    ArtifactName: 'Module Files'
     PathtoPublish: 'bin'
+    ArtifactName: 'Module Files'
 - task: powershell@2
   displayName: 'Register Local Gallery'
   inputs:
@@ -90,11 +95,16 @@ steps:
     targetType: inline
     script: ./build/Publish-LocalCompatModule.ps1 -Install
     pwsh: false
-- task: PublishBuildArtifacts@1
+# - task: PublishBuildArtifacts@1
+#   displayName: 'Publish Module Nuget File Entra'
+#   inputs:
+#     ArtifactName: 'Module Nuget'
+#     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+- task: 1ES.PublishBuildArtifacts@1
   displayName: 'Publish Module Nuget File Entra'
   inputs:
-    ArtifactName: 'Module Nuget'
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'Module Nuget'
 - task: powershell@2
   displayName: 'Remove Build Folders'
   inputs:
@@ -150,22 +160,32 @@ steps:
       . ./build/common-functions.ps1
       Create-ModuleFolder
     pwsh: false
-- task: PublishBuildArtifacts@1
+# - task: PublishBuildArtifacts@1
+#   displayName: 'Publish Module Files EntraBeta'
+#   inputs:
+#     ArtifactName: 'Module Files'
+#     PathtoPublish: 'bin'
+- task: 1ES.PublishBuildArtifacts@1
   displayName: 'Publish Module Files EntraBeta'
   inputs:
+    PathtoPublish: 'bin'
     ArtifactName: 'Module Files'
-    PathtoPublish: 'bin'    
 - task: powershell@2
   displayName: 'Publish to Local Gallery EntraBeta'
   inputs:
     targetType: inline
     script: ./build/Publish-LocalCompatModule.ps1 -Install
     pwsh: false
-- task: PublishBuildArtifacts@1
+# - task: PublishBuildArtifacts@1
+#   displayName: 'Publish Module Nuget File EntraBeta'
+#   inputs:
+#     ArtifactName: 'Module Nuget'
+#     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+- task: 1ES.PublishBuildArtifacts@1
   displayName: 'Publish Module Nuget File EntraBeta'
   inputs:
-    ArtifactName: 'Module Nuget'
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'Module Nuget'
 - task: powershell@2
   displayName: 'Remove Build Folders'
   inputs:
