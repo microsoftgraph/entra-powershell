@@ -53,6 +53,7 @@ Describe "New-EntraApplication"{
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraApplication"
             $result = New-EntraApplication -DisplayName "Mock-App"
             $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraApplication"
             Should -Invoke -CommandName New-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
