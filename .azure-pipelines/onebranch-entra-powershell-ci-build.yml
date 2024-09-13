@@ -7,6 +7,8 @@ trigger:
       - main
 pr: none
 
+pool:
+  os: windows
 # variables:
 #   WindowsContainerImage: 'onebranch.azurecr.io/windows/ltsc2022/vse2022:latest'
 parameters:
@@ -34,11 +36,6 @@ extends:
       - job: EntraPowerShellCIBuild
         displayName: Entra PowerShell CI Build
         timeoutInMinutes: 840
-        pool:
-          os: windows
-        sdl:
-          sourceAnalysisPool:
-            os: windows
         # variables:
         #   ob_outputDirectory: '$(Build.SourcesDirectory)/out'
         templateContext:
