@@ -48,13 +48,29 @@ Describe "Get-EntraTrustedCertificateAuthority"{
     It "Should fail when TrustedIssuerSki is null" {
         { Get-EntraTrustedCertificateAuthority -TrustedIssuerSki  } | Should -Throw "Missing an argument for parameter*"
     }
-    # no headers coming in response
-    # It "Should contain 'User-Agent' header" {
-    #     $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraTrustedCertificateAuthority"
-    #     $result = Get-EntraTrustedCertificateAuthority | ConvertTo-json | ConvertFrom-Json
-    #     #$params = Get-Parameters -data $result.Parameters        
-    #     Write-Host $result
-    #     #$a.headers.'User-Agent' | Should -Be $userAgentHeaderValue
-    #     #$params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-    # }
+    It "Should contain 'User-Agent' header" {
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraTrustedCertificateAuthority"
+
+        Get-EntraTrustedCertificateAuthority
+
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraTrustedCertificateAuthority"
+
+        Should -Invoke -CommandName Get-MgOrganizationCertificateBasedAuthConfiguration -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $true
+        }
+    }
+    It "Should execute successfully without throwing an error " {
+        # Disable confirmation prompts       
+        $originalDebugPreference = $DebugPreference
+        $DebugPreference = 'Continue'
+
+        try {
+            # Act & Assert: Ensure the function doesn't throw an exception
+            { Get-EntraTrustedCertificateAuthority -Debug } | Should -Not -Throw
+        } finally {
+            # Restore original confirmation preference            
+            $DebugPreference = $originalDebugPreference        
+        }
+    }
 }
