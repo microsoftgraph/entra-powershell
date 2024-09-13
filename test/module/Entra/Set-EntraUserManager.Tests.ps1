@@ -13,7 +13,7 @@ BeforeAll {
 Describe "Set-EntraUserManager" {
     Context "Test for Set-EntraUserManager" {
         It "Should return specific User" {
-            $result = Set-EntraUserManager -ObjectId "26bb22db-6b8e-4adb-b761-264c869d5245" -RefObjectId "c300541f-2c03-49cb-b25b-72f09cb29abf"
+            $result = Set-EntraUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -RefObjectId "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Set-MgUserManagerByRef -ModuleName Microsoft.Graph.Entra -Times 1
@@ -28,26 +28,43 @@ Describe "Set-EntraUserManager" {
         }
 
         It "Should fail when RefObjectId is invalid" {
-            { Set-EntraUserManager -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215"  RefObjectId ""} | Should -Throw "A positional parameter cannot be found that accepts argument*"
+            { Set-EntraUserManager -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"  RefObjectId ""} | Should -Throw "A positional parameter cannot be found that accepts argument*"
         }
 
         It "Should contain UserId in parameters when passed ObjectId to it" {
             Mock -CommandName Set-MgUserManagerByRef -MockWith { $args } -ModuleName Microsoft.Graph.Entra
 
-            $result = Set-EntraUserManager -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -RefObjectId "c300541f-2c03-49cb-b25b-72f09cb29abf"
+            $result = Set-EntraUserManager -ObjectId "00001111-aaaa-2222-bbbb-3333cccc4444" -RefObjectId "00001111-aaaa-2222-bbbb-3333cccc4444"
             $params = Get-Parameters -data $result
-            $params.UserId | Should -Match "412be9d1-1460-4061-8eed-cca203fcb215"
+            $params.UserId | Should -Match "00001111-aaaa-2222-bbbb-3333cccc4444"
         }
 
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Set-MgUserManagerByRef -MockWith { $args } -ModuleName Microsoft.Graph.Entra
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserManager"
-            $result = Set-EntraUserManager -ObjectId "412be9d1-1460-4061-8eed-cca203fcb215" -RefObjectId "c300541f-2c03-49cb-b25b-72f09cb29abf"
-            $params = Get-Parameters -data $result
+             
+            Set-EntraUserManager -ObjectId "00001111-aaaa-2222-bbbb-3333cccc4444" -RefObjectId "00001111-aaaa-2222-bbbb-3333cccc4444"
+    
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserManager"
+    
+            Should -Invoke -CommandName Set-MgUserManagerByRef -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
 
-            $params.Headers."User-Agent" | Should -Be $userAgentHeaderValue
-        }  
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraUserManager -ObjectId "00001111-aaaa-2222-bbbb-3333cccc4444" -RefObjectId "00001111-aaaa-2222-bbbb-3333cccc4444" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
 
     }
 }

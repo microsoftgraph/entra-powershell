@@ -88,17 +88,36 @@ Describe "Set-EntraTrustedCertificateAuthority" {
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraTrustedCertificateAuthority"
-
             $cer = Get-EntraTrustedCertificateAuthority 
             $cer[0].CrlDistributionPoint = "https://example.crl"
-            $cer[0].DeltaCrlDistributionPoint = "https://example2.crl"
-            
-            $result = Set-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer
+            $cer[0].DeltaCrlDistributionPoint = "https://example2.crl" 
+             
+            Set-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer
+    
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraTrustedCertificateAuthority"
+    
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
 
-            $params = Get-Parameters -data $result."@odata.context"
-
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }   
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+            $cer = Get-EntraTrustedCertificateAuthority 
+            $cer[0].CrlDistributionPoint = "https://example.crl"
+            $cer[0].DeltaCrlDistributionPoint = "https://example2.crl" 
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
 
         It "Should contain 'TenantId' " {
             $cer = Get-EntraTrustedCertificateAuthority 

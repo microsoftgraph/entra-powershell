@@ -18,7 +18,7 @@ BeforeAll {
                 givenName = "test12"
                 mail = "test122@M365x99297270.OnMicrosoft.com"
                 '@odata.context' = "https://graph.microsoft.com/v1.0/$metadata#users/$entity"
-                id = "1139c016-f606-45f0-83f7-40eb2a552a6f"
+                id = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
                 jobTitle = "testqa"
                 officeLocation = "test"
                 businessPhones = @("8976546787")
@@ -36,7 +36,7 @@ Describe "Set-EntraUserLicense" {
     Context "Test for Set-EntraUserLicense" {
         It "Should return specific User" {
             $addLicensesArray = [PSCustomObject]@{
-            skuId = "f30db892-07e9-47e9-837c-80727f46fd3d"
+            skuId = "66aa66aa-bb77-cc88-dd99-00ee00ee00ee"
             }
             $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses
             $Licenses.AddLicenses =$addLicensesArray
@@ -50,7 +50,7 @@ Describe "Set-EntraUserLicense" {
             $result.givenName | Should -Be "test12"
             $result.mail | Should -Be "test122@M365x99297270.OnMicrosoft.com"
             $result.'@odata.context' | Should -Be "https://graph.microsoft.com/v1.0/$metadata#users/$entity"
-            $result.id | Should -Be "1139c016-f606-45f0-83f7-40eb2a552a6f"
+            $result.id | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result.jobTitle | Should -Be "testqa"
             $result.officeLocation | Should -Be "test"
             $result.businessPhones | Should -Be @("8976546787")
@@ -68,35 +68,57 @@ Describe "Set-EntraUserLicense" {
         }
 
         It "Should fail when AssignedLicenses is empty" {
-            { Set-EntraUserLicense -ObjectId  1139c016-f606-45f0-83f7-40eb2a552a6f -AssignedLicenses } | Should -Throw "Missing an argument for parameter 'AssignedLicenses'. Specify a parameter of type 'Microsoft.Open.AzureAD.Model.AssignedLicenses' and try again."
+            { Set-EntraUserLicense -ObjectId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' -AssignedLicenses } | Should -Throw "Missing an argument for parameter 'AssignedLicenses'. Specify a parameter of type 'Microsoft.Open.AzureAD.Model.AssignedLicenses' and try again."
         }
 
         It "Should contain UserId in parameters when passed ObjectId to it" {
             $addLicensesArray = [PSCustomObject]@{
-                skuId = "f30db892-07e9-47e9-837c-80727f46fd3d"
+                skuId = "66aa66aa-bb77-cc88-dd99-00ee00ee00ee"
                 }
             $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses
             $Licenses.AddLicenses =$addLicensesArray
-            $result =  Set-EntraUserLicense -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -AssignedLicenses $Licenses
+            $result =  Set-EntraUserLicense -ObjectId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' -AssignedLicenses $Licenses
     
             $params = Get-Parameters -data $result.Parameters
-            $params.Uri | Should -Match "1139c016-f606-45f0-83f7-40eb2a552a6f"
+            $params.Uri | Should -Match "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
         }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserLicense"
-
             $addLicensesArray = [PSCustomObject]@{
-                skuId = "f30db892-07e9-47e9-837c-80727f46fd3d"
-            }
+                skuId = "66aa66aa-bb77-cc88-dd99-00ee00ee00ee"
+                }
             $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses
             $Licenses.AddLicenses =$addLicensesArray
-            $result =  Set-EntraUserLicense -ObjectId 1139c016-f606-45f0-83f7-40eb2a552a6f -AssignedLicenses $Licenses
+             
+            Set-EntraUserLicense -ObjectId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' -AssignedLicenses $Licenses
+    
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraUserLicense"
+    
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
 
-            $params = Get-Parameters -data $result.Parameters
-
-            $params.Headers."User-Agent" | Should -Be $userAgentHeaderValue
-        }  
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+            $addLicensesArray = [PSCustomObject]@{
+                skuId = "66aa66aa-bb77-cc88-dd99-00ee00ee00ee"
+                }
+            $Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses
+            $Licenses.AddLicenses =$addLicensesArray
+    
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Set-EntraUserLicense -ObjectId '00aa00aa-bb11-cc22-dd33-44ee44ee44ee' -AssignedLicenses $Licenses -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }
 
     }
 }
