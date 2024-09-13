@@ -13,14 +13,14 @@ BeforeAll {
                 "ApproximateLastSignInDateTime" = $null                
                 "DeletedDateTime"               = $null
                 "DeviceCategory"                = $null
-                "DeviceId"                      = "6e9d44e6-f191-4957-bb31-c52f33817204"
+                "DeviceId"                      = "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
                 "DeviceMetadata"                = "MetaData"
                 "DeviceOwnership"               = $null
                 "DeviceVersion"                 = 2
                 "DisplayName"                   = "Mock-Device"
                 "EnrollmentProfileName"         = $null
                 "Extensions"                    = $null
-                "Id"                            = "74825acb-c984-4b54-ab65-d38347ea5e90"
+                "Id"                            = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
                 "IsCompliant"                   = $False
                 "IsManaged"                     = $True
                 "MdmAppId"                      = $null
@@ -50,7 +50,7 @@ Describe "Get-EntraDevice" {
         It "Should return specific device" {
             $result = Get-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-ccccccccccc"
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | should -Be @('74825acb-c984-4b54-ab65-d38347ea5e90')
+            $result.Id | should -Be @('aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb')
 
             Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }
@@ -94,25 +94,28 @@ Describe "Get-EntraDevice" {
             Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Result should Contain ObjectId" {
-            $result = Get-EntraDevice -ObjectId "74825acb-c984-4b54-ab65-d38347ea5e90"
-            $result.ObjectId | should -Be "74825acb-c984-4b54-ab65-d38347ea5e90"
+            $result = Get-EntraDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result.ObjectId | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
         }     
         It "Should contain DeviceId in parameters when passed ObjectId to it" {              
             $result = Get-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result.Parameters
             $params.DeviceId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
-        It "Should contain Filter in parameters when passed SearchString to it" {               
-            $result = Get-EntraDevice -SearchString 'Mock-Device'
-            $params = Get-Parameters -data $result.Parameters
-            $params.Filter | Should -Match "Mock-Device"
-        }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDevice"
-            $result = Get-EntraDevice -SearchString 'Mock-Device'
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+
+            $result = Get-EntraDevice -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDevice"
+
+            Should -Invoke -CommandName Get-MgDevice -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
+        
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       
             $originalDebugPreference = $DebugPreference

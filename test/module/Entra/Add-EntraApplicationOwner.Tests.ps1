@@ -29,13 +29,16 @@ Describe "Add-EntraApplicationOwner" {
             $params.ApplicationId | Should -Be "aaaaaaaa-1111-2222-3333-cccccccccccc"
         }
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName New-MgApplicationOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraApplicationOwner"
+
+            Add-EntraApplicationOwner -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" 
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraApplicationOwner"
 
-            $result = Add-EntraApplicationOwner -ObjectId "aaaaaaaa-1111-2222-3333-cccccccccccc" -RefObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            Should -Invoke -CommandName New-MgApplicationOwnerByRef -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       

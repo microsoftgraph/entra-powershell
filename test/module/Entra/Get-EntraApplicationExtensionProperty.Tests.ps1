@@ -50,12 +50,22 @@ BeforeAll {
 
             Should -Invoke -CommandName Get-MgApplicationExtensionProperty  -ModuleName Microsoft.Graph.Entra -Times 1
         }
+        It "Should fail when Property is empty" {
+            { Get-EntraApplicationExtensionProperty -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationExtensionProperty"
-            $result = Get-EntraApplicationExtensionProperty -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        } 
+
+            $result =  Get-EntraApplicationExtensionProperty -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc"
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationExtensionProperty"
+
+            Should -Invoke -CommandName Get-MgApplicationExtensionProperty -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       
             $originalDebugPreference = $DebugPreference

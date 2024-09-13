@@ -62,12 +62,22 @@ BeforeAll {
 
             Should -Invoke -CommandName Get-MgDirectoryRole  -ModuleName Microsoft.Graph.Entra -Times 1
         }
+        It "Should fail when Property is empty" {
+            { Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirectoryRole"
+
             $result = Get-EntraDirectoryRole -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }  
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirectoryRole"
+
+            Should -Invoke -CommandName Get-MgDirectoryRole -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        } 
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       
             $originalDebugPreference = $DebugPreference

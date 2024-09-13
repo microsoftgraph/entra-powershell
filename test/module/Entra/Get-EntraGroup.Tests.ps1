@@ -79,10 +79,17 @@ Describe "Get-EntraGroup" {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraGroup"
-            $result = Get-EntraGroup -SearchString 'demo'
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        } 
+
+            $result = Get-EntraGroup -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraGroup"
+
+            Should -Invoke -CommandName Get-MgGroup -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       
             $originalDebugPreference = $DebugPreference
