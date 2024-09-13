@@ -28,6 +28,7 @@ Restore a previously deleted object.
 ```powershell
 Restore-EntraBetaDeletedDirectoryObject 
  -Id <String> 
+ [-AutoReconcileProxyConflict]
  [<CommonParameters>]
 ```
 
@@ -75,6 +76,28 @@ This example shows how to restore a deleted object in Microsoft Entra ID.
 
 - `-Id` parameter specifies the Id of the directory object to restore.
 
+### Example 2: Restoring a Soft-Deleted User and Removing Conflicting Proxy Addresses
+
+```powershell
+Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All' #administrativeUnit resource
+Connect-Entra -Scopes 'Application.ReadWrite.All' #application resource
+Connect-Entra -Scopes 'Group.ReadWrite.All' #group resource
+Connect-Entra -Scopes 'Application.ReadWrite.All' #servicePrincipal resource
+Connect-Entra -Scopes 'User.ReadWrite.All' #user resource
+Restore-EntraBetaDeletedDirectoryObject -Id 'dddddddd-3333-4444-5555-eeeeeeeeeeee' -AutoReconcileProxyConflict
+```
+
+```Output
+Id                                   DeletedDateTime
+--                                   ---------------
+dddddddd-3333-4444-5555-eeeeeeeeeeee
+```
+
+This example shows how to restore a deleted object in Microsoft Entra ID.
+
+- `-Id` parameter specifies the Id of the directory object to restore.
+- `-AutoReconcileProxyConflict` parameter removes any conflicting proxy addresses while restoring a soft-deleted user whose one or more proxy addresses are currently used for an active user.
+
 ## Parameters
 
 ### -Id
@@ -87,6 +110,22 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -AutoReconcileProxyConflict
+
+Indicates whether Microsoft Entra ID should remove any conflicting proxy addresses while restoring a soft-deleted user whose one or more proxy addresses are currently used for an active user. Used only for restoring soft-deleted user. The default value for this paramater is false.
+
+```yaml
+Type: System.Management.Automation.SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
