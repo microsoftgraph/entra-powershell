@@ -26,7 +26,7 @@ Removes an administrative unit.
 
 ```powershell
 Remove-EntraAdministrativeUnit 
- -ObjectId <String>  
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 
@@ -79,6 +79,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Notes
 
 ## Related Links
+
+[New-EntraAdministrativeUnit](New-EntraAdministrativeUnit.md)
 
 [Get-EntraAdministrativeUnit](Get-EntraAdministrativeUnit.md)
 

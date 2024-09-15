@@ -2,7 +2,6 @@
 title: Remove-EntraBetaAdministrativeUnit
 description: This article provides details on the Remove-EntraBetaAdministrativeUnit command.
 
-
 ms.topic: reference
 ms.date: 07/03/2024
 ms.author: eunicewaweru
@@ -26,7 +25,7 @@ Removes an administrative unit.
 
 ```powershell
 Remove-EntraBetaAdministrativeUnit 
- -ObjectId <String> 
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 
