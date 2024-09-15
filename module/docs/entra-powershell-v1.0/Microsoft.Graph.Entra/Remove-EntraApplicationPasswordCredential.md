@@ -26,9 +26,9 @@ Removes a password credential from an application.
 
 ```powershell
 Remove-EntraApplicationPasswordCredential 
--ObjectId <String> 
--KeyId <String>
-[<CommonParameters>]
+ -ObjectId <String> 
+ -KeyId <String>
+ [<CommonParameters>]
 ```
 
 ## Description
@@ -55,7 +55,7 @@ This example demonstrates how to remove the password credential for an applicati
 
 ### -KeyId
 
-The unique identifier for the password.
+Specifies the ID of the password credential.
 
 ```yaml
 Type: System.String
