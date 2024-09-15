@@ -2,13 +2,13 @@
 title: Set-EntraAuthorizationPolicy
 description: This article provides details on the Set-EntraAuthorizationPolicy command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Set-EntraAuthorizationPolicy
@@ -57,7 +57,7 @@ $params = @{
     AllowedToSignUpEmailBasedSubscriptions = $true
 }
 
-Set-EntraAuthorizationPolicy @params 
+Set-EntraAuthorizationPolicy @params
 ```
 
 This example demonstrates how to update a Microsoft Entra ID authorization policy.
@@ -70,13 +70,10 @@ $DefaultUserRolePermissions = New-Object -TypeName Microsoft.Open.MSGraph.Model.
 $DefaultUserRolePermissions.AllowedToCreateApps = $false
 $DefaultUserRolePermissions.AllowedToCreateSecurityGroups = $false
 $DefaultUserRolePermissions.AllowedToReadOtherUsers = $false
-Set-EntraAuthorizationPolicy -DefaultUserRolePermissions $DefaultUserRolePermissions 
+Set-EntraAuthorizationPolicy -DefaultUserRolePermissions $DefaultUserRolePermissions
 ```
 
 This example demonstrates how to update a DefaultUserRolePermissions of authorization policy in Microsoft Entra ID.
-
-- First command stored the DefaultUserRolePermissions in a variable.  
-- Second command updates the DefaultUserRolePermissions of authorization policy.
 
 ## Parameters
 
@@ -99,7 +96,7 @@ Accept wildcard characters: False
 
 ### -AllowedToUseSSPR
 
-Specifies whether the Self-Serve Password Reset feature used by users on the tenant.
+Specifies whether the Self-Serve Password Reset feature can be used by users on the tenant.
 The initial default value is true.
 
 ```yaml
@@ -242,4 +239,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Related Links
 
 [Get-EntraAuthorizationPolicy](Get-EntraAuthorizationPolicy.md)
-
