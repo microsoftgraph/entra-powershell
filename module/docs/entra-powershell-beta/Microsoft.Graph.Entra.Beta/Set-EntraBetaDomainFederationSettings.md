@@ -88,11 +88,11 @@ Connect-Entra -Scopes 'Domain.ReadWrite.All'
 
 $params = @{
     DomainName = 'contoso.com'
-    LogOffUri = 'https://adfs1.manan.lab/adfs/'
-    PassiveLogOnUri = 'https://adfs1.manan.lab/adfs/'
-    ActiveLogOnUri = 'https://adfs1.manan.lab/adfs/services/trust/2005/'
-    IssuerUri = 'http://adfs1.manan.lab/adfs/services/'
-    MetadataExchangeUri = 'https://adfs1.manan.lab/adfs/services/trust/'
+    LogOffUri = 'https://adfs1.entra.lab/adfs/'
+    PassiveLogOnUri = 'https://adfs1.entra.lab/adfs/'
+    ActiveLogOnUri = 'https://adfs1.entra.lab/adfs/services/trust/2005/'
+    IssuerUri = 'http://adfs1.entra.lab/adfs/services/'
+    MetadataExchangeUri = 'https://adfs1.entra.lab/adfs/services/trust/'
 }
 
 Set-EntraBetaDomainFederationSettings @params

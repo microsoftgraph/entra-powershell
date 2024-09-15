@@ -77,6 +77,10 @@ This command updates the `PromptLoginBehavior` to either `TranslateToFreshPasswo
 
 Use the `Get-EntraDomainFederationSettings -DomainName <your_domain_name> | Format-List *` to get the values for `PreferredAuthenticationProtocol` and `PromptLoginBehavior` for the federated domain.
 
+- `-DomainName` parameter specifies the fully qualified domain name to retrieve.
+- `-PreferredAuthenticationProtocol` parameter specifies the preferred authentication protocol.
+- `-PromptLoginBehavior` parameter specifies the prompt sign-in behavior.
+
 ## Parameters
 
 ### -DomainName
