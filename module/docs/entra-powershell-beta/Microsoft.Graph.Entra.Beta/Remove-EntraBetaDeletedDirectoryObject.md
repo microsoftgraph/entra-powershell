@@ -21,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Permanently delete a previously deleted directory object
+Permanently delete a previously deleted directory object.
 
 ## Syntax
 
