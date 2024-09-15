@@ -20,7 +20,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Delete a Microsoft Entra ID roleDefinition by ObjectId.
+Delete a Microsoft Entra ID Directory roleDefinition object.
 
 ## Syntax
 
