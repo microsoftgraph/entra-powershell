@@ -2,7 +2,6 @@
 title: Set-EntraBetaDomainFederationSettings
 description: This article provides details on the Set-EntraBetaDomainFederationSettings command.
 
-
 ms.topic: reference
 ms.date: 08/19/2024
 ms.author: eunicewaweru

@@ -2,7 +2,6 @@
 title: Set-EntraDomainFederationSettings
 description: This article provides details on the Set-EntraDomainFederationSettings command.
 
-
 ms.topic: reference
 ms.date: 06/26/2024
 ms.author: eunicewaweru
@@ -148,7 +147,7 @@ Accept wildcard characters: False
 
 ### -PassiveLogOnUri
 
-The URL that web-based clients are directed to when signing in to Microsoft Entra ID services.
+The URL that web-based clients will be directed to when signing in to Microsoft Entra ID services.
 
 ```yaml
 Type: System.String
@@ -262,7 +261,7 @@ Accept wildcard characters: False
 
 ### -PromptLoginBehavior
 
-Specifies the prompt sign-in behavior.
+Specifies the prompt login behavior.
 
 ```yaml
 Type: System.String
@@ -288,4 +287,4 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Related Links
 
-[Get-EntraDomainFederationSettings](./Get-EntraDomainFederationSettings.md)
+[Get-EntraDomainFederationSettings](Get-EntraDomainFederationSettings.md)
