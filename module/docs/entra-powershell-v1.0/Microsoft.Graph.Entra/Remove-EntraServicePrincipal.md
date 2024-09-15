@@ -41,7 +41,7 @@ The `Remove-EntraServicePrincipal` cmdlet removes a service principal in Microso
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$servicePrincipal = Get-EntraServicePrincipal -SearchString 'M365 License Manager'
+$servicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
 Remove-EntraServicePrincipal -ObjectId $servicePrincipal.ObjectId
 ```
 

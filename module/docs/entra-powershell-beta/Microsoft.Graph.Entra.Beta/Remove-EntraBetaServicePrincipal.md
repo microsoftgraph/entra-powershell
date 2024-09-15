@@ -41,7 +41,7 @@ The `Remove-EntraBetaServicePrincipal` cmdlet removes a service principal in Mic
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
-$servicePrincipal = Get-EntraBetaServicePrincipal -SearchString 'M365 License Manager'
+$servicePrincipal = Get-EntraBetaServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
 Remove-EntraBetaServicePrincipal -ObjectId $servicePrincipal.ObjectId
 ```
 
