@@ -65,7 +65,6 @@ $params = @{
     PreferredAuthenticationProtocol = 'WsFed'
     PromptLoginBehavior = 'TranslateToFreshPasswordAuth' # Or 'NativeSupport' or 'Disabled', depending on the requirement
 }
-
 Set-EntraDomainFederationSettings @params
 ```
 

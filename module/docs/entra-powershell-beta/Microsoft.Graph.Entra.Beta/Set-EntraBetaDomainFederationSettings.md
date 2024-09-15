@@ -65,7 +65,6 @@ $params = @{
     PreferredAuthenticationProtocol = 'WsFed'
     PromptLoginBehavior = 'TranslateToFreshPasswordAuth' # Or 'NativeSupport' or 'Disabled', depending on the requirement
 }
-
 Set-EntraBetaDomainFederationSettings @params
 ```
 
@@ -94,7 +93,6 @@ $params = @{
     IssuerUri = 'http://adfs1.entra.lab/adfs/services/'
     MetadataExchangeUri = 'https://adfs1.entra.lab/adfs/services/trust/'
 }
-
 Set-EntraBetaDomainFederationSettings @params
 ```
 
