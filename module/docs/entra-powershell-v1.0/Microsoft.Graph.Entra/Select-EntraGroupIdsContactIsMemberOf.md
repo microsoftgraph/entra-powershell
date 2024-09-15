@@ -37,7 +37,7 @@ The `Select-EntraGroupIdsContactIsMemberOf` cmdlet gets groups in Microsoft Entr
 
 ## Examples
 
-### Example 1: Get groups in which a contact is a member.
+### Example 1: Get groups in which a contact is a member
 
 ```powershell
 Connect-Entra -Scopes 'OrgContact.Read.All,Group.Read.All'
