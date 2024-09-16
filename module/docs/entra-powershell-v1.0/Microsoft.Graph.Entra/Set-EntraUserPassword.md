@@ -45,11 +45,9 @@ Any user can update their password without belonging to any administrator role.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
-$params = @{
-    ObjectId = 'SawyerM@contoso.com'
-    Password = $password
-}
-Set-EntraUserPassword @params
+$newPassword = <Password>
+$securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
+Set-EntraUserPassword -ObjectId 'SawyerM@contoso.com' -Password $securePassword
 ```
 
 This command sets the specified user's password.
@@ -61,13 +59,12 @@ This command sets the specified user's password.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
+$newPassword= <Password>
+$securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force 
 $params = @{
-    ObjectId = 'SawyerM@contoso.com'
-    Password = $password
     EnforceChangePasswordPolicy = $true
 }
-
-Set-EntraUserPassword @params
+Set-EntraUserPassword -ObjectId 'SawyerM@contoso.com' -Password $securePassword @params
 ```
 
 This command sets the specified user's password with EnforceChangePasswordPolicy parameter.
@@ -79,14 +76,13 @@ This command sets the specified user's password with EnforceChangePasswordPolicy
 ### Example 3: Set a user's password with ForceChangePasswordNextLogin parameter
 
 ```powershell
-Connect-Entra -Scopes 'Directory.AccessAsUser.All'
+connect-Entra -Scopes 'Directory.AccessAsUser.All'
+$newPassword= <Password>
+$securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
 $params = @{
-    ObjectId = 'SawyerM@contoso.com'
-    Password = $password
     ForceChangePasswordNextLogin = $true
 }
-
-Set-EntraUserPassword @params
+Set-EntraUserPassword -ObjectId 'SawyerM@contoso.com' -Password $securePassword @params
 ```
 
 This command sets the specified user's password with ForceChangePasswordNextLogin parameter.
