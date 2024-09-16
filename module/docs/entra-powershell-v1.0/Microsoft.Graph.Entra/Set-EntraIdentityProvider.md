@@ -38,6 +38,7 @@ Set-EntraIdentityProvider
 ## Description
 
 The `Set-EntraIdentityProvider` cmdlet is used to update the properties of an existing identity provider.
+
 The type of the identity provider can't be modified.
 
 ## Examples
