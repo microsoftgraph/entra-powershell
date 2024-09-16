@@ -48,8 +48,11 @@ Describe "Add-EntraCustomSecurityAttributeDefinitionAllowedValue" {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraCustomSecurityAttributeDefinitionAllowedValue"
-
-            Add-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Id 'Apline' -IsActive $true | Out-Null
+    
+            Add-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Id 'Apline' -IsActive $true
+    
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraCustomSecurityAttributeDefinitionAllowedValue"
+    
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
@@ -62,7 +65,7 @@ Describe "Add-EntraCustomSecurityAttributeDefinitionAllowedValue" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Add-EntraCustomSecurityAttributeDefinitionAllowedValues -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Id 'Apline' -IsActive $true -Debug } | Should -Not -Throw
+                { Add-EntraCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId 'Engineering_Project' -Id 'Apline' -IsActive $true -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
