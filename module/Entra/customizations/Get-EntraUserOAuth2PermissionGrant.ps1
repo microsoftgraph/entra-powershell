@@ -4,13 +4,6 @@
 @{
     SourceName = "Get-AzureADUserOAuth2PermissionGrant"
     TargetName = "Get-MgUserOAuth2PermissionGrant"
-    Parameters = @(
-        @{
-            SourceName = "ObjectId"
-            TargetName = "UserId"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        }
-    )
+    Parameters = $null
     Outputs = $null
 }

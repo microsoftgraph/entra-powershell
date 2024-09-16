@@ -26,7 +26,7 @@ Removes a user's manager.
 
 ```powershell
 Remove-EntraUserManager 
- -ObjectId <String> 
+ -UserId <String> 
 ```
 
 ## Description
@@ -40,7 +40,7 @@ The Remove-EntraUserManager cmdlet removes a user's manager in Microsoft Entra I
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
 $User = Get-EntraUser -Top 1
-Remove-EntraUserManager -ObjectId $User.ObjectId
+Remove-EntraUserManager -UserId $User.ObjectId
 ```
 
 This example demonstrates how to removes a user's manager.
@@ -51,7 +51,7 @@ This example demonstrates how to removes a user's manager.
 
 ## Parameters
 
-### -ObjectId
+### -UserId
 
 Specifies the ID of a user (as a User Principle Name or ObjectId) in Microsoft Entra ID.
 

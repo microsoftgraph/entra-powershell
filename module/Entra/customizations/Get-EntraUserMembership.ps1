@@ -4,14 +4,7 @@
 @{
     SourceName = "Get-AzureADUserMembership"
     TargetName = "Get-MgUserMemberOf"
-    Parameters = @(
-        @{
-            SourceName = "ObjectId"
-            TargetName = "UserId"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        }
-    )
+    Parameters = $null
     Outputs = @(
         @{
             SourceName = "AdditionalProperties"
