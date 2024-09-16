@@ -2,7 +2,6 @@
 title: Set-EntraBetaUserPassword
 description: This article provides details on the Set-EntraBetaUserPassword command.
 
-
 ms.topic: reference
 ms.date: 07/24/2024
 ms.author: eunicewaweru
@@ -47,7 +46,7 @@ Any user can update their password without belonging to any administrator role.
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $params = @{
-    ObjectId = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    ObjectId = 'SawyerM@contoso.com'
     Password = $password
 }
 Set-EntraBetaUserPassword @params
@@ -63,7 +62,7 @@ This command sets the specified user's password.
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $params = @{
-    ObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    ObjectId = 'SawyerM@contoso.com'
     Password = $password
     EnforceChangePasswordPolicy = $true
 }
@@ -82,7 +81,7 @@ This command sets the specified user's password with EnforceChangePasswordPolicy
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $params = @{
-    ObjectId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
+    ObjectId = 'SawyerM@contoso.com'
     Password = $password
     ForceChangePasswordNextLogin = $true
 }
@@ -116,7 +115,7 @@ Accept wildcard characters: False
 
 ### -ForceChangePasswordNextLogin
 
-Forces a user to change their password during their next log in.
+Forces a user to change their password during their next sign in.
 
 ```yaml
 Type: System.Boolean
