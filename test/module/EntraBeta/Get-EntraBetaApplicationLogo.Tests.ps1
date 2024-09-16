@@ -37,7 +37,7 @@ Describe "Get-EntraBetaApplicationLogo" {
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaApplicationLogo"
         $result = Get-EntraBetaApplicationLogo -ObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -FilePath "D:\image.jpg"
         $result | Should -BeNullOrEmpty
-
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaApplicationLogo"
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
             $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
             $true

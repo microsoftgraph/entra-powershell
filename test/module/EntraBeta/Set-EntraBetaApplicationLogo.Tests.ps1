@@ -28,11 +28,14 @@ Describe "Set-EntraBetaApplicationLogo"{
             { Set-EntraBetaApplicationLogo -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -FilePath "sdd" } | Should -Throw "FilePath is invalid"
         }    
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaApplicationLogo"
             $result = Set-EntraBetaApplicationLogo -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -FilePath "https://th.bing.com/th?q=Perennial+Garden+Ideas&w=138&h=138&c=7&o=5&dpr=1.3&pid=1.7&mkt=en-IN&cc=IN&setlang=en&adlt=moderate"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $result | Should -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaApplicationLogo"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       
