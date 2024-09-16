@@ -29,7 +29,7 @@ Adds a new key to an application.
 New-EntraBetaApplicationKey 
  -ObjectId <String> 
  -KeyCredential <KeyCredential>
- -Proof <String> 
+ -Proof <String>
  [-PasswordCredential <PasswordCredential>] 
  [<CommonParameters>]
 ```
@@ -43,8 +43,7 @@ Adds a new key to an application.
 ### Example 1: Add a key credential to an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $app = Get-EntraBetaApplication -Filter "DisplayName eq '<application-display-name>'"
 $params = @{
     ObjectId = $app.ObjectId
@@ -52,6 +51,7 @@ $params = @{
     PasswordCredential = @{ DisplayName = 'mypassword' }
     Proof = '{token}'
 }
+
 New-EntraBetaApplicationKey @params
 ```
 
@@ -84,7 +84,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-The unique identifier of the object specific Microsoft Entra ID object.
+The unique identifier of the application object.
 
 ```yaml
 Type: System.String

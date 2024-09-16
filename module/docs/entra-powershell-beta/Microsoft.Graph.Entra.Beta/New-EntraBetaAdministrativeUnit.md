@@ -53,17 +53,17 @@ DeletedDateTime Id                                   Description DisplayName IsM
                 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb             TestAU      False
 ```
 
-This command creates an administrative unit.
+This example demonstrates how to create an administrative unit.
 
-- `-DisplayName` parameter specifies the display name for the new administrative unit.
+- `-DisplayName` parameter specifies the display name for the Administrative unit object.
 
 ### Example 2: Create an administrative unit using '-Description' parameter
 
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $params = @{
-    DisplayName = 'test1'
-    Description = 'New AdministrativeUnit'
+    DisplayName = 'Pacific Administrative Unit'
+    Description = 'Administrative Unit for Pacific region'
 }
 New-EntraBetaAdministrativeUnit @params
 ```
@@ -74,9 +74,9 @@ DeletedDateTime Id                                   Description DisplayName IsM
                 bbbbbbbb-1111-2222-3333-cccccccccccc New AdminiatrativeUnit     test1     False
 ```
 
-This command creates an administrative unit.
+This example demonstrates how to create an administrative unit.
 
-- `-DisplayName` parameter specifies the display name for the new administrative unit.
+- `-DisplayName` parameter specifies the display name for the Administrative unit object.
 - `-Description` parameter specifies the description for the new administrative unit.
 
 ### Example 3: Create an administrative unit using '-IsMemberManagementRestricted' parameter
@@ -96,9 +96,9 @@ DeletedDateTime Id                                   Description DisplayName IsM
                 cccccccc-2222-3333-4444-dddddddddddd             NewUnit     True
 ```
 
-This command creates an administrative unit.
+This example demonstrates how to create an administrative unit.
 
-- `-DisplayName` parameter specifies the display name for the new administrative unit.
+- `-DisplayName` parameter specifies the display name for the Administrative unit object.
 - `-IsMemberManagementRestricted` parameter specifies the management rights on resources in the administrative units should be restricted to ONLY the administrators scoped on the administrative unit object.
 
 ## Parameters
