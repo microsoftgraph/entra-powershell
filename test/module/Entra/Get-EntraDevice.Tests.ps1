@@ -93,6 +93,9 @@ Describe "Get-EntraDevice" {
 
             Should -Invoke -CommandName Get-MgDevice  -ModuleName Microsoft.Graph.Entra -Times 1
         }
+        It "Should fail when Property is empty" {
+            { Get-EntraDevice -Property DisplayName -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
         It "Result should Contain ObjectId" {
             $result = Get-EntraDevice -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
             $result.ObjectId | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"

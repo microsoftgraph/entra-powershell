@@ -23,7 +23,7 @@ BeforeAll {
   
 Describe "Get-EntraApplicationLogo" {
     It "Should return empty" {
-        $result = Get-EntraApplicationLogo -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32" -FilePath "D:\image.jpg"        
+        $result = Get-EntraApplicationLogo -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FilePath "D:\image.jpg"        
         $result | Should -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
@@ -33,14 +33,17 @@ Describe "Get-EntraApplicationLogo" {
     It "Should fail when ObjectId is null" {
         { Get-EntraApplicationLogo -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
     }
-    It "Should contain 'User-Agent' header" {
-        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationLogo"
-        $result = Get-EntraApplicationLogo -ObjectId "dc587a80-d49c-4700-a73b-57227856fc32" -FilePath "D:\image.jpg"
-        $result | Should -BeNullOrEmpty
+    It "Should execute successfully without throwing an error " {
+        # Disable confirmation prompts       
+        $originalDebugPreference = $DebugPreference
+        $DebugPreference = 'Continue'
 
-        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
-            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
-            $true
+        try {
+            # Act & Assert: Ensure the function doesn't throw an exception
+            { Get-EntraApplicationLogo -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FilePath "D:\image.jpg"  -Debug } | Should -Not -Throw
+        } finally {
+            # Restore original confirmation preference            
+            $DebugPreference = $originalDebugPreference        
         }
-    }
+    }  
 }

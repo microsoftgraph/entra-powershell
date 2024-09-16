@@ -53,6 +53,9 @@ BeforeAll {
         It "Should fail when Property is empty" {
             { Get-EntraApplicationExtensionProperty -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
+        It "Should fail when Property is empty" {
+            { Get-EntraApplicationExtensionProperty -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationExtensionProperty"
 

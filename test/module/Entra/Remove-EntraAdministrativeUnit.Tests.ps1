@@ -12,7 +12,7 @@ BeforeAll {
 
 Describe "Test for Remove-EntraAdministrativeUnit" {
     It "Should return empty object" {
-        $result = Remove-EntraAdministrativeUnit -ObjectId bbbbbbbb-1111-1111-1111-cccccccccccc
+        $result = Remove-EntraAdministrativeUnit -ObjectId "bbbbbbbb-1111-1111-1111-cccccccccccc"
         $result | Should -BeNullOrEmpty
         Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
     }
@@ -26,10 +26,28 @@ Describe "Test for Remove-EntraAdministrativeUnit" {
         { Remove-EntraAdministrativeUnit -xyz } | Should -Throw "A parameter cannot be found that matches parameter name 'xyz'*"
     }
     It "Should contain 'User-Agent' header" {
-        Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra
         $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraAdministrativeUnit"
-        $result = Remove-EntraAdministrativeUnit -ObjectId bbbbbbbb-1111-1111-1111-cccccccccccc
-        $params = Get-Parameters -data $result
-        $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+
+        Remove-EntraAdministrativeUnit -ObjectId "bbbbbbbb-1111-1111-1111-cccccccccccc"
+
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraAdministrativeUnit"
+
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $true
+        }
     } 
+    It "Should execute successfully without throwing an error" {
+        # Disable confirmation prompts       
+        $originalDebugPreference = $DebugPreference
+        $DebugPreference = 'Continue'
+
+        try {
+            # Act & Assert: Ensure the function doesn't throw an exception
+            { Remove-EntraAdministrativeUnit -ObjectId "bbbbbbbb-1111-1111-1111-cccccccccccc" -Debug } | Should -Not -Throw
+        } finally {
+            # Restore original confirmation preference            
+            $DebugPreference = $originalDebugPreference        
+        }
+    }   
 }
