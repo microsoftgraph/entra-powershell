@@ -2,7 +2,6 @@
 title: Set-EntraBetaPermissionGrantPolicy
 description: This article provides details on the Set-EntraBetaPermissionGrantPolicy command.
 
-
 ms.topic: reference
 ms.date: 08/01/2024
 ms.author: eunicewaweru
