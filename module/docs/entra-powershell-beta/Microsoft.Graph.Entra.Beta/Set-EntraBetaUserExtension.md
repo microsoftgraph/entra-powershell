@@ -61,7 +61,7 @@ $params = @{
 Set-EntraBetaUserExtension @params
 ```
 
-This example shows how to update the value of the extension attribute for a specified user. You can use the command `Get-EntraBetaUser` to get user object Id.
+This example shows how to update the value of the extension attribute for a specified user.
 
 - `-ObjectId` parameter specifies the user Id.
 - `-ExtensionName` parameter specifies the name of an extension.

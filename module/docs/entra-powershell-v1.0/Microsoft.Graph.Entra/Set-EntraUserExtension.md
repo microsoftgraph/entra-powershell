@@ -50,6 +50,10 @@ Set-EntraUserExtension @params
 
 This example shows how to update the value of the extension attribute for a specified user.
 
+- `-ObjectId` parameter specifies the user Id.
+- `-ExtensionName` parameter specifies the name of an extension.
+- `-ExtensionValue` parameter specifies the extension name values.
+
 ## Parameters
 
 ### -ObjectId
@@ -83,7 +87,5 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 [Get-EntraUser](Get-EntraUser.md)
 
 [Get-EntraUserExtension](Get-EntraUserExtension.md)
-
-[Get-EntraExtensionProperty](Get-EntraExtensionProperty.md)
 
 [Remove-EntraUserExtension](Remove-EntraUserExtension.md)
