@@ -55,7 +55,7 @@ DeletedDateTime Id                                   Description DisplayName Vis
 
 This example demonstrates how to create an administrative unit.
 
-- `-DisplayName` Specifies the display name of the new administrative unit.
+- `-DisplayName` parameter specifies the display name for the Administrative unit object.
 
 ### Example 2: Create an administrative unit using '-Description' parameter
 
@@ -72,13 +72,13 @@ New-EntraAdministrativeUnit @params
 ```Output
 DeletedDateTime Id                                   Description DisplayName IsMemberManagementRestricted Visibility
 --------------- --                                   ----------- ----------- ---------------------------- ----------
-                bbbbbbbb-1111-2222-3333-cccccccccccc New AdminiatrativeUnit     test111     False
+                bbbbbbbb-1111-2222-3333-cccccccccccc Pacific Administrative Unit     test111     False
 ```
 
-This command creates an administrative unit.
+This example demonstrates how to create an administrative unit.
 
-- `-DisplayName` Specifies the display name of the new administrative unit.
-- `-Description` Specifies a description for the new administrative unit.
+- `-DisplayName` parameter specifies the display name for the Administrative unit object.
+- `-Description` parameter specifies a description for the Administrative unit object.
 
 ## Parameters
 
