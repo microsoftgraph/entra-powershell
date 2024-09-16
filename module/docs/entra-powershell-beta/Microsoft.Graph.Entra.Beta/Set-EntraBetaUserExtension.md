@@ -53,9 +53,8 @@ The `Set-EntraBetaUserExtension` cmdlet updates a user extension in Microsoft En
 
 ```powershell
 Connect-Entra -Scopes 'User.ReadWrite.All'
-$User = Get-EntraBetaUser -ObjectId 'SawyerM@contoso.com'
 $params = @{
-    ObjectId = $User.ObjectId 
+    ObjectId = 'SawyerM@contoso.com'
     ExtensionName = 'extension_e5e29b8a85d941eab8d12162bd004528_extensionAttribute8' 
     ExtensionValue = 'New Value'
 }
