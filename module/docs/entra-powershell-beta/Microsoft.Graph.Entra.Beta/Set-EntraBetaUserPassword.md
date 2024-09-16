@@ -46,10 +46,9 @@ Any user can update their password without belonging to any administrator role.
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All'
-$userUPN = "bbbbbbbb-1111-2222-3333-cccccccccccc"
 $newPassword = <Password>
-$secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
-Set-EntraBetaUserPassword -ObjectId $userUPN -Password $secPassword
+$securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
+Set-EntraBetaUserPassword -ObjectId 'SawyerM@contoso.com' -Password $securePassword
 ```
 
 This command sets the specified user's password.
@@ -60,14 +59,14 @@ This command sets the specified user's password.
 ### Example 2: Set a user's password with EnforceChangePasswordPolicy parameter
 
 ```powershell
-$userUPN ="bbbbbbbb-1111-2222-3333-cccccccccccc"
+Connect-Entra -Scopes 'Directory.AccessAsUser.All'
 $newPassword= <Password>
-$secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
+$securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
  
 $params = @{
     EnforceChangePasswordPolicy = $true
  }
-Set-EntraBetaUserPassword -ObjectId $userUPN -Password $secPassword @params
+Set-EntraBetaUserPassword -ObjectId 'SawyerM@contoso.com' -Password $securePassword @params
 ```
 
 This command sets the specified user's password with EnforceChangePasswordPolicy parameter.
@@ -80,14 +79,13 @@ This command sets the specified user's password with EnforceChangePasswordPolicy
 
 ```powershell
 connect-Entra -Scopes 'Directory.AccessAsUser.All'
-$userUPN = "bbbbbbbb-1111-2222-3333-cccccccccccc"
 $newPassword= <Password>
-$secPassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
+$securePassword = ConvertTo-SecureString $newPassword -AsPlainText -Force
 
 $params = @{
     ForceChangePasswordNextLogin = $true
 }
-Set-EntraBetaUserPassword -ObjectId $userUPN -Password $secPassword @params
+Set-EntraBetaUserPassword -ObjectId 'SawyerM@contoso.com' -Password $securePassword @params
 ```
 
 This command sets the specified user's password with ForceChangePasswordNextLogin parameter.
