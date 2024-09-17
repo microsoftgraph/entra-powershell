@@ -10,7 +10,7 @@ BeforeAll {
 Describe "Remove-EntraDeletedApplication" {
     Context "Test for Remove-EntraDeletedApplication" {
         It "Should remove deleted application object" {
-            $result = Remove-EntraDeletedApplication -ObjectId "c28ccec8-4c7e-43b8-a4a1-558d93eda04e"
+            $result = Remove-EntraDeletedApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -BeNullOrEmpty
 
             Should -Invoke -CommandName Remove-MgDirectoryDeletedItem -ModuleName Microsoft.Graph.Entra -Times 1
@@ -27,18 +27,32 @@ Describe "Remove-EntraDeletedApplication" {
         It "Should contain DirectoryObjectId in parameters when passed ObjectId to it" {
             Mock -CommandName Remove-MgDirectoryDeletedItem -MockWith {$args} -ModuleName Microsoft.Graph.Entra
 
-            $result = Remove-EntraDeletedApplication -ObjectId "c28ccec8-4c7e-43b8-a4a1-558d93eda04e"
+            $result = Remove-EntraDeletedApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $params = Get-Parameters -data $result
-            $params.DirectoryObjectId | Should -Be "c28ccec8-4c7e-43b8-a4a1-558d93eda04e"
+            $params.DirectoryObjectId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
         }
 
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Remove-MgDirectoryDeletedItem -MockWith {$args} -ModuleName Microsoft.Graph.Entra
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraDeletedApplication"
-            $result = Remove-EntraDeletedApplication -ObjectId "c28ccec8-4c7e-43b8-a4a1-558d93eda04e"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            Remove-EntraDeletedApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraDeletedApplication"
+            Should -Invoke -CommandName Remove-MgDirectoryDeletedItem  -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { Remove-EntraDeletedApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
         } 
     }
 }

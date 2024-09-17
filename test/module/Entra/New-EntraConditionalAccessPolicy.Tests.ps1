@@ -22,7 +22,7 @@ BeforeAll {
                     "Operator"                     = "OR"
                     "TermsOfUse"                   = @()
                 }
-                "Id"                   = "0c53a5eb-3efb-4420-bff8-57ebc2913a13"
+                "Id"                   = "bbbbbbbb-1111-2222-3333-cccccccccccc"
                 "ModifiedDateTime"     = ""
                 "SessionControls"      = [PSCustomObject]@{
                     "DisableResilienceDefaults" = $null
@@ -39,8 +39,8 @@ BeforeAll {
     Mock -CommandName New-MgIdentityConditionalAccessPolicy -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 
-Describe "New-EntraMSConditionalAccessPolicy" {
-    Context "Test for New-EntraMSConditionalAccessPolicy" {
+Describe "New-EntraConditionalAccessPolicy" {
+    Context "Test for New-EntraConditionalAccessPolicy" {
         It "Should return created Conditional Access Policy Id" {
             $conditions = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
             $conditions.Applications = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessApplicationCondition
@@ -51,10 +51,10 @@ Describe "New-EntraMSConditionalAccessPolicy" {
             $controls._Operator = "OR"
             $controls.BuiltInControls = "mfa"
             $SessionControls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls
-            $result = New-EntraMSConditionalAccessPolicy -DisplayName "MFA policy" -State "Enabled" -Conditions $conditions -GrantControls $controls -SessionControls $SessionControls
+            $result = New-EntraConditionalAccessPolicy -DisplayName "MFA policy" -State "Enabled" -Conditions $conditions -GrantControls $controls -SessionControls $SessionControls
             $result | Should -Not -BeNullOrEmpty
-            $result.Id | Should -Be "0c53a5eb-3efb-4420-bff8-57ebc2913a13"
-            $result.ObjectId | Should -Be "0c53a5eb-3efb-4420-bff8-57ebc2913a13"
+            $result.Id | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
+            $result.ObjectId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result.DisplayName | Should -Be "MFA policy"
             $result.State | Should -Be "enabled"
 
@@ -63,35 +63,35 @@ Describe "New-EntraMSConditionalAccessPolicy" {
         }
 
         It "Should fail when DisplayName parameter is empty" {
-            { New-EntraMSConditionalAccessPolicy -DisplayName } | Should -Throw "Missing an argument for parameter 'DisplayName'*"
+            { New-EntraConditionalAccessPolicy -DisplayName } | Should -Throw "Missing an argument for parameter 'DisplayName'*"
         } 
 
         It "Should fail when State parameter is empty" {
-            { New-EntraMSConditionalAccessPolicy -DisplayName "MFA policy" -State } | Should -Throw "Missing an argument for parameter*"
+            { New-EntraConditionalAccessPolicy -DisplayName "MFA policy" -State } | Should -Throw "Missing an argument for parameter*"
         }
 
         It "Should fail when Conditions parameter is empty" {
-            { New-EntraMSConditionalAccessPolicy -DisplayName "MFA policy" -Conditions  } | Should -Throw "Missing an argument for parameter*"
+            { New-EntraConditionalAccessPolicy -DisplayName "MFA policy" -Conditions  } | Should -Throw "Missing an argument for parameter*"
         }
 
         It "Should fail when Conditions parameter is invalid" {
-            { New-EntraMSConditionalAccessPolicy -DisplayName "MFA policy" -Conditions "" } | Should -Throw "Cannot process argument transformation on parameter 'Conditions'.*"
+            { New-EntraConditionalAccessPolicy -DisplayName "MFA policy" -Conditions "" } | Should -Throw "Cannot process argument transformation on parameter 'Conditions'.*"
         }
 
         It "Should fail when GrantControls parameter is empty" {
-            { New-EntraMSConditionalAccessPolicy -DisplayName "MFA policy" -GrantControls } | Should -Throw "Missing an argument for parameter*"
+            { New-EntraConditionalAccessPolicy -DisplayName "MFA policy" -GrantControls } | Should -Throw "Missing an argument for parameter*"
         }
 
         It "Should fail when GrantControls parameter is invalid" {
-            { New-EntraMSConditionalAccessPolicy -DisplayName "MFA policy" -GrantControls "" } | Should -Throw "Cannot process argument transformation on parameter 'GrantControls'.*"
+            { New-EntraConditionalAccessPolicy -DisplayName "MFA policy" -GrantControls "" } | Should -Throw "Cannot process argument transformation on parameter 'GrantControls'.*"
         }
 
         It "Should fail when SessionControls parameter is empty" {
-            { New-EntraMSConditionalAccessPolicy -DisplayName "MFA policy" -SessionControls } | Should -Throw "Missing an argument for parameter*"
+            { New-EntraConditionalAccessPolicy -DisplayName "MFA policy" -SessionControls } | Should -Throw "Missing an argument for parameter*"
         }
 
         It "Should fail when SessionControls parameter is invalid" {
-            { New-EntraMSConditionalAccessPolicy -DisplayName "MFA policy" -SessionControls "" } | Should -Throw "Cannot process argument transformation on parameter 'SessionControls'.*"
+            { New-EntraConditionalAccessPolicy -DisplayName "MFA policy" -SessionControls "" } | Should -Throw "Cannot process argument transformation on parameter 'SessionControls'.*"
         }
 
         It "Should contain IncludeUsers in parameters when passed Conditions to it" {
@@ -102,7 +102,7 @@ Describe "New-EntraMSConditionalAccessPolicy" {
             $conditions.Users.IncludeUsers = "all"
             $Controls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls
             $SessionControls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls
-            $result = New-EntraMSConditionalAccessPolicy -DisplayName "MFA policy" -State "Enabled" -Conditions $conditions -GrantControls $controls -SessionControls $SessionControls
+            $result = New-EntraConditionalAccessPolicy -DisplayName "MFA policy" -State "Enabled" -Conditions $conditions -GrantControls $controls -SessionControls $SessionControls
             $result | Should -Not -BeNullOrEmpty
             $params = Get-Parameters -data $result.Parameters
             $params.Conditions.Users.IncludeUsers | Should -Be "all"
@@ -120,7 +120,7 @@ Describe "New-EntraMSConditionalAccessPolicy" {
             $controls._Operator = "OR"
             $controls.BuiltInControls = "mfa"
             $SessionControls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls
-            $result = New-EntraMSConditionalAccessPolicy -DisplayName "MFA policy" -State "Enabled" -Conditions $conditions -GrantControls $controls -SessionControls $SessionControls
+            $result = New-EntraConditionalAccessPolicy -DisplayName "MFA policy" -State "Enabled" -Conditions $conditions -GrantControls $controls -SessionControls $SessionControls
             $result | Should -Not -BeNullOrEmpty
             $params = Get-Parameters -data $result.Parameters
             $params.GrantControls.BuiltInControls | Should -Be "mfa"
@@ -129,11 +129,45 @@ Describe "New-EntraMSConditionalAccessPolicy" {
         }
 
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraMSConditionalAccessPolicy"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraConditionalAccessPolicy"
+            $conditions = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
+            $conditions.Applications = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessApplicationCondition
+            $conditions.Applications.IncludeApplications = "00000002-0000-0ff1-ce00-000000000000"
+            $conditions.Users = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessUserCondition
+            $conditions.Users.IncludeUsers = "all"
+            $controls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls
+            $controls._Operator = "OR"
+            $controls.BuiltInControls = "mfa"
+            $SessionControls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls
+            $result = New-EntraConditionalAccessPolicy -DisplayName "MFA policy" -State "Enabled" -Conditions $conditions -GrantControls $controls -SessionControls $SessionControls
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraConditionalAccessPolicy"
+            Should -Invoke -CommandName New-MgIdentityConditionalAccessPolicy -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
+        It "Should execute successfully without throwing an error " {
+            # Disable confirmation prompts       
+            $originalDebugPreference = $DebugPreference
+            $DebugPreference = 'Continue'
+            $conditions = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessConditionSet
+            $conditions.Applications = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessApplicationCondition
+            $conditions.Applications.IncludeApplications = "00000002-0000-0ff1-ce00-000000000000"
+            $conditions.Users = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessUserCondition
+            $conditions.Users.IncludeUsers = "all"
+            $controls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessGrantControls
+            $controls._Operator = "OR"
+            $controls.BuiltInControls = "mfa"
+            $SessionControls = New-Object -TypeName Microsoft.Open.MSGraph.Model.ConditionalAccessSessionControls
 
-            $result = New-EntraMSConditionalAccessPolicy -DisplayName "MFA policy" -State "Enabled" -Conditions $conditions -GrantControls $controls -SessionControls $SessionControls
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }  
+            try {
+                # Act & Assert: Ensure the function doesn't throw an exception
+                { New-EntraConditionalAccessPolicy -DisplayName "MFA policy" -State "Enabled" -Conditions $conditions -GrantControls $controls -SessionControls $SessionControls -Debug } | Should -Not -Throw
+            } finally {
+                # Restore original confirmation preference            
+                $DebugPreference = $originalDebugPreference        
+            }
+        }   
     }
 }

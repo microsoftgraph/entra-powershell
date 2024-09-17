@@ -33,6 +33,18 @@ Describe "Get-EntraApplicationLogo" {
     It "Should fail when ObjectId is null" {
         { Get-EntraApplicationLogo -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
     }
+    It "Should contain 'User-Agent' header" {
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationLogo"
+
+        Get-EntraApplicationLogo -ObjectId "aaaaaaaa-1111-2222-3333-ccccccccccc" -FilePath "D:\image.jpg"        
+        
+        $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraApplicationLogo"
+
+        Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $true
+        }
+    }
     It "Should execute successfully without throwing an error " {
         # Disable confirmation prompts       
         $originalDebugPreference = $DebugPreference
