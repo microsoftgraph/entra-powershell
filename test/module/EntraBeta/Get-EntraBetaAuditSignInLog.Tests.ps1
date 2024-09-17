@@ -183,20 +183,20 @@ BeforeAll {
     Mock -CommandName Get-MgBetaAuditLogSignIn -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
 }
   
-Describe "Get-EntraBetaAuditSignInLogs" {
-    Context "Test for Get-EntraBetaAuditSignInLogs" {
+Describe "Get-EntraBetaAuditSignInLog" {
+    Context "Test for Get-EntraBetaAuditSignInLog" {
         It "Should get all logs" {
-            $result = Get-EntraBetaAuditSignInLogs -All
+            $result = Get-EntraBetaAuditSignInLog -All
             $result | Should -Not -BeNullOrEmpty            
             Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
         It "Should fail when All has an argument" {
-            { Get-EntraBetaAuditSignInLogs -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
+            { Get-EntraBetaAuditSignInLog -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
         }  
         
         It "Should get first n logs" {
-            $result = Get-EntraBetaAuditSignInLogs -Top 1
+            $result = Get-EntraBetaAuditSignInLog -Top 1
             $result | Should -Not -BeNullOrEmpty
             $result.AppDisplayName | Should -Be "Azure Active Directory PowerShell"
             $result.AppId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
@@ -212,15 +212,15 @@ Describe "Get-EntraBetaAuditSignInLogs" {
         }  
 
         It "Should fail when top is empty" {
-            { Get-EntraBetaAuditSignInLogs -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraBetaAuditSignInLog -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }  
 
         It "Should fail when top is invalid" {
-            { Get-EntraBetaAuditSignInLogs -Top y } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraBetaAuditSignInLog -Top y } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }  
         
         It "Should get audit sign-in logs containing a given UserDisplayName" {
-            $result = Get-EntraBetaAuditSignInLogs -Filter "UserDisplayName eq 'MOD Administrator'"
+            $result = Get-EntraBetaAuditSignInLog -Filter "UserDisplayName eq 'MOD Administrator'"
             $result | Should -Not -BeNullOrEmpty
             $result.AppDisplayName | Should -Be "Azure Active Directory PowerShell"
             $result.AppId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
@@ -236,7 +236,7 @@ Describe "Get-EntraBetaAuditSignInLogs" {
         }  
 
         It "Should get audit sign-in logs containing a given userPrincipalName" {
-            $result = Get-EntraBetaAuditSignInLogs -Filter "startsWith(userPrincipalName,'test@contoso.com')"
+            $result = Get-EntraBetaAuditSignInLog -Filter "startsWith(userPrincipalName,'test@contoso.com')"
             $result | Should -Not -BeNullOrEmpty
             $result.AppDisplayName | Should -Be "Azure Active Directory PowerShell"
             $result.AppId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
@@ -252,7 +252,7 @@ Describe "Get-EntraBetaAuditSignInLogs" {
         }  
 
         It "Should get audit sign-in logs containing a given appId" {
-            $result = Get-EntraBetaAuditSignInLogs -Filter "appId eq 'bbbbbbbb-1111-2222-3333-cccccccccc55'"
+            $result = Get-EntraBetaAuditSignInLog -Filter "appId eq 'bbbbbbbb-1111-2222-3333-cccccccccc55'"
             $result | Should -Not -BeNullOrEmpty
             $result.AppDisplayName | Should -Be "Azure Active Directory PowerShell"
             $result.AppId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
@@ -268,7 +268,7 @@ Describe "Get-EntraBetaAuditSignInLogs" {
         }  
 
         It "Should get audit sign-in logs containing a given appDisplayName" {
-            $result = Get-EntraBetaAuditSignInLogs -Filter "appDisplayName eq 'Azure Active Directory PowerShell'"
+            $result = Get-EntraBetaAuditSignInLog -Filter "appDisplayName eq 'Azure Active Directory PowerShell'"
             $result | Should -Not -BeNullOrEmpty
             $result.AppDisplayName | Should -Be "Azure Active Directory PowerShell"
             $result.AppId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
@@ -284,28 +284,32 @@ Describe "Get-EntraBetaAuditSignInLogs" {
         }  
 
         It "Should fail when Filter is empty" {
-            { Get-EntraBetaAuditSignInLogs -Filter -Top 1} | Should -Throw "Missing an argument for parameter 'Filter'*"
+            { Get-EntraBetaAuditSignInLog -Filter -Top 1} | Should -Throw "Missing an argument for parameter 'Filter'*"
         }  
 
         It "Should get all sign-in logs with a given result(success)" {
-            $result = Get-EntraBetaAuditSignInLogs -Filter "result eq 'success'" 
+            $result = Get-EntraBetaAuditSignInLog -Filter "result eq 'success'" 
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }  
 
         It "Should get all sign-in logs with a given result(failure)" {
-            $result = Get-EntraBetaAuditSignInLogs -Filter "result eq 'failure'" 
+            $result = Get-EntraBetaAuditSignInLog -Filter "result eq 'failure'" 
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Graph.Entra.Beta -Times 1
-        }  
+        } 
 
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaAuditSignInLogs"
-            $result = Get-EntraBetaAuditSignInLogs -All
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaAuditSignInLog"
+            $result= Get-EntraBetaAuditSignInLog
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaAuditSignInLog"
+            Should -Invoke -CommandName Get-MgBetaAuditLogSignIn -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }  
         
         It "Should execute successfully without throwing an error " {
@@ -315,7 +319,7 @@ Describe "Get-EntraBetaAuditSignInLogs" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaAuditSignInLogs -Top 1 -Debug } | Should -Not -Throw
+                { Get-EntraBetaAuditSignInLog -Top 1 -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

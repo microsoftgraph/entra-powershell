@@ -122,11 +122,14 @@ Describe "Get-EntraBetaPrivilegedResource" {
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaPrivilegedResource"
-
-            $result = Get-EntraBetaPrivilegedResource -ProviderId aadRoles
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }   
+            $result= Get-EntraBetaPrivilegedResource -ProviderId aadRoles -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaPrivilegedResource"
+            Should -Invoke -CommandName Get-MgBetaPrivilegedAccessResource -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }     
 
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       

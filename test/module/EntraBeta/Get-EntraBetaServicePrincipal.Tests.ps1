@@ -207,11 +207,25 @@ Describe "Get-EntraBetaServicePrincipal" {
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaServicePrincipal"
-
-            $result = Get-EntraBetaServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc59"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $result=  Get-EntraBetaServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc59"
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaServicePrincipal"
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }   
+        
+        It "Should fail when Property is empty" {
+            { Get-EntraBetaServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc59" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
+        It "Property parameter should work" {
+            $result = Get-EntraBetaServicePrincipal -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc59" -Property AppDisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.AppDisplayName | Should -Be 'demo1'
+
+            Should -Invoke -CommandName Get-MgBetaServicePrincipal  -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
 
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       
