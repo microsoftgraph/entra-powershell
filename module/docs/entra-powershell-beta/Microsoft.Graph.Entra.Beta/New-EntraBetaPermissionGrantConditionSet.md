@@ -66,7 +66,7 @@ Id                                   CertifiedClientApplicationsOnly ClientAppli
 aaaa0000-bb11-2222-33cc-444444dddddd False                           {all}                {all}                         {all}                      False                                       all                                  all                      delegated      {all}
 ```
 
- This command creates a basic permission grant condition set in an existing policy with all build in values.
+This command creates a basic permission grant condition set in an existing policy with all build in values.
 
 - `-PolicyId` parameter specifies the unique identifier of a permission grant policy.
 - `-ConditionSetType` parameter indicates whether the condition sets are included in the policy or excluded.

@@ -25,7 +25,7 @@ This cmdlet is used to invite a new external user to your directory
 
 ## Syntax
 
-```Powershell
+```powershell
 New-EntraBetaInvitation 
  [-InvitedUser <User>] 
  [-InvitedUserMessageInfo <InvitedUserMessageInfo>]
@@ -129,12 +129,36 @@ Id                                   InviteRedeemUrl
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb https://login.microsoftonline.com/redeem?rd=https%3a%2f%2finvitations.microsoft.com%2fredeem%2f%3ftenant%3dd5aec55f-2d12-4442-8d2f-cc…
 ```
 
+This example demonstrates how to invite a new external user to your directory with InvitedUserMessageInfo parameter.
+
 - `-InvitedUserEmailAddress`Parameter specifies the Email address to which the invitation is sent.
 - `-SendInvitationMessage` Parameter indicates whether or not an invitation message will be sent to the invited user.
 - `-InviteRedirectUrl` Parameter specifies The URL to which the invited user is forwarded after accepting the invitation.
 - `-InvitedUserMessageInfo`Parameter specifies addition information to specify how the invitation message is sent.
 
-### Example 4: Reset a Redemption for an external user
+### Example 4: Invite a new external user to your directory with InvitedUserType parameter
+
+```powershell
+Connect-Entra -Scopes 'User.Invite.All'
+$params = @{
+    InvitedUserEmailAddress = 'someexternaluser@externaldomain.com'
+    SendInvitationMessage = $True
+    InviteRedirectUrl = 'https://myapps.microsoft.com'
+    InvitedUserType = 'Guest'
+}
+
+New-EntraBetaInvitation @params
+```
+
+```Output
+Id                                   InviteRedeemUrl
+--                                   ---------------
+9e2b9f02-c2cb-4832-920d-81959f44e397 https://login.microsoftonline.com/redeem?rd=https%3a%2f%2finvitations.microsoft.com%2fredeem%2f%3ftenant%3dd5aec55f-2d12-4442-8d2f-cc…
+```
+
+This example demonstrates how to invite a new external user to your directory with InvitedUserType parameter.
+
+### Example 5: Reset a Redemption for an external user
 
 ```powershell
 Connect-Entra -Scopes 'User.Invite.All'
@@ -305,5 +329,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ### System.Object
 
 ## Notes
+
+- See more information - <https://learn.microsoft.com/graph/api/invitation-post>.
 
 ## Related Links
