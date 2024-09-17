@@ -43,7 +43,7 @@ The `Remove-EntraBetaApplicationOwner` cmdlet removes an owner from an applicati
 Connect-Entra -Scopes 'Application.ReadWrite.All'
 $Application = Get-EntraBetaApplication -SearchString '<application-name>'
 $params = @{
-    ObjectId = $Application.ObjectId 
+    ObjectId = $Application.ObjectId
     OwnerId = 'bbbbbbbb-1111-2222-3333-cccccccccccc'
 }
 Remove-EntraBetaApplicationOwner @params
