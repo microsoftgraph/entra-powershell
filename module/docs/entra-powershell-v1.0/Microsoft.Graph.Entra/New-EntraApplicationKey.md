@@ -28,7 +28,7 @@ Adds a new key to an application.
 ```powershell
 New-EntraApplicationKey 
  -ObjectId <String> 
- -KeyCredential <KeyCredential>  
+ -KeyCredential <KeyCredential>
  -PasswordCredential <PasswordCredential>] 
  -Proof <String>
  [<CommonParameters>]
@@ -43,20 +43,24 @@ Adds a new key to an application.
 ### Example 1: Add a key credential to an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
-
+Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
+$app = Get-EntraApplication -Filter "DisplayName eq '<application-display-name>'"
 $params = @{
-    ObjectId = 'cccccccc-8888-9999-0000-dddddddddddd'
-    KeyCredential = @{ key=[System.Convert]::FromBase64String("{base64cert}") }
+    ObjectId = $app.ObjectId
+    KeyCredential = @{ key=[System.Convert]::FromBase64String('{base64cert}') }
     PasswordCredential = @{ DisplayName = 'mypassword' }
-    Proof = "{token}"
+    Proof = '{token}'
 }
 
 New-EntraApplicationKey @params
 ```
 
-This command adds a key credential the specified application.
+This command adds a key credential to an specified application.
+
+- `-ObjectId` parameter specifies the unique identifier of an application.
+- `-KeyCredential` parameter specifies the application key credential to add.
+- `-PasswordCredential` parameter specifies the application password credential to add.
+- `-Proof` parameter specifies the signed JWT token used as a proof of possession of the existing keys.
 
 ## Parameters
 
@@ -80,7 +84,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-The unique identifier of the object specific Microsoft Entra ID object
+The unique identifier of the application object.
 
 ```yaml
 Type: System.String
@@ -149,4 +153,3 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Related Links
 
 [Remove-EntraApplicationKey](Remove-EntraApplicationKey.md)
-

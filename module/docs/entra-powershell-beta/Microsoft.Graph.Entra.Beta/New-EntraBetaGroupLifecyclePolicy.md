@@ -56,7 +56,7 @@ Id                                   AlternateNotificationEmails GroupLifetimeIn
 aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb example@contoso.com                     99                  Selected
 ```
 
-This example creates a new groupLifecyclePolicy setting the group lifetime to 99 days for a selected set of Office 365 groups and sends renewal notification emails to groups that have no owners to 'example@contoso.com'.
+This example creates a new groupLifecyclePolicy setting the group lifetime to 99 days for a selected set of Office 365 groups and sends renewal notification emails to groups that have no owners to '<example@contoso.com>'.
 
 - `-GroupLifetimeInDays` parameter specifies the number of days a group can exist before it needs to be renewed.
 - `-ManagedGroupTypes` parameter allows the admin to select which office 365 groups the policy applies to.
