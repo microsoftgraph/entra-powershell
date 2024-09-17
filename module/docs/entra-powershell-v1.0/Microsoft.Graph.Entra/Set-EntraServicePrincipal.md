@@ -26,7 +26,7 @@ Updates a service principal.
 
 ```powershell
 Set-EntraServicePrincipal
- -ObjectId <String>
+ -ServicePrincipalId <String>
  [-KeyCredentials <System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.KeyCredential]>]
  [-Homepage <String>] 
  [-AppId <String>] 
@@ -55,7 +55,7 @@ The `Set-EntraServicePrincipal` cmdlet updates a service principal in Microsoft 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $params = @{
-    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    ServicePrincipalId = '00001111-aaaa-2222-bbbb-3333cccc4444'
     AccountEnabled = $False
 }
 
@@ -69,7 +69,7 @@ This example demonstrates how to update `AccountEnabled` of a service principal 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $params = @{
-    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    ServicePrincipalId = '00001111-aaaa-2222-bbbb-3333cccc4444'
     AppId = '22223333-cccc-4444-dddd-5555eeee6666'
     Homepage = 'https://*.e-days.com/SSO/SAML2/SP/AssertionConsumer.aspx?metadata=e-days|ISV9.2|primary|z'
 }
@@ -84,7 +84,7 @@ This example demonstrates how to update `AppId` and Homepage of a service princi
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $params = @{
-    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    ServicePrincipalId = '00001111-aaaa-2222-bbbb-3333cccc4444'
     AlternativeNames = 'Service Principal Demo'
     DisplayName = 'NewName'
 }
@@ -99,7 +99,7 @@ This example demonstrates how to update AlternativeNames and DisplayName of a se
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $params = @{
-    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    ServicePrincipalId = '00001111-aaaa-2222-bbbb-3333cccc4444'
     LogoutUrl = 'https://securescore.office.com/SignOut'
     ReplyUrls = 'https://admin.contoso.com'
 }
@@ -114,7 +114,7 @@ This example demonstrates how to update LogoutUrl and ReplyUrls of a service pri
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $params = @{
-    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
+    ServicePrincipalId = '00001111-aaaa-2222-bbbb-3333cccc4444'
     ServicePrincipalType = 'Application'
     AppRoleAssignmentRequired = $True
 }
@@ -136,7 +136,7 @@ $creds.Type = 'Symmetric'
 $creds.Usage = 'Sign'
 $creds.Value = [System.Text.Encoding]::UTF8.GetBytes('A')
 $creds.EndDate = Get-Date -Year 2025 -Month 12 -Day 20 
-Set-EntraServicePrincipal -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -KeyCredentials $creds
+Set-EntraServicePrincipal -ServicePrincipalId '00001111-aaaa-2222-bbbb-3333cccc4444' -KeyCredentials $creds
 ```
 
 This example demonstrates how to update KeyCredentials of a service principal in Microsoft Entra ID.
@@ -276,7 +276,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ServicePrincipalId
 
 Species the ID of a service principal in Microsoft Entra ID.
 

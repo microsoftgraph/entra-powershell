@@ -26,7 +26,7 @@ Creates a password credential for a service principal.
 
 ```powershell
 New-EntraServicePrincipalPasswordCredential 
- -ObjectId <String>
+ -ServicePrincipalId <String>
  [-EndDate <DateTime>] 
  [-StartDate <DateTime>] 
  [<CommonParameters>]
@@ -43,7 +43,7 @@ The `New-EntraServicePrincipalPasswordCredential` cmdlet creates a password cred
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-New-EntraServicePrincipalPasswordCredential -ObjectID $ServicePrincipal.ObjectId -StartDate 2024-03-21T14:14:14Z
+New-EntraServicePrincipalPasswordCredential -ServicePrincipalId $ServicePrincipal.ObjectId -StartDate 2024-03-21T14:14:14Z
 ```
 
 ```Output
@@ -59,7 +59,7 @@ This example demonstrates how to create a password credential with StartDate for
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
-New-EntraServicePrincipalPasswordCredential -ObjectID $ServicePrincipal.ObjectId -EndDate 2030-03-21T14:14:14Z
+New-EntraServicePrincipalPasswordCredential -ServicePrincipalId $ServicePrincipal.ObjectId -EndDate 2030-03-21T14:14:14Z
 ```
 
 ```Output
@@ -88,7 +88,7 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ServicePrincipalId
 
 Specifies an object ID.
 

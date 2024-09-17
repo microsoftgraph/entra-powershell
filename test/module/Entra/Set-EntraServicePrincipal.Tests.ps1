@@ -14,21 +14,21 @@ BeforeAll {
 Describe "Set-EntraServicePrincipal"{
     Context "Test for Set-EntraServicePrincipal" {
         It "Should return empty object"{
-            $result = Set-EntraServicePrincipal -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "Mock-App"
+            $result = Set-EntraServicePrincipal -ServicePrincipalId bbbbbbbb-1111-2222-3333-cccccccccccc -DisplayName "Mock-App"
             $result | Should -BeNullOrEmpty           
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
-        It "Should fail when ObjectId is invalid" {
-            { Set-EntraServicePrincipal -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
+        It "Should fail when ServicePrincipalId is invalid" {
+            { Set-EntraServicePrincipal -ServicePrincipalId "" } | Should -Throw "Cannot bind argument to parameter 'ServicePrincipalId' because it is an empty string."
         }
-        It "Should fail when ObjectId is empty" {
-            { Set-EntraServicePrincipal -ObjectId } | Should -Throw "Missing an argument for parameter 'ObjectId'*"
+        It "Should fail when ServicePrincipalId is empty" {
+            { Set-EntraServicePrincipal -ServicePrincipalId } | Should -Throw "Missing an argument for parameter 'ServicePrincipalId'*"
         } 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraServicePrincipal"
 
-            Set-EntraServicePrincipal -ObjectId bbbbbbbb-1111-2222-3333-cccccccccccc | Out-Null
+            Set-EntraServicePrincipal -ServicePrincipalId bbbbbbbb-1111-2222-3333-cccccccccccc | Out-Null
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

@@ -32,7 +32,7 @@ function Set-EntraServicePrincipal {
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Collections.Generic.List`1[System.String]] $Tags,
     [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
-    [System.String] $ObjectId,
+    [System.String] $ServicePrincipalId,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
     [System.Collections.Generic.List`1[Microsoft.Open.AzureAD.Model.PasswordCredential]] $PasswordCredentials,
     [Parameter(ParameterSetName = "InvokeByDynamicParameters")]
@@ -99,9 +99,9 @@ function Set-EntraServicePrincipal {
         {
             $body["replyUrls"] =  $PSBoundParameters["ReplyUrls"]
         }
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["ServicePrincipalId"])
         {
-            $params["Uri"] += "/$ObjectId" 
+            $params["Uri"] += "/$ServicePrincipalId" 
         }
         if($null -ne $PSBoundParameters["LogoutUrl"])
         {
