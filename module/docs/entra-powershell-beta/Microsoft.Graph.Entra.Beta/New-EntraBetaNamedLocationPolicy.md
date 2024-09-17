@@ -26,10 +26,10 @@ Creates a new named location policy in Microsoft Entra ID.
 ## Syntax
 
 ```powershell
-New-EntraBetaNamedLocationPolicy 
- [-IncludeUnknownCountriesAndRegions <Boolean>] 
+New-EntraBetaNamedLocationPolicy
+ [-IncludeUnknownCountriesAndRegions <Boolean>]
  [-Id <String>]
- [-IsTrusted <Boolean>] 
+ [-IsTrusted <Boolean>]
  [-OdataType <String>]
  [-CountriesAndRegions <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.CountriesAndRegion]>]
  [-IpRanges <System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.IpRange]>] 
@@ -105,7 +105,7 @@ This command creates a new country named location policy in Microsoft Entra ID.
 
 ### -OdataType
 
-Specifies the odata type of a named location policy object in Microsoft Entra ID.
+Specifies the OData type of a named location policy object in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -153,7 +153,7 @@ Accept wildcard characters: False
 
 ### -IsTrusted
 
-Specifies the IsTrusted value for the named location policy in Microsoft Entra ID.
+Specifies the `IsTrusted` value for the named location policy in Microsoft Entra ID.
 
 ```yaml
 Type: System.Boolean
@@ -169,7 +169,7 @@ Accept wildcard characters: False
 
 ### -CountriesAndRegions
 
-Specifies the countries and regions for the named location policy in Microsoft Entra ID.
+Specifies the countries and regions for the named location policy in Microsoft Entra ID. List of countries and/or regions in the two-letter format specified by ISO 3166-2.
 
 ```yaml
 Type: System.Collections.Generic.List`1[Microsoft.Open.MSGraph.Model.CountriesAndRegion]
@@ -201,7 +201,7 @@ Accept wildcard characters: False
 
 ### -Id
 
-Specifies the Id of a named location policy in Microsoft Entra ID.
+Specifies the ID of a named location policy in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -224,6 +224,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Outputs
 
 ## Notes
+
+- For more information, see [Create namedLocation](/graph/api/conditionalaccessroot-post-namedlocations).
 
 ## Related Links
 

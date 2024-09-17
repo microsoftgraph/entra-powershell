@@ -42,9 +42,11 @@ The `Add-EntraLifecyclePolicyGroup` cmdlet adds a group to a lifecycle policy in
 
 ```powershell
 Connect-Entra -Scopes 'Directory.ReadWrite.All'
+$group = Get-EntraGroup -Filter "DisplayName eq 'Office365 group'"
+$policy = Get-EntraGroupLifecyclePolicy | Select-Object -First 1
 $params = @{
-    Id = '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6'
-    groupId = 'hhhhhhhh-3333-5555-3333-qqqqqqqqqqqq'
+    Id = $policy.Id
+    groupId = $group.ObjectId
 }
 Add-EntraLifecyclePolicyGroup @params
 ```
@@ -58,7 +60,7 @@ This example adds a group to the lifecycle policy.
 
 ### -GroupId
 
-Specifies the ID of a group in Microsoft Entra ID.
+Specifies the ID of an Office365 group in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
