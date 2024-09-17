@@ -36,7 +36,6 @@ The `Remove-EntraBetaUser` cmdlet removes a user in Microsoft Entra ID. Specify 
 The calling user must be assigned at least one of the following Microsoft Entra roles:
 
 - User Administrator
-
 - Privileged Authentication Administrator
 
 ## Examples
