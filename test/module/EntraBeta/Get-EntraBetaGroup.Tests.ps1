@@ -107,13 +107,36 @@ Describe "Get-EntraBetaGroup" {
             $params = Get-Parameters -data $result.Parameters
             $params.Filter | Should -Match "demo"
         }
+        It "Property parameter should work" {
+            $result =  Get-EntraBetaGroup -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property DisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be 'demo'
+
+            Should -Invoke -CommandName Get-MgBetaGroup  -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+        It "Should fail when Property is empty" {
+            { Get-EntraBetaGroup -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
+        It "Property parameter should work" {
+            $result = Get-EntraBetaGroup -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property DisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be 'demo'
+
+            Should -Invoke -CommandName Get-MgBetaGroup  -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+        It "Should fail when Property is empty" {
+            { Get-EntraBetaGroup -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaGroup"
-
-            $result = Get-EntraBetaGroup -SearchString 'demo'
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $result= Get-EntraBetaGroup -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc55"
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaGroup"
+            Should -Invoke -CommandName Get-MgBetaGroup -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }    
 
         It "Should execute successfully without throwing an error " {

@@ -76,11 +76,26 @@ Describe "Get-EntraBetaDirectorySetting" {
             $params.DirectorySettingId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
         }
 
+        It "Property parameter should work" {
+            $result = Get-EntraBetaDirectorySetting -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property DisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be 'Application'
+
+            Should -Invoke -CommandName Get-MgBetaDirectorySetting  -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+        It "Should fail when Property is empty" {
+            { Get-EntraBetaDirectorySetting -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
+
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDirectorySetting"
-            $result = Get-EntraBetaDirectorySetting -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $result= Get-EntraBetaDirectorySetting -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaDirectorySetting"
+            Should -Invoke -CommandName Get-MgBetaDirectorySetting -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }    
 
         It "Should execute successfully without throwing an error " {

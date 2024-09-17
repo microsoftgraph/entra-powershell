@@ -47,19 +47,24 @@ Describe "Add-EntraBetaGroupOwner" {
             Mock -CommandName New-MgBetaGroupOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
             $result = Add-EntraBetaGroupOwner -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
             $value = @{
-                "@odata.id" = "https://graph.microsoft.com/beta/users/bbbbcccc-1111-dddd-2222-eeee3333ffff"
-            } | ConvertTo-Json -Depth 5
-            $params= $result | Convertto-json -Depth 10 | Convertfrom-json 
-            $additionalProperties = $params[-1].AdditionalProperties | ConvertTo-Json -Depth 5
-            $additionalProperties | Should -Be $value
+                "@odata.id" = "https://graph.microsoft.com/beta/users/bbbbcccc-1111-dddd-2222-eeee3333ffff"}
+            Should -Invoke -CommandName New-MgBetaGroupOwnerByRef -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+            $BodyParameter.AdditionalProperties.'@odata.id' | Should -Be $value.'@odata.id'
+            Write-Host $BodyParameter.AdditionalProperties.'@odata.id'
+            $true
+        }
         }
 
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName New-MgBetaGroupOwnerByRef -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaGroupOwner"
-            $result = Add-EntraBetaGroupOwner -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+
+            Add-EntraBetaGroupOwner -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Add-EntraBetaGroupOwner"
+            Should -Invoke -CommandName New-MgBetaGroupOwnerByRef -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
 
         It "Should execute successfully without throwing an error " {
@@ -69,7 +74,7 @@ Describe "Add-EntraBetaGroupOwner" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Add-EntraBetaGroupOwner -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff" } | Should -Not -Throw
+                { Add-EntraBetaGroupOwner -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee" -RefObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Debug} | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

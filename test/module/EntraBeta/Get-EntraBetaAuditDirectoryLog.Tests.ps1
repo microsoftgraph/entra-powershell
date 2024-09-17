@@ -44,20 +44,20 @@ BeforeAll {
     Mock -CommandName Get-MgBetaAuditLogDirectoryAudit -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
 }
   
-Describe "Get-EntraBetaAuditDirectoryLogs" {
-    Context "Test for Get-EntraBetaAuditDirectoryLogs" {
+Describe "Get-EntraBetaAuditDirectoryLog" {
+    Context "Test for Get-EntraBetaAuditDirectoryLog" {
         It "Should get all logs" {
-            $result = Get-EntraBetaAuditDirectoryLogs -All
+            $result = Get-EntraBetaAuditDirectoryLog  -All
             $result | Should -Not -BeNullOrEmpty            
             Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
         It "Should fail when All has argument" {
-            { Get-EntraBetaAuditDirectoryLogs -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
+            { Get-EntraBetaAuditDirectoryLog -All $true } | Should -Throw "A positional parameter cannot be found that accepts argument 'True'."
         } 
         
         It "Should get first n logs" {
-            $result = Get-EntraBetaAuditDirectoryLogs -Top 1
+            $result = Get-EntraBetaAuditDirectoryLog -Top 1
             $result | Should -Not -BeNullOrEmpty
             $result.ActivityDateTime | Should -Be "28-May-24 11:49:02 AM"
             $result.ActivityDisplayName | Should -Be "GroupsODataV4_GetgroupLifecyclePolicies"
@@ -70,15 +70,15 @@ Describe "Get-EntraBetaAuditDirectoryLogs" {
         }  
 
         It "Should fail when top is empty" {
-            { Get-EntraBetaAuditDirectoryLogs -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraBetaAuditDirectoryLog -Top } | Should -Throw "Missing an argument for parameter 'Top'*"
         }  
 
         It "Should fail when top is invalid" {
-            { Get-EntraBetaAuditDirectoryLogs -Top y } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraBetaAuditDirectoryLog -Top y } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }  
 
         It "Should get audit logs containing a given ActivityDisplayName" {
-            $result = Get-EntraBetaAuditDirectoryLogs -Filter "ActivityDisplayName eq 'GroupsODataV4_GetgroupLifecyclePolicies'" -Top 1
+            $result = Get-EntraBetaAuditDirectoryLog -Filter "ActivityDisplayName eq 'GroupsODataV4_GetgroupLifecyclePolicies'" -Top 1
             $result | Should -Not -BeNullOrEmpty
             $result.ActivityDateTime | Should -Be "28-May-24 11:49:02 AM"
             $result.ActivityDisplayName | Should -Be "GroupsODataV4_GetgroupLifecyclePolicies"
@@ -91,28 +91,32 @@ Describe "Get-EntraBetaAuditDirectoryLogs" {
         }  
 
         It "Should fail when Filter is empty" {
-            { Get-EntraBetaAuditDirectoryLogs -Filter -Top 1} | Should -Throw "Missing an argument for parameter 'Filter'*"
+            { Get-EntraBetaAuditDirectoryLog -Filter -Top 1} | Should -Throw "Missing an argument for parameter 'Filter'*"
         }  
 
         It "Should get all audit logs with a given result(success)" {
-            $result = Get-EntraBetaAuditDirectoryLogs -Filter "result eq 'success'"
+            $result = Get-EntraBetaAuditDirectoryLog -Filter "result eq 'success'"
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }  
 
         It "Should get all audit logs with a given result(failure)" {
-            $result = Get-EntraBetaAuditDirectoryLogs -Filter "result eq 'failure'" -All
+            $result = Get-EntraBetaAuditDirectoryLog -Filter "result eq 'failure'" -All
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }  
 
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaAuditDirectoryLogs"
-            $result = Get-EntraBetaAuditDirectoryLogs -All
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaAuditDirectoryLog"
+            $result= Get-EntraBetaAuditDirectoryLog
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaAuditDirectoryLog"
+            Should -Invoke -CommandName Get-MgBetaAuditLogDirectoryAudit -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }  
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       
@@ -121,7 +125,7 @@ Describe "Get-EntraBetaAuditDirectoryLogs" {
     
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { Get-EntraBetaAuditDirectoryLogs -Top 1 -Debug } | Should -Not -Throw
+                { Get-EntraBetaAuditDirectoryLog -Top 1 -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

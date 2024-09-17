@@ -91,13 +91,28 @@ Describe "Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue" {
             Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
 
+        It "Property parameter should work" {
+            $result = Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt -Property Id
+            $result | Should -Not -BeNullOrEmpty
+            $result.Id | Should -Be 'bbbbbbbb-1111-2222-3333-cccccccccc55'
+
+            Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue  -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+
+        It "Should fail when Property is empty" {
+            { Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
+        
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue"
-
-            $result = Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }   
+            $result = Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaCustomSecurityAttributeDefinitionAllowedValue"
+            Should -Invoke -CommandName Get-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue 
+            $true
+            }
+        }  
 
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       

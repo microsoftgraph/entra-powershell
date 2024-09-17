@@ -76,11 +76,26 @@ Describe "Get-EntraBetaApplicationTemplate" {
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaApplicationTemplate"
-
             $result = Get-EntraBetaApplicationTemplate -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
-            $params = Get-Parameters -data $result.Parameters
-            $params.headers.'User-Agent' | Should -Be $userAgentHeaderValue
-        }    
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaApplicationTemplate"
+            Should -Invoke -CommandName Get-MgBetaApplicationTemplate -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $true
+           }
+       }   
+
+       It "Property parameter should work" {
+        $result = Get-EntraBetaApplicationTemplate -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Property DisplayName
+        $result | Should -Not -BeNullOrEmpty
+        $result.DisplayName | Should -Be 'FigBytes'
+
+        Should -Invoke -CommandName Get-MgBetaApplicationTemplate  -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+       }
+
+       It "Should fail when Property is empty" {
+        { Get-EntraBetaApplicationTemplate -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+       }
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       
             $originalDebugPreference = $DebugPreference

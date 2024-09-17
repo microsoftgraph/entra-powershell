@@ -91,14 +91,28 @@ Describe "Get-EntraBetaFeatureRolloutPolicy" {
             $params = Get-Parameters -data $result.Parameters
             $params.FeatureRolloutPolicyId | Should -Be "bbbbbbbb-1111-2222-3333-cccccccccc55"
         }
+        
+        It "Property parameter should work" {
+            $result = Get-EntraBetaFeatureRolloutPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property DisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.DisplayName | Should -Be 'Feature-Rollout-Policytest'
+
+            Should -Invoke -CommandName Get-MgBetaPolicyFeatureRolloutPolicy  -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+        It "Should fail when Property is empty" {
+            { Get-EntraBetaFeatureRolloutPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+        }
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaFeatureRolloutPolicy"
-
             $result = Get-EntraBetaFeatureRolloutPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccc55"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Contain $userAgentHeaderValue
-        }    
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaFeatureRolloutPolicy"
+            Should -Invoke -CommandName Get-MgBetaPolicyFeatureRolloutPolicy -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue 
+            $true
+            }
+        }
 
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       
