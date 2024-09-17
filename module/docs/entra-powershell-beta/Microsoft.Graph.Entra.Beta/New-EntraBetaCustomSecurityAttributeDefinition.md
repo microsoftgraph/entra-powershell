@@ -39,7 +39,7 @@ New-EntraBetaCustomSecurityAttributeDefinition
 
 ## Description
 
-Create a new customSecurityAttributeDefinition object. Specify `IsSearchable`, `IsCollection`, `AttributeSet`, `Type`, `Name`, `Status` and `UsePreDefinedValuesOnly` parameters for create a new custom security attribute definition.
+The `New-EntraBetaCustomSecurityAttributeDefinition` cmdlet creates a new customSecurityAttributeDefinition object. Specify `IsSearchable`, `IsCollection`, `AttributeSet`, `Type`, `Name`, `Status` and `UsePreDefinedValuesOnly` parameters for create a new custom security attribute definition.
 
 You can define up to 500 active objects in a tenant.
 
@@ -54,15 +54,15 @@ Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All', 'CustomSecAttribu
 $AttributeSet  = Get-EntraBetaAttributeSet -Id '<CustomAttributeSetId>'
 $params = @{
     Name = 'ProjectTest' 
-    Description = 'Target completion' 
-    Type = 'String' 
-    Status = 'Available' 
+    Description = 'Target completion'
+    Type = 'String'
+    Status = 'Available'
     AttributeSet = $AttributeSet.Id 
-    IsCollection = $False 
+    IsCollection = $False
     IsSearchable = $True 
     UsePreDefinedValuesOnly = $True
 }
-New-EntraBetaCustomSecurityAttributeDefinition  @params
+New-EntraBetaCustomSecurityAttributeDefinition @params
 ```
 
 ```Output
