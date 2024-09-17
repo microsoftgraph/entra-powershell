@@ -123,7 +123,7 @@ Describe "Get-EntraApplication" {
             $result | Should -Not -BeNullOrEmpty
             $result.DisplayName | Should -Be 'Mock-App'
 
-            Should -Invoke -CommandName Get-MgApplication  ModuleName Microsoft.Graph.Entra -Times 1
+            Should -Invoke -CommandName Get-MgApplication -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Property is empty" {
             { Get-EntraApplication -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
