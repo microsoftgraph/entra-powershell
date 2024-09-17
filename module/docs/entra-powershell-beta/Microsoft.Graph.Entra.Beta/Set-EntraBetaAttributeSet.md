@@ -36,6 +36,8 @@ Set-EntraBetaAttributeSet
 
 Updates a Microsoft Entra ID attribute set object identified by ID. Specify `Id` parameter to update an attribute set.
 
+You can only update the `description` and `maxAttributesPerSet` properties.
+
 In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
 
 ## Examples
@@ -45,7 +47,7 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
 $params = @{
-    Id = 'Testing' 
+    Id = 'Engineering'
     Description = 'Attributes for engineering team'
 }
 Set-EntraBetaAttributeSet @params
@@ -61,7 +63,7 @@ This example update an attribute set.
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
 $params = @{
-    Id = 'Testing' 
+    Id = 'Engineering' 
     MaxAttributesPerSet = 10
 }
 Set-EntraBetaAttributeSet @params
