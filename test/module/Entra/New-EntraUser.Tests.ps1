@@ -123,16 +123,19 @@ Describe "New-EntraUser" {
         }
 
         It "Should contain 'User-Agent' header" {
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraUser"
             # Define Password Profile
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
             $PasswordProfile.Password = "test@1234"
-             
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraUser"
+
             $result = New-EntraUser -DisplayName "demo002" -PasswordProfile $PasswordProfile -UserPrincipalName "demo001@M365x99297270.OnMicrosoft.com" -AccountEnabled $true -MailNickName "demo002NickName" -AgeGroup "adult"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers."User-Agent" | Should -Be $userAgentHeaderValue
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraUser"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+            $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $true
         }  
-        
+        }
         It "Should contain MobilePhone in parameters when passed Mobile to it" {
             # Define Password Profile
             $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile

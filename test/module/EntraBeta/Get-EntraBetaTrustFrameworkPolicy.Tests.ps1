@@ -50,18 +50,13 @@ Describe "Get-EntraBetaTrustFrameworkPolicy" {
         }
 
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$($PSVersionTable.PSVersion) EntraPowershell/$entraVersion Get-EntraBetaTrustFrameworkPolicy"
-
-            $result = Get-EntraBetaTrustFrameworkPolicy -Id "B2C_1A_PROFILEADD"
-            
-            # Assuming Get-Parameters is supposed to fetch the headers from the mocked command
-            $params = @{
-                Headers = @{
-                    "User-Agent" = "PowerShell/$($PSVersionTable.PSVersion) EntraPowershell/$entraVersion Get-EntraBetaTrustFrameworkPolicy"
-                }
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaTrustFrameworkPolicy"
+            $result=  Get-EntraBetaTrustFrameworkPolicy -Id "B2C_1A_PROFILEADD"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaTrustFrameworkPolicy"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
             }
-            
-            $params.Headers["User-Agent"] | Should -Contain $userAgentHeaderValue
         }   
         
         It "Should execute successfully without throwing an error " {
