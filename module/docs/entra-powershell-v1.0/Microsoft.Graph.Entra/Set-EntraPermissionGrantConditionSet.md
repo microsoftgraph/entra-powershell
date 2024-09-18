@@ -33,7 +33,7 @@ Set-EntraPermissionGrantConditionSet
  [-Permissions <System.Collections.Generic.List`1[System.String]>]
  [-ClientApplicationTenantIds <System.Collections.Generic.List`1[System.String]>] 
  [-ClientApplicationIds <System.Collections.Generic.List`1[System.String]>] 
- [-ResourceApplication <String>] 
+ [-ResourceApplication <String>]
  [-PermissionType <String>] 
  [-PermissionClassification <String>]
  [-ClientApplicationsFromVerifiedPublisherOnly <Boolean>]
@@ -43,7 +43,7 @@ Set-EntraPermissionGrantConditionSet
 
 ## Description
 
-Updates a Microsoft Entra ID permission grant condition set object identified by ID.
+Updates a Microsoft Entra ID permission grant condition set object identified by Id.
 
 ## Examples
 
@@ -51,11 +51,12 @@ Updates a Microsoft Entra ID permission grant condition set object identified by
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
+$permissionGrantPolicyId = 'policy1'
 $params = @{
-    PolicyId = 'policy1'
+    PolicyId = $permissionGrantPolicyId
     ConditionSetType = 'includes'
-    Id = '665a9903-0398-48ab-b4e9-7a570d468b66'
-    PermissionClassification = 'Low'
+    Id = 'aaaa0000-bb11-2222-33cc-444444dddddd'
+    PermissionClassification = 'low'
 }
 
 Set-EntraPermissionGrantConditionSet @params
@@ -63,18 +64,24 @@ Set-EntraPermissionGrantConditionSet @params
 
 This command updates sets the specified permission grant set to classify as low.
 
+- `-PolicyId` parameter specifies the unique identifier of a permission grant policy.
+- `-ConditionSetType` parameter indicates whether the condition sets are included in the policy or excluded.
+- `-Id` parameter specifies the unique identifier of a permission grant condition set object.
+- `-PermissionClassification` parameter specifies the specific classification (all, low, medium, high) to scope consent operation down to.
+
 ### Example 2: Update a permission grant condition set
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
+$permissionGrantPolicyId = 'policy1'
 $params = @{
-    PolicyId = 'policy1'
+    PolicyId = $permissionGrantPolicyId
     ConditionSetType = 'includes'
     Id = 'aaaa0000-bb11-2222-33cc-444444dddddd'
-    PermissionType = 'Delegated'
-    PermissionClassification = 'Low'
+    PermissionType = 'delegated'
+    PermissionClassification = 'low'
     ResourceApplication = 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1'
-    Permissions = @('29bf4ca5-913e-427d-8a68-5890af945109')
+    Permissions = @('All')
     ClientApplicationIds = @('All')
     ClientApplicationTenantIds = @('All')
     ClientApplicationPublisherIds = @('All')
@@ -85,6 +92,18 @@ Set-EntraPermissionGrantConditionSet @params
 ```
 
 This command updates sets the specified permission grant set.
+
+- `-PolicyId` parameter specifies the unique identifier of a permission grant policy.
+- `-ConditionSetType` parameter indicates whether the condition sets are included in the policy or excluded.
+- `-Id` parameter specifies the unique identifier of a permission grant condition set object.
+- `-PermissionType` parameter specifies the type of permissions (application, delegated) to scope consent operation down to.
+- `-PermissionClassification` parameter specifies the specific classification (all, low, medium, high) to scope consent operation down to.
+- `-ResourceApplication` parameter specifies identifier of the resource application to scope consent operation down to. It could be "Any" or a specific resource application ID.
+- `-Permissions` parameter specifies the identifier of the resource application to scope consent operation down to. It could be @("All") or a list of permission IDs.
+- `-ClientApplicationIds` parameter specifies the set of client application IDs to scope consent operation down to. It could be @("All") or a list of client application IDs.
+- `-ClientApplicationTenantIds` parameter specifies the set of client applications publisher IDs to scope consent operation down to. It could be @("All") or a list of client application publisher IDs.
+- `-ClientApplicationPublisherIds` parameter specifies the set of client applications publisher IDs to scope consent operation down to. It could be @("All") or a list of client application publisher IDs.
+- `-ClientApplicationsFromVerifiedPublisherOnly` parameter indicates whether to only includes client applications from verified publishers.
 
 ## Parameters
 
@@ -171,7 +190,7 @@ Accept wildcard characters: False
 ### -Permissions
 
 The identifier of the resource application to scope consent operation down to.
-It could be @("All") or a list of permission ids.
+It could be @("All") or a list of permission IDs.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -187,8 +206,8 @@ Accept wildcard characters: False
 
 ### -ClientApplicationIds
 
-The set of client application ids to scope consent operation down to.
-It could be @("All") or a list of client application Ids.
+The set of client application IDs to scope consent operation down to.
+It could be @("All") or a list of client application IDs.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -204,8 +223,8 @@ Accept wildcard characters: False
 
 ### -ClientApplicationTenantIds
 
-The set of client application tenant ids to scope consent operation down to.
-It could be @("All") or a list of client application tenant ids.
+The set of client application tenant IDs to scope consent operation down to.
+It could be @("All") or a list of client application tenant IDs.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -221,8 +240,8 @@ Accept wildcard characters: False
 
 ### -ClientApplicationPublisherIds
 
-The set of client applications publisher ids to scope consent operation down to.
-It could be @("All") or a list of client application publisher ids.
+The set of client applications publisher IDs to scope consent operation down to.
+It could be @("All") or a list of client application publisher IDs.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.String]
@@ -255,7 +274,7 @@ Accept wildcard characters: False
 ### -ResourceApplication
 
 The identifier of the resource application to scope consent operation down to.
-It could be "Any" or a specific resource application id.
+It could be "Any" or a specific resource application ID.
 
 ```yaml
 Type: System.String
