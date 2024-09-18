@@ -139,13 +139,10 @@ class CompatibilityAdapterBuilder {
     'Get-EntraBetaCustomSecurityAttributeDefinition',
     'Remove-EntraBetaServicePrincipalDelegatedPermissionClassification',
     'Select-EntraBetaGroupIdsUserIsMemberOf',
-    'Set-EntraBetaNamedLocationPolicy',
-    'Get-EntraBetaGroupMember',
+    'Set-EntraBetaNamedLocationPolicy',    
     'New-EntraBetaNamedLocationPolicy',
     'Remove-EntraBetaApplication',
-    'Restore-EntraBetaDeletedApplication',
-    'Add-EntraBetaGroupMember',
-    'Remove-EntraBetaGroupMember',
+    'Restore-EntraBetaDeletedApplication',    
     'Remove-EntraBetaPermissionGrantConditionSet'
         
     )
