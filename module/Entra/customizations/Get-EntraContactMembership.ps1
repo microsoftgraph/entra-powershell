@@ -4,14 +4,7 @@
 @{
     SourceName = "Get-AzureADContactMembership"
     TargetName = "Get-MgContactMemberOf"
-    Parameters = @(
-        @{
-            SourceName = "ObjectId"
-            TargetName = "OrgContactId"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        }
-    )
+    Parameters = $null
     Outputs = @(
         @{
             SourceName = "AdditionalProperties"

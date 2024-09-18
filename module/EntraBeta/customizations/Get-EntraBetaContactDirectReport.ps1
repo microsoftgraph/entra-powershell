@@ -4,13 +4,6 @@
 @{
     SourceName = "Get-AzureADContactDirectReport"
     TargetName = "Get-MgBetaContactDirectReport"
-    Parameters = @(
-        @{
-            SourceName = "ObjectId"
-            TargetName = "OrgContactId"
-            ConversionType = "Name"
-            SpecialMapping = $null
-        }
-    )
+    Parameters = $null
     Outputs = $null
 }

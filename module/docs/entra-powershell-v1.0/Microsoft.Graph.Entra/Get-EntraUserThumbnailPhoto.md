@@ -26,7 +26,7 @@ Retrieve the thumbnail photo of a user.
 
 ```powershell
 Get-EntraUserThumbnailPhoto
- -ObjectId <String>
+ -UserId <String>
  [-FileName <String>]
  [-View <Boolean>]
  [-FilePath <String>]
@@ -44,7 +44,7 @@ Retrieve the thumbnail photo of a user.
 
 ```powershell
 Connect-Entra -Scopes 'User.Read','User.Read.All'
-Get-EntraUserThumbnailPhoto -ObjectId 'SawyerM@contoso.com'
+Get-EntraUserThumbnailPhoto -UserId 'SawyerM@contoso.com'
 ```
 
 ```Output
@@ -53,9 +53,9 @@ Id      Height Width
 default 292    278
 ```
 
-This example shows how to retrieve the thumbnail photo of a user that is specified through the value of the ObejctId parameter.
+This example shows how to retrieve the thumbnail photo of a user that is specified through the value of the UserId parameter.
 
-- `-ObjectId` parameter specifies the user for which the thumbnail photo is retrieved.
+- `-UserId` parameter specifies the user for which the thumbnail photo is retrieved.
 
 ## Parameters
 
@@ -91,7 +91,7 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -UserId
 
 The object ID of the user for which the thumbnail photo is retrieved.
 
