@@ -79,6 +79,20 @@ Set-EntraUserLicense -ObjectId $User.ObjectId -AssignedLicenses $Licenses
 
 This example demonstrates how to assign a license to a user by copying license from another user.
 
+### Example 3: Remove an assigned User's License
+
+```powershell
+Connect-Entra -Scopes 'User.ReadWrite.All'
+$UserPrincipalName = 'SawyerM@contoso.com'
+$User = Get-EntraUser -ObjectId $UserPrincipalName
+$SkuId = (Get-EntraUserLicenseDetail -ObjectId $UserPrincipalName).SkuId
+$Licenses = New-Object -TypeName Microsoft.Open.AzureAD.Model.AssignedLicenses 
+$Licenses.RemoveLicenses = $SkuId 
+Set-EntraUserLicense -ObjectId $User.ObjectId -AssignedLicenses $Licenses
+```
+
+This example demonstrates how to remove a user's license by retrieving the user details.
+
 ## Parameters
 
 ### -AssignedLicenses
