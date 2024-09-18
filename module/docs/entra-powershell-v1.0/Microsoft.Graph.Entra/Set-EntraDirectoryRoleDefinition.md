@@ -270,6 +270,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
+`Set-EntraRoleDefinition` is an alias for `Set-EntraDirectoryRoleDefintion`.
+
 ## Related Links
 
 [Get-EntraDirectoryRoleDefinition](Get-EntraDirectoryRoleDefinition.md)
