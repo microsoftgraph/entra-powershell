@@ -155,11 +155,28 @@ Describe "Get-EntraBetaServicePrincipalOwnedObject" {
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaServicePrincipalOwnedObject"
+
             $result = Get-EntraBetaServicePrincipalOwnedObject -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc40"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }  
-        
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaServicePrincipalOwnedObject"
+
+            Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
+        It "Property parameter should work" {
+            $result = Get-EntraBetaServicePrincipalOwnedObject -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc40" -Property appDisplayName
+            $result | Should -Not -BeNullOrEmpty
+            $result.appDisplayName | Should -Be 'ToGraph_443democc3c'
+
+            Should -Invoke -CommandName Get-MgBetaServicePrincipalOwnedObject  -ModuleName Microsoft.Graph.Entra.Beta -Times 1
+        }
+
+        It "Should fail when Property is empty" {
+            { Get-EntraBetaServicePrincipalOwnedObject -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc40" -Property } | Should -Throw "Missing an argument for parameter 'Property'.*"
+        }
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       
             $originalDebugPreference = $DebugPreference

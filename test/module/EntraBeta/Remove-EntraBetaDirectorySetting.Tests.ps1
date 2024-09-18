@@ -37,12 +37,17 @@ Describe "Remove-EntraBetaDirectorySetting" {
         }
 
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Remove-MgBetaDirectorySetting -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaDirectorySetting"
+
+            $result = Remove-EntraBetaDirectorySetting -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $result | Should -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaDirectorySetting"
-            $result = Remove-EntraBetaDirectorySetting -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+
+            Should -Invoke -CommandName Remove-MgBetaDirectorySetting -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         } 
 
         It "Should execute successfully without throwing an error " {

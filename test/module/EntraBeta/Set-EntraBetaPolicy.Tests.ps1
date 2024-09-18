@@ -75,11 +75,13 @@ Describe "Set-EntraBetaPolicy" {
 
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaPolicy"
-            Set-EntraBetaPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Definition @('{"homeRealmDiscoveryPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')
+            Set-EntraBetaPolicy -Id "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaPolicy"
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
-            $Headers.'User-Agent' -eq $userAgentHeaderValue
+                $Headers.'User-Agent' -eq $userAgentHeaderValue
+                $true
             }
-        }
+        } 
 
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       

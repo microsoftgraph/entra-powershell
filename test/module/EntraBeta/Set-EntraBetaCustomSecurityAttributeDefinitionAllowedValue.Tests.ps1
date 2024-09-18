@@ -53,12 +53,14 @@ Describe "Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue" {
         }
 
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Update-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue"
             $result = Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue -CustomSecurityAttributeDefinitionId Engineering_Projectt -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -IsActive $false
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $result | Should -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaCustomSecurityAttributeDefinitionAllowedValue"
+            Should -Invoke -CommandName Update-MgBetaDirectoryCustomSecurityAttributeDefinitionAllowedValue -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }   
 
         It "Should execute successfully without throwing an error " {

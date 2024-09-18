@@ -46,15 +46,17 @@ Describe "Tests for Update-EntraBetaSignedInUserPassword"{
         }
 
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraBetaSignedInUserPassword"
             $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force
             $NewPassword = ConvertTo-SecureString 'test@1234' -AsPlainText -Force
-            $result = Update-EntraBetaSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }
+            $result =  Update-EntraBetaSignedInUserPassword -CurrentPassword $CurrentPassword -NewPassword $NewPassword
+            $result | Should -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Update-EntraBetaSignedInUserPassword"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        } 
 
         It "Should execute successfully without throwing an error " {
             $CurrentPassword = ConvertTo-SecureString 'test@123' -AsPlainText -Force

@@ -117,9 +117,15 @@ Describe "New-EntraBetaCustomSecurityAttributeDefinition" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaCustomSecurityAttributeDefinition"
 
             $result = New-EntraBetaCustomSecurityAttributeDefinition -AttributeSet "Test" -Name "Date" -Description "Target completion date" -Type "String" -Status "Available" -IsCollection $false -IsSearchable $true -UsePreDefinedValuesOnly $true
-            $params = Get-Parameters -data $result.Parameters
-            $params.headers.'User-Agent' | Should -Be $userAgentHeaderValue
-        }    
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaCustomSecurityAttributeDefinition"
+
+            Should -Invoke -CommandName New-MgBetaDirectoryCustomSecurityAttributeDefinition -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        } 
 
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       

@@ -37,12 +37,17 @@ Describe "Remove-EntraBetaApplicationPolicy" {
         }   
 
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Invoke-GraphRequest -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaApplicationPolicy"
+
+            $result = Remove-EntraBetaApplicationPolicy -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -PolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $result | Should -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaApplicationPolicy"
-            $result = Remove-EntraBetaApplicationPolicy -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -PolicyId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         } 
 
         It "Should execute successfully without throwing an error " {

@@ -45,12 +45,14 @@ Describe "Set-EntraBetaAttributeSet" {
         }
 
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Update-MgBetaDirectoryAttributeSet -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaAttributeSet"
-            $result = Set-EntraBetaAttributeSet -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Update AttributeSet" -MaxAttributesPerSet 22
-            $params = Get-Parameters -data $result
-            $params.headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $result =  Set-EntraBetaAttributeSet -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee" -Description "Update AttributeSet" -MaxAttributesPerSet 22
+            $result | Should -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaAttributeSet"
+            Should -Invoke -CommandName Update-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         } 
         
         It "Should execute successfully without throwing an error " {

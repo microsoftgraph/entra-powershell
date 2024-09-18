@@ -59,9 +59,15 @@ Describe "New-EntraBetaAttributeSet" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaAttributeSet"
 
             $result = New-EntraBetaAttributeSet -Id "bbbbbbbb-1111-2222-3333-cccccccccc55" -Description "New AttributeSet" -MaxAttributesPerSet 21
-            $params = Get-Parameters -data $result.Parameters
-            $params.headers.'User-Agent' | Should -Be $userAgentHeaderValue
-        } 
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaAttributeSet"
+
+            Should -Invoke -CommandName New-MgBetaDirectoryAttributeSet -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
 
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       

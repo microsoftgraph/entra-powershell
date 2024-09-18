@@ -75,9 +75,15 @@ Describe "New-EntraBetaGroup" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaGroup"
 
             $result = New-EntraBetaGroup -DisplayName "My Test san" -MailEnabled $false -SecurityEnabled $true -MailNickName "NotSet"
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }   
+            $result | Should -Not -BeNullOrEmpty
+
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaGroup"
+
+            Should -Invoke -CommandName New-MgBetaGroup -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        } 
 
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       

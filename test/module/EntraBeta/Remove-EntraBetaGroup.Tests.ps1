@@ -37,12 +37,17 @@ Describe "Remove-EntraBetaGroup" {
         }
 
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Remove-MgBetaGroup -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaGroup"
+
+            $result = Remove-EntraBetaGroup -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
+            $result | Should -BeNullOrEmpty
 
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaGroup"
-            $result = Remove-EntraBetaGroup -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+
+            Should -Invoke -CommandName Remove-MgBetaGroup -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         } 
 
         It "Should execute successfully without throwing an error " {
