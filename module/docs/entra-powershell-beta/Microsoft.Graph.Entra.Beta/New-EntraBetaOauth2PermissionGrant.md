@@ -192,7 +192,7 @@ Currently, the end time value is ignored, but a value is required when creating 
 
 ```yaml
 Type: DateTime
-Parameter Sets: CreateExpanded 
+Parameter Sets: CreateExpanded
 Aliases:
 Required: False
 Position: Named

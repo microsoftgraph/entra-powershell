@@ -41,7 +41,6 @@ The `Set-EntraBetaTrustedCertificateAuthority` cmdlet updates a trusted certific
 
 ```powershell
 Connect-Entra -Scopes 'Organization.ReadWrite.All'
-
 $cer = Get-EntraBetaTrustedCertificateAuthority #Get the CertificateAuthorityInformation object
 $cer[0].CrlDistributionPoint = "https://example.crl"
 Set-EntraBetaTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]

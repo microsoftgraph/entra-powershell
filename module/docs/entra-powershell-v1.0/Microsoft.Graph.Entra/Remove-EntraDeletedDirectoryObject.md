@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraDeletedDirectoryObject
@@ -36,26 +37,25 @@ The `Remove-EntraDeletedDirectoryObject` cmdlet is used to permanently delete a 
 
 When a directory object is permanently deleted, it can no longer be restored.
 
+For delegated scenarios, the calling user needs to have at least one of the following Microsoft Entra roles.
+
+- To permanently delete deleted applications or service principals: `Application Administrator`, `Cloud Application Administrator`, or `Hybrid Identity Administrator`.
+- To permanently delete deleted users: `User Administrator`.
+- To permanently delete deleted groups: `Groups Administrator`.
+
 ## Examples
 
 ### Example 1: Delete a previously deleted directory object
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Application resource type
-Connect-Entra -Scopes 'Group.ReadWrite.All' #Group resource type
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Service Principal resource type
-Connect-Entra -Scopes 'User.ReadWrite.All' #User resource type
+Connect-Entra -Scopes 'Application.ReadWrite.All','Group.ReadWrite.All','Application.ReadWrite.All','User.ReadWrite.All'
 
 Remove-EntraDeletedDirectoryObject -Id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
 This example demonstrates how to permanently delete a previously deleted directory object by Id.
 
-NOTE: For delegated scenarios, the calling user needs to have at least one of the following Microsoft Entra roles.
-
-- To permanently delete deleted applications or service principals: `Application Administrator`, `Cloud Application Administrator`, or `Hybrid Identity Administrator`.
-- To permanently delete deleted users: `User Administrator`.
-- To permanently delete deleted groups: `Groups Administrator`.
+- `-Id` parameter specifies the Id of the directory object that is permanently deleted.
 
 ## Parameters
 
