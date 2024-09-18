@@ -9,6 +9,7 @@ ms.author: eunicewaweru
 ms.reviewer: stevemutungi
 manager: CelesteDG
 author: msewaweru
+
 external help file: Microsoft.Graph.Entra-Help.xml
 Module Name: Microsoft.Graph.Entra
 online version: https://learn.microsoft.com/powershell/module/Microsoft.Graph.Entra/Remove-EntraApplicationKey
@@ -41,11 +42,11 @@ Removes a key from an application.
 ### Example 1: Removes a key credential from an application
 
 ```powershell
-Connect-Entra -Scopes 'Application.ReadWrite.All' #Delegated Permission
-Connect-Entra -Scopes 'Application.ReadWrite.OwnedBy' #Application Permission
+Connect-Entra -Scopes 'Application.ReadWrite.All','Directory.ReadWrite.All'
+$app = Get-EntraApplication -Filter "DisplayName eq '<application-display-name>'"
 $params = @{
-    ObjectId = '00001111-aaaa-2222-bbbb-3333cccc4444'
-    KeyId = 'cccccccc-2d2d-3e3e-4f4f-555555555555'
+    ObjectId = $app.ObjectId
+    KeyId = 'aaaaaaaa-0b0b-1c1c-2d2d-333333333333'
     Proof = {token}
 }
 
@@ -54,11 +55,15 @@ Remove-EntraApplicationKey @params
 
 This command removes the specified key credential from the specified application.
 
+- `-ObjectId` parameter specifies the unique identifier of an application.
+- `-KeyId` parameter specifies the key Id corresponding to the key object to be removed.
+- `-Proof` parameter specifies the JWT token provided as a proof of possession.
+
 ## Parameters
 
 ### -ObjectId
 
-The unique identifier of the object specific Microsoft Entra ID object
+Specifies the unique ID of an application in Microsoft Entra ID.
 
 ```yaml
 Type: System.String
@@ -74,7 +79,7 @@ Accept wildcard characters: False
 
 ### -KeyId
 
-The key id corresponding to the key object to be removed.
+The key Id corresponding to the key object to be removed.
 
 ```yaml
 Type: System.String
