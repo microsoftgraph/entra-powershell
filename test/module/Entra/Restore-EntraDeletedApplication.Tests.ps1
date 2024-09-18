@@ -55,27 +55,27 @@ Context "Restore-EntraDeletedApplication" {
         It "Should fail when ObjectId is invalid" {
             { Restore-EntraDeletedApplication -ObjectId "" } | Should -Throw "Cannot bind argument to parameter 'ObjectId' because it is an empty string."
         }
-        It "Result should contain Alias properties" {
+        It "Result Should contain Alias properties" {
             $result = Restore-EntraDeletedApplication -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" 
-            $result.ObjectId | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $result.Homepage |  should -Be "https://localhost/demoapp"
-            $result.DisplayName |  should -Be "Mock-App"
-            $result.PublisherDomain |  should -Be "M365x99297270.onmicrosoft.com"
-            $result.ObjectType |  should -Be "#microsoft.graph.device"
-            $result.SignInAudience |  should -Be "AzureADandPersonalMicrosoftAccount"
-            $result.ReplyUrls |  should -BeNullOrEmpty
-            $result.ParentalControlSettings |  should -Not -BeNullOrEmpty 
-            $result.PasswordCredentials |  should -BeNullOrEmpty
-            $result.KeyCredentials |  should -BeNullOrEmpty
-            $result.AddIns |  should -BeNullOrEmpty
-            $result.AppRoles | should -BeNullOrEmpty
-            $result.IdentifierUris |  should -BeNullOrEmpty
-            $result.KnownClientApplications |  should -BeNullOrEmpty
-            $result.Oauth2Permissions |  should -BeNullOrEmpty
-            $result.PreAuthorizedApplications |  should -BeNullOrEmpty
-            $result.PublicClient |  should -Not -BeNullOrEmpty 
-            $result.RequiredResourceAccess | should -BeNullOrEmpty
-            $result.DeletionTimestamp |  should -BeNullOrEmpty
+            $result.ObjectId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result.Homepage |  Should -Be "https://localhost/demoapp"
+            $result.DisplayName |  Should -Be "Mock-App"
+            $result.PublisherDomain |  Should -Be "M365x99297270.onmicrosoft.com"
+            $result.ObjectType |  Should -Be "#microsoft.graph.device"
+            $result.SignInAudience |  Should -Be "AzureADandPersonalMicrosoftAccount"
+            $result.ReplyUrls |  Should -BeNullOrEmpty
+            $result.ParentalControlSettings |  Should -Not -BeNullOrEmpty 
+            $result.PasswordCredentials |  Should -BeNullOrEmpty
+            $result.KeyCredentials |  Should -BeNullOrEmpty
+            $result.AddIns |  Should -BeNullOrEmpty
+            $result.AppRoles | Should -BeNullOrEmpty
+            $result.IdentifierUris |  Should -BeNullOrEmpty
+            $result.KnownClientApplications |  Should -BeNullOrEmpty
+            $result.Oauth2Permissions |  Should -BeNullOrEmpty
+            $result.PreAuthorizedApplications |  Should -BeNullOrEmpty
+            $result.PublicClient |  Should -Not -BeNullOrEmpty 
+            $result.RequiredResourceAccess | Should -BeNullOrEmpty
+            $result.DeletionTimestamp |  Should -BeNullOrEmpty
         }
         It "Should contain DirectoryObjectId in parameters when passed ObjectId to it" {              
             $result = Restore-EntraDeletedApplication -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" 
@@ -84,10 +84,13 @@ Context "Restore-EntraDeletedApplication" {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Restore-EntraDeletedApplication"
-
             $result = Restore-EntraDeletedApplication -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" 
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Restore-EntraDeletedApplication"
+            Should -Invoke -CommandName Restore-MgDirectoryDeletedItem -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       

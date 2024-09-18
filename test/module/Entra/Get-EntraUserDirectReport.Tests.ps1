@@ -13,12 +13,12 @@ BeforeAll {
                 @{
                     "Id"                               = "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
                     "DisplayName"                      = "Mock-User"
-                    "onPremisesImmutableId"            = $null
-                    "deletedDateTime"                  = $null
-                    "onPremisesSyncEnabled"            = $null
+                    "OnPremisesImmutableId"            = $null
+                    "DeletedDateTime"                  = $null
+                    "OnPremisesSyncEnabled"            = $null
                     "OnPremisesLastSyncDateTime"       = $null
-                    "onPremisesProvisioningErrors"     = @{}
-                    "mobilePhone"                      = "425-555-0100"
+                    "OnPremisesProvisioningErrors"     = @{}
+                    "MobilePhone"                      = "425-555-0100"
                     "BusinessPhones"                   = @("425-555-0100")
                     "ExternalUserState"                = $null
                     "ExternalUserStateChangeDateTime"  = $null
@@ -82,18 +82,18 @@ Describe "Get-EntraUserDirectReport" {
         It "Should fail when Property is empty" {
              { Get-EntraUserDirectReport -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
-        It "Result should contain Alias property" {
+        It "Result should contain Properties" {
             $result = Get-EntraUserDirectReport -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $result.ObjectId | should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $result.DeletionTimestamp | should -Be $null
-            $result.DirSyncEnabled | should -Be $null
-            $result.ImmutableId | should -Be $null
-            $result.LastDirSyncTime | should -Be $null
-            $result.Mobile | should -Be "425-555-0100"
+            $result.ObjectId | Should -Be "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
+            $result.DeletionTimestamp | Should -Be $null
+            $result.DirSyncEnabled | Should -Be $null
+            $result.ImmutableId | Should -Be $null
+            $result.LastDirSyncTime | Should -Be $null
+            $result.Mobile | Should -Be "425-555-0100"
             $result.ProvisioningErrors | Should -BeNullOrEmpty
-            $result.TelephoneNumber | should -Be "425-555-0100"
-            $result.UserState | should -Be $null
-            $result.UserStateChangedOn | should -Be $null
+            $result.TelephoneNumber | Should -Be "425-555-0100"
+            $result.UserState | Should -Be $null
+            $result.UserStateChangedOn | Should -Be $null
 
         }
         It "Should contain UserId in parameters when passed ObjectId to it" { 
@@ -105,11 +105,13 @@ Describe "Get-EntraUserDirectReport" {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserDirectReport"
-
             $result = Get-EntraUserDirectReport -ObjectId "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb"
-            $params = Get-Parameters -data $result.Parameters
-            $para= $params | ConvertTo-json | ConvertFrom-Json
-            $para.headers.'User-Agent' | Should -Be $userAgentHeaderValue
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraUserDirectReport"
+            Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       
