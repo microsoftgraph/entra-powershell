@@ -26,7 +26,7 @@ Gets the owner of an application.
 
 ```powershell
 Get-EntraBetaApplicationOwner
- -ObjectId <String>
+ -ApplicationId <String>
  [-Top <Int32>]
  [-All]
  [-Property <String[]>]
@@ -44,7 +44,7 @@ The `Get-EntraBetaApplicationOwner` cmdlet get an owner of an Microsoft Entra ID
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $Application = Get-EntraBetaApplication -SearchString '<application-name>'
-Get-EntraBetaApplicationOwner -ObjectId $Application.ObjectId
+Get-EntraBetaApplicationOwner -ApplicationId $Application.ObjectId
 ```
 
 ```Output
@@ -58,14 +58,14 @@ eeeeeeee-4444-5555-6666-ffffffffffff
 
 This example demonstrates how to get the owners of an application in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the unique identifier of an application.
+- `-ApplicationId` parameter specifies the unique identifier of an application.
 
 ### Example 2: Get all owners of an application
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $Application = Get-EntraBetaApplication -SearchString '<application-name>'
-Get-EntraBetaApplicationOwner -ObjectId $Application.ObjectId -All
+Get-EntraBetaApplicationOwner -ApplicationId $Application.ObjectId -All
 ```
 
 ```Output
@@ -79,14 +79,14 @@ eeeeeeee-4444-5555-6666-ffffffffffff
 
 This example demonstrates how to get the all owners of a specified application in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the unique identifier of an application.
+- `-ApplicationId` parameter specifies the unique identifier of an application.
 
 ### Example 3: Get top two owners of an application
 
 ```powershell
 Connect-Entra -Scopes 'Application.ReadWrite.All','Application.ReadWrite.OwnedBy'
 $Application = Get-EntraBetaApplication -SearchString '<application-name>'
-Get-EntraBetaApplicationOwner -ObjectId $Application.ObjectId -Top 2
+Get-EntraBetaApplicationOwner -ApplicationId $Application.ObjectId -Top 2
 ```
 
 ```Output
@@ -98,7 +98,7 @@ cccccccc-2222-3333-4444-dddddddddddd
 
 This example demonstrates how to get the two owners of a specified application in Microsoft Entra ID.
 
-- `-ObjectId` parameter specifies the unique identifier of an application.
+- `-ApplicationId` parameter specifies the unique identifier of an application.
 
 ## Parameters
 
@@ -118,7 +118,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ObjectId
+### -ApplicationId
 
 Specifies the ID of an application in Microsoft Entra ID.
 

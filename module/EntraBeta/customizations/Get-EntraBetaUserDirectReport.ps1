@@ -6,7 +6,18 @@
     TargetName = $null
     Parameters = $null
     outputs = $null
-    CustomScript = @'   
+    CustomScript = @'  
+    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+    param (
+    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.Int32]] $Top,
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $UserId,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [switch] $All,
+    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+    [System.String[]] $Property
+    ) 
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
@@ -21,9 +32,9 @@
             $selectProperties = $selectProperties -Join ','
             $properties = "`$select=$($selectProperties)"
         }        
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["UserId"])
         {
-            $params["UserId"] = $PSBoundParameters["ObjectId"]
+            $params["UserId"] = $PSBoundParameters["UserId"]
             $URI = "$baseUri/$($params.UserId)/directReports?$properties"
         }
         
