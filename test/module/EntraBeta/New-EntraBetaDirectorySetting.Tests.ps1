@@ -29,6 +29,28 @@ BeforeAll {
             }
         )
     }    
+
+    $scriptblock1 = {
+        return @(
+            [PSCustomObject]@{
+                "DisplayName"     = "Group.Unified.Guest"
+                "Id"              = "bbbbbbbb-1111-2222-3333-cccccccccc55"
+                "Description"     = "Settings for a specific Unified Group"
+                "Parameters"      = $args
+                "Values"          = @(
+                    [PSCustomObject]@{
+                        "Name"         = "AllowToAddGuests"
+                        "Description"  = ""
+                        "Type"         = ""
+                        "DefaultValue" = $true
+                    }
+                )
+            }
+        )
+    }
+
+    Mock -CommandName Get-MgBetaDirectorySettingTemplate -MockWith $scriptblock1 -ModuleName Microsoft.Graph.Entra.Beta
+
     Mock -CommandName New-MgBetaDirectorySetting -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
 }
 
@@ -64,16 +86,18 @@ Describe "New-EntraBetaDirectorySetting" {
             $params = Get-Parameters -data $result.Parameters
             $params.BodyParameter | Should -Not -BeNullOrEmpty
         }
-
+        
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraBetaDirectorySetting"
-
             $template = Get-EntraBetaDirectorySettingTemplate -Id "bbbbbbbb-1111-2222-3333-cccccccccc56"
             $settingsCopy = $template.CreateDirectorySetting()
-            $result = New-EntraBetaDirectorySetting -DirectorySetting $settingsCopy
-            $params = Get-Parameters -data $result.Parameters
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
-        }   
+            New-EntraBetaDirectorySetting -DirectorySetting $settingsCopy
+ 
+            Should -Invoke -CommandName New-MgBetaDirectorySetting -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
+        }
 
         It "Should execute successfully without throwing an error " {
             $template = Get-EntraBetaDirectorySettingTemplate -Id "bbbbbbbb-1111-2222-3333-cccccccccc56"

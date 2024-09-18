@@ -8,6 +8,27 @@ BeforeAll {
     }
     Import-Module (Join-Path $psscriptroot "..\Common-Functions.ps1") -Force
 
+    $scriptblock = {
+        return @(
+            [PSCustomObject]@{
+                "DisplayName"     = "Group.Unified.Guest"
+                "Id"              = "bbbbbbbb-1111-2222-3333-cccccccccc55"
+                "Description"     = "Settings for a specific Unified Group"
+                "Parameters"      = $args
+                "Values"          = @(
+                    [PSCustomObject]@{
+                        "Name"         = "AllowToAddGuests"
+                        "Description"  = ""
+                        "Type"         = ""
+                        "DefaultValue" = $true
+                    }
+                )
+            }
+        )
+    } 
+
+    Mock -CommandName Get-MgBetaDirectorySettingTemplate -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra.Beta
+
     Mock -CommandName Update-MgBetaDirectorySetting -MockWith {} -ModuleName Microsoft.Graph.Entra.Beta
 }
 
@@ -72,14 +93,16 @@ Describe "Set-EntraBetaDirectorySetting" {
 
         It "Should contain 'User-Agent' header" {
             Mock -CommandName Update-MgBetaDirectorySetting -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaDirectorySetting"
             $template = Get-EntraBetaDirectorySettingTemplate -Id "aaaabbbb-0000-cccc-1111-dddd2222eeee"
             $settingsCopy = $template.CreateDirectorySetting()
             $settingsCopy["EnableBannedPasswordCheckOnPremises"] = "False"
-            $result = Set-EntraBetaDirectorySetting -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -DirectorySetting $settingsCopy 
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            Set-EntraBetaDirectorySetting -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -DirectorySetting $settingsCopy
+ 
+            Should -Invoke -CommandName Update-MgBetaDirectorySetting -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }
 
         It "Should execute successfully without throwing an error " {

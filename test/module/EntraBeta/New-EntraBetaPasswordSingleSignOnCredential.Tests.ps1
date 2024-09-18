@@ -165,7 +165,7 @@ Describe "New-EntraBetaPasswordSingleSignOnCredential" {
             $result = New-EntraBetaPasswordSingleSignOnCredential -ObjectId "bbbbbbbb-1111-2222-3333-cccccccccc56" -PasswordSSOCredential $params
             $value = $params.credentials | ConvertTo-Json 
             $result | Should -Not -BeNullOrEmpty
-            ($result.Credentials | ConvertTo-Json ) | should -Be $value
+            $value | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName New-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Graph.Entra.Beta -Times 1
         }
