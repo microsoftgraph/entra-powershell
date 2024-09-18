@@ -37,25 +37,23 @@ The `Remove-EntraUserAppRoleAssignment` cmdlet removes a user application role a
 
 ## Examples
 
-### Example 1
+### Example 1: Remove user app role assignment
 
 ```powershell
 Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
-
 $RemoveAppRoleParams = @{
-    ObjectId              = 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+    ObjectId              = 'SawyerM@Contoso.com'
     AppRoleAssignmentId   = 'C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w'
 }
-
 Remove-EntraUserAppRoleAssignment @RemoveAppRoleParams
 ```
 
 This example demonstrates how to Remove the user app role assignment in Microsoft Entra ID.
 
-- `ObjectId` parameter specifies the user ID.
-- `AppRoleAssignmentId` parameter specifies the application role assignment ID.
+- `-ObjectId` parameter specifies the user ID.
+- `-AppRoleAssignmentId` parameter specifies the application role assignment ID.
 
-Use the `Get-EntraUserAppRoleAssignment` cmdlet to get more details.
+Use the `Get-EntraUserAppRoleAssignment` cmdlet to get `AppRoleAssignmentId` details.
 
 ## Parameters
 
@@ -77,7 +75,7 @@ Accept wildcard characters: False
 
 ### -ObjectId
 
-Specifies the ID (as a User Principal Name or ObjectId) of a user in Microsoft Entra ID.
+Specifies the ID (as a UserPrincipleName or ObjectId) of a user in Microsoft Entra ID.
 
 ```yaml
 Type: System.String

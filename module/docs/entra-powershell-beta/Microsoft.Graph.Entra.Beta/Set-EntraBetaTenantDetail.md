@@ -2,7 +2,6 @@
 title: Set-EntraBetaTenantDetail
 description: This article provides details on the Set-EntraBetaTenantDetail command.
 
-
 ms.topic: reference
 ms.date: 08/13/2024
 ms.author: eunicewaweru
@@ -42,6 +41,10 @@ This cmdlet is used to set various contact details for a tenant.
 For delegated scenarios, the signed-in user must have at least one of the following Microsoft Entra roles.
 
 - Application Administrator
+- Cloud Application Administrator
+- Privileged Role Administrator
+- User Administrator
+- Helpdesk Administrator
 
 ## Examples
 
@@ -205,6 +208,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ### System.Object
 
 ## Notes
+
+- For more details see [Update organization](https://learn.microsoft.com/graph/api/organization-update).
 
 ## Related Links
 

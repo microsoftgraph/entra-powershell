@@ -40,7 +40,6 @@ The `Set-EntraTrustedCertificateAuthority` cmdlet updates a trusted certificate 
 
 ```powershell
 Connect-Entra -Scopes 'Organization.ReadWrite.All'
-
 $cer = Get-EntraTrustedCertificateAuthority #Get the CertificateAuthorityInformation object
 $cer[0].CrlDistributionPoint = "https://example.crl"
 Set-EntraTrustedCertificateAuthority -CertificateAuthorityInformation $cer[0]
@@ -53,6 +52,8 @@ aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb
 ```
 
 This command updates the trusted certificate authorities that are defined in your directory.
+
+- `-CertificateAuthorityInformation` Parameter specifies a CertificateAuthorityInformation object.
 
 ## Parameters
 

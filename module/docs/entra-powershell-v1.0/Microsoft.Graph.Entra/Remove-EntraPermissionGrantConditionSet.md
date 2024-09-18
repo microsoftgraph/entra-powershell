@@ -25,7 +25,6 @@ Delete a Microsoft Entra ID permission grant condition set by ID.
 ## Syntax
 
 ```powershell
-Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
 Remove-EntraPermissionGrantConditionSet 
  -ConditionSetType <String> 
  -Id <String> 
@@ -43,17 +42,22 @@ Delete a Microsoft Entra ID permission grant condition set object by ID.
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
+$permissionGrantPolicyId = 'policy1'
+$PermissionGrantConditionSetId = '2bbbbbb2-3cc3-4dd4-5ee5-6ffffffffff6'
 $params = @{
-    PolicyId = 'policy1'
+    PolicyId = $permissionGrantPolicyId
     ConditionSetType = 'excludes'
-    Id = '1aaaaaa1-2bb2-3cc3-4dd4-5eeeeeeeeee5'
+    Id = $PermissionGrantConditionSetId
 }
-
 Remove-EntraPermissionGrantConditionSet @params
 ```
 
-This command demonstrates how to remove the Microsoft Entra ID permission grant condition set by ID.
-  
+This example demonstrates how to remove the Microsoft Entra ID permission grant condition set by ID.
+
+- `-PolicyId` parameter specifies the unique identifier of a permission grant policy.
+- `-ConditionSetType` parameter indicates whether the condition sets are included in the policy or excluded.
+- `-Id` parameter specifies the unique identifier of a permission grant condition set object.
+
 ## Parameters
 
 ### -PolicyId

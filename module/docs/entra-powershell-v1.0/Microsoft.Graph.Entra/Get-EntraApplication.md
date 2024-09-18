@@ -68,14 +68,13 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraApplication -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
 ```
 
-```output
+```Output
 DisplayName         Id                                   AppId                                SignInAudience PublisherDomain
 -----------         --                                   -----                                -------------- ---------------
 ToGraph_443democc3c aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADMyOrg   contoso.com
 ```
 
-This example demonstrates how to retrieve specific application by providing ID.  
-This command gets an application for the specified ObjectId.
+This example demonstrates how to retrieve specific application by providing ID.
 
 ### Example 2: Get all applications
 
@@ -84,7 +83,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraApplication -All 
 ```
 
-```output
+```Output
 DisplayName         Id                                   AppId                                SignInAudience                     PublisherDomain
 -----------         --                                   -----                                --------------                     ---------------
 test app            aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb bbbbbbbb-1111-2222-3333-cccccccccccc AzureADandPersonalMicrosoftAccount contoso.com
@@ -94,7 +93,7 @@ test adms app azure gggggggg-8888-9999-aaaa-hhhhhhhhhhhh hhhhhhhh-9999-aaaa-bbbb
 test adms2          iiiiiiii-aaaa-bbbb-cccc-jjjjjjjjjjjj jjjjjjjj-bbbb-cccc-dddd-kkkkkkkkkkkk AzureADandPersonalMicrosoftAccount contoso.com
 ```
 
-This example demonstrates how to get all applications from Microsoft Entra ID.  
+This example demonstrates how to get all applications from Microsoft Entra ID.
 
 ### Example 3: Get applications with expiring secrets
 
@@ -127,7 +126,7 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraApplication -Filter "DisplayName eq 'ToGraph_443DEMO'"
 ```
 
-```output
+```Output
 DisplayName     Id                                   AppId                                SignInAudience PublisherDomain
 -----------     --                                   -----                                -------------- ---------------
 ToGraph_443DEMO cccccccc-4444-5555-6666-dddddddddddd dddddddd-5555-6666-7777-eeeeeeeeeeee AzureADMyOrg   contoso.com
@@ -142,22 +141,22 @@ Connect-Entra -Scopes 'Application.Read.All'
 Get-EntraApplication -SearchString 'My new application 2'
 ```
 
-```output
+```Output
 DisplayName          Id                                   AppId                                SignInAudience                     PublisherDomain
 -----------          --                                   -----                                --------------                     ---------------
 My new application 2 kkkkkkkk-cccc-dddd-eeee-llllllllllll llllllll-dddd-eeee-ffff-mmmmmmmmmmmm AzureADandPersonalMicrosoftAccount contoso.com
 ```
 
-This cmdlet gets all applications that match the value of SearchString against the first characters in DisplayName.
+This example demonstrates how to retrieve applications for specific string from Microsoft Entra ID.
 
 ### Example 6: Retrieve an application by identifierUris
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraApplication -Filter "identifierUris/any(uri:uri eq 'http://wingtips.wingtiptoysonline.com')"
+Get-EntraApplication -Filter "identifierUris/any(uri:uri eq 'https://wingtips.wingtiptoysonline.com')"
 ```
 
-This example demonstrates how to retrieve applications by its identifierUris from Microsoft Entra ID.  
+This example demonstrates how to retrieve applications by its identifierUris from Microsoft Entra ID.
 
 ## Parameters
 

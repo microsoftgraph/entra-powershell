@@ -43,8 +43,8 @@ The work or school account needs to belong to at least the Domain Name Administr
 ### Example 1: Retrieve the domain name reference objects for a domain
 
 ```powershell
- Connect-Entra -Scopes 'Domain.Read.All'
- Get-EntraDomainNameReference -Name contoso.com
+Connect-Entra -Scopes 'Domain.Read.All'
+Get-EntraDomainNameReference -Name contoso.com
 ```
 
 ```Output
