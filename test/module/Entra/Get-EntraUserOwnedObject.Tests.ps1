@@ -18,7 +18,7 @@ BeforeAll {
                     appId                 = "11112222-bbbb-3333-cccc-4444dddd5555"
                     displayName           = "ToGraph_443DEM"
                     signInAudience        = "AzureADMyOrg"
-                    publisherDomain       = "M365x99297270.onmicrosoft.com"
+                    publisherDomain       = "contoso.com"
                     Parameters            = $args
                 }
             )
@@ -38,7 +38,7 @@ Describe "Get-EntraUserOwnedObject" {
             $result.applicationTemplateId | Should -Be "00001111-aaaa-2222-bbbb-3333cccc4444"
             $result.appId | Should -Be "11112222-bbbb-3333-cccc-4444dddd5555"
             $result.signInAudience | Should -Be "AzureADMyOrg"
-            $result.publisherDomain | Should -Be "M365x99297270.onmicrosoft.com"
+            $result.publisherDomain | Should -Be "contoso.com"
             $result.DisplayName | Should -Be "ToGraph_443DEM"
 
 
