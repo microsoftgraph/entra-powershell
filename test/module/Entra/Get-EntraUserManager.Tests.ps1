@@ -15,15 +15,15 @@ BeforeAll {
                 ageGroup                   = $null
                 onPremisesLastSyncDateTime = $null
                 creationType               = $null
-                imAddresses                = @("miriamg@m365x99297270.onmicrosoft.com")
+                imAddresses                = @("test@contoso.com")
                 preferredLanguage          = $null
-                mail                       = "MiriamG@M365x99297270.OnMicrosoft.com"
+                mail                       = "test@contoso.com"
                 securityIdentifier         = "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
                 identities                 = @(
                     @{
                         signInType       = "userPrincipalName"
-                        issuer           = "M365x99297270.onmicrosoft.com"
-                        issuerAssignedId = "MiriamG@M365x99297270.OnMicrosoft.com"
+                        issuer           = "contoso.com"
+                        issuerAssignedId = "test@contoso.com"
                     }
                 )
                 Parameters                 = $args
@@ -43,14 +43,14 @@ Describe "Get-EntraUserManager" {
             $result.ageGroup | Should -BeNullOrEmpty
             $result.onPremisesLastSyncDateTime | Should -BeNullOrEmpty
             $result.creationType | Should -BeNullOrEmpty
-            $result.imAddresses | Should -Be @("miriamg@m365x99297270.onmicrosoft.com")
+            $result.imAddresses | Should -Be @("test@contoso.com")
             $result.preferredLanguage | Should -BeNullOrEmpty
-            $result.mail | Should -Be "MiriamG@M365x99297270.OnMicrosoft.com"
+            $result.mail | Should -Be "test@contoso.com"
             $result.securityIdentifier | Should -Be "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
             $result.identities | Should -HaveCount 1
             $result.identities[0].signInType | Should -Be "userPrincipalName"
-            $result.identities[0].issuer | Should -Be "M365x99297270.onmicrosoft.com"
-            $result.identities[0].issuerAssignedId | Should -Be "MiriamG@M365x99297270.OnMicrosoft.com"
+            $result.identities[0].issuer | Should -Be "contoso.com"
+            $result.identities[0].issuerAssignedId | Should -Be "test@contoso.com"
 
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra -Times 1
         }
