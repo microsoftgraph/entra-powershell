@@ -29,7 +29,7 @@ function Get-EntraAdministrativeUnit {
     {
         $uri = $baseUri
     }
-    if($null -ne $PSBoundParameters["Top"] -and  (-not $PSBoundParameters.ContainsKey("All")))
+    if($PSBoundParameters.ContainsKey("Top") -and  (-not $PSBoundParameters.ContainsKey("All")))
     {
         $topCount = $PSBoundParameters["Top"]
         if ($topCount -gt 999) {
