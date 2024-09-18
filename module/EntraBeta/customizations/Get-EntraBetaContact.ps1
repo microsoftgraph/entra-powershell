@@ -7,13 +7,26 @@
     Parameters = $null
     outputs = $null
     CustomScript = @'   
+   [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+    param (
+    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.Int32]] $Top,
+    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $Filter,
+    [Parameter(ParameterSetName = "GetById", Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $OrgContactId,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [switch] $All,
+    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+    [System.String[]] $Property
+    )
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
-        $keysChanged = @{ObjectId = "Id"}
-        if($null -ne $PSBoundParameters["ObjectId"])
+        $keysChanged = @{OrgContactId = "Id"}
+        if($null -ne $PSBoundParameters["OrgContactId"])
         {
-            $params["OrgContactId"] = $PSBoundParameters["ObjectId"]
+            $params["OrgContactId"] = $PSBoundParameters["OrgContactId"]
         }
         if($null -ne $PSBoundParameters["Filter"])
         {

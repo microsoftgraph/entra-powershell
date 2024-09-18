@@ -7,13 +7,24 @@
     Parameters = $null
     outputs = $null
     CustomScript = @'   
+    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+    param (
+    [Parameter(ParameterSetName = "GetQuery", ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.Nullable`1[System.Int32]] $Top,
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $GroupId,
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [switch] $All,
+    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+    [System.String[]] $Property
+    )
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand        
 
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["GroupId"])
         {
-            $params["GroupId"] = $PSBoundParameters["ObjectId"]
+            $params["GroupId"] = $PSBoundParameters["GroupId"]
         }
         if($null -ne $PSBoundParameters["All"])
         {

@@ -7,6 +7,15 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
+    [CmdletBinding(DefaultParameterSetName = 'GetQuery')]
+    param (
+    [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $ScopedRoleMembershipId,
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $AdministrativeUnitId,
+    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+    [System.String[]] $Property
+    )
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
@@ -15,9 +24,9 @@
         {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["AdministrativeUnitId"])
         {
-            $params["AdministrativeUnitId"] = $PSBoundParameters["ObjectId"]
+            $params["AdministrativeUnitId"] = $PSBoundParameters["AdministrativeUnitId"]
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {

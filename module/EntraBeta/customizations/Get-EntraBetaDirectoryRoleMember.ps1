@@ -7,6 +7,13 @@
     Parameters = $null
     Outputs = $null
     CustomScript = @'
+    [CmdletBinding(DefaultParameterSetName = '')]
+    param (
+    [Parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [System.String] $DirectoryRoleId,
+    [Parameter(Mandatory = $false, ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+    [System.String[]] $Property
+    )
     PROCESS {    
         $params = @{}
         $customHeaders = New-EntraBetaCustomHeaders -Command $MyInvocation.MyCommand
@@ -15,9 +22,9 @@
         {
             $params["Verbose"] = $PSBoundParameters["Verbose"]
         }
-        if($null -ne $PSBoundParameters["ObjectId"])
+        if($null -ne $PSBoundParameters["DirectoryRoleId"])
         {
-            $params["DirectoryRoleId"] = $PSBoundParameters["ObjectId"]
+            $params["DirectoryRoleId"] = $PSBoundParameters["DirectoryRoleId"]
         }
         if($PSBoundParameters.ContainsKey("Debug"))
         {
