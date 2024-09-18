@@ -172,4 +172,8 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Outputs
 
+## Notes
+
+`Get-EntraAuditDirectoryLogs` is an alias for `Get-EntraAuditDirectoryLog`.
+
 ## Related Links
