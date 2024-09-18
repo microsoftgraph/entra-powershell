@@ -29,10 +29,10 @@ BeforeAll {
     Mock -CommandName New-MgRoleManagementDirectoryRoleAssignment -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 
-Describe "New-EntraRoleAssignment" {
-Context "Test for New-EntraRoleAssignment" {
+Describe "New-EntraDirectoryRoleAssignment" {
+Context "Test for New-EntraDirectoryRoleAssignment" {
         It "Should return created Ms role assignment" {
-            $result = New-EntraRoleAssignment -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -RoleDefinitionId  "54d418b2-4cc0-47ee-9b39-e8f84ed8e073" -DirectoryScopeId "/54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
+            $result = New-EntraDirectoryRoleAssignment -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -RoleDefinitionId  "54d418b2-4cc0-47ee-9b39-e8f84ed8e073" -DirectoryScopeId "/54d418b2-4cc0-47ee-9b39-e8f84ed8e073"
             $result | Should -Not -BeNullOrEmpty
             $result.PrincipalId | Should -Be "aaaaaaaa-bbbb-cccc-1111-222222222222"
             $result.RoleDefinitionId | Should -Be "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
@@ -41,30 +41,30 @@ Context "Test for New-EntraRoleAssignment" {
             Should -Invoke -CommandName New-MgRoleManagementDirectoryRoleAssignment  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when PrincipalId is empty" {
-            { New-EntraRoleAssignment -PrincipalId  -RoleDefinitionId  "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -DirectoryScopeId "/00aa00aa-bb11-cc22-dd33-44ee44ee44ee"  } | Should -Throw "Missing an argument for parameter 'PrincipalId'*"
+            { New-EntraDirectoryRoleAssignment -PrincipalId  -RoleDefinitionId  "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -DirectoryScopeId "/00aa00aa-bb11-cc22-dd33-44ee44ee44ee"  } | Should -Throw "Missing an argument for parameter 'PrincipalId'*"
         }
         It "Should fail when PrincipalId is invalid" {
-            { New-EntraRoleAssignment -PrincipalId "" -RoleDefinitionId  "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -DirectoryScopeId "/00aa00aa-bb11-cc22-dd33-44ee44ee44ee" } | Should -Throw "Cannot bind argument to parameter 'PrincipalId' because it is an empty string."
+            { New-EntraDirectoryRoleAssignment -PrincipalId "" -RoleDefinitionId  "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -DirectoryScopeId "/00aa00aa-bb11-cc22-dd33-44ee44ee44ee" } | Should -Throw "Cannot bind argument to parameter 'PrincipalId' because it is an empty string."
         }
         It "Should fail when RoleDefinitionId is empty" {
-            { New-EntraRoleAssignment -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -RoleDefinitionId   -DirectoryScopeId "/00aa00aa-bb11-cc22-dd33-44ee44ee44ee"  } | Should -Throw "Missing an argument for parameter 'RoleDefinitionId'*"
+            { New-EntraDirectoryRoleAssignment -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -RoleDefinitionId   -DirectoryScopeId "/00aa00aa-bb11-cc22-dd33-44ee44ee44ee"  } | Should -Throw "Missing an argument for parameter 'RoleDefinitionId'*"
         }
         It "Should fail when RoleDefinitionId is invalid" {
-            { New-EntraRoleAssignment -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -RoleDefinitionId  "" -DirectoryScopeId "/00aa00aa-bb11-cc22-dd33-44ee44ee44ee" } | Should -Throw "Cannot bind argument to parameter 'RoleDefinitionId' because it is an empty string."
+            { New-EntraDirectoryRoleAssignment -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -RoleDefinitionId  "" -DirectoryScopeId "/00aa00aa-bb11-cc22-dd33-44ee44ee44ee" } | Should -Throw "Cannot bind argument to parameter 'RoleDefinitionId' because it is an empty string."
         }
         It "Should fail when DirectoryScopeId is empty" {
-            { New-EntraRoleAssignment -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -RoleDefinitionId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"  -DirectoryScopeId   } | Should -Throw "Missing an argument for parameter 'DirectoryScopeId'*"
+            { New-EntraDirectoryRoleAssignment -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -RoleDefinitionId "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"  -DirectoryScopeId   } | Should -Throw "Missing an argument for parameter 'DirectoryScopeId'*"
         }
         It "Result should Contain ObjectId" {
-            $result = New-EntraRoleAssignment -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -RoleDefinitionId  "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -DirectoryScopeId "/00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            $result = New-EntraDirectoryRoleAssignment -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -RoleDefinitionId  "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -DirectoryScopeId "/00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             $result.ObjectId | should -Be "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
         }
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraRoleAssignment"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraDirectoryRoleAssignment"
 
-            New-EntraRoleAssignment -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -RoleDefinitionId  "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -DirectoryScopeId "/00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
+            New-EntraDirectoryRoleAssignment -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -RoleDefinitionId  "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -DirectoryScopeId "/00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
             
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraRoleAssignment"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion New-EntraDirectoryRoleAssignment"
 
             Should -Invoke -CommandName New-MgRoleManagementDirectoryRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
@@ -78,7 +78,7 @@ Context "Test for New-EntraRoleAssignment" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                { New-EntraRoleAssignment -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -RoleDefinitionId  "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -DirectoryScopeId "/00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
+                { New-EntraDirectoryRoleAssignment -PrincipalId "aaaaaaaa-bbbb-cccc-1111-222222222222" -RoleDefinitionId  "00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -DirectoryScopeId "/00aa00aa-bb11-cc22-dd33-44ee44ee44ee" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        

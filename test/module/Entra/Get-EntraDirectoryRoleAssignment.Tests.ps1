@@ -29,77 +29,77 @@ BeforeAll {
     Mock -CommandName Get-MgRoleManagementDirectoryRoleAssignment -MockWith $scriptblock -ModuleName Microsoft.Graph.Entra
 }
 
-Describe "Get-EntraRoleAssignment" {
-    Context "Test for Get-EntraRoleAssignment" {
+Describe "Get-EntraDirectoryRoleAssignment" {
+    Context "Test for Get-EntraDirectoryRoleAssignment" {
         It "Should return specific role assignment" {
-            $result = Get-EntraRoleAssignment -Id "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
+            $result = Get-EntraDirectoryRoleAssignment -Id "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleAssignment  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Id is empty" {
-            { Get-EntraRoleAssignment -Id  } | Should -Throw "Missing an argument for parameter 'Id'*"
+            { Get-EntraDirectoryRoleAssignment -Id  } | Should -Throw "Missing an argument for parameter 'Id'*"
         }
         It "Should fail when Id is invalid" {
-            { Get-EntraRoleAssignment -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
+            { Get-EntraDirectoryRoleAssignment -Id "" } | Should -Throw "Cannot bind argument to parameter 'Id' because it is an empty string."
         }
         It "Should return all role assignments" {
-            $result = Get-EntraRoleAssignment -All 
+            $result = Get-EntraDirectoryRoleAssignment -All 
             $result | Should -Not -BeNullOrEmpty            
             
             Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1
         }       
         It "Should fail when All is invalid" {
-            { Get-EntraRoleAssignment -All XY } | Should -Throw "A positional parameter cannot be found that accepts argument 'xy'.*"
+            { Get-EntraDirectoryRoleAssignment -All XY } | Should -Throw "A positional parameter cannot be found that accepts argument 'xy'.*"
         }     
         It "Should return top role assignment" {
-            $result = Get-EntraRoleAssignment -Top 1
+            $result = Get-EntraDirectoryRoleAssignment -Top 1
             $result | Should -Not -BeNullOrEmpty
 
             Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleAssignment  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Top is empty" {
-            { Get-EntraRoleAssignment -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
+            { Get-EntraDirectoryRoleAssignment -Top  } | Should -Throw "Missing an argument for parameter 'Top'*"
         }
          It "Should fail when Top is invalid" {
-            { Get-EntraRoleAssignment -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
+            { Get-EntraDirectoryRoleAssignment -Top XY } | Should -Throw "Cannot process argument transformation on parameter 'Top'*"
         }          
         It "Should return specific application by filter" {
-            $result = Get-EntraRoleAssignment -Filter "PrincipalId eq 'aaaaaaaa-bbbb-cccc-1111-222222222222'"
+            $result = Get-EntraDirectoryRoleAssignment -Filter "PrincipalId eq 'aaaaaaaa-bbbb-cccc-1111-222222222222'"
             $result | Should -Not -BeNullOrEmpty
             $result.Id | should -Be 'Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2'
 
             Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleAssignment  -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when filter is empty" {
-            { Get-EntraRoleAssignment -Filter  } | Should -Throw "Missing an argument for parameter 'Filter'*"
+            { Get-EntraDirectoryRoleAssignment -Filter  } | Should -Throw "Missing an argument for parameter 'Filter'*"
         }
           
         It "Result should Contain ObjectId" {
-            $result = Get-EntraRoleAssignment -Id "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
+            $result = Get-EntraDirectoryRoleAssignment -Id "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
             $result.ObjectId | should -Be "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
         }     
         It "Should contain UnifiedRoleAssignmentId in parameters when passed Id to it" {              
-            $result = Get-EntraRoleAssignment -Id "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
+            $result = Get-EntraDirectoryRoleAssignment -Id "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
             $params = Get-Parameters -data $result.Parameters
             $params.UnifiedRoleAssignmentId | Should -Be "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
         }
         It "Property parameter should work" {
-            $result = Get-EntraRoleAssignment -Id "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2" -Property PrincipalId
+            $result = Get-EntraDirectoryRoleAssignment -Id "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2" -Property PrincipalId
             $result | Should -Not -BeNullOrEmpty
             $result.PrincipalId | Should -Be 'aaaaaaaa-bbbb-cccc-1111-222222222222'
 
             Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1
         }
         It "Should fail when Property is empty" {
-             { Get-EntraRoleAssignment -Id "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
+             { Get-EntraDirectoryRoleAssignment -Id "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2" -Property } | Should -Throw "Missing an argument for parameter 'Property'*"
         }
         It "Should contain 'User-Agent' header" {
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraRoleAssignment"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirectoryRoleAssignment"
 
-            Get-EntraRoleAssignment -Id "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
+            Get-EntraDirectoryRoleAssignment -Id "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2"
             
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraRoleAssignment"
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraDirectoryRoleAssignment"
 
             Should -Invoke -CommandName Get-MgRoleManagementDirectoryRoleAssignment -ModuleName Microsoft.Graph.Entra -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
@@ -113,7 +113,7 @@ Describe "Get-EntraRoleAssignment" {
 
             try {
                 # Act & Assert: Ensure the function doesn't throw an exception
-                {  Get-EntraRoleAssignment -Id "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2" -Debug } | Should -Not -Throw
+                {  Get-EntraDirectoryRoleAssignment -Id "Aa1Bb2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_~Jj0Kk1Ll2" -Debug } | Should -Not -Throw
             } finally {
                 # Restore original confirmation preference            
                 $DebugPreference = $originalDebugPreference        
