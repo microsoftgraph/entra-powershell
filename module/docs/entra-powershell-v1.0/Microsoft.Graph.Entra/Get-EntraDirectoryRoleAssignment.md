@@ -115,7 +115,7 @@ This command gets all the role assignments in Microsoft Entra ID.
 
 ```powershell
 Connect-Entra -Scopes 'RoleManagement.Read.Directory','EntitlementManagement.Read.All'
-Get-EntraRoleAssignment -Id '00001111-aaaa-2222-bbbb-3333cccc4444'
+Get-EntraDirectoryRoleAssignment -Id '00001111-aaaa-2222-bbbb-3333cccc4444'
 ```
 
 ```Output
