@@ -87,6 +87,7 @@ Describe "Get-EntraBetaPolicy" {
 
             $result = Get-EntraBetaPolicy -Id "bbbbbbbb-1111-2222-3333-cccccccccccc"
             $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaPolicy"
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true

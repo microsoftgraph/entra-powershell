@@ -49,12 +49,14 @@ Describe "Remove-EntraBetaPasswordSingleSignOnCredential" {
         }
 
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName Remove-MgBetaServicePrincipalPasswordSingleSignOnCredential -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
-
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaPasswordSingleSignOnCredential"
-            $result = Remove-EntraBetaPasswordSingleSignOnCredential -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee"  -PasswordSSOObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Be $userAgentHeaderValue
+            $result =  Remove-EntraBetaPasswordSingleSignOnCredential -ObjectId "aaaabbbb-0000-cccc-1111-dddd2222eeee"  -PasswordSSOObjectId "bbbbcccc-1111-dddd-2222-eeee3333ffff"
+            $result | Should -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaPasswordSingleSignOnCredential"
+            Should -Invoke -CommandName Remove-MgBetaServicePrincipalPasswordSingleSignOnCredential -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         } 
 
         It "Should execute successfully without throwing an error " {

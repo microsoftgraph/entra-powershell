@@ -69,12 +69,14 @@ Describe "Set-EntraBetaFeatureRolloutPolicy" {
         }
 
         It "Should contain 'User-Agent' header" {
-            Mock -CommandName  Update-MgBetaPolicyFeatureRolloutPolicy -MockWith {$args} -ModuleName Microsoft.Graph.Entra.Beta
-
-            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Set-EntraBetaFeatureRolloutPolicy"
-            $result = Set-EntraBetaFeatureRolloutPolicy -Id "bbbbcccc-1111-dddd-2222-eeee3333ffff" -Feature "passwordHashSync" -DisplayName "Feature-Rollout-Policytest" -IsEnabled $true -IsAppliedToOrganization $false -Description "Feature-Rollout-test"
-            $params = Get-Parameters -data $result
-            $params.Headers["User-Agent"] | Should -Contain $userAgentHeaderValue
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaTrustFrameworkPolicy"
+            $result =  Remove-EntraBetaTrustFrameworkPolicy -Id "B2C_1A_TRUSTFRAMEWORKLOCALIZATION"
+            $result | Should -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Remove-EntraBetaTrustFrameworkPolicy"
+            Should -Invoke -CommandName Remove-MgBetaTrustFrameworkPolicy -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
+                $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
+                $true
+            }
         }  
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       

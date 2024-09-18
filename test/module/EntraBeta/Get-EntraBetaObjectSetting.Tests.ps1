@@ -70,12 +70,14 @@ Describe "Get-EntraBetaObjectSetting" {
         }
         It "Should contain 'User-Agent' header" {
             $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaObjectSetting"
-            Get-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" | Out-Null
+            $result = Get-EntraBetaObjectSetting -TargetType "Groups" -TargetObjectId "bbbbbbbb-1111-2222-3333-cccccccccccc" 
+            $result | Should -Not -BeNullOrEmpty
+            $userAgentHeaderValue = "PowerShell/$psVersion EntraPowershell/$entraVersion Get-EntraBetaObjectSetting"
             Should -Invoke -CommandName Invoke-GraphRequest -ModuleName Microsoft.Graph.Entra.Beta -Times 1 -ParameterFilter {
                 $Headers.'User-Agent' | Should -Be $userAgentHeaderValue
                 $true
             }
-        }   
+        }  
 
         It "Should execute successfully without throwing an error " {
             # Disable confirmation prompts       
