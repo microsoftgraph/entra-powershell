@@ -38,33 +38,41 @@ The `Get-EntraServicePrincipalCreatedObject` cmdlet gets an object created by a 
 
 ## Examples
 
-### Example 1: Retrieve the objects created by a service principal
+### Example 1: Retrieve the objects that created by a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-$ServicePrincipalId = (Get-EntraServicePrincipal -Top 1).ObjectId
-Get-EntraServicePrincipalCreatedObject -ObjectId $ServicePrincipalId
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraServicePrincipalCreatedObject -ObjectId $ServicePrincipal.ObjectId
 ```
 
-This example shows how to retrieve the objects created by the service principal.
+This example gets objects created by the service principal identified by $ServicePrincipalId. You can use the command `Get-EntraServicePrincipal` to get service principal ID.
+
+- `-ObjectId` parameter specifies the service principal ID.
 
 ### Example 2: Retrieve the all objects created by a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraServicePrincipalCreatedObject -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -All
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraServicePrincipalCreatedObject -ObjectId $ServicePrincipal.ObjectId -All
 ```
 
-This example demonstrates how to get the all object created by a specified service principal in Microsoft Entra ID.  
+This example demonstrates how to get the all object created by a specified service principal in Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies the service principal ID.
 
 ### Example 3: Retrieve the top two objects created by a service principal
 
 ```powershell
 Connect-Entra -Scopes 'Application.Read.All'
-Get-EntraServicePrincipalCreatedObject -ObjectId '00001111-aaaa-2222-bbbb-3333cccc4444' -Top 2
+$ServicePrincipal = Get-EntraServicePrincipal -Filter "DisplayName eq '<service-principal-display-name>'"
+Get-EntraServicePrincipalCreatedObject -ObjectId $ServicePrincipal.ObjectId -Top 2
 ```
 
-This example demonstrates how to get the top two object created by a specified service principal in Microsoft Entra ID.  
+This example demonstrates how to get the top two object created by a specified service principal in Microsoft Entra ID.
+
+- `-ObjectId` parameter specifies the service principal ID.
 
 ## Parameters
 
@@ -118,7 +126,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]
@@ -134,7 +142,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

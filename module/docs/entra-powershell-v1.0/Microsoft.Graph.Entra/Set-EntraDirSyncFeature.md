@@ -29,7 +29,7 @@ Used to set identity synchronization features for a tenant.
 Set-EntraDirSyncFeature 
  -Feature <String> 
  -Enabled <Boolean> 
- [-TenantId <Guid>] 
+ [-TenantId <String>] 
  [-Force] 
  [<CommonParameters>]
 ```
@@ -56,14 +56,17 @@ You can't disable these features once they're enabled.
 ```powershell
 Connect-Entra -Scopes 'OnPremDirectorySynchronization.ReadWrite.All'
 $params = @{
-    Feature = 'EnableSoftMatchOnUpn'
+    Feature = 'BlockCloudObjectTakeoverThroughHardMatch'
     Enable = $True
 }
-
 Set-EntraDirSyncFeature @params
 ```
 
 This command enables the SoftMatchOnUpn feature for the tenant.
+
+- `-Feature` specifies the directory synchronization feature to turn on or off.
+- `-Enable` specifies whether the specified features are turned on for the company.
+- `-Force` Forces the command to run without asking for user confirmation.
 
 ### Example 2: Block Soft Matching for the tenant
 
@@ -79,6 +82,9 @@ Set-EntraDirSyncFeature @params
 
 This command enables the BlockSoftMatch feature for the tenant - effectively blocking the Soft Matching feature in the tenant.
 
+- `-Feature` specifies the directory synchronization feature to turn on or off.
+- `-Enable` specifies whether the specified features are turned on for the company.
+
 ### Example 3: Block Cloud object takeover through Hard Matching for the tenant
 
 ```powershell
@@ -92,6 +98,10 @@ Set-EntraDirSyncFeature @params
 ```
 
 This command enables the BlockCloudObjectTakeoverThroughHardMatch feature for the tenant - effectively blocking the Hard Match object takeover.
+
+- `-Feature` specifies the directory synchronization feature to turn on or off.
+- `-Enable` specifies whether the specified features are turned on for the company.
+- `-TenantId` Specifies the unique ID of the tenant.
 
 ## Parameters
 
@@ -129,9 +139,7 @@ Accept wildcard characters: False
 
 ### -TenantId
 
-The unique ID of the tenant to perform the operation on.
-If this isn't provided then the value defaults to the tenant of the current user.
-This parameter is only applicable to partner users.
+The unique ID of the tenant on which to perform the operation. If not provided, the operation defaults to the tenant of the current user. This parameter is applicable only to partner users.
 
 ```yaml
 Type: System.String
@@ -171,9 +179,9 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 
 ## Notes
 
-- For additional details see [Update onPremisesDirectorySynchronization](/graph/api/onpremisesdirectorysynchronization-update).
-- For the feature list see the [onPremisesDirectorySynchronizationFeature resource type](/graph/api/resources/onpremisesdirectorysynchronizationfeature).
+- For additional details see [Update onPremisesDirectorySynchronization](https://learn.microsoft.com/graph/api/onpremisesdirectorysynchronization-update).
+- For the feature list see the [onPremisesDirectorySynchronizationFeature resource type](https://learn.microsoft.com/graph/api/resources/onpremisesdirectorysynchronizationfeature).
 
 ## Related Links
 
-[Get-EntraDirSyncFeature](./Get-EntraDirSyncFeature.md)
+[Get-EntraDirSyncFeature](Get-EntraDirSyncFeature.md)

@@ -18,11 +18,11 @@ schema: 2.0.0
 
 # New-EntraAttributeSet
 
-## SYNOPSIS
+## Synopsis
 
 Adds a new attribute set.
 
-## SYNTAX
+## Syntax
 
 ```powershell
 New-EntraAttributeSet 
@@ -32,24 +32,20 @@ New-EntraAttributeSet
  [<CommonParameters>]
 ```
 
-## DESCRIPTION
+## Description
 
-The `New-EntraAttributeSet` cmdlet creates a new attribute set object in Microsoft Entra ID.
+Adds a new Microsoft Entra ID attribute set object.
 
-In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with a supported role permission.
+In delegated scenarios with work or school accounts, the signed-in user must be assigned a supported Microsoft Entra role or a custom role with the necessary permissions. The Attribute Definition Administrator is the only privileged role supported for this operation.
 
-Note: Only the Attribute Definition Administrator role is supported for this operation. Ensure the user is assigned this role.
+## Examples
 
-By default, Global Administrator and other administrator roles can't read, define, or assign custom security attributes.
-
-## EXAMPLES
-
-### Example: Add a single attribute set
+### Example 1: Add a single attribute set
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.ReadWrite.All'
 $params = @{
-    Id = 'NewCustomAttributeSet'
+    Id = 'Testing'
     Description = 'Attributes for engineering team'
     MaxAttributesPerSet = 10
 }
@@ -58,20 +54,22 @@ New-EntraAttributeSet @params
 ```
 
 ```Output
-Id                     Description                    MaxAttributesPerSet
---                     -----------                    -------------------
-NewCustomAttributeSet Attributes for engineering team 10
+Id      Description                     MaxAttributesPerSet
+--      -----------                     -------------------
+Testing Attributes for engineering team 10
 ```
 
-This example adds a single attribute set.
+This example demonstrates hoe to add a single attribute set.
 
-- Attribute set: `NewCustomAttributeSet`
+- `-Id` parameter specifies the name of the attribute set.
+- `-Description` parameter specifies the description for the attribute set.
+- `-MaxAttributesPerSet` parameter specifies the maximum number of custom security attributes.
 
-## PARAMETERS
+## Parameters
 
 ### -Description
 
-Description of the attribute set, up to 128 Unicode characters. This can be changed later.
+Description of the attribute set, up to 128 characters long, including Unicode characters. This description can be changed later.
 
 ```yaml
 Type: System.String
@@ -103,7 +101,7 @@ Accept wildcard characters: False
 
 ### -MaxAttributesPerSet
 
-Maximum number of custom security attributes for this set. Default is null. If not specified, up to 500 active attributes per tenant can be added. This can be changed later. Optional.
+Maximum number of custom security attributes that can be defined in this attribute set. The default value is null. If not specified, the administrator can add up to 500 active attributes per tenant. This setting can be changed later.
 
 ```yaml
 Type: System.Int32
@@ -121,17 +119,17 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVariable`, `-InformationAction`, `-InformationVariable`, `-OutVariable`, `-OutBuffer`, `-PipelineVariable`, `-Verbose`, `-WarningAction`, and `-WarningVariable`. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+## Inputs
 
 ### None
 
-## OUTPUTS
+## Outputs
 
 ### System.Object
 
-## NOTES
+## Notes
 
-## RELATED LINKS
+## Related Links
 
 [Get-EntraAttributeSet](Get-EntraAttributeSet.md)
 

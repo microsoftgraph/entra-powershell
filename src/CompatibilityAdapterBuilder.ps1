@@ -422,7 +422,7 @@ public $($object.GetType().Name)()
         $functions = $this.ModuleMap.CommandsList + "Enable-EntraAzureADAlias" + "Get-EntraUnsupportedCommand"
         $requiredModules = @()
         foreach($module in $content.requiredModules){
-            $requiredModules += @{ModuleName = $module; ModuleVersion = $content.requiredModulesVersion}
+            $requiredModules += @{ModuleName = $module; RequiredVersion = $content.requiredModulesVersion}
         }
         $moduleSettings = @{
             Path = $manisfestPath
@@ -511,9 +511,31 @@ function Get-EntraUnsupportedCommand {
             foreach ($func in $this.MissingCommandsToMap) {
                 $aliases += "   Set-Alias -Name $($func) -Value Get-EntraUnsupportedCommand -Scope Global -Force`n"
             }
-            #Adding direct aliases for Connect-Entra and Disconnect-Entra
-            $aliases += "   Set-Alias -Name Connect-AzureAD -Value Connect-Entra -Scope Global -Force`n"
-            $aliases += "   Set-Alias -Name Disconnect-AzureAD -Value Disconnect-Entra -Scope Global -Force`n"
+            
+            #Adding direct aliases 
+            $aliasDefinitionsPath =""
+            if($this.ModuleName -eq 'Microsoft.Graph.Entra')
+            {
+                $aliasDefinitionsPath = "$PSScriptRoot/EntraAliasDefinitions.ps1"
+            }
+            elseif ($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta') {
+                $aliasDefinitionsPath = "$PSScriptRoot/EntraBetaAliasDefinitions.ps1"
+            }
+            #Adding direct aliases 
+            $aliasDefinitionsPath =""
+            if($this.ModuleName -eq 'Microsoft.Graph.Entra')
+            {
+                $aliasDefinitionsPath = "$PSScriptRoot/EntraAliasDefinitions.ps1"
+            }
+            elseif ($this.ModuleName -eq 'Microsoft.Graph.Entra.Beta') {
+                $aliasDefinitionsPath = "$PSScriptRoot/EntraBetaAliasDefinitions.ps1"
+            }
+
+            if (Test-Path $aliasDefinitionsPath) {
+                $directAliases = Get-Content $aliasDefinitionsPath -Raw
+                $aliases += $directAliases  # Append the content to $aliases
+            }
+
     $aliasFunction = @"
 function Enable-EntraAzureADAlias {
 $($aliases)}
@@ -596,7 +618,8 @@ $($Command.CustomScript)
             "Get-EntraDevice",
             "Get-EntraDirectoryRole",
             "Get-EntraServicePrincipal",
-            "Get-EntraAdministrativeUnit"
+            "Get-EntraAdministrativeUnit",
+            "Get-EntraDirectoryRoleAssignment"
         )
         
         
@@ -1013,7 +1036,6 @@ $($output)
             'Confirm' = @('Confirm')
             'Enable' = @('New')
         }
-    
         $targetCmd = $null
         if($this.CmdCustomizations.ContainsKey($SourceCmdName)){
             $targetCmd = $this.CmdCustomizations[$SourceCmdName].TargetName
@@ -1036,10 +1058,22 @@ $($output)
             } else {
                 $prefix = $NewPrefix
             }
+
+            $NewName = ""
+            switch ($SourceCmdlet.Noun) {
+                "RoleDefinition" { $NewName = 'DirectoryRoleDefinition' }
+                "RoleAssignment" { $NewName = 'DirectoryRoleAssignment' }
+                "ServiceAppRoleAssignedTo" { $NewName = 'ServicePrincipalAppRoleAssignedTo' }
+                "ServiceAppRoleAssignment" { $NewName = 'ServicePrincipalAppRoleAssignment' }
+                "CustomSecurityAttributeDefinitionAllowedValues" { $NewName = 'CustomSecurityAttributeDefinitionAllowedValue' }
+                "AuditSignInLogs" { $NewName = 'AuditSignInLog' }
+                "AuditDirectoryLogs" { $NewName = 'AuditDirectoryLog' }
+                default { $NewName = $SourceCmdlet.Noun }
+            }
             $cmd = [PSCustomObject]@{
                 Old = '{0}-{1}{2}' -f $SourceCmdlet.Verb, $SourceCmdlet.Prefix, $SourceCmdlet.Noun
                 New = $targetCmd
-                Generate = '{0}-{1}{2}' -f $SourceCmdlet.Verb, $Prefix, $SourceCmdlet.Noun
+                Generate = '{0}-{1}{2}' -f $SourceCmdlet.Verb, $Prefix, $NewName
                 Noun = $SourceCmdlet.Noun
                 Verb = $SourceCmdlet.Verb
                 Parameters = $null

@@ -50,7 +50,7 @@ The work or school account needs to belong to at least the Domain Name Administr
 
 ```powershell
 Connect-Entra -Scopes 'Domain.Read.All'
-Get-EntraBetaDomainVerificationDnsRecord -Name contoso.com
+Get-EntraBetaDomainVerificationDnsRecord -Name mail.contoso.com
 ```
 
 ```Output

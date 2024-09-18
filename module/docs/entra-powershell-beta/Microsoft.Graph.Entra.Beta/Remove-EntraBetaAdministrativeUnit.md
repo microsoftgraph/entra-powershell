@@ -2,7 +2,6 @@
 title: Remove-EntraBetaAdministrativeUnit
 description: This article provides details on the Remove-EntraBetaAdministrativeUnit command.
 
-
 ms.topic: reference
 ms.date: 07/03/2024
 ms.author: eunicewaweru
@@ -26,7 +25,7 @@ Removes an administrative unit.
 
 ```powershell
 Remove-EntraBetaAdministrativeUnit 
- -ObjectId <String> 
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 
@@ -43,7 +42,7 @@ To delete an administrative unit, the calling principal must have at least the P
 ```powershell
 Connect-Entra -Scopes 'AdministrativeUnit.ReadWrite.All'
 $AdministrativeUnit = Get-EntraBetaAdministrativeUnit -Filter "DisplayName eq '<administrative-unit-display-name>'"
-Remove-EntraBetaAdministrativeUnit -ObjectId $AdministrativeUnit.ObjectId  
+Remove-EntraBetaAdministrativeUnit -ObjectId $AdministrativeUnit.ObjectId
 ```
 
 This command removes the specified administrative unit from Microsoft Entra ID.

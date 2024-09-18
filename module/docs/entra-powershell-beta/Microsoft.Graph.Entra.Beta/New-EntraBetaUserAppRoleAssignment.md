@@ -35,7 +35,7 @@ New-EntraBetaUserAppRoleAssignment
 
 ## Description
 
-The New-EntraBetaUserAppRoleAssignment cmdlet assigns a user to an application role in Microsoft Entra ID.
+The `New-EntraBetaUserAppRoleAssignment` cmdlet assigns a user to an application role in Microsoft Entra ID.
 
 To grant an app role assignment to a user, you need three identifiers:
 
@@ -85,12 +85,12 @@ You can use the command `Get-EntraBetaServicePrincipal` to get service principal
 Connect-Entra -Scopes 'AppRoleAssignment.ReadWrite.All'
 $userName = 'SawyerM@contoso.com'
 $appName = 'Box'
-$appId = Get-EntraBetaApplication -Filter "DisplayName eq '$appname'"
+$appId = Get-EntraBetaApplication -Filter "DisplayName eq '$appName'"
 $spo = Get-EntraBetaServicePrincipal -All | Where-Object {$_.AppId -eq $appId.AppId }
 $user = Get-EntraBetaUser -Filter "userPrincipalName eq '$userName'"
 $params = @{
-    ObjectId = $user.ObjectId 
-    PrincipalId = $user.ObjectId 
+    ObjectId = $user.ObjectId
+    PrincipalId = $user.ObjectId
     ResourceId = $spo.ObjectId
     Id = $appId.AppRoles.Id
 }
@@ -159,7 +159,8 @@ Accept wildcard characters: False
 ### -PrincipalId
 
 The object ID of the principal to which the new app role is assigned.
-When assigning a new role to a user provide the object ID of the user.
+
+When assigning a new role to a user, provide the object ID of the user.
 
 ```yaml
 Type: System.String

@@ -27,7 +27,7 @@ Deletes a device.
 
 ```powershell
 Remove-EntraBetaDevice 
- -ObjectId <String> 
+ -ObjectId <String>
  [<CommonParameters>]
 ```
 
@@ -43,7 +43,8 @@ The calling user must be in one of the following Microsoft Entra roles: Intune A
 
 ```powershell
 Connect-Entra -Scopes 'Directory.AccessAsUser.All','Device.ReadWrite.All'
-Remove-EntraBetaDevice -ObjectId 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb'
+$Device = Get-EntraBetaDevice -Filter "DisplayName eq 'Woodgrove Desktop'"
+Remove-EntraBetaDevice -ObjectId $Device.ObjectId
 ```
 
 This command removes the specified device.
