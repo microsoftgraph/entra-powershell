@@ -26,7 +26,7 @@ Gets the details of a tenant.
 
 ```powershell
 Get-EntraTenantDetail
- [-All <Boolean>]
+ [-All]
  [-Top <Int32>]
  [-Property <String[]>]
  [<CommonParameters>]
@@ -58,7 +58,7 @@ In delegated scenarios involving work or school accounts, the signed-in user mus
 
 ```powershell
 Connect-Entra -Scopes 'Organization.Read.All' 
-Get-EntraTenantDetail -All 
+Get-EntraTenantDetail -All
 ```
 
 ```Output
@@ -69,20 +69,20 @@ Contoso     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb AAD        NL                {@
 
 This example shows how to retrieve all tenant details.
 
-### Example 2: Get top five tenant details
+### Example 2: Get top one tenant details
 
 ```powershell
 Connect-Entra -Scopes 'Organization.Read.All'
-Get-EntraTenantDetail -Top 5
+Get-EntraTenantDetail -Top 1
 ```
 
 ```Output
-DisplayName Id                                   TenantType CountryLetterCode VerifiedDomains
------------ --                                   ---------- ----------------- ---------------
-Contoso     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb AAD        NL                {@{Capabilities=Email, OfficeCommunicationsOnline; IsDefault=False; IsInitial=True; Name=contoso.onmicrosoft.com; Type=Mana...
+DisplayName Id                                   CountryLetterCode VerifiedDomains
+----------- --                                   ----------------- ---------------
+Contoso     aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb NL                {@{Capabilities=Email, OfficeCommunicationsOnline; IsDefault=False; IsInitial=True; Name=contoso.onmicrosoft.com; Type=Managed; Addition…}}
 ```
 
-This example shows how to retrieve details of a top five tenants in Microsoft Entra ID.
+This example shows how to retrieve details of a top one tenant in Microsoft Entra ID.
 
 ## Parameters
 
@@ -120,7 +120,7 @@ Accept wildcard characters: False
 
 ### -Property
 
-Specifies properties to be returned
+Specifies properties to be returned.
 
 ```yaml
 Type: System.String[]

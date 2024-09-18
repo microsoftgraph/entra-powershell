@@ -52,9 +52,9 @@ Set-EntraPolicy @params
 
 This command updates display name of the specified policy in Microsoft Entra ID.
 
-- `-Id` - Specifies the ID of the policy for which you want to set values.
+- `-Id` specifies the ID of the policy for which you want to set values.
 
-- `DisplayName` - Specifies the display name.
+- `DisplayName` specifies the display name.
 
 ### Example 2: Update a policy definition
 
@@ -69,9 +69,9 @@ Set-EntraPolicy @params
 
 This command updates definition of the specified policy in Microsoft Entra ID.
 
-- `-Id` - Specifies the ID of the policy for which you want to set values.
+- `-Id` specifies the ID of the policy for which you want to set values.
 
-- `Definition` - Specifies the array of stringified JSON that contains all the rules of the policy.
+- `Definition` specifies the array of stringified JSON that contains all the rules of the policy.
 In this example, `@('{"activityBasedTimeoutPolicies":{"AlternateLoginIDLookup":true, "IncludedUserIds":["UserID"]}}')` represents definition of the activityBasedTimeoutPolicy.
 
 ### Example 3: Update a policy organization default
@@ -87,7 +87,7 @@ Set-EntraPolicy @params
 
 This command updates organization default of the specified policy in Microsoft Entra ID.
 
-- `-Id` - Specifies the ID of the policy for which you want to set values.
+- `-Id` specifies the ID of the policy for which you want to set values.
 
 - `-IsOrganizationDefault` If true, activates this policy. Only one policy of the same type can be the organization default. Optional, default is false.
 
@@ -104,9 +104,9 @@ Set-EntraPolicy @params
 
 This example demonstrates how to update the `type` property of a specified policy in Microsoft Entra ID.
 
-- `-Id` - Specifies the ID of the policy for which you want to set values.
+- `-Id` specifies the ID of the policy for which you want to set values.
 
-- `-Type` - Specifies the type of policy. In this example, `ActivityBasedTimeoutPolicy` represents the type of policy.
+- `-Type` specifies the type of policy. In this example, `ActivityBasedTimeoutPolicy` represents the type of policy.
 
 ## Parameters
 

@@ -29,32 +29,17 @@ Creates a permission grant policy.
 New-EntraPermissionGrantPolicy 
  -Id <String>
  [-DisplayName <String>] 
- [-Description <String>] 
+ [-Description <String>]
  [<CommonParameters>]
 ```
 
 ## Description
 
-The New-EntraPermissionGrantPolicy cmdlet creates a Microsoft Entra ID permission grant policy.
+The `New-EntraPermissionGrantPolicy` cmdlet creates a Microsoft Entra ID permission grant policy.
 
 ## Examples
 
 ### Example 1: Create a permission grant policy
-
-```powershell
-Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
-New-EntraPermissionGrantPolicy -Id 'my_new_permission_grant_policy_id'
-```
-
-```Output
-DeletedDateTime Description DisplayName Id
---------------- ----------- ----------- --
-                                        my_new_permission_grant_policy_id
-```
-
-This command creates new permission grant policy.
-
-### Example 1: Create a permission grant policy with display name and description parameters
 
 ```powershell
 Connect-Entra -Scopes 'Policy.ReadWrite.PermissionGrant'
@@ -73,7 +58,11 @@ DeletedDateTime Description                    DisplayName                Id
                 My new permission grant policy MyNewPermissionGrantPolicy my_new_permission_grant_policy_id
 ```
 
-This command creates new permission grant policy.
+This example creates new permission grant policy in Microsoft Entra ID.
+
+- `-Id` parameter specifies the unique identifier of the permission grant policy.
+- `-DisplayName` parameter specifies the display name for the permission grant policy.
+- `-Description` parameter specifies the description for the permission grant policy.
 
 ## Parameters
 

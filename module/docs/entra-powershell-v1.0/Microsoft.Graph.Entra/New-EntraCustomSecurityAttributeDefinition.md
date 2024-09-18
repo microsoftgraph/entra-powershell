@@ -21,7 +21,7 @@ schema: 2.0.0
 
 ## Synopsis
 
-Adds a new custom security attribute definition.
+Create a new customSecurityAttributeDefinition object.
 
 ## Syntax
 
@@ -40,7 +40,7 @@ New-EntraCustomSecurityAttributeDefinition
 
 ## Description
 
-Create a new customSecurityAttributeDefinition object. Specify `IsSearchable`, `IsCollection`, `AttributeSet`, `Type`, `Name`, `Status` and `UsePreDefinedValuesOnly` parameters for create a new custom security attribute definition.
+The `New-EntraCustomSecurityAttributeDefinition` cmdlet creates a new customSecurityAttributeDefinition object. Specify `IsSearchable`, `IsCollection`, `AttributeSet`, `Type`, `Name`, `Status` and `UsePreDefinedValuesOnly` parameters for create a new custom security attribute definition.
 
 You can define up to 500 active objects in a tenant.
 
@@ -48,42 +48,40 @@ In delegated scenarios with work or school accounts, the signed-in user must be 
 
 ## Examples
 
-### Example 1: Add new custom security attribute definition object
+### Example 1: Add a custom security attribute
 
 ```powershell
 Connect-Entra -Scopes 'CustomSecAttributeDefinition.Read.All','CustomSecAttributeDefinition.ReadWrite.All'
 $AttributeSet  = Get-EntraAttributeSet -Id '<CustomAttributeSetId>'
 $params = @{
-    AttributeSet = $AttributeSet.Id
-    Name = 'Project'
-    Description = 'Target completion date'
+    Name = 'ProjectTest' 
+    Description = 'Target completion'
     Type = 'String'
     Status = 'Available'
-    IsCollection = $false
-    IsSearchable = $true 
-    UsePreDefinedValuesOnly = $true
-
+    AttributeSet = $AttributeSet.Id 
+    IsCollection = $False
+    IsSearchable = $True 
+    UsePreDefinedValuesOnly = $True
 }
 New-EntraCustomSecurityAttributeDefinition @params
 ```
 
 ```Output
-Id                   AttributeSet Description          IsCollection IsSearchable Name          Status    Type   UsePreDefinedValuesOnly
---                   ------------ -----------          ------------ ------------ ----          ------    ----   -----------------------
-demo_Project demo      Target completion date False        False        Project Available String True
-
+Id               AttributeSet Description       IsCollection IsSearchable Name        Status    Type   UsePreDefinedValuesOnly
+--               ------------ -----------       ------------ ------------ ----        ------    ----   -----------------------
+Test_ProjectTest Test         Target completion False        True         ProjectTest Available String False
 ```
 
 This example demonstrates how to add a custom security attribute.
 
-- `Name` parameter specifies the name of the custom security attribute.
-- `Description` parameter specifies the description of the custom security attribute.
-- `Type` parameter specifies the data type for the custom security attribute values.
-- `Status` parameter specifies the custom security attribute is active or deactivated.
-- `AttributeSet` parameter specifies the name of attribute set.
-- `IsCollection` parameter specifies the allows multiple values can be assigned to the custom security attribute.
-- `IsSearchable` parameter specifies the custom security attribute values are indexed for searching on objects.
-- `UsePreDefinedValuesOnly` parameter specifies the only predefined values can be assigned to the custom security attribute.
+- `-Name` parameter specifies the name of the custom security attribute.
+- `-Description` parameter specifies the description of the custom security attribute.
+- `-Type` parameter specifies the data type for the custom security attribute values.
+- `-Status` parameter specifies the custom security attribute is active or deactivated.
+- `-AttributeSet` parameter specifies the name of attribute set.
+- `-IsCollection` parameter specifies the allows multiple values can be assigned to the custom security attribute.
+- `-IsSearchable` parameter specifies the custom security attribute values are indexed for searching on objects.
+- `-UsePreDefinedValuesOnly` parameter specifies the only predefined values can be assigned to the custom security attribute.
 
 ## Parameters
 
